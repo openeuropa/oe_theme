@@ -36,28 +36,38 @@
  * @see html.html.twig
  */
 #}
-<div class="ecl-container">
-  <div class="ecl-row">
-    <div class="ecl-col">
-
-      {% if page.header %}
-      <header>
-        {{ page.header }}
-      </header>
-      {% endif %}
-
-      <div id="main-content">
-        {{ page.content }}
+<header>
+  <div class="ecl-container">
+    <div class="ecl-row">
+      <div class="ecl-col">
+        {% if page.header %}
+          {{ page.header }}
+        {% endif %}
       </div>
-
-      {% if page.footer %}
-      <footer>
-        {{ page.footer }}
-      </footer>
-      {% endif %}
-
     </div>
   </div>
-</div>
+</header>
+
+<section>
+  <div class="ecl-container">
+    <div class="ecl-row">
+      <div class="ecl-col">
+        {{ page.content }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ecl-container">
+    <div class="ecl-row">
+      <div class="ecl-col">
+        {% if page.footer %}
+          {{ page.footer }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
 
 
