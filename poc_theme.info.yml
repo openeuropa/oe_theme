@@ -1,0 +1,12 @@
+name: POC Theme
+type: theme
+description: POC Theme.
+package: Other
+core: 8.x
+libraries:
+  - poc_theme/base
+
+base theme: stable
+
+regions:
+  content: Content
