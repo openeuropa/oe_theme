@@ -9,4 +9,6 @@ libraries:
 base theme: stable
 
 regions:
+  header: Header
   content: Content
+  footer: Footer
