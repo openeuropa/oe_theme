@@ -40,6 +40,10 @@
   <div class="ecl-container">
     <div class="ecl-row">
       <div class="ecl-col">
+        {% include '@poc_theme/components/ecl-logos/logos.twig' with {
+          'to': 'https://ec.europa.eu',
+          'title': 'European Commission',
+        } %}
         {% if page.header %}
           {{ page.header }}
         {% endif %}
