@@ -5,6 +5,9 @@
   "license": "EUPL-1.1",
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "require": {
+    "ec-europa/poc_core": "~0"
+  },
   "require-dev": {
     "ec-europa/poc-code-review": "*"
   },
