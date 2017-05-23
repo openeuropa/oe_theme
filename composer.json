@@ -6,7 +6,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "ec-europa/poc_core": "~0"
+    "ec-europa/poc_core": "*"
   },
   "require-dev": {
     "ec-europa/poc-code-review": "*"
