@@ -1,6 +1,7 @@
 # POC Theme
 
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
+It requires on the [POC Core](https://github.com/ec-europa/poc_core) module to be enabled on your site.
 
 ## Developer guide
 
