@@ -12,6 +12,7 @@
     "ec-europa/poc-code-review": "*"
   },
   "repositories": [
+    { "type": "git", "url": "https://github.com/ec-europa/poc_core.git" },
     { "type": "git", "url": "https://github.com/ec-europa/poc-code-review.git" }
   ]
 }

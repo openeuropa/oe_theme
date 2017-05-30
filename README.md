@@ -58,3 +58,6 @@ Update the ECL by changing the `@ec-europa/ecl-components-preset-base` version i
 ```
 $ npm run build
 ```
+
+This will update assets such as images and fonts and re-compile CSS, resulting changes are meant to be committed to this
+repository since we cannot require theme users and/or deployment procedures to build the theme locally.
