@@ -36,10 +36,13 @@
  * @see html.html.twig
  */
 #}
+
+
 <header>
   <div class="ecl-container">
     <div class="ecl-row">
       <div class="ecl-col">
+        {% include '@ec-europa/ecl-site-headers' %}
         {% if page.header %}
           {{ page.header }}
         {% endif %}
@@ -69,5 +72,8 @@
     </div>
   </div>
 </footer>
+
+{% include '@ec-europa/ecl-footers' %}
+
 
 
