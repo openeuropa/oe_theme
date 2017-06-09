@@ -2,9 +2,9 @@ langcode: en
 status: true
 dependencies:
   theme:
-    - poc_theme
-id: poc_theme_page_title
-theme: poc_theme
+    - oe_theme
+id: oe_theme_page_title
+theme: oe_theme
 region: content
 weight: 0
 provider: null

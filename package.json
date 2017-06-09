@@ -1,8 +1,8 @@
 {
-  "name": "poc_theme",
+  "name": "oe_theme",
   "license": "EUPL-1.1",
   "version": "0.0.1",
-  "description": "POC Theme.",
+  "description": "OpenEuropa base theme.",
   "private": true,
   "scripts": {
     "build:copy": "ecl-builder copy",

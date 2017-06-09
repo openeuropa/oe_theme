@@ -1,5 +1,5 @@
 imports:
-  - { resource: vendor/ec-europa/poc-code-review/dist/conventions.yml }
+  - { resource: vendor/ec-europa/oe-code-review/dist/conventions.yml }
 parameters:
   tasks.phpcs.ignore_patterns:
     - vendor/

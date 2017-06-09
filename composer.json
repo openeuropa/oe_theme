@@ -1,18 +1,17 @@
 {
-  "name": "ec-europa/poc_theme",
-  "description": "POC Theme.",
+  "name": "ec-europa/oe_theme",
+  "description": "OpenEuropa base theme.",
   "type": "drupal-theme",
   "license": "EUPL-1.1",
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "ec-europa/poc_core": "*"
+    "ec-europa/oe_core": "*"
   },
   "require-dev": {
-    "ec-europa/poc-code-review": "*"
+    "ec-europa/oe-code-review": "*"
   },
   "repositories": [
-    { "type": "git", "url": "https://github.com/ec-europa/poc_core.git" },
-    { "type": "git", "url": "https://github.com/ec-europa/poc-code-review.git" }
+    { "type": "git", "url": "https://github.com/ec-europa/oe_core.git" }
   ]
 }

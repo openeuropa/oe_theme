@@ -4,9 +4,9 @@ dependencies:
   module:
     - system
   theme:
-    - poc_theme
-id: poc_theme_main_page_content
-theme: poc_theme
+    - oe_theme
+id: oe_theme_main_page_content
+theme: oe_theme
 region: content
 weight: 2
 provider: null
