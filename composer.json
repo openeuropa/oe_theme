@@ -10,8 +10,5 @@
   },
   "require-dev": {
     "ec-europa/oe-code-review": "*"
-  },
-  "repositories": [
-    { "type": "git", "url": "https://github.com/ec-europa/oe_core.git" }
-  ]
+  }
 }
