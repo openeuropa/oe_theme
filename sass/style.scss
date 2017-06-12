@@ -1,0 +1,7 @@
+@import '../node_modules/@ec-europa/ecl-base/index.scss';
+
+.main-content {
+  .block {
+    margin-bottom: map-get($ecl-spacing, 'm')
+  }
+}
