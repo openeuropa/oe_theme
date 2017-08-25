@@ -9,6 +9,6 @@
     "ec-europa/oe_core": "*"
   },
   "require-dev": {
-    "ec-europa/oe-code-review": "*"
+    "ec-europa/oe-code-review": "^0.0.2"
   }
 }
