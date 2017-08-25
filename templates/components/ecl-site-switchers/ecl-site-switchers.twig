@@ -1,0 +1,36 @@
+{#
+  - variant: can be '','header','footer' (default: '')
+  - political:  {
+    href: target of the link (default: '')
+    label: label of the link (default: '')
+  }
+  - info:  {
+    href: target of the link (default: '')
+    label: label of the link (default: '')
+  }
+#}
+
+{# Internal properties #}
+
+{% set _css_class = 'ecl-site-switcher' ~ (variant != '' ? ' ecl-site-switcher--' ~ variant: '') %}
+{% set _extra_attributes = '' %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_class is defined %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_class %}
+{% endif %}
+
+{% if extra_attributes is defined %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Print result #}
+<div class="{{ _css_class }}" {{ _extra_attributes }}>
+  <ul class="ecl-site-switcher__list ecl-container">
+      <li class="ecl-site-switcher__option"><a class="ecl-link ecl-site-switcher__link" href="{{ political.href }}">{{ political.label }}</a></li>
+      <li class="ecl-site-switcher__option ecl-site-switcher__option--is-selected"><a class="ecl-link ecl-site-switcher__link" href="{{ info.href }}">{{ info.label }}</a></li>
+  </ul>
+</div>
