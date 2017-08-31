@@ -1,0 +1,30 @@
+<div class="ecl-tag {% if modifier is defined %}ecl-tag--{{ modifier }}{% endif %}">
+  {% if label is defined %}
+  <span class="ecl-tag__label">{{ label }}</span>
+  {% endif %}
+
+  {% if tags is defined %}
+    {% for tag in tags %}
+      {% if tag.label is defined %}
+  <span class="ecl-tag__label">{{ tag.label }}</span>
+      {% endif %}
+
+      {% if modifier is defined %}
+        {% if modifier == 'facet' %}
+  <span class="ecl-tag__item">{{ tag.value }}</span>
+        {% elseif modifier == 'facet-close' %}
+  {% include '@ec-europa/ecl-buttons' with {
+    'label': tag.value,
+    'extraClass': 'ecl-tag__item',
+    'extraAttributes': [
+      { 'name': 'type', 'value': 'button'},
+    ]
+  } %}
+        {% endif %}
+      {% else %}
+  <a class="ecl-tag__item" href="{{ tag.href }}">{{ tag.value }}</a>
+      {% endif %}
+
+    {% endfor %}
+  {% endif %}
+</div>

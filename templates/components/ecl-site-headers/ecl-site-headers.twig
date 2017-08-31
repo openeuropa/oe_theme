@@ -1,25 +1,30 @@
-{% if variant is defined and variant == "homepage" %}
-<header class="ecl-site-header ecl-site-header--homepage" role="banner">
-  <div class="container-fluid ecl-site-header__container">
-    <section class="ecl-site-header__top-bar" aria-label="Site tools">
-      <div class="ecl-site-header__top-bar__wrapper">
-        {% include '@ec-europa/ecl-lang-select-sites' %}
-      </div>
-    </section>
-    {% include '@ec-europa/ecl-logos' with { 'to': 'https://ec.europa.eu', 'title': 'Home - European Commission', 'type': 'below', 'externalClass': 'ecl-site-header__logo' } %}
-  </div>
-  {% include '@ec-europa/ecl-header-search-bars' %}
-</header>
-{% else %}
-<header class="ecl-site-header" role="banner">
-  <div class="container-fluid ecl-site-header__container">
-    {% include '@ec-europa/ecl-logos' with { 'to': 'https://ec.europa.eu', 'title': 'Home - European Commission', 'type': 'right', 'externalClass': 'ecl-site-header__logo' } %}
-    <section class="ecl-site-header__top-bar" aria-label="Site tools">
-      <div class="ecl-site-header__top-bar__wrapper">
-        {% include '@ec-europa/ecl-lang-select-sites' %}
-        {% include '@ec-europa/ecl-search-forms' %}
-      </div>
-    </section>
-  </div>
-</header>
+{# Internal properties #}
+
+{% set _css_class = 'ecl-site-header' %}
+{% set _extra_attributes = '' %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_class is defined %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_class %}
 {% endif %}
+
+{% if extra_attributes is defined %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Print result #}
+<header class="{{ _css_class }}" {{ _extra_attributes }} role="banner">
+  <div class="ecl-container ecl-site-header__container">
+    {% include '@ec-europa/ecl-logos' with { 'to': 'https://ec.europa.eu', 'title': 'Home - European Commission', 'type': 'right', 'extra_class': 'ecl-site-header__logo' } only %}
+    {% include '@ec-europa/ecl-lang-select-sites' with {
+      'extra_class': 'ecl-site-header__lang-select-sites'
+    } %}
+    {% include '@ec-europa/ecl-search-forms' with {
+      'input': { 'id': 'global-search' },
+      'extra_classes': 'ecl-site-header__search'
+    } %}
+  </div>
+</header>
