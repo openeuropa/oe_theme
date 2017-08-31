@@ -22,13 +22,12 @@ before_script:
   # Exclude build directory from Drupal and Drush.
   # @todo: Include this in custom scaffolding.
   - echo '$settings["file_scan_ignore_directories"][] = "build";' >> build/sites/default/default.settings.php
-  - alias drush="drush --exclude=build"
   # Install Drupal 8 target site.
   - cd build
-  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
-  - drush en oe_core oe_theme -y
-  - drush config-set system.theme default oe_theme -y
-  - drush cr
+  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal --exclude=build
+  - drush en oe_core oe_theme -y --exclude=build
+  - drush config-set system.theme default oe_theme -y --exclude=build
+  - drush cr --exclude=build
   # Run Drush web server.
   - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
   - sleep 4s
