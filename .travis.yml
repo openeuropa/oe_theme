@@ -29,7 +29,7 @@ before_script:
   - drush config-set system.theme default oe_theme -y --exclude=build
   - drush cr --exclude=build
   # Run Drush web server.
-  - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
+  - drush --exclude=build --debug runserver :8888 > ~/debug.txt 2>&1 &
   - sleep 4s
   - chmod -R ug+w sites
 
