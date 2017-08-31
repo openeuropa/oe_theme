@@ -21,6 +21,7 @@ before_script:
   - mysql -e 'create database drupal'
   # Install Drupal 8 target site.
   - cd build
+  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> sites/default/default.settings.php
   - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
   - drush en oe_core oe_theme -y
   - drush config-set system.theme default oe_theme -y
@@ -29,7 +30,6 @@ before_script:
   - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
   - sleep 4s
   - chmod -R ug+w sites
-  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> sites/default/settings.php
 
 script:
   - cd $TRAVIS_BUILD_DIR

@@ -18,8 +18,16 @@
         "drupal/drupal-extension": "^3.3"
     },
     "scripts": {
-        "post-update-cmd":  [ "rm -rf build/themes && mkdir build/themes && ln -s ../../ build/themes/oe_theme" ],
-        "post-install-cmd": [ "rm -rf build/themes && mkdir build/themes && ln -s ../../ build/themes/oe_theme" ]
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "link-source": "rm -rf build/themes && mkdir build/themes && ln -s ../../ build/themes/oe_theme",
+        "post-update-cmd": [
+            "@drupal-scaffold",
+            "@link-source"
+        ],
+        "post-install-cmd": [
+            "@drupal-scaffold",
+            "@link-source"
+        ]
     },
     "conflict": {
         "drupal/drupal": "*"
