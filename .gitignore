@@ -5,3 +5,4 @@ npm-debug.log
 grumphp.yml
 composer.lock
 yarn.lock
+behat.yml

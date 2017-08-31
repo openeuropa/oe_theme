@@ -26,13 +26,15 @@ before_script:
   - drush config-set system.theme default oe_theme -y
   - drush cr
   # Run Drush web server.
-  - ./vendor/bin/drush --debug runserver :8888 > ~/debug.txt 2>&1 &
+  - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
   - sleep 4s
   - chmod -R ug+w sites
+  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> sites/default/settings.php
 
 script:
   - cd $TRAVIS_BUILD_DIR
   - grumphp run
+  - behat
 
 notifications:
   email: false
