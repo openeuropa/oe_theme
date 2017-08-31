@@ -7,6 +7,7 @@ php:
 env:
   global:
     - PATH=$PATH:/home/travis/.composer/vendor/bin:$TRAVIS_BUILD_DIR/vendor/bin
+    - DRUPAL_ROOT=$TRAVIS_BUILD_DIR/build
 
 install:
   - composer self-update
@@ -20,14 +21,13 @@ before_script:
   # Create database.
   - mysql -e 'create database drupal'
   # Install Drupal 8 target site.
-  - cd build
-  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> sites/default/default.settings.php
-  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
-  - drush en oe_core oe_theme -y
-  - drush config-set system.theme default oe_theme -y
-  - drush cr
+  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> build/sites/default/default.settings.php
+  - drush -r $DRUPAL_ROOT si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
+  - drush -r $DRUPAL_ROOT en oe_core oe_theme -y
+  - drush -r $DRUPAL_ROOT config-set system.theme default oe_theme -y
+  - drush -r $DRUPAL_ROOT cr
   # Run Drush web server.
-  - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
+  - drush -r $DRUPAL_ROOT --debug runserver :8888 > ~/debug.txt 2>&1 &
   - sleep 4s
   - chmod -R ug+w sites
 
