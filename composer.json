@@ -1,14 +1,32 @@
 {
-  "name": "ec-europa/oe_theme",
-  "description": "OpenEuropa base theme.",
-  "type": "drupal-theme",
-  "license": "EUPL-1.1",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
-  "require": {
-    "ec-europa/oe_core": "*"
-  },
-  "require-dev": {
-    "ec-europa/oe-code-review": "*"
-  }
+    "name": "ec-europa/oe_theme",
+    "description": "OpenEuropa base theme.",
+    "type": "drupal-theme",
+    "license": "EUPL-1.1",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "ec-europa/oe_core": "*"
+    },
+    "require-dev": {
+        "ec-europa/oe-code-review": "^0.0.2",
+        "composer/installers": "^1.2",
+        "drupal-composer/drupal-scaffold": "^2.2",
+        "drupal/core": "~8",
+        "drush/drush": "~8",
+        "drupal/console": "~1"
+    },
+    "scripts": {
+        "post-update-cmd":  [ "rm -f build/themes/oe_theme && mkdir build/themes && ln -s ../../ build/themes/oe_theme" ],
+        "post-install-cmd": [ "rm -f build/themes/oe_theme && mkdir build/themes && ln -s ../../ build/themes/oe_theme" ]
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "extra": {
+        "installer-paths": {
+            "build/core": [ "type:drupal-core" ],
+            "build/modules/{$name}": ["type:drupal-module"]
+        }
+    }
 }

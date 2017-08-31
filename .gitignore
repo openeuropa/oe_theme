@@ -1,5 +1,6 @@
 vendor
 node_modules
+build
 npm-debug.log
 grumphp.yml
 composer.lock

@@ -1,0 +1,38 @@
+language: php
+dist: precise
+
+php:
+  - 5.6
+
+env:
+  global:
+    - PATH=$PATH:/home/travis/.composer/vendor/bin:$TRAVIS_BUILD_DIR/vendor/bin
+
+install:
+  - composer self-update
+  - composer install
+
+before_script:
+  # Start PhantomJS server.
+  - phantomjs --webdriver=4444 > /dev/null &
+  # Set sendmail so drush doesn't throw an error during site install.
+  - echo "sendmail_path=`which true`" >> `php --ini | grep "Loaded Configuration" | awk '{print $4}'`
+  # Create database.
+  - mysql -e 'create database drupal'
+  # Install Drupal 8 target site.
+  - cd build
+  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
+  - drush en oe_core oe_theme -y
+  - drush config-set system.theme default oe_theme -y
+  - drush cr
+  # Run Drush web server.
+  - ./vendor/bin/drush --debug runserver :8888 > ~/debug.txt 2>&1 &
+  - sleep 4s
+  - chmod -R ug+w sites
+
+script:
+  - cd $TRAVIS_BUILD_DIR
+  - grumphp run
+
+notifications:
+  email: false
