@@ -19,9 +19,12 @@ before_script:
   - echo "sendmail_path=`which true`" >> `php --ini | grep "Loaded Configuration" | awk '{print $4}'`
   # Create database.
   - mysql -e 'create database drupal'
+  # Exclude build directory from Drupal and Drush.
+  # @todo: Include this in custom scaffolding.
+  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> build/sites/default/default.settings.php
+  - alias drush="drush --exclude=build"
   # Install Drupal 8 target site.
   - cd build
-  - echo '$settings["file_scan_ignore_directories"][] = "build";' >> sites/default/default.settings.php
   - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
   - drush en oe_core oe_theme -y
   - drush config-set system.theme default oe_theme -y
