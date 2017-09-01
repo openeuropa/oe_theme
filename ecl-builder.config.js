@@ -8,7 +8,8 @@ module.exports = {
     entry: path.resolve(source_folder, 'ecl-components-preset-base/index.js'),
     dest: path.resolve(__dirname, 'js/base.js'),
     options: {
-      sourceMap: is_prod ? false : 'inline'
+      sourceMap: is_prod ? false : 'inline',
+      moduleName: 'oe_theme'
     }
   }],
 
