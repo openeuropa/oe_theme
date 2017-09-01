@@ -1,21 +1,21 @@
 {
-  "name": "oe_theme",
-  "license": "EUPL-1.1",
-  "version": "0.0.1",
-  "description": "OpenEuropa base theme.",
-  "private": true,
-  "scripts": {
-    "build:copy": "ecl-builder copy",
-    "build:styles": "ecl-builder styles",
-    "build": "npm-run-all --parallel build:*"
-  },
-  "dependencies": {
-    "npm-run-all": "4.0.2",
-    "@ec-europa/ecl-builder": "0.6.2",
-    "@ec-europa/ecl-components-preset-base": "^0.6.0"
-  },
-  "engines": {
-    "node": ">=6.9.5",
-    "yarn": "^0.20.3"
-  }
+    "name": "oe_theme",
+    "license": "EUPL-1.1",
+    "version": "0.0.1",
+    "description": "OpenEuropa base theme.",
+    "private": true,
+    "scripts": {
+        "build:copy": "ecl-builder copy",
+        "build:styles": "ecl-builder styles",
+        "build": "npm-run-all --parallel build:*"
+    },
+    "dependencies": {
+        "npm-run-all": "4.0.2",
+        "@ec-europa/ecl-builder": "^0.12.0",
+        "@ec-europa/ecl-components-preset-base": "^0.12.0"
+    },
+    "engines": {
+        "node": ">=8",
+        "yarn": ">=0.27.5"
+    }
 }

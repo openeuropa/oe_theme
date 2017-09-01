@@ -1,0 +1,142 @@
+{% if variant is defined %}
+
+  {% if variant == "translations" %}
+
+<!-- Translations -->
+<section class="ecl-file">
+  <div class="ecl-file__body">
+    <div class="ecl-row">
+      <div class=" ecl-col ecl-col-md-8">
+        <span class="ecl-icon ecl-icon--{{ icon }} ecl-file__icon"></span>
+        <div class="ecl-file__metadata">
+          <div class="ecl-file__title">{{ title }}</div>
+          <div class="ecl-file__info">
+            <span class="ecl-file__language">{{ language }}</span> ({{ meta }})
+          </div>
+        </div>
+      </div>
+
+      <div class="ecl-col-12 ecl-col-md-4">
+        {% include '@ec-europa/ecl-buttons' with {
+          'label': buttonLabel ~ '<span class="ecl-u-sr-only">(' ~ meta ~ ')',
+          'is_block': true,
+          'extra_classes': 'ecl-file__download',
+          'extra_attributes': [{ 'name': 'type', 'value': 'button' }]
+        } %}
+      </div>
+    </div>
+  </div>
+
+  <div class="ecl-file__translations">
+    {% include '@ec-europa/ecl-buttons' with {
+      'label': translationsLabel,
+      'modifier': 'secondary',
+      'extra_classes': 'ecl-file__translations-toggle',
+      'extra_attributes': [
+        { 'name': 'aria-controls', 'value': 'translations-expand' },
+        { 'name': 'aria-expanded', 'value': 'true' },
+        { 'name': 'id', 'value': 'translations-expand-button' },
+        { 'name': 'type', 'value': 'button' },
+        { 'name': 'title', 'value': translationsTooltip }
+      ]
+    } %}
+
+    <div aria-hidden="false" aria-labelledby="translations-expand-button" id="translations-expand">
+      <ul class="ecl-file__translations-list">
+        {% if translations is defined %}
+          {% for translation in translations %}
+            <li class="ecl-file__translations-item">
+              <div class="ecl-file__translations-metadata">
+                <span class="ecl-file__translations-title">{{ translation.title }}</span>
+                <div class="ecl-file__translations-info">({{ translation.meta }})</div>
+              </div>
+              {% include '@ec-europa/ecl-buttons' with {
+                'label': buttonLabel ~ '<span class="ecl-u-sr-only">(' ~ translation.meta ~ ')',
+                'modifier': 'secondary',
+                'extra_classes': 'ecl-file__translations-download',
+                'extra_attributes': [{ 'name': 'type', 'value': 'button' }]
+              } %}
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+  {% elseif variant == "links" %}
+
+<!-- Links -->
+<section class="ecl-file ecl-file--link">
+  {% if links is defined %}
+    {% for link in links %}
+      <a
+        href="{{ link.href }}"
+        class="ecl-link ecl-file__link {% if link.external is defined and link.external %}ecl-link--external{% endif %}">
+        <span class="ecl-icon ecl-icon--{{ link.icon }} ecl-file__icon"></span>
+        <span class="ecl-file__title">{{ link.title }}</span>
+        {% if link.type is defined %}
+        <span class="ecl-file__type">{{ link.type }}</span>
+        {% endif %}
+      </a>
+    {% endfor %}
+  {% endif %}
+</section>
+
+  {% elseif variant == "images" %}
+
+<!-- Images -->
+<section class="ecl-file ecl-file--image">
+  <img class="ecl-file__image" src="{{ src }}" alt="{{ alt }}">
+  <div class="ecl-file__caption">{{ caption }}</div>
+</section>
+
+  {% elseif variant == "videos" %}
+
+<!-- Videos -->
+<section class="ecl-file ecl-file--video">
+  {% if src is defined %}
+    {% if iframe is defined and iframe %}
+  <div {% if ratio is defined %} class="ecl-u-ratio-{{ ratio }}" {% endif %}>
+    <iframe class="ecl-file__video" src="{{ src }}" allowfullscreen="allowfullscreen" scrolling="no"></iframe>
+  </div>
+    {% else %}
+  <div {% if ratio is defined %} class="ecl-u-ratio-{{ ratio }}" {% endif %}>
+    <video class="ecl-file__video" src="{{ src }}" type="video/mp4" controls="controls"></video>
+  </div>
+    {% endif %}
+  {% endif %}
+  <div class="ecl-file__caption">{{ caption }}</div>
+</section>
+
+  {% endif %}
+
+{% else %}
+
+<!-- Default -->
+<section class="ecl-file">
+  <div class="ecl-file__body">
+    <div class="ecl-row">
+      <div class=" ecl-col ecl-col-md-8">
+        <span class="ecl-icon ecl-icon--{{ icon }} ecl-file__icon"></span>
+        <div class="ecl-file__metadata">
+          <div class="ecl-file__title">{{ title }}</div>
+          <div class="ecl-file__info">
+            <span class="ecl-file__language">{{ language }}</span> ({{ meta }})
+          </div>
+        </div>
+      </div>
+
+      <div class="ecl-col-12 ecl-col-md-4">
+        {% include '@ec-europa/ecl-buttons' with {
+          'label': buttonLabel ~ '<span class="ecl-u-sr-only">(' ~ meta ~ ')',
+          'is_block': true,
+          'extra_classes': 'ecl-file__download',
+          'extra_attributes': [{ 'name': 'type', 'value': 'button' }]
+        } %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}

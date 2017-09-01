@@ -1,0 +1,25 @@
+{#
+ How to use this component:
+
+  1) Variables building a link:
+  - link: (structure) Obligatory data for the link itself.
+  {
+    target: (string) Obligatory link target.
+    modifier: (string) Obligatory modifier.
+    extraClasses: (string) Optional classes on top of defaults.
+    title: (string) Obligatory link title.
+  }
+
+  2) Variables building a span - this is a default output if the preceding fail.
+  - modifier: (string) Obligatory modifier.
+  - text: (text) The textual value.
+#}
+
+{% if link is defined %}
+<a
+  href="{{ link.target }}"
+  class="ecl-link ecl-icon-social {{ link.modifier }} {{ link.extraClasses }}" {{ link.extraAttributes }}
+  >{{ link.title }}</a>
+{% else %}
+<span class='ecl-icon-social {{ modifier }}'>{{ text }}</span>
+{% endif %}
