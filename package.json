@@ -5,6 +5,7 @@
     "description": "OpenEuropa base theme.",
     "private": true,
     "scripts": {
+        "build:scripts": "ecl-builder scripts",
         "build:copy": "ecl-builder copy",
         "build:styles": "ecl-builder styles",
         "build": "npm-run-all --parallel build:*"

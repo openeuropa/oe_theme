@@ -1,5 +1,7 @@
 # OpenEuropa base theme
 
+[![Build Status](https://travis-ci.org/ec-europa/oe_theme.svg?branch=7-update-ecl)](https://travis-ci.org/ec-europa/oe_theme)
+
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
 It requires on the [OpenEuropa Core](https://github.com/ec-europa/oe_core) module to be enabled on your site.
 
@@ -7,8 +9,8 @@ It requires on the [OpenEuropa Core](https://github.com/ec-europa/oe_core) modul
 
 Requirements:
 
-- [Node.js](https://nodejs.org/en/): `>= 6.9.5`
-- [Yarn](https://yarnpkg.com/en/): `>= 0.20.3`
+- [Node.js](https://nodejs.org/en/): `>= 8`
+- [Yarn](https://yarnpkg.com/en/): `>= 0.27.5`
 
 Setup your environment by running:
  

@@ -6,6 +6,5 @@ Feature: Setup
     When I visit "/user"
 
     Then I should see "Username"
-    When I enter "test" for "Username"
-    And I enter "pass" for "Password"
-    And I press the "Log in" button
+    And I should see "Password"
+    And I should see an ".ecl-footer" element

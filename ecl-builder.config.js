@@ -4,6 +4,14 @@ const source_folder = __dirname + '/node_modules/@ec-europa';
 
 module.exports = {
 
+  scripts: [{
+    entry: path.resolve(source_folder, 'ecl-components-preset-base/index.js'),
+    dest: path.resolve(__dirname, 'js/base.js'),
+    options: {
+      sourceMap: is_prod ? false : 'inline'
+    }
+  }],
+
   styles: [
     {
       entry: path.resolve(source_folder, 'ecl-components-preset-base/index.scss'),
