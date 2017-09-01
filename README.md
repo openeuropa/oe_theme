@@ -53,6 +53,8 @@ Or:
 } %}
 ```
 
+JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordions()`.
+
 ## Update ECL
 
 Update the ECL by changing the `@ec-europa/ecl-components-preset-base` version in `package.json` and running:

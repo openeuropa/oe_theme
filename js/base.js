@@ -1,4 +1,4 @@
-var oe_theme = (function (exports) {
+var ECL = (function (exports) {
 'use strict';
 
 // Query helper

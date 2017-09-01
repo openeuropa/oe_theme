@@ -9,7 +9,7 @@ module.exports = {
     dest: path.resolve(__dirname, 'js/base.js'),
     options: {
       sourceMap: is_prod ? false : 'inline',
-      moduleName: 'oe_theme'
+      moduleName: 'ECL'
     }
   }],
 
