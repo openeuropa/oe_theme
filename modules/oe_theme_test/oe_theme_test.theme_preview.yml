@@ -1,0 +1,62 @@
+actions:
+  label: Actions
+  description: Provides a wrapper element to group one or more buttons in a form.
+  preview:
+    '#type': actions
+    submit:
+      '#type': submit
+      '#value': Save
+    cancel:
+      '#type': button
+      '#value': Cancel
+
+button:
+  label: Button
+  description: Provides an action button form element.
+  preview:
+    '#type': button
+    '#value': Preview
+
+checkboxes:
+  label: Checkboxes
+  description: Provides a form element for a set of checkboxes.
+  preview:
+   '#type': checkboxes
+   '#title': What standardized tests did you take?
+   '#options':
+      SAT: SAT
+      ACT: ACT
+
+color:
+  label: Color
+  description: Provides a form element for choosing a color.
+  preview:
+    '#type': color
+    '#title': Color
+    '#default_value': '#ffffff'
+
+container:
+  label: Container
+  description: Provides a render element that wraps child elements in a container.
+  preview:
+    needs_accommodation:
+      '#type': checkbox
+      '#title': Need Special Accommodations?
+    accommodation:
+      '#type': container
+      '#attributes':
+        class: accommodation
+      '#states':
+        invisible:
+          'input[name="needs_accommodation"]': { checked: false }
+      diet:
+        '#type': textfield
+        '#title': Dietary Restrictions
+
+data:
+  label: Date
+  description: Provides a form element for date selection.
+  preview:
+    '#type': date
+    '#title': Content expiration
+    '#default_value': { year: 2020, month: 2, day: 15 }
