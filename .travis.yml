@@ -25,7 +25,7 @@ before_script:
   # Install Drupal 8 target site.
   - cd build
   - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal --exclude=build
-  - drush en oe_core oe_theme -y --exclude=build
+  - drush en oe_core oe_theme oe_theme_test -y --exclude=build
   - drush config-set system.theme default oe_theme -y --exclude=build
   - drush cr --exclude=build
   # Run Drush web server.

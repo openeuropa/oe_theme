@@ -1,0 +1,8 @@
+
+oe_theme_test.preview_controller_render:
+  path: '/test/theme'
+  defaults:
+    _controller: '\Drupal\oe_theme_test\Controller\PreviewController::render'
+    _title: 'render'
+  requirements:
+    _permission: 'access content'
