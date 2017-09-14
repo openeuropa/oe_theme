@@ -45,9 +45,16 @@ class PreviewController extends ControllerBase {
     foreach ($this->previewManager->getDefinitions() as $id => $definition) {
 
       $render[$id] = [
-        'label' => ['#markup' => $definition['label']],
-        'description' => ['#markup' => $definition['description']],
-        'preview' => $definition['preview'],
+        'label' => [
+          '#type' => 'html_tag',
+          '#tag' => 'h2',
+          '#value' => $definition['label'],
+        ],
+        'description' => [
+          '#type' => 'fieldset',
+          '#title' => $definition['description'],
+          'preview' => $definition['preview'],
+        ],
       ];
     }
     return $render;

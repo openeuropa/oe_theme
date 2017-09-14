@@ -30,6 +30,7 @@ module.exports = {
     { from: path.resolve(source_folder, 'ecl-icons/fonts'), to: path.resolve(__dirname, 'fonts')},
     { from: path.resolve(source_folder, 'ecl-logos/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder), patterns: '**/*.twig', to: path.resolve(__dirname, 'templates/components') }
+    { from: path.resolve(source_folder), patterns: '**/variants.json', to: path.resolve(__dirname, 'templates/components') }
   ]
 
 };

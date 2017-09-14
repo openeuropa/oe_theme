@@ -23,7 +23,7 @@
 
 {% if extraAttributes is defined %}
   {% for attr in extraAttributes %}
-    {% set _extraAttributes = _extraAttributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~'"' %}
+    {% set _extraAttributes = _extraAttributes ~ ' ' ~ attr.name ~ '=' ~ attr.value ~'' %}
   {% endfor %}
 {% endif %}
 

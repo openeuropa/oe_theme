@@ -17,13 +17,22 @@ button:
     '#type': button
     '#value': Preview
 
+checkbox:
+  label: Checkbox
+  description: Provides a form element for a single checkbox.
+  preview:
+    '#type': checkbox
+    '#title': Preview
+
 checkboxes:
   label: Checkboxes
   description: Provides a form element for a set of checkboxes.
   preview:
-   '#type': checkboxes
-   '#title': What standardized tests did you take?
-   '#options':
+    '#type': checkboxes
+    '#title': What standardized tests did you take?
+    '#title_display': above
+    '#id': test-checkboxes
+    '#options':
       SAT: SAT
       ACT: ACT
 
@@ -53,10 +62,408 @@ container:
         '#type': textfield
         '#title': Dietary Restrictions
 
-data:
+date:
   label: Date
   description: Provides a form element for date selection.
   preview:
     '#type': date
     '#title': Content expiration
     '#default_value': { year: 2020, month: 2, day: 15 }
+
+details:
+  label: Details
+  description: Provides a render element for a details element, similar to a fieldset.
+  preview:
+    '#type': details
+    '#title': Author
+    name:
+      '#type': textfield
+      '#title': Name
+
+dropbutton:
+  label: Dropbutton
+  description: Provides a render element for a set of links rendered as a drop-down button.
+  preview:
+    '#type': dropbutton
+    '#links':
+      simple_form:
+        'title': Simple Form
+        'url': http://fapi_example.simple_form
+      demo:
+        'title': Build demo
+        'url': http://fapi_example.build_demo
+
+email:
+  label: Email
+  description: Provides a form input element for entering an email address.
+  preview:
+    '#type': email
+    '#title': Email
+
+fieldset:
+  label: Fieldset
+  description: Provides a render element for a group of form elements.
+  preview:
+    '#type': fieldset
+    '#title': Author
+
+hidden:
+  label: Hidden
+  description: Provides a form element for an HTML 'hidden' input element.
+  preview:
+    '#type': hidden
+    '#value': value
+
+html_tag:
+  label: HtmlTag
+  description: Provides a render element for any HTML tag, with properties and value.
+  preview:
+    '#type': html_tag
+    '#tag': p
+    '#value': Hello World
+
+inline_template:
+  label: InlineTemplate
+  description: Provides a render element where the user supplies an in-line Twig template.
+  preview:
+    '#type': inline_template
+    '#template': "{% trans %} Hello {% endtrans %} <strong>{{name}}</strong>"
+    '#context':
+      'name': Name
+
+link:
+  label: Link
+  description: Provides a link render element.
+  preview:
+    '#type': link
+    '#title': Examples
+    '#url': http://examples.description
+
+machine_name:
+  label: MachineName
+  description: Provides a machine name render element.
+  preview:
+    '#type': machine_name
+    '#default_value': id
+    '#disabled': 0
+    '#maxlength': 64
+    '#description': A unique name for this item. It must only contain lowercase letters, numbers, and underscores.
+    '#description_display': above
+    '#machine_name':
+      'exists':
+        'this': exists
+
+managed_file:
+  label: ManagedFile
+  description: Provides an AJAX/progress aware widget for uploading and saving a file.
+  preview:
+    '#type': managed_file
+
+more_link:
+  label: MoreLink
+  description: Provides a link render element for a "more" link, like those used in blocks.
+  preview:
+    '#type': more_link
+    '#url': http://examples.more_examples
+
+number:
+  label: Number
+  description: Provides a form element for numeric input, with special numeric validation.
+  preview:
+    '#type': number
+    '#title': Quantity
+
+operations:
+  label: Operations
+  description: Provides a render element for a set of operations links.
+  preview:
+    '#type': operations
+
+page:
+  label: Page
+  description: Provides a render element for the content of an HTML page.
+  preview:
+    '#type': page
+
+page_title:
+  label: PageTitle
+  description: Provides a render element for the title of an HTML page.
+  preview:
+    '#type': page_title
+
+pager:
+  label: Pager
+  description: Provides a render element for a pager.
+  preview:
+    '#type': pager
+
+password:
+  label: Password
+  description: Provides a form element for entering a password, with hidden text.
+  preview:
+    '#type': password
+    '#title': Password
+    '#size': 25
+
+password_confirm:
+  label: PasswordConfirm
+  description: Provides a form element for double-input of passwords.
+  preview:
+    '#type': password_confirm
+    '#title': Password
+    '#size': 25
+
+path:
+  label: PathElement
+  description: Provides a matched path render element.
+  preview:
+    '#type': path
+
+processed_text:
+  label: ProcessedText
+  description: Provides a processed text render element.
+  preview:
+    '#type': processed_text
+
+radio:
+  label: Radio
+  description: Provides a form element for a single radio button.
+  preview:
+    '#type': radio
+
+radios:
+  label: Radios
+  description: Provides a form element for a set of radio buttons.
+  preview:
+    '#type': radios
+    '#title': Poll status
+    '#title_display': above
+    '#default_value': 1
+    '#id': test-radios
+    '#options':
+      0: Closed
+      1: Active
+
+range:
+  label: Range
+  description: Provides a slider for input of a number within a specific range.
+  preview:
+    '#type': range
+    '#title': Quantity
+    '#min': 0
+    '#max': 100
+
+responsive_image:
+  label: ResponsiveImage
+  description: Provides a responsive image element.
+  preview:
+    '#type': responsive_image
+    '#src': http://lorempixel.com/800/600/nature/8
+    '#alt': Image
+
+search:
+  label: Search
+  description: Provides an HTML5 input element with type of "search".
+  preview:
+    '#type': search
+    '#title': Search
+
+select:
+  label: Select
+  description: Provides a form element for a drop-down menu or scrolling selection box.
+  preview:
+    '#type': select
+    '#title': Select element
+    '#options':
+      1: One
+      2:
+        2.1: Two point one
+        2.2: Two point two
+      3: Three
+
+status_messages:
+  label: StatusMessages
+  description: Provides a messages element.
+  preview:
+    '#type': status_messages
+
+submit:
+  label: Submit
+  description: Provides a form submit button.
+  preview:
+    '#type': submit
+    '#value': Save
+
+system_compact_link:
+  label: SystemCompactLink
+  description: Provides a link to show or hide help text on administration pages.
+  preview:
+    '#type': system_compact_link
+
+table:
+  label: Table
+  description: Provides a render element for a table.
+  preview:
+    '#type': table
+    '#caption': Sample Table
+    '#header':
+      0: Name
+      1: Phone
+    0:
+      '#attributes':
+        class:
+          0: foo
+          1: baz
+      name:
+        '#type': textfield
+        '#title': Name
+        '#title_display': invisible
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#title_display': invisible
+    1:
+      '#attributes':
+        class:
+          0: foo
+          1: baz
+      name:
+        '#type': textfield
+        '#title': Name
+        '#title_display': invisible
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#title_display': invisible
+    2:
+      '#attributes':
+        class:
+          0: foo
+          1: baz
+      name:
+        '#type': textfield
+        '#title': Name
+        '#title_display': invisible
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#title_display': invisible
+    3:
+      '#attributes':
+        class:
+          0: foo
+          1: baz
+      name:
+        '#type': textfield
+        '#title': Name
+        '#title_display': invisible
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#title_display': invisible
+    4:
+      '#attributes':
+        class:
+          0: foo
+          1: baz
+      name:
+        '#type': textfield
+        '#title': Name
+        '#title_display': invisible
+      phone:
+        '#type': tel
+        '#title': Phone
+        '#title_display': invisible
+    5:
+      'colspan_example':
+        '#plain_text': Colspan Example
+        '#wrapper_attributes':
+          'colspan': 2
+          'class':
+            0: 'foo'
+            1: 'bar'
+
+tableselect:
+  label: Tableselect
+  description: Provides a form element for a table with radios or checkboxes in left column.
+  preview:
+    '#type': tableselect
+    '#header':
+      first_name: First Name
+      last_name: Last Name
+    '#options':
+      -
+        first_name: Indy
+        last_name: Jones
+      -
+        first_name: Darth
+        last_name: Vader
+      -
+        first_name: Super
+        last_name: Man
+    '#empty': No users found
+
+tel:
+  label: Tel
+  description: Provides a form element for entering a telephone number.
+  preview:
+    '#type': tel
+    '#title': Phone
+
+text_format:
+  label: TextFormat
+  description: Provides a text format render element.
+  preview:
+    '#type': text_format
+    '#title': Body
+    '#format': full_html
+    '#default_value': <p>The quick brown fox jumped over the lazy dog.</p>
+
+textarea:
+  label: Textarea
+  description: Provides a form element for input of multiple-line text.
+  preview:
+    '#type': textarea
+    '#title': Text
+    '#value': Text
+
+textfield:
+  label: Textfield
+  description: Provides a one-line text field form element.
+  preview:
+    '#type': textfield
+    '#title': Subject
+    '#default_value': Subject
+    '#size': 60
+    '#maxlength': 128
+    '#required': TRUE
+
+token:
+  label: Token
+  description: Stores token data in a hidden form field.
+  preview:
+    '#type': token
+
+url:
+  label: Url
+  description: Provides a form element for input of a URL.
+  preview:
+    '#type': url
+    '#title': Home Page
+    '#size': 30
+
+value:
+  label: Value
+  description: Provides a form element for storage of internal information.
+  preview:
+    '#type': value
+    '#value': entity_id
+
+weight:
+  label: Weight
+  description: Provides a form element for input of a weight.
+  preview:
+    '#type': weight
+    '#title': Weight
+    '#default_value': 5
+    '#delta': 10
