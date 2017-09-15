@@ -65,3 +65,21 @@ $ npm run build
 
 This will update assets such as images and fonts and re-compile CSS, resulting changes are meant to be committed to this
 repository since we cannot require theme users and/or deployment procedures to build the theme locally.
+
+## Debugging
+
+### Twig template
+
+Open development.services.yml in the sites folder and add the following block to disable the twig cache:
+
+```
+parameters:
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
+```
+
+### Links
+
+- [Disable Drupal 8 caching during development](https://www.drupal.org/node/2598914)

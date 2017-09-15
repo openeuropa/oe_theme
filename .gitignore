@@ -6,3 +6,4 @@ grumphp.yml
 composer.lock
 yarn.lock
 behat.yml
+.idea

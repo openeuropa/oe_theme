@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation of an image.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the img tag.
+ * - style_name: (optional) The name of the image style applied.
+ *
+ * @see template_preprocess_image()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set extraAttributes = [] %}
+{% for name,value in attributes %}
+    {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
+{% endfor %}
+
+{% include '@ecl/ecl-forms-text-inputs' with {
+    'src': attributes.src,
+    'alt': attributes.alt,
+    'extra_attributes': extraAttributes,
+} %}

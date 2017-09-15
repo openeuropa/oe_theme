@@ -1,0 +1,8 @@
+name: OpenEuropa Theme Test
+type: module
+description: Test module companion for OpenEuropa Theme.
+core: 8.x
+package: OpenEuropa
+hidden: true
+dependencies:
+  - oe_core

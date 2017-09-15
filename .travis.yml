@@ -24,8 +24,8 @@ before_script:
   - echo '$settings["file_scan_ignore_directories"][] = "build";' >> build/sites/default/default.settings.php
   # Install Drupal 8 target site.
   - cd build
-  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal --exclude=build
-  - drush en oe_core oe_theme -y --exclude=build
+  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal --account-name=admin --account-pass=pass --exclude=build
+  - drush en oe_core oe_theme oe_theme_test -y --exclude=build
   - drush config-set system.theme default oe_theme -y --exclude=build
   - drush cr --exclude=build
   # Run Drush web server.
