@@ -1,39 +1,35 @@
-language: php
-dist: precise
+sudo: required
 
-php:
-  - 7
+services:
+  - docker
+  - docker-compose
 
 env:
   global:
-    - PATH=$PATH:/home/travis/.composer/vendor/bin:$TRAVIS_BUILD_DIR/vendor/bin
+    - DOCKER_COMPOSE_VERSION=1.17.1
+  matrix:
+    - DRUPAL_VERSION=8.5.x-dev
+    - DRUPAL_VERSION=8.6.x-dev
+
+matrix:
+  allow_failures:
+    - env: DRUPAL_VERSION=8.6.x-dev
+
+before_install:
+  - docker-compose up -d
+  - docker ps
 
 install:
-  - composer self-update
-  - composer install
+  - docker-compose exec -u web web composer require drupal/core:$DRUPAL_VERSION
 
 before_script:
-  # Start PhantomJS server.
-  - phantomjs --webdriver=4444 > /dev/null &
-  # Set sendmail so drush doesn't throw an error during site install.
-  - echo "sendmail_path=`which true`" >> `php --ini | grep "Loaded Configuration" | awk '{print $4}'`
-  # Create database.
-  - mysql -e 'create database drupal'
-  # Install Drupal 8 target site.
-  - cd build
-  - drush si standard -y --db-url=mysql://travis:@127.0.0.1/drupal
-  - drush en oe_core oe_theme oe_theme_test -y
-  - drush config-set system.theme default oe_theme -y
-  - drush cr
-  # Run Drush web server.
-  - drush --debug runserver :8888 > ~/debug.txt 2>&1 &
-  - sleep 4s
-  - chmod -R ug+w sites
+  - docker-compose exec -u web web ./vendor/bin/run drupal:site-setup
+  - docker-compose exec -u web web ./vendor/bin/run drupal:site-install
+  - docker-compose exec -u web web chown -R web:users build
 
 script:
-  - cd $TRAVIS_BUILD_DIR
-  - grumphp run
-  - behat
+  - docker-compose exec -u web web ./vendor/bin/grumphp run
+  - docker-compose exec -u web web ./vendor/bin/behat
 
 notifications:
   email: false
