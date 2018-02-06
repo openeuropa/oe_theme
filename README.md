@@ -1,11 +1,58 @@
-# OpenEuropa base theme
+# OpenEuropa theme
 
 [![Build Status](https://travis-ci.org/ec-europa/oe_theme.svg?branch=7-update-ecl)](https://travis-ci.org/ec-europa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
 It requires on the [OpenEuropa Core](https://github.com/ec-europa/oe_core) module to be enabled on your site.
 
-## Developer guide
+## Development setup
+
+Build test site by running:
+
+```
+$ composer install
+```
+
+Customize build settings by copying `runner.yml.dist` to `runner.yml` and
+changing relevant values.
+
+Setup test site by running:
+
+```
+$ ./vendor/bin/run drupal:site-setup
+```
+
+This will symlink the theme in the proper directory within the test site and
+perform tokens substitution in test configuration files, such as `behat.yml.dist`.
+
+Install test site by running:
+
+```
+$ ./vendor/bin/run drupal:site-install
+```
+
+Your test site will be available at `./build`.
+
+### Using Docker Compose
+
+Run:
+
+```
+$ docker-compose up -d
+```
+
+Then:
+
+```
+$ docker-compose exec -u web web composer install
+$ docker-compose exec -u web web ./vendor/bin/run drupal:site-setup
+$ docker-compose exec -u web web ./vendor/bin/run drupal:site-install
+```
+
+Your test site will be available at [http://localhost:8080/build](http://localhost:8080/build).
+
+
+## ECL Development setup
 
 Requirements:
 
@@ -32,7 +79,7 @@ This will:
 4. Copy ECL images in `./images`
 5. Copy ECL Twig templates in `./templates/components`
 
-## Components 
+### Components 
 
 You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader](https://github.com/ec-europa/ecl-twig-loader)
 as shown below:
@@ -55,7 +102,7 @@ Or:
 
 JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordions()`.
 
-## Update ECL
+### Update ECL
 
 Update the ECL by changing the `@ec-europa/ecl-components-preset-base` version in `package.json` and running:
 
@@ -65,21 +112,3 @@ $ npm run build
 
 This will update assets such as images and fonts and re-compile CSS, resulting changes are meant to be committed to this
 repository since we cannot require theme users and/or deployment procedures to build the theme locally.
-
-## Debugging
-
-### Twig template
-
-Open development.services.yml in the sites folder and add the following block to disable the twig cache:
-
-```
-parameters:
-  twig.config:
-    debug: true
-    auto_reload: true
-    cache: false
-```
-
-### Links
-
-- [Disable Drupal 8 caching during development](https://www.drupal.org/node/2598914)
