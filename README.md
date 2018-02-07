@@ -3,29 +3,31 @@
 [![Build Status](https://travis-ci.org/ec-europa/oe_theme.svg?branch=7-update-ecl)](https://travis-ci.org/ec-europa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
-It requires on the [OpenEuropa Core](https://github.com/ec-europa/oe_core) module to be enabled on your site.
+It requires the [OpenEuropa Core](https://github.com/ec-europa/oe_core) module to be enabled on your site.
 
 ## Development setup
 
-Build test site by running:
+You can build test site by running the following steps.
+
+* Install all the composer dependencies:
 
 ```
 $ composer install
 ```
 
-Customize build settings by copying `runner.yml.dist` to `runner.yml` and
+* Customize build settings by copying `runner.yml.dist` to `runner.yml` and
 changing relevant values.
 
-Setup test site by running:
+* Setup test site by running:
 
 ```
 $ ./vendor/bin/run drupal:site-setup
 ```
 
 This will symlink the theme in the proper directory within the test site and
-perform tokens substitution in test configuration files, such as `behat.yml.dist`.
+perform token substitution in test configuration files such as `behat.yml.dist`.
 
-Install test site by running:
+* Install test site by running:
 
 ```
 $ ./vendor/bin/run drupal:site-install
@@ -34,6 +36,13 @@ $ ./vendor/bin/run drupal:site-install
 Your test site will be available at `./build`.
 
 ### Using Docker Compose
+
+Alternatively you can build a test site using Docker and Docker-compose with the provided configuration.
+
+Requirements:
+
+- [Docker](https://www.docker.com/get-docker)
+- [Docker-compose](https://docs.docker.com/compose/)
 
 Run:
 
@@ -110,5 +119,6 @@ Update the ECL by changing the `@ec-europa/ecl-components-preset-base` version i
 $ npm run build
 ```
 
-This will update assets such as images and fonts and re-compile CSS, resulting changes are meant to be committed to this
-repository since we cannot require theme users and/or deployment procedures to build the theme locally.
+This will update assets such as images and fonts and re-compile CSS.
+Resulting changes are meant to be committed to this repository since we cannot require theme users
+and/or deployment procedures to build the theme locally.
