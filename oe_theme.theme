@@ -4,3 +4,33 @@
  * @file
  * Functions to support theming.
  */
+
+/**
+ * Implements template_preprocess_menu_local_tasks().
+ */
+function oe_theme_preprocess_menu_local_tasks(&$variables) {
+
+  foreach ($variables['primary'] as $link) {
+    /** @var Drupal\Core\Url $url */
+    $url = $link['#link']['url'];
+    if ($url->access($variables['user'])) {
+      $variables['primary_links'][] = [
+        'href' => $url->toString(),
+        'label' => $link['#link']['title'],
+        'is_active' => $link['#active'],
+      ];
+    }
+  }
+
+  foreach ($variables['secondary'] as $link) {
+    /** @var Drupal\Core\Url $url */
+    $url = $link['#link']['url'];
+    if ($url->access($variables['user'])) {
+      $variables['secondary_links'][] = [
+        'href' => $url->toString(),
+        'label' => $link['#link']['title'],
+        'is_active' => $link['#active'],
+      ];
+    }
+  }
+}
