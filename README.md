@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/ec-europa/oe_theme.svg?branch=7-update-ecl)](https://travis-ci.org/ec-europa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
-It requires the [OpenEuropa Core](https://github.com/ec-europa/oe_core) module to be enabled on your site.
 
 ## Development setup
 
