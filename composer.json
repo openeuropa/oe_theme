@@ -10,13 +10,22 @@
     },
     "require-dev": {
         "ec-europa/oe-code-review": "^0.0.2",
+        "ec-europa/oe-task-runner": "^0.3",
+        "drupal-composer/drupal-scaffold": "^2.2",
         "composer/installers": "^1.2",
-        "nuvoleweb/drupal-component-scaffold": "^0.1.0",
-        "drupal/console": "~1",
-        "drush/drush": "*",
-        "drupal/coder": "8.2.8",
-        "drupal/core": "~8",
+        "drupal/console": "^1",
+        "drush/drush": "^9",
+        "drupal/core": "^8",
         "drupal/drupal-extension": "^3.3"
+    },
+    "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": [
+            "@drupal-scaffold"
+        ],
+        "post-update-cmd": [
+            "@drupal-scaffold"
+        ]
     },
     "extra": {
         "installer-paths": {
