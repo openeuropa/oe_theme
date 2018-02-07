@@ -6,7 +6,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "ec-europa/oe_core": "*"
+        "ec-europa/oe_core": "*",
+        "ec-europa/ecl-twig-loader": "^0.0.1"
     },
     "require-dev": {
         "ec-europa/oe-code-review": "^0.0.2",
