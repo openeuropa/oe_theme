@@ -92,6 +92,21 @@ This will:
 4. Copy ECL images in `./images`
 5. Copy ECL Twig templates in `./templates/components`
 
+### Using Docker
+
+To install NPM packages run:
+
+```
+$ composer run npm-install
+```
+
+To build run:
+
+```
+$ composer run npm-build
+```
+
+
 ### Components 
 
 You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader](https://github.com/ec-europa/ecl-twig-loader)
