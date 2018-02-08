@@ -12,11 +12,6 @@ env:
     - DOCKER_COMPOSE_VERSION=1.17.1
   matrix:
     - DRUPAL_VERSION=8.5.x-dev
-    - DRUPAL_VERSION=8.6.x-dev
-
-matrix:
-  allow_failures:
-    - env: DRUPAL_VERSION=8.6.x-dev
 
 before_install:
   - docker-compose up -d

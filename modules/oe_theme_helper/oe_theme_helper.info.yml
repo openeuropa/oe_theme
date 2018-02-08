@@ -1,0 +1,5 @@
+name: OpenEuropa Theme Helper
+type: module
+description: OpenEuropa theme helpers and tools.
+package: OpenEuropa
+core: 8.x
