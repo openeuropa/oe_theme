@@ -24,7 +24,7 @@ $ ./vendor/bin/run drupal:site-setup
 ```
 
 This will symlink the theme in the proper directory within the test site and
-perform token substitution in test configuration files such as `behat.yml.dist`.
+perform token substitution in test configuration files.
 
 * Install test site by running:
 
@@ -59,10 +59,10 @@ $ docker-compose exec -u web web ./vendor/bin/run drupal:site-install
 
 Your test site will be available at [http://localhost:8080/build](http://localhost:8080/build).
 
-To run the behat test:
+Run tests as follows:
 
 ```
-$ docker-compose exec -u web web ./vendor/bin/behat
+$ docker-compose exec -u web web ./vendor/bin/phpunit
 ```
 
 ## ECL Development setup
