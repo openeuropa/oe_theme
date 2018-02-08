@@ -19,7 +19,7 @@
         "drupal/core": "^8.5",
         "drupal/drupal-extension": "^3.3",
         "mikey179/vfsStream": "^1.2",
-        "phpunit/phpunit": "^4.8.35 || ^6.1"
+        "phpunit/phpunit": "^6"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
