@@ -3,6 +3,7 @@
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class AbstractKernelTest.
@@ -16,18 +17,19 @@ abstract class AbstractKernelTest extends KernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
-    'oe_theme_test',
-  ];
+  public static $modules = ['system'];
 
   /**
-   * Get fixtures base path.
+   * Get fixture content.
    *
-   * @return string
-   *   Fixtures base path.
+   * @param string $filepath
+   *   File path.
+   *
+   * @return array
+   *   Content.
    */
-  protected function getFixturePath() {
-    return realpath(__DIR__ . '/../fixtures');
+  protected function getFixtureContent($filepath) {
+    return Yaml::parse(file_get_contents(__DIR__ . "/../fixtures/{$filepath}"));
   }
 
 }
