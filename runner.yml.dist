@@ -25,9 +25,6 @@ commands:
     - { task: "symlink", from: "../../..", to: "${drupal.root}/themes/custom/oe_theme" }
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }
-    - { task: "run", command: "setup:behat" }
     - { task: "run", command: "setup:phpunit" }
-  setup:behat:
-    - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
   setup:phpunit:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }

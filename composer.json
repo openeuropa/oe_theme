@@ -17,7 +17,6 @@
         "drupal/console": "^1",
         "drush/drush": "^9",
         "drupal/core": "^8.5",
-        "drupal/drupal-extension": "^3.3",
         "mikey179/vfsStream": "^1.2",
         "phpunit/phpunit": "^6"
     },

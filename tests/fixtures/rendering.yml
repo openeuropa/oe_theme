@@ -3,4 +3,7 @@
     '#value': Preview
   contains:
     - "Preview"
+    - '<button class="ecl-button ecl-button--default"'
+    # @todo: Fix this after following issue is resolved: https://webgate.ec.europa.eu/CITnet/jira/browse/INNO-925
+    # - '<button class="ecl-button ecl-button--default" type="submit" name="op" value="Preview" class="button js-form-submit form-submit">Preview</button>'
   not_contains: []

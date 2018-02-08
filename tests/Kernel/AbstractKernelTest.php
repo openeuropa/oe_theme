@@ -20,6 +20,16 @@ abstract class AbstractKernelTest extends KernelTestBase {
   public static $modules = ['system'];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::service('theme_handler')->setDefault('oe_theme');
+  }
+
+  /**
    * Get fixture content.
    *
    * @param string $filepath

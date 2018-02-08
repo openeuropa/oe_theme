@@ -21,9 +21,11 @@ class RenderingTest extends AbstractKernelTest {
    */
   public function testRendering(array $array, array $contains, array $not_contains) {
     $output = (string) \Drupal::service('renderer')->renderRoot($array);
+
     foreach ($contains as $text) {
       $this->assertContains($text, $output);
     }
+
     foreach ($not_contains as $text) {
       $this->assertNotContains($text, $output);
     }
