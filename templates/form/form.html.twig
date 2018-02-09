@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+{% set extraAttributes = [] %}
+{% for name,value in attributes %}
+    {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
+{% endfor %}
+
+{% embed '@ecl/ecl-forms-forms' with {
+'extra_attributes': extraAttributes,
+} %}
+  {% block form %}
+    {{ children }}
+  {% endblock %}
+{% endembed %}
