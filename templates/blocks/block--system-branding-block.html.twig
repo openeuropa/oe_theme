@@ -17,7 +17,7 @@
 {% block content %}
   {% if site_logo %}
     {% include '@ec-europa/ecl-logos' with {
-      'to': front_page,
+      'to': url('<front>'),
       'title': site_name,
       'type': 'right',
     } %}

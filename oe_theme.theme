@@ -9,11 +9,10 @@
  * Implements hook_preprocess_hook().
  */
 function oe_theme_preprocess_breadcrumb(&$variables) {
-  $variables['segments'] = [];
-  foreach ($variables['breadcrumb'] as $item) {
-    $variables['segments'][] = [
+  $variables['segments'] = array_map(function ($item) {
+    return [
       'target' => $item['url'],
       'title' => $item['text'],
     ];
-  }
+  }, $variables['breadcrumb']);
 }
