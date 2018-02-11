@@ -28,7 +28,8 @@
  *   comment/reply/12345).
  *
  * Regions:
- * - page.header: Items for the header region.
+ * - page.site_header_top: Items for the header top region, such as: site switchers, user account menu, etc.
+ * - page.site_header_main: Items for the header main region, they will be displayed right beside the logo.
  * - page.content: The main content of the current page.
  * - page.footer: Items for the footer region.
  *
@@ -38,14 +39,14 @@
 #}
 
 <header class="ecl-site-header" role="banner">
+  {{ page.site_header_top }}
   <div class="ecl-container ecl-site-header__banner">
     {% include '@ec-europa/ecl-logos' with {
-      'to': 'https://ec.europa.eu',
-      'title': 'Home - European Commission',
-      'type': 'right',
-      'extra_class': 'logo--logotype'
-    } only %}
-    {{ page.site_header }}
+      'to': front_page,
+      'title': page['#title'],
+      'type': logo_type,
+    } %}
+    {{ page.site_header_main }}
   </div>
 </header>
 

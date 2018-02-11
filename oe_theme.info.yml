@@ -14,7 +14,7 @@ libraries:
 base theme: stable
 
 regions:
-  top_bar: Top bar
-  site_header: Site header
-  content: Content
-  footer: Footer
+  site_header_top: "Site header: top region"
+  site_header_main: "Site header: main region"
+  content: "Content"
+  footer: "Footer"
