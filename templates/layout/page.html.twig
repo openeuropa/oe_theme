@@ -28,8 +28,8 @@
  *   comment/reply/12345).
  *
  * Regions:
- * - page.site_header_top: Items for the header top region, such as: site switchers, user account menu, etc.
- * - page.site_header_main: Items for the header main region, they will be displayed right beside the logo.
+ * - page.site_top_bar: Items for the top bar region, such as: site switchers, user account menu, etc.
+ * - page.site_header: Items for the site header region, they will be displayed right beside the logo.
  * - page.content: The main content of the current page.
  * - page.footer: Items for the footer region.
  *
@@ -39,21 +39,20 @@
 #}
 
 <header class="ecl-site-header" role="banner">
-  {{ page.site_header_top }}
+  {{ page.site_top_bar }}
   <div class="ecl-container ecl-site-header__banner">
-    {% include '@ec-europa/ecl-logos' with {
-      'to': front_page,
-      'title': page['#title'],
-      'type': logo_type,
-    } %}
-    {{ page.site_header_main }}
+    {{ page.site_header }}
   </div>
 </header>
 
-{% include '@ecl/ecl-page-headers' with {
-    'variant': 'default',
-    'breadcrumb': [{'target': '#', 'title': 'European Commission'}]
-}%}
+<div class="ecl-page-header">
+  <div class="ecl-container">
+    {{ page.breadcrumb }}
+    <div class="ecl-page-header__body">
+      {{ page.page_header }}
+    </div>
+  </div>
+</div>
 
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">

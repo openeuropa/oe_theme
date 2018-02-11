@@ -39,7 +39,7 @@ Your test site will be available at `./build`.
 In order to enable and disable Twig and other static caches you can use the following Drupal Console commands:
 
 ```
-$ ./vendor/bin/drupal site:mode dev  # Disable all caches, ran after installation.
+$ ./vendor/bin/drupal site:mode dev  # Disable all caches.
 $ ./vendor/bin/drupal site:mode prod # Enable all caches.
 ```
 

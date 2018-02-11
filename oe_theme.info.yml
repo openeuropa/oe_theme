@@ -5,7 +5,7 @@ package: OpenEuropa
 core: 8.x
 
 dependencies:
-  - drupal:oe_theme_helper
+  - oe_theme_helper
 
 libraries:
   - oe_theme/base
@@ -14,7 +14,9 @@ libraries:
 base theme: stable
 
 regions:
-  site_header_top: "Site header: top region"
-  site_header_main: "Site header: main region"
+  site_top_bar: "Site top bar"
+  site_header: "Site header"
+  breadcrumb: "Breadcrumb"
+  page_header: "Page header"
   content: "Content"
   footer: "Footer"
