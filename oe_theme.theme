@@ -8,8 +8,12 @@
 /**
  * Implements hook_preprocess_hook().
  */
-function oe_theme_preprocess_page(&$variables) {
-
-  // Allow third-party code to override logo display type.
-  $variables['logo_type'] = isset($variables['logo_type']) ? $variables['logo_type'] : 'right';
+function oe_theme_preprocess_breadcrumb(&$variables) {
+  $variables['segments'] = [];
+  foreach ($variables['breadcrumb'] as $item) {
+    $variables['segments'][] = [
+      'target' => $item['url'],
+      'title' => $item['text'],
+    ];
+  }
 }
