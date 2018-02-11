@@ -34,6 +34,15 @@ $ ./vendor/bin/run drupal:site-install
 
 Your test site will be available at `./build`.
 
+## Working with Drupal 8 static caches
+
+In order to enable and disable Twig and other static caches you can use the following Drupal Console commands:
+
+```
+$ ./vendor/bin/drupal site:mode dev  # Disable all caches, ran after installation.
+$ ./vendor/bin/drupal site:mode prod # Enable all caches.
+```
+
 ### Using Docker Compose
 
 Alternatively you can build a test site using Docker and Docker-compose with the provided configuration.

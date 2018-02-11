@@ -12,6 +12,7 @@ drupal:
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"
     - "./vendor/bin/drush cr"
+    - "./vendor/bin/drupal site:mode dev"
   settings:
     settings:
       file_scan_ignore_directories:

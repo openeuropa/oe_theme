@@ -37,15 +37,22 @@
  */
 #}
 
-<header>
-  {% include '@ecl/ecl-page-headers' with {
-      'variant': 'default',
-      'title': 'Title of the page',
-      'introduction': 'Introduction of the page',
-      'breadcrumb': [{'target': '#', 'title': 'European Commission'}]
-  }%}
-  {{ page.header }}
+<header class="ecl-site-header" role="banner">
+  <div class="ecl-container ecl-site-header__banner">
+    {% include '@ec-europa/ecl-logos' with {
+      'to': 'https://ec.europa.eu',
+      'title': 'Home - European Commission',
+      'type': 'right',
+      'extra_class': 'logo--logotype'
+    } only %}
+    {{ page.site_header }}
+  </div>
 </header>
+
+{% include '@ecl/ecl-page-headers' with {
+    'variant': 'default',
+    'breadcrumb': [{'target': '#', 'title': 'European Commission'}]
+}%}
 
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">
