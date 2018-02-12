@@ -1,5 +1,5 @@
 @api
-Feature: Setup
+Feature: Site branding
   In order to have my site branded with the official European Commission visual identity
   As a product owner
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.

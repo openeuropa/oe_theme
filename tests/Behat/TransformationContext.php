@@ -12,7 +12,7 @@ use Behat\Behat\Context\Context;
 class TransformationContext implements Context {
 
   /**
-   * Mapping between human readable labels and CSS selectors.
+   * Mapping between human readable element labels and CSS selectors.
    *
    * @var array
    */
@@ -43,12 +43,12 @@ class TransformationContext implements Context {
    *
    * @Transform :tag
    */
-  public function transformElement($name) {
-    return isset($this->elements[$name]) ? $this->elements[$name] : $name;
+  public function transformElement($label) {
+    return isset($this->elements[$label]) ? $this->elements[$label] : $label;
   }
 
   /**
-   * Transform page label into relative URL, if any.
+   * Transform page name into relative URL, if any.
    *
    * @Transform /^the ([A-za-z ]+) page$/
    */
