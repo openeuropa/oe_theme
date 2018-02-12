@@ -72,6 +72,7 @@ Run tests as follows:
 
 ```
 $ docker-compose exec -u web web ./vendor/bin/phpunit
+$ docker-compose exec -u web web ./vendor/bin/behat
 ```
 
 ## ECL Development setup
