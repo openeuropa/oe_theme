@@ -2,14 +2,13 @@
 
 /**
  * @file
- * Functions to support theming.
+ * Theming functions.
  */
 
 /**
- * Implements template_preprocess_menu_local_tasks().
+ * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(&$variables) {
-
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
