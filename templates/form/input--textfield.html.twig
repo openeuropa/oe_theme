@@ -10,8 +10,7 @@
  * @see template_preprocess_input()
  */
 #}
-{% set extra_attributes = ['ecl-text-input'] %}
 {% if attributes.hasClass('error') %}
-  {% set extra_attributes = extra_attributes|merge(['ecl-text-input--has-error']) %}
+  {% set attributes = attributes.addClass('ecl-text-input--has-error') %}
 {% endif %}
-<input{{ attributes.addClass(extra_attributes) }} />{{ children }}
+<input{{ attributes.addClass('ecl-text-input') }} />{{ children }}

@@ -13,10 +13,10 @@
  * @see template_preprocess_textarea()
  */
 #}
-{% set extra_attributes = ['ecl-textarea'] %}
+
 {% if attributes.hasClass('error') %}
-  {% set extra_attributes = extra_attributes|merge(['ecl-textarea--has-error']) %}
+  {% set attributes = attributes.addClass('ecl-textarea--has-error') %}
 {% endif %}
 <div{{ wrapper_attributes }}>
-  <textarea{{ attributes.addClass(extra_attributes) }}>{{ value }}</textarea>
+  <textarea{{ attributes.addClass('ecl-textarea') }}>{{ value }}</textarea>
 </div>
