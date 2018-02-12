@@ -9,9 +9,10 @@ default:
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\TransformationContext:
             elements:
-              "European Commission logo": "a.ecl-logo"
+              logo: "a.ecl-logo"
+              breadcrumb: "nav.ecl-breadcrumbs"
             pages:
-              "the login page": "/user/login"
+              login: "/user/login"
   extensions:
     Behat\MinkExtension:
       goutte: ~
@@ -23,6 +24,7 @@ default:
       drupal:
         drupal_root: "build"
       region_map:
+        page: "body"
         header: ".ecl-site-header"
   formatters:
     progress: ~

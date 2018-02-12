@@ -6,7 +6,12 @@ Feature: Setup
 
   Scenario: The European Commission logo is available throughout the site
     Given I am on the homepage
-    Then I should see the "European Commission logo" element in the "header"
+    Then I should see the "logo" element in the "header"
     And I am on "the login page"
-    And print current URL
-    Then I should see the "European Commission logo" element in the "header"
+    Then I should see the "logo" element in the "header"
+
+  Scenario: The breadcrumb is visible everywhere but on the homepage
+    Given I am on the homepage
+    Then I should not see the "breadcrumb" element in the "page"
+    And I am on "the login page"
+    Then I should see the "breadcrumb" element in the "page"

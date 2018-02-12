@@ -43,17 +43,17 @@ class TransformationContext implements Context {
    *
    * @Transform :tag
    */
-  public function transformElement($label) {
-    return isset($this->elements[$label]) ? $this->elements[$label] : $label;
+  public function transformElement($name) {
+    return isset($this->elements[$name]) ? $this->elements[$name] : $name;
   }
 
   /**
    * Transform page label into relative URL, if any.
    *
-   * @Transform /^(the [A-za-z ]+ page)$/
+   * @Transform /^the ([A-za-z ]+) page$/
    */
-  public function transformPageLabel($label) {
-    return isset($this->pages[$label]) ? $this->pages[$label] : $label;
+  public function transformPageLabel($name) {
+    return isset($this->pages[$name]) ? $this->pages[$name] : $name;
   }
 
 }
