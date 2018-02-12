@@ -17,7 +17,8 @@
         "drupal/console": "^1",
         "drush/drush": "^9",
         "drupal/core": "^8.5",
-        "drupal/drupal-extension": "^3.3"
+        "mikey179/vfsStream": "^1.2",
+        "phpunit/phpunit": "^6"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -30,14 +31,28 @@
         "npm-install": "docker run -i --rm -v $(pwd):/usr/src/app -w /usr/src/app node:9.5.0 npm install",
         "npm-build": "docker run -i --rm -v $(pwd):/usr/src/app -w /usr/src/app node:9.5.0 npm run build"
     },
+    "autoload-dev": {
+        "psr-0": {
+            "Drupal\\Tests": "build/core/tests",
+            "Drupal\\KernelTests": "build/core/tests",
+            "Drupal\\FunctionalTests": "build/core/tests",
+            "Drupal\\FunctionalJavascriptTests": "build/core/tests"
+        },
+        "psr-4": {
+            "Drupal\\simpletest\\": "build/core/modules/simpletest/src",
+            "Drupal\\Tests\\oe_theme\\": "tests"
+        }
+    },
     "extra": {
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/474684-127.patch"
+                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/474684-127.patch",
+                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2943172-kernel-test-base.patch"
             }
         },
         "installer-paths": {
             "build/core": ["type:drupal-core"],
+            "build/profiles/contrib/{$name}": ["type:drupal-profile"],
             "build/modules/contrib/{$name}": ["type:drupal-module"],
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
         }
