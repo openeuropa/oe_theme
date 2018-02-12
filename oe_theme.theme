@@ -4,3 +4,17 @@
  * @file
  * Functions to support theming.
  */
+
+/**
+ * Implements template_preprocess_input().
+ */
+function oe_theme_preprocess_input__textfield(&$variables){
+  $variables['attributes']['class'][] = 'ecl-text-input';
+}
+
+/**
+ * Implements template_preprocess_textarea().
+ */
+function oe_theme_preprocess_textarea(&$variables){
+  $variables['attributes']['class'][] = 'ecl-textarea';
+}
