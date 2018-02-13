@@ -28,7 +28,10 @@
  *   comment/reply/12345).
  *
  * Regions:
- * - page.header: Items for the header region.
+ * - page.site_top_bar: Contains items site top bar items, such as: site switchers, user account menu, etc.
+ * - page.site_header: Contains header items, such as: language switcher, search box, etc.
+ * - page.breadcrumb: Contains the breadcrumb block.
+ * - page.page_header: Contains meta information about the current page.
  * - page.content: The main content of the current page.
  * - page.footer: Items for the footer region.
  *
@@ -37,15 +40,21 @@
  */
 #}
 
-<header>
-  {% include '@ecl/ecl-page-headers' with {
-      'variant': 'default',
-      'title': 'Title of the page',
-      'introduction': 'Introduction of the page',
-      'breadcrumb': [{'target': '#', 'title': 'European Commission'}]
-  }%}
-  {{ page.header }}
+<header class="ecl-site-header" role="banner">
+  {{ page.site_top_bar }}
+  <div class="ecl-container ecl-site-header__banner">
+    {{ page.site_header }}
+  </div>
 </header>
+
+<div class="ecl-page-header">
+  <div class="ecl-container">
+    {{ page.breadcrumb }}
+    <div class="ecl-page-header__body">
+      {{ page.page_header }}
+    </div>
+  </div>
+</div>
 
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">

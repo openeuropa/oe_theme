@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ * - segments: ECL-compatible breadcrumb trail items.
+ */
+#}
+{% if segments %}
+  {% include '@ec-europa/ecl-breadcrumbs' with {
+    'segments': segments,
+  } %}
+{% endif %}

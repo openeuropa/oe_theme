@@ -1,0 +1,30 @@
+default:
+  suites:
+    default:
+      paths:
+        - %paths.base%/tests/features
+      contexts:
+        - Drupal\DrupalExtension\Context\MinkContext
+        - Drupal\DrupalExtension\Context\DrupalContext
+        - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\Tests\oe_theme\Behat\TransformationContext:
+            elements:
+              logo: "a.ecl-logo"
+              breadcrumb: "nav.ecl-breadcrumbs"
+            pages:
+              login: "/user/login"
+  extensions:
+    Behat\MinkExtension:
+      goutte: ~
+      selenium2: ~
+      javascript_session: selenium2
+      base_url: "${drupal.base_url}"
+    Drupal\DrupalExtension:
+      api_driver: "drupal"
+      drupal:
+        drupal_root: "build"
+      region_map:
+        page: "body"
+        header: ".ecl-site-header"
+  formatters:
+    progress: ~
