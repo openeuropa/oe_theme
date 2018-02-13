@@ -15,3 +15,13 @@ services:
 
   mysql:
     image: fpfis/mysql56
+
+  node:
+    image: "node:9.5.0"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=${NODE_ENV}
+    volumes:
+      - ./:/home/node/app
+    command: "npm start"
