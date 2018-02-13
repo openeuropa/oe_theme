@@ -49,6 +49,7 @@ class DemoBlock extends DeriverBase implements ContainerDeriverInterface {
       $this->derivatives[$id] = [
         'label' => $definition['label'],
         'admin_label' => $definition['label'],
+        'theme_hook' => $definition['theme_hook'],
       ] + $base_plugin_definition;
     }
 

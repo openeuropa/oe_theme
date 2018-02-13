@@ -33,17 +33,7 @@ class DemoBlock extends BlockBase implements ContainerFactoryPluginInterface {
    * {@inheritdoc}
    */
   public function build() {
-    return ['#theme' => $this->getThemeHook()];
-  }
-
-  /**
-   * Get theme hook of current demo block plugin.
-   *
-   * @return string
-   *   Theme hook.
-   */
-  protected function getThemeHook() {
-    return "demo_block_" . $this->getPluginDefinition()['id'];
+    return ['#theme' => $this->getPluginDefinition()['theme_hook']];
   }
 
 }

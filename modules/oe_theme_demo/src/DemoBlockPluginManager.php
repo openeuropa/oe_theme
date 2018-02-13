@@ -40,6 +40,31 @@ class DemoBlockPluginManager extends DefaultPluginManager {
   /**
    * {@inheritdoc}
    */
+  public function processDefinition(&$definition, $plugin_id) {
+    parent::processDefinition($definition, $plugin_id);
+    $definition['theme_hook'] = 'demo_block_' . $definition['id'];
+  }
+
+
+  /**
+   * Return demo blocks theme implementations.
+   *
+   * @return array
+   *    Theme implementations.
+   *
+   * @see oe_theme_demo_theme().
+   */
+  public function hookTheme() {
+    $items = [];
+    foreach ($this->getDefinitions() as $definition) {
+      $items[$definition['theme_hook']] = ['variables' => []];
+    }
+    return $items;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   protected function getDiscovery() {
     if (!isset($this->discovery)) {
       $this->discovery = new YamlDiscovery('demo_blocks', $this->moduleHandler->getModuleDirectories());
