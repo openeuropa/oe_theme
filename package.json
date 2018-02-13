@@ -8,7 +8,8 @@
         "build:scripts": "ecl-builder scripts",
         "build:copy": "ecl-builder copy",
         "build:styles": "ecl-builder styles",
-        "build": "npm-run-all --parallel build:*"
+        "build": "npm-run-all --parallel build:*",
+        "start": "npm install; npm run build"
     },
     "dependencies": {
         "npm-run-all": "4.0.2",
