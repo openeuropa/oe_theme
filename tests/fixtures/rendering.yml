@@ -15,6 +15,19 @@
     - '<input type="text" value="Textfield" size="60" maxlength="128" class="form-text ecl-text-input" />'
   not_contains: []
 - array:
+    '#type': password
+    '#value': Password
+  contains:
+    - '<input type="password" size="60" maxlength="128" class="form-text ecl-text-input" />'
+  not_contains: []
+- array:
+    '#type': email
+    '#value': Email
+  contains:
+    - "Email"
+    - '<input type="email" value="Email" size="60" maxlength="254" class="form-email ecl-text-input" />'
+  not_contains: []
+- array:
     '#type': textarea
     '#title': Textarea
     '#value': Text
