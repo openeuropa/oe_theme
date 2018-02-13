@@ -27,6 +27,7 @@ before_script:
 script:
   - docker-compose exec -u web web ./vendor/bin/grumphp run
   - docker-compose exec -u web web ./vendor/bin/phpunit
+  - docker-compose exec -u web web ./vendor/bin/behat
 
 notifications:
   email: false

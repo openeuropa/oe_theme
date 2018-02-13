@@ -13,9 +13,7 @@ use Symfony\Component\Yaml\Yaml;
 abstract class AbstractKernelTest extends KernelTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = ['system'];
 

@@ -33,7 +33,7 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes }}>
+  <body{{ attributes.addClass('language-' ~ html_attributes.lang) }}>
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
@@ -42,20 +42,6 @@
       'label': 'Skip to main content'|t,
       'id': 'skip-id',
       'href': '#main-content',
-    } %}
-    {% include '@ecl/ecl-site-headers' with {
-      'site_switcher': {
-        'political': {
-        'href': 'https://ec.europa.eu/commission/index',
-        'label': 'Commission and its priorities'|t,
-        'is_active': FALSE,
-        },
-        'info': {
-        'href': 'https://ec.europa.eu/info/index',
-        'label': 'Policies, information and services'|t,
-        'is_active': TRUE,
-        },
-      }
     } %}
     {{ page_top }}
     {{ page }}
