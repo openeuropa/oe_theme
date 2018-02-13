@@ -16,6 +16,6 @@ base theme: stable
 regions:
   header: Header
   content: Content
-  footer_identity: Footer: Identity
-  footer_corporate: Footer: Corporate
-  footer_ec: Footer: European Commission
+  footer_identity: "Footer: Identity"
+  footer_corporate: "Footer: Corporate"
+  footer_ec: "Footer: European Commission"
