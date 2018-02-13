@@ -5,10 +5,10 @@ dependencies:
     - system
   theme:
     - oe_theme
-id: oe_theme_breadcrumbs
+id: oe_theme_breadcrumb
 theme: oe_theme
-region: content
-weight: -1
+region: breadcrumb
+weight: 0
 provider: null
 plugin: system_breadcrumb_block
 settings:
@@ -16,4 +16,9 @@ settings:
   label: Breadcrumbs
   provider: system
   label_display: '0'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }
