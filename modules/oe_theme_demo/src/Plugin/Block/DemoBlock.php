@@ -11,7 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @Block(
  *   id = "oe_theme_demo_block",
- *   admin_label = @Translation("OpenEuropa ECL Demo Block"),
+ *   admin_label = @Translation("OpenEuropa Demo Block"),
  *   category = @Translation("OpenEuropa"),
  *   deriver = "Drupal\oe_theme_demo\Plugin\Derivative\DemoBlock"
  * )

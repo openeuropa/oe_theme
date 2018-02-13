@@ -14,13 +14,14 @@ use Drupal\Core\Plugin\Discovery\YamlDiscovery;
 class DemoBlockPluginManager extends DefaultPluginManager {
 
   /**
-   * Provides default values for all demo_block plugins.
+   * Provides default values for plugin definitions.
    *
    * @var array
    */
   protected $defaults = [
     'id' => '',
     'label' => '',
+    'theme_hook' => '',
   ];
 
   /**
@@ -45,14 +46,13 @@ class DemoBlockPluginManager extends DefaultPluginManager {
     $definition['theme_hook'] = 'demo_block_' . $definition['id'];
   }
 
-
   /**
    * Return demo blocks theme implementations.
    *
    * @return array
-   *    Theme implementations.
+   *   Theme implementations.
    *
-   * @see oe_theme_demo_theme().
+   * @see oe_theme_demo_theme()
    */
   public function hookTheme() {
     $items = [];
