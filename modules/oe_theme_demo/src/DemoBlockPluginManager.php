@@ -2,7 +2,6 @@
 
 namespace Drupal\oe_theme_demo;
 
-use Drupal\Component\Plugin\Exception\PluginException;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -12,7 +11,7 @@ use Drupal\Core\Plugin\Discovery\YamlDiscovery;
 /**
  * Provides the default demo_block manager.
  */
-class DemoBlockPluginManager extends DefaultPluginManager implements DemoBlockPluginManagerInterface {
+class DemoBlockPluginManager extends DefaultPluginManager {
 
   /**
    * Provides default values for all demo_block plugins.
@@ -20,7 +19,6 @@ class DemoBlockPluginManager extends DefaultPluginManager implements DemoBlockPl
    * @var array
    */
   protected $defaults = [
-    // Add required and optional plugin properties.
     'id' => '',
     'label' => '',
   ];
@@ -50,19 +48,5 @@ class DemoBlockPluginManager extends DefaultPluginManager implements DemoBlockPl
     }
     return $this->discovery;
   }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function processDefinition(&$definition, $plugin_id) {
-    parent::processDefinition($definition, $plugin_id);
-
-    // You can add validation of the plugin definition here.
-    if (empty($definition['id'])) {
-      throw new PluginException(sprintf('Example plugin property (%s) definition "is" is required.', $plugin_id));
-    }
-  }
-
-  // Add other methods here as defined in the DemoBlockPluginManagerInterface.
 
 }

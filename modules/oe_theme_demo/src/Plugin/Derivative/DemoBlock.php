@@ -2,10 +2,9 @@
 
 namespace Drupal\oe_theme_demo\Plugin\Derivative;
 
-use Symfony\Component\Yaml\Yaml;
+use Drupal\oe_theme_demo\DemoBlockPluginManager;
 use Drupal\Component\Plugin\Derivative\DeriverBase;
 use Drupal\Core\Plugin\Discovery\ContainerDeriverInterface;
-use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -14,56 +13,46 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class DemoBlock extends DeriverBase implements ContainerDeriverInterface {
 
   /**
-   * The renderer service.
+   * Demo block manager service.
    *
-   * @var \Drupal\Core\Render\RendererInterface
+   * @var \Drupal\oe_theme_demo\DemoBlockPluginManager
    */
-  protected $renderer;
+  protected $blockManager;
 
   /**
-   * OEDemoBlock constructor.
+   * DemoBlock constructor.
    *
-   * @param \Drupal\Core\Render\RendererInterface $renderer
-   *   The renderer service.
+   * @param \Drupal\oe_theme_demo\DemoBlockPluginManager $blockManager
+   *   Demo block manager service.
    */
-  public function __construct(RendererInterface $renderer) {
-    $this->renderer = $renderer;
+  public function __construct(DemoBlockPluginManager $blockManager) {
+    $this->blockManager = $blockManager;
   }
 
   /**
    * {@inheritdoc}
    */
-  public static function create(
-    ContainerInterface $container,
-    $base_plugin_id
-  ) {
+  public static function create(ContainerInterface $container, $base_plugin_id) {
     return new static(
-      $container->get('renderer')
+      $container->get('plugin.manager.oe_theme_demo.demo_blocks')
     );
   }
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.LongVariable)
    */
-  public function getDerivativeDefinitions($base_plugin_def) {
-    $config = Yaml::parse(
-      file_get_contents(drupal_get_path('module', 'oe_theme_demo') . '/ecl.yml')
-    );
-
+  public function getDerivativeDefinitions($base_plugin_definition) {
     $this->derivatives = [];
-    foreach ($config['blocks'] as $id => $block) {
-      $this->derivatives[$id] = $base_plugin_def;
-      $this->derivatives[$id]['admin_label'] = $block['label'];
-
-      $content = $block['content'];
-      if (is_array($content)) {
-        $content = $this->renderer->renderRoot($content);
-      }
-
-      $this->derivatives[$id]['content'] = $content;
+    foreach ($this->blockManager->getDefinitions() as $id => $definition) {
+      $this->derivatives[$id] = [
+        'label' => $definition['label'],
+        'admin_label' => $definition['label'],
+      ] + $base_plugin_definition;
     }
 
-    return parent::getDerivativeDefinitions($base_plugin_def);
+    return $this->derivatives;
   }
 
 }
