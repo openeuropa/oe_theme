@@ -16,12 +16,14 @@
     'title': 'Primary tabs'|t,
     'variant': 'tabs',
     'links': primary_links,
+    'extra_classes': 'ecl-u-mb-l',
   } %}
 {% endif %}
 {% if secondary %}
-    {% include '@ecl/ecl-navigation-listss' with {
+  {% include '@ecl/ecl-navigation-lists' with {
     'title': 'Secondary tabs'|t,
     'variant': 'small',
     'links': secondary_links,
-    } %}
+    'extra_classes': 'ecl-u-mb-l',
+  } %}
 {% endif %}
