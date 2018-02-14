@@ -19,7 +19,8 @@ before_install:
 
 install:
   # Temporarily use sudo to overcome permission issues.
-  - docker-compose exec -u root node npm start
+  - docker-compose exec -u root node npm install
+  - docker-compose exec -u root node npm run build
   - docker-compose exec -u web web composer require drupal/core:$DRUPAL_VERSION
 
 before_script:
