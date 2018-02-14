@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_demo
+  theme:
+    - oe_theme
+id: oe_theme_demo_header_site_switcher
+theme: oe_theme
+region: site_top_bar
+weight: 0
+provider: null
+plugin: 'oe_theme_demo_block:header_site_switcher'
+settings:
+  id: 'oe_theme_demo_block:header_site_switcher'
+  label: 'Header: Site switcher demo'
+  provider: oe_theme_demo
+  label_display: '0'
+visibility: {  }

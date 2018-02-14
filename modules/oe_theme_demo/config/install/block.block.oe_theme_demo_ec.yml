@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_demo
+  theme:
+    - oe_theme
+id: oe_theme_demo_ec
+theme: oe_theme
+region: footer_ec
+weight: 0
+provider: null
+plugin: 'oe_theme_demo_block:footer_ec'
+settings:
+  id: 'oe_theme_demo_block:footer_ec'
+  label: 'Footer: European Commission demo'
+  provider: oe_theme_demo
+  label_display: '0'
+visibility: {  }

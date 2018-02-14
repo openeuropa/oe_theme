@@ -1,0 +1,15 @@
+name: OpenEuropa Theme Demo
+description: OpenEuropa Theme Demo
+type: module
+core: 8.x
+package: OpenEuropa
+dependencies:
+  - block
+
+config_devel:
+  - block.block.oe_theme_demo_header_site_switcher
+  - block.block.oe_theme_demo_header_language_switcher
+  - block.block.oe_theme_demo_header_search
+  - block.block.oe_theme_demo_corporate
+  - block.block.oe_theme_demo_ec
+  - block.block.oe_theme_demo_identity

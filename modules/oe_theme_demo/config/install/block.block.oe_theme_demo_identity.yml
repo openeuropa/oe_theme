@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_demo
+  theme:
+    - oe_theme
+id: oe_theme_demo_identity
+theme: oe_theme
+region: footer_identity
+weight: 0
+provider: null
+plugin: 'oe_theme_demo_block:footer_identity'
+settings:
+  id: 'oe_theme_demo_block:footer_identity'
+  label: 'Footer: Identity demo'
+  provider: oe_theme_demo
+  label_display: '0'
+visibility: {  }

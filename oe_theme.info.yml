@@ -19,4 +19,6 @@ regions:
   breadcrumb: "Breadcrumb"
   page_header: "Page header"
   content: "Content"
-  footer: "Footer"
+  footer_identity: "Footer: Identity"
+  footer_corporate: "Footer: Corporate"
+  footer_ec: "Footer: European Commission"

@@ -7,10 +7,17 @@ default:
         - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\TransformationContext:
             elements:
               logo: "a.ecl-logo"
               breadcrumb: "nav.ecl-breadcrumbs"
+              corporate block: ".demo-block-footer-corporate"
+              identity block: ".demo-block-footer-identity"
+              contacts block: ".demo-block-footer-ec"
+              sites switcher: ".demo-block-site-switcher"
+              search box: ".demo-block-header-search"
+              language switcher: ".demo-block-language-switcher"
             pages:
               login: "/user/login"
   extensions:
@@ -26,5 +33,8 @@ default:
       region_map:
         page: "body"
         header: ".ecl-site-header"
+        identity footer: ".ecl-footer__site-identity"
+        corporate footer: ".ecl-footer__site-corporate"
+        contacts footer: ".ecl-footer__ec"
   formatters:
     progress: ~

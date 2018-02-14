@@ -107,6 +107,19 @@ fieldset:
     '#type': fieldset
     '#title': Author
 
+form:
+  label: Form
+  description: Provides a form element.
+  preview:
+    '#type': form
+    '#title': Register
+    username:
+      '#type': textfield
+      '#title': Username
+    password:
+      '#type': password
+      '#title': Password
+
 hidden:
   label: Hidden
   description: Provides a form element for an HTML 'hidden' input element.
@@ -230,6 +243,7 @@ radio:
   description: Provides a form element for a single radio button.
   preview:
     '#type': radio
+    '#title': Closed
 
 radios:
   label: Radios
