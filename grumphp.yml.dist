@@ -5,3 +5,8 @@ parameters:
     - vendor/
     - node_modules/
     - build/
+  tasks.phpcs.triggered_by:
+    - php
+    - module
+    - inc
+    - theme
