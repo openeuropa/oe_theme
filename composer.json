@@ -27,9 +27,7 @@
         ],
         "post-update-cmd": [
             "@drupal-scaffold"
-        ],
-        "npm-install": "docker run -i --rm -v $(pwd):/usr/src/app -w /usr/src/app node:9.5.0 npm install",
-        "npm-build": "docker run -i --rm -v $(pwd):/usr/src/app -w /usr/src/app node:9.5.0 npm run build"
+        ]
     },
     "autoload-dev": {
         "psr-0": {
