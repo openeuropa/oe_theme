@@ -24,4 +24,4 @@ services:
       - NODE_ENV=${NODE_ENV}
     volumes:
       - ./:/home/node/app
-    command: "npm start"
+    command: "sleep infinity"
