@@ -14,12 +14,11 @@
 #}
 {% set extraAttributes = [] %}
 {% for name,value in attributes %}
-    {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
+  {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{% include '@ecl/ecl-forms-text-inputs' with {
-    'type': attributes.type,
-    'id': attributes.id,
-    'name': attributes.name,
-    'extra_attributes': extraAttributes,
+{% include '@ecl/ecl-buttons' with {
+  'label': attributes.value,
+  'modifier': 'default',
+  'extra_attributes': extraAttributes,
 } %}
