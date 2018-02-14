@@ -73,15 +73,6 @@
       'type': 'right',
       'extra_class': 'ecl-site-header__logo'
     } only %}
-    {% include '@ec-europa/ecl-language-list' with {
-      'extra_class': 'ecl-site-header__language-list',
-      'languages': _languages,
-      'variant': 'overlay',
-      'messages': {
-        'dismiss': 'Close',
-        'heading': 'Select your language'
-      }
-    } %}
     {% include '@ec-europa/ecl-search-forms' with {
       'input': { 'id': 'global-search' },
       'extra_classes': 'ecl-site-header__search'
