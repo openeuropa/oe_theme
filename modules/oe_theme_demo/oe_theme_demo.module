@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Moule file.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function oe_theme_demo_theme() {
+  return \Drupal::service('plugin.manager.oe_theme_demo.demo_blocks')->hookTheme();
+}

@@ -1,0 +1,4 @@
+services:
+  plugin.manager.oe_theme_demo.demo_blocks:
+    class: Drupal\oe_theme_demo\DemoBlockPluginManager
+    arguments: ['@module_handler', '@cache.discovery']
