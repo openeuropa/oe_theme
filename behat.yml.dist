@@ -32,6 +32,6 @@ default:
         header: ".ecl-site-header"
         identity footer: ".ecl-footer__site-identity"
         corporate footer: ".ecl-footer__site-corporate"
-        contacts footer: ".ecl-footer__site-ec"
+        contacts footer: ".ecl-footer__ec"
   formatters:
     progress: ~
