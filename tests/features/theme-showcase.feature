@@ -6,6 +6,9 @@ Feature: Theme showcase
 
   Scenario: Footer features placeholder blocks
     Given I am on the homepage
-    Then I should see the "identity block" element in the "identity footer"
+    Then I should see the "sites switcher" element in the "header"
+    And I should see the "search box" element in the "header"
+    And I should see the "language switcher" element in the "header"
+    And I should see the "identity block" element in the "identity footer"
     And I should see the "corporate block" element in the "corporate footer"
     And I should see the "contacts block" element in the "contacts footer"
