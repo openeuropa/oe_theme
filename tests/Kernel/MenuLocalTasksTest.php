@@ -71,7 +71,7 @@ class MenuLocalTasksTest extends AbstractKernelTest {
     $output = (string) \Drupal::service('renderer')->renderRoot($render);
 
     // Assert wrapper contains ECL class.
-    $this->assertContains('<nav class="ecl-navigation-list-wrapper" >', $output);
+    $this->assertContains('<nav class="ecl-navigation-list-wrapper ecl-u-mb-l" >', $output);
     // Assert list contains ECL classes.
     $this->assertContains('<ul class="ecl-navigation-list ecl-navigation-list--tabs">', $output);
     // Assert active link contains  ECL classes.
