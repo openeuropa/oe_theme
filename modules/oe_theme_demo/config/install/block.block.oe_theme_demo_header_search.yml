@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_demo
+  theme:
+    - oe_theme
+id: oe_theme_demo_header_search
+theme: oe_theme
+region: site_header
+weight: 2
+provider: null
+plugin: 'oe_theme_demo_block:header_search'
+settings:
+  id: 'oe_theme_demo_block:header_search'
+  label: 'Header: Search demo'
+  provider: oe_theme_demo
+  label_display: '0'
+visibility: {  }

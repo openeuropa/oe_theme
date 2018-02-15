@@ -15,6 +15,9 @@ default:
               corporate block: ".demo-block-footer-corporate"
               identity block: ".demo-block-footer-identity"
               contacts block: ".demo-block-footer-ec"
+              sites switcher: ".demo-block-site-switcher"
+              search box: ".demo-block-header-search"
+              language switcher: ".demo-block-language-switcher"
             pages:
               login: "/user/login"
   extensions:
