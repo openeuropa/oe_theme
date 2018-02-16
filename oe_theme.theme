@@ -27,6 +27,22 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
 }
 
 /**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_paragraphs_links_block(&$variables) {
+  $paragraph = $variables['paragraph'];
+  $title = $paragraph->get('field_oe_paragraphs_text')->getValue();
+  $title = reset($title);
+  $variables['title'] = $title['value'];
+  foreach ($paragraph->get('field_oe_paragraphs_links')->getValue() as $link) {
+    $variables['links'][] = [
+      'label' => $link['title'],
+      'href' => $link['uri'],
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(&$variables) {
