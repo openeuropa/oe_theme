@@ -3,11 +3,10 @@
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\paragraphs\Entity\ParagraphsType;
-use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class ParagraphsTests
+ * Class ParagraphsTests.
  *
  * @package Drupal\Tests\oe_theme\Kernel
  */
@@ -42,25 +41,53 @@ class ParagraphsTest extends AbstractKernelTest {
   }
 
   /**
-   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
-   * @throws \Drupal\Core\Entity\EntityStorageException
+   * Test links block paragraph rendering.
    */
-  public function testSmoke() {
-
-    $paragraph = Paragraph::create([
-      'type' => 'oe_paragraphs_links_block',
-      'field_oe_paragraphs_text' => [
-        "value"  =>  'Test title',
-      ],
-    ]);
+  public function testLinksBlock() {
+    $paragraph = Paragraph::create(['type' => 'oe_paragraphs_links_block']);
+    $paragraph->field_oe_paragraphs_text = 'Title';
+    $paragraph->field_oe_paragraphs_links[] = [
+      'title' => 'Link 1',
+      'uri' => 'internal:/',
+    ];
+    $paragraph->field_oe_paragraphs_links[] = [
+      'title' => 'Link 2',
+      'uri' => 'internal:/',
+    ];
     $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
 
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-    $pre_render = $view_builder->view($paragraph, 'default');
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('div.ecl-link-block > div.ecl-link-block__title')
+      ->text();
+    $this->assertEquals('Title', trim($actual));
 
-    echo $output = (string) \Drupal::service('renderer')->renderRoot($pre_render);
+    $actual = $crawler->filter('div.ecl-link-block ul.ecl-link-block__list a.ecl-link')
+      ->eq(0)
+      ->text();
+    $this->assertEquals('Link 1', trim($actual));
 
-    $this->assertTrue(\Drupal::moduleHandler()->moduleExists('oe_paragraphs'));
+    $actual = $crawler->filter('div.ecl-link-block ul.ecl-link-block__list a.ecl-link')
+      ->eq(1)
+      ->text();
+    $this->assertEquals('Link 2', trim($actual));
+  }
+
+  /**
+   * Render a paragraph.
+   *
+   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   *   Paragraph entity.
+   *
+   * @return string
+   *   Rendered output.
+   */
+  protected function renderParagraph(Paragraph $paragraph) {
+    $render = \Drupal::entityTypeManager()
+      ->getViewBuilder('paragraph')
+      ->view($paragraph, 'default');
+
+    return (string) \Drupal::service('renderer')->renderRoot($render);
   }
 
 }
