@@ -5,6 +5,8 @@
  * Functions to support theming.
  */
 
+use Drupal\Core\Render\Element;
+
 /**
  * Implements hook_preprocess_hook().
  */
@@ -18,6 +20,29 @@ function oe_theme_preprocess_breadcrumb(&$variables) {
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  // Do not output field labels and wrapping markup for paragraph fields.
+  if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
+    $suggestions[] = 'field__bare';
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_paragraphs_links_block(&$variables) {
+  // Massage data to be compliant with ECL links block component data structure.
+  foreach (Element::children($variables['content']['field_oe_paragraphs_links']) as $index) {
+    $variables['links'][] = [
+      'label' => $variables['content']['field_oe_paragraphs_links'][$index]['#title'],
+      'href' => $variables['content']['field_oe_paragraphs_links'][$index]['#url'],
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(&$variables) {
@@ -26,7 +51,7 @@ function oe_theme_preprocess_menu_local_tasks(&$variables) {
     $url = $link['#link']['url'];
     if ($url->access($variables['user'])) {
       $variables['primary_links'][] = [
-        'href' => $url->toString(),
+        'href' => $url,
         'label' => $link['#link']['title'],
         'is_active' => $link['#active'],
       ];
@@ -38,7 +63,7 @@ function oe_theme_preprocess_menu_local_tasks(&$variables) {
     $url = $link['#link']['url'];
     if ($url->access($variables['user'])) {
       $variables['secondary_links'][] = [
-        'href' => $url->toString(),
+        'href' => $url,
         'label' => $link['#link']['title'],
         'is_active' => $link['#active'],
       ];
