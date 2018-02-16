@@ -44,16 +44,21 @@ class ParagraphsTest extends AbstractKernelTest {
    * Test links block paragraph rendering.
    */
   public function testLinksBlock() {
-    $paragraph = Paragraph::create(['type' => 'oe_paragraphs_links_block']);
-    $paragraph->field_oe_paragraphs_text = 'Title';
-    $paragraph->field_oe_paragraphs_links[] = [
-      'title' => 'Link 1',
-      'uri' => 'internal:/',
-    ];
-    $paragraph->field_oe_paragraphs_links[] = [
-      'title' => 'Link 2',
-      'uri' => 'internal:/',
-    ];
+    $paragraph = Paragraph::create([
+      'type' => 'oe_paragraphs_links_block',
+      'field_oe_paragraphs_text' => 'Title',
+      'field_oe_paragraphs_links' => [
+        [
+          'title' => 'Link 1',
+          'uri' => 'internal:/',
+        ],
+        [
+          'title' => 'Link 2',
+          'uri' => 'internal:/',
+        ],
+      ],
+    ]);
+
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
 
