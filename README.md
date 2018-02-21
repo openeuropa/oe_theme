@@ -1,6 +1,6 @@
 # OpenEuropa theme
 
-[![Build Status](https://travis-ci.org/ec-europa/oe_theme.svg?branch=master)](https://travis-ci.org/ec-europa/oe_theme)
+[![Build Status](https://travis-ci.org/openeuropa/oe_theme.svg?branch=master)](https://travis-ci.org/openeuropa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library](https://github.com/ec-europa/europa-component-library) (ECL).
 
@@ -94,7 +94,7 @@ $ docker-compose exec -u web web ./vendor/bin/behat
 
 ## ECL components
 
-You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader](https://github.com/ec-europa/ecl-twig-loader)
+You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader](https://github.com/openeuropa/ecl-twig-loader)
 as shown below:
 
 ```twig
@@ -117,7 +117,7 @@ JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordion
 
 ### Update ECL
 
-Update the ECL by changing the `@ec-europa/ecl-components-preset-base` version in `package.json` and running:
+To update ECL components change the `@ec-europa/ecl-preset-full` version in `package.json` and run:
 
 ```
 $ npm install && npm run build

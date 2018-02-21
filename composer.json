@@ -1,17 +1,17 @@
 {
-    "name": "ec-europa/oe_theme",
+    "name": "openeuropa/oe_theme",
     "description": "OpenEuropa base theme.",
     "type": "drupal-theme",
     "license": "EUPL-1.1",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "ec-europa/ecl-twig-loader": "^0.0.1"
+        "openeuropa/ecl-twig-loader": "^0.1"
     },
     "require-dev": {
         "cweagans/composer-patches": "~1.0",
-        "ec-europa/oe-code-review": "^0.1",
-        "ec-europa/oe-task-runner": "^0.3",
+        "openeuropa/code-review": "^0.2",
+        "openeuropa/task-runner": "^0.4",
         "drupal-composer/drupal-scaffold": "^2.2",
         "composer/installers": "^1.2",
         "drupal/console": "^1",

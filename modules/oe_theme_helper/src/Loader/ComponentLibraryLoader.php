@@ -3,7 +3,7 @@
 namespace Drupal\oe_theme_helper\Loader;
 
 use Drupal\Core\Extension\ThemeHandler;
-use EC\Twig\Loader\EuropaComponentLibraryLoader;
+use OpenEuropa\Twig\Loader\EuropaComponentLibraryLoader;
 
 /**
  * Class ComponentLibraryLoader.
