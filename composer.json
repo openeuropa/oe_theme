@@ -45,25 +45,18 @@
             "Drupal\\Tests\\oe_theme\\": "tests"
         }
     },
-    "repositories": [
-        {
+    "repositories": {
+        "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/openeuropa/oe_paragraphs"
         }
-    ],
+    },
     "extra": {
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/474684-151.patch",
                 "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2943172-kernel-test-base.patch"
             }
-        },
-        "branch-alias": {
-            "oe-315": "dev-OPENEUROPA-315-name_prefix"
         },
         "installer-paths": {
             "build/core": ["type:drupal-core"],
