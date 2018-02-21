@@ -47,7 +47,7 @@ class ParagraphsTest extends AbstractKernelTest {
     $paragraph = Paragraph::create([
       'type' => 'oe_links_block',
       'field_oe_text' => 'Title',
-      'field_oe _links' => [
+      'field_oe_links' => [
         [
           'title' => 'Link 1',
           'uri' => 'internal:/',
