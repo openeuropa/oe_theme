@@ -11,25 +11,9 @@ use Symfony\Component\DomCrawler\Crawler;
 class MenuLocalTasksTest extends AbstractKernelTest {
 
   /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-    'system',
-    'user',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->installEntitySchema('user');
-    $this->installSchema('system', 'sequences');
-  }
-
-  /**
    * Test menu local tasks.
+   *
+   * @throws \Exception
    */
   public function testMenuLocalTasks() {
     $render = [
@@ -55,8 +39,7 @@ class MenuLocalTasksTest extends AbstractKernelTest {
       '#user' => $this->user,
     ];
 
-    $html = (string) \Drupal::service('renderer')->renderRoot($render);
-
+    $html = $this->renderRoot($render);
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.

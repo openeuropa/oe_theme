@@ -34,9 +34,7 @@ class ParagraphsTest extends AbstractKernelTest {
    */
   protected function setUp() {
     parent::setUp();
-    $this->installEntitySchema('user');
     $this->installEntitySchema('paragraph');
-    $this->installSchema('system', ['sequences']);
     $this->installConfig(['oe_paragraphs']);
   }
 
@@ -86,13 +84,15 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @return string
    *   Rendered output.
+   *
+   * @throws \Exception
    */
   protected function renderParagraph(Paragraph $paragraph) {
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');
 
-    return (string) \Drupal::service('renderer')->renderRoot($render);
+    return $this->renderRoot($render);
   }
 
 }

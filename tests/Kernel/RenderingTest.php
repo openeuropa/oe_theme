@@ -17,10 +17,12 @@ class RenderingTest extends AbstractKernelTest {
    * @param array $not_contains
    *   Not contains assertions.
    *
+   * @throws \Exception
+   *
    * @dataProvider renderingDataProvider
    */
   public function testRendering(array $array, array $contains, array $not_contains) {
-    $output = (string) \Drupal::service('renderer')->renderRoot($array);
+    $output = $this->renderRoot($array);
 
     foreach ($contains as $text) {
       $this->assertContains($text, $output);
