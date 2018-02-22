@@ -23,3 +23,12 @@ regions:
   footer_identity: "Footer: Identity"
   footer_corporate: "Footer: Corporate"
   footer_ec: "Footer: European Commission"
+
+config_devel:
+  optional:
+    - block.block.oe_theme_demo_main_navigation
+    - block.block.oe_theme_breadcrumb
+    - block.block.oe_theme_main_page_content
+    - block.block.oe_theme_page_title
+    - block.block.oe_theme_site_branding
+    - block.block.oe_theme_tabs
