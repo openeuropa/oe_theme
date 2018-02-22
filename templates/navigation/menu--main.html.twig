@@ -19,6 +19,7 @@
  */
 #}
 {% if links %}
+  {{ attach_library('oe_theme/navigation') }}
   {% include '@ecl/ecl-navigation-menus' with {
     'links': links,
   } %}
