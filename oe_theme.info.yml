@@ -18,6 +18,7 @@ regions:
   site_header: "Site header"
   breadcrumb: "Breadcrumb"
   page_header: "Page header"
+  navigation: "Navigation"
   content: "Content"
   footer_identity: "Footer: Identity"
   footer_corporate: "Footer: Corporate"
