@@ -1,0 +1,67 @@
+oe_theme_demo.main.about:
+  title: 'About'
+  route_name: "<none>"
+  menu_name: "main"
+  expanded: true
+  weight: 1
+oe_theme_demo.main.about_1:
+  title: 'Departments'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.about"
+oe_theme_demo.main.about_2:
+  title: 'Commission at work'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.about"
+oe_theme_demo.main.priorities:
+  title: 'Priorities'
+  route_name: "<none>"
+  menu_name: "main"
+  expanded: true
+  weight: 2
+oe_theme_demo.main.priorities_1:
+  title: 'Jobs, growth and investment'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_2:
+  title: 'Digital single market'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_3:
+  title: 'Energy union and climate'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_4:
+  title: 'Internal market'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_5:
+  title: 'Monetary union'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_6:
+  title: 'Justice and fundamental rights'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_7:
+  title: 'Migration'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.priorities_8:
+  title: 'Democratic change'
+  route_name: "<none>"
+  menu_name: "main"
+  parent: "oe_theme_demo.main.priorities"
+oe_theme_demo.main.contacts:
+  title: 'Contacts'
+  route_name: "<none>"
+  menu_name: "main"
+  weight: 3
