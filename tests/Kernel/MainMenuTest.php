@@ -35,19 +35,36 @@ class MainMenuTest extends AbstractKernelTest {
   }
 
   /**
-   * Test main menu is themed using ECL navigation menu.
+   * Test main menu is themed using ECL navigation menu component.
    *
    * @throws \Exception
    */
   public function testMainMenuRendering() {
 
     $menu_tree = \Drupal::menuTree();
-    $menu_link_content = MenuLinkContent::create([
-      'link' => ['uri' => 'route:<none>'],
+    $parent = MenuLinkContent::create([
+      'title' => 'Parent item',
+      'link' => ['uri' => 'http://parent.eu'],
       'menu_name' => 'main',
-      'title' => 'Link test',
+      'expanded' => TRUE,
     ]);
-    $menu_link_content->save();
+    $parent->save();
+
+    $children = [
+      'Child 1' => 'http://child-1.eu',
+      'Child 2' => 'http://child-2.eu',
+      'Child 3' => 'http://child-3.eu',
+    ];
+    foreach ($children as $title => $url) {
+      $child = MenuLinkContent::create([
+        'title' => $title,
+        'link' => ['uri' => $url],
+        'parent' => $parent->getPluginId(),
+        'menu_name' => 'main',
+      ]);
+      $child->save();
+    }
+
     $tree = $menu_tree->load('main', new MenuTreeParameters());
     $build = $menu_tree->build($tree);
     $html = $this->renderRoot($build);
@@ -58,9 +75,19 @@ class MainMenuTest extends AbstractKernelTest {
     $actual = $crawler->filter('nav.ecl-navigation-menu')->count();
     $this->assertEquals(1, $actual);
 
-    // Assert link is correctly rendered.
-    $actual = $crawler->filter('nav.ecl-navigation-menu a.ecl-navigation-menu__link')->text();
-    $this->assertEquals('Link test', trim($actual));
+    // Assert that parent link is correctly rendered.
+    $link = $crawler->filter('nav.ecl-navigation-menu a.ecl-navigation-menu__link')->first();
+    $this->assertEquals('Parent item', trim($link->text()));
+    $this->assertEquals('http://parent.eu', trim($link->extract(['href'])[0]));
+
+    // Assert children are rendered correctly.
+    $position = 0;
+    foreach ($children as $title => $url) {
+      $link = $crawler->filter('.ecl-navigation-menu__group a.ecl-navigation-menu__link')->eq($position);
+      $this->assertEquals($title, trim($link->text()));
+      $this->assertEquals($url, trim($link->extract(['href'])[0]));
+      $position++;
+    }
   }
 
 }
