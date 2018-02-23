@@ -59,7 +59,7 @@ function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
         'title' => $builder->viewField($paragraph->get('field_oe_text')),
         'icon' => $paragraph->get('field_oe_icon')->value,
       ],
-      'body' => $builder->viewField($paragraph->get('field_oe_text')),
+      'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
     ];
   }
 }
