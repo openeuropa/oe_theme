@@ -8,3 +8,9 @@ style:
   css:
     theme:
       css/style.css: {}
+accordions:
+  js:
+    js/accordions.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base

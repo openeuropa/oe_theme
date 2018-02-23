@@ -43,6 +43,28 @@ function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_paragraph__oe_accordion().
+ */
+function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
+  // Massage data to be compliant with ECL accordions component data structure.
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+  $variables['panels'] = [];
+
+  /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
+  foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
+    $paragraph = $field_item->entity;
+    $variables['panels'][] = [
+      'id' => $paragraph->id(),
+      'heading' => [
+        'title' => $builder->viewField($paragraph->get('field_oe_text')),
+        'icon' => $paragraph->get('field_oe_icon')->value,
+      ],
+      'body' => $builder->viewField($paragraph->get('field_oe_text')),
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(&$variables) {

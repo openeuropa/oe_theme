@@ -15,5 +15,5 @@ phpunit.xml
 /css/
 /fonts/
 /images/
-/js/
+/js/base.js
 /templates/components/
