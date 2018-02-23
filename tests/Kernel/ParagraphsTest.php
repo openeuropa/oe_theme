@@ -118,9 +118,24 @@ class ParagraphsTest extends AbstractKernelTest {
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('button#ecl-accordion-header-1')
-      ->text();
+
+    $actual = $crawler->filter('button#ecl-accordion-header-1')->text();
     $this->assertEquals('Item title 1', trim($actual));
+
+    $actual = $crawler->filter('dd#ecl-accordion-panel-1')->text();
+    $this->assertEquals('Item body 1', trim($actual));
+
+    $actual = $crawler->filter('button#ecl-accordion-header-1 span.ecl-icon--arrow-up')->count();
+    $this->assertEquals(1, $actual);
+
+    $actual = $crawler->filter('button#ecl-accordion-header-2')->text();
+    $this->assertEquals('Item title 2', trim($actual));
+
+    $actual = $crawler->filter('dd#ecl-accordion-panel-2')->text();
+    $this->assertEquals('Item body 2', trim($actual));
+
+    $actual = $crawler->filter('button#ecl-accordion-header-2 span.ecl-icon--copy')->count();
+    $this->assertEquals(1, $actual);
   }
 
   /**
