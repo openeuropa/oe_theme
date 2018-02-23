@@ -26,6 +26,7 @@ class ParagraphsTest extends AbstractKernelTest {
     'entity_reference_revisions',
     'link',
     'text',
+    'options',
     'oe_paragraphs',
   ];
 
