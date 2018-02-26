@@ -14,3 +14,9 @@ accordions:
   dependencies:
     - core/drupal
     - oe_theme/base
+navigation:
+  js:
+    js/navigation.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base

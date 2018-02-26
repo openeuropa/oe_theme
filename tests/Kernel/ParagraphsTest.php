@@ -146,13 +146,15 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @return string
    *   Rendered output.
+   *
+   * @throws \Exception
    */
   protected function renderParagraph(Paragraph $paragraph) {
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');
 
-    return (string) \Drupal::service('renderer')->renderRoot($render);
+    return $this->renderRoot($render);
   }
 
 }

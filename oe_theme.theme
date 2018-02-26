@@ -8,7 +8,7 @@
 use Drupal\Core\Render\Element;
 
 /**
- * Implements hook_preprocess_hook().
+ * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(&$variables) {
   $variables['segments'] = array_map(function ($item) {
@@ -17,6 +17,30 @@ function oe_theme_preprocess_breadcrumb(&$variables) {
       'title' => $item['text'],
     ];
   }, $variables['breadcrumb']);
+}
+
+/**
+ * Implements hook_preprocess_menu__main().
+ */
+function oe_theme_preprocess_menu__main(&$variables) {
+  // Massage data to be compliant with ECL navigation menu data structure.
+  $variables['links'] = array_map(function ($item) {
+    return [
+      'href' => $item['url'],
+      'label' => $item['title'],
+      'is_active' => $item['in_active_trail'],
+    ];
+  }, $variables['items']);
+
+  foreach ($variables['items'] as $name => $link) {
+    $variables['links'][$name]['children_links'] = array_map(function ($item) {
+      return [
+        'href' => $item['url'],
+        'label' => $item['title'],
+        'is_active' => $item['in_active_trail'],
+      ];
+    }, $variables['items'][$name]['below']);
+  }
 }
 
 /**
