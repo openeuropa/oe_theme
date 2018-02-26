@@ -16,7 +16,7 @@
         "composer/installers": "^1.2",
         "drupal/console": "^1",
         "drupal/config_devel": "~1.2",
-        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/oe_paragraphs": "dev-OPENEUROPA-308-quote_paragraph",
         "drush/drush": "^9",
         "drupal/core": "^8.5",
         "mikey179/vfsStream": "^1.2",
@@ -45,12 +45,16 @@
             "Drupal\\Tests\\oe_theme\\": "tests"
         }
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/oe_paragraphs"
         }
-    },
+    ],
     "extra": {
         "patches": {
             "drupal/core": {
