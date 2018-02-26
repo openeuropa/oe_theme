@@ -37,9 +37,7 @@ class ParagraphsTest extends AbstractKernelTest {
   protected function setUp() {
     parent::setUp();
 
-    $this->installEntitySchema('user');
     $this->installEntitySchema('paragraph');
-    $this->installSchema('system', ['sequences']);
     $this->installConfig(['oe_paragraphs', 'filter']);
   }
 
