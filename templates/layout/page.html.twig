@@ -32,6 +32,7 @@
  * - page.site_header: Contains header items, such as: language switcher, search box, etc.
  * - page.breadcrumb: Contains the breadcrumb block.
  * - page.page_header: Contains meta information about the current page.
+ * - page.navigation: Contains main navigation menu.
  * - page.content: The main content of the current page.
  * - page.footer: Items for the footer region.
  *
@@ -56,6 +57,8 @@
   </div>
 </div>
 
+{{ page.navigation }}
+
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">
     <div class="ecl-row">
@@ -65,18 +68,6 @@
     </div>
   </div>
 </section>
-
-<footer>
-  <div class="ecl-container">
-    <div class="ecl-row">
-      <div class="ecl-col">
-        {% if page.footer %}
-          {{ page.footer }}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</footer>
 
 <footer class="ecl-footer">
 

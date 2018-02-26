@@ -28,7 +28,12 @@ module.exports = {
 
   copy: [
     { from: path.resolve(source_folder, 'ecl-icons/fonts'), to: path.resolve(__dirname, 'fonts')},
+    { from: path.resolve(source_folder, 'ecl-forms-checkboxes/images'), to: path.resolve(__dirname, 'images')},
+    { from: path.resolve(source_folder, 'ecl-forms-feedback-messages/images'), to: path.resolve(__dirname, 'images')},
+    { from: path.resolve(source_folder, 'ecl-forms-radios/images'), to: path.resolve(__dirname, 'images')},
+    { from: path.resolve(source_folder, 'ecl-forms-selects/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder, 'ecl-logos/images'), to: path.resolve(__dirname, 'images')},
+    { from: path.resolve(source_folder, 'ecl-messages/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder), patterns: '**/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: '**/variants.json', to: path.resolve(__dirname, 'templates/components') }
   ]
