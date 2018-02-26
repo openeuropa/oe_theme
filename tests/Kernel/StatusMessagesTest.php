@@ -55,8 +55,7 @@ class StatusMessagesTest extends AbstractKernelTest {
     }
 
     $render = ['#type' => 'status_messages'];
-
-    $html = (string) \Drupal::service('renderer')->renderRoot($render);
+    $html = $this->renderRoot($render);
     $crawler = new Crawler($html);
 
     foreach ($data as $type => $messages) {
@@ -100,6 +99,8 @@ class StatusMessagesTest extends AbstractKernelTest {
    *
    * @return array
    *   A list of test data.
+   *
+   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function statusMessagesProvider(): array {
     return [
