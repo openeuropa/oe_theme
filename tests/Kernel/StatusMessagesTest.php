@@ -43,6 +43,8 @@ class StatusMessagesTest extends AbstractKernelTest {
    * @param array $data
    *   An array of messages, keyed by message type.
    *
+   * @throws \Exception
+   *
    * @dataProvider statusMessagesProvider
    */
   public function testStatusMessages(array $data): void {
@@ -63,10 +65,10 @@ class StatusMessagesTest extends AbstractKernelTest {
       $heading = self::MESSAGE_TYPES[$type]['heading'];
 
       $wrapper = $crawler->filter('div.ecl-message--' . $modifier);
-      $this->assertEquals(1, $wrapper->count(), sprintf('Wrong number of wrappers found for "%s" messages.', $type));
+      $this->assertCount(1, $wrapper, sprintf('Wrong number of wrappers found for "%s" messages.', $type));
 
       $title = $wrapper->filter('div.ecl-message__title');
-      $this->assertEquals(1, $title->count(), sprintf('Wrong number of headings found for "%s" messages.', $type));
+      $this->assertCount(1, $title, sprintf('Wrong number of headings found for "%s" messages.', $type));
       $this->assertEquals($heading, trim($title->first()->text()));
 
       $list_items = $wrapper->filter('ul.ecl-message__body li');
