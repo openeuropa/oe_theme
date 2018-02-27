@@ -39,10 +39,6 @@
  */
 #}
 {% include '@ecl/ecl-blockquotes' with {
-
-    'body': quoteBody|striptags,
+    'body': quoteBody,
     'author': content.field_oe_text,
 } %}
-
-{{ quoteBody }}
-

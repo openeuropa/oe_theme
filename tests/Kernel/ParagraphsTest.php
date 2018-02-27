@@ -137,6 +137,31 @@ class ParagraphsTest extends AbstractKernelTest {
   }
 
   /**
+   * Test quote paragraph rendering.
+   */
+  public function testQuotes() {
+
+    $attribution = 'Quote author goes here';
+	  $body = 'Quote body goes here';
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_quote',
+	    'field_oe_text' => $attribution,
+	    'field_oe_text_long' => $body,
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+
+    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->text();
+    $this->assertEquals($body, trim($actual));
+
+    $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
+    $this->assertEquals($attribution, trim($actual));
+  }
+
+  /**
    * Render a paragraph.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph

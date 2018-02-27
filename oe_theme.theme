@@ -70,7 +70,8 @@ function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
  * Implements hook_preprocess_paragraph().
  */
 function oe_theme_preprocess_paragraph__oe_quote(&$variables) {
-	$variables['quoteBody'] = $variables['content']['field_oe_text_long'][0]['#text'];
+	// Temporary solution to avoid render issue with ECL component that expecting a string.
+  $variables['quoteBody'] = $variables['content']['field_oe_text_long'][0]['#text'];
 }
 
 /**
