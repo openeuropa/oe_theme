@@ -8,8 +8,6 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 
 /**
  * Class DrupalContext.
- *
- * @package Drupal\Tests\oe_theme\Behat
  */
 class DrupalContext extends RawDrupalContext {
 

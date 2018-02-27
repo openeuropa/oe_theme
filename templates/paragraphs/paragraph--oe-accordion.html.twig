@@ -38,7 +38,7 @@
  * @ingroup themeable
  */
 #}
-{% include '@ecl/ecl-link-blocks' with {
-  'title': content.field_oe_text,
-  'links': links,
+{{ attach_library('oe_theme/accordions') }}
+{% include '@ecl/ecl-accordions' with {
+  'panels': panels,
 } %}

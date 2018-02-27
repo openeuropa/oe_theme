@@ -6,8 +6,6 @@ use Behat\Behat\Context\Context;
 
 /**
  * Class TransformationContext.
- *
- * @package Drupal\Tests\nexteuropa_poetry\Behat
  */
 class TransformationContext implements Context {
 

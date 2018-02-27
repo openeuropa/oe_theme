@@ -37,7 +37,6 @@
   not_contains: []
 - array:
     '#type': select
-    '#type': select
     '#title': Select element
     '#options':
       1: One

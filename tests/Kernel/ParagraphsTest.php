@@ -26,6 +26,8 @@ class ParagraphsTest extends AbstractKernelTest {
     'entity_reference_revisions',
     'link',
     'text',
+    'filter',
+    'options',
     'oe_paragraphs',
   ];
 
@@ -34,10 +36,9 @@ class ParagraphsTest extends AbstractKernelTest {
    */
   protected function setUp() {
     parent::setUp();
-    $this->installEntitySchema('user');
+
     $this->installEntitySchema('paragraph');
-    $this->installSchema('system', ['sequences']);
-    $this->installConfig(['oe_paragraphs']);
+    $this->installConfig(['oe_paragraphs', 'filter']);
   }
 
   /**
@@ -79,6 +80,63 @@ class ParagraphsTest extends AbstractKernelTest {
   }
 
   /**
+   * Test accordion paragraph rendering.
+   */
+  public function testAccordions() {
+    $item1 = Paragraph::create([
+      'type' => 'oe_accordion_item',
+      'field_oe_text' => 'Item title 1',
+      'field_oe_text_long' => 'Item body 1',
+      'field_oe_icon' => 'arrow-up',
+    ]);
+    $item1->save();
+
+    $item2 = Paragraph::create([
+      'type' => 'oe_accordion_item',
+      'field_oe_text' => 'Item title 2',
+      'field_oe_text_long' => 'Item body 2',
+      'field_oe_icon' => 'copy',
+    ]);
+    $item2->save();
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_accordion',
+      'field_oe_paragraphs' => [
+        [
+          'target_id' => $item1->id(),
+          'target_revision_id' => $item1->getRevisionId(),
+        ],
+        [
+          'target_id' => $item2->id(),
+          'target_revision_id' => $item2->getRevisionId(),
+        ],
+      ],
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+
+    $actual = $crawler->filter('button#ecl-accordion-header-1')->text();
+    $this->assertEquals('Item title 1', trim($actual));
+
+    $actual = $crawler->filter('dd#ecl-accordion-panel-1')->text();
+    $this->assertEquals('Item body 1', trim($actual));
+
+    $actual = $crawler->filter('button#ecl-accordion-header-1 span.ecl-icon--arrow-up')->count();
+    $this->assertEquals(1, $actual);
+
+    $actual = $crawler->filter('button#ecl-accordion-header-2')->text();
+    $this->assertEquals('Item title 2', trim($actual));
+
+    $actual = $crawler->filter('dd#ecl-accordion-panel-2')->text();
+    $this->assertEquals('Item body 2', trim($actual));
+
+    $actual = $crawler->filter('button#ecl-accordion-header-2 span.ecl-icon--copy')->count();
+    $this->assertEquals(1, $actual);
+  }
+
+  /**
    * Render a paragraph.
    *
    * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
@@ -86,13 +144,15 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @return string
    *   Rendered output.
+   *
+   * @throws \Exception
    */
   protected function renderParagraph(Paragraph $paragraph) {
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');
 
-    return (string) \Drupal::service('renderer')->renderRoot($render);
+    return $this->renderRoot($render);
   }
 
 }
