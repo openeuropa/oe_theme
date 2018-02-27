@@ -72,8 +72,8 @@ class MainMenuTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-navigation-menu')->count();
-    $this->assertEquals(1, $actual);
+    $actual = $crawler->filter('nav.ecl-navigation-menu');
+    $this->assertCount(1, $actual);
 
     // Assert that parent link is correctly rendered.
     $link = $crawler->filter('nav.ecl-navigation-menu a.ecl-navigation-menu__link')->first();
