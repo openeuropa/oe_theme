@@ -165,6 +165,18 @@ class ParagraphsTest extends AbstractKernelTest {
    */
   public function quoteDataProvider(): array {
     return [
+      // Test case with no data.
+      [
+        [
+          'attribution' => '',
+          'body' => '',
+        ],
+        [
+          'attribution' => '',
+          'body' => '',
+        ],
+      ],
+      // Test case with no formatting.
       [
         [
           'attribution' => 'Quote author',
@@ -175,6 +187,7 @@ class ParagraphsTest extends AbstractKernelTest {
           'body' => '<p>Quote body</p>',
         ],
       ],
+      // Test case with allowed formatting.
       [
         [
           'attribution' => 'Quote author',
@@ -185,6 +198,7 @@ class ParagraphsTest extends AbstractKernelTest {
           'body' => '<p>Quote body <a href="mailto:example@example.com">example@example.com</a></p>',
         ],
       ],
+      // Test case with not allowed formatting.
       [
         [
           'attribution' => 'Quote author',
