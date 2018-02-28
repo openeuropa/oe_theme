@@ -139,15 +139,16 @@ class ParagraphsTest extends AbstractKernelTest {
 
   /**
    * Test quote paragraph rendering.
+   * @dataProvider quoteProvider
    */
-  public function testQuotes() {
-    $attribution = 'Quote author goes here';
-    $body = 'Quote body goes here';
+  public function testQuotes($attribution, $body, $attributionExp, $bodyExp): void {
+//    $attribution = 'Quote author goes here';
+//    $body = 'Quote body goes here';
 
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
-      'field_oe_text' => $attribution,
-      'field_oe_text_long' => $body,
+      'field_oe_text' => $attributionExp,
+      'field_oe_text_long' => $bodyExp,
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
@@ -155,10 +156,21 @@ class ParagraphsTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     $actual = $crawler->filter('blockquote .ecl-blockquote__body')->text();
-    $this->assertEquals($body, trim($actual));
+    $this->assertEquals($bodyExp, $actual);
 
     $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
-    $this->assertEquals($attribution, trim($actual));
+    $this->assertEquals($attributionExp, trim($actual));
+  }
+
+  /**
+   *  Using a data provider that returns an array of arrays with quote attribution and body.
+   */
+  public function quoteProvider(): array {
+  	return [
+  		// actual                       expected
+//      [ 'Quote author', 'Quote body', 'Quote author', 'Quote body'],
+		  [ 'Quote author', 'Quote body example@example.com', 'Quote author', 'Quote body <a href="mailto:example@example.com">example@example.com</a>']
+	  ];
   }
 
   /**
