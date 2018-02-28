@@ -29,6 +29,7 @@ class ParagraphsTest extends AbstractKernelTest {
     'filter',
     'options',
     'oe_paragraphs',
+    'allowed_formats',
   ];
 
   /**
