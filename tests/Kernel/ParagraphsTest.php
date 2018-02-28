@@ -143,12 +143,12 @@ class ParagraphsTest extends AbstractKernelTest {
   public function testQuotes() {
 
     $attribution = 'Quote author goes here';
-	  $body = 'Quote body goes here';
+    $body = 'Quote body goes here';
 
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
-	    'field_oe_text' => $attribution,
-	    'field_oe_text_long' => $body,
+      'field_oe_text' => $attribution,
+      'field_oe_text_long' => $body,
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);

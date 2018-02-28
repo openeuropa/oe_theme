@@ -40,8 +40,8 @@
     },
     "repositories": {
         "drupal": {
-            "type": "vcs",
-            "url": "https://github.com/openeuropa/oe_paragraphs"
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
         }
     },
     "extra": {
