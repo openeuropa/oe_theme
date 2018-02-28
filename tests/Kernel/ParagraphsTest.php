@@ -141,7 +141,6 @@ class ParagraphsTest extends AbstractKernelTest {
    * Test quote paragraph rendering.
    */
   public function testQuotes() {
-
     $attribution = 'Quote author goes here';
     $body = 'Quote body goes here';
 
