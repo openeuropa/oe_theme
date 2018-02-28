@@ -29,6 +29,7 @@ class ParagraphsTest extends AbstractKernelTest {
     'filter',
     'options',
     'oe_paragraphs',
+    'allowed_formats',
   ];
 
   /**
@@ -134,6 +135,31 @@ class ParagraphsTest extends AbstractKernelTest {
 
     $actual = $crawler->filter('button#ecl-accordion-header-2 span.ecl-icon--copy');
     $this->assertCount(1, $actual);
+  }
+
+  /**
+   * Test quote paragraph rendering.
+   */
+  public function testQuotes() {
+
+    $attribution = 'Quote author goes here';
+	  $body = 'Quote body goes here';
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_quote',
+	    'field_oe_text' => $attribution,
+	    'field_oe_text_long' => $body,
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+
+    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->text();
+    $this->assertEquals($body, trim($actual));
+
+    $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
+    $this->assertEquals($attribution, trim($actual));
   }
 
   /**

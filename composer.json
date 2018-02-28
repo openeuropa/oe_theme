@@ -24,13 +24,7 @@
         "webflo/drupal-core-require-dev": "^8.5"
     },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
-        "post-install-cmd": [
-            "@drupal-scaffold"
-        ],
-        "post-update-cmd": [
-            "@drupal-scaffold"
-        ]
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
     },
     "autoload-dev": {
         "psr-0": {
@@ -46,8 +40,8 @@
     },
     "repositories": {
         "drupal": {
-            "type": "composer",
-            "url": "https://packages.drupal.org/8"
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/oe_paragraphs"
         }
     },
     "extra": {
