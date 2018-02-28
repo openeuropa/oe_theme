@@ -26,14 +26,14 @@
 {% for type, messages in message_list %}
     {% set extraAttributes = [] %}
     {% for name,value in attributes %}
-        {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
+      {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
     {% endfor %}
 
     {% include '@ecl/ecl-messages' with {
-    'title': status_headings[type],
-    'message': messages,
-    'modifier': type,
-    'srOnly': status_headings[type],
-    'extra_attributes': extraAttributes,
+      'title': status_headings[type],
+      'message': messages,
+      'modifier': (type == 'status' ? 'success' : type),
+      'srOnly': status_headings[type],
+      'extra_attributes': extraAttributes,
     } %}
 {% endfor %}
