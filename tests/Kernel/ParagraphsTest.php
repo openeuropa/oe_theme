@@ -139,38 +139,63 @@ class ParagraphsTest extends AbstractKernelTest {
 
   /**
    * Test quote paragraph rendering.
-   * @dataProvider quoteProvider
+   *
+   * @dataProvider quoteDataProvider
    */
-  public function testQuotes($attribution, $body, $attributionExp, $bodyExp): void {
-//    $attribution = 'Quote author goes here';
-//    $body = 'Quote body goes here';
-
+  public function testQuote($data, $expected): void {
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
-      'field_oe_text' => $attributionExp,
-      'field_oe_text_long' => $bodyExp,
+      'field_oe_text' => $data['attribution'],
+      'field_oe_text_long' => $data['body'],
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->text();
-    $this->assertEquals($bodyExp, $actual);
+    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->html();
+    $this->assertEquals($expected['body'], trim($actual));
 
     $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
-    $this->assertEquals($attributionExp, trim($actual));
+    $this->assertEquals($expected['attribution'], trim($actual));
   }
 
   /**
-   *  Using a data provider that returns an array of arrays with quote attribution and body.
+   * Data provider.
    */
-  public function quoteProvider(): array {
-  	return [
-  		// actual                       expected
-//      [ 'Quote author', 'Quote body', 'Quote author', 'Quote body'],
-		  [ 'Quote author', 'Quote body example@example.com', 'Quote author', 'Quote body <a href="mailto:example@example.com">example@example.com</a>']
-	  ];
+  public function quoteDataProvider(): array {
+    return [
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote body',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote body</p>',
+        ],
+      ],
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote body example@example.com',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote body <a href="mailto:example@example.com">example@example.com</a></p>',
+        ],
+      ],
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote <p>body</p>',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote &lt;p&gt;body&lt;/p&gt;</p>',
+        ],
+      ],
+    ];
   }
 
   /**
