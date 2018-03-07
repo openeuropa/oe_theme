@@ -20,3 +20,17 @@ function oe_theme_demo_theme_suggestions_block_alter(array &$suggestions, array 
     $suggestions[] = 'block__bare';
   }
 }
+
+/**
+ * Implements hook_styleguide_info_alter().
+ */
+function oe_theme_demo_styleguide_info_alter(array &$definitions) {
+  // Remove default styleguides.
+  $default_definitions = [
+    'image_styleguide' => 'image_styleguide',
+    'default_styleguide' => 'default_styleguide',
+    'search_styleguide' => 'search_styleguide',
+    'comment_styleguide' => 'comment_styleguide',
+  ];
+  $definitions = array_diff_key($definitions, $default_definitions);
+}
