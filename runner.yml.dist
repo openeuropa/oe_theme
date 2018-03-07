@@ -8,7 +8,7 @@ drupal:
     user: "root"
     password: ""
   post_install:
-    - "./vendor/bin/drush en oe_theme_test -y"
+    - "./vendor/bin/drush en oe_theme_demo -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"

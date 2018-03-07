@@ -1,4 +1,0 @@
-services:
-  plugin.manager.theme_preview:
-    class: Drupal\oe_theme_test\ThemePreviewManager
-    arguments: ['@module_handler', '@cache.discovery']
