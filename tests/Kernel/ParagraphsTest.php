@@ -139,27 +139,77 @@ class ParagraphsTest extends AbstractKernelTest {
 
   /**
    * Test quote paragraph rendering.
+   *
+   * @dataProvider quoteDataProvider
    */
-  public function testQuotes() {
-
-    $attribution = 'Quote author goes here';
-    $body = 'Quote body goes here';
-
+  public function testQuote($data, $expected): void {
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
-      'field_oe_text' => $attribution,
-      'field_oe_text_long' => $body,
+      'field_oe_text' => $data['attribution'],
+      'field_oe_text_long' => $data['body'],
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->text();
-    $this->assertEquals($body, trim($actual));
+    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->html();
+    $this->assertEquals($expected['body'], trim($actual));
 
     $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
-    $this->assertEquals($attribution, trim($actual));
+    $this->assertEquals($expected['attribution'], trim($actual));
+  }
+
+  /**
+   * Data provider.
+   */
+  public function quoteDataProvider(): array {
+    return [
+      // Test case with no data.
+      [
+        [
+          'attribution' => '',
+          'body' => '',
+        ],
+        [
+          'attribution' => '',
+          'body' => '',
+        ],
+      ],
+      // Test case with no formatting.
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote body',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote body</p>',
+        ],
+      ],
+      // Test case with allowed formatting.
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote body example@example.com',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote body <a href="mailto:example@example.com">example@example.com</a></p>',
+        ],
+      ],
+      // Test case with not allowed formatting.
+      [
+        [
+          'attribution' => 'Quote author',
+          'body' => 'Quote <p>body</p>',
+        ],
+        [
+          'attribution' => 'Quote author',
+          'body' => '<p>Quote &lt;p&gt;body&lt;/p&gt;</p>',
+        ],
+      ],
+    ];
   }
 
   /**
