@@ -9,7 +9,7 @@ services:
 
 env:
   global:
-    - DOCKER_COMPOSE_VERSION=1.17.1
+    - DOCKER_COMPOSE_VERSION=1.19.0
   matrix:
     - DRUPAL_VERSION=8.6.x
     - DRUPAL_VERSION=8.5.x
