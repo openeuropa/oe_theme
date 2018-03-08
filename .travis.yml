@@ -11,11 +11,14 @@ env:
   global:
     - DOCKER_COMPOSE_VERSION=1.17.1
   matrix:
+    - DRUPAL_VERSION=8.6.x
+    - DRUPAL_VERSION=8.5.x
     - DRUPAL_VERSION=8.5.x-dev
 
 before_install:
-  - docker-compose up -d
-  - docker ps
+  - docker-compose build
+  - docker-compose up --no-start
+  - docker-compose start
 
 install:
   # Temporarily use sudo to overcome permission issues.
