@@ -1,0 +1,9 @@
+drupal:
+  root: "build"
+  base_url: "http:dev.oe_theme"
+  database:
+    host: "localhost"
+    port: "3306"
+    name: "oe_theme"
+    user: "root"
+    password: "root"
