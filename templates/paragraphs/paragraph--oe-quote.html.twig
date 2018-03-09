@@ -38,9 +38,7 @@
  * @ingroup themeable
  */
 #}
-{# @todo The ECL template will be directely include as soon this issue (https://webgate.ec.europa.eu/CITnet/jira/browse/INNO-942) is fixed. #}
-{# @todo To solve the issue with the data format once it is an array rather than a string, the permanent solution will be found here (https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-340) #}
-<blockquote class="ecl-blockquote">
-    <div class="ecl-paragraph ecl-blockquote__body">{{ content.field_oe_text_long }}</div>
-    <footer class="ecl-blockquote__author">―&thinsp;<cite>{{ content.field_oe_text }}</cite></footer>
-</blockquote>
+{% include '@ecl/ecl-blockquotes' with {
+  'body': content.field_oe_text_long,
+  'author': content.field_oe_text,
+} %}
