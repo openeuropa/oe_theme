@@ -1,0 +1,7 @@
+test/radios-checkbox:
+  path: '/test-radios-checkbox/example'
+  defaults:
+    _title: 'testing radios and checkbox with ECL components'
+    _form: 'Drupal\test_radios_checkbox\Form\ExampleForm'
+  requirements:
+    _permission: 'access content'

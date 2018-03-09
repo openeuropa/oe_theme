@@ -11,108 +11,109 @@ use Drupal\Core\Render\Element;
  * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(&$variables) {
-  $variables['segments'] = array_map(function ($item) {
-    return [
-      'target' => $item['url'],
-      'title' => $item['text'],
-    ];
-  }, $variables['breadcrumb']);
+	$variables['segments'] = array_map(function ($item) {
+		return [
+			'target' => $item['url'],
+			'title' => $item['text'],
+		];
+	}, $variables['breadcrumb']);
 }
 
 /**
  * Implements hook_preprocess_menu__main().
  */
 function oe_theme_preprocess_menu__main(&$variables) {
-  // Massage data to be compliant with ECL navigation menu data structure.
-  $variables['links'] = array_map(function ($item) {
-    return [
-      'href' => $item['url'],
-      'label' => $item['title'],
-      'is_active' => $item['in_active_trail'],
-    ];
-  }, $variables['items']);
+	// Massage data to be compliant with ECL navigation menu data structure.
+	$variables['links'] = array_map(function ($item) {
+		return [
+			'href' => $item['url'],
+			'label' => $item['title'],
+			'is_active' => $item['in_active_trail'],
+		];
+	}, $variables['items']);
 
-  foreach ($variables['items'] as $name => $link) {
-    $variables['links'][$name]['children_links'] = array_map(function ($item) {
-      return [
-        'href' => $item['url'],
-        'label' => $item['title'],
-        'is_active' => $item['in_active_trail'],
-      ];
-    }, $variables['items'][$name]['below']);
-  }
+	foreach ($variables['items'] as $name => $link) {
+		$variables['links'][$name]['children_links'] = array_map(function ($item) {
+			return [
+				'href' => $item['url'],
+				'label' => $item['title'],
+				'is_active' => $item['in_active_trail'],
+			];
+		}, $variables['items'][$name]['below']);
+	}
 }
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $variables) {
-  // Do not output field labels and wrapping markup for paragraph fields.
-  if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
-    $suggestions[] = 'field__bare';
-  }
+	// Do not output field labels and wrapping markup for paragraph fields.
+	if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
+		$suggestions[] = 'field__bare';
+	}
 }
 
 /**
  * Implements hook_preprocess_paragraph().
  */
 function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
-  // Massage data to be compliant with ECL links block component data structure.
-  foreach (Element::children($variables['content']['field_oe_links']) as $index) {
-    $variables['links'][] = [
-      'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'href' => $variables['content']['field_oe_links'][$index]['#url'],
-    ];
-  }
+	// Massage data to be compliant with ECL links block component data structure.
+	foreach (Element::children($variables['content']['field_oe_links']) as $index) {
+		$variables['links'][] = [
+			'label' => $variables['content']['field_oe_links'][$index]['#title'],
+			'href' => $variables['content']['field_oe_links'][$index]['#url'],
+		];
+	}
 }
 
 /**
  * Implements hook_preprocess_paragraph__oe_accordion().
  */
 function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
-  // Massage data to be compliant with ECL accordions component data structure.
-  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-  $variables['panels'] = [];
+	// Massage data to be compliant with ECL accordions component data structure.
+	$builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+	$variables['panels'] = [];
 
-  /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
-  foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
-    $paragraph = $field_item->entity;
-    $variables['panels'][] = [
-      'id' => $paragraph->id(),
-      'heading' => [
-        'title' => $builder->viewField($paragraph->get('field_oe_text')),
-        'icon' => $paragraph->get('field_oe_icon')->value,
-      ],
-      'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
-    ];
-  }
+	/** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
+	foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
+		$paragraph = $field_item->entity;
+		$variables['panels'][] = [
+			'id' => $paragraph->id(),
+			'heading' => [
+				'title' => $builder->viewField($paragraph->get('field_oe_text')),
+				'icon' => $paragraph->get('field_oe_icon')->value,
+			],
+			'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
+		];
+	}
 }
 
 /**
  * Implements hook_preprocess_menu_local_tasks().
  */
-function oe_theme_preprocess_menu_local_tasks(&$variables) {
-  foreach ($variables['primary'] as $link) {
-    /** @var Drupal\Core\Url $url */
-    $url = $link['#link']['url'];
-    if ($url->access($variables['user'])) {
-      $variables['primary_links'][] = [
-        'href' => $url,
-        'label' => $link['#link']['title'],
-        'is_active' => $link['#active'],
-      ];
-    }
-  }
 
-  foreach ($variables['secondary'] as $link) {
-    /** @var Drupal\Core\Url $url */
-    $url = $link['#link']['url'];
-    if ($url->access($variables['user'])) {
-      $variables['secondary_links'][] = [
-        'href' => $url,
-        'label' => $link['#link']['title'],
-        'is_active' => $link['#active'],
-      ];
-    }
-  }
+/**
+ * @param $variables
+ */
+function oe_theme_preprocess_input__checkbox(&$variables) {
+	// @todo finish and improve
+	$element = &$variables['element'];
+	if (isset($element['#title']) && $element['#title'] !== '') {
+		$variables['title'] = ['#markup' => $element['#title']];
+	}
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK() for form_element.html.twig.
+ */
+function oe_theme_theme_suggestions_form_element_alter(array &$suggestions, array $variables) {
+	
+	$label_already_rendered = [
+		'checkbox',
+		'radio',
+	];
+	
+	if (in_array($variables['element']['#type'], $label_already_rendered)) {
+		$suggestions[] = $variables['theme_hook_original'] . '__without_label';
+	}
 }
