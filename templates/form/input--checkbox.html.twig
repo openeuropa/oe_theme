@@ -11,4 +11,10 @@
  */
 #}
 
-<input{{ attributes.addClass('ecl-checkbox__input').addClass('ecl-u-sr-only') }} />{{ children }}
+{% include '@ecl/ecl-forms-checkboxes' with {
+    'id': attributes.id,
+    'name': attributes.name,
+    'value': attributes.value,
+    'checked': attributes.checked,
+    'label': title
+} %}

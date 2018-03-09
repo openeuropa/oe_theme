@@ -10,5 +10,10 @@
  * @see template_preprocess_input()
  */
 #}
-
-<input{{ attributes.addClass('ecl-radio__input').addClass('ecl-u-sr-only') }} />{{ children }}
+{% include '@ecl/ecl-forms-radios' with {
+    'id': attributes.id,
+    'name': attributes.name,
+    'value': attributes.value,
+    'checked': attributes.checked,
+    'label': title
+} %}

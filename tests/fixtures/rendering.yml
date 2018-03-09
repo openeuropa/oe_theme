@@ -66,10 +66,11 @@
   not_contains: []
 - array:
     '#type': checkbox
-    '#title': Preview
+    '#title': Checkbox
   contains:
-    - '<input type="checkbox" value="1" class="form-checkbox ecl-checkbox__input ecl-u-sr-only" />'
-    - '<label class="ecl-form-label option">Preview</label>'
+    - '<label class="ecl-form-label ecl-checkbox">'
+    - '<input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="default-id" value="1" name="default-name" />'
+    - '<span class="ecl-checkbox__label">Checkbox</span>'
   not_contains: []
 - array:
     '#type': fieldset
@@ -77,4 +78,11 @@
   contains:
     - '<fieldset class="ecl-fieldset js-form-item form-item js-form-wrapper form-wrapper">'
     - '<legend class="ecl-form-legend">'
+  not_contains: []
+- array:
+    '#type': radio
+    '#title': Radio
+  contains:
+    - '<label class="ecl-form-label ecl-radio">'
+    - '<span class="ecl-radio__label">'
   not_contains: []
