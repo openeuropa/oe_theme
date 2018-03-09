@@ -2,14 +2,15 @@
 
 namespace Drupal\oe_theme_demo\Plugin\Styleguide;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\paragraphs\ParagraphInterface;
 use Drupal\styleguide\GeneratorInterface;
 use Drupal\styleguide\Plugin\StyleguidePluginBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\paragraphs\Entity\Paragraph;
 
 /**
- * Comment Styleguide items implementation.
+ * Styleguide plugin for ECL components.
  *
  * @Plugin(
  *   id = "ecl_styleguide",
@@ -21,7 +22,7 @@ class EclStyleguide extends StyleguidePluginBase {
   /**
    * The styleguide generator service.
    *
-   * @var \Drupal\styleguide\Generator
+   * @var \Drupal\styleguide\GeneratorInterface
    */
   protected $generator;
 
@@ -31,6 +32,13 @@ class EclStyleguide extends StyleguidePluginBase {
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
   protected $moduleHandler;
+
+  /**
+   * The entity type manager service.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
 
   /**
    * Constructs a new CommentStyleguide.
@@ -43,14 +51,14 @@ class EclStyleguide extends StyleguidePluginBase {
    *   The plugin implementation definition.
    * @param \Drupal\styleguide\GeneratorInterface $styleguide_generator
    *   Styleguide generator service.
-   * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   Module handler service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity type manager service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, GeneratorInterface $styleguide_generator, ModuleHandlerInterface $module_handler) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, GeneratorInterface $styleguide_generator, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->generator = $styleguide_generator;
-    $this->moduleHandler = $module_handler;
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -62,7 +70,7 @@ class EclStyleguide extends StyleguidePluginBase {
       $plugin_id,
       $plugin_definition,
       $container->get('styleguide.generator'),
-      $container->get('module_handler')
+      $container->get('entity_type.manager')
     );
   }
 
@@ -71,21 +79,18 @@ class EclStyleguide extends StyleguidePluginBase {
    */
   public function items() {
     $items = [];
-    if ($this->moduleHandler->moduleExists('oe_paragraphs')) {
 
-      // Prepare quote paragraph.
-      $paragraph = Paragraph::create([
-        'type' => 'oe_quote',
-        'field_oe_text' => 'Quote author',
-        'field_oe_text_long' => 'Quote body',
-      ]);
-      $paragraph->save();
-      $items['ecl_quote'] = [
-        'title' => $this->t('Quote'),
-        'content' => $this->prepareParagraph($paragraph),
-        'group' => $this->t('Paragraphs'),
-      ];
-    }
+    // Prepare quote paragraph.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_quote',
+      'field_oe_text' => $this->generator->sentence(),
+      'field_oe_text_long' => $this->generator->sentence(),
+    ]);
+    $items['ecl_quote'] = [
+      'title' => $this->t('Quote'),
+      'content' => $this->prepareParagraph($paragraph),
+      'group' => $this->t('Paragraphs'),
+    ];
 
     return $items;
   }
@@ -93,7 +98,7 @@ class EclStyleguide extends StyleguidePluginBase {
   /**
    * Render a paragraph.
    *
-   * @param \Drupal\paragraphs\Entity\Paragraph $paragraph
+   * @param \Drupal\paragraphs\ParagraphInterface $paragraph
    *   Paragraph entity.
    *
    * @return array
@@ -101,11 +106,10 @@ class EclStyleguide extends StyleguidePluginBase {
    *
    * @throws \Exception
    */
-  protected function prepareParagraph(Paragraph $paragraph) {
-    return \Drupal::entityTypeManager()
+  protected function prepareParagraph(ParagraphInterface $paragraph) {
+    return $this->entityTypeManager
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');
-
   }
 
 }
