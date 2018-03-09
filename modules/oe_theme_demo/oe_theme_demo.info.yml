@@ -6,7 +6,6 @@ package: OpenEuropa
 dependencies:
   - drupal:block
   - styleguide:styleguide
-  - oe_paragraphs:oe_paragraphs
 
 config_devel:
   install:
