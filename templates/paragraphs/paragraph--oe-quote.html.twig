@@ -38,7 +38,8 @@
  * @ingroup themeable
  */
 #}
-{% include '@ecl/ecl-blockquotes' with {
-  'body': content.field_oe_text_long,
-  'author': content.field_oe_text,
-} %}
+{# @todo Include ECL template as soon as this is fixed: https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-340 #}
+<blockquote class="ecl-blockquote">
+  <div class="ecl-paragraph ecl-blockquote__body">{{ content.field_oe_text_long }}</div>
+  <footer class="ecl-blockquote__author">―&thinsp;<cite>{{ content.field_oe_text }}</cite></footer>
+</blockquote>
