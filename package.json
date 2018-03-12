@@ -20,7 +20,8 @@
         "chokidar-cli": "1.2.0",
         "npm-run-all": "4.0.2",
         "stylelint": "9.1.1",
-        "stylelint-config-prettier": "2.1.0"
+        "stylelint-config-prettier": "2.1.0",
+        "stylelint-no-browser-hacks": "^1.1.0"
     },
     "engines": {
         "node": ">=8",
