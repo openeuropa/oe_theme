@@ -37,3 +37,16 @@ script:
 
 notifications:
   email: false
+
+before_deploy:
+  ./scripts/travis-ci/create-release-tarball.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: JGvlz3E89uDsv/CMspHrFvkGUyc7Bs+qEFYIt01V5DCJ4DIc7KDiAt2zE8KHrw8M5Q5sXkbs6kQfvuB+XY0aMP73vlHdKzg+ZNpUu+Ikmt8uOt8UYZtQQkwOZcD2hsTj/1SzDb+cARQEW7hLDQrp5qL9y6cuPS9aplusY+qaepHPPixGgROpZ/uuj/mtFYJwdN++RS5H33KqhkrDGjbtJo0j1j78l5nSoeXIxqJ9cE2pf2Cb8CZsN8wEiJycLKbI3LKitc7WCODNTvwk2SKUTYm3F8WtQjfBbbghjHn6zFOXucMX1raRJ40LpLNEvd3/3SENWIL0QRF5PQcudZjh9G8Y2pHcSky+rFE9/wCejOKj3Ug54kj9Hsa3Uyqjlyyk0v6xNT8NVpCZsDCstrhuhcHgdWNBBPGQyNc9O+DxVu+VMFUFXFc8lXzLWE+nePBv01WDlv0ywPoiLNN/j68FZNrgbIfsX+56jqQY1Rh3FCtsGpWsYkixQsUsR4hHqdG+9atZGMRmAITksWTMsjVapBZxVf0PB1MuCQSsobTMdi/p+XQXTgDfEucy3qTJNjWFj7oDg8DD+AnsCwwjHMl6FO6loTK5k+ji7ArRHKXxIpm977NkdFGzLCUc2M2/SJ3EylJjadfv43gNgZOz4hje8NJ43kgxKS0r3naVIqppa3I=
+  file: oe_theme.tar.gz
+  skip_cleanup: true
+  on:
+    repo: openeuropa/oe_theme
+    tags: true
