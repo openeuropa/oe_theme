@@ -65,3 +65,8 @@ oe_theme_demo.main.contacts:
   route_name: "<none>"
   menu_name: "main"
   weight: 3
+oe_theme_demo.main.styleguide:
+  title: "Styleguide"
+  route_name: "styleguide.page"
+  menu_name: "main"
+  weight: 4

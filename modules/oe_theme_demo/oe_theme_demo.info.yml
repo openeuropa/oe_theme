@@ -4,7 +4,8 @@ type: module
 core: 8.x
 package: OpenEuropa
 dependencies:
-  - block
+  - drupal:block
+  - styleguide:styleguide
 
 config_devel:
   install:
