@@ -78,19 +78,22 @@
   contains_string:
     - 'Checkbox'
   contains_elemet:
-    - filter: '<label class="ecl-form-label ecl-checkbox">'
+    - filter: 'label.ecl-form-label.ecl-checkbox'
       expected_result: 1
-    - filter:  '<input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="default-id" value="1" name="default-name" />'
+    - filter: 'input.ecl-checkbox__input.ecl-u-sr-only'
       expected_result: 1
-    - filter:  '<span class="ecl-checkbox__label">Checkbox</span>'
+    - filter: 'span.ecl-checkbox__label'
       expected_result: 1
   not_contains: []
 - array:
     '#type': fieldset
     '#title': Fieldset
-  contains:
-    - '<fieldset class="ecl-fieldset js-form-item form-item js-form-wrapper form-wrapper">'
-    - '<legend class="ecl-form-legend">'
+  contains_string: []
+  contains_element:
+    - filter: 'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper'
+      expected_result: 1
+    - filter: 'legend.ecl-form-legend'
+      expected_result: 1
   not_contains: []
 - array:
     '#type': radio
@@ -98,8 +101,8 @@
   contains_string:
     - 'Radio'
   contains_element:
-    - filter: '<label class="ecl-form-label ecl-radio">'
+    - filter: 'label.ecl-form-label.ecl-radio'
       expected_result: 1
-    - filter: '<span class="ecl-radio__label">'
+    - filter: 'span.ecl-radio__label'
       expected_result: 1
   not_contains: []
