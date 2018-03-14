@@ -2,6 +2,8 @@
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Symfony\Component\DomCrawler\Crawler;
+
 /**
  * Class RenderingTest.
  */
@@ -12,24 +14,26 @@ class RenderingTest extends AbstractKernelTest {
    *
    * @param array $array
    *   Render array.
-   * @param array $contains
-   *   Contains assertions.
-   * @param array $not_contains
-   *   Not contains assertions.
+   * @param array $contains_string
+   *   Strings that need to be present.
+   * @param array $contains_element
+   *   Elements that need to be present.
    *
    * @throws \Exception
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $array, array $contains, array $not_contains) {
-    $output = $this->renderRoot($array);
+  public function testRendering(array $array, array $contains_string, array $contains_element) {
+    $html = $this->renderRoot($array);
+    $crawler = new Crawler($html);
 
-    foreach ($contains as $text) {
-      $this->assertContains($text, $output);
+    foreach ($contains_string as $string) {
+      $this->assertContains($string, $html);
     }
 
-    foreach ($not_contains as $text) {
-      $this->assertNotContains($text, $output);
+    foreach ($contains_element as $assertion) {
+      $wrapper = $crawler->filter($assertion['filter']);
+      $this->assertCount($assertion['expected_result'], $wrapper);
     }
   }
 
