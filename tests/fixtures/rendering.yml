@@ -67,10 +67,15 @@
 - array:
     '#type': checkbox
     '#title': Checkbox
-  contains:
-    - '<label class="ecl-form-label ecl-checkbox">'
-    - '<input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="default-id" value="1" name="default-name" />'
-    - '<span class="ecl-checkbox__label">Checkbox</span>'
+  contains_string:
+    - 'Checkbox'
+  contains_elemet:
+    - filter: '<label class="ecl-form-label ecl-checkbox">'
+      expected_result: 1
+    - filter:  '<input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="default-id" value="1" name="default-name" />'
+      expected_result: 1
+    - filter:  '<span class="ecl-checkbox__label">Checkbox</span>'
+      expected_result: 1
   not_contains: []
 - array:
     '#type': fieldset
@@ -82,7 +87,11 @@
 - array:
     '#type': radio
     '#title': Radio
-  contains:
-    - '<label class="ecl-form-label ecl-radio">'
-    - '<span class="ecl-radio__label">'
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: '<label class="ecl-form-label ecl-radio">'
+      expected_result: 1
+    - filter: '<span class="ecl-radio__label">'
+      expected_result: 1
   not_contains: []

@@ -125,13 +125,12 @@ function oe_theme_preprocess_input(&$variables) {
     'input__checkbox',
     'input__radio',
   ];
-
   if (in_array($variables['theme_hook_original'], $theme_original)) {
     $element = &$variables['element'];
     if (isset($element['#title']) && $element['#title'] !== '') {
       $variables['title'] = ['#markup' => $element['#title']];
       $variables['attributes']['checked'] = isset($element['#checked']) ? $element['#checked'] : FALSE;
-      $variables['has_error'] = isset($element['#errors']) ?  $element['#errors'] : FALSE;
+      $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
       $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
     }
   }
