@@ -13,12 +13,6 @@ Requirements:
 
 You can build test site by running the following steps.
 
-* Install all the composer dependencies:
-
-```
-$ composer install
-```
-
 * Install the node dependencies:
 ```
 $ npm install
@@ -27,6 +21,12 @@ $ npm install
 * Build the artifacts:
 ```
 $ npm run build
+```
+
+* Install all the composer dependencies:
+
+```
+$ composer install
 ```
 
 * Customize build settings by copying `runner.yml.dist` to `runner.yml` and
@@ -124,4 +124,14 @@ $ npm install && npm run build
 ```
 
 This will update assets such as images and fonts and re-compile CSS.
+Resulting changes are not meant to be committed to this repository.
+
+### Watching and re-compiling Sass and JS changes
+
+To watch for Sass and JS file changes - ```./sass``` folder - in order to re-compile them to the destination folder:
+
+```
+$ npm run watch
+```
+
 Resulting changes are not meant to be committed to this repository.
