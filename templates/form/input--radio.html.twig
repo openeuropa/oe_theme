@@ -6,6 +6,9 @@
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
  * - children: Optional additional rendered elements.
+ * - is_disabled: Optional (boolean): is disabled (optional, default: false).
+ * - has_error: Optional (boolean): has error (optional, default: false).
+ * - has_extra: Optional (string): extra CSS classes (optional, default: '').
  *
  * @see template_preprocess_input()
  */
@@ -15,5 +18,8 @@
     'name': attributes.name,
     'value': attributes.value,
     'checked': attributes.checked,
-    'label': title
+    'is_disabled': attributes.is_disabled,
+    'has_error': attributes.has_error,
+    'has_extra': attributes.has_extra,
+    'label': title,
 } %}
