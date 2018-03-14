@@ -1,40 +1,45 @@
 - array:
     '#type': button
     '#value': Preview
-  contains:
-    - "Preview"
-    - '<button class="ecl-button ecl-button--default"'
-    # @todo: Fix this after following issue is resolved: https://webgate.ec.europa.eu/CITnet/jira/browse/INNO-925
-    # - '<button class="ecl-button ecl-button--default" type="submit" name="op" value="Preview" class="button js-form-submit form-submit">Preview</button>'
-  not_contains: []
+  contains_string:
+    - 'Preview'
+  contains_element:
+    - filter: 'button.ecl-button.ecl-button--default'
+      expected_result: 1
 - array:
     '#type': textfield
     '#value': Textfield
-  contains:
-    - "Textfield"
-    - '<input type="text" value="Textfield" size="60" maxlength="128" class="form-text ecl-text-input" />'
-  not_contains: []
+  contains_string:
+    - 'Textfield'
+  contains_element:
+    - filter: 'input.form-text.ecl-text-input'
+      expected_result: 1
 - array:
     '#type': password
     '#value': Password
-  contains:
-    - '<input type="password" size="60" maxlength="128" class="form-text ecl-text-input" />'
-  not_contains: []
+  contains_string:
+    - 'password'
+  contains_element:
+    - filter: 'input.form-text.ecl-text-input'
+      expected_result: 1
 - array:
     '#type': email
     '#value': Email
-  contains:
-    - "Email"
-    - '<input type="email" value="Email" size="60" maxlength="254" class="form-email ecl-text-input" />'
-  not_contains: []
+  contains_string:
+    - 'Email'
+  contains_element:
+    - filter: 'input.form-email.ecl-text-input'
+      expected_result: 1
 - array:
     '#type': textarea
     '#title': Textarea
     '#value': Text
-  contains:
-    - "Textarea"
-    - '<textarea rows="5" cols="60" class="form-textarea ecl-textarea">Text</textarea>'
-  not_contains: []
+  contains_string:
+    - 'Textarea'
+    - 'Text'
+  contains_element:
+    - filter: 'textarea.form-textarea.ecl-textarea'
+      expected_result: 1
 - array:
     '#type': select
     '#title': Select element
@@ -42,10 +47,11 @@
       1: One
       2: Two
       3: Three
-  contains:
-    - "Select element"
-    - '<select class="form-select ecl-select">'
-  not_contains: []
+  contains_string:
+    - 'Select element'
+  contains_element:
+    - filter: 'select.form-select.ecl-select'
+      expected_result: 1
 - array:
     '#type': radios
     '#title': Radios
@@ -55,15 +61,17 @@
     '#options':
       0: Closed
       1: Active
-  contains:
-    - "Radios"
-    - '<div id="test-radios" role="radiogroup">'
-  not_contains: []
+  contains_string:
+    - 'Radios'
+  contains_element:
+    - filter: 'div#test-radios'
+      expected_result: 1
 - array:
       '#type': form
-  contains:
-    - '<form method="post" accept-charset="UTF-8" class="ecl-form">'
-  not_contains: []
+  contains_string: []
+  contains_element:
+    - filter: 'form.ecl-form'
+      expected_result: 1
 - array:
     '#type': checkbox
     '#title': Checkbox
