@@ -86,6 +86,24 @@
       expected_result: 1
   not_contains: []
 - array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#disabled': true
+  contains_string:
+    - 'Checkbox'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled'
+      expected_result: 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#errors': 'Has error'
+  contains_string:
+    - 'Checkbox'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error'
+      expected_result: 1
+- array:
     '#type': fieldset
     '#title': Fieldset
   contains_string: []
@@ -106,3 +124,21 @@
     - filter: 'span.ecl-radio__label'
       expected_result: 1
   not_contains: []
+- array:
+    '#type': radio
+    '#title': Radio
+    '#disabled': true
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled'
+      expected_result: 1
+- array:
+    '#type': radio
+    '#title': Radio
+    '#errors': 'has error'
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--has-error'
+      expected_result: 1

@@ -28,12 +28,12 @@ class RenderingTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     foreach ($contains_string as $string) {
-      $this->assertContains($string, $html);
+      $this->assertContains($string, $html, sprintf('does not contain %s in %s', $string, $html));
     }
 
     foreach ($contains_element as $assertion) {
       $wrapper = $crawler->filter($assertion['filter']);
-      $this->assertCount($assertion['expected_result'], $wrapper);
+      $this->assertCount($assertion['expected_result'], $wrapper, sprintf('Wrong count for %s in %s', $assertion['filter'], $html));
     }
   }
 

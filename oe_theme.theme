@@ -118,22 +118,17 @@ function oe_theme_preprocess_menu_local_tasks(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_input().
+ * Implements hook_preprocess_input__radio().
  */
-function oe_theme_preprocess_input(&$variables) {
-  $theme_original = [
-    'input__checkbox',
-    'input__radio',
-  ];
-  if (in_array($variables['theme_hook_original'], $theme_original)) {
-    $element = &$variables['element'];
-    if (isset($element['#title']) && $element['#title'] !== '') {
-      $variables['title'] = ['#markup' => $element['#title']];
-      $variables['attributes']['checked'] = isset($element['#checked']) ? $element['#checked'] : FALSE;
-      $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
-      $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
-    }
-  }
+function oe_theme_preprocess_input__radio(&$variables) {
+  _oe_theme_preprocess_input_label_wrapper($variables);
+}
+
+/**
+ * Implements hook_preprocess_input__checkbox().
+ */
+function oe_theme_preprocess_input__checkbox(&$variables) {
+  _oe_theme_preprocess_input_label_wrapper($variables);
 }
 
 /**
@@ -146,5 +141,26 @@ function oe_theme_theme_suggestions_form_element_alter(array &$suggestions, arra
   ];
   if (in_array($variables['element']['#type'], $label_already_rendered)) {
     $suggestions[] = $variables['theme_hook_original'] . '__without_label';
+  }
+}
+
+/**
+ * Auxiliary function to render certain Components accordingly with ECL.
+ *
+ * Label will be the main wrapper for:
+ *  - radio
+ *  - checkbox.
+ *
+ * @param array $variables
+ *   Set of available vars.
+ */
+function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
+  $element = &$variables['element'];
+
+  if (isset($element['#title']) && $element['#title'] !== '') {
+    $variables['title'] = ['#markup' => $element['#title']];
+    $variables['attributes']['checked'] = isset($element['#checked']) ? $element['#checked'] : FALSE;
+    $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
+    $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
   }
 }
