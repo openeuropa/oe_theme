@@ -84,7 +84,6 @@
       expected_result: 1
     - filter: 'span.ecl-checkbox__label'
       expected_result: 1
-  not_contains: []
 - array:
     '#type': checkbox
     '#title': Checkbox
@@ -112,7 +111,6 @@
       expected_result: 1
     - filter: 'legend.ecl-form-legend'
       expected_result: 1
-  not_contains: []
 - array:
     '#type': radio
     '#title': Radio
@@ -123,7 +121,6 @@
       expected_result: 1
     - filter: 'span.ecl-radio__label'
       expected_result: 1
-  not_contains: []
 - array:
     '#type': radio
     '#title': Radio
