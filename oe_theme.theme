@@ -149,6 +149,9 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
     $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
     $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
   }
+  $variables['attributes']['checked'] = isset($element['#checked']) ? $element['#checked'] : FALSE;
+  $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
+  $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
 }
 
 /**
