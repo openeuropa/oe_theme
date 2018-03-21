@@ -142,11 +142,10 @@ function oe_theme_preprocess_input__checkbox(&$variables) {
  */
 function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
   $element = &$variables['element'];
-
+  $variables['has_error'] = !empty($element['#errors']);
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['title'] = ['#markup' => $element['#title']];
     $variables['attributes']['checked'] = isset($element['#checked']) ? $element['#checked'] : FALSE;
-    $variables['has_error'] = isset($element['#errors']) ? $element['#errors'] : FALSE;
     $variables['is_disabled'] = isset($element['#disabled']) ? $element['#disabled'] : FALSE;
   }
 }
