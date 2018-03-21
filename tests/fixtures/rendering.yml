@@ -1,4 +1,10 @@
 - array:
+    '#plain_text': 'Dummy placeholder for form rendering test.'
+  contains_string: []
+  contains_element:
+    - filter: 'form.ecl-form'
+      expected_result: 1
+- array:
     '#type': button
     '#value': Preview
   contains_string:
@@ -65,12 +71,6 @@
     - 'Radios'
   contains_element:
     - filter: 'div#test-radios'
-      expected_result: 1
-- array:
-      '#type': form
-  contains_string: []
-  contains_element:
-    - filter: 'form.ecl-form'
       expected_result: 1
 - array:
     '#type': checkbox
