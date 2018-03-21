@@ -53,8 +53,8 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * Test rendering of elements.
    *
-   * @param array $array
-   *   Render array.
+   * @param array $structure
+   *   A render array.
    * @param array $contains_string
    *   Strings that need to be present.
    * @param array $contains_element
@@ -64,10 +64,14 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $array, array $contains_string, array $contains_element): void {
+  public function testRendering(array $structure, array $contains_string, array $contains_element): void {
+    // Wrap all the test structure inside a form. This will allow proper
+    // processing of form elements and invocation of form alter hooks.
+    // Even if the elements being tested are not form related, the form can
+    // host them without causing any issues.
     $form_state = new FormState();
-    $form_state->addBuildInfo('args', [$array]);
-    $form = $this->container->get('form_builder')->buildForm($this, $form_state, $array);
+    $form_state->addBuildInfo('args', [$structure]);
+    $form = $this->container->get('form_builder')->buildForm($this, $form_state, $structure);
 
     $html = $this->renderRoot($form);
     $crawler = new Crawler($html);
