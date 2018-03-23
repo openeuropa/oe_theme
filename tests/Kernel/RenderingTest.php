@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -43,7 +44,26 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {}
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+    // Recurse through all the form elements and check if they have a property
+    // "#set_validation_error". If they have, set a generic error on the
+    // element.
+    $add_errors = function (array $element) use (&$add_errors, $form_state): void {
+      if (!empty($element['#set_validation_error'])) {
+        // When the title is not present for a form element, fallback to its
+        // path in the form.
+        $label = !empty($element['#title']) ? $element['#title'] : implode('][', $element['#array_parents']);
+        $form_state->setError($element, t('Validation error on @label', ['@label' => $label]));
+      }
+
+      foreach (Element::children($element) as $key) {
+        // Recursively call this closure on all the children elements.
+        $add_errors($element[$key]);
+      }
+    };
+
+    $add_errors($form['test']);
+  }
 
   /**
    * {@inheritdoc}
@@ -71,7 +91,9 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
     // host them without causing any issues.
     $form_state = new FormState();
     $form_state->addBuildInfo('args', [$structure]);
-    $form = $this->container->get('form_builder')->buildForm($this, $form_state, $structure);
+    $form_state->setProgrammed();
+
+    $form = $this->container->get('form_builder')->buildForm($this, $form_state);
 
     $html = $this->renderRoot($form);
     $crawler = new Crawler($html);

@@ -96,7 +96,7 @@
 - array:
     '#type': checkbox
     '#title': Checkbox
-    '#errors': 'Has error'
+    '#set_validation_error': true
   contains_string:
     - 'Checkbox'
   contains_element:
@@ -133,7 +133,7 @@
 - array:
     '#type': radio
     '#title': Radio
-    '#errors': 'has error'
+    '#set_validation_error': true
   contains_string:
     - 'Radio'
   contains_element:
