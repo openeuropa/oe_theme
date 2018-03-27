@@ -74,13 +74,33 @@
       expected_result: 1
 - array:
     '#type': checkbox
-    '#title': Preview
+    '#title': Checkbox
   contains_string:
-    - 'Preview'
-  contains_element:
-    - filter: 'input.form-checkbox.ecl-checkbox__input.ecl-u-sr-only'
+    - 'Checkbox'
+  contains_elemet:
+    - filter: 'label.ecl-form-label.ecl-checkbox'
       expected_result: 1
-    - filter: 'label.ecl-form-label.option'
+    - filter: 'input.ecl-checkbox__input.ecl-u-sr-only'
+      expected_result: 1
+    - filter: 'span.ecl-checkbox__label'
+      expected_result: 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#disabled': true
+  contains_string:
+    - 'Checkbox'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled'
+      expected_result: 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#set_validation_error': true
+  contains_string:
+    - 'Checkbox'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error'
       expected_result: 1
 - array:
     '#type': fieldset
@@ -90,4 +110,32 @@
     - filter: 'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper'
       expected_result: 1
     - filter: 'legend.ecl-form-legend'
+      expected_result: 1
+- array:
+    '#type': radio
+    '#title': Radio
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-radio'
+      expected_result: 1
+    - filter: 'span.ecl-radio__label'
+      expected_result: 1
+- array:
+    '#type': radio
+    '#title': Radio
+    '#disabled': true
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled'
+      expected_result: 1
+- array:
+    '#type': radio
+    '#title': Radio
+    '#set_validation_error': true
+  contains_string:
+    - 'Radio'
+  contains_element:
+    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--has-error'
       expected_result: 1

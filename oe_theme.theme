@@ -116,3 +116,46 @@ function oe_theme_preprocess_menu_local_tasks(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_input__radio().
+ */
+function oe_theme_preprocess_input__radio(&$variables) {
+  _oe_theme_preprocess_input_label_wrapper($variables);
+}
+
+/**
+ * Implements hook_preprocess_input__checkbox().
+ */
+function oe_theme_preprocess_input__checkbox(&$variables) {
+  _oe_theme_preprocess_input_label_wrapper($variables);
+}
+
+/**
+ * Helper function to additionally preprocess checkbox and radio elements.
+ *
+ * Moves the label element to the input template and creates some helper
+ * variables to be used with the ECL templates.
+ *
+ * @param array $variables
+ *   Set of available variables.
+ */
+function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
+  $element = &$variables['element'];
+  $variables['has_error'] = !empty($element['#errors']);
+  if (isset($element['#title']) && $element['#title'] !== '') {
+    $variables['title'] = ['#markup' => $element['#title']];
+  }
+}
+
+/**
+ * Implements hook_preprocess_form_element().
+ *
+ * Disables displaying of the label for checkbox and radio elements, as the
+ * label is already rendered in the input template.
+ */
+function oe_theme_preprocess_form_element(&$variables) {
+  if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
+    $variables['label_display'] = 'none';
+  }
+}

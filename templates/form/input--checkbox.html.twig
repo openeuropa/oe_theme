@@ -6,9 +6,21 @@
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
  * - children: Optional additional rendered elements.
+ * - is_disabled: Optional (boolean): is disabled (optional, default: false).
+ * - has_error: Optional (boolean): has error (optional, default: false).
+ * - has_extra: Optional (string): extra CSS classes (optional, default: '').
  *
  * @see template_preprocess_input()
  */
 #}
 
-<input{{ attributes.addClass('ecl-checkbox__input').addClass('ecl-u-sr-only') }} />{{ children }}
+{% include '@ecl/ecl-forms-checkboxes' with {
+    'id': attributes.id,
+    'name': attributes.name,
+    'value': attributes.value,
+    'checked': attributes.checked is defined,
+    'is_disabled': attributes.disabled is defined,
+    'has_error': has_error,
+    'has_extra': has_extra,
+    'label': title
+} %}{{ children }}
