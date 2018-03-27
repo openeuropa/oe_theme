@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Url;
@@ -15,7 +17,7 @@ class MenuLocalTasksTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMenuLocalTasks() {
+  public function testMenuLocalTasks(): void {
     $render = [
       '#theme' => 'menu_local_tasks',
       '#primary' => [

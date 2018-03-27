@@ -112,6 +112,9 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * Data provider for rendering tests.
    *
    * The actual data is read from fixtures stored in a YAML configuration.
+   *
+   * @return array
+   *   A set of dump data for testing.
    */
   public function renderingDataProvider(): array {
     return $this->getFixtureContent('rendering.yml');

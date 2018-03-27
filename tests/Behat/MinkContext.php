@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Behat;
 
 use Behat\Gherkin\Node\TableNode;

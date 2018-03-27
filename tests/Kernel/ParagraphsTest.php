@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\paragraphs\Entity\Paragraph;
@@ -35,7 +37,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('paragraph');
@@ -45,7 +47,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * Test links block paragraph rendering.
    */
-  public function testLinksBlock() {
+  public function testLinksBlock(): void {
     $paragraph = Paragraph::create([
       'type' => 'oe_links_block',
       'field_oe_text' => 'Title',
@@ -83,7 +85,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * Test accordion paragraph rendering.
    */
-  public function testAccordions() {
+  public function testAccordions(): void {
     $item1 = Paragraph::create([
       'type' => 'oe_accordion_item',
       'field_oe_text' => 'Item title 1',
@@ -223,7 +225,7 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  protected function renderParagraph(Paragraph $paragraph) {
+  protected function renderParagraph(Paragraph $paragraph): string {
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');
