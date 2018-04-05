@@ -39,7 +39,7 @@ notifications:
   email: false
 
 before_deploy:
-  ./scripts/travis-ci/create-release-tarball.sh
+  ./vendor/bin/run project:create-release
 
 deploy:
   provider: releases
