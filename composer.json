@@ -22,10 +22,16 @@
         "drupal/drupal-extension": "^3.4",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
-        "drupal/styleguide": "~1.0-alpha3"
+        "drupal/styleguide": "~1.0-alpha3",
+        "gitonomy/gitlib": "~1"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\oe_theme\\": "./src/"
+        }
     },
     "autoload-dev": {
         "psr-0": {

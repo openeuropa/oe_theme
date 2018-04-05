@@ -18,3 +18,5 @@ phpunit.xml
 /images/
 /js/base.js
 /templates/components/
+/release/
+oe_theme.zip
