@@ -19,4 +19,4 @@ phpunit.xml
 /js/base.js
 /templates/components/
 /release/
-oe_theme.zip
+*.tar.gz

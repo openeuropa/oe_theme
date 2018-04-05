@@ -6,12 +6,17 @@ namespace Drupal\oe_theme\TaskRunner\Commands;
 
 use Gitonomy\Git\Repository;
 use OpenEuropa\TaskRunner\Commands\AbstractCommands;
+use OpenEuropa\TaskRunner\Contract\ComposerAwareInterface;
+use OpenEuropa\TaskRunner\Traits\ComposerAwareTrait;
 use Robo\Collection\CollectionBuilder;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Project release commands.
  */
-class ReleaseCommands extends AbstractCommands {
+class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface {
+
+  use ComposerAwareTrait;
 
   /**
    * Create project release.
@@ -26,50 +31,62 @@ class ReleaseCommands extends AbstractCommands {
    *   Collection builder.
    *
    * @command project:create-release
-   * @option destination Release destination directory.
+   *
+   * @option keep Whereas to keep the release directory or not.
+   *
    * @aliases project:cr,pcr
    */
-  public function release(array $options = [
-    'destination' => 'release',
-  ]): CollectionBuilder {
-    $destination = $options['destination'];
+  public function createRelease(array $options = ['keep' => FALSE]): CollectionBuilder {
+    $name = $this->composer->getProject();
+    $archive = "$name.tar.gz";
 
-    return $this->collectionBuilder()->addTaskList([
+    $tasks = [
       // Make sure we do not have a release directory yet.
-      $this->taskFilesystemStack()->remove("$destination"),
+      $this->taskFilesystemStack()->remove([$archive, $name]),
 
       // Get non-modified code using git archive.
-      $this->taskGitStack()->exec(["archive", "HEAD", "-o $destination.zip"]),
-      $this->taskExtract("$destination.zip")->to("$destination"),
+      $this->taskGitStack()->exec(["archive", "HEAD", "-o $name.zip"]),
+      $this->taskExtract("$name.zip")->to("$name"),
 
       // Copy git-ignored files and directories.
-      $this->taskCopyDir(["css" => "$destination/css"]),
-      $this->taskCopyDir(["fonts" => "$destination/fonts"]),
-      $this->taskCopyDir(["images" => "$destination/images"]),
-      $this->taskCopyDir(["templates/components" => "$destination/templates/components"]),
-      $this->taskFilesystemStack()->copy("js/base.js", "$destination/js/base.js", TRUE),
+      $this->taskCopyDir(["css" => "$name/css"]),
+      $this->taskCopyDir(["fonts" => "$name/fonts"]),
+      $this->taskCopyDir(["images" => "$name/images"]),
+      $this->taskCopyDir(["templates/components" => "$name/templates/components"]),
+      $this->taskFilesystemStack()->copy("js/base.js", "$name/js/base.js", TRUE),
 
       // Remove tests and development tools.
       $this->taskFilesystemStack()->remove([
-        "$destination/tests",
-        "$destination/src/TaskRunner",
-        "$destination/.editorconfig",
-        "$destination/.gitignore",
-        "$destination/.travis.yml",
-        "$destination/behat.yml.dist",
-        "$destination/docker-compose.yml",
-        "$destination/ecl-builder.config.js",
-        "$destination/grumphp.yml.dist",
-        "$destination/package.json",
-        "$destination/phpunit.xml.dist",
-        "$destination/runner.yml.dist",
+        "$name/sass",
+        "$name/tests",
+        "$name/src/TaskRunner",
+        "$name/.editorconfig",
+        "$name/.gitignore",
+        "$name/.travis.yml",
+        "$name/behat.yml.dist",
+        "$name/docker-compose.yml",
+        "$name/ecl-builder.config.js",
+        "$name/grumphp.yml.dist",
+        "$name/package.json",
+        "$name/phpunit.xml.dist",
+        "$name/runner.yml.dist",
       ]),
 
       // Append release notes to project info file.
-      $this->taskWriteToFile("$destination/oe_theme.info.yml")
+      $this->taskWriteToFile("$name/$name.info.yml")
         ->append()
-        ->lines($this->getReleaseNote()),
-    ]);
+        ->text($this->getReleaseNote()),
+    ];
+
+    // Create archive.
+    $tasks[] = $this->taskExecStack()->exec("tar -czf $archive $name");
+
+    // Remove release directory, if not specified otherwise.
+    if (!$options['keep']) {
+      $tasks[] = $this->taskFilesystemStack()->remove($name);
+    }
+
+    return $this->collectionBuilder()->addTaskList($tasks);
   }
 
   /**
@@ -95,23 +112,23 @@ class ReleaseCommands extends AbstractCommands {
   /**
    * Build release note to be appended to project's info file.
    *
-   * @return array
-   *   Release note lines as an array.
+   * @return string
+   *   Release note.
    */
-  private function getReleaseNote(): array {
-    $tag = $this->getTag();
+  private function getReleaseNote(): string {
     $timestamp = time();
     $date = date("Y-m-d", $timestamp);
 
-    $lines = [];
-    $lines[] = "";
-    $lines[] = "# Information added by OpenEuropa packaging script on $date";
-    $lines[] = "timestamp: $timestamp";
-    if (!empty($tag)) {
-      $lines[] = "version: $tag";
-    }
+    $info = [];
+    $info['version'] = $this->getTag();
+    $info['core'] = '8.x';
+    $info['project'] = $this->composer->getProject();
+    $info['datestamp'] = $timestamp;
 
-    return $lines;
+    $note = "\n# Information added by OpenEuropa packaging script on $date\n";
+    $note .= Yaml::dump($info);
+
+    return $note;
   }
 
 }
