@@ -121,7 +121,6 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
 
     $info = [];
     $info['version'] = $this->getTag();
-    $info['core'] = '8.x';
     $info['project'] = $this->composer->getProject();
     $info['datestamp'] = $timestamp;
 
