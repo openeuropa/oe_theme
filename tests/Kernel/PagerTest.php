@@ -177,6 +177,10 @@ class PagerTest extends AbstractKernelTest {
 
       $url = $this->generatePagerUrl($route_name, $i);
       $pager_item = $links->filter("[href='$url'][title='Go to page $i']");
+      // There might be multiple links to the same page, like the previous
+      // and the links. It's enough to assert that there is at least one link
+      // with the expected url. The assertion on the links count will catch
+      // missing links.
       $this->assertNotEmpty($pager_item);
       $links_count++;
     }
