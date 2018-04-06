@@ -19,6 +19,22 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
   use ComposerAwareTrait;
 
   /**
+   * Working directory.
+   *
+   * @var string
+   */
+  private $workingDir;
+
+  /**
+   * ReleaseCommands constructor.
+   */
+  public function __construct() {
+    // @todo: Inject working directory as a dependency.
+    // @todo: Add a proper inflector to Task Runner or to Robo.
+    $this->workingDir = realpath(__DIR__ . '/../../..');
+  }
+
+  /**
    * Create project release.
    *
    * Release project in given directory, suitable for use on production.
@@ -37,8 +53,14 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
    * @aliases project:cr,pcr
    */
   public function createRelease(array $options = ['keep' => FALSE]): CollectionBuilder {
+    if ($this->getRepository($this->workingDir)->isHeadDetached()) {
+      throw new \RuntimeException('Release cannot be generated in detached state.');
+    }
+
     $name = $this->composer->getProject();
-    $archive = "$name.tar.gz";
+    $version = $this->getVersionString();
+    $archive = "$name-$version.tar.gz";
+    $note = $this->getReleaseNote($name, $this->getVersionString(), time());
 
     $tasks = [
       // Make sure we do not have a release directory yet.
@@ -47,6 +69,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
       // Get non-modified code using git archive.
       $this->taskGitStack()->exec(["archive", "HEAD", "-o $name.zip"]),
       $this->taskExtract("$name.zip")->to("$name"),
+      $this->taskFilesystemStack()->remove("$name.zip"),
 
       // Copy git-ignored files and directories.
       $this->taskCopyDir(["css" => "$name/css"]),
@@ -73,9 +96,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
       ]),
 
       // Append release notes to project info file.
-      $this->taskWriteToFile("$name/$name.info.yml")
-        ->append()
-        ->text($this->getReleaseNote()),
+      $this->taskWriteToFile("$name/$name.info.yml")->append()->text($note),
     ];
 
     // Create archive.
@@ -90,23 +111,41 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
   }
 
   /**
-   * Return latest tag on current branch.
+   * Return version string for current HEAD: either a tag or local branch name.
    *
    * @return string
    *   Tag name or empty string if none set.
    */
-  private function getTag(): string {
-    $repository = new Repository(__DIR__ . '/../../..');
+  private function getVersionString(): string {
+    $repository = $this->getRepository($this->workingDir);
 
-    /** @var \Gitonomy\Git\Reference\Tag[] $tags */
-    $tags = $repository->getReferences()->getTags();
-    if (!empty($tags)) {
-      // In case of multiple tags on the same commit take the last one.
-      $tag = array_pop($tags);
-      return $tag->getName();
-    }
+    // Get commit has from current HEAD.
+    $hash = $repository->getHead()->getCommitHash();
 
-    return '';
+    // Resolve tags for current HEAD.
+    $tags = $repository->getReferences()->resolveTags($hash);
+    $tag = end($tags);
+
+    // Resolve local branch name for current HEAD.
+    $branches = array_filter($repository->getReferences()->resolveBranches($hash), function ($branch) {
+      return $branch->isLocal();
+    });
+    $branch = reset($branches);
+
+    return ($tag !== FALSE) ? $tag->getName() : $branch->getName();
+  }
+
+  /**
+   * Get current Git repository.
+   *
+   * @param string $path
+   *   Path to Git repository.
+   *
+   * @return \Gitonomy\Git\Repository
+   *   Repository object.
+   */
+  private function getRepository(string $path): Repository {
+    return new Repository($path);
   }
 
   /**
@@ -115,15 +154,13 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
    * @return string
    *   Release note.
    */
-  private function getReleaseNote(): string {
-    $timestamp = time();
-    $date = date("Y-m-d", $timestamp);
-
+  private function getReleaseNote(string $project, string $version, int $timestamp): string {
     $info = [];
-    $info['version'] = $this->getTag();
-    $info['project'] = $this->composer->getProject();
+    $info['version'] = $version;
+    $info['project'] = $project;
     $info['datestamp'] = $timestamp;
 
+    $date = date("Y-m-d", $timestamp);
     $note = "\n# Information added by OpenEuropa packaging script on $date\n";
     $note .= Yaml::dump($info);
 
