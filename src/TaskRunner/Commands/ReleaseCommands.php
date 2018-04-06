@@ -57,8 +57,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
     }
 
     $name = $this->composer->getProject();
-    $version = $this->getVersionString();
-    $archive = "$name-$version.tar.gz";
+    $archive = "$name.tar.gz";
     $note = $this->getReleaseNote($name, $this->getVersionString(), time());
 
     $tasks = [
