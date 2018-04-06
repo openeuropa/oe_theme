@@ -37,8 +37,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
   /**
    * Create project release.
    *
-   * Release project in given directory, suitable for use on production.
-   * It will excludes all tests and development tools.
+   * The command will create an archive file containing the release package.
    *
    * @param array $options
    *   Command options.
@@ -48,7 +47,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
    *
    * @command project:create-release
    *
-   * @option keep Whereas to keep the release directory or not.
+   * @option keep Whereas to keep the temporary release directory or not.
    *
    * @aliases project:cr,pcr
    */
@@ -81,7 +80,6 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
       // Remove tests and development tools.
       $this->taskFilesystemStack()->remove([
         "$name/sass",
-        "$name/tests",
         "$name/src/TaskRunner",
         "$name/.editorconfig",
         "$name/.gitignore",
@@ -123,6 +121,7 @@ class ReleaseCommands extends AbstractCommands implements ComposerAwareInterface
     $hash = $repository->getHead()->getCommitHash();
 
     // Resolve tags for current HEAD.
+    // In case of multiple tags per commit take the latest one.
     $tags = $repository->getReferences()->resolveTags($hash);
     $tag = end($tags);
 
