@@ -13,26 +13,26 @@ Requirements:
 
 You can build test site by running the following steps.
 
-* Install the node dependencies:
+Install the node dependencies:
 ```
 $ npm install
 ```
 
-* Build the artifacts:
+Build the artifacts:
 ```
 $ npm run build
 ```
 
-* Install all the composer dependencies:
+Install all the composer dependencies:
 
 ```
 $ composer install
 ```
 
-* Customize build settings by copying `runner.yml.dist` to `runner.yml` and
+Customize build settings by copying `runner.yml.dist` to `runner.yml` and
 changing relevant values.
 
-* Setup test site by running:
+Setup test site by running:
 
 ```
 $ ./vendor/bin/run drupal:site-setup
@@ -41,7 +41,7 @@ $ ./vendor/bin/run drupal:site-setup
 This will symlink the theme in the proper directory within the test site and
 perform token substitution in test configuration files.
 
-* Install test site by running:
+Install test site by running:
 
 ```
 $ ./vendor/bin/run drupal:site-install
@@ -49,46 +49,24 @@ $ ./vendor/bin/run drupal:site-install
 
 Your test site will be available at `./build`.
 
-## Working with Drupal 8 static caches
+## Disable Drupal 8 caching during development
 
-In order to enable and disable Twig and other static caches you can use the following Drupal Console commands:
+Manually disabling Drupal 8 caching is a laborious process that is well described [here](https://www.drupal.org/node/2598914).
+
+Alternatively you can use the following Drupal Console command to disable Drupal 8 caches:
 
 ```
 $ ./vendor/bin/drupal site:mode dev  # Disable all caches.
 $ ./vendor/bin/drupal site:mode prod # Enable all caches.
 ```
 
-However, the user may experience a bug related to the Twig cache not being disabled.
-The bug has been addressed and it is waiting to be merged. The issue can be found [here](https://github.com/hechoendrupal/drupal-console/issues/3854).
-For now the twig cache should be disabled manually, by setting the cache variable to false and debug and autoload variable to true.
+Note: to fully disable Twig caching the following additional manual steps are required:
 
-Step I: Create settings.local
-```
-  $ cp ../examples.settings.local .../default/settings.local.php 
-```
-uncomment the line (Disable Dynamic Page Cache):
-```
-settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
-```
-Step II: In settings.php, Load local development override configuration, by uncomment:
-```
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-   include $app_root . '/' . $site_path . '/settings.local.php';
-}
-```
-Step III: From sites root folder, create development.services.yml if does not exists and place into:
-```
-parameters:
-  twig.config:
-    debug: true
-    auto_reload: true
-    cache: false
-```
-Step IV: Clear all cache
-```
-$ .../drush cr
+1. Open `./build/sites/default/services.yml`
+2. Set `cache: true` in `twig.config:` property.
+3. Rebuild the cache: `./vendor/bin/drush cr`
 
-```
+This is due to the following [Drupal Console issue](https://github.com/hechoendrupal/drupal-console/issues/3854).
 
 ### Using Docker Compose
 
