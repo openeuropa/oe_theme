@@ -58,6 +58,38 @@ $ ./vendor/bin/drupal site:mode dev  # Disable all caches.
 $ ./vendor/bin/drupal site:mode prod # Enable all caches.
 ```
 
+However, the user may experience a bug related to the Twig cache not being disabled.
+The bug has been addressed and it is waiting to be merged. The issue can be found [here](https://github.com/hechoendrupal/drupal-console/issues/3854).
+For now the twig cache should be disabled manually, by setting the cache variable to false and debug and autoload variable to true.
+
+Step I: Create settings.local
+```
+  $ cp ../examples.settings.local .../default/settings.local.php 
+```
+uncomment the line (Disable Dynamic Page Cache):
+```
+settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+```
+Step II: In settings.php, Load local development override configuration, by uncomment:
+```
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+   include $app_root . '/' . $site_path . '/settings.local.php';
+}
+```
+Step III: From sites root folder, create development.services.yml if does not exists and place into:
+```
+parameters:
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
+```
+Step IV: Clear all cache
+```
+$ .../drush cr
+
+```
+
 ### Using Docker Compose
 
 Alternatively you can build a test site using Docker and Docker-compose with the provided configuration.
