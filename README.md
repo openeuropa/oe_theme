@@ -53,7 +53,7 @@ Your test site will be available at `./build`.
 
 Manually disabling Drupal 8 caching is a laborious process that is well described [here](https://www.drupal.org/node/2598914).
 
-Alternatively you can use the following Drupal Console command to disable Drupal 8 caches:
+Alternatively you can use the following Drupal Console command to disable/enable Drupal 8 caching:
 
 ```
 $ ./vendor/bin/drupal site:mode dev  # Disable all caches.
@@ -63,8 +63,8 @@ $ ./vendor/bin/drupal site:mode prod # Enable all caches.
 Note: to fully disable Twig caching the following additional manual steps are required:
 
 1. Open `./build/sites/default/services.yml`
-2. Set `cache: true` in `twig.config:` property.
-3. Rebuild the cache: `./vendor/bin/drush cr`
+2. Set `cache: false` in `twig.config:` property.
+3. Rebuild Drupal cache: `./vendor/bin/drush cr`
 
 This is due to the following [Drupal Console issue](https://github.com/hechoendrupal/drupal-console/issues/3854).
 
