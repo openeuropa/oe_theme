@@ -172,7 +172,6 @@ function oe_theme_preprocess_form_element(&$variables) {
 function oe_theme_preprocess_pager(&$variables) {
   $element = $variables['pager']['#element'];
   $parameters = $variables['pager']['#parameters'];
-  $quantity = 7;
   $route_name = $variables['pager']['#route_name'];
   $route_parameters = isset($variables['pager']['#route_parameters']) ? $variables['pager']['#route_parameters'] : [];
   global $pager_page_array, $pager_total;
@@ -182,6 +181,7 @@ function oe_theme_preprocess_pager(&$variables) {
     return;
   }
 
+  $quantity = 5;
   $pager_middle = ceil($quantity / 2);
   $pager_current = $pager_page_array[$element] + 1;
   $pager_first = $pager_current - $pager_middle + 1;
@@ -189,70 +189,83 @@ function oe_theme_preprocess_pager(&$variables) {
   $pager_max = $pager_total[$element];
 
   $i = $pager_first;
+  // Compared to the core implementation, we don't re-center but we cut out the
+  // extra elements from the start and end of the query.
   if ($pager_last > $pager_max) {
-    $i = $i + ($pager_max - $pager_last);
     $pager_last = $pager_max;
   }
   if ($i <= 0) {
-    $pager_last = $pager_last + (1 - $i);
     $i = 1;
   }
 
   // Create the "first" and "previous" links if we are not on the first page.
   if ($pager_page_array[$element] > 0) {
-    $variables['ecl_first'] = [];
+    $variables['items']['first'] = [];
     $options = [
       'query' => pager_query_add_page($parameters, $element, 0),
     ];
-    $variables['ecl_first']['href'] = \Drupal::url($route_name, $route_parameters, $options);
-    $variables['ecl_first']['text'] = '1';
-    $variables['ecl_first']['title'] = t('Go to page 1');
+    $variables['items']['first']['href'] = \Drupal::url($route_name, $route_parameters, $options);
+    $variables['items']['first']['text'] = '1';
+    $variables['items']['first']['title'] = t('Go to page 1');
 
-    $variables['ecl_previous'] = [];
+    $variables['items']['previous'] = [];
     $options = [
       'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] - 1),
     ];
-    $variables['ecl_previous']['href'] = \Drupal::url($route_name, $route_parameters, $options);
-    $variables['ecl_previous']['text'] = t('‹ Previous');
-    $variables['ecl_previous']['title'] = t('Go to previous page');
+    $variables['items']['previous']['href'] = \Drupal::url($route_name, $route_parameters, $options);
+    $variables['items']['previous']['text'] = t('‹ Previous');
+    $variables['items']['previous']['title'] = t('Go to previous page');
   }
 
   if ($i != $pager_max) {
     // Generate the actual pager piece.
+    $variables['items']['pages'] = [];
     for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+      // Don't generate a link to the first page when the "first" link is
+      // already available.
+      if ($i == 1 && $pager_current > 1) {
+        continue;
+      }
+
+      // Don't generate a link to the last page when the "last" link is
+      // already available.
+      if ($i == $pager_max && ($pager_current < $pager_max)) {
+        continue;
+      }
+
       $options = [
         'query' => pager_query_add_page($parameters, $element, $i - 1),
       ];
-      $variables['ecl_pages'][$i]['href'] = \Drupal::url($route_name, $route_parameters, $options);
+      $variables['items']['pages'][$i]['href'] = \Drupal::url($route_name, $route_parameters, $options);
       if ($i == $pager_current) {
-        $variables['ecl_current_page'] = $i;
+        $variables['current'] = $i;
       }
-      $variables['ecl_pages'][$i]['text'] = (string) $i;
-      $variables['ecl_pages'][$i]['title'] = t('Go to page @number', ['@number' => $i]);
+      $variables['items']['pages'][$i]['text'] = (string) $i;
+      $variables['items']['pages'][$i]['title'] = t('Go to page @number', ['@number' => $i]);
     }
   }
 
   // Create the "next" and "last" links if we are not on the last page.
   if ($pager_page_array[$element] < ($pager_max - 1)) {
     // Setting up variables for the next page link.
-    $variables['ecl_next'] = [];
+    $variables['items']['next'] = [];
     $options = [
       'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] + 1),
     ];
-    $variables['ecl_next']['href'] = \Drupal::url($route_name, $route_parameters, $options);
-    $variables['ecl_next']['text'] = t('Next ›');
-    $variables['ecl_next']['title'] = t('Go to next page');
+    $variables['items']['next']['href'] = \Drupal::url($route_name, $route_parameters, $options);
+    $variables['items']['next']['text'] = t('Next ›');
+    $variables['items']['next']['title'] = t('Go to next page');
 
     // Setting up the variables for the last page link.
-    $variables['ecl_last'] = [];
+    $variables['items']['last'] = [];
     $options = [
       'query' => pager_query_add_page($parameters, $element, $pager_max - 1),
     ];
-    $variables['ecl_last']['href'] = \Drupal::url($route_name, $route_parameters, $options);
-    $variables['ecl_last']['text'] = (string) $pager_total[$element];
-    $variables['ecl_last']['title'] = t('Go to page @number', ['@number' => $pager_total[$element]]);
+    $variables['items']['last']['href'] = \Drupal::url($route_name, $route_parameters, $options);
+    $variables['items']['last']['text'] = (string) $pager_total[$element];
+    $variables['items']['last']['title'] = t('Go to page @number', ['@number' => $pager_total[$element]]);
   }
 
   // Set up additional variables.
-  $variables['ecl_max_page'] = $pager_total[$element];
+  $variables['max_page'] = $pager_total[$element];
 }

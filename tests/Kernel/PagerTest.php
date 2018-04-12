@@ -13,13 +13,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class PagerTest extends AbstractKernelTest {
 
   /**
-   * The count of rendered pagers.
-   *
-   * @var int
-   */
-  const PAGERS_COUNT = 3;
-
-  /**
    * The 'previous' page link text.
    *
    * @var string
@@ -70,20 +63,22 @@ class PagerTest extends AbstractKernelTest {
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
 
-    $this->assertContains('Go to page', $html);
-
     // Assert the count of pagers.
-    $pagers_count = $crawler->filter('nav.ecl-pager__wrapper')->count();
-    $this->assertEquals(self::PAGERS_COUNT, $pagers_count);
+    $pagers_count = $crawler->filter('nav.ecl-pager__wrapper');
+    $this->assertCount(3, $pagers_count);
 
     // Check the first pager variant (all elements visible).
     $first_pager = $crawler->filter('nav:first-of-type');
     // Assert that the pager contain 'next' and 'previous' page links.
+    $previous = $first_pager->filter('li.ecl-pager__item--previous');
+    $this->assertSpecialPagerElement($previous, TRUE, $this->generatePagerUrl('<none>', 6), 'Go to previous page');
     $this->assertContains(self::PREVIOUS_PAGE_LINK_TEXT, $first_pager->text());
+    $next = $first_pager->filter('li.ecl-pager__item--next');
+    $this->assertSpecialPagerElement($next, TRUE, $this->generatePagerUrl('<none>', 8), 'Go to next page');
     $this->assertContains(self::NEXT_PAGE_LINK_TEXT, $first_pager->text());
     // Assert that the pager contain two ellipsis elements.
-    $ellipsis_count = $first_pager->filter('li.ecl-pager__item--ellipsis')->count();
-    $this->assertEquals(2, $ellipsis_count);
+    $ellipsis_count = $first_pager->filter('li.ecl-pager__item--ellipsis');
+    $this->assertCount(2, $ellipsis_count);
     // Assert the current page number.
     $current_page_number = $first_pager->filter('li.ecl-pager__item--current')->text();
     $this->assertContains('Page 7', $current_page_number);
@@ -93,9 +88,7 @@ class PagerTest extends AbstractKernelTest {
     // Assert that the pager contains only the 'next' page link.
     $this->assertContains(self::NEXT_PAGE_LINK_TEXT, $second_pager->text());
     $this->assertNotContains(self::PREVIOUS_PAGE_LINK_TEXT, $second_pager->text());
-    // Assert that the pager contains only one ellipsis element.
-    $ellipsis_count = $second_pager->filter('li.ecl-pager__item--ellipsis')->count();
-    $this->assertEquals(1, $ellipsis_count);
+
     // Assert that the pager is set on the first page.
     $first_page_number = $second_pager->filter('li.ecl-pager__item--current')->text();
     $this->assertContains('Page 1', $first_page_number);
@@ -105,13 +98,10 @@ class PagerTest extends AbstractKernelTest {
     // Assert that the pager contains only the 'previous' page link.
     $this->assertContains(self::PREVIOUS_PAGE_LINK_TEXT, $third_pager->text());
     $this->assertNotContains(self::NEXT_PAGE_LINK_TEXT, $third_pager->text());
-    // Assert that the pager contains only one ellipsis element.
-    $ellipsis_count = $third_pager->filter('li.ecl-pager__item--ellipsis')->count();
-    $this->assertEquals(1, $ellipsis_count);
+
     // Assert that the pager is set on the last page.
     $first_page_number = $third_pager->filter('li.ecl-pager__item--current')->text();
     $this->assertContains('Page 15', $first_page_number);
-
   }
 
   /**
