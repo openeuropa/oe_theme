@@ -38,15 +38,15 @@ patch-package
 -{% set label_previous = label_previous|default('‹ Previous') %}
  {% set label_page = label_page|default('Page') %}
 -{% set label_next = label_next|default('Next ›') %}
-+{% set previous = {
++{% set previous = previous|default({})|merge({
 +  'title': previous.title|default('Go to previous page'),
 +  'text': previous.text|default('‹ Previous')
-+}
++})
 +%}
-+{% set next = {
++{% set next = next|default({})|merge({
 +  'title': next.title|default('Go to next page'),
 +  'text': next.text|default('Next ›')
-+}
++})
 +%}
  
  {# Internal properties #}
@@ -72,7 +72,7 @@ patch-package
 -      </a>
 -    </li>
 +    {# Print the first page link. #}
-+    {% if first and current_page > 4 %}
++    {% if first %}
 +      <li class="ecl-pager__item ecl-pager__item--first">
 +        <a class="ecl-pager__link" title="{{ first.title }}" href="{{ first.href }}">
 +          <span class="ecl-u-sr-only" >{{ first.text }}</span>
@@ -152,7 +152,7 @@ patch-package
 -      </a>
 -    </li>
 +    {# Print the last page link. #}
-+    {% if last and max_page - current_page > 3%}
++    {% if last %}
 +      <li class="ecl-pager__item ecl-pager__item--last">
 +        <a class="ecl-pager__link" title="{{ last.title }}" href="{{ last.href }}">
 +          <span class="ecl-u-sr-only" >{{ last.text }} </span>{{ last.text }}
