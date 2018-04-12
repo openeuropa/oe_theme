@@ -7,7 +7,7 @@ $lightGreen: #00FF00;
 .main-content {
   .password-strength {
     .is-weak {
-      background-color:$ecl-color-error;
+      background-color: $ecl-color-error;
     }
 
     .is-fair {
@@ -38,6 +38,3 @@ $lightGreen: #00FF00;
     margin-top: map-get($ecl-spacing, 'xs');
   }
 }
-
-
-
