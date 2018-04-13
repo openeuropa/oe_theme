@@ -18,3 +18,5 @@ phpunit.xml
 /images/
 /js/base.js
 /templates/components/
+/oe_theme/
+*.tar.gz
