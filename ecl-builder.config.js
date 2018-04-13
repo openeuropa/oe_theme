@@ -34,6 +34,7 @@ module.exports = {
     { from: path.resolve(source_folder, 'ecl-forms-selects/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder, 'ecl-logos/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder, 'ecl-messages/images'), to: path.resolve(__dirname, 'images')},
+    { from: path.resolve(source_folder), patterns: 'ecl-accordions/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-breadcrumbs/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-buttons/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-fields/*.twig', to: path.resolve(__dirname, 'templates/components') },
