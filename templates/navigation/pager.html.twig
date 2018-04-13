@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Theme override to display a pager.
+ *
+ * Available variables:
+ * - items.previous: Page link for the previous page; not present on the first page
+ * - item.first: Page link for the first page; not present on the first page of results.
+ * - items.last: Page link for the last page; not present on the last page of results.
+ * - item.next: Page link for the next page; not present on the last page of results.
+ *   Each of the page link variables which are listed above contain following elements:
+ *   - href: URL with appropriate query parameters.
+ *   - text: The visible text used for the page link.
+ *   - title: The text used for filling the 'title' property of a given tag.
+ * - items.pages: List of the pager page links.
+ *   The list is keyed with ordered page numbers and each item contatin following elements:
+ *   - href: URL with appropriate query parameters.
+ *   - text: The visible text used for the page link.
+ *   - title: The text used for filling the 'title' property of a given tag.
+ * - current: The page number of the current page.
+ * - max_page: The total number of pages.
+ *
+ * @see template_preprocess_pager()
+ */
+#}
+{% if items %}
+  {% include '@ecl/ecl-pagers' with {
+    'current_page': current,
+    'pages': items.pages,
+    'first': items.first,
+    'previous': items.previous,
+    'next': items.next,
+    'last': items.last,
+    'max_page': max_page,
+    'label_page': 'Page'|t,
+  } %}
+{% endif %}
