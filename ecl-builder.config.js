@@ -39,6 +39,7 @@ module.exports = {
     { from: path.resolve(source_folder), patterns: 'ecl-buttons/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-fields/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-forms*/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-link-blocks/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-logos/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-messages*/*.twig', to: path.resolve(__dirname, 'templates/components') },
