@@ -2,6 +2,7 @@
 
 namespace Drupal\oe_theme_demo;
 
+use Drupal\Component\Plugin\Discovery\DiscoveryInterface;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
 use Drupal\Core\Plugin\DefaultPluginManager;
@@ -41,7 +42,7 @@ class DemoBlockPluginManager extends DefaultPluginManager {
   /**
    * {@inheritdoc}
    */
-  public function processDefinition(&$definition, $plugin_id) {
+  public function processDefinition(&$definition, $plugin_id): void {
     parent::processDefinition($definition, $plugin_id);
     $definition['theme_hook'] = 'demo_block_' . $definition['id'];
   }
@@ -54,7 +55,7 @@ class DemoBlockPluginManager extends DefaultPluginManager {
    *
    * @see oe_theme_demo_theme()
    */
-  public function hookTheme() {
+  public function hookTheme(): array {
     $items = [];
     foreach ($this->getDefinitions() as $definition) {
       $items[$definition['theme_hook']] = ['variables' => []];
@@ -65,7 +66,7 @@ class DemoBlockPluginManager extends DefaultPluginManager {
   /**
    * {@inheritdoc}
    */
-  protected function getDiscovery() {
+  protected function getDiscovery(): DiscoveryInterface {
     if (!isset($this->discovery)) {
       $this->discovery = new YamlDiscovery('demo_blocks', $this->moduleHandler->getModuleDirectories());
       $this->discovery->addTranslatableProperty('label', 'label_context');

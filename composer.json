@@ -6,6 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "^7.1",
         "openeuropa/ecl-twig-loader": "^0.1"
     },
     "require-dev": {
