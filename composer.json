@@ -24,7 +24,8 @@
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
         "drupal/styleguide": "~1.0-alpha3",
-        "gitonomy/gitlib": "~1"
+        "gitonomy/gitlib": "~1",
+        "nikic/php-parser": "~3"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
