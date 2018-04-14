@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * @file
  * Module file.
  */
+
+declare(strict_types = 1);
 
 use Drupal\user\RoleInterface;
 

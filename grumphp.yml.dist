@@ -10,6 +10,7 @@ parameters:
     - module
     - inc
     - theme
+    - install
 
   # At the moment the Code Review component does not supports adding tasks
   # so we need to replicate the whole section here.
