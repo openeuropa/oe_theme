@@ -33,7 +33,6 @@ parameters:
       multiline: false
     phpparser:
       ignore_patterns: %tasks.phpcs.ignore_patterns%
-      kind: php7
       visitors:
         declare_strict_types: ~
-      triggered_by: %tasks.phpmd.triggered_by%
+      triggered_by: %tasks.phpcs.triggered_by%
