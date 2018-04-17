@@ -11,7 +11,7 @@
     "require-dev": {
         "cweagans/composer-patches": "~1.0",
         "openeuropa/code-review": "^0.2",
-        "openeuropa/task-runner": "^0.4",
+        "openeuropa/task-runner": "dev-OPENEUROPA-545",
         "drupal-composer/drupal-scaffold": "^2.2",
         "composer/installers": "^1.2",
         "drupal/console": "^1",
@@ -22,8 +22,7 @@
         "drupal/drupal-extension": "^3.4",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
-        "drupal/styleguide": "~1.0-alpha3",
-        "gitonomy/gitlib": "~1"
+        "drupal/styleguide": "~1.0-alpha3"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"

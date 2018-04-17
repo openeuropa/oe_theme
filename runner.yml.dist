@@ -33,3 +33,31 @@ commands:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
   setup:behat:
     - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+
+release:
+  tasks:
+    - { task: "copy", from: "css", to: "oe_theme/css" }
+    - { task: "copy", from: "fonts", to: "oe_theme/fonts" }
+    - { task: "copy", from: "images", to: "oe_theme/images" }
+    - { task: "copy", from: "templates/components", to: "oe_theme/templates/components" }
+    - { task: "copy", from: "js/base.js", to: "oe_theme/js/base.js" }
+    - { task: "remove", file: "oe_theme/sass" }
+    - { task: "remove", file: "oe_theme/patches" }
+    - { task: "remove", file: "oe_theme/.editorconfig" }
+    - { task: "remove", file: "oe_theme/.gitignore" }
+    - { task: "remove", file: "oe_theme/.travis.yml" }
+    - { task: "remove", file: "oe_theme/behat.yml.dist" }
+    - { task: "remove", file: "oe_theme/docker-compose.yml" }
+    - { task: "remove", file: "oe_theme/ecl-builder.config.js" }
+    - { task: "remove", file: "oe_theme/grumphp.yml.dist" }
+    - { task: "remove", file: "oe_theme/package.json" }
+    - { task: "remove", file: "oe_theme/phpunit.xml.dist" }
+    - { task: "remove", file: "oe_theme/runner.yml.dist" }
+    - task: "append"
+      file: "oe_theme/oe_theme.info.yml"
+      text: |
+
+        # Information added by OpenEuropa packaging script on ${release.date} at ${release.time}.
+        project: oe_theme
+        version: ${release.version}
+        datestamp: ${release.timestamp}
