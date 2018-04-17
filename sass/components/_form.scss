@@ -16,6 +16,7 @@
 
   /* @see @ec-europa/ecl-forms-help-blocks/_help-blocks.scss */
   .password-strength .password-strength__title,
+  .password-suggestions.description,
   .password-confirm {
     @extend .ecl-help-block;
   }
