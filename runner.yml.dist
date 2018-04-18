@@ -36,13 +36,10 @@ commands:
 
 release:
   tasks:
-    - { task: "copy", from: "css", to: "oe_theme/css" }
-    - { task: "copy", from: "fonts", to: "oe_theme/fonts" }
-    - { task: "copy", from: "images", to: "oe_theme/images" }
-    - { task: "copy", from: "templates/components", to: "oe_theme/templates/components" }
-    - { task: "copy", from: "js/base.js", to: "oe_theme/js/base.js" }
-    - { task: "remove", file: "oe_theme/sass" }
+    - { task: "remove", file: "oe_theme/js" }
     - { task: "remove", file: "oe_theme/patches" }
+    - { task: "remove", file: "oe_theme/sass" }
+    - { task: "remove", file: "oe_theme/templates" }
     - { task: "remove", file: "oe_theme/.editorconfig" }
     - { task: "remove", file: "oe_theme/.gitignore" }
     - { task: "remove", file: "oe_theme/.travis.yml" }
@@ -53,6 +50,11 @@ release:
     - { task: "remove", file: "oe_theme/package.json" }
     - { task: "remove", file: "oe_theme/phpunit.xml.dist" }
     - { task: "remove", file: "oe_theme/runner.yml.dist" }
+    - { task: "copy", from: "css", to: "oe_theme/css" }
+    - { task: "copy", from: "fonts", to: "oe_theme/fonts" }
+    - { task: "copy", from: "images", to: "oe_theme/images" }
+    - { task: "copy", from: "js", to: "oe_theme/js" }
+    - { task: "copy", from: "templates", to: "oe_theme/templates" }
     - task: "append"
       file: "oe_theme/oe_theme.info.yml"
       text: |
