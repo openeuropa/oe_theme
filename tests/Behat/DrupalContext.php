@@ -21,7 +21,7 @@ class DrupalContext extends RawDrupalContext {
    *
    * @BeforeScenario @demo
    */
-  public function setupDemo(BeforeScenarioScope $scope) {
+  public function setupDemo(BeforeScenarioScope $scope): void {
     \Drupal::service('module_installer')->install(['oe_theme_demo']);
   }
 
@@ -33,7 +33,7 @@ class DrupalContext extends RawDrupalContext {
    *
    * @AfterScenario @demo
    */
-  public function revertDemoSetup(AfterScenarioScope $scope) {
+  public function revertDemoSetup(AfterScenarioScope $scope): void {
     \Drupal::service('module_installer')->uninstall(['oe_theme_demo']);
   }
 

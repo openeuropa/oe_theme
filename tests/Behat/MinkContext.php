@@ -24,7 +24,7 @@ class MinkContext extends RawMinkContext {
    *
    * @Then I should see the following links in (the ):region( region):
    */
-  public function assertLinksInRegion($region, TableNode $links) {
+  public function assertLinksInRegion($region, TableNode $links): void {
     $region = $this->getSession()->getPage()->find('region', $region);
 
     foreach ($links->getRows() as $row) {

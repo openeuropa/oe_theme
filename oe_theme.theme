@@ -142,7 +142,7 @@ function oe_theme_preprocess_input__checkbox(array &$variables) {
  * @param array $variables
  *   Set of available variables.
  */
-function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
+function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $element = &$variables['element'];
   $variables['has_error'] = !empty($element['#errors']);
   if (isset($element['#title']) && $element['#title'] !== '') {
@@ -156,7 +156,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
  * Disables displaying of the label for checkbox and radio elements, as the
  * label is already rendered in the input template.
  */
-function oe_theme_preprocess_form_element(array &$variables) {
+function oe_theme_preprocess_form_element(array &$variables): void {
   if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
     $variables['label_display'] = 'none';
   }

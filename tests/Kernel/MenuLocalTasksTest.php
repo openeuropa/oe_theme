@@ -17,7 +17,7 @@ class MenuLocalTasksTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMenuLocalTasks() {
+  public function testMenuLocalTasks(): void {
     $render = [
       '#theme' => 'menu_local_tasks',
       '#primary' => [

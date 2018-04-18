@@ -47,7 +47,7 @@ class StatusMessagesTest extends AbstractKernelTest {
    *
    * @dataProvider statusMessagesProvider
    */
-  public function testStatusMessages(array $data) {
+  public function testStatusMessages(array $data): void {
     $messenger = \Drupal::messenger();
 
     foreach ($data as $type => $messages) {
@@ -104,7 +104,7 @@ class StatusMessagesTest extends AbstractKernelTest {
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
-  public function statusMessagesProvider() {
+  public function statusMessagesProvider(): array {
     return [
       // A test case with no messages.
       [

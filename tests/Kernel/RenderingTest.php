@@ -35,7 +35,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * @return array
    *   The form structure.
    */
-  public function buildForm(array $form, FormStateInterface $form_state, array $structure = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state, array $structure = NULL): array {
     $form['test'] = $structure;
 
     return $form;
@@ -84,7 +84,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $structure, array $contains_string, array $contains_element) {
+  public function testRendering(array $structure, array $contains_string, array $contains_element): void {
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
@@ -116,7 +116,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * @return array
    *   A set of dump data for testing.
    */
-  public function renderingDataProvider() {
+  public function renderingDataProvider(): array {
     return $this->getFixtureContent('rendering.yml');
   }
 

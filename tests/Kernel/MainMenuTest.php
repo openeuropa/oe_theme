@@ -41,8 +41,7 @@ class MainMenuTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMainMenuRendering() {
-
+  public function testMainMenuRendering(): void {
     $menu_tree = \Drupal::menuTree();
     $parent = MenuLinkContent::create([
       'title' => 'Parent item',
