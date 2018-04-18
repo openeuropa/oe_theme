@@ -18,7 +18,6 @@
         "drupal/config_devel": "~1.2",
         "openeuropa/oe_paragraphs": "dev-master",
         "drush/drush": "^9",
-        "drupal/core": "^8.5",
         "drupal/drupal-extension": "^3.4",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
