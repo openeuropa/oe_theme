@@ -15,7 +15,7 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
   /**
    * {@inheritdoc}
    */
-  public function __construct(array $namespaces, string $root, string $theme, string $directory, ThemeHandler $theme_handler) {
+  public function __construct($namespaces, $root, $theme, $directory, ThemeHandler $theme_handler) {
     $theme_path = $theme_handler->getTheme($theme)->getPath();
     parent::__construct($namespaces, $theme_path . DIRECTORY_SEPARATOR . $directory, $root);
   }
