@@ -17,7 +17,7 @@ function oe_theme_demo_theme() {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function oe_theme_demo_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+function oe_theme_demo_theme_suggestions_block_alter(&$suggestions, $variables) {
   if (isset($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] === 'oe_theme_demo_block') {
     $suggestions[] = 'block__bare';
   }
