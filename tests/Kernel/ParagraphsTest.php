@@ -37,7 +37,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('paragraph');
@@ -47,7 +47,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * Test links block paragraph rendering.
    */
-  public function testLinksBlock(): void {
+  public function testLinksBlock() {
     $paragraph = Paragraph::create([
       'type' => 'oe_links_block',
       'field_oe_text' => 'Title',
@@ -85,7 +85,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * Test accordion paragraph rendering.
    */
-  public function testAccordions(): void {
+  public function testAccordions() {
     $item1 = Paragraph::create([
       'type' => 'oe_accordion_item',
       'field_oe_text' => 'Item title 1',
@@ -144,7 +144,7 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @dataProvider quoteDataProvider
    */
-  public function testQuote($data, $expected): void {
+  public function testQuote($data, $expected) {
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
       'field_oe_text' => $data['attribution'],
@@ -165,7 +165,7 @@ class ParagraphsTest extends AbstractKernelTest {
   /**
    * Data provider.
    */
-  public function quoteDataProvider(): array {
+  public function quoteDataProvider() {
     return [
       // Test case with no data.
       [
@@ -225,7 +225,7 @@ class ParagraphsTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  protected function renderParagraph(Paragraph $paragraph): string {
+  protected function renderParagraph(Paragraph $paragraph) {
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('paragraph')
       ->view($paragraph, 'default');

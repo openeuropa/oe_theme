@@ -26,7 +26,7 @@ class MainMenuTest extends AbstractKernelTest {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
 
     $this->installEntitySchema('menu_link_content');
@@ -41,7 +41,7 @@ class MainMenuTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMainMenuRendering(): void {
+  public function testMainMenuRendering() {
 
     $menu_tree = \Drupal::menuTree();
     $parent = MenuLinkContent::create([

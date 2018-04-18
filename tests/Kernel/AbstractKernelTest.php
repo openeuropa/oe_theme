@@ -45,7 +45,7 @@ abstract class AbstractKernelTest extends KernelTestBase {
    * @return array
    *   A set of test data.
    */
-  protected function getFixtureContent($filepath): array {
+  protected function getFixtureContent($filepath) {
     return Yaml::parse(file_get_contents(__DIR__ . "/../fixtures/{$filepath}"));
   }
 
@@ -63,7 +63,7 @@ abstract class AbstractKernelTest extends KernelTestBase {
    *
    * @see \Drupal\Core\Render\RendererInterface::render()
    */
-  protected function renderRoot(array &$elements): string {
+  protected function renderRoot(array &$elements) {
     return (string) $this->container->get('renderer')->renderRoot($elements);
   }
 

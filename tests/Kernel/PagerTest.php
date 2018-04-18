@@ -33,7 +33,7 @@ class PagerTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMultiplePagers(): void {
+  public function testMultiplePagers() {
     // Set up a render array.
     $build['pager_0'] = [
       '#type' => 'pager',
@@ -122,7 +122,7 @@ class PagerTest extends AbstractKernelTest {
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  public function testSinglePager(int $current_page, int $total_pages, string $route_name = '<none>'): void {
+  public function testSinglePager(int $current_page, int $total_pages, string $route_name = '<none>') {
     $build['pager'] = [
       '#type' => 'pager',
       '#route_name' => $route_name,
@@ -224,7 +224,7 @@ class PagerTest extends AbstractKernelTest {
    *   An array of pager test cases. Each case contains the current page and
    *   the number of total pages, using a 1-based array notation.
    */
-  public function singlePagerDataProvider(): array {
+  public function singlePagerDataProvider() {
     return [
       '1st page out of 15' => [1, 15],
       '2nd page out of 15' => [2, 15],
@@ -283,7 +283,7 @@ class PagerTest extends AbstractKernelTest {
    * @return string
    *   A string URL.
    */
-  protected function generatePagerUrl(string $route_name, int $page, int $element = 0): string {
+  protected function generatePagerUrl(string $route_name, int $page, int $element = 0) {
     $options = [
       'query' => pager_query_add_page([], $element, $page - 1),
     ];

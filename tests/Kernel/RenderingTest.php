@@ -18,7 +18,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function getFormId(): string {
+  public function getFormId() {
     return 'oe_theme_rendering_test_form';
   }
 
@@ -35,7 +35,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * @return array
    *   The form structure.
    */
-  public function buildForm(array $form, FormStateInterface $form_state, array $structure = NULL): array {
+  public function buildForm(array $form, FormStateInterface $form_state, array $structure = NULL) {
     $form['test'] = $structure;
 
     return $form;
@@ -44,7 +44,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
+  public function validateForm(array &$form, FormStateInterface $form_state) {
     // Recurse through all the form elements and check if they have a property
     // "#set_validation_error". If they have, set a generic error on the
     // element.
@@ -68,7 +68,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {}
+  public function submitForm(array &$form, FormStateInterface $form_state) {}
 
   /**
    * Test rendering of elements.
@@ -84,7 +84,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $structure, array $contains_string, array $contains_element): void {
+  public function testRendering(array $structure, array $contains_string, array $contains_element) {
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
@@ -116,7 +116,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * @return array
    *   A set of dump data for testing.
    */
-  public function renderingDataProvider(): array {
+  public function renderingDataProvider() {
     return $this->getFixtureContent('rendering.yml');
   }
 

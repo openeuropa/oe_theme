@@ -21,7 +21,7 @@ class DrupalContext extends RawDrupalContext {
    *
    * @BeforeScenario @demo
    */
-  public function setupDemo(BeforeScenarioScope $scope): void {
+  public function setupDemo(BeforeScenarioScope $scope) {
     \Drupal::service('module_installer')->install(['oe_theme_demo']);
   }
 
