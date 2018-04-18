@@ -38,7 +38,7 @@ notifications:
   email: false
 
 before_deploy:
-  ./vendor/bin/run project:create-release
+  ./vendor/bin/run release:create-archive
 
 deploy:
   provider: releases
