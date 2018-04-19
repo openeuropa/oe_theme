@@ -37,8 +37,7 @@ script:
 notifications:
   email: false
 
-before_deploy:
-  ./vendor/bin/run release:create-archive
+before_deploy: docker-compose exec -u web web ./vendor/bin/run release:create-archive
 
 deploy:
   provider: releases
