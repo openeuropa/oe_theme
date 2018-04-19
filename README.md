@@ -33,28 +33,31 @@ And run:
 $ composer update
 ```
 
-If you are not using Composer to manage your dependencies then download the release package [here][3].
+If you are not using Composer then download the [release package][3] and install it as described [here][10].
 
-**Note:** Make sure you use an actual release and not the cloned repository as releases are built by the continuous
-integration system and include code coming from third-party libraries, such as [ECL templates][1].
+**Note:** Release archives are built by the continuous integration system and include code coming from third-party
+libraries, such as [ECL][1] templates and other assets. Make sure you use an actual release and not the source code
+archives.
 
-In order to enable the theme in your project make sure you perform the following steps:
+### Enable the theme
+
+In order to enable the theme in your project perform the following steps:
 
 1. Enable the OpenEuropa Theme Helper module
 2. Enable the OpenEuropa Theme and set it as default
 
-Step 1. is necessary until the following [Drupal core issue][8] is resolved.
-
-Alternatively you can patch your Drupal core with [this patch][9] and simply enable the theme: the patched core will
-enable the required OpenEuropa Theme Helper module.
+Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alternatively you can patch Drupal core
+with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
+module.
 
 ## Development
 
 The OpenEuropa Theme project contains all the necessary code and tools for an effective development process,
 meaning:
 
-- All development dependencies (Drupal core included) are required in the project's `composer.json`
-- Project setup and installation can be easily handled thanks to the [Task Runner project][4] integration.
+- All PHP development dependencies (Drupal core included) are required in `composer.json`
+- All Node.js development dependencies are required in `package.json`
+- Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
 - All system requirements are containerized using [Docker Composer][5]
 
 ### Project setup
@@ -63,18 +66,19 @@ Developing the theme requires a local copy of ECL assets, including Twig templat
 
 In order to fetch the required code you'll need to have [Node.js (>= 8)](https://nodejs.org/en) installed locally.
 
-
 To install required Node.js dependencies run:
 
 ```
 $ npm install
 ```
 
-Build the artifacts:
+To build the final artifacts run:
 
 ```
 $ npm run build
 ```
+
+This will compile all SASS and JavaScript files into self-contained assets that are exposed as [Drupal libraries][11].
 
 In order to download all required PHP code run:
 
@@ -114,12 +118,12 @@ This will:
 
 ### Using Docker Compose
 
-The setup procedure described above can be sensitively simplified by the usage of Docker Compose.
+The setup procedure described above can be sensitively simplified by using Docker Compose.
 
 Requirements:
 
-- [Docker](https://www.docker.com/get-docker)
-- [Docker-compose](https://docs.docker.com/compose)
+- [Docker][12]
+- [Docker-compose][13]
 
 Run:
 
@@ -148,7 +152,7 @@ $ docker-compose exec -u web web ./vendor/bin/behat
 
 ### Disable Drupal 8 caching
 
-Manually disabling Drupal 8 caching is a laborious process that is well described [here](https://www.drupal.org/node/2598914).
+Manually disabling Drupal 8 caching is a laborious process that is well described [here][14].
 
 Alternatively you can use the following Drupal Console command to disable/enable Drupal 8 caching:
 
@@ -163,11 +167,11 @@ Note: to fully disable Twig caching the following additional manual steps are re
 2. Set `cache: false` in `twig.config:` property.
 3. Rebuild Drupal cache: `./vendor/bin/drush cr`
 
-This is due to the following [Drupal Console issue](https://github.com/hechoendrupal/drupal-console/issues/3854).
+This is due to the following [Drupal Console issue][15].
 
 ### Working with ECL components
 
-You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader](https://github.com/openeuropa/ecl-twig-loader)
+You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader][16]
 as shown below:
 
 ```twig
@@ -188,6 +192,13 @@ Or:
 
 JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordions()`.
 
+*Important:* not all ECL templates are available to the theme for include, whenever you need include a new ECL template
+remember to add it to the `copy` section of [ecl-builder.config.js][ecl-builder.config.js] and run:
+
+```
+$ npm run build
+```
+
 #### Update ECL
 
 To update ECL components change the `@ec-europa/ecl-preset-full` version in `package.json` and run:
@@ -196,8 +207,8 @@ To update ECL components change the `@ec-europa/ecl-preset-full` version in `pac
 $ npm install && npm run build
 ```
 
-This will update assets such as images and fonts and re-compile CSS.
-Resulting changes are not meant to be committed to this repository.
+This will update assets such as images and fonts and re-compile CSS. Resulting changes are not meant to be committed to
+this repository.
 
 #### Watching and re-compiling Sass and JS changes
 
@@ -209,8 +220,6 @@ $ npm run watch
 
 Resulting changes are not meant to be committed to this repository.
 
-
-
 [1]: https://github.com/ec-europa/europa-component-library
 [2]: https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies#managing-contributed
 [3]: https://github.com/openeuropa/oe_theme/releases
@@ -220,3 +229,10 @@ Resulting changes are not meant to be committed to this repository.
 [7]: https://nodejs.org/en
 [8]: https://www.drupal.org/project/drupal/issues/474684
 [9]: https://www.drupal.org/files/issues/474684-151.patch
+[10]: https://www.drupal.org/docs/8/extending-drupal-8/installing-themes
+[11]: https://www.drupal.org/docs/8/theming-drupal-8/adding-stylesheets-css-and-javascript-js-to-a-drupal-8-theme
+[12]: https://www.docker.com/get-docker
+[13]: https://docs.docker.com/compose
+[14]: https://www.drupal.org/node/2598914
+[15]: https://github.com/hechoendrupal/drupal-console/issues/3854
+[16]: https://github.com/openeuropa/ecl-twig-loader
