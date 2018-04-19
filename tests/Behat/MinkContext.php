@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Behat;
 
 use Behat\Gherkin\Node\TableNode;
@@ -22,7 +24,7 @@ class MinkContext extends RawMinkContext {
    *
    * @Then I should see the following links in (the ):region( region):
    */
-  public function assertLinksInRegion($region, TableNode $links) {
+  public function assertLinksInRegion($region, TableNode $links): void {
     $region = $this->getSession()->getPage()->find('region', $region);
 
     foreach ($links->getRows() as $row) {

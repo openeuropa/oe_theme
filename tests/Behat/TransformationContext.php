@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Behat;
 
 use Behat\Behat\Context\Context;
@@ -39,18 +41,30 @@ class TransformationContext implements Context {
   /**
    * Transform element label into an CSS selector, if any.
    *
+   * @param string $label
+   *   Element label.
+   *
+   * @return string
+   *   CSS selector.
+   *
    * @Transform :tag
    */
-  public function transformElement($label) {
+  public function transformElement(string $label): string {
     return isset($this->elements[$label]) ? $this->elements[$label] : $label;
   }
 
   /**
    * Transform page name into relative URL, if any.
    *
+   * @param string $name
+   *   Page name.
+   *
+   * @return string
+   *   Relative URL.
+   *
    * @Transform /^the ([A-za-z ]+) page$/
    */
-  public function transformPageLabel($name) {
+  public function transformPageLabel(string $name): string {
     return isset($this->pages[$name]) ? $this->pages[$name] : $name;
   }
 

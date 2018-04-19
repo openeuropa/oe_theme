@@ -18,7 +18,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function getFormId(): string {
+  public function getFormId() {
     return 'oe_theme_rendering_test_form';
   }
 
@@ -44,7 +44,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
+  public function validateForm(array &$form, FormStateInterface $form_state) {
     // Recurse through all the form elements and check if they have a property
     // "#set_validation_error". If they have, set a generic error on the
     // element.
@@ -68,7 +68,7 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state): void {}
+  public function submitForm(array &$form, FormStateInterface $form_state) {}
 
   /**
    * Test rendering of elements.
@@ -112,6 +112,9 @@ class RenderingTest extends AbstractKernelTest implements FormInterface {
    * Data provider for rendering tests.
    *
    * The actual data is read from fixtures stored in a YAML configuration.
+   *
+   * @return array
+   *   A set of dump data for testing.
    */
   public function renderingDataProvider(): array {
     return $this->getFixtureContent('rendering.yml');
