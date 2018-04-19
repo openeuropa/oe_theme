@@ -5,6 +5,8 @@
  * Functions to support theming.
  */
 
+declare(strict_types = 1);
+
 use Drupal\Core\Render\Element;
 
 /**
@@ -46,7 +48,7 @@ function oe_theme_preprocess_menu__main(&$variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+function oe_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   // Do not output field labels and wrapping markup for paragraph fields.
   if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
     $suggestions[] = 'field__bare';
@@ -140,7 +142,7 @@ function oe_theme_preprocess_input__checkbox(&$variables) {
  * @param array $variables
  *   Set of available variables.
  */
-function _oe_theme_preprocess_input_label_wrapper(array &$variables) {
+function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $element = &$variables['element'];
   $variables['has_error'] = !empty($element['#errors']);
   if (isset($element['#title']) && $element['#title'] !== '') {

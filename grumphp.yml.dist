@@ -10,3 +10,29 @@ parameters:
     - module
     - inc
     - theme
+    - install
+
+  # At the moment the Code Review component does not supports adding tasks
+  # so we need to replicate the whole section here.
+  # @see https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-550
+  tasks:
+    phpcs:
+      standard: %tasks.phpcs.standard%
+      ignore_patterns: %tasks.phpcs.ignore_patterns%
+      triggered_by: %tasks.phpcs.triggered_by%
+      whitelist_patterns: %tasks.phpcs.whitelist_patterns%
+      metadata:
+        priority: 300
+    phpmd:
+      exclude: %tasks.phpmd.exclude%
+      ruleset: %tasks.phpmd.ruleset%
+      triggered_by: %tasks.phpmd.triggered_by%
+    git_commit_message:
+      matchers: %tasks.git_commit_message.matchers%
+      case_insensitive: false
+      multiline: false
+    phpparser:
+      ignore_patterns: %tasks.phpcs.ignore_patterns%
+      visitors:
+        declare_strict_types: ~
+      triggered_by: %tasks.phpcs.triggered_by%

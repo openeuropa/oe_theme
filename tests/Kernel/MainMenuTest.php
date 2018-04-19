@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Menu\MenuTreeParameters;
@@ -39,8 +41,7 @@ class MainMenuTest extends AbstractKernelTest {
    *
    * @throws \Exception
    */
-  public function testMainMenuRendering() {
-
+  public function testMainMenuRendering(): void {
     $menu_tree = \Drupal::menuTree();
     $parent = MenuLinkContent::create([
       'title' => 'Parent item',
