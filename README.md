@@ -12,6 +12,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
+- [Demo module](#demo-module)
 
 ## Installation
 
@@ -220,6 +221,28 @@ $ npm run watch
 
 Resulting changes are not meant to be committed to this repository.
 
+## Demo module
+
+The theme ships with a demo module which provides all necessary configuration and code needed to showcase the theme's
+most important features.
+
+The demo module includes:
+
+- A custom main menu with sub-menu items
+- An overview page for all Drupal-related components called "Style guide"
+- Placeholder blocks like:
+ - Language switcher
+ - Site switcher
+ - Search block
+ - Footer
+
+In order to install the OpenEuropa Theme Demo module follow the instruction [here][17] or enable it via [Drush][18]
+by running:
+
+```
+$ ./vendor/bin/drush en oe_theme_demo -y
+```
+
 [1]: https://github.com/ec-europa/europa-component-library
 [2]: https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies#managing-contributed
 [3]: https://github.com/openeuropa/oe_theme/releases
@@ -236,3 +259,5 @@ Resulting changes are not meant to be committed to this repository.
 [14]: https://www.drupal.org/node/2598914
 [15]: https://github.com/hechoendrupal/drupal-console/issues/3854
 [16]: https://github.com/openeuropa/ecl-twig-loader
+[17]: https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
+[18]: https://www.drush.org/
