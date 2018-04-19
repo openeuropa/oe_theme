@@ -12,7 +12,7 @@
     "require-dev": {
         "cweagans/composer-patches": "~1.0",
         "openeuropa/code-review": "^0.2",
-        "openeuropa/task-runner": "dev-OPENEUROPA-545",
+        "openeuropa/task-runner": "^0.5",
         "drupal-composer/drupal-scaffold": "^2.2",
         "composer/installers": "^1.2",
         "drupal/console": "^1",
