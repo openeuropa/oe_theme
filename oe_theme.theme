@@ -157,11 +157,6 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
  * label is already rendered in the input template.
  */
 function oe_theme_preprocess_form_element(&$variables) {
-  $variables['is_password_confirm'] = FALSE;
-  if (in_array( 'password_confirm', explode('[', $variables['element']['#name']))) {
-      $variables['is_password_confirm'] = TRUE;
-  }
-
   if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
     $variables['label_display'] = 'none';
   }
