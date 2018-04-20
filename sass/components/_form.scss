@@ -19,6 +19,7 @@
   .password-suggestions.description,
   .password-confirm,
   .filter-help {
+  .password-confirm {
     @extend .ecl-help-block;
   }
 }
