@@ -40,6 +40,13 @@ class TablesTest extends AbstractKernelTest {
     // Assert the count of tables.
     $table = $crawler->filter('table.ecl-table');
     $this->assertCount(1, $table);
+    $this->assertArraySubset([
+      '#attached' => [
+        'library' => [
+          'oe_theme/tables',
+        ],
+      ],
+    ], $build);
   }
 
   /**
