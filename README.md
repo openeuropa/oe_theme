@@ -37,15 +37,15 @@ $ composer update
 If you are not using Composer then download the [release package][3] and install it as described [here][10].
 
 **Note:** Release archives are built by the continuous integration system and include code coming from third-party
-libraries, such as [ECL][1] templates and other assets. Make sure you use an actual release and not the source code
+libraries, such as [ECL][1] templates and other assets. Make sure you use an actual [release](/releases) and not the source code
 archives.
 
 ### Enable the theme
 
 In order to enable the theme in your project perform the following steps:
 
-1. Enable the OpenEuropa Theme Helper module
-2. Enable the OpenEuropa Theme and set it as default
+1. Enable the OpenEuropa Theme Helper module ```./vendor/bin/drush en oe_theme_helper```
+2. Enable the OpenEuropa Theme and set it as default ```./vendor/bin/drush drush config-set system.theme default oe_theme```
 
 Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alternatively you can patch Drupal core
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
@@ -56,8 +56,8 @@ module.
 The OpenEuropa Theme project contains all the necessary code and tools for an effective development process,
 meaning:
 
-- All PHP development dependencies (Drupal core included) are required in `composer.json`
-- All Node.js development dependencies are required in `package.json`
+- All PHP development dependencies (Drupal core included) are required in [composer.json](composer.json)
+- All Node.js development dependencies are required in [package.json](package.json)
 - Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
 - All system requirements are containerized using [Docker Composer][5]
 
@@ -90,7 +90,7 @@ $ composer install
 This will build a fully functional Drupal site in the `./build` directory that can be used to develop and showcase the
 theme.
 
-Before setting and install the site make sure to customize default configuration values my copying `./runner.yml.dist`
+Before setting up and installing the site make sure to customize default configuration values by copying [runner.yml.dist](runner.yml.dist)
 to `./runner.yml` and override relevant properties.
 
 To setup the project run:
@@ -165,7 +165,12 @@ $ ./vendor/bin/drupal site:mode prod # Enable all caches.
 Note: to fully disable Twig caching the following additional manual steps are required:
 
 1. Open `./build/sites/default/services.yml`
-2. Set `cache: false` in `twig.config:` property.
+2. Set `cache: false` in `twig.config:` property. E.g.:
+```
+parameters:
+     twig.config:
+       cache: false
+ ```
 3. Rebuild Drupal cache: `./vendor/bin/drush cr`
 
 This is due to the following [Drupal Console issue][15].
@@ -194,7 +199,7 @@ Or:
 JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordions()`.
 
 *Important:* not all ECL templates are available to the theme for include, whenever you need include a new ECL template
-remember to add it to the `copy` section of [ecl-builder.config.js][ecl-builder.config.js] and run:
+remember to add it to the `copy` section of [ecl-builder.config.js](ecl-builder.config.js) and run:
 
 ```
 $ npm run build
@@ -202,7 +207,7 @@ $ npm run build
 
 #### Update ECL
 
-To update ECL components change the `@ec-europa/ecl-preset-full` version in `package.json` and run:
+To update ECL components change the `@ec-europa/ecl-preset-full` version number in [package.json](package.json) and run:
 
 ```
 $ npm install && npm run build
@@ -213,7 +218,7 @@ this repository.
 
 #### Watching and re-compiling Sass and JS changes
 
-To watch for Sass and JS file changes - ```./sass``` folder - in order to re-compile them to the destination folder:
+To watch for Sass and JS file changes - [/sass](/sass) folder - in order to re-compile them to the destination folder:
 
 ```
 $ npm run watch
