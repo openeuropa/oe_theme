@@ -15,11 +15,6 @@ module.exports = {
 
   styles: [
     {
-      entry: path.resolve(source_folder, 'ecl-preset-full/index.scss'),
-      dest: path.resolve(__dirname, 'css/base.css'),
-      options: { sourceMap: is_prod ? 'file' : true }
-    },
-    {
       entry: 'sass/style.scss',
       dest: 'css/style.css',
       options: { sourceMap: is_prod ? 'file' : true }

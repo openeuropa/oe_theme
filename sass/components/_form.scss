@@ -1,0 +1,24 @@
+.main-content {
+  .password-strength {
+    .is-weak {
+      background-color: $ecl-color-error;
+    }
+
+    .is-fair {
+      background-color: $ecl-color-warning;
+    }
+
+    .is-good,
+    .is-strong {
+      background-color: $ecl-color-success;
+    }
+  }
+
+  /* @see @ec-europa/ecl-forms-help-blocks/_help-blocks.scss */
+  .password-strength .password-strength__title,
+  .password-suggestions.description,
+  .password-confirm,
+  .filter-help {
+    @extend .ecl-help-block;
+  }
+}

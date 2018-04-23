@@ -1,4 +1,5 @@
-@import '~@ec-europa/ecl-base';
+@import '~@ec-europa/ecl-preset-full/index.scss';
+@import "./components/form";
 
 .main-content {
   .block {
@@ -19,4 +20,9 @@
   width: 6px;
   height: 6px;
   margin: 0 0.3em;
+}
+
+// Remove top margin from text formats containers.
+.form-item-text-format-value + .ecl-form-group {
+  margin-top: 0;
 }
