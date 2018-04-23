@@ -93,7 +93,7 @@ theme.
 Before setting up and installing the site make sure to customize default configuration values by copying [runner.yml.dist](runner.yml.dist)
 to `./runner.yml` and override relevant properties.
 
-To setup the project run:
+To set up the project run:
 
 ```
 $ ./vendor/bin/run drupal:site-setup
@@ -114,7 +114,7 @@ $ ./vendor/bin/run drupal:site-install
 This will:
 
 - Install the target site
-- Set the OpenEuropa Theme as default theme
+- Set the OpenEuropa Theme as the default theme
 - Enable OpenEuropa Theme Demo and [Configuration development][6] modules
 
 ### Using Docker Compose
