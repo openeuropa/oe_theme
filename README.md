@@ -37,7 +37,7 @@ $ composer update
 If you are not using Composer then download the [release package][3] and install it as described [here][10].
 
 **Note:** Release archives are built by the continuous integration system and include code coming from third-party
-libraries, such as [ECL][1] templates and other assets. Make sure you use an actual [release](/releases) and not the source code
+libraries, such as [ECL][1] templates and other assets. Make sure you use an actual release and not the source code
 archives.
 
 ### Enable the theme
