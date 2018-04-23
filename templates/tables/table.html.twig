@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override to display a table.
+ *
+ * @see ./core/themes/stable/templates/dataset/table.html.twig
+ */
+#}
+{{ attach_library('oe_theme/tables') }}
+{% set attributes = attributes.addClass(['ecl-table', 'ecl-table--responsive']) %}
+{% include "@stable/dataset/table.html.twig" %}
