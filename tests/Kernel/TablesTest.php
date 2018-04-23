@@ -38,7 +38,7 @@ class TablesTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     // Assert the count of tables.
-    $table = $crawler->filter('table.ecl-table');
+    $table = $crawler->filter('table.ecl-table.ecl-table--responsive');
     $this->assertCount(1, $table);
     $this->assertArraySubset([
       '#attached' => [

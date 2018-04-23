@@ -7,5 +7,5 @@
  */
 #}
 {{ attach_library('oe_theme/tables') }}
-{% set attributes = attributes.addClass('ecl-table') %}
+{% set attributes = attributes.addClass(['ecl-table', 'ecl-table--responsive']) %}
 {% include "@stable/dataset/table.html.twig" %}
