@@ -26,10 +26,10 @@ class TablesTest extends AbstractKernelTest {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testSingleTable(array $rows_data): void {
-    $header = ['#', 'Name', 'e-mail address'];
+    $header = ['Name', 'Registration date', 'Email'];
     $build[] = [
       '#theme' => 'table',
-      '#caption' => 'The table caption / Title',
+      '#caption' => 'Default table',
       '#header' => $header,
       '#rows' => $rows_data,
     ];
@@ -52,13 +52,14 @@ class TablesTest extends AbstractKernelTest {
     return [
       '1 row' => [
         [
-          [1, 'Name 01', 'mail-01@example.com'],
+          ['John Doe', '01/01/2016', 'john.doe@mail.com'],
         ],
       ],
-      '2 rows' => [
+      '3 rows' => [
         [
-          [1, 'Name 01', 'mail-01@example.com'],
-          [2, 'Name 02', 'mail-02@example.com'],
+          ['John Doe', '01/01/2016', 'john.doe@mail.com'],
+          ['Jane Doe', '06/12/2016', 'jane.doe@mail.com'],
+          ['Jack Doe', '03/05/2017', 'jack.doe@mail.com'],
         ],
       ],
     ];
