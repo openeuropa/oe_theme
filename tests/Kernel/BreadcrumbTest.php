@@ -34,7 +34,6 @@ class BreadcrumbTest extends AbstractKernelTest {
     $breadcrumb = new Breadcrumb();
     foreach ($links as $title => $url) {
       $breadcrumb->addLink(Link::createFromRoute($title, $url));
-
     }
     $render_array = $breadcrumb->toRenderable();
     $html = $this->renderRoot($render_array);
