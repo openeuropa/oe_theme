@@ -15,8 +15,8 @@ use Drupal\Core\Render\Element;
 function oe_theme_preprocess_breadcrumb(&$variables) {
   $variables['segments'] = array_map(function ($item) {
     return [
-      'target' => $item['url'],
-      'title' => $item['text'],
+      'href' => $item['url'],
+      'label' => $item['text'],
     ];
   }, $variables['breadcrumb']);
 }
