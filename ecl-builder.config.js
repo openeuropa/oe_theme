@@ -15,11 +15,6 @@ module.exports = {
 
   styles: [
     {
-      entry: path.resolve(source_folder, 'ecl-preset-full/index.scss'),
-      dest: path.resolve(__dirname, 'css/base.css'),
-      options: { sourceMap: is_prod ? 'file' : true }
-    },
-    {
       entry: 'sass/style.scss',
       dest: 'css/style.css',
       options: { sourceMap: is_prod ? 'file' : true }
@@ -34,7 +29,21 @@ module.exports = {
     { from: path.resolve(source_folder, 'ecl-forms-selects/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder, 'ecl-logos/images'), to: path.resolve(__dirname, 'images')},
     { from: path.resolve(source_folder, 'ecl-messages/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder), patterns: '**/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-accordions/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-breadcrumbs/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-buttons/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-fields/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-forms-checkboxes/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-forms-labels/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-forms-radios/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-link-blocks/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-logos/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-messages/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-navigation-lists/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-navigation-menus/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-pagers/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-skip-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: '**/variants.json', to: path.resolve(__dirname, 'templates/components') }
   ]
 

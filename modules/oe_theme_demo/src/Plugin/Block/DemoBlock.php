@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_theme_demo\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;

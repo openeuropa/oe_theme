@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace Drupal\oe_theme_demo\Plugin\Derivative;
 
 use Drupal\oe_theme_demo\DemoBlockPluginManager;

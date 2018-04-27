@@ -11,8 +11,7 @@ env:
   global:
     - DOCKER_COMPOSE_VERSION=1.19.0
   matrix:
-    - DRUPAL_VERSION=8.6.x
-    - DRUPAL_VERSION=8.5.x
+    - DRUPAL_VERSION=8.6.x-dev
     - DRUPAL_VERSION=8.5.x-dev
 
 before_install:
@@ -22,9 +21,9 @@ before_install:
 
 install:
   # Temporarily use sudo to overcome permission issues.
-  - docker-compose exec -u root node npm install
+  - docker-compose exec -u root node npm install --unsafe-perm
   - docker-compose exec -u root node npm run build
-  - docker-compose exec -u web web composer require drupal/core:$DRUPAL_VERSION
+  - docker-compose exec -u web web composer require webflo/drupal-core-require-dev:$DRUPAL_VERSION
 
 before_script:
   - docker-compose exec -u web web ./vendor/bin/run drupal:site-setup
@@ -37,3 +36,16 @@ script:
 
 notifications:
   email: false
+
+before_deploy: docker-compose exec -u web web ./vendor/bin/run release:create-archive
+
+deploy:
+  provider: releases
+  api_key:
+    secure: 2sow2VTOPRCjUI5cwuF4xVmFBlyoZ0OKYknqJpFXj3q76cX9+OCW09eCT/xzzEQBLaictf+TVHgHPDr1Xtxwk0IjEqFYRiyW7/wjxw16vpzqHQPZaGBjVsmBAgTBPId1WVhLfnwRQFpLWExHGsVtaFA18a/rb5Xd4Io5rJ/q6UujaOiMAgyr4z7ujw4M7NGM89mrAly726O5Uhoc4sZQBIbfuuR32yMH5/Z5adukk39gxUpD066TmrSNTArA0bfO0cYDCmWW9KmLF3UjvLXSlAKmmHToCWQ56Mrv1o3HPqBVfPKp9Yf5pMWXc5YAYKLz8Q7NnOZUrI1kaC9FzyxTLmUdytJjYOHxbIXVCFWx0Sleuujw8+iMzXtJapdc8BhhVMPjBWfpv/BK08jLTR3fF9eNY1lVz1nRjx3vxCXg+W+K8XGLmCeecDSegFkmbGODnXOdCzJ3RjHhjeYNHpUY955Ab8U6NhEXpgDWFXn0JrBzL72PJnytd4qIyRpxO0Oq2svDDwT2MFY8l2T0LOpIr8pjRW0APK4IaOChuWGkMUiIQ+FHy7DpiaIXkJVloXJsUpdg6jd4R8JtjeotM+6XxsW+o3KnbZ5hqeh43zKdf2hI4STBK5xHQ1+yY0DnwUJwDc4VnP5s2sx+Cg4KXGXa/OQ4ol7YQVYzvHmFptVdDDU=
+  file_glob: true
+  file: oe_theme-*.tar.gz
+  skip_cleanup: true
+  on:
+    repo: openeuropa/oe_theme
+    tags: true

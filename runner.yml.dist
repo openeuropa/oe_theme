@@ -33,3 +33,21 @@ commands:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
   setup:behat:
     - { task: "process", source: "behat.yml.dist", destination: "behat.yml" }
+
+release:
+  tasks:
+    - { task: "remove", file: "oe_theme/js" }
+    - { task: "remove", file: "oe_theme/templates" }
+    - { task: "copy", from: "css", to: "oe_theme/css" }
+    - { task: "copy", from: "fonts", to: "oe_theme/fonts" }
+    - { task: "copy", from: "images", to: "oe_theme/images" }
+    - { task: "copy", from: "js", to: "oe_theme/js" }
+    - { task: "copy", from: "templates", to: "oe_theme/templates" }
+    - task: "append"
+      file: "oe_theme/oe_theme.info.yml"
+      text: |
+
+        # Information added by OpenEuropa packaging script on ${release.date} at ${release.time}.
+        project: oe_theme
+        version: ${release.version}
+        datestamp: ${release.timestamp}

@@ -5,6 +5,8 @@
  * Module file.
  */
 
+declare(strict_types = 1);
+
 /**
  * Implements hook_theme().
  */

@@ -1,7 +1,4 @@
 base:
-  css:
-    theme:
-      css/base.css: {}
   js:
     js/base.js: {}
 style:
@@ -17,6 +14,12 @@ accordions:
 navigation:
   js:
     js/navigation.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
+tables:
+  js:
+    js/tables.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base

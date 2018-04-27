@@ -6,26 +6,32 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "^7.1",
         "openeuropa/ecl-twig-loader": "^0.1"
     },
     "require-dev": {
         "cweagans/composer-patches": "~1.0",
         "openeuropa/code-review": "^0.2",
-        "openeuropa/task-runner": "^0.4",
+        "openeuropa/task-runner": "^0.5",
         "drupal-composer/drupal-scaffold": "^2.2",
         "composer/installers": "^1.2",
         "drupal/console": "^1",
         "drupal/config_devel": "~1.2",
         "openeuropa/oe_paragraphs": "dev-master",
         "drush/drush": "^9",
-        "drupal/core": "^8.5",
         "drupal/drupal-extension": "^3.4",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
-        "drupal/styleguide": "~1.0-alpha3"
+        "drupal/styleguide": "~1.0-alpha3",
+        "nikic/php-parser": "~3"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\oe_theme\\": "./src/"
+        }
     },
     "autoload-dev": {
         "psr-0": {

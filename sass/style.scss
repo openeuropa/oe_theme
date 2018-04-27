@@ -1,7 +1,28 @@
-@import '~@ec-europa/ecl-base';
+@import '~@ec-europa/ecl-preset-full/index.scss';
+@import "./components/form";
 
 .main-content {
   .block {
     margin-bottom: map-get($ecl-spacing, 'm');
   }
+}
+
+/**
+ * Required field
+ */
+.form-required:after {
+  content: '';
+  vertical-align: super;
+  display: inline-block;
+  background-image: url(../images/required.svg);
+  background-repeat: no-repeat;
+  background-size: 6px 6px;
+  width: 6px;
+  height: 6px;
+  margin: 0 0.3em;
+}
+
+// Remove top margin from text formats containers.
+.form-item-text-format-value + .ecl-form-group {
+  margin-top: 0;
 }
