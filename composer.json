@@ -23,7 +23,8 @@
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "^8.5",
         "drupal/styleguide": "~1.0-alpha3",
-        "nikic/php-parser": "~3"
+        "nikic/php-parser": "~3",
+        "openeuropa/oe_profile": "dev-OPENEUROPA-298#12dfd0f"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
