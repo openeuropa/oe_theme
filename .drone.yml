@@ -7,51 +7,26 @@ workspace:
   base: /test
   path: oe_theme
 
-# Defines which services run in the background ( docker-compose syntax )
 services:
-  # Web without xdebug with /test/oe_theme as docroot
   web:
     image: fpfis/php71-build:latest
     environment:
      - DOCUMENT_ROOT=/test/oe_theme
-  # Mysql
   mysql:
-    image: fpfis/mysql56
-  # Blackfire server to gather profiling results and send to blackfire.io
-  blackfire:
-    image: blackfire/blackfire
-    secrets: [  blackfire_server_id, blackfire_server_token ]
-    when:
-      event: [ push, tag ]
-  # Reverse HTTP tunnel opening an protected URL pointing to the webserver to the outside world
-  # ( Usefull for blackfire to contact the website, can also be used with saucelabs for instance )
-  frpc-tunnel:
-    image: fpfis/drone-frpc-plugin:latest
-    when:
-      event: [ push, tag ]
-    secrets: [ frpc_token, frpc_server ]
-    environment:
-      - PLUGIN_ENDPOINT=web:8080
-      - PLUGIN_GEN_AUTH=yes
-      - PLUGIN_DOMAIN=oetheme-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER}.ci.fpfis.tech.ec.europa.eu
-      - PLUGIN_URL_OUTPUT_FILE=/test/oe_theme/.frpc
+    image: percona/percona-server:5.6
 
-# Defines a matrix build
 matrix:
   DRUPAL_VERSION:
     - 8.6.x
 
-# Defines the steps to execute
 pipeline:
-  # Use node docker image to install and build
   npm-build:
     group: prepare
-    image: node
+    image: node:latest
     commands: 
       - npm install
       - npm run build
 
-  # Use php71 docker image to composer install
   composer-install:
     group: prepare
     image: fpfis/php71-build
@@ -59,7 +34,6 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
-      # Installs composer
       - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
 
   # Perform a security check on composer deps ( https://github.com/phpdrone/composer-sa-checker )
@@ -67,92 +41,46 @@ pipeline:
     image: phpdrone/composer-sa-checker
     lock_file: composer.lock
 
-  # Install the drupal site
   site-install:
     image: fpfis/php71-build
     commands:
       - ./vendor/bin/run drupal:site-setup
       - ./vendor/bin/run drupal:site-install
 
-  # Run grumphp tests under the parallel "test" group
   grumphp:
     group: test
     image: fpfis/php71-build
     commands:
       - ./vendor/bin/grumphp run
 
-  # Run phpunit tests under the parallel "test" group
   phpunit:
     group: test
     image: fpfis/php71-build
     commands:
       - ./vendor/bin/phpunit
 
-  # Run behat tests under the parallel "test" group
   behat:
     group: test
     image: fpfis/php71-build
     commands:
       - ./vendor/bin/behat
 
-  # Triggers a blackfire build
-  blackfire-test:
-    image: blackfire/blackfire
-    when:
-      event: [ push, tag ]
-    secrets: [ blackfire_client_id, blackfire_client_token ]
-    commands:
-      # Loads temp URL from FRP ( reverse proxy )
-      - source /test/oe_theme/.frpc.env
-      # Put test file in document root
-      - cp -p .blackfire.yml build/
-      # Disable D8 hidden file protection ( the build is password protected anyway )
-      - cp -f scripts/drone/.htaccess build/.htaccess
-      # Run blackfire trigger
-      - blackfire build-trigger --external-id=${DRONE_REPO_OWNER}-${DRONE_REPO_NAME}-${DRONE_BUILD_NUMBER}-${DRONE_JOB_NUMBER} 
-                                --external-parent-id=${DRONE_REPO_OWNER}-${DRONE_REPO_NAME}-${DRONE_PREV_BUILD_NUMBER}-${DRONE_JOB_NUMBER} 
-                                --http-username="$${FRP_HTTP_USERNAME}" --http-password="$${FRP_HTTP_PASSWORD}" --env=ci 
-                                "$${FRP_HTTP_URL}/build/" 
-                                --title="${DRONE_REPO} build ${DRONE_BUILD_NUMBER} job ${DRONE_JOB_NUMBER}"
-                                --external-url="${DRONE_BUILD_LINK}"
-
-  slack-notify-test:
-    image: plugins/slack
-    secrets: [ slack_webhook ]
-    channel: ci
-    username: oebot
-    icon_url: https://avatars0.githubusercontent.com/u/35874187?.png
-    when:
-      event: [ push, pull_request, tag ]
-      status: [ success, failure ]
-      matrix:
-        DRUPAL_VERSION: 8.5.x
-    template: >
-      {{#success build.status}}
-        OpenEuropa component ${DRONE_REPO_NAME}@ <{{build.link}}|passed> testing.
-      {{else}}
-        OpenEuropa component ${DRONE_REPO_NAME} <{{build.link}}|failed> testing.
-      {{/success}}
-
-
-  # When the event is tag and matrix is 8.5.x, prepare the release
   before-release:
     image: fpfis/php71-build
     commands:
       - ./scripts/drone/create-release-tarball.sh
     when:
       matrix:
-        DRUPAL_VERSION: 8.5.x
+        DRUPAL_VERSION: 8.6.x
       event: tag
 
-  # When the event is tag and matrix is 8.5.x, push the release to github
   github-release:
     image: plugins/github-release
     secrets: [ github_token ]
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
       matrix:
-        DRUPAL_VERSION: 8.5.x
+        DRUPAL_VERSION: 8.6.x
       event: tag
 
   slack-notify-release:
@@ -165,7 +93,7 @@ pipeline:
       event: [ tag ]
       status: [ success, failure ]
       matrix:
-        DRUPAL_VERSION: 8.5.x
+        DRUPAL_VERSION: 8.6.x
     template: >
       {{#success build.status}}
         OpenEuropa component ${DRONE_REPO_NAME} <${DRONE_REPO_LINK}|${DRONE_TAG}> has been <{{build.link}}|released>.
