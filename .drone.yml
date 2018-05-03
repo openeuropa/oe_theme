@@ -1,8 +1,3 @@
-# This files can also be used locally :
-# Running "drone exec" after downloading drone's CLI
-# will install the site and run the full test task
-
-# Defines where the builds takes place ( /test/oe_theme )
 workspace:
   base: /test
   path: oe_theme
@@ -32,16 +27,10 @@ pipeline:
   composer-install:
     group: prepare
     image: fpfis/php71-build
-    # Allows for cross build caching ( fpfis/php71-build stores drush and composer caches in /cache )
     volumes:
       - /cache:/cache
     commands:
       - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
-
-  # Perform a security check on composer deps ( https://github.com/phpdrone/composer-sa-checker )
-  composer-sa-check:
-    image: phpdrone/composer-sa-checker
-    lock_file: composer.lock
 
   site-install:
     image: fpfis/php71-build
@@ -70,7 +59,7 @@ pipeline:
   before-release:
     image: fpfis/php71-build
     commands:
-      - ./scripts/drone/create-release-tarball.sh
+      - ./vendor/bin/run release:create-archive
     when:
       matrix:
         DRUPAL_VERSION: 8.6.x
@@ -84,21 +73,3 @@ pipeline:
       matrix:
         DRUPAL_VERSION: 8.6.x
       event: tag
-
-  slack-notify-release:
-    image: plugins/slack
-    secrets: [ slack_webhook ]
-    channel: ci
-    username: oebot
-    icon_url: https://avatars0.githubusercontent.com/u/35874187?.png
-    when:
-      event: [ tag ]
-      status: [ success, failure ]
-      matrix:
-        DRUPAL_VERSION: 8.6.x
-    template: >
-      {{#success build.status}}
-        OpenEuropa component ${DRONE_REPO_NAME} <${DRONE_REPO_LINK}|${DRONE_TAG}> has been <{{build.link}}|released>.
-      {{else}}
-        OpenEuropa component ${DRONE_REPO_NAME} <${DRONE_REPO_LINK}|${DRONE_TAG}> release <{{build.link}}|failed>.
-      {{/success}}
