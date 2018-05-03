@@ -26,7 +26,7 @@ pipeline:
     group: prepare
     image: node:latest
     commands: 
-      - npm install
+      - npm install --unsafe-perm
       - npm run build
 
   composer-install:
