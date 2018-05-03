@@ -9,7 +9,9 @@
         "php": "^7.1",
         "openeuropa/ecl-twig-loader": "^0.1"
     },
+    "_todo": "Remove dev dependency on Composer once https://github.com/composer/composer/issues/7268 is fixed.",
     "require-dev": {
+        "composer/composer": "1.6.3",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "~1.0",
         "drupal-composer/drupal-scaffold": "^2.2",
@@ -49,6 +51,11 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.9"
         }
     },
     "extra": {
