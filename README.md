@@ -59,7 +59,8 @@ meaning:
 - All PHP development dependencies (Drupal core included) are required in [composer.json](composer.json)
 - All Node.js development dependencies are required in [package.json](package.json)
 - Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
-- All system requirements are containerized using [Docker Composer][5]
+- All system requirements are containerized using [Docker Composer][5].
+- Every change to the code base will be automatically tested using [Drone][19].
 
 ### Project setup
 
@@ -266,3 +267,4 @@ $ ./vendor/bin/drush en oe_theme_demo -y
 [16]: https://github.com/openeuropa/ecl-twig-loader
 [17]: https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
 [18]: https://www.drush.org/
+[19]: https://drone.io
