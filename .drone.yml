@@ -11,9 +11,11 @@ services:
   web:
     image: fpfis/php71-build:latest
     environment:
-     - DOCUMENT_ROOT=/test/oe_theme
+      - DOCUMENT_ROOT=/test/oe_theme
   mysql:
     image: percona/percona-server:5.6
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
 matrix:
   DRUPAL_VERSION:
