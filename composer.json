@@ -6,24 +6,27 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "drupal/core": "8.6.x-dev",
         "php": "^7.1",
         "openeuropa/ecl-twig-loader": "^0.1"
     },
+    "_todo": "Remove dev dependency on Composer once https://github.com/composer/composer/issues/7268 is fixed.",
     "require-dev": {
-        "cweagans/composer-patches": "~1.0",
-        "openeuropa/code-review": "^0.2",
-        "openeuropa/task-runner": "^0.5",
-        "drupal-composer/drupal-scaffold": "^2.2",
+        "composer/composer": "1.6.3",
         "composer/installers": "^1.2",
-        "drupal/console": "^1",
+        "cweagans/composer-patches": "~1.0",
+        "drupal-composer/drupal-scaffold": "^2.2",
         "drupal/config_devel": "~1.2",
-        "openeuropa/oe_paragraphs": "dev-master",
-        "drush/drush": "^9",
+        "drupal/console": "^1",
         "drupal/drupal-extension": "^3.4",
-        "symfony/dom-crawler": "^3",
-        "webflo/drupal-core-require-dev": "^8.5",
         "drupal/styleguide": "~1.0-alpha3",
-        "nikic/php-parser": "~3"
+        "drush/drush": "^9",
+        "nikic/php-parser": "~3",
+        "openeuropa/code-review": "^0.2",
+        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/task-runner": "^0.5",
+        "symfony/dom-crawler": "^3",
+        "webflo/drupal-core-require-dev": "8.6.x"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
@@ -51,10 +54,15 @@
             "url": "https://packages.drupal.org/8"
         }
     },
+    "config": {
+        "platform": {
+            "php": "7.1.9"
+        }
+    },
     "extra": {
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/474684-151.patch",
+                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch",
                 "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2943172-kernel-test-base.patch"
             }
         },
