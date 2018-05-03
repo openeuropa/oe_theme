@@ -40,8 +40,6 @@ services:
 matrix:
   DRUPAL_VERSION:
     - 8.6.x
-    - 8.5.x
-    - 8.5.x-dev
 
 # Defines the steps to execute
 pipeline:
@@ -62,7 +60,7 @@ pipeline:
       - /cache:/cache
     commands:
       # Installs composer
-      - composer require drupal/core:${DRUPAL_VERSION=8.5.x}
+      - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
 
   # Perform a security check on composer deps ( https://github.com/phpdrone/composer-sa-checker )
   composer-sa-check:
