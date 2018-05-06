@@ -6,13 +6,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core": "8.6.x-dev",
+        "drupal/core": "~8.6",
         "php": "^7.1",
         "openeuropa/ecl-twig-loader": "^0.1"
     },
-    "_todo": "Remove dev dependency on Composer once https://github.com/composer/composer/issues/7268 is fixed.",
     "require-dev": {
-        "composer/composer": "1.6.3",
         "composer/installers": "^1.2",
         "cweagans/composer-patches": "~1.0",
         "drupal-composer/drupal-scaffold": "^2.2",
@@ -26,10 +24,12 @@
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/task-runner": "^0.5",
         "symfony/dom-crawler": "^3",
-        "webflo/drupal-core-require-dev": "8.6.x"
+        "webflo/drupal-core-require-dev": "~8.6"
     },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold"
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-install-cmd": "./vendor/bin/run drupal:site-setup",
+        "post-update-cmd": "./vendor/bin/run drupal:site-setup"
     },
     "autoload": {
         "psr-4": {
@@ -37,14 +37,7 @@
         }
     },
     "autoload-dev": {
-        "psr-0": {
-            "Drupal\\Tests": "build/core/tests",
-            "Drupal\\KernelTests": "build/core/tests",
-            "Drupal\\FunctionalTests": "build/core/tests",
-            "Drupal\\FunctionalJavascriptTests": "build/core/tests"
-        },
         "psr-4": {
-            "Drupal\\simpletest\\": "build/core/modules/simpletest/src",
             "Drupal\\Tests\\oe_theme\\": "tests"
         }
     },
@@ -54,16 +47,12 @@
             "url": "https://packages.drupal.org/8"
         }
     },
-    "config": {
-        "platform": {
-            "php": "7.1.9"
-        }
-    },
     "extra": {
+        "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
                 "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch",
-                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2943172-kernel-test-base.patch"
+                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-04-15/2943172-kernel-test-base-2.patch"
             }
         },
         "installer-paths": {
@@ -71,6 +60,12 @@
             "build/profiles/contrib/{$name}": ["type:drupal-profile"],
             "build/modules/contrib/{$name}": ["type:drupal-module"],
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "platform": {
+            "php": "7.1.9"
         }
     }
 }
