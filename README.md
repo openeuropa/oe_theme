@@ -1,6 +1,6 @@
 # OpenEuropa theme
 
-[![Build Status](https://travis-ci.org/openeuropa/oe_theme.svg?branch=master)](https://travis-ci.org/openeuropa/oe_theme)
+[![Build Status](https://drone.fpfis.eu/api/badges/openeuropa/oe_theme/status.svg?branch=master)](https://drone.fpfis.eu/openeuropa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
