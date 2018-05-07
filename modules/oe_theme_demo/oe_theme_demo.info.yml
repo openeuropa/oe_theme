@@ -8,7 +8,7 @@ dependencies:
   - styleguide:styleguide
 
 config_devel:
-  install:
+  optional:
     - block.block.oe_theme_demo_header_site_switcher
     - block.block.oe_theme_demo_header_language_switcher
     - block.block.oe_theme_demo_header_search
