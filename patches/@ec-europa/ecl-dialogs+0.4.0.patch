@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ec-europa/ecl-dialogs/ecl-dialogs.twig
++++ b/node_modules/@ec-europa/ecl-dialogs/ecl-dialogs.twig
+@@ -51,7 +51,7 @@
+ {% set _dialog_id = dialog_id|default('ecl-dialog') %}
+ {% set _dialog_aria_labelledby = dialog_aria_labelledby|default('ecl-dialog-title') %}
+ {% set _dialog_aria_describedby = dialog_aria_describedby|default('ecl-dialog-description') %}
+-{% set _dialog_aria_hidden = dialog_aria_hidden|default(true) %}
++{% set _dialog_aria_hidden = dialog_aria_hidden|default('true') %}
+ 
+ {% set _dialog_title = {
+   value: 'Dialog',

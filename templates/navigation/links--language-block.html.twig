@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for a set of links used in the language switcher block.
+ *
+ * @see ./core/modules/stable/navigation/links.html.twig
+ */
+#}
+{{ attach_library('oe_theme/language_switcher') }}
+{% if links -%}
+    {% include '@ecl/ecl-language-list' with {
+        languages: languages,
+        link: '#',
+        variant: 'overlay',
+        messages: {
+            dismiss: 'Close'|t,
+            heading: 'Select your language'|t,
+        }
+    } %}
+{%- endif %}

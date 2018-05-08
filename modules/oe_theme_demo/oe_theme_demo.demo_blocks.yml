@@ -1,7 +1,5 @@
 header_site_switcher:
   label: "Header: Site switcher demo"
-header_language_switcher:
-  label: "Header: Language switcher demo"
 header_search:
   label: "Header: Search demo"
 footer_identity:
