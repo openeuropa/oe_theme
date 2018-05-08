@@ -17,6 +17,7 @@ services:
   mysql:
     image: fpfis/mysql56
 
+  # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
     image: selenium/standalone-chrome-debug:2.53.1-beryllium
     environment:
@@ -26,9 +27,6 @@ services:
       - "5900:5900"
     expose:
       - '4444'
-  # If you would like to see what is going on you can run the following on your host:
-  # docker run --rm -p 4444:4444 -p 5900:5900 --network="host" selenium/standalone-firefox-debug:2.53.1-beryllium
-  # This will spawn a selenium server on your host which also includes a vnc server (the password is "secret")
 
   node:
     image: "node:9.5.0"

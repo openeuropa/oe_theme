@@ -12,7 +12,7 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   selenium:
-    image: selenium/standalone-chrome:2.53.0
+    image: selenium/standalone-chrome-debug:2.53.1-beryllium
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
