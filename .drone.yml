@@ -11,6 +11,11 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
 
 matrix:
   DRUPAL_VERSION:

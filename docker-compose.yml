@@ -17,6 +17,12 @@ services:
   mysql:
     image: fpfis/mysql56
 
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
+
   node:
     image: "node:9.5.0"
     user: "node"
