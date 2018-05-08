@@ -48,6 +48,7 @@ class TransformationContext implements Context {
    *   CSS selector.
    *
    * @Transform :tag
+   * @Transform :element
    */
   public function transformElement(string $label): string {
     return isset($this->elements[$label]) ? $this->elements[$label] : $label;

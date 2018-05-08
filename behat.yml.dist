@@ -4,7 +4,6 @@ default:
       paths:
         - %paths.base%/tests/features
       contexts:
-        - Drupal\DrupalExtension\Context\MinkContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
@@ -19,10 +18,12 @@ default:
               sites switcher: ".demo-block-site-switcher"
               search box: ".demo-block-header-search"
               language switcher: ".ecl-language-list"
+              language switcher overlay: ".ecl-dialog__body"
             pages:
               login: "/user/login"
   extensions:
     Behat\MinkExtension:
+
       goutte: ~
       browser_name: 'chrome'
       javascript_session: 'selenium2'
@@ -30,6 +31,7 @@ default:
         wd_host: 'http://selenium:4444/wd/hub'
         capabilities: { "browser": "chrome", "version": "*" }
       base_url: "${drupal.base_url}"
+
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:
