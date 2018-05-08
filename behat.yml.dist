@@ -18,7 +18,7 @@ default:
               contacts block: ".demo-block-footer-ec"
               sites switcher: ".demo-block-site-switcher"
               search box: ".demo-block-header-search"
-              language switcher: ".demo-block-language-switcher"
+              language switcher: ".ecl-language-list"
             pages:
               login: "/user/login"
   extensions:
