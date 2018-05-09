@@ -24,7 +24,7 @@ matrix:
 pipeline:
   npm-build:
     group: prepare
-    image: node:latest
+    image: node:9.5.0
     commands: 
       - npm install --unsafe-perm
       - npm run build
