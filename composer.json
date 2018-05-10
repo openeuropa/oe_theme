@@ -7,8 +7,8 @@
     "prefer-stable": true,
     "require": {
         "drupal/core": "~8.6",
-        "php": "^7.1",
-        "openeuropa/ecl-twig-loader": "^0.1"
+        "openeuropa/ecl-twig-loader": "^0.1",
+        "php": "^7.1"
     },
     "require-dev": {
         "composer/installers": "^1.2",
@@ -21,8 +21,8 @@
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "^0.2",
-        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_multilingual": "dev-master",
+        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/task-runner": "^0.5",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6"
