@@ -7,8 +7,6 @@ drupal:
     name: "drupal"
     user: "root"
     password: ""
-  site:
-    profile: "oe_profile"
   post_install:
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
