@@ -1,0 +1,17 @@
+// Add extra margin to language switcher overlay when toolbar tray is present.
+body {
+  &.toolbar-horizontal {
+    .ecl-language-list--overlay {
+      .ecl-dialog--wide {
+        top: 40px;
+      }
+    }
+    &.toolbar-tray-open {
+      .ecl-language-list--overlay {
+        .ecl-dialog--wide {
+          top: 80px;
+        }
+      }
+    }
+  }
+}

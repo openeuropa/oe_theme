@@ -1,6 +1,6 @@
 # OpenEuropa theme
 
-[![Build Status](https://travis-ci.org/openeuropa/oe_theme.svg?branch=master)](https://travis-ci.org/openeuropa/oe_theme)
+[![Build Status](https://drone.fpfis.eu/api/badges/openeuropa/oe_theme/status.svg?branch=master)](https://drone.fpfis.eu/openeuropa/oe_theme)
 
 Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
@@ -59,7 +59,8 @@ meaning:
 - All PHP development dependencies (Drupal core included) are required in [composer.json](composer.json)
 - All Node.js development dependencies are required in [package.json](package.json)
 - Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
-- All system requirements are containerized using [Docker Composer][5]
+- All system requirements are containerized using [Docker Composer][5].
+- Every change to the code base will be automatically tested using [Drone][19].
 
 ### Project setup
 
@@ -226,6 +227,27 @@ $ npm run watch
 
 Resulting changes are not meant to be committed to this repository.
 
+#### Patching ECL components
+
+ECL components can be patched by using the [`patch-package`][20] NPM project.
+
+To patch a component:
+
+1. Modify its source files directly in `./node_modules/@ec-europa/[component-name]` 
+2. Run:
+
+```
+$ npx patch-package @ec-europa/[component-name]
+```
+
+Or, when using Docker Compose:
+
+```
+$ docker-compose exec -u node node npx patch-package @ec-europa/[component-name]
+```
+
+Patches will be generated in `./patches` and applied when running `npm install`.
+
 ## Demo module
 
 The theme ships with a demo module which provides all necessary configuration and code needed to showcase the theme's
@@ -266,3 +288,5 @@ $ ./vendor/bin/drush en oe_theme_demo -y
 [16]: https://github.com/openeuropa/ecl-twig-loader
 [17]: https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
 [18]: https://www.drush.org/
+[19]: https://drone.io
+[20]: https://www.npmjs.com/package/patch-package

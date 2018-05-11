@@ -271,3 +271,30 @@ function oe_theme_preprocess_pager(&$variables) {
   // Set up additional variables.
   $variables['max_page'] = $pager_total[$element];
 }
+
+/**
+ * Implements hook_preprocess_links().
+ */
+function oe_theme_preprocess_links__language_block(&$variables) {
+  $current_language = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+
+  $variables['languages'] = [];
+  foreach ($variables['links'] as $language_code => $link) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $link['link']["#url"];
+    $href = $url
+      ->setOptions($link['link']['#options'])
+      ->setAbsolute(TRUE)
+      ->toString();
+
+    $variables['languages'][] = [
+      "href" => $href,
+      "hreflang" => $language_code,
+      "label" => $link['link']["#title"],
+      "lang" => $language_code,
+      "isActive" => $language_code === $current_language,
+    ];
+  }
+}

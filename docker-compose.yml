@@ -12,9 +12,21 @@ services:
       XDEBUG_CONFIG: "remote_enable=1 remote_host=${DOCKER_HOST_IP} remote_port=9000 idekey=PHPSTORM remote_autostart=1"
       PHP_IDE_CONFIG: "serverName=Test"
       COMPOSER_MEMORY_LIMIT: "2G"
+      COMPOSER_CACHE_DIR: "/tmp/composer"
 
   mysql:
     image: fpfis/mysql56
+
+  # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
+  selenium:
+    image: selenium/standalone-chrome-debug:3.11
+    environment:
+      - DISPLAY=:99
+      - SE_OPTS=-debug
+    ports:
+      - "5900:5900"
+    expose:
+      - '4444'
 
   node:
     image: "node:9.5.0"

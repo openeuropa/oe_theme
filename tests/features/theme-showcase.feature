@@ -34,3 +34,24 @@ Feature: Theme showcase
     Then I should see the "identity block" element in the "identity footer"
     And I should see the "corporate block" element in the "corporate footer"
     And I should see the "contacts block" element in the "contacts footer"
+
+  @javascript
+  Scenario: The language switcher dialog can be accessed
+    Given I am on the homepage
+    Then the "language switcher overlay" is not visible
+
+    When I open the language switcher dialog
+    Then the "language switcher overlay" is visible
+
+    When I press "Close"
+    Then the "language switcher overlay" is not visible
+
+  @javascript
+  Scenario: Site visitor can change language using the language switcher
+    Given I am on the homepage
+    Then the "language switcher link" element should contain "English"
+
+    When I open the language switcher dialog
+    And I click "Polish"
+    Then the url should match "/pl"
+    And the "language switcher link" element should contain "Polish"
