@@ -19,6 +19,7 @@ default:
               search box: ".demo-block-header-search"
               language switcher: ".ecl-language-list"
               language switcher overlay: ".ecl-dialog__body"
+              language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
             pages:
               login: "/user/login"
   extensions:

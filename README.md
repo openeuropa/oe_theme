@@ -227,6 +227,27 @@ $ npm run watch
 
 Resulting changes are not meant to be committed to this repository.
 
+#### Patching ECL components
+
+ECL components can be patched by using the [`patch-package`][20] NPM project.
+
+To patch a component:
+
+1. Modify its source files directly in `./node_modules/@ec-europa/[component-name]` 
+2. Run:
+
+```
+$ npx patch-package @ec-europa/[component-name]
+```
+
+Or, when using Docker Compose:
+
+```
+$ docker-compose exec -u node node npx patch-package @ec-europa/[component-name]
+```
+
+Patches will be generated in `./patches` and applied when running `npm install`.
+
 ## Demo module
 
 The theme ships with a demo module which provides all necessary configuration and code needed to showcase the theme's
@@ -268,3 +289,4 @@ $ ./vendor/bin/drush en oe_theme_demo -y
 [17]: https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
 [18]: https://www.drush.org/
 [19]: https://drone.io
+[20]: https://www.npmjs.com/package/patch-package

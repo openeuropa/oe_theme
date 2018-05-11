@@ -49,6 +49,9 @@ Feature: Theme showcase
   @javascript
   Scenario: Site visitor can change language using the language switcher
     Given I am on the homepage
-    And I open the language switcher dialog
+    Then the "language switcher link" element should contain "English"
+
+    When I open the language switcher dialog
     And I click "Polish"
     Then the url should match "/pl"
+    And the "language switcher link" element should contain "Polish"
