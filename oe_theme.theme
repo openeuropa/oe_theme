@@ -298,3 +298,26 @@ function oe_theme_preprocess_links__language_block(&$variables) {
     ];
   }
 }
+
+/**
+ * Implements hook_preprocess_content_language_block().
+ */
+function oe_theme_preprocess_content_language_block(&$variables) {
+
+  $variables['options'] = [];
+  foreach ($variables['links'] as $language_code => $link) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $link['link']["#url"];
+    $href = $url
+      ->setOptions($link['link']['#options'])
+      ->setAbsolute(TRUE)
+      ->toString();
+
+    $variables['options'][] = [
+      "href" => $href,
+      "hreflang" => $language_code,
+      "label" => $link['link']["#title"],
+      "lang" => $language_code,
+    ];
+  }
+}

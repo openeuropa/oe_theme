@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for a set of links used in the language switcher block.
+ *
+ * @see ./core/modules/stable/navigation/links.html.twig
+ */
+#}
+{{ attach_library('oe_theme/lang_select_pages') }}
+{% if links -%}
+  {% include '@ecl/ecl-lang-select-pages' with {
+    unavailable: unavailable,
+    current: current,
+    options: options,
+    dropdown_label:  'Select your language'|t
+  } %}
+{%- endif %}

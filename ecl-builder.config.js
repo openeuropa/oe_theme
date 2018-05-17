@@ -45,6 +45,7 @@ module.exports = {
     { from: path.resolve(source_folder), patterns: 'ecl-pagers/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-skip-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-lang-select-sites/*.twig', to: path.resolve(__dirname, 'templates/components') },
+    { from: path.resolve(source_folder), patterns: 'ecl-lang-select-pages/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-language-list/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: 'ecl-dialogs/*.twig', to: path.resolve(__dirname, 'templates/components') },
     { from: path.resolve(source_folder), patterns: '**/variants.json', to: path.resolve(__dirname, 'templates/components') }
