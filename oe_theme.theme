@@ -280,6 +280,12 @@ function oe_theme_preprocess_links__language_block(&$variables) {
     ->getCurrentLanguage()
     ->getId();
 
+  // Get original languages and add portugues and maltese values.
+  $original_languages = \Drupal::languageManager()
+    ->getStandardLanguageList();
+  $original_languages['pt'] = ['Portuguese', 'Português'];
+  $original_languages['mt'] = ['Maltese', 'Malti'];
+
   $variables['languages'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
@@ -292,7 +298,8 @@ function oe_theme_preprocess_links__language_block(&$variables) {
     $variables['languages'][] = [
       "href" => $href,
       "hreflang" => $language_code,
-      "label" => $link['link']["#title"],
+      "label" => $original_languages[$language_code][1],
+      "english_label" => $link['link']["#title"],
       "lang" => $language_code,
       "isActive" => $language_code === $current_language,
     ];

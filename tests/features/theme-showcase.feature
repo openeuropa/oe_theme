@@ -47,11 +47,28 @@ Feature: Theme showcase
     Then the "language switcher overlay" is not visible
 
   @javascript
-  Scenario: Site visitor can change language using the language switcher
+  Scenario: Site visitor can see and change language using the language switcher
     Given I am on the homepage
     Then the "language switcher link" element should contain "English"
-
+      # See original version of languages.
     When I open the language switcher dialog
-    And I click "Polish"
+    Then I should see the link "Български"
+    And I should not see the link "Bulgarian"
+    Then I should see the link "Português"
+    And I should not see the link "Portuguese"
+    Then I should see the link "Malti"
+    And I should not see the link "Maltese"
+
+      # Change languages.
+    When I click "Polski"
     Then the url should match "/pl"
-    And the "language switcher link" element should contain "Polish"
+    And the "language switcher link" element should contain "Polski"
+
+      # Verify that the languages are still rendered in their own version.
+    When I open the language switcher dialog
+    Then I should see the link "Български"
+    And I should not see the link "Bulgarian"
+    Then I should see the link "Português"
+    And I should not see the link "Portuguese"
+    Then I should see the link "Malti"
+    And I should not see the link "Maltese"
