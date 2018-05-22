@@ -2,10 +2,10 @@ header_site_switcher:
   label: "Header: Site switcher demo"
 header_search:
   label: "Header: Search demo"
-footer_identity:
-  label: "Footer: Identity demo"
-footer_corporate:
-  label: "Footer: Corporate demo"
-footer_ec:
-  label: "Footer: European Commission demo"
+footer_custom:
+  label: "Footer: Custom demo"
+footer_corporate_top:
+  label: "Footer: Corporate top demo"
+footer_corporate_bottom:
+  label: "Footer: Corporate bottom demo"
 

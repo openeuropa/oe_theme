@@ -5,13 +5,13 @@ Feature: Site branding
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.
 
   Scenario: The European Commission logo is available throughout the site
-    Given I am on the homepage
+    When I am on the homepage
     Then I should see the "logo" element in the "header"
-    And I am on "the login page"
+    When I am on "the login page"
     Then I should see the "logo" element in the "header"
 
   Scenario: The breadcrumb is visible everywhere but on the homepage
-    Given I am on the homepage
+    When I am on the homepage
     Then I should not see the "breadcrumb" element in the "page"
-    And I am on "the login page"
+    When I am on "the login page"
     Then I should see the "breadcrumb" element in the "page"

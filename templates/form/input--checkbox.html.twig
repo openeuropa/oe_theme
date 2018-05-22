@@ -13,14 +13,13 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-
-{% include '@ecl/ecl-forms-checkboxes' with {
+{% include '@ecl/ec-component-form-checkbox' with {
     'id': attributes.id,
     'name': attributes.name,
     'value': attributes.value,
+    'label': title,
     'checked': attributes.checked is defined,
     'is_disabled': attributes.disabled is defined,
     'has_error': has_error,
-    'has_extra': has_extra,
-    'label': title
+    'extra_classes': has_extra
 } %}{{ children }}

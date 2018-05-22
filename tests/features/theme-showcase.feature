@@ -5,13 +5,13 @@ Feature: Theme showcase
   I want to make sure that I can setup a demo site.
 
   Scenario: The demo site header features placeholder blocks
-    Given I am on the homepage
+    When I am on the homepage
     Then I should see the "sites switcher" element in the "header"
     And I should see the "search box" element in the "header"
     And I should see the "language switcher" element in the "header"
 
   Scenario: The demo site navigation features placeholder menu links
-    Given I am on the homepage
+    When I am on the homepage
     Then I should see the following links in the "navigation" region:
       | About      |
       | Priorities |
@@ -30,14 +30,14 @@ Feature: Theme showcase
       | Departments        |
 
   Scenario: The demo site footer features placeholder blocks
-    Given I am on the homepage
-    Then I should see the "identity block" element in the "identity footer"
-    And I should see the "corporate block" element in the "corporate footer"
-    And I should see the "contacts block" element in the "contacts footer"
+    When I am on the homepage
+    Then I should see the "custom block" element in the "custom footer"
+    And I should see the "corporate top block" element in the "corporate top footer"
+    And I should see the "corporate bottom block" element in the "corporate bottom footer"
 
   @javascript
   Scenario: The language switcher dialog can be accessed
-    Given I am on the homepage
+    When I am on the homepage
     Then the "language switcher overlay" is not visible
 
     When I open the language switcher dialog
@@ -48,7 +48,7 @@ Feature: Theme showcase
 
   @javascript
   Scenario: Site visitor can change language using the language switcher
-    Given I am on the homepage
+    When I am on the homepage
     Then the "language switcher link" element should contain "English"
 
     When I open the language switcher dialog

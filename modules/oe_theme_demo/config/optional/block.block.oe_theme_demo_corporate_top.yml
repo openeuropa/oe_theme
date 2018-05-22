@@ -5,15 +5,15 @@ dependencies:
     - oe_theme_demo
   theme:
     - oe_theme
-id: oe_theme_demo_ec
+id: oe_theme_demo_corporate_top
 theme: oe_theme
-region: footer_ec
+region: footer_corporate_top
 weight: 0
 provider: null
-plugin: 'oe_theme_demo_block:footer_ec'
+plugin: 'oe_theme_demo_block:footer_corporate_top'
 settings:
-  id: 'oe_theme_demo_block:footer_ec'
-  label: 'Footer: European Commission demo'
+  id: 'oe_theme_demo_block:footer_corporate_top'
+  label: 'Footer: Corporate top demo'
   provider: oe_theme_demo
   label_display: '0'
 visibility: {  }

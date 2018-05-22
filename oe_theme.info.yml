@@ -20,9 +20,9 @@ regions:
   page_header: "Page header"
   navigation: "Navigation"
   content: "Content"
-  footer_identity: "Footer: Identity"
-  footer_corporate: "Footer: Corporate"
-  footer_ec: "Footer: European Commission"
+  footer_custom: "Footer: Custom"
+  footer_corporate_top: "Footer: Corporate top"
+  footer_corporate_bottom: "Footer: Corporate bottom"
 
 config_devel:
   optional:

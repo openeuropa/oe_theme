@@ -15,9 +15,9 @@
         "prepare": "patch-package"
     },
     "dependencies": {
-        "@ec-europa/ecl-builder": "0.14.0",
-        "@ec-europa/ecl-preset-full": "0.6.1",
-        "@ec-europa/stylelint-config-ecl": "0.8.0",
+        "@ecl/builder": "0.2.0",
+        "@ecl/ec-preset-full": "1.0.0",
+        "@ecl/stylelint-config": "0.2.0",
         "chokidar-cli": "1.2.0",
         "npm-run-all": "4.0.2",
         "patch-package": "^5.1.1",

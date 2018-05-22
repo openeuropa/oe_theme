@@ -5,15 +5,15 @@ dependencies:
     - oe_theme_demo
   theme:
     - oe_theme
-id: oe_theme_demo_corporate
+id: oe_theme_demo_custom
 theme: oe_theme
-region: footer_corporate
+region: footer_custom
 weight: 0
 provider: null
-plugin: 'oe_theme_demo_block:footer_corporate'
+plugin: 'oe_theme_demo_block:footer_custom'
 settings:
-  id: 'oe_theme_demo_block:footer_corporate'
-  label: 'Footer: Corporate demo'
+  id: 'oe_theme_demo_block:footer_custom'
+  label: 'Footer: Custom demo'
   provider: oe_theme_demo
   label_display: '0'
 visibility: {  }

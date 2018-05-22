@@ -8,13 +8,13 @@
 #}
 {{ attach_library('oe_theme/language_switcher') }}
 {% if links -%}
-    {% include '@ecl/ecl-language-list' with {
+    {% include '@ecl/ec-component-language-list' with {
         languages: languages,
-        link: '#',
         variant: 'overlay',
         messages: {
             dismiss: 'Close'|t,
             heading: 'Select your language'|t,
-        }
+        },
+        extra_classes: 'ecl-site-header__language-list'
     } %}
 {%- endif %}
