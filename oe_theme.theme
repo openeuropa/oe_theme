@@ -41,7 +41,8 @@ function oe_theme_preprocess_menu__main(&$variables) {
           'href' => $item['url'],
           'label' => $item['title'],
           'is_active' => $item['in_active_trail'],
-        ]],
+        ],
+        ],
       ];
     }, $variables['items'][$name]['below']);
   }
