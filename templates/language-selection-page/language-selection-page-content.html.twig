@@ -1,0 +1,30 @@
+{#
+
+/**
+ * @file
+ * The body template file of the language_selection_page module.
+ *
+ * Available variables:
+ *  - configure_url: the configuration page for the module.
+ *  - destination: url of the page without a language set.
+ *  - language-links: links to the page in all available language.
+ */
+
+#}
+
+<div class="language_selection_page_body">
+    <div class="language_selection_page_body_inner">
+        <p>
+{% include '@ecl/ecl-language-list' with {
+    languages: languages,
+    link: '#',
+    variant: 'splash',
+    messages: {
+        dismiss: 'Close'|t,
+        heading: 'Select your language'|t,
+    }
+} %}
+
+        </p>
+    </div>
+</div>
