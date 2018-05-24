@@ -9,7 +9,7 @@ use Drupal\KernelTests\KernelTestBase;
 /**
  * Test content language switcher rendering.
  */
-abstract class MultilingualAbstractKernelTest extends KernelTestBase {
+abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
 
   /**
    * Modules to enable.

@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Test language switcher rendering.
  */
-class LanguageSwitcherTest extends MultilingualAbstractKernelTest {
+class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
   /**
    * Test language switcher rendering.

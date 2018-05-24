@@ -12,7 +12,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @package Drupal\Tests\oe_theme\Kernel
  */
-class ParagraphsTest extends AbstractKernelTest {
+class ParagraphsTest extends AbstractKernelTestBase {
 
   /**
    * Modules to enable.

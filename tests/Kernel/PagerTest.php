@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of the pager component.
  */
-class PagerTest extends AbstractKernelTest {
+class PagerTest extends AbstractKernelTestBase {
 
   /**
    * The 'previous' page link text.

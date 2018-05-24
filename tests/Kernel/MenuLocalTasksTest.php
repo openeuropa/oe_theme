@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Class MenuLocalTasks.
  */
-class MenuLocalTasksTest extends AbstractKernelTest {
+class MenuLocalTasksTest extends AbstractKernelTestBase {
 
   /**
    * Test menu local tasks.

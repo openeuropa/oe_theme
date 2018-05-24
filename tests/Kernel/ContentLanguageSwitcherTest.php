@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Test content language switcher rendering.
  */
-class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTest {
+class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
   /**
    * Modules to enable.
@@ -19,14 +19,6 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTest {
    * @var array
    */
   public static $modules = [
-    'administration_language_negotiation',
-    'content_translation',
-    'locale',
-    'language',
-    'oe_multilingual',
-    'oe_multilingual_demo',
-    'system',
-    'user',
     'node',
   ];
 

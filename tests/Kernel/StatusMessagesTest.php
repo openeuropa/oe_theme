@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of the status messages.
  */
-class StatusMessagesTest extends AbstractKernelTest {
+class StatusMessagesTest extends AbstractKernelTestBase {
 
   /**
    * The message types available.
