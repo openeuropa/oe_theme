@@ -7,10 +7,8 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 use Drupal\node\Entity\Node;
-use Drupal\Core\Routing\CurrentRouteMatch;
 use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Route;
 
 /**
@@ -78,29 +76,32 @@ class ContentLanguageSwitcherTest extends KernelTestBase {
 
     $this->container->get('module_handler')->loadInclude('oe_multilingual', 'install');
     oe_multilingual_install();
-
-    $this->requestStack = new RequestStack();
-    // At this point the current_route_match service has been already
-    // initialised, so we need to override that too in order to make it use our
-    // test request stack service.
-    $current_route_match = new CurrentRouteMatch($this->requestStack);
-    $this->container->set('current_route_match', $current_route_match);
   }
 
   /**
    * Test language switcher rendering.
    */
   public function testLanguageSwitcherRendering(): void {
-
     $node = Node::create([
-      'title' => t('Hello, world!'),
+      'title' => 'Hello, world!',
       'type' => 'oe_demo_translatable_page',
     ]);
     $node->save();
     $translation = $node->addTranslation('es', ['title' => '¡Hola mundo!']);
     $translation->save();
 
-    $this->addRequest('foo.test', 'bg/node/1');
+    // Simulate a request to a node canonical route with a language prefix.
+    $request = Request::create('/bg/node/1');
+    // Let the Drupal router populate all the request parameters.
+    $parameters = \Drupal::service('router.no_access_checks')->matchRequest($request);
+    $request->attributes->add($parameters);
+    // Set the prepared request as current.
+    \Drupal::requestStack()->push($request);
+    // Reset any discovered language. KernelTestBase creates a request to the
+    // root of the website for legacy purposes, so the language is set by
+    // default to the default one.
+    // @see \Drupal\KernelTests\KernelTestBase::bootKernel()
+    \Drupal::languageManager()->reset();
 
     // Setup and render language switcher block.
     $block_manager = \Drupal::service('plugin.manager.block');
@@ -117,7 +118,6 @@ class ContentLanguageSwitcherTest extends KernelTestBase {
 
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
-
   }
 
   /**
