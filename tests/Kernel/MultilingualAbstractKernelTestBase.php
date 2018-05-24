@@ -7,7 +7,9 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\KernelTests\KernelTestBase;
 
 /**
- * Test content language switcher rendering.
+ * Class MultilingualAbstractKernelTestBase.
+ *
+ * @package Drupal\Tests\oe_theme\Kernel
  */
 abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
 
