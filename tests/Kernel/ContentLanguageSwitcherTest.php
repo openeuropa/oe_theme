@@ -4,17 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 use Drupal\node\Entity\Node;
-use Symfony\Cmf\Component\Routing\RouteObjectInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Route;
 
 /**
  * Test content language switcher rendering.
  */
-class ContentLanguageSwitcherTest extends KernelTestBase {
+class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTest {
 
   /**
    * Modules to enable.
@@ -34,48 +31,12 @@ class ContentLanguageSwitcherTest extends KernelTestBase {
   ];
 
   /**
-   * The condition plugin manager.
-   *
-   * @var \Drupal\Core\Condition\ConditionManager
-   */
-  protected $pluginManager;
-  /**
-   * The request stack used for testing.
-   *
-   * @var \Symfony\Component\HttpFoundation\RequestStack
-   */
-  protected $requestStack;
-
-  /**
    * {@inheritdoc}
    */
   protected function setUp() {
     parent::setUp();
-
-    $this->installEntitySchema('user');
     $this->installEntitySchema('node');
-    $this->installSchema('system', 'sequences');
     $this->installSchema('node', 'node_access');
-    $this->installSchema('locale', [
-      'locales_location',
-      'locales_source',
-      'locales_target',
-    ]);
-
-    $this->installConfig([
-      'locale',
-      'language',
-      'content_translation',
-      'administration_language_negotiation',
-      'oe_multilingual',
-    ]);
-
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
-    $this->container->set('theme.registry', NULL);
-
-    $this->container->get('module_handler')->loadInclude('oe_multilingual', 'install');
-    oe_multilingual_install();
   }
 
   /**
@@ -118,21 +79,22 @@ class ContentLanguageSwitcherTest extends KernelTestBase {
 
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
-  }
 
-  /**
-   * Adds a request to the request stack.
-   *
-   * @param string $route_name
-   *   The request route name.
-   * @param string $path
-   *   The request route path.
-   */
-  protected function addRequest($route_name, $path) {
-    $request = Request::create($path);
-    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, $route_name);
-    $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route($path));
-    $this->requestStack->push($request);
+    // Make sure that content language switcher block is present.
+    $actual = $crawler->filter('.ecl-lang-select-page');
+    $this->assertCount(1, $actual);
+
+    // Make sure that unavailable language is properly rendered.
+    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__unavailable')->text();
+    $this->assertEquals('Bulgarian', $actual);
+
+    // Make sure that selected language is properly rendered.
+    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__list > .ecl-lang-select-page__option--is-selected')->text();
+    $this->assertEquals('English', $actual);
+
+    // Make sure that available languages are properly rendered.
+    $actual = $crawler->filter('.ecl-lang-select-page  > .ecl-lang-select-page__list > .ecl-lang-select-page__option > .ecl-link')->text();
+    $this->assertEquals('Spanish', $actual);
   }
 
 }
