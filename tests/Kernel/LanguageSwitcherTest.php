@@ -94,15 +94,15 @@ class LanguageSwitcherTest extends KernelTestBase {
     $this->assertEquals('en', $actual);
 
     $language_list = \Drupal::languageManager()->getStandardLanguageList();
-    $native_language_names = array_combine(array_keys($language_list), array_column($language_list, 1));
+    $language_names = array_combine(array_keys($language_list), array_column($language_list, 1));
     // Manage 2 special cases.
-    $native_language_names['pt'] = 'Português';
-    $native_language_names['mt'] = 'Malti';
+    $language_names['pt'] = 'Português';
+    $language_names['mt'] = 'Malti';
 
     // Make sure that language links are properly rendered.
     foreach (\Drupal::languageManager()->getLanguages() as $language) {
       $id = $language->getId();
-      $name = $native_language_names[$id];
+      $name = $language_names[$id];
       $actual = $crawler->filter(".ecl-dialog a.ecl-language-list__button[lang={$id}]")->text();
       $this->assertEquals($name, trim($actual));
 
