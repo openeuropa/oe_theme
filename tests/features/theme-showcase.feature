@@ -52,6 +52,6 @@ Feature: Theme showcase
     Then the "language switcher link" element should contain "English"
 
     When I open the language switcher dialog
-    And I click "Polish"
+    And I click "Polski"
     Then the url should match "/pl"
-    And the "language switcher link" element should contain "Polish"
+    And the "language switcher link" element should contain "Polski"
