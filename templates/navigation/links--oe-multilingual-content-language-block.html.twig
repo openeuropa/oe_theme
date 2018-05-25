@@ -9,6 +9,7 @@
 {{ attach_library('oe_theme/lang_select_pages') }}
 {% if links -%}
   {% include '@ecl/ecl-lang-select-pages' with {
+    theme: 'primary',
     unavailable: unavailable,
     current: current,
     options: options,
