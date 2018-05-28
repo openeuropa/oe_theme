@@ -1,8 +1,8 @@
 patch-package
---- a/node_modules/@ec-europa/ecl-buttons/ecl-buttons.twig
-+++ b/node_modules/@ec-europa/ecl-buttons/ecl-buttons.twig
-@@ -47,7 +47,7 @@
- {# Print result #}
+--- a/node_modules/@ecl/generic-component-button/generic-component-button.twig
++++ a/node_modules/@ecl/generic-component-button/generic-component-button.twig
+@@ -54,7 +54,7 @@
+ {# Print the result #}
  
  {% if _type == 'link' %}
 -  <a href="{{ _href }}" class="{{ _css_class }}"{{ _extra_attributes|raw }}>{% block link_label_block _label %}</a>

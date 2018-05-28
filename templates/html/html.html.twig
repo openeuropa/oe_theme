@@ -14,12 +14,12 @@
     <css-placeholder token="{{ placeholder_token }}">
     <js-placeholder token="{{ placeholder_token }}">
   </head>
-  <body{{ attributes.addClass('language-' ~ html_attributes.lang) }}>
+  <body{{ attributes.addClass('language-' ~ html_attributes.lang).addClass('ecl-typography') }}>
     {#
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
     #}
-    {% include '@ecl/ecl-skip-links' with {
+    {% include '@ecl/generic-component-skip-link' with {
       'label': 'Skip to main content'|t,
       'id': 'skip-id',
       'href': '#main-content',

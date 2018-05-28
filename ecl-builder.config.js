@@ -1,54 +1,97 @@
 const path = require('path');
-const is_prod = process.env.NODE_ENV === 'production';
-const source_folder = __dirname + '/node_modules/@ec-europa';
+const pkg = require('./package.json');
+
+const isProd = process.env.NODE_ENV === 'production';
+const outputFolder = __dirname;
+
+const nodeModules = __dirname + '/node_modules';
+
+// SCSS includePaths
+const includePaths = [nodeModules];
+
+const banner = `${pkg.name} - ${
+  pkg.version
+} Built on ${new Date().toISOString()}`;
 
 module.exports = {
-
-  scripts: [{
-    entry: path.resolve(source_folder, 'ecl-preset-full/index.js'),
-    dest: path.resolve(__dirname, 'js/base.js'),
-    options: {
-      sourceMap: is_prod ? false : 'inline',
-      moduleName: 'ECL'
-    }
-  }],
-
-  styles: [
+  scripts: [
     {
-      entry: 'sass/style.scss',
-      dest: 'css/style.css',
-      options: { sourceMap: is_prod ? 'file' : true }
+      entry: path.resolve(nodeModules, '@ecl/ec-preset-website/ec-preset-website.js'),
+      dest: path.resolve(outputFolder, 'js/base.js'),
+      options: {
+        banner,
+        moduleName: 'ECL',
+        sourceMap: isProd ? false : 'inline',
+      }
     }
   ],
-
+  styles: [
+    {
+      entry: path.resolve(__dirname, 'sass/style.scss'),
+      dest: path.resolve(outputFolder, 'css/style.css'),
+      options: {
+        banner,
+        includePaths,
+        sourceMap: isProd ? 'file' : true,
+      },
+    },
+  ],
   copy: [
-    { from: path.resolve(source_folder, 'ecl-icons/fonts'), to: path.resolve(__dirname, 'fonts')},
-    { from: path.resolve(source_folder, 'ecl-forms-checkboxes/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder, 'ecl-forms-feedback-messages/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder, 'ecl-forms-radios/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder, 'ecl-forms-selects/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder, 'ecl-logos/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder, 'ecl-messages/images'), to: path.resolve(__dirname, 'images')},
-    { from: path.resolve(source_folder), patterns: 'ecl-accordions/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-breadcrumbs/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-buttons/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-fields/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-forms-checkboxes/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-forms-labels/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-forms-radios/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-link-blocks/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-logos/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-messages/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-navigation-lists/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-navigation-menus/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-pagers/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-skip-links/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-lang-select-sites/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-lang-select-pages/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-language-list/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: 'ecl-dialogs/*.twig', to: path.resolve(__dirname, 'templates/components') },
-    { from: path.resolve(source_folder), patterns: '**/variants.json', to: path.resolve(__dirname, 'templates/components') }
+    { from: path.resolve(nodeModules, '@ecl/generic-style-icon/fonts'), to: path.resolve(outputFolder, 'fonts') },
+    { from: path.resolve(nodeModules, '@ecl/generic-component-form-checkbox/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-form-feedback-message/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-form-radio/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-form-select/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-logo/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-message/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/generic-component-social-icon/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-form-checkbox/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-form-feedback-message/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-form-radio/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-form-select/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-logo/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-message/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl/ec-component-social-icon/images'), to: path.resolve(outputFolder, 'images')},
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-accordion/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-button/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-field/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-checkbox/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-label/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-radio/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-text-input/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-link-block/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-logo/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-message/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-navigation-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-navigation-menu/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-pager/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-site-switcher/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-lang-select-site/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-dialog/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-accordion/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-button/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-field/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-checkbox/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-label/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-radio/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-text-input/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-link-block/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-logo/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-message/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-navigation-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-navigation-menu/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-pager/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-search-form/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-site-switcher/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-lang-select-site/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-dialog/*.twig', to: path.resolve(outputFolder, 'templates/components') }
   ]
-
 };

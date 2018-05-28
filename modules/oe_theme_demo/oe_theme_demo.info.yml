@@ -11,6 +11,6 @@ config_devel:
   optional:
     - block.block.oe_theme_demo_header_site_switcher
     - block.block.oe_theme_demo_header_search
-    - block.block.oe_theme_demo_corporate
-    - block.block.oe_theme_demo_ec
-    - block.block.oe_theme_demo_identity
+    - block.block.oe_theme_demo_corporate_top
+    - block.block.oe_theme_demo_corporate_bottom
+    - block.block.oe_theme_demo_custom

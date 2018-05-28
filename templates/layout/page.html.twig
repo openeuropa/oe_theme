@@ -37,28 +37,29 @@
 
 <footer class="ecl-footer">
 
-  {% if page.footer_identity %}
-  <div class="ecl-footer__site-identity">
+  {% if page.footer_custom %}
+  <div class="ecl-footer__custom">
     <div class="ecl-container">
-      {{ page.footer_identity }}
+      {{ page.footer_custom }}
     </div>
   </div>
   {% endif %}
 
-  {% if page.footer_corporate %}
-  <div class="ecl-footer__site-corporate">
-    <div class="ecl-container">
-      {{ page.footer_corporate }}
+  <div class="ecl-footer__corporate">
+    {% if page.footer_corporate_top %}
+    <div class="ecl-footer__corporate-top">
+      <div class="ecl-container">
+        {{ page.footer_corporate_top }}
+      </div>
     </div>
-  </div>
-  {% endif %}
-
-  {% if page.footer_ec %}
-  <div class="ecl-footer__ec">
-    <div class="ecl-container">
-      {{ page.footer_ec }}
+    {% endif %}
+    {% if page.footer_corporate_bottom %}
+    <div class="ecl-footer__corporate-bottom">
+      <div class="ecl-container">
+        {{ page.footer_corporate_bottom }}
+      </div>
     </div>
+    {% endif %}
   </div>
-  {% endif %}
 
 </footer>

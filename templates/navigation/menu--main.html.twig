@@ -8,7 +8,7 @@
 #}
 {{ attach_library('oe_theme/navigation') }}
 {% if links %}
-  {% include '@ecl/ecl-navigation-menus' with {
+  {% include '@ecl/ec-component-navigation-menu' with {
     'links': links,
   } %}
 {% endif %}

@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_demo
+  theme:
+    - oe_theme
+id: oe_theme_demo_corporate_bottom
+theme: oe_theme
+region: footer_corporate_bottom
+weight: 0
+provider: null
+plugin: 'oe_theme_demo_block:footer_corporate_bottom'
+settings:
+  id: 'oe_theme_demo_block:footer_corporate_bottom'
+  label: 'Footer: Corporate bottom demo'
+  provider: oe_theme_demo
+  label_display: '0'
+visibility: {  }

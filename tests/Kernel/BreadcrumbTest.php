@@ -40,13 +40,13 @@ class BreadcrumbTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-breadcrumbs');
+    $actual = $crawler->filter('nav.ecl-breadcrumb');
     $this->assertCount(1, $actual);
 
     // Assert links are rendered correctly.
     $position = 0;
     foreach ($links as $title => $url) {
-      $link = $crawler->filter('ol.ecl-breadcrumbs__segments-wrapper li.ecl-breadcrumbs__segment a.ecl-breadcrumbs__link')->eq($position);
+      $link = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $position++;
     }

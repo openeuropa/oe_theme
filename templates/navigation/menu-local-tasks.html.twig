@@ -7,17 +7,17 @@
  */
 #}
 {% if primary %}
-  {% include '@ecl/ecl-navigation-lists' with {
+  {% include '@ecl/ec-component-navigation-list' with {
     'title': 'Primary tabs'|t,
-    'variant': 'tabs',
+    'display': 'tabs',
     'links': primary_links,
     'extra_classes': 'ecl-u-mb-l',
   } %}
 {% endif %}
 {% if secondary %}
-  {% include '@ecl/ecl-navigation-lists' with {
+  {% include '@ecl/ec-component-navigation-list' with {
     'title': 'Secondary tabs'|t,
-    'variant': 'small',
+    'display': 'small',
     'links': secondary_links,
     'extra_classes': 'ecl-u-mb-l',
   } %}
