@@ -8,10 +8,10 @@
 #}
 {% block content %}
   {% if site_logo %}
-    {% include '@ecl/ecl-logos' with {
-      'to': url('<front>'),
+    {% include '@ecl/generic-component-logo' with {
+      'href': url('<front>'),
       'title': site_name,
       'type': 'right',
-    } %}
+    } only %}
   {% endif %}
 {% endblock %}

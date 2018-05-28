@@ -12,7 +12,7 @@
       {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
     {% endfor %}
 
-    {% include '@ecl/ecl-messages' with {
+    {% include '@ecl/ec-component-message' with {
       'title': status_headings[type],
       'message': messages,
       'modifier': (type == 'status' ? 'success' : type),

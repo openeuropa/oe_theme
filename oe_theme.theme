@@ -37,9 +37,12 @@ function oe_theme_preprocess_menu__main(&$variables) {
   foreach ($variables['items'] as $name => $link) {
     $variables['links'][$name]['children_links'] = array_map(function ($item) {
       return [
-        'href' => $item['url'],
-        'label' => $item['title'],
-        'is_active' => $item['in_active_trail'],
+        'links' => [[
+          'href' => $item['url'],
+          'label' => $item['title'],
+          'is_active' => $item['in_active_trail'],
+        ],
+        ],
       ];
     }, $variables['items'][$name]['below']);
   }
@@ -145,6 +148,7 @@ function oe_theme_preprocess_input__checkbox(&$variables) {
 function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $element = &$variables['element'];
   $variables['has_error'] = !empty($element['#errors']);
+
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['title'] = ['#markup' => $element['#title']];
   }
@@ -294,7 +298,7 @@ function oe_theme_preprocess_links__language_block(&$variables) {
       "hreflang" => $language_code,
       "label" => $link['link']["#title"],
       "lang" => $language_code,
-      "isActive" => $language_code === $current_language,
+      "is_active" => $language_code === $current_language,
     ];
   }
 }

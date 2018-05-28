@@ -64,7 +64,7 @@ class PagerTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     // Assert the count of pagers.
-    $pagers_count = $crawler->filter('nav.ecl-pager__wrapper');
+    $pagers_count = $crawler->filter('nav.ecl-pager');
     $this->assertCount(3, $pagers_count);
 
     // Check the first pager variant (all elements visible).
@@ -138,7 +138,7 @@ class PagerTest extends AbstractKernelTest {
     $crawler = new Crawler($html);
 
     // Assert the presence of the pager.
-    $wrapper = $crawler->filter('nav.ecl-pager__wrapper');
+    $wrapper = $crawler->filter('nav.ecl-pager');
     $this->assertCount(1, $wrapper);
 
     // Assert that the current page set is correct.

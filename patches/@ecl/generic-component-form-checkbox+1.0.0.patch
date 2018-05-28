@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl/generic-component-form-checkbox/generic-component-form-checkbox.twig
++++ b/node_modules/@ecl/generic-component-form-checkbox/generic-component-form-checkbox.twig
+@@ -79,7 +79,7 @@
+   _input_attributes: _input_attributes,
+   _is_disabled: _is_disabled,
+   _system: _system
+-} only %}
++} %}
+   {% block label %}
+     <input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="{{ _id }}" value="{{ _value }}" name="{{ _name }}"{{ _checked ? ' checked' : '' }}{{ (_is_disabled is defined and _is_disabled == true) ? ' disabled' : '' }}{{ _input_attributes|raw }} />
+     <span class="ecl-checkbox__label">{{ _label }}</span>
