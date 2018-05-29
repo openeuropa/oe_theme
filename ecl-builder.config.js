@@ -69,6 +69,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-pager/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-site-switcher/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-lang-select-page/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-lang-select-site/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-dialog/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -90,6 +91,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-search-form/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-site-switcher/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-lang-select-page/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-lang-select-site/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-dialog/*.twig', to: path.resolve(outputFolder, 'templates/components') }

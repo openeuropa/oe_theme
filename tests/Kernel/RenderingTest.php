@@ -13,7 +13,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that rendering of elements follows the theme implementation.
  */
-class RenderingTest extends AbstractKernelTest implements FormInterface {
+class RenderingTest extends AbstractKernelTestBase implements FormInterface {
 
   /**
    * {@inheritdoc}

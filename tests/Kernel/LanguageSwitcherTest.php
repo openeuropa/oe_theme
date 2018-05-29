@@ -4,58 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test language switcher rendering.
  */
-class LanguageSwitcherTest extends KernelTestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = [
-    'administration_language_negotiation',
-    'content_translation',
-    'locale',
-    'language',
-    'oe_multilingual',
-    'system',
-    'user',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->installConfig([
-      'locale',
-      'language',
-      'content_translation',
-      'administration_language_negotiation',
-      'oe_multilingual',
-    ]);
-
-    $this->installEntitySchema('user');
-    $this->installSchema('system', 'sequences');
-    $this->installSchema('locale', [
-      'locales_location',
-      'locales_source',
-      'locales_target',
-    ]);
-
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
-    $this->container->set('theme.registry', NULL);
-
-    $this->container->get('module_handler')->loadInclude('oe_multilingual', 'install');
-    oe_multilingual_install();
-  }
+class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
   /**
    * Test language switcher rendering.
@@ -93,11 +47,7 @@ class LanguageSwitcherTest extends KernelTestBase {
     $actual = $crawler->filter('a.ecl-lang-select-sites__link > .ecl-lang-select-sites__code > .ecl-lang-select-sites__code-text')->text();
     $this->assertEquals('en', $actual);
 
-    $language_list = \Drupal::languageManager()->getStandardLanguageList();
-    $language_names = array_combine(array_keys($language_list), array_column($language_list, 1));
-    // Manage 2 special cases.
-    $language_names['pt'] = 'Português';
-    $language_names['mt'] = 'Malti';
+    $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
 
     // Make sure that language links are properly rendered.
     foreach (\Drupal::languageManager()->getLanguages() as $language) {

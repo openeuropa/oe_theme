@@ -8,11 +8,11 @@ use Drupal\KernelTests\KernelTestBase;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class AbstractKernelTest.
+ * Class AbstractKernelTestBase.
  *
  * @package Drupal\Tests\oe_theme\Kernel
  */
-abstract class AbstractKernelTest extends KernelTestBase {
+abstract class AbstractKernelTestBase extends KernelTestBase {
 
   /**
    * {@inheritdoc}

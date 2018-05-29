@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Class BreadcrumbTest.
  */
-class BreadcrumbTest extends AbstractKernelTest {
+class BreadcrumbTest extends AbstractKernelTestBase {
 
   /**
    * {@inheritdoc}

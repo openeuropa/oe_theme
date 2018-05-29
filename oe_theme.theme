@@ -302,3 +302,38 @@ function oe_theme_preprocess_links__language_block(&$variables) {
     ];
   }
 }
+
+/**
+ * Implements hook_preprocess_links__oe_multilingual_content_language_block().
+ *
+ * Adds extra variables regarding the current and the unavailable languages,
+ * and prepares the links for rendering.
+ */
+function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$variables) {
+  $entity = \Drupal::service('oe_multilingual.helper')->getEntityFromCurrentRoute();
+  /** @var \Drupal\Core\Entity\EntityInterface $translation */
+  $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
+  $variables['current'] = $translation->language()->getName();
+  $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
+  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['unavailable'] = $language_names[$current_language];
+
+  // Normalize the links to an array of options suitable for the ECL
+  // "ecl-lang-select-pages" template.
+  $variables['options'] = [];
+  foreach ($variables['links'] as $language_code => $link) {
+    /** @var \Drupal\Core\Url $url */
+    $url = $link['link']['#url'];
+    $href = $url
+      ->setOptions($link['link']['#options'])
+      ->setAbsolute(TRUE)
+      ->toString();
+
+    $variables['options'][] = [
+      'href' => $href,
+      'hreflang' => $language_code,
+      'label' => $link['link']['#title'],
+      'lang' => $language_code,
+    ];
+  }
+}

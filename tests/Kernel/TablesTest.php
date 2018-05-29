@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of the table component.
  */
-class TablesTest extends AbstractKernelTest {
+class TablesTest extends AbstractKernelTestBase {
 
   /**
    * Tests a single table rendering.

@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Class MainMenuTest.
  */
-class MainMenuTest extends AbstractKernelTest {
+class MainMenuTest extends AbstractKernelTestBase {
 
   /**
    * {@inheritdoc}
