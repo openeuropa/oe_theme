@@ -78,7 +78,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Make sure that unavailable language is properly rendered.
     $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__unavailable')->text();
-    $this->assertEquals('Bulgarian', $actual);
+    $this->assertEquals('Български', $actual);
 
     // Make sure that selected language is properly rendered.
     $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__list > .ecl-lang-select-page__option--is-selected')->text();
@@ -86,7 +86,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Make sure that available languages are properly rendered.
     $actual = $crawler->filter('.ecl-lang-select-page  > .ecl-lang-select-page__list > .ecl-lang-select-page__option > .ecl-link')->text();
-    $this->assertEquals('Spanish', $actual);
+    $this->assertEquals('Español', $actual);
   }
 
 }

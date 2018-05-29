@@ -47,11 +47,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter('a.ecl-lang-select-sites__link > .ecl-lang-select-sites__code > .ecl-lang-select-sites__code-text')->text();
     $this->assertEquals('en', $actual);
 
-    $language_list = \Drupal::languageManager()->getStandardLanguageList();
-    $language_names = array_combine(array_keys($language_list), array_column($language_list, 1));
-    // Manage 2 special cases.
-    $language_names['pt'] = 'Português';
-    $language_names['mt'] = 'Malti';
+    $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
 
     // Make sure that language links are properly rendered.
     foreach (\Drupal::languageManager()->getLanguages() as $language) {

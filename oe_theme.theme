@@ -314,7 +314,9 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$var
   /** @var \Drupal\Core\Entity\EntityInterface $translation */
   $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
   $variables['current'] = $translation->language()->getName();
-  $variables['unavailable'] = \Drupal::languageManager()->getCurrentLanguage()->getName();
+  $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
+  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['unavailable'] = $language_names[$current_language];
 
   // Normalize the links to an array of options suitable for the ECL
   // "ecl-lang-select-pages" template.
