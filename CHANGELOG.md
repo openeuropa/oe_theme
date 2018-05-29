@@ -1,5 +1,19 @@
 # Change Log
 
+## [0.2.0](https://github.com/openeuropa/oe_theme/tree/0.2.0) (2018-05-29)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.1.0...0.2.0)
+
+**Merged pull requests:**
+
+- Language labels are translated in their native language. [\#75](https://github.com/openeuropa/oe_theme/pull/75) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-480: Provide a language selection page [\#74](https://github.com/openeuropa/oe_theme/pull/74) ([richardcanoe](https://github.com/richardcanoe))
+- OPENEUROPA-581: Update ECL library to 1.0.0. [\#73](https://github.com/openeuropa/oe_theme/pull/73) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-469: Add support for Content Language Switcher block. [\#71](https://github.com/openeuropa/oe_theme/pull/71) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-558: Theme language switcher block [\#70](https://github.com/openeuropa/oe_theme/pull/70) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-560: Port CI/CD setup to Drone [\#69](https://github.com/openeuropa/oe_theme/pull/69) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-298: Commit hash updated for oe\_profile. [\#68](https://github.com/openeuropa/oe_theme/pull/68) ([richardcanoe](https://github.com/richardcanoe))
+- OPENEUROPA-556: Fix breadcrumbs after ECL update and add kernel tests. [\#67](https://github.com/openeuropa/oe_theme/pull/67) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [0.1.0](https://github.com/openeuropa/oe_theme/tree/0.1.0) (2018-04-23)
 **Closed issues:**
 
