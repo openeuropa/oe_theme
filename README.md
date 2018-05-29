@@ -156,7 +156,7 @@ $ docker-compose exec -u web web ./vendor/bin/behat
 
 Manually disabling Drupal 8 caching is a laborious process that is well described [here][14].
 
-Alternatively you can use the following Drupal Console command to disable/enable Drupal 8 caching:
+Alternatively, you can use the following Drupal Console command to disable/enable Drupal 8 caching:
 
 ```
 $ ./vendor/bin/drupal site:mode dev  # Disable all caches.

@@ -1,0 +1,20 @@
+{#
+
+/**
+ * @file
+ * The body template file of the language_selection_page module.
+ *
+ * Available variables:
+ *  - configure_url: the configuration page for the module.
+ *  - destination: url of the page without a language set.
+ *  - languages: links to the page in all available language.
+ */
+
+#}
+
+{% include '@ecl/ec-component-language-list' with {
+    languages: languages,
+    variant: 'splash',
+    logo: true
+} %}
+
