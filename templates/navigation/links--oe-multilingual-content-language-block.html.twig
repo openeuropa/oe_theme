@@ -7,12 +7,10 @@
  */
 #}
 {{ attach_library('oe_theme/lang_select_pages') }}
-{% if links -%}
-  {% include '@ecl/ec-component-lang-select-page' with {
-    is_primary: true,
-    unavailable: unavailable,
-    current: current,
-    options: options,
-    dropdown_label: 'Select your language'|t
-  } %}
-{%- endif %}
+{% include '@ecl/ec-component-lang-select-page' with {
+  is_primary: true,
+  unavailable: unavailable,
+  current: current,
+  options: options,
+  dropdown_label: 'Select your language'|t
+} %}
