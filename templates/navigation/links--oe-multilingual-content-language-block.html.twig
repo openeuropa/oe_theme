@@ -9,12 +9,10 @@
 {{ attach_library('oe_theme/lang_select_pages') }}
 {% if links -%}
   {% include '@ecl/ec-component-lang-select-page' with {
-    is_primary: is_primary|default(true),
-    unavailable: unavailable|default('English'),
-    current: current|default(''),
-    options: options|default([]),
-    dropdown_label: dropdown_label|default('Select your language'|t),
-    'extra_classes': extra_classes|default(''),
-    'extra_attributes': extra_attributes|default([])
+    is_primary: true,
+    unavailable: unavailable,
+    current: current,
+    options: options,
+    dropdown_label: 'Select your language'|t
   } %}
 {%- endif %}
