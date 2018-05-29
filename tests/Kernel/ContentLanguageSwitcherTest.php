@@ -39,22 +39,12 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       'title' => 'Hello, world!',
       'type' => 'oe_demo_translatable_page',
     ]);
-    $node->save();
-    $translation = $node->addTranslation('es', ['title' => '¡Hola mundo!']);
-    $translation->save();
+    /** @var \Drupal\Core\Entity\EntityInterface $translation */
+    $node->addTranslation('es', ['title' => '¡Hola mundo!'])->save();
 
-    // Simulate a request to a node canonical route with a language prefix.
-    $request = Request::create('/bg/node/1');
-    // Let the Drupal router populate all the request parameters.
-    $parameters = \Drupal::service('router.no_access_checks')->matchRequest($request);
-    $request->attributes->add($parameters);
-    // Set the prepared request as current.
-    \Drupal::requestStack()->push($request);
-    // Reset any discovered language. KernelTestBase creates a request to the
-    // root of the website for legacy purposes, so the language is set by
-    // default to the default one.
-    // @see \Drupal\KernelTests\KernelTestBase::bootKernel()
-    \Drupal::languageManager()->reset();
+    // Simulate a request to the canonical route of the node with Bulgarian
+    // language prefix.
+    $this->setCurrentRequest('/bg/node/' . $node->id());
 
     // Setup and render language switcher block.
     $block_manager = \Drupal::service('plugin.manager.block');
@@ -77,16 +67,97 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Make sure that unavailable language is properly rendered.
-    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__unavailable')->text();
-    $this->assertEquals('Български', $actual);
+    $this->assertUnavailableLanguage($crawler, 'Български');
 
     // Make sure that selected language is properly rendered.
-    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__list > .ecl-lang-select-page__option--is-selected')->text();
-    $this->assertEquals('English', $actual);
+    $this->assertSelectedLanguage($crawler, 'English');
 
     // Make sure that available languages are properly rendered.
-    $actual = $crawler->filter('.ecl-lang-select-page  > .ecl-lang-select-page__list > .ecl-lang-select-page__option > .ecl-link')->text();
-    $this->assertEquals('Español', $actual);
+    $this->assertTranslationLinks($crawler, ['Español']);
+
+    // Remove the spanish translation.
+    $node->removeTranslation('es');
+    $node->save();
+
+    // Re-render the block assuming a request to the Spanish version of the
+    // node.
+    $this->setCurrentRequest('/es/node/' . $node->id());
+    $render = $plugin_block->build();
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    // Verify that the requested language is set as unavailable.
+    $this->assertUnavailableLanguage($crawler, 'Español');
+
+    // Verify that the content has been rendered in the fallback language.
+    $this->assertSelectedLanguage($crawler, 'English');
+
+    // Make sure that no language links are rendered.
+    $this->assertTranslationLinks($crawler, []);
+  }
+
+  /**
+   * Sets a request to a certain URI as the current in the request stack.
+   *
+   * @param string $uri
+   *   The URI of the request. It needs to match a valid Drupal route.
+   */
+  protected function setCurrentRequest(string $uri): void {
+    // Simulate a request to a node canonical route with a language prefix.
+    $request = Request::create($uri);
+    // Let the Drupal router populate all the request parameters.
+    $parameters = \Drupal::service('router.no_access_checks')->matchRequest($request);
+    $request->attributes->add($parameters);
+    // Set the prepared request as current.
+    \Drupal::requestStack()->push($request);
+    // Reset any discovered language. KernelTestBase creates a request to the
+    // root of the website for legacy purposes, so the language is set by
+    // default to the default one.
+    // @see \Drupal\KernelTests\KernelTestBase::bootKernel()
+    \Drupal::languageManager()->reset();
+  }
+
+  /**
+   * Asserts that a language is marked as unavailable.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The content language block crawler.
+   * @param string $expected
+   *   The label of the language.
+   */
+  protected function assertUnavailableLanguage(Crawler $crawler, string $expected): void {
+    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__unavailable')->text();
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Asserts that a language is marked as the current rendered.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The content language block crawler.
+   * @param string $expected
+   *   The label of the language.
+   */
+  protected function assertSelectedLanguage(Crawler $crawler, string $expected): void {
+    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__list > .ecl-lang-select-page__option--is-selected')->text();
+    $this->assertEquals($expected, $actual);
+  }
+
+  /**
+   * Asserts the rendered translation links in the content language switcher.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The content language block crawler.
+   * @param array $expected
+   *   The labels of the translations that should be rendered as links.
+   */
+  protected function assertTranslationLinks(Crawler $crawler, array $expected): void {
+    $elements = $crawler->filter('.ecl-lang-select-page  > .ecl-lang-select-page__list > .ecl-lang-select-page__option > .ecl-link');
+    $this->assertSameSize($expected, $elements);
+
+    $actual = array_column(iterator_to_array($elements), 'nodeValue');
+    $this->assertEquals($expected, $actual);
   }
 
 }
