@@ -53,9 +53,16 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch",
+                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-06-04/474684-181.patch",
                 "https://www.drupal.org/project/drupal/issues/1988968": "https://www.drupal.org/files/issues/2018-03-21/1988968-113.patch",
                 "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-04-15/2943172-kernel-test-base-2.patch"
+            }
+        },
+        "patches-ignore": {
+            "openeuropa/oe_multilingual": {
+                "drupal/core": {
+                    "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch"
+                }
             }
         },
         "installer-paths": {

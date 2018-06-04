@@ -11,7 +11,7 @@ drupal:
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"
-    - "./vendor/bin/drush en oe_theme_demo -y"
+#    - "./vendor/bin/drush en oe_theme_demo -y"
     - "./vendor/bin/drush en oe_multilingual -y"
     - "./vendor/bin/drush pmu big_pipe -y"
     - "./vendor/bin/drush cr"

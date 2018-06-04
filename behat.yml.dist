@@ -22,6 +22,7 @@ default:
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
             pages:
               login: "/user/login"
+              ECL components overview: "/components"
   extensions:
     Behat\MinkExtension:
       goutte: ~

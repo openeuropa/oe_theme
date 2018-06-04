@@ -6,6 +6,7 @@ package: OpenEuropa
 dependencies:
   - drupal:block
   - styleguide:styleguide
+  - ui_patterns:ui_patterns_library
 
 config_devel:
   optional:
