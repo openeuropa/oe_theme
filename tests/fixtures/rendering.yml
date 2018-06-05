@@ -218,6 +218,8 @@
   assertions:
     count:
       'a.ecl-button[href="http://example.com"]': 1
+      'ul.ecl-listing--two-columns': 0
+      'ul.ecl-listing--three-columns': 0
     equals:
       'h3.ecl-heading': "Block title"
       'h3.ecl-list-item__title': "Business, Economy, Euro"
@@ -233,6 +235,7 @@
   assertions:
     count:
       'ul.ecl-listing--two-columns': 1
+      'ul.ecl-listing--three-columns': 0
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -242,4 +245,5 @@
         - "Two"
   assertions:
     count:
+      'ul.ecl-listing--two-columns': 0
       'ul.ecl-listing--three-columns': 1
