@@ -181,3 +181,44 @@
     equals:
       'h3.ecl-list-item__title': "Item title"
       'p.ecl-list-item__detail': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      title: "Block title"
+      items:
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "Business, Economy, Euro"
+             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+  assertions:
+    count:
+      'a.ecl-button[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-heading': "Block title"
+      'h3.ecl-list-item__title': "Business, Economy, Euro"
+      'p.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-button': "View all"
+- array:
+    '#type': pattern
+    '#id': list_item_block_two_columns
+    '#fields':
+      items:
+        - "One"
+        - "Two"
+  assertions:
+    count:
+      'ul.ecl-listing--two-columns': 1
+- array:
+    '#type': pattern
+    '#id': list_item_block_three_columns
+    '#fields':
+      items:
+        - "One"
+        - "Two"
+  assertions:
+    count:
+      'ul.ecl-listing--three-columns': 1
