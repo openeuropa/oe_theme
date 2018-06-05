@@ -10,11 +10,9 @@
   {{ pattern.meta }}
 
   {# Rendered pattern preview. #}
-  <fieldset>
-    <legend>{{ "Preview"|t }}</legend>
-    <div>
-      {{ pattern.rendered }}
-    </div>
-  </fieldset>
+  <h3>{{ "Preview"|t }}</h3>
+  <div class="ecl-u-clearfix">
+    {{ pattern.rendered }}
+  </div>
 
 {% endif %}

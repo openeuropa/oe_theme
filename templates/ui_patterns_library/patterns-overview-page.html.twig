@@ -4,11 +4,9 @@
  * UI Pattern library page template, override this in your theme.
  */
 #}
-
 {% if patterns is not empty %}
 
   {# List of available patterns with anchor links. #}
-  <!-- Block of links with title -->
   <div class="ecl-link-block">
     <ul class="ecl-link-block__list">
       {% for pattern_name, pattern in patterns %}
@@ -21,24 +19,23 @@
 
   {% for pattern_name, pattern in patterns %}
 
+  <div class="ecl-u-clearfix ecl-u-pv-l">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
+    <a class="ecl-button ecl-button--call ecl-button--caret-right ecl-u-f-r" href="{{ url('ui_patterns.patterns.single', {'name': pattern.id }) }}">
+      {% trans %}View as standalone{% endtrans %}
+    </a>
+
+    <h2 class="ecl-u-mt-none">{{ pattern.label }}</h2>
     {{ pattern.meta }}
 
     {# Rendered pattern preview. #}
-    <h4>{{ "Preview"|t }}</h4>
-    <div>
+    <h3>{{ "Preview"|t }}</h3>
+    <div class="ecl-u-clearfix">
       {{ pattern.rendered }}
     </div>
+  </div>
 
-    {# Link to standalone pattern preview page.#}
-    <p>
-      <a class="ecl-button ecl-button--call ecl-button--caret-right" href="{{ url('ui_patterns.patterns.single', {'name': pattern_name}) }}">
-        {% trans %}View {{ pattern.label }} as stand-alone{% endtrans %}
-      </a>
-    </p>
-
-    <hr>
   {% endfor %}
 {% endif %}
 
