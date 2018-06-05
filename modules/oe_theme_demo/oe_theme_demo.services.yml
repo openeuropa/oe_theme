@@ -2,7 +2,3 @@ services:
   plugin.manager.oe_theme_demo.demo_blocks:
     class: Drupal\oe_theme_demo\DemoBlockPluginManager
     arguments: ['@module_handler', '@cache.discovery']
-  oe_theme_demo.route_subscriber:
-    class: Drupal\oe_theme_demo\Routing\RouteSubscriber
-    tags:
-      - { name: event_subscriber }

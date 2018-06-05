@@ -6,7 +6,6 @@ core: 8.x
 
 dependencies:
   - oe_theme:oe_theme_helper
-  - ui_patterns:ui_patterns_library
 
 libraries:
   - oe_theme/base
