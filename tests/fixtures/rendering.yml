@@ -168,16 +168,37 @@
       'span.ecl-date-block__year': "2018"
 - array:
     '#type': pattern
-    '#id': list_item_thumbnail
+    '#id': list_item_thumbnail_primary
     '#fields':
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
-      thumbnail: "http://via.placeholder.com/150x150"
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alternate text for primary image"
   assertions:
     count:
       'a.ecl-list-item__link[href="http://example.com"]': 1
-      'img.ecl-image[src="http://via.placeholder.com/150x150"]': 1
+      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/150x150"][alt="Alternate text for primary image"]': 1
+      '.ecl-list-item__secondary': 0
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item_thumbnail_secondary
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternate text for secondary image"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      '.ecl-list-item__secondary img.ecl-image[src="http://via.placeholder.com/120x80"][alt="Alternate text for secondary image"]': 1
+      '.ecl-list-item__primary': 0
     equals:
       'h3.ecl-list-item__title': "Item title"
       'p.ecl-list-item__detail': "Item text"

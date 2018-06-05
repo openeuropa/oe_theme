@@ -1,6 +1,6 @@
-list_item_thumbnail:
-  label: "List item: thumbnail"
-  description: "Thumbnail list item, contains an image, metadata information and a linked title."
+list_item_thumbnail_primary:
+  label: "List item: thumbnail with primary image"
+  description: "Thumbnail list item, contains a primary image, metadata information and a linked title."
   fields:
     url:
       type: "text"
@@ -24,8 +24,10 @@ list_item_thumbnail:
       label: "Detail"
       description: "List item details, displayed below the title"
       preview: "Location: Kraków, Poland"
-    thumbnail:
-      type: "text"
-      label: "Thumbnail"
-      description: "URL to a thumbnail image"
-      preview: "http://via.placeholder.com/150x150"
+    image:
+      type: "array"
+      label: "Primary image"
+      description: "Attributes of the image to render (optional)"
+      preview:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alternative text for primary image"
