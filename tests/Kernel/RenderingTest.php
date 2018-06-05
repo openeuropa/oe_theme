@@ -110,10 +110,10 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
       }
     }
 
-    // Assert that given elements contain given string.
-    if (isset($assertions['count'])) {
-      foreach ($assertions['count'] as $name => $expected) {
-        $actual = trim($crawler->filter($name)->text());
+    // Assert that a given element content equals a given string.
+    if (isset($assertions['equals'])) {
+      foreach ($assertions['equals'] as $name => $expected) {
+        $actual = trim($crawler->filter($name)->html());
         $this->assertEquals($expected, $actual);
       }
     }

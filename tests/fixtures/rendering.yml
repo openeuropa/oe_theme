@@ -133,3 +133,34 @@
       - 'Radio'
     count:
       'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
+- array:
+    '#type': pattern
+    '#id': list_item_default
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+- array:
+    '#type': pattern
+    '#id': list_item_date
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      week_day: "Tue"
+      day: "17"
+      month: "Feb"
+      year: "2018"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+      'span.ecl-date-block__day': "17"
+      'span.ecl-date-block__month': "Feb"
+      'span.ecl-date-block__year': "2018"
