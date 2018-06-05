@@ -23,7 +23,7 @@ default:
             pages:
               login: "/user/login"
               ECL components overview: "/en/components"
-W  extensions:
+  extensions:
     Behat\MinkExtension:
       goutte: ~
       browser_name: 'chrome'
