@@ -59,4 +59,4 @@ Feature: Theme showcase
   Scenario: Site visitors can access the ECL components overview page
     When I am on the homepage
     And I click "Components" in the "navigation" region
-    Then I am on "the ECL components overview page"
+    Then I should be on "the ECL components overview page"
