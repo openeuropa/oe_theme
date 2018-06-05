@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * UI Pattern library standalone page, override this in your theme.
+ */
+#}
+
+{% if pattern is not empty %}
+
+  {{ pattern.meta }}
+
+  {# Rendered pattern preview. #}
+  <fieldset>
+    <legend>{{ "Preview"|t }}</legend>
+    <div>
+      {{ pattern.rendered }}
+    </div>
+  </fieldset>
+
+{% endif %}
