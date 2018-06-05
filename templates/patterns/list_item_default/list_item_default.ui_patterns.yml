@@ -1,0 +1,21 @@
+list_item_default:
+  label: "List item: default"
+  description: "Default list items, contains metadata information and linked title."
+  fields:
+    meta:
+      type: "array"
+      label: "Metadata"
+      description: "Meta information items list"
+      preview:
+        - "Service department"
+        - "PMO"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "Administration and Payment of Individual Entitlements"
+    url:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"

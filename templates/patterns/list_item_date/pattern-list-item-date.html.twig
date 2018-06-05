@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Date item list component.
+ */
+#}
+{% include '@ecl/ec-component-list-item' with {
+  'title': title,
+  'href': url,
+  'variant': 'date',
+  'date': {
+    'week_day': week_day,
+    'day': day,
+    'month': month,
+    'year': year,
+  },
+} %}
