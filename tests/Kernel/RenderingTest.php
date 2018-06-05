@@ -77,14 +77,14 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    *   A render array.
    * @param array $contains_string
    *   Strings that need to be present.
-   * @param array $contains_element
-   *   Elements that need to be present.
+   * @param array $count_elements
+   *   Count given elements.
    *
    * @throws \Exception
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $structure, array $contains_string, array $contains_element): void {
+  public function testRendering(array $structure, array $contains_string, array $count_elements): void {
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
@@ -102,9 +102,8 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
       $this->assertContains($string, $html);
     }
 
-    foreach ($contains_element as $assertion) {
-      $wrapper = $crawler->filter($assertion['filter']);
-      $this->assertCount($assertion['expected_result'], $wrapper);
+    foreach ($count_elements as $name => $expected) {
+      $this->assertCount($expected, $crawler->filter($name));
     }
   }
 
