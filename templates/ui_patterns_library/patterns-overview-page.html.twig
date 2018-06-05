@@ -5,6 +5,7 @@
  */
 #}
 {% if patterns is not empty %}
+  {% set patterns = patterns|sort %}
 
   {# List of available patterns with anchor links. #}
   <div class="ecl-link-block">
@@ -22,10 +23,14 @@
   <div class="ecl-u-clearfix ecl-u-pv-l">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
-    <a class="ecl-button ecl-button--call ecl-button--caret-right ecl-u-f-r" href="{{ url('ui_patterns.patterns.single', {'name': pattern.id }) }}">
-      {% trans %}View as standalone{% endtrans %}
-    </a>
-
+    {% include '@ecl/ec-component-button' with {
+      'href': url('ui_patterns.patterns.single', {'name': pattern_name }),
+      'label': "View as standalone"|t,
+      'type': 'link',
+      'modifier': 'call',
+      'extra_classes': 'ecl-u-f-r',
+      'icon': 'caret-right',
+    } %}
     <h2 class="ecl-u-mt-none">{{ pattern.label }}</h2>
     {{ pattern.meta }}
 
