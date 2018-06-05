@@ -1,0 +1,54 @@
+list_item_block_three_columns:
+  label: "List item block: three columns"
+  description: "Two columns layout, to be used with listing items."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Block title"
+      preview: "The European Commission's priorities"
+    items:
+      type: "array"
+      label: "Layout items"
+      description: "Array of renderable items"
+      preview:
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "About the European Union"
+            detail: "The EU and its institutions, how to visit and work at the EU."
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "Live, Work, Travel in EU"
+            detail: "Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture."
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "Funding, Tenders"
+            detail: "EU funding, grants, tenders, and how to apply."
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "Law"
+            detail: "EU law and judgments, how EU law is applied, public consultations, data protection, infringements, fraud, serious crime."
+        - type: "pattern"
+          id: "list_item_default"
+          fields:
+            title: "Research and innovation"
+            detail: "Research funding, partners, results, and EU action to promote innovation."
+    button_label:
+      type: "text"
+      label: "Button label"
+      description: "Call to action label"
+      preview: "View all"
+    button_url:
+      type: "text"
+      label: "Button URL"
+      description: "Call to action URL"
+      preview: "#"
