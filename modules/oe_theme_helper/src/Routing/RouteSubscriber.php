@@ -20,6 +20,9 @@ class RouteSubscriber extends RouteSubscriberBase {
       $route->setDefault('_title', 'Components');
       $route->setPath('/components');
     }
+    if ($route = $collection->get('ui_patterns.patterns.single')) {
+      $route->setPath('/components/{name}');
+    }
   }
 
 }
