@@ -76,6 +76,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-list-item/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-meta/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-date-block/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-accordion/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-button/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -99,6 +100,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-dialog/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-meta/*.twig', to: path.resolve(outputFolder, 'templates/components') },
-    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-date-block/*.twig', to: path.resolve(outputFolder, 'templates/components') }
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-date-block/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') }
   ]
 };

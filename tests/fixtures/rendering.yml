@@ -137,19 +137,21 @@
     '#type': pattern
     '#id': list_item_default
     '#fields':
-      title: "Item title"
       url: "http://example.com"
+      title: "Item title"
+      detail: "Item text"
   assertions:
     count:
       'a.ecl-list-item__link[href="http://example.com"]': 1
     equals:
       'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
 - array:
     '#type': pattern
     '#id': list_item_date
     '#fields':
-      title: "Item title"
       url: "http://example.com"
+      title: "Item title"
       detail: "Item text"
       week_day: "Tue"
       day: "17"
@@ -164,3 +166,18 @@
       'span.ecl-date-block__day': "17"
       'span.ecl-date-block__month': "Feb"
       'span.ecl-date-block__year': "2018"
+- array:
+    '#type': pattern
+    '#id': list_item_thumbnail
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      thumbnail: "http://via.placeholder.com/150x150"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      'img.ecl-image[src="http://via.placeholder.com/150x150"]': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"

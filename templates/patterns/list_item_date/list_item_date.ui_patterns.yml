@@ -2,16 +2,16 @@ list_item_date:
   label: "List item: date"
   description: "Default list items, contains metadata information and linked title."
   fields:
-    title:
-      type: "text"
-      label: "Title"
-      description: "List item title"
-      preview: "Citizens' Dialogue in Kraków with Commissioner Elżbieta Bieńkowska"
     url:
       type: "text"
       label: "URL"
       description: "List item link URL"
       preview: "#"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "Citizens' Dialogue in Kraków with Commissioner Elżbieta Bieńkowska"
     detail:
       type: "text"
       label: "Detail"

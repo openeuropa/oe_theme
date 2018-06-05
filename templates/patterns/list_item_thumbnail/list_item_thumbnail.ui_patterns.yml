@@ -1,6 +1,6 @@
-list_item_default:
-  label: "List item: default"
-  description: "Default list items, contains metadata information and linked title."
+list_item_thumbnail:
+  label: "List item: thumbnail"
+  description: "Thumbnail list item, contains an image, metadata information and a linked title."
   fields:
     url:
       type: "text"
@@ -24,3 +24,8 @@ list_item_default:
       label: "Detail"
       description: "List item details, displayed below the title"
       preview: "Location: Kraków, Poland"
+    thumbnail:
+      type: "text"
+      label: "Thumbnail"
+      description: "URL to a thumbnail image"
+      preview: "http://via.placeholder.com/150x150"
