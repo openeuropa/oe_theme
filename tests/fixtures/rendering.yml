@@ -1,45 +1,50 @@
 - array:
     '#plain_text': 'Dummy placeholder for form rendering test.'
-  contains_string: []
-  count_elements:
-    'form.ecl-form': 1
+  assert:
+    count:
+      'form.ecl-form': 1
 - array:
     '#type': button
     '#value': Preview
-  contains_string:
-    - 'Preview'
-  count_elements:
-    'button.ecl-button.ecl-button--default': 1
+  assert:
+    contains:
+      - 'Preview'
+    count:
+      'button.ecl-button.ecl-button--default': 1
 - array:
     '#type': textfield
     '#value': Textfield
-  contains_string:
-    - 'Textfield'
-  count_elements:
-    'input.form-text.ecl-text-input': 1
+  assert:
+    contains:
+      - 'Textfield'
+    count:
+      'input.form-text.ecl-text-input': 1
 - array:
     '#type': password
     '#value': Password
-  contains_string:
-    - 'password'
-  count_elements:
-    'input.form-text.ecl-text-input': 1
+  assert:
+    contains:
+      - 'password'
+    count:
+      'input.form-text.ecl-text-input': 1
 - array:
     '#type': email
     '#value': Email
-  contains_string:
-    - 'Email'
-  count_elements:
-    'input.form-email.ecl-text-input': 1
+  assert:
+    contains:
+      - 'Email'
+    count:
+      'input.form-email.ecl-text-input': 1
 - array:
     '#type': textarea
     '#title': Textarea
     '#value': Text
-  contains_string:
-    - 'Textarea'
-    - 'Text'
-  count_elements:
-    'textarea.form-textarea.ecl-textarea': 1
+  assert:
+    contains:
+      - 'Textarea'
+      - 'Text'
+    count:
+      'textarea.form-textarea.ecl-textarea': 1
 - array:
     '#type': select
     '#title': Select element
@@ -47,10 +52,11 @@
       1: One
       2: Two
       3: Three
-  contains_string:
-    - 'Select element'
-  count_elements:
-    'select.form-select.ecl-select': 1
+  assert:
+    contains:
+      - 'Select element'
+    count:
+      'select.form-select.ecl-select': 1
 - array:
     '#type': radios
     '#title': Radios
@@ -60,63 +66,70 @@
     '#options':
       0: Closed
       1: Active
-  contains_string:
-    - 'Radios'
-  count_elements:
-    'div#test-radios': 1
+  assert:
+    contains:
+      - 'Radios'
+    count:
+      'div#test-radios': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
-  contains_string:
-    - 'Checkbox'
-  count_elements:
-    'label.ecl-form-label.ecl-checkbox': 1
-    'input.ecl-checkbox__input.ecl-u-sr-only': 1
-    'span.ecl-checkbox__label': 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox': 1
+      'input.ecl-checkbox__input.ecl-u-sr-only': 1
+      'span.ecl-checkbox__label': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
     '#disabled': true
-  contains_string:
-    - 'Checkbox'
-  count_elements:
-    'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
     '#set_validation_error': true
-  contains_string:
-    - 'Checkbox'
-  count_elements:
-    'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
 - array:
     '#type': fieldset
     '#title': Fieldset
-  contains_string: []
-  count_elements:
-    'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
-    'legend.ecl-form-legend': 1
+  assert:
+    count:
+      'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
+      'legend.ecl-form-legend': 1
 - array:
     '#type': radio
     '#title': Radio
-  contains_string:
-    - 'Radio'
-  count_elements:
-    'label.ecl-form-label.ecl-radio': 1
-    'span.ecl-radio__label': 1
+  assert:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio': 1
+      'span.ecl-radio__label': 1
 - array:
     '#type': radio
     '#title': Radio
     '#disabled': true
-  contains_string:
-    - 'Radio'
-  count_elements:
-    'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled': 1
+  assert:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled': 1
 - array:
     '#type': radio
     '#title': Radio
     '#set_validation_error': true
-  contains_string:
-    - 'Radio'
-  count_elements:
-    'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
+  assertions:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
