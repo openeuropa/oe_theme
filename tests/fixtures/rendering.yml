@@ -294,3 +294,27 @@
       '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment--last a[href="http://www.example.com/announcements/"]': "Announcements"
+- array:
+    '#type': pattern
+    '#id': accordion
+    '#fields':
+      identifier: "id"
+      items:
+        - icon: "icon-1"
+          title: "Title 1"
+          body: "Body 1"
+        - icon: "icon-2"
+          title: "Title 2"
+          body: "Body 2"
+  assertions:
+    count:
+      '.ecl-accordion__header': 2
+      '.ecl-accordion__header-icon': 2
+      '.ecl-accordion__panel': 2
+      'button#ecl-accordion-header-id-0 > .ecl-icon--icon-1': 1
+      'button#ecl-accordion-header-id-1 > .ecl-icon--icon-2': 1
+    equals:
+      'button#ecl-accordion-header-id-0': "Title 1"
+      'dd#ecl-accordion-panel-id-0': "Body 1"
+      'button#ecl-accordion-header-id-1': "Title 2"
+      'dd#ecl-accordion-panel-id-1': "Body 2"

@@ -114,7 +114,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
     if (isset($assertions['equals'])) {
       foreach ($assertions['equals'] as $name => $expected) {
         try {
-          $actual = trim($crawler->filter($name)->html());
+          $actual = trim($crawler->filter($name)->text());
         }
         catch (\InvalidArgumentException $exception) {
           $this->fail(sprintf('Element "%s" not found (exception: "%s").', $name, $exception->getMessage()));
