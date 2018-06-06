@@ -265,3 +265,32 @@
     count:
       'ul.ecl-listing--two-columns': 0
       'ul.ecl-listing--three-columns': 1
+- array:
+    '#type': pattern
+    '#id': page_header
+    '#fields':
+      identity: "Digital single market"
+      title: "Business, Economy, Euro"
+      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+      metas:
+        - "News article"
+        - "6 July 2015"
+        - "Brussels"
+      breadcrumb:
+        0:
+          href: "http://www.example.com/"
+          label: "European Commission"
+        1:
+          href: "http://www.example.com/announcements/"
+          label: "Announcements"
+  assertions:
+    count:
+      '.ecl-page-header': 1
+      '.ecl-breadcrumb__segment': 2
+      '.ecl-meta__item': 3
+    equals:
+      '.ecl-page-header__identity': "Digital single market"
+      '.ecl-page-header__title h1': "Business, Economy, Euro"
+      '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+      '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
+      '.ecl-breadcrumb__segment--last a[href="http://www.example.com/announcements/"]': "Announcements"
