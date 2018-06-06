@@ -1,0 +1,14 @@
+blockquote:
+  label: "Blockquote"
+  description: "Quote and author block."
+  fields:
+    body:
+      type: "text"
+      label: "Title"
+      description: "Quote text"
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."
+    author:
+      type: "text"
+      label: "Author"
+      description: "Quote author"
+      preview: "Lorem ipsum"
