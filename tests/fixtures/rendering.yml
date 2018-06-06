@@ -318,3 +318,25 @@
       'dd#ecl-accordion-panel-id-0': "Body 1"
       'button#ecl-accordion-header-id-1': "Title 2"
       'dd#ecl-accordion-panel-id-1': "Body 2"
+- array:
+    '#type': pattern
+    '#id': link_block
+    '#fields':
+      title: "Link block title"
+      links:
+        - label: 'Link 1'
+          url: 'http://link-1.com'
+        - label: 'Link 2'
+          url: 'http://link-2.com'
+        - label: 'Link 3'
+          url: 'http://link-3.com'
+  assertions:
+    count:
+      'a.ecl-link-block__link[href="http://link-1.com"]': 1
+      'a.ecl-link-block__link[href="http://link-2.com"]': 1
+      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+    equals:
+      '.ecl-link-block__title': "Link block title"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"

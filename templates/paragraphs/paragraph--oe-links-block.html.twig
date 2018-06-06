@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{% include '@ecl/ec-component-link-block' with {
+{{ pattern('link_block', {
   'title': content.field_oe_text,
   'links': links,
-} %}
+}) }}
