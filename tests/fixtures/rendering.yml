@@ -204,6 +204,24 @@
       'p.ecl-list-item__detail': "Item text"
 - array:
     '#type': pattern
+    '#id': list_item_highlight
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/300x300"
+        alt: "Alternate text for image"
+  assertions:
+    count:
+      '.ecl-list-item.ecl-list-item--highlight': 1
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
+      '.ecl-list-item__secondary': 0
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': ""
+- array:
+    '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
       title: "Block title"
