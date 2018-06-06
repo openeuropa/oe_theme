@@ -30,9 +30,7 @@ page_header:
       label: "Breadcrumb"
       description: "A list of links that represent the location of the current page in the website."
       preview:
-        0:
-          href: "#"
+        - href: "#"
           label: "European Commission"
-        1:
-          href: "#"
+        - href: "#"
           label: "Announcements"
