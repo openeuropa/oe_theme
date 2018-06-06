@@ -17,5 +17,7 @@ list_item_highlight:
       label: "Image"
       description: "Attributes of the image to render"
       preview:
-        src: "http://via.placeholder.com/300x300"
+        src: "http://via.placeholder.com/400x400"
         alt: "Alternative text for image"
+  additional:
+    style: "max-width: 400px"

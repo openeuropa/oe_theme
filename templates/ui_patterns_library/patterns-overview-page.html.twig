@@ -35,7 +35,8 @@
     {{ pattern.meta }}
 
     {# Rendered pattern preview. #}
-    <div class="ecl-u-clearfix ecl-u-pv-xl">
+    {% set style = pattern.meta['#pattern'].additional.style %}
+    <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
       {{ pattern.rendered }}
     </div>
     <hr>
