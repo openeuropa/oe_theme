@@ -1,6 +1,6 @@
 link_block:
-  label: "List item block: one column"
-  description: "One column layout, to be used with listing items."
+  label: "Link block"
+  description: "List of links with an optional header."
   fields:
     title:
       type: "text"
