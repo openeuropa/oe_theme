@@ -8,6 +8,8 @@ use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\TitleBlockPluginInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Plugin\ContextAwarePluginInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -16,10 +18,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @Block(
  *   id = "oe_theme_helper_page_header",
  *   admin_label = @Translation("Page header"),
- *   category = @Translation("OpenEuropa")
+ *   category = @Translation("OpenEuropa"),
+ *   context = {
+ *     "page_header" = @ContextDefinition("map", label = @Translation("Page header metadata"))
+ *   }
  * )
  */
-class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface, TitleBlockPluginInterface {
+class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterface, TitleBlockPluginInterface, ContextAwarePluginInterface {
+
+  use StringTranslationTrait;
 
   /**
    * Stores the configuration factory.
@@ -56,7 +63,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   /**
    * {@inheritdoc}
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition): self {
     return new static(
       $configuration,
       $plugin_id,
@@ -69,11 +76,15 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * {@inheritdoc}
    */
   public function build(): array {
+    $metadata = $this->getContext('page_header')->getContextData()->getValue();
+
     $build = [
       '#type' => 'pattern',
       '#id' => 'page_header',
       '#identity' => $this->configFactory->get('system.site')->get('name'),
-      '#title' => $this->title,
+      '#title' => $metadata['title'] ?? $this->title,
+      '#introduction' => $metadata['introduction'] ?? '',
+      '#metas' => $metadata['metas'] ?? [],
     ];
 
     return $build;
@@ -82,8 +93,9 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   /**
    * {@inheritdoc}
    */
-  public function setTitle($title) {
+  public function setTitle($title): self {
     $this->title = $title;
+
     return $this;
   }
 
