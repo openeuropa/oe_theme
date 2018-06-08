@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for the basic structure of a single Drupal page.
+ *
+ * @see ./core/themes/stable/templates/layout/html.html.twig
+ */
+#}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes.addClass('language-' ~ html_attributes.lang).addClass('ecl-typography').addClass('page-splash') }}>
+    {#
+      Keyboard navigation/accessibility link to main content section in
+      page.html.twig.
+    #}
+    {% include '@ecl/generic-component-skip-link' with {
+      'label': 'Skip to main content'|t,
+      'id': 'skip-id',
+      'href': '#main-content',
+    } %}
+    
+    {{ page }}
+
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+  </body>
+</html>
