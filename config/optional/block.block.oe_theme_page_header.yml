@@ -16,4 +16,6 @@ settings:
   label: 'Page header'
   provider: oe_theme_helper
   label_display: '0'
+  context_mapping:
+    page_header: '@oe_theme_helper.page_header_context:page_header'
 visibility: {  }
