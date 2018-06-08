@@ -14,6 +14,8 @@ use Drupal\oe_theme_helper\PageHeaderMetadataPluginManager;
 
 /**
  * Provides metadata for the current page as context.
+ *
+ * @SuppressWarnings(PHPMD.LongVariable)
  */
 class PageHeaderContext implements ContextProviderInterface, CacheableDependencyInterface {
 
