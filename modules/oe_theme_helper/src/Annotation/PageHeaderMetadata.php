@@ -19,6 +19,7 @@ use Drupal\Component\Annotation\Plugin;
  * @endcode
  *
  * @Annotation
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 class PageHeaderMetadata extends Plugin {
 
