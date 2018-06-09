@@ -3,6 +3,7 @@ status: true
 dependencies:
   module:
     - oe_theme_helper
+    - system
   theme:
     - oe_theme
 id: oe_theme_page_header
@@ -18,4 +19,9 @@ settings:
   label_display: '0'
   context_mapping:
     page_header: '@oe_theme_helper.page_header_context:page_header'
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: true
+    context_mapping: {  }
