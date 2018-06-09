@@ -1,0 +1,23 @@
+social_media_links_horizontal:
+  label: "Social media links: horizontal"
+  description: "Social network icon with link of label, displayed horizontally."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Social media block title."
+      preview: "View European Commission on:"
+    links:
+      type: "array"
+      label: "Social links"
+      description: "List of social links."
+      preview:
+        - service: "facebook"
+          label: "Facebook"
+          url: "#"
+        - service: "twitter"
+          label: "Twitter"
+          url: "#"
+        - service: "instagram"
+          label: "Instagram"
+          url: "#"

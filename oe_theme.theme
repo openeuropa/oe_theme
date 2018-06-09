@@ -371,3 +371,31 @@ function oe_theme_preprocess_pattern_link_block(&$variables) {
     $variables['links'][$key]['href'] = $link['url'];
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function _oe_theme_preprocess_pattern_social_media_links(&$variables) {
+  // Format social media links in order to respect ECL expectations.
+  foreach ($variables['links'] as $key => $link) {
+    $variables['links'][$key]['variant'] = $link['service'];
+    $variables['links'][$key]['link'] = [
+      'label' => $link['label'],
+      'href' => $link['url'],
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_social_media_links_vertical(&$variables) {
+  _oe_theme_preprocess_pattern_social_media_links($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_social_media_links_horizontal(&$variables) {
+  _oe_theme_preprocess_pattern_social_media_links($variables);
+}
