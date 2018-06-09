@@ -350,3 +350,79 @@
     equals:
       '.ecl-blockquote__author': "― Quote author"
       '.ecl-blockquote__body': "Quote text"
+- array:
+    '#type': pattern
+    '#id': social_media_links_vertical
+    '#fields':
+      title: "View European Commission on:"
+      links:
+        - service: "facebook"
+          label: "Facebook"
+          url: "http://facebook.com"
+        - service: "twitter"
+          label: "Twitter"
+          url: "http://twitter.com"
+        - service: "instagram"
+          label: "Instagram"
+          url: "http://instagram.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+    equals:
+      '.ecl-social-media-link > p.ecl-paragraph': "View European Commission on:"
+      'a.ecl-social-icon--facebook': "Facebook"
+      'a.ecl-social-icon--twitter': "Twitter"
+      'a.ecl-social-icon--instagram': "Instagram"
+- array:
+    '#type': pattern
+    '#id': social_media_links_horizontal
+    '#fields':
+      title: "View European Commission on:"
+      links:
+        - service: "facebook"
+          label: "Facebook"
+          url: "http://facebook.com"
+        - service: "twitter"
+          label: "Twitter"
+          url: "http://twitter.com"
+        - service: "instagram"
+          label: "Instagram"
+          url: "http://instagram.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+    equals:
+      '.ecl-social-media-link--horizontal > p.ecl-paragraph': "View European Commission on:"
+      'a.ecl-social-icon--facebook': "Facebook"
+      'a.ecl-social-icon--twitter': "Twitter"
+      'a.ecl-social-icon--instagram': "Instagram"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: "http://facebook.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+    equals:
+      'a.ecl-social-icon--facebook': "Facebook"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: ""
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 0
+      'a.ecl-social-icon--facebook': 0
+      'span.ecl-social-icon--facebook': 1
+    equals:
+      'span.ecl-social-icon--facebook': "Facebook"
