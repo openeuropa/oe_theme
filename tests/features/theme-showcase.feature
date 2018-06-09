@@ -60,3 +60,4 @@ Feature: Theme showcase
     When I am on the homepage
     And I click "Components" in the "navigation" region
     Then I should be on "the ECL components overview page"
+    And I should see the heading "Components" in the "page header"

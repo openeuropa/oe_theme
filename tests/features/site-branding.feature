@@ -15,3 +15,9 @@ Feature: Site branding
     Then I should not see the "breadcrumb" element in the "page"
     When I am on "the login page"
     Then I should see the "breadcrumb" element in the "page"
+
+  Scenario: The page header is visible everywhere but on the homepage
+    When I am on the homepage
+    Then I should not see the "page header" element in the "page"
+    When I am on "the login page"
+    Then I should see the "page header" element in the "page"

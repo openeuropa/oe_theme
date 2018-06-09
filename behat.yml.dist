@@ -20,6 +20,7 @@ default:
               language switcher: ".ecl-language-list"
               language switcher overlay: ".ecl-dialog__body"
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
+              page header: ".ecl-page-header__body"
             pages:
               login: "/user/login"
               ECL components overview: "/en/components"
@@ -39,6 +40,7 @@ default:
       region_map:
         page: "body"
         header: ".ecl-site-header"
+        page header: ".ecl-page-header__body"
         navigation: ".ecl-navigation-menu"
         about dropdown menu: "#nav-menu-expandable-group-2"
         priorities dropdown menu: "#nav-menu-expandable-group-3"
