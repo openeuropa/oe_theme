@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\PageHeaderMetadata;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -60,15 +61,27 @@ class EntityCanonicalRoutePageHeaderMetadata extends PageHeaderMetadataPluginBas
   /**
    * {@inheritdoc}
    */
-  public function getMetadata(): ?array {
+  public function applies(): bool {
     $entity = $this->getEntityFromCurrentRoute();
-    if (!$entity) {
-      return NULL;
-    }
+
+    return !empty($entity);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getMetadata(): array {
+    $entity = $this->getEntityFromCurrentRoute();
 
     $metadata = [
       'title' => $entity->label(),
     ];
+
+    $cacheability = new CacheableMetadata();
+    $cacheability
+      ->addCacheableDependency($entity)
+      ->addCacheContexts(['route'])
+      ->applyTo($metadata);
 
     return $metadata;
   }

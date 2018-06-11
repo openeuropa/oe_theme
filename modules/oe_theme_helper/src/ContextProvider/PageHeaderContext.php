@@ -4,8 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\ContextProvider;
 
-use Drupal\Core\Cache\CacheableDependencyInterface;
-use Drupal\Core\Cache\CacheableDependencyTrait;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\Plugin\Context\ContextProviderInterface;
@@ -17,9 +16,8 @@ use Drupal\oe_theme_helper\PageHeaderMetadataPluginManager;
  *
  * @SuppressWarnings(PHPMD.LongVariable)
  */
-class PageHeaderContext implements ContextProviderInterface, CacheableDependencyInterface {
+class PageHeaderContext implements ContextProviderInterface {
 
-  use CacheableDependencyTrait;
   use StringTranslationTrait;
 
   /**
@@ -47,13 +45,19 @@ class PageHeaderContext implements ContextProviderInterface, CacheableDependency
 
     foreach ($this->metadataPluginManager->getDefinitions() as $id => $definition) {
       $plugin = $this->metadataPluginManager->createInstance($id);
-      $metadata = $plugin->getMetadata();
-      if ($metadata) {
+
+      if ($plugin->applies()) {
+        $metadata = $plugin->getMetadata();
         break;
       }
     }
 
     $context = new Context(new ContextDefinition('map', $this->t('Metadata')), $metadata);
+
+    if (!empty($metadata)) {
+      $cacheability = CacheableMetadata::createFromRenderArray($metadata);
+      $context->addCacheableDependency($cacheability);
+    }
 
     return ['page_header' => $context];
   }
@@ -65,18 +69,6 @@ class PageHeaderContext implements ContextProviderInterface, CacheableDependency
     $context = new Context(new ContextDefinition('map', $this->t('Metadata')));
 
     return ['page_header' => $context];
-  }
-
-  /**
-   * The maximum age for which this object may be cached.
-   *
-   * @todo Propagate caches from the plugins.
-   *
-   * @return int
-   *   The maximum time in seconds that this object may be cached.
-   */
-  public function getCacheMaxAge() {
-    return 0;
   }
 
 }
