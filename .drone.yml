@@ -19,7 +19,6 @@ services:
 
 matrix:
   DRUPAL_VERSION:
-    - 8.5.x
     - 8.6.x
 
 pipeline:
