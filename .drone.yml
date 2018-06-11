@@ -19,6 +19,7 @@ services:
 
 matrix:
   DRUPAL_VERSION:
+    - 8.5.x
     - 8.6.x
 
 pipeline:
@@ -35,6 +36,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
+      - composer require drupal/core:${DRUPAL_VERSION=8.6.x}
       - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
 
   site-install:
