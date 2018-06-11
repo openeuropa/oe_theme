@@ -339,12 +339,12 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$var
 }
 
 /**
- * Implements hook_preprocess_html
+ * Implements hook_preprocess_html() for html.html.twig.
  *
- * Add css class for splash page
+ * Add css class for splash page.
  */
-function  oe_theme_preprocess_html(&$variables) {
+function oe_theme_preprocess_html(&$variables) {
   if ('language_selection_page' == \Drupal::request()->attributes->get('_route')) {
-   $variables['attributes']['class'][] = 'page-splash';
+    $variables['attributes']['class'][] = 'page-splash';
   }
 }
