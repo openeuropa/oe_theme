@@ -35,6 +35,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
+      - composer config discard-changes true
       - composer require drupal/core:${DRUPAL_VERSION=8.6.x}
       - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
 
