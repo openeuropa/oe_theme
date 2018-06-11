@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core": "~8.6",
+        "drupal/core": "~8.5",
         "openeuropa/ecl-twig-loader": "^0.1",
         "php": "^7.1"
     },
@@ -25,7 +25,7 @@
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/task-runner": "^0.5",
         "symfony/dom-crawler": "^3",
-        "webflo/drupal-core-require-dev": "~8.6"
+        "webflo/drupal-core-require-dev": "~8.5"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
