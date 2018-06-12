@@ -16,9 +16,9 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
    * {@inheritdoc}
    */
   public function __construct($namespaces, $root, $theme, $directory, ThemeHandler $theme_handler) {
-    // Make sure theme exists before getting its path.
+    // Make sure the theme exists before getting its path.
     // This is necessary when the "oe_theme_helper" module is enable before
-    // the theme is or if the theme is disabled and the "oe_theme_helper" is not.
+    // the theme is or the theme is disabled and the "oe_theme_helper" is not.
     $path = '';
     if ($theme_handler->themeExists($theme)) {
       $path = $theme_handler->getTheme($theme)->getPath() . DIRECTORY_SEPARATOR . $directory;
