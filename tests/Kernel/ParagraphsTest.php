@@ -172,6 +172,8 @@ class ParagraphsTest extends AbstractKernelTestBase {
 
   /**
    * Tests the list item paragraph type.
+   *
+   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testListItem(): void {
     file_unmanaged_copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
@@ -226,6 +228,52 @@ class ParagraphsTest extends AbstractKernelTestBase {
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
     $image_element = $crawler->filter('.ecl-list-item__primary img.ecl-image');
+    $this->assertCount(1, $image_element);
+    $this->assertEquals(
+      file_url_transform_relative(file_create_url($image->getFileUri())),
+      $image_element->attr('src')
+    );
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
+    // Change the variant to thumbnail primary.
+    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_thumbnail_primary');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--thumbnail'));
+    $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
+
+    $link_element = $crawler->filter('.ecl-list-item__link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $image_element = $crawler->filter('.ecl-list-item__primary img.ecl-image');
+    $this->assertCount(1, $image_element);
+    $this->assertEquals(
+      file_url_transform_relative(file_create_url($image->getFileUri())),
+      $image_element->attr('src')
+    );
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
+    // Change the variant to thumbnail secondary.
+    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_thumbnail_secondary');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--thumbnail'));
+    $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
+
+    $link_element = $crawler->filter('.ecl-list-item__link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $image_element = $crawler->filter('.ecl-list-item__secondary img.ecl-image');
     $this->assertCount(1, $image_element);
     $this->assertEquals(
       file_url_transform_relative(file_create_url($image->getFileUri())),
