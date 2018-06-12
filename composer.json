@@ -7,6 +7,8 @@
     "prefer-stable": true,
     "require": {
         "drupal/core": "~8.6",
+        "drupal/styleguide": "~1.0-alpha3",
+        "drupal/ui_patterns": "~1.0-rc1",
         "openeuropa/ecl-twig-loader": "^0.1",
         "php": "^7.1"
     },
@@ -17,7 +19,6 @@
         "drupal/config_devel": "~1.2",
         "drupal/console": "^1",
         "drupal/drupal-extension": "^3.4",
-        "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "^0.2",
@@ -52,9 +53,16 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch",
+                "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-06-04/474684-183.patch",
                 "https://www.drupal.org/project/drupal/issues/1988968": "https://www.drupal.org/files/issues/2018-03-21/1988968-113.patch",
                 "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-04-15/2943172-kernel-test-base-2.patch"
+            }
+        },
+        "patches-ignore": {
+            "openeuropa/oe_multilingual": {
+                "drupal/core": {
+                    "https://www.drupal.org/project/drupal/issues/474684": "https://www.drupal.org/files/issues/2018-05-02/474684-165.patch"
+                }
             }
         },
         "installer-paths": {

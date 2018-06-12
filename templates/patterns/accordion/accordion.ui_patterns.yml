@@ -1,0 +1,22 @@
+accordion:
+  label: "Accordion"
+  description: "List of items that can be clicked to hide or reveal additional content."
+  fields:
+    identifier:
+      type: "string"
+      label: "Name"
+      description: "Unique machine readable name. Optional."
+      preview: "my-unique-id"
+    items:
+      type: "array"
+      label: "Accordion items"
+      description: "List of accordion items"
+      preview:
+        - icon: "growth"
+          title: "Jobs, Growth, Investment and Competitiveness with an additional quite long string"
+          body: "Bullfights. Bull hockey. Do you like this? The bull is stabbed, prodded, beaten. The bull is wounded. The bull is tired before the matador ever steps into the ring. Now, is that victory? Of course it is. Wanna know the secret to winning? Creative sportsmanship. In other words, one has to rig the game."
+        - icon: "energy"
+          title: "Energy Union"
+          body: "Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture. Plus some extra text to make it a little bit longer."
+  libraries:
+    - oe_theme/accordions

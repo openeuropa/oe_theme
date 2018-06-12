@@ -1,0 +1,20 @@
+link_block:
+  label: "Link block"
+  description: "List of links with an optional header."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Link block title"
+      preview: "More information"
+    links:
+      type: "array"
+      label: "Links"
+      description: "Array of links"
+      preview:
+        - label: 'European Commission'
+          url: 'http://link-1.com'
+        - label: 'Priorities'
+          url: 'http://link-2.com'
+        - label: 'Jobs, Growth and Investment'
+          url: 'http://link-3.com'

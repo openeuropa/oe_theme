@@ -70,3 +70,8 @@ oe_theme_demo.main.styleguide:
   route_name: "styleguide.page"
   menu_name: "main"
   weight: 4
+oe_theme_demo.main.components:
+  title: "Components"
+  route_name: "ui_patterns.patterns.overview"
+  menu_name: "main"
+  weight: 5

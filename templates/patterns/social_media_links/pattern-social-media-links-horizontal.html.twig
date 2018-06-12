@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Sical media links: horizontal.
+ */
+#}
+{# @todo: Termorarily disable more link, fix this. #}
+{% include '@ecl/ec-component-social-media-link' with {
+  'variant': 'horizontal',
+  'text': title,
+  'social_icons': links,
+  'more': {
+    'label': '',
+    'href': '',
+  }
+} %}

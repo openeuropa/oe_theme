@@ -75,16 +75,14 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    *
    * @param array $structure
    *   A render array.
-   * @param array $contains_string
-   *   Strings that need to be present.
-   * @param array $contains_element
-   *   Elements that need to be present.
+   * @param array $assertions
+   *   Test assertions.
    *
    * @throws \Exception
    *
    * @dataProvider renderingDataProvider
    */
-  public function testRendering(array $structure, array $contains_string, array $contains_element): void {
+  public function testRendering(array $structure, array $assertions): void {
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
@@ -98,14 +96,33 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
     $html = $this->renderRoot($form);
     $crawler = new Crawler($html);
 
-    foreach ($contains_string as $string) {
-      $this->assertContains($string, $html);
+    // Assert presence of given strings.
+    if (isset($assertions['contains'])) {
+      foreach ($assertions['contains'] as $string) {
+        $this->assertContains($string, $html);
+      }
     }
 
-    foreach ($contains_element as $assertion) {
-      $wrapper = $crawler->filter($assertion['filter']);
-      $this->assertCount($assertion['expected_result'], $wrapper);
+    // Assert occurrences of given elements.
+    if (isset($assertions['count'])) {
+      foreach ($assertions['count'] as $name => $expected) {
+        $this->assertCount($expected, $crawler->filter($name));
+      }
     }
+
+    // Assert that a given element content equals a given string.
+    if (isset($assertions['equals'])) {
+      foreach ($assertions['equals'] as $name => $expected) {
+        try {
+          $actual = trim($crawler->filter($name)->text());
+        }
+        catch (\InvalidArgumentException $exception) {
+          $this->fail(sprintf('Element "%s" not found (exception: "%s").', $name, $exception->getMessage()));
+        }
+        $this->assertEquals($expected, $actual);
+      }
+    }
+
   }
 
   /**

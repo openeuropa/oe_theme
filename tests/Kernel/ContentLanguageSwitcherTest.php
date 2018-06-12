@@ -5,13 +5,15 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\node\Entity\Node;
+use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Test content language switcher rendering.
  */
 class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
+
+  use RequestTrait;
 
   /**
    * Modules to enable.
@@ -95,27 +97,6 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Make sure that no language links are rendered.
     $this->assertTranslationLinks($crawler, []);
-  }
-
-  /**
-   * Sets a request to a certain URI as the current in the request stack.
-   *
-   * @param string $uri
-   *   The URI of the request. It needs to match a valid Drupal route.
-   */
-  protected function setCurrentRequest(string $uri): void {
-    // Simulate a request to a node canonical route with a language prefix.
-    $request = Request::create($uri);
-    // Let the Drupal router populate all the request parameters.
-    $parameters = \Drupal::service('router.no_access_checks')->matchRequest($request);
-    $request->attributes->add($parameters);
-    // Set the prepared request as current.
-    \Drupal::requestStack()->push($request);
-    // Reset any discovered language. KernelTestBase creates a request to the
-    // root of the website for legacy purposes, so the language is set by
-    // default to the default one.
-    // @see \Drupal\KernelTests\KernelTestBase::bootKernel()
-    \Drupal::languageManager()->reset();
   }
 
   /**

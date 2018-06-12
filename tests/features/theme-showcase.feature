@@ -55,3 +55,9 @@ Feature: Theme showcase
     And I click "Polski"
     Then the url should match "/pl"
     And the "language switcher link" element should contain "Polski"
+
+  Scenario: Site visitors can access the ECL components overview page
+    When I am on the homepage
+    And I click "Components" in the "navigation" region
+    Then I should be on "the ECL components overview page"
+    And I should see the heading "Components" in the "page header"
