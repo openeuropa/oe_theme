@@ -4,20 +4,17 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\file\Entity\File;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class ParagraphsTests.
- *
- * @package Drupal\Tests\oe_theme\Kernel
+ * Tests the rendering of paragraphs types.
  */
 class ParagraphsTest extends AbstractKernelTestBase {
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = [
     'language',
@@ -45,6 +42,8 @@ class ParagraphsTest extends AbstractKernelTestBase {
     parent::setUp();
 
     $this->installEntitySchema('paragraph');
+    $this->installEntitySchema('file');
+    $this->installSchema('file', ['file_usage']);
     $this->installConfig(['oe_paragraphs', 'filter']);
   }
 
@@ -172,7 +171,71 @@ class ParagraphsTest extends AbstractKernelTestBase {
   }
 
   /**
-   * Data provider.
+   * Tests the list item paragraph type.
+   */
+  public function testListItem(): void {
+    file_unmanaged_copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    $image = File::create([
+      'uri' => 'public://example.jpg',
+    ]);
+    $image->save();
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_list_item',
+      'field_oe_list_item_variant' => 'list_item_default',
+      'field_oe_title' => 'Item title',
+      'field_oe_text_long' => 'Item description',
+      'field_oe_link' => [
+        'uri' => 'http://www.example.com/',
+      ],
+      'field_oe_image' => [
+        'target_id' => $image->id(),
+        'alt' => 'Druplicon',
+      ],
+    ]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-list-item'));
+    $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
+
+    $link_element = $crawler->filter('.ecl-list-item__link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    // No images should be rendered in this variant.
+    $this->assertCount(0, $crawler->filter('img.ecl-image'));
+
+    // Change the variant and test that the markup changed.
+    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_highlight');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--highlight'));
+    $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
+    // The description should not be rendered in this variant.
+    $this->assertEquals('', trim($crawler->filter('.ecl-list-item__detail')->text()));
+
+    $link_element = $crawler->filter('.ecl-list-item__link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $image_element = $crawler->filter('.ecl-list-item__primary img.ecl-image');
+    $this->assertCount(1, $image_element);
+    $this->assertEquals(
+      file_url_transform_relative(file_create_url($image->getFileUri())),
+      $image_element->attr('src')
+    );
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+  }
+
+  /**
+   * Data provider for the quote test method.
    *
    * @return array
    *   A set of dump data for testing.
