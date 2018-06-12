@@ -11,9 +11,7 @@
 {% endif %}
 
 <ul class="ecl-listing{{ type ? " ecl-listing--" ~ type }}">
-  {% for item in items %}
-    {{ item }}
-  {% endfor %}
+  {{ items }}
 </ul>
 
 {% if button_label and button_url %}

@@ -441,3 +441,22 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
     $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], ['timezone']);
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph--oe-list-item-block.html.twig.
+ */
+function oe_theme_preprocess_paragraph__oe_list_item_block(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Set up the correct variant name.
+  $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_variant')->first()->value;
+
+  // Prepare the button variables if a link has been specified.
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
+    $link_item = $paragraph->get('field_oe_link')->first();
+    $variables['button_url'] = $link_item->getUrl()->toString();
+    $variables['button_label'] = $link_item->get('title')->getValue();
+  }
+}
