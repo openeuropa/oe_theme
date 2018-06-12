@@ -20,12 +20,16 @@ class ParagraphsTest extends AbstractKernelTestBase {
    * @var array
    */
   public static $modules = [
+    'language',
+    'content_translation',
     'paragraphs',
     'user',
     'system',
     'file',
     'field',
     'entity_reference_revisions',
+    'datetime',
+    'image',
     'link',
     'text',
     'filter',
