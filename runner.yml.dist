@@ -11,12 +11,14 @@ drupal:
     profile: "minimal"
     name: "OpenEuropa"
   post_install:
-    - "./vendor/bin/drush theme:enable oe_theme -y"
-    - "./vendor/bin/drush config-set system.theme default oe_theme -y"
     - "./vendor/bin/drush en oe_theme_helper -y"
     - "./vendor/bin/drush en oe_multilingual -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"
+    - "./vendor/bin/drush theme:enable oe_theme -y"
+    - "./vendor/bin/drush theme:enable seven -y"
+    - "./vendor/bin/drush config-set system.theme default oe_theme -y"
+    - "./vendor/bin/drush config-set system.theme admin seven -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:

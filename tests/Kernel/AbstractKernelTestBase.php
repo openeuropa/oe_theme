@@ -20,6 +20,9 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
   public static $modules = [
     'system',
     'user',
+    'ui_patterns',
+    'ui_patterns_library',
+    'oe_theme_helper',
   ];
 
   /**

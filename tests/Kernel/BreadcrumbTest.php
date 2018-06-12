@@ -14,13 +14,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class BreadcrumbTest extends AbstractKernelTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-    'system',
-  ];
-
-  /**
    * Test a basic breadcrumb is themed using ECL breadcrumb component.
    *
    * @throws \Exception
