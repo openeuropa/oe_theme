@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'list item' type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{{ pattern(variant, {
+  'url': url,
+  'title': content.field_oe_title,
+  'detail': content.field_oe_text_long|render|striptags('p'),
+  'week_day': week_day,
+  'day': day,
+  'month': month,
+  'year': year,
+  'meta': [],
+  'image': image
+}) }}
