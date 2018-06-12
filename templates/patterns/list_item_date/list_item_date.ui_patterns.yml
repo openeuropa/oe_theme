@@ -1,0 +1,39 @@
+list_item_date:
+  label: "List item: date"
+  description: "Default list items, contains metadata information and linked title."
+  fields:
+    url:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "Citizens' Dialogue in Kraków with Commissioner Elżbieta Bieńkowska"
+    detail:
+      type: "text"
+      label: "Detail"
+      description: "List item details, displayed below the title"
+      preview: "Location: Kraków, Poland"
+    week_day:
+      type: "text"
+      label: "Week day"
+      description: "A textual representation of a day, three letters"
+      preview: "Tue"
+    day:
+      type: "text"
+      label: "Day"
+      description: "Day of the month, 2 digits with leading zeros"
+      preview: "17"
+    month:
+      type: "text"
+      label: "Month"
+      description: "A short textual representation of a month, three letters"
+      preview: "Feb"
+    year:
+      type: "text"
+      label: "Year"
+      description: "A full numeric representation of a year, 4 digits"
+      preview: ""

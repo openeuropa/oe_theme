@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Render\Element;
+use Drupal\Component\Utility\Random;
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -66,7 +67,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
     $variables['links'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'href' => $variables['content']['field_oe_links'][$index]['#url'],
+      'url' => $variables['content']['field_oe_links'][$index]['#url'],
     ];
   }
 }
@@ -77,17 +78,15 @@ function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
 function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
   // Massage data to be compliant with ECL accordions component data structure.
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
-  $variables['panels'] = [];
+  $variables['identifier'] = 'paragraph-' . $variables['paragraph']->id();
+  $variables['items'] = [];
 
   /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
   foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
     $paragraph = $field_item->entity;
-    $variables['panels'][] = [
-      'id' => $paragraph->id(),
-      'heading' => [
-        'title' => $builder->viewField($paragraph->get('field_oe_text')),
-        'icon' => $paragraph->get('field_oe_icon')->value,
-      ],
+    $variables['items'][] = [
+      'title' => $builder->viewField($paragraph->get('field_oe_text')),
+      'icon' => $paragraph->get('field_oe_icon')->value,
       'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
     ];
   }
@@ -336,6 +335,69 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$var
       'lang' => $language_code,
     ];
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_accordion(&$variables) {
+  // If no identifier is provided generate a random, unique one.
+  if (empty($variables['identifier'])) {
+    $random = new Random();
+    $variables['identifier'] = $random->string(8, TRUE);
+  }
+
+  // Format items in order to respect ECL expectations.
+  foreach (array_values($variables['items']) as $key => $item) {
+    $variables['items'][$key] = [
+      'id' => $variables['identifier'] . '-' . $key,
+      'heading' => [
+        'title' => $item['title'],
+        'icon' => $item['icon'],
+        'level' => $key,
+      ],
+      'body' => $item['body'],
+      'isExpanded' => $key === 0,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_link_block(&$variables) {
+  // Format links in order to respect ECL expectations.
+  foreach ($variables['links'] as $key => $link) {
+    $variables['links'][$key]['href'] = $link['url'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function _oe_theme_preprocess_pattern_social_media_links(&$variables) {
+  // Format social media links in order to respect ECL expectations.
+  foreach ($variables['links'] as $key => $link) {
+    $variables['links'][$key]['variant'] = $link['service'];
+    $variables['links'][$key]['link'] = [
+      'label' => $link['label'],
+      'href' => $link['url'],
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_social_media_links_vertical(&$variables) {
+  _oe_theme_preprocess_pattern_social_media_links($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_social_media_links_horizontal(&$variables) {
+  _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
 /**

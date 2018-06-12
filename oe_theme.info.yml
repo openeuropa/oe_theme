@@ -5,7 +5,7 @@ package: OpenEuropa
 core: 8.x
 
 dependencies:
-  - oe_theme_helper
+  - oe_theme:oe_theme_helper
 
 libraries:
   - oe_theme/base
@@ -26,9 +26,8 @@ regions:
 
 config_devel:
   optional:
-    - block.block.oe_theme_demo_main_navigation
     - block.block.oe_theme_breadcrumb
     - block.block.oe_theme_main_page_content
-    - block.block.oe_theme_page_title
+    - block.block.oe_theme_page_header
     - block.block.oe_theme_site_branding
     - block.block.oe_theme_tabs

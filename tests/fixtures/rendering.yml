@@ -1,51 +1,50 @@
 - array:
     '#plain_text': 'Dummy placeholder for form rendering test.'
-  contains_string: []
-  contains_element:
-    - filter: 'form.ecl-form'
-      expected_result: 1
+  assert:
+    count:
+      'form.ecl-form': 1
 - array:
     '#type': button
     '#value': Preview
-  contains_string:
-    - 'Preview'
-  contains_element:
-    - filter: 'button.ecl-button.ecl-button--default'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Preview'
+    count:
+      'button.ecl-button.ecl-button--default': 1
 - array:
     '#type': textfield
     '#value': Textfield
-  contains_string:
-    - 'Textfield'
-  contains_element:
-    - filter: 'input.form-text.ecl-text-input'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Textfield'
+    count:
+      'input.form-text.ecl-text-input': 1
 - array:
     '#type': password
     '#value': Password
-  contains_string:
-    - 'password'
-  contains_element:
-    - filter: 'input.form-text.ecl-text-input'
-      expected_result: 1
+  assert:
+    contains:
+      - 'password'
+    count:
+      'input.form-text.ecl-text-input': 1
 - array:
     '#type': email
     '#value': Email
-  contains_string:
-    - 'Email'
-  contains_element:
-    - filter: 'input.form-email.ecl-text-input'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Email'
+    count:
+      'input.form-email.ecl-text-input': 1
 - array:
     '#type': textarea
     '#title': Textarea
     '#value': Text
-  contains_string:
-    - 'Textarea'
-    - 'Text'
-  contains_element:
-    - filter: 'textarea.form-textarea.ecl-textarea'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Textarea'
+      - 'Text'
+    count:
+      'textarea.form-textarea.ecl-textarea': 1
 - array:
     '#type': select
     '#title': Select element
@@ -53,11 +52,11 @@
       1: One
       2: Two
       3: Three
-  contains_string:
-    - 'Select element'
-  contains_element:
-    - filter: 'select.form-select.ecl-select'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Select element'
+    count:
+      'select.form-select.ecl-select': 1
 - array:
     '#type': radios
     '#title': Radios
@@ -67,75 +66,363 @@
     '#options':
       0: Closed
       1: Active
-  contains_string:
-    - 'Radios'
-  contains_element:
-    - filter: 'div#test-radios'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Radios'
+    count:
+      'div#test-radios': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
-  contains_string:
-    - 'Checkbox'
-  contains_elemet:
-    - filter: 'label.ecl-form-label.ecl-checkbox'
-      expected_result: 1
-    - filter: 'input.ecl-checkbox__input.ecl-u-sr-only'
-      expected_result: 1
-    - filter: 'span.ecl-checkbox__label'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox': 1
+      'input.ecl-checkbox__input.ecl-u-sr-only': 1
+      'span.ecl-checkbox__label': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
     '#disabled': true
-  contains_string:
-    - 'Checkbox'
-  contains_element:
-    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
     '#set_validation_error': true
-  contains_string:
-    - 'Checkbox'
-  contains_element:
-    - filter: 'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
 - array:
     '#type': fieldset
     '#title': Fieldset
-  contains_string: []
-  contains_element:
-    - filter: 'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper'
-      expected_result: 1
-    - filter: 'legend.ecl-form-legend'
-      expected_result: 1
+  assert:
+    count:
+      'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
+      'legend.ecl-form-legend': 1
 - array:
     '#type': radio
     '#title': Radio
-  contains_string:
-    - 'Radio'
-  contains_element:
-    - filter: 'label.ecl-form-label.ecl-radio'
-      expected_result: 1
-    - filter: 'span.ecl-radio__label'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio': 1
+      'span.ecl-radio__label': 1
 - array:
     '#type': radio
     '#title': Radio
     '#disabled': true
-  contains_string:
-    - 'Radio'
-  contains_element:
-    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled'
-      expected_result: 1
+  assert:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled': 1
 - array:
     '#type': radio
     '#title': Radio
     '#set_validation_error': true
-  contains_string:
-    - 'Radio'
-  contains_element:
-    - filter: 'label.ecl-form-label.ecl-radio.ecl-radio--has-error'
-      expected_result: 1
+  assertions:
+    contains:
+      - 'Radio'
+    count:
+      'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
+- array:
+    '#type': pattern
+    '#id': list_item_default
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail: "Item text"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item_date
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail: "Item text"
+      week_day: "Tue"
+      day: "17"
+      month: "Feb"
+      year: "2018"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+      'span.ecl-date-block__day': "17"
+      'span.ecl-date-block__month': "Feb"
+      'span.ecl-date-block__year': "2018"
+- array:
+    '#type': pattern
+    '#id': list_item_thumbnail_primary
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alternate text for primary image"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/150x150"][alt="Alternate text for primary image"]': 1
+      '.ecl-list-item__secondary': 0
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item_thumbnail_secondary
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternate text for secondary image"
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      '.ecl-list-item__secondary img.ecl-image[src="http://via.placeholder.com/120x80"][alt="Alternate text for secondary image"]': 1
+      '.ecl-list-item__primary': 0
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item_highlight
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/300x300"
+        alt: "Alternate text for image"
+  assertions:
+    count:
+      '.ecl-list-item.ecl-list-item--highlight': 1
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
+      '.ecl-list-item__secondary': 0
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'p.ecl-list-item__detail': ""
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      title: "Block title"
+      items:
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "Business, Economy, Euro"
+             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+  assertions:
+    count:
+      'a.ecl-button[href="http://example.com"]': 1
+      'ul.ecl-listing--two-columns': 0
+      'ul.ecl-listing--three-columns': 0
+    equals:
+      'h3.ecl-heading': "Block title"
+      'h3.ecl-list-item__title': "Business, Economy, Euro"
+      'p.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-button': "View all"
+- array:
+    '#type': pattern
+    '#id': list_item_block_two_columns
+    '#fields':
+      items:
+        - "One"
+        - "Two"
+  assertions:
+    count:
+      'ul.ecl-listing--two-columns': 1
+      'ul.ecl-listing--three-columns': 0
+- array:
+    '#type': pattern
+    '#id': list_item_block_three_columns
+    '#fields':
+      items:
+        - "One"
+        - "Two"
+  assertions:
+    count:
+      'ul.ecl-listing--two-columns': 0
+      'ul.ecl-listing--three-columns': 1
+- array:
+    '#type': pattern
+    '#id': page_header
+    '#fields':
+      identity: "Digital single market"
+      title: "Business, Economy, Euro"
+      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+      metas:
+        - "News article"
+        - "6 July 2015"
+        - "Brussels"
+      breadcrumb:
+        0:
+          href: "http://www.example.com/"
+          label: "European Commission"
+        1:
+          href: "http://www.example.com/announcements/"
+          label: "Announcements"
+  assertions:
+    count:
+      '.ecl-page-header': 1
+      '.ecl-breadcrumb__segment': 2
+      '.ecl-meta__item': 3
+    equals:
+      '.ecl-page-header__identity': "Digital single market"
+      '.ecl-page-header__title h1': "Business, Economy, Euro"
+      '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+      '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
+      '.ecl-breadcrumb__segment--last a[href="http://www.example.com/announcements/"]': "Announcements"
+- array:
+    '#type': pattern
+    '#id': accordion
+    '#fields':
+      identifier: "id"
+      items:
+        - icon: "icon-1"
+          title: "Title 1"
+          body: "Body 1"
+        - icon: "icon-2"
+          title: "Title 2"
+          body: "Body 2"
+  assertions:
+    count:
+      '.ecl-accordion__header': 2
+      '.ecl-accordion__header-icon': 2
+      '.ecl-accordion__panel': 2
+      'button#ecl-accordion-header-id-0 > .ecl-icon--icon-1': 1
+      'button#ecl-accordion-header-id-1 > .ecl-icon--icon-2': 1
+    equals:
+      'button#ecl-accordion-header-id-0': "Title 1"
+      'dd#ecl-accordion-panel-id-0': "Body 1"
+      'button#ecl-accordion-header-id-1': "Title 2"
+      'dd#ecl-accordion-panel-id-1': "Body 2"
+- array:
+    '#type': pattern
+    '#id': link_block
+    '#fields':
+      title: "Link block title"
+      links:
+        - label: 'Link 1'
+          url: 'http://link-1.com'
+        - label: 'Link 2'
+          url: 'http://link-2.com'
+        - label: 'Link 3'
+          url: 'http://link-3.com'
+  assertions:
+    count:
+      'a.ecl-link-block__link[href="http://link-1.com"]': 1
+      'a.ecl-link-block__link[href="http://link-2.com"]': 1
+      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+    equals:
+      '.ecl-link-block__title': "Link block title"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+- array:
+    '#type': pattern
+    '#id': blockquote
+    '#fields':
+      body: "Quote text"
+      author: "Quote author"
+  assertions:
+    equals:
+      '.ecl-blockquote__author': "― Quote author"
+      '.ecl-blockquote__body': "Quote text"
+- array:
+    '#type': pattern
+    '#id': social_media_links_vertical
+    '#fields':
+      title: "View European Commission on:"
+      links:
+        - service: "facebook"
+          label: "Facebook"
+          url: "http://facebook.com"
+        - service: "twitter"
+          label: "Twitter"
+          url: "http://twitter.com"
+        - service: "instagram"
+          label: "Instagram"
+          url: "http://instagram.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+    equals:
+      '.ecl-social-media-link > p.ecl-paragraph': "View European Commission on:"
+      'a.ecl-social-icon--facebook': "Facebook"
+      'a.ecl-social-icon--twitter': "Twitter"
+      'a.ecl-social-icon--instagram': "Instagram"
+- array:
+    '#type': pattern
+    '#id': social_media_links_horizontal
+    '#fields':
+      title: "View European Commission on:"
+      links:
+        - service: "facebook"
+          label: "Facebook"
+          url: "http://facebook.com"
+        - service: "twitter"
+          label: "Twitter"
+          url: "http://twitter.com"
+        - service: "instagram"
+          label: "Instagram"
+          url: "http://instagram.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+    equals:
+      '.ecl-social-media-link--horizontal > p.ecl-paragraph': "View European Commission on:"
+      'a.ecl-social-icon--facebook': "Facebook"
+      'a.ecl-social-icon--twitter': "Twitter"
+      'a.ecl-social-icon--instagram': "Instagram"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: "http://facebook.com"
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+    equals:
+      'a.ecl-social-icon--facebook': "Facebook"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: ""
+  assertions:
+    count:
+      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 0
+      'a.ecl-social-icon--facebook': 0
+      'span.ecl-social-icon--facebook': 1
+    equals:
+      'span.ecl-social-icon--facebook': "Facebook"

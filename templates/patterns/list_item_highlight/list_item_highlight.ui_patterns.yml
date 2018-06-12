@@ -1,0 +1,23 @@
+list_item_highlight:
+  label: "List item: highlight"
+  description: "Highlight list item, contains a primary image and a linked title."
+  fields:
+    url:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "Administration and Payment of Individual Entitlements"
+    image:
+      type: "array"
+      label: "Image"
+      description: "Attributes of the image to render"
+      preview:
+        src: "http://via.placeholder.com/400x400"
+        alt: "Alternative text for image"
+  additional:
+    style: "max-width: 400px"

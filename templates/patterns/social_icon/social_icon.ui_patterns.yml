@@ -1,0 +1,19 @@
+social_icon:
+  label: "Social icon"
+  description: "Social network icon with link of label."
+  fields:
+    service:
+      type: "text"
+      label: "Service"
+      description: "Social network service."
+      preview: "facebook"
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label accompanying the social icon."
+      preview: "Facebook"
+    url:
+      type: "string"
+      label: "URL"
+      description: "URL to link the social icon to. Optional."
+      preview: "http://example.com"

@@ -1,11 +1,9 @@
 {#
 /**
  * @file
- * Theme override to display a region.
+ * Theme override to display the navigation region.
  *
  * @see ./core/themes/stable/templates/layout/region.html.twig
  */
 #}
-{% if content %}
-  {{ content }}
-{% endif %}
+{% extends "region--bare.html.twig" %}

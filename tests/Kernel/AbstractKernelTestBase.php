@@ -67,4 +67,22 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     return (string) $this->container->get('renderer')->renderRoot($elements);
   }
 
+  /**
+   * Builds and returns the renderable array for a block.
+   *
+   * @param string $block_id
+   *   The ID of the block.
+   * @param array $config
+   *   An array of configuration.
+   *
+   * @return array
+   *   A renderable array representing the content of the block.
+   */
+  protected function buildBlock(string $block_id, array $config): array {
+    /** @var \Drupal\Core\Block\BlockBase $plugin_block */
+    $plugin_block = $this->container->get('plugin.manager.block')->createInstance($block_id, $config);
+
+    return $plugin_block->build();
+  }
+
 }

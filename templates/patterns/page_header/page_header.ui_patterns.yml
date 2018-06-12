@@ -1,0 +1,36 @@
+page_header:
+  label: "Page header: default"
+  description: "Default implementation of the page header, contains the page title, breadcrumbs and additional page details."
+  fields:
+    identity:
+      type: "text"
+      label: "Identity"
+      description: "Name of the site"
+      preview: "Digital single market"
+    title:
+      type: "text"
+      label: "Title"
+      description: "The title of the page."
+      preview: "Business, Economy, Euro"
+    introduction:
+      type: text
+      label: "Introduction"
+      description: "A small introduction of the page content."
+      preview: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+    metas:
+      type: array
+      label: "Metas"
+      description: "A collection of page meta information."
+      preview:
+        - "News article"
+        - "6 July 2015"
+        - "Brussels"
+    breadcrumb:
+      type: "array"
+      label: "Breadcrumb"
+      description: "A list of links that represent the location of the current page in the website."
+      preview:
+        - href: "#"
+          label: "European Commission"
+        - href: "#"
+          label: "Announcements"

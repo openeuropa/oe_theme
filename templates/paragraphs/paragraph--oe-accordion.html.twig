@@ -6,7 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ attach_library('oe_theme/accordions') }}
-{% include '@ecl/ec-component-accordion' with {
-  'panels': panels,
-} %}
+{{ pattern('accordion', {
+  'identifier': identifier,
+  'items': items,
+}) }}

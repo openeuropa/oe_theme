@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * UI Pattern library standalone page, override this in your theme.
+ */
+#}
+
+{% if pattern is not empty %}
+  {% set style = pattern.meta['#pattern'].additional.style %}
+  {{ pattern.meta }}
+
+  {# Rendered pattern preview. #}
+  <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
+    {{ pattern.rendered }}
+  </div>
+
+{% endif %}
