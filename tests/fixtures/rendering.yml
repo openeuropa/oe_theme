@@ -248,8 +248,18 @@
     '#id': list_item_block_two_columns
     '#fields':
       items:
-        - "One"
-        - "Two"
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "List item 1"
+             detail: "Description for list item 1."
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "List item 2"
+             detail: "Description for list item 2."
+      button_label: "View all"
+      button_url: "http://example.com"
   assertions:
     count:
       'ul.ecl-listing--two-columns': 1
@@ -259,8 +269,23 @@
     '#id': list_item_block_three_columns
     '#fields':
       items:
-        - "One"
-        - "Two"
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "List item 1"
+             detail: "Description for list item 1."
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "List item 1"
+             detail: "Description for list item 2."
+        - '#type': "pattern"
+          '#id': "list_item_default"
+          '#fields':
+             title: "List item 3"
+             detail: "Description for list item 3."
+      button_label: "View all"
+      button_url: "http://example.com"
   assertions:
     count:
       'ul.ecl-listing--two-columns': 0
