@@ -1,3 +1,8 @@
+oe_theme_demo.main.home:
+  title: 'Home'
+  route_name: "<front>"
+  menu_name: "main"
+  weight: 0
 oe_theme_demo.main.about:
   title: 'About'
   route_name: "<none>"

@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.3.0](https://github.com/openeuropa/oe_theme/tree/0.3.0) (2018-06-12)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.2.0...0.3.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-615: Add templates for splash page and css for body in sass. [\#78](https://github.com/openeuropa/oe_theme/pull/78) ([Medi4tor](https://github.com/Medi4tor))
+- OPENEUROPA-15: Provide an overview page for integrated ECL components [\#77](https://github.com/openeuropa/oe_theme/pull/77) ([ademarco](https://github.com/ademarco))
+
 ## [0.2.0](https://github.com/openeuropa/oe_theme/tree/0.2.0) (2018-05-29)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.1.0...0.2.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.2.0 release [\#76](https://github.com/openeuropa/oe_theme/pull/76) ([ademarco](https://github.com/ademarco))
 - Language labels are translated in their native language. [\#75](https://github.com/openeuropa/oe_theme/pull/75) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-480: Provide a language selection page [\#74](https://github.com/openeuropa/oe_theme/pull/74) ([richardcanoe](https://github.com/richardcanoe))
 - OPENEUROPA-581: Update ECL library to 1.0.0. [\#73](https://github.com/openeuropa/oe_theme/pull/73) ([voidtek](https://github.com/voidtek))

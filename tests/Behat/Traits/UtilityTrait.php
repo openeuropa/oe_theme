@@ -45,7 +45,7 @@ trait UtilityTrait {
    *   The element to check for visibility.
    */
   protected function assertVisuallyVisible(NodeElement $element): void {
-    Assert::assertTrue($this->isVisuallyVisible($element), 'The element is visually visible');
+    Assert::assertTrue($this->isVisuallyVisible($element), 'The element is not visually visible but it should be');
   }
 
   /**
@@ -64,7 +64,7 @@ trait UtilityTrait {
    *   The element to check for visibility.
    */
   protected function assertNotVisuallyVisible(NodeElement $element): void {
-    Assert::assertFalse($this->isVisuallyVisible($element), 'The element is not visually visible');
+    Assert::assertFalse($this->isVisuallyVisible($element), 'The element is visually visible but it should not be');
   }
 
   /**

@@ -29,6 +29,20 @@ Feature: Theme showcase
       | Commission at work |
       | Departments        |
 
+  @javascript
+  Scenario: The demo site navigation menu features dropdown menus
+    When I am on the homepage
+    Then the "priorities dropdown menu" is not visible
+    And the "about dropdown menu" is not visible
+
+    When I click "About" in the "navigation"
+    And the "about dropdown menu" is visible
+    But the "priorities dropdown menu" is not visible
+
+    When I click "Priorities" in the "navigation"
+    And the "about dropdown menu" is not visible
+    But the "priorities dropdown menu" is visible
+
   Scenario: The demo site footer features placeholder blocks
     When I am on the homepage
     Then I should see the "custom block" element in the "custom footer"

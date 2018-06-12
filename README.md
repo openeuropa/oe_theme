@@ -23,7 +23,7 @@ In your Drupal project's main `composer.json` add the following dependency:
 ```json
 {
     "require": { 
-        "openeuropa/oe_theme": "dev-master"
+        "openeuropa/oe_theme": "^0.3"
     }
 } 
 ```
