@@ -21,8 +21,8 @@ default:
               language switcher overlay: ".ecl-dialog__body"
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
               page header: ".ecl-page-header__body"
-              about dropdown menu: "#nav-menu-expandable-group-2"
-              priorities dropdown menu: "#nav-menu-expandable-group-3"
+              about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
+              priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
             pages:
               user registration: "/user/register"
               ECL components overview: "/en/components"
