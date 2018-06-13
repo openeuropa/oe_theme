@@ -1,6 +1,6 @@
 list_item_block_three_columns:
   label: "List item block: three columns"
-  description: "Two columns layout, to be used with listing items."
+  description: "Three columns layout, to be used with listing items."
   fields:
     title:
       type: "text"
