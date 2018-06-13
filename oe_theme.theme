@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
@@ -423,6 +422,8 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
   $variables['variant'] = $paragraph->get('field_oe_list_item_variant')->first()->value;
   $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl()->toString();
 
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
   // Extract the image if present.
   if (!$paragraph->get('field_oe_image')->isEmpty()) {
     /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $image_item */
@@ -436,7 +437,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
     // Caches are handled by the formatter usually. Since we are not rendering
     // the original render arrays, we need to propagate our caches to the
     // paragraph template.
-    CacheableMetadata::createFromObject($file)->applyTo($variables);
+    $cacheability->addCacheableDependency($file);
   }
 
   // Prepare the date fields if date is available.
@@ -449,8 +450,12 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
     $variables['day'] = $date_formatter->format($timestamp, 'custom', 'd');
     $variables['month'] = $date_formatter->format($timestamp, 'custom', 'M');
 
-    $variables['#cache']['contexts'] = Cache::mergeContexts($variables['#cache']['contexts'], ['timezone']);
+    // Add the timezone context to the cache.
+    // @see \Drupal\datetime\Plugin\Field\FieldFormatter\DateTimeFormatterBase::buildDate()
+    $cacheability->addCacheContexts(['timezone']);
   }
+
+  $cacheability->applyTo($variables);
 }
 
 /**
