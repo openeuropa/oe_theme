@@ -194,6 +194,7 @@ class ParagraphsTest extends AbstractKernelTestBase {
         'target_id' => $image->id(),
         'alt' => 'Druplicon',
       ],
+      'field_oe_date' => '2018-07-13',
     ]);
     $paragraph->save();
 
@@ -210,6 +211,10 @@ class ParagraphsTest extends AbstractKernelTestBase {
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('img.ecl-image'));
+    // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant and test that the markup changed.
     $paragraph->get('field_oe_list_item_variant')->setValue('list_item_highlight');
@@ -222,6 +227,10 @@ class ParagraphsTest extends AbstractKernelTestBase {
     $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
     // The description should not be rendered in this variant.
     $this->assertEquals('', trim($crawler->filter('.ecl-list-item__detail')->text()));
+    // Neither the date.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     $link_element = $crawler->filter('.ecl-list-item__link');
     $this->assertCount(1, $link_element);
@@ -258,6 +267,13 @@ class ParagraphsTest extends AbstractKernelTestBase {
     );
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
+    // The secondary image markup should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-list-item__secondary img.ecl-image'));
+    // The date field should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+
     // Change the variant to thumbnail secondary.
     $paragraph->get('field_oe_list_item_variant')->setValue('list_item_thumbnail_secondary');
     $paragraph->save();
@@ -280,6 +296,35 @@ class ParagraphsTest extends AbstractKernelTestBase {
       $image_element->attr('src')
     );
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
+    // The primary image markup should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-list-item__primary img.ecl-image'));
+    // The date field should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+
+    // Change the variant to date.
+    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_date');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--date'));
+    $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
+
+    $link_element = $crawler->filter('.ecl-list-item__link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $this->assertEquals('Fri', trim($crawler->filter('.ecl-date-block__week-day')->text()));
+    $this->assertEquals('13', trim($crawler->filter('.ecl-date-block__day')->text()));
+    $this->assertEquals('Jul', trim($crawler->filter('.ecl-date-block__month')->text()));
+
+    // No images should be rendered in this variant.
+    $this->assertCount(0, $crawler->filter('img.ecl-image'));
   }
 
   /**
