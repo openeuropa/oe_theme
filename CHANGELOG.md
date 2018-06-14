@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.3.1](https://github.com/openeuropa/oe_theme/tree/0.3.1) (2018-06-14)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.3.0...0.3.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-635: Reduce patches on OpenEuropa Theme [\#80](https://github.com/openeuropa/oe_theme/pull/80) ([ademarco](https://github.com/ademarco))
+
 ## [0.3.0](https://github.com/openeuropa/oe_theme/tree/0.3.0) (2018-06-12)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.2.0...0.3.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.3.0 release [\#81](https://github.com/openeuropa/oe_theme/pull/81) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-615: Add templates for splash page and css for body in sass. [\#78](https://github.com/openeuropa/oe_theme/pull/78) ([Medi4tor](https://github.com/Medi4tor))
 - OPENEUROPA-15: Provide an overview page for integrated ECL components [\#77](https://github.com/openeuropa/oe_theme/pull/77) ([ademarco](https://github.com/ademarco))
 
