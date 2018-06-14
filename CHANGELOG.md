@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.4.0](https://github.com/openeuropa/oe_theme/tree/0.4.0) (2018-06-14)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.3.1...0.4.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-628: Implement additional paragraph types [\#82](https://github.com/openeuropa/oe_theme/pull/82) ([brummbar](https://github.com/brummbar))
+
 ## [0.3.1](https://github.com/openeuropa/oe_theme/tree/0.3.1) (2018-06-14)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.3.0...0.3.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.3.1 release. [\#83](https://github.com/openeuropa/oe_theme/pull/83) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-635: Reduce patches on OpenEuropa Theme [\#80](https://github.com/openeuropa/oe_theme/pull/80) ([ademarco](https://github.com/ademarco))
 
 ## [0.3.0](https://github.com/openeuropa/oe_theme/tree/0.3.0) (2018-06-12)
