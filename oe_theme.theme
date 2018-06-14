@@ -455,6 +455,15 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
     $cacheability->addCacheContexts(['timezone']);
   }
 
+  // Prepare the metas if available.
+  if (!$paragraph->get('field_oe_meta')->isEmpty()) {
+    $metas = [];
+    foreach ($paragraph->get('field_oe_meta') as $item) {
+      $metas[] = $item->value;
+    }
+    $variables['meta'] = $metas;
+  }
+
   $cacheability->applyTo($variables);
 }
 

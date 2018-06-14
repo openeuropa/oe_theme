@@ -195,6 +195,7 @@ class ParagraphsTest extends AbstractKernelTestBase {
         'alt' => 'Druplicon',
       ],
       'field_oe_date' => '2018-07-13',
+      'field_oe_meta' => ['Meta 1', 'Meta 2', 'Meta 3'],
     ]);
     $paragraph->save();
 
@@ -208,6 +209,12 @@ class ParagraphsTest extends AbstractKernelTestBase {
     $link_element = $crawler->filter('.ecl-list-item__link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $meta_elements = $crawler->filter('.ecl-meta__item');
+    $this->assertCount(3, $meta_elements);
+    $this->assertEquals('Meta 1', trim($meta_elements->getNode(0)->nodeValue));
+    $this->assertEquals('Meta 2', trim($meta_elements->getNode(1)->nodeValue));
+    $this->assertEquals('Meta 3', trim($meta_elements->getNode(2)->nodeValue));
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('img.ecl-image'));
@@ -231,6 +238,8 @@ class ParagraphsTest extends AbstractKernelTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // Neither the metas.
+    $this->assertCount(0, $crawler->filter('.ecl-meta__item'));
 
     $link_element = $crawler->filter('.ecl-list-item__link');
     $this->assertCount(1, $link_element);
@@ -267,6 +276,12 @@ class ParagraphsTest extends AbstractKernelTestBase {
     );
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
+    $meta_elements = $crawler->filter('.ecl-meta__item');
+    $this->assertCount(3, $meta_elements);
+    $this->assertEquals('Meta 1', trim($meta_elements->getNode(0)->nodeValue));
+    $this->assertEquals('Meta 2', trim($meta_elements->getNode(1)->nodeValue));
+    $this->assertEquals('Meta 3', trim($meta_elements->getNode(2)->nodeValue));
+
     // The secondary image markup should not be rendered.
     $this->assertCount(0, $crawler->filter('.ecl-list-item__secondary img.ecl-image'));
     // The date field should not be rendered.
@@ -297,6 +312,12 @@ class ParagraphsTest extends AbstractKernelTestBase {
     );
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
+    $meta_elements = $crawler->filter('.ecl-meta__item');
+    $this->assertCount(3, $meta_elements);
+    $this->assertEquals('Meta 1', trim($meta_elements->getNode(0)->nodeValue));
+    $this->assertEquals('Meta 2', trim($meta_elements->getNode(1)->nodeValue));
+    $this->assertEquals('Meta 3', trim($meta_elements->getNode(2)->nodeValue));
+
     // The primary image markup should not be rendered.
     $this->assertCount(0, $crawler->filter('.ecl-list-item__primary img.ecl-image'));
     // The date field should not be rendered.
@@ -325,6 +346,8 @@ class ParagraphsTest extends AbstractKernelTestBase {
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('img.ecl-image'));
+    // Neither the metas.
+    $this->assertCount(0, $crawler->filter('.ecl-meta__item'));
   }
 
   /**
