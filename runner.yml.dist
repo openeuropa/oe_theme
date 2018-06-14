@@ -19,6 +19,7 @@ drupal:
     - "./vendor/bin/drush theme:enable seven -y"
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"
     - "./vendor/bin/drush config-set system.theme admin seven -y"
+    - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:
