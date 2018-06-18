@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.4.1](https://github.com/openeuropa/oe_theme/tree/0.4.1) (2018-06-18)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.4.0...0.4.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-664: Make sure that OpenEuropa Theme page template can be extended by sub-themes [\#86](https://github.com/openeuropa/oe_theme/pull/86) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-663: Renamed language switcher block. [\#85](https://github.com/openeuropa/oe_theme/pull/85) ([richardcanoe](https://github.com/richardcanoe))
+
 ## [0.4.0](https://github.com/openeuropa/oe_theme/tree/0.4.0) (2018-06-14)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.3.1...0.4.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.4.0 release. [\#84](https://github.com/openeuropa/oe_theme/pull/84) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-628: Implement additional paragraph types [\#82](https://github.com/openeuropa/oe_theme/pull/82) ([brummbar](https://github.com/brummbar))
 
 ## [0.3.1](https://github.com/openeuropa/oe_theme/tree/0.3.1) (2018-06-14)
