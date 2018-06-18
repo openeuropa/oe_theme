@@ -7,13 +7,16 @@
  */
 #}
 
+{% block site_header %}
 <header class="ecl-site-header" role="banner">
   {{ page.site_top_bar }}
   <div class="ecl-container ecl-site-header__banner">
     {{ page.site_header }}
   </div>
 </header>
+{% endblock %}
 
+{% block page_header %}
 <div class="ecl-page-header">
   <div class="ecl-container">
     {{ page.breadcrumb }}
@@ -24,9 +27,13 @@
     {% endif %}
   </div>
 </div>
+{% endblock %}
 
-{{ page.navigation }}
+{% block navigation %}
+  {{ page.navigation }}
+{% endblock %}
 
+{% block content %}
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">
     <div class="ecl-row">
@@ -36,32 +43,43 @@
     </div>
   </div>
 </section>
+{% endblock %}
 
+{% block footer %}
 <footer class="ecl-footer">
 
   {% if page.footer_custom %}
-  <div class="ecl-footer__custom">
-    <div class="ecl-container">
-      {{ page.footer_custom }}
+    {% block footer_custom %}
+    <div class="ecl-footer__custom">
+      <div class="ecl-container">
+        {{ page.footer_custom }}
+      </div>
     </div>
-  </div>
+    {% endblock %}
   {% endif %}
 
   <div class="ecl-footer__corporate">
+
     {% if page.footer_corporate_top %}
-    <div class="ecl-footer__corporate-top">
-      <div class="ecl-container">
-        {{ page.footer_corporate_top }}
+      {% block footer_corporate_top %}
+      <div class="ecl-footer__corporate-top">
+        <div class="ecl-container">
+          {{ page.footer_corporate_top }}
+        </div>
       </div>
-    </div>
+      {% endblock %}
     {% endif %}
+
     {% if page.footer_corporate_bottom %}
-    <div class="ecl-footer__corporate-bottom">
-      <div class="ecl-container">
-        {{ page.footer_corporate_bottom }}
+      {% block footer_corporate_bottom %}
+      <div class="ecl-footer__corporate-bottom">
+        <div class="ecl-container">
+          {{ page.footer_corporate_bottom }}
+        </div>
       </div>
-    </div>
+      {% endblock %}
     {% endif %}
   </div>
 
 </footer>
+{% endblock %}
