@@ -414,6 +414,25 @@ class ParagraphsTest extends AbstractKernelTestBase {
   }
 
   /**
+   * Test quote paragraph rendering.
+   */
+  public function testRichText(): void {
+    $body = 'Body text';
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_rich_text',
+      'field_oe_text_long' => $body,
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+
+    $actual = $crawler->filter('div.ecl-paragraph.ecl-paragraph--m p')->html();
+    $this->assertEquals($body, trim($actual));
+  }
+
+  /**
    * Data provider for the quote test method.
    *
    * @return array
