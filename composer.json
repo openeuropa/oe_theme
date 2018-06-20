@@ -24,7 +24,7 @@
         "openeuropa/code-review": "^0.2",
         "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "^0.1",
-        "openeuropa/task-runner": "^0.5",
+        "openeuropa/task-runner": "^0.6",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6"
     },
