@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
@@ -57,6 +58,19 @@ function oe_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   // Do not output field labels and wrapping markup for paragraph fields.
   if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
     $suggestions[] = 'field__bare';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_theme_suggestions_paragraph_alter(&$suggestions, $variables) {
+  /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+
+  if ($paragraph->bundle() === 'oe_content_row') {
+    $variant = $paragraph->get('field_oe_content_row_variant')->first()->value;
+    $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__variant_' . $variant;
   }
 }
 
@@ -484,4 +498,42 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(&$variables) {
     $variables['button_url'] = $link_item->getUrl()->toString();
     $variables['button_label'] = $link_item->get('title')->getValue();
   }
+}
+
+/**
+ * Implements hook_preprocess_paragraph() for paragraph--oe-content-row--variant-inpage.html.twig.
+ *
+ * Prepares the inpage navigation by creating links for the inner paragraphs
+ * that implement a title.
+ */
+function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if ($paragraph->get('field_oe_paragraphs')->isEmpty()) {
+    return;
+  }
+
+  // Create a shortcut to the render array for the field.
+  $field_render = &$variables['content']['field_oe_paragraphs'];
+  $links = [];
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $delta => $sub_paragraph) {
+    /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+    if (!$sub_paragraph->hasField('field_oe_title') || $sub_paragraph->get('field_oe_title')->isEmpty()) {
+      continue;
+    }
+
+    $unique_id = Html::getUniqueId('ecl-inpage-' . $sub_paragraph->id());
+    // Wrap the paragraph in a div with a specific id set as anchor.
+    $field_render[$delta]['#theme_wrappers']['container'] = [
+      '#attributes' => ['id' => $unique_id],
+    ];
+    // Add a link pointing to the paragraph.
+    $links[] = [
+      'href' => '#' . $unique_id,
+      'label' => $sub_paragraph->get('field_oe_title')->first()->value,
+    ];
+  }
+
+  $variables['links'] = $links;
 }
