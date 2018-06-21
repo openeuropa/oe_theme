@@ -233,7 +233,7 @@ class ParagraphsTest extends AbstractKernelTestBase {
     $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--highlight'));
     $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
     // The description should not be rendered in this variant.
-    $this->assertEquals('', trim($crawler->filter('.ecl-list-item__detail')->text()));
+    $this->assertCount(0, $crawler->filter('.ecl-list-item__detail'));
     // Neither the date.
     $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));

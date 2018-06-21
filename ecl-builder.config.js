@@ -80,6 +80,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-blockquote/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-social-media-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-social-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-banner/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-accordion/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -109,6 +110,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-blockquote/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-social-media-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-social-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-banner/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') }
   ]
 };

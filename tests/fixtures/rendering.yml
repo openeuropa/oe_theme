@@ -217,9 +217,9 @@
       'a.ecl-list-item__link[href="http://example.com"]': 1
       '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
       '.ecl-list-item__secondary': 0
+      'p.ecl-list-item__detail': 0
     equals:
       'h3.ecl-list-item__title': "Item title"
-      'p.ecl-list-item__detail': ""
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -451,3 +451,15 @@
       'span.ecl-social-icon--facebook': 1
     equals:
       'span.ecl-social-icon--facebook': "Facebook"
+- array:
+    '#type': pattern
+    '#id': list_item_default
+    '#fields':
+      url: "http://example.com"
+      title: ""
+      detail: ""
+  assertions:
+    count:
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
+      'p.ecl-list-item__detail.ecl-paragraph': 0

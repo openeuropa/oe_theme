@@ -1,0 +1,26 @@
+banner_hero:
+  label: "Banner: hero"
+  description: "Is a large web banner image, prominently placed on a web page, generally at the top."
+  fields:
+    image:
+      type: "array"
+      label: "Image"
+      description: "Hero image"
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for hero image"
+    title:
+      type: "text"
+      label: "Title"
+      description: "Hero title"
+      preview: "White Paper on the future of Europe"
+    url:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Hero description"
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
