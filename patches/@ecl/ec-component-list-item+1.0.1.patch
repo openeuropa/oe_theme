@@ -10,16 +10,7 @@ patch-package
 -          {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
 -        {% endblock %}
 -      </div>
-+      {% if (_metas is not empty) %}
-+        <div class="ecl-list-item__meta">
-+          {% block meta_block %}
-+            {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
-+          {% endblock %}
-+        </div>
-+      {% endif %}
-+
-+      {% if (title is not empty) %}
-       <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
+-      <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
 -      <p class="ecl-list-item__detail ecl-paragraph">
 -        {% block detail_block %}
 -          {{ _detail }}
@@ -30,14 +21,24 @@ patch-package
 -          {{ _action }}
 -        {% endblock %}
 -      </div>
++      {% if (_metas is not empty) %}
++        <div class="ecl-list-item__meta">
++          {% block meta_block %}
++            {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
++          {% endblock %}
++        </div>
++      {% endif %}
++
++      {% if (title is not empty) %}
++        <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
 +      {% endif %}
 +
 +      {% if (_detail is not empty) %}
-+        <p class="ecl-list-item__detail ecl-paragraph">
++        <div class="ecl-list-item__detail ecl-paragraph">
 +          {% block detail_block %}
 +            {{ _detail }}
 +          {% endblock %}
-+        </p>
++        </div>
 +      {% endif %}
 +
 +      {% if (_action is not empty) %}
