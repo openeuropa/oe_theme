@@ -53,11 +53,16 @@ function oe_theme_preprocess_menu__main(&$variables) {
 
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Adds a bare, markup-free template suggestion to all paragraph fields.
  */
 function oe_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
   // Do not output field labels and wrapping markup for paragraph fields.
   if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
-    $suggestions[] = 'field__bare';
+    // Prepend the new suggestion to the list. This will put it right after the
+    // default field template. By doing this we allow to override single
+    // fields, while keeping all the rest markup-free.
+    array_unshift($suggestions, 'field__bare');
   }
 }
 
