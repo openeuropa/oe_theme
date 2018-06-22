@@ -391,12 +391,21 @@ class ParagraphsTest extends ParagraphTestBase {
       'field_oe_text_long' => $body,
     ]);
     $paragraph->save();
-    $html = $this->renderParagraph($paragraph);
 
+    $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
     $actual = $crawler->filter('div.ecl-paragraph.ecl-paragraph--m p')->html();
     $this->assertEquals($body, trim($actual));
+
+    // Add a title.
+    $paragraph->get('field_oe_title')->setValue('Paragraph heading.');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-heading--h3')->text()));
   }
 
   /**
