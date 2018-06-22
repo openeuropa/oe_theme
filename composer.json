@@ -23,7 +23,7 @@
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "^0.2",
         "openeuropa/oe_multilingual": "dev-master",
-        "openeuropa/oe_paragraphs": "dev-OPENEUROPA-675",
+        "openeuropa/oe_paragraphs": "dev-OPENEUROPA-687",
         "openeuropa/task-runner": "^0.6",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6"
