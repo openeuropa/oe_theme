@@ -22,8 +22,8 @@
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "^0.2",
-        "openeuropa/oe_multilingual": "dev-master",
-        "openeuropa/oe_paragraphs": "dev-OPENEUROPA-687",
+        "openeuropa/oe_multilingual": "^0.1",
+        "openeuropa/oe_paragraphs": "^0.2",
         "openeuropa/task-runner": "^0.6",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6"
