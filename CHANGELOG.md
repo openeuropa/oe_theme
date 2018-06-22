@@ -1,10 +1,23 @@
 # Change Log
 
+## [0.5.0](https://github.com/openeuropa/oe_theme/tree/0.5.0) (2018-06-22)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.4.1...0.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-691: Fix tests on OpenEuropa Theme [\#94](https://github.com/openeuropa/oe_theme/pull/94) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-675: Add content row paragraph type [\#93](https://github.com/openeuropa/oe_theme/pull/93) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-678: Provide a EC favicon. [\#91](https://github.com/openeuropa/oe_theme/pull/91) ([drupol](https://github.com/drupol))
+- OPENEUROPA-677: New patch for @ECL node package [\#90](https://github.com/openeuropa/oe_theme/pull/90) ([drupol](https://github.com/drupol))
+- OPENEUROPA-673: Make sure Rich Text paragraph is properly styled [\#89](https://github.com/openeuropa/oe_theme/pull/89) ([drupol](https://github.com/drupol))
+- OPENEUROPA-674: Add banner component to OpenEuropa Theme [\#88](https://github.com/openeuropa/oe_theme/pull/88) ([ademarco](https://github.com/ademarco))
+
 ## [0.4.1](https://github.com/openeuropa/oe_theme/tree/0.4.1) (2018-06-18)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.4.0...0.4.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.4.1 release. [\#87](https://github.com/openeuropa/oe_theme/pull/87) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-664: Make sure that OpenEuropa Theme page template can be extended by sub-themes [\#86](https://github.com/openeuropa/oe_theme/pull/86) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-663: Renamed language switcher block. [\#85](https://github.com/openeuropa/oe_theme/pull/85) ([richardcanoe](https://github.com/richardcanoe))
 
