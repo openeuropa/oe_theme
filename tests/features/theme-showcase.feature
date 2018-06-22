@@ -66,9 +66,9 @@ Feature: Theme showcase
     Then the "language switcher link" element should contain "English"
 
     When I open the language switcher dialog
-    And I click "Polski"
+    And I click "polski"
     Then the url should match "/pl"
-    And the "language switcher link" element should contain "Polski"
+    And the "language switcher link" element should contain "polski"
 
   Scenario: Site visitors can access the ECL components overview page
     When I am on the homepage
