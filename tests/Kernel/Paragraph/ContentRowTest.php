@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraph;
 
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -137,6 +138,58 @@ class ContentRowTest extends ParagraphTestBase {
     $this->assertNavigationItem($navigation_items->eq(0), 'List item title', $right_column);
     $this->assertNavigationItem($navigation_items->eq(1), 'List block title', $right_column);
     $this->assertNavigationItem($navigation_items->eq(2), 'Rich text title', $right_column);
+  }
+
+  /**
+   * Tests that side menu title translations are rendered correctly.
+   */
+  public function testSideMenuTranslation(): void {
+    // Create "French" language.
+    ConfigurableLanguage::createFromLangcode('fr')->save();
+
+    // Create child paragraph with "French" translation.
+    $child = Paragraph::create([
+      'type' => 'oe_rich_text',
+      'field_oe_title' => 'English rich text title',
+    ]);
+    $child->save();
+
+    $child->addTranslation('fr', [
+      'type' => 'oe_rich_text',
+      'field_oe_title' => 'French rich text title',
+    ])->save();
+
+    // Create the main content row paragraph with "French" translation.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_content_row',
+      'field_oe_title' => 'English page navigation',
+      'field_oe_content_row_variant' => 'inpage',
+      'field_oe_paragraphs' => [$child],
+    ]);
+    $paragraph->save();
+
+    $paragraph->addTranslation('fr', [
+      'type' => 'oe_content_row',
+      'field_oe_title' => 'French page navigation',
+      'field_oe_content_row_variant' => 'inpage',
+      'field_oe_paragraphs' => [$child],
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph, 'en');
+    $crawler = new Crawler($html);
+
+    // Assert that side-menu "English" translation is correctly rendered.
+    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $this->assertContains('English page navigation', $left_column->html());
+    $this->assertContains('English rich text title', $left_column->html());
+
+    $html = $this->renderParagraph($paragraph, 'fr');
+    $crawler = new Crawler($html);
+
+    // Assert that side-menu "French" translation is correctly rendered.
+    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $this->assertContains('French page navigation', $left_column->html());
+    $this->assertContains('French rich text title', $left_column->html());
   }
 
   /**

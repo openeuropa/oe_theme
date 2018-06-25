@@ -533,6 +533,11 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
     $field_render[$delta]['#theme_wrappers']['container'] = [
       '#attributes' => ['id' => $unique_id],
     ];
+
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+
     // Add a link pointing to the paragraph.
     $links[] = [
       'href' => '#' . $unique_id,
