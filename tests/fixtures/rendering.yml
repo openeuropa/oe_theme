@@ -145,7 +145,7 @@
       'a.ecl-list-item__link[href="http://example.com"]': 1
     equals:
       'h3.ecl-list-item__title': "Item title"
-      'p.ecl-list-item__detail': "Item text"
+      'div.ecl-list-item__detail': "Item text"
 - array:
     '#type': pattern
     '#id': list_item_date
@@ -162,7 +162,7 @@
       'a.ecl-list-item__link[href="http://example.com"]': 1
     equals:
       'h3.ecl-list-item__title': "Item title"
-      'p.ecl-list-item__detail': "Item text"
+      'div.ecl-list-item__detail': "Item text"
       'span.ecl-date-block__day': "17"
       'span.ecl-date-block__month': "Feb"
       'span.ecl-date-block__year': "2018"
@@ -183,7 +183,7 @@
       '.ecl-list-item__secondary': 0
     equals:
       'h3.ecl-list-item__title': "Item title"
-      'p.ecl-list-item__detail': "Item text"
+      'div.ecl-list-item__detail': "Item text"
 - array:
     '#type': pattern
     '#id': list_item_thumbnail_secondary
@@ -201,7 +201,7 @@
       '.ecl-list-item__primary': 0
     equals:
       'h3.ecl-list-item__title': "Item title"
-      'p.ecl-list-item__detail': "Item text"
+      'div.ecl-list-item__detail': "Item text"
 - array:
     '#type': pattern
     '#id': list_item_highlight
@@ -217,7 +217,7 @@
       'a.ecl-list-item__link[href="http://example.com"]': 1
       '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
       '.ecl-list-item__secondary': 0
-      'p.ecl-list-item__detail': 0
+      'div.ecl-list-item__detail': 0
     equals:
       'h3.ecl-list-item__title': "Item title"
 - array:
@@ -241,7 +241,7 @@
     equals:
       'h3.ecl-heading': "Block title"
       'h3.ecl-list-item__title': "Business, Economy, Euro"
-      'p.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-button': "View all"
 - array:
     '#type': pattern
@@ -462,4 +462,4 @@
     count:
       'a.ecl-list-item__link[href="http://example.com"]': 1
       'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
-      'p.ecl-list-item__detail.ecl-paragraph': 0
+      'div.ecl-list-item__detail.ecl-paragraph': 0
