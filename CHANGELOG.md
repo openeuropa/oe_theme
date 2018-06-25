@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.5.1](https://github.com/openeuropa/oe_theme/tree/0.5.1) (2018-06-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.5.0...0.5.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-694: Make sure that in page navigation link translations are correctly displayed [\#96](https://github.com/openeuropa/oe_theme/pull/96) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-689: Fix HTML characters encoded twice. [\#92](https://github.com/openeuropa/oe_theme/pull/92) ([drupol](https://github.com/drupol))
+
 ## [0.5.0](https://github.com/openeuropa/oe_theme/tree/0.5.0) (2018-06-22)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.4.1...0.5.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.5.0 release. [\#95](https://github.com/openeuropa/oe_theme/pull/95) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-691: Fix tests on OpenEuropa Theme [\#94](https://github.com/openeuropa/oe_theme/pull/94) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-675: Add content row paragraph type [\#93](https://github.com/openeuropa/oe_theme/pull/93) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-678: Provide a EC favicon. [\#91](https://github.com/openeuropa/oe_theme/pull/91) ([drupol](https://github.com/drupol))
