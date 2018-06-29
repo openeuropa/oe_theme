@@ -21,11 +21,17 @@ matrix:
   DRUPAL_VERSION:
     - 8.6.x
 
+clone:
+  git:
+    image: plugins/git:next
+    depth: 1
+    tags: true
+
 pipeline:
   npm-build:
     group: prepare
     image: node:9.5.0
-    commands: 
+    commands:
       - npm install --unsafe-perm
       - npm run build
 
