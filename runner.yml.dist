@@ -28,6 +28,9 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+selenium:
+  host: "http://selenium"
+  port: "4444"
 
 commands:
   drupal:site-setup:
