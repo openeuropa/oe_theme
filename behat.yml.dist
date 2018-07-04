@@ -8,7 +8,7 @@ default:
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
-        - Drupal\Tests\oe_theme\Behat\TransformationContext:
+        - OpenEuropa\Behat\TransformationContext:
             elements:
               logo: "a.ecl-logo"
               breadcrumb: "nav.ecl-breadcrumb"
