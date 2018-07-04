@@ -183,6 +183,25 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['title'] = ['#markup' => $element['#title']];
   }
+
+  // Generate the extra attributes array from the general attributes.
+  $extra_attributes = !empty($variables['attributes']) ? $variables['attributes'] : [];
+  $predefined_attributes = [
+    'id' => 'id',
+    'name' => 'name',
+    'value' => 'value',
+    'checked' => 'checked',
+    'disabled' => 'disabled',
+  ];
+  $extra_attributes = array_diff_key($extra_attributes, $predefined_attributes);
+  foreach ($extra_attributes as $key => $value) {
+    if (is_string($value)) {
+      $variables['extra_attributes'][] = [
+        'name' => $key,
+        'value' => $value,
+      ];
+    }
+  }
 }
 
 /**
