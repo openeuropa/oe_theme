@@ -4,7 +4,7 @@ workspace:
 
 services:
   web:
-    image: fpfis/php71-build:latest
+    image: fpfis/httpd-php-dev:7.1
     environment:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
@@ -16,10 +16,6 @@ services:
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
-
-matrix:
-  DRUPAL_VERSION:
-    - 8.6.x
 
 clone:
   git:
@@ -39,16 +35,15 @@ pipeline:
 
   composer-install:
     group: prepare
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
     commands:
-      - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
+      - composer install
 
   site-install:
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
-      - ./vendor/bin/run drupal:site-setup
       - ./vendor/bin/run drupal:site-install
       # Reset permission since installation runs as root. @todo Fix this.
       - chown -R 1000:1000 build/sites/default
@@ -56,29 +51,27 @@ pipeline:
 
   grumphp:
     group: test
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/behat
 
   before-release:
-    image: fpfis/php71-build
+    image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/run release:create-archive
     when:
-      matrix:
-        DRUPAL_VERSION: 8.6.x
       event: tag
 
   github-release:
@@ -86,6 +79,4 @@ pipeline:
     secrets: [ github_token ]
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
-      matrix:
-        DRUPAL_VERSION: 8.6.x
       event: tag
