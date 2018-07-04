@@ -1,8 +1,7 @@
 version: '2'
 services:
-
   web:
-    image: fpfis/php71-dev
+    image: fpfis/httpd-php-dev:7.1
     working_dir: /var/www/html
     ports:
       - 8080:8080
@@ -11,12 +10,10 @@ services:
     environment:
       XDEBUG_CONFIG: "remote_enable=1 remote_host=${DOCKER_HOST_IP} remote_port=9000 idekey=PHPSTORM remote_autostart=1"
       PHP_IDE_CONFIG: "serverName=Test"
-      COMPOSER_MEMORY_LIMIT: "2G"
-      COMPOSER_CACHE_DIR: "/tmp/composer"
-
   mysql:
-    image: fpfis/mysql56
-
+    image: percona/percona-server:5.6
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
   # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
     image: selenium/standalone-chrome-debug:3.11
@@ -27,9 +24,8 @@ services:
       - "5900:5900"
     expose:
       - '4444'
-
   node:
-    image: "node:9.5.0"
+    image: node:9.5.0
     user: "node"
     working_dir: /home/node/app
     environment:
