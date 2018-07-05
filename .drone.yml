@@ -21,11 +21,19 @@ matrix:
   DRUPAL_VERSION:
     - 8.6.x
 
+clone:
+  git:
+    image: plugins/git:next
+    depth: 1
+    # The tags property is not documented but can be found in the following snippet of code
+    # https://github.com/drone-plugins/drone-git/blob/master/plugin.go#L153
+    tags: true
+
 pipeline:
   npm-build:
     group: prepare
     image: node:9.5.0
-    commands: 
+    commands:
       - npm install --unsafe-perm
       - npm run build
 
