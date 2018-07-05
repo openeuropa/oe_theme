@@ -10,3 +10,5 @@ patch-package
    {% block label %}{% spaceless %}
      <input class="ecl-checkbox__input ecl-u-sr-only" type="checkbox" id="{{ _id }}" value="{{ _value }}" name="{{ _name }}"{{ _checked ? ' checked' : '' }}{{ (_is_disabled is defined and _is_disabled == true) ? ' disabled' : '' }}{{ _input_attributes|raw }} />
      <span class="ecl-checkbox__label">{{ _label }}</span>
+   {% endblock %}
+ {% endembed %}
