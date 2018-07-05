@@ -2,7 +2,7 @@
     "name": "openeuropa/oe_theme",
     "description": "OpenEuropa base theme.",
     "type": "drupal-theme",
-    "license": "EUPL-1.1",
+    "license": "EUPL-1.2",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
