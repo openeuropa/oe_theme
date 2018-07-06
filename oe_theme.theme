@@ -196,7 +196,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $extra_attributes = array_diff_key($extra_attributes, $predefined_attributes);
   foreach ($extra_attributes as $key => $value) {
     if (is_string($value)) {
-      $variables['extra_attributes'][] = [
+      $variables['input_attributes'][] = [
         'name' => $key,
         'value' => $value,
       ];
