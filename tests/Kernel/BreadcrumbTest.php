@@ -22,6 +22,7 @@ class BreadcrumbTest extends AbstractKernelTestBase {
     $links = [
       'Home' => '<front>',
       'Test' => '<front>',
+      'Current' => '<front>',
     ];
 
     $breadcrumb = new Breadcrumb();
@@ -36,12 +37,22 @@ class BreadcrumbTest extends AbstractKernelTestBase {
     $actual = $crawler->filter('nav.ecl-breadcrumb');
     $this->assertCount(1, $actual);
 
-    // Assert links are rendered correctly.
+    // Assert elements are rendered correctly.
     $position = 0;
     foreach ($links as $title => $url) {
-      $link = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
-      $this->assertEquals($title, trim($link->text()));
-      $position++;
+      // All but the last elements must be links.
+      if ($position < count($links) - 1) {
+        $element = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')
+          ->eq($position);
+        $position++;
+      }
+      else {
+        // The last element must be a span.
+        $element = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment span')
+          ->eq(0);
+      }
+      $this->assertEquals($title, trim($element->text()));
+
     }
   }
 
