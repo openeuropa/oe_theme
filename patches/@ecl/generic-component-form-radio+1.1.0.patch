@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl/generic-component-form-radio/generic-component-form-radio.twig
++++ b/node_modules/@ecl/generic-component-form-radio/generic-component-form-radio.twig
+@@ -71,7 +71,7 @@
+   _checked: _checked,
+   _is_disabled: _is_disabled,
+   _system: _system
+-} only %}
++} %}
+   {% block label %}{% spaceless %}
+     <input class="ecl-radio__input ecl-u-sr-only" type="radio" id="{{ _id }}" value="{{ _value }}" name="{{ _name }}"{{ _checked ? ' checked' : '' }}{{ (_is_disabled is defined and _is_disabled == true) ? ' disabled' : '' }}{{ _input_attributes|raw }} />
+     <span class="ecl-radio__label">{{ _label }}</span>

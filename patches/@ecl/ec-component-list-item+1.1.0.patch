@@ -1,15 +1,18 @@
 patch-package
 --- a/node_modules/@ecl/ec-component-list-item/ec-component-list-item.twig
 +++ b/node_modules/@ecl/ec-component-list-item/ec-component-list-item.twig
-@@ -70,22 +70,33 @@
+@@ -70,24 +70,33 @@
        </div>
      {% endif %}
      <div class="ecl-list-item__body">
--      <div class="ecl-list-item__meta">
--        {% block meta_block %}
--          {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
--        {% endblock %}
--      </div>
+-      {% if _variant is empty or _variant == 'thumbnail' %}
++      {% if (_variant is empty or _variant == 'thumbnail') and _metas is not empty %}
+         <div class="ecl-list-item__meta">
+           {% block meta_block %}
+             {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
+           {% endblock %}
+         </div>
+       {% endif %}
 -      <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
 -      <p class="ecl-list-item__detail ecl-paragraph">
 -        {% block detail_block %}
@@ -21,13 +24,6 @@ patch-package
 -          {{ _action }}
 -        {% endblock %}
 -      </div>
-+      {% if (_metas is not empty) %}
-+        <div class="ecl-list-item__meta">
-+          {% block meta_block %}
-+            {% include '@ecl/ec-component-meta' with { metas: _metas } only %}
-+          {% endblock %}
-+        </div>
-+      {% endif %}
 +
 +      {% if (title is not empty) %}
 +        <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
