@@ -49,5 +49,7 @@ default:
         custom footer: ".ecl-footer__custom"
         corporate top footer: ".ecl-footer__corporate-top"
         corporate bottom footer: ".ecl-footer__corporate-bottom"
+        language switcher: ".ecl-language-list"
+        language dialog: ".ecl-dialog"
   formatters:
     progress: ~
