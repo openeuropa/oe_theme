@@ -21,11 +21,11 @@ patch-package
 +        <h3 class="ecl-list-item__title ecl-heading ecl-heading--h3">{{ title }}</h3>
 +      {% endif %}
 +      {% if (_detail is not empty) %}
-+        <p class="ecl-list-item__detail ecl-paragraph">
++        <div class="ecl-list-item__detail ecl-paragraph">
 +          {% block detail_block %}
 +            {{ _detail }}
 +          {% endblock %}
-+        </p>
++        </div>
 +      {% endif %}
 +
 +      {% if (_action is not empty) %}

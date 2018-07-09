@@ -318,7 +318,7 @@
       '.ecl-page-header__title h1': "Business, Economy, Euro"
       '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
-      '.ecl-breadcrumb__segment--last a[href="http://www.example.com/announcements/"]': "Announcements"
+      '.ecl-breadcrumb__segment--last span': "Announcements"
 - array:
     '#type': pattern
     '#id': accordion
