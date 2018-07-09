@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_multilingual
+  theme:
+    - oe_theme
+id: oe_multilingual_content_language_switcher
+theme: oe_theme
+region: breadcrumb
+weight: 1
+provider: null
+plugin: oe_multilingual_content_language_switcher
+settings:
+  id: oe_multilingual_content_language_switcher
+  label: 'OpenEuropa Content Language Switcher'
+  provider: oe_multilingual
+  label_display: '0'
+visibility: {  }
