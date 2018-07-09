@@ -53,7 +53,7 @@
         "composer-exit-on-patch-failure": true,
         "patches": {
             "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-04-15/2943172-kernel-test-base-2.patch"
+                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch"
             }
         },
         "installer-paths": {
