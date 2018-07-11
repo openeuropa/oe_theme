@@ -6,24 +6,29 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Link;
-use Drupal\node\Entity\Node;
+use Drupal\entity_test\Entity\EntityTest;
+use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
+use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class BreadcrumbTest.
  */
-class BreadcrumbTest extends AbstractKernelTestBase {
+class BreadcrumbTest extends EntityKernelTestBase {
 
   use RequestTrait;
+  use RenderTrait;
 
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = [
-    'node',
+    'system',
+    'user',
+    'ui_patterns',
+    'ui_patterns_library',
+    'oe_theme_helper',
   ];
 
   /**
@@ -31,8 +36,13 @@ class BreadcrumbTest extends AbstractKernelTestBase {
    */
   protected function setUp() {
     parent::setUp();
-    $this->installEntitySchema('node');
-    $this->installSchema('node', 'node_access');
+
+    $this->installEntitySchema('user');
+    $this->installConfig(['system']);
+
+    $this->container->get('theme_installer')->install(['oe_theme']);
+    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->set('theme.registry', NULL);
   }
 
   /**
@@ -93,24 +103,13 @@ class BreadcrumbTest extends AbstractKernelTestBase {
    * Test the title into the breadcrumb.
    */
   public function testBreadcrumbTitleRendering(): void {
-    $node = Node::create([
-      'title' => 'Hello world!',
-      'type' => 'node',
-    ]);
-    $node->save();
+    $entity = EntityTest::create();
+    $entity->save();
     // Simulate a request to the node.
-    $this->setCurrentRequest('/node/' . $node->id());
-
-    $links = [
-      'Home' => '<front>',
-      'Test' => '<front>',
-      'Last' => '<front>',
-    ];
+    $this->setCurrentRequest('/entity_test/' . $entity->id());
 
     $breadcrumb = new Breadcrumb();
-    foreach ($links as $title => $url) {
-      $breadcrumb->addLink(Link::createFromRoute($title, $url));
-    }
+    $breadcrumb->addLink(Link::createFromRoute('Home', '<front>'));
     $render_array = $breadcrumb->toRenderable();
     $html = $this->renderRoot($render_array);
 
@@ -122,7 +121,7 @@ class BreadcrumbTest extends AbstractKernelTestBase {
 
     // Check if the last element of the links is filled with the page title.
     $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last();
-    $this->assertEquals('Hello world!', trim($span->text()));
+    $this->assertEquals('Test full view mode', trim($span->text()));
   }
 
 }
