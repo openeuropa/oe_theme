@@ -39,7 +39,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
   public function testLanguageSwitcherRendering(): void {
     $node = Node::create([
       'title' => 'Hello, world!',
-      'type' => 'oe_demo_translatable_page',
+      'type' => 'node',
     ]);
     /** @var \Drupal\Core\Entity\EntityInterface $translation */
     $node->addTranslation('es', ['title' => '¡Hola mundo!'])->save();

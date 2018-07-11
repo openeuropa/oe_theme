@@ -6,12 +6,34 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Link;
+use Drupal\node\Entity\Node;
+use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class BreadcrumbTest.
  */
 class BreadcrumbTest extends AbstractKernelTestBase {
+
+  use RequestTrait;
+
+  /**
+   * Modules to enable.
+   *
+   * @var array
+   */
+  public static $modules = [
+    'node',
+  ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+    $this->installEntitySchema('node');
+    $this->installSchema('node', 'node_access');
+  }
 
   /**
    * Test a basic breadcrumb is themed using ECL breadcrumb component.
@@ -64,6 +86,35 @@ class BreadcrumbTest extends AbstractKernelTestBase {
       $this->assertEquals($title, trim($link->text()));
       $position++;
     }
+  }
+
+  /**
+   * Test the title into the breadcrumb.
+   */
+  public function testBreadcrumbTitleRendering(): void {
+    $node = Node::create([
+      'title' => 'Hello world!',
+      'type' => 'node',
+    ]);
+
+    // Simulate a request to the node.
+    $this->setCurrentRequest('/en/node/' . $node->id());
+
+    // Setup and render language switcher block.
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $config = [
+      'id' => 'oe_multilingual_content_language_switcher',
+      'label' => 'Content language switcher',
+      'provider' => 'oe_multilingual',
+      'label_display' => '0',
+    ];
+
+    /** @var \Drupal\Core\Block\BlockBase $plugin_block */
+    $plugin_block = $block_manager->createInstance('oe_multilingual_content_language_switcher', $config);
+    $render = $plugin_block->build();
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
   }
 
 }
