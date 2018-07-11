@@ -73,7 +73,8 @@ class BreadcrumbTest extends AbstractKernelTestBase {
     $this->assertCount(1, $span_count);
 
     // Check if the last element of the links is a span instead of an html link.
-    $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last();
+    $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last()->children()->first();
+    $this->assertEquals('span', trim($span->nodeName()));
     $this->assertEquals('Last', trim($span->text()));
 
     // Remove the last element which is not a link from the array.
@@ -100,21 +101,28 @@ class BreadcrumbTest extends AbstractKernelTestBase {
     // Simulate a request to the node.
     $this->setCurrentRequest('/node/' . $node->id());
 
-    // Setup and render language switcher block.
-    $block_manager = \Drupal::service('plugin.manager.block');
-    $config = [
-      'id' => 'oe_multilingual_content_language_switcher',
-      'label' => 'Content language switcher',
-      'provider' => 'oe_multilingual',
-      'label_display' => '0',
+    $links = [
+      'Home' => '<front>',
+      'Test' => '<front>',
+      'Last' => '<front>',
     ];
 
-    /** @var \Drupal\Core\Block\BlockBase $plugin_block */
-    $plugin_block = $block_manager->createInstance('oe_multilingual_content_language_switcher', $config);
-    $render = $plugin_block->build();
+    $breadcrumb = new Breadcrumb();
+    foreach ($links as $title => $url) {
+      $breadcrumb->addLink(Link::createFromRoute($title, $url));
+    }
+    $render_array = $breadcrumb->toRenderable();
+    $html = $this->renderRoot($render_array);
 
-    $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
+
+    // Check if the number of rendered span is correct.
+    $span_count = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li span');
+    $this->assertCount(1, $span_count);
+
+    // Check if the last element of the links is filled with the page title.
+    $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last();
+    $this->assertEquals('Hello world!', trim($span->text()));
   }
 
 }
