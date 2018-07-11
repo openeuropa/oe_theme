@@ -23,6 +23,8 @@ regions:
 
 config_devel:
   optional:
+    - block.block.oe_multilingual_content_language_switcher
+    - block.block.oe_multilingual_language_switcher
     - block.block.oe_theme_breadcrumb
     - block.block.oe_theme_main_page_content
     - block.block.oe_theme_page_header
