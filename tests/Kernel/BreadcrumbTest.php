@@ -96,9 +96,9 @@ class BreadcrumbTest extends AbstractKernelTestBase {
       'title' => 'Hello world!',
       'type' => 'node',
     ]);
-
+    $node->save();
     // Simulate a request to the node.
-    $this->setCurrentRequest('/en/node/' . $node->id());
+    $this->setCurrentRequest('/node/' . $node->id());
 
     // Setup and render language switcher block.
     $block_manager = \Drupal::service('plugin.manager.block');
