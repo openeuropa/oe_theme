@@ -10,14 +10,14 @@ patch-package
 +    - "last" (array): Page link for the last page; not present on the last page of results.
 +    - "next" (array): Page link for the next page; not present on the last page of results.
 +      Each of the page link variables which are listed above contain following elements:
-+      - href: URL with appropriate query parameters.
-+      - text: The visible text used for the page link.
-+      - title: The text used for filling the 'title' property of a given tag.
++        - href: URL with appropriate query parameters.
++        - text: The visible text used for the page link.
++        - title: The text used for filling the 'title' property of a given tag.
 +    - "pages" (array): List of the pager page links.
 +      The list is keyed with ordered page numbers and each item contatin following elements:
-+      - href: URL with appropriate query parameters.
-+      - text: The visible text used for the page link.
-+      - title: The text used for filling the 'title' property of a given tag.
++        - href: URL with appropriate query parameters.
++        - text: The visible text used for the page link.
++        - title: The text used for filling the 'title' property of a given tag.
      - "current_page" (integer)  (default: 1): page currently displayed
      - "max_page" (integer) (default: 0): total number of pages
 -    - "fragment_url" (string) (default: '/page'): url parameter to identify current page
@@ -30,10 +30,10 @@ patch-package
      - "extra_classes" (string) (default: '')
      - "extra_attributes" (array) (default: []): format: [
          {
-@@ -22,94 +29,95 @@
- 
+@@ -22,17 +29,21 @@
+
  {# Internal properties #}
- 
+
 -{% set _aria_label = aria_label|default('Pagination navigation') %}
 -{% set _current_page = current_page|default(1) %}
 -{% set _max_page = max_page|default(0) %}
@@ -50,37 +50,23 @@ patch-package
 +{% set max_page = max_page|default(0) %}
 +{% set label_page = label_page|default('Page') %}
 +{% set previous = previous|default({})|merge({
-+  'title': previous.title|default('Go to previous page'),
-+  'text': previous.text|default('‹ Previous')
-+})
++    'title': previous.title|default('Go to previous page'),
++    'text': previous.text|default('‹ Previous')
++  })
 +%}
 +{% set next = next|default({})|merge({
-+  'title': next.title|default('Go to next page'),
-+  'text': next.text|default('Next ›')
-+})
++    'title': next.title|default('Go to next page'),
++    'text': next.text|default('Next ›')
++  })
 +%}
 +{% set _css_class = 'ecl-pager__list' %}
  {% set _extra_attributes = '' %}
- 
+
  {# Internal logic - Process properties #}
- 
--{% if extra_classes is defined and extra_classes is not empty %}
--  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
-+{% if extra_class is defined %}
-+  {% set _css_class = _css_class ~ ' ' ~ extra_class %}
- {% endif %}
- 
--{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
-+{% if extra_attributes is defined %}
-   {% for attr in extra_attributes %}
--    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
-+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~'"' %}
-   {% endfor %}
- {% endif %}
- 
--{# Print the result #}
-+{# Print the result  #}
- 
+@@ -49,67 +60,65 @@
+
+ {# Print the result #}
+
 -<nav class="{{ _css_class }}" aria-label="{{ _aria_label }}"{{ _extra_attributes|raw }}>
 -  <ul class="ecl-pager__list">
 -    {% if _current_page > 1 %}
@@ -173,7 +159,8 @@ patch-package
 -        <a class="ecl-pager__link" title="{{ _title_page }} {{ _max_page }}" href="{{ _fragment_url }}={{ _max_page }}">
 -          <span class="ecl-u-sr-only" >{{ _label_page }} </span>{{ _max_page }}
 +        <a class="ecl-pager__link" title="{{ last.title }}" href="{{ last.href }}">
-+          <span class="ecl-u-sr-only" >{{ last.text }} </span>{{ last.text }}
++          <span class="ecl-u-sr-only" >{{ last.text }} </span>
++          {{ last.text }}
          </a>
        </li>
      {% endif %}

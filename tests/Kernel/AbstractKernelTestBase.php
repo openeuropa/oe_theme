@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
+use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -13,6 +14,8 @@ use Symfony\Component\Yaml\Yaml;
  * @package Drupal\Tests\oe_theme\Kernel
  */
 abstract class AbstractKernelTestBase extends KernelTestBase {
+
+  use RenderTrait;
 
   /**
    * {@inheritdoc}
@@ -51,24 +54,6 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
    */
   protected function getFixtureContent(string $filepath): array {
     return Yaml::parse(file_get_contents(__DIR__ . "/../fixtures/{$filepath}"));
-  }
-
-  /**
-   * Renders final HTML given a structured array tree.
-   *
-   * @param array $elements
-   *   The structured array describing the data to be rendered.
-   *
-   * @return string
-   *   The rendered HTML.
-   *
-   * @throws \Exception
-   *   When called from inside another renderRoot() call.
-   *
-   * @see \Drupal\Core\Render\RendererInterface::render()
-   */
-  protected function renderRoot(array &$elements): string {
-    return (string) $this->container->get('renderer')->renderRoot($elements);
   }
 
   /**

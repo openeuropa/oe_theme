@@ -16,12 +16,24 @@ use Drupal\Component\Utility\Random;
  * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(&$variables) {
+  $request     = \Drupal::request();
+  $route_match = \Drupal::routeMatch();
+  $title       = \Drupal::service('title_resolver')
+    ->getTitle($request, $route_match->getRouteObject());
+
   $variables['segments'] = array_map(function ($item) {
     return [
       'href' => $item['url'],
       'label' => $item['text'],
     ];
   }, $variables['breadcrumb']);
+
+  // Add the title to the segments only if it's not empty.
+  if (!empty($title)) {
+    $variables['segments'][] = [
+      'label' => $title,
+    ];
+  }
 }
 
 /**

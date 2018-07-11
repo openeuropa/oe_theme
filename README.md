@@ -233,7 +233,7 @@ ECL components can be patched by using the [`patch-package`][20] NPM project.
 
 To patch a component:
 
-1. Modify its source files directly in `./node_modules/@ec-europa/[component-name]` 
+1. Modify its source files directly in `./node_modules/@ecl/[component-name]` 
 2. Run:
 
 ```
@@ -243,7 +243,7 @@ $ npx patch-package @ec-europa/[component-name]
 Or, when using Docker Compose:
 
 ```
-$ docker-compose exec -u node node npx patch-package @ec-europa/[component-name]
+$ docker-compose exec -u node node npx patch-package @ecl/[component-name]
 ```
 
 Patches will be generated in `./patches` and applied when running `npm install`.
