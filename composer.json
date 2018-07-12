@@ -25,6 +25,7 @@
         "openeuropa/oe_multilingual": "^0.1",
         "openeuropa/oe_paragraphs": "^0.2",
         "openeuropa/task-runner": "^0.6",
+        "openeuropa/behat-transformation-context" : "^0.1",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6"
     },
