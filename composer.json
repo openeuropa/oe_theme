@@ -52,16 +52,12 @@
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
-        "patches": {
-            "drupal/core": {
-                "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch"
-            }
-        },
+        "composer-exit-on-patch-failure": true,
         "installer-paths": {
-            "build/core": ["type:drupal-core"],
-            "build/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "build/modules/contrib/{$name}": ["type:drupal-module"],
-            "build/themes/contrib/{$name}": ["type:drupal-theme"]
+            "../oe_theme_build/core": ["type:drupal-core"],
+            "../oe_theme_build/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "../oe_theme_build/modules/contrib/{$name}": ["type:drupal-module"],
+            "../oe_theme_build/themes/contrib/{$name}": ["type:drupal-theme"]
         }
     },
     "config": {

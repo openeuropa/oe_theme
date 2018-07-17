@@ -1,6 +1,6 @@
 drupal:
-  root: "build"
-  base_url: "http://web:8080/build"
+  root: "../oe_theme_build"
+  base_url: "http://web:8080/"
   database:
     host: "mysql"
     port: "3306"
@@ -34,7 +34,7 @@ selenium:
 
 commands:
   drupal:site-setup:
-    - { task: "symlink", from: "../../..", to: "${drupal.root}/themes/custom/oe_theme" }
+    - { task: "symlink", from: "../../../../oe_theme", to: "${drupal.root}/themes/custom/oe_theme" }
     - { task: "symlink", from: "${drupal.root}/core/.stylelintrc.json", to: ".stylelintrc.json" }
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }

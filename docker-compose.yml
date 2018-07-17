@@ -7,7 +7,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - .:/var/www/html
+      - ../oe_theme_build:/var/www/html
     environment:
       XDEBUG_CONFIG: "remote_enable=1 remote_host=${DOCKER_HOST_IP} remote_port=9000 idekey=PHPSTORM remote_autostart=1"
       PHP_IDE_CONFIG: "serverName=Test"
