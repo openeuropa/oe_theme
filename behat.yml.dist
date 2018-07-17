@@ -38,7 +38,7 @@ default:
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:
-        drupal_root: "build"
+        drupal_root: "../oe_theme_build"
       region_map:
         page: "body"
         header: ".ecl-site-header"
