@@ -21,7 +21,7 @@
         "drupal/drupal-extension": "^3.4",
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
-        "openeuropa/code-review": "^0.3",
+        "openeuropa/code-review": "~0.3",
         "openeuropa/oe_multilingual": "^0.1",
         "openeuropa/oe_paragraphs": "^0.2",
         "openeuropa/task-runner": "^0.6",
