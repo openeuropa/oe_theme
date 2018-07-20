@@ -74,9 +74,12 @@
 - array:
     '#type': checkbox
     '#title': Checkbox
+    '#attributes':
+      'foo': bar
   assert:
     contains:
       - 'Checkbox'
+      - 'foo="bar"'
     count:
       'label.ecl-form-label.ecl-checkbox': 1
       'input.ecl-checkbox__input.ecl-u-sr-only': 1
@@ -109,9 +112,12 @@
 - array:
     '#type': radio
     '#title': Radio
+    '#attributes':
+      'foo': bar
   assert:
     contains:
       - 'Radio'
+      - 'foo="bar"'
     count:
       'label.ecl-form-label.ecl-radio': 1
       'span.ecl-radio__label': 1
