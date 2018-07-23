@@ -4,7 +4,7 @@ workspace:
 
 services:
   web:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build:latest
     environment:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
@@ -17,61 +17,62 @@ services:
       - DISPLAY=:99
       - SE_OPTS=-debug
 
-clone:
-  git:
-    image: plugins/git:next
-    depth: 1
-    # The tags property is not documented but can be found in the following snippet of code
-    # https://github.com/drone-plugins/drone-git/blob/master/plugin.go#L153
-    tags: true
+matrix:
+  DRUPAL_VERSION:
+    - 8.6.x
 
 pipeline:
   npm-build:
     group: prepare
     image: node:9.5.0
-    commands:
+    commands: 
       - npm install --unsafe-perm
       - npm run build
 
   composer-install:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     volumes:
       - /cache:/cache
     commands:
-      - composer install
+      - composer config discard-changes true
+      - composer require drupal/core:${DRUPAL_VERSION=8.6.x}
+      - composer require --dev webflo/drupal-core-require-dev:${DRUPAL_VERSION=8.6.x}
 
   site-install:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     commands:
+      - ./vendor/bin/run drupal:site-setup
       - ./vendor/bin/run drupal:site-install
+      # Reset permission since installation runs as root. @todo Fix this.
+      - chown -R 1000:1000 build/sites/default
+      - chmod -R 777 /tmp
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     commands:
       - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     commands:
-      # Reset permission since installation runs as root. @todo Fix this.
-      - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
-      - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
       - ./vendor/bin/behat
 
   before-release:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/php71-build
     commands:
       - ./vendor/bin/run release:create-archive
     when:
+      matrix:
+        DRUPAL_VERSION: 8.6.x
       event: tag
 
   github-release:
@@ -79,4 +80,6 @@ pipeline:
     secrets: [ github_token ]
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
+      matrix:
+        DRUPAL_VERSION: 8.6.x
       event: tag
