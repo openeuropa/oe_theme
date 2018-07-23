@@ -57,6 +57,40 @@ Feature: Theme showcase
     When I open the language switcher dialog
     Then the "language switcher overlay" is visible
 
+    And I should see the following links in the "language switcher":
+      | български   |
+      | čeština     |
+      | dansk       |
+      | Deutsch     |
+      | eesti       |
+      | ελληνικά    |
+      | English     |
+      | español     |
+      | français    |
+      | Gaeilge     |
+      | hrvatski    |
+      | italiano    |
+      | latviešu    |
+      | lietuvių    |
+      | magyar      |
+      | Malti       |
+      | Nederlands  |
+      | polski      |
+      | português   |
+      | română      |
+      | slovenčina  |
+      | slovenščina |
+      | suomi       |
+      | svenska     |
+
+    And the active language switcher link in the dialog is "English"
+
+    When I click "polski" in the "language switcher"
+    Then the url should match "/pl"
+
+    When I open the language switcher dialog
+    Then the active language switcher link in the dialog is "polski"
+
     When I press "Close"
     Then the "language switcher overlay" is not visible
 
