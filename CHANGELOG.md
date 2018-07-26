@@ -1,10 +1,31 @@
 # Change Log
 
+## [0.6.0](https://github.com/openeuropa/oe_theme/tree/0.6.0) (2018-07-26)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.5.1...0.6.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-9: Update Drupal Scaffold. [\#115](https://github.com/openeuropa/oe_theme/pull/115) ([dxvargas](https://github.com/dxvargas))
+- OPENEUROPA-633: Revert to the latest stable version of Drupal core  [\#113](https://github.com/openeuropa/oe_theme/pull/113) ([aritomelo](https://github.com/aritomelo))
+- OPENEUROPA-712: Improve Behat test for language switcher block [\#112](https://github.com/openeuropa/oe_theme/pull/112) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-721: Update code-review and grump.yml.dist file. [\#110](https://github.com/openeuropa/oe_theme/pull/110) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Update drupal scaffold [\#109](https://github.com/openeuropa/oe_theme/pull/109) ([pfrenssen](https://github.com/pfrenssen))
+- OPENEUROPA-722: Make sure the default body classes are output [\#108](https://github.com/openeuropa/oe_theme/pull/108) ([pfrenssen](https://github.com/pfrenssen))
+- OPENEUROPA-714: Update ECL version to 1.2.0 [\#107](https://github.com/openeuropa/oe_theme/pull/107) ([drupol](https://github.com/drupol))
+- OPENEUROPA-676: Add oe\_multilingual blocks. [\#105](https://github.com/openeuropa/oe_theme/pull/105) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-384: Add extra attributes to checkbox and radios [\#103](https://github.com/openeuropa/oe_theme/pull/103) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-369: Make sure that all OpenEuropa projects are released under EUPL-1.2 [\#102](https://github.com/openeuropa/oe_theme/pull/102) ([drupol](https://github.com/drupol))
+- OPENEUROPA-582: Update images on docker-compose and drone file. [\#101](https://github.com/openeuropa/oe_theme/pull/101) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-704: Replace TransformationContext with behat-transformation-context [\#100](https://github.com/openeuropa/oe_theme/pull/100) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-616: Fix theme releases on Drone [\#99](https://github.com/openeuropa/oe_theme/pull/99) ([drupol](https://github.com/drupol))
+- OPENEUROPA-682: Add config for Selenium. [\#98](https://github.com/openeuropa/oe_theme/pull/98) ([richardcanoe](https://github.com/richardcanoe))
+
 ## [0.5.1](https://github.com/openeuropa/oe_theme/tree/0.5.1) (2018-06-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.5.0...0.5.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.5.1 release. [\#97](https://github.com/openeuropa/oe_theme/pull/97) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-694: Make sure that in page navigation link translations are correctly displayed [\#96](https://github.com/openeuropa/oe_theme/pull/96) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-689: Fix HTML characters encoded twice. [\#92](https://github.com/openeuropa/oe_theme/pull/92) ([drupol](https://github.com/drupol))
 
