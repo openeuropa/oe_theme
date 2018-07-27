@@ -50,7 +50,7 @@
         },
         "richardcanoe": {
             "type": "vcs",
-            "url": "https://github.com/richardcanoe"
+            "url": "https://github.com/richardcanoe/task-runner"
         }
     },
     "extra": {
