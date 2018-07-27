@@ -49,8 +49,8 @@
             "url": "https://packages.drupal.org/8"
         },
         "richardcanoe": {
-            "type": "vcs",
-            "url": "https://github.com/richardcanoe/task-runner"
+            "type": "git",
+            "url": "https://github.com/richardcanoe/task-runner.git"
         }
     },
     "extra": {
