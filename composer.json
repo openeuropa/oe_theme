@@ -24,7 +24,7 @@
         "openeuropa/code-review": "~0.3",
         "openeuropa/oe_multilingual": "^0.1",
         "openeuropa/oe_paragraphs": "^0.2",
-        "richardcanoe/task-runner": "^0.6",
+        "richardcanoe/task-runner": "dev-OPENEUROPA-616_drone_test",
         "openeuropa/behat-transformation-context" : "^0.1",
         "symfony/dom-crawler": "^3",
         "webflo/drupal-core-require-dev": "~8.6@alpha"
@@ -48,7 +48,7 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "richardcanoe": {
+        "richardcanoe/task-runner": {
             "type": "git",
             "url": "https://github.com/richardcanoe/task-runner.git"
         }
