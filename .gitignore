@@ -18,6 +18,7 @@ phpunit.xml
 /js/base.js
 /templates/components/
 /oe_theme/
+*.tar.gz
 
 # Ignore all files in the images folder other than the required icon.
 
