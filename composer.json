@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "drupal/core": "8.6.0-alpha1",
+        "drupal/core": "~8.6.0@alpha",
         "drupal/styleguide": "~1.0-alpha3",
         "drupal/ui_patterns": "~1.0-rc1",
         "openeuropa/ecl-twig-loader": "^0.1",
@@ -22,11 +22,11 @@
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "~0.3",
-        "openeuropa/drupal-core-require-dev": "8.6.0-alpha1",
-        "openeuropa/oe_multilingual": "^0.1",
-        "openeuropa/oe_paragraphs": "^0.2",
-        "openeuropa/task-runner": "^0.6",
-        "openeuropa/behat-transformation-context" : "^0.1",
+        "openeuropa/behat-transformation-context" : "~0.1",
+        "openeuropa/drupal-core-require-dev": "~8.6",
+        "openeuropa/oe_multilingual": "~0.1",
+        "openeuropa/oe_paragraphs": "~0.2",
+        "openeuropa/task-runner": "~0.5",
         "symfony/dom-crawler": "^3"
     },
     "scripts": {
@@ -40,7 +40,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_theme\\": "tests"
+            "Drupal\\Tests\\oe_theme\\": "./tests/"
         }
     },
     "repositories": {
