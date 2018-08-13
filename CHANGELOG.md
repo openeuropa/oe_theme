@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.6.1](https://github.com/openeuropa/oe_theme/tree/0.6.1) (2018-08-13)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.0...0.6.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-772: Update compose.json to have openeuropa/drupal-core-require-dev. [\#118](https://github.com/openeuropa/oe_theme/pull/118) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-772: Move styleguide into require-dev. [\#117](https://github.com/openeuropa/oe_theme/pull/117) ([richardcanoe](https://github.com/richardcanoe))
+
 ## [0.6.0](https://github.com/openeuropa/oe_theme/tree/0.6.0) (2018-07-26)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.5.1...0.6.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.6.0 release. [\#116](https://github.com/openeuropa/oe_theme/pull/116) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-9: Update Drupal Scaffold. [\#115](https://github.com/openeuropa/oe_theme/pull/115) ([dxvargas](https://github.com/dxvargas))
 - OPENEUROPA-633: Revert to the latest stable version of Drupal core  [\#113](https://github.com/openeuropa/oe_theme/pull/113) ([aritomelo](https://github.com/aritomelo))
 - OPENEUROPA-712: Improve Behat test for language switcher block [\#112](https://github.com/openeuropa/oe_theme/pull/112) ([ademarco](https://github.com/ademarco))
