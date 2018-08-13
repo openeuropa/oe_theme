@@ -13,7 +13,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
-- [Demo module](https://github.com/openeuropa/oe_theme/blob/master/modules/oe_theme_demo/README.md)
+- [Demo module](./modules/oe_theme_demo/README.md)
 
 ## Requirements
 
