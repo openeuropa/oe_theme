@@ -19,6 +19,7 @@
         "drupal/config_devel": "~1.2",
         "drupal/console": "^1",
         "drupal/drupal-extension": "^4.0",
+        "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "^9",
         "nikic/php-parser": "~3",
         "openeuropa/code-review": "~0.3",
