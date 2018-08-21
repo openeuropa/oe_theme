@@ -134,6 +134,10 @@ Requirements:
 - [Docker][12]
 - [Docker-compose][13]
 
+Copy docker-compose.yml.dist into docker-compose.yml.
+
+You can make any alterations you need for your local Docker setup. However, the defaults should be enough to set the project up.
+
 Run:
 
 ```
