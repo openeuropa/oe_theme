@@ -16,6 +16,8 @@ services:
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
+  node:
+    image: node:9.5.0
 
 clone:
   git:
@@ -29,14 +31,14 @@ clone:
 
 pipeline:
   npm-build:
-    group: prepare
+    group: prepare theme
     image: node:9.5.0
     commands:
       - npm install --unsafe-perm
       - npm run build
 
   composer-install:
-    group: prepare
+    group: prepare site
     image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
@@ -44,6 +46,7 @@ pipeline:
       - composer require drupal/core:${DRUPAL_CORE=~8.6.0@alpha}
 
   site-install:
+    group: install site
     image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/run drupal:site-install
