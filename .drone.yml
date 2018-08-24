@@ -41,7 +41,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
-      - composer install
+      - composer require drupal/core:${DRUPAL_CORE=~8.6.0@alpha}
 
   site-install:
     image: fpfis/httpd-php-dev:7.1
@@ -82,3 +82,7 @@ pipeline:
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
       event: tag
+
+matrix:
+  DRUPAL_CORE:
+    - ~8.6.0@alpha

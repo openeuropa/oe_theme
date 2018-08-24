@@ -7,12 +7,19 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 **Table of contents:**
 
 - [Installation](#installation)
+- [Requirements](#requirements)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
-- [Demo module](#demo-module)
+- [Demo module](./modules/oe_theme_demo/README.md)
+
+## Requirements
+
+This depends on the following software:
+
+* [PHP 7.1](http://php.net/)
 
 ## Installation
 
@@ -60,7 +67,7 @@ meaning:
 - All Node.js development dependencies are required in [package.json](package.json)
 - Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
 - All system requirements are containerized using [Docker Composer][5].
-- Every change to the code base will be automatically tested using [Drone][19].
+- Every change to the code base will be automatically tested using [Drone][17].
 
 ### Project setup
 
@@ -126,6 +133,10 @@ Requirements:
 
 - [Docker][12]
 - [Docker-compose][13]
+
+Copy docker-compose.yml.dist into docker-compose.yml.
+
+You can make any alterations you need for your local Docker setup. However, the defaults should be enough to set the project up.
 
 Run:
 
@@ -229,7 +240,7 @@ Resulting changes are not meant to be committed to this repository.
 
 #### Patching ECL components
 
-ECL components can be patched by using the [`patch-package`][20] NPM project.
+ECL components can be patched by using the [`patch-package`][18] NPM project.
 
 To patch a component:
 
@@ -248,28 +259,6 @@ $ docker-compose exec -u node node npx patch-package @ecl/[component-name]
 
 Patches will be generated in `./patches` and applied when running `npm install`.
 
-## Demo module
-
-The theme ships with a demo module which provides all necessary configuration and code needed to showcase the theme's
-most important features.
-
-The demo module includes:
-
-- A custom main menu with sub-menu items
-- An overview page for all Drupal-related components called "Style guide"
-- Placeholder blocks like:
- - Language switcher
- - Site switcher
- - Search block
- - Footer
-
-In order to install the OpenEuropa Theme Demo module follow the instruction [here][17] or enable it via [Drush][18]
-by running:
-
-```
-$ ./vendor/bin/drush en oe_theme_demo -y
-```
-
 [1]: https://github.com/ec-europa/europa-component-library
 [2]: https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies#managing-contributed
 [3]: https://github.com/openeuropa/oe_theme/releases
@@ -286,7 +275,5 @@ $ ./vendor/bin/drush en oe_theme_demo -y
 [14]: https://www.drupal.org/node/2598914
 [15]: https://github.com/hechoendrupal/drupal-console/issues/3854
 [16]: https://github.com/openeuropa/ecl-twig-loader
-[17]: https://www.drupal.org/docs/8/extending-drupal-8/installing-drupal-8-modules
-[18]: https://www.drush.org/
-[19]: https://drone.io
-[20]: https://www.npmjs.com/package/patch-package
+[17]: https://drone.io
+[18]: https://www.npmjs.com/package/patch-package
