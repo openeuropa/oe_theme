@@ -19,11 +19,13 @@ services:
 
 clone:
   git:
-    image: plugins/git:next
+    image: plugins/git
     depth: 1
     # The tags property is not documented but can be found in the following snippet of code
     # https://github.com/drone-plugins/drone-git/blob/master/plugin.go#L153
     tags: true
+    when:
+     - event: tag
 
 pipeline:
   npm-build:
