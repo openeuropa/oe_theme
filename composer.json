@@ -44,6 +44,10 @@
         }
     },
     "repositories": {
+        "openeuropa/task-runner": {
+            "type": "vcs",
+            "url": "https://github.com/richardcanoe/task-runner.git"
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
