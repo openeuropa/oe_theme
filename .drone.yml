@@ -25,7 +25,7 @@ clone:
     # https://github.com/drone-plugins/drone-git/blob/master/plugin.go#L153
     tags: true
     when:
-     - event: tag
+     event: tag
 
 pipeline:
   npm-build:
