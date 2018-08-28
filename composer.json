@@ -26,7 +26,7 @@
         "openeuropa/drupal-core-require-dev": "~8.6",
         "openeuropa/oe_multilingual": "~0.1",
         "openeuropa/oe_paragraphs": "~0.2",
-        "openeuropa/task-runner": "~0.5",
+        "openeuropa/task-runner": "~0.8",
         "symfony/dom-crawler": "^3"
     },
     "scripts": {

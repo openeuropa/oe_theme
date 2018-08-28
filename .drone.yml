@@ -17,14 +17,6 @@ services:
       - DISPLAY=:99
       - SE_OPTS=-debug
 
-clone:
-  git:
-    image: plugins/git:next
-    depth: 1
-    # The tags property is not documented but can be found in the following snippet of code
-    # https://github.com/drone-plugins/drone-git/blob/master/plugin.go#L153
-    tags: true
-
 pipeline:
   npm-build:
     group: prepare
@@ -70,7 +62,7 @@ pipeline:
   before-release:
     image: fpfis/httpd-php-dev:7.1
     commands:
-      - ./vendor/bin/run release:create-archive
+      - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
     when:
       event: tag
 
