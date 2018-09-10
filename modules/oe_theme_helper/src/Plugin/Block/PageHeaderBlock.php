@@ -81,7 +81,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $build = [
       '#type' => 'pattern',
       '#id' => 'page_header',
-      '#identity' => $this->configFactory->get('system.site')->get('name'),
+      '#identity' => $metadata['identity'] ?? $this->configFactory->get('system.site')->get('name'),
       '#title' => $metadata['title'] ?? $this->title,
       '#introduction' => $metadata['introduction'] ?? '',
       '#metas' => $metadata['metas'] ?? [],
