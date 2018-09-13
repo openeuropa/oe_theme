@@ -1,10 +1,21 @@
 # Change Log
 
+## [0.6.2](https://github.com/openeuropa/oe_theme/tree/0.6.2) (2018-09-13)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.1...0.6.2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1182: Making the identify configurable in the page block header [\#126](https://github.com/openeuropa/oe_theme/pull/126) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-616: Fix automatic release [\#123](https://github.com/openeuropa/oe_theme/pull/123) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-1119: Create a docker-compose.yml.dist file [\#121](https://github.com/openeuropa/oe_theme/pull/121) ([netlooker](https://github.com/netlooker))
+- OPENEUROPA-722: Remove duplicated drupal/styleguide dependency [\#120](https://github.com/openeuropa/oe_theme/pull/120) ([ademarco](https://github.com/ademarco))
+
 ## [0.6.1](https://github.com/openeuropa/oe_theme/tree/0.6.1) (2018-08-13)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.0...0.6.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.6.1 [\#119](https://github.com/openeuropa/oe_theme/pull/119) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-772: Update compose.json to have openeuropa/drupal-core-require-dev. [\#118](https://github.com/openeuropa/oe_theme/pull/118) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-772: Move styleguide into require-dev. [\#117](https://github.com/openeuropa/oe_theme/pull/117) ([richardcanoe](https://github.com/richardcanoe))
 
