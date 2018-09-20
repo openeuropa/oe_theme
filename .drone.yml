@@ -25,13 +25,28 @@ pipeline:
       - npm install --unsafe-perm
       - npm run build
 
-  composer-install:
+  composer-install-lowest:
     group: prepare
     image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
     commands:
-      - composer require drupal/core:${DRUPAL_CORE=~8.6.0@alpha}
+      - composer install --ansi --no-suggest --no-progress
+      - composer update --prefer-lowest --prefer-stable --ansi --no-suggest --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: lowest
+
+  composer-install-highest:
+    group: prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
+      - composer install --ansi --no-suggest --no-progress 
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   site-install:
     image: fpfis/httpd-php-dev:7.1
@@ -74,5 +89,6 @@ pipeline:
       event: tag
 
 matrix:
-  DRUPAL_CORE:
-    - ~8.6.0@alpha
+  COMPOSER_BOUNDARY:
+    - lowest
+    - highest
