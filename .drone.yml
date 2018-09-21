@@ -31,6 +31,11 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
+      # Perform a composer install to work around an issue where an update
+      # without a lock file present affects the resolving of dependencies.
+      # Todo: Remove the `composer install` when the composer bug is fixed.
+      # Ref. https://github.com/composer/composer/issues/7542
+      # Ref. https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-1234
       - composer install --ansi --no-suggest --no-progress
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
