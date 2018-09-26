@@ -43,7 +43,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
-      - composer install --ansi --no-suggest --no-progress 
+      - composer install --ansi --no-suggest --no-progress
     when:
       matrix:
         COMPOSER_BOUNDARY: highest
