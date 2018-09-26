@@ -21,7 +21,7 @@
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0@stable",
         "nikic/php-parser": "~3.0",
-        "openeuropa/code-review": "~1.0-alpha2",
+        "openeuropa/code-review": "^1.0.0-alpha4",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/drupal-core-require-dev": "~8.6",
         "openeuropa/oe_multilingual": "^0.1.5||~0.2",
