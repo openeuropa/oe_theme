@@ -92,6 +92,8 @@ pipeline:
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
       event: tag
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
 matrix:
   COMPOSER_BOUNDARY:
