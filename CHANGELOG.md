@@ -1,10 +1,18 @@
 # Change Log
 
+## [0.6.3](https://github.com/openeuropa/oe_theme/tree/0.6.3) (2018-09-27)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.2...0.6.3)
+
+**Merged pull requests:**
+
+- OPENEUROPA-780: Make sure component dependencies are as relaxed as possible. [\#124](https://github.com/openeuropa/oe_theme/pull/124) ([aritomelo](https://github.com/aritomelo))
+
 ## [0.6.2](https://github.com/openeuropa/oe_theme/tree/0.6.2) (2018-09-13)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.1...0.6.2)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.6.2 release. [\#127](https://github.com/openeuropa/oe_theme/pull/127) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1182: Making the identify configurable in the page block header [\#126](https://github.com/openeuropa/oe_theme/pull/126) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-616: Fix automatic release [\#123](https://github.com/openeuropa/oe_theme/pull/123) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1119: Create a docker-compose.yml.dist file [\#121](https://github.com/openeuropa/oe_theme/pull/121) ([netlooker](https://github.com/netlooker))
