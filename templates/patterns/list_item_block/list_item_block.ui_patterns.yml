@@ -1,0 +1,19 @@
+list_item_naviation:
+  label: "List item: block"
+  description: "Block list item, contains a linked title and standfirst."
+  fields:
+    href:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "EU law"
+    detail:
+      type: "text"
+      label: "Detail"
+      description: "Standfirst for the link item."
+      preview: "Dolore duis elit in id voluptate nisi commodo quis."
