@@ -11,6 +11,12 @@ accordions:
   dependencies:
     - core/drupal
     - oe_theme/base
+dropdown:
+  js:
+    js/dropdown.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
 inpage_navigation:
   js:
     js/inpage_navigation.js: {}
