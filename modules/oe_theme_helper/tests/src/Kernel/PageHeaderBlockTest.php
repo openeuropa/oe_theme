@@ -2,9 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme_helper\Kernel;
 
 use Drupal\node\Entity\Node;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
