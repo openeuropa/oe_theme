@@ -424,12 +424,14 @@ function oe_theme_preprocess_pattern_dropdown(&$variables) {
   ];
 
   foreach ($defaults as $key => $id) {
-    if (empty($variables[$key])) {
-      $variables[$key] = Html::getUniqueId($id);
+    if (!empty($variables[$key])) {
+      continue;
     }
+
+    $variables[$key] = Html::getUniqueId($id);
   }
 
-  // @todo: Remove this duplicated code and reuse the link_block doe from below.
+  // @todo: Remove this duplicated code and reuse the link_block from below.
   foreach ($variables['links'] as $key => $link) {
     $variables['links'][$key]['href'] = $link['url'];
   }

@@ -357,16 +357,16 @@
       button_label: "Dropdown"
       links:
         - label: 'Link 1'
-          url: 'http://link-1.com'
+          url: 'http://example.com/1'
         - label: 'Link 2'
-          url: 'http://link-2.com'
+          url: 'http://example.com/2'
         - label: 'Link 3'
-          url: 'http://link-3.com'
+          url: 'http://example.com/3'
   assertions:
     count:
-      'a.ecl-link-block__link[href="http://link-1.com"]': 1
-      'a.ecl-link-block__link[href="http://link-2.com"]': 1
-      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+      'a.ecl-link-block__link[href="http://example.com/1"]': 1
+      'a.ecl-link-block__link[href="http://example.com/2"]': 1
+      'a.ecl-link-block__link[href="http://example.com/3"]': 1
     equals:
       'button.ecl-button': "Dropdown"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"

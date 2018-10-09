@@ -1,6 +1,6 @@
 /**
  * @file
- * ECL accordions behavior.
+ * ECL dropdown behavior.
  */
 (function (ECL, Drupal) {
     Drupal.behaviors.eclDropdown = {

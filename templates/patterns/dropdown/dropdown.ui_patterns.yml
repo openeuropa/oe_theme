@@ -1,6 +1,6 @@
 dropdown:
   label: "Dropdown"
-  description: "Dropdown components contain elements that, when tapped, reveal additional content."
+  description: "Dropdown components contain elements that, when clicked, reveal additional content."
   fields:
     button_label:
       type: "string"
@@ -13,10 +13,10 @@ dropdown:
       description: "Array of links"
       preview:
         - label: 'European Commission'
-          url: 'http://link-1.com'
+          url: 'http://example.com'
         - label: 'Priorities'
-          url: 'http://link-2.com'
+          url: 'http://example.com'
         - label: 'Jobs, Growth and Investment'
-          url: 'http://link-3.com'
+          url: 'http://example.com'
   libraries:
     - oe_theme/dropdown
