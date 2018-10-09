@@ -1,0 +1,37 @@
+context_nav:
+  label: "Contextual navigation"
+  description: "A way to navigate and explore the context of the information on the current page."
+  fields:
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label of the navigation"
+      preview: "Label for contextual nav"
+    items:
+      type: "array"
+      label: "Items"
+      description: "Items in the contextual navigation"
+      preview:
+        - href: "#"
+          label: "Item one"
+        - href: "#"
+          label: "Item two"
+        - href: "#"
+          label: "Item three"
+        - href: "#"
+          label: "Item four"
+        - href: "#"
+          label: "Item five"
+    limit:
+      type: "numeric"
+      label: "Limit"
+      description: "Max number of items to display"
+      preview: 4
+      escape: false
+    more_label:
+      type: "text"
+      label: "More label"
+      description: "Label of the \"see more items\" button"
+      preview: "See more"
+  libraries:
+    - oe_theme/context_nav

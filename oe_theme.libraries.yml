@@ -17,6 +17,12 @@ dropdown:
   dependencies:
     - core/drupal
     - oe_theme/base
+context_nav:
+  js:
+    js/context_nav.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
 inpage_navigation:
   js:
     js/inpage_navigation.js: {}

@@ -495,6 +495,33 @@
       '.ecl-blockquote__body': "Quote text"
 - array:
     '#type': pattern
+    '#id': context_nav
+    '#fields':
+      label: "Navigation title"
+      items:
+        - href: "#"
+          label: "Item one"
+        - href: "#"
+          label: "Item two"
+        - href: "#"
+          label: "Item three"
+        - href: "#"
+          label: "Item four"
+        - href: "#"
+          label: "Item five"
+      limit: 4
+      more_label: "More label"
+  assertions:
+    count:
+      'li.ecl-context-nav__item': 6
+      'li.ecl-context-nav__item--over-limit': 1
+      'li.ecl-context-nav__more': 1
+    equals:
+      '.ecl-context-nav__label': "Navigation title"
+      '.ecl-context-nav__button': "More label"
+
+- array:
+    '#type': pattern
     '#id': social_media_links_vertical
     '#fields':
       title: "View European Commission on:"
