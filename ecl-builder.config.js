@@ -46,7 +46,6 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl/generic-component-message/images'), to: path.resolve(outputFolder, 'images')},
     { from: path.resolve(nodeModules, '@ecl/generic-component-social-icon/images'), to: path.resolve(outputFolder, 'images')},
     { from: path.resolve(nodeModules, '@ecl/ec-component-form-checkbox/images'), to: path.resolve(outputFolder, 'images')},
-    { from: path.resolve(nodeModules, '@ecl/ec-component-form-checkbox/images'), to: path.resolve(outputFolder, 'images')},
     { from: path.resolve(nodeModules, '@ecl/ec-component-form-feedback-message/images'), to: path.resolve(outputFolder, 'images')},
     { from: path.resolve(nodeModules, '@ecl/ec-component-form-radio/images'), to: path.resolve(outputFolder, 'images')},
     { from: path.resolve(nodeModules, '@ecl/ec-component-form-select/images'), to: path.resolve(outputFolder, 'images')},
