@@ -412,8 +412,24 @@
       label: "Field text"
       body: "Field body"
   assertions:
+    count:
+      '.ecl-field__label': 1
+      '.ecl-field__body': 1
     equals:
       '.ecl-field__label': "Field text"
+      '.ecl-field__body': "Field body"
+- array:
+    '#type': pattern
+    '#id': field
+    '#fields':
+      variant: "aligned"
+      label: "Field text"
+      body: "Field body"
+  assertions:
+    count:
+      '.ecl-field__label': 0
+      '.ecl-field__body': 1
+    equals:
       '.ecl-field__body': "Field body"
 - array:
     '#type': pattern
