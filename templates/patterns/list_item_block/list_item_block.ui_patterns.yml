@@ -1,8 +1,8 @@
-list_item_naviation:
+list_item_block:
   label: "List item: block"
   description: "Block list item, contains a linked title and standfirst."
   fields:
-    href:
+    url:
       type: "text"
       label: "URL"
       description: "List item link URL"

@@ -1,6 +1,6 @@
-list_item_naviation:
+list_item_navigation:
   label: "List item: navigation"
-  description: "Navigation list item, contains a linked title and standfirst."
+  description: "Navigation list item, contains a linked title and stand first."
   fields:
     url:
       type: "text"
