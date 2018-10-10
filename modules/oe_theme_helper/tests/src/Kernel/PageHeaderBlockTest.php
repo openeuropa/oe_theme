@@ -67,6 +67,9 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
 
     $this->assertCount(1, $crawler->filter('.ecl-page-header'));
     $this->assertEquals('Example page', trim($crawler->filter('.ecl-page-header__title')->text()));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
+    $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
 
     $entity = EntityTest::create([
       'name' => 'Another example page',
@@ -83,6 +86,9 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
 
     $this->assertCount(1, $crawler->filter('.ecl-page-header'));
     $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
+    $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
 
     // Enable the test plugin and add some metadata.
     $this->state->set('page_header_test_plugin_applies', TRUE);
