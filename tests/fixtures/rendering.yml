@@ -261,6 +261,36 @@
       'h3.ecl-list-item__title': "Item title"
 - array:
     '#type': pattern
+    '#id': list_item_block
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      '.ecl-list-item.ecl-list-item--block': 1
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      'div.ecl-list-item__detail': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item_navigation
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      '.ecl-list-item.ecl-list-item--navigation': 1
+      'a.ecl-list-item__link[href="http://example.com"]': 1
+      'div.ecl-list-item__detail': 1
+    equals:
+      'h3.ecl-list-item__title': "Item title"
+      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
       title: "Block title"
