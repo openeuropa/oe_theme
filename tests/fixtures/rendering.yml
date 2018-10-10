@@ -410,11 +410,11 @@
     '#id': field
     '#fields':
       label: "Field text"
-      author: "Field body"
+      body: "Field body"
   assertions:
     equals:
       '.ecl-field__label': "Field text"
-      '.ecl-field__body': "Field text"
+      '.ecl-field__body': "Field body"
 - array:
     '#type': pattern
     '#id': link_block
