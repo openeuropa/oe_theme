@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
-use Drupal\node\Entity\Node;
+use Drupal\entity_test\Entity\EntityTest;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
@@ -27,7 +27,7 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'node',
+    'entity_test',
     'page_header_metadata_test',
   ];
 
@@ -36,8 +36,7 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
    */
   protected function setUp() {
     parent::setUp();
-    $this->installEntitySchema('node');
-    $this->installSchema('node', 'node_access');
+    $this->installEntitySchema('entity_test');
 
     $this->state = $this->container->get('state');
   }
@@ -46,12 +45,11 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
    * Test the block rendering.
    */
   public function testRendering(): void {
-    $node = Node::create([
-      'title' => 'My first article',
-      'type' => 'article',
+    $entity = EntityTest::create([
+      'name' => 'Example page',
     ]);
-    $node->save();
-    $this->setCurrentRequest('/node/' . $node->id());
+    $entity->save();
+    $this->setCurrentRequest('/entity_test/' . $entity->id());
 
     $config = [
       'id' => 'oe_theme_helper_page_header',
@@ -68,14 +66,13 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(1, $crawler->filter('.ecl-page-header'));
-    $this->assertEquals('My first article', trim($crawler->filter('.ecl-page-header__title')->text()));
+    $this->assertEquals('Example page', trim($crawler->filter('.ecl-page-header__title')->text()));
 
-    $node = Node::create([
-      'title' => 'My first page',
-      'type' => 'page',
+    $entity = EntityTest::create([
+      'name' => 'Another example page',
     ]);
-    $node->save();
-    $this->setCurrentRequest('/node/' . $node->id());
+    $entity->save();
+    $this->setCurrentRequest('/entity_test/' . $entity->id());
 
     // Unset the context repository service so that the contexts are
     // recalculated.
@@ -85,7 +82,7 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(1, $crawler->filter('.ecl-page-header'));
-    $this->assertEquals('My first page', trim($crawler->filter('.ecl-page-header__title')->text()));
+    $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
 
     // Enable the test plugin and add some metadata.
     $this->state->set('page_header_test_plugin_applies', TRUE);
