@@ -416,6 +416,30 @@ function oe_theme_preprocess_pattern_accordion(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function oe_theme_preprocess_pattern_dropdown(&$variables) {
+  $defaults = [
+    'wrapper_id' => 'ecl-button-dropdown',
+    'expandable_id' => 'expandable-ecl-button-dropdown',
+    'button_id' => 'button-ecl-button-dropdown',
+  ];
+
+  foreach ($defaults as $key => $id) {
+    if (!empty($variables[$key])) {
+      continue;
+    }
+
+    $variables[$key] = Html::getUniqueId($id);
+  }
+
+  // @todo: Remove this duplicated code and reuse the link_block from below.
+  foreach ($variables['links'] as $key => $link) {
+    $variables['links'][$key]['href'] = $link['url'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function oe_theme_preprocess_pattern_link_block(&$variables) {
   // Format links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {

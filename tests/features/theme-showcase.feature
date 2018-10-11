@@ -43,6 +43,14 @@ Feature: Theme showcase
     And the "about dropdown menu" is not visible
     But the "priorities dropdown menu" is visible
 
+  @javascript
+  Scenario: The dropdown component shows/hides on click event
+    When I am on "components/dropdown"
+    Then the ".ecl-link-block__list" is not visible
+
+    When I press "Dropdown"
+    Then the ".ecl-link-block__list" is visible
+
   Scenario: The demo site footer features placeholder blocks
     When I am on the homepage
     Then I should see the "custom block" element in the "custom footer"

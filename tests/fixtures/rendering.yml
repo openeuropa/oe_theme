@@ -351,6 +351,29 @@
       'dd#ecl-accordion-panel-id-1': "Body 2"
 - array:
     '#type': pattern
+    '#id': dropdown
+    '#fields':
+      identifier: "id"
+      button_label: "Dropdown"
+      links:
+        - label: 'Link 1'
+          url: 'http://example.com/1'
+        - label: 'Link 2'
+          url: 'http://example.com/2'
+        - label: 'Link 3'
+          url: 'http://example.com/3'
+  assertions:
+    count:
+      'a.ecl-link-block__link[href="http://example.com/1"]': 1
+      'a.ecl-link-block__link[href="http://example.com/2"]': 1
+      'a.ecl-link-block__link[href="http://example.com/3"]': 1
+    equals:
+      'button.ecl-button': "Dropdown"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+- array:
+    '#type': pattern
     '#id': link_block
     '#fields':
       title: "Link block title"
