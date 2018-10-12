@@ -123,7 +123,7 @@ class ParagraphsTest extends ParagraphTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_quote',
       'field_oe_text' => $data['attribution'],
-      'field_oe_text_long' => $data['body'],
+      'field_oe_plain_text_long' => $data['body'],
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);

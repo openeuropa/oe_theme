@@ -6,8 +6,7 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{# @todo Include ECL template as soon as this is fixed: https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-340 #}
-<blockquote class="ecl-blockquote">
-  <div class="ecl-paragraph ecl-blockquote__body">{{ content.field_oe_text_long }}</div>
-  <footer class="ecl-blockquote__author">―&thinsp;<cite>{{ content.field_oe_text }}</cite></footer>
-</blockquote>
+{{ pattern('blockquote', {
+    'body': content.field_oe_plain_text_long,
+    'author': content.field_oe_text,
+}) }}
