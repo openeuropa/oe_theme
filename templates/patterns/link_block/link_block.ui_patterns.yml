@@ -10,11 +10,11 @@ link_block:
     links:
       type: "array"
       label: "Links"
-      description: "Array of links"
+      description: "Array of links with a label and Url object"
       preview:
         - label: 'European Commission'
-          url: 'http://link-1.com'
+          url: '#'
         - label: 'Priorities'
-          url: 'http://link-2.com'
+          url: '#'
         - label: 'Jobs, Growth and Investment'
-          url: 'http://link-3.com'
+          url: '#'

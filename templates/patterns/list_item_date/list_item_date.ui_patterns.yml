@@ -5,7 +5,7 @@ list_item_date:
     url:
       type: "text"
       label: "URL"
-      description: "List item link URL"
+      description: "List item link URL (Url object)"
       preview: "#"
     title:
       type: "text"
@@ -17,23 +17,13 @@ list_item_date:
       label: "Detail"
       description: "List item details, displayed below the title"
       preview: "Location: Kraków, Poland"
-    week_day:
-      type: "text"
-      label: "Week day"
-      description: "A textual representation of a day, three letters"
-      preview: "Tue"
-    day:
-      type: "text"
-      label: "Day"
-      description: "Day of the month, 2 digits with leading zeros"
-      preview: "17"
-    month:
-      type: "text"
-      label: "Month"
-      description: "A short textual representation of a month, three letters"
-      preview: "Feb"
-    year:
-      type: "text"
-      label: "Year"
-      description: "A full numeric representation of a year, 4 digits"
-      preview: ""
+    date:
+      type: "date"
+      label: "Date"
+      description: "The date of the item (DrupalDateTime object)"
+      preview: "-"
+    skip_date_parts:
+      type: "array"
+      label: "Skip date parts"
+      description: "The date parts that should be skipped from rendering, if any: week_day, day, month, year."
+      preview: "week_day"

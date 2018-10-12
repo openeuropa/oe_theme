@@ -3,9 +3,9 @@ list_item_highlight:
   description: "Highlight list item, contains a primary image and a linked title."
   fields:
     url:
-      type: "text"
+      type: "Url"
       label: "URL"
-      description: "List item link URL"
+      description: "List item link URL (Url object)"
       preview: "#"
     title:
       type: "text"

@@ -40,5 +40,5 @@ list_item_block_two_columns:
     button_url:
       type: "text"
       label: "Button URL"
-      description: "Call to action URL"
+      description: "Call to action URL (Url object)"
       preview: "#"

@@ -10,7 +10,7 @@ social_media_links_horizontal:
     links:
       type: "array"
       label: "Social links"
-      description: "List of social links."
+      description: "List of social links with the following keys: service (string), label(string), url(Url object)"
       preview:
         - service: "facebook"
           label: "Facebook"

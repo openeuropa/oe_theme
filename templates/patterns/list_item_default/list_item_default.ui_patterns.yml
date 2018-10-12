@@ -5,7 +5,7 @@ list_item_default:
     url:
       type: "text"
       label: "URL"
-      description: "List item link URL"
+      description: "List item link URL (Url object)"
       preview: "#"
     meta:
       type: "array"

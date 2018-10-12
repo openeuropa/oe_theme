@@ -15,9 +15,9 @@ banner_hero:
       description: "Hero title"
       preview: "White Paper on the future of Europe"
     url:
-      type: "text"
+      type: "Url"
       label: "URL"
-      description: "List item link URL"
+      description: "Drupal core Url object"
       preview: "#"
     description:
       type: "text"

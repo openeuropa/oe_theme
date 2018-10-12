@@ -13,7 +13,7 @@ social_icon:
       description: "Label accompanying the social icon."
       preview: "Facebook"
     url:
-      type: "string"
+      type: "Url"
       label: "URL"
-      description: "URL to link the social icon to. Optional."
-      preview: "http://example.com"
+      description: "URL to link the social icon to. Url object. Optional."
+      preview: "#"

@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
@@ -24,7 +25,7 @@ function oe_theme_preprocess_breadcrumb(&$variables) {
 
   $variables['segments'] = array_map(function ($item) {
     return [
-      'href' => $item['url'],
+      'url' => $item['url'],
       'label' => $item['text'],
     ];
   }, $variables['breadcrumb']);
@@ -451,6 +452,20 @@ function oe_theme_preprocess_pattern_link_block(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
+function oe_theme_preprocess_pattern_page_header(&$variables) {
+  // Format links in order to respect ECL expectations.
+  if (!$variables['breadcrumb']) {
+    return;
+  }
+
+  foreach ($variables['breadcrumb'] as $key => $link) {
+    $variables['breadcrumb'][$key]['href'] = $link['url'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function _oe_theme_preprocess_pattern_social_media_links(&$variables) {
   // Format social media links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {
@@ -477,6 +492,38 @@ function oe_theme_preprocess_pattern_social_media_links_horizontal(&$variables) 
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_list_item_date(&$variables) {
+  $date = $variables['date'];
+  /** @var \Drupal\ui_patterns\Element\PatternContext $context */
+  $context = $variables['context'];
+  if ($context->getType() === 'preview') {
+    $date = DrupalDateTime::createFromTimestamp(time());
+  }
+
+  if (!$date instanceof DrupalDateTime) {
+    return;
+  }
+
+  $date_parts = [
+    'day' => $date->format('d'),
+    'month' => $date->format('M'),
+    'week_day' => $date->format('D'),
+    'year' => $date->format('Y'),
+  ];
+
+  $skip = (array) $variables['skip_date_parts'];
+  foreach ($date_parts as $part => $value) {
+    if (in_array($part, $skip)) {
+      unset($date_parts[$part]);
+    }
+  }
+
+  $variables += $date_parts;
+}
+
+/**
  * Implements hook_preprocess_html() for html.html.twig.
  *
  * Add css class for splash page.
@@ -495,7 +542,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
   $paragraph = $variables['paragraph'];
 
   $variables['variant'] = $paragraph->get('field_oe_list_item_variant')->first()->value;
-  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl()->toString();
+  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
@@ -556,7 +603,7 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(&$variables) {
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
     $link_item = $paragraph->get('field_oe_link')->first();
-    $variables['button_url'] = $link_item->getUrl()->toString();
+    $variables['button_url'] = $link_item->getUrl();
     $variables['button_label'] = $link_item->get('title')->getValue();
   }
 }

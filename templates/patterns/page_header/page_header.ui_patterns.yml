@@ -28,9 +28,9 @@ page_header:
     breadcrumb:
       type: "array"
       label: "Breadcrumb"
-      description: "A list of links that represent the location of the current page in the website."
+      description: "A list of links that represent the location of the current page in the website. Each link is made up of a 'url' key (Url object value) and label."
       preview:
-        - href: "#"
+        - url: "#"
           label: "European Commission"
-        - href: "#"
+        - url: "#"
           label: "Announcements"

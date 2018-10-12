@@ -10,13 +10,13 @@ dropdown:
     links:
       type: "array"
       label: "Links"
-      description: "Array of links"
+      description: "Array of links with a label and Url object"
       preview:
         - label: 'European Commission'
-          url: 'http://example.com'
+          url: '#'
         - label: 'Priorities'
-          url: 'http://example.com'
+          url: '#'
         - label: 'Jobs, Growth and Investment'
-          url: 'http://example.com'
+          url: '#'
   libraries:
     - oe_theme/dropdown

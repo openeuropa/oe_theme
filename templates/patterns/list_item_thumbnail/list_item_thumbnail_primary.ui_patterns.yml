@@ -3,9 +3,9 @@ list_item_thumbnail_primary:
   description: "Thumbnail list item, contains a primary image, metadata information and a linked title."
   fields:
     url:
-      type: "text"
+      type: "Url"
       label: "URL"
-      description: "List item link URL"
+      description: "List item link URL (Url object)"
       preview: "#"
     meta:
       type: "array"
