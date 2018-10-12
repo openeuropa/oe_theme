@@ -1,0 +1,15 @@
+name: 'OpenEuropa theme test'
+type: module
+description: 'OpenEuropa theme test module.'
+package: OpenEuropa
+hidden: true
+version: VERSION
+core: 8.x
+
+config_devel:
+  install:
+  - core.entity_form_display.node.oe_theme_demo_page.default
+  - core.entity_view_display.node.oe_theme_demo_page.default
+  - core.entity_view_display.node.oe_theme_demo_page.teaser
+  - field.field.node.oe_theme_demo_page.body
+  - node.type.oe_theme_demo_page

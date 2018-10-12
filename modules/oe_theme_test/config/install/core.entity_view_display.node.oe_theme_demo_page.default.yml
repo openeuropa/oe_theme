@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_theme_demo_page.body
+    - node.type.oe_theme_demo_page
+  module:
+    - text
+    - user
+id: node.oe_theme_demo_page.default
+targetEntityType: node
+bundle: oe_theme_demo_page
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  langcode: true
