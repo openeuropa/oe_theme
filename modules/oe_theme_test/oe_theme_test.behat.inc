@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Behat\Gherkin\Node\TableNode;
 use Drupal\DrupalExtension\Context\DrupalSubContextBase;
 use Drupal\node\NodeInterface;
 
@@ -14,6 +15,28 @@ use Drupal\node\NodeInterface;
  * Behat step definitions related to the oe_theme_test module.
  */
 class OeThemeTestSubContext extends DrupalSubContextBase {
+
+  /**
+   * Creates a number of demo pages with the data provided in a table.
+   *
+   * @codingStandardsIgnoreStart
+   * | title   | author    | status | created           |
+   * | New day | Francesco | 1      | 2018-10-15 9:27am |
+   * | ...     | ...       | ...    | ...               |
+   * @codingStandardsIgnoreEnd
+   *
+   * @param \Behat\Gherkin\Node\TableNode $table
+   *   The pages data.
+   *
+   * @Given (the following )demo page(s):
+   */
+  public function createDemoPages(TableNode $table): void {
+    foreach ($table->getHash() as $hash) {
+      $node = (object) $hash;
+      $node->type = 'oe_theme_demo_page';
+      $this->nodeCreate($node);
+    }
+  }
 
   /**
    * Navigates to the canonical page display of an oe_theme_demo_page node.

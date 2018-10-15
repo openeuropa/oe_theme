@@ -5,7 +5,7 @@ Feature: Page header block component.
   I want to see a page header with useful information.
 
   Scenario: The page header block shows the current page metadata.
-    Given oe_theme_demo_page content:
+    Given the following demo pages:
       | title                               | body                             |
       | Robots are everywhere               | They are part of our daily life. |
       | The benefits of ergonomic equipment | Take care of your work tools.    |
