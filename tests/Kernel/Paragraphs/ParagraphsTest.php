@@ -2,17 +2,16 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
 use Drupal\file\Entity\File;
 use Drupal\paragraphs\Entity\Paragraph;
-use Drupal\Tests\oe_theme\Kernel\Paragraph\ParagraphTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the rendering of paragraphs types.
  */
-class ParagraphsTest extends ParagraphTestBase {
+class ParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Test links block paragraph rendering.
@@ -116,6 +115,8 @@ class ParagraphsTest extends ParagraphTestBase {
    *   Array of Data tested.
    * @param array $expected
    *   Array of Data expected.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
    *
    * @dataProvider quoteDataProvider
    */
@@ -435,7 +436,7 @@ class ParagraphsTest extends ParagraphTestBase {
         ],
         [
           'attribution' => 'Quote author',
-          'body' => '<p>Quote body</p>',
+          'body' => 'Quote body',
         ],
       ],
       // Test case with allowed formatting.
@@ -446,7 +447,7 @@ class ParagraphsTest extends ParagraphTestBase {
         ],
         [
           'attribution' => 'Quote author',
-          'body' => '<p>Quote body <a href="mailto:example@example.com">example@example.com</a></p>',
+          'body' => 'Quote body example@example.com',
         ],
       ],
       // Test case with not allowed formatting.
@@ -457,7 +458,7 @@ class ParagraphsTest extends ParagraphTestBase {
         ],
         [
           'attribution' => 'Quote author',
-          'body' => '<p>Quote &lt;p&gt;body&lt;/p&gt;</p>',
+          'body' => 'Quote &lt;p&gt;body&lt;/p&gt;',
         ],
       ],
     ];

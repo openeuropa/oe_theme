@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel\Paragraph;
+namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
 use Drupal\paragraphs\ParagraphInterface;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
@@ -10,7 +10,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 /**
  * Base class for paragraphs tests.
  */
-abstract class ParagraphTestBase extends AbstractKernelTestBase {
+abstract class ParagraphsTestBase extends AbstractKernelTestBase {
 
   /**
    * {@inheritdoc}
