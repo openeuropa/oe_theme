@@ -22,7 +22,7 @@ Feature: Page header block component.
     And I should see "OpenEuropa" in the "page header site identity"
 
     # Change the title to verify that the page header is updated accordingly.
-    When I am logged in as a user with the "administer content types" permission
+    When I am logged in as a user that can "edit any" demo pages
     And I go to the "Robots are everywhere" demo page
     And I click "Edit"
     And I fill in "Title" with "Robots are everywhere nowadays"

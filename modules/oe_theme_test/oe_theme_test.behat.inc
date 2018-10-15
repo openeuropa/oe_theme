@@ -53,6 +53,35 @@ class OeThemeTestSubContext extends DrupalSubContextBase {
   }
 
   /**
+   * Creates and logs in as a user with a permission on demo pages nodes.
+   *
+   * @param string $action
+   *   The permission action. For example "create", "edit own", "edit any",
+   *   "delete any".
+   *
+   * @see \Drupal\DrupalExtension\Context\DrupalContext::assertLoggedInWithPermissions()
+   *
+   * @Given I am logged in as a user that can :action demo pages
+   */
+  public function givenLoggedInWithDemoPagePermission(string $action): void {
+    $role = $this->getDriver()->roleCreate(["$action oe_theme_demo_page content"]);
+    // Create user.
+    $user = (object) [
+      'name' => $this->getDriver()->getRandom()->name(8),
+      'pass' => $this->getDriver()->getRandom()->name(16),
+    ];
+    $user->mail = "{$user->name}@example.com";
+    $this->userCreate($user);
+
+    // Assign the temporary role with given permissions.
+    $this->getDriver()->userAddRole($user, $role);
+    $this->roles[] = $role;
+
+    // Login.
+    $this->login($user);
+  }
+
+  /**
    * Retrieves a demo page node by its title.
    *
    * @todo Use the traits provided by OPENEUROPA-303 when gets in.
