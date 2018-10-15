@@ -407,6 +407,7 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
 - array:
+    '#type': pattern
     '#id': field
     '#fields':
       label: "Field text"
@@ -423,7 +424,6 @@
     '#id': field
     '#fields':
       variant: "aligned"
-      label: "Field text"
       body: "Field body"
   assertions:
     count:
