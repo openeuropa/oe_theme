@@ -1,0 +1,18 @@
+banner_video:
+  label: "Banner: video"
+  description: "Is a large web banner video, prominently placed on a web page, generally at the top."
+  fields:
+    video:
+      type: "array"
+      label: "Video"
+      description: "Banner video"
+      preview:
+        src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+        is_iframe: "true"
+        ratio: "16-9"
+        caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Banner description"
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
