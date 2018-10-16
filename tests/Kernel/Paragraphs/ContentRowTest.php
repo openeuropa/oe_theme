@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel\Paragraph;
+namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\paragraphs\Entity\Paragraph;
@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the "content row" paragraph.
  */
-class ContentRowTest extends ParagraphTestBase {
+class ContentRowTest extends ParagraphsTestBase {
 
   /**
    * Tests the rendering of the paragraph type.
