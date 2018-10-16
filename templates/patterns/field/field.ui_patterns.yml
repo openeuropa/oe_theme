@@ -1,0 +1,19 @@
+field:
+  label: "Field"
+  description: "The field component is used to display structured information."
+  fields:
+    variant:
+      type: "text"
+      label: "Variant"
+      description: "Type of field"
+      preview: ""
+    label:
+      type: "text"
+      label: "Label"
+      description: "Field label"
+      preview: "Lorem ipsum"
+    body:
+      type: "text"
+      label: "Body"
+      description: "Field content"
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor."

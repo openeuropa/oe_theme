@@ -384,6 +384,7 @@
       'dd#ecl-accordion-panel-id-1': "Body 2"
 - array:
     '#type': pattern
+
     '#id': dropdown
     '#fields':
       identifier: "id"
@@ -405,6 +406,31 @@
       '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+- array:
+    '#type': pattern
+    '#id': field
+    '#fields':
+      label: "Field text"
+      body: "Field body"
+  assertions:
+    count:
+      '.ecl-field__label': 1
+      '.ecl-field__body': 1
+    equals:
+      '.ecl-field__label': "Field text"
+      '.ecl-field__body': "Field body"
+- array:
+    '#type': pattern
+    '#id': field
+    '#fields':
+      variant: "aligned"
+      body: "Field body"
+  assertions:
+    count:
+      '.ecl-field__label': 0
+      '.ecl-field__body': 1
+    equals:
+      '.ecl-field__body': "Field body"
 - array:
     '#type': pattern
     '#id': link_block
