@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Button.
+ */
+#}
+{% include '@ecl/ec-component-button' with {
+  'modifier': variant|replace({'_':'-'}),
+  'type_attribute': type_attribute,
+  'href': href,
+  'icon': icon,
+  'label': label,
+  'is_block': is_block
+} only %}

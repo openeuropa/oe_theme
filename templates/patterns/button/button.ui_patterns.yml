@@ -1,0 +1,52 @@
+button:
+  label: "Button"
+  description: "Buttons indicate actions the users can take."
+  variants:
+    default:
+      label: "Default"
+      description: "The default button is used for important links on the page."
+    primary:
+      label: "Primary"
+      description: "Used for primary actions in case of forms, to initiate a search query, to apply a filter."
+    secondary:
+      label: "Secondary"
+      description: "Used for secondary actions to cancel a form."
+    call:
+      label: "Call to action"
+      description: "Use these buttons sparingly on the most important actions like “Apply for funding” or “Watch live streaming”."
+    form:
+      label: "Form"
+      description: "The form buttons are used to confirm a choice or send information."
+    form_primary:
+      label: "Form primary"
+      description: "The form buttons are used to confirm a choice or send information."
+    splash_page:
+      label: "Splash page"
+      description: "Special buttons used on the site's splash page."
+  fields:
+    type_attribute:
+      type: "text"
+      label: "Type attribute"
+      description: "The buttons type attribute"
+      preview: "submit"
+    href:
+      type: "text"
+      label: "URL"
+      description: "URL to use if button needs to be a link"
+      preview: "http://www.example.com"
+    icon:
+      type: "text"
+      label: "Icon"
+      description: "An icon to use with the button."
+      preview: "caret-right"
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label of the button."
+      preview: "Button"
+    is_block:
+      type: "boolean"
+      label: "Block status"
+      description: "Whether the button needs to be treated as a block or not."
+      preview: false
+      
