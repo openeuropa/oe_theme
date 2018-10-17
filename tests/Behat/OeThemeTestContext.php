@@ -1,20 +1,17 @@
 <?php
 
-/**
- * @file
- * Contains \OeThemeTestSubContext.
- */
-
 declare(strict_types = 1);
 
+namespace Drupal\Tests\oe_theme\Behat;
+
 use Behat\Gherkin\Node\TableNode;
-use Drupal\DrupalExtension\Context\DrupalSubContextBase;
+use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\node\NodeInterface;
 
 /**
  * Behat step definitions related to the oe_theme_test module.
  */
-class OeThemeTestSubContext extends DrupalSubContextBase {
+class OeThemeTestContext extends RawDrupalContext {
 
   /**
    * Creates a number of demo pages with the data provided in a table.

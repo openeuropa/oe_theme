@@ -8,6 +8,7 @@ default:
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
+        - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
