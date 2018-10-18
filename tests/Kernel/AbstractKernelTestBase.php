@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Symfony\Component\Yaml\Yaml;
@@ -68,10 +69,16 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
    *   A renderable array representing the content of the block.
    */
   protected function buildBlock(string $block_id, array $config): array {
-    /** @var \Drupal\Core\Block\BlockBase $plugin_block */
-    $plugin_block = $this->container->get('plugin.manager.block')->createInstance($block_id, $config);
+    /** @var \Drupal\Core\Block\BlockBase $plugin */
+    $plugin = $this->container->get('plugin.manager.block')->createInstance($block_id, $config);
 
-    return $plugin_block->build();
+    // Inject runtime contexts.
+    if ($plugin instanceof ContextAwarePluginInterface) {
+      $contexts = $this->container->get('context.repository')->getRuntimeContexts($plugin->getContextMapping());
+      $this->container->get('context.handler')->applyContextMapping($plugin, $contexts);
+    }
+
+    return $plugin->build();
   }
 
 }

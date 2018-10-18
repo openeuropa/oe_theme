@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * Install, uninstall and update scripts for the oe_theme_test module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_uninstall().
+ */
+function oe_theme_test_uninstall(): void {
+  $bundle = \Drupal::entityTypeManager()->getStorage('node_type')->load('oe_theme_demo_page');
+  if ($bundle) {
+    $bundle->delete();
+  }
+}

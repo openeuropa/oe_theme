@@ -8,21 +8,22 @@ default:
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
+        - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
-              logo: "a.ecl-logo"
-              breadcrumb: "nav.ecl-breadcrumb"
-              corporate top block: ".demo-block-footer-corporate-top"
-              corporate bottom block: ".demo-block-footer-corporate-bottom"
-              custom block: ".demo-block-footer-custom"
-              sites switcher: ".demo-block-site-switcher"
-              search box: ".demo-block-header-search"
-              language switcher: ".ecl-language-list"
-              language switcher overlay: ".ecl-dialog__body"
-              language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
-              page header: ".ecl-page-header__body"
               about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
+              breadcrumb: "nav.ecl-breadcrumb"
+              corporate bottom block: ".demo-block-footer-corporate-bottom"
+              corporate top block: ".demo-block-footer-corporate-top"
+              custom block: ".demo-block-footer-custom"
+              language switcher: ".ecl-language-list"
+              language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
+              language switcher overlay: ".ecl-dialog__body"
+              logo: "a.ecl-logo"
+              page header: ".ecl-page-header__body"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
+              search box: ".demo-block-header-search"
+              sites switcher: ".demo-block-site-switcher"
             pages:
               user registration: "/user/register"
               ECL components overview: "/en/components"
@@ -40,16 +41,17 @@ default:
       drupal:
         drupal_root: "build"
       region_map:
-        page: "body"
-        header: ".ecl-site-header"
-        page header: ".ecl-page-header__body"
-        navigation: ".ecl-navigation-menu"
         about dropdown menu: "#nav-menu-expandable-group-2"
-        priorities dropdown menu: "#nav-menu-expandable-group-3"
-        custom footer: ".ecl-footer__custom"
-        corporate top footer: ".ecl-footer__corporate-top"
         corporate bottom footer: ".ecl-footer__corporate-bottom"
-        language switcher: ".ecl-language-list"
+        corporate top footer: ".ecl-footer__corporate-top"
+        custom footer: ".ecl-footer__custom"
+        header: ".ecl-site-header"
         language dialog: ".ecl-dialog"
+        language switcher: ".ecl-language-list"
+        navigation: ".ecl-navigation-menu"
+        page: "body"
+        page header: ".ecl-page-header"
+        page header site identity: ".ecl-page-header__identity"
+        priorities dropdown menu: "#nav-menu-expandable-group-3"
   formatters:
     progress: ~

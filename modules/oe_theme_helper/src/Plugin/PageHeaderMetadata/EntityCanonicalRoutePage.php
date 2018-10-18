@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Default entity metadata extractor")
  * )
  */
-class EntityCanonicalRoutePageHeaderMetadata extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
+class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The current route match.

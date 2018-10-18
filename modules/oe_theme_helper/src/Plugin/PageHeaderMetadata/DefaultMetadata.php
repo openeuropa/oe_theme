@@ -15,7 +15,7 @@ use Drupal\oe_theme_helper\PageHeaderMetadataPluginBase;
  *   weight = 100
  * )
  */
-class DefaultPageHeaderMetadata extends PageHeaderMetadataPluginBase {
+class DefaultMetadata extends PageHeaderMetadataPluginBase {
 
   /**
    * {@inheritdoc}
