@@ -684,3 +684,46 @@
       'a.ecl-list-item__link[href="http://example.com"]': 1
       'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
       'div.ecl-list-item__detail.ecl-paragraph': 0
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      title: "Featured news article"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+  assertions:
+    count:
+      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
+      'div.ecl-meta span.ecl-meta__item': 2
+      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
+      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 0
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "extended"
+    '#fields':
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+        - "European Commission"
+      title: "Featured news article"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+  assertions:
+    count:
+      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
+      'div.ecl-meta span.ecl-meta__item': 3
+      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
+      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
