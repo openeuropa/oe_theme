@@ -6,9 +6,11 @@ namespace Drupal\oe_theme_helper\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\TitleBlockPluginInterface;
+use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -29,11 +31,25 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   use StringTranslationTrait;
 
   /**
+   * The breadcrumb manager.
+   *
+   * @var \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface
+   */
+  protected $breadcrumbManager;
+
+  /**
    * Stores the configuration factory.
    *
    * @var \Drupal\Core\Config\ConfigFactoryInterface
    */
   protected $configFactory;
+
+  /**
+   * The current route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $currentRouteMatch;
 
   /**
    * The page title: a string (plain title) or a render array (formatted title).
@@ -51,13 +67,19 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface $breadcrumb_manager
+   *   The factory for configuration objects.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
+   * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
+   *   The factory for configuration objects.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, BreadcrumbBuilderInterface $breadcrumb_manager, ConfigFactoryInterface $config_factory, RouteMatchInterface $current_route_match) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
+    $this->breadcrumbManager = $breadcrumb_manager;
     $this->configFactory = $config_factory;
+    $this->currentRouteMatch = $current_route_match;
   }
 
   /**
@@ -68,7 +90,9 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('config.factory')
+      $container->get('breadcrumb'),
+      $container->get('config.factory'),
+      $container->get('current_route_match')
     );
   }
 
@@ -77,14 +101,15 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   public function build(): array {
     $metadata = $this->getContext('page_header')->getContextData()->getValue();
-
+    $title = $metadata['title'] ?? $this->title;
     $build = [
       '#type' => 'pattern',
       '#id' => 'page_header',
       '#identity' => $metadata['identity'] ?? $this->configFactory->get('system.site')->get('name'),
-      '#title' => $metadata['title'] ?? $this->title,
+      '#title' => $title,
       '#introduction' => $metadata['introduction'] ?? '',
       '#metas' => $metadata['metas'] ?? [],
+      '#breadcrumb' => $this->getBreadcrumbSegments($title),
     ];
 
     return $build;
@@ -97,6 +122,35 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
     $this->title = $title;
 
     return $this;
+  }
+
+  /**
+   * Returns a list of breadcrumb items ready to be rendered.
+   *
+   * @param string $title
+   *   The title of the current page.
+   *
+   * @return array
+   *   A list of breadcrumb items.
+   */
+  protected function getBreadcrumbSegments($title) {
+
+    $breadcrumb = $this->breadcrumbManager->build($this->currentRouteMatch);
+    $breadcrumb_segments = [];
+    /** @var \Drupal\Core\Link $link */
+    foreach ($breadcrumb->getLinks() as $link) {
+      $breadcrumb_segments[] = [
+        'href' => $link->getUrl(),
+        'label' => $link->getText(),
+      ];
+    }
+    // Add the title to the segments only if it's not empty.
+    if (!empty($title)) {
+      $breadcrumb_segments[] = [
+        'label' => $title,
+      ];
+    }
+    return $breadcrumb_segments;
   }
 
 }

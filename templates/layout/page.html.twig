@@ -17,16 +17,9 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="ecl-page-header">
-  <div class="ecl-container">
-    {{ page.breadcrumb }}
-    {% if page.page_header %}
-      <div class="ecl-page-header__body">
-        {{ page.page_header }}
-      </div>
-    {% endif %}
-  </div>
-</div>
+  {% if page.page_header %}
+    {{ page.page_header }}
+  {% endif %}
 {% endblock %}
 
 {% block navigation %}
