@@ -1,0 +1,24 @@
+file_video:
+  label: "File video"
+  description: "Displays the file video."
+  fields:
+    src:
+      type: "text"
+      label: "Source"
+      description: "Source of the video."
+      preview: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+    caption:
+      type: "text"
+      label: "Caption"
+      description: "Description of the video."
+      preview: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+    is_iframe:
+      type: "boolean"
+      label: "Iframe"
+      description: "Video is displayed in an iframe or not."
+      preview: true
+    ratio:
+      type: "text"
+      label: "Ratio"
+      description: "Ratio of the video."
+      preview: "16-9"

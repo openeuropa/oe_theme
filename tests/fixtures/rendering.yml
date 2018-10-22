@@ -174,6 +174,57 @@
       'div.ecl-banner--video div.ecl-col-lg-6 p.ecl-paragraph': "Banner description"
 - array:
     '#type': pattern
+    '#id': file
+    '#fields':
+      variant: "default"
+      title: "File title example"
+      language: "English"
+      meta: "213.25 kB - PDF - 4 pages"
+      button_label: "Download"
+      icon: "file"
+      href: "http://example.com"
+  assertions:
+    count:
+      'span.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'span.ecl-file__language': "English"
+      'span.ecl-file__properties': "(213.25 kB - PDF - 4 pages)"
+      # The screen reader sees the span sr-only text as well, not just the label.
+      'a.ecl-file__download': "Download(213.25 kB - PDF - 4 pages)"
+- array:
+    '#type': pattern
+    '#id': file_image
+    '#fields':
+      variant: "image"
+      src: "https://placehold.it/450x250"
+      alt: "placeholder image"
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+  assertions:
+    count:
+      'section.ecl-file--image': 1
+      'img.ecl-file__image[src="https://placehold.it/450x250"]': 1
+    equals:
+      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- array:
+    '#type': pattern
+    '#id': file_video
+    '#fields':
+      variant: "video"
+      src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+      is_iframe: true
+      ratio: "16-9"
+  assertions:
+    count:
+      'div.ecl-u-ratio-16-9': 1
+      'section.ecl-file--video': 1
+      'iframe.ecl-file__video[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
+    equals:
+      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- array:
+    '#type': pattern
     '#id': list_item_default
     '#fields':
       url: "http://example.com"
@@ -414,7 +465,6 @@
       'dd#ecl-accordion-panel-id-1': "Body 2"
 - array:
     '#type': pattern
-
     '#id': dropdown
     '#fields':
       identifier: "id"

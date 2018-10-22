@@ -1,0 +1,19 @@
+file_image:
+  label: "File image"
+  description: "Displays the file image."
+  fields:
+    src:
+      type: "text"
+      label: "Source"
+      description: "Source of the image"
+      preview: "https://placehold.it/450x250"
+    alt:
+      type: "text"
+      label: "Alt"
+      description: "Alternative text for the image."
+      preview: "placeholder image"
+    caption:
+      type: "text"
+      label: "Caption"
+      description: "Description of the image."
+      preview: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."

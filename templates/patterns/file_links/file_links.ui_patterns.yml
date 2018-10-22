@@ -1,0 +1,25 @@
+file_links:
+  label: "Links to files"
+  description: "Displays the links for a download page."
+  fields:
+    links:
+      type: "array"
+      label: "Link items"
+      description: "Array of renderable items"
+      preview:
+        - title: "Generic file link"
+          icon: "file"
+          href: "http://example.com"
+          is_external: true
+        - title: "PDF file link"
+          icon: "file"
+          href: "../../example.html#"
+          type: "pdf"
+        - title: "PPT file link"
+          icon: "slides"
+          href: "../../example.html#"
+          type: "ppt"
+        - title: "Image file link"
+          icon: "image"
+          href: "../../example.html#"
+          type: "jpg"
