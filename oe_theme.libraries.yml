@@ -11,6 +11,12 @@ accordions:
   dependencies:
     - core/drupal
     - oe_theme/base
+dialogs:
+  js:
+    js/dialogs.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
 dropdown:
   js:
     js/dropdown.js: {}
