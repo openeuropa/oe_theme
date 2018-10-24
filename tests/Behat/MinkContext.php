@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\MinkContext as DrupalExtensionMinkContext;
 use Behat\Gherkin\Node\TableNode;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
+use PHPUnit\Framework\Assert;
 
 /**
  * Class MinkContext.
@@ -95,6 +96,52 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   protected function getLanguageSwitcherOverlay(): NodeElement {
     $selector = 'div.ecl-language-list.ecl-language-list--overlay';
+    $this->assertSession()->elementExists('css', $selector);
+
+    return $this->getSession()->getPage()->find('css', $selector);
+  }
+
+  /**
+   * Asserts that the breadcrumb contains a certain number of elements.
+   *
+   * @codingStandardsIgnoreStart
+   * | element   | text    |
+   * | a         | page    |
+   * | ...       | ...     |
+   * @codingStandardsIgnoreEnd
+   *
+   * @param \Behat\Gherkin\Node\TableNode $table
+   *   The pages data.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *
+   * @Then the breadcrumb should contain the following item(s):
+   */
+  public function checkBreadcrumbItems(TableNode $table): void {
+    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment';
+    $breadcrumb = $this->getBreadcrumb();
+    $this->assertSession()->elementsCount('css', $selector, count($table->getHash()), $breadcrumb);
+    $breadcrumb_elements = $breadcrumb->findAll('css', $selector);
+
+    foreach ($table->getHash() as $key => $hash) {
+      /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
+      $breadcrumb_element = $breadcrumb_elements[$key];
+      $value = $breadcrumb_element->find('css', $hash['element'])->getText();
+      Assert::assertEquals($value, $hash['text']);
+    }
+  }
+
+  /**
+   * Get breadcrumb element.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The breadcrumb element.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   */
+  protected function getBreadcrumb(): NodeElement {
+    $selector = 'div.ecl-page-header nav.ecl-breadcrumb';
     $this->assertSession()->elementExists('css', $selector);
 
     return $this->getSession()->getPage()->find('css', $selector);
