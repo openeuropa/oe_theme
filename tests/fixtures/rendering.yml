@@ -859,3 +859,29 @@
       'div.ecl-meta span.ecl-meta__item': 3
       'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
       'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
+- array:
+    '#type': pattern
+    '#id': dialog
+    '#variant': default
+    '#fields':
+      dialog_id: "custom-id"
+      dialog_aria_hidden: 'false'
+      dialog_title:
+        value: "Dialog title"
+        id: "dialog-title-id"
+        classes: "dialog-title-class"
+      dialog_description:
+        value: "Dialog description"
+        id: "dialog-description-id"
+        classes: "dialog-description-class"
+      body: "<p>Dialog body</p>"
+      dismiss:
+        hide: false
+        label: "Dismiss label"
+  assertions:
+    count:
+      'div#custom-id.ecl-dialog[aria-hidden="false"] button.ecl-dialog__dismiss[aria-label="Dismiss label"]': 1
+    equals:
+      'div.ecl-dialog[aria-hidden="false"] h3#dialog-title-id.dialog-title-class': "Dialog title"
+      'div.ecl-dialog[aria-hidden="false"] p#dialog-description-id.dialog-description-class': "Dialog description"
+      'div.ecl-dialog[aria-hidden="false"] div.ecl-dialog__body': "<p>Dialog body</p>"
