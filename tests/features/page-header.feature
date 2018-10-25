@@ -15,14 +15,14 @@ Feature: Page header block component.
     Then I should see the heading "Robots are everywhere" in the "page header"
     And the breadcrumb should contain the following items:
       | element | text                  |
-      | a       | Home                  |
-      | span    | Robots are everywhere |
+      | link    | Home                  |
+      | active  | Robots are everywhere |
     When I go to the "The benefits of ergonomic equipment" demo page
     Then I should see the heading "The benefits of ergonomic equipment" in the "page header"
     And the breadcrumb should contain the following items:
       | element | text                                |
-      | a       | Home                                |
-      | span    | The benefits of ergonomic equipment |
+      | link    | Home                                |
+      | active  | The benefits of ergonomic equipment |
 
     # The standard title is shown on other pages.
     When I am on "the user registration page"
@@ -30,8 +30,8 @@ Feature: Page header block component.
     And I should see "OpenEuropa" in the "page header site identity"
     And the breadcrumb should contain the following items:
       | element | text               |
-      | a       | Home               |
-      | span    | Create new account |
+      | link    | Home               |
+      | active  | Create new account |
 
     # Change the title to verify that the page header is updated accordingly.
     When I am logged in as a user that can "edit any" demo pages
@@ -42,12 +42,12 @@ Feature: Page header block component.
     Then I should see the heading "Robots are everywhere nowadays" in the "page header"
     And the breadcrumb should contain the following items:
       | element | text                           |
-      | a       | Home                           |
-      | span    | Robots are everywhere nowadays |
+      | link    | Home                           |
+      | active  | Robots are everywhere nowadays |
     When I am an anonymous user
     And I go to the "Robots are everywhere nowadays" demo page
     Then I should see the heading "Robots are everywhere nowadays" in the "page header"
     And the breadcrumb should contain the following items:
       | element | text                           |
-      | a       | Home                           |
-      | span    | Robots are everywhere nowadays |
+      | link    | Home                           |
+      | active  | Robots are everywhere nowadays |

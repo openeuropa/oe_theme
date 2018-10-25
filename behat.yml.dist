@@ -7,7 +7,10 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
-        - Drupal\Tests\oe_theme\Behat\MinkContext
+        - Drupal\Tests\oe_theme\Behat\MinkContext:
+            elements:
+              link: a
+              active: span
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - OpenEuropa\Behat\TransformationContext:
             elements:

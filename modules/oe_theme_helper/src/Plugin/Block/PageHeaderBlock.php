@@ -31,11 +31,11 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   use StringTranslationTrait;
 
   /**
-   * The breadcrumb manager.
+   * The breadcrumb builder.
    *
    * @var \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface
    */
-  protected $breadcrumbManager;
+  protected $breadcrumbBuilder;
 
   /**
    * Stores the configuration factory.
@@ -67,17 +67,17 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface $breadcrumb_manager
-   *   The factory for configuration objects.
+   * @param \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface $breadcrumb_builder
+   *   The breadcrumb builder service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
-   *   The factory for configuration objects.
+   *   The current route match.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, BreadcrumbBuilderInterface $breadcrumb_manager, ConfigFactoryInterface $config_factory, RouteMatchInterface $current_route_match) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, BreadcrumbBuilderInterface $breadcrumb_builder, ConfigFactoryInterface $config_factory, RouteMatchInterface $current_route_match) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
-    $this->breadcrumbManager = $breadcrumb_manager;
+    $this->breadcrumbBuilder = $breadcrumb_builder;
     $this->configFactory = $config_factory;
     $this->currentRouteMatch = $current_route_match;
   }
@@ -133,9 +133,8 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * @return array
    *   A list of breadcrumb items.
    */
-  protected function getBreadcrumbSegments($title) {
-
-    $breadcrumb = $this->breadcrumbManager->build($this->currentRouteMatch);
+  protected function getBreadcrumbSegments($title): array {
+    $breadcrumb = $this->breadcrumbBuilder->build($this->currentRouteMatch);
     $breadcrumb_segments = [];
     /** @var \Drupal\Core\Link $link */
     foreach ($breadcrumb->getLinks() as $link) {

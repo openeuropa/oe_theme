@@ -18,6 +18,23 @@ class MinkContext extends DrupalExtensionMinkContext {
   use UtilityTrait;
 
   /**
+   * Mapping between human readable element labels and CSS selectors.
+   *
+   * @var array
+   */
+  private $elements = [];
+
+  /**
+   * TransformationContext constructor.
+   *
+   * @param array $elements
+   *   Page elements mapping.
+   */
+  public function __construct(array $elements = []) {
+    $this->elements = $elements;
+  }
+
+  /**
    * Assert links in region.
    *
    * @param string $region
@@ -87,21 +104,6 @@ class MinkContext extends DrupalExtensionMinkContext {
   }
 
   /**
-   * Get language switcher overlay element.
-   *
-   * @return \Behat\Mink\Element\NodeElement
-   *   The language switcher overlay element.
-   *
-   * @throws \Behat\Mink\Exception\ElementNotFoundException
-   */
-  protected function getLanguageSwitcherOverlay(): NodeElement {
-    $selector = 'div.ecl-language-list.ecl-language-list--overlay';
-    $this->assertSession()->elementExists('css', $selector);
-
-    return $this->getSession()->getPage()->find('css', $selector);
-  }
-
-  /**
    * Asserts that the breadcrumb contains a certain number of elements.
    *
    * @codingStandardsIgnoreStart
@@ -127,9 +129,25 @@ class MinkContext extends DrupalExtensionMinkContext {
     foreach ($table->getHash() as $key => $hash) {
       /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
       $breadcrumb_element = $breadcrumb_elements[$key];
-      $value = $breadcrumb_element->find('css', $hash['element'])->getText();
+      $element = $this->transformElement($hash['element']);
+      $value = $breadcrumb_element->find('css', $element)->getText();
       Assert::assertEquals($value, $hash['text']);
     }
+  }
+
+  /**
+   * Get language switcher overlay element.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The language switcher overlay element.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   */
+  protected function getLanguageSwitcherOverlay(): NodeElement {
+    $selector = 'div.ecl-language-list.ecl-language-list--overlay';
+    $this->assertSession()->elementExists('css', $selector);
+
+    return $this->getSession()->getPage()->find('css', $selector);
   }
 
   /**
@@ -145,6 +163,19 @@ class MinkContext extends DrupalExtensionMinkContext {
     $this->assertSession()->elementExists('css', $selector);
 
     return $this->getSession()->getPage()->find('css', $selector);
+  }
+
+  /**
+   * Transform element label into an CSS selector, if any.
+   *
+   * @param string $label
+   *   Element label.
+   *
+   * @return string
+   *   CSS selector.
+   */
+  protected function transformElement($label): string {
+    return isset($this->elements[$label]) ? $this->elements[$label] : $label;
   }
 
 }
