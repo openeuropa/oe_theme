@@ -596,7 +596,6 @@
   assertions:
     equals:
       'button.ecl-button--splash-page': "Button label"
->>>>>>> OPENEUROPA-1251: Add button pattern.
 - array:
     '#type': pattern
     '#id': social_media_links_vertical
