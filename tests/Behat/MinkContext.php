@@ -22,16 +22,16 @@ class MinkContext extends DrupalExtensionMinkContext {
    *
    * @var array
    */
-  private $elements = [];
+  private $breadcrumbElements = [];
 
   /**
    * TransformationContext constructor.
    *
-   * @param array $elements
-   *   Page elements mapping.
+   * @param array $breadcrumb_elements
+   *   Breadcrumb elements mapping.
    */
-  public function __construct(array $elements = []) {
-    $this->elements = $elements;
+  public function __construct(array $breadcrumb_elements = []) {
+    $this->breadcrumbElements = $breadcrumb_elements;
   }
 
   /**
@@ -175,7 +175,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    *   CSS selector.
    */
   protected function transformElement($label): string {
-    return isset($this->elements[$label]) ? $this->elements[$label] : $label;
+    return isset($this->breadcrumbElements[$label]) ? $this->breadcrumbElements[$label] : $label;
   }
 
 }

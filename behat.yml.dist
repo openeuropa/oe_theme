@@ -8,7 +8,7 @@ default:
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext:
-            elements:
+            breadcrumb_elements:
               link: a
               active: span
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
