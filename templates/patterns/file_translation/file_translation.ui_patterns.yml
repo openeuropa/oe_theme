@@ -1,5 +1,5 @@
-file:
-  label: "File"
+file_translation:
+  label: "File with translations"
   description: "File component is used to show info about the file that can be downloaded or how are displayed multimedia files (image and video)."
   fields:
     title:
@@ -32,3 +32,24 @@ file:
       label: "URL"
       description: "The URL of the file."
       preview: "#"
+    translations:
+      type: "array"
+      label: "Translated files."
+      description: "List of translated files."
+      preview:
+        - title: "French title of the file."
+          meta: "213.25 kB - PDF - 4 pages"
+          url: "#"
+        - title: "Hungarian title of the file."
+          meta: "213.25 kB - PDF - 4 pages"
+          url: "#"
+    translations_label:
+      type: "text"
+      label: "Label"
+      description: "Global label for translations area. Should display number of translations (default: \"Available languages: 0\")"
+      preview: "Available languages"
+    translations_tooltip:
+      type: "text"
+      label: "Label"
+      description: "Tooltip when hovering global label (default: \"Click to see translations\")"
+      preview: "Click to see translations"
