@@ -526,6 +526,78 @@
       '.ecl-context-nav__button': "More label"
 - array:
     '#type': pattern
+    '#id': button
+    '#variant': default
+    '#fields':
+      label: "Button label"
+      href: "http://example.com"
+      icon: "caret-right"
+  assertions:
+    count:
+      'a.ecl-button--caret-right': 1
+    equals:
+      'a.ecl-button--default[href="http://example.com"]': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': primary
+    '#fields':
+      type_attribute: "submit"
+      is_block: true
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button--block': 1
+      'button.ecl-button[type="submit"]': 1
+    equals:
+      'button.ecl-button--primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': secondary
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--secondary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': call
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--call': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': form
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--form': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': form_primary
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--form-primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': splash_page
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--splash-page': "Button label"
+- array:
+    '#type': pattern
     '#id': social_media_links_vertical
     '#fields':
       title: "View European Commission on:"
