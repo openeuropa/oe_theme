@@ -5,10 +5,10 @@
  */
 #}
 {% include '@ecl/ec-component-file' with {
-  'title': title,
-  'language': language,
-  'meta': meta,
+  'title': file.title,
+  'language': file.language_name,
+  'meta': file.formatted_size ~ ' - ' ~ file.extension|upper,
   'button_label': button_label,
-  'icon': icon,
-  'url': url,
-} %}
+  'icon': file.icon,
+  'href': file.url,
+} only %}

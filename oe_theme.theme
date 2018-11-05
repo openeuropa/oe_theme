@@ -11,6 +11,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
+use Drupal\oe_theme_helper\Patterns\FileType;
+use Drupal\oe_theme_helper\Patterns\FieldTypeException;
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -601,4 +603,93 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
   }
 
   $variables['links'] = $links;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_file(&$variables) {
+  if ($variables['file']) {
+    try {
+      /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
+      $file = FileType::getInstance($variables['file']);
+      $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
+    }
+    catch (FieldTypeException $e) {
+      \Drupal::logger('oe_theme')->error('Could not set "file" field on "file" pattern: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_file_links(&$variables) {
+  if ($variables['files']) {
+    foreach ($variables['files'] as $index => $file) {
+      try {
+        /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
+        $file = FileType::getInstance($file);
+        $file = _oe_theme_get_formatted_file_type_values($file);
+        $variables['files'][$index] = [
+          'title' => $file['title'],
+          'type' => $file['extension'],
+          'icon' => $file['icon'],
+          'href' => $file['url'],
+        ];
+      }
+      catch (FieldTypeException $e) {
+        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_links" pattern: @message', [
+          '@message' => $e->getMessage(),
+        ]);
+      }
+    }
+  }
+}
+
+/**
+ * Format FileType value object properties.
+ *
+ * @param \Drupal\oe_theme_helper\Patterns\FileType $file
+ *   FileType value object.
+ * @param bool $show_native_language
+ *   Whereas to return languages in their native names.
+ *
+ * @return array
+ *   Formatted FileType value object as an array.
+ */
+function _oe_theme_get_formatted_file_type_values(FileType $file, $show_native_language = FALSE): array {
+  $language_code = $file->getLanguageCode();
+
+  // Language string will default to core language value.
+  $language_name = \Drupal::languageManager()->getLanguageName($language_code);
+  if ($show_native_language && \Drupal::moduleHandler()->moduleExists('oe_multilingual')) {
+    // @todo: Fix this.
+    // We should store language information contained in
+    // MultilingualHelper::getEuropeanUnionLanguageList() in configuration.
+    $languages = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
+    if (isset($languages[$language_code])) {
+      $language_name = $languages[$language_code];
+    }
+  }
+
+  // @todo: Complete and/or centralise extension to icon conversion.
+  // Get icons from given file extension.
+  switch ($file->getExtension()) {
+
+    case 'ppt':
+      $icon = 'presentation';
+      break;
+
+    default:
+      $icon = 'file';
+  }
+
+  return $file->toArray() + [
+    'icon' => $icon,
+    'language_name' => $language_name,
+    'formatted_size' => format_size($file->getSize(), $file->getLanguageCode()),
+  ];
 }

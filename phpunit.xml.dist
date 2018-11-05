@@ -9,6 +9,7 @@
   </php>
   <testsuites>
     <testsuite>
+      <directory>./modules/**/tests/</directory>
       <directory>./tests/</directory>
     </testsuite>
   </testsuites>

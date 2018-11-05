@@ -176,7 +176,29 @@
     '#type': pattern
     '#id': file
     '#fields':
-      variant: "default"
+      button_label: "Download"
+      file:
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+  assertions:
+    count:
+      'span.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'span.ecl-file__language': "English"
+      'span.ecl-file__properties': "(9.77 KB - PDF)"
+      # The screen reader sees the span sr-only text as well, not just the label.
+      'a.ecl-file__download': "Download(9.77 KB - PDF)"
+- array:
+    '#type': pattern
+    '#id': file_translation
+    '#fields':
+      variant: "translation"
       title: "File title example"
       language: "English"
       meta: "213.25 kB - PDF - 4 pages"
