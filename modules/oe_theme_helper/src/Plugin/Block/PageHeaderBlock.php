@@ -67,14 +67,14 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface $breadcrumb_builder
-   *   The breadcrumb builder service.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
+   * @param \Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface $breadcrumb_builder
+   *   The breadcrumb builder service.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, BreadcrumbBuilderInterface $breadcrumb_builder, ConfigFactoryInterface $config_factory, RouteMatchInterface $current_route_match) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, BreadcrumbBuilderInterface $breadcrumb_builder, RouteMatchInterface $current_route_match) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->breadcrumbBuilder = $breadcrumb_builder;
@@ -90,8 +90,8 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('breadcrumb'),
       $container->get('config.factory'),
+      $container->get('breadcrumb'),
       $container->get('current_route_match')
     );
   }
