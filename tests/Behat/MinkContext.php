@@ -106,33 +106,45 @@ class MinkContext extends DrupalExtensionMinkContext {
   /**
    * Asserts that the breadcrumb contains a certain number of elements.
    *
-   * @codingStandardsIgnoreStart
-   * | element   | text    |
-   * | a         | page    |
-   * | ...       | ...     |
-   * @codingStandardsIgnoreEnd
-   *
-   * @param \Behat\Gherkin\Node\TableNode $table
-   *   The pages data.
+   * @param string $trail
+   *   Comma separated breadcrumb trail.
    *
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    * @throws \Behat\Mink\Exception\ExpectationException
    *
-   * @Then the breadcrumb should contain the following item(s):
+   * @Then the breadcrumb trail should be :items
    */
-  public function checkBreadcrumbItems(TableNode $table): void {
-    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment';
+  public function checkBreadcrumbTrail(string $trail): void {
+    $trail_elements = explode(',', $trail);
+    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a';
     $breadcrumb = $this->getBreadcrumb();
-    $this->assertSession()->elementsCount('css', $selector, count($table->getHash()), $breadcrumb);
+    $this->assertSession()->elementsCount('css', $selector, count($trail_elements), $breadcrumb);
     $breadcrumb_elements = $breadcrumb->findAll('css', $selector);
 
-    foreach ($table->getHash() as $key => $hash) {
+    foreach ($trail_elements as $key => $trail_element) {
       /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
       $breadcrumb_element = $breadcrumb_elements[$key];
-      $element = $this->transformElement($hash['element']);
-      $value = $breadcrumb_element->find('css', $element)->getText();
-      Assert::assertEquals($value, $hash['text']);
+      $value = $breadcrumb_element->find('css', 'a')->getText();
+      Assert::assertEquals($trail_element, $value);
     }
+  }
+
+  /**
+   * Asserts that the breadcrumb contains a certain number of elements.
+   *
+   * @param string $active_element
+   *   The breadcrumb active element.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *
+   * @Then the breadcrumb active element should be :text
+   */
+  public function checkBreadcrumbActiveElement(string $active_element): void {
+    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment span';
+    $breadcrumb = $this->getBreadcrumb();
+    $active_breadcrumb = $breadcrumb->find('css', $selector);
+    Assert::assertEquals($active_element, $active_breadcrumb->getText());
   }
 
   /**
