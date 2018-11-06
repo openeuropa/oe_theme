@@ -37,23 +37,23 @@ class FileTypeTest extends UnitTestCase {
     $file = $this->getMockBuilder(File::class)
       ->disableOriginalConstructor()
       ->setMethods([
-        'getUrl',
-        'getMime',
+        'getFileUri',
+        'getMimeType',
         'getSize',
-        'getName',
+        'getFilename',
       ])->getMock();
 
     $file->expects($this->once())
-      ->method('getUrl')
+      ->method('getFileUri')
       ->willReturn('http://example.com/test.pdf');
     $file->expects($this->once())
-      ->method('getMime')
+      ->method('getMimeType')
       ->willReturn('pdf');
     $file->expects($this->once())
       ->method('getSize')
       ->willReturn('123');
     $file->expects($this->once())
-      ->method('getName')
+      ->method('getFilename')
       ->willReturn('Test.pdf');
 
     $data = FileType::fromFileEntity($file);
