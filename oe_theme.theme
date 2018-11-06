@@ -670,7 +670,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
       try {
         /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
         $file = FileType::getInstance($file);
-        $file = _oe_theme_get_formatted_file_type_values($file);
+        $file = _oe_theme_get_formatted_file_type_values($file, TRUE);
         $variables['translations'][$index] = [
           'title' => $file['language_name'],
           'type' => $file['extension'],
@@ -685,6 +685,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
         ]);
       }
     }
+    // Add css ids for expandable javascript behaviour.
     $variables['translations_id'] = Html::getUniqueId('translations-expand');
     $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
   }

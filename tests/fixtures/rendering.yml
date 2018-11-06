@@ -198,23 +198,84 @@
     '#type': pattern
     '#id': file_translation
     '#fields':
-      variant: "translation"
-      title: "File title example"
-      language: "English"
-      meta: "213.25 kB - PDF - 4 pages"
       button_label: "Download"
-      icon: "file"
-      href: "http://example.com"
+      file:
+        variant: "translation"
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+      translations:
+        - mime: "application/pdf"
+          url: "http://example.com/document_fr.pdf"
+          size: "150000"
+          name: "document.pdf"
+          language_code: "fr"
+        - mime: "application/pdf"
+          url: "http://example.com/document_it.pdf"
+          size: "160000"
+          name: "document.pdf"
+          language_code: "it"
+        - mime: "application/pdf"
+          url: "http://example.com/document_hu.pdf"
+          size: "170000"
+          name: "document.pdf"
+          language_code: "hu"
   assertions:
     count:
       'span.ecl-file__icon': 1
       'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file__translations': 1
+      'li.ecl-file__translations-item': 3
+      'a[href="http://example.com/document_fr.pdf"]': 1
+      'a[href="http://example.com/document_it.pdf"]': 1
+      'a[href="http://example.com/document_hu.pdf"]': 1
     equals:
       'div.ecl-file__title': "File title example"
       'span.ecl-file__language': "English"
-      'span.ecl-file__properties': "(213.25 kB - PDF - 4 pages)"
+      'span.ecl-file__properties': "(9.77 KB - PDF)"
       # The screen reader sees the span sr-only text as well, not just the label.
-      'a.ecl-file__download': "Download(213.25 kB - PDF - 4 pages)"
+      'a.ecl-file__download': "Download(9.77 KB - PDF)"
+      'button.ecl-file__translations-toggle': "Available translations (3)"
+      '.ecl-file__translations-item:nth-child(1) span.ecl-file__translations-title': "français"
+      '.ecl-file__translations-item:nth-child(1) div.ecl-file__translations-info': "(146.48 KB - PDF)"
+      '.ecl-file__translations-item:nth-child(2) span.ecl-file__translations-title': "italiano"
+      '.ecl-file__translations-item:nth-child(2) div.ecl-file__translations-info': "(156.25 KB - PDF)"
+      '.ecl-file__translations-item:nth-child(3) span.ecl-file__translations-title': "magyar"
+      '.ecl-file__translations-item:nth-child(3) div.ecl-file__translations-info': "(166.02 KB - PDF)"
+- array:
+    '#type': pattern
+    '#id': file_links
+    '#fields':
+      files:
+        - title: "Example document 1"
+          mime: "application/pdf"
+          url: "http://example.com/document1.pdf"
+          size: "150000"
+          name: "document.pdf"
+        - title: "Example document 2"
+          mime: "application/pdf"
+          url: "http://example.com/document2.pdf"
+          size: "160000"
+          name: "document.pdf"
+        - title: "Example document 3"
+          mime: "application/pdf"
+          url: "http://example.com/document3.pdf"
+          size: "170000"
+          name: "document.pdf"
+  assertions:
+    count:
+      'div.ecl-file__link-container': 3
+      'a[href="http://example.com/document1.pdf"]': 1
+      'a[href="http://example.com/document2.pdf"]': 1
+      'a[href="http://example.com/document3.pdf"]': 1
+    equals:
+      'a[href="http://example.com/document1.pdf"] span.ecl-file__title': "Example document 1"
+      'a[href="http://example.com/document2.pdf"] span.ecl-file__title': "Example document 2"
+      'a[href="http://example.com/document3.pdf"] span.ecl-file__title': "Example document 3"
+
 - array:
     '#type': pattern
     '#id': file_image

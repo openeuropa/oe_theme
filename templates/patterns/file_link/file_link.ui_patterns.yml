@@ -1,4 +1,4 @@
-file_links:
+file_link:
   label: "Links to files"
   description: "Displays the links for a download page."
   fields:

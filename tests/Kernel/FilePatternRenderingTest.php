@@ -54,6 +54,11 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
 
     $actual = trim($crawler->filter('.ecl-file__properties')->text());
     $this->assertEquals('(123 bytes - TXT)', $actual);
+    $actual = trim($crawler->filter('.ecl-file__title')->text());
+    $this->assertEquals('druplicon.txt', $actual);
+    $actual = trim($crawler->filter('a.ecl-file__download')->text());
+    // The screen reader sees the span sr-only text as well, not just the label.
+    $this->assertEquals('Download(123 bytes - TXT)', $actual);
   }
 
 }
