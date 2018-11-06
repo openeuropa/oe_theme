@@ -23,6 +23,12 @@ context_nav:
   dependencies:
     - core/drupal
     - oe_theme/base
+file_translations:
+  js:
+    js/file_translations.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
 inpage_navigation:
   js:
     js/inpage_navigation.js: {}

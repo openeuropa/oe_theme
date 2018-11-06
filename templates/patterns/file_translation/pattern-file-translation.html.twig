@@ -6,13 +6,13 @@
 #}
 {% include '@ecl/ec-component-file' with {
   'variant': "translation",
-  'title': title,
-  'language': language,
-  'meta': meta,
+  'title': file.title,
+  'language': file.language_name,
+  'meta': file.formatted_size ~ ' - ' ~ file.extension|upper,
   'button_label': button_label,
-  'icon': icon,
-  'url': url,
+  'icon': file.icon,
+  'href': file.url,
   'translations': translations,
-  'translations_label': translations_label,
-  'translations_tooltip': translations_tooltip,
+  'translations_label': "Available translations (@count)"|t({ '@count': translations|length}),
+  'translations_tooltip': "Click here to see available translations"|t,
 } %}

@@ -650,6 +650,47 @@ function oe_theme_preprocess_pattern_file_links(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_file_translation(&$variables) {
+  if ($variables['file']) {
+    try {
+      /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
+      $file = FileType::getInstance($variables['file']);
+      $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
+    }
+    catch (FieldTypeException $e) {
+      \Drupal::logger('oe_theme')->error('Could not set "file" field on "file_translation" pattern: @message', [
+        '@message' => $e->getMessage(),
+      ]);
+    }
+  }
+  if ($variables['translations']) {
+    foreach ($variables['translations'] as $index => $file) {
+      try {
+        /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
+        $file = FileType::getInstance($file);
+        $file = _oe_theme_get_formatted_file_type_values($file);
+        $variables['translations'][$index] = [
+          'title' => $file['language_name'],
+          'type' => $file['extension'],
+          'meta' => $file['formatted_size'] . ' - ' . strtoupper($file['extension']),
+          'icon' => $file['icon'],
+          'href' => $file['url'],
+        ];
+      }
+      catch (FieldTypeException $e) {
+        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_translation" pattern: @message', [
+          '@message' => $e->getMessage(),
+        ]);
+      }
+    }
+    $variables['translations_id'] = Html::getUniqueId('translations-expand');
+    $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
+  }
+}
+
+/**
  * Format FileType value object properties.
  *
  * @param \Drupal\oe_theme_helper\Patterns\FileType $file
