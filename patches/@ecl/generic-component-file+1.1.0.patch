@@ -1,0 +1,38 @@
+patch-package
+--- a/node_modules/@ecl/generic-component-file/generic-component-file.twig
++++ b/node_modules/@ecl/generic-component-file/generic-component-file.twig
+@@ -57,6 +57,8 @@
+ {% set _button_label = button_label|default('Download') %}
+ {% set _translations_label = translations_label|default('Available languages: 0') %}
+ {% set _translations_tooltip = translations_tooltip|default('Click to see translations') %}
++{% set _translations_id = translations_id|default('translations-expand') %}
++{% set _translations_button_id = translations_button_id|default('translations-expand-button') %}
+ {% set _css_class = 'ecl-file' %}
+ {% set _extra_attributes = '' %}
+ 
+@@ -110,13 +112,13 @@
+           'type_attribute': 'button',
+           'extra_classes': 'ecl-file__translations-toggle',
+           'extra_attributes': [
+-            { 'name': 'aria-controls', 'value': 'translations-expand' },
++            { 'name': 'aria-controls', 'value': _translations_id },
+             { 'name': 'aria-expanded', 'value': 'true' },
+-            { 'name': 'id', 'value': 'translations-expand-button' },
++            { 'name': 'id', 'value': _translations_button_id },
+             { 'name': 'title', 'value': translations_tooltip }
+           ]
+-        } %}
+-        <div aria-hidden="false" aria-labelledby="translations-expand-button" class="ecl-u-aria" id="translations-expand">
++        } only %}
++        <div aria-hidden="false" aria-labelledby="{{ _translations_button_id }}" class="ecl-u-aria ecl-file__translations-toggle" id="{{ _translations_id }}">
+           <ul class="ecl-file__translations-list">
+             {% if translations is defined %}
+               {% for translation in translations %}
+@@ -127,6 +129,7 @@
+                   </div>
+                   {% include '@ecl/' ~ system ~ '-component-button' with {
+                     'label': _button_label ~ '<span class="ecl-u-sr-only">(' ~ translation.meta ~ ')',
++                    'href': translation.href,
+                     'modifier': 'secondary',
+                     'type_attribute': 'button',
+                     'extra_classes': 'ecl-file__translations-download'
