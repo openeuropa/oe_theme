@@ -626,7 +626,7 @@ function oe_theme_preprocess_pattern_file(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_file_links(&$variables) {
+function oe_theme_preprocess_pattern_file_link(&$variables) {
   if ($variables['files']) {
     foreach ($variables['files'] as $index => $file) {
       try {
@@ -641,7 +641,7 @@ function oe_theme_preprocess_pattern_file_links(&$variables) {
         ];
       }
       catch (FieldTypeException $e) {
-        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_links" pattern: @message', [
+        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_link" pattern: @message', [
           '@message' => $e->getMessage(),
         ]);
       }

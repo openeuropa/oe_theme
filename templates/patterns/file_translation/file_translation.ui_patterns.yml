@@ -1,6 +1,6 @@
 file_translation:
   label: "File with translations"
-  description: "File component is used to show info about the file that can be downloaded or how are displayed multimedia files (image and video)."
+  description: "File download component with the available translations."
   fields:
     button_label:
       type: "text"

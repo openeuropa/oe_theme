@@ -247,7 +247,7 @@
       '.ecl-file__translations-item:nth-child(3) div.ecl-file__translations-info': "(166.02 KB - PDF)"
 - array:
     '#type': pattern
-    '#id': file_links
+    '#id': file_link
     '#fields':
       files:
         - title: "Example document 1"
@@ -275,7 +275,6 @@
       'a[href="http://example.com/document1.pdf"] span.ecl-file__title': "Example document 1"
       'a[href="http://example.com/document2.pdf"] span.ecl-file__title': "Example document 2"
       'a[href="http://example.com/document3.pdf"] span.ecl-file__title': "Example document 3"
-
 - array:
     '#type': pattern
     '#id': file_image
