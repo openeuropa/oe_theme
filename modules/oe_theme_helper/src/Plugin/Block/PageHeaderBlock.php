@@ -7,6 +7,7 @@ namespace Drupal\oe_theme_helper\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block\TitleBlockPluginInterface;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
@@ -109,10 +110,8 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#title' => $title,
       '#introduction' => $metadata['introduction'] ?? '',
       '#metas' => $metadata['metas'] ?? [],
-      '#breadcrumb' => $this->getBreadcrumbSegments($title),
     ];
-
-    return $build;
+    return $this->addBreadcrumbSegments($build);
   }
 
   /**
@@ -125,31 +124,33 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   }
 
   /**
-   * Returns a list of breadcrumb items ready to be rendered.
+   * Constructs a new PageHeaderBlock instance.
    *
-   * @param string $title
-   *   The title of the current page.
+   * @param array $build
+   *   Header build array.
    *
    * @return array
-   *   A list of breadcrumb items.
+   *   Header build array with the a breadcrumb (if any is applicable)
    */
-  protected function getBreadcrumbSegments($title): array {
+  protected function addBreadcrumbSegments(array $build): array {
     $breadcrumb = $this->breadcrumbBuilder->build($this->currentRouteMatch);
-    $breadcrumb_segments = [];
+    // Add segments to the breadcrumb key.
     /** @var \Drupal\Core\Link $link */
     foreach ($breadcrumb->getLinks() as $link) {
-      $breadcrumb_segments[] = [
+      $build['#breadcrumb'][] = [
         'href' => $link->getUrl(),
         'label' => $link->getText(),
       ];
     }
     // Add the title to the segments only if it's not empty.
     if (!empty($title)) {
-      $breadcrumb_segments[] = [
+      $build['#breadcrumb'][] = [
         'label' => $title,
       ];
     }
-    return $breadcrumb_segments;
+    // Make sure that the cache metadata from the breadcrumb is not lost.
+    CacheableMetadata::createFromObject($breadcrumb)->applyTo($build);
+    return $build;
   }
 
 }
