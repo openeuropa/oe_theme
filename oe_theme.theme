@@ -606,7 +606,7 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_pattern_file().
  */
 function oe_theme_preprocess_pattern_file(&$variables) {
   if ($variables['file']) {
@@ -624,7 +624,7 @@ function oe_theme_preprocess_pattern_file(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_pattern_file_link().
  */
 function oe_theme_preprocess_pattern_file_link(&$variables) {
   if ($variables['files']) {
@@ -650,7 +650,7 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_pattern_file_translation().
  */
 function oe_theme_preprocess_pattern_file_translation(&$variables) {
   if ($variables['file']) {
