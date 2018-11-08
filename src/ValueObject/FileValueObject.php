@@ -6,7 +6,6 @@ namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
-use Drupal\oe_theme\ValueObject\Exception\ValueObjectException;
 use Drupal\oe_theme\ValueObject\Exception\ValueObjectFactoryException;
 
 /**

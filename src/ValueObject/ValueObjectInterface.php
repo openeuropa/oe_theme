@@ -30,7 +30,7 @@ interface ValueObjectInterface {
   /**
    * Get an object instance from any value.
    *
-   * This factory will be calling other factories, such as ValueObjectInterface::fromArray().
+   * This will call other factories like ValueObjectInterface::fromArray().
    *
    * @param mixed $value
    *   Mixed value from which to construct the object.
