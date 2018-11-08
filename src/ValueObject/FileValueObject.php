@@ -2,15 +2,17 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_helper\Patterns;
+namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
+use Drupal\oe_theme\ValueObject\Exception\ValueObjectException;
+use Drupal\oe_theme\ValueObject\Exception\ValueObjectFactoryException;
 
 /**
  * FileType value object for pattern field type "file".
  */
-class FileType implements FieldTypeInterface {
+class FileValueObject implements ValueObjectInterface {
 
   /**
    * The name of the file.
@@ -88,7 +90,7 @@ class FileType implements FieldTypeInterface {
    *
    * @return $this
    */
-  public static function fromFileEntity(FileInterface $file_entity): FileType {
+  public static function fromFileEntity(FileInterface $file_entity): FileValueObject {
     $file = new static(
       $file_entity->getFilename(),
       $file_entity->getFileUri(),
@@ -102,7 +104,7 @@ class FileType implements FieldTypeInterface {
   /**
    * {@inheritdoc}
    */
-  public static function fromArray(array $values = []): FieldTypeInterface {
+  public static function fromArray(array $values = []): ValueObjectInterface {
     $file = new static(
       $values['name'],
       $values['url'],
@@ -124,15 +126,15 @@ class FileType implements FieldTypeInterface {
   /**
    * {@inheritdoc}
    */
-  public static function getInstance($value): FieldTypeInterface {
+  public static function fromAny($value): ValueObjectInterface {
     if (is_array($value)) {
-      $file = FileType::fromArray($value);
+      $file = FileValueObject::fromArray($value);
     }
     elseif (is_object($value) && $value instanceof File) {
-      $file = FileType::fromFileEntity($value);
+      $file = FileValueObject::fromFileEntity($value);
     }
     else {
-      throw new FieldTypeFactoryException(FileType::class);
+      throw new ValueObjectFactoryException(FileValueObject::class);
     }
 
     return $file;
@@ -216,7 +218,7 @@ class FileType implements FieldTypeInterface {
    *
    * @return $this
    */
-  public function setTitle(string $title): FileType {
+  public function setTitle(string $title): FileValueObject {
     $this->title = $title;
 
     return $this;
@@ -230,7 +232,7 @@ class FileType implements FieldTypeInterface {
    *
    * @return $this
    */
-  public function setLanguageCode(string $language_code): FileType {
+  public function setLanguageCode(string $language_code): FileValueObject {
     $this->languageCode = $language_code;
 
     return $this;

@@ -11,8 +11,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
-use Drupal\oe_theme_helper\Patterns\FileType;
-use Drupal\oe_theme_helper\Patterns\FieldTypeException;
+use Drupal\oe_theme\ValueObject\FileValueObject;
+use Drupal\oe_theme\ValueObject\Exception\ValueObjectException;
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -611,11 +611,11 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
 function oe_theme_preprocess_pattern_file(&$variables) {
   if ($variables['file']) {
     try {
-      /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
-      $file = FileType::getInstance($variables['file']);
+      /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
+      $file = FileValueObject::fromAny($variables['file']);
       $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
     }
-    catch (FieldTypeException $e) {
+    catch (ValueObjectException $e) {
       \Drupal::logger('oe_theme')->error('Could not set "file" field on "file" pattern: @message', [
         '@message' => $e->getMessage(),
       ]);
@@ -630,8 +630,8 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
   if ($variables['files']) {
     foreach ($variables['files'] as $index => $file) {
       try {
-        /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
-        $file = FileType::getInstance($file);
+        /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
+        $file = FileValueObject::fromAny($file);
         $file = _oe_theme_get_formatted_file_type_values($file);
         $variables['files'][$index] = [
           'title' => $file['title'],
@@ -640,7 +640,7 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
           'href' => $file['url'],
         ];
       }
-      catch (FieldTypeException $e) {
+      catch (ValueObjectException $e) {
         \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_link" pattern: @message', [
           '@message' => $e->getMessage(),
         ]);
@@ -655,11 +655,11 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
 function oe_theme_preprocess_pattern_file_translation(&$variables) {
   if ($variables['file']) {
     try {
-      /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
-      $file = FileType::getInstance($variables['file']);
+      /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
+      $file = FileValueObject::fromAny($variables['file']);
       $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
     }
-    catch (FieldTypeException $e) {
+    catch (ValueObjectException $e) {
       \Drupal::logger('oe_theme')->error('Could not set "file" field on "file_translation" pattern: @message', [
         '@message' => $e->getMessage(),
       ]);
@@ -668,8 +668,8 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
   if ($variables['translations']) {
     foreach ($variables['translations'] as $index => $file) {
       try {
-        /** @var \Drupal\oe_theme_helper\Patterns\FileType $file */
-        $file = FileType::getInstance($file);
+        /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
+        $file = FileValueObject::fromAny($file);
         $file = _oe_theme_get_formatted_file_type_values($file, TRUE);
         $variables['translations'][$index] = [
           'title' => $file['language_name'],
@@ -679,7 +679,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
           'href' => $file['url'],
         ];
       }
-      catch (FieldTypeException $e) {
+      catch (ValueObjectException $e) {
         \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_translation" pattern: @message', [
           '@message' => $e->getMessage(),
         ]);
@@ -694,7 +694,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
 /**
  * Format FileType value object properties.
  *
- * @param \Drupal\oe_theme_helper\Patterns\FileType $file
+ * @param \Drupal\oe_theme\ValueObject\FileValueObject $file
  *   FileType value object.
  * @param bool $show_native_language
  *   Whereas to return languages in their native names.
@@ -702,7 +702,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
  * @return array
  *   Formatted FileType value object as an array.
  */
-function _oe_theme_get_formatted_file_type_values(FileType $file, $show_native_language = FALSE): array {
+function _oe_theme_get_formatted_file_type_values(FileValueObject $file, $show_native_language = FALSE): array {
   $language_code = $file->getLanguageCode();
 
   // Language string will default to core language value.

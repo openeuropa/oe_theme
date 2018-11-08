@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_helper\Patterns;
+namespace Drupal\oe_theme\ValueObject;
 
 /**
  * Interface implemented by all field type value objects.
  */
-interface FieldTypeInterface {
+interface ValueObjectInterface {
 
   /**
    * Gets value object as an array.
@@ -18,23 +18,25 @@ interface FieldTypeInterface {
   public function toArray(): array;
 
   /**
-   * Construct object from an array.
+   * Build and return a value object from a given array.
    *
    * @param array $values
    *   List of values.
    *
    * @return $this
    */
-  public static function fromArray(array $values = []): FieldTypeInterface;
+  public static function fromArray(array $values = []): ValueObjectInterface;
 
   /**
-   * Get object instance.
+   * Get an object instance from any value.
+   *
+   * This factory will be calling other factories, such as ValueObjectInterface::fromArray().
    *
    * @param mixed $value
    *   Mixed value from which to construct the object.
    *
    * @return $this
    */
-  public static function getInstance($value): FieldTypeInterface;
+  public static function fromAny($value): ValueObjectInterface;
 
 }

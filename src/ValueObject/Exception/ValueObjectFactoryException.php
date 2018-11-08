@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_helper\Patterns;
+namespace Drupal\oe_theme\ValueObject\Exception;
 
 /**
  * Exception thrown by pattern value objects' factory methods.
  */
-class FieldTypeFactoryException extends FieldTypeException {
+class ValueObjectFactoryException extends ValueObjectException {
 
   /**
    * {@inheritdoc}
