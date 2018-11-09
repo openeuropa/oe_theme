@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Test module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\oe_theme\ValueObject\FileValueObject;
+
+/**
+ * Implements hook_preprocess_pattern_file().
+ */
+function oe_theme_patterns_render_test_preprocess_pattern_file(&$variables) {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
+}
+
+/**
+ * Implements hook_preprocess_pattern_file_link().
+ */
+function oe_theme_patterns_render_test_preprocess_pattern_file_link(&$variables) {
+  foreach ($variables['files'] as $index => $file) {
+    $variables['files'][$index] = FileValueObject::fromArray($file);
+  }
+}
+
+/**
+ * Implements hook_preprocess_pattern_file_translation().
+ */
+function oe_theme_patterns_render_test_preprocess_pattern_file_translation(&$variables) {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
+
+  if ($variables['translations']) {
+    foreach ($variables['translations'] as $index => $translation) {
+      $variables['translations'][$index] = FileValueObject::fromArray($translation);
+    }
+  }
+}

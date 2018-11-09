@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\file\Entity\File;
+use Drupal\oe_theme\ValueObject\FileValueObject;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -45,7 +46,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
       '#id' => 'file',
       '#fields' => [
         'button_label' => 'Download',
-        'file' => $file,
+        'file' => FileValueObject::fromFileEntity($file),
       ],
     ];
 

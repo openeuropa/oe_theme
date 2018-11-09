@@ -18,26 +18,49 @@ Value objects are available at [`./src/ValueObject`](../src/ValueObject) and imp
 
 ## Using value objects
 
-Value objects can be constructed only by using one or more factory methods. By default all value objects will expose the
-following factories:
+Value objects can be constructed only by using one of their factory methods. By default all value objects will expose the
+following factory:
 
 - `ValueObjectInterface::fromArray()`: build and return a value object from a given array.
-- `ValueObjectInterface::fromFileEntity()`: build and return a value object from a Drupal file entity.
 
-Value objects must be generally constructed in template preprocess functions, like the example below:
+For cases like component preview the Value objects must be constructed in pattern template preprocess functions, because 
+you can only pass the array from the YAML configuration.
+
+Example how to use the value object:
 
 ```php
 <?php
 
-/**
- * Implements hook_preprocess_pattern_file().
- */
-function oe_theme_preprocess_pattern_file(&$variables) {
-  if (!$variables['file']) {
-    return;
-  }
+use Drupal\oe_theme\ValueObject\FooValueObject;
 
-  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
-  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
+/**
+ * Implements hook_preprocess_pattern_MY_PATTERN().
+ */
+function oe_theme_preprocess_pattern_MY_PATTERN(&$variables) {
+  $variables['foo'] = FooValueObject::fromArray($variables['foo']);
 }
 ```
+
+### Available value objects
+
+Below a list of available value object along with its factory methods:
+
+#### `FileValueObject`
+
+Used in the following patterns:
+
+- [`file`](../templates/patterns/file/file.ui_patterns.yml)
+- [`file_link`](../templates/patterns/file_link/file_link.ui_patterns.yml)
+- [`file_translation`](../templates/patterns/file_translation/file_translation.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `FileValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `name`: file name, e.g. `my-document.pdf`
+  - `url`: file URL, it can accept Drupal file URIs as well.
+  - `mime`: file MIME type.
+  - `size`: file size in bytes.
+  - `title` (optional): file title, defaults to file `name` if empty.
+  - `language_code` (optional): two letter language code of the current file's language.
+- `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accept an object implementing the
+  `\Drupal\file\FileInterface` interface.

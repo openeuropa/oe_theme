@@ -20,3 +20,7 @@ services:
   plugin.manager.page_header_metadata:
     class: Drupal\oe_theme_helper\PageHeaderMetadataPluginManager
     parent: default_plugin_manager
+  oe_theme_helper.twig_extension.filters:
+    class: Drupal\oe_theme_helper\TwigExtension\Filters
+    tags:
+    - { name: twig.extension }

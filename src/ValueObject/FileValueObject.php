@@ -7,9 +7,9 @@ namespace Drupal\oe_theme\ValueObject;
 use Drupal\file\FileInterface;
 
 /**
- * FileType value object for pattern field type "file".
+ * Handle information about a file, such as its mime type, size, language, etc.
  */
-class FileValueObject implements ValueObjectInterface {
+class FileValueObject extends ValueObjectBase {
 
   /**
    * The name of the file.
@@ -94,6 +94,8 @@ class FileValueObject implements ValueObjectInterface {
       $file_entity->getMimeType(),
       (string) $file_entity->getSize()
     );
+
+    $file->setLanguageCode($file_entity->language()->getId());
 
     return $file;
   }

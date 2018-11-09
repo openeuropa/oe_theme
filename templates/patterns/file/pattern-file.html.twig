@@ -1,14 +1,14 @@
 {#
 /**
  * @file
- * File download component.
+ * File download pattern.
  */
 #}
 {% include '@ecl/ec-component-file' with {
   'title': file.title,
-  'language': file.language_name,
-  'meta': file.formatted_size ~ ' - ' ~ file.extension|upper,
+  'language': file.language_code|to_native_language,
+  'meta': file.size|format_size ~ ' - ' ~ file.extension|upper,
   'button_label': button_label,
-  'icon': file.icon,
+  'icon': file.extension|to_file_icon,
   'href': file.url,
 } only %}

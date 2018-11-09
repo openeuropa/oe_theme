@@ -605,34 +605,18 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
 }
 
 /**
- * Implements hook_preprocess_pattern_file().
+ * Implements hook_preprocess_pattern_file__preview().
  */
-function oe_theme_preprocess_pattern_file(&$variables) {
-  if (!$variables['file']) {
-    return;
-  }
-
-  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
-  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
+function oe_theme_preprocess_pattern_file__preview(&$variables) {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
 }
 
 /**
- * Implements hook_preprocess_pattern_file_link().
+ * Implements hook_preprocess_pattern_file_link__preview().
  */
-function oe_theme_preprocess_pattern_file_link(&$variables) {
-  if (!$variables['files']) {
-    return;
-  }
-
+function oe_theme_preprocess_pattern_file_link__preview(&$variables) {
   foreach ($variables['files'] as $index => $file) {
-    $file_value_object = _oe_theme_get_file_value_object($file);
-    $file = _oe_theme_get_formatted_file_type_values($file_value_object);
-    $variables['files'][$index] = [
-      'title' => $file['title'],
-      'type' => $file['extension'],
-      'icon' => $file['icon'],
-      'href' => $file['url'],
-    ];
+    $variables['files'][$index] = FileValueObject::fromArray($file);
   }
 }
 
@@ -640,24 +624,7 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
  * Implements hook_preprocess_pattern_file_translation().
  */
 function oe_theme_preprocess_pattern_file_translation(&$variables) {
-  if (!$variables['file']) {
-    return;
-  }
-
-  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
-  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
   if ($variables['translations']) {
-    foreach ($variables['translations'] as $index => $file) {
-      $file_value_object = _oe_theme_get_file_value_object($file);
-      $file = _oe_theme_get_formatted_file_type_values($file_value_object, TRUE);
-      $variables['translations'][$index] = [
-        'title' => $file['language_name'],
-        'type' => $file['extension'],
-        'meta' => $file['formatted_size'] . ' - ' . strtoupper($file['extension']),
-        'icon' => $file['icon'],
-        'href' => $file['url'],
-      ];
-    }
     // Add css ids for expandable javascript behaviour.
     $variables['translations_id'] = Html::getUniqueId('translations-expand');
     $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
@@ -665,59 +632,14 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
 }
 
 /**
- * Helper function to get the FileValueObject from entity or array.
- *
- * @param array|object $file
- *   The file data to render.
- *
- * @return \Drupal\oe_theme\ValueObject\FileValueObject|\Drupal\oe_theme\ValueObject\ValueObjectInterface
- *   Return FileValueObject if there is a file, otherwise return FALSE.
+ * Implements hook_preprocess_pattern_file_translation__preview().
  */
-function _oe_theme_get_file_value_object($file) {
-  return is_array($file) ? FileValueObject::fromArray($file) : FileValueObject::fromFileEntity($file);
-}
+function oe_theme_preprocess_pattern_file_translation__preview(&$variables) {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-/**
- * Format FileType value object properties.
- *
- * @param \Drupal\oe_theme\ValueObject\FileValueObject $file
- *   FileType value object.
- * @param bool $show_native_language
- *   Whereas to return languages in their native names.
- *
- * @return array
- *   Formatted FileType value object as an array.
- */
-function _oe_theme_get_formatted_file_type_values(FileValueObject $file, $show_native_language = FALSE): array {
-  $language_code = $file->getLanguageCode();
-
-  // Language string will default to core language value.
-  $language_name = \Drupal::languageManager()->getLanguageName($language_code);
-  if ($show_native_language && \Drupal::moduleHandler()->moduleExists('oe_multilingual')) {
-    // @todo: Fix this.
-    // We should store language information contained in
-    // MultilingualHelper::getEuropeanUnionLanguageList() in configuration.
-    $languages = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
-    if (isset($languages[$language_code])) {
-      $language_name = $languages[$language_code];
+  if ($variables['translations']) {
+    foreach ($variables['translations'] as $index => $translation) {
+      $variables['translations'][$index] = FileValueObject::fromArray($translation);
     }
   }
-
-  // @todo: Complete and/or centralise extension to icon conversion.
-  // Get icons from given file extension.
-  switch ($file->getExtension()) {
-
-    case 'ppt':
-      $icon = 'presentation';
-      break;
-
-    default:
-      $icon = 'file';
-  }
-
-  return $file->toArray() + [
-    'icon' => $icon,
-    'language_name' => $language_name,
-    'formatted_size' => format_size($file->getSize(), $file->getLanguageCode()),
-  ];
 }

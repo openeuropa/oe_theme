@@ -8,9 +8,9 @@ file:
       description: "Download button label."
       preview: "Download"
     file:
-      type: "file"
+      type: "FileValueObject"
       label: "File"
-      description: "FileType value object."
+      description: "A file value object."
       preview:
         title: "Example document"
         mime: "application/pdf"

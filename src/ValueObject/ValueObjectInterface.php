@@ -7,7 +7,7 @@ namespace Drupal\oe_theme\ValueObject;
 /**
  * Interface implemented by all field type value objects.
  */
-interface ValueObjectInterface {
+interface ValueObjectInterface extends \ArrayAccess {
 
   /**
    * Gets value object as an array.

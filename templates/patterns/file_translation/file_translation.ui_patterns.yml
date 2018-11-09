@@ -8,9 +8,9 @@ file_translation:
       description: "Download button label."
       preview: "Download"
     file:
-      type: "file"
+      type: "FileValueObject"
       label: "File"
-      description: "FileType value object."
+      description: "A file value object."
       preview:
         title: "Example document"
         mime: "application/pdf"
@@ -21,7 +21,7 @@ file_translation:
     translations:
       type: "array"
       label: "Files"
-      description: "List of FileType objects for translations"
+      description: "List of FileValueObject objects."
       preview:
         - mime: "application/pdf"
           url: "http://example.com/document_fr.pdf"

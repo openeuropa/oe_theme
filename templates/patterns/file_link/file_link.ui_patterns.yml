@@ -5,7 +5,7 @@ file_link:
     files:
       type: "array"
       label: "Files"
-      description: "List of FileType objects"
+      description: "List of FileValueObject objects."
       preview:
         - title: "Example document 1"
           mime: "application/pdf"
