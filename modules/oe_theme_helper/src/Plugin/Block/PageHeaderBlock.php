@@ -111,7 +111,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#introduction' => $metadata['introduction'] ?? '',
       '#metas' => $metadata['metas'] ?? [],
     ];
-    return $this->addBreadcrumbSegments($build);
+    return $this->addBreadcrumbSegments($build, $title);
   }
 
   /**
@@ -127,12 +127,14 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * Constructs a new PageHeaderBlock instance.
    *
    * @param array $build
-   *   Header build array.
+   *   A render array.
+   * @param string $title
+   *   Title of the page.
    *
    * @return array
-   *   Header build array with the a breadcrumb (if any is applicable)
+   *   The processed render array.
    */
-  protected function addBreadcrumbSegments(array $build): array {
+  protected function addBreadcrumbSegments(array $build, string $title = ''): array {
     $breadcrumb = $this->breadcrumbBuilder->build($this->currentRouteMatch);
     // Add segments to the breadcrumb key.
     /** @var \Drupal\Core\Link $link */
