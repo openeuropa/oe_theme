@@ -156,9 +156,8 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   protected function getBreadcrumb(): NodeElement {
     $selector = 'div.ecl-page-header nav.ecl-breadcrumb';
-    $this->assertSession()->elementExists('css', $selector);
 
-    return $this->getSession()->getPage()->find('css', $selector);
+    return $this->assertSession()->elementExists('css', $selector);
   }
 
 }
