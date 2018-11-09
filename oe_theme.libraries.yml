@@ -41,12 +41,6 @@ inpage_navigation:
   dependencies:
     - core/drupal
     - oe_theme/base
-language_switcher:
-  js:
-    js/language_switcher.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
 lang_select_pages:
   js:
     js/lang_select_pages.js: {}
