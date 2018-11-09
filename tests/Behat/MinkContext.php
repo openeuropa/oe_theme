@@ -18,23 +18,6 @@ class MinkContext extends DrupalExtensionMinkContext {
   use UtilityTrait;
 
   /**
-   * Mapping between human readable element labels and CSS selectors.
-   *
-   * @var array
-   */
-  private $breadcrumbElements = [];
-
-  /**
-   * TransformationContext constructor.
-   *
-   * @param array $breadcrumb_elements
-   *   Breadcrumb elements mapping.
-   */
-  public function __construct(array $breadcrumb_elements = []) {
-    $this->breadcrumbElements = $breadcrumb_elements;
-  }
-
-  /**
    * Assert links in region.
    *
    * @param string $region
@@ -115,18 +98,20 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @Then the breadcrumb trail should be :items
    */
   public function checkBreadcrumbTrail(string $trail): void {
-    $trail_elements = explode(',', $trail);
+    $trail_elements = explode(', ', $trail);
     $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a';
     $breadcrumb = $this->getBreadcrumb();
     $this->assertSession()->elementsCount('css', $selector, count($trail_elements), $breadcrumb);
     $breadcrumb_elements = $breadcrumb->findAll('css', $selector);
 
+    $actual = [];
     foreach ($trail_elements as $key => $trail_element) {
       /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
       $breadcrumb_element = $breadcrumb_elements[$key];
-      $value = $breadcrumb_element->find('css', 'a')->getText();
-      Assert::assertEquals($trail_element, $value);
+      $actual[] = $breadcrumb_element->find('css', 'a')->getText();
+
     }
+    Assert::assertEquals($trail_elements, $actual);
   }
 
   /**
@@ -157,9 +142,8 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   protected function getLanguageSwitcherOverlay(): NodeElement {
     $selector = 'div.ecl-language-list.ecl-language-list--overlay';
-    $this->assertSession()->elementExists('css', $selector);
 
-    return $this->getSession()->getPage()->find('css', $selector);
+    return $this->assertSession()->elementExists('css', $selector);
   }
 
   /**
@@ -175,19 +159,6 @@ class MinkContext extends DrupalExtensionMinkContext {
     $this->assertSession()->elementExists('css', $selector);
 
     return $this->getSession()->getPage()->find('css', $selector);
-  }
-
-  /**
-   * Transform element label into an CSS selector, if any.
-   *
-   * @param string $label
-   *   Element label.
-   *
-   * @return string
-   *   CSS selector.
-   */
-  protected function transformElement($label): string {
-    return isset($this->breadcrumbElements[$label]) ? $this->breadcrumbElements[$label] : $label;
   }
 
 }
