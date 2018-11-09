@@ -27,16 +27,4 @@ interface ValueObjectInterface {
    */
   public static function fromArray(array $values = []): ValueObjectInterface;
 
-  /**
-   * Get an object instance from any value.
-   *
-   * This will call other factories like ValueObjectInterface::fromArray().
-   *
-   * @param mixed $value
-   *   Mixed value from which to construct the object.
-   *
-   * @return $this
-   */
-  public static function fromAny($value): ValueObjectInterface;
-
 }

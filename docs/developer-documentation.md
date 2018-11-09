@@ -22,8 +22,7 @@ Value objects can be constructed only by using one or more factory methods. By d
 following factories:
 
 - `ValueObjectInterface::fromArray()`: build and return a value object from a given array.
-- `ValueObjectInterface::fromAny()`: build and return a value object from any value. This factory will be calling other
-  factories, such as `ValueObjectInterface::fromArray()` or anything more specific.
+- `ValueObjectInterface::fromFileEntity()`: build and return a value object from a Drupal file entity.
 
 Value objects must be generally constructed in template preprocess functions, like the example below:
 
@@ -34,17 +33,11 @@ Value objects must be generally constructed in template preprocess functions, li
  * Implements hook_preprocess_pattern_file().
  */
 function oe_theme_preprocess_pattern_file(&$variables) {
-  if ($variables['file']) {
-    try {
-      /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
-      $file = FileValueObject::fromAny($variables['file']);
-      $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
-    }
-    catch (ValueObjectException $e) {
-      \Drupal::logger('oe_theme')->error('Could not set "file" field on "file" pattern: @message', [
-        '@message' => $e->getMessage(),
-      ]);
-    }
+  if (!$variables['file']) {
+    return;
   }
+
+  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
+  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
 }
 ```

@@ -12,7 +12,6 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
 use Drupal\oe_theme\ValueObject\FileValueObject;
-use Drupal\oe_theme\ValueObject\Exception\ValueObjectException;
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -609,43 +608,31 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
  * Implements hook_preprocess_pattern_file().
  */
 function oe_theme_preprocess_pattern_file(&$variables) {
-  if ($variables['file']) {
-    try {
-      /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
-      $file = FileValueObject::fromAny($variables['file']);
-      $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
-    }
-    catch (ValueObjectException $e) {
-      \Drupal::logger('oe_theme')->error('Could not set "file" field on "file" pattern: @message', [
-        '@message' => $e->getMessage(),
-      ]);
-    }
+  if (!$variables['file']) {
+    return;
   }
+
+  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
+  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
 }
 
 /**
  * Implements hook_preprocess_pattern_file_link().
  */
 function oe_theme_preprocess_pattern_file_link(&$variables) {
-  if ($variables['files']) {
-    foreach ($variables['files'] as $index => $file) {
-      try {
-        /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
-        $file = FileValueObject::fromAny($file);
-        $file = _oe_theme_get_formatted_file_type_values($file);
-        $variables['files'][$index] = [
-          'title' => $file['title'],
-          'type' => $file['extension'],
-          'icon' => $file['icon'],
-          'href' => $file['url'],
-        ];
-      }
-      catch (ValueObjectException $e) {
-        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_link" pattern: @message', [
-          '@message' => $e->getMessage(),
-        ]);
-      }
-    }
+  if (!$variables['files']) {
+    return;
+  }
+
+  foreach ($variables['files'] as $index => $file) {
+    $file_value_object = _oe_theme_get_file_value_object($file);
+    $file = _oe_theme_get_formatted_file_type_values($file_value_object);
+    $variables['files'][$index] = [
+      'title' => $file['title'],
+      'type' => $file['extension'],
+      'icon' => $file['icon'],
+      'href' => $file['url'],
+    ];
   }
 }
 
@@ -653,42 +640,41 @@ function oe_theme_preprocess_pattern_file_link(&$variables) {
  * Implements hook_preprocess_pattern_file_translation().
  */
 function oe_theme_preprocess_pattern_file_translation(&$variables) {
-  if ($variables['file']) {
-    try {
-      /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
-      $file = FileValueObject::fromAny($variables['file']);
-      $variables['file'] = _oe_theme_get_formatted_file_type_values($file);
-    }
-    catch (ValueObjectException $e) {
-      \Drupal::logger('oe_theme')->error('Could not set "file" field on "file_translation" pattern: @message', [
-        '@message' => $e->getMessage(),
-      ]);
-    }
+  if (!$variables['file']) {
+    return;
   }
+
+  $file_value_object = _oe_theme_get_file_value_object($variables['file']);
+  $variables['file'] = _oe_theme_get_formatted_file_type_values($file_value_object);
   if ($variables['translations']) {
     foreach ($variables['translations'] as $index => $file) {
-      try {
-        /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
-        $file = FileValueObject::fromAny($file);
-        $file = _oe_theme_get_formatted_file_type_values($file, TRUE);
-        $variables['translations'][$index] = [
-          'title' => $file['language_name'],
-          'type' => $file['extension'],
-          'meta' => $file['formatted_size'] . ' - ' . strtoupper($file['extension']),
-          'icon' => $file['icon'],
-          'href' => $file['url'],
-        ];
-      }
-      catch (ValueObjectException $e) {
-        \Drupal::logger('oe_theme')->error('Could not set "files" field on "file_translation" pattern: @message', [
-          '@message' => $e->getMessage(),
-        ]);
-      }
+      $file_value_object = _oe_theme_get_file_value_object($file);
+      $file = _oe_theme_get_formatted_file_type_values($file_value_object, TRUE);
+      $variables['translations'][$index] = [
+        'title' => $file['language_name'],
+        'type' => $file['extension'],
+        'meta' => $file['formatted_size'] . ' - ' . strtoupper($file['extension']),
+        'icon' => $file['icon'],
+        'href' => $file['url'],
+      ];
     }
     // Add css ids for expandable javascript behaviour.
     $variables['translations_id'] = Html::getUniqueId('translations-expand');
     $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
   }
+}
+
+/**
+ * Helper function to get the FileValueObject from entity or array.
+ *
+ * @param array|object $file
+ *   The file data to render.
+ *
+ * @return \Drupal\oe_theme\ValueObject\FileValueObject|\Drupal\oe_theme\ValueObject\ValueObjectInterface
+ *   Return FileValueObject if there is a file, otherwise return FALSE.
+ */
+function _oe_theme_get_file_value_object($file) {
+  return is_array($file) ? FileValueObject::fromArray($file) : FileValueObject::fromFileEntity($file);
 }
 
 /**

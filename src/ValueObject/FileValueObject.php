@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
-use Drupal\file\Entity\File;
 use Drupal\file\FileInterface;
-use Drupal\oe_theme\ValueObject\Exception\ValueObjectFactoryException;
 
 /**
  * FileType value object for pattern field type "file".
@@ -117,23 +115,6 @@ class FileValueObject implements ValueObjectInterface {
 
     if (isset($values['language_code'])) {
       $file->setLanguageCode($values['language_code']);
-    }
-
-    return $file;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function fromAny($value): ValueObjectInterface {
-    if (is_array($value)) {
-      $file = FileValueObject::fromArray($value);
-    }
-    elseif (is_object($value) && $value instanceof File) {
-      $file = FileValueObject::fromFileEntity($value);
-    }
-    else {
-      throw new ValueObjectFactoryException(FileValueObject::class);
     }
 
     return $file;
