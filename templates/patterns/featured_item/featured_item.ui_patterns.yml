@@ -1,0 +1,38 @@
+featured_item:
+  label: "Featured item"
+  description: "The featured item component uses a different visualisation to attract user attention. It's always the first item on the \"Latest section\"."
+  variants:
+    default:
+      label: "Default"
+      description: "Default type of the featured item."
+    extended:
+      label: "Extended"
+      description: "External type of the featured item."
+  fields:
+    image:
+      type: "array"
+      label: "Image"
+      description: "Image of the featured item."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for featured item image"
+    metas:
+      type: "array"
+      label: "Metas"
+      description: "A collection of page meta information."
+      preview:
+        - "News article"
+        - "6 July 2015"
+        - "Brussels"
+    title:
+      type: "text"
+      label: "Title"
+      description: "The title of the page."
+      preview: "Business, Economy, Euro"
+    link:
+      type: "array"
+      label: "Link"
+      description: "Link in the featured item."
+      preview:
+        href: "http://example.com"
+        label: "European Commission"
