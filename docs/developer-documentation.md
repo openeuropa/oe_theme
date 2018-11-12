@@ -1,32 +1,49 @@
 # Developer documentation
 
-The OpenEuropa Theme exposes ECL components as [UI Patterns][1] plugins, allowing them to be used seamlessly as drop-in
+The OpenEuropa Theme exposes ECL components using [UI Patterns][1] plugins, allowing them to be used seamlessly as drop-in
 templates for panels, field groups, views, paragraphs, nodes, etc.
 
 Patterns are located in [`./templates/patterns`](../templates/patterns), each sub-directory contains a pattern along with
-its variants. Pattern definitions are stored in a YAML file (`[PATTERN-NAME].ui_patterns.yml`) along with their Twig templates.
+its variants. Pattern definitions are stored in as YAML files (for ex. `[PATTERN-NAME].ui_patterns.yml`) along with their
+Twig templates (for ex. `pattern-[PATTERN-NAME].html.twig`).
 
-Each pattern definition exposes a list of fields that can be used to pass data to be rendered using the pattern template.
+Each pattern definition exposes a list of fields that can be used to pass data that will will be rendered using the
+related pattern template.
 
 Pattern fields can accept either one of the following types:
 
 - A renderable markup, i.e. a Drupal render array or a string
 - A value object or a list of value objects
 
-The scope of value objects is to make sure that data is passed to the final templates in a consistent and predictable way.
-Value objects are available at [`./src/ValueObject`](../src/ValueObject) and implement the `\Drupal\oe_theme\ValueObject\ValueObjectInterface`.
-
 ## Using value objects
 
-Value objects can be constructed only by using one of their factory methods. By default all value objects will expose the
-following factory:
+The scope of value objects is to make sure that data is passed to the final templates in a consistent and predictable way.
+Value objects are available at [`./src/ValueObject`](../src/ValueObject) and implement `\Drupal\oe_theme\ValueObject\ValueObjectInterface`.
 
-- `ValueObjectInterface::fromArray()`: build and return a value object from a given array.
+Value objects can be constructed only by using one of their factory methods. By default all value objects expose the
+`ValueObjectInterface::fromArray()` factory which builds and returns a value object from a given array.
 
-For cases like component preview the Value objects must be constructed in pattern template preprocess functions, because 
-you can only pass the array from the YAML configuration.
+When patterns are rendered programmatically value objects can be passed directly to related pattern fields, as shown below:
 
-Example how to use the value object:
+```php
+<?php
+
+use Drupal\oe_theme\ValueObject\FooValueObject;
+
+$elements['quote'] = [
+  '#type' => 'pattern',
+  '#id' => 'my_pattern',
+  '#fields' => [
+    'foo' => FooValueObject::fromArray(['bar' => 'Bar']),
+  ]
+];
+
+\Drupal::service('renderer')->render($elements);
+
+```
+
+Value objects will typically be constructed in pattern template preprocess functions, for example, when rendering a pattern
+preview you would have:
 
 ```php
 <?php
@@ -36,7 +53,7 @@ use Drupal\oe_theme\ValueObject\FooValueObject;
 /**
  * Implements hook_preprocess_pattern_MY_PATTERN().
  */
-function oe_theme_preprocess_pattern_MY_PATTERN(&$variables) {
+function MY_MODULE_preprocess_pattern_MY_PATTERN(&$variables) {
   $variables['foo'] = FooValueObject::fromArray($variables['foo']);
 }
 ```
@@ -64,3 +81,5 @@ Provides the following factory methods:
   - `language_code` (optional): two letter language code of the current file's language.
 - `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accept an object implementing the
   `\Drupal\file\FileInterface` interface.
+
+[1]: https://www.drupal.org/project/ui_patterns
