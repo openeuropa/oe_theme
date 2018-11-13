@@ -864,24 +864,17 @@
     '#id': dialog
     '#variant': default
     '#fields':
-      dialog_id: "custom-id"
-      dialog_aria_hidden: 'false'
-      dialog_title:
-        value: "Dialog title"
-        id: "dialog-title-id"
-        classes: "dialog-title-class"
-      dialog_description:
-        value: "Dialog description"
-        id: "dialog-description-id"
-        classes: "dialog-description-class"
+      aria_hidden: false
+      title: "Dialog title"
+      description: "Dialog description"
       body: "<p>Dialog body</p>"
       dismiss:
         hide: false
         label: "Dismiss label"
   assertions:
     count:
-      'div#custom-id.ecl-dialog[aria-hidden="false"] button.ecl-dialog__dismiss[aria-label="Dismiss label"]': 1
+      'div.ecl-dialog[aria-hidden="false"] button.ecl-dialog__dismiss[aria-label="Dismiss label"]': 1
     equals:
-      'div.ecl-dialog[aria-hidden="false"] h3#dialog-title-id.dialog-title-class': "Dialog title"
-      'div.ecl-dialog[aria-hidden="false"] p#dialog-description-id.dialog-description-class': "Dialog description"
+      'div.ecl-dialog[aria-hidden="false"] h3#ecl-dialog-title': "Dialog title"
+      'div.ecl-dialog[aria-hidden="false"] p#ecl-dialog-description': "Dialog description"
       'div.ecl-dialog[aria-hidden="false"] div.ecl-dialog__body': "<p>Dialog body</p>"
