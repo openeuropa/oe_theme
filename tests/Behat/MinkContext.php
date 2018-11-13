@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\MinkContext as DrupalExtensionMinkContext;
 use Behat\Gherkin\Node\TableNode;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
+use PHPUnit\Framework\Assert;
 
 /**
  * Class MinkContext.
@@ -86,6 +87,52 @@ class MinkContext extends DrupalExtensionMinkContext {
   }
 
   /**
+   * Asserts that the breadcrumb contains a certain number of elements.
+   *
+   * @param string $trail
+   *   Comma separated breadcrumb trail.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *
+   * @Then the breadcrumb trail should be :items
+   */
+  public function checkBreadcrumbTrail(string $trail): void {
+    $trail_elements = explode(', ', $trail);
+    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a';
+    $breadcrumb = $this->getBreadcrumb();
+    $this->assertSession()->elementsCount('css', $selector, count($trail_elements), $breadcrumb);
+    $breadcrumb_elements = $breadcrumb->findAll('css', $selector);
+
+    $actual = [];
+    foreach ($trail_elements as $key => $trail_element) {
+      /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
+      $breadcrumb_element = $breadcrumb_elements[$key];
+      $actual[] = $breadcrumb_element->find('css', 'a')->getText();
+
+    }
+    Assert::assertEquals($trail_elements, $actual);
+  }
+
+  /**
+   * Asserts that the breadcrumb contains a certain number of elements.
+   *
+   * @param string $active_element
+   *   The breadcrumb active element.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   * @throws \Behat\Mink\Exception\ExpectationException
+   *
+   * @Then the breadcrumb active element should be :text
+   */
+  public function checkBreadcrumbActiveElement(string $active_element): void {
+    $selector = 'ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment span';
+    $breadcrumb = $this->getBreadcrumb();
+    $active_breadcrumb = $breadcrumb->find('css', $selector);
+    Assert::assertEquals($active_element, $active_breadcrumb->getText());
+  }
+
+  /**
    * Get language switcher overlay element.
    *
    * @return \Behat\Mink\Element\NodeElement
@@ -95,9 +142,22 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   protected function getLanguageSwitcherOverlay(): NodeElement {
     $selector = 'div.ecl-language-list.ecl-language-list--overlay';
-    $this->assertSession()->elementExists('css', $selector);
 
-    return $this->getSession()->getPage()->find('css', $selector);
+    return $this->assertSession()->elementExists('css', $selector);
+  }
+
+  /**
+   * Get breadcrumb element.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The breadcrumb element.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   */
+  protected function getBreadcrumb(): NodeElement {
+    $selector = 'div.ecl-page-header nav.ecl-breadcrumb';
+
+    return $this->assertSession()->elementExists('css', $selector);
   }
 
 }
