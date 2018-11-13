@@ -134,7 +134,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * @return array
    *   The processed render array.
    */
-  protected function addBreadcrumbSegments(array $build, string $title = ''): array {
+  protected function addBreadcrumbSegments(array $build, $title = ''): array {
     $breadcrumb = $this->breadcrumbBuilder->build($this->currentRouteMatch);
     // Add segments to the breadcrumb key.
     /** @var \Drupal\Core\Link $link */
