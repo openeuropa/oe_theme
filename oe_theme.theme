@@ -16,7 +16,7 @@ use Drupal\oe_theme\ValueObject\FileValueObject;
 /**
  * Implements hook_preprocess_breadcrumb().
  */
-function oe_theme_preprocess_breadcrumb(&$variables) {
+function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $request     = \Drupal::request();
   $route_match = \Drupal::routeMatch();
   $title       = \Drupal::service('title_resolver')
@@ -40,7 +40,7 @@ function oe_theme_preprocess_breadcrumb(&$variables) {
 /**
  * Implements hook_preprocess_menu__main().
  */
-function oe_theme_preprocess_menu__main(&$variables) {
+function oe_theme_preprocess_menu__main(array &$variables): void {
   // Massage data to be compliant with ECL navigation menu data structure.
   $variables['links'] = array_map(function ($item) {
     return [
@@ -69,7 +69,7 @@ function oe_theme_preprocess_menu__main(&$variables) {
  *
  * Adds a bare, markup-free template suggestion to all paragraph fields.
  */
-function oe_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
+function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $variables): void {
   // Do not output field labels and wrapping markup for paragraph fields.
   if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type'] === 'paragraph') {
     // Prepend the new suggestion to the list. This will put it right after the
@@ -82,7 +82,7 @@ function oe_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
-function oe_theme_theme_suggestions_paragraph_alter(&$suggestions, $variables) {
+function oe_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void {
   /** @var \Drupal\paragraphs\ParagraphInterface $paragraph */
   $paragraph = $variables['elements']['#paragraph'];
 
@@ -95,7 +95,7 @@ function oe_theme_theme_suggestions_paragraph_alter(&$suggestions, $variables) {
 /**
  * Implements hook_preprocess_paragraph().
  */
-function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
+function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void {
   // Massage data to be compliant with ECL links block component data structure.
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
     $variables['links'][] = [
@@ -108,7 +108,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(&$variables) {
 /**
  * Implements hook_preprocess_paragraph__oe_accordion().
  */
-function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
+function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
   // Massage data to be compliant with ECL accordions component data structure.
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   $variables['identifier'] = 'paragraph-' . $variables['paragraph']->id();
@@ -128,7 +128,7 @@ function oe_theme_preprocess_paragraph__oe_accordion(&$variables) {
 /**
  * Implements hook_preprocess_menu_local_tasks().
  */
-function oe_theme_preprocess_menu_local_tasks(&$variables) {
+function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
@@ -157,14 +157,14 @@ function oe_theme_preprocess_menu_local_tasks(&$variables) {
 /**
  * Implements hook_preprocess_input__radio().
  */
-function oe_theme_preprocess_input__radio(&$variables) {
+function oe_theme_preprocess_input__radio(array &$variables): void {
   _oe_theme_preprocess_input_label_wrapper($variables);
 }
 
 /**
  * Implements hook_preprocess_input__checkbox().
  */
-function oe_theme_preprocess_input__checkbox(&$variables) {
+function oe_theme_preprocess_input__checkbox(array &$variables): void {
   _oe_theme_preprocess_input_label_wrapper($variables);
 }
 
@@ -211,7 +211,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
  * Disables displaying of the label for checkbox and radio elements, as the
  * label is already rendered in the input template.
  */
-function oe_theme_preprocess_form_element(&$variables) {
+function oe_theme_preprocess_form_element(array &$variables): void {
   if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
     $variables['label_display'] = 'none';
   }
@@ -226,11 +226,11 @@ function oe_theme_preprocess_form_element(&$variables) {
  * guide pager component requirements.
  * Most of the bare-bones are copy-pasted from the Drupal implementation.
  */
-function oe_theme_preprocess_pager(&$variables) {
+function oe_theme_preprocess_pager(array &$variables): void {
   $element = $variables['pager']['#element'];
   $parameters = $variables['pager']['#parameters'];
   $route_name = $variables['pager']['#route_name'];
-  $route_parameters = isset($variables['pager']['#route_parameters']) ? $variables['pager']['#route_parameters'] : [];
+  $route_parameters = $variables['pager']['#route_parameters'] ?? [];
   global $pager_page_array, $pager_total;
 
   // Nothing to do if there is only one page.
@@ -330,7 +330,7 @@ function oe_theme_preprocess_pager(&$variables) {
 /**
  * Implements hook_preprocess_links().
  */
-function oe_theme_preprocess_links__language_block(&$variables) {
+function oe_theme_preprocess_links__language_block(array &$variables): void {
   $current_language = \Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
@@ -338,18 +338,18 @@ function oe_theme_preprocess_links__language_block(&$variables) {
   $variables['languages'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
-    $url = $link['link']["#url"];
+    $url = $link['link']['#url'];
     $href = $url
       ->setOptions($link['link']['#options'])
       ->setAbsolute(TRUE)
       ->toString();
 
     $variables['languages'][] = [
-      "href" => $href,
-      "hreflang" => $language_code,
-      "label" => $link['link']["#title"],
-      "lang" => $language_code,
-      "is_active" => $language_code === $current_language,
+      'href' => $href,
+      'hreflang' => $language_code,
+      'label' => $link['link']['#title'],
+      'lang' => $language_code,
+      'is_active' => $language_code === $current_language,
     ];
   }
 }
@@ -360,7 +360,7 @@ function oe_theme_preprocess_links__language_block(&$variables) {
  * Adds extra variables regarding the current and the unavailable languages,
  * and prepares the links for rendering.
  */
-function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$variables) {
+function oe_theme_preprocess_links__oe_multilingual_content_language_block(array &$variables): void {
   $entity = \Drupal::service('oe_multilingual.helper')->getEntityFromCurrentRoute();
   /** @var \Drupal\Core\Entity\EntityInterface $translation */
   $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
@@ -392,7 +392,34 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(&$var
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_accordion(&$variables) {
+function oe_theme_preprocess_pattern_dialog(array &$variables): void {
+  // Make sure it has default values.
+  $variables += [
+    'dialog_id' => Html::getUniqueId('ecl-dialog'),
+    'title' => [],
+    'description' => [],
+  ];
+
+  // Format the "title" variable.
+  $variables['title'] = [
+    'id' => Html::getUniqueId('ecl-dialog-title'),
+    'value' => $variables['title'],
+  ];
+
+  // Format the "description" variable.
+  $variables['description'] = [
+    'id' => Html::getUniqueId('ecl-dialog-description'),
+    'value' => $variables['description'],
+  ];
+
+  // Format the "hidden" variable.
+  $variables['hidden'] = $variables['hidden'] ? 'true' : 'false';
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_accordion(array &$variables): void {
   // If no identifier is provided generate a random, unique one.
   if (empty($variables['identifier'])) {
     $random = new Random();
@@ -417,7 +444,7 @@ function oe_theme_preprocess_pattern_accordion(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_dropdown(&$variables) {
+function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
   $defaults = [
     'wrapper_id' => 'ecl-button-dropdown',
     'expandable_id' => 'expandable-ecl-button-dropdown',
@@ -441,7 +468,7 @@ function oe_theme_preprocess_pattern_dropdown(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_link_block(&$variables) {
+function oe_theme_preprocess_pattern_link_block(array &$variables): void {
   // Format links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {
     $variables['links'][$key]['href'] = $link['url'];
@@ -451,7 +478,7 @@ function oe_theme_preprocess_pattern_link_block(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function _oe_theme_preprocess_pattern_social_media_links(&$variables) {
+function _oe_theme_preprocess_pattern_social_media_links(array &$variables): void {
   // Format social media links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {
     $variables['links'][$key]['variant'] = $link['service'];
@@ -465,14 +492,14 @@ function _oe_theme_preprocess_pattern_social_media_links(&$variables) {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_social_media_links_vertical(&$variables) {
+function oe_theme_preprocess_pattern_social_media_links_vertical(array &$variables): void {
   _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_social_media_links_horizontal(&$variables) {
+function oe_theme_preprocess_pattern_social_media_links_horizontal(array &$variables): void {
   _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
@@ -481,8 +508,8 @@ function oe_theme_preprocess_pattern_social_media_links_horizontal(&$variables) 
  *
  * Add css class for splash page.
  */
-function oe_theme_preprocess_html(&$variables) {
-  if ('language_selection_page' == \Drupal::request()->attributes->get('_route')) {
+function oe_theme_preprocess_html(array &$variables): void {
+  if ('language_selection_page' === \Drupal::request()->attributes->get('_route')) {
     $variables['attributes']['class'][] = 'page-splash';
   }
 }
@@ -490,7 +517,7 @@ function oe_theme_preprocess_html(&$variables) {
 /**
  * Implements hook_preprocess_paragraph() for paragraph--oe-list-item.html.twig.
  */
-function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
+function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -545,7 +572,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(&$variables) {
 /**
  * Implements hook_preprocess_paragraph() for paragraph--oe-list-item-block.html.twig.
  */
-function oe_theme_preprocess_paragraph__oe_list_item_block(&$variables) {
+function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -567,7 +594,7 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(&$variables) {
  * Prepares the inpage navigation by creating links for the inner paragraphs
  * that implement a title.
  */
-function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variables) {
+function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -607,14 +634,14 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(&$variabl
 /**
  * Implements hook_preprocess_pattern_file__preview().
  */
-function oe_theme_preprocess_pattern_file__preview(&$variables) {
+function oe_theme_preprocess_pattern_file__preview(&$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 }
 
 /**
  * Implements hook_preprocess_pattern_file_link__preview().
  */
-function oe_theme_preprocess_pattern_file_link__preview(&$variables) {
+function oe_theme_preprocess_pattern_file_link__preview(&$variables): void {
   foreach ($variables['files'] as $index => $file) {
     $variables['files'][$index] = FileValueObject::fromArray($file);
   }
@@ -623,7 +650,7 @@ function oe_theme_preprocess_pattern_file_link__preview(&$variables) {
 /**
  * Implements hook_preprocess_pattern_file_translation().
  */
-function oe_theme_preprocess_pattern_file_translation(&$variables) {
+function oe_theme_preprocess_pattern_file_translation(&$variables): void {
   if ($variables['translations']) {
     // Add css ids for expandable javascript behaviour.
     $variables['translations_id'] = Html::getUniqueId('translations-expand');
@@ -634,7 +661,7 @@ function oe_theme_preprocess_pattern_file_translation(&$variables) {
 /**
  * Implements hook_preprocess_pattern_file_translation__preview().
  */
-function oe_theme_preprocess_pattern_file_translation__preview(&$variables) {
+function oe_theme_preprocess_pattern_file_translation__preview(&$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
   if ($variables['translations']) {

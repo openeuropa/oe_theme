@@ -11,6 +11,12 @@ accordions:
   dependencies:
     - core/drupal
     - oe_theme/base
+dialogs:
+  js:
+    js/dialogs.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
 dropdown:
   js:
     js/dropdown.js: {}
@@ -32,12 +38,6 @@ file_translations:
 inpage_navigation:
   js:
     js/inpage_navigation.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-language_switcher:
-  js:
-    js/language_switcher.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base
