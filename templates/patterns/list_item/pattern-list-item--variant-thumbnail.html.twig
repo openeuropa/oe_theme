@@ -7,9 +7,9 @@
 {% include '@ecl/ec-component-list-item' with {
   'variant': 'thumbnail',
   'title': title,
-  'metas': meta,
+  'metas': metas,
   'href': url,
   'detail': detail,
-  'primary_image': primary_image,
-  'secondary_image': secondary_image
-} %}
+  'primary_image': image,
+  'secondary_image': image
+} only %}

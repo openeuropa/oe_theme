@@ -13,17 +13,17 @@ list_item_block_one_column:
       description: "Array of renderable items"
       preview:
         - type: "pattern"
-          id: "list_item_default"
+          id: "list_item"
           fields:
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
         - type: "pattern"
-          id: "list_item_default"
+          id: "list_item"
           fields:
             title: "About the European Union"
             detail: "The EU and its institutions, how to visit and work at the EU."
         - type: "pattern"
-          id: "list_item_default"
+          id: "list_item"
           fields:
             title: "Live, Work, Travel in EU"
             detail: "Advice on living, working or travelling in the EU, on visas and immigration for non-EU citizens, European culture."

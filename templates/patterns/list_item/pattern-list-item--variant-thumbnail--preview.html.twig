@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a ECL list item component.
+ */
+#}
+<p>Thumbnail with primary image</p>
+{% include '@ecl/ec-component-list-item' with {
+  'variant': 'thumbnail',
+  'title': title,
+  'metas': metas,
+  'href': url,
+  'detail': detail,
+  'primary_image': image
+} only %}
+
+<p>Thumbnail with secondary image</p>
+{% include '@ecl/ec-component-list-item' with {
+    'variant': 'thumbnail',
+    'title': title,
+    'metas': metas,
+    'href': url,
+    'detail': detail,
+    'secondary_image': image|merge({'src': 'http://via.placeholder.com/120x120'})
+} only %}
