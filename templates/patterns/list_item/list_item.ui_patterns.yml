@@ -70,4 +70,11 @@ list_item:
       preview:
         src: "http://via.placeholder.com/400x400"
         alt: "Alternative text for image"
+    secondary_image:
+      type: "array"
+      label: "Secondary image"
+      description: "Attributes of the image to render"
+      preview:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative text for secondary image"
 
