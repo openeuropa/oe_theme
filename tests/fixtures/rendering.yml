@@ -361,12 +361,12 @@
 - array:
     '#type': pattern
     '#id': list_item
-    '#variant': "thumbnail"
+    '#variant': "thumbnail_secondary"
     '#fields':
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
-      secondary_image:
+      image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternate text for secondary image"
   assertions:

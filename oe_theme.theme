@@ -521,7 +521,18 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  $variables['variant'] = $paragraph->get('field_oe_list_item_variant')->first()->value;
+  // @todo: Fix paragraphs with the new variants.
+  $variants = [
+    'list_item_default' => 'default',
+    'list_item_highlight' => 'highlight',
+    'list_item_date' => 'date',
+    'list_item_thumbnail_primary' => 'thumbnail',
+    'list_item_thumbnail_secondary' => 'thumbnail_secondary',
+  ];
+  $list_item_variant = $paragraph->get('field_oe_list_item_variant')->first()->value;
+  $paragraph_variant = isset($variants[$list_item_variant]) ? $variants[$list_item_variant] : 'default';
+
+  $variables['variant'] = $paragraph_variant;
   $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl()->toString();
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);

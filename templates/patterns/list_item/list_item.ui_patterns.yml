@@ -19,7 +19,10 @@ list_item:
       description: "Navigation list item, contains a linked title and stand first."
     thumbnail:
       label: "List item: thumbnail "
-      description: "Thumbnail list item, contains a primary image or secondary image, metadata information and a linked title."
+      description: "Thumbnail list item, contains a primary image, metadata information and a linked title."
+    thumbnail_secondary:
+      label: "List item: thumbnail with secondary image"
+      description: "Thumbnail list item, contains a secondary image, metadata information and a linked title."
   fields:
     url:
       type: "text"
@@ -36,7 +39,7 @@ list_item:
       label: "Detail"
       description: "Standfirst for the link item."
       preview: "Dolore duis elit in id voluptate nisi commodo quis."
-    metas:
+    meta:
       type: "array"
       label: "Metadata"
       description: "Meta information items list"
@@ -70,11 +73,4 @@ list_item:
       preview:
         src: "http://via.placeholder.com/400x400"
         alt: "Alternative text for image"
-    secondary_image:
-      type: "array"
-      label: "Secondary image"
-      description: "Attributes of the image to render"
-      preview:
-        src: "http://via.placeholder.com/120x80"
-        alt: "Alternative text for secondary image"
 
