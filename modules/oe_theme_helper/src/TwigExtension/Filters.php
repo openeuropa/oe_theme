@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Core\Language\LanguageManagerInterface;
+
 /**
  * Collection of extra Twig filters.
  *
@@ -11,6 +13,20 @@ namespace Drupal\oe_theme_helper\TwigExtension;
  * coming straight from Twig templates.
  */
 class Filters extends \Twig_Extension {
+
+  /**
+   * The language manager.
+   *
+   * @var \Drupal\Core\Language\LanguageManagerInterface
+   */
+  protected $languageManager;
+
+  /**
+   * Constructs a new Filters object.
+   */
+  public function __construct(LanguageManagerInterface $languageManager) {
+    $this->languageManager = $languageManager;
+  }
 
   /**
    * {@inheritdoc}
@@ -34,28 +50,27 @@ class Filters extends \Twig_Extension {
    *   Language name.
    */
   public function toLanguageName($language_code): string {
-    return (string) \Drupal::languageManager()->getLanguageName($language_code);
+    return (string) $this->languageManager->getLanguageName($language_code);
   }
 
   /**
    * Get a native language name given its code.
    *
-   * @param mixed $language_code
-   *   Two letters language code.
+   * @param string $language_code
+   *   The language code as defined by the W3C language tags document.
    *
    * @return string
-   *   Language name.
+   *   The native language name.
+   *
+   * @throws \InvalidArgumentException
+   *   Thrown when the passed in language code does not exist.
    */
   public function toNativeLanguageName($language_code): string {
-    // @todo: Fix this.
-    // We should store language information contained in
-    // MultilingualHelper::getEuropeanUnionLanguageList() in configuration.
-    if (\Drupal::moduleHandler()->moduleExists('oe_multilingual')) {
-      $languages = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
-      return $languages[$language_code];
+    $languages = $this->languageManager->getNativeLanguages();
+    if (!empty($languages[$language_code])) {
+      return $languages[$language_code]->getName();
     }
-
-    return $this->toLanguageName($language_code);
+    throw new \InvalidArgumentException("The language code $language_code does not exist or is not enabled.");
   }
 
   /**

@@ -52,6 +52,11 @@
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
+        "patches": {
+            "drupal/core": {
+                "Deprecation warnings in Twig code cause test failures. https://www.drupal.org/project/drupal/issues/2600154": "https://www.drupal.org/files/issues/2018-08-13/2600154-3-60.patch"
+            }
+        },
         "installer-paths": {
             "build/core": ["type:drupal-core"],
             "build/profiles/contrib/{$name}": ["type:drupal-profile"],
