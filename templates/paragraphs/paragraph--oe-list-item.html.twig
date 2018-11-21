@@ -6,7 +6,8 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern(variant, {
+{{ pattern('list_item', {
+  'variant': variant,
   'url': url,
   'title': content.field_oe_title,
   'detail': content.field_oe_text_long,
@@ -15,5 +16,6 @@
   'day': day,
   'month': month,
   'year': year,
-  'image': image
+  'image': image,
+  'secondary_image': image
 }) }}

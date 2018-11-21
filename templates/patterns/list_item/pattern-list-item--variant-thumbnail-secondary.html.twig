@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a ECL thumbnail list item component.
+ */
+#}
+{% include '@ecl/ec-component-list-item' with {
+  'variant': 'thumbnail',
+  'title': title,
+  'metas': meta,
+  'href': url,
+  'detail': detail,
+  'secondary_image': image
+} only %}

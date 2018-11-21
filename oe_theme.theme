@@ -521,7 +521,17 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  $variables['variant'] = $paragraph->get('field_oe_list_item_variant')->first()->value;
+  // @todo: Fix paragraphs with the new variants.
+  $variants = [
+    'list_item_default' => 'default',
+    'list_item_highlight' => 'highlight',
+    'list_item_date' => 'date',
+    'list_item_thumbnail_primary' => 'thumbnail',
+    'list_item_thumbnail_secondary' => 'thumbnail_secondary',
+  ];
+  $list_item_variant = $paragraph->get('field_oe_list_item_variant')->first()->value;
+
+  $variables['variant'] = $variants[$list_item_variant] ?? 'default';
   $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl()->toString();
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
@@ -580,12 +590,14 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
   $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_variant')->first()->value;
 
   // Prepare the button variables if a link has been specified.
-  if (!$paragraph->get('field_oe_link')->isEmpty()) {
-    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
-    $link_item = $paragraph->get('field_oe_link')->first();
-    $variables['button_url'] = $link_item->getUrl()->toString();
-    $variables['button_label'] = $link_item->get('title')->getValue();
+  if ($paragraph->get('field_oe_link')->isEmpty()) {
+    return;
   }
+
+  /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
+  $link_item = $paragraph->get('field_oe_link')->first();
+  $variables['button_url'] = $link_item->getUrl()->toString();
+  $variables['button_label'] = $link_item->get('title')->getValue();
 }
 
 /**
@@ -634,39 +646,43 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(array &$v
 /**
  * Implements hook_preprocess_pattern_file__preview().
  */
-function oe_theme_preprocess_pattern_file__preview(&$variables): void {
+function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 }
 
 /**
  * Implements hook_preprocess_pattern_file_link__preview().
  */
-function oe_theme_preprocess_pattern_file_link__preview(&$variables): void {
-  foreach ($variables['files'] as $index => $file) {
-    $variables['files'][$index] = FileValueObject::fromArray($file);
-  }
+function oe_theme_preprocess_pattern_file_link__preview(array &$variables): void {
+  $variables['files'] = array_map(
+    function ($file) {
+      return FileValueObject::fromArray($file);
+    },
+    $variables['files']
+  );
 }
 
 /**
  * Implements hook_preprocess_pattern_file_translation().
  */
-function oe_theme_preprocess_pattern_file_translation(&$variables): void {
-  if ($variables['translations']) {
-    // Add css ids for expandable javascript behaviour.
-    $variables['translations_id'] = Html::getUniqueId('translations-expand');
-    $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
+function oe_theme_preprocess_pattern_file_translation(array &$variables): void {
+  // This is defined in ui_patterns contrib module in ui_patterns_theme().
+  if ($variables['translations'] !== NULL) {
+    return;
   }
+
+  // Add css ids for expandable javascript behaviour.
+  $variables['translations_id'] = Html::getUniqueId('translations-expand');
+  $variables['translations_button_id'] = Html::getUniqueId('translations-expand-button');
 }
 
 /**
  * Implements hook_preprocess_pattern_file_translation__preview().
  */
-function oe_theme_preprocess_pattern_file_translation__preview(&$variables): void {
+function oe_theme_preprocess_pattern_file_translation__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  if ($variables['translations']) {
-    foreach ($variables['translations'] as $index => $translation) {
-      $variables['translations'][$index] = FileValueObject::fromArray($translation);
-    }
+  foreach ((array) $variables['translations'] as $index => $translation) {
+    $variables['translations'][$index] = FileValueObject::fromArray($translation);
   }
 }

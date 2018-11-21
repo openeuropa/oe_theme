@@ -1,0 +1,76 @@
+list_item:
+  label: "List item"
+  description: "List item pattern with variants."
+  variants:
+    default:
+      label: "List item: default"
+      description: "Default list items, contains metadata information and linked title."
+    block:
+      label: "List item: block"
+      description: "Block list item, contains a linked title and standfirst."
+    date:
+      label: "List item: date"
+      description: "Default list item elements and date."
+    highlight:
+      label: "List item: highlight"
+      description: "Highlight list item, contains a primary image and a linked title."
+    navigation:
+      label: "List item: navigation"
+      description: "Navigation list item, contains a linked title and stand first."
+    thumbnail:
+      label: "List item: thumbnail "
+      description: "Thumbnail list item, contains a primary image, metadata information and a linked title."
+    thumbnail_secondary:
+      label: "List item: thumbnail with secondary image"
+      description: "Thumbnail list item, contains a secondary image, metadata information and a linked title."
+  fields:
+    url:
+      type: "text"
+      label: "URL"
+      description: "List item link URL"
+      preview: "#"
+    title:
+      type: "text"
+      label: "Title"
+      description: "List item title"
+      preview: "Citizens' Dialogue in Kraków with Commissioner Elżbieta Bieńkowska"
+    detail:
+      type: "text"
+      label: "Detail"
+      description: "Standfirst for the link item."
+      preview: "Dolore duis elit in id voluptate nisi commodo quis."
+    meta:
+      type: "array"
+      label: "Metadata"
+      description: "Meta information items list"
+      preview:
+        - "Service department"
+        - "PMO"
+    week_day:
+      type: "text"
+      label: "Week day"
+      description: "A textual representation of a day, three letters"
+      preview: "Tue"
+    day:
+      type: "text"
+      label: "Day"
+      description: "Day of the month, 2 digits with leading zeros"
+      preview: "17"
+    month:
+      type: "text"
+      label: "Month"
+      description: "A short textual representation of a month, three letters"
+      preview: "Feb"
+    year:
+      type: "text"
+      label: "Year"
+      description: "A full numeric representation of a year, 4 digits"
+      preview: ""
+    image:
+      type: "array"
+      label: "Primary image"
+      description: "Attributes of the image to render"
+      preview:
+        src: "http://via.placeholder.com/400x400"
+        alt: "Alternative text for image"
+

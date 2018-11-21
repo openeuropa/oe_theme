@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for a ECL list item component.
+ * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
 {% include '@ecl/ec-component-list-item' with {
@@ -10,6 +10,5 @@
   'metas': meta,
   'href': url,
   'detail': detail,
-  'primary_image': primary_image,
-  'secondary_image': secondary_image
-} %}
+  'primary_image': image
+} only %}

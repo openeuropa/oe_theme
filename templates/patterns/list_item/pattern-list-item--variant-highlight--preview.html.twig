@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Default implementation for the highlight list item component.
+ */
+#}
+<div style="max-width: 400px">
+{% include '@ecl/ec-component-list-item' with {
+  'variant': 'highlight',
+  'href': url,
+  'title': title,
+  'primary_image': image
+} only %}
+</div>
