@@ -14,7 +14,8 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
-- [Demo module](./modules/oe_theme_demo/README.md)
+- [Contributing](#contributing)  
+- [Versioning](#versioning)
 
 ## Requirements
 
@@ -24,22 +25,10 @@ This depends on the following software:
 
 ## Installation
 
-The recommended way of installing the OpenEuropa theme is via a [Composer-based workflow][2].
+The recommended way of installing the OpenEuropa theme is via [Composer][2].
 
-In your Drupal project's main `composer.json` add the following dependency:
-
-```json
-{
-    "require": { 
-        "openeuropa/oe_theme": "^0.3"
-    }
-} 
-```
-
-And run:
-
-```
-$ composer update
+```bash
+composer require openeuropa/oe_theme
 ```
 
 If you are not using Composer then download the [release package][3] and install it as described [here][10].
@@ -78,22 +67,22 @@ In order to fetch the required code you'll need to have [Node.js (>= 8)](https:/
 
 To install required Node.js dependencies run:
 
-```
-$ npm install
+```bash
+npm install
 ```
 
 To build the final artifacts run:
 
-```
-$ npm run build
+```bash
+npm run build
 ```
 
 This will compile all SASS and JavaScript files into self-contained assets that are exposed as [Drupal libraries][11].
 
 In order to download all required PHP code run:
 
-```
-$ composer install
+```bash
+composer install
 ```
 
 This will build a fully functional Drupal site in the `./build` directory that can be used to develop and showcase the
@@ -104,8 +93,8 @@ to `./runner.yml` and override relevant properties.
 
 To set up the project run:
 
-```
-$ ./vendor/bin/run drupal:site-setup
+```bash
+./vendor/bin/run drupal:site-setup
 ```
 
 This will:
@@ -116,8 +105,8 @@ This will:
 
 After a successful setup install the site by running:
 
-```
-$ ./vendor/bin/run drupal:site-install
+```bash
+./vendor/bin/run drupal:site-install
 ```
 
 This will:
@@ -128,40 +117,72 @@ This will:
 
 ### Using Docker Compose
 
-The setup procedure described above can be sensitively simplified by using Docker Compose.
+Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and 
+[Docker Compose](https://docs.docker.com/compose/) with the provided configuration.
 
-Requirements:
+Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
+regardless of your local host configuration.
 
-- [Docker][12]
-- [Docker-compose][13]
+#### Requirements:
 
-Copy docker-compose.yml.dist into docker-compose.yml.
+- [Docker](https://www.docker.com/get-docker)
+- [Docker Compose](https://docs.docker.com/compose/)
 
-You can make any alterations you need for your local Docker setup. However, the defaults should be enough to set the project up.
+#### Configuration
 
-Run:
+By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
+By convention, the `docker-compose.yml` contains your base configuration and it's provided by default.
+The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
+services.
+If a service is defined in both files, Docker Compose merges the configurations.
 
+Find more information on Docker Compose extension mechanism on [the official Docker Compose documentation](https://docs.docker.com/compose/extends/).
+
+#### Usage
+
+To start, run:
+
+```bash
+docker-compose up
 ```
-$ docker-compose up -d
+
+It's advised to not daemonize `docker-compose` so you can turn it off (`CTRL+C`) quickly when you're done working.
+However, if you'd like to daemonize it, you have to add the flag `-d`:
+
+```bash
+docker-compose up -d
 ```
 
 Then:
 
-```
-$ docker-compose exec -u node node npm install
-$ docker-compose exec -u node node npm run build
-$ docker-compose exec web composer install
-$ docker-compose exec web ./vendor/bin/run drupal:site-setup
-$ docker-compose exec web ./vendor/bin/run drupal:site-install
+```bash
+docker-compose exec -u node node npm install
+docker-compose exec -u node node npm run build
+docker-compose exec web composer install
+docker-compose exec web ./vendor/bin/run drupal:site-install
 ```
 
-Your test site will be available at [http://localhost:8080/build](http://localhost:8080/build).
+Using default configuration, the development site files should be available in the `build` directory and the development site
+should be available at: [http://127.0.0.1:8080/build](http://127.0.0.1:8080/build).
 
-Run tests as follows:
+#### Running the tests
 
+To run the grumphp checks:
+
+```bash
+docker-compose exec web ./vendor/bin/grumphp run
 ```
-$ docker-compose exec web ./vendor/bin/phpunit
-$ docker-compose exec web ./vendor/bin/behat
+
+To run the phpunit tests:
+
+```bash
+docker-compose exec web ./vendor/bin/phpunit
+```
+
+To run the behat tests:
+
+```bash
+docker-compose exec web ./vendor/bin/behat
 ```
 
 ### Disable Drupal 8 caching
@@ -170,16 +191,17 @@ Manually disabling Drupal 8 caching is a laborious process that is well describe
 
 Alternatively, you can use the following Drupal Console command to disable/enable Drupal 8 caching:
 
-```
-$ ./vendor/bin/drupal site:mode dev  # Disable all caches.
-$ ./vendor/bin/drupal site:mode prod # Enable all caches.
+```bash
+./vendor/bin/drupal site:mode dev  # Disable all caches.
+./vendor/bin/drupal site:mode prod # Enable all caches.
 ```
 
 Note: to fully disable Twig caching the following additional manual steps are required:
 
 1. Open `./build/sites/default/services.yml`
 2. Set `cache: false` in `twig.config:` property. E.g.:
-```
+
+```yaml
 parameters:
      twig.config:
        cache: false
@@ -214,16 +236,16 @@ JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordion
 *Important:* not all ECL templates are available to the theme for include, whenever you need include a new ECL template
 remember to add it to the `copy` section of [ecl-builder.config.js](ecl-builder.config.js) and run:
 
-```
-$ npm run build
+```bash
+npm run build
 ```
 
 #### Update ECL
 
 To update ECL components change the `@ec-europa/ecl-preset-full` version number in [package.json](package.json) and run:
 
-```
-$ npm install && npm run build
+```bash
+npm install && npm run build
 ```
 
 This will update assets such as images and fonts and re-compile CSS. Resulting changes are not meant to be committed to
@@ -233,8 +255,8 @@ this repository.
 
 To watch for Sass and JS file changes - [/sass](/sass) folder - in order to re-compile them to the destination folder:
 
-```
-$ npm run watch
+```bash
+npm run watch
 ```
 
 Resulting changes are not meant to be committed to this repository.
@@ -248,17 +270,25 @@ To patch a component:
 1. Modify its source files directly in `./node_modules/@ecl/[component-name]`
 2. Run:
 
-```
-$ npx patch-package @ecl/[component-name]
+```bash
+npx patch-package @ecl/[component-name]
 ```
 
 Or, when using Docker Compose:
 
-```
-$ docker-compose exec -u node node npx patch-package @ecl/[component-name]
+```bash
+docker-compose exec -u node node npx patch-package @ecl/[component-name]
 ```
 
 Patches will be generated in `./patches` and applied when running `npm install`.
+
+## Contributing
+
+Please read [the full documentation](https://github.com/openeuropa/openeuropa) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the available versions, see the [tags on this repository](https://github.com/openeuropa/oe_theme/tags).
 
 [1]: https://github.com/ec-europa/europa-component-library
 [2]: https://www.drupal.org/docs/develop/using-composer/using-composer-to-manage-drupal-site-dependencies#managing-contributed
