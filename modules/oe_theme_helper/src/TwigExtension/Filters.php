@@ -61,13 +61,14 @@ class Filters extends \Twig_Extension {
   /**
    * Get file icon class given its extension.
    *
-   * @param mixed $extension
+   * @param string $extension
    *   File extension.
    *
    * @return string
    *   File icon class name.
    */
-  public function toFileIcon($extension) {
+  public function toFileIcon(string $extension): string {
+    $extension = strtolower($extension);
     $extension_mapping = [
       'image' => [
         'jpg',
