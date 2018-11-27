@@ -1,10 +1,40 @@
 # Change Log
 
+## [0.7.0](https://github.com/openeuropa/oe_theme/tree/0.7.0) (2018-11-27)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.3...0.7.0)
+
+**Closed issues:**
+
+- Docker composer install requires authentication when installing drupal/coder [\#125](https://github.com/openeuropa/oe_theme/issues/125)
+- Main menu dropdown doesn't work  [\#114](https://github.com/openeuropa/oe_theme/issues/114)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1344: Complete conversion of file extension to ECL icons. [\#148](https://github.com/openeuropa/oe_theme/pull/148) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1346: Use Drupal core services to access native language names [\#147](https://github.com/openeuropa/oe_theme/pull/147) ([pfrenssen](https://github.com/pfrenssen))
+- OPENEUROPA-1348: Refactor list\_items to variants. [\#146](https://github.com/openeuropa/oe_theme/pull/146) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1322: Use the proper Docker way of overriding docker-composer.yml file. [\#145](https://github.com/openeuropa/oe_theme/pull/145) ([drupol](https://github.com/drupol))
+- OPENEUROPA-1261: Implement "Files" pattern with variants [\#144](https://github.com/openeuropa/oe_theme/pull/144) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1254: Add button components [\#143](https://github.com/openeuropa/oe_theme/pull/143) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1259: Implement "Dialogs" pattern [\#142](https://github.com/openeuropa/oe_theme/pull/142) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1236: Add breadcrumb items to page header block. [\#141](https://github.com/openeuropa/oe_theme/pull/141) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1257: Implement "Featured Item" pattern with variants. [\#140](https://github.com/openeuropa/oe_theme/pull/140) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-795: Make sure theme works with new plain long text field. [\#138](https://github.com/openeuropa/oe_theme/pull/138) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1255: Implement dropdown component part 2. [\#136](https://github.com/openeuropa/oe_theme/pull/136) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1262: Add field pattern. [\#135](https://github.com/openeuropa/oe_theme/pull/135) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1258: Add contextual navigation pattern. [\#134](https://github.com/openeuropa/oe_theme/pull/134) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1255: Create UI pattern for dropdown component [\#133](https://github.com/openeuropa/oe_theme/pull/133) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1244: Write test coverage for the page header plugin system. [\#132](https://github.com/openeuropa/oe_theme/pull/132) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-1252: Add banner video pattern. [\#131](https://github.com/openeuropa/oe_theme/pull/131) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1250: Add block and navigation list types. [\#130](https://github.com/openeuropa/oe_theme/pull/130) ([richardcanoe](https://github.com/richardcanoe))
+
 ## [0.6.3](https://github.com/openeuropa/oe_theme/tree/0.6.3) (2018-09-27)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.2...0.6.3)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1241: Change the drone file to create the package only highest dependencies. [\#129](https://github.com/openeuropa/oe_theme/pull/129) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1241: Update CHANGELOG.md. [\#128](https://github.com/openeuropa/oe_theme/pull/128) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-780: Make sure component dependencies are as relaxed as possible. [\#124](https://github.com/openeuropa/oe_theme/pull/124) ([aritomelo](https://github.com/aritomelo))
 
 ## [0.6.2](https://github.com/openeuropa/oe_theme/tree/0.6.2) (2018-09-13)
