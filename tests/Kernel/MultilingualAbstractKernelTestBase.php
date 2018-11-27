@@ -17,7 +17,6 @@ abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
    * @var array
    */
   public static $modules = [
-    'administration_language_negotiation',
     'content_translation',
     'locale',
     'language',
@@ -48,7 +47,6 @@ abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
       'locale',
       'language',
       'content_translation',
-      'administration_language_negotiation',
       'oe_multilingual',
     ]);
 

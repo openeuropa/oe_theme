@@ -365,9 +365,10 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   /** @var \Drupal\Core\Entity\EntityInterface $translation */
   $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
   $variables['current'] = $translation->language()->getName();
-  $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
+  /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
+  $languages = \Drupal::service('language_manager')->getNativeLanguages();
   $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['unavailable'] = $language_names[$current_language];
+  $variables['unavailable'] = $languages[$current_language]->getName();
 
   // Normalize the links to an array of options suitable for the ECL
   // "ecl-lang-select-pages" template.

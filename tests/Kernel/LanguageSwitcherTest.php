@@ -47,12 +47,13 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter('a.ecl-lang-select-sites__link > .ecl-lang-select-sites__code > .ecl-lang-select-sites__code-text')->text();
     $this->assertEquals('en', $actual);
 
-    $language_names = \Drupal::service('oe_multilingual.helper')->getLanguageNameList();
+    /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
+    $languages = \Drupal::service('language_manager')->getNativeLanguages();
 
     // Make sure that language links are properly rendered.
     foreach (\Drupal::languageManager()->getLanguages() as $language) {
       $id = $language->getId();
-      $name = $language_names[$id];
+      $name = $languages[$id]->getName();
       $actual = $crawler->filter(".ecl-dialog a.ecl-language-list__button[lang={$id}]")->text();
       $this->assertEquals($name, trim($actual));
 
