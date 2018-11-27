@@ -45,7 +45,7 @@ Output: `Spanish`.
 
 ### to_native_language
 
-The `to_language` filter will convert a language code into the full language
+The `to_native_language` filter will convert a language code into the full language
 name in the native language. Please note that for this to work the language
 should be enabled, and be translated in the its own native language.
 
