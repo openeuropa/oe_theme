@@ -250,31 +250,34 @@
     '#id': file_link
     '#fields':
       files:
-        - title: "Example document 1"
-          mime: "application/pdf"
-          url: "http://example.com/document1.pdf"
+        - title: "Example document"
+          mime: "application/doc"
+          url: "http://example.com/document.doc"
           size: "150000"
-          name: "document.pdf"
-        - title: "Example document 2"
-          mime: "application/pdf"
-          url: "http://example.com/document2.pdf"
+          name: "document.doc"
+        - title: "Example presentation"
+          mime: "application/ppt"
+          url: "http://example.com/presentation.PPT"
           size: "160000"
-          name: "document.pdf"
-        - title: "Example document 3"
-          mime: "application/pdf"
-          url: "http://example.com/document3.pdf"
+          name: "presentation.ppt"
+        - title: "Example video"
+          mime: "application/mpeg"
+          url: "http://example.com/video.mpeg"
           size: "170000"
-          name: "document.pdf"
+          name: "video.mpeg"
+        - title: "Example spreadsheet"
+          mime: "application/xls"
+          url: "http://example.com/spreadsheet.xls"
+          size: "170000"
+          name: "spreadsheet.xls"
   assertions:
     count:
-      'div.ecl-file__link-container': 3
-      'a[href="http://example.com/document1.pdf"]': 1
-      'a[href="http://example.com/document2.pdf"]': 1
-      'a[href="http://example.com/document3.pdf"]': 1
+      'div.ecl-file__link-container': 4
     equals:
-      'a[href="http://example.com/document1.pdf"] span.ecl-file__title': "Example document 1"
-      'a[href="http://example.com/document2.pdf"] span.ecl-file__title': "Example document 2"
-      'a[href="http://example.com/document3.pdf"] span.ecl-file__title': "Example document 3"
+      'a[href="http://example.com/document.doc"] span.ecl-icon--file + span.ecl-file__title': "Example document"
+      'a[href="http://example.com/presentation.PPT"] span.ecl-icon--presentation + span.ecl-file__title': "Example presentation"
+      'a[href="http://example.com/video.mpeg"] span.ecl-icon--video + span.ecl-file__title': "Example video"
+      'a[href="http://example.com/spreadsheet.xls"] span.ecl-icon--spreadsheet + span.ecl-file__title': "Example spreadsheet"
 - array:
     '#type': pattern
     '#id': file_image

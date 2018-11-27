@@ -59,24 +59,53 @@ class Filters extends \Twig_Extension {
   }
 
   /**
-   * Get file icon given its extension.
+   * Get file icon class given its extension.
    *
-   * @param mixed $extension
+   * @param string $extension
    *   File extension.
    *
    * @return string
-   *   File icon.
+   *   File icon class name.
    */
-  public function toFileIcon($extension): string {
-    // @todo: Complete and/or centralise extension to icon conversion.
-    // Get icons from given file extension.
-    switch ($extension) {
-      case 'ppt':
-        return 'presentation';
+  public function toFileIcon(string $extension): string {
+    $extension = strtolower($extension);
+    $extension_mapping = [
+      'image' => [
+        'jpg',
+        'jpeg',
+        'gif',
+        'png',
+        'webp',
+      ],
+      'presentation' => [
+        'ppt',
+        'pptx',
+        'pps',
+        'ppsx',
+        'odp',
+      ],
+      'spreadsheet' => [
+        'xls',
+        'xlsx',
+        'ods',
+      ],
+      'video' => [
+        'mp4',
+        'mov',
+        'mpeg',
+        'avi',
+        'm4v',
+        'webm',
+      ],
+    ];
 
-      default:
-        return 'file';
+    foreach ($extension_mapping as $file_type => $extensions) {
+      if (in_array($extension, $extensions)) {
+        return $file_type;
+      }
     }
+
+    return 'file';
   }
 
 }
