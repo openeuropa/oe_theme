@@ -22,5 +22,6 @@ services:
     parent: default_plugin_manager
   oe_theme_helper.twig_extension.filters:
     class: Drupal\oe_theme_helper\TwigExtension\Filters
+    arguments: ['@language_manager']
     tags:
     - { name: twig.extension }
