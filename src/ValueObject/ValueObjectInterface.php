@@ -23,8 +23,9 @@ interface ValueObjectInterface extends \ArrayAccess {
    * @param array $values
    *   List of values.
    *
-   * @return $this
+   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
+   *   A new ValueObject object.
    */
-  public static function fromArray(array $values = []): ValueObjectInterface;
+  public static function fromArray(array $values = []);
 
 }

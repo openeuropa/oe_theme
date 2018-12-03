@@ -12,6 +12,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
 use Drupal\oe_theme\ValueObject\FileValueObject;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Implements hook_preprocess_breadcrumb().
@@ -555,13 +556,9 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   // Prepare the date fields if date is available.
   if (!$paragraph->get('field_oe_date')->isEmpty()) {
-    /** @var \Drupal\Core\Datetime\DrupalDateTime $date */
-    $date = $paragraph->get('field_oe_date')->first()->get('date')->getValue();
-    $timestamp = $date->getTimestamp();
-    $date_formatter = \Drupal::service('date.formatter');
-    $variables['week_day'] = $date_formatter->format($timestamp, 'custom', 'D');
-    $variables['day'] = $date_formatter->format($timestamp, 'custom', 'd');
-    $variables['month'] = $date_formatter->format($timestamp, 'custom', 'M');
+    $variables['date'] = DateValueObject::fromDateTimeComputed(
+      $paragraph->get('field_oe_date')->first()->get('date')
+    )->toArray();
 
     // Add the timezone context to the cache.
     // @see \Drupal\datetime\Plugin\Field\FieldFormatter\DateTimeFormatterBase::buildDate()
@@ -686,4 +683,20 @@ function oe_theme_preprocess_pattern_file_translation__preview(array &$variables
   foreach ((array) $variables['translations'] as $index => $translation) {
     $variables['translations'][$index] = FileValueObject::fromArray($translation);
   }
+}
+
+/**
+ * Implements hook_preprocess_pattern_date_block().
+ */
+function oe_theme_preprocess_pattern_list_item(array &$variables): void {
+  if ($variables['variant'] === 'date') {
+    $variables['date'] = DateValueObject::fromArray($variables['date']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_pattern_date_block().
+ */
+function oe_theme_preprocess_pattern_date_block(array &$variables): void {
+  $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
