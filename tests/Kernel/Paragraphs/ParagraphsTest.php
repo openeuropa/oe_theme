@@ -162,7 +162,7 @@ class ParagraphsTest extends ParagraphsTestBase {
         'target_id' => $image->id(),
         'alt' => 'Druplicon',
       ],
-      'field_oe_date' => '2018-07-13',
+      'field_oe_date' => '1981-09-24',
       'field_oe_meta' => ['Meta 1', 'Meta 2', 'Meta 3'],
     ]);
     $paragraph->save();
@@ -308,9 +308,10 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertEquals('Fri', trim($crawler->filter('.ecl-date-block__week-day')->text()));
-    $this->assertEquals('13', trim($crawler->filter('.ecl-date-block__day')->text()));
-    $this->assertEquals('Jul', trim($crawler->filter('.ecl-date-block__month')->text()));
+    $this->assertEquals('Thursday', trim($crawler->filter('.ecl-date-block__week-day')->text()));
+    $this->assertEquals('24', trim($crawler->filter('.ecl-date-block__day')->text()));
+    $this->assertEquals('09', trim($crawler->filter('.ecl-date-block__month')->text()));
+    $this->assertEquals('1981', trim($crawler->filter('.ecl-date-block__year')->text()));
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('img.ecl-image'));

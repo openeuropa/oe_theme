@@ -1,4 +1,60 @@
 - array:
+    '#type': pattern
+    '#id': date_block
+    '#fields':
+      variant: 'default'
+      timestamp: 370137600
+  assertions:
+    count:
+      'div.ecl-date-block.ecl-date-block--default': 1
+    equals:
+      'span.ecl-date-block__week-day': "Thursday"
+      'span.ecl-date-block__day': "24"
+      'span.ecl-date-block__month': "09"
+      'span.ecl-date-block__year': "1981"
+- array:
+    '#type': pattern
+    '#id': date_block
+    '#fields':
+      variant: 'cancelled'
+      timestamp: 370137600
+  assertions:
+    count:
+      'div.ecl-date-block.ecl-date-block--cancelled': 1
+    equals:
+      'span.ecl-date-block__week-day': "Thursday"
+      'span.ecl-date-block__day': "24"
+      'span.ecl-date-block__month': "09"
+      'span.ecl-date-block__year': "1981"
+- array:
+    '#type': pattern
+    '#id': date_block
+    '#fields':
+      variant: 'past'
+      timestamp: 370137600
+  assertions:
+    count:
+      'div.ecl-date-block.ecl-date-block--past': 1
+    equals:
+      'span.ecl-date-block__week-day': "Thursday"
+      'span.ecl-date-block__day': "24"
+      'span.ecl-date-block__month': "09"
+      'span.ecl-date-block__year': "1981"
+- array:
+    '#type': pattern
+    '#id': date_block
+    '#fields':
+      variant: 'ongoing'
+      timestamp: 370137600
+  assertions:
+    count:
+      'div.ecl-date-block.ecl-date-block--ongoing': 1
+    equals:
+      'span.ecl-date-block__week-day': "Thursday"
+      'span.ecl-date-block__day': "24"
+      'span.ecl-date-block__month': "09"
+      'span.ecl-date-block__year': "1981"
+- array:
     '#plain_text': 'Dummy placeholder for form rendering test.'
   assert:
     count:
@@ -329,19 +385,20 @@
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
-      week_day: "Tue"
-      day: "17"
-      month: "Feb"
-      year: "2018"
+      date:
+        day: "24"
+        month: "09"
+        year: "1981"
   assertions:
     count:
       'a.ecl-list-item__link[href="http://example.com"]': 1
     equals:
       'h3.ecl-list-item__title': "Item title"
       'div.ecl-list-item__detail': "Item text"
-      'span.ecl-date-block__day': "17"
-      'span.ecl-date-block__month': "Feb"
-      'span.ecl-date-block__year': "2018"
+      'span.ecl-date-block__week-day': "Thursday"
+      'span.ecl-date-block__day': "24"
+      'span.ecl-date-block__month': "09"
+      'span.ecl-date-block__year': "1981"
 - array:
     '#type': pattern
     '#id': list_item
