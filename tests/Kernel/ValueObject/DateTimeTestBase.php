@@ -49,11 +49,9 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
   public function testFromDateTimeObject(array $data, array $expected): void {
     $date = $this->getDateValueObject($data);
 
-    $this->assertEquals($expected['day'], $date->getDay());
-    $this->assertEquals($expected['week_day'], $date->getWeekDay());
-    $this->assertEquals($expected['month'], $date->getMonth());
-    $this->assertEquals($expected['month_name'], $date->getMonthName());
-    $this->assertEquals($expected['year'], $date->getYear());
+    foreach ($expected as $key => $value) {
+      $this->assertEquals($value, $date->{$key}());
+    }
   }
 
   /**

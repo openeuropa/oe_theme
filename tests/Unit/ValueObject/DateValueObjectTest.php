@@ -21,11 +21,11 @@ class DateValueObjectTest extends AbstractUnitTestBase {
     /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
     $date = DateValueObject::fromArray($data);
 
-    $this->assertEquals($expected['day'], $date->getDay());
-    $this->assertEquals($expected['week_day'], $date->getWeekDay());
-    $this->assertEquals($expected['month'], $date->getMonth());
-    $this->assertEquals($expected['month_name'], $date->getMonthName());
-    $this->assertEquals($expected['year'], $date->getYear());
+    $this->assertEquals($expected['day'], $date->day());
+    $this->assertEquals($expected['week_day'], $date->week_day());
+    $this->assertEquals($expected['month'], $date->month());
+    $this->assertEquals($expected['month_name'], $date->month_name());
+    $this->assertEquals($expected['year'], $date->year());
   }
 
   /**

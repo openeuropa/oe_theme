@@ -8,57 +8,16 @@ use Drupal\file\FileInterface;
 
 /**
  * Handle information about a file, such as its mime type, size, language, etc.
+ *
+ * @method extension()
+ * @method language_code()
+ * @method mime()
+ * @method name()
+ * @method size()
+ * @method title()
+ * @method url()
  */
 class FileValueObject extends ValueObjectBase {
-
-  /**
-   * The name of the file.
-   *
-   * @var string
-   */
-  protected $name;
-
-  /**
-   * File URL.
-   *
-   * @var string
-   */
-  protected $url;
-
-  /**
-   * The file mime type.
-   *
-   * @var string
-   */
-  protected $mime;
-
-  /**
-   * The size of the file.
-   *
-   * @var string
-   */
-  protected $size;
-
-  /**
-   * File name extension.
-   *
-   * @var string
-   */
-  protected $extension;
-
-  /**
-   * File title.
-   *
-   * @var string
-   */
-  protected $title;
-
-  /**
-   * Language code.
-   *
-   * @var string
-   */
-  protected $languageCode = '';
 
   /**
    * FileType constructor.
@@ -73,10 +32,19 @@ class FileValueObject extends ValueObjectBase {
    *   File size in bytes.
    */
   private function __construct(string $name, string $url, string $mime, string $size) {
-    $this->name = $name;
-    $this->url = $url;
-    $this->mime = $mime;
-    $this->size = $size;
+    $this->storage = compact([
+      'name',
+      'url',
+      'mime',
+      'size',
+    ]);
+
+    $this->storage['title'] = $this->storage['name'];
+    $this->storage['extension'] = pathinfo(
+      $this->storage['name'],
+      PATHINFO_EXTENSION
+    );
+    $this->storage['language_code'] = '';
   }
 
   /**
@@ -95,9 +63,7 @@ class FileValueObject extends ValueObjectBase {
       (string) $file_entity->getSize()
     );
 
-    $file->setLanguageCode($file_entity->language()->getId());
-
-    return $file;
+    return $file->withLanguageCode($file_entity->language()->getId());
   }
 
   /**
@@ -112,127 +78,47 @@ class FileValueObject extends ValueObjectBase {
     );
 
     if (isset($values['title'])) {
-      $file->setTitle($values['title']);
+      $file = $file->withTitle($values['title']);
     }
 
     if (isset($values['language_code'])) {
-      $file->setLanguageCode($values['language_code']);
+      $file = $file->withLanguageCode($values['language_code']);
     }
 
     return $file;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getUrl(): string {
-    return $this->url;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getMime(): string {
-    return $this->mime;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getSize(): string {
-    return $this->size;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getName(): string {
-    return $this->name;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getTitle(): string {
-    return $this->title ? $this->title : $this->name;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getLanguageCode(): string {
-    return $this->languageCode;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getExtension(): string {
-    return pathinfo($this->name, PATHINFO_EXTENSION);
-  }
-
-  /**
-   * Setter.
+   * Create a new FileValueObject with a specific title.
    *
    * @param string $title
-   *   Property value.
+   *   Title value.
    *
-   * @return $this
+   * @return \Drupal\oe_theme\ValueObject\FileValueObject
+   *   A new FileValueObject.
    */
-  public function setTitle(string $title): FileValueObject {
-    $this->title = $title;
+  public function withTitle(string $title): FileValueObject {
+    $clone = clone $this;
 
-    return $this;
+    $clone->storage['title'] = $title;
+
+    return $clone;
   }
 
   /**
    * Setter.
    *
-   * @param string $language_code
+   * @param string $languageCode
    *   Property value.
    *
    * @return $this
    */
-  public function setLanguageCode(string $language_code): FileValueObject {
-    $this->languageCode = $language_code;
+  public function withLanguageCode(string $languageCode): FileValueObject {
+    $clone = clone $this;
 
-    return $this;
-  }
+    $clone->storage['language_code'] = $languageCode;
 
-  /**
-   * {@inheritdoc}
-   */
-  public function getArray(): array {
-    return [
-      'title' => $this->getTitle(),
-      'name' => $this->getName(),
-      'url' => $this->getUrl(),
-      'size' => $this->getSize(),
-      'mime' => $this->getMime(),
-      'extension' => $this->getExtension(),
-      'language_code' => $this->getLanguageCode(),
-    ];
+    return $clone;
   }
 
 }

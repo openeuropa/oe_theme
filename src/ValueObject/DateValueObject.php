@@ -10,22 +10,14 @@ use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 
 /**
  * Handle information about a date/date interval, as expected by the ECL.
+ *
+ * @method day()
+ * @method month()
+ * @method month_name()
+ * @method week_day()
+ * @method year()
  */
 class DateValueObject extends ValueObjectBase implements DateValueObjectInterface {
-
-  /**
-   * Start date.
-   *
-   * @var \Drupal\Component\Datetime\DateTimePlus
-   */
-  protected $start;
-
-  /**
-   * End date.
-   *
-   * @var \Drupal\Component\Datetime\DateTimePlus
-   */
-  protected $end;
 
   /**
    * DateValueObject constructor.
@@ -38,11 +30,18 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Timezone string, e.g. "Europe/Brussels".
    */
   private function __construct(int $start, int $end = NULL, string $timezone = NULL) {
-    $this->start = DateTimePlus::createFromTimestamp($start, $timezone);
+    $startDate = DateTimePlus::createFromTimestamp($start, $timezone);
+    $endDate = $end !== NULL ?
+      DateTimePlus::createFromTimestamp($end, $timezone) :
+      NULL;
 
-    if ($end !== NULL) {
-      $this->end = DateTimePlus::createFromTimestamp($end, $timezone);
-    }
+    $this->storage = [
+      'day' => $this->getDateInterval('d', 'm', $startDate, $endDate),
+      'month' => $this->getDateInterval('m', 'Y', $startDate, $endDate),
+      'year' => $this->getDateInterval('Y', 'Y', $startDate, $endDate),
+      'week_day' => $this->getDateInterval('D', 'm', $startDate, $endDate),
+      'month_name' => $this->getDateInterval('M', 'Y', $startDate, $endDate),
+    ];
   }
 
   /**
@@ -81,54 +80,6 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   }
 
   /**
-   * {@inheritdoc}
-   */
-  public function getArray(): array {
-    return [
-      'day' => $this->getDay(),
-      'month' => $this->getMonth(),
-      'year' => $this->getYear(),
-      'week_day' => $this->getWeekDay(),
-      'month_name' => $this->getMonthName(),
-    ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getDay(): string {
-    return $this->getDateInterval('d', 'm');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getMonth(): string {
-    return $this->getDateInterval('m', 'Y');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getYear(): string {
-    return $this->getDateInterval('Y', 'Y');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getWeekDay(): string {
-    return $this->getDateInterval('D', 'm');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getMonthName(): string {
-    return $this->getDateInterval('M', 'Y');
-  }
-
-  /**
    * Get date interval as expected by the ECL.
    *
    * @param string $format
@@ -137,20 +88,24 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Run extra check to make sure we should not print an interval.
    *   This is useful, for example, in case of same days on different months
    *   which should still be printed as an interval.
+   * @param \Drupal\Component\Datetime\DateTimePlus $start
+   *   The start date.
+   * @param \Drupal\Component\Datetime\DateTimePlus|null $end
+   *   The end date if any.
    *
    * @return string
    *   The formatted interval.
    */
-  protected function getDateInterval(string $format, string $extra): string {
-    $date_interval = $this->start->format($format);
+  private function getDateInterval(string $format, string $extra, DateTimePlus $start, ?DateTimePlus $end = NULL): string {
+    $date_interval = $start->format($format);
 
-    if (!empty($this->end) &&
+    if ($end !== NULL &&
       (
-        $this->start->format($format) !== $this->end->format($format)
-        || $this->start->format($extra) !== $this->end->format($extra)
+        $start->format($format) !== $end->format($format)
+        || $start->format($extra) !== $end->format($extra)
       )
       ) {
-      $date_interval .= '-' . $this->end->format($format);
+      $date_interval .= '-' . $end->format($format);
     }
 
     return $date_interval;

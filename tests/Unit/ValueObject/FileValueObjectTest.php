@@ -26,18 +26,18 @@ class FileValueObjectTest extends AbstractUnitTestBase {
     /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
     $file = FileValueObject::fromArray($data);
 
-    $this->assertEquals('123', $file->getSize());
-    $this->assertEquals('pdf', $file->getMime());
-    $this->assertEquals('http://example.com/test.pdf', $file->getUrl());
-    $this->assertEquals('Test.pdf', $file->getName());
-    $this->assertEquals('Test.pdf', $file->getTitle());
-    $this->assertEquals('pdf', $file->getExtension());
-    $this->assertEquals('', $file->getLanguageCode());
+    $this->assertEquals('123', $file->size());
+    $this->assertEquals('pdf', $file->mime());
+    $this->assertEquals('http://example.com/test.pdf', $file->url());
+    $this->assertEquals('Test.pdf', $file->name());
+    $this->assertEquals('Test.pdf', $file->title());
+    $this->assertEquals('pdf', $file->extension());
+    $this->assertEquals('', $file->language_code());
 
     /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
     $data['language_code'] = 'fr';
     $file = FileValueObject::fromArray($data);
-    $this->assertEquals('fr', $file->getLanguageCode());
+    $this->assertEquals('fr', $file->language_code());
   }
 
 }
