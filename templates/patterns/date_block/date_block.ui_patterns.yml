@@ -1,0 +1,42 @@
+date_block:
+  label: "Date block"
+  description: "Date block component"
+  variants:
+    default:
+      label: "Default event"
+      description: "Default event"
+    ongoing:
+      label: "Ongoing event"
+      description: "Ongoing event"
+    cancelled:
+      label: "Cancelled event"
+      description: "Cancelled event"
+    past:
+      label: "Past event"
+      description: "Past event"
+  fields:
+    week_day:
+      type: "string"
+      label: "Week day"
+      description: "(optional) The day(s) of the week (ex: Tue-Sun or Monday)"
+      preview: "Monday"
+    day:
+      type: "string"
+      label: "Day"
+      description: "Day of the month. (ex: 24 or 2-4)"
+      preview: "24"
+    month:
+      type: "string"
+      label: "Month"
+      description: "(optional) Numeric or textual representation of a month."
+      preview: "9"
+    year:
+      type: "integer"
+      label: "Year"
+      description: "(optional) A full numeric representation of a year, 4 digits."
+      preview: "2018"
+    timestamp:
+      type: "integer"
+      label: "Timestamp"
+      description: "(optional) A full numeric representation of a year, 4 digits. When this is set, it will override other parameters."
+      preview: "1543583805"
