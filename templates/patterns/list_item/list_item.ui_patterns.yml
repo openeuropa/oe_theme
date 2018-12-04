@@ -46,26 +46,15 @@ list_item:
       preview:
         - "Service department"
         - "PMO"
-    week_day:
-      type: "text"
-      label: "Week day"
-      description: "A textual representation of a day, three letters"
-      preview: "Tue"
-    day:
-      type: "text"
-      label: "Day"
-      description: "Day of the month, 2 digits with leading zeros"
-      preview: "17"
-    month:
-      type: "text"
-      label: "Month"
-      description: "A short textual representation of a month, three letters"
-      preview: "Feb"
-    year:
-      type: "text"
-      label: "Year"
-      description: "A full numeric representation of a year, 4 digits"
-      preview: ""
+    date:
+      type: "DateValueObject"
+      label: "Date"
+      description: "A date value object."
+      preview:
+        day: "24"
+        month: "09"
+        year: "1981"
+        week_day: "Thursday"
     image:
       type: "array"
       label: "Primary image"
