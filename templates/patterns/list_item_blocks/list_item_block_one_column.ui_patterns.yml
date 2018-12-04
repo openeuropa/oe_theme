@@ -33,7 +33,7 @@ list_item_block_one_column:
       description: "Call to action label"
       preview: "View all"
     button_url:
-      type: "text"
-      label: "Button URL"
+      type: "Url"
+      label: "Button URL (A Drupal Url object)"
       description: "Call to action URL"
       preview: "#"

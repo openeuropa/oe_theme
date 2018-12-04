@@ -533,7 +533,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   $list_item_variant = $paragraph->get('field_oe_list_item_variant')->first()->value;
 
   $variables['variant'] = $variants[$list_item_variant] ?? 'default';
-  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl()->toString();
+  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
@@ -597,7 +597,7 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
   $link_item = $paragraph->get('field_oe_link')->first();
-  $variables['button_url'] = $link_item->getUrl()->toString();
+  $variables['button_url'] = $link_item->getUrl();
   $variables['button_label'] = $link_item->get('title')->getValue();
 }
 

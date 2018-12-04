@@ -30,9 +30,9 @@ button:
       description: "The buttons type attribute"
       preview: "submit"
     href:
-      type: "text"
+      type: "Url"
       label: "URL"
-      description: "URL to use if button needs to be a link"
+      description: "URL to use if button needs to be a link (A Drupal Url object)"
       preview: "http://www.example.com"
     icon:
       type: "text"
