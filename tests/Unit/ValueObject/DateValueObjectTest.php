@@ -27,20 +27,7 @@ class DateValueObjectTest extends UnitTestCase {
 
     foreach ($data as $key => $value) {
       $this::assertEquals($value, $date->{$key}());
-    }
-
-    $data = [
-      'day' => '24',
-      'month' => '09',
-      'year' => '1981',
-      'variant' => 'past',
-    ];
-
-    /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
-    $date = DateValueObject::fromArray($data);
-
-    foreach ($data as $key => $value) {
-      $this::assertEquals($value, $date->{$key}());
+      $this::assertEquals($value, $date->{$key});
     }
   }
 

@@ -3,7 +3,10 @@
     '#id': date_block
     '#fields':
       variant: 'default'
-      timestamp: 370137600
+      date:
+        day: "24"
+        month: "09"
+        year: "1981"
   assertions:
     count:
       'div.ecl-date-block.ecl-date-block--default': 1
@@ -17,7 +20,10 @@
     '#id': date_block
     '#fields':
       variant: 'cancelled'
-      timestamp: 370137600
+      date:
+        day: "24"
+        month: "09"
+        year: "1981"
   assertions:
     count:
       'div.ecl-date-block.ecl-date-block--cancelled': 1
@@ -31,7 +37,10 @@
     '#id': date_block
     '#fields':
       variant: 'past'
-      timestamp: 370137600
+      date:
+        day: "24"
+        month: "09"
+        year: "1981"
   assertions:
     count:
       'div.ecl-date-block.ecl-date-block--past': 1
@@ -45,7 +54,10 @@
     '#id': date_block
     '#fields':
       variant: 'ongoing'
-      timestamp: 370137600
+      date:
+        day: "24"
+        month: "09"
+        year: "1981"
   assertions:
     count:
       'div.ecl-date-block.ecl-date-block--ongoing': 1
