@@ -4,10 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
-use Drupal\Core\Language\LanguageInterface;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\Tests\UnitTestCase;
-use Drupal\file\Entity\File;
 
 /**
  * Test file value object.

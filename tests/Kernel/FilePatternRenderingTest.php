@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Symfony\Component\DomCrawler\Crawler;
@@ -32,9 +33,20 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
   /**
    * Test file pattern rendering.
    *
+   * @param array $file
+   *   A file array.
+   * @param array $assertions
+   *   Test assertions.
+   *
+   * @throws \Exception
+   *
    * @dataProvider dataProvider
    */
-  public function testFilePatternRendering($file) {
+  public function testFilePatternRendering(array $file, array $assertions) {
+    $settings = Settings::getAll();
+    $settings['file_public_base_url'] = 'http://example.com';
+    new Settings($settings);
+
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'file',
@@ -47,25 +59,20 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
     $html = $this->renderRoot($pattern);
     $crawler = new Crawler($html);
 
-    $actual = trim($crawler->filter('.ecl-file__properties')->text());
-    $this->assertEquals('(123 bytes - TXT)', $actual);
-    $actual = trim($crawler->filter('.ecl-file__title')->text());
-    $this->assertEquals('druplicon.txt', $actual);
-    $actual = trim($crawler->filter('a.ecl-file__download')->text());
-    // The screen reader sees the span sr-only text as well, not just the label.
-    $this->assertEquals('Download(123 bytes - TXT)', $actual);
+    foreach ($assertions as $selector => $value) {
+      $actual = trim($crawler->filter($selector)->text());
+      $this->assertEquals($value, $actual);
+    }
+
   }
 
   /**
    * Data provider for testFilePatternRendering.
    *
    * @return array
-   *   An array of data arrays.
-   *   The data array contains:
-   *     - File entity with URI.
-   *     - File entity with URL.
+   *   An array of test data arrays with assertations.
    */
-  public function dataProvider() {
+  public function dataProvider(): array {
     return [
       [
         [
@@ -73,7 +80,13 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
           'filename' => 'druplicon.txt',
           'filemime' => 'text/plain',
           'uri' => 'public://sample/druplicon.txt',
-          'filesize' => 123,
+          'filesize' => 321,
+        ],
+        [
+          '.ecl-file__properties' => '(321 bytes - TXT)',
+          '.ecl-file__title' => 'druplicon.txt',
+          'a[href="http://example.com/sample/druplicon.txt"]' => 'Download(321 bytes - TXT)',
+          '.ecl-file__language' => 'English',
         ],
       ],
       [
@@ -83,6 +96,12 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
           'filemime' => 'text/plain',
           'uri' => 'http://example.com/druplicon.txt',
           'filesize' => 123,
+        ],
+        [
+          '.ecl-file__properties' => '(123 bytes - TXT)',
+          '.ecl-file__title' => 'druplicon.txt',
+          'a[href="http://example.com/druplicon.txt"]' => 'Download(123 bytes - TXT)',
+          '.ecl-file__language' => 'English',
         ],
       ],
     ];
