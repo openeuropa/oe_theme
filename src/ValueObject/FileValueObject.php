@@ -90,7 +90,7 @@ class FileValueObject extends ValueObjectBase {
   public static function fromFileEntity(FileInterface $file_entity): FileValueObject {
     $file = new static(
       $file_entity->getFilename(),
-      $file_entity->getFileUri(),
+      file_create_url($file_entity->getFileUri()),
       $file_entity->getMimeType(),
       (string) $file_entity->getSize()
     );
