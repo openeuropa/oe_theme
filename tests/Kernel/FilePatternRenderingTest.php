@@ -31,22 +31,16 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
 
   /**
    * Test file pattern rendering.
+   *
+   * @dataProvider dataProvider
    */
-  public function testFilePatternRendering() {
-    $file = File::create([
-      'uid' => 1,
-      'filename' => 'druplicon.txt',
-      'filemime' => 'text/plain',
-      'uri' => 'http://example.com',
-      'filesize' => 123,
-    ]);
-
+  public function testFilePatternRendering($file) {
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'file',
       '#fields' => [
         'button_label' => 'Download',
-        'file' => FileValueObject::fromFileEntity($file),
+        'file' => FileValueObject::fromFileEntity(File::create($file)),
       ],
     ];
 
@@ -60,6 +54,38 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
     $actual = trim($crawler->filter('a.ecl-file__download')->text());
     // The screen reader sees the span sr-only text as well, not just the label.
     $this->assertEquals('Download(123 bytes - TXT)', $actual);
+  }
+
+  /**
+   * Data provider for testFilePatternRendering.
+   *
+   * @return array
+   *   An array of data arrays.
+   *   The data array contains:
+   *     - File entity with URI.
+   *     - File entity with URL.
+   */
+  public function dataProvider() {
+    return [
+      [
+        [
+          'uid' => 1,
+          'filename' => 'druplicon.txt',
+          'filemime' => 'text/plain',
+          'uri' => 'public://sample/druplicon.txt',
+          'filesize' => 123,
+        ],
+      ],
+      [
+        [
+          'uid' => 1,
+          'filename' => 'druplicon.txt',
+          'filemime' => 'text/plain',
+          'uri' => 'http://example.com/druplicon.txt',
+          'filesize' => 123,
+        ],
+      ],
+    ];
   }
 
 }
