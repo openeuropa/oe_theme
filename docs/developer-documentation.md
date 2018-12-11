@@ -85,6 +85,20 @@ Check the [UI Patterns documentation][2] for more information about how to use p
 
 Below a list of available value object along with its factory methods:
 
+#### `DateValueObject`
+
+Used in the following patterns:
+
+- [`date_block`](../templates/patterns/date_block/date_block.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `DateValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `day`: The date day.
+  - `month`: The date month.
+  - `year`: The date year.
+  - `week_day`: (optional) The day of the week (Monday)
+
 #### `FileValueObject`
 
 Used in the following patterns:
