@@ -3,9 +3,9 @@ file_video:
   description: "Displays the file video."
   fields:
     src:
-      type: "text"
+      type: "Url"
       label: "Source"
-      description: "Source of the video."
+      description: "Source of the video (A Drupal Url object)"
       preview: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
     caption:
       type: "text"

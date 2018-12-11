@@ -25,9 +25,9 @@ list_item:
       description: "Thumbnail list item, contains a secondary image, metadata information and a linked title."
   fields:
     url:
-      type: "text"
+      type: "Url"
       label: "URL"
-      description: "List item link URL"
+      description: "List item link URL (A Drupal Url object)"
       preview: "#"
     title:
       type: "text"
