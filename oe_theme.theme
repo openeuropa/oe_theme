@@ -688,7 +688,7 @@ function oe_theme_preprocess_pattern_file_translation__preview(array &$variables
 /**
  * Implements hook_preprocess_pattern_date_block().
  */
-function oe_theme_preprocess_pattern_list_item(array &$variables): void {
+function oe_theme_preprocess_pattern_list_item__preview(array &$variables): void {
   if ($variables['variant'] === 'date') {
     $variables['date'] = DateValueObject::fromArray($variables['date']);
   }
@@ -697,6 +697,6 @@ function oe_theme_preprocess_pattern_list_item(array &$variables): void {
 /**
  * Implements hook_preprocess_pattern_date_block().
  */
-function oe_theme_preprocess_pattern_date_block(array &$variables): void {
+function oe_theme_preprocess_pattern_date_block__preview(array &$variables): void {
   $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
