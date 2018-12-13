@@ -1,8 +1,8 @@
 - array:
-    '#type': pattern
+    '#type': pattern_preview
     '#id': date_block
+    '#variant': default
     '#fields':
-      variant: 'default'
       date:
         day: "24"
         month: "09"
@@ -16,10 +16,10 @@
       'span.ecl-date-block__month': "09"
       'span.ecl-date-block__year': "1981"
 - array:
-    '#type': pattern
+    '#type': pattern_preview
     '#id': date_block
+    '#variant': cancelled
     '#fields':
-      variant: 'cancelled'
       date:
         day: "24"
         month: "09"
@@ -33,10 +33,10 @@
       'span.ecl-date-block__month': "09"
       'span.ecl-date-block__year': "1981"
 - array:
-    '#type': pattern
+    '#type': pattern_preview
     '#id': date_block
+    '#variant': past
     '#fields':
-      variant: 'past'
       date:
         day: "24"
         month: "09"
@@ -50,10 +50,10 @@
       'span.ecl-date-block__month': "09"
       'span.ecl-date-block__year': "1981"
 - array:
-    '#type': pattern
+    '#type': pattern_preview
     '#id': date_block
+    '#variant': ongoing
     '#fields':
-      variant: 'ongoing'
       date:
         day: "24"
         month: "09"
