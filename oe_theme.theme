@@ -556,8 +556,8 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   // Prepare the date fields if date is available.
   if (!$paragraph->get('field_oe_date')->isEmpty()) {
-    $variables['date'] = DateValueObject::fromDateTimeComputed(
-      $paragraph->get('field_oe_date')->first()->get('date')
+    $variables['date'] = DateValueObject::fromTimestamp(
+      $paragraph->get('field_oe_date')->first()->get('date')->getValue()->getTimestamp()
     )->toArray();
 
     // Add the timezone context to the cache.

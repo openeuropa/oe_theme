@@ -6,31 +6,46 @@ namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\datetime\DateTimeComputed;
 
 /**
  * Handle information about a date.
- *
- * @property mixed $day
- * @property mixed $month
- * @property mixed $year
- * @property mixed $week_day
- * @property mixed $monthname
- *
- * @method day()
- * @method month()
- * @method year()
- * @method week_day()
- * @method monthname()
  */
 class DateValueObject extends ValueObjectBase implements DateValueObjectInterface {
 
   /**
-   * The storage variable.
+   * The day property.
    *
-   * @var array
+   * @var string|int
    */
-  protected $storage;
+  private $day;
+
+  /**
+   * The month property.
+   *
+   * @var string|int
+   */
+  private $month;
+
+  /**
+   * The year property.
+   *
+   * @var string|int
+   */
+  private $year;
+
+  /**
+   * The weekDay property.
+   *
+   * @var string|int
+   */
+  private $weekDay;
+
+  /**
+   * The monthname property.
+   *
+   * @var string|int
+   */
+  private $monthname;
 
   /**
    * DateValueObject constructor.
@@ -41,22 +56,21 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   The date month.
    * @param string $year
    *   The date year.
-   * @param string|int|null $week_day
+   * @param string|int|null $weekDay
    *   The day of the week.
    */
-  private function __construct(string $day, string $month, string $year, string $week_day = NULL) {
-    $this->storage = compact([
-      'day',
-      'month',
-      'year',
-    ]);
+  private function __construct(string $day, string $month, string $year, string $weekDay = NULL) {
+    $this->day = $day;
+    $this->month = $month;
+    $this->year = $year;
+    $this->weekDay = $weekDay;
 
     $date = new DateTimePlus(implode('-', [$year, $month, $day]));
 
-    $this->storage['week_day'] = empty($week_day) ?
+    $this->weekDay = empty($weekDay) ?
       $date->format('l') :
-      $week_day;
-    $this->storage['monthname'] = $date->format('F');
+      $weekDay;
+    $this->monthname = $date->format('F');
   }
 
   /**
@@ -74,26 +88,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromDateTimeComputed(DateTimeComputed $dateTimeComputed): DateValueObjectInterface {
-    return self::fromDrupalDateTime($dateTimeComputed->getValue());
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function fromDrupalDateTime(DrupalDateTime $drupalDateTime): DateValueObjectInterface {
-    $parameters = explode(
-      '-',
-      $drupalDateTime->format('d-m-Y')
-    );
-
-    return new static(...$parameters);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function fromArray(array $parameters = []): DateValueObjectInterface {
+  public static function fromArray(array $parameters = []): ValueObjectInterface {
     return new static(...array_values($parameters));
   }
 
@@ -101,45 +96,13 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    * {@inheritdoc}
    */
   public function toArray(): array {
-    return $this->storage;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __call($name, $arguments = []) {
-    if (isset($this->storage[$name])) {
-      return $this->storage[$name];
-    }
-
-    // @todo: Should we return an exception or NULL ?
-    throw new \RuntimeException(sprintf('Method (%s) does not exists.', $name));
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __get($name) {
-    if (isset($this->storage[$name])) {
-      return $this->storage[$name];
-    }
-
-    // @todo: Should we return an exception or NULL ?
-    throw new \RuntimeException(sprintf('Property (%s) does not exists.', $name));
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __set($name, $value) {
-    throw new \BadMethodCallException('Dynamic properties has been disabled. Use the class constructor for that.');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function __isset($name) {
-    return isset($this->storage[$name]);
+    return [
+      'day' => $this->day,
+      'month' => $this->month,
+      'year' => $this->year,
+      'week_day' => $this->weekDay,
+      'monthname' => $this->monthname,
+    ];
   }
 
 }

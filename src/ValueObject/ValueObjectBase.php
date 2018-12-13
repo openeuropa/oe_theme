@@ -16,10 +16,6 @@ abstract class ValueObjectBase implements ValueObjectInterface {
    * {@inheritdoc}
    */
   public function offsetExists($offset) {
-    // @todo
-    // array_key_exists will tell if a key exists in an array, whereas isset
-    // will only return true if the key/variable exists *and* is not null.
-    // Is this the intended behavior ?
     return array_key_exists($offset, $this->toArray());
   }
 
@@ -27,7 +23,6 @@ abstract class ValueObjectBase implements ValueObjectInterface {
    * {@inheritdoc}
    */
   public function offsetGet($offset) {
-    // @todo: We should use a single storage variable.
     return $this->toArray()[$offset];
   }
 
@@ -36,10 +31,6 @@ abstract class ValueObjectBase implements ValueObjectInterface {
    */
   public function offsetSet($offset, $value) {
     // Does nothing as a value object array access is meant to be read-only.
-    // @todo
-    // If this object is meant to be immutable, then we need to refactor the
-    // classes that are extending this.
-    // This means that we cannot create methods like: setTitle(), etc etc.
   }
 
   /**
@@ -47,10 +38,6 @@ abstract class ValueObjectBase implements ValueObjectInterface {
    */
   public function offsetUnset($offset) {
     // Does nothing as a value object array access is meant to be read-only.
-    // @todo
-    // If this object is meant to be immutable, then we need to refactor the
-    // classes that are extending this.
-    // This means that we cannot create methods like: clearTitle().
   }
 
 }
