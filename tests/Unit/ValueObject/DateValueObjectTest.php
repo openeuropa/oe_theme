@@ -25,10 +25,11 @@ class DateValueObjectTest extends UnitTestCase {
     /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
     $date = DateValueObject::fromArray($data);
 
-    foreach ($data as $key => $value) {
-      $this::assertEquals($value, $date->{$key}());
-      $this::assertEquals($value, $date->{$key});
-    }
+    $this->assertEquals('24', $date->getDay());
+    $this->assertEquals('Thursday', $date->getWeekDay());
+    $this->assertEquals('09', $date->getMonth());
+    $this->assertEquals('September', $date->getMonthName());
+    $this->assertEquals('1981', $date->getYear());
   }
 
 }

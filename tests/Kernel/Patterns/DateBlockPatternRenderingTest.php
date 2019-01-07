@@ -52,7 +52,7 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
    *
    * @throws \Exception
    *
-   * @dataProvider fromArrayDataProvider
+   * @dataProvider fromTimestampDataProvider
    */
   public function testFromTimestamp(string $variant, int $date, array $assertions) {
     $pattern = [

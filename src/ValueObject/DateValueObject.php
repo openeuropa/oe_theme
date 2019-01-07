@@ -15,35 +15,35 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * The day property.
    *
-   * @var string|int
+   * @var string
    */
   private $day;
 
   /**
    * The month property.
    *
-   * @var string|int
+   * @var string
    */
   private $month;
 
   /**
    * The year property.
    *
-   * @var string|int
+   * @var string
    */
   private $year;
 
   /**
    * The weekDay property.
    *
-   * @var string|int
+   * @var string
    */
   private $weekDay;
 
   /**
-   * The monthname property.
+   * The month name property.
    *
-   * @var string|int
+   * @var string
    */
   private $monthName;
 
@@ -103,6 +103,56 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
       'week_day' => $this->weekDay,
       'monthname' => $this->monthName,
     ];
+  }
+
+  /**
+   * Get day.
+   *
+   * @return string
+   *   Day as a number.
+   */
+  public function getDay(): string {
+    return (string) $this->day;
+  }
+
+  /**
+   * Get month.
+   *
+   * @return string
+   *   Month as a number.
+   */
+  public function getMonth(): string {
+    return (string) $this->month;
+  }
+
+  /**
+   * Get year.
+   *
+   * @return string
+   *   Year.
+   */
+  public function getYear(): string {
+    return (string) $this->year;
+  }
+
+  /**
+   * Get week day.
+   *
+   * @return string
+   *   Week day name.
+   */
+  public function getWeekDay(): string {
+    return $this->weekDay;
+  }
+
+  /**
+   * Get month name.
+   *
+   * @return string
+   *   Month name.
+   */
+  public function getMonthName(): string {
+    return $this->monthName;
   }
 
 }

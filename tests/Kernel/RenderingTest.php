@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that rendering of elements follows the theme implementation.
