@@ -112,8 +112,6 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
    * @param array $assertions
    *   Test assertions.
    *
-   * @throws \Exception
-   *
    * @dataProvider renderingDataProvider
    */
   public function assertRendering(string $html, array $assertions): void {

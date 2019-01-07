@@ -8,7 +8,6 @@ use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test file pattern rendering.
@@ -58,13 +57,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
     ];
 
     $html = $this->renderRoot($pattern);
-    $crawler = new Crawler($html);
-
-    foreach ($assertions as $selector => $value) {
-      $actual = trim($crawler->filter($selector)->text());
-      $this->assertEquals($value, $actual);
-    }
-
+    $this->assertRendering($html, $assertions);
   }
 
   /**
@@ -76,33 +69,37 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
   public function dataProvider(): array {
     return [
       [
-        [
+        'file' => [
           'uid' => 1,
           'filename' => 'druplicon.txt',
           'filemime' => 'text/plain',
           'uri' => 'public://sample/druplicon.txt',
           'filesize' => 321,
         ],
-        [
-          '.ecl-file__properties' => '(321 bytes - TXT)',
-          '.ecl-file__title' => 'druplicon.txt',
-          'a[href="http://example.com/sample/druplicon.txt"]' => 'Download(321 bytes - TXT)',
-          '.ecl-file__language' => 'English',
+        'assertions' => [
+          'equals' => [
+            '.ecl-file__properties' => '(321 bytes - TXT)',
+            '.ecl-file__title' => 'druplicon.txt',
+            'a[href="http://example.com/sample/druplicon.txt"]' => 'Download(321 bytes - TXT)',
+            '.ecl-file__language' => 'English',
+          ],
         ],
       ],
       [
-        [
+        'file' => [
           'uid' => 1,
           'filename' => 'druplicon.txt',
           'filemime' => 'text/plain',
           'uri' => 'http://example.com/druplicon.txt',
           'filesize' => 123,
         ],
-        [
-          '.ecl-file__properties' => '(123 bytes - TXT)',
-          '.ecl-file__title' => 'druplicon.txt',
-          'a[href="http://example.com/druplicon.txt"]' => 'Download(123 bytes - TXT)',
-          '.ecl-file__language' => 'English',
+        'assertions' => [
+          'equals' => [
+            '.ecl-file__properties' => '(123 bytes - TXT)',
+            '.ecl-file__title' => 'druplicon.txt',
+            'a[href="http://example.com/druplicon.txt"]' => 'Download(123 bytes - TXT)',
+            '.ecl-file__language' => 'English',
+          ],
         ],
       ],
     ];
