@@ -558,7 +558,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   if (!$paragraph->get('field_oe_date')->isEmpty()) {
     $variables['date'] = DateValueObject::fromTimestamp(
       $paragraph->get('field_oe_date')->first()->get('date')->getValue()->getTimestamp()
-    )->toArray();
+    );
 
     // Add the timezone context to the cache.
     // @see \Drupal\datetime\Plugin\Field\FieldFormatter\DateTimeFormatterBase::buildDate()
@@ -688,10 +688,8 @@ function oe_theme_preprocess_pattern_file_translation__preview(array &$variables
 /**
  * Implements hook_preprocess_pattern_date_block().
  */
-function oe_theme_preprocess_pattern_list_item__preview(array &$variables): void {
-  if ($variables['variant'] === 'date') {
-    $variables['date'] = DateValueObject::fromArray($variables['date']);
-  }
+function oe_theme_preprocess_pattern_list_item__variant_date__preview(array &$variables): void {
+  $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
 
 /**

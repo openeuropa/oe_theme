@@ -16,14 +16,14 @@ abstract class ValueObjectBase implements ValueObjectInterface {
    * {@inheritdoc}
    */
   public function offsetExists($offset) {
-    return array_key_exists($offset, $this->toArray());
+    return array_key_exists($offset, $this->getArray());
   }
 
   /**
    * {@inheritdoc}
    */
   public function offsetGet($offset) {
-    return $this->toArray()[$offset];
+    return $this->getArray()[$offset];
   }
 
   /**

@@ -10,12 +10,12 @@ namespace Drupal\oe_theme\ValueObject;
 interface ValueObjectInterface extends \ArrayAccess {
 
   /**
-   * Gets value object as an array.
+   * Get value object as an array.
    *
    * @return array
    *   An array of property values, keyed by property name.
    */
-  public function toArray(): array;
+  public function getArray(): array;
 
   /**
    * Build and return a value object from a given array.

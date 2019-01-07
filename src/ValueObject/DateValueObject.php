@@ -45,7 +45,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *
    * @var string|int
    */
-  private $monthname;
+  private $monthName;
 
   /**
    * DateValueObject constructor.
@@ -70,7 +70,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
     $this->weekDay = empty($weekDay) ?
       $date->format('l') :
       $weekDay;
-    $this->monthname = $date->format('F');
+    $this->monthName = $date->format('F');
   }
 
   /**
@@ -95,13 +95,13 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public function toArray(): array {
+  public function getArray(): array {
     return [
       'day' => $this->day,
       'month' => $this->month,
       'year' => $this->year,
       'week_day' => $this->weekDay,
-      'monthname' => $this->monthname,
+      'monthname' => $this->monthName,
     ];
   }
 
