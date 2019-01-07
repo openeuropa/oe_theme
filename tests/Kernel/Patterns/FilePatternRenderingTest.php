@@ -2,11 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
 use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\oe_theme\ValueObject\FileValueObject;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
