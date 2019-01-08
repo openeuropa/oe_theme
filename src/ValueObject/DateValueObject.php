@@ -89,7 +89,11 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    * {@inheritdoc}
    */
   public static function fromArray(array $parameters = []): ValueObjectInterface {
-    return new static(...array_values($parameters));
+    return new static(
+      $parameters['day'],
+      $parameters['month'],
+      $parameters['year']
+    );
   }
 
   /**
