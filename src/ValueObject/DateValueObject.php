@@ -116,7 +116,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Day as a number.
    */
   public function getDay(): string {
-    return (string) $this->day;
+    return $this->day;
   }
 
   /**
@@ -126,7 +126,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Month as a number.
    */
   public function getMonth(): string {
-    return (string) $this->month;
+    return $this->month;
   }
 
   /**
@@ -136,7 +136,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Year.
    */
   public function getYear(): string {
-    return (string) $this->year;
+    return $this->year;
   }
 
   /**
