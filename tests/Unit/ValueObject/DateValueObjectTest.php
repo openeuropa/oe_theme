@@ -32,4 +32,18 @@ class DateValueObjectTest extends UnitTestCase {
     $this->assertEquals('1981', $date->getYear());
   }
 
+  /**
+   * Test constructing a date value object from a timestamp.
+   */
+  public function testFromTimestamp() {
+    /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
+    $date = DateValueObject::fromTimestamp(370137600);
+
+    $this->assertEquals('24', $date->getDay());
+    $this->assertEquals('Thursday', $date->getWeekDay());
+    $this->assertEquals('09', $date->getMonth());
+    $this->assertEquals('September', $date->getMonthName());
+    $this->assertEquals('1981', $date->getYear());
+  }
+
 }
