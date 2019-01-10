@@ -116,50 +116,35 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   }
 
   /**
-   * Get day.
-   *
-   * @return string
-   *   Day as a number.
+   * {@inheritdoc}
    */
   public function getDay(): string {
     return $this->day;
   }
 
   /**
-   * Get month.
-   *
-   * @return string
-   *   Month as a number.
+   * {@inheritdoc}
    */
   public function getMonth(): string {
     return $this->month;
   }
 
   /**
-   * Get year.
-   *
-   * @return string
-   *   Year.
+   * {@inheritdoc}
    */
   public function getYear(): string {
     return $this->year;
   }
 
   /**
-   * Get week day.
-   *
-   * @return string
-   *   Week day name.
+   * {@inheritdoc}
    */
   public function getWeekDay(): string {
     return $this->weekDay;
   }
 
   /**
-   * Get month name.
-   *
-   * @return string
-   *   Month name.
+   * {@inheritdoc}
    */
   public function getMonthName(): string {
     return $this->monthName;
