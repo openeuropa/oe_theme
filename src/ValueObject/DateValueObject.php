@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\Component\Datetime\DateTimePlus;
-use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Handle information about a date.
@@ -76,11 +75,11 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromTimestamp(int $timestamp, string $timezone = null): DateValueObjectInterface {
+  public static function fromTimestamp(int $timestamp, string $timezone = NUL): DateValueObjectInterface {
     $dt = new \DateTime();
     $dt->setTimestamp($timestamp);
 
-    if ($timezone !== null) {
+    if ($timezone !== NULL) {
       $dt->setTimezone(new \DateTimeZone());
     }
 
