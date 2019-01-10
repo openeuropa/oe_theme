@@ -15,9 +15,12 @@ interface DateValueObjectInterface extends ValueObjectInterface {
    * @param int $timestamp
    *   A timestamp.
    *
+   * @param string|null $timezone
+   *   The timezone.
+   *
    * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
    *   A new DateValueObject.
    */
-  public static function fromTimestamp(int $timestamp): DateValueObjectInterface;
+  public static function fromTimestamp(int $timestamp, string $timezone = null): DateValueObjectInterface;
 
 }

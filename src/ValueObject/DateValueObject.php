@@ -76,13 +76,19 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromTimestamp(int $timestamp): DateValueObjectInterface {
-    $parameters = explode(
-      '-',
-      DrupalDateTime::createFromTimestamp($timestamp)->format('d-m-Y')
-    );
+  public static function fromTimestamp(int $timestamp, string $timezone = null): DateValueObjectInterface {
+    $dt = new \DateTime();
+    $dt->setTimestamp($timestamp);
 
-    return new static(...$parameters);
+    if ($timezone !== null) {
+      $dt->setTimezone(new \DateTimeZone());
+    }
+
+    return new static(...explode(
+        '-',
+        $dt->format('d-m-Y')
+      )
+    );
   }
 
   /**
