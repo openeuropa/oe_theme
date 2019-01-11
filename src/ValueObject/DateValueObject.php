@@ -75,7 +75,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromTimestamp(int $timestamp, string $timezone = NUL): DateValueObjectInterface {
+  public static function fromTimestamp(int $timestamp, string $timezone = NULL): DateValueObjectInterface {
     $dt = new \DateTime();
     $dt->setTimestamp($timestamp);
 
