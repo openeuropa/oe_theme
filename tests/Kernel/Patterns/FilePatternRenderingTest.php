@@ -67,42 +67,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertations.
    */
   public function dataProvider(): array {
-    return [
-      [
-        'file' => [
-          'uid' => 1,
-          'filename' => 'druplicon.txt',
-          'filemime' => 'text/plain',
-          'uri' => 'public://sample/druplicon.txt',
-          'filesize' => 321,
-        ],
-        'assertions' => [
-          'equals' => [
-            '.ecl-file__properties' => '(321 bytes - TXT)',
-            '.ecl-file__title' => 'druplicon.txt',
-            'a[href="http://example.com/sample/druplicon.txt"]' => 'Download(321 bytes - TXT)',
-            '.ecl-file__language' => 'English',
-          ],
-        ],
-      ],
-      [
-        'file' => [
-          'uid' => 1,
-          'filename' => 'druplicon.txt',
-          'filemime' => 'text/plain',
-          'uri' => 'http://example.com/druplicon.txt',
-          'filesize' => 123,
-        ],
-        'assertions' => [
-          'equals' => [
-            '.ecl-file__properties' => '(123 bytes - TXT)',
-            '.ecl-file__title' => 'druplicon.txt',
-            'a[href="http://example.com/druplicon.txt"]' => 'Download(123 bytes - TXT)',
-            '.ecl-file__language' => 'English',
-          ],
-        ],
-      ],
-    ];
+    return $this->getFixtureContent('patterns/file_pattern_rendering.yml');
   }
 
 }

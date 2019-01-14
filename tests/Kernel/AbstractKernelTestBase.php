@@ -55,7 +55,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
    *   A set of test data.
    */
   protected function getFixtureContent(string $filepath): array {
-    return Yaml::parse(file_get_contents(__DIR__ . "/../fixtures/{$filepath}"));
+    return Yaml::parse(file_get_contents(__DIR__ . "/fixtures/{$filepath}"));
   }
 
   /**
