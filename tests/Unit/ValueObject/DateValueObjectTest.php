@@ -15,7 +15,7 @@ class DateValueObjectTest extends AbstractUnitTestBase {
   /**
    * Test constructing a date value object from an array.
    *
-   * @dataProvider fromArrayDataProvider
+   * @dataProvider dataProvider
    */
   public function testFromArray(array $data, array $expected) {
     /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
@@ -29,12 +29,28 @@ class DateValueObjectTest extends AbstractUnitTestBase {
   }
 
   /**
-   * Data provider for DateValueObjectTest::testFromArray().
+   * Test constructing a date value object from timestamps.
+   *
+   * @dataProvider dataProvider
+   */
+  public function testFromTimestamp(array $data, array $expected) {
+    /** @var \Drupal\oe_theme\ValueObject\DateValueObject $date */
+    $date = DateValueObject::fromTimestamp($data['start'], $data['end'], $data['timezone']);
+
+    $this->assertEquals($expected['day'], $date->getDay());
+    $this->assertEquals($expected['week_day'], $date->getWeekDay());
+    $this->assertEquals($expected['month'], $date->getMonth());
+    $this->assertEquals($expected['month_name'], $date->getMonthName());
+    $this->assertEquals($expected['year'], $date->getYear());
+  }
+
+  /**
+   * Data provider for testFromArray() and testFromTimestamp().
    *
    * @return array
    *   Test data.
    */
-  public function fromArrayDataProvider() {
+  public function dataProvider() {
     return $this->getFixtureContent('value_object/date_value_object.yml');
   }
 
