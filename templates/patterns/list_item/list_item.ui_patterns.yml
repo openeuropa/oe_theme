@@ -51,10 +51,9 @@ list_item:
       label: "Date"
       description: "A date value object."
       preview:
-        day: "24"
-        month: "09"
-        year: "1981"
-        week_day: "Thursday"
+        start: 1545732000
+        end: 1546250400
+        timezone: "Europe/Brussels"
     image:
       type: "array"
       label: "Primary image"

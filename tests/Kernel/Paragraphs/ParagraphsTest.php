@@ -308,9 +308,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertEquals('Thursday', trim($crawler->filter('.ecl-date-block__week-day')->text()));
+    $this->assertEquals('Thu', trim($crawler->filter('.ecl-date-block__week-day')->text()));
     $this->assertEquals('24', trim($crawler->filter('.ecl-date-block__day')->text()));
-    $this->assertEquals('09', trim($crawler->filter('.ecl-date-block__month')->text()));
+    $this->assertEquals('Sep', trim($crawler->filter('.ecl-date-block__month')->text()));
     $this->assertEquals('1981', trim($crawler->filter('.ecl-date-block__year')->text()));
 
     // No images should be rendered in this variant.

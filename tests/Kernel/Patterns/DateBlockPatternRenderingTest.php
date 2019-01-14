@@ -41,34 +41,6 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
   }
 
   /**
-   * Test date block pattern rendering.
-   *
-   * @param string $variant
-   *   Date block variant.
-   * @param int $date
-   *   Date object passed as a UNIX timestamp.
-   * @param array $assertions
-   *   Test assertions.
-   *
-   * @throws \Exception
-   *
-   * @dataProvider fromTimestampDataProvider
-   */
-  public function testFromTimestamp(string $variant, int $date, array $assertions) {
-    $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'date_block',
-      '#variant' => $variant,
-      '#fields' => [
-        'date' => DateValueObject::fromTimestamp($date),
-      ],
-    ];
-
-    $html = $this->renderRoot($pattern);
-    $this->assertRendering($html, $assertions);
-  }
-
-  /**
    * Data provider for testFromArray.
    *
    * @return array
@@ -80,9 +52,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
       [
         'variant' => 'default',
         'date' => [
-          'day' => '24',
-          'month' => '09',
-          'year' => '1981',
+          'start' => 370173600,
+          'end' => NULL,
+          'timezone' => 'Europe/Brussels',
         ],
         'assertions' => [
           'count' => [
@@ -91,9 +63,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
             'div.ecl-date-block.ecl-date-block--past' => 0,
           ],
           'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
+            'span.ecl-date-block__week-day' => 'Thu',
             'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
+            'span.ecl-date-block__month' => 'Sep',
             'span.ecl-date-block__year' => '1981',
           ],
         ],
@@ -103,9 +75,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
       [
         'variant' => 'cancelled',
         'date' => [
-          'day' => '24',
-          'month' => '09',
-          'year' => '1981',
+          'start' => 370173600,
+          'end' => NULL,
+          'timezone' => 'Europe/Brussels',
         ],
         'assertions' => [
           'count' => [
@@ -114,9 +86,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
             'div.ecl-date-block.ecl-date-block--past' => 0,
           ],
           'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
+            'span.ecl-date-block__week-day' => 'Thu',
             'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
+            'span.ecl-date-block__month' => 'Sep',
             'span.ecl-date-block__year' => '1981',
           ],
         ],
@@ -126,9 +98,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
       [
         'variant' => 'past',
         'date' => [
-          'day' => '24',
-          'month' => '09',
-          'year' => '1981',
+          'start' => 370173600,
+          'end' => NULL,
+          'timezone' => 'Europe/Brussels',
         ],
         'assertions' => [
           'count' => [
@@ -137,76 +109,9 @@ class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
             'div.ecl-date-block.ecl-date-block--past' => 1,
           ],
           'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
+            'span.ecl-date-block__week-day' => 'Thu',
             'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
-            'span.ecl-date-block__year' => '1981',
-          ],
-        ],
-      ],
-    ];
-  }
-
-  /**
-   * Data provider for testFromTimestamp.
-   *
-   * @return array
-   *   An array of test data arrays with assertions.
-   */
-  public function fromTimestampDataProvider(): array {
-    return [
-      // Test "default" variant.
-      [
-        'variant' => 'default',
-        'date' => 370173600,
-        'assertions' => [
-          'count' => [
-            'div.ecl-date-block.ecl-date-block--default' => 1,
-            'div.ecl-date-block.ecl-date-block--cancelled' => 0,
-            'div.ecl-date-block.ecl-date-block--past' => 0,
-          ],
-          'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
-            'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
-            'span.ecl-date-block__year' => '1981',
-          ],
-        ],
-      ],
-
-      // Test "cancelled" variant.
-      [
-        'variant' => 'cancelled',
-        'date' => 370173600,
-        'assertions' => [
-          'count' => [
-            'div.ecl-date-block.ecl-date-block--default' => 0,
-            'div.ecl-date-block.ecl-date-block--cancelled' => 1,
-            'div.ecl-date-block.ecl-date-block--past' => 0,
-          ],
-          'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
-            'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
-            'span.ecl-date-block__year' => '1981',
-          ],
-        ],
-      ],
-
-      // Test "past" variant.
-      [
-        'variant' => 'past',
-        'date' => 370173600,
-        'assertions' => [
-          'count' => [
-            'div.ecl-date-block.ecl-date-block--default' => 0,
-            'div.ecl-date-block.ecl-date-block--cancelled' => 0,
-            'div.ecl-date-block.ecl-date-block--past' => 1,
-          ],
-          'equals' => [
-            'span.ecl-date-block__week-day' => 'Thursday',
-            'span.ecl-date-block__day' => '24',
-            'span.ecl-date-block__month' => '09',
+            'span.ecl-date-block__month' => 'Sep',
             'span.ecl-date-block__year' => '1981',
           ],
         ],

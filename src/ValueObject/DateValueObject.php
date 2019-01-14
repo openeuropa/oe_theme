@@ -7,87 +7,40 @@ namespace Drupal\oe_theme\ValueObject;
 use Drupal\Component\Datetime\DateTimePlus;
 
 /**
- * Handle information about a date.
+ * Handle information about a date/date interval, as expected by the ECL.
  */
 class DateValueObject extends ValueObjectBase implements DateValueObjectInterface {
 
   /**
-   * The day property.
+   * Start date.
    *
-   * @var string
+   * @var \Drupal\Component\Datetime\DateTimePlus
    */
-  private $day;
+  protected $start;
 
   /**
-   * The month property.
+   * End date.
    *
-   * @var string
+   * @var \Drupal\Component\Datetime\DateTimePlus
    */
-  private $month;
-
-  /**
-   * The year property.
-   *
-   * @var string
-   */
-  private $year;
-
-  /**
-   * The weekDay property.
-   *
-   * @var string
-   */
-  private $weekDay;
-
-  /**
-   * The month name property.
-   *
-   * @var string
-   */
-  private $monthName;
+  protected $end;
 
   /**
    * DateValueObject constructor.
    *
-   * @param string $day
-   *   The date day.
-   * @param string $month
-   *   The date month.
-   * @param string $year
-   *   The date year.
-   * @param string|int|null $weekDay
-   *   The day of the week.
+   * @param int $start
+   *   Start date as UNIX timestamp.
+   * @param int $end
+   *   End date as UNIX timestamp.
+   * @param string|null $timezone
+   *   Timezone string, e.g. "Europe/Brussels".
    */
-  private function __construct(string $day, string $month, string $year, string $weekDay = NULL) {
-    $this->day = $day;
-    $this->month = $month;
-    $this->year = $year;
-    $this->weekDay = $weekDay;
+  private function __construct(int $start, int $end = NULL, string $timezone = NULL) {
+    $this->start = DateTimePlus::createFromTimestamp($start, $timezone);
 
-    $date = new DateTimePlus(implode('-', [$year, $month, $day]));
-
-    $this->weekDay = empty($weekDay) ?
-      $date->format('l') :
-      $weekDay;
-    $this->monthName = $date->format('F');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function fromTimestamp(int $timestamp, string $timezone = NULL): DateValueObjectInterface {
-    $dt = new \DateTime();
-    $dt->setTimestamp($timestamp);
-
-    if ($timezone !== NULL) {
-      $dt->setTimezone(new \DateTimeZone());
+    if ($end !== NULL) {
+      $this->end = DateTimePlus::createFromTimestamp($end, $timezone);
     }
-
-    return new static(...explode(
-        '-',
-        $dt->format('d-m-Y')
-      )
-    );
   }
 
   /**
@@ -95,10 +48,17 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    */
   public static function fromArray(array $parameters = []): ValueObjectInterface {
     return new static(
-      $parameters['day'],
-      $parameters['month'],
-      $parameters['year']
+      $parameters['start'],
+      $parameters['end'] ?? NULL,
+      $parameters['timezone'] ?? NULL
     );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function fromTimestamp(int $start, int $end = NULL, string $timezone = NULL): DateValueObjectInterface {
+    return new static($start, $end, $timezone);
   }
 
   /**
@@ -106,11 +66,11 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    */
   public function getArray(): array {
     return [
-      'day' => $this->day,
-      'month' => $this->month,
-      'year' => $this->year,
-      'week_day' => $this->weekDay,
-      'monthname' => $this->monthName,
+      'day' => $this->getDay(),
+      'month' => $this->getMonth(),
+      'year' => $this->getYear(),
+      'week_day' => $this->getWeekDay(),
+      'month_name' => $this->getMonthName(),
     ];
   }
 
@@ -118,35 +78,63 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    * {@inheritdoc}
    */
   public function getDay(): string {
-    return $this->day;
+    return $this->getDateInterval('d', 'm');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getMonth(): string {
-    return $this->month;
+    return $this->getDateInterval('m', 'Y');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getYear(): string {
-    return $this->year;
+    return $this->getDateInterval('Y', 'Y');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getWeekDay(): string {
-    return $this->weekDay;
+    return $this->getDateInterval('D', 'm');
   }
 
   /**
    * {@inheritdoc}
    */
   public function getMonthName(): string {
-    return $this->monthName;
+    return $this->getDateInterval('M', 'Y');
+  }
+
+  /**
+   * Get date interval as expected by the ECL.
+   *
+   * @param string $format
+   *   Format to be used to print the interval.
+   * @param string $extra
+   *   Run extra check to make sure we should not print an interval.
+   *   This is useful, for example, in case of same days on different months
+   *   which should still be printed as an interval.
+   *
+   * @return string
+   *   Formatted interval.
+   */
+  protected function getDateInterval(string $format, string $extra): string {
+    $start = $this->start->format($format);
+
+    if (!empty($this->end) &&
+      (
+        $this->start->format($format) !== $this->end->format($format)
+        || $this->start->format($extra) !== $this->end->format($extra)
+      )
+      ) {
+      return $start . '-' . $this->end->format($format);
+    }
+
+    return $start;
   }
 
 }

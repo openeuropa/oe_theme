@@ -94,10 +94,14 @@ Used in the following patterns:
 Provides the following factory methods:
 
 - `DateValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
-  - `day`: The date day.
-  - `month`: The date month.
-  - `year`: The date year.
-  - `week_day`: (optional) The day of the week (Monday)
+  - `start`: Start date as UNIX timestamp.
+  - `end`: End date as UNIX timestamp.
+  - `timezone`: Timezone string, e.g. "Europe/Brussels".
+
+- `DateValueObject::fromTimestamp(int $start, int $end = NULL, string $timezone = NULL)`:
+  - `$start`: Start date as UNIX timestamp.
+  - `$end`: End date as UNIX timestamp.
+  - `$timezone`: Timezone string, e.g. "Europe/Brussels".
 
 #### `FileValueObject`
 

@@ -20,6 +20,6 @@ date_block:
       label: "Date"
       description: "A date value object."
       preview:
-        day: "24"
-        month: "09"
-        year: "1981"
+        start: 370173600
+        end: ~
+        timezone: "Europe/Brussels"
