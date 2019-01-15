@@ -47,10 +47,12 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    * {@inheritdoc}
    */
   public static function fromArray(array $parameters = []): ValueObjectInterface {
+    $parameters += ['start' => NULL, 'end' => NULL, 'timezone' => NULL];
+
     return new static(
       $parameters['start'],
-      $parameters['end'] ?? NULL,
-      $parameters['timezone'] ?? NULL
+      $parameters['end'],
+      $parameters['timezone']
     );
   }
 
