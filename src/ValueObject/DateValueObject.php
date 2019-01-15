@@ -115,10 +115,10 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   which should still be printed as an interval.
    *
    * @return string
-   *   Formatted interval.
+   *   The formatted interval.
    */
   protected function getDateInterval(string $format, string $extra): string {
-    $start = $this->start->format($format);
+    $date_interval = $this->start->format($format);
 
     if (!empty($this->end) &&
       (
@@ -126,10 +126,10 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
         || $this->start->format($extra) !== $this->end->format($extra)
       )
       ) {
-      return $start . '-' . $this->end->format($format);
+      $date_interval .= '-' . $this->end->format($format);
     }
 
-    return $start;
+    return $date_interval;
   }
 
 }
