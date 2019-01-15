@@ -10,21 +10,6 @@ namespace Drupal\oe_theme\ValueObject;
 interface DateValueObjectInterface extends ValueObjectInterface {
 
   /**
-   * DateValueObject factory that uses a timestamp.
-   *
-   * @param int $start
-   *   Start date as UNIX timestamp.
-   * @param int $end
-   *   End date as UNIX timestamp.
-   * @param string|null $timezone
-   *   Timezone string, e.g. "Europe/Brussels".
-   *
-   * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
-   *   A new DateValueObject.
-   */
-  public static function fromTimestamp(int $start, int $end = NULL, string $timezone = NULL): DateValueObjectInterface;
-
-  /**
    * Get day.
    *
    * @return string

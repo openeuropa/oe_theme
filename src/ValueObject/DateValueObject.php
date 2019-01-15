@@ -57,13 +57,6 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromTimestamp(int $start, int $end = NULL, string $timezone = NULL): DateValueObjectInterface {
-    return new static($start, $end, $timezone);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getArray(): array {
     return [
       'day' => $this->getDay(),
