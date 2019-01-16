@@ -642,6 +642,26 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(array &$v
 }
 
 /**
+ * Implements hook_preprocess_pattern().
+ */
+function oe_theme_preprocess_pattern_date_block(array &$variables): void {
+  // This make sure that the variant is not empty and has a "default" value.
+  // @todo: How about doing this in all components ?
+  // @todo: We should optimize how to compute the list of variants.
+
+  $variants = [
+    'default',
+    'ongoing',
+    'cancelled',
+    'past',
+  ];
+
+  $variables['variant'] = in_array($variables['variant'], $variants, TRUE) ?
+    $variables['variant'] :
+    'default';
+}
+
+/**
  * Implements hook_preprocess_pattern_file__preview().
  */
 function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
