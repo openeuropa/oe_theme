@@ -319,6 +319,72 @@
               alt: "Example alt"
               responsive: true
             caption: "Example caption"
+            icon: "ecl-icon--camera"
+  assertions:
+    count:
+      '.ecl-gallery .ecl-row': 1
+      '.ecl-gallery .ecl-row .ecl-gallery__item-container': 1
+      '.ecl-image--fluid[alt="Example alt"]': 1
+      'span.ecl-icon--camera': 1
+    equals:
+      'span.ecl-gallery__caption': "Example caption"
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#fields':
+      rows:
+        - - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
+            icon: "ecl-icon--camera"
+          - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
+            icon: "ecl-icon--camera"
+  assertions:
+    count:
+      '.ecl-gallery .ecl-row': 1
+      '.ecl-gallery .ecl-row .ecl-gallery__item-container': 2
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#fields':
+      rows:
+        - - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
+            icon: "ecl-icon--camera"
+        - - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
+            icon: "ecl-icon--camera"
+  assertions:
+    count:
+      '.ecl-gallery .ecl-row': 2
+      '.ecl-gallery .ecl-row .ecl-gallery__item-container': 2
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      rows:
+        - - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
             icon: "camera"
   assertions:
     count:
