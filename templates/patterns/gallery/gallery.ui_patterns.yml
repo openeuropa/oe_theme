@@ -1,0 +1,56 @@
+gallery:
+  label: "Gallery"
+  description: "Gallery of available media."
+  fields:
+    rows:
+      type: "array"
+      label: "Rows"
+      description: "Rows of gallery items"
+      preview:
+        - - classes: "ecl-col-md-4"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: true
+            caption: "Example caption"
+            icon: "ecl-icon--camera"
+          - classes: "ecl-col-md-3"
+            image:
+              src: "https://placehold.it/285x185"
+              alt: "Test image"
+              responsive: true
+            icon: "ecl-icon--audio"
+          - classes: "ecl-col-md-2"
+            image:
+              src: "https://placehold.it/190x185"
+              alt: "Test image"
+              responsive: true
+            icon: "ecl-icon--camera"
+          - classes: "ecl-col-md-3"
+            image:
+              src: "https://placehold.it/285x185"
+              alt: "Test image"
+              responsive: true
+            caption: "Example caption"
+        - - classes: "ecl-col-md-3"
+            image:
+              src: "http://placehold.it/380x185"
+              alt: "Example alt"
+              responsive: false
+            caption: "Example caption"
+          - classes: "ecl-col-md-3"
+            image:
+              src: "https://placehold.it/285x185"
+              alt: "Test image"
+              responsive: true
+          - classes: "ecl-col-md-3"
+            image:
+              src: "https://placehold.it/190x185"
+              alt: "Test image"
+              responsive: true
+          - classes: "ecl-col-md-3"
+            image:
+              src: "https://placehold.it/285x185"
+              alt: "Test image"
+              responsive: true
+            caption: "Example caption"
