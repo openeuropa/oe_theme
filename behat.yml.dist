@@ -24,7 +24,7 @@ default:
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search box: ".demo-block-header-search"
               sites switcher: ".demo-block-site-switcher"
-              link block list: ".ecl-link-block__list"
+              dropdown content: ".ecl-link-block__list"
             pages:
               user registration: "/user/register"
               ECL components overview: "/en/components"

@@ -46,10 +46,10 @@ Feature: Theme showcase
   @javascript
   Scenario: The dropdown component shows/hides on click event
     When I am on "the ECL dropdown component page"
-    Then the "link block list" is not visible
+    Then the "dropdown content" is not visible
 
     When I press "Dropdown"
-    Then the "link block list" is visible
+    Then the "dropdown content" is visible
 
   Scenario: The demo site footer features placeholder blocks
     When I am on the homepage
