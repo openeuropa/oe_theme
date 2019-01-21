@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that rendering of elements follows the theme implementation.
@@ -112,35 +111,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
     $form = $this->container->get('form_builder')->buildForm($this, $form_state);
 
     $html = $this->renderRoot($form);
-    $crawler = new Crawler($html);
-
-    // Assert presence of given strings.
-    if (isset($assertions['contains'])) {
-      foreach ($assertions['contains'] as $string) {
-        $this->assertContains($string, $html);
-      }
-    }
-
-    // Assert occurrences of given elements.
-    if (isset($assertions['count'])) {
-      foreach ($assertions['count'] as $name => $expected) {
-        $this->assertCount($expected, $crawler->filter($name));
-      }
-    }
-
-    // Assert that a given element content equals a given string.
-    if (isset($assertions['equals'])) {
-      foreach ($assertions['equals'] as $name => $expected) {
-        try {
-          $actual = trim($crawler->filter($name)->text());
-        }
-        catch (\InvalidArgumentException $exception) {
-          $this->fail(sprintf('Element "%s" not found (exception: "%s").', $name, $exception->getMessage()));
-        }
-        $this->assertEquals($expected, $actual);
-      }
-    }
-
+    $this->assertRendering($html, $assertions);
   }
 
   /**

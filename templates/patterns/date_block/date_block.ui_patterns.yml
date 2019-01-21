@@ -1,0 +1,25 @@
+date_block:
+  label: "Date block"
+  description: "Date block component"
+  variants:
+    default:
+      label: "Default event"
+      description: "Default event"
+    ongoing:
+      label: "Ongoing event"
+      description: "Ongoing event"
+    cancelled:
+      label: "Cancelled event"
+      description: "Cancelled event"
+    past:
+      label: "Past event"
+      description: "Past event"
+  fields:
+    date:
+      type: "DateValueObject"
+      label: "Date"
+      description: "A date value object."
+      preview:
+        start: 370173600
+        end: ~
+        timezone: "Europe/Brussels"

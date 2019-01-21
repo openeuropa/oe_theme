@@ -76,7 +76,7 @@ function MY_MODULE_preprocess_node__article__teaser(&$variables) {
 And in your  `node--article--teaser.html.twig` template:
 
 ```twig
-{{ pattern('my_pattern', { foo: foo }) }}
+{{ pattern('my_pattern', { foo: foo.getArray() }) }}
 ```
 
 Check the [UI Patterns documentation][2] for more information about how to use patterns in your project.
@@ -84,6 +84,24 @@ Check the [UI Patterns documentation][2] for more information about how to use p
 ### Available value objects
 
 Below a list of available value object along with its factory methods:
+
+#### `DateValueObject`
+
+Used in the following patterns:
+
+- [`date_block`](../templates/patterns/date_block/date_block.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `DateValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `start`: Start date as UNIX timestamp.
+  - `end`: End date as UNIX timestamp.
+  - `timezone`: Timezone string, e.g. "Europe/Brussels".
+
+- `DateValueObject::fromTimestamp(int $start, int $end = NULL, string $timezone = NULL)`:
+  - `$start`: Start date as UNIX timestamp.
+  - `$end`: End date as UNIX timestamp.
+  - `$timezone`: Timezone string, e.g. "Europe/Brussels".
 
 #### `FileValueObject`
 

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Date block.
+ */
+#}
+{% include '@ecl/ec-component-date-block' with {
+  'variant': variant|replace({'_':'-'}),
+  'week_day': date.week_day,
+  'day': date.day,
+  'month': date.month_name,
+  'year': date.year,
+  'extra_classes': "",
+  'extra_attributes': []
+} only %}

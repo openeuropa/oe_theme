@@ -5,12 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
 use Drupal\oe_theme\ValueObject\FileValueObject;
-use Drupal\Tests\UnitTestCase;
+use Drupal\Tests\oe_theme\Unit\AbstractUnitTestBase;
 
 /**
  * Test file value object.
  */
-class FileValueObjectTest extends UnitTestCase {
+class FileValueObjectTest extends AbstractUnitTestBase {
 
   /**
    * Test constructing a file value object from an array.

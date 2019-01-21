@@ -23,9 +23,9 @@
         "openeuropa/code-review": "^1.0.0-alpha4",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/drupal-core-require-dev": "8.6.x-dev",
-        "openeuropa/oe_multilingual": "~0.2.1",
+        "openeuropa/oe_multilingual": "~0.2.3",
         "openeuropa/oe_paragraphs": "~0.3",
-        "openeuropa/task-runner": "~1.0-beta3",
+        "openeuropa/task-runner": "~1.0-beta4",
         "phpunit/phpunit": "~5.5||~6.0",
         "symfony/dom-crawler": "~3.4"
     },

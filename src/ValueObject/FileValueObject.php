@@ -223,7 +223,7 @@ class FileValueObject extends ValueObjectBase {
   /**
    * {@inheritdoc}
    */
-  public function toArray(): array {
+  public function getArray(): array {
     return [
       'title' => $this->getTitle(),
       'name' => $this->getName(),

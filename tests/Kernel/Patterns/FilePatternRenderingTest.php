@@ -2,12 +2,12 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
 use Drupal\Core\Site\Settings;
 use Drupal\file\Entity\File;
 use Drupal\oe_theme\ValueObject\FileValueObject;
-use Symfony\Component\DomCrawler\Crawler;
+use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test file pattern rendering.
@@ -57,13 +57,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
     ];
 
     $html = $this->renderRoot($pattern);
-    $crawler = new Crawler($html);
-
-    foreach ($assertions as $selector => $value) {
-      $actual = trim($crawler->filter($selector)->text());
-      $this->assertEquals($value, $actual);
-    }
-
+    $this->assertRendering($html, $assertions);
   }
 
   /**
@@ -73,38 +67,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertations.
    */
   public function dataProvider(): array {
-    return [
-      [
-        [
-          'uid' => 1,
-          'filename' => 'druplicon.txt',
-          'filemime' => 'text/plain',
-          'uri' => 'public://sample/druplicon.txt',
-          'filesize' => 321,
-        ],
-        [
-          '.ecl-file__properties' => '(321 bytes - TXT)',
-          '.ecl-file__title' => 'druplicon.txt',
-          'a[href="http://example.com/sample/druplicon.txt"]' => 'Download(321 bytes - TXT)',
-          '.ecl-file__language' => 'English',
-        ],
-      ],
-      [
-        [
-          'uid' => 1,
-          'filename' => 'druplicon.txt',
-          'filemime' => 'text/plain',
-          'uri' => 'http://example.com/druplicon.txt',
-          'filesize' => 123,
-        ],
-        [
-          '.ecl-file__properties' => '(123 bytes - TXT)',
-          '.ecl-file__title' => 'druplicon.txt',
-          'a[href="http://example.com/druplicon.txt"]' => 'Download(123 bytes - TXT)',
-          '.ecl-file__language' => 'English',
-        ],
-      ],
-    ];
+    return $this->getFixtureContent('patterns/file_pattern_rendering.yml');
   }
 
 }
