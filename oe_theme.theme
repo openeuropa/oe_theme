@@ -127,6 +127,35 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK() for OE gallery paragraph template.
+ */
+function oe_theme_preprocess_paragraph__oe_gallery(array &$variables): void {
+  $rows = [];
+  /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $gallery_row */
+  foreach ($variables['paragraph']->get('field_oe_gallery_row') as $gallery_row) {
+    $row = [];
+    /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $gallery_item */
+    foreach ($gallery_row->entity->get('field_oe_gallery_item') as $gallery_item) {
+      $item = [];
+      /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+      $paragraph = $gallery_item->entity;
+      $item['icon'] = $paragraph->get('field_oe_icon')->value;
+      $item['caption'] = $paragraph->get('field_oe_title')->value;
+      $item['classes'] = $paragraph->get('field_oe_columns')->value;
+      $item['image']['responsive'] = $paragraph->get('field_oe_responsive')->value;
+      if ($image_entity = $paragraph->get('field_oe_image')->first()) {
+        $image_file = $image_entity->get('entity')->getTarget();
+        $item['image']['src'] = file_create_url($image_file->get('uri')->getString());
+        $item['image']['alt'] = $image_entity->get('alt')->getString();
+      }
+      $row[] = array_filter($item);
+    }
+    $rows[] = $row;
+  }
+  $variables['rows'] = $rows;
+}
+
+/**
  * Implements hook_preprocess_HOOK() for menu local tasks template.
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
