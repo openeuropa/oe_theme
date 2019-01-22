@@ -1,5 +1,16 @@
 # Change Log
 
+## [0.8.0](https://github.com/openeuropa/oe_theme/tree/0.8.0) (2019-01-22)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.7.0...0.8.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1522: Make sure we don't use Drupal paths in Behat scenarios. [\#156](https://github.com/openeuropa/oe_theme/pull/156) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1387: Move "Deprecation warnings in Twig" patch to openeuropa/drupal-core-require-dev [\#155](https://github.com/openeuropa/oe_theme/pull/155) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1474: Fix fromFileEntity method to provide file URL by URI. [\#153](https://github.com/openeuropa/oe_theme/pull/153) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1381: Use Url objects on ui\_patterns. [\#152](https://github.com/openeuropa/oe_theme/pull/152) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1378: Implement DateValueObject for Date pattern fields [\#150](https://github.com/openeuropa/oe_theme/pull/150) ([drupol](https://github.com/drupol))
+
 ## [0.7.0](https://github.com/openeuropa/oe_theme/tree/0.7.0) (2018-11-27)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.3...0.7.0)
 
@@ -10,6 +21,7 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.7.0 release. [\#149](https://github.com/openeuropa/oe_theme/pull/149) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1344: Complete conversion of file extension to ECL icons. [\#148](https://github.com/openeuropa/oe_theme/pull/148) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1346: Use Drupal core services to access native language names [\#147](https://github.com/openeuropa/oe_theme/pull/147) ([pfrenssen](https://github.com/pfrenssen))
 - OPENEUROPA-1348: Refactor list\_items to variants. [\#146](https://github.com/openeuropa/oe_theme/pull/146) ([nagyad](https://github.com/nagyad))
