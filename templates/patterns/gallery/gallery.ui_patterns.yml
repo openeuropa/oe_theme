@@ -13,20 +13,20 @@ gallery:
               alt: "Example alt text"
               responsive: true
             caption: "Example image caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
           - classes: "ecl-col-md-3"
             image:
               src: "http://placehold.it/285x185"
               alt: "Example image caption"
               responsive: true
-            icon: "ecl-icon--audio"
+            icon: "audio"
           - classes: "ecl-col-md-2"
             image:
               src: "http://placehold.it/190x185"
               alt: "Example alt text"
               responsive: true
             caption: "Example image caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
           - classes: "ecl-col-md-3"
             image:
               src: "http://placehold.it/285x185"
