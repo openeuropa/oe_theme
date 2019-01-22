@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "openeuropa/drupal-core-require": "^8.6",
+        "drupal/core": "^8.6",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "~0.1",
         "php": "^7.1"
