@@ -5,6 +5,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-1549: Using drupal/core. [\#160](https://github.com/openeuropa/oe_theme/pull/160) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1522: Make sure we don't use Drupal paths in Behat scenarios. [\#156](https://github.com/openeuropa/oe_theme/pull/156) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1387: Move "Deprecation warnings in Twig" patch to openeuropa/drupal-core-require-dev [\#155](https://github.com/openeuropa/oe_theme/pull/155) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1474: Fix fromFileEntity method to provide file URL by URI. [\#153](https://github.com/openeuropa/oe_theme/pull/153) ([nagyad](https://github.com/nagyad))
