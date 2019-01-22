@@ -24,9 +24,11 @@ default:
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search box: ".demo-block-header-search"
               sites switcher: ".demo-block-site-switcher"
+              dropdown content: ".ecl-link-block__list"
             pages:
               user registration: "/user/register"
               ECL components overview: "/en/components"
+              ECL dropdown component: "components/dropdown"
   extensions:
     Behat\MinkExtension:
       goutte: ~
