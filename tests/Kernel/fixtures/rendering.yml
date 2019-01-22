@@ -319,7 +319,7 @@
               alt: "Example alt"
               responsive: true
             caption: "Example caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
   assertions:
     count:
       '.ecl-gallery .ecl-row': 1
@@ -346,7 +346,7 @@
               alt: "Example alt"
               responsive: true
             caption: "Example caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
   assertions:
     count:
       '.ecl-gallery .ecl-row': 1
@@ -362,14 +362,14 @@
               alt: "Example alt"
               responsive: true
             caption: "Example caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
         - - classes: "ecl-col-md-4"
             image:
               src: "http://placehold.it/380x185"
               alt: "Example alt"
               responsive: true
             caption: "Example caption"
-            icon: "ecl-icon--camera"
+            icon: "camera"
   assertions:
     count:
       '.ecl-gallery .ecl-row': 2
