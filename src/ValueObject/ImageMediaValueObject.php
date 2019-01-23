@@ -19,11 +19,11 @@ class ImageMediaValueObject extends MediaValueObject {
   protected $alt;
 
   /**
-   * File Source.
+   * The alt of the image.
    *
-   * @var string
+   * @var bool
    */
-  protected $source;
+  protected $responsive;
 
   /**
    * FileType constructor.
@@ -33,11 +33,14 @@ class ImageMediaValueObject extends MediaValueObject {
    * @param string $source
    *   Media URL, including Drupal schema if internal.
    * @param string $alt
-   *   Image alt.
+   *   Image alt text.
+   * @param bool $responsive
+   *   Responsiveness of the image.
    */
-  public function __construct(string $name, string $source, string $alt) {
+  public function __construct(string $name, string $source, string $alt, bool $responsive = TRUE) {
     parent::__construct($name, $source);
     $this->alt = $alt;
+    $this->responsive = $responsive;
   }
 
   /**
@@ -47,7 +50,8 @@ class ImageMediaValueObject extends MediaValueObject {
     $file = new static(
       $values['name'],
       $values['source'],
-      $values['alt']
+      $values['alt'],
+      $values['responsive']
     );
 
     return $file;
@@ -63,6 +67,15 @@ class ImageMediaValueObject extends MediaValueObject {
     return $this->alt;
   }
 
+  /**
+   * Getter.
+   *
+   * @return bool
+   *   Property value.
+   */
+  public function isResponsive(): bool {
+    return $this->responsive;
+  }
 
   /**
    * {@inheritdoc}
@@ -71,19 +84,24 @@ class ImageMediaValueObject extends MediaValueObject {
     return [
       'name' => $this->getName(),
       'source' => $this->getSource(),
-      'alt' => $this->getAlt()
+      'alt' => $this->getAlt(),
+      'responsive' => $this->isResponsive(),
     ];
   }
 
   /**
+   * Construct object from a Drupal image field.
+   *
    * @param string $name
+   *   Name of the image media.
    * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
+   *   Field holding the image media.
    *
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
    *
-   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
+   * @return $this
    */
-  public function fromImageItem($name, ImageItem $image_item): ValueObjectInterface {
+  public static function fromImageField($name, ImageItem $image_item): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
     $media = new static(
       $name,
@@ -93,4 +111,5 @@ class ImageMediaValueObject extends MediaValueObject {
 
     return $media;
   }
+
 }
