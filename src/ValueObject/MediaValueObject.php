@@ -68,14 +68,13 @@ class MediaValueObject extends ValueObjectBase {
     return $this->name;
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function toArray(): array {
     return [
       'name' => $this->getName(),
-      'source' => $this->getSource()
+      'source' => $this->getSource(),
     ];
   }
 
