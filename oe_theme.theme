@@ -11,8 +11,10 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
-use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
+use Drupal\oe_theme\ValueObject\FileValueObject;
+use Drupal\oe_theme\ValueObject\GalleryValueObject;
+use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
 
 /**
  * Implements hook_preprocess_HOOK() for breadcrumb template.
@@ -136,19 +138,19 @@ function oe_theme_preprocess_paragraph__oe_gallery(array &$variables): void {
     $row = [];
     /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $gallery_item */
     foreach ($gallery_row->entity->get('field_oe_gallery_item') as $gallery_item) {
-      $item = [];
       /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
       $paragraph = $gallery_item->entity;
-      $item['icon'] = $paragraph->get('field_oe_icon')->value;
-      $item['caption'] = $paragraph->get('field_oe_title')->value;
-      $item['classes'] = $paragraph->get('field_oe_columns')->value;
-      $item['image']['responsive'] = $paragraph->get('field_oe_responsive')->value;
-      if ($image_entity = $paragraph->get('field_oe_image')->first()) {
-        $image_file = $image_entity->get('entity')->getTarget();
-        $item['image']['src'] = file_create_url($image_file->get('uri')->getString());
-        $item['image']['alt'] = $image_entity->get('alt')->getString();
+      if ($image_item = $paragraph->get('field_oe_image')->first()) {
+        $responsive = (bool) $paragraph->get('field_oe_responsive')->value;
+        $image_object = ImageMediaValueObject::fromImageField($image_item, '', $responsive);
+        $gallery_object = GalleryValueObject::fromArray([
+          'icon' => $paragraph->get('field_oe_icon')->value,
+          'caption' => $paragraph->get('field_oe_title')->value,
+          'classes' => $paragraph->get('field_oe_columns')->value,
+          'image' => $image_object,
+        ]);
+        $row[] = $gallery_object;
       }
-      $row[] = array_filter($item);
     }
     $rows[] = $row;
   }
@@ -449,10 +451,11 @@ function oe_theme_preprocess_pattern_dialog(array &$variables): void {
  * Implements hook_preprocess_HOOK() for pattern gallery template.
  */
 function oe_theme_preprocess_pattern_gallery(array &$variables): void {
-  foreach ($variables['rows'] as $row_key => $row) {
-    foreach ($row as $item_key => $item) {
-      if (!empty($item['icon'])) {
-        $variables['rows'][$row_key][$item_key]['icon'] = 'ecl-icon--' . $item['icon'];
+  foreach ($variables['rows'] as $row) {
+    /** @var \Drupal\oe_theme\ValueObject\GalleryValueObject $item */
+    foreach ($row as $item) {
+      if (isset($item['icon'])) {
+        $item->setIcon('ecl-icon--' . $item->getIcon());
       }
     }
   }

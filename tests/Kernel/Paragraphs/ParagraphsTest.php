@@ -109,6 +109,62 @@ class ParagraphsTest extends ParagraphsTestBase {
   }
 
   /**
+   * Test accordion paragraph rendering.
+   */
+  public function testGalleries(): void {
+
+    $file = File::create([
+      'uri' => 'http://placehold.it/380x185',
+    ]);
+    $file->save();
+
+    $gallery_item = Paragraph::create([
+      'type' => 'oe_gallery_item',
+      'field_oe_title' => 'Test caption.',
+      'field_oe_columns' => 'ecl-col-md-4',
+      'field_oe_icon' => 'camera',
+      'field_oe_responsive' => '1',
+      'field_oe_image' => [
+        'target_id' => $file->id(),
+        'alt' => 'Test alt',
+      ],
+    ]);
+    $gallery_item->save();
+
+    $gallery_row = Paragraph::create([
+      'type' => 'oe_gallery_row',
+      'field_oe_gallery_item' => [
+        [
+          'target_id' => $gallery_item->id(),
+          'target_revision_id' => $gallery_item->getRevisionId(),
+        ],
+      ],
+    ]);
+    $gallery_row->save();
+
+    $gallery = Paragraph::create([
+      'type' => 'oe_gallery',
+      'field_oe_gallery_row' => [
+        [
+          'target_id' => $gallery_row->id(),
+          'target_revision_id' => $gallery_row->getRevisionId(),
+        ],
+      ],
+    ]);
+    $gallery->save();
+    $html = $this->renderParagraph($gallery);
+
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-gallery .ecl-row .ecl-col-md-4 .ecl-gallery__item-container'));
+    $this->assertCount(1, $crawler->filter('.ecl-icon--camera'));
+    $this->assertEquals('Test alt', trim($crawler->filter('img.ecl-image--fluid')->attr('alt')));
+    $this->assertEquals('http://placehold.it/380x185', trim($crawler->filter('img.ecl-image--fluid')->attr('src')));
+    $this->assertEquals('Test caption.', trim($crawler->filter('.ecl-gallery__caption')->text()));
+
+  }
+
+  /**
    * Test quote paragraph rendering.
    *
    * @param array $data
