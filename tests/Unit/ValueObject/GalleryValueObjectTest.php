@@ -37,7 +37,7 @@ class GalleryValueObjectTest extends UnitTestCase {
     $this->assertEquals('camera', $galleryItem->getIcon());
     $this->assertEquals('Test caption.', $galleryItem->getCaption());
     $this->assertEquals('example-class', $galleryItem->getClasses());
-    $this->assertEquals($image_array, $galleryItem->getImage()->toArray());
+    $this->assertEquals($image_array, $galleryItem->getImage()->getArray());
 
   }
 

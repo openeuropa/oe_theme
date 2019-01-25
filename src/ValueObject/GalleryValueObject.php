@@ -113,7 +113,7 @@ class GalleryValueObject extends ValueObjectBase {
   /**
    * {@inheritdoc}
    */
-  public function toArray(): array {
+  public function getArray(): array {
     $image = $this->getImage();
     return [
       'icon' => $this->getIcon(),

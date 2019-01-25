@@ -80,7 +80,7 @@ class ImageMediaValueObject extends MediaValueObject {
   /**
    * {@inheritdoc}
    */
-  public function toArray(): array {
+  public function getArray(): array {
     return [
       'name' => $this->getName(),
       'source' => $this->getSource(),
