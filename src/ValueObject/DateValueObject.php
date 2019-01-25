@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 
 /**
  * Handle information about a date/date interval, as expected by the ECL.
@@ -53,6 +54,17 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
       $parameters['start'],
       $parameters['end'],
       $parameters['timezone']
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): ValueObjectInterface {
+    return new static(
+      $dateRangeItem->get('start_date')->getValue()->getTimeStamp(),
+      $dateRangeItem->get('end_date')->getValue()->getTimeStamp(),
+      NULL
     );
   }
 
