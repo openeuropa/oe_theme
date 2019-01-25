@@ -556,9 +556,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   // Prepare the date fields if date is available.
   if (!$paragraph->get('field_oe_date')->isEmpty()) {
-    $variables['date'] = DateValueObject::fromArray([
-      'start' => $paragraph->get('field_oe_date')->first()->get('date')->getValue()->getTimestamp(),
-    ]);
+    $variables['date'] = DateValueObject::fromDateTimeItem($paragraph->get('field_oe_date')->first()->get('date')->first());
 
     // Add the timezone context to the cache.
     // @see \Drupal\datetime\Plugin\Field\FieldFormatter\DateTimeFormatterBase::buildDate()
