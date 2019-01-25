@@ -12,7 +12,7 @@ use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 interface DateValueObjectInterface extends ValueObjectInterface {
 
   /**
-   * From DateRangeItem.
+   * Factory method for constructing DateValueObject from DateRangeItem.
    *
    * @param \Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem $dateRangeItem
    *   The instance of DateRangeItem from datetime_range field type value.
