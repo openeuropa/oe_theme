@@ -5,7 +5,7 @@ dependencies:
     - language
   theme:
     - oe_theme
-id: oe_multilingual_language_switcher
+id: oe_theme_language_switcher
 theme: oe_theme
 region: site_header
 weight: 1
