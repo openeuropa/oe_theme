@@ -3,7 +3,7 @@
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
-    <env name="SIMPLETEST_IGNORE_DIRECTORIES" value="build,vendor,node_modules,${drupal.root}"/>
+    <env name="SIMPLETEST_IGNORE_DIRECTORIES" value="vendor,node_modules,${drupal.root}"/>
     <env name="SIMPLETEST_BASE_URL" value="${drupal.base_url}"/>
     <env name="SIMPLETEST_DB" value="mysql://${drupal.database.user}:${drupal.database.password}@${drupal.database.host}:${drupal.database.port}/${drupal.database.name}"/>
   </php>

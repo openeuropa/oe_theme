@@ -74,7 +74,7 @@ class DateRangeFieldTest extends DateRangeItemTest {
    *
    * @dataProvider renderingDataProvider
    */
-  public function testFromDateRangeField(string $variant, array $date, array $assertions) {
+  public function testDateRangeField(string $variant, array $date, array $assertions): void {
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'date_block',
@@ -131,9 +131,9 @@ class DateRangeFieldTest extends DateRangeItemTest {
    * Get fixture content.
    *
    * @return array
-   *   A set of test data.
+   *   Data provider for factory methods test.
    */
-  public function dataProviderForFactory(): ?array {
+  public function dataProviderForFactory(): array {
     return Yaml::parse(file_get_contents(__DIR__ . '/../Unit/fixtures/value_object/date_value_object.yml'));
   }
 
