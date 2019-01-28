@@ -1,11 +1,21 @@
 # Change Log
 
+## [0.9.0](https://github.com/openeuropa/oe_theme/tree/0.9.0) (2019-01-28)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.8.0...0.9.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1549: Renaming config to actually get imported. [\#166](https://github.com/openeuropa/oe_theme/pull/166) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1531: Create MediaValueObject, GalleryValueObject and ImageMediaValueObject. [\#163](https://github.com/openeuropa/oe_theme/pull/163) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1533: Add --strict flag for Behat tests executions. [\#158](https://github.com/openeuropa/oe_theme/pull/158) ([sergepavle](https://github.com/sergepavle))
+
 ## [0.8.0](https://github.com/openeuropa/oe_theme/tree/0.8.0) (2019-01-22)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.7.0...0.8.0)
 
 **Merged pull requests:**
 
 - OPENEUROPA-1549: Using drupal/core. [\#160](https://github.com/openeuropa/oe_theme/pull/160) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1562: Update CHANGELOG.md for the release 0.8.0. [\#159](https://github.com/openeuropa/oe_theme/pull/159) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1522: Make sure we don't use Drupal paths in Behat scenarios. [\#156](https://github.com/openeuropa/oe_theme/pull/156) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1387: Move "Deprecation warnings in Twig" patch to openeuropa/drupal-core-require-dev [\#155](https://github.com/openeuropa/oe_theme/pull/155) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1474: Fix fromFileEntity method to provide file URL by URI. [\#153](https://github.com/openeuropa/oe_theme/pull/153) ([nagyad](https://github.com/nagyad))
