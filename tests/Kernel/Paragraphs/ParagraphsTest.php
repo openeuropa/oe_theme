@@ -113,10 +113,11 @@ class ParagraphsTest extends ParagraphsTestBase {
    */
   public function testGalleries(): void {
 
-    $file = File::create([
-      'uri' => 'http://placehold.it/380x185',
+    file_unmanaged_copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    $image = File::create([
+      'uri' => 'public://example.jpg',
     ]);
-    $file->save();
+    $image->save();
 
     $gallery_item = Paragraph::create([
       'type' => 'oe_gallery_item',
@@ -125,7 +126,7 @@ class ParagraphsTest extends ParagraphsTestBase {
       'field_oe_icon' => 'camera',
       'field_oe_responsive' => '1',
       'field_oe_image' => [
-        'target_id' => $file->id(),
+        'target_id' => $image->id(),
         'alt' => 'Test alt',
       ],
     ]);
@@ -159,7 +160,10 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('.ecl-gallery .ecl-row .ecl-col-md-4 .ecl-gallery__item-container'));
     $this->assertCount(1, $crawler->filter('.ecl-icon--camera'));
     $this->assertEquals('Test alt', trim($crawler->filter('img.ecl-image--fluid')->attr('alt')));
-    $this->assertEquals('http://placehold.it/380x185', trim($crawler->filter('img.ecl-image--fluid')->attr('src')));
+    $this->assertEquals(
+      file_create_url($image->getFileUri()),
+      trim($crawler->filter('img.ecl-image--fluid')->attr('src'))
+    );
     $this->assertEquals('Test caption.', trim($crawler->filter('.ecl-gallery__caption')->text()));
 
   }
