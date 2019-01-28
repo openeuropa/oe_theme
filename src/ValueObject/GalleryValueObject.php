@@ -115,6 +115,7 @@ class GalleryValueObject extends ValueObjectBase {
    */
   public function getArray(): array {
     $image = $this->getImage();
+
     return [
       'icon' => $this->getIcon(),
       'caption' => $this->getCaption(),

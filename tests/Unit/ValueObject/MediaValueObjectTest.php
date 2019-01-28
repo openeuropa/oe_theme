@@ -26,7 +26,6 @@ class MediaValueObjectTest extends UnitTestCase {
 
     $this->assertEquals('http://example.com/test.pdf', $media->getSource());
     $this->assertEquals('Test.pdf', $media->getName());
-
   }
 
 }
