@@ -67,16 +67,6 @@ class GalleryValueObject extends ValueObjectBase {
   }
 
   /**
-   * Setter.
-   *
-   * @param string $icon
-   *   ECL icon name.
-   */
-  public function setIcon(string $icon): void {
-    $this->icon = $icon;
-  }
-
-  /**
    * Getter.
    *
    * @return string
