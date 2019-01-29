@@ -97,6 +97,20 @@ class GalleryValueObject extends ValueObjectBase {
   }
 
   /**
+   * Setter.
+   *
+   * @param string $icon
+   *   ECL icon name.
+   *
+   * @return $this
+   */
+  public function setIcon(string $icon): GalleryValueObject {
+    $this->icon = $icon;
+
+    return $this;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
@@ -124,7 +138,7 @@ class GalleryValueObject extends ValueObjectBase {
         'alt' => $image->getAlt(),
         'responsive' => $image->isResponsive(),
       ],
-      'classes' => $this->getCaption(),
+      'classes' => $this->getClasses(),
     ];
   }
 
