@@ -42,7 +42,7 @@ archives.
 In order to enable the theme in your project perform the following steps:
 
 1. Enable the OpenEuropa Theme Helper module ```./vendor/bin/drush en oe_theme_helper```
-2. Enable the OpenEuropa Theme and set it as default ```./vendor/bin/drush drush config-set system.theme default oe_theme```
+2. Enable the OpenEuropa Theme and set it as default ```./vendor/bin/drush config-set system.theme default oe_theme```
 
 Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alternatively you can patch Drupal core
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
