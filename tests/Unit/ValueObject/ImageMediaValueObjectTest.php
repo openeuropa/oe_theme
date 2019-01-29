@@ -101,7 +101,7 @@ class ImageMediaValueObjectTest extends UnitTestCase {
    */
   public function testFromImageField() {
     /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
-    $image = ImageMediaValueObject::fromImageField('Test image', $this->imageReferenceItem->reveal());
+    $image = ImageMediaValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
 
     $this->assertEquals('http://placehold.it/380x185', $image->getSource());
     $this->assertEquals('Test image', $image->getName());
@@ -113,6 +113,8 @@ class ImageMediaValueObjectTest extends UnitTestCase {
 
 /**
  * Temporary mock for file_create_url().
+ *
+ * @see https://www.drupal.org/project/drupal/issues/2669074
  */
 if (!function_exists('Drupal\Tests\oe_theme\Unit\Patterns\file_create_url')) {
 

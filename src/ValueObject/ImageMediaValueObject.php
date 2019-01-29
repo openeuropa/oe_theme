@@ -92,21 +92,24 @@ class ImageMediaValueObject extends MediaValueObject {
   /**
    * Construct object from a Drupal image field.
    *
-   * @param string $name
-   *   Name of the image media.
    * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
    *   Field holding the image media.
+   * @param string $name
+   *   Name of the image media.
+   * @param bool $responsive
+   *   Whether the image should be responsive or not.
    *
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
    *
    * @return $this
    */
-  public static function fromImageField($name, ImageItem $image_item): ValueObjectInterface {
+  public static function fromImageField(ImageItem $image_item, $name = '', $responsive = TRUE): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
     $media = new static(
       $name,
       file_create_url($image_file->get('uri')->getString()),
-      $image_item->get('alt')->getString()
+      $image_item->get('alt')->getString(),
+      $responsive
     );
 
     return $media;
