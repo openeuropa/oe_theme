@@ -2,30 +2,33 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\ValueObject;
 
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 use Drupal\entity_test\Entity\EntityTest;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\oe_theme\ValueObject\DateValueObject;
-use Drupal\Tests\datetime_range\Kernel\DateRangeItemTest;
-use Drupal\Tests\oe_theme\Traits\RenderTrait;
-use Symfony\Component\Yaml\Yaml;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Test date value object with datetime_range field type.
  */
-class DateRangeFieldTest extends DateRangeItemTest {
+class FromDateTimeRangeFieldTest extends FromDateTimeFieldTestBase {
 
-  use RenderTrait;
+  /**
+   * A field storage to use in this test class.
+   *
+   * @var \Drupal\field\Entity\FieldStorageConfig
+   */
+  protected $fieldStorage;
 
   /**
    * {@inheritdoc}
    */
   public static $modules = [
-    'ui_patterns',
-    'ui_patterns_library',
-    'oe_theme_helper',
+    'datetime',
+    'datetime_range',
   ];
 
   /**
@@ -34,9 +37,21 @@ class DateRangeFieldTest extends DateRangeItemTest {
   protected function setUp() {
     parent::setUp();
 
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
-    $this->container->set('theme.registry', NULL);
+    // Add a datetime range field.
+    $this->fieldStorage = FieldStorageConfig::create([
+      'field_name' => mb_strtolower($this->randomMachineName()),
+      'entity_type' => 'entity_test',
+      'type' => 'daterange',
+      'settings' => ['datetime_type' => DateRangeItem::DATETIME_TYPE_DATE],
+    ]);
+    $this->fieldStorage->save();
+
+    FieldConfig::create([
+      'field_storage' => $this->fieldStorage,
+      'bundle' => 'entity_test',
+      'required' => TRUE,
+    ])->save();
+
   }
 
   /**
@@ -50,8 +65,7 @@ class DateRangeFieldTest extends DateRangeItemTest {
    * @dataProvider dataProviderForFactory
    */
   public function testFromDateRangeItem(array $data, array $expected): void {
-    $date_range_item = $this->getDateRangeItemInstance($data);
-    $date = DateValueObject::fromDateRangeItem($date_range_item);
+    $date = DateValueObject::fromDateRangeItem($this->getDateRangeItemInstance($data));
 
     $this->assertEquals($expected['day'], $date->getDay());
     $this->assertEquals($expected['week_day'], $date->getWeekDay());
@@ -97,8 +111,7 @@ class DateRangeFieldTest extends DateRangeItemTest {
    * @return \Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem
    *   DateRangeItem object.
    */
-  private function getDateRangeItemInstance(array $data): DateRangeItem {
-    $this->fieldStorage->setSetting('datetime_type', DateRangeItem::DATETIME_TYPE_DATE);
+  protected function getDateRangeItemInstance(array $data): DateRangeItem {
     $field_name = $this->fieldStorage->getName();
 
     $start_date_formatted = gmdate(DateTimeItemInterface::DATE_STORAGE_FORMAT, $data['start']);
@@ -115,26 +128,6 @@ class DateRangeFieldTest extends DateRangeItemTest {
     $entity->save();
 
     return $entity->{$field_name}->first();
-  }
-
-  /**
-   * Data provider for rendering test.
-   *
-   * @return array
-   *   An array of test data arrays with assertions.
-   */
-  public function renderingDataProvider(): array {
-    return Yaml::parse(file_get_contents(__DIR__ . '/fixtures/patterns/date_block_pattern_rendering.yml'));
-  }
-
-  /**
-   * Get fixture content.
-   *
-   * @return array
-   *   Data provider for factory methods test.
-   */
-  public function dataProviderForFactory(): array {
-    return Yaml::parse(file_get_contents(__DIR__ . '/../Unit/fixtures/value_object/date_value_object.yml'));
   }
 
 }

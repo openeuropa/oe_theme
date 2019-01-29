@@ -60,7 +60,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): ValueObjectInterface {
+  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): DateValueObjectInterface {
     return new static(
       $dateRangeItem->get('start_date')->getValue()->getTimeStamp(),
       $dateRangeItem->get('end_date')->getValue()->getTimeStamp(),

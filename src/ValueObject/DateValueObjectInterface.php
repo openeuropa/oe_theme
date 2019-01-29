@@ -12,15 +12,15 @@ use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 interface DateValueObjectInterface extends ValueObjectInterface {
 
   /**
-   * Factory method for constructing DateValueObject from DateRangeItem.
+   * Instantiates a new DateValueObject from a DateRangeItem object.
    *
    * @param \Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem $dateRangeItem
-   *   The instance of DateRangeItem from datetime_range field type value.
+   *   The DateRangeItem instance.
    *
-   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
+   * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
    *   A new ValueObject object.
    */
-  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): ValueObjectInterface;
+  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): DateValueObjectInterface;
 
   /**
    * Get day.

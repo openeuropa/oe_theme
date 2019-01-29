@@ -40,10 +40,8 @@ trait RenderTrait {
    *   A render array.
    * @param array $assertions
    *   Test assertions.
-   *
-   * @dataProvider renderingDataProvider
    */
-  public function assertRendering(string $html, array $assertions): void {
+  protected function assertRendering(string $html, array $assertions): void {
     $crawler = new Crawler($html);
 
     // Assert presence of given strings.
