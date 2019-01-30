@@ -63,15 +63,15 @@ class Filters extends \Twig_Extension {
    * @param string $language_code
    *   The language code as defined by the W3C language tags document.
    *
-   * @return string
+   * @return string|\Drupal\Core\StringTranslation\TranslatableMarkup
    *   The native language name.
    */
-  public function toNativeLanguageName($language_code) {
+  public function toNativeLanguageName(string $language_code) {
     if (empty($language_code)) {
       return $this->t('Unknown');
     }
 
-    if ($language_code == LanguageInterface::LANGCODE_NOT_SPECIFIED) {
+    if ($language_code === LanguageInterface::LANGCODE_NOT_SPECIFIED) {
       return $this->t('None');
     }
 
