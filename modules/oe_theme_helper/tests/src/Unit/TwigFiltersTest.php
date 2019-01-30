@@ -63,6 +63,7 @@ class TwigFiltersTest extends UnitTestCase {
 
     // Instantiate the system under test.
     $this->extension = new Filters($this->languageManager->reveal());
+    $this->extension->setStringTranslation($this->getStringTranslationStub());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
@@ -188,23 +189,15 @@ class TwigFiltersTest extends UnitTestCase {
    *
    * @param mixed $invalid_language_code
    *   An invalid language code to pass to the function.
+   * @param string $expected
+   *   The native language name or string that is expected to be returned.
    *
    * @covers ::toNativeLanguageName
    * @dataProvider invalidLanguageCodesProvider
    */
-  public function testPassingInvalidLanguageCodesToNativeLanguageName($invalid_language_code): void {
-    $this->expectException(\InvalidArgumentException::class);
-
-    try {
-      $this->twig->render("{{ '$invalid_language_code'|to_native_language }}");
-      $this->fail('The expected exception was not thrown.');
-    }
-    catch (\Twig_Error_Runtime $e) {
-      // Twig wraps any exception that occurs during rendering with its own
-      // runtime exception. Rethrow the original exception so we can verify that
-      // the correct one is being thrown.
-      throw $e->getPrevious();
-    }
+  public function testPassingInvalidLanguageCodesToNativeLanguageName($invalid_language_code, $expected): void {
+    $result = $this->twig->render("{{ '$invalid_language_code'|to_native_language }}");
+    $this->assertEquals($expected, $result);
   }
 
   /**
@@ -218,16 +211,18 @@ class TwigFiltersTest extends UnitTestCase {
    */
   public function invalidLanguageCodesProvider(): array {
     return [
-      [NULL],
-      [TRUE],
-      [FALSE],
-      [''],
-      ['qq'],
-      [-1e10],
-      ['≈ç√∫˜µ≤≥'],
-      [0],
-      ['😍'],
-      ['1;DROP TABLE users'],
+      [NULL, 'Unknown'],
+      [FALSE, 'Unknown'],
+      ['', 'Unknown'],
+      [0, 'Unknown'],
+      [TRUE, 'Unknown (1)'],
+      ['qq', 'Unknown (qq)'],
+      [81.05, 'Unknown (81.05)'],
+      [-1e10, 'Unknown (-10000000000)'],
+      ['≈ç√∫˜µ≤≥', 'Unknown (≈ç√∫˜µ≤≥)'],
+      ['😍', 'Unknown (😍)'],
+      ['1;DROP TABLE users', 'Unknown (1;DROP TABLE users)'],
+      ['und', 'None'],
     ];
   }
 

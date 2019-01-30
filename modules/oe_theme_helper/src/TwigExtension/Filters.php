@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
  * Collection of extra Twig filters.
@@ -13,6 +15,8 @@ use Drupal\Core\Language\LanguageManagerInterface;
  * coming straight from Twig templates.
  */
 class Filters extends \Twig_Extension {
+
+  use StringTranslationTrait;
 
   /**
    * The language manager.
@@ -61,16 +65,22 @@ class Filters extends \Twig_Extension {
    *
    * @return string
    *   The native language name.
-   *
-   * @throws \InvalidArgumentException
-   *   Thrown when the passed in language code does not exist.
    */
-  public function toNativeLanguageName($language_code): string {
+  public function toNativeLanguageName($language_code) {
+    if (empty($language_code)) {
+      return $this->t('Unknown');
+    }
+
+    if ($language_code == LanguageInterface::LANGCODE_NOT_SPECIFIED) {
+      return $this->t('None');
+    }
+
     $languages = $this->languageManager->getNativeLanguages();
     if (!empty($languages[$language_code])) {
       return $languages[$language_code]->getName();
     }
-    throw new \InvalidArgumentException("The language code $language_code does not exist or is not enabled.");
+
+    return $this->t('Unknown (@langcode)', ['@langcode' => $language_code]);
   }
 
   /**
