@@ -11,8 +11,6 @@ use Symfony\Component\Yaml\Yaml;
 
 /**
  * Class DateTimeTestBase.
- *
- * @package Drupal\Tests\oe_theme\Kernel\ValueObject
  */
 abstract class DateTimeTestBase extends FieldKernelTestBase {
 
