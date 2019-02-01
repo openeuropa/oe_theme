@@ -29,10 +29,10 @@ interface DateValueObjectInterface extends ValueObjectInterface {
    * @param \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem $dateTimeItem
    *   The instance of DateTimeItem from datetime_range field type value.
    *
-   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
+   * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
    *   A new ValueObject object.
    */
-  public static function fromDateTimeItem(DateTimeItem $dateTimeItem): ValueObjectInterface;
+  public static function fromDateTimeItem(DateTimeItem $dateTimeItem): DateValueObjectInterface;
 
   /**
    * Get day.

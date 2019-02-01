@@ -72,7 +72,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
-  public static function fromDateTimeItem(DateTimeItem $dateTimeItem): ValueObjectInterface {
+  public static function fromDateTimeItem(DateTimeItem $dateTimeItem): DateValueObjectInterface {
     return new static(
       $dateTimeItem->get('date')->getValue()->getTimeStamp(),
       NULL,
