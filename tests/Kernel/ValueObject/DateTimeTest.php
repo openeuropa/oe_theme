@@ -56,13 +56,7 @@ class DateTimeTest extends DateTimeTestBase {
   }
 
   /**
-   * Get instance (value) of datetime_range field type.
-   *
-   * @param array $data
-   *   The array with start and end date.
-   *
-   * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
-   *   DateValueObjectInterface object.
+   * {@inheritdoc}
    */
   protected function getDateValueObject(array $data): DateValueObjectInterface {
     if (!empty($data['end'])) {

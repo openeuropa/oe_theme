@@ -24,10 +24,10 @@ interface DateValueObjectInterface extends ValueObjectInterface {
   public static function fromDateRangeItem(DateRangeItem $dateRangeItem): DateValueObjectInterface;
 
   /**
-   * Factory method for constructing DateValueObject from DateTimeItem.
+   * Instantiates a new DateValueObject from a DateTimeItem object.
    *
    * @param \Drupal\datetime\Plugin\Field\FieldType\DateTimeItem $dateTimeItem
-   *   The instance of DateTimeItem from datetime_range field type value.
+   *   The instance of DateTimeItem from datetime field type value.
    *
    * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
    *   A new ValueObject object.
