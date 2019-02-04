@@ -4,10 +4,23 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
+use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
+
 /**
  * Interface DateValueObjectInterface.
  */
 interface DateValueObjectInterface extends ValueObjectInterface {
+
+  /**
+   * Instantiates a new DateValueObject from a DateRangeItem object.
+   *
+   * @param \Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem $dateRangeItem
+   *   The DateRangeItem instance.
+   *
+   * @return \Drupal\oe_theme\ValueObject\DateValueObjectInterface
+   *   A new ValueObject object.
+   */
+  public static function fromDateRangeItem(DateRangeItem $dateRangeItem): DateValueObjectInterface;
 
   /**
    * Get day.
