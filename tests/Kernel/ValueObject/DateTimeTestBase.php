@@ -37,7 +37,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
   }
 
   /**
-   * Test constructing a date value object from an DateRangeItem.
+   * Test constructing a date value object from an DateRangeItem/DateTimeItem.
    *
    * @param array $data
    *   The array with start and end date.
@@ -46,7 +46,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
    *
    * @dataProvider dataProviderForFactory
    */
-  public function testFromDateRangeItem(array $data, array $expected): void {
+  public function testFromDateTimeObject(array $data, array $expected): void {
     $date = $this->getDateValueObject($data);
 
     $this->assertEquals($expected['day'], $date->getDay());
