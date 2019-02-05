@@ -106,7 +106,7 @@ class FileValueObject extends ValueObjectBase {
   }
 
   /**
-   * Setter.
+   * Create a new FileValueObject with a specific language code.
    *
    * @param string $languageCode
    *   Property value.
