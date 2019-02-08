@@ -87,7 +87,7 @@ class ImageMediaValueObjectTest extends UnitTestCase {
       'responsive' => TRUE,
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
+    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $object */
     $object = ImageMediaValueObject::fromArray($data);
 
     $this->assertEquals($data['src'], $object->getSource());
@@ -100,7 +100,7 @@ class ImageMediaValueObjectTest extends UnitTestCase {
    * Test constructing a file value object from an array.
    */
   public function testFromImageField() {
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
+    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $object */
     $object = ImageMediaValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
 
     $this->assertEquals('http://placehold.it/380x185', $object->getSource());

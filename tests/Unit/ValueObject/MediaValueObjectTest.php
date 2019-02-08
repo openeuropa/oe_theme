@@ -21,7 +21,7 @@ class MediaValueObjectTest extends UnitTestCase {
       'name' => 'Test.pdf',
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\MediaValueObject $media */
+    /** @var \Drupal\oe_theme\ValueObject\MediaValueObject $object */
     $object = MediaValueObject::fromArray($data);
 
     $this->assertEquals($data['src'], $object->getSource());
