@@ -17,13 +17,16 @@ class GalleryValueObjectTest extends UnitTestCase {
    * Test constructing a file value object from an array.
    */
   public function testFromArray() {
-    $image_array = [
-      'source' => 'http://placehold.it/380x185',
+    $image_data = [
+      'src' => 'http://placehold.it/380x185',
       'name' => 'Test image',
       'alt' => 'Alt text',
       'responsive' => TRUE,
     ];
-    $image = ImageMediaValueObject::fromArray($image_array);
+
+    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
+    $image = ImageMediaValueObject::fromArray($image_data);
+
     $data = [
       'icon' => 'camera',
       'caption' => 'Test caption.',
@@ -34,10 +37,10 @@ class GalleryValueObjectTest extends UnitTestCase {
     /** @var \Drupal\oe_theme\ValueObject\GalleryValueObject $galleryItem */
     $galleryItem = GalleryValueObject::fromArray($data);
 
-    $this->assertEquals('camera', $galleryItem->getIcon());
-    $this->assertEquals('Test caption.', $galleryItem->getCaption());
-    $this->assertEquals('example-class', $galleryItem->getClasses());
-    $this->assertEquals($image_array, $galleryItem->getImage()->getArray());
+    $this->assertEquals($data['icon'], $galleryItem->getIcon());
+    $this->assertEquals($data['caption'], $galleryItem->getCaption());
+    $this->assertEquals($data['classes'], $galleryItem->getClasses());
+    $this->assertEquals($image_data, $galleryItem->getImage()->getArray());
   }
 
 }

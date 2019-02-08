@@ -17,15 +17,15 @@ class MediaValueObjectTest extends UnitTestCase {
    */
   public function testFromArray() {
     $data = [
-      'source' => 'http://example.com/test.pdf',
+      'src' => 'http://example.com/test.pdf',
       'name' => 'Test.pdf',
     ];
 
     /** @var \Drupal\oe_theme\ValueObject\MediaValueObject $media */
-    $media = MediaValueObject::fromArray($data);
+    $object = MediaValueObject::fromArray($data);
 
-    $this->assertEquals('http://example.com/test.pdf', $media->getSource());
-    $this->assertEquals('Test.pdf', $media->getName());
+    $this->assertEquals($data['src'], $object->getSource());
+    $this->assertEquals($data['name'], $object->getName());
   }
 
 }

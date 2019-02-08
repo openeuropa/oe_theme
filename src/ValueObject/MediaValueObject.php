@@ -10,42 +10,44 @@ namespace Drupal\oe_theme\ValueObject;
 class MediaValueObject extends ValueObjectBase {
 
   /**
-   * The name of the file.
+   * The name of the media.
    *
    * @var string
    */
   protected $name;
 
   /**
-   * File Source.
+   * Media Source.
    *
    * @var string
    */
-  protected $source;
+  protected $src;
 
   /**
-   * FileType constructor.
+   * MediaType constructor.
    *
-   * @param string $name
-   *   Name of the file, e.g. "document.pdf".
-   * @param string $source
+   * @param string $src
    *   Media URL, including Drupal schema if internal.
+   * @param string $name
+   *   Name of the media, e.g. "example.xxx".
    */
-  public function __construct(string $name, string $source) {
+  public function __construct(string $src, string $name = '') {
     $this->name = $name;
-    $this->source = $source;
+    $this->src = $src;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
-    $file = new static(
-      $values['name'],
-      $values['source']
+    $values += ['name' => ''];
+
+    $object = new static(
+      $values['src'],
+      $values['name']
     );
 
-    return $file;
+    return $object;
   }
 
   /**
@@ -55,7 +57,7 @@ class MediaValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getSource(): string {
-    return $this->source;
+    return $this->src;
   }
 
   /**
@@ -73,8 +75,8 @@ class MediaValueObject extends ValueObjectBase {
    */
   public function getArray(): array {
     return [
+      'src' => $this->getSource(),
       'name' => $this->getName(),
-      'source' => $this->getSource(),
     ];
   }
 

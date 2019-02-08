@@ -81,19 +81,19 @@ class ImageMediaValueObjectTest extends UnitTestCase {
    */
   public function testFromArray() {
     $data = [
-      'source' => 'http://placehold.it/380x185',
+      'src' => 'http://placehold.it/380x185',
       'name' => 'Test image',
       'alt' => 'Alt text',
       'responsive' => TRUE,
     ];
 
     /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
-    $image = ImageMediaValueObject::fromArray($data);
+    $object = ImageMediaValueObject::fromArray($data);
 
-    $this->assertEquals('http://placehold.it/380x185', $image->getSource());
-    $this->assertEquals('Test image', $image->getName());
-    $this->assertEquals('Alt text', $image->getAlt());
-    $this->assertEquals(TRUE, $image->isResponsive());
+    $this->assertEquals($data['src'], $object->getSource());
+    $this->assertEquals($data['name'], $object->getName());
+    $this->assertEquals($data['alt'], $object->getAlt());
+    $this->assertEquals($data['responsive'], $object->isResponsive());
   }
 
   /**
@@ -101,12 +101,12 @@ class ImageMediaValueObjectTest extends UnitTestCase {
    */
   public function testFromImageField() {
     /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
-    $image = ImageMediaValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
+    $object = ImageMediaValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
 
-    $this->assertEquals('http://placehold.it/380x185', $image->getSource());
-    $this->assertEquals('Test image', $image->getName());
-    $this->assertEquals('Alt text', $image->getAlt());
-    $this->assertEquals(TRUE, $image->isResponsive());
+    $this->assertEquals('http://placehold.it/380x185', $object->getSource());
+    $this->assertEquals('Test image', $object->getName());
+    $this->assertEquals('Alt text', $object->getAlt());
+    $this->assertEquals(TRUE, $object->isResponsive());
   }
 
 }

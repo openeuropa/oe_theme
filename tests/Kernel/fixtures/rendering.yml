@@ -312,20 +312,19 @@
     '#type': pattern
     '#id': gallery
     '#fields':
-      rows:
-        - - classes: "ecl-col-md-4"
-            image:
-              src: "http://img.jpg"
-              alt: "Example alt"
-              responsive: true
-            caption: "Example caption"
-            icon: "camera"
+      items:
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
+            alt: "Example alt"
+            responsive: true
+          caption: "Example caption"
+          icon: "camera"
   assertions:
     count:
       '.ecl-gallery': 1
       '.ecl-gallery .ecl-row': 1
       '.ecl-gallery .ecl-row .ecl-gallery__item': 1
-      '.ecl-gallery .ecl-row .ecl-gallery__item.ecl-col-md-4': 1
       '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 1
       '.ecl-gallery__item-container .ecl-gallery__image[src="http://img.jpg"]': 1
       '.ecl-gallery__item-container .ecl-gallery__image[alt="Example alt"]': 1
@@ -338,13 +337,14 @@
     '#type': pattern
     '#id': gallery
     '#fields':
-      rows:
-        - - image:
-              src: "http://img_1.jpg"
-              responsive: true
-          - image:
-              src: "http://img_2.jpg"
-              responsive: false
+      items:
+        - image:
+            src: "http://img_1.jpg"
+            name: "img_1.jpg"
+        - image:
+            src: "http://img_2.jpg"
+            name: "img_2.jpg"
+            responsive: false
   assertions:
     count:
       '.ecl-gallery': 1
@@ -361,16 +361,27 @@
     '#type': pattern
     '#id': gallery
     '#fields':
-      rows:
-        - - image:
-              src: "http://img_1.jpg"
-        - - image:
-              src: "http://img_2.jpg"
+      items:
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
+        - image:
+            src: "http://img.jpg"
+            name: "img.jpg"
   assertions:
     count:
       '.ecl-gallery': 1
       '.ecl-gallery .ecl-row': 2
-      '.ecl-gallery .ecl-row .ecl-gallery__item': 2
+      '.ecl-gallery .ecl-row .ecl-gallery__item': 5
 - array:
     '#type': pattern
     '#id': list_item

@@ -13,6 +13,8 @@ use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
+use Drupal\oe_theme\ValueObject\GalleryValueObject;
+use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
 
 /**
  * Implements hook_preprocess_HOOK() for breadcrumb template.
@@ -420,12 +422,20 @@ function oe_theme_preprocess_pattern_dialog(array &$variables): void {
  * Implements hook_preprocess_HOOK() for pattern gallery template.
  */
 function oe_theme_preprocess_pattern_gallery(array &$variables): void {
-  foreach ($variables['rows'] as $row_key => &$row) {
-    foreach ($row as $item_key => &$item) {
-      if (!empty($item['icon'])) {
-        $item['icon'] = 'ecl-icon--' . $item['icon'];
-      }
+  $variables['rows'] = [];
+
+  $count_item = 0;
+  foreach ($variables['items'] as $item) {
+    $item += ['classes' => 'ecl-col-md-3'];
+
+    // Format the icon for ecl.
+    if (!empty($item['icon'])) {
+      $item['icon'] = 'ecl-icon--' . $item['icon'];
     }
+
+    $item['image'] = ImageMediaValueObject::fromArray($item['image']);
+    $variables['rows'][(int) $count_item / 4][] = GalleryValueObject::fromArray($item);
+    $count_item++;
   }
 }
 

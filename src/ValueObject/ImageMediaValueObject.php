@@ -19,26 +19,26 @@ class ImageMediaValueObject extends MediaValueObject {
   protected $alt;
 
   /**
-   * The alt of the image.
+   * The parameter 'responsive' of the image.
    *
    * @var bool
    */
   protected $responsive;
 
   /**
-   * FileType constructor.
+   * ImageType constructor.
    *
-   * @param string $name
-   *   Name of the file, e.g. "document.pdf".
-   * @param string $source
+   * @param string $src
    *   Media URL, including Drupal schema if internal.
    * @param string $alt
    *   Image alt text.
+   * @param string $name
+   *   Name of the image, e.g. "example.jpg".
    * @param bool $responsive
    *   Responsiveness of the image.
    */
-  public function __construct(string $name, string $source, string $alt, bool $responsive = TRUE) {
-    parent::__construct($name, $source);
+  public function __construct(string $src, string $alt = '', string $name = '', bool $responsive = TRUE) {
+    parent::__construct($src, $name);
     $this->alt = $alt;
     $this->responsive = $responsive;
   }
@@ -47,14 +47,16 @@ class ImageMediaValueObject extends MediaValueObject {
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
-    $file = new static(
-      $values['name'],
-      $values['source'],
+    $values += ['alt' => '', 'name' => '', 'responsive' => TRUE];
+
+    $object = new static(
+      $values['src'],
       $values['alt'],
+      $values['name'],
       $values['responsive']
     );
 
-    return $file;
+    return $object;
   }
 
   /**
@@ -83,7 +85,7 @@ class ImageMediaValueObject extends MediaValueObject {
   public function getArray(): array {
     return [
       'name' => $this->getName(),
-      'source' => $this->getSource(),
+      'src' => $this->getSource(),
       'alt' => $this->getAlt(),
       'responsive' => $this->isResponsive(),
     ];
@@ -106,9 +108,9 @@ class ImageMediaValueObject extends MediaValueObject {
   public static function fromImageField(ImageItem $image_item, $name = '', $responsive = TRUE): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
     $media = new static(
-      $name,
       file_create_url($image_file->get('uri')->getString()),
       $image_item->get('alt')->getString(),
+      $name,
       $responsive
     );
 

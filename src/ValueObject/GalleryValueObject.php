@@ -38,22 +38,38 @@ class GalleryValueObject extends ValueObjectBase {
   protected $image;
 
   /**
-   * FileType constructor.
+   * GalleryType constructor.
    *
-   * @param string $icon
-   *   Icon for the gallery item.
-   * @param string $caption
-   *   Caption for the gallery item.
-   * @param string $classes
-   *   Extra classes for the gallery item.
    * @param \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image
    *   Image to be rendered on the gallery item.
+   * @param string|null $icon
+   *   Icon for the gallery item.
+   * @param string|null $caption
+   *   Caption for the gallery item.
+   * @param string|null $classes
+   *   Extra classes for the gallery item.
    */
-  public function __construct(string $icon, string $caption, string $classes, ImageMediaValueObject $image) {
+  public function __construct(ImageMediaValueObject $image, string $icon = NULL, string $caption = NULL, string $classes = NULL) {
     $this->icon = $icon;
     $this->caption = $caption;
     $this->classes = $classes;
     $this->image = $image;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function fromArray(array $values = []): ValueObjectInterface {
+    $values += ['icon' => NULL, 'caption' => NULL, 'classes' => NULL];
+
+    $object = new static(
+      $values['image'],
+      $values['icon'],
+      $values['caption'],
+      $values['classes']
+    );
+
+    return $object;
   }
 
   /**
@@ -62,7 +78,7 @@ class GalleryValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getIcon(): string {
+  public function getIcon(): ?string {
     return $this->icon;
   }
 
@@ -72,7 +88,7 @@ class GalleryValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getCaption(): string {
+  public function getCaption(): ?string {
     return $this->caption;
   }
 
@@ -82,7 +98,7 @@ class GalleryValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getClasses(): string {
+  public function getClasses(): ?string {
     return $this->classes;
   }
 
@@ -102,7 +118,8 @@ class GalleryValueObject extends ValueObjectBase {
    * @param string $icon
    *   ECL icon name.
    *
-   * @return $this
+   * @return \Drupal\oe_theme\ValueObject\GalleryValueObject
+   *   A new ValueObject object.
    */
   public function setIcon(string $icon): GalleryValueObject {
     $this->icon = $icon;
@@ -113,31 +130,14 @@ class GalleryValueObject extends ValueObjectBase {
   /**
    * {@inheritdoc}
    */
-  public static function fromArray(array $values = []): ValueObjectInterface {
-    $file = new static(
-      $values['icon'],
-      $values['caption'],
-      $values['classes'],
-      $values['image']
-    );
-
-    return $file;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getArray(): array {
+    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
     $image = $this->getImage();
 
     return [
+      'image' => $image->getArray(),
       'icon' => $this->getIcon(),
       'caption' => $this->getCaption(),
-      'image' => [
-        'src' => $image->getSource(),
-        'alt' => $image->getAlt(),
-        'responsive' => $image->isResponsive(),
-      ],
       'classes' => $this->getClasses(),
     ];
   }

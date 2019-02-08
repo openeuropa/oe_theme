@@ -2,55 +2,39 @@ gallery:
   label: "Gallery"
   description: "Gallery of available media."
   fields:
-    rows:
+    items:
       type: "array"
-      label: "Rows"
-      description: "Rows of gallery items"
+      label: "Items"
+      description: "List of GalleryValueObject objects."
       preview:
-        - - classes: "ecl-col-md-4"
-            image:
-              src: "http://placehold.it/380x185"
-              alt: "Example alt text"
-              responsive: true
-            caption: "Example image caption"
-            icon: "camera"
-          - classes: "ecl-col-md-3"
-            image:
-              src: "http://placehold.it/285x185"
-              alt: "Example image caption"
-              responsive: true
-            icon: "audio"
-          - classes: "ecl-col-md-2"
-            image:
-              src: "http://placehold.it/190x185"
-              alt: "Example alt text"
-              responsive: true
-            caption: "Example image caption"
-            icon: "camera"
-          - classes: "ecl-col-md-3"
-            image:
-              src: "http://placehold.it/285x185"
-              alt: "Example alt text"
-              responsive: true
-        - - classes: "ecl-col-md-2"
-            image:
-              src: "http://placehold.it/190x185"
-              alt: "Example alt text"
-              responsive: false
-            caption: "Example image caption"
-          - classes: "ecl-col-md-3"
-            image:
-              src: "http://placehold.it/285x185"
-              alt: "Example alt text"
-              responsive: true
-          - classes: "ecl-col-md-3"
-            image:
-              src: "http://placehold.it/285x185"
-              alt: "Example alt text"
-              responsive: true
-          - classes: "ecl-col-md-4"
-            image:
-              src: "http://placehold.it/380x185"
-              alt: "Example alt text"
-              responsive: true
-            caption: "Example image caption"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+          icon: "camera"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example image caption"
+          icon: "audio"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+          icon: "camera"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - image:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"

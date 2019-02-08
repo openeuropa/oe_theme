@@ -1,0 +1,24 @@
+patch-package
+--- a/node_modules/@ecl/generic-component-gallery/generic-component-gallery.twig
++++ b/node_modules/@ecl/generic-component-gallery/generic-component-gallery.twig
+@@ -41,6 +41,7 @@
+ 
+ {# Print the result #}
+ 
++{{ dump(rows) }}
+ <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+   {% if _rows is not empty and _rows is iterable %}
+     {# We don't use ecl-container-fluid here because of no-gutters #}
+@@ -55,10 +56,10 @@
+                   responsive: true,
+                   extra_classes: 'ecl-gallery__image'
+                 }|merge(gallery_item.image|default({})) %}
+-                {% if gallery_item.caption is defined %}
++                {% if gallery_item.caption is defined and gallery_item.caption is not null %}
+                   <span class="ecl-gallery__caption">{{ gallery_item.caption }}</span>
+                 {% endif %}
+-                {% if gallery_item.icon is defined %}
++                {% if gallery_item.icon is defined and gallery_item.icon is not null %}
+                 <span class="ecl-gallery__icon-wrapper">
+                   <span class="ecl-gallery__icon ecl-icon {{ gallery_item.icon }}"></span>
+                 </span>
