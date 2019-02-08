@@ -30,7 +30,7 @@ default:
               ECL components overview: "/en/components"
               ECL dropdown component: "components/dropdown"
   extensions:
-    Behat\MinkExtension:
+    Drupal\MinkExtension:
       goutte: ~
       browser_name: 'chrome'
       javascript_session: 'selenium2'
