@@ -160,4 +160,21 @@ class MinkContext extends DrupalExtensionMinkContext {
     return $this->assertSession()->elementExists('css', $selector);
   }
 
+  /**
+   * Assert redirect to expected url.
+   *
+   * @param string $uri
+   *   Expected redirect url.
+   *
+   * @Then I should be redirected to :uri
+   *
+   * @throws \Exception
+   */
+  public function assertRedirect(string $uri): void {
+    $current_uri = $this->getSession()->getCurrentUrl();
+    if ($current_uri !== $uri) {
+      throw new \Exception(sprintf('Redirect to "%s" does not expected.', $uri));
+    }
+  }
+
 }
