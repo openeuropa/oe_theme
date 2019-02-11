@@ -17,7 +17,7 @@ use Drupal\oe_theme\ValueObject\GalleryValueObject;
 use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
 
 /**
- * Implements hook_preprocess_HOOK() for breadcrumb template.
+ * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $request     = \Drupal::request();
@@ -41,7 +41,7 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for main menu template.
+ * Implements hook_preprocess_menu__main().
  */
 function oe_theme_preprocess_menu__main(array &$variables): void {
   // Massage data to be compliant with ECL navigation menu data structure.
@@ -96,7 +96,7 @@ function oe_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE links block paragraph template.
+ * Implements hook_preprocess_paragraph().
  */
 function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void {
   // Massage data to be compliant with ECL links block component data structure.
@@ -109,7 +109,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE Accordion paragraph template.
+ * Implements hook_preprocess_paragraph__oe_accordion().
  */
 function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
   // Massage data to be compliant with ECL accordions component data structure.
@@ -129,7 +129,7 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for menu local tasks template.
+ * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
   foreach ($variables['primary'] as $link) {
@@ -158,14 +158,14 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for radio input template.
+ * Implements hook_preprocess_input__radio().
  */
 function oe_theme_preprocess_input__radio(array &$variables): void {
   _oe_theme_preprocess_input_label_wrapper($variables);
 }
 
 /**
- * Implements hook_preprocess_HOOK() for checkbox input template.
+ * Implements hook_preprocess_input__checkbox().
  */
 function oe_theme_preprocess_input__checkbox(array &$variables): void {
   _oe_theme_preprocess_input_label_wrapper($variables);
@@ -209,7 +209,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for form element template.
+ * Implements hook_preprocess_form_element().
  *
  * Disables displaying of the label for checkbox and radio elements, as the
  * label is already rendered in the input template.
@@ -221,7 +221,9 @@ function oe_theme_preprocess_form_element(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pager template.
+ * Implements hook_preprocess_pager().
+ *
+ * @see template_preprocess_pager()
  *
  * Overwrites the default Drupal pager in order to adapt to the ECL style
  * guide pager component requirements.
@@ -329,7 +331,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for language block links template.
+ * Implements hook_preprocess_links().
  */
 function oe_theme_preprocess_links__language_block(array &$variables): void {
   $current_language = \Drupal::languageManager()
@@ -356,7 +358,7 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE multilingual content language block links template.
+ * Implements hook_preprocess_links__oe_multilingual_content_language_block().
  *
  * Adds extra variables regarding the current and the unavailable languages,
  * and prepares the links for rendering.
@@ -392,7 +394,7 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern dialog template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_dialog(array &$variables): void {
   // Make sure it has default values.
@@ -440,7 +442,7 @@ function oe_theme_preprocess_pattern_gallery(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern accordion template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_accordion(array &$variables): void {
   // If no identifier is provided generate a random, unique one.
@@ -465,7 +467,7 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern dropdown template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
   $defaults = [
@@ -489,7 +491,7 @@ function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern link template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_link_block(array &$variables): void {
   // Format links in order to respect ECL expectations.
@@ -499,7 +501,7 @@ function oe_theme_preprocess_pattern_link_block(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern social media links template.
+ * Implements hook_preprocess_HOOK().
  */
 function _oe_theme_preprocess_pattern_social_media_links(array &$variables): void {
   // Format social media links in order to respect ECL expectations.
@@ -513,21 +515,21 @@ function _oe_theme_preprocess_pattern_social_media_links(array &$variables): voi
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern social media links vertical template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_social_media_links_vertical(array &$variables): void {
   _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern social media links horizontal template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_social_media_links_horizontal(array &$variables): void {
   _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
 /**
- * Implements hook_preprocess_HOOK() for html template.
+ * Implements hook_preprocess_html() for html.html.twig.
  *
  * Add css class for splash page.
  */
@@ -538,7 +540,7 @@ function oe_theme_preprocess_html(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE list item paragraph template.
+ * Implements hook_preprocess_paragraph() for paragraph--oe-list-item.html.twig.
  */
 function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -588,7 +590,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE list item block paragraph template.
+ * Implements hook_preprocess_paragraph() for paragraph--oe-list-item-block.html.twig.
  */
 function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
@@ -609,7 +611,7 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
 }
 
 /**
- * Implements hook_preprocess_HOOK() for OE content row variant inpage paragraph template.
+ * Implements hook_preprocess_paragraph() for paragraph--oe-content-row--variant-inpage.html.twig.
  *
  * Prepares the inpage navigation by creating links for the inner paragraphs
  * that implement a title.
@@ -652,7 +654,7 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(array &$v
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern date block template.
+ * Implements hook_preprocess_pattern().
  */
 function oe_theme_preprocess_pattern_date_block(array &$variables): void {
   // This make sure that the variant value will always fallback to
@@ -670,14 +672,14 @@ function oe_theme_preprocess_pattern_date_block(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern file preview template.
+ * Implements hook_preprocess_pattern_file__preview().
  */
 function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern file link preview template.
+ * Implements hook_preprocess_pattern_file_link__preview().
  */
 function oe_theme_preprocess_pattern_file_link__preview(array &$variables): void {
   $variables['files'] = array_map(
@@ -689,7 +691,7 @@ function oe_theme_preprocess_pattern_file_link__preview(array &$variables): void
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern file translation template.
+ * Implements hook_preprocess_pattern_file_translation().
  */
 function oe_theme_preprocess_pattern_file_translation(array &$variables): void {
   // This is defined in ui_patterns contrib module in ui_patterns_theme().
@@ -703,7 +705,7 @@ function oe_theme_preprocess_pattern_file_translation(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern file translation preview template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_file_translation__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
@@ -714,14 +716,14 @@ function oe_theme_preprocess_pattern_file_translation__preview(array &$variables
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern list item variant date preview template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_list_item__variant_date__preview(array &$variables): void {
   $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
 
 /**
- * Implements hook_preprocess_HOOK() for pattern date block preview template.
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_date_block__preview(array &$variables): void {
   $variables['date'] = DateValueObject::fromArray($variables['date']);
