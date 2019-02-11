@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * @see ./core/themes/stable/templates/form/form.html.twig
+ * @see @ecl/generic-component-search-form.twig
+ *
+ * In order to avoid usage of not secure form template in ecl we have to partically copy code from @ecl/generic-component-search-form.twig
+ */
+#}
+
+<form {{ attributes.addClass(['ecl-search-form', 'ecl-search-form--']) }}>
+  <label class="ecl-search-form__textfield-wrapper">
+    <span class="ecl-u-sr-only">{{ "Search this website" }}</span>
+    {% include '@ecl/generic-component-form-text-input' with {
+      'id': 'search',
+      'type': 'search',
+      'extra_classes': 'ecl-search-form__textfield'
+    }|merge(input) only %}
+  </label>
+  {% include '@ecl/generic-component-button' with {
+    'label': 'Search',
+    'modifier': 'form',
+    'extra_classes': 'ecl-search-form__button'
+  } %}
+  {{ element.form_build_id }}
+  {{ element.form_token }}
+  {{ element.form_id }}
+</form>
