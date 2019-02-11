@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_search
+  theme:
+    - oe_theme
+id: oe_theme_search_form
+theme: oe_theme
+region: site_header
+weight: 3
+provider: null
+plugin: oe_search
+settings:
+  id: oe_search
+  label: 'OpenEuropa Search block'
+  provider: oe_search
+  label_display: visible
+visibility: {  }
