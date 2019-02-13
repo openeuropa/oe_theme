@@ -25,7 +25,7 @@
         "openeuropa/drupal-core-require-dev": "8.6.x-dev",
         "openeuropa/oe_multilingual": "~0.2.3",
         "openeuropa/oe_paragraphs": "~0.3",
-        "openeuropa/oe_search": "dev-OPENEUROPA-1603-search-block",
+        "openeuropa/oe_search": "dev-master",
         "openeuropa/task-runner": "~1.0-beta4",
         "phpunit/phpunit": "~5.5||~6.0",
         "symfony/dom-crawler": "~3.4"
@@ -48,10 +48,6 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        "openeuropa": {
-            "type": "git",
-            "url": "https://github.com/openeuropa/oe_search.git"
         }
     },
     "extra": {
