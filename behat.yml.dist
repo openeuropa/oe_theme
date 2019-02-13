@@ -33,6 +33,7 @@ default:
   extensions:
     Drupal\MinkExtension:
       goutte: ~
+      ajax_timeout: 10
       browser_name: 'chrome'
       javascript_session: 'selenium2'
       selenium2:
