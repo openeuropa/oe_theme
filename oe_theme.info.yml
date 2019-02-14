@@ -28,3 +28,4 @@ config_devel:
     - block.block.oe_theme_page_header
     - block.block.oe_theme_site_branding
     - block.block.oe_theme_tabs
+    - block.block.oe_theme_search_form

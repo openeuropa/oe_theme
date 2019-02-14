@@ -23,6 +23,7 @@ default:
               page header: ".ecl-page-header__body"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search box: ".demo-block-header-search"
+              search form: ".ecl-search-form"
               sites switcher: ".demo-block-site-switcher"
               dropdown content: ".ecl-link-block__list"
             pages:

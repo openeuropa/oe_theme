@@ -13,6 +13,7 @@ drupal:
   post_install:
     - "./vendor/bin/drush en oe_theme_helper -y"
     - "./vendor/bin/drush en oe_multilingual -y"
+    - "./vendor/bin/drush en oe_search -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
