@@ -1,10 +1,21 @@
 # Change Log
 
+## [0.10.0](https://github.com/openeuropa/oe_theme/tree/0.10.0) (2019-02-15)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.9.0...0.10.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1603: Provide a simple search box that will submit searched terms to the external Europa search service. [\#173](https://github.com/openeuropa/oe_theme/pull/173) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1609 Fix behat.yml.dist to use drupal-extension properly. [\#171](https://github.com/openeuropa/oe_theme/pull/171) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1379: Add support for DateTimeItem field type to DateValueObject. [\#165](https://github.com/openeuropa/oe_theme/pull/165) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1383: Add support for DateRangeItem filed type to DateValueObject. [\#164](https://github.com/openeuropa/oe_theme/pull/164) ([sergepavle](https://github.com/sergepavle))
+
 ## [0.9.0](https://github.com/openeuropa/oe_theme/tree/0.9.0) (2019-01-28)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.8.0...0.9.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1562: Update the changelog for the release 0.9.0. [\#167](https://github.com/openeuropa/oe_theme/pull/167) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1549: Renaming config to actually get imported. [\#166](https://github.com/openeuropa/oe_theme/pull/166) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1531: Create MediaValueObject, GalleryValueObject and ImageMediaValueObject. [\#163](https://github.com/openeuropa/oe_theme/pull/163) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1533: Add --strict flag for Behat tests executions. [\#158](https://github.com/openeuropa/oe_theme/pull/158) ([sergepavle](https://github.com/sergepavle))
