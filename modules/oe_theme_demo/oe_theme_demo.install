@@ -38,3 +38,10 @@ function oe_theme_demo_uninstall() {
     'view style guides',
   ]);
 }
+
+/**
+ * Remove the demo search block.
+ */
+function oe_theme_demo_update_8001(): void {
+  \Drupal::configFactory()->getEditable('block.block.oe_theme_demo_header_search.yml')->delete();
+}
