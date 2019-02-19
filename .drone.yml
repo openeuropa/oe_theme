@@ -57,6 +57,7 @@ pipeline:
     image: fpfis/httpd-php-dev:7.1
     commands:
       - ./vendor/bin/run drupal:site-install
+      - chown -R www-data:www-data /test/oe_theme/*
 
   grumphp:
     group: test
@@ -74,9 +75,6 @@ pipeline:
     group: test
     image: fpfis/httpd-php-dev:7.1
     commands:
-      # Reset permission since installation runs as root. @todo Fix this.
-      - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
-      - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
       - ./vendor/bin/behat --strict
 
   before-release:
