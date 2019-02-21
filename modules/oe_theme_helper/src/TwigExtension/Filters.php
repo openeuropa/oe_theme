@@ -77,7 +77,7 @@ class Filters extends \Twig_Extension {
       return $predefined[$language_code][1];
     }
 
-    throw new \InvalidArgumentException("The language code $language_code does not exist.");
+    throw new \InvalidArgumentException('The language code ' . $language_code . ' does not exist.');
   }
 
   /**
