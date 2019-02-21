@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 
 /**
@@ -70,7 +71,52 @@ class Filters extends \Twig_Extension {
     if (!empty($languages[$language_code])) {
       return $languages[$language_code]->getName();
     }
-    throw new \InvalidArgumentException("The language code $language_code does not exist or is not enabled.");
+    // The fallback implemented in case we don't have enabled language.
+    $predefined = array_merge(self::getEuropeanUnionLanguageList(), LanguageManager::getStandardLanguageList());
+    if (!empty($predefined[$language_code][1])) {
+      return $predefined[$language_code][1];
+    }
+
+    throw new \InvalidArgumentException("The language code $language_code does not exist.");
+  }
+
+  /**
+   * Returns a list of language data.
+   *
+   * This is the data that is expected to be returned by the overridden language
+   * manager as supplied by the OpenEuropa Multilingual module.
+   *
+   * @return array
+   *   An array with language codes as keys, and English and native language
+   *   names as values.
+   */
+  public static function getEuropeanUnionLanguageList(): array {
+    return [
+      'bg' => ['Bulgarian', 'български'],
+      'cs' => ['Czech', 'čeština'],
+      'da' => ['Danish', 'dansk'],
+      'de' => ['German', 'Deutsch'],
+      'et' => ['Estonian', 'eesti'],
+      'el' => ['Greek', 'ελληνικά'],
+      'en' => ['English', 'English'],
+      'es' => ['Spanish', 'español'],
+      'fr' => ['French', 'français'],
+      'ga' => ['Irish', 'Gaeilge'],
+      'hr' => ['Croatian', 'hrvatski'],
+      'it' => ['Italian', 'italiano'],
+      'lt' => ['Lithuanian', 'lietuvių'],
+      'lv' => ['Latvian', 'latviešu'],
+      'hu' => ['Hungarian', 'magyar'],
+      'mt' => ['Maltese', 'Malti'],
+      'nl' => ['Dutch', 'Nederlands'],
+      'pl' => ['Polish', 'polski'],
+      'pt-pt' => ['Portuguese', 'português'],
+      'ro' => ['Romanian', 'română'],
+      'sk' => ['Slovak', 'slovenčina'],
+      'sl' => ['Slovenian', 'slovenščina'],
+      'fi' => ['Finnish', 'suomi'],
+      'sv' => ['Swedish', 'svenska'],
+    ];
   }
 
   /**
