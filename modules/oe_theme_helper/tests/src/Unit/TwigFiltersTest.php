@@ -242,32 +242,7 @@ class TwigFiltersTest extends UnitTestCase {
    *   names as values.
    */
   protected static function getEuropeanUnionLanguageList(): array {
-    return [
-      'bg' => ['Bulgarian', 'български'],
-      'cs' => ['Czech', 'čeština'],
-      'da' => ['Danish', 'dansk'],
-      'de' => ['German', 'Deutsch'],
-      'et' => ['Estonian', 'eesti'],
-      'el' => ['Greek', 'ελληνικά'],
-      'en' => ['English', 'English'],
-      'es' => ['Spanish', 'español'],
-      'fr' => ['French', 'français'],
-      'ga' => ['Irish', 'Gaeilge'],
-      'hr' => ['Croatian', 'hrvatski'],
-      'it' => ['Italian', 'italiano'],
-      'lt' => ['Lithuanian', 'lietuvių'],
-      'lv' => ['Latvian', 'latviešu'],
-      'hu' => ['Hungarian', 'magyar'],
-      'mt' => ['Maltese', 'Malti'],
-      'nl' => ['Dutch', 'Nederlands'],
-      'pl' => ['Polish', 'polski'],
-      'pt-pt' => ['Portuguese', 'português'],
-      'ro' => ['Romanian', 'română'],
-      'sk' => ['Slovak', 'slovenčina'],
-      'sl' => ['Slovenian', 'slovenščina'],
-      'fi' => ['Finnish', 'suomi'],
-      'sv' => ['Swedish', 'svenska'],
-    ];
+    return Filters::getEuropeanUnionLanguageList();
   }
 
 }
