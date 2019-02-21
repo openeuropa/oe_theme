@@ -72,7 +72,7 @@ class Filters extends \Twig_Extension {
       return $languages[$language_code]->getName();
     }
     // The fallback implemented in case we don't have enabled language.
-    $predefined = array_merge(self::getEuropeanUnionLanguageList(), LanguageManager::getStandardLanguageList());
+    $predefined = self::getEuropeanUnionLanguageList() + LanguageManager::getStandardLanguageList();
     if (!empty($predefined[$language_code][1])) {
       return $predefined[$language_code][1];
     }

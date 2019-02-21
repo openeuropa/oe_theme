@@ -18,19 +18,8 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    * {@inheritdoc}
    */
   public static $modules = [
-    'language',
-    'oe_multilingual',
     'oe_theme_patterns_render_test',
   ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->installConfig(['language', 'oe_multilingual']);
-  }
 
   /**
    * {@inheritdoc}
