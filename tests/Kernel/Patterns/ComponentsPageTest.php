@@ -45,6 +45,7 @@ class ComponentsPageTest extends KernelTestBase {
     $controller = new PatternsLibraryController($this->container->get('plugin.manager.ui_patterns'));
     $renderable_array = $controller->overview();
     $this->container->get('renderer')->renderRoot($renderable_array);
+    $this->assertTrue(TRUE);
   }
 
 }
