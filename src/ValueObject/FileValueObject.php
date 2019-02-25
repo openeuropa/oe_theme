@@ -72,7 +72,7 @@ class FileValueObject extends ValueObjectBase {
    * @param string $size
    *   File size in bytes.
    */
-  private function __construct(string $name, string $url, string $mime, string $size) {
+  protected function __construct(string $name, string $url, string $mime, string $size) {
     $this->name = $name;
     $this->url = $url;
     $this->mime = $mime;

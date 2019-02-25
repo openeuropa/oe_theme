@@ -8,12 +8,12 @@ use Drupal\oe_theme\ValueObject\MediaValueObject;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Test file value object.
+ * Test media value object.
  */
 class MediaValueObjectTest extends UnitTestCase {
 
   /**
-   * Test constructing a file value object from an array.
+   * Test constructing a media value object from an array.
    */
   public function testFromArray() {
     $data = [

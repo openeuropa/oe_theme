@@ -37,7 +37,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    * @param string|null $timezone
    *   Timezone string, e.g. "Europe/Brussels".
    */
-  private function __construct(int $start, int $end = NULL, string $timezone = NULL) {
+  protected function __construct(int $start, int $end = NULL, string $timezone = NULL) {
     $this->start = DateTimePlus::createFromTimestamp($start, $timezone);
 
     if ($end !== NULL) {

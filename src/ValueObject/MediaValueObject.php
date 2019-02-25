@@ -24,14 +24,14 @@ class MediaValueObject extends ValueObjectBase {
   protected $src;
 
   /**
-   * MediaType constructor.
+   * MediaValueObject constructor.
    *
    * @param string $src
    *   Media URL, including Drupal schema if internal.
    * @param string $name
    *   Name of the media, e.g. "example.xxx".
    */
-  public function __construct(string $src, string $name = '') {
+  protected function __construct(string $src, string $name = '') {
     $this->name = $name;
     $this->src = $src;
   }

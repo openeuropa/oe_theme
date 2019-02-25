@@ -13,7 +13,7 @@ use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Test file value object.
+ * Test image media value object.
  */
 class ImageMediaValueObjectTest extends UnitTestCase {
 
@@ -77,7 +77,7 @@ class ImageMediaValueObjectTest extends UnitTestCase {
   }
 
   /**
-   * Test constructing a file value object from an array.
+   * Test constructing a image media value object from an array.
    */
   public function testFromArray() {
     $data = [
@@ -97,7 +97,7 @@ class ImageMediaValueObjectTest extends UnitTestCase {
   }
 
   /**
-   * Test constructing a file value object from an array.
+   * Test constructing a image media value object from an image field.
    */
   public function testFromImageField() {
     /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $object */

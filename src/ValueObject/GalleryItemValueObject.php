@@ -5,16 +5,16 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme\ValueObject;
 
 /**
- * Handle information about a media item.
+ * Handle information about a gallery item.
  */
-class GalleryValueObject extends ValueObjectBase {
+class GalleryItemValueObject extends ValueObjectBase {
 
   /**
    * The icon of the gallery item.
    *
    * @var string
    */
-  protected $icon;
+  const ICON = 'camera';
 
   /**
    * The caption of the gallery item.
@@ -38,19 +38,16 @@ class GalleryValueObject extends ValueObjectBase {
   protected $image;
 
   /**
-   * GalleryType constructor.
+   * GalleryItemValueObject constructor.
    *
    * @param \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image
    *   Image to be rendered on the gallery item.
-   * @param string|null $icon
-   *   Icon for the gallery item.
    * @param string|null $caption
    *   Caption for the gallery item.
    * @param string|null $classes
    *   Extra classes for the gallery item.
    */
-  public function __construct(ImageMediaValueObject $image, string $icon = NULL, string $caption = NULL, string $classes = NULL) {
-    $this->icon = $icon;
+  protected function __construct(ImageMediaValueObject $image, string $caption = NULL, string $classes = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
     $this->image = $image;
@@ -60,26 +57,15 @@ class GalleryValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
-    $values += ['icon' => NULL, 'caption' => NULL, 'classes' => NULL];
+    $values += ['caption' => NULL, 'classes' => NULL];
 
     $object = new static(
       $values['image'],
-      $values['icon'],
       $values['caption'],
       $values['classes']
     );
 
     return $object;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getIcon(): ?string {
-    return $this->icon;
   }
 
   /**
@@ -113,21 +99,6 @@ class GalleryValueObject extends ValueObjectBase {
   }
 
   /**
-   * Setter.
-   *
-   * @param string $icon
-   *   ECL icon name.
-   *
-   * @return \Drupal\oe_theme\ValueObject\GalleryValueObject
-   *   A new ValueObject object.
-   */
-  public function setIcon(string $icon): GalleryValueObject {
-    $this->icon = $icon;
-
-    return $this;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function getArray(): array {
@@ -136,7 +107,7 @@ class GalleryValueObject extends ValueObjectBase {
 
     return [
       'image' => $image->getArray(),
-      'icon' => $this->getIcon(),
+      'icon' => $this::ICON,
       'caption' => $this->getCaption(),
       'classes' => $this->getClasses(),
     ];

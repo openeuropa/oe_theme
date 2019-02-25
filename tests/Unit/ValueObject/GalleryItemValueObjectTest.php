@@ -5,16 +5,16 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
 use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
-use Drupal\oe_theme\ValueObject\GalleryValueObject;
+use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Test file value object.
+ * Test gallery item value object.
  */
-class GalleryValueObjectTest extends UnitTestCase {
+class GalleryItemValueObjectTest extends UnitTestCase {
 
   /**
-   * Test constructing a file value object from an array.
+   * Test constructing a gallery item value object from an array.
    */
   public function testFromArray() {
     $image_data = [
@@ -34,8 +34,8 @@ class GalleryValueObjectTest extends UnitTestCase {
       'image' => $image,
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\GalleryValueObject $galleryItem */
-    $galleryItem = GalleryValueObject::fromArray($data);
+    /** @var \Drupal\oe_theme\ValueObject\GalleryItemValueObject $galleryItem */
+    $galleryItem = GalleryItemValueObject::fromArray($data);
 
     $this->assertEquals($data['icon'], $galleryItem->getIcon());
     $this->assertEquals($data['caption'], $galleryItem->getCaption());

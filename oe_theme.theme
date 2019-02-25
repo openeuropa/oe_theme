@@ -13,7 +13,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
-use Drupal\oe_theme\ValueObject\GalleryValueObject;
+use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
 
 /**
@@ -436,7 +436,7 @@ function oe_theme_preprocess_pattern_gallery(array &$variables): void {
     }
 
     $item['image'] = ImageMediaValueObject::fromArray($item['image']);
-    $variables['rows'][(int) $count_item / 4][] = GalleryValueObject::fromArray($item);
+    $variables['rows'][ceil($count_item / 4)][] = GalleryItemValueObject::fromArray($item);
     $count_item++;
   }
 }

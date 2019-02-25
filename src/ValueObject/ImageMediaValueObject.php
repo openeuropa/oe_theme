@@ -7,7 +7,7 @@ namespace Drupal\oe_theme\ValueObject;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 
 /**
- * Handle information about a media item.
+ * Handle information about an image media item.
  */
 class ImageMediaValueObject extends MediaValueObject {
 
@@ -26,7 +26,7 @@ class ImageMediaValueObject extends MediaValueObject {
   protected $responsive;
 
   /**
-   * ImageType constructor.
+   * ImageMediaValueObject constructor.
    *
    * @param string $src
    *   Media URL, including Drupal schema if internal.
@@ -37,7 +37,7 @@ class ImageMediaValueObject extends MediaValueObject {
    * @param bool $responsive
    *   Responsiveness of the image.
    */
-  public function __construct(string $src, string $alt = '', string $name = '', bool $responsive = TRUE) {
+  protected function __construct(string $src, string $alt = '', string $name = '', bool $responsive = TRUE) {
     parent::__construct($src, $name);
     $this->alt = $alt;
     $this->responsive = $responsive;
