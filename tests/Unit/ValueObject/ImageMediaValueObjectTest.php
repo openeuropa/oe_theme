@@ -9,7 +9,7 @@ use Drupal\Core\Entity\Plugin\DataType\EntityReference;
 use Drupal\Core\Field\FieldItemList;
 use Drupal\Core\TypedData\Plugin\DataType\StringData;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -87,8 +87,8 @@ class ImageMediaValueObjectTest extends UnitTestCase {
       'responsive' => TRUE,
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $object */
-    $object = ImageMediaValueObject::fromArray($data);
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $object */
+    $object = ImageValueObject::fromArray($data);
 
     $this->assertEquals($data['src'], $object->getSource());
     $this->assertEquals($data['name'], $object->getName());
@@ -100,8 +100,8 @@ class ImageMediaValueObjectTest extends UnitTestCase {
    * Test constructing a image media value object from an image field.
    */
   public function testFromImageField() {
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $object */
-    $object = ImageMediaValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $object */
+    $object = ImageValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
 
     $this->assertEquals('http://placehold.it/380x185', $object->getSource());
     $this->assertEquals('Test image', $object->getName());

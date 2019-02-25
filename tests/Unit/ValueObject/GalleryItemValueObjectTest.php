@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
-use Drupal\oe_theme\ValueObject\ImageMediaValueObject;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\Tests\UnitTestCase;
 
@@ -24,8 +24,8 @@ class GalleryItemValueObjectTest extends UnitTestCase {
       'responsive' => TRUE,
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
-    $image = ImageMediaValueObject::fromArray($image_data);
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $image */
+    $image = ImageValueObject::fromArray($image_data);
 
     $data = [
       'icon' => 'camera',

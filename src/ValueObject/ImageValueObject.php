@@ -9,7 +9,14 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 /**
  * Handle information about an image media item.
  */
-class ImageMediaValueObject extends MediaValueObject {
+class ImageValueObject extends ValueObjectBase {
+
+  /**
+   * Media Source.
+   *
+   * @var string
+   */
+  protected $src;
 
   /**
    * The alt of the image.
@@ -19,6 +26,14 @@ class ImageMediaValueObject extends MediaValueObject {
   protected $alt;
 
   /**
+   * The name of the media.
+   *
+   * @var string
+   */
+  protected $name;
+
+
+  /**
    * The parameter 'responsive' of the image.
    *
    * @var bool
@@ -26,7 +41,7 @@ class ImageMediaValueObject extends MediaValueObject {
   protected $responsive;
 
   /**
-   * ImageMediaValueObject constructor.
+   * ImageValueObject constructor.
    *
    * @param string $src
    *   Media URL, including Drupal schema if internal.
@@ -37,9 +52,10 @@ class ImageMediaValueObject extends MediaValueObject {
    * @param bool $responsive
    *   Responsiveness of the image.
    */
-  protected function __construct(string $src, string $alt = '', string $name = '', bool $responsive = TRUE) {
-    parent::__construct($src, $name);
+  private function __construct(string $src, string $alt = '', string $name = '', bool $responsive = TRUE) {
+    $this->src = $src;
     $this->alt = $alt;
+    $this->name = $name;
     $this->responsive = $responsive;
   }
 
@@ -57,6 +73,26 @@ class ImageMediaValueObject extends MediaValueObject {
     );
 
     return $object;
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getSource(): string {
+    return $this->src;
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getName(): string {
+    return $this->name;
   }
 
   /**

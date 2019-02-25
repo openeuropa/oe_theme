@@ -33,21 +33,21 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * Extra classes of the gallery item.
    *
-   * @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject
+   * @var \Drupal\oe_theme\ValueObject\ImageValueObject
    */
   protected $image;
 
   /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image
+   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $image
    *   Image to be rendered on the gallery item.
    * @param string|null $caption
    *   Caption for the gallery item.
    * @param string|null $classes
    *   Extra classes for the gallery item.
    */
-  protected function __construct(ImageMediaValueObject $image, string $caption = NULL, string $classes = NULL) {
+  private function __construct(ImageValueObject $image, string $caption = NULL, string $classes = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
     $this->image = $image;
@@ -91,10 +91,10 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * Getter.
    *
-   * @return \Drupal\oe_theme\ValueObject\ImageMediaValueObject
+   * @return \Drupal\oe_theme\ValueObject\ImageValueObject
    *   Property value.
    */
-  public function getImage(): ImageMediaValueObject {
+  public function getImage(): ImageValueObject {
     return $this->image;
   }
 
@@ -102,7 +102,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public function getArray(): array {
-    /** @var \Drupal\oe_theme\ValueObject\ImageMediaValueObject $image */
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $image */
     $image = $this->getImage();
 
     return [
