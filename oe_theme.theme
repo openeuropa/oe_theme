@@ -430,13 +430,8 @@ function oe_theme_preprocess_pattern_gallery(array &$variables): void {
   foreach ($variables['items'] as $item) {
     $item += ['classes' => 'ecl-col-md-3'];
 
-    // Format the icon for ecl.
-    if (!empty($item['icon'])) {
-      $item['icon'] = 'ecl-icon--' . $item['icon'];
-    }
-
     $item['image'] = ImageValueObject::fromArray($item['image']);
-    $variables['rows'][ceil($count_item / 4)][] = GalleryItemValueObject::fromArray($item);
+    $variables['rows'][floor($count_item / 4)][] = GalleryItemValueObject::fromArray($item);
     $count_item++;
   }
 }

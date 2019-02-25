@@ -319,7 +319,6 @@
             alt: "Example alt"
             responsive: true
           caption: "Example caption"
-          icon: "camera"
   assertions:
     count:
       '.ecl-gallery': 1
@@ -356,7 +355,7 @@
       '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
       '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"].ecl-image--fluid': 0
       '.ecl-gallery__item-container span.ecl-gallery__caption': 0
-      '.ecl-gallery__item-container span.ecl-icon': 0
+      '.ecl-gallery__item-container span.ecl-icon': 2
 - array:
     '#type': pattern
     '#id': gallery

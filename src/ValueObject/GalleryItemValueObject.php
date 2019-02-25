@@ -10,13 +10,6 @@ namespace Drupal\oe_theme\ValueObject;
 class GalleryItemValueObject extends ValueObjectBase {
 
   /**
-   * The icon of the gallery item.
-   *
-   * @var string
-   */
-  const ICON = 'camera';
-
-  /**
    * The caption of the gallery item.
    *
    * @var string
@@ -107,7 +100,7 @@ class GalleryItemValueObject extends ValueObjectBase {
 
     return [
       'image' => $image->getArray(),
-      'icon' => $this::ICON,
+      'icon' => 'ecl-icon--' . $image::ICON,
       'caption' => $this->getCaption(),
       'classes' => $this->getClasses(),
     ];

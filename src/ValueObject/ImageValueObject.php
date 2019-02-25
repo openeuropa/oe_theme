@@ -12,6 +12,13 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 class ImageValueObject extends ValueObjectBase {
 
   /**
+   * The icon of the image media items.
+   *
+   * @var string
+   */
+  const ICON = 'camera';
+
+  /**
    * Media Source.
    *
    * @var string
