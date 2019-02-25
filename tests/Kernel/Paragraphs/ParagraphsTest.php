@@ -152,7 +152,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_list_item',
-      'field_oe_list_item_variant' => 'list_item_default',
+      'oe_paragraphs_variant' => 'default',
       'field_oe_title' => 'Item title',
       'field_oe_text_long' => 'Item description',
       'field_oe_link' => [
@@ -192,7 +192,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant and test that the markup changed.
-    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_highlight');
+    $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -222,7 +222,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
     // Change the variant to thumbnail primary.
-    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_thumbnail_primary');
+    $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -258,7 +258,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant to thumbnail secondary.
-    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_thumbnail_secondary');
+    $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_secondary');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -294,7 +294,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant to date.
-    $paragraph->get('field_oe_list_item_variant')->setValue('list_item_date');
+    $paragraph->get('oe_paragraphs_variant')->setValue('date');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -328,7 +328,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     for ($i = 0; $i < 3; $i++) {
       $paragraph = Paragraph::create([
         'type' => 'oe_list_item',
-        'field_oe_list_item_variant' => 'list_item_default',
+        'oe_paragraphs_variant' => 'default',
         'field_oe_title' => 'Item title ' . $i,
         'field_oe_text_long' => 'Item description 1' . $i,
         'field_oe_link' => [
@@ -341,7 +341,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_list_item_block',
-      'field_oe_list_item_block_variant' => 'one_column',
+      'field_oe_list_item_block_layout' => 'one_column',
       'field_oe_title' => 'List block title',
       'field_oe_paragraphs' => $items,
       'field_oe_link' => [
@@ -364,7 +364,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-listing.ecl-listing--three-columns'));
 
     // Change the variant to two columns.
-    $paragraph->get('field_oe_list_item_block_variant')->setValue('two_columns');
+    $paragraph->get('field_oe_list_item_block_layout')->setValue('two_columns');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
@@ -374,7 +374,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(3, $crawler->filter('.ecl-listing.ecl-listing--two-columns .ecl-list-item'));
 
     // Change the variant to three columns.
-    $paragraph->get('field_oe_list_item_block_variant')->setValue('three_columns');
+    $paragraph->get('field_oe_list_item_block_layout')->setValue('three_columns');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
