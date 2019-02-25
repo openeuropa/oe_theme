@@ -523,17 +523,9 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // @todo: Fix paragraphs with the new variants.
-  $variants = [
-    'list_item_default' => 'default',
-    'list_item_highlight' => 'highlight',
-    'list_item_date' => 'date',
-    'list_item_thumbnail_primary' => 'thumbnail',
-    'list_item_thumbnail_secondary' => 'thumbnail_secondary',
-  ];
-  $list_item_variant = $paragraph->get('field_oe_list_item_variant')->first()->value;
+  $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
 
-  $variables['variant'] = $variants[$list_item_variant] ?? 'default';
+  $variables['variant'] = $list_item_variant ?? 'default';
   $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
@@ -583,7 +575,7 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
   $paragraph = $variables['paragraph'];
 
   // Set up the correct variant name.
-  $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_variant')->first()->value;
+  $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_layout')->first()->value;
 
   // Prepare the button variables if a link has been specified.
   if ($paragraph->get('field_oe_link')->isEmpty()) {
