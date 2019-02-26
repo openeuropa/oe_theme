@@ -5,7 +5,7 @@ gallery:
     items:
       type: "array"
       label: "Items"
-      description: "List of GalleryValueObject objects."
+      description: "List of GalleryItemValueObject objects."
       preview:
         - image:
             src: "http://placehold.it/285x185"
