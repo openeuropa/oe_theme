@@ -37,7 +37,7 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     /** @var \Drupal\oe_theme\ValueObject\GalleryItemValueObject $galleryItem */
     $galleryItem = GalleryItemValueObject::fromArray($data);
 
-    $this->assertEquals($data['icon'], $galleryItem::ICON);
+    $this->assertEquals($data['icon'], $galleryItem->getIcon());
     $this->assertEquals($data['caption'], $galleryItem->getCaption());
     $this->assertEquals($data['classes'], $galleryItem->getClasses());
     $this->assertEquals($image_data, $galleryItem->getImage()->getArray());

@@ -11,13 +11,16 @@ gallery:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
+          icon: "camera"
         - image:
             src: "http://placehold.it/285x185"
             alt: "Example image caption"
+          icon: "audio"
         - image:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
+          icon: "camera"
         - image:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"

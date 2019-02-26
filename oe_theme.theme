@@ -423,16 +423,10 @@ function oe_theme_preprocess_pattern_dialog(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for pattern gallery template.
  */
-function oe_theme_preprocess_pattern_gallery(array &$variables): void {
-  $variables['rows'] = [];
-
-  $count_item = 0;
-  foreach ($variables['items'] as $item) {
-    $item += ['classes' => 'ecl-col-md-3'];
-
+function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
+  foreach ($variables['items'] as &$item) {
     $item['image'] = ImageValueObject::fromArray($item['image']);
-    $variables['rows'][floor($count_item / 4)][] = GalleryItemValueObject::fromArray($item);
-    $count_item++;
+    $item = GalleryItemValueObject::fromArray($item);
   }
 }
 
