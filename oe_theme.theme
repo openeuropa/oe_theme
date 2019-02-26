@@ -88,7 +88,7 @@ function oe_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $
   $paragraph = $variables['elements']['#paragraph'];
 
   if ($paragraph->bundle() === 'oe_content_row') {
-    $variant = $paragraph->get('field_oe_content_row_variant')->first()->value;
+    $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
     $suggestions[] = 'paragraph__' . $paragraph->bundle() . '__variant_' . $variant;
   }
 }
