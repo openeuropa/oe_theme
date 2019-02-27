@@ -7,12 +7,12 @@ namespace Drupal\oe_theme\ValueObject;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 
 /**
- * Handle information about an image media item.
+ * Handle information about an image, such as source, alt, name and responsive.
  */
 class ImageValueObject extends ValueObjectBase {
 
   /**
-   * Media Source.
+   * Image Source.
    *
    * @var string
    */
@@ -26,12 +26,11 @@ class ImageValueObject extends ValueObjectBase {
   protected $alt;
 
   /**
-   * The name of the media.
+   * The name of the Image.
    *
    * @var string
    */
   protected $name;
-
 
   /**
    * The parameter 'responsive' of the image.
@@ -44,7 +43,7 @@ class ImageValueObject extends ValueObjectBase {
    * ImageValueObject constructor.
    *
    * @param string $src
-   *   Media URL, including Drupal schema if internal.
+   *   Image URL, including Drupal schema if internal.
    * @param string $alt
    *   Image alt text.
    * @param string $name
@@ -131,26 +130,20 @@ class ImageValueObject extends ValueObjectBase {
    * Construct object from a Drupal image field.
    *
    * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
-   *   Field holding the image media.
-   * @param string $name
-   *   Name of the image media.
-   * @param bool $responsive
-   *   Whether the image should be responsive or not.
+   *   Field holding the image.
    *
    * @throws \Drupal\Core\TypedData\Exception\MissingDataException
    *
    * @return $this
    */
-  public static function fromImageField(ImageItem $image_item, $name = '', $responsive = TRUE): ValueObjectInterface {
+  public static function fromImageItem(ImageItem $image_item): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
-    $media = new static(
+
+    return new static(
       file_create_url($image_file->get('uri')->getString()),
       $image_item->get('alt')->getString(),
-      $name,
-      $responsive
+      $image_item->get('title')->getString()
     );
-
-    return $media;
   }
 
 }

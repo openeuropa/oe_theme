@@ -13,9 +13,9 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Test image media value object.
+ * Test image value object.
  */
-class ImageMediaValueObjectTest extends UnitTestCase {
+class ImageValueObjectTest extends UnitTestCase {
 
   /**
    * Mock ImageItem object.
@@ -74,10 +74,15 @@ class ImageMediaValueObjectTest extends UnitTestCase {
     $this->imageAltText->getString()->willReturn('Alt text');
 
     $this->imageReferenceItem->get('alt')->willReturn($this->imageAltText->reveal());
+
+    $this->imageTitleText = $this->prophesize(StringData::class);
+    $this->imageTitleText->getString()->willReturn('Test image');
+
+    $this->imageReferenceItem->get('title')->willReturn($this->imageTitleText->reveal());
   }
 
   /**
-   * Test constructing a image media value object from an array.
+   * Test constructing a image value object from an array.
    */
   public function testFromArray() {
     $data = [
@@ -97,11 +102,11 @@ class ImageMediaValueObjectTest extends UnitTestCase {
   }
 
   /**
-   * Test constructing a image media value object from an image field.
+   * Test constructing a image value object from an image item.
    */
-  public function testFromImageField() {
+  public function testFromImageItem() {
     /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $object */
-    $object = ImageValueObject::fromImageField($this->imageReferenceItem->reveal(), 'Test image');
+    $object = ImageValueObject::fromImageItem($this->imageReferenceItem->reveal());
 
     $this->assertEquals('http://placehold.it/380x185', $object->getSource());
     $this->assertEquals('Test image', $object->getName());
@@ -136,7 +141,7 @@ if (!function_exists('Drupal\Tests\oe_theme\Unit\Patterns\file_create_url')) {
 /**
  * Mocking file_create_url().
  *
- * ImageMediaValueObject uses file_create_url()
+ * ImageValueObject uses file_create_url()
  * which is available when using the Simpletest test runner, but not when
  * using the PHPUnit test runner; hence this hack.
  */
