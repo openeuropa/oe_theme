@@ -524,7 +524,6 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   $paragraph = $variables['paragraph'];
 
   $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
-
   $variables['variant'] = $list_item_variant ?? 'default';
   $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
 
