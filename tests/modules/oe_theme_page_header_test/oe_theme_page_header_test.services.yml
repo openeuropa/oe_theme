@@ -1,0 +1,5 @@
+services:
+  oe_theme_page_header_test.page_header_alter_test:
+    class: Drupal\oe_theme_page_header_test\EventSubscriber\PageHeaderAlterTestSubscriber
+    tags:
+      - { name: event_subscriber }

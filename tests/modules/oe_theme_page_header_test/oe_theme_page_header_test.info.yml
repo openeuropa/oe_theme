@@ -1,0 +1,5 @@
+name: OE Theme Page Header Test
+description: Test module for the Page Header block.
+core: 8.x
+type: module
+package: Testing
