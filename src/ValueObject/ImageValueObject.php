@@ -64,14 +64,12 @@ class ImageValueObject extends ValueObjectBase {
   public static function fromArray(array $values = []): ValueObjectInterface {
     $values += ['alt' => '', 'name' => '', 'responsive' => TRUE];
 
-    $object = new static(
+    return new static(
       $values['src'],
       $values['alt'],
       $values['name'],
       $values['responsive']
     );
-
-    return $object;
   }
 
   /**

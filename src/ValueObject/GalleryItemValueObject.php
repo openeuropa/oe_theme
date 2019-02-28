@@ -62,14 +62,12 @@ class GalleryItemValueObject extends ValueObjectBase {
   public static function fromArray(array $values = []): ValueObjectInterface {
     $values += ['caption' => NULL, 'classes' => NULL, 'icon' => NULL];
 
-    $object = new static(
+    return new static(
       $values['thumbnail'],
       $values['caption'],
       $values['classes'],
       $values['icon']
     );
-
-    return $object;
   }
 
   /**
