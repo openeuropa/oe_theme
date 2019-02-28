@@ -37,7 +37,7 @@ class ContentRowTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_list_item',
-      'field_oe_list_item_variant' => 'list_item_default',
+      'oe_paragraphs_variant' => 'default',
       'field_oe_title' => 'List item title',
       'field_oe_text_long' => 'Item description',
       'field_oe_link' => [
@@ -50,7 +50,7 @@ class ContentRowTest extends ParagraphsTestBase {
     // Create a list item to be referenced in a list item block.
     $subitem = Paragraph::create([
       'type' => 'oe_list_item',
-      'field_oe_list_item_variant' => 'list_item_default',
+      'oe_paragraphs_variant' => 'default',
       'field_oe_title' => 'Sub-subitem title',
       'field_oe_link' => [
         'uri' => 'http://www.example.com/',
@@ -59,7 +59,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $subitem->save();
     $paragraph = Paragraph::create([
       'type' => 'oe_list_item_block',
-      'field_oe_list_item_block_variant' => 'one_column',
+      'field_oe_list_item_block_layout' => 'one_column',
       'field_oe_title' => 'List block title',
       'field_oe_paragraphs' => [$subitem],
     ]);
@@ -85,7 +85,7 @@ class ContentRowTest extends ParagraphsTestBase {
     // Create the main content row paragraph with a default variant.
     $paragraph = Paragraph::create([
       'type' => 'oe_content_row',
-      'field_oe_content_row_variant' => 'default',
+      'oe_paragraphs_variant' => 'default',
       'field_oe_title' => 'Page navigation',
       'field_oe_paragraphs' => $items,
     ]);
@@ -108,7 +108,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $this->assertNotContains('Page navigation', $html);
 
     // Change variant to the inpage navigation.
-    $paragraph->get('field_oe_content_row_variant')->setValue('inpage');
+    $paragraph->get('oe_paragraphs_variant')->setValue('inpage');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -163,7 +163,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_content_row',
       'field_oe_title' => 'English page navigation',
-      'field_oe_content_row_variant' => 'inpage',
+      'oe_paragraphs_variant' => 'inpage',
       'field_oe_paragraphs' => [$child],
     ]);
     $paragraph->save();
@@ -171,7 +171,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $paragraph->addTranslation('fr', [
       'type' => 'oe_content_row',
       'field_oe_title' => 'French page navigation',
-      'field_oe_content_row_variant' => 'inpage',
+      'oe_paragraphs_variant' => 'inpage',
       'field_oe_paragraphs' => [$child],
     ])->save();
 
