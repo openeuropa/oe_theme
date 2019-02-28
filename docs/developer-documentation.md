@@ -120,8 +120,39 @@ Provides the following factory methods:
   - `size`: file size in bytes.
   - `title` (optional): file title, defaults to file `name` if empty.
   - `language_code` (optional): two letter language code of the current file's language.
-- `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accept an object implementing the
+
+- `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accepts an object implementing the
   `\Drupal\file\FileInterface` interface.
+
+#### `GalleryItemValueObject`
+
+Used in the following patterns:
+
+- [`gallery`](../templates/patterns/gallery/gallery.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `GalleryItemValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `thumbnail`: Thumbnail to be rendered on the gallery item. Check ImageValueObject::fromArray(array $values = []) for a list of acceptable array values.
+  - `caption`: Caption for the gallery item.
+  - `classes`: Extra classes for the gallery item.
+  - `icon`: Icon for the gallery item.
+
+#### `ImageValueObject`
+
+Used in the following patterns:
+
+- [`gallery`](../templates/patterns/gallery/gallery.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `ImageValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `src`: Image URL, including Drupal schema if internal.
+  - `alt`: Image alt text.
+  - `name`: Name of the image, e.g. "example.jpg".
+  - `responsive`: Responsiveness of the image. Optional, set to TRUE be default.
+
+- `ImageValueObject::fromImageItem(ImageItem $image_item)`:  accepts a \Drupal\image\Plugin\Field\FieldType\ImageItem object.
 
 [1]: https://www.drupal.org/project/ui_patterns
 [2]: https://ui-patterns.readthedocs.io

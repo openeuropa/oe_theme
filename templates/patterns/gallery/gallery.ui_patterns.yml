@@ -1,0 +1,40 @@
+gallery:
+  label: "Gallery"
+  description: "Gallery of available media."
+  fields:
+    items:
+      type: "array"
+      label: "Items"
+      description: "List of GalleryItemValueObject objects."
+      preview:
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+          icon: "camera"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example image caption"
+          icon: "audio"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+          icon: "camera"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+        - thumbnail:
+            src: "http://placehold.it/285x185"
+            alt: "Example alt text"
+          caption: "Example image caption"
