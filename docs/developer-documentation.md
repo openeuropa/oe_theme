@@ -132,8 +132,8 @@ Used in the following patterns:
 
 Provides the following factory methods:
 
-- `DateValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
-  - `thumbnail`: Thumbnail to be rendered on the gallery item.
+- `GalleryItemValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `thumbnail`: Thumbnail to be rendered on the gallery item. Check ImageValueObject::fromArray(array $values = []) for a list of acceptable array values.
   - `caption`: Caption for the gallery item.
   - `classes`: Extra classes for the gallery item.
   - `icon`: Icon for the gallery item.
@@ -146,14 +146,13 @@ Used in the following patterns:
 
 Provides the following factory methods:
 
-- `DateValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+- `ImageValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
   - `src`: Image URL, including Drupal schema if internal.
   - `alt`: Image alt text.
   - `name`: Name of the image, e.g. "example.jpg".
-  - `responsive`: Responsiveness of the image.
+  - `responsive`: Responsiveness of the image. Optional, set to TRUE be default.
 
-- `DateValueObject::fromImageItem(ImageItem $image_item)`: accepts an object implementing the
-  `\Drupal\image\Plugin\Field\FieldType\ImageItem`.
+- `ImageValueObject::fromImageItem(ImageItem $image_item)`:  accepts a \Drupal\image\Plugin\Field\FieldType\ImageItem object.
 
 [1]: https://www.drupal.org/project/ui_patterns
 [2]: https://ui-patterns.readthedocs.io

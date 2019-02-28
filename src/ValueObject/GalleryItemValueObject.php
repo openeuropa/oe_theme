@@ -63,7 +63,7 @@ class GalleryItemValueObject extends ValueObjectBase {
     $values += ['caption' => NULL, 'classes' => NULL, 'icon' => NULL];
 
     return new static(
-      $values['thumbnail'],
+      ImageValueObject::fromArray($values['thumbnail']),
       $values['caption'],
       $values['classes'],
       $values['icon']
