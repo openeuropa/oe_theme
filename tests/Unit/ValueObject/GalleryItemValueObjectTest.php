@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Unit\Patterns;
 
-use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\Tests\UnitTestCase;
 
