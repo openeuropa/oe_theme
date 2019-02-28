@@ -7,34 +7,34 @@ gallery:
       label: "Items"
       description: "List of GalleryItemValueObject objects."
       preview:
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
           icon: "camera"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example image caption"
           icon: "audio"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
           icon: "camera"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
-        - image:
+        - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"

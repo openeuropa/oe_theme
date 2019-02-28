@@ -17,21 +17,21 @@ class GalleryItemValueObjectTest extends UnitTestCase {
    * Test constructing a gallery item value object from an array.
    */
   public function testFromArray() {
-    $image_data = [
+    $thumbnail_data = [
       'src' => 'http://placehold.it/380x185',
-      'name' => 'Test image',
+      'name' => 'Test thumbnail',
       'alt' => 'Alt text',
       'responsive' => TRUE,
     ];
 
-    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $image */
-    $image = ImageValueObject::fromArray($image_data);
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail */
+    $thumbnail = ImageValueObject::fromArray($thumbnail_data);
 
     $data = [
       'icon' => 'camera',
       'caption' => 'Test caption.',
       'classes' => 'example-class',
-      'image' => $image,
+      'thumbnail' => $thumbnail,
     ];
 
     /** @var \Drupal\oe_theme\ValueObject\GalleryItemValueObject $galleryItem */
@@ -40,7 +40,7 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($data['icon'], $galleryItem->getIcon());
     $this->assertEquals($data['caption'], $galleryItem->getCaption());
     $this->assertEquals($data['classes'], $galleryItem->getClasses());
-    $this->assertEquals($image_data, $galleryItem->getImage()->getArray());
+    $this->assertEquals($thumbnail_data, $galleryItem->getThumbnail()->getArray());
   }
 
 }

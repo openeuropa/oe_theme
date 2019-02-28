@@ -313,7 +313,7 @@
     '#id': gallery
     '#fields':
       items:
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
             alt: "Example alt"
@@ -338,11 +338,11 @@
     '#id': gallery
     '#fields':
       items:
-        - image:
+        - thumbnail:
             src: "http://img_1.jpg"
             name: "img_1.jpg"
           icon: "camera"
-        - image:
+        - thumbnail:
             src: "http://img_2.jpg"
             name: "img_2.jpg"
             responsive: false
@@ -366,19 +366,19 @@
     '#id': gallery
     '#fields':
       items:
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
-        - image:
+        - thumbnail:
             src: "http://img.jpg"
             name: "img.jpg"
   assertions:
@@ -386,6 +386,7 @@
       '.ecl-gallery': 1
       '.ecl-gallery .ecl-row': 2
       '.ecl-gallery .ecl-row .ecl-gallery__item': 5
+      '.ecl-gallery__item-container span.ecl-icon': 0
 - array:
     '#type': pattern
     '#id': list_item

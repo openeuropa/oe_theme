@@ -425,7 +425,7 @@ function oe_theme_preprocess_pattern_dialog(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
   foreach ($variables['items'] as &$item) {
-    $item['image'] = ImageValueObject::fromArray($item['image']);
+    $item['thumbnail'] = ImageValueObject::fromArray($item['thumbnail']);
     $item = GalleryItemValueObject::fromArray($item);
   }
 }

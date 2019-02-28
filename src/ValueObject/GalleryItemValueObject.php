@@ -24,11 +24,11 @@ class GalleryItemValueObject extends ValueObjectBase {
   protected $classes;
 
   /**
-   * Extra classes of the gallery item.
+   * Thumbnail of the gallery item.
    *
    * @var \Drupal\oe_theme\ValueObject\ImageValueObject
    */
-  protected $image;
+  protected $thumbnail;
 
   /**
    * Icon of the gallery item.
@@ -40,8 +40,8 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $image
-   *   Image to be rendered on the gallery item.
+   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail
+   *   Thumbnail to be rendered on the gallery item.
    * @param string|null $caption
    *   Caption for the gallery item.
    * @param string|null $classes
@@ -49,10 +49,10 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @param string|null $icon
    *   Icon for the gallery item.
    */
-  private function __construct(ImageValueObject $image, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
+  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
-    $this->image = $image;
+    $this->thumbnail = $thumbnail;
     $this->icon = $icon;
   }
 
@@ -63,7 +63,7 @@ class GalleryItemValueObject extends ValueObjectBase {
     $values += ['caption' => NULL, 'classes' => NULL, 'icon' => NULL];
 
     $object = new static(
-      $values['image'],
+      $values['thumbnail'],
       $values['caption'],
       $values['classes'],
       $values['icon']
@@ -98,8 +98,8 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return \Drupal\oe_theme\ValueObject\ImageValueObject
    *   Property value.
    */
-  public function getImage(): ImageValueObject {
-    return $this->image;
+  public function getThumbnail(): ImageValueObject {
+    return $this->thumbnail;
   }
 
   /**
@@ -116,11 +116,11 @@ class GalleryItemValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public function getArray(): array {
-    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $image */
-    $image = $this->getImage();
+    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail */
+    $thumbnail = $this->getThumbnail();
 
     return [
-      'image' => $image->getArray(),
+      'thumbnail' => $thumbnail->getArray(),
       'caption' => $this->getCaption(),
       'classes' => $this->getClasses(),
       'icon' => $this->getIcon(),
