@@ -611,8 +611,8 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
     return;
   }
 
-  // Add default fall-back title for inpage naviagtion.
-  $variables['title'] = t('Page content');
+  // Add default fallback title for inpage naviagtion.
+  $variables['title'] = t('Page contents');
   if (!$paragraph->get('field_oe_title')->isEmpty()) {
     $variables['title'] = $paragraph->get('field_oe_title')->value;
   }

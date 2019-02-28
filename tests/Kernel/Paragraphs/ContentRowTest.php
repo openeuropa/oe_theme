@@ -108,7 +108,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $this->assertNotContains('Page navigation', $html);
 
     // Change variant to the inpage navigation.
-    $paragraph->get('oe_paragraphs_variant')->setValue('inpage');
+    $paragraph->get('oe_paragraphs_variant')->setValue('inpage_navigation');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -163,7 +163,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_content_row',
       'field_oe_title' => 'English page navigation',
-      'oe_paragraphs_variant' => 'inpage',
+      'oe_paragraphs_variant' => 'inpage_navigation',
       'field_oe_paragraphs' => [$child],
     ]);
     $paragraph->save();
@@ -171,7 +171,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $paragraph->addTranslation('fr', [
       'type' => 'oe_content_row',
       'field_oe_title' => 'French page navigation',
-      'oe_paragraphs_variant' => 'inpage',
+      'oe_paragraphs_variant' => 'inpage_navigation',
       'field_oe_paragraphs' => [$child],
     ])->save();
 
@@ -190,6 +190,23 @@ class ContentRowTest extends ParagraphsTestBase {
     $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
     $this->assertContains('French page navigation', $left_column->html());
     $this->assertContains('French rich text title', $left_column->html());
+
+    // Create the main content row paragraph with empty title.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_content_row',
+      'field_oe_title' => '',
+      'oe_paragraphs_variant' => 'inpage_navigation',
+      'field_oe_paragraphs' => [$child],
+    ]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph, 'en');
+    $crawler = new Crawler($html);
+
+    // Assert that side-menu is correctly rendered with the default title.
+    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $this->assertContains('Page contents', $left_column->html());
+    $this->assertContains('English rich text title', $left_column->html());
   }
 
   /**
