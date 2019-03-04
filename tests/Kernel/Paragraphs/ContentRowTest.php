@@ -138,6 +138,17 @@ class ContentRowTest extends ParagraphsTestBase {
     $this->assertNavigationItem($navigation_items->eq(0), 'List item title', $right_column);
     $this->assertNavigationItem($navigation_items->eq(1), 'List block title', $right_column);
     $this->assertNavigationItem($navigation_items->eq(2), 'Rich text title', $right_column);
+
+    // Verify that the inpage navigation default title has been rendered.
+    $paragraph->get('field_oe_title')->setValue('');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph, 'en');
+    $crawler = new Crawler($html);
+
+    // Assert that side-menu is correctly rendered with the default title.
+    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $this->assertContains('Page contents', $left_column->html());
   }
 
   /**
@@ -190,23 +201,6 @@ class ContentRowTest extends ParagraphsTestBase {
     $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
     $this->assertContains('French page navigation', $left_column->html());
     $this->assertContains('French rich text title', $left_column->html());
-
-    // Create the main content row paragraph with empty title.
-    $paragraph = Paragraph::create([
-      'type' => 'oe_content_row',
-      'field_oe_title' => '',
-      'oe_paragraphs_variant' => 'inpage_navigation',
-      'field_oe_paragraphs' => [$child],
-    ]);
-    $paragraph->save();
-
-    $html = $this->renderParagraph($paragraph, 'en');
-    $crawler = new Crawler($html);
-
-    // Assert that side-menu is correctly rendered with the default title.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
-    $this->assertContains('Page contents', $left_column->html());
-    $this->assertContains('English rich text title', $left_column->html());
   }
 
   /**
