@@ -771,3 +771,17 @@ function _oe_theme_preprocess_input_text(array &$element): void {
   // Map rest array elements.
   $element['ecl_array']['has_error'] = !empty($element['#errors']);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_footer(array &$variables): void {
+  $social_media_links = &$variables['corporate_footer']['social_media']['items'] ?? [];
+  // Workaround related to UI Pattern module feature
+  // which recognize array with "type" key element as renderable.
+  foreach ($social_media_links as $key => $link) {
+    $social_media_links[$key]['type'] = $link['link_type'];
+    unset($social_media_links[$key]['link_type']);
+  }
+
+}

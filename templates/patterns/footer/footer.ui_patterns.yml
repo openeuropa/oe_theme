@@ -1,0 +1,83 @@
+footer:
+  label: "Footer"
+  description: "The footer offers access to copyright information, disclaimer and terms of use, privacy and cookies policy. It allows the user to navigate to corporate social media profiles."
+  fields:
+    custom_footer:
+      type: "array"
+      label: "Custom footer"
+      description: "Identification of the site name, information on how to connect to social platforms, contact, other relevant information, such as a link to the site map."
+      preview:
+        identity: 'Site identity'
+        social_links:
+          label: 'Follow us:'
+          links:
+            - link_type: 'social-network'
+              icon: 'facebook'
+              link:
+                label: 'Facebook'
+                href: 'http://link-1.com'
+            - link_type: 'social-network'
+              icon: 'twitter'
+              link:
+                label: 'Twitter'
+                href: 'http://link-2.com'
+            - link_type: 'external'
+              link:
+                label: 'Other social media'
+                href: 'http://link-3.com'
+        other_links:
+          links:
+            - link:
+                label: 'Contact'
+                href: 'http://link-1.com'
+            - link:
+                label: 'Site map'
+                href: 'http://link-2.com'
+    corporate_footer:
+      type: "array"
+      label: "Corporate footer"
+      description: "Information about the European Commission and European Union: external/internal links, legal notice etc."
+      preview:
+        about_ec:
+          title: 'European Commission'
+          items:
+            - label: 'European Commission'
+              url: 'http://link-1.com'
+            - label: 'Priorities'
+              url: 'http://link-2.com'
+            - label: 'Jobs, Growth and Investment'
+              url: 'http://link-3.com'
+        social_media:
+          title: 'Follow the European Commission'
+          items:
+            - link_type: 'social-network'
+              icon: 'facebook'
+              link:
+                label: 'Facebook'
+                href: 'http://link-1.com'
+            - link_type: 'social-network'
+              icon: 'twitter'
+              link:
+                label: 'Twitter'
+                href: 'http://link-2.com'
+            - link_type: 'external'
+              link:
+                label: 'Other social media'
+                href: 'http://link-3.com'
+        about_eu:
+          title: 'European Union'
+          items:
+            - label: 'European Commission'
+              url: 'http://link-1.com'
+            - label: 'Priorities'
+              url: 'http://link-2.com'
+            - label: 'Jobs, Growth and Investment'
+              url: 'http://link-3.com'
+        bottom_links:
+          - label: 'European Commission'
+            url: 'http://link-1.com'
+          - label: 'Priorities'
+            url: 'http://link-2.com'
+          - label: 'Jobs, Growth and Investment'
+            url: 'http://link-3.com'
+
