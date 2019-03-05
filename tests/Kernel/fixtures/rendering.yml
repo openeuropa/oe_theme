@@ -945,3 +945,92 @@
       'div.ecl-dialog[aria-hidden="false"] h3#ecl-dialog-title': "Dialog title"
       'div.ecl-dialog[aria-hidden="false"] p#ecl-dialog-description': "Dialog description"
       'div.ecl-dialog[aria-hidden="false"] div.ecl-dialog__body': "<p>Dialog body</p>"
+- array:
+    '#type': pattern
+    '#id': footer
+    '#variant': default
+    '#fields':
+      custom_footer:
+        identity: 'Site identity'
+        social_links:
+          label: 'Follow us:'
+          links:
+            - link_type: 'social-network'
+              icon: 'facebook'
+              link:
+                label: 'Facebook'
+                href: 'http://link-1.com'
+            - link_type: 'social-network'
+              icon: 'twitter'
+              link:
+                label: 'Twitter'
+                href: 'http://link-2.com'
+            - link_type: 'external'
+              link:
+                label: 'Other social media'
+                href: 'http://link-3.com'
+        other_links:
+          links:
+            - link:
+                label: 'Contact'
+                href: 'http://link-1.com'
+            - link:
+                label: 'Site map'
+                href: 'http://link-2.com'
+      corporate_footer:
+        about_ec:
+          title: 'European Commission'
+          items:
+            - label: 'European Commission'
+              url: 'http://link-1.com'
+            - label: 'Priorities'
+              url: 'http://link-2.com'
+            - label: 'Jobs, Growth and Investment'
+              url: 'http://link-3.com'
+        social_media:
+          title: 'Follow the European Commission'
+          items:
+            - link_type: 'social-network'
+              icon: 'facebook'
+              link:
+                label: 'Facebook'
+                href: 'http://link-1.com'
+            - link_type: 'social-network'
+              icon: 'twitter'
+              link:
+                label: 'Twitter'
+                href: 'http://link-2.com'
+            - link_type: 'external'
+              link:
+                label: 'Other social media'
+                href: 'http://link-3.com'
+        about_eu:
+          title: 'European Union'
+          items:
+            - label: 'European Commission'
+              url: 'http://link-1.com'
+            - label: 'Priorities'
+              url: 'http://link-2.com'
+            - label: 'Jobs, Growth and Investment'
+              url: 'http://link-3.com'
+        bottom_links:
+          - label: 'European Commission'
+            url: 'http://link-1.com'
+          - label: 'Priorities'
+            url: 'http://link-2.com'
+          - label: 'Jobs, Growth and Investment'
+            url: 'http://link-3.com'
+  assertions:
+    count:
+      'footer.ecl-footer .ecl-footer__corporate': 1
+      'footer.ecl-footer .ecl-footer__corporate .ecl-footer__corporate-top .ecl-row .ecl-col-md': 3
+      'footer.ecl-footer .ecl-footer__corporate .ecl-footer__corporate-bottom .ecl-footer__list-item': 3
+      'footer.ecl-footer .ecl-footer__custom': 1
+      'footer.ecl-footer .ecl-footer__custom .ecl-container .ecl-col-md': 3
+    equals:
+      'footer.ecl-footer h2#footer-corporate-about-ec': "European Commission"
+      'footer.ecl-footer h2#footer-corporate-social-media': "Follow the European Commission"
+      'footer.ecl-footer h2#footer-corporate-about-eu': "European Union"
+      'footer.ecl-footer .ecl-footer__custom .ecl-container h2.ecl-footer__custom-title-identity': 'Site identity'
+      'footer.ecl-footer .ecl-footer__custom .ecl-container .ecl-col-md p.ecl-footer__custom-label': 'Follow us:'
+      'footer.ecl-footer .ecl-footer__custom .ecl-container .ecl-col-md:last-child .ecl-footer__link[href="http://link-2.com"]': 'Site map'
