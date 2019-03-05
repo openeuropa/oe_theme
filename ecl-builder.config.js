@@ -64,6 +64,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-featured-item/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-field/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-file/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-footer/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-checkbox/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-label/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-form-radio/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -87,6 +88,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-social-media-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-component-social-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-style-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'ec-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-accordion/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-banner/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -99,6 +101,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-featured-item/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-field/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-file/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-footer/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-checkbox/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-label/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-form-radio/*.twig', to: path.resolve(outputFolder, 'templates/components') },
@@ -122,6 +125,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-skip-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-social-media-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-component-social-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-style-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl'), patterns: 'generic-style-image/*.twig', to: path.resolve(outputFolder, 'templates/components') }
   ]
 };
