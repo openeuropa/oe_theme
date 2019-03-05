@@ -783,5 +783,4 @@ function oe_theme_preprocess_pattern_footer(array &$variables): void {
     $social_media_links[$key]['type'] = $link['link_type'];
     unset($social_media_links[$key]['link_type']);
   }
-
 }
