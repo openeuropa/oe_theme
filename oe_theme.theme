@@ -598,17 +598,23 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
 }
 
 /**
- * Implements hook_preprocess_paragraph() for paragraph--oe-content-row--variant-inpage.html.twig.
+ * Implements hook_preprocess_paragraph() for paragraph--oe-content-row--variant-inpage_navigation.html.twig.
  *
  * Prepares the inpage navigation by creating links for the inner paragraphs
  * that implement a title.
  */
-function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage(array &$variables): void {
+function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigation(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
   if ($paragraph->get('field_oe_paragraphs')->isEmpty()) {
     return;
+  }
+
+  // Add default fallback title for inpage naviagtion.
+  $variables['title'] = t('Page contents');
+  if (!$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['title'] = $paragraph->get('field_oe_title')->value;
   }
 
   // Create a shortcut to the render array for the field.
