@@ -7,7 +7,7 @@ dependencies:
     - oe_theme
 id: oe_theme_corporate_footer
 theme: oe_theme
-region: footer_corporate_bottom
+region: footer
 weight: 0
 provider: null
 plugin: oe_footer

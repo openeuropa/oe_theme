@@ -16,9 +16,7 @@ regions:
   page_header: "Page header"
   navigation: "Navigation"
   content: "Content"
-  footer_custom: "Footer: Custom"
-  footer_corporate_top: "Footer: Corporate top"
-  footer_corporate_bottom: "Footer: Corporate bottom"
+  footer: "Footer"
 
 config_devel:
   optional:
@@ -29,3 +27,4 @@ config_devel:
     - block.block.oe_theme_site_branding
     - block.block.oe_theme_tabs
     - block.block.oe_theme_search_form
+    - block.block.oe_theme_corporate_footer
