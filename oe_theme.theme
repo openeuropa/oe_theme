@@ -788,12 +788,12 @@ function oe_theme_preprocess_pattern_footer(array &$variables): void {
 /**
  * Helper function to additionally preprocess links in the footer.
  *
- * Replaces the "link_type" key with "key.
+ * Replaces the "link_type" key with "type".
  *
  * @param array $links
  *   Set of links.
  */
-function _oe_theme_preprocess_link_types(array &$links) {
+function _oe_theme_preprocess_link_types(array &$links): void {
   foreach ($links as &$link) {
     $link['type'] = $link['link_type'];
     unset($link['link_type']);
