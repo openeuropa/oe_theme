@@ -39,8 +39,6 @@
 {% endblock %}
 
 {% block footer %}
-<footer class="ecl-footer">
-
   {% if page.footer_custom %}
     {% block footer_custom %}
     <div class="ecl-footer__custom">
@@ -65,14 +63,8 @@
 
     {% if page.footer_corporate_bottom %}
       {% block footer_corporate_bottom %}
-      <div class="ecl-footer__corporate-bottom">
-        <div class="ecl-container">
-          {{ page.footer_corporate_bottom }}
-        </div>
-      </div>
+        {{ page.footer_corporate_bottom }}
       {% endblock %}
     {% endif %}
   </div>
-
-</footer>
 {% endblock %}
