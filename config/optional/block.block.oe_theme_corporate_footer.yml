@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_corporate_blocks
+  theme:
+    - oe_theme
+id: oe_theme_corporate_footer
+theme: oe_theme
+region: footer_corporate_bottom
+weight: 0
+provider: null
+plugin: oe_footer
+settings:
+  id: oe_footer
+  label: 'OpenEuropa Footer block'
+  provider: oe_corporate_blocks
+  label_display: '0'
+visibility: {  }
