@@ -7,7 +7,7 @@ Feature: Theme showcase
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
     Then I should see the "sites switcher" element in the "header"
-    And I should see the "search box" element in the "header"
+    And I should see the "search form" element in the "header"
     And I should see the "language switcher" element in the "header"
 
   Scenario: The demo site navigation features placeholder menu links
@@ -53,9 +53,7 @@ Feature: Theme showcase
 
   Scenario: The demo site footer features placeholder blocks
     When I am on the homepage
-    Then I should see the "custom block" element in the "custom footer"
-    And I should see the "corporate top block" element in the "corporate top footer"
-    And I should see the "corporate bottom block" element in the "corporate bottom footer"
+    Then I should see the "corporate footer" element in the "footer"
 
   @javascript
   Scenario: The language switcher dialog can be accessed
