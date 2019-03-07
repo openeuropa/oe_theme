@@ -38,33 +38,9 @@
 </section>
 {% endblock %}
 
-{% block footer %}
-  {% if page.footer_custom %}
-    {% block footer_custom %}
-    <div class="ecl-footer__custom">
-      <div class="ecl-container">
-        {{ page.footer_custom }}
-      </div>
-    </div>
-    {% endblock %}
-  {% endif %}
+{% if page.footer %}
+  {% block footer %}
+    {{ page.footer }}
+  {% endblock %}
+{% endif %}
 
-  <div class="ecl-footer__corporate">
-
-    {% if page.footer_corporate_top %}
-      {% block footer_corporate_top %}
-      <div class="ecl-footer__corporate-top">
-        <div class="ecl-container">
-          {{ page.footer_corporate_top }}
-        </div>
-      </div>
-      {% endblock %}
-    {% endif %}
-
-    {% if page.footer_corporate_bottom %}
-      {% block footer_corporate_bottom %}
-        {{ page.footer_corporate_bottom }}
-      {% endblock %}
-    {% endif %}
-  </div>
-{% endblock %}
