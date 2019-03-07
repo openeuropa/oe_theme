@@ -776,11 +776,26 @@ function _oe_theme_preprocess_input_text(array &$element): void {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_footer(array &$variables): void {
-  $social_media_links = &$variables['corporate_footer']['social_media']['items'] ?? [];
   // Workaround related to UI Pattern module feature
-  // which recognize array with "type" key element as renderable.
-  foreach ($social_media_links as $key => $link) {
-    $social_media_links[$key]['type'] = $link['link_type'];
-    unset($social_media_links[$key]['link_type']);
+  // which recognizes arrays with "type" key element as renderable.
+  $social_media_links = &$variables['corporate_footer']['social_media']['items'] ?? [];
+  _oe_theme_preprocess_link_types($social_media_links);
+  $social_media_links = &$variables['custom_footer']['social_links']['links'] ?? [];
+  _oe_theme_preprocess_link_types($social_media_links);
+
+}
+
+/**
+ * Helper function to additionally preprocess links in the footer.
+ *
+ * Replaces the "link_type" key with "key.
+ *
+ * @param array $links
+ *   Set of links.
+ */
+function _oe_theme_preprocess_link_types(array &$links) {
+  foreach ($links as &$link) {
+    $link['type'] = $link['link_type'];
+    unset($link['link_type']);
   }
 }
