@@ -21,9 +21,9 @@ class CorporateBlocksFooterTest extends AbstractKernelTestBase {
   ];
 
   /**
-   * Test search form block rendering.
+   * Test footer block rendering.
    */
-  public function testSearchBlockRendering(): void {
+  public function testFooterBlockRendering(): void {
     // Setup and render footer block.
     $config = [
       'id' => 'oe_footer',
