@@ -13,7 +13,7 @@ provider: null
 plugin: oe_footer
 settings:
   id: oe_footer
-  label: 'OpenEuropa Footer block'
+  label: 'Corporate footer'
   provider: oe_corporate_blocks
   label_display: '0'
 visibility: {  }

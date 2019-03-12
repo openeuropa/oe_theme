@@ -10,7 +10,6 @@ The demo module includes:
 - Placeholder blocks like:
  - Language switcher
  - Site switcher
- - Footer
 
 ### Requirements
 
