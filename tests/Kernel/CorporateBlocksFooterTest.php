@@ -21,6 +21,14 @@ class CorporateBlocksFooterTest extends AbstractKernelTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+    $this->installConfig(['oe_corporate_blocks']);
+  }
+
+  /**
    * Test footer block rendering.
    */
   public function testFooterBlockRendering(): void {
