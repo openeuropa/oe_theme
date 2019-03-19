@@ -1,10 +1,23 @@
 # Change Log
 
+## [0.11.0](https://github.com/openeuropa/oe_theme/tree/0.11.0) (2019-03-19)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.10.0...0.11.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1695: Implement footer block. Apply ECL component [\#186](https://github.com/openeuropa/oe_theme/pull/186) ([sergepavle](https://github.com/sergepavle))
+-  OPENEUROPA-1675: Provide fallback title for inpage navigation variant. [\#183](https://github.com/openeuropa/oe_theme/pull/183) ([nagyad](https://github.com/nagyad))
+-  OPENEUROPA-1620: Adapt paragraphs implementation to the variants field selection. [\#179](https://github.com/openeuropa/oe_theme/pull/179) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1577: InvalidArgumentException the language code fr does not exist or is not enabled. [\#178](https://github.com/openeuropa/oe_theme/pull/178) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1609: Add ajax\_timeout setting for behat. [\#174](https://github.com/openeuropa/oe_theme/pull/174) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-1531: Add gallery pattern. [\#157](https://github.com/openeuropa/oe_theme/pull/157) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [0.10.0](https://github.com/openeuropa/oe_theme/tree/0.10.0) (2019-02-15)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.9.0...0.10.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1635: Update the changelog for the release 0.10.0. [\#175](https://github.com/openeuropa/oe_theme/pull/175) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1603: Provide a simple search box that will submit searched terms to the external Europa search service. [\#173](https://github.com/openeuropa/oe_theme/pull/173) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1609 Fix behat.yml.dist to use drupal-extension properly. [\#171](https://github.com/openeuropa/oe_theme/pull/171) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1379: Add support for DateTimeItem field type to DateValueObject. [\#165](https://github.com/openeuropa/oe_theme/pull/165) ([sergepavle](https://github.com/sergepavle))
