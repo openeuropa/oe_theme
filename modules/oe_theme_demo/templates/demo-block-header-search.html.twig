@@ -1,7 +1,0 @@
-{% include '@ecl/generic-component-search-form' with {
-  aria_label: 'Search this website'|t,
-  button: { 'label': 'Search' }|merge(button|default({})),
-  input: { 'id': 'global-search' }|merge(input|default({})),
-  system: 'ec',
-  extra_classes: 'ecl-site-header__search demo-block-header-search'
-} only %}

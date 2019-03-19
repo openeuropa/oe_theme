@@ -1,11 +1,3 @@
 header_site_switcher:
   label: "Header: Site switcher demo"
-header_search:
-  label: "Header: Search demo"
-footer_custom:
-  label: "Footer: Custom demo"
-footer_corporate_top:
-  label: "Footer: Corporate top demo"
-footer_corporate_bottom:
-  label: "Footer: Corporate bottom demo"
 

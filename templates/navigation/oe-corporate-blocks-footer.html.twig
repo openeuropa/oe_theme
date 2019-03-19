@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for the corporate block footer.
+ *
+ * Available variables:
+ * - corporate_footer: renderable array for corporate footer links
+ * - custom_footer: renderable array for custom footer links
+ * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-footer.html.twig
+ * @see templates_preprocess_oe_corporate_blocks_footer()
+ */
+#}
+{% include '@ecl/ec-component-footer' with {
+  'corporate_footer': corporate_footer|default([]),
+  'custom_footer': custom_footer|default([]),
+} %}
