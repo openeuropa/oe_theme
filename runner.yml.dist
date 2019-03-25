@@ -7,6 +7,9 @@ drupal:
     name: "drupal"
     user: "root"
     password: ""
+  sparql:
+    host: "sparql"
+    port: "8890"
   site:
     profile: "minimal"
     name: "OpenEuropa"
@@ -15,6 +18,8 @@ drupal:
     - "./vendor/bin/drush en oe_multilingual -y"
     - "./vendor/bin/drush en oe_search -y"
     - "./vendor/bin/drush en oe_corporate_blocks -y"
+    - "./vendor/bin/drush en oe_content -y"
+    - "./vendor/bin/drush en oe_content_page -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
@@ -30,6 +35,14 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+    databases:
+      sparql_default:
+        default:
+          prefix: ""
+          host: ${drupal.sparql.host}
+          port: ${drupal.sparql.port}
+          namespace: 'Drupal\Driver\Database\sparql'
+          driver: 'sparql'
 selenium:
   host: "http://selenium"
   port: "4444"
