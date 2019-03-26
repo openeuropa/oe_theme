@@ -30,10 +30,8 @@
         "openeuropa/oe_paragraphs": "~0.4",
         "openeuropa/oe_search": "dev-master",
         "openeuropa/task-runner": "~1.0@beta",
-        "openeuropa/rdf_skos": "dev-master",
-        "phpunit/phpunit": "~5.5 || ~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "twig/twig": "1.37.1"
+        "phpunit/phpunit": "~6.0",
+        "symfony/dom-crawler": "~3.4"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
