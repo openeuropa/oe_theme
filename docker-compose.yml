@@ -40,7 +40,6 @@ services:
     volumes:
       - ./:/home/node/app
     command: "sleep infinity"
-
   sparql:
       image: openeuropa/triple-store-dev
       environment:
