@@ -5,7 +5,7 @@ Feature: Corporate blocks feature
   I want see a search form block on the page header area.
   I want to see footer blocks on all pages
 
-  Scenario Outline: The European Commission block is available throughout the site
+  Scenario Outline: The corporate blocks are available throughout the site
     Given I am an anonymous user
     When I am on "<page>"
     Then I should see the "search form" element in the "header"

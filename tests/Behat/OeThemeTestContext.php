@@ -36,16 +36,16 @@ class OeThemeTestContext extends RawDrupalContext {
   }
 
   /**
-   * Navigates to the canonical page display of an oe_theme_demo_page node.
+   * Navigates to the canonical page display of a node.
    *
    * @param string $title
-   *   The title of the page.
+   *   The title of the node.
    *
-   * @When (I )go to the :title demo page
-   * @When (I )visit the :title demo page
+   * @When (I )go to the :title page
+   * @When (I )visit the :title page
    */
-  public function visitDemoPage(string $title): void {
-    $node = $this->getDemoPageByTitle($title);
+  public function visitPage(string $title): void {
+    $node = $this->getNodeByTitle($title);
     $this->visitPath($node->toUrl()->toString());
   }
 
@@ -79,7 +79,7 @@ class OeThemeTestContext extends RawDrupalContext {
   }
 
   /**
-   * Retrieves a demo page node by its title.
+   * Retrieves a node by its title.
    *
    * @todo Use the traits provided by OPENEUROPA-303 when gets in.
    *
@@ -89,7 +89,7 @@ class OeThemeTestContext extends RawDrupalContext {
    * @return \Drupal\node\NodeInterface
    *   The node entity.
    */
-  protected function getDemoPageByTitle(string $title): NodeInterface {
+  protected function getNodeByTitle(string $title): NodeInterface {
     $storage = \Drupal::entityTypeManager()->getStorage('node');
     $nodes = $storage->loadByProperties([
       'title' => $title,

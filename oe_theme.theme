@@ -225,9 +225,8 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
-  if ($variables['field_name'] == 'body') {
+  if ($variables['field_name'] === 'body') {
     $variables['attributes']['class'][] = 'ecl-paragraph';
-    $variables['attributes']['class'][] = 'ecl-paragraph--m';
   }
 }
 

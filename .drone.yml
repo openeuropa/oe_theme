@@ -13,6 +13,7 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   sparql:
     image: openeuropa/triple-store-dev
+    pull: true
     environment:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
