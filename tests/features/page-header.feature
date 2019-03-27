@@ -6,9 +6,9 @@ Feature: Page header block component.
 
   Background:
     Given the following demo pages:
-      | title                               | body                             |
-      | Robots are everywhere               | They are part of our daily life. |
-      | The benefits of ergonomic equipment | Take care of your work tools.    |
+      | title                               | oe_content_content_owner |
+      | Robots are everywhere               | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | The benefits of ergonomic equipment | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
 
   Scenario Outline: The page header block shows the current page metadata.
     Given I am an anonymous user
@@ -35,7 +35,6 @@ Feature: Page header block component.
     When I go to the "Robots are everywhere" demo page
     And I click "Edit"
     And I fill in "Title" with "Robots are everywhere nowadays"
-    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
     And I press "Save"
     Then I should see the heading "Robots are everywhere nowadays" in the "page header"
     And the breadcrumb trail should be "Home"
