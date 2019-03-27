@@ -4,20 +4,14 @@ Feature: Site branding
   As a product owner
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.
 
-  Scenario: The European Commission logo is available throughout the site
+  Scenario Outline: The European Commission logo is available throughout the site
     When I am on the homepage
-    Then I should see the "logo" element in the "header"
+    Then I should <see homepage> the "<element>" element in the "<region>"
     When I am on "the user registration page"
-    Then I should see the "logo" element in the "header"
+    Then I should <see other> the "<element>" element in the "<region>"
 
-  Scenario: The breadcrumb is visible everywhere but on the homepage
-    When I am on the homepage
-    Then I should not see the "breadcrumb" element in the "page"
-    When I am on "the user registration page"
-    Then I should see the "breadcrumb" element in the "page"
-
-  Scenario: The page header is visible everywhere but on the homepage
-    When I am on the homepage
-    Then I should not see the "page header" element in the "page"
-    When I am on "the user registration page"
-    Then I should see the "page header" element in the "page"
+    Examples:
+      | element     | region | see homepage | see other |
+      | logo        | header | see          | see       |
+      | breadcrumb  | page   | not see      | see       |
+      | page header | page   | not see      | see       |

@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\PageHeaderMetadata;
 
+use Drupal\Core\Entity\ContentEntityInterface;
+
 /**
  * Defines a page header metadata plugin that extracts data from current entity.
  *
@@ -19,8 +21,10 @@ class PageContentType extends EntityCanonicalRoutePage {
    * {@inheritdoc}
    */
   public function applies(): bool {
+    /** @var ContentEntityInterface $entity */
     $entity = $this->getEntityFromCurrentRoute();
-    return $entity->bundle() == 'oe_page';
+
+    return $entity !== NULL ? $entity->bundle() == 'oe_page' : FALSE;
   }
 
   /**
@@ -28,12 +32,16 @@ class PageContentType extends EntityCanonicalRoutePage {
    */
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
+
+    /** @var ContentEntityInterface $entity */
     $entity = $this->getEntityFromCurrentRoute();
-    if ($entity->get('oe_page_summary')->value) {
+
+    if ($entity !== NULL && $entity->get('oe_page_summary')->value) {
       $metadata['introduction'] = [
         '#plain_text' => $entity->get('oe_page_summary')->value,
       ];
     }
+
     return $metadata;
   }
 
