@@ -79,6 +79,13 @@ pipeline:
       - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
       - ./vendor/bin/behat --strict
 
+  debug:
+    image: fpfis/httpd-php-dev:7.1
+    commands:
+      - ./vendor/bin/drush ws --count='500'
+    when:
+      status: failure
+
   before-release:
     image: fpfis/httpd-php-dev:7.1
     commands:
