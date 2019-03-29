@@ -29,11 +29,9 @@
   margin-top: 0;
 }
 
-// Align Apply bottom in moderation block
+// Align "Apply" botton in moderation block.
 .entity-moderation-form {
-  .entity-moderation-form__item {
-    button.ecl-button {
-      margin-bottom: 1em;
-    }
+  .ecl-button {
+    margin-bottom: 1em;
   }
 }
