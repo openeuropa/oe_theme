@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override for rendering corporate site switcher block.
+ *
+ * Available variables:
+ * - links: list of site switcher links.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% include '@ecl/ec-component-site-switcher' with {
+  'political': {
+    'variant': 'header',
+    'href': links.political.href,
+    'label': links.political.label,
+    'is_active': link.political.active
+  },
+  'info': {
+    'href': links.info.href,
+    'href': links.info.label,
+    'is_active': links.info.active
+  },
+  'extra_classes': 'ecl-site-switcher--header',
+} only %}
