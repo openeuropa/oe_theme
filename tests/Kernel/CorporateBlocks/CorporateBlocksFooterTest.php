@@ -2,31 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\CorporateBlocks;
 
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test footer block rendering.
  */
-class CorporateBlocksFooterTest extends AbstractKernelTestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = [
-    'oe_corporate_blocks',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installConfig(['oe_corporate_blocks']);
-  }
+class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
 
   /**
    * Array containing data to merge with config object.
