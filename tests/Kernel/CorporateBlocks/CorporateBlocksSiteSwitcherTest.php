@@ -25,9 +25,9 @@ class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
   }
 
   /**
-   * Test footer block rendering.
+   * Test site switcher block rendering.
    */
-  public function testFooterBlockRendering(): void {
+  public function testSiteSwitcherBlockRendering(): void {
 
     // Override config "oe_corporate_blocks.data.site_switcher"
     // with some custom data.
@@ -66,7 +66,6 @@ class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
     $second_link = $crawler->filter('div.ecl-site-switcher.ecl-site-switcher--header > div > ul > li.ecl-site-switcher__option--is-selected > a');
     $this->assertEquals($test_data['info_href'], $second_link->attr('href'));
     $this->assertEquals($test_data['info_label'], $second_link->text());
-
   }
 
 }
