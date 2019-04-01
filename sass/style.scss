@@ -28,3 +28,10 @@
 .form-item-text-format-value + .ecl-form-group {
   margin-top: 0;
 }
+
+// Align "Apply" botton in moderation block.
+.entity-moderation-form {
+  .ecl-button {
+    margin-bottom: 1em;
+  }
+}
