@@ -7,9 +7,6 @@ The demo module includes:
 
 - A custom main menu with sub-menu items
 - An overview page for all Drupal-related components called "Style guide"
-- Placeholder blocks like:
- - Language switcher
- - Site switcher
 
 ### Requirements
 

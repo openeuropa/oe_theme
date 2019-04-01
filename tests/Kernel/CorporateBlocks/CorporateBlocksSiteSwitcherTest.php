@@ -66,6 +66,19 @@ class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
     $second_link = $crawler->filter('div.ecl-site-switcher.ecl-site-switcher--header > div > ul > li.ecl-site-switcher__option--is-selected > a');
     $this->assertEquals($test_data['info_href'], $second_link->attr('href'));
     $this->assertEquals($test_data['info_label'], $second_link->text());
+
+    // Test rendering on change of active link.
+    $config_obj->set('active', 'political');
+    $config_obj->save();
+
+    $render = $this->buildBlock('oe_site_switcher', $config);
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    $first_link = $crawler->filter('div.ecl-site-switcher.ecl-site-switcher--header > div > ul > li.ecl-site-switcher__option--is-selected:nth-child(1) > a');
+    $this->assertEquals($test_data['political_href'], $first_link->attr('href'));
+    $this->assertEquals($test_data['political_label'], $first_link->text());
   }
 
 }
