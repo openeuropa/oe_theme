@@ -25,7 +25,7 @@ class PageContentType extends EntityCanonicalRoutePage {
     /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
     $entity = $this->getEntityFromCurrentRoute();
 
-    return $entity instanceof NodeInterface ? $entity->bundle() === 'oe_page' : FALSE;
+    return $entity instanceof NodeInterface && $entity->bundle() === 'oe_page';
   }
 
   /**
@@ -33,6 +33,8 @@ class PageContentType extends EntityCanonicalRoutePage {
    */
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
+
+    $metadata['identity'] = '';
 
     $entity = $this->getEntityFromCurrentRoute();
     if ($entity->get('oe_page_summary')->isEmpty()) {
