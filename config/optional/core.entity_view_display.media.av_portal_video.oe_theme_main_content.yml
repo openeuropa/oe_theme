@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.oe_theme_main_content
+    - field.field.media.av_portal_video.oe_media_avportal_video
+    - media.type.av_portal_video
+  module:
+    - media_avportal
+id: media.av_portal_video.oe_theme_main_content
+targetEntityType: media
+bundle: av_portal_video
+mode: oe_theme_main_content
+content:
+  oe_media_avportal_video:
+    weight: 0
+    label: hidden
+    settings:
+      max_width: 576
+      max_height: 400
+    third_party_settings: {  }
+    type: avportal_video
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

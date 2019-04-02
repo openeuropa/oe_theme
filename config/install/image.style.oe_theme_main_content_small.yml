@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_main_content_small
+label: 'Main content small'
+effects:
+  56a7333d-6018-40f4-88f9-d7443ab16afc:
+    uuid: 56a7333d-6018-40f4-88f9-d7443ab16afc
+    id: image_scale
+    weight: 1
+    data:
+      width: 600
+      height: null
+      upscale: false

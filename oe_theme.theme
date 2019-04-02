@@ -228,6 +228,15 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
   if ($variables['field_name'] === 'body') {
     $variables['attributes']['class'][] = 'ecl-paragraph';
   }
+
+  // Add the ECL image class to the image fields.
+  $field_name = $variables['field_name'];
+  if (in_array($field_name, ['oe_media_avportal_photo'])) {
+    foreach ($variables['items'] as &$item) {
+      $item['content']['#attributes']['class'][] = 'ecl-image';
+      $item['content']['#attributes']['class'][] = 'ecl-image--fluid';
+    }
+  }
 }
 
 /**
@@ -787,4 +796,14 @@ function _oe_theme_preprocess_input_text(array &$element): void {
   }
   // Map rest array elements.
   $element['ecl_array']['has_error'] = !empty($element['#errors']);
+}
+
+/**
+ * Implements template_preprocess_responsive_image_formatter().
+ *
+ * For all responsive images, we need to set the ECL image classes.
+ */
+function oe_theme_preprocess_responsive_image_formatter(&$variables) {
+  $variables['responsive_image']['#attributes']['class'][] = 'ecl-image';
+  $variables['responsive_image']['#attributes']['class'][] = 'ecl-image--fluid';
 }
