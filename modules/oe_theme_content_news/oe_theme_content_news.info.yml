@@ -1,0 +1,7 @@
+name: OpenEuropa Theme News Content
+type: module
+description: Companion module for the OE Content News module
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - oe_content_news:oe_content_news

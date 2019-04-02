@@ -1,0 +1,53 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - image.style.oe_theme_main_content_large
+    - image.style.oe_theme_main_content_small
+  theme:
+    - oe_theme
+id: oe_theme_main_content
+label: 'Main content'
+image_style_mappings:
+  -
+    breakpoint_id: oe_theme.large
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_large
+  -
+    breakpoint_id: oe_theme.large
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_large
+  -
+    breakpoint_id: oe_theme.medium
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_large
+  -
+    breakpoint_id: oe_theme.medium
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_large
+  -
+    breakpoint_id: oe_theme.small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_small
+  -
+    breakpoint_id: oe_theme.small
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_large
+  -
+    breakpoint_id: oe_theme.extra_small
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_small
+  -
+    breakpoint_id: oe_theme.extra_small
+    multiplier: 2x
+    image_mapping_type: image_style
+    image_mapping: oe_theme_main_content_small
+breakpoint_group: oe_theme
+fallback_image_style: '_original image_'

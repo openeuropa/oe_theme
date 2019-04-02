@@ -14,7 +14,7 @@ drupal:
     profile: "minimal"
     name: "OpenEuropa"
   post_install:
-    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_theme_content_page -y"
+    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_theme_content_page oe_theme_content_news -y"
     - "./vendor/bin/drush en config_devel toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush theme:enable seven -y"

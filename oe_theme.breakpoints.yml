@@ -1,0 +1,28 @@
+oe_theme.extra_small:
+  label: Extra small
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+oe_theme.small:
+  label: Small
+  mediaQuery: 'all and (min-width: 479px) and (max-width: 767px)'
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+oe_theme.medium:
+  label: Medium
+  mediaQuery: 'all and (min-width: 767px) and (max-width: 991px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+oe_theme.large:
+  label: Large
+  mediaQuery: 'all and (min-width: 1199px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x

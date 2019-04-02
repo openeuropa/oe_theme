@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.oe_theme_main_content
+    - field.field.media.image.oe_media_image
+    - media.type.image
+    - responsive_image.styles.oe_theme_main_content
+  module:
+    - responsive_image
+id: media.image.oe_theme_main_content
+targetEntityType: media
+bundle: image
+mode: oe_theme_main_content
+content:
+  oe_media_image:
+    type: responsive_image
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      responsive_image_style: oe_theme_main_content
+      image_link: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true

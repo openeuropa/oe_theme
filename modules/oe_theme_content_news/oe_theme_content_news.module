@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the News content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\media\MediaInterface;
+
+/**
+ * Implements template_preprocess_node() for the News node type.
+ */
+function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
+  if ($variables['view_mode'] !== 'full') {
+    return;
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $media = $node->get('oe_news_featured_media')->entity;
+  if ($media instanceof MediaInterface) {
+    $builder = \Drupal::entityTypeManager()->getViewBuilder('media');
+    $variables['content']['featured_image'] = $builder->view($media, 'oe_theme_main_content');
+    // Show the image always at the top.
+    $variables['content']['featured_image']['#weight'] = -100;
+    $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-paragraph';
+  }
+}
