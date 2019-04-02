@@ -11,6 +11,12 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+  sparql:
+    image: openeuropa/triple-store-dev
+    pull: true
+    environment:
+      - SPARQL_UPDATE=true
+      - DBA_PASSWORD=dba
   selenium:
     image: selenium/standalone-chrome:3.11
     environment:
@@ -25,33 +31,24 @@ pipeline:
       - npm install --unsafe-perm
       - npm run build
 
-  composer-install-lowest:
+  composer-install:
     group: prepare
     image: fpfis/httpd-php-dev:7.1
     volumes:
       - /cache:/cache
     commands:
-      # Perform a composer install to work around an issue where an update
-      # without a lock file present affects the resolving of dependencies.
-      # Todo: Remove the `composer install` when the composer bug is fixed.
-      # Ref. https://github.com/composer/composer/issues/7542
-      # Ref. https://webgate.ec.europa.eu/CITnet/jira/browse/OPENEUROPA-1234
       - composer install --ansi --no-suggest --no-progress
+
+  composer-update-lowest:
+    group: post-prepare
+    image: fpfis/httpd-php-dev:7.1
+    volumes:
+      - /cache:/cache
+    commands:
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
       matrix:
         COMPOSER_BOUNDARY: lowest
-
-  composer-install-highest:
-    group: prepare
-    image: fpfis/httpd-php-dev:7.1
-    volumes:
-      - /cache:/cache
-    commands:
-      - composer install --ansi --no-suggest --no-progress
-    when:
-      matrix:
-        COMPOSER_BOUNDARY: highest
 
   site-install:
     image: fpfis/httpd-php-dev:7.1

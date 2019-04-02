@@ -40,6 +40,13 @@ services:
     volumes:
       - ./:/home/node/app
     command: "sleep infinity"
+  sparql:
+      image: openeuropa/triple-store-dev
+      environment:
+      - SPARQL_UPDATE=true
+      - DBA_PASSWORD=dba
+      ports:
+        - "8890:8890"
 
 #### Mac users: uncomment the "volumes" key to enable the NFS file sharing. You can find more information about Docker for Mac here: https://github.com/openeuropa/openeuropa/blob/master/docs/starting/tooling.md#using-docker-on-macos
 

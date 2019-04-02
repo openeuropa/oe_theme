@@ -220,6 +220,17 @@ function oe_theme_preprocess_form_element(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_field().
+ *
+ * Add paragraph formatting to body.
+ */
+function oe_theme_preprocess_field(&$variables, $hook): void {
+  if ($variables['field_name'] === 'body') {
+    $variables['attributes']['class'][] = 'ecl-paragraph';
+  }
+}
+
+/**
  * Implements hook_preprocess_pager().
  *
  * @see template_preprocess_pager()
