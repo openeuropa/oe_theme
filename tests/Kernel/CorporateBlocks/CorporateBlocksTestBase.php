@@ -7,16 +7,16 @@ namespace Drupal\Tests\oe_theme\Kernel\CorporateBlocks;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
- * Test footer block rendering.
+ * Base class for corporate block Kernel tests.
  */
-class CorporateBlocksTestBase extends AbstractKernelTestBase {
+abstract class CorporateBlocksTestBase extends AbstractKernelTestBase {
 
   /**
    * Modules to enable.
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_corporate_blocks',
   ];
 
@@ -27,5 +27,10 @@ class CorporateBlocksTestBase extends AbstractKernelTestBase {
     parent::setUp();
     $this->installConfig(['oe_corporate_blocks']);
   }
+
+  /**
+   * Test data for the corporate block.
+   */
+  abstract protected function getTestConfigData(): array;
 
 }

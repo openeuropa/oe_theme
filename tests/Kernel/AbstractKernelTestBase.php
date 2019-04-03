@@ -21,7 +21,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'system',
     'user',
     'ui_patterns',

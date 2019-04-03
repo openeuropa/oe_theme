@@ -12,19 +12,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
 
   /**
-   * Array containing data to merge with config object.
-   */
-  protected function getTestConfigData(): array {
-    return [
-      'info_label' => 'Info Lable',
-      'info_href' => 'https://info.com/domain',
-      'political_label' => 'Political label',
-      'political_href' => 'https://digit.com/domain',
-      'active' => 'info',
-    ];
-  }
-
-  /**
    * Test site switcher block rendering.
    */
   public function testSiteSwitcherBlockRendering(): void {
@@ -79,6 +66,19 @@ class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
     $first_link = $crawler->filter('div.ecl-site-switcher.ecl-site-switcher--header > div > ul > li.ecl-site-switcher__option--is-selected:nth-child(1) > a');
     $this->assertEquals($test_data['political_href'], $first_link->attr('href'));
     $this->assertEquals($test_data['political_label'], $first_link->text());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getTestConfigData(): array {
+    return [
+      'info_label' => 'Info Lable',
+      'info_href' => 'https://info.com/domain',
+      'political_label' => 'Political label',
+      'political_href' => 'https://digit.com/domain',
+      'active' => 'info',
+    ];
   }
 
 }
