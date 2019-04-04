@@ -3,9 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.oe_theme_main_content
-    - field.field.media.remote_video.field_height
-    - field.field.media.remote_video.field_html
-    - field.field.media.remote_video.field_width
     - field.field.media.remote_video.oe_media_oembed_video
     - media.type.remote_video
   module:
@@ -26,9 +23,6 @@ content:
     region: content
 hidden:
   created: true
-  field_height: true
-  field_html: true
-  field_width: true
   langcode: true
   name: true
   thumbnail: true

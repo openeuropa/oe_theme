@@ -19,12 +19,21 @@ regions:
   footer: "Footer"
 
 config_devel:
+  install:
+    - image.style.oe_theme_medium_2x_no_crop
+    - image.style.oe_theme_medium_no_crop
+    - image.style.oe_theme_small_2x_no_crop
+    - image.style.oe_theme_small_no_crop
+    - responsive_image.styles.oe_theme_main_content
   optional:
-    - block.block.oe_multilingual_content_language_switcher
-    - block.block.oe_multilingual_language_switcher
     - block.block.oe_theme_main_page_content
     - block.block.oe_theme_page_header
     - block.block.oe_theme_site_branding
     - block.block.oe_theme_tabs
     - block.block.oe_theme_search_form
     - block.block.oe_theme_corporate_footer
+    - core.entity_view_display.media.av_portal_photo.oe_theme_main_content
+    - core.entity_view_display.media.av_portal_video.oe_theme_main_content
+    - core.entity_view_display.media.image.oe_theme_main_content
+    - core.entity_view_display.media.remote_video.oe_theme_main_content
+    - core.entity_view_mode.media.oe_theme_main_content

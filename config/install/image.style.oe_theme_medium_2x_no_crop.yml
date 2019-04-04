@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_medium_2x_no_crop
+label: 'Medium 2x (no crop)'
+effects:
+  e998d44c-2855-435c-a564-e1fa92af8705:
+    uuid: e998d44c-2855-435c-a564-e1fa92af8705
+    id: image_scale
+    weight: 1
+    data:
+      width: 1984
+      height: null
+      upscale: false

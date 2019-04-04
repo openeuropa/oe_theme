@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_small_no_crop
+label: 'Small (no crop)'
+effects:
+  63ef0cea-864e-4e3f-a52b-71a941adfeba:
+    uuid: 63ef0cea-864e-4e3f-a52b-71a941adfeba
+    id: image_scale
+    weight: 1
+    data:
+      width: 767
+      height: null
+      upscale: false
