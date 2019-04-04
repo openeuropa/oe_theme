@@ -2,89 +2,14 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme\Kernel;
+namespace Drupal\Tests\oe_theme\Kernel\CorporateBlocks;
 
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test footer block rendering.
  */
-class CorporateBlocksFooterTest extends AbstractKernelTestBase {
-
-  /**
-   * Modules to enable.
-   *
-   * @var array
-   */
-  public static $modules = [
-    'oe_corporate_blocks',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installConfig(['oe_corporate_blocks']);
-  }
-
-  /**
-   * Array containing data to merge with config object.
-   */
-  protected function getTestConfigData(): array {
-    return [
-      'about_ec_title' => 'First section title',
-      'about_ec_links' => [
-        [
-          'label' => '1st section 1st link',
-          'href' => 'http://example.com/1-1.html',
-        ],
-        [
-          'label' => '1st section 2nd link',
-          'href' => 'http://example.com/1-2.html',
-        ],
-      ],
-      'social_media_title' => 'Second section title',
-      'social_media_links' => [
-        [
-          'type' => 'social-network',
-          'icon' => 'facebook',
-          'link' => [
-            'label' => '2nd section 1st link',
-            'href' => 'http://example.com/2-1.html',
-          ],
-        ],
-        [
-          'type' => 'external',
-          'link' => [
-            'label' => '2nd section 2nd link',
-            'href' => 'http://example.com/2-2.html',
-          ],
-        ],
-      ],
-      'about_eu_title' => 'Third section title',
-      'about_eu_links' => [
-        [
-          'label' => '3rd section 1st link',
-          'href' => 'http://example.com/3-1.html',
-        ],
-        [
-          'label' => '3rd section 2nd link',
-          'href' => 'http://example.com/3-2.html',
-        ],
-      ],
-      'bottom_links' => [
-        [
-          'label' => '4th section 1st link',
-          'href' => 'http://example.com/4-1.html',
-        ],
-        [
-          'label' => '4th section 2nd link',
-          'href' => 'http://example.com/4-2.html',
-        ],
-      ],
-    ];
-  }
+class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
 
   /**
    * Test footer block rendering.
@@ -168,6 +93,64 @@ class CorporateBlocksFooterTest extends AbstractKernelTestBase {
 
     $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-bottom div.ecl-row ul.ecl-footer__list li.ecl-footer__list-item');
     $this->assertCount(2, $actual);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getTestConfigData(): array {
+    return [
+      'about_ec_title' => 'First section title',
+      'about_ec_links' => [
+        [
+          'label' => '1st section 1st link',
+          'href' => 'http://example.com/1-1.html',
+        ],
+        [
+          'label' => '1st section 2nd link',
+          'href' => 'http://example.com/1-2.html',
+        ],
+      ],
+      'social_media_title' => 'Second section title',
+      'social_media_links' => [
+        [
+          'type' => 'social-network',
+          'icon' => 'facebook',
+          'link' => [
+            'label' => '2nd section 1st link',
+            'href' => 'http://example.com/2-1.html',
+          ],
+        ],
+        [
+          'type' => 'external',
+          'link' => [
+            'label' => '2nd section 2nd link',
+            'href' => 'http://example.com/2-2.html',
+          ],
+        ],
+      ],
+      'about_eu_title' => 'Third section title',
+      'about_eu_links' => [
+        [
+          'label' => '3rd section 1st link',
+          'href' => 'http://example.com/3-1.html',
+        ],
+        [
+          'label' => '3rd section 2nd link',
+          'href' => 'http://example.com/3-2.html',
+        ],
+      ],
+      'bottom_links' => [
+        [
+          'label' => '4th section 1st link',
+          'href' => 'http://example.com/4-1.html',
+        ],
+        [
+          'label' => '4th section 2nd link',
+          'href' => 'http://example.com/4-2.html',
+        ],
+      ],
+    ];
   }
 
 }
