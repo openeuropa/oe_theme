@@ -46,7 +46,7 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Robots are everywhere nowadays"
 
-  Scenario: Page content type has custom metadata
+  Scenario: Page content type has custom metadata  shown in the page header.
     Given "oe_page" content:
       | title   | oe_page_summary | oe_content_content_owner                                                |
       | My page | My summary      | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
@@ -54,7 +54,7 @@ Feature: Page header block component.
     When I go to the "My page" page
     Then I should see "My summary" in the "page header intro"
 
-  Scenario: News content type has custom metadata
+  Scenario: News content type has custom metadata shown in the page header.
     Given "oe_news" content:
       | title        | oe_news_summary | oe_news_teaser | body    | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
       | My news item | My summary      | My teaser      | My body | 1554197428               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |

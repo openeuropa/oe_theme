@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - oe_media
+    - media
 id: media.oe_theme_main_content
 label: 'Main content'
 targetEntityType: media
