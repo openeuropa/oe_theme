@@ -165,6 +165,20 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Navigates to the canonical page display of an oe_theme_demo_page node.
    *
+   * @param string $title
+   *   The title of the page.
+   *
+   * @When (I )go to the :title demo page
+   * @When (I )visit the :title demo page
+   */
+  public function visitDemoPage(string $title): void {
+    $node = $this->getDemoPageByTitle($title);
+    $this->visitPath($node->toUrl()->toString());
+  }
+
+  /**
+   * Navigates to the canonical page display of an oe_theme_demo_page node.
+   *
    * @param string $language
    *   The target language.
    * @param string $title
@@ -234,6 +248,31 @@ class OeThemeTestContext extends RawDrupalContext {
       throw new \Exception("Multiple nodes with title '$title' found.");
     }
 
+    return reset($nodes);
+  }
+
+  /**
+   * Retrieves a demo page node by its title.
+   *
+   * @todo Use the traits provided by OPENEUROPA-303 when gets in.
+   *
+   * @param string $title
+   *   The node title.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The node entity.
+   */
+  protected function getDemoPageByTitle(string $title): NodeInterface {
+    $storage = \Drupal::entityTypeManager()->getStorage('node');
+    $nodes = $storage->loadByProperties([
+      'title' => $title,
+    ]);
+    if (!$nodes) {
+      throw new \Exception("Could not find node with title '$title'.");
+    }
+    if (count($nodes) > 1) {
+      throw new \Exception("Multiple nodes with title '$title' found.");
+    }
     return reset($nodes);
   }
 

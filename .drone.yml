@@ -69,7 +69,7 @@ pipeline:
 
   behat:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     commands:
       # Reset permission since installation runs as root. @todo Fix this.
       - ./vendor/bin/drush -y config-set system.performance css.preprocess 0

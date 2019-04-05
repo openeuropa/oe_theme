@@ -65,15 +65,12 @@ Feature: Page header block component.
     And I should see "02 April 2019" in the "page header meta"
 
   Scenario: The page header block shows the content language switcher.
-    Given the following demo page:
-      | title                               | body                             |
-      | Robots are everywhere               | They are part of our daily life. |
-    And the following "Spanish" translation for the "Robots are everywhere" demo page:
+    Given the following "Spanish" translation for the "Robots are everywhere" demo page:
       | Title | Los robots estan en todas partes  |
-      | Body  | Son parte de nuestra vida diaria  |
     And  I am an anonymous user
     When I visit the "Spanish" translation page for the "Robots are everywhere" demo page
-    Then I should not see the link "español" in the "page header" region
+    Then I should see the heading "Los robots estan en todas partes" in the "page header"
+    And I should not see the link "español" in the "page header" region
 
     When I visit the "French" translation page for the "Robots are everywhere" demo page
     Then I should see the heading "Robots are everywhere" in the "page header"
