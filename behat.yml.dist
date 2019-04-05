@@ -27,6 +27,7 @@ default:
               user registration: "/user/register"
               ECL components overview: "/en/components"
               ECL dropdown component: "components/dropdown"
+              recent content: "/en/node"
   extensions:
     Drupal\MinkExtension:
       goutte: ~
