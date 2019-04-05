@@ -7,6 +7,9 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\TypedData\TranslatableInterface;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 
 /**
@@ -28,4 +31,74 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     $variables['content']['featured_image']['#weight'] = -100;
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-paragraph';
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node--oe-news--teaser.html.twig.
+ */
+function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  // Use the short title if present, with fallback to the title.
+  $variables['title'] = $node->get('oe_content_short_title')->value ?? $node->label();
+
+  $date_formatter = \Drupal::service('date.formatter');
+  $variables['meta'][] = $date_formatter->format($node->get('oe_news_publication_date')->value, 'oe_theme_news_date');
+
+  $media = $node->get('oe_news_featured_media')->entity;
+  if (!$media instanceof MediaInterface || $media->get('thumbnail')->isEmpty()) {
+    return;
+  }
+
+  // Retrieve the correct translation to display.
+  // @see \Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase::getEntitiesToView()
+  if ($media instanceof TranslatableInterface) {
+    $media = \Drupal::service('entity.repository')->getTranslationFromContext($media);
+  }
+
+  // Check if the media can be displayed to the current user.
+  $access = $media->access('view', NULL, TRUE);
+
+  // Apply the cacheability metadata accumulated until now.
+  $cacheability->addCacheableDependency($media)
+    ->addCacheableDependency($access)
+    ->applyTo($variables);
+
+  // Don't render the image if the user has not enough permissions.
+  if (!$access->isAllowed()) {
+    return;
+  }
+
+  /** @var \Drupal\file\FileInterface $thumbnail_file */
+  $thumbnail_item = $media->get('thumbnail');
+  $thumbnail_file = $thumbnail_item->entity;
+
+  $normal_style = ImageStyle::load('oe_theme_list_item');
+  $retina_style = ImageStyle::load('oe_theme_list_item_2x');
+  $normal_image = file_url_transform_relative(file_create_url($normal_style->buildUri($thumbnail_file->getFileUri())));
+  $retina_image = file_url_transform_relative(file_create_url($retina_style->buildUri($thumbnail_file->getFileUri())));
+
+  // Since the XS media query in the ECL image component is of type
+  // "max-width()", we need to specify also the SM one
+  // (which uses "min-width()") so that we can serve the 2x image when needed.
+  $srcset = "$normal_image 1x, $retina_image 2x";
+  $variables['image'] = [
+    'src' => $normal_image,
+    'alt' => $thumbnail_item->alt,
+    'srcs' => [
+      'xs' => $srcset,
+      'sm' => $srcset,
+    ],
+  ];
+
+  $cacheability
+    ->addCacheableDependency($normal_style)
+    ->addCacheableDependency($retina_style)
+    ->addCacheableDependency($normal_style)
+    ->addCacheableDependency($retina_style)
+    ->addCacheableDependency($thumbnail_file)
+    ->applyTo($variables);
 }
