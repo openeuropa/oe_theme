@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_list_item_2x
+label: 'List item 2x'
+effects:
+  62060233-b261-48dd-9556-8cff0803b385:
+    uuid: 62060233-b261-48dd-9556-8cff0803b385
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 180
+      height: 180
+      anchor: center-center

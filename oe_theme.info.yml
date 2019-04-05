@@ -20,6 +20,8 @@ regions:
 
 config_devel:
   install:
+    - image.style.oe_theme_list_item
+    - image.style.oe_theme_list_item_2x
     - image.style.oe_theme_medium_2x_no_crop
     - image.style.oe_theme_medium_no_crop
     - image.style.oe_theme_small_2x_no_crop
