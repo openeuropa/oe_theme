@@ -27,6 +27,9 @@ abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'image',
+    'breakpoint',
+    'responsive_image',
   ];
 
   /**
@@ -48,6 +51,8 @@ abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
       'language',
       'content_translation',
       'oe_multilingual',
+      'image',
+      'responsive_image',
     ]);
 
     $this->container->get('theme_installer')->install(['oe_theme']);

@@ -27,6 +27,9 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'breakpoint',
+    'responsive_image',
+    'image',
   ];
 
   /**
@@ -37,7 +40,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installSchema('system', 'sequences');
-    $this->installConfig(['system']);
+    $this->installConfig(['system', 'image', 'responsive_image']);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('theme_handler')->setDefault('oe_theme');

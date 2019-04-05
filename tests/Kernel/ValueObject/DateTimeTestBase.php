@@ -23,6 +23,9 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'image',
+    'breakpoint',
+    'responsive_image',
   ];
 
   /**
@@ -34,6 +37,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('theme_handler')->setDefault('oe_theme');
     $this->container->set('theme.registry', NULL);
+    $this->installConfig(['image', 'responsive_image']);
   }
 
   /**
