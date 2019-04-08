@@ -9,7 +9,6 @@ use Drupal\Core\Block\TitleBlockPluginInterface;
 use Drupal\Core\Breadcrumb\BreadcrumbBuilderInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
@@ -112,10 +111,6 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#introduction' => $metadata['introduction'] ?? '',
       '#metas' => $metadata['metas'] ?? [],
     ];
-    if (\Drupal::moduleHandler()->moduleExists('oe_multilingual')) {
-      $build = $this->addContentLanguageSwitcher($build);
-    }
-
     return $this->addBreadcrumbSegments($build, $title);
   }
 
@@ -129,67 +124,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
   }
 
   /**
-   * Adds the content language switcher to the header.
-   *
-   * @param array $build
-   *   A render array.
-   *
-   * @return array
-   *   The processed render array.
-   */
-  protected function addContentLanguageSwitcher(array $build): array {
-    // Get required services.
-    $multilingual_helper = \Drupal::service('oe_multilingual.helper');
-    $language_provider = \Drupal::service('oe_multilingual.language_provider');
-    $language_manager = \Drupal::languageManager();
-
-    $entity = $multilingual_helper->getEntityFromCurrentRoute();
-    // Bail out if there is no entity or if it's not a content entity.
-    if (!$entity || !$entity instanceof ContentEntityInterface) {
-      return $build;
-    }
-
-    // Render the links only if the current entity translation language is not
-    // the same as the current site language.
-    /** @var \Drupal\Core\Entity\EntityInterface $translation */
-    $translation = $multilingual_helper->getCurrentLanguageEntityTranslation($entity);
-    $current_language = $language_manager->getCurrentLanguage();
-    if ($translation->language()->getId() === $current_language->getId()) {
-      return $build;
-    }
-
-    $build['#language_switcher']['current'] = $translation->language()->getName();
-
-    /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
-    $languages = $language_manager->getNativeLanguages();
-    $build['#language_switcher']['unavailable'] = $languages[$current_language->getId()]->getName();
-
-    // Normalize the links to an array of options suitable for the ECL
-    // "ecl-lang-select-pages" template.
-    $build['#language_switcher']['options'] = [];
-    foreach ($language_provider->getEntityAvailableLanguages($entity) as $language_code => $link) {
-      /** @var \Drupal\Core\Url $url */
-      $url = $link['url'];
-      $href = $url
-        ->setOptions(['language' => $link['language']])
-        ->setAbsolute(TRUE)
-        ->toString();
-
-      $build['#language_switcher']['options'][] = [
-        'href' => $href,
-        'hreflang' => $language_code,
-        'label' => $link['title'],
-        'lang' => $language_code,
-      ];
-    }
-
-    $build['#language_switcher']['is_primary'] = TRUE;
-
-    return $build;
-  }
-
-  /**
-   * Add the breadcrumb to the header.
+   * Constructs a new PageHeaderBlock instance.
    *
    * @param array $build
    *   A render array.
