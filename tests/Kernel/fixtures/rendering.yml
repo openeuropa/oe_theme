@@ -570,6 +570,19 @@
         - "News article"
         - "6 July 2015"
         - "Brussels"
+      language_switcher:
+        current: "French"
+        unavailable: "English"
+        is_primary: true
+        options:
+          - href: "#"
+            hreflang: "es"
+            label: "Spanish"
+            lang: "es"
+          - href: "#"
+            hreflang: "it"
+            label: "Italian"
+            lang: "it"
       breadcrumb:
         0:
           href: "http://www.example.com/"
@@ -581,11 +594,17 @@
     count:
       '.ecl-page-header': 1
       '.ecl-breadcrumb__segment': 2
+      '.ecl-lang-select-page--primary': 1
+      '.ecl-lang-select-page__option': 3
       '.ecl-meta__item': 3
     equals:
       '.ecl-page-header__identity': "Digital single market"
       '.ecl-page-header__title h1': "Business, Economy, Euro"
       '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+      '.ecl-lang-select-page__unavailable': "English"
+      '.ecl-lang-select-page__option--is-selected': "French"
+      '.ecl-lang-select-page__option a[lang="es"]': "Spanish"
+      '.ecl-lang-select-page__option a[lang="it"]': "Italian"
       '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment--last span': "Announcements"
 - array:

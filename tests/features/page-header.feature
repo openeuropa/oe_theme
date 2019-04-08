@@ -63,3 +63,17 @@ Feature: Page header block component.
     Then I should see "My summary" in the "page header intro"
     And I should see "News" in the "page header meta"
     And I should see "02 April 2019" in the "page header meta"
+
+  Scenario: The page header block shows the content language switcher.
+    Given the following "Spanish" translation for the "Robots are everywhere" demo page:
+      | Title | Los robots estan en todas partes  |
+    And  I am an anonymous user
+    When I visit the "Spanish" translation page for the "Robots are everywhere" demo page
+    Then I should see the heading "Los robots estan en todas partes" in the "page header"
+    And I should not see the link "español" in the "page header" region
+
+    When I visit the "French" translation page for the "Robots are everywhere" demo page
+    Then I should see the heading "Robots are everywhere" in the "page header"
+    And I should see "français" in the "unavailable languages in the language page switcher"
+    And I should see "English" in the "selected language in the language page switcher"
+    And I should see the link "español" in the "language page switcher"

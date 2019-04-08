@@ -25,6 +25,19 @@ page_header:
         - "News article"
         - "6 July 2015"
         - "Brussels"
+    language_switcher:
+      type: "array"
+      label: "Language switcher"
+      description: "The language selector offers the alternative language versions of the page’s main content."
+      preview:
+        current: "French"
+        unavailable: "English"
+        is_primary: true
+        options:
+          - href: "#"
+            hreflang: "es"
+            label: "Spanish"
+            lang: "es"
     breadcrumb:
       type: "array"
       label: "Breadcrumb"

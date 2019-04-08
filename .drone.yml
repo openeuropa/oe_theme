@@ -33,7 +33,7 @@ pipeline:
 
   composer-install:
     group: prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     volumes:
       - /cache:/cache
     commands:
@@ -41,7 +41,7 @@ pipeline:
 
   composer-update-lowest:
     group: post-prepare
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     volumes:
       - /cache:/cache
     commands:
@@ -51,25 +51,25 @@ pipeline:
         COMPOSER_BOUNDARY: lowest
 
   site-install:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     commands:
       - ./vendor/bin/run drupal:site-install
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     commands:
       - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-full:7.1
     commands:
       # Reset permission since installation runs as root. @todo Fix this.
       - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
