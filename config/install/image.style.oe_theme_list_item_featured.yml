@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_list_item_featured
+label: 'List Item Featured'
+effects:
+  3359e576-8ccf-4efa-b923-10cc1521149d:
+    uuid: 3359e576-8ccf-4efa-b923-10cc1521149d
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 400
+      height: 400
+      anchor: center-center
