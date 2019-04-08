@@ -43,7 +43,7 @@ function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
   $cache = CacheableMetadata::createFromRenderArray($variables);
 
   // Use the short title if present, with fallback to the title.
-  $variables['title'] = $node->get('oe_content_short_title')->value ?? $node->label();
+  $variables['title'] = !$node->get('oe_content_short_title')->isEmpty() ? $node->get('oe_content_short_title')->value : $node->label();
 
   $date_formatter = \Drupal::service('date.formatter');
   $variables['meta'][] = $date_formatter->format($node->get('oe_news_publication_date')->value, 'oe_theme_news_date');
