@@ -7,8 +7,9 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
 **Table of contents:**
 
-- [Installation](#installation)
 - [Requirements](#requirements)
+- [Installation](#installation)
+- [Companion sub-modules](#companion-sub-modules)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
@@ -47,6 +48,11 @@ In order to enable the theme in your project perform the following steps:
 Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alternatively you can patch Drupal core
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
 module.
+
+## Companion sub-modules
+
+* [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
+* [OpenEuropa Theme Page](/modules/oe_theme_content_page/README.md)
 
 ## Development
 
