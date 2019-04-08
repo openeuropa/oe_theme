@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_list_item_featured_2x
+label: 'List Item Featured 2x'
+effects:
+  7a11f4c4-2ccc-467e-8124-822c25fe7f48:
+    uuid: 7a11f4c4-2ccc-467e-8124-822c25fe7f48
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 800
+      height: 800
+      anchor: center-center
