@@ -1,10 +1,21 @@
 # Change Log
 
+## [0.13.0](https://github.com/openeuropa/oe_theme/tree/0.13.0) (2019-04-08)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.12.0...0.13.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1752: List item featured image styles. [\#197](https://github.com/openeuropa/oe_theme/pull/197) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1672: Theme the news teaser [\#195](https://github.com/openeuropa/oe_theme/pull/195) ([upchuk](https://github.com/upchuk))
+- Openeuropa 1660 - Theming the News content type [\#194](https://github.com/openeuropa/oe_theme/pull/194) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1754: Update page header pattern. [\#191](https://github.com/openeuropa/oe_theme/pull/191) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [0.12.0](https://github.com/openeuropa/oe_theme/tree/0.12.0) (2019-04-05)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.11.0...0.12.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for 0.12.0 release. [\#193](https://github.com/openeuropa/oe_theme/pull/193) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1660: News content type theming. [\#192](https://github.com/openeuropa/oe_theme/pull/192) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1744: Implement site switcher in oe\_theme. [\#190](https://github.com/openeuropa/oe_theme/pull/190) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1756: Fix styling of Apply button for moderation block. [\#189](https://github.com/openeuropa/oe_theme/pull/189) ([sergepavle](https://github.com/sergepavle))
