@@ -29,6 +29,10 @@ class BreadcrumbTest extends EntityKernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
+    'image',
+    'breakpoint',
+    'responsive_image',
+    'oe_theme_helper',
   ];
 
   /**
@@ -38,7 +42,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     parent::setUp();
 
     $this->installEntitySchema('user');
-    $this->installConfig(['system']);
+    $this->installConfig(['system', 'image', 'responsive_image']);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('theme_handler')->setDefault('oe_theme');

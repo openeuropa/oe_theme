@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_medium_no_crop
+label: 'Medium (no crop)'
+effects:
+  2077c648-a473-40d5-8be4-bee254556fd2:
+    uuid: 2077c648-a473-40d5-8be4-bee254556fd2
+    id: image_scale
+    weight: 1
+    data:
+      width: 991
+      height: null
+      upscale: false

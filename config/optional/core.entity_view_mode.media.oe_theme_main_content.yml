@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.oe_theme_main_content
+label: 'Main content'
+targetEntityType: media
+cache: true

@@ -52,6 +52,7 @@ default:
         page header: ".ecl-page-header"
         page header site identity: ".ecl-page-header__identity"
         page header intro: ".ecl-page-header__intro"
+        page header meta: ".ecl-meta--header"
         priorities dropdown menu: "#nav-menu-expandable-group-3"
   formatters:
     progress: ~

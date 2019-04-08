@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_small_2x_no_crop
+label: 'Small 2x (no crop)'
+effects:
+  19bc771f-1b42-474c-b300-a82b4fa41de9:
+    uuid: 19bc771f-1b42-474c-b300-a82b4fa41de9
+    id: image_scale
+    weight: 1
+    data:
+      width: 1534
+      height: null
+      upscale: false
