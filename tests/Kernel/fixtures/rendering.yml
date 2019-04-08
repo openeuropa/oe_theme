@@ -603,6 +603,8 @@
       '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-lang-select-page__unavailable': "English"
       '.ecl-lang-select-page__option--is-selected': "French"
+      '.ecl-lang-select-page__option a[lang="es"]': "Spanish"
+      '.ecl-lang-select-page__option a[lang="it"]': "Italian"
       '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment--last span': "Announcements"
 - array:

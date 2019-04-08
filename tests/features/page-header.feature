@@ -74,6 +74,6 @@ Feature: Page header block component.
 
     When I visit the "French" translation page for the "Robots are everywhere" demo page
     Then I should see the heading "Robots are everywhere" in the "page header"
-    And I should see "français" in the "language page switcher unavailable" region
-    And I should see "English" in the "language page switcher selected" region
-    And I should see the link "español" in the "language page switcher" region
+    And I should see "français" in the "unavailable languages in the language page switcher"
+    And I should see "English" in the "selected language in the language page switcher"
+    And I should see the link "español" in the "language page switcher"
