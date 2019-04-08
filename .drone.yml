@@ -74,6 +74,9 @@ pipeline:
       # Reset permission since installation runs as root. @todo Fix this.
       - ./vendor/bin/drush -y config-set system.performance css.preprocess 0
       - ./vendor/bin/drush -y config-set system.performance js.preprocess 0
+      - chown -R www-data /test/oe_theme/build/sites
+      - find /test/oe_theme/build/sites/default/files -type d -exec chmod 775 {} \;
+      - find /test/oe_theme/build/sites/default/files -type f -exec chmod 664 {} \;
       - ./vendor/bin/behat --strict
 
   before-release:

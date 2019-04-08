@@ -9,6 +9,7 @@ default:
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
+        - Drupal\Tests\oe_theme\Behat\CleanupContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
@@ -23,10 +24,14 @@ default:
               search form: ".ecl-search-form"
               sites switcher: ".ecl-site-switcher--header"
               dropdown content: ".ecl-link-block__list"
+              list item image: ".ecl-list-item__primary"
             pages:
               user registration: "/user/register"
               ECL components overview: "/en/components"
               ECL dropdown component: "components/dropdown"
+              recent content: "/en/node"
+              image creation: "/en/media/add/image"
+              content management: "/en/admin/content"
   extensions:
     Drupal\MinkExtension:
       goutte: ~
@@ -37,6 +42,7 @@ default:
         wd_host: '${selenium.host}:${selenium.port}/wd/hub'
         capabilities: { "browser": "chrome", "version": "*" }
       base_url: "${drupal.base_url}"
+      files_path: "%paths.base%/tests/fixtures/"
     Drupal\DrupalExtension:
       api_driver: "drupal"
       drupal:

@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_list_item
+label: 'List item'
+effects:
+  42c700a7-93c0-406c-bf36-d42b98f91257:
+    uuid: 42c700a7-93c0-406c-bf36-d42b98f91257
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 90
+      height: 90
+      anchor: center-center
