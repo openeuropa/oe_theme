@@ -105,8 +105,6 @@ function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
   $cache
     ->addCacheableDependency($normal_style)
     ->addCacheableDependency($retina_style)
-    ->addCacheableDependency($normal_style)
-    ->addCacheableDependency($retina_style)
     ->addCacheableDependency($thumbnail_file)
     ->applyTo($variables);
 }
