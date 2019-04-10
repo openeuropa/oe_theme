@@ -17,6 +17,7 @@
         "drupal-composer/drupal-scaffold": "^2.5.2",
         "drupal/config_devel": "~1.2",
         "drupal/console": "~1.0",
+        "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0",
