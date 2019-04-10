@@ -8,7 +8,7 @@ Feature: News content type.
   Scenario: News information is shown in teasers.
     Given "oe_news" content:
       | title           | oe_news_summary | oe_news_teaser | body      | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
-      | Full news title | Short summary   | News teaser    | News body | 1554197428               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | Full news title | Short summary   | News teaser    | News body | 2019-04-02               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
 
     When I am on "the recent content page"
     Then I should see the heading "Full news title"
