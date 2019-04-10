@@ -12,6 +12,7 @@
         "php": "^7.1"
     },
     "require-dev": {
+        "cweagans/composer-patches": "~1.0",
         "composer/installers": "~1.5",
         "drupal-composer/drupal-scaffold": "^2.5.2",
         "drupal/config_devel": "~1.2",
@@ -62,6 +63,11 @@
             "build/profiles/contrib/{$name}": ["type:drupal-profile"],
             "build/modules/contrib/{$name}": ["type:drupal-module"],
             "build/themes/contrib/{$name}": ["type:drupal-theme"]
+        },
+        "patches": {
+            "drupal/drupal-driver": {
+                "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
+            }
         }
     },
     "config": {
