@@ -57,7 +57,7 @@ Feature: Page header block component.
   Scenario: News content type has custom metadata shown in the page header.
     Given "oe_news" content:
       | title        | oe_news_summary | oe_news_teaser | body    | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
-      | My news item | My summary      | My teaser      | My body | 1554197428               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | My news item | My summary      | My teaser      | My body | 2019-04-02               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
     And I am an anonymous user
     When I go to the "My news item" page
     Then I should see "My summary" in the "page header intro"

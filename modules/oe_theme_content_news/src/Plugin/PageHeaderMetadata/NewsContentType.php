@@ -90,7 +90,7 @@ class NewsContentType extends EntityCanonicalRoutePage {
       ];
     }
 
-    $timestamp = $entity->get('oe_news_publication_date')->value;
+    $timestamp = $entity->get('oe_news_publication_date')->date->getTimestamp();
     $metadata['metas'] = [
       $this->t('News'),
       $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),
