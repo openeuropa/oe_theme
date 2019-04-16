@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.13.2](https://github.com/openeuropa/oe_theme/tree/0.13.2) (2019-04-16)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.13.1...0.13.2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1774: Apply typography styling inside rich text fields [\#201](https://github.com/openeuropa/oe_theme/pull/201) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1797: Ensure that text format filters are applied to the summary [\#200](https://github.com/openeuropa/oe_theme/pull/200) ([brummbar](https://github.com/brummbar))
+
 ## [0.13.1](https://github.com/openeuropa/oe_theme/tree/0.13.1) (2019-04-11)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.13.0...0.13.1)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1724: Prepare 0.13.1 release. [\#199](https://github.com/openeuropa/oe_theme/pull/199) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1724: Modify processing of date fields. [\#198](https://github.com/openeuropa/oe_theme/pull/198) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [0.13.0](https://github.com/openeuropa/oe_theme/tree/0.13.0) (2019-04-08)
