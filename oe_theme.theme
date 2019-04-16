@@ -226,7 +226,7 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
   if ($variables['field_name'] === 'body') {
-    $variables['attributes']['class'][] = 'ecl-paragraph';
+    $variables['attributes']['class'][] = 'ecl-editor';
   }
 
   // Add the ECL image class to the image fields.
