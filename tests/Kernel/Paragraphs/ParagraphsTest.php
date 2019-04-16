@@ -92,7 +92,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-0')->text();
     $this->assertEquals('Item title 1', trim($actual));
 
-    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-0')->text();
+    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-0 .ecl-editor')->text();
     $this->assertEquals('Item body 1', trim($actual));
 
     $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-0 span.ecl-icon--arrow-up');
@@ -101,7 +101,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-1')->text();
     $this->assertEquals('Item title 2', trim($actual));
 
-    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-1')->text();
+    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-1 .ecl-editor')->text();
     $this->assertEquals('Item body 2', trim($actual));
 
     $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-1 span.ecl-icon--copy');
@@ -397,7 +397,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('div.ecl-paragraph.ecl-paragraph--m p')->html();
+    $actual = $crawler->filter('div.ecl-editor p')->html();
     $this->assertEquals($body, trim($actual));
 
     // Add a title.
