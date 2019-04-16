@@ -48,25 +48,29 @@ Feature: Page header block component.
 
   Scenario: Page content type has custom metadata  shown in the page header.
     Given "oe_page" content:
-      | title   | oe_page_summary | oe_content_content_owner                                                |
-      | My page | My summary      | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | title   | oe_page_summary                      | oe_content_content_owner                                                |
+      | My page | http://www.example.org is a web page | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
     And I am an anonymous user
     When I go to the "My page" page
-    Then I should see "My summary" in the "page header intro"
+    Then I should see the text "http://www.example.org is a web page" in the "page header intro"
+    # The default text format should be applied, converting URLs into links.
+    And I should see the link "http://www.example.org" in the "page header intro"
 
   Scenario: News content type has custom metadata shown in the page header.
     Given "oe_news" content:
-      | title        | oe_news_summary | oe_news_teaser | body    | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
-      | My news item | My summary      | My teaser      | My body | 2019-04-02               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | title        | oe_news_summary                      | oe_news_teaser | body    | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
+      | My news item | http://www.example.org is a web page | My teaser      | My body | 2019-04-02               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
     And I am an anonymous user
     When I go to the "My news item" page
-    Then I should see "My summary" in the "page header intro"
+    Then I should see the text "http://www.example.org is a web page" in the "page header intro"
+    # The default text format should be applied, converting URLs into links.
+    And I should see the link "http://www.example.org" in the "page header intro"
     And I should see "News" in the "page header meta"
     And I should see "02 April 2019" in the "page header meta"
 
   Scenario: The page header block shows the content language switcher.
     Given the following "Spanish" translation for the "Robots are everywhere" demo page:
-      | Title | Los robots estan en todas partes  |
+      | Title | Los robots estan en todas partes |
     And  I am an anonymous user
     When I visit the "Spanish" translation page for the "Robots are everywhere" demo page
     Then I should see the heading "Los robots estan en todas partes" in the "page header"
