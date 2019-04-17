@@ -386,11 +386,16 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ->setAbsolute(TRUE)
       ->toString();
 
+    // Get the language prefix.
+    $lang_prefix = \Drupal::configFactory()
+      ->getEditable('language.negotiation')
+      ->get('url.prefixes.' . $language_code);
+
     $variables['languages'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_code,
+      'lang' => $lang_prefix,
       'is_active' => $language_code === $current_language,
     ];
   }
