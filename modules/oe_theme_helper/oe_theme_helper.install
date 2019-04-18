@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall hooks for OpenEuropa Theme helper module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\block\Entity\Block;
+
+/**
+ * Show the page header block on the homepage.
+ */
+function oe_theme_helper_update_8001(): void {
+  $block = Block::load('oe_theme_page_header');
+
+  if (!$block) {
+    return;
+  }
+
+  $block->getVisibilityConditions()->removeInstanceId('request_path');
+  $block->save();
+}
