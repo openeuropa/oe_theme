@@ -490,27 +490,19 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('div.ecl-context-nav > span.ecl-context-nav__label')
-      ->text();
+    $actual = $crawler->filter('div.ecl-context-nav > span.ecl-context-nav__label')->text();
     $this->assertEquals('Contextual navigation', trim($actual));
 
-    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')
-      ->eq(0)
-      ->text();
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')->eq(0)->text();
     $this->assertEquals('Link 1', trim($actual));
 
-    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')
-      ->eq(1)
-      ->text();
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')->eq(1)->text();
     $this->assertEquals('Link 2', trim($actual));
 
-    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__item--over-limit a.ecl-link')
-      ->eq(0)
-      ->text();
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__item--over-limit a.ecl-link')->eq(0)->text();
     $this->assertEquals('Link 2', trim($actual));
 
-    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__more button')
-      ->text();
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__more button')->text();
     $this->assertEquals('More links', trim($actual));
   }
 

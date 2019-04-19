@@ -135,7 +135,6 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  $variables['label'] = $paragraph->get('field_oe_title')->value;
   $variables['limit'] = $paragraph->get('field_oe_limit')->value;
   $variables['more_label'] = $paragraph->get('field_oe_text')->value;
 
