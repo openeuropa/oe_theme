@@ -142,7 +142,7 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
     $variables['items'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'url' => $variables['content']['field_oe_links'][$index]['#url'],
+      'href' => $variables['content']['field_oe_links'][$index]['#url'],
     ];
   }
 }
