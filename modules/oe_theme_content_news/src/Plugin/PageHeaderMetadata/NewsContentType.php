@@ -79,8 +79,6 @@ class NewsContentType extends EntityCanonicalRoutePage {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $metadata['identity'] = '';
-
     $entity = $this->getEntityFromCurrentRoute();
     if (!$entity->get('oe_news_summary')->isEmpty()) {
       $summary = $entity->get('oe_news_summary')->first();

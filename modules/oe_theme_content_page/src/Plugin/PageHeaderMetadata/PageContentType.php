@@ -34,8 +34,6 @@ class PageContentType extends EntityCanonicalRoutePage {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $metadata['identity'] = '';
-
     $entity = $this->getEntityFromCurrentRoute();
     if ($entity->get('oe_page_summary')->isEmpty()) {
       return $metadata;
