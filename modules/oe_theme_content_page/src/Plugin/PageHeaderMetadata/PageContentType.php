@@ -35,11 +35,11 @@ class PageContentType extends EntityCanonicalRoutePage {
     $metadata = parent::getMetadata();
 
     $entity = $this->getEntityFromCurrentRoute();
-    if ($entity->get('oe_page_summary')->isEmpty()) {
+    if ($entity->get('oe_summary')->isEmpty()) {
       return $metadata;
     }
 
-    $summary = $entity->get('oe_page_summary')->first();
+    $summary = $entity->get('oe_summary')->first();
     $metadata['introduction'] = [
       // We strip the tags because the component expects only one paragraph of
       // text and the field is using a text format which adds paragraph tags.

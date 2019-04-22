@@ -80,8 +80,8 @@ class NewsContentType extends EntityCanonicalRoutePage {
     $metadata = parent::getMetadata();
 
     $entity = $this->getEntityFromCurrentRoute();
-    if (!$entity->get('oe_news_summary')->isEmpty()) {
-      $summary = $entity->get('oe_news_summary')->first();
+    if (!$entity->get('oe_summary')->isEmpty()) {
+      $summary = $entity->get('oe_summary')->first();
       $metadata['introduction'] = [
         // We strip the tags because the component expects only one paragraph of
         // text and the field is using a text format which adds paragraph tags.
@@ -98,7 +98,7 @@ class NewsContentType extends EntityCanonicalRoutePage {
       ];
     }
 
-    $timestamp = $entity->get('oe_news_publication_date')->date->getTimestamp();
+    $timestamp = $entity->get('oe_publication_date')->date->getTimestamp();
     $metadata['metas'] = [
       $this->t('News'),
       $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),
