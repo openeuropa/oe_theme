@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.14.0](https://github.com/openeuropa/oe_theme/tree/0.14.0) (2019-04-22)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.13.2...0.14.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1812: Display the page header on the homepage. [\#206](https://github.com/openeuropa/oe_theme/pull/206) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-1832: Theming for Contextual navigation paragraph type. [\#203](https://github.com/openeuropa/oe_theme/pull/203) ([sergepavle](https://github.com/sergepavle))
+
 ## [0.13.2](https://github.com/openeuropa/oe_theme/tree/0.13.2) (2019-04-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.13.1...0.13.2)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.13.2. [\#202](https://github.com/openeuropa/oe_theme/pull/202) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1774: Apply typography styling inside rich text fields [\#201](https://github.com/openeuropa/oe_theme/pull/201) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1797: Ensure that text format filters are applied to the summary [\#200](https://github.com/openeuropa/oe_theme/pull/200) ([brummbar](https://github.com/brummbar))
 
