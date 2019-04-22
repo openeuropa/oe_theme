@@ -465,4 +465,51 @@ class ParagraphsTest extends ParagraphsTestBase {
     ];
   }
 
+  /**
+   * Test 'contextual navigation' paragraph rendering.
+   */
+  public function testContextualNavigation(): void {
+    $paragraph = Paragraph::create([
+      'type' => 'oe_contextual_navigation',
+      'field_oe_title' => 'Contextual navigation',
+      'field_oe_links' => [
+        [
+          'title' => 'Link 1',
+          'uri' => 'http://example.com/page-one',
+        ],
+        [
+          'title' => 'Link 2',
+          'uri' => 'http://example.com/page-two',
+        ],
+      ],
+      'field_oe_limit' => 1,
+      'field_oe_text' => 'More links',
+    ]);
+
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('div.ecl-context-nav > span.ecl-context-nav__label')->text();
+    $this->assertEquals('Contextual navigation', trim($actual));
+
+    $link1 = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')->eq(0);
+    $actual = $link1->text();
+    $this->assertEquals('Link 1', trim($actual));
+    $actual = $link1->attr('href');
+    $this->assertEquals('http://example.com/page-one', trim($actual));
+
+    $link2 = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list a.ecl-link')->eq(1);
+    $actual = $link2->text();
+    $this->assertEquals('Link 2', trim($actual));
+    $actual = $link2->attr('href');
+    $this->assertEquals('http://example.com/page-two', trim($actual));
+
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__item--over-limit a.ecl-link')->eq(0)->text();
+    $this->assertEquals('Link 2', trim($actual));
+
+    $actual = $crawler->filter('div.ecl-context-nav ul.ecl-context-nav__list li.ecl-context-nav__more button')->text();
+    $this->assertEquals('More links', trim($actual));
+  }
+
 }

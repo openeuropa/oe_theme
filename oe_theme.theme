@@ -128,6 +128,26 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_paragraph__oe_contextual_navigation().
+ */
+function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variables): void {
+  // Massage data to be compliant with ECL 'context_nav' pattern data structure.
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $variables['limit'] = $paragraph->get('field_oe_limit')->value;
+  $variables['more_label'] = $paragraph->get('field_oe_text')->value;
+
+  $variables['items'] = [];
+  foreach (Element::children($variables['content']['field_oe_links']) as $index) {
+    $variables['items'][] = [
+      'label' => $variables['content']['field_oe_links'][$index]['#title'],
+      'href' => $variables['content']['field_oe_links'][$index]['#url'],
+    ];
+  }
+}
+
+/**
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {

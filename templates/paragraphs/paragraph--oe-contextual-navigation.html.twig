@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'contextual navigation' type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{{ pattern('context_nav', {
+  'label': content.field_oe_title,
+  'items': items,
+  'limit': limit,
+  'more_label': more_label,
+}) }}
