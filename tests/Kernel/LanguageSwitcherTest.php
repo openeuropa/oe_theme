@@ -121,7 +121,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   Return the crawler.
    */
   protected function renderLanguageBlock(): Crawler {
-    $block_manager = \Drupal::service('plugin.manager.block');
+    $block_manager = $this->container->get('plugin.manager.block');
     $config = [
       'id' => 'language_block:language_interface',
       'label' => 'Language switcher',
