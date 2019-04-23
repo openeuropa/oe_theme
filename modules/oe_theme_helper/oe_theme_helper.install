@@ -38,4 +38,6 @@ function oe_theme_helper_update_8001(): ?MarkupInterface {
 
   $conditions->removeInstanceId('request_path');
   $block->save();
+
+  return NULL;
 }
