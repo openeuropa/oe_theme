@@ -388,7 +388,7 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
 
     // Get the language prefix.
     $lang_prefix = \Drupal::configFactory()
-      ->getEditable('language.negotiation')
+      ->get('language.negotiation')
       ->get('url.prefixes.' . $language_code);
 
     $variables['languages'][] = [

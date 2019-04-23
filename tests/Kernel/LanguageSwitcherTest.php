@@ -29,10 +29,10 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
 
-    $lang_config = \Drupal::configFactory()->getEditable('language.negotiation');
+    $lang_config = $this->container->get('config.factory')->get('language.negotiation');
 
     // Make sure that language links are properly rendered.
-    foreach (\Drupal::languageManager()->getLanguages() as $language) {
+    foreach ($this->container->get('language_manager')->getLanguages() as $language) {
       $id = $language->getId();
       $name = $languages[$id]->getName();
 
@@ -83,7 +83,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * Data provider for the rendering test.
    *
    * @return array
-   *   An array of langcodes.
+   *   An array of langcodes and prefixes.
    */
   public function renderingDataProvider(): array {
     return [
