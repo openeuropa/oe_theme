@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.14.1](https://github.com/openeuropa/oe_theme/tree/0.14.1) (2019-04-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.14.0...0.14.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1812: Fixing update hook type hinting. [\#210](https://github.com/openeuropa/oe_theme/pull/210) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1806: PT-PT language switcher bug fix [\#205](https://github.com/openeuropa/oe_theme/pull/205) ([nagyad](https://github.com/nagyad))
+
 ## [0.14.0](https://github.com/openeuropa/oe_theme/tree/0.14.0) (2019-04-22)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.13.2...0.14.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.14.0. [\#208](https://github.com/openeuropa/oe_theme/pull/208) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1812: Display the page header on the homepage. [\#206](https://github.com/openeuropa/oe_theme/pull/206) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-1832: Theming for Contextual navigation paragraph type. [\#203](https://github.com/openeuropa/oe_theme/pull/203) ([sergepavle](https://github.com/sergepavle))
 
