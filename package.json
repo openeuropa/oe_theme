@@ -16,7 +16,7 @@
     },
     "dependencies": {
         "@ecl/builder": "0.2.0",
-        "@ecl/ec-preset-website": "1.6.0",
+        "@ecl/ec-preset-website": "1.8.0",
         "@ecl/stylelint-config": "0.2.0",
         "chokidar-cli": "1.2.0",
         "npm-run-all": "4.0.2",
