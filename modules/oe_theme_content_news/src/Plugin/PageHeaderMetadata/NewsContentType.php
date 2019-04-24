@@ -5,10 +5,11 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_news\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\node\NodeInterface;
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -20,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   weight = -1
  * )
  */
-class NewsContentType extends EntityCanonicalRoutePage {
+class NewsContentType extends NodeViewRouteBase {
 
   use StringTranslationTrait;
 
@@ -42,11 +43,15 @@ class NewsContentType extends EntityCanonicalRoutePage {
    *   The plugin implementation definition.
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter.
    */
-  public function __construct(array $configuration, string $plugin_id, $plugin_definition, RouteMatchInterface $current_route_match, DateFormatterInterface $date_formatter) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $current_route_match);
+  public function __construct(array $configuration, string $plugin_id, $plugin_definition, RouteMatchInterface $current_route_match, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, DateFormatterInterface $date_formatter) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $current_route_match, $entity_type_manager, $entity_repository);
     $this->dateFormatter = $date_formatter;
   }
 
@@ -59,6 +64,8 @@ class NewsContentType extends EntityCanonicalRoutePage {
       $plugin_id,
       $plugin_definition,
       $container->get('current_route_match'),
+      $container->get('entity_type.manager'),
+      $container->get('entity.repository'),
       $container->get('date.formatter')
     );
   }
@@ -67,10 +74,9 @@ class NewsContentType extends EntityCanonicalRoutePage {
    * {@inheritdoc}
    */
   public function applies(): bool {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = $this->getEntityFromCurrentRoute();
+    $node = $this->getNode();
 
-    return $entity instanceof NodeInterface && $entity->bundle() === 'oe_news';
+    return $node && $node->bundle() === 'oe_news';
   }
 
   /**
@@ -79,26 +85,29 @@ class NewsContentType extends EntityCanonicalRoutePage {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $entity = $this->getEntityFromCurrentRoute();
-    if (!$entity->get('oe_summary')->isEmpty()) {
-      $summary = $entity->get('oe_summary')->first();
-      $metadata['introduction'] = [
-        // We strip the tags because the component expects only one paragraph of
-        // text and the field is using a text format which adds paragraph tags.
-        '#type' => 'inline_template',
-        '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
-        '#context' => [
-          'summary' => [
-            '#type' => 'processed_text',
-            '#text' => $summary->value,
-            '#format' => $summary->format,
-            '#langcode' => $summary->getLangcode(),
-          ],
-        ],
-      ];
+    $node = $this->getNode();
+    if ($node->get('oe_summary')->isEmpty()) {
+      return $metadata;
     }
 
-    $timestamp = $entity->get('oe_publication_date')->date->getTimestamp();
+    $summary = $node->get('oe_news_summary')->first();
+
+    $metadata['introduction'] = [
+      // We strip the tags because the component expects only one paragraph of
+      // text and the field is using a text format which adds paragraph tags.
+      '#type' => 'inline_template',
+      '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
+      '#context' => [
+        'summary' => [
+          '#type' => 'processed_text',
+          '#text' => $summary->value,
+          '#format' => $summary->format,
+          '#langcode' => $summary->getLangcode(),
+        ],
+      ],
+    ];
+
+    $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
     $metadata['metas'] = [
       $this->t('News'),
       $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),

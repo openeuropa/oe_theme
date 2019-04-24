@@ -4,8 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_page\Plugin\PageHeaderMetadata;
 
-use Drupal\node\NodeInterface;
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
 
 /**
  * Page header metadata for the OpenEuropa Page content entity.
@@ -16,16 +15,15 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
  *   weight = -1
  * )
  */
-class PageContentType extends EntityCanonicalRoutePage {
+class PageContentType extends NodeViewRouteBase {
 
   /**
    * {@inheritdoc}
    */
   public function applies(): bool {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = $this->getEntityFromCurrentRoute();
+    $node = $this->getNode();
 
-    return $entity instanceof NodeInterface && $entity->bundle() === 'oe_page';
+    return $node && $node->bundle() === 'oe_page';
   }
 
   /**
@@ -34,12 +32,12 @@ class PageContentType extends EntityCanonicalRoutePage {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $entity = $this->getEntityFromCurrentRoute();
-    if ($entity->get('oe_summary')->isEmpty()) {
+    $node = $this->getNode();
+    if ($node->get('oe_summary')->isEmpty()) {
       return $metadata;
     }
 
-    $summary = $entity->get('oe_summary')->first();
+    $summary = $node->get('oe_summary')->first();
     $metadata['introduction'] = [
       // We strip the tags because the component expects only one paragraph of
       // text and the field is using a text format which adds paragraph tags.
