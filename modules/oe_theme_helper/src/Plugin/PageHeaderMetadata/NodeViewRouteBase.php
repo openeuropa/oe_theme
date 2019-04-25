@@ -107,6 +107,7 @@ abstract class NodeViewRouteBase extends PageHeaderMetadataPluginBase implements
    */
   protected function getNode(): ?NodeInterface {
     $supported = [
+      'entity_test.full',
       'entity.node.canonical',
       'entity.node.latest',
       'entity.node.revision',
