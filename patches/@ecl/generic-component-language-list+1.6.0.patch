@@ -1,4 +1,3 @@
-
 patch-package
 --- a/node_modules/@ecl/generic-component-language-list/generic-component-language-list.twig
 +++ b/node_modules/@ecl/generic-component-language-list/generic-component-language-list.twig
