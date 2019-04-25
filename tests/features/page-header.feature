@@ -48,7 +48,7 @@ Feature: Page header block component.
 
   Scenario: Page content type has custom metadata  shown in the page header.
     Given "oe_page" content:
-      | title   | oe_page_summary                      | oe_content_content_owner                                                |
+      | title   | oe_summary                           | oe_content_content_owner                                                |
       | My page | http://www.example.org is a web page | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
     And I am an anonymous user
     When I go to the "My page" page
@@ -58,8 +58,8 @@ Feature: Page header block component.
 
   Scenario: News content type has custom metadata shown in the page header.
     Given "oe_news" content:
-      | title        | oe_news_summary                      | oe_news_teaser | body    | oe_news_publication_date | oe_news_subject                | oe_news_author                                                          | oe_content_content_owner                                                |
-      | My news item | http://www.example.org is a web page | My teaser      | My body | 2019-04-02               | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | title        | oe_summary                           | oe_teaser | body    | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                |
+      | My news item | http://www.example.org is a web page | My teaser | My body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
     And I am an anonymous user
     When I go to the "My news item" page
     Then I should see the text "http://www.example.org is a web page" in the "page header intro"
