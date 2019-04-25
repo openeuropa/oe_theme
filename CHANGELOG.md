@@ -1,10 +1,24 @@
 # Change Log
 
+## [0.15.0](https://github.com/openeuropa/oe_theme/tree/0.15.0) (2019-04-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.14.1...0.15.0)
+
+**Closed issues:**
+
+- InvalidArgumentException: The language code fr does not exist or is not enabled. [\#168](https://github.com/openeuropa/oe_theme/issues/168)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1809: Add margin-bottom for status messages. [\#214](https://github.com/openeuropa/oe_theme/pull/214) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1827: Update ECL to latest version. [\#213](https://github.com/openeuropa/oe_theme/pull/213) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1783: Updating OE Content field names. [\#209](https://github.com/openeuropa/oe_theme/pull/209) ([upchuk](https://github.com/upchuk))
+
 ## [0.14.1](https://github.com/openeuropa/oe_theme/tree/0.14.1) (2019-04-23)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.14.0...0.14.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 0.14.1. [\#211](https://github.com/openeuropa/oe_theme/pull/211) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1812: Fixing update hook type hinting. [\#210](https://github.com/openeuropa/oe_theme/pull/210) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1806: PT-PT language switcher bug fix [\#205](https://github.com/openeuropa/oe_theme/pull/205) ([nagyad](https://github.com/nagyad))
 
