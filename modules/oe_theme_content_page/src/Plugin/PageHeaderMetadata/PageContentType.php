@@ -12,7 +12,7 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
  * @PageHeaderMetadata(
  *   id = "page_content_type",
  *   label = @Translation("Metadata extractor for the OE Content Page content type"),
- *   weight = -2
+ *   weight = -1
  * )
  */
 class PageContentType extends NodeViewRouteBase {

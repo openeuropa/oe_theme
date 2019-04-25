@@ -100,14 +100,11 @@ abstract class NodeViewRouteBase extends PageHeaderMetadataPluginBase implements
   /**
    * Returns the node retrieved from the current route.
    *
-   * @todo Add caching, this method is called 3 times on child classes.
-   *
    * @return \Drupal\node\NodeInterface|null
    *   The node entity, or NULL if not found.
    */
   protected function getNode(): ?NodeInterface {
     $supported = [
-      'entity_test.full',
       'entity.node.canonical',
       'entity.node.latest',
       'entity.node.revision',

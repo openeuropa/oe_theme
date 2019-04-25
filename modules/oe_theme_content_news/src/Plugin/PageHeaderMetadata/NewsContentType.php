@@ -18,7 +18,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @PageHeaderMetadata(
  *   id = "news_content_type",
  *   label = @Translation("Metadata extractor for the OE Content News content type"),
- *   weight = -2
+ *   weight = -1
  * )
  */
 class NewsContentType extends NodeViewRouteBase {
