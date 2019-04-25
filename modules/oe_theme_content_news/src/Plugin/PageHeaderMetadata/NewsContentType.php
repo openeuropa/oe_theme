@@ -90,7 +90,7 @@ class NewsContentType extends NodeViewRouteBase {
       return $metadata;
     }
 
-    $summary = $node->get('oe_news_summary')->first();
+    $summary = $node->get('oe_summary')->first();
 
     $metadata['introduction'] = [
       // We strip the tags because the component expects only one paragraph of
