@@ -75,20 +75,28 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
       'name' => 'Another example page',
     ]);
     $entity->save();
-    $this->setCurrentRequest('/entity_test/' . $entity->id());
 
-    // Unset the context repository service so that the contexts are
-    // recalculated.
-    $this->container->set('context.repository', NULL);
-    $build = $this->buildBlock('oe_theme_helper_page_header', $config);
-    $html = (string) $this->container->get('renderer')->renderRoot($build);
-    $crawler = new Crawler($html);
+    $paths = [
+      '/entity_test/' . $entity->id(),
+      '/entity_test_rev/' . $entity->id() . '/revision/' . $entity->getRevisionId() . '/view',
+    ];
 
-    $this->assertCount(1, $crawler->filter('.ecl-page-header'));
-    $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
-    $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
-    $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
-    $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
+    foreach ($paths as $path) {
+      $this->setCurrentRequest($path);
+
+      // Unset the context repository service so that the contexts are
+      // recalculated.
+      $this->container->set('context.repository', NULL);
+      $build = $this->buildBlock('oe_theme_helper_page_header', $config);
+      $html = (string) $this->container->get('renderer')->renderRoot($build);
+      $crawler = new Crawler($html);
+
+      $this->assertCount(1, $crawler->filter('.ecl-page-header'));
+      $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
+      $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
+      $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
+      $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
+    }
 
     // Enable the test plugin and add some metadata.
     $this->state->set('page_header_test_plugin_applies', TRUE);
