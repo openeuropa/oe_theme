@@ -95,8 +95,13 @@ class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements C
       foreach ($parameters as $name => $options) {
         if (isset($options['type']) && strpos($options['type'], 'entity:') === 0) {
           $entity = $this->currentRouteMatch->getParameter($name);
-          if ($entity instanceof ContentEntityInterface && $this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.canonical") {
-            return $entity;
+          if ($entity instanceof ContentEntityInterface) {
+            if ($this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.canonical") {
+              return $entity;
+            }
+            elseif ($this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.revision") {
+              return $entity;
+            }
           }
         }
       }

@@ -37,6 +37,7 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
   protected function setUp() {
     parent::setUp();
     $this->installEntitySchema('entity_test');
+    $this->installEntitySchema('entity_test_mulrev');
 
     $this->state = $this->container->get('state');
   }
@@ -71,32 +72,28 @@ class PageHeaderBlockTest extends AbstractKernelTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
     $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
 
-    $entity = EntityTest::create([
+    $storage = $this->container->get('entity_type.manager')
+      ->getStorage('entity_test_mulrev');
+    /** @var \Drupal\entity_test\Entity\EntityTestMulRevChangedWithRevisionLog $entity */
+    $entity = $storage->create([
       'name' => 'Another example page',
     ]);
     $entity->save();
 
-    $paths = [
-      '/entity_test/' . $entity->id(),
-      '/entity_test_rev/' . $entity->id() . '/revision/' . $entity->getRevisionId() . '/view',
-    ];
+    $this->setCurrentRequest('/entity_test_mulrev/' . $entity->id() . '/revision/' . $entity->getRevisionId() . '/view');
 
-    foreach ($paths as $path) {
-      $this->setCurrentRequest($path);
+    // Unset the context repository service so that the contexts are
+    // recalculated.
+    $this->container->set('context.repository', NULL);
+    $build = $this->buildBlock('oe_theme_helper_page_header', $config);
+    $html = (string) $this->container->get('renderer')->renderRoot($build);
+    $crawler = new Crawler($html);
 
-      // Unset the context repository service so that the contexts are
-      // recalculated.
-      $this->container->set('context.repository', NULL);
-      $build = $this->buildBlock('oe_theme_helper_page_header', $config);
-      $html = (string) $this->container->get('renderer')->renderRoot($build);
-      $crawler = new Crawler($html);
-
-      $this->assertCount(1, $crawler->filter('.ecl-page-header'));
-      $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
-      $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
-      $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
-      $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
-    }
+    $this->assertCount(1, $crawler->filter('.ecl-page-header'));
+    $this->assertEquals('Another example page', trim($crawler->filter('.ecl-page-header__title')->text()));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__identity'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-header__intro'));
+    $this->assertCount(0, $crawler->filter('.ecl-meta--header .ecl-meta__item'));
 
     // Enable the test plugin and add some metadata.
     $this->state->set('page_header_test_plugin_applies', TRUE);
