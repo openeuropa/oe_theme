@@ -47,6 +47,15 @@ class BreadcrumbTest extends EntityKernelTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('theme_handler')->setDefault('oe_theme');
     $this->container->set('theme.registry', NULL);
+
+    // Call the install hook of the User module which creates the Anonymous user
+    // and User 1. This is needed because the Anonymous user is loaded to
+    // provide the current User context which is needed in places like route
+    // enhancers.
+    // @see CurrentUserContext::getRuntimeContexts().
+    // @see EntityConverter::convert().
+    module_load_include('install', 'user');
+    user_install();
   }
 
   /**

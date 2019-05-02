@@ -65,6 +65,15 @@ abstract class MultilingualAbstractKernelTestBase extends KernelTestBase {
     // Rebuild the container in order to make sure tests pass.
     // @todo: fix test setup so that we can get rid of this line.
     $this->container->get('kernel')->rebuildContainer();
+
+    // Call the install hook of the User module which creates the Anonymous user
+    // and User 1. This is needed because the Anonymous user is loaded to
+    // provide the current User context which is needed in places like route
+    // enhancers.
+    // @see CurrentUserContext::getRuntimeContexts().
+    // @see EntityConverter::convert().
+    module_load_include('install', 'user');
+    user_install();
   }
 
 }
