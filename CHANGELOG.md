@@ -1,10 +1,18 @@
 # Change Log
 
-## [0.15.1](https://github.com/openeuropa/oe_theme/tree/0.15.1) (2019-05-06)
+## [0.16.0](https://github.com/openeuropa/oe_theme/tree/0.16.0) (2019-05-07)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.15.1...0.16.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1813: Upgrade to 8.7. [\#219](https://github.com/openeuropa/oe_theme/pull/219) ([upchuk](https://github.com/upchuk))
+
+## [0.15.1](https://github.com/openeuropa/oe_theme/tree/0.15.1) (2019-05-07)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.15.0...0.15.1)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1813: Create release 0.15.1. [\#220](https://github.com/openeuropa/oe_theme/pull/220) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1873: Fixes for 8.7 [\#218](https://github.com/openeuropa/oe_theme/pull/218) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1807: featured\_image must be after content\_moderation\_control [\#217](https://github.com/openeuropa/oe_theme/pull/217) ([dxvargas](https://github.com/dxvargas))
 
@@ -141,6 +149,7 @@
 - OPENEUROPA-1346: Use Drupal core services to access native language names [\#147](https://github.com/openeuropa/oe_theme/pull/147) ([pfrenssen](https://github.com/pfrenssen))
 - OPENEUROPA-1348: Refactor list\_items to variants. [\#146](https://github.com/openeuropa/oe_theme/pull/146) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1322: Use the proper Docker way of overriding docker-composer.yml file. [\#145](https://github.com/openeuropa/oe_theme/pull/145) ([drupol](https://github.com/drupol))
+- OPENEUROPA-1261: Implement "Files" pattern with variants [\#144](https://github.com/openeuropa/oe_theme/pull/144) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1254: Add button components [\#143](https://github.com/openeuropa/oe_theme/pull/143) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1259: Implement "Dialogs" pattern [\#142](https://github.com/openeuropa/oe_theme/pull/142) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1236: Add breadcrumb items to page header block. [\#141](https://github.com/openeuropa/oe_theme/pull/141) ([imanoleguskiza](https://github.com/imanoleguskiza))
@@ -159,7 +168,6 @@
 
 **Merged pull requests:**
 
-- OPENEUROPA-1261: Implement "Files" pattern with variants [\#144](https://github.com/openeuropa/oe_theme/pull/144) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1241: Change the drone file to create the package only highest dependencies. [\#129](https://github.com/openeuropa/oe_theme/pull/129) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1241: Update CHANGELOG.md. [\#128](https://github.com/openeuropa/oe_theme/pull/128) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-780: Make sure component dependencies are as relaxed as possible. [\#124](https://github.com/openeuropa/oe_theme/pull/124) ([aritomelo](https://github.com/aritomelo))
@@ -204,7 +212,6 @@
 - OPENEUROPA-704: Replace TransformationContext with behat-transformation-context [\#100](https://github.com/openeuropa/oe_theme/pull/100) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-616: Fix theme releases on Drone [\#99](https://github.com/openeuropa/oe_theme/pull/99) ([drupol](https://github.com/drupol))
 - OPENEUROPA-682: Add config for Selenium. [\#98](https://github.com/openeuropa/oe_theme/pull/98) ([richardcanoe](https://github.com/richardcanoe))
-- OPENEUROPA-694: Make sure that in page navigation link translations are correctly displayed [\#96](https://github.com/openeuropa/oe_theme/pull/96) ([ademarco](https://github.com/ademarco))
 
 ## [0.5.1](https://github.com/openeuropa/oe_theme/tree/0.5.1) (2018-06-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.5.0...0.5.1)
@@ -212,6 +219,7 @@
 **Merged pull requests:**
 
 - Update CHANGELOG.md for 0.5.1 release. [\#97](https://github.com/openeuropa/oe_theme/pull/97) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-694: Make sure that in page navigation link translations are correctly displayed [\#96](https://github.com/openeuropa/oe_theme/pull/96) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-689: Fix HTML characters encoded twice. [\#92](https://github.com/openeuropa/oe_theme/pull/92) ([drupol](https://github.com/drupol))
 
 ## [0.5.0](https://github.com/openeuropa/oe_theme/tree/0.5.0) (2018-06-22)
