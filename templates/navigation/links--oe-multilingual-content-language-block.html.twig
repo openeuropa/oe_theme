@@ -9,7 +9,7 @@
 {{ attach_library('oe_theme/lang_select_pages') }}
 {% include '@ecl/ec-component-lang-select-page' with {
   is_primary: true,
-  unavailable: unavailable,
+  unavailable: unavailable|default('English'|t),
   current: current,
   options: options,
   dropdown_label: 'Select your language'|t

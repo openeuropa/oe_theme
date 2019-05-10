@@ -13,8 +13,12 @@
 #}
 
 {% include '@ecl/ec-component-language-list' with {
-    languages: languages,
-    variant: 'splash',
-    logo: true
+  languages: languages,
+  variant: 'splash',
+  logo: true,
+  messages: {
+    dismiss: 'Close'|t,
+    heading: 'Select your language'|t,
+  }
 } %}
 
