@@ -45,7 +45,7 @@ function oe_theme_helper_update_8001(): ?MarkupInterface {
 /**
  * Update AV Photo media display configuration.
  */
-function oe_theme_helper_update_8001() {
+function oe_theme_helper_update_8002() {
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $view_display = $storage->load('media.av_portal_photo.oe_theme_main_content');
   $view_content = $view_display->get('content');
