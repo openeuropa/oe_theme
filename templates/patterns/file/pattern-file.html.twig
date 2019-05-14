@@ -8,7 +8,7 @@
   'title': file.title,
   'language': file.language_code|to_native_language,
   'meta': file.size|format_size ~ ' - ' ~ file.extension|upper,
-  'button_label': button_label,
+  'button_label': button_label|default('Download'|t),
   'icon': file.extension|to_file_icon,
   'href': file.url,
 } only %}
