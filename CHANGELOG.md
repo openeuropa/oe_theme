@@ -1,10 +1,19 @@
 # Change Log
 
+## [0.17.0](https://github.com/openeuropa/oe_theme/tree/0.17.0) (2019-05-14)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.16.0...0.17.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1890: Theming the related links field. [\#224](https://github.com/openeuropa/oe_theme/pull/224) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1865: Make sure that all default values of ECL is translatable. [\#223](https://github.com/openeuropa/oe_theme/pull/223) ([sergepavle](https://github.com/sergepavle))
+
 ## [0.16.0](https://github.com/openeuropa/oe_theme/tree/0.16.0) (2019-05-07)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.15.1...0.16.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1813: Create release 0.16.0. [\#221](https://github.com/openeuropa/oe_theme/pull/221) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1813: Upgrade to 8.7. [\#219](https://github.com/openeuropa/oe_theme/pull/219) ([upchuk](https://github.com/upchuk))
 
 ## [0.15.1](https://github.com/openeuropa/oe_theme/tree/0.15.1) (2019-05-07)
