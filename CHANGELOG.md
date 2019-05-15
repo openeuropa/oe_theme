@@ -1,10 +1,22 @@
 # Change Log
 
+## [1.0.0](https://github.com/openeuropa/oe_theme/tree/1.0.0) (2019-05-15)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.17.0...1.0.0)
+
+**Closed issues:**
+
+- 1.0.0 Release [\#227](https://github.com/openeuropa/oe_theme/issues/227)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1807: Make sure that moderation block is always right below the tabs - part 2 [\#226](https://github.com/openeuropa/oe_theme/pull/226) ([upchuk](https://github.com/upchuk))
+
 ## [0.17.0](https://github.com/openeuropa/oe_theme/tree/0.17.0) (2019-05-14)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.16.0...0.17.0)
 
 **Merged pull requests:**
 
+- OPENEUROPA-1890: Update CHANGELOG.md for release 0.17.0. [\#225](https://github.com/openeuropa/oe_theme/pull/225) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1890: Theming the related links field. [\#224](https://github.com/openeuropa/oe_theme/pull/224) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1865: Make sure that all default values of ECL is translatable. [\#223](https://github.com/openeuropa/oe_theme/pull/223) ([sergepavle](https://github.com/sergepavle))
 
