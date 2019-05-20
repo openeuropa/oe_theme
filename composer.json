@@ -26,14 +26,15 @@
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0@beta",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "~0.6",
+        "openeuropa/oe_content": "^1.0@beta",
         "openeuropa/oe_corporate_blocks": "~1.0",
         "openeuropa/oe_multilingual": "~0.3.1",
         "openeuropa/oe_paragraphs": "~0.5",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/task-runner": "~1.0@beta",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4"
+        "symfony/dom-crawler": "~3.4",
+        "drupal/media_avportal": "dev-OPENEUROPA-1775 as 1.0-beta1"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -51,6 +52,10 @@
         }
     },
     "repositories": {
+        "media_avportal": {
+            "url": "git@github.com:openeuropa/media_avportal.git",
+            "type": "vcs"
+        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
