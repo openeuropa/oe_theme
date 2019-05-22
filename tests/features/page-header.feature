@@ -46,7 +46,7 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Robots are everywhere nowadays"
 
-  Scenario: Page content type has custom metadata  shown in the page header.
+  Scenario: Page content type has custom metadata shown in the page header.
     Given "oe_page" content:
       | title   | oe_summary                           | oe_content_content_owner                                                |
       | My page | http://www.example.org is a web page | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
