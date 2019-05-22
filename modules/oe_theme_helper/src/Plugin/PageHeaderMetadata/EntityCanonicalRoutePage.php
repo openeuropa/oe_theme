@@ -18,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "entity_canonical_route",
  *   label = @Translation("Default entity metadata extractor")
  * )
+ *
+ * @deprecated in 1.x, will be removed in 2.0.
  */
 class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
@@ -62,9 +64,7 @@ class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements C
    * {@inheritdoc}
    */
   public function applies(): bool {
-    $entity = $this->getEntityFromCurrentRoute();
-
-    return !empty($entity);
+    return FALSE;
   }
 
   /**
