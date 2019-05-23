@@ -31,10 +31,9 @@
         "openeuropa/oe_multilingual": "~0.3.1",
         "openeuropa/oe_paragraphs": "~0.5",
         "openeuropa/oe_search": "~1.0",
-        "openeuropa/task-runner": "~1.0@beta",
+        "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "drupal/media_avportal": "dev-OPENEUROPA-1775 as 1.0-beta1"
+        "symfony/dom-crawler": "~3.4"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
@@ -52,10 +51,6 @@
         }
     },
     "repositories": {
-        "media_avportal": {
-            "url": "git@github.com:openeuropa/media_avportal.git",
-            "type": "vcs"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
