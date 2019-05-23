@@ -9,7 +9,7 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   weight = -1
  * )
  */
-class NewsContentType extends NodeViewRouteBase {
+class NewsContentType extends NodeViewRoutesBase {
 
   use StringTranslationTrait;
 

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_page\Plugin\PageHeaderMetadata;
 
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 
 /**
  * Page header metadata for the OpenEuropa Page content entity.
@@ -15,7 +15,7 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRouteBase;
  *   weight = -1
  * )
  */
-class PageContentType extends NodeViewRouteBase {
+class PageContentType extends NodeViewRoutesBase {
 
   /**
    * {@inheritdoc}

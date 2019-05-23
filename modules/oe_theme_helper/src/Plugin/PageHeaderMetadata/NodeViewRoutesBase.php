@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * This is a base plugin as it should be extended to return extra metadata
  * for the node.
  */
-abstract class NodeViewRouteBase extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
+abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The current route match.
