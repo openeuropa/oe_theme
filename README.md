@@ -53,6 +53,8 @@ module.
 
 * [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
 * [OpenEuropa Theme Page](/modules/oe_theme_content_page/README.md)
+* [OpenEuropa Theme Policy](/modules/oe_theme_content_policy/README.md)
+
 
 ## Development
 

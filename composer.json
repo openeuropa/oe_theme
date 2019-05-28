@@ -28,7 +28,7 @@
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0@beta",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "^1.0@beta",
+        "openeuropa/oe_content": "dev-OPENEUROPA-1927 as 1.0.0-beta2",
         "openeuropa/oe_corporate_blocks": "~1.0",
         "openeuropa/oe_multilingual": "~0.3.1",
         "openeuropa/oe_paragraphs": "~0.5",
