@@ -43,8 +43,10 @@ class ContentRenderTest extends AbstractKernelTestBase {
     'oe_content',
     'oe_content_news',
     'oe_content_page',
+    'oe_content_policy',
     'oe_theme_content_news',
     'oe_theme_content_page',
+    'oe_theme_content_policy',
     'rdf_entity',
     'rdf_skos',
   ];
@@ -66,8 +68,10 @@ class ContentRenderTest extends AbstractKernelTestBase {
       'oe_content',
       'oe_content_news',
       'oe_content_page',
+      'oe_content_policy',
       'oe_theme_content_news',
       'oe_theme_content_page',
+      'oe_theme_content_policy',
     ]);
 
     $this->installEntitySchema('rdf_entity');
@@ -167,6 +171,31 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
     $this->assertCount(2, $related_links);
+  }
+
+  /**
+   * Tests that the Policy node type is rendered with the correct ECL markup.
+   */
+  public function testPolicy(): void {
+    $node = $this->nodeStorage->create([
+      'type' => 'oe_policy',
+      'title' => 'Test policy node',
+      'body' => 'Body',
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+    ]);
+    $node->save();
+
+    $build = $this->nodeViewBuilder->view($node);
+    $html = $this->renderRoot($build);
+
+    $crawler = new Crawler($html);
+
+    // Body wrapper.
+    $body_wrapper = $crawler->filter('.ecl-editor');
+    $this->assertCount(1, $body_wrapper);
+    $this->assertContains('Body', $body_wrapper->text());
   }
 
 }
