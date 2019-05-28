@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_page\Plugin\PageHeaderMetadata;
+namespace Drupal\oe_theme_content_policy\Plugin\PageHeaderMetadata;
 
 use Drupal\node\NodeInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
