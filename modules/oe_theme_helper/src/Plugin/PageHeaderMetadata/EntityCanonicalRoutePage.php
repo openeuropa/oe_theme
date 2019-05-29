@@ -18,6 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "entity_canonical_route",
  *   label = @Translation("Default entity metadata extractor")
  * )
+ *
+ * @deprecated in 1.x, will be removed in 2.0.
  */
 class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
@@ -62,9 +64,7 @@ class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements C
    * {@inheritdoc}
    */
   public function applies(): bool {
-    $entity = $this->getEntityFromCurrentRoute();
-
-    return !empty($entity);
+    return FALSE;
   }
 
   /**
@@ -95,8 +95,13 @@ class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements C
       foreach ($parameters as $name => $options) {
         if (isset($options['type']) && strpos($options['type'], 'entity:') === 0) {
           $entity = $this->currentRouteMatch->getParameter($name);
-          if ($entity instanceof ContentEntityInterface && $this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.canonical") {
-            return $entity;
+          if ($entity instanceof ContentEntityInterface) {
+            if ($this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.canonical") {
+              return $entity;
+            }
+            elseif ($this->currentRouteMatch->getRouteName() === "entity.{$entity->getEntityTypeId()}.revision") {
+              return $entity;
+            }
           }
         }
       }

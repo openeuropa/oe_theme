@@ -21,14 +21,14 @@ class PageHeaderContext implements ContextProviderInterface {
   use StringTranslationTrait;
 
   /**
-   * The page header metadata plugin mananger.
+   * The page header metadata plugin manager.
    *
    * @var \Drupal\oe_theme_helper\PageHeaderMetadataPluginManager
    */
   protected $metadataPluginManager;
 
   /**
-   * Instanciates a new PageHeader context object.
+   * Instantiates a new PageHeader context object.
    *
    * @param \Drupal\oe_theme_helper\PageHeaderMetadataPluginManager $metadata_plugin_manager
    *   The page header metadata plugin manager.
