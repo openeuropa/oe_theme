@@ -29,6 +29,7 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+      file_private_path: 'sites/default/files/private'
     databases:
       sparql_default:
         default:
