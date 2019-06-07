@@ -846,3 +846,17 @@ function oe_theme_preprocess_responsive_image_formatter(&$variables) {
   $variables['responsive_image']['#attributes']['class'][] = 'ecl-image';
   $variables['responsive_image']['#attributes']['class'][] = 'ecl-image--fluid';
 }
+
+/**
+ * Implements template_preprocess_preprocess_block().
+ *
+ * For preprocessing default mode of document media type.
+ */
+function oe_theme_preprocess_block(&$variables) {
+  $variables['title_attributes'] += [
+    'class' => [
+      'ecl-heading',
+      'ecl-heading--h2',
+    ],
+  ];
+}
