@@ -1,11 +1,19 @@
 parameters:
   oe_theme_helper.twig_loader.namespaces: ['ec-europa', 'ecl']
   oe_theme_helper.twig_loader.theme: 'oe_theme'
+  oe_theme_helper.twig_loader.system: 'ec'
   oe_theme_helper.twig_loader.directory: 'templates/components'
 services:
   oe_theme_helper.twig_loader.component_library:
     class: Drupal\oe_theme_helper\Loader\ComponentLibraryLoader
-    arguments: ['%oe_theme_helper.twig_loader.namespaces%', '@app.root', '%oe_theme_helper.twig_loader.theme%', '%oe_theme_helper.twig_loader.directory%', '@theme_handler', '@logger.factory']
+    arguments:
+      - '%oe_theme_helper.twig_loader.namespaces%'
+      - '@app.root'
+      - '%oe_theme_helper.twig_loader.theme%'
+      - '%oe_theme_helper.twig_loader.directory%'
+      - '%oe_theme_helper.twig_loader.system%'
+      - '@theme_handler'
+      - '@logger.factory'
     tags:
       - { name: twig.loader, priority: -100 }
   oe_theme_helper.route_subscriber:

@@ -34,7 +34,7 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
   /**
    * {@inheritdoc}
    */
-  public function __construct($namespaces, $root, $theme, $directory, ThemeHandler $theme_handler, LoggerChannelFactory $logger_factory) {
+  public function __construct($namespaces, $root, $theme, $directory, $system, ThemeHandler $theme_handler, LoggerChannelFactory $logger_factory) {
     // Make sure the theme exists before getting its path.
     // This is necessary when the "oe_theme_helper" module is enabled before
     // the theme is or the theme is disabled and the "oe_theme_helper" is not.
@@ -45,7 +45,7 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
     }
 
     $this->logger = $logger_factory->get('ecl');
-    parent::__construct($namespaces, $path, $root, '');
+    parent::__construct($namespaces, $path, $root, "{$system}-component-", '.html.twig');
   }
 
   /**
