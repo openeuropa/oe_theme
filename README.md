@@ -76,8 +76,11 @@ In order to fetch the required code you'll need to have [Node.js (>= 8)](https:/
 To install required Node.js dependencies run:
 
 ```bash
-npm install
+npm install --ignore-scripts 
 ```
+
+Note: the `--ignore-scripts` is required until we use OpenEuros ecl-twig fork. This will also prevent patches to be applied.
+@todo: Remove `--ignore-scripts` once ECL 2.0 migration is completed.
 
 To build the final artifacts run:
 
@@ -164,7 +167,7 @@ docker-compose up -d
 Then:
 
 ```bash
-docker-compose exec -u node node npm install
+docker-compose exec -u node node npm install --ignore-scripts
 docker-compose exec -u node node npm run build
 docker-compose exec web composer install
 docker-compose exec web ./vendor/bin/run drupal:site-install
@@ -255,7 +258,7 @@ npm run build
 To update ECL components change the `@ec-europa/ecl-preset-full` version number in [package.json](package.json) and run:
 
 ```bash
-npm install && npm run build
+npm install --ignore-scripts && npm run build
 ```
 
 This will update assets such as images and fonts and re-compile CSS. Resulting changes are not meant to be committed to

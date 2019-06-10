@@ -1,9 +1,10 @@
 base:
   js:
-    js/base.js: {}
+    dist/scripts/ecl-ec-preset-website.js: {}
 style:
   css:
     theme:
+      dist/styles/ecl-ec-preset-website.css: {}
       css/style.css: {}
 accordions:
   js:
