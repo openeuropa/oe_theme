@@ -5,7 +5,7 @@ parameters:
 services:
   oe_theme_helper.twig_loader.component_library:
     class: Drupal\oe_theme_helper\Loader\ComponentLibraryLoader
-    arguments: ['%oe_theme_helper.twig_loader.namespaces%', '@app.root', '%oe_theme_helper.twig_loader.theme%', '%oe_theme_helper.twig_loader.directory%', '@theme_handler']
+    arguments: ['%oe_theme_helper.twig_loader.namespaces%', '@app.root', '%oe_theme_helper.twig_loader.theme%', '%oe_theme_helper.twig_loader.directory%', '@theme_handler', '@logger.factory']
     tags:
       - { name: twig.loader, priority: -100 }
   oe_theme_helper.route_subscriber:
