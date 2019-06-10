@@ -207,12 +207,14 @@ Alternatively, you can use the following Drupal Console command to disable/enabl
 Note: to fully disable Twig caching the following additional manual steps are required:
 
 1. Open `./build/sites/default/services.yml`
-2. Set `cache: false` in `twig.config:` property. E.g.:
+2. Set the following parameters:
 
 ```yaml
 parameters:
-     twig.config:
-       cache: false
+  twig.config:
+    debug: true
+    auto_reload: true
+    cache: false
  ```
 3. Rebuild Drupal cache: `./vendor/bin/drush cr`
 
