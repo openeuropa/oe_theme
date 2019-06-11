@@ -70,13 +70,11 @@ pipeline:
       # @todo: Manually add tests to run until port to ECL 2.0 is completed.
       - ./vendor/bin/phpunit --filter StatusMessagesTest
 
-# @todo: We will run and fix Behat tests after all components and their unit tests
-# are successfully ported to ECL 2.0.
-#  behat:
-#    group: test
-#    image: fpfis/httpd-php-ci:7.1
-#    commands:
-#      - ./vendor/bin/behat --strict
+  behat:
+    group: test
+    image: fpfis/httpd-php-ci:7.1
+    commands:
+      - ./vendor/bin/behat --tags ecl2
 
   before-release:
     image: fpfis/httpd-php-dev:7.1
