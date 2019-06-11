@@ -35,3 +35,27 @@
     margin-bottom: 1em;
   }
 }
+
+
+/**
+ * Add spacing between paragraph components.
+ */
+
+.ecl-blockquote {
+  margin: 0 0 1rem;
+}
+
+.ecl-listing {
+  margin: 0 0 1rem;
+}
+
+.ecl-accordion {
+  margin: 0 0 1rem;
+}
+
+/**
+ * Add spacing after an article element.
+ */
+article {
+  margin: 0 0 1rem;
+}
