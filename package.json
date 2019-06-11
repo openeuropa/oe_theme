@@ -14,10 +14,10 @@
         "prepare": "patch-package"
     },
     "dependencies": {
-        "@ecl/builder": "2.5.0",
-        "@ecl/ec-preset-dev": "2.5.0",
-        "@ecl/ec-preset-website": "2.5.0",
-        "@ecl/ec-theme-default": "^2.5.0",
+        "@ecl/builder": "2.3.0",
+        "@ecl/ec-preset-dev": "2.3.0",
+        "@ecl/ec-preset-website": "2.3.0",
+        "@ecl/ec-theme-default": "2.3.0",
         "@ecl/stylelint-config": "0.2.1",
         "chokidar-cli": "1.2.0",
         "ecl-twig": "git+https://github.com/openeuropa/ecl-twig.git",

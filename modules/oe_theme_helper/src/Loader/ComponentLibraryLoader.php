@@ -58,10 +58,8 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
     }
     catch (LoaderError $e) {
       if ($this->themePath) {
-        $this->messenger()->addError("Missing component: {$name}", FALSE);
-        $this->logger->error("Missing component: @name", [
-          '@name' => $name,
-        ]);
+        $this->messenger()->addError($e->getMessage(), FALSE);
+        $this->logger->error($e->getMessage());
         return $this->themePath . '/templates/missing-component.html.twig';
       }
       return FALSE;
