@@ -8,7 +8,7 @@
 #}
 {%- macro message_list(messages) %}
   {% for message in messages %}
-    <span>{{ message }}</span>{{ loop.length > 1 and not loop.last ? '<br/>' }}
+    <span{{ not loop.last ? ' class="ecl-u-mb-xs ecl-u-d-block"' }}>{{ message }}</span>
   {% endfor %}
 {%- endmacro %}
 
@@ -17,7 +17,7 @@
   {% set extra_attributes = extra_attributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{# Icon and close link are missing, they should be handled by the ECL component. #}
+{# Icons are missing, they should be handled within the ECL component. #}
 {# @todo: open a follow up on INNO board. #}
 {% for type, messages in message_list %}
   {% include '@ecl/message' with {
