@@ -6,19 +6,27 @@
  * @see ./core/themes/stable/templates/misc/status-messages.html.twig
  */
 #}
-{% for type, messages in message_list %}
-    {% set extraAttributes = [] %}
-    {% for name,value in attributes %}
-      {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
-    {% endfor %}
+{%- macro message_list(messages) %}
+  {% for message in messages %}
+    <span>{{ message }}</span>{{ loop.length > 1 and not loop.last ? '<br/>' }}
+  {% endfor %}
+{%- endmacro %}
 
-    {% include '@ecl/ec-component-message' with {
-      'title': status_headings[type],
-      'message': messages,
-      'modifier': (type == 'status' ? 'success' : type),
-      'srOnly': status_headings[type],
-      'extra_attributes': extraAttributes,
-      'extra_classes': 'ecl-u-mb-xs',
-      'dismiss_label': 'Close this message'|t,
-    } %}
+{% set extra_attributes = [] %}
+{% for name,value in attributes %}
+  {% set extra_attributes = extra_attributes|merge([{'name': name, 'value': value}]) %}
+{% endfor %}
+
+{# Icon and close link are missing, they should be handled by the ECL component. #}
+{# @todo: open a follow up on INNO board. #}
+{% for type, messages in message_list %}
+  {% include '@ecl/message' with {
+    'title': status_headings[type],
+    'description': _self.message_list(messages),
+    'variant': (type == 'status' ? 'success' : type),
+    'extra_attributes': extra_attributes,
+    'close': {
+      'label': 'Close this message'|t
+    },
+  } only %}
 {% endfor %}
