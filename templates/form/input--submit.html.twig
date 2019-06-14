@@ -11,8 +11,8 @@
   {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{% include '@ecl/ec-component-button' with {
+{% include '@ecl/button' with {
   'label': attributes.value,
-  'modifier': 'default',
+  'variant': 'ghost',
   'extra_attributes': extraAttributes,
 } %}

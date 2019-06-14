@@ -16,11 +16,11 @@
 
 {% if button_label and button_url %}
 <div class="ecl-u-clearfix ecl-u-pv-m">
-  {% include '@ecl/ec-component-button' with {
+  {% include '@ecl/button' with {
     'href': button_url,
     'label': button_label,
     'type': 'link',
-    'modifier': 'call',
+    'variant': 'call',
     'extra_classes': 'ecl-u-f-r',
     'icon': 'caret-right',
   } %}

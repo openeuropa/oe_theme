@@ -4,11 +4,11 @@
  * Button.
  */
 #}
-{% include '@ecl/ec-component-button' with {
-  'modifier': variant|replace({'_':'-'}),
-  'type_attribute': type_attribute,
-  'href': href,
+{% include '@ecl/button' with {
+  'variant': variant|replace({'_':'-'}),
+  'type': type_attribute,
   'icon': icon,
+  'icon_position': icon_position,
   'label': label,
-  'is_block': is_block
+  'disabled': disabled
 } only %}

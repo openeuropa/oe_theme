@@ -2,9 +2,6 @@ button:
   label: "Button"
   description: "Buttons indicate actions the users can take."
   variants:
-    default:
-      label: "Default"
-      description: "The default button is used for important links on the page."
     primary:
       label: "Primary"
       description: "Used for primary actions in case of forms, to initiate a search query, to apply a filter."
@@ -23,30 +20,36 @@ button:
     splash_page:
       label: "Splash page"
       description: "Special buttons used on the site's splash page."
+    ghost:
+      label: "Ghost"
+      description: "Special buttons used on the site's splash page."
   fields:
-    type_attribute:
-      type: "text"
-      label: "Type attribute"
-      description: "The buttons type attribute"
-      preview: "submit"
-    href:
-      type: "Url"
-      label: "URL"
-      description: "URL to use if button needs to be a link (A Drupal Url object)"
-      preview: "http://www.example.com"
-    icon:
-      type: "text"
-      label: "Icon"
-      description: "An icon to use with the button."
-      preview: "caret-right"
     label:
       type: "text"
       label: "Label"
       description: "Label of the button."
       preview: "Button"
-    is_block:
+    type_attribute:
+      type: "text"
+      label: "Type attribute"
+      description: "The buttons type attribute"
+      preview: "submit"
+    icon:
+      type: "array"
+      label: "Icon"
+      description: "An icon."
+      preview:
+        - path: '',
+        - type: 'ui',
+        - name: 'corner-arrow',
+    icon_position:
+      type: "text"
+      label: "Icon position"
+      description: "Define icon position, can be 'before' or 'after'."
+      preview: 'after'
+    disabled:
       type: "boolean"
-      label: "Block status"
-      description: "Whether the button needs to be treated as a block or not."
+      label: "Disabled"
+      description: "Defined if button should be active or not (HTML disabled attribute)"
       preview: false
-      
+
