@@ -24,7 +24,7 @@
  */
 #}
 {% if items %}
-  {% include '@ecl/ec-component-pager' with {
+  {% include '@ecl/pager' with {
     'current_page': current,
     'pages': items.pages,
     'first': items.first,

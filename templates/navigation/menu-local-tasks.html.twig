@@ -7,7 +7,7 @@
  */
 #}
 {% if primary %}
-  {% include '@ecl/ec-component-navigation-list' with {
+  {% include '@ecl/navigation-list' with {
     'title': 'Primary tabs'|t,
     'display': 'tabs',
     'links': primary_links,
@@ -15,7 +15,7 @@
   } %}
 {% endif %}
 {% if secondary %}
-  {% include '@ecl/ec-component-navigation-list' with {
+  {% include '@ecl/navigation-list' with {
     'title': 'Secondary tabs'|t,
     'display': 'small',
     'links': secondary_links,

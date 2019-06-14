@@ -23,7 +23,7 @@
   <div class="ecl-u-clearfix ecl-u-pv-l">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
-    {% include '@ecl/ec-component-button' with {
+    {% include '@ecl/button' with {
       'href': url('ui_patterns.patterns.single', {'name': pattern_name }),
       'label': "View as standalone"|t,
       'type': 'link',

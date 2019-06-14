@@ -4,6 +4,7 @@ Feature: Authentication
   As a product owner
   I need to make sure that we can detect the user's authentication status in the frontend
 
+  @ecl2
   Scenario:
     # Behat Drupal Extension 4.x determines the logged in status by inspecting
     # the DOM. This will fail if the status cannot be derived from the frontend.

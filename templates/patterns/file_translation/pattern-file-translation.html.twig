@@ -18,7 +18,7 @@
 {% endfor %}
 
 {# Include ECL component. #}
-{% include '@ecl/ec-component-file' with {
+{% include '@ecl/file' with {
   'variant': "translation",
   'title': file.title,
   'language': file.language_code|to_language,

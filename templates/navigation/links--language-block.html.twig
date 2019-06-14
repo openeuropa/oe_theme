@@ -8,7 +8,7 @@
 #}
 {{ attach_library('oe_theme/dialogs') }}
 {% if links -%}
-    {% include '@ecl/ec-component-language-list' with {
+    {% include '@ecl/language-list' with {
         languages: languages,
         variant: 'overlay',
         messages: {

@@ -10,7 +10,7 @@
  * @see templates_preprocess_oe_corporate_blocks_footer()
  */
 #}
-{% include '@ecl/ec-component-footer' with {
+{% include '@ecl/footer' with {
   'corporate_footer': corporate_footer|default([]),
   'custom_footer': custom_footer|default([]),
 } %}

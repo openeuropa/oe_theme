@@ -33,6 +33,6 @@
   {% set _rows = _rows|merge([_items]) %}
 {% endfor %}
 
-{% include '@ecl/ec-component-gallery' with {
+{% include '@ecl/gallery' with {
   'rows': _rows,
 } %}

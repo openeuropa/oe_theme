@@ -10,6 +10,7 @@ Feature: Site branding
     When I am on "the user registration page"
     Then I should see the "logo" element in the "header"
 
+  @ecl2
   Scenario: The breadcrumb is visible everywhere.
     When I am on the homepage
     Then I should see the "breadcrumb" element in the "page"
