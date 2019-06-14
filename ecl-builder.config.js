@@ -27,6 +27,6 @@ module.exports = {
   ],
   copy: [
     { from: path.resolve(nodeModules, '@ecl/ec-preset-website/dist'), to: path.resolve(outputFolder, 'dist') },
-    { from: path.resolve(nodeModules, 'ecl-twig/src/ec/packages'), patterns: '*/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: '*/*.twig', to: path.resolve(outputFolder, 'templates/components') },
   ]
 };
