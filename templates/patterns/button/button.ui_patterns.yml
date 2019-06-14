@@ -2,6 +2,9 @@ button:
   label: "Button"
   description: "Buttons indicate actions the users can take."
   variants:
+    default:
+      label: "Default"
+      description: "The default button is used for important links on the page."
     primary:
       label: "Primary"
       description: "Used for primary actions in case of forms, to initiate a search query, to apply a filter."
@@ -39,9 +42,9 @@ button:
       label: "Icon"
       description: "An icon."
       preview:
-        - path: '',
-        - type: 'ui',
-        - name: 'corner-arrow',
+        - path: ''
+        - type: 'ui'
+        - name: 'corner-arrow'
     icon_position:
       type: "text"
       label: "Icon position"
@@ -52,4 +55,3 @@ button:
       label: "Disabled"
       description: "Defined if button should be active or not (HTML disabled attribute)"
       preview: false
-
