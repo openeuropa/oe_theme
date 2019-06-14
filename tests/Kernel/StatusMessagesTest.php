@@ -71,7 +71,7 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       $this->assertCount(1, $title, sprintf('Wrong number of headings found for "%s" messages.', $type));
       $this->assertEquals($heading, trim($title->first()->text()));
 
-      $list_items = $wrapper->filter('ul.ecl-message__body li');
+      $list_items = $wrapper->filter('p.ecl-message__description span');
       $this->assertSameSize($messages, $list_items, sprintf('Wrong number of "%s" messages found.', $type));
 
       foreach ($messages as $delta => $message) {

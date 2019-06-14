@@ -1,4 +1,5 @@
-@import '@ecl/ec-preset-website/ec-preset-website.scss';
+@import '@ecl/ec-theme-default/index';
+@import '@ecl/ec-component-form-help-block/ec-component-form-help-block';
 @import "./components/form";
 @import "./components/toolbar";
 @import "./components/splash-page";

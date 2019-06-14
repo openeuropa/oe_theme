@@ -11,6 +11,25 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
+ * Implements hook_page_attachments().
+ */
+function oe_theme_helper_page_attachments(array &$page) {
+  // Add ECL 2.0 required meta tags.
+  $meta_default = [
+    'ie_legacy_support' => [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'http-equiv' => 'X-UA-Compatible',
+        'content' => 'IE=edge,chrome=1',
+      ],
+    ],
+  ];
+  foreach ($meta_default as $key => $value) {
+    $page['#attached']['html_head'][] = [$value, $key];
+  }
+}
+
+/**
  * Implements hook_entity_view_alter().
  */
 function oe_theme_helper_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {

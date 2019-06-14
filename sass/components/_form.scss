@@ -1,16 +1,16 @@
 .main-content {
   .password-strength {
     .is-weak {
-      background-color: $ecl-color-error;
+      background-color: map-get($ecl-colors, 'error');
     }
 
     .is-fair {
-      background-color: $ecl-color-warning;
+      background-color: map-get($ecl-colors, 'warning');
     }
 
     .is-good,
     .is-strong {
-      background-color: $ecl-color-success;
+      background-color: map-get($ecl-colors, 'success');
     }
   }
 
