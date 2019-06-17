@@ -6,14 +6,17 @@
 #}
 {% if variant == 'default' %}
   {% include '@ecl/link' with {
-    link: {
+    'link': {
       'type': type_attribute,
       'label': label,
       'path': href,
       'icon_position': icon_position
     },
     'icon': {
-      'name': icon
+      'path': '/dist/images/icons/sprites/icons.svg',
+      'type': 'ui',
+      'name': icon,
+      'size': 's',
     },
     'icon_position': icon_position,
     'label': label,
@@ -24,7 +27,10 @@
     'variant': variant|replace({'_':'-'}),
     'type': type_attribute,
     'icon': {
-      'name': icon
+      'path': '/dist/images/icons/sprites/icons.svg',
+      'type': 'ui',
+      'name': icon,
+      'size': 's',
     },
     'icon_position': icon_position,
     'disabled': disabled

@@ -25,8 +25,20 @@
     'description': _self.message_list(messages),
     'variant': (type == 'status' ? 'success' : type),
     'extra_attributes': extra_attributes,
+    'icon': {
+      'path': '/dist/images/icons/sprites/icons.svg',
+      'type': 'notifications',
+      'name': (type == 'status' ? 'success' : type),
+      'size': 'l',
+    },
     'close': {
-      'label': 'Close this message'|t
+      'label': 'Close this message'|t,
+      'icon' : {
+        'path': '/dist/images/icons/sprites/icons.svg',
+        'type': 'ui',
+        'name': 'close',
+        'size': 's',
+      }
     },
   } only %}
 {% endfor %}

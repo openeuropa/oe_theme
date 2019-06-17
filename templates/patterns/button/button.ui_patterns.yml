@@ -41,7 +41,7 @@ button:
       type: "text"
       label: "Icon"
       description: "An icon to use with the button."
-      preview: "caret-right"
+      preview: "check"
     icon_position:
       type: "text"
       label: "Icon position"
@@ -55,7 +55,7 @@ button:
     is_block:
       type: "boolean"
       label: "Block status"
-      description: "Whether the button needs to be treated as a block or not."
+      description: "Whether the button needs to be treated as a block or not. (deprecated)"
       preview: false
     disabled:
       type: "boolean"

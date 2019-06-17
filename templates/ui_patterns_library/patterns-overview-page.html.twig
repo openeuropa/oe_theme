@@ -27,10 +27,14 @@
       'link': {
         'type': 'standalone',
         'path': url('ui_patterns.patterns.single', {'name': pattern_name }),
-        'label': "View as standalone"|t
+        'label': "View as standalone"|t,
+        'icon_position': 'after'
       },
       'icon': {
-        'name': 'caret-right'
+        'path': '/dist/images/icons/sprites/icons.svg',
+        'type': 'ui',
+        'name': 'fullscreen',
+        'size': 's',
       },
       'extra_classes': 'ecl-u-f-r'
     } %}
