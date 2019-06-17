@@ -25,33 +25,40 @@ button:
       description: "Special buttons used on the site's splash page."
     ghost:
       label: "Ghost"
-      description: "Special buttons used on the site's splash page."
+      description: "Ghost button."
   fields:
-    label:
-      type: "text"
-      label: "Label"
-      description: "Label of the button."
-      preview: "Button"
     type_attribute:
       type: "text"
       label: "Type attribute"
       description: "The buttons type attribute"
       preview: "submit"
+    href:
+      type: "Url"
+      label: "URL"
+      description: "URL to use if button needs to be a link (A Drupal Url object)"
+      preview: "http://www.example.com"
     icon:
-      type: "array"
+      type: "text"
       label: "Icon"
-      description: "An icon."
-      preview:
-        - path: ''
-        - type: 'ui'
-        - name: 'corner-arrow'
+      description: "An icon to use with the button."
+      preview: "caret-right"
     icon_position:
       type: "text"
       label: "Icon position"
-      description: "Define icon position, can be 'before' or 'after'."
-      preview: 'after'
+      description: "Position of link icon (can be 'before' or 'after') if icon is available"
+      preview: 'before'
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label of the button."
+      preview: "Button"
+    is_block:
+      type: "boolean"
+      label: "Block status"
+      description: "Whether the button needs to be treated as a block or not."
+      preview: false
     disabled:
       type: "boolean"
-      label: "Disabled"
-      description: "Defined if button should be active or not (HTML disabled attribute)"
+      label: "Disabled status"
+      description: "Define if button should be disabled."
       preview: false

@@ -16,13 +16,16 @@
 
 {% if button_label and button_url %}
 <div class="ecl-u-clearfix ecl-u-pv-m">
-  {% include '@ecl/button' with {
-    'href': button_url,
-    'label': button_label,
-    'type': 'link',
-    'variant': 'call',
+  {% include '@ecl/link' with {
+    'link': {
+      'type': 'standalone',
+      'path': button_url,
+      'label': button_label
+    },
+    'icon': {
+      'name': 'caret-right'
+    },
     'extra_classes': 'ecl-u-f-r',
-    'icon': 'caret-right',
   } %}
 </div>
 {% endif %}

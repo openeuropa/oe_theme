@@ -1,10 +1,39 @@
 - array:
     '#type': pattern
     '#id': button
+    '#variant': default
+    '#fields':
+      label: "Button label"
+      href: "http://example.com"
+      icon: "caret-right"
+      icon_position: "before"
+      type_attribute: "default"
+  assertions:
+    count:
+      'a.ecl-link--icon-before': 1
+      'a.ecl-link--icon-before svg': 1
+    equals:
+      'a.ecl-link--default[href="http://example.com"]': " Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': default
+    '#fields':
+      label: "Button label"
+      href: "http://example.com"
+      type_attribute: "standalone"
+  assertions:
+    count:
+      'a.ecl-link--standalone': 1
+      'a.ecl-link--icon': 0
+    equals:
+      'a.ecl-link--standalone[href="http://example.com"]': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
     '#variant': primary
     '#fields':
       type_attribute: "submit"
-      is_block: true
       label: "Button label"
   assertions:
     count:
@@ -12,6 +41,27 @@
       'button.ecl-button[type="submit"]': 1
     equals:
       'button.ecl-button--primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': primary
+    '#fields':
+      type_attribute: "reset"
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button[type="reset"]': 1
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': primary
+    '#fields':
+      type_attribute: "button"
+      is_block: true
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button[type="button"]': 1
 - array:
     '#type': pattern
     '#id': button
