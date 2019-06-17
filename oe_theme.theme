@@ -860,3 +860,15 @@ function oe_theme_preprocess_block(&$variables) {
     ],
   ]);
 }
+
+/**
+ * Implements template_preprocess_preprocess_media__document__default().
+ *
+ * For preprocessing default mode of document media type.
+ */
+function oe_theme_preprocess_media__document__default(&$variables) {
+  if (!$variables['media']->get('oe_media_file')->isEmpty()) {
+    $file_object = $variables['media']->get('oe_media_file')->first()->entity;
+    $variables['file'] = FileValueObject::fromFileEntity($file_object);
+  }
+}

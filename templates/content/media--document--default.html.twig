@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override to display a media item.
+ *
+ * @see ./core/themes/stable/templates/content/media.html.twig
+ */
+#}
+{{ pattern('file', {
+  'button_label': 'Download'|t,
+  'file': file|default([]),
+}) }}
