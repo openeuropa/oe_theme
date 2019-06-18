@@ -41,12 +41,12 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertCount(1, $actual);
 
     // Make sure that footer block rendered correctly.
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-top div.ecl-row div.ecl-footer__column');
+    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section');
     $this->assertCount(3, $actual);
 
-    $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-top div.ecl-row div.ecl-footer__column:nth-child(1)');
+    $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(1)');
 
-    $actual = $first_column->filter('h2.ecl-footer__column-title');
+    $actual = $first_column->filter('h1.ecl-footer__section-title');
     $this->assertEquals($test_data['about_ec_title'], trim($actual->text()));
 
     $actual = $first_column->filter('ul li:nth-child(1) > a');
@@ -57,41 +57,41 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals($test_data['about_ec_links'][1]['href'], $actual->attr('href'));
     $this->assertEquals($test_data['about_ec_links'][1]['label'], $actual->text());
 
-    $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-top div.ecl-row div.ecl-footer__column:nth-child(2)');
-    $actual = $second_column->filter('h2.ecl-footer__column-title');
+    $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(2)');
+    $actual = $second_column->filter('h1.ecl-footer__section-title');
     $this->assertEquals($test_data['social_media_title'], trim($actual->text()));
 
     $actual = $second_column->filter('ul li:nth-child(1) > a');
     $this->assertEquals($test_data['social_media_links'][0]['link']['href'], $actual->attr('href'));
-    $this->assertEquals($test_data['social_media_links'][0]['link']['label'], trim($actual->text()));
+    $this->assertEquals(' ' . $test_data['social_media_links'][0]['link']['label'], $actual->text());
 
     $actual = $second_column->filter('ul li:nth-child(2) > a');
     $this->assertEquals($test_data['social_media_links'][1]['link']['href'], $actual->attr('href'));
-    $this->assertEquals($test_data['social_media_links'][1]['link']['label'], trim($actual->text()));
+    $this->assertEquals($test_data['social_media_links'][1]['link']['label'] . ' ', $actual->text());
 
-    $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-top div.ecl-row div.ecl-footer__column:nth-child(3)');
-    $actual = $third_column->filter('h2.ecl-footer__column-title');
+    $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(3)');
+    $actual = $third_column->filter('h1.ecl-footer__section-title');
     $this->assertEquals($test_data['about_eu_title'], trim($actual->text()));
 
     $actual = $third_column->filter('ul li:nth-child(1) > a');
     $this->assertEquals($test_data['about_eu_links'][0]['href'], $actual->attr('href'));
-    $this->assertEquals($test_data['about_eu_links'][0]['label'], trim($actual->text()));
+    $this->assertEquals($test_data['about_eu_links'][0]['label'] . ' ', trim($actual->text()));
 
     $actual = $third_column->filter('ul li:nth-child(2) > a');
     $this->assertEquals($test_data['about_eu_links'][1]['href'], $actual->attr('href'));
-    $this->assertEquals($test_data['about_eu_links'][1]['label'], trim($actual->text()));
+    $this->assertEquals($test_data['about_eu_links'][1]['label'] . ' ', trim($actual->text()));
 
-    $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-bottom div.ecl-row');
+    $third_column = $crawler->filter('footer.ecl-footer section.ecl-footer__common div.ecl-footer__common-container');
 
-    $actual = $third_column->filter('ul li:nth-child(1) > a');
+    $actual = $third_column->filter('a:nth-child(1)');
     $this->assertEquals($test_data['bottom_links'][0]['href'], $actual->attr('href'));
     $this->assertEquals($test_data['bottom_links'][0]['label'], trim($actual->text()));
 
-    $actual = $third_column->filter('ul li:nth-child(2) > a');
+    $actual = $third_column->filter('a:nth-child(2)');
     $this->assertEquals($test_data['bottom_links'][1]['href'], $actual->attr('href'));
     $this->assertEquals($test_data['bottom_links'][1]['label'], trim($actual->text()));
 
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__corporate-bottom div.ecl-row ul.ecl-footer__list li.ecl-footer__list-item');
+    $actual = $crawler->filter('footer.ecl-footer section.ecl-footer__common div.ecl-footer__common-container a.ecl-footer__common-link');
     $this->assertCount(2, $actual);
   }
 

@@ -38,7 +38,7 @@ class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
 
-    // Make sure that footer block is present.
+    // Make sure that site-switcher block is present.
     $actual = $crawler->filter('.ecl-site-switcher--header');
     $this->assertCount(1, $actual);
 

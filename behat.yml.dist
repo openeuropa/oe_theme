@@ -14,7 +14,6 @@ default:
             elements:
               about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
               breadcrumb: "nav.ecl-breadcrumb"
-              corporate footer: "footer.ecl-footer div.ecl-footer__corporate"
               language switcher: ".ecl-language-list"
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
               language switcher overlay: ".ecl-dialog__body"
