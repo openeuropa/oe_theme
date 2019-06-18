@@ -4,11 +4,49 @@
  * Default implementation for the page header component.
  */
 #}
-{% include '@ecl/ec-component-page-header' with {
-  'identity': identity,
-  'breadcrumb': breadcrumb,
-  'language_switcher': language_switcher,
+
+{% set _meta = '' %}
+{% set _breadcrumb_links = {} %}
+{% set _infos = {} %}
+
+{% for meta in metas %}
+  {% if _meta != '' %}
+    {% set _meta = _meta ~ ' | ' %}
+  {% endif %}
+  {% set _meta = _meta ~ meta %}
+{% endfor %}
+
+{% for breadcrumb_item in breadcrumb %}
+  {% set _links = {
+    'label' : breadcrumb_item.label,
+    'path' : breadcrumb_item.href
+  } %}
+  {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
+{% endfor %}
+
+{% set _breadcrumb = {
+  'links' : _breadcrumb_links,
+  'navigation_text' : '',
+  'ellipsis_label': '',
+  'icon_file_path' : '/dist/images/icons/sprites/icons.svg'
+} %}
+
+{% for infos_item in infos %}
+  {% set _info = {
+    'text' : infos_item.text,
+    'icon' : {
+      'type' : infos_item.icon_type,
+      'name' : infos_item.icon_name,
+      'path' : infos_item.icon_path
+    }
+  } %}
+  {% set _infos = _infos|merge([_info]) %}
+{% endfor %}
+
+{% include '@ecl/page-header' with {
   'title': title,
-  'introduction': introduction,
-  'metas': metas
+  'description': introduction,
+  'breadcrumb': _breadcrumb,
+  'meta': _meta,
+  'infos': _infos
 } %}

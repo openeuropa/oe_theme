@@ -5,7 +5,7 @@ page_header:
     identity:
       type: "text"
       label: "Identity"
-      description: "Name of the site"
+      description: "Name of the site (deprecated)"
       preview: "Digital single market"
     title:
       type: "text"
@@ -13,12 +13,12 @@ page_header:
       description: "The title of the page."
       preview: "Business, Economy, Euro"
     introduction:
-      type: text
+      type: "text"
       label: "Introduction"
       description: "A small introduction of the page content."
       preview: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
     metas:
-      type: array
+      type: "array"
       label: "Metas"
       description: "A collection of page meta information."
       preview:
@@ -47,3 +47,16 @@ page_header:
           label: "European Commission"
         - href: "#"
           label: "Announcements"
+    infos:
+      type: "array"
+      label: "Infos"
+      description: "A list of infos of the current page."
+      preview:
+        - text: "Monday 8 February"
+          icon_type: "general"
+          icon_name: "calendar"
+          icon_path: "/dist/images/icons/sprites/icons.svg"
+        - text: "Munich, Germany"
+          icon_type: "general"
+          icon_name: "location"
+          icon_path: "/dist/images/icons/sprites/icons.svg"
