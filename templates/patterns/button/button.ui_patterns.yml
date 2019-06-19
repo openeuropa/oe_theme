@@ -46,7 +46,7 @@ button:
       type: "text"
       label: "Icon position"
       description: "Position of link icon (can be 'before' or 'after') if icon is available"
-      preview: 'before'
+      preview: 'after'
     label:
       type: "text"
       label: "Label"
