@@ -580,6 +580,8 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ];
     }
   }
+  $variables['icon_path'] = base_path() . $variables['directory'] . '/dist/images/icons/sprites/icons.svg';
+
 }
 
 /**

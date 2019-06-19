@@ -52,6 +52,8 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * @param string $lang_prefix
    *   The language prefix.
    *
+   * @group ecl1
+   *
    * @dataProvider renderingDataProvider
    */
   public function testLanguageSwitcherRendering($langcode, $lang_prefix): void {
