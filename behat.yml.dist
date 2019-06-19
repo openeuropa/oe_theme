@@ -18,7 +18,7 @@ default:
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
               language switcher overlay: ".ecl-dialog__body"
               logo: "a.ecl-logo"
-              page header: ".ecl-page-header__body"
+              page header: ".ecl-page-header"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search form: ".ecl-search-form"
               sites switcher: ".ecl-site-switcher--header"
@@ -58,9 +58,10 @@ default:
         navigation: ".ecl-navigation-menu"
         page: "body"
         page header: ".ecl-page-header"
-        page header site identity: ".ecl-page-header__identity"
-        page header intro: ".ecl-page-header__intro"
-        page header meta: ".ecl-meta--header"
+        page header site identity: ".ecl-page-header .ecl-page-header__identity"
+        page header title: ".ecl-page-header .ecl-page-header__title"
+        page header intro: ".ecl-page-header .ecl-page-header__description"
+        page header meta: ".ecl-page-header .ecl-page-header__meta-list"
         priorities dropdown menu: "#nav-menu-expandable-group-3"
   formatters:
     progress: ~

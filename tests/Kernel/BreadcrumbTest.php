@@ -106,7 +106,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     // Assert that remaining links are rendered correctly.
     $position = 0;
     foreach ($links as $title => $url) {
-      $link = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
+      $link = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $position++;
     }
