@@ -1,4 +1,4 @@
-default:
+legacy:
   suites:
     default:
       paths:
@@ -63,5 +63,32 @@ default:
         page header intro: ".ecl-page-header .ecl-page-header__description"
         page header meta: ".ecl-page-header .ecl-page-header__meta-list"
         priorities dropdown menu: "#nav-menu-expandable-group-3"
+  formatters:
+    progress: ~
+
+default:
+  suites:
+    default:
+      paths:
+        - %paths.base%/tests/features
+      contexts:
+        - Drupal\DrupalExtension\Context\MinkContext
+      filters:
+        tags: "@ecl2"
+  extensions:
+    Drupal\MinkExtension:
+      goutte: ~
+      ajax_timeout: 10
+      browser_name: 'chrome'
+      javascript_session: 'selenium2'
+      selenium2:
+        wd_host: '${selenium.host}:${selenium.port}/wd/hub'
+        capabilities: { "browser": "chrome", "version": "*" }
+      base_url: "${drupal.base_url}"
+      files_path: "%paths.base%/tests/fixtures/"
+    Drupal\DrupalExtension:
+      api_driver: "drupal"
+      drupal:
+        drupal_root: "build"
   formatters:
     progress: ~

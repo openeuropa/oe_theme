@@ -8,8 +8,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test language switcher rendering.
- *
- * @group ecl1
  */
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
@@ -25,7 +23,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Make sure that language switcher overlay title is set.
-    $actual = $crawler->filter('.ecl-dialog .ecl-dialog__title')->text();
+    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__title')->text();
     $this->assertEquals('Select your language', trim($actual));
 
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
@@ -41,11 +39,8 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       // Get the language prefix.
       $lang_prefix = $lang_config->get('url.prefixes.' . $id);
 
-      $actual = $crawler->filter(".ecl-dialog a.ecl-language-list__button[lang={$lang_prefix}]")->text();
-      $this->assertEquals($name, trim($actual));
-
-      $actual = $crawler->filter(".ecl-dialog a.ecl-language-list__button[hreflang={$id}]")->text();
-      $this->assertEquals($name, trim($actual));
+      $actual = $crawler->filter(".ecl-language-list--overlay a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+      $this->assertEquals($name, preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual));
     }
   }
 
@@ -56,6 +51,8 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The language code.
    * @param string $lang_prefix
    *   The language prefix.
+   *
+   * @group ecl1
    *
    * @dataProvider renderingDataProvider
    */
