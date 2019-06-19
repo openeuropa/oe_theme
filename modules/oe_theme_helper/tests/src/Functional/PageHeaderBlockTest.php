@@ -75,9 +75,9 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $assert_session->elementsCount('css', '.ecl-page-header', 1);
     $header = $this->getSession()->getPage()->find('css', '.ecl-page-header');
     $this->assertEquals('Log in', trim($header->find('css', '.ecl-page-header__title')->getText()));
-    $assert_session->elementsCount('css', '.ecl-page-header__identity', 0, $header);
-    $assert_session->elementsCount('css', '.ecl-page-header__intro', 0);
-    $assert_session->elementsCount('css', '.ecl-meta--header .ecl-meta__item', 0);
+    $assert_session->elementsCount('css', '.ecl-page-header__description', 0);
+    $assert_session->elementsCount('css', '.ecl-page-header__meta-list', 0);
+    $assert_session->elementsCount('css', '.ecl-page-header__info-item', 0);
 
     // Enable the test plugin and add some metadata.
     $test_data = [
@@ -88,6 +88,10 @@ class PageHeaderBlockTest extends BrowserTestBase {
         'Custom meta 1',
         'Custom meta 2',
         'Custom meta 3',
+      ],
+      'infos' => [
+        ['text' => 'Monday 8 February'],
+        ['text' => 'Munich, Germany'],
       ],
     ];
     $this->container->get('state')->set('page_header_test_plugin_applies', TRUE);
@@ -102,15 +106,23 @@ class PageHeaderBlockTest extends BrowserTestBase {
     // The test plugin metadata is shown as it has higher priority than the
     // default one.
     $assert_session->elementsCount('css', '.ecl-page-header', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header__description', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header__meta-list', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header__info-item', 2);
     $header = $this->getSession()->getPage()->find('css', '.ecl-page-header');
     $this->assertEquals($test_data['title'], trim($header->find('css', '.ecl-page-header__title')->getText()));
-    $this->assertEquals($test_data['identity'], trim($header->find('css', '.ecl-page-header__identity')->getText()));
-    $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header__intro')->getText()));
+    $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header__description')->getText()));
 
-    $metas = array_map(function (NodeElement $element) {
-      return trim($element->getText());
-    }, $header->findAll('css', '.ecl-meta--header .ecl-meta__item'));
-    $this->assertEquals($test_data['metas'], $metas);
+    $metas = '';
+    foreach ($test_data['metas'] as $meta) {
+      $metas .= ($metas != '' ? ' | ' : '') . $meta;
+    }
+    $this->assertEquals($metas, trim($header->find('css', '.ecl-page-header__meta-list')->getText()));
+
+    $infos = array_map(function (NodeElement $element) {
+      return ['text' => trim($element->getText())];
+    }, $header->findAll('css', '.ecl-page-header__info-item'));
+    $this->assertEquals($test_data['infos'], $infos);
   }
 
 }
