@@ -33,19 +33,24 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $title       = \Drupal::service('title_resolver')
     ->getTitle($request, $route_match->getRouteObject());
 
-  $variables['segments'] = array_map(function ($item) {
+  unset($variables['links']);
+  $variables['links'] = array_map(function ($item) {
     return [
-      'href' => $item['url'],
+      'path' => $item['url'],
       'label' => $item['text'],
     ];
   }, $variables['breadcrumb']);
 
   // Add the title to the segments only if it's not empty.
   if (!empty($title)) {
-    $variables['segments'][] = [
+    $variables['links'][] = [
       'label' => $title,
     ];
   }
+
+  $variables['navigation_text'] = '';
+  $variables['ellipsis_label'] = '';
+  $variables['icon_file_path'] = '/dist/images/icons/sprites/icons.svg';
 }
 
 /**

@@ -10,8 +10,21 @@
  * @see ./core/themes/stable/templates/navigation/breadcrumb.html.twig
  */
 #}
+
 {% if segments %}
-  {% include '@ecl/ec-component-breadcrumb' with {
-    'segments': segments,
+  {% set _breadcrumb_links = {} %}
+  {% for breadcrumb_item in segments %}
+    {% set _links = {
+      'label' : breadcrumb_item.label,
+      'path' : breadcrumb_item.href
+    } %}
+    {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
+  {% endfor %}
+
+  {% include '@ecl/breadcrumb' with {
+    'links' : _breadcrumb_links,
+    'navigation_text' : '',
+    'ellipsis_label': '',
+    'icon_file_path' : '/dist/images/icons/sprites/icons.svg'
   } %}
 {% endif %}

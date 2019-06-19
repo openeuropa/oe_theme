@@ -6,9 +6,6 @@
 #}
 
 {% set _meta = '' %}
-{% set _breadcrumb_links = {} %}
-{% set _infos = {} %}
-
 {% for meta in metas %}
   {% if _meta != '' %}
     {% set _meta = _meta ~ ' | ' %}
@@ -16,6 +13,7 @@
   {% set _meta = _meta ~ meta %}
 {% endfor %}
 
+{% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
   {% set _links = {
     'label' : breadcrumb_item.label,
@@ -23,7 +21,6 @@
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
-
 {% set _breadcrumb = {
   'links' : _breadcrumb_links,
   'navigation_text' : '',
@@ -31,6 +28,7 @@
   'icon_file_path' : '/dist/images/icons/sprites/icons.svg'
 } %}
 
+{% set _infos = {} %}
 {% for infos_item in infos %}
   {% set _info = {
     'text' : infos_item.text,
