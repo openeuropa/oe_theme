@@ -9,7 +9,7 @@
 {%
   set classes = [
   'ecl-text-input',
-  attributes.hasClass('error') ? 'ecl-text-input--has-error',
+  attributes.hasClass('error') ? 'ecl-text-input--invalid',
 ]
 %}
 <input{{ attributes.addClass(classes) }} />{{ children }}

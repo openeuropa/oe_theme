@@ -250,6 +250,7 @@ function oe_theme_preprocess_form_element(array &$variables): void {
     'textfield' => 'text-input',
     'password' => 'text-input',
     'textarea' => 'text-area',
+    'select' => 'select',
   ];
   if (isset($ecl_type_mappings[$variables['element']['#type']])) {
     $variables['ecl_type'] = $ecl_type_mappings[$variables['element']['#type']];
