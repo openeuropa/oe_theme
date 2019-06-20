@@ -23,6 +23,9 @@ button:
     splash_page:
       label: "Splash page"
       description: "Special buttons used on the site's splash page."
+    ghost:
+      label: "Ghost"
+      description: "Ghost button."
   fields:
     type_attribute:
       type: "text"
@@ -38,7 +41,12 @@ button:
       type: "text"
       label: "Icon"
       description: "An icon to use with the button."
-      preview: "caret-right"
+      preview: "check"
+    icon_position:
+      type: "text"
+      label: "Icon position"
+      description: "Position of link icon (can be 'before' or 'after') if icon is available"
+      preview: 'after'
     label:
       type: "text"
       label: "Label"
@@ -47,6 +55,10 @@ button:
     is_block:
       type: "boolean"
       label: "Block status"
-      description: "Whether the button needs to be treated as a block or not."
+      description: "Whether the button needs to be treated as a block or not. (deprecated)"
       preview: false
-      
+    disabled:
+      type: "boolean"
+      label: "Disabled status"
+      description: "Define if button should be disabled."
+      preview: false

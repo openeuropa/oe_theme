@@ -16,13 +16,19 @@
 
 {% if button_label and button_url %}
 <div class="ecl-u-clearfix ecl-u-pv-m">
-  {% include '@ecl/ec-component-button' with {
-    'href': button_url,
-    'label': button_label,
-    'type': 'link',
-    'modifier': 'call',
+  {% include '@ecl/link' with {
+    'link': {
+      'type': 'standalone',
+      'path': button_url,
+      'label': button_label
+    },
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'ui',
+      'name': 'fullscreen',
+      'size': 's',
+    },
     'extra_classes': 'ecl-u-f-r',
-    'icon': 'caret-right',
   } %}
 </div>
 {% endif %}

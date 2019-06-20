@@ -16,6 +16,15 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 
 /**
+ * Implements hook_preprocess().
+ */
+function oe_theme_preprocess(&$variables) {
+  global $base_url;
+  $theme = \Drupal::theme()->getActiveTheme();
+  $variables['ecl_icon_path'] = $base_url . '/' . $theme->getPath() . '/dist/images/icons/sprites/icons.svg';
+}
+
+/**
  * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(array &$variables): void {

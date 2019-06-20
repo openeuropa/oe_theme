@@ -4,11 +4,35 @@
  * Button.
  */
 #}
-{% include '@ecl/ec-component-button' with {
-  'modifier': variant|replace({'_':'-'}),
-  'type_attribute': type_attribute,
-  'href': href,
-  'icon': icon,
-  'label': label,
-  'is_block': is_block
-} only %}
+{% if variant == 'default' %}
+  {% include '@ecl/link' with {
+    'link': {
+      'type': type_attribute,
+      'label': label,
+      'path': href,
+      'icon_position': icon_position|default('after')
+    },
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'ui',
+      'name': icon,
+      'size': 's'
+    },
+    'icon_position': icon_position|default('after'),
+    'label': label
+  } only %}
+{% else %}
+  {% include '@ecl/button' with {
+    'label': label,
+    'variant': variant|replace({'_':'-'}),
+    'type': type_attribute,
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'ui',
+      'name': icon,
+      'size': 's'
+    },
+    'icon_position': icon_position|default('after'),
+    'disabled': disabled
+  } only %}
+{% endif %}

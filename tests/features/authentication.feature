@@ -1,4 +1,4 @@
-@api
+@api @ecl2
 Feature: Authentication
   In order to allow personalized actions to be taken
   As a product owner

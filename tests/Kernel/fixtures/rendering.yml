@@ -1,747 +1,747 @@
-- array:
-    '#plain_text': 'Dummy placeholder for form rendering test.'
-  assert:
-    count:
-      'form.ecl-form': 1
-- array:
-    '#type': button
-    '#value': Preview
-  assert:
-    contains:
-      - 'Preview'
-    count:
-      'button.ecl-button.ecl-button--default': 1
-- array:
-    '#type': textfield
-    '#value': Textfield
-  assert:
-    contains:
-      - 'Textfield'
-    count:
-      'input.form-text.ecl-text-input': 1
-- array:
-    '#type': password
-    '#value': Password
-  assert:
-    contains:
-      - 'password'
-    count:
-      'input.form-text.ecl-text-input': 1
-- array:
-    '#type': email
-    '#value': Email
-  assert:
-    contains:
-      - 'Email'
-    count:
-      'input.form-email.ecl-text-input': 1
-- array:
-    '#type': textarea
-    '#title': Textarea
-    '#value': Text
-  assert:
-    contains:
-      - 'Textarea'
-      - 'Text'
-    count:
-      'textarea.form-textarea.ecl-textarea': 1
-- array:
-    '#type': select
-    '#title': Select element
-    '#options':
-      1: One
-      2: Two
-      3: Three
-  assert:
-    contains:
-      - 'Select element'
-    count:
-      'select.form-select.ecl-select': 1
-- array:
-    '#type': radios
-    '#title': Radios
-    '#title_display': above
-    '#default_value': 1
-    '#id': test-radios
-    '#options':
-      0: Closed
-      1: Active
-  assert:
-    contains:
-      - 'Radios'
-    count:
-      'div#test-radios': 1
-- array:
-    '#type': checkbox
-    '#title': Checkbox
-    '#attributes':
-      'foo': bar
-  assert:
-    contains:
-      - 'Checkbox'
-      - 'foo="bar"'
-    count:
-      'label.ecl-form-label.ecl-checkbox': 1
-      'input.ecl-checkbox__input.ecl-u-sr-only': 1
-      'span.ecl-checkbox__label': 1
-- array:
-    '#type': checkbox
-    '#title': Checkbox
-    '#disabled': true
-  assert:
-    contains:
-      - 'Checkbox'
-    count:
-      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
-- array:
-    '#type': checkbox
-    '#title': Checkbox
-    '#set_validation_error': true
-  assert:
-    contains:
-      - 'Checkbox'
-    count:
-      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
-- array:
-    '#type': fieldset
-    '#title': Fieldset
-  assert:
-    count:
-      'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
-      'legend.ecl-form-legend': 1
-- array:
-    '#type': radio
-    '#title': Radio
-    '#attributes':
-      'foo': bar
-  assert:
-    contains:
-      - 'Radio'
-      - 'foo="bar"'
-    count:
-      'label.ecl-form-label.ecl-radio': 1
-      'span.ecl-radio__label': 1
-- array:
-    '#type': radio
-    '#title': Radio
-    '#disabled': true
-  assert:
-    contains:
-      - 'Radio'
-    count:
-      'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled': 1
-- array:
-    '#type': radio
-    '#title': Radio
-    '#set_validation_error': true
-  assertions:
-    contains:
-      - 'Radio'
-    count:
-      'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
-- array:
-    '#type': pattern
-    '#id': banner_hero
-    '#fields':
-      image:
-        src: "http://via.placeholder.com/150x150"
-      title: "Banner title"
-      url: "http://example.com"
-      description: "Banner description"
-  assertions:
-    count:
-      'div.ecl-banner--hero': 1
-      'img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-    equals:
-      'div.ecl-banner__content h3.ecl-heading a.ecl-link[href="http://example.com"]': Banner title
-      'div.ecl-banner__content p.ecl-banner__description': "Banner description"
-- array:
-    '#type': pattern
-    '#id': banner_video
-    '#fields':
-      video:
-        src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
-        is_iframe: "true"
-        ratio: "16-9"
-        caption: "Video caption"
-      description: "<p class=\"ecl-paragraph\">Banner description</p>"
-  assertions:
-    count:
-      'div.ecl-banner--video': 1
-      'div.ecl-banner--video section.ecl-file--video div.ecl-u-ratio-16-9 iframe[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
-    equals:
-      'div.ecl-banner--video section.ecl-file--video div.ecl-file__caption': Video caption
-      'div.ecl-banner--video div.ecl-col-lg-6 p.ecl-paragraph': "Banner description"
-- array:
-    '#type': pattern
-    '#id': file
-    '#fields':
-      button_label: "Download"
-      file:
-        title: "File title example"
-        name: "document.pdf"
-        url: "http://example.com"
-        mime: "application/pdf"
-        size: "10000"
-        language_code: "en"
-  assertions:
-    count:
-      'span.ecl-file__icon': 1
-      'a.ecl-file__download[href="http://example.com"]': 1
-    equals:
-      'div.ecl-file__title': "File title example"
-      'span.ecl-file__language': "English"
-      'span.ecl-file__properties': "(9.77 KB - PDF)"
-      # The screen reader sees the span sr-only text as well, not just the label.
-      'a.ecl-file__download': "Download(9.77 KB - PDF)"
-- array:
-    '#type': pattern
-    '#id': file_translation
-    '#fields':
-      button_label: "Download"
-      file:
-        variant: "translation"
-        title: "File title example"
-        name: "document.pdf"
-        url: "http://example.com"
-        mime: "application/pdf"
-        size: "10000"
-        language_code: "en"
-      translations:
-        - mime: "application/pdf"
-          url: "http://example.com/document_fr.pdf"
-          size: "150000"
-          name: "document.pdf"
-          language_code: "fr"
-        - mime: "application/pdf"
-          url: "http://example.com/document_it.pdf"
-          size: "160000"
-          name: "document.pdf"
-          language_code: "it"
-        - mime: "application/pdf"
-          url: "http://example.com/document_hu.pdf"
-          size: "170000"
-          name: "document.pdf"
-          language_code: "hu"
-  assertions:
-    count:
-      'span.ecl-file__icon': 1
-      'a.ecl-file__download[href="http://example.com"]': 1
-      'div.ecl-file__translations': 1
-      'li.ecl-file__translations-item': 3
-      'a[href="http://example.com/document_fr.pdf"]': 1
-      'a[href="http://example.com/document_it.pdf"]': 1
-      'a[href="http://example.com/document_hu.pdf"]': 1
-    equals:
-      'div.ecl-file__title': "File title example"
-      'span.ecl-file__language': "English"
-      'span.ecl-file__properties': "(9.77 KB - PDF)"
-      # The screen reader sees the span sr-only text as well, not just the label.
-      'a.ecl-file__download': "Download(9.77 KB - PDF)"
-      'button.ecl-file__translations-toggle': "Available translations (3)"
-      '.ecl-file__translations-item:nth-child(1) span.ecl-file__translations-title': "français"
-      '.ecl-file__translations-item:nth-child(1) div.ecl-file__translations-info': "(146.48 KB - PDF)"
-      '.ecl-file__translations-item:nth-child(2) span.ecl-file__translations-title': "italiano"
-      '.ecl-file__translations-item:nth-child(2) div.ecl-file__translations-info': "(156.25 KB - PDF)"
-      '.ecl-file__translations-item:nth-child(3) span.ecl-file__translations-title': "magyar"
-      '.ecl-file__translations-item:nth-child(3) div.ecl-file__translations-info': "(166.02 KB - PDF)"
-- array:
-    '#type': pattern
-    '#id': file_link
-    '#fields':
-      files:
-        - title: "Example document"
-          mime: "application/doc"
-          url: "http://example.com/document.doc"
-          size: "150000"
-          name: "document.doc"
-        - title: "Example presentation"
-          mime: "application/ppt"
-          url: "http://example.com/presentation.PPT"
-          size: "160000"
-          name: "presentation.ppt"
-        - title: "Example video"
-          mime: "application/mpeg"
-          url: "http://example.com/video.mpeg"
-          size: "170000"
-          name: "video.mpeg"
-        - title: "Example spreadsheet"
-          mime: "application/xls"
-          url: "http://example.com/spreadsheet.xls"
-          size: "170000"
-          name: "spreadsheet.xls"
-  assertions:
-    count:
-      'div.ecl-file__link-container': 4
-    equals:
-      'a[href="http://example.com/document.doc"] span.ecl-icon--file + span.ecl-file__title': "Example document"
-      'a[href="http://example.com/presentation.PPT"] span.ecl-icon--presentation + span.ecl-file__title': "Example presentation"
-      'a[href="http://example.com/video.mpeg"] span.ecl-icon--video + span.ecl-file__title': "Example video"
-      'a[href="http://example.com/spreadsheet.xls"] span.ecl-icon--spreadsheet + span.ecl-file__title': "Example spreadsheet"
-- array:
-    '#type': pattern
-    '#id': file_image
-    '#fields':
-      variant: "image"
-      src: "https://placehold.it/450x250"
-      alt: "placeholder image"
-      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-  assertions:
-    count:
-      'section.ecl-file--image': 1
-      'img.ecl-file__image[src="https://placehold.it/450x250"]': 1
-    equals:
-      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-- array:
-    '#type': pattern
-    '#id': file_video
-    '#fields':
-      variant: "video"
-      src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
-      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-      is_iframe: true
-      ratio: "16-9"
-  assertions:
-    count:
-      'div.ecl-u-ratio-16-9': 1
-      'section.ecl-file--video': 1
-      'iframe.ecl-file__video[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
-    equals:
-      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-- array:
-    '#type': pattern
-    '#id': gallery
-    '#fields':
-      items:
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-            alt: "Example alt"
-            responsive: true
-          caption: "Example caption"
-          icon: 'camera'
-  assertions:
-    count:
-      '.ecl-gallery': 1
-      '.ecl-gallery .ecl-row': 1
-      '.ecl-gallery .ecl-row .ecl-gallery__item': 1
-      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 1
-      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img.jpg"]': 1
-      '.ecl-gallery__item-container .ecl-gallery__image[alt="Example alt"]': 1
-      '.ecl-gallery__item-container span.ecl-gallery__caption': 1
-      '.ecl-gallery__item-container span.ecl-icon': 1
-      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
-    equals:
-      'span.ecl-gallery__caption': "Example caption"
-- array:
-    '#type': pattern
-    '#id': gallery
-    '#fields':
-      items:
-        - thumbnail:
-            src: "http://img_1.jpg"
-            name: "img_1.jpg"
-          icon: "camera"
-        - thumbnail:
-            src: "http://img_2.jpg"
-            name: "img_2.jpg"
-            responsive: false
-          icon: "audio"
-  assertions:
-    count:
-      '.ecl-gallery': 1
-      '.ecl-gallery .ecl-row': 1
-      '.ecl-gallery .ecl-row .ecl-gallery__item': 2
-      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 2
-      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"]': 1
-      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"].ecl-image--fluid': 1
-      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
-      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"].ecl-image--fluid': 0
-      '.ecl-gallery__item-container span.ecl-gallery__caption': 0
-      '.ecl-gallery__item-container span.ecl-icon': 2
-      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
-      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--audio': 1
-- array:
-    '#type': pattern
-    '#id': gallery
-    '#fields':
-      items:
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-  assertions:
-    count:
-      '.ecl-gallery': 1
-      '.ecl-gallery .ecl-row': 2
-      '.ecl-gallery .ecl-row .ecl-gallery__item': 5
-      '.ecl-gallery__item-container span.ecl-icon': 0
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
-      url: "http://example.com"
-      title: "Item title"
-      detail: "Item text"
-  assertions:
-    count:
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-      'div.ecl-list-item__detail': "Item text"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_primary"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      detail: "Item text"
-      image:
-        src: "http://via.placeholder.com/150x150"
-        alt: "Alternate text for primary image"
-  assertions:
-    count:
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/150x150"][alt="Alternate text for primary image"]': 1
-      '.ecl-list-item__secondary': 0
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-      'div.ecl-list-item__detail': "Item text"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "thumbnail_secondary"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      detail: "Item text"
-      image:
-        src: "http://via.placeholder.com/120x80"
-        alt: "Alternate text for secondary image"
-  assertions:
-    count:
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      '.ecl-list-item__secondary img.ecl-image[src="http://via.placeholder.com/120x80"][alt="Alternate text for secondary image"]': 1
-      '.ecl-list-item__primary': 0
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-      'div.ecl-list-item__detail': "Item text"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "highlight"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      image:
-        src: "http://via.placeholder.com/300x300"
-        alt: "Alternate text for image"
-  assertions:
-    count:
-      '.ecl-list-item.ecl-list-item--highlight': 1
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
-      '.ecl-list-item__secondary': 0
-      'div.ecl-list-item__detail': 0
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "block"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-  assertions:
-    count:
-      '.ecl-list-item.ecl-list-item--block': 1
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      'div.ecl-list-item__detail': 1
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "navigation"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-  assertions:
-    count:
-      '.ecl-list-item.ecl-list-item--navigation': 1
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      'div.ecl-list-item__detail': 1
-    equals:
-      'h3.ecl-list-item__title': "Item title"
-      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-- array:
-    '#type': pattern
-    '#id': list_item_block_one_column
-    '#fields':
-      title: "Block title"
-      items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "Business, Economy, Euro"
-             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      button_label: "View all"
-      button_url: "http://example.com"
-  assertions:
-    count:
-      'a.ecl-button[href="http://example.com"]': 1
-      'ul.ecl-listing--two-columns': 0
-      'ul.ecl-listing--three-columns': 0
-    equals:
-      'h3.ecl-heading': "Block title"
-      'h3.ecl-list-item__title': "Business, Economy, Euro"
-      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-button': "View all"
-- array:
-    '#type': pattern
-    '#id': list_item_block_two_columns
-    '#fields':
-      items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "List item 1"
-             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "List item 2"
-             detail: "Description for list item 2."
-      button_label: "View all"
-      button_url: "http://example.com"
-  assertions:
-    count:
-      'ul.ecl-listing--two-columns': 1
-      'ul.ecl-listing--three-columns': 0
-- array:
-    '#type': pattern
-    '#id': list_item_block_three_columns
-    '#fields':
-      items:
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "List item 1"
-             detail: "Description for list item 1."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "List item 1"
-             detail: "Description for list item 2."
-        - '#type': "pattern"
-          '#id': "list_item"
-          '#fields':
-             title: "List item 3"
-             detail: "Description for list item 3."
-      button_label: "View all"
-      button_url: "http://example.com"
-  assertions:
-    count:
-      'ul.ecl-listing--two-columns': 0
-      'ul.ecl-listing--three-columns': 1
-- array:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      identity: "Digital single market"
-      title: "Business, Economy, Euro"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
-      metas:
-        - "News article"
-        - "6 July 2015"
-        - "Brussels"
-      language_switcher:
-        current: "French"
-        unavailable: "English"
-        is_primary: true
-        options:
-          - href: "#"
-            hreflang: "es"
-            label: "Spanish"
-            lang: "es"
-          - href: "#"
-            hreflang: "it"
-            label: "Italian"
-            lang: "it"
-      breadcrumb:
-        0:
-          href: "http://www.example.com/"
-          label: "European Commission"
-        1:
-          href: "http://www.example.com/announcements/"
-          label: "Announcements"
-  assertions:
-    count:
-      '.ecl-page-header': 1
-      '.ecl-breadcrumb__segment': 2
-      '.ecl-lang-select-page--primary': 1
-      '.ecl-lang-select-page__option': 3
-      '.ecl-meta__item': 3
-    equals:
-      '.ecl-page-header__identity': "Digital single market"
-      '.ecl-page-header__title h1': "Business, Economy, Euro"
-      '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
-      '.ecl-lang-select-page__unavailable': "English"
-      '.ecl-lang-select-page__option--is-selected': "French"
-      '.ecl-lang-select-page__option a[lang="es"]': "Spanish"
-      '.ecl-lang-select-page__option a[lang="it"]': "Italian"
-      '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
-      '.ecl-breadcrumb__segment--last span': "Announcements"
-- array:
-    '#type': pattern
-    '#id': accordion
-    '#fields':
-      identifier: "id"
-      items:
-        - icon: "icon-1"
-          title: "Title 1"
-          body: "Body 1"
-        - icon: "icon-2"
-          title: "Title 2"
-          body: "Body 2"
-  assertions:
-    count:
-      '.ecl-accordion__header': 2
-      '.ecl-accordion__header-icon': 2
-      '.ecl-accordion__panel': 2
-      'button#ecl-accordion-header-id-0 > .ecl-icon--icon-1': 1
-      'button#ecl-accordion-header-id-1 > .ecl-icon--icon-2': 1
-    equals:
-      'button#ecl-accordion-header-id-0': "Title 1"
-      'dd#ecl-accordion-panel-id-0': "Body 1"
-      'button#ecl-accordion-header-id-1': "Title 2"
-      'dd#ecl-accordion-panel-id-1': "Body 2"
-- array:
-    '#type': pattern
-    '#id': dropdown
-    '#fields':
-      identifier: "id"
-      button_label: "Dropdown"
-      links:
-        - label: 'Link 1'
-          url: 'http://example.com/1'
-        - label: 'Link 2'
-          url: 'http://example.com/2'
-        - label: 'Link 3'
-          url: 'http://example.com/3'
-  assertions:
-    count:
-      'a.ecl-link-block__link[href="http://example.com/1"]': 1
-      'a.ecl-link-block__link[href="http://example.com/2"]': 1
-      'a.ecl-link-block__link[href="http://example.com/3"]': 1
-    equals:
-      'button.ecl-button': "Dropdown"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
-- array:
-    '#type': pattern
-    '#id': field
-    '#fields':
-      label: "Field text"
-      body: "Field body"
-  assertions:
-    count:
-      '.ecl-field__label': 1
-      '.ecl-field__body': 1
-    equals:
-      '.ecl-field__label': "Field text"
-      '.ecl-field__body': "Field body"
-- array:
-    '#type': pattern
-    '#id': field
-    '#fields':
-      variant: "aligned"
-      body: "Field body"
-  assertions:
-    count:
-      '.ecl-field__label': 0
-      '.ecl-field__body': 1
-    equals:
-      '.ecl-field__body': "Field body"
-- array:
-    '#type': pattern
-    '#id': link_block
-    '#fields':
-      title: "Link block title"
-      links:
-        - label: 'Link 1'
-          url: 'http://link-1.com'
-        - label: 'Link 2'
-          url: 'http://link-2.com'
-        - label: 'Link 3'
-          url: 'http://link-3.com'
-  assertions:
-    count:
-      'a.ecl-link-block__link[href="http://link-1.com"]': 1
-      'a.ecl-link-block__link[href="http://link-2.com"]': 1
-      'a.ecl-link-block__link[href="http://link-3.com"]': 1
-    equals:
-      '.ecl-link-block__title': "Link block title"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
-- array:
-    '#type': pattern
-    '#id': blockquote
-    '#fields':
-      body: "Quote text"
-      author: "Quote author"
-  assertions:
-    equals:
-      '.ecl-blockquote__author': "― Quote author"
-      '.ecl-blockquote__body': "Quote text"
-- array:
-    '#type': pattern
-    '#id': context_nav
-    '#fields':
-      label: "Navigation title"
-      items:
-        - href: "http://link-1.com"
-          label: "Item one"
-        - href: "http://link-2.com"
-          label: "Item two"
-        - href: "http://link-3.com"
-          label: "Item three"
-        - href: "http://link-4.com"
-          label: "Item four"
-        - href: "http://link-5.com"
-          label: "Item five"
-      limit: 4
-      more_label: "More label"
-  assertions:
-    count:
-      'li.ecl-context-nav__item': 6
-      'li.ecl-context-nav__item--over-limit': 1
-      'li.ecl-context-nav__more': 1
-    equals:
-      'li.ecl-context-nav__item a[href="http://link-1.com"]': "Item one"
-      'li.ecl-context-nav__item a[href="http://link-2.com"]': "Item two"
-      'li.ecl-context-nav__item a[href="http://link-3.com"]': "Item three"
-      'li.ecl-context-nav__item a[href="http://link-4.com"]': "Item four"
-      'li.ecl-context-nav__item a[href="http://link-5.com"]': "Item five"
-      '.ecl-context-nav__label': "Navigation title"
-      '.ecl-context-nav__button': "More label"
+#- array:
+#    '#plain_text': 'Dummy placeholder for form rendering test.'
+#  assert:
+#    count:
+#      'form.ecl-form': 1
+#- array:
+#    '#type': button
+#    '#value': Preview
+#  assert:
+#    contains:
+#      - 'Preview'
+#    count:
+#      'button.ecl-button.ecl-button--default': 1
+#- array:
+#    '#type': textfield
+#    '#value': Textfield
+#  assert:
+#    contains:
+#      - 'Textfield'
+#    count:
+#      'input.form-text.ecl-text-input': 1
+#- array:
+#    '#type': password
+#    '#value': Password
+#  assert:
+#    contains:
+#      - 'password'
+#    count:
+#      'input.form-text.ecl-text-input': 1
+#- array:
+#    '#type': email
+#    '#value': Email
+#  assert:
+#    contains:
+#      - 'Email'
+#    count:
+#      'input.form-email.ecl-text-input': 1
+#- array:
+#    '#type': textarea
+#    '#title': Textarea
+#    '#value': Text
+#  assert:
+#    contains:
+#      - 'Textarea'
+#      - 'Text'
+#    count:
+#      'textarea.form-textarea.ecl-textarea': 1
+#- array:
+#    '#type': select
+#    '#title': Select element
+#    '#options':
+#      1: One
+#      2: Two
+#      3: Three
+#  assert:
+#    contains:
+#      - 'Select element'
+#    count:
+#      'select.form-select.ecl-select': 1
+#- array:
+#    '#type': radios
+#    '#title': Radios
+#    '#title_display': above
+#    '#default_value': 1
+#    '#id': test-radios
+#    '#options':
+#      0: Closed
+#      1: Active
+#  assert:
+#    contains:
+#      - 'Radios'
+#    count:
+#      'div#test-radios': 1
+#- array:
+#    '#type': checkbox
+#    '#title': Checkbox
+#    '#attributes':
+#      'foo': bar
+#  assert:
+#    contains:
+#      - 'Checkbox'
+#      - 'foo="bar"'
+#    count:
+#      'label.ecl-form-label.ecl-checkbox': 1
+#      'input.ecl-checkbox__input.ecl-u-sr-only': 1
+#      'span.ecl-checkbox__label': 1
+#- array:
+#    '#type': checkbox
+#    '#title': Checkbox
+#    '#disabled': true
+#  assert:
+#    contains:
+#      - 'Checkbox'
+#    count:
+#      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
+#- array:
+#    '#type': checkbox
+#    '#title': Checkbox
+#    '#set_validation_error': true
+#  assert:
+#    contains:
+#      - 'Checkbox'
+#    count:
+#      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
+#- array:
+#    '#type': fieldset
+#    '#title': Fieldset
+#  assert:
+#    count:
+#      'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
+#      'legend.ecl-form-legend': 1
+#- array:
+#    '#type': radio
+#    '#title': Radio
+#    '#attributes':
+#      'foo': bar
+#  assert:
+#    contains:
+#      - 'Radio'
+#      - 'foo="bar"'
+#    count:
+#      'label.ecl-form-label.ecl-radio': 1
+#      'span.ecl-radio__label': 1
+#- array:
+#    '#type': radio
+#    '#title': Radio
+#    '#disabled': true
+#  assert:
+#    contains:
+#      - 'Radio'
+#    count:
+#      'label.ecl-form-label.ecl-radio.ecl-radio--is-disabled': 1
+#- array:
+#    '#type': radio
+#    '#title': Radio
+#    '#set_validation_error': true
+#  assertions:
+#    contains:
+#      - 'Radio'
+#    count:
+#      'label.ecl-form-label.ecl-radio.ecl-radio--has-error': 1
+#- array:
+#    '#type': pattern
+#    '#id': banner_hero
+#    '#fields':
+#      image:
+#        src: "http://via.placeholder.com/150x150"
+#      title: "Banner title"
+#      url: "http://example.com"
+#      description: "Banner description"
+#  assertions:
+#    count:
+#      'div.ecl-banner--hero': 1
+#      'img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
+#    equals:
+#      'div.ecl-banner__content h3.ecl-heading a.ecl-link[href="http://example.com"]': Banner title
+#      'div.ecl-banner__content p.ecl-banner__description': "Banner description"
+#- array:
+#    '#type': pattern
+#    '#id': banner_video
+#    '#fields':
+#      video:
+#        src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+#        is_iframe: "true"
+#        ratio: "16-9"
+#        caption: "Video caption"
+#      description: "<p class=\"ecl-paragraph\">Banner description</p>"
+#  assertions:
+#    count:
+#      'div.ecl-banner--video': 1
+#      'div.ecl-banner--video section.ecl-file--video div.ecl-u-ratio-16-9 iframe[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
+#    equals:
+#      'div.ecl-banner--video section.ecl-file--video div.ecl-file__caption': Video caption
+#      'div.ecl-banner--video div.ecl-col-lg-6 p.ecl-paragraph': "Banner description"
+#- array:
+#    '#type': pattern
+#    '#id': file
+#    '#fields':
+#      button_label: "Download"
+#      file:
+#        title: "File title example"
+#        name: "document.pdf"
+#        url: "http://example.com"
+#        mime: "application/pdf"
+#        size: "10000"
+#        language_code: "en"
+#  assertions:
+#    count:
+#      'span.ecl-file__icon': 1
+#      'a.ecl-file__download[href="http://example.com"]': 1
+#    equals:
+#      'div.ecl-file__title': "File title example"
+#      'span.ecl-file__language': "English"
+#      'span.ecl-file__properties': "(9.77 KB - PDF)"
+#      # The screen reader sees the span sr-only text as well, not just the label.
+#      'a.ecl-file__download': "Download(9.77 KB - PDF)"
+#- array:
+#    '#type': pattern
+#    '#id': file_translation
+#    '#fields':
+#      button_label: "Download"
+#      file:
+#        variant: "translation"
+#        title: "File title example"
+#        name: "document.pdf"
+#        url: "http://example.com"
+#        mime: "application/pdf"
+#        size: "10000"
+#        language_code: "en"
+#      translations:
+#        - mime: "application/pdf"
+#          url: "http://example.com/document_fr.pdf"
+#          size: "150000"
+#          name: "document.pdf"
+#          language_code: "fr"
+#        - mime: "application/pdf"
+#          url: "http://example.com/document_it.pdf"
+#          size: "160000"
+#          name: "document.pdf"
+#          language_code: "it"
+#        - mime: "application/pdf"
+#          url: "http://example.com/document_hu.pdf"
+#          size: "170000"
+#          name: "document.pdf"
+#          language_code: "hu"
+#  assertions:
+#    count:
+#      'span.ecl-file__icon': 1
+#      'a.ecl-file__download[href="http://example.com"]': 1
+#      'div.ecl-file__translations': 1
+#      'li.ecl-file__translations-item': 3
+#      'a[href="http://example.com/document_fr.pdf"]': 1
+#      'a[href="http://example.com/document_it.pdf"]': 1
+#      'a[href="http://example.com/document_hu.pdf"]': 1
+#    equals:
+#      'div.ecl-file__title': "File title example"
+#      'span.ecl-file__language': "English"
+#      'span.ecl-file__properties': "(9.77 KB - PDF)"
+#      # The screen reader sees the span sr-only text as well, not just the label.
+#      'a.ecl-file__download': "Download(9.77 KB - PDF)"
+#      'button.ecl-file__translations-toggle': "Available translations (3)"
+#      '.ecl-file__translations-item:nth-child(1) span.ecl-file__translations-title': "français"
+#      '.ecl-file__translations-item:nth-child(1) div.ecl-file__translations-info': "(146.48 KB - PDF)"
+#      '.ecl-file__translations-item:nth-child(2) span.ecl-file__translations-title': "italiano"
+#      '.ecl-file__translations-item:nth-child(2) div.ecl-file__translations-info': "(156.25 KB - PDF)"
+#      '.ecl-file__translations-item:nth-child(3) span.ecl-file__translations-title': "magyar"
+#      '.ecl-file__translations-item:nth-child(3) div.ecl-file__translations-info': "(166.02 KB - PDF)"
+#- array:
+#    '#type': pattern
+#    '#id': file_link
+#    '#fields':
+#      files:
+#        - title: "Example document"
+#          mime: "application/doc"
+#          url: "http://example.com/document.doc"
+#          size: "150000"
+#          name: "document.doc"
+#        - title: "Example presentation"
+#          mime: "application/ppt"
+#          url: "http://example.com/presentation.PPT"
+#          size: "160000"
+#          name: "presentation.ppt"
+#        - title: "Example video"
+#          mime: "application/mpeg"
+#          url: "http://example.com/video.mpeg"
+#          size: "170000"
+#          name: "video.mpeg"
+#        - title: "Example spreadsheet"
+#          mime: "application/xls"
+#          url: "http://example.com/spreadsheet.xls"
+#          size: "170000"
+#          name: "spreadsheet.xls"
+#  assertions:
+#    count:
+#      'div.ecl-file__link-container': 4
+#    equals:
+#      'a[href="http://example.com/document.doc"] span.ecl-icon--file + span.ecl-file__title': "Example document"
+#      'a[href="http://example.com/presentation.PPT"] span.ecl-icon--presentation + span.ecl-file__title': "Example presentation"
+#      'a[href="http://example.com/video.mpeg"] span.ecl-icon--video + span.ecl-file__title': "Example video"
+#      'a[href="http://example.com/spreadsheet.xls"] span.ecl-icon--spreadsheet + span.ecl-file__title': "Example spreadsheet"
+#- array:
+#    '#type': pattern
+#    '#id': file_image
+#    '#fields':
+#      variant: "image"
+#      src: "https://placehold.it/450x250"
+#      alt: "placeholder image"
+#      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+#  assertions:
+#    count:
+#      'section.ecl-file--image': 1
+#      'img.ecl-file__image[src="https://placehold.it/450x250"]': 1
+#    equals:
+#      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+#- array:
+#    '#type': pattern
+#    '#id': file_video
+#    '#fields':
+#      variant: "video"
+#      src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+#      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+#      is_iframe: true
+#      ratio: "16-9"
+#  assertions:
+#    count:
+#      'div.ecl-u-ratio-16-9': 1
+#      'section.ecl-file--video': 1
+#      'iframe.ecl-file__video[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
+#    equals:
+#      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+#- array:
+#    '#type': pattern
+#    '#id': gallery
+#    '#fields':
+#      items:
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#            alt: "Example alt"
+#            responsive: true
+#          caption: "Example caption"
+#          icon: 'camera'
+#  assertions:
+#    count:
+#      '.ecl-gallery': 1
+#      '.ecl-gallery .ecl-row': 1
+#      '.ecl-gallery .ecl-row .ecl-gallery__item': 1
+#      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 1
+#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img.jpg"]': 1
+#      '.ecl-gallery__item-container .ecl-gallery__image[alt="Example alt"]': 1
+#      '.ecl-gallery__item-container span.ecl-gallery__caption': 1
+#      '.ecl-gallery__item-container span.ecl-icon': 1
+#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
+#    equals:
+#      'span.ecl-gallery__caption': "Example caption"
+#- array:
+#    '#type': pattern
+#    '#id': gallery
+#    '#fields':
+#      items:
+#        - thumbnail:
+#            src: "http://img_1.jpg"
+#            name: "img_1.jpg"
+#          icon: "camera"
+#        - thumbnail:
+#            src: "http://img_2.jpg"
+#            name: "img_2.jpg"
+#            responsive: false
+#          icon: "audio"
+#  assertions:
+#    count:
+#      '.ecl-gallery': 1
+#      '.ecl-gallery .ecl-row': 1
+#      '.ecl-gallery .ecl-row .ecl-gallery__item': 2
+#      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 2
+#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"]': 1
+#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"].ecl-image--fluid': 1
+#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
+#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"].ecl-image--fluid': 0
+#      '.ecl-gallery__item-container span.ecl-gallery__caption': 0
+#      '.ecl-gallery__item-container span.ecl-icon': 2
+#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
+#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--audio': 1
+#- array:
+#    '#type': pattern
+#    '#id': gallery
+#    '#fields':
+#      items:
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#        - thumbnail:
+#            src: "http://img.jpg"
+#            name: "img.jpg"
+#  assertions:
+#    count:
+#      '.ecl-gallery': 1
+#      '.ecl-gallery .ecl-row': 2
+#      '.ecl-gallery .ecl-row .ecl-gallery__item': 5
+#      '.ecl-gallery__item-container span.ecl-icon': 0
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#fields':
+#      url: "http://example.com"
+#      title: "Item title"
+#      detail: "Item text"
+#  assertions:
+#    count:
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#      'div.ecl-list-item__detail': "Item text"
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#variant': "thumbnail_primary"
+#    '#fields':
+#      title: "Item title"
+#      url: "http://example.com"
+#      detail: "Item text"
+#      image:
+#        src: "http://via.placeholder.com/150x150"
+#        alt: "Alternate text for primary image"
+#  assertions:
+#    count:
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/150x150"][alt="Alternate text for primary image"]': 1
+#      '.ecl-list-item__secondary': 0
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#      'div.ecl-list-item__detail': "Item text"
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#variant': "thumbnail_secondary"
+#    '#fields':
+#      title: "Item title"
+#      url: "http://example.com"
+#      detail: "Item text"
+#      image:
+#        src: "http://via.placeholder.com/120x80"
+#        alt: "Alternate text for secondary image"
+#  assertions:
+#    count:
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      '.ecl-list-item__secondary img.ecl-image[src="http://via.placeholder.com/120x80"][alt="Alternate text for secondary image"]': 1
+#      '.ecl-list-item__primary': 0
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#      'div.ecl-list-item__detail': "Item text"
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#variant': "highlight"
+#    '#fields':
+#      title: "Item title"
+#      url: "http://example.com"
+#      image:
+#        src: "http://via.placeholder.com/300x300"
+#        alt: "Alternate text for image"
+#  assertions:
+#    count:
+#      '.ecl-list-item.ecl-list-item--highlight': 1
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
+#      '.ecl-list-item__secondary': 0
+#      'div.ecl-list-item__detail': 0
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#variant': "block"
+#    '#fields':
+#      title: "Item title"
+#      url: "http://example.com"
+#      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#  assertions:
+#    count:
+#      '.ecl-list-item.ecl-list-item--block': 1
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      'div.ecl-list-item__detail': 1
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#variant': "navigation"
+#    '#fields':
+#      title: "Item title"
+#      url: "http://example.com"
+#      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#  assertions:
+#    count:
+#      '.ecl-list-item.ecl-list-item--navigation': 1
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      'div.ecl-list-item__detail': 1
+#    equals:
+#      'h3.ecl-list-item__title': "Item title"
+#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#- array:
+#    '#type': pattern
+#    '#id': list_item_block_one_column
+#    '#fields':
+#      title: "Block title"
+#      items:
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "Business, Economy, Euro"
+#            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#      button_label: "View all"
+#      button_url: "http://example.com"
+#  assertions:
+#    count:
+#      'a.ecl-button[href="http://example.com"]': 1
+#      'ul.ecl-listing--two-columns': 0
+#      'ul.ecl-listing--three-columns': 0
+#    equals:
+#      'h3.ecl-heading': "Block title"
+#      'h3.ecl-list-item__title': "Business, Economy, Euro"
+#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+#      'a.ecl-button': "View all"
+#- array:
+#    '#type': pattern
+#    '#id': list_item_block_two_columns
+#    '#fields':
+#      items:
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "List item 1"
+#            detail: "Description for list item 1."
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "List item 2"
+#            detail: "Description for list item 2."
+#      button_label: "View all"
+#      button_url: "http://example.com"
+#  assertions:
+#    count:
+#      'ul.ecl-listing--two-columns': 1
+#      'ul.ecl-listing--three-columns': 0
+#- array:
+#    '#type': pattern
+#    '#id': list_item_block_three_columns
+#    '#fields':
+#      items:
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "List item 1"
+#            detail: "Description for list item 1."
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "List item 1"
+#            detail: "Description for list item 2."
+#        - '#type': "pattern"
+#          '#id': "list_item"
+#          '#fields':
+#            title: "List item 3"
+#            detail: "Description for list item 3."
+#      button_label: "View all"
+#      button_url: "http://example.com"
+#  assertions:
+#    count:
+#      'ul.ecl-listing--two-columns': 0
+#      'ul.ecl-listing--three-columns': 1
+#- array:
+#    '#type': pattern
+#    '#id': page_header
+#    '#fields':
+#      identity: "Digital single market"
+#      title: "Business, Economy, Euro"
+#      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+#      metas:
+#        - "News article"
+#        - "6 July 2015"
+#        - "Brussels"
+#      language_switcher:
+#        current: "French"
+#        unavailable: "English"
+#        is_primary: true
+#        options:
+#          - href: "#"
+#            hreflang: "es"
+#            label: "Spanish"
+#            lang: "es"
+#          - href: "#"
+#            hreflang: "it"
+#            label: "Italian"
+#            lang: "it"
+#      breadcrumb:
+#        0:
+#          href: "http://www.example.com/"
+#          label: "European Commission"
+#        1:
+#          href: "http://www.example.com/announcements/"
+#          label: "Announcements"
+#  assertions:
+#    count:
+#      '.ecl-page-header': 1
+#      '.ecl-breadcrumb__segment': 2
+#      '.ecl-lang-select-page--primary': 1
+#      '.ecl-lang-select-page__option': 3
+#      '.ecl-meta__item': 3
+#    equals:
+#      '.ecl-page-header__identity': "Digital single market"
+#      '.ecl-page-header__title h1': "Business, Economy, Euro"
+#      '.ecl-page-header__intro': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
+#      '.ecl-lang-select-page__unavailable': "English"
+#      '.ecl-lang-select-page__option--is-selected': "French"
+#      '.ecl-lang-select-page__option a[lang="es"]': "Spanish"
+#      '.ecl-lang-select-page__option a[lang="it"]': "Italian"
+#      '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
+#      '.ecl-breadcrumb__segment--last span': "Announcements"
+#- array:
+#    '#type': pattern
+#    '#id': accordion
+#    '#fields':
+#      identifier: "id"
+#      items:
+#        - icon: "icon-1"
+#          title: "Title 1"
+#          body: "Body 1"
+#        - icon: "icon-2"
+#          title: "Title 2"
+#          body: "Body 2"
+#  assertions:
+#    count:
+#      '.ecl-accordion__header': 2
+#      '.ecl-accordion__header-icon': 2
+#      '.ecl-accordion__panel': 2
+#      'button#ecl-accordion-header-id-0 > .ecl-icon--icon-1': 1
+#      'button#ecl-accordion-header-id-1 > .ecl-icon--icon-2': 1
+#    equals:
+#      'button#ecl-accordion-header-id-0': "Title 1"
+#      'dd#ecl-accordion-panel-id-0': "Body 1"
+#      'button#ecl-accordion-header-id-1': "Title 2"
+#      'dd#ecl-accordion-panel-id-1': "Body 2"
+#- array:
+#    '#type': pattern
+#    '#id': dropdown
+#    '#fields':
+#      identifier: "id"
+#      button_label: "Dropdown"
+#      links:
+#        - label: 'Link 1'
+#          url: 'http://example.com/1'
+#        - label: 'Link 2'
+#          url: 'http://example.com/2'
+#        - label: 'Link 3'
+#          url: 'http://example.com/3'
+#  assertions:
+#    count:
+#      'a.ecl-link-block__link[href="http://example.com/1"]': 1
+#      'a.ecl-link-block__link[href="http://example.com/2"]': 1
+#      'a.ecl-link-block__link[href="http://example.com/3"]': 1
+#    equals:
+#      'button.ecl-button': "Dropdown"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+#- array:
+#    '#type': pattern
+#    '#id': field
+#    '#fields':
+#      label: "Field text"
+#      body: "Field body"
+#  assertions:
+#    count:
+#      '.ecl-field__label': 1
+#      '.ecl-field__body': 1
+#    equals:
+#      '.ecl-field__label': "Field text"
+#      '.ecl-field__body': "Field body"
+#- array:
+#    '#type': pattern
+#    '#id': field
+#    '#fields':
+#      variant: "aligned"
+#      body: "Field body"
+#  assertions:
+#    count:
+#      '.ecl-field__label': 0
+#      '.ecl-field__body': 1
+#    equals:
+#      '.ecl-field__body': "Field body"
+#- array:
+#    '#type': pattern
+#    '#id': link_block
+#    '#fields':
+#      title: "Link block title"
+#      links:
+#        - label: 'Link 1'
+#          url: 'http://link-1.com'
+#        - label: 'Link 2'
+#          url: 'http://link-2.com'
+#        - label: 'Link 3'
+#          url: 'http://link-3.com'
+#  assertions:
+#    count:
+#      'a.ecl-link-block__link[href="http://link-1.com"]': 1
+#      'a.ecl-link-block__link[href="http://link-2.com"]': 1
+#      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+#    equals:
+#      '.ecl-link-block__title': "Link block title"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+#      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+#- array:
+#    '#type': pattern
+#    '#id': blockquote
+#    '#fields':
+#      body: "Quote text"
+#      author: "Quote author"
+#  assertions:
+#    equals:
+#      '.ecl-blockquote__author': "― Quote author"
+#      '.ecl-blockquote__body': "Quote text"
+#- array:
+#    '#type': pattern
+#    '#id': context_nav
+#    '#fields':
+#      label: "Navigation title"
+#      items:
+#        - href: "http://link-1.com"
+#          label: "Item one"
+#        - href: "http://link-2.com"
+#          label: "Item two"
+#        - href: "http://link-3.com"
+#          label: "Item three"
+#        - href: "http://link-4.com"
+#          label: "Item four"
+#        - href: "http://link-5.com"
+#          label: "Item five"
+#      limit: 4
+#      more_label: "More label"
+#  assertions:
+#    count:
+#      'li.ecl-context-nav__item': 6
+#      'li.ecl-context-nav__item--over-limit': 1
+#      'li.ecl-context-nav__more': 1
+#    equals:
+#      'li.ecl-context-nav__item a[href="http://link-1.com"]': "Item one"
+#      'li.ecl-context-nav__item a[href="http://link-2.com"]': "Item two"
+#      'li.ecl-context-nav__item a[href="http://link-3.com"]': "Item three"
+#      'li.ecl-context-nav__item a[href="http://link-4.com"]': "Item four"
+#      'li.ecl-context-nav__item a[href="http://link-5.com"]': "Item five"
+#      '.ecl-context-nav__label': "Navigation title"
+#      '.ecl-context-nav__button': "More label"
 - array:
     '#type': pattern
     '#id': button
@@ -750,25 +750,62 @@
       label: "Button label"
       href: "http://example.com"
       icon: "caret-right"
+      icon_position: "before"
+      type_attribute: "default"
   assertions:
     count:
-      'a.ecl-button--caret-right': 1
+      'a.ecl-link--icon-before': 1
+      'a.ecl-link--icon-before svg': 1
     equals:
-      'a.ecl-button--default[href="http://example.com"]': "Button label"
+      'a.ecl-link--default[href="http://example.com"]': " Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': default
+    '#fields':
+      label: "Button label"
+      href: "http://example.com"
+      type_attribute: "standalone"
+  assertions:
+    count:
+      'a.ecl-link--standalone': 1
+      'a.ecl-link--icon': 0
+    equals:
+      'a.ecl-link--standalone[href="http://example.com"]': "Button label"
 - array:
     '#type': pattern
     '#id': button
     '#variant': primary
     '#fields':
       type_attribute: "submit"
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button--primary': 1
+      'button.ecl-button[type="submit"]': 1
+    equals:
+      'button.ecl-button--primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': primary
+    '#fields':
+      type_attribute: "reset"
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button[type="reset"]': 1
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': primary
+    '#fields':
+      type_attribute: "button"
       is_block: true
       label: "Button label"
   assertions:
     count:
-      'button.ecl-button--block': 1
-      'button.ecl-button[type="submit"]': 1
-    equals:
-      'button.ecl-button--primary': "Button label"
+      'button.ecl-button[type="button"]': 1
 - array:
     '#type': pattern
     '#id': button
@@ -778,6 +815,24 @@
   assertions:
     equals:
       'button.ecl-button--secondary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': ghost
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--ghost': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': search
+    '#fields':
+      label: "Button label"
+  assertions:
+    equals:
+      'button.ecl-button--search': "Button label"
 - array:
     '#type': pattern
     '#id': button
@@ -814,153 +869,153 @@
   assertions:
     equals:
       'button.ecl-button--splash-page': "Button label"
-- array:
-    '#type': pattern
-    '#id': social_media_links_vertical
-    '#fields':
-      title: "View European Commission on:"
-      links:
-        - service: "facebook"
-          label: "Facebook"
-          url: "http://facebook.com"
-        - service: "twitter"
-          label: "Twitter"
-          url: "http://twitter.com"
-        - service: "instagram"
-          label: "Instagram"
-          url: "http://instagram.com"
-  assertions:
-    count:
-      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
-      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
-      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
-    equals:
-      '.ecl-social-media-link > p.ecl-paragraph': "View European Commission on:"
-      'a.ecl-social-icon--facebook': "Facebook"
-      'a.ecl-social-icon--twitter': "Twitter"
-      'a.ecl-social-icon--instagram': "Instagram"
-- array:
-    '#type': pattern
-    '#id': social_media_links_horizontal
-    '#fields':
-      title: "View European Commission on:"
-      links:
-        - service: "facebook"
-          label: "Facebook"
-          url: "http://facebook.com"
-        - service: "twitter"
-          label: "Twitter"
-          url: "http://twitter.com"
-        - service: "instagram"
-          label: "Instagram"
-          url: "http://instagram.com"
-  assertions:
-    count:
-      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
-      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
-      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
-    equals:
-      '.ecl-social-media-link--horizontal > p.ecl-paragraph': "View European Commission on:"
-      'a.ecl-social-icon--facebook': "Facebook"
-      'a.ecl-social-icon--twitter': "Twitter"
-      'a.ecl-social-icon--instagram': "Instagram"
-- array:
-    '#type': pattern
-    '#id': social_icon
-    '#fields':
-      service: "facebook"
-      label: "Facebook"
-      url: "http://facebook.com"
-  assertions:
-    count:
-      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
-    equals:
-      'a.ecl-social-icon--facebook': "Facebook"
-- array:
-    '#type': pattern
-    '#id': social_icon
-    '#fields':
-      service: "facebook"
-      label: "Facebook"
-      url: ""
-  assertions:
-    count:
-      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 0
-      'a.ecl-social-icon--facebook': 0
-      'span.ecl-social-icon--facebook': 1
-    equals:
-      'span.ecl-social-icon--facebook': "Facebook"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#fields':
-      url: "http://example.com"
-      title: ""
-      detail: ""
-  assertions:
-    count:
-      'a.ecl-list-item__link[href="http://example.com"]': 1
-      'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
-      'div.ecl-list-item__detail.ecl-paragraph': 0
-- array:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "default"
-    '#fields':
-      image:
-        src: "http://via.placeholder.com/120x80"
-        alt: "Alternative of image"
-      metas:
-        - "Breaking news article"
-        - "Brussels"
-      title: "Featured news article"
-      link:
-        href: "https://example.com"
-        label: "Link title"
-  assertions:
-    count:
-      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-      'div.ecl-meta span.ecl-meta__item': 2
-      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 0
-- array:
-    '#type': pattern
-    '#id': featured_item
-    '#variant': "extended"
-    '#fields':
-      image:
-        src: "http://via.placeholder.com/120x80"
-        alt: "Alternative of image"
-      metas:
-        - "Breaking news article"
-        - "Brussels"
-        - "European Commission"
-      title: "Featured news article"
-      link:
-        href: "https://example.com"
-        label: "Link title"
-  assertions:
-    count:
-      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-      'div.ecl-meta span.ecl-meta__item': 3
-      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
-- array:
-    '#type': pattern
-    '#id': dialog
-    '#variant': default
-    '#fields':
-      aria_hidden: false
-      title: "Dialog title"
-      description: "Dialog description"
-      body: "<p>Dialog body</p>"
-      dismiss:
-        hide: false
-        label: "Dismiss label"
-  assertions:
-    count:
-      'div.ecl-dialog[aria-hidden="false"] button.ecl-dialog__dismiss[aria-label="Dismiss label"]': 1
-    equals:
-      'div.ecl-dialog[aria-hidden="false"] h3#ecl-dialog-title': "Dialog title"
-      'div.ecl-dialog[aria-hidden="false"] p#ecl-dialog-description': "Dialog description"
-      'div.ecl-dialog[aria-hidden="false"] div.ecl-dialog__body': "<p>Dialog body</p>"
+#- array:
+#    '#type': pattern
+#    '#id': social_media_links_vertical
+#    '#fields':
+#      title: "View European Commission on:"
+#      links:
+#        - service: "facebook"
+#          label: "Facebook"
+#          url: "http://facebook.com"
+#        - service: "twitter"
+#          label: "Twitter"
+#          url: "http://twitter.com"
+#        - service: "instagram"
+#          label: "Instagram"
+#          url: "http://instagram.com"
+#  assertions:
+#    count:
+#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+#      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+#      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+#    equals:
+#      '.ecl-social-media-link > p.ecl-paragraph': "View European Commission on:"
+#      'a.ecl-social-icon--facebook': "Facebook"
+#      'a.ecl-social-icon--twitter': "Twitter"
+#      'a.ecl-social-icon--instagram': "Instagram"
+#- array:
+#    '#type': pattern
+#    '#id': social_media_links_horizontal
+#    '#fields':
+#      title: "View European Commission on:"
+#      links:
+#        - service: "facebook"
+#          label: "Facebook"
+#          url: "http://facebook.com"
+#        - service: "twitter"
+#          label: "Twitter"
+#          url: "http://twitter.com"
+#        - service: "instagram"
+#          label: "Instagram"
+#          url: "http://instagram.com"
+#  assertions:
+#    count:
+#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+#      'a.ecl-social-icon--instagram[href="http://instagram.com"]': 1
+#      'a.ecl-social-icon--twitter[href="http://twitter.com"]': 1
+#    equals:
+#      '.ecl-social-media-link--horizontal > p.ecl-paragraph': "View European Commission on:"
+#      'a.ecl-social-icon--facebook': "Facebook"
+#      'a.ecl-social-icon--twitter': "Twitter"
+#      'a.ecl-social-icon--instagram': "Instagram"
+#- array:
+#    '#type': pattern
+#    '#id': social_icon
+#    '#fields':
+#      service: "facebook"
+#      label: "Facebook"
+#      url: "http://facebook.com"
+#  assertions:
+#    count:
+#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
+#    equals:
+#      'a.ecl-social-icon--facebook': "Facebook"
+#- array:
+#    '#type': pattern
+#    '#id': social_icon
+#    '#fields':
+#      service: "facebook"
+#      label: "Facebook"
+#      url: ""
+#  assertions:
+#    count:
+#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 0
+#      'a.ecl-social-icon--facebook': 0
+#      'span.ecl-social-icon--facebook': 1
+#    equals:
+#      'span.ecl-social-icon--facebook': "Facebook"
+#- array:
+#    '#type': pattern
+#    '#id': list_item
+#    '#fields':
+#      url: "http://example.com"
+#      title: ""
+#      detail: ""
+#  assertions:
+#    count:
+#      'a.ecl-list-item__link[href="http://example.com"]': 1
+#      'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
+#      'div.ecl-list-item__detail.ecl-paragraph': 0
+#- array:
+#    '#type': pattern
+#    '#id': featured_item
+#    '#variant': "default"
+#    '#fields':
+#      image:
+#        src: "http://via.placeholder.com/120x80"
+#        alt: "Alternative of image"
+#      metas:
+#        - "Breaking news article"
+#        - "Brussels"
+#      title: "Featured news article"
+#      link:
+#        href: "https://example.com"
+#        label: "Link title"
+#  assertions:
+#    count:
+#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
+#      'div.ecl-meta span.ecl-meta__item': 2
+#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
+#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 0
+#- array:
+#    '#type': pattern
+#    '#id': featured_item
+#    '#variant': "extended"
+#    '#fields':
+#      image:
+#        src: "http://via.placeholder.com/120x80"
+#        alt: "Alternative of image"
+#      metas:
+#        - "Breaking news article"
+#        - "Brussels"
+#        - "European Commission"
+#      title: "Featured news article"
+#      link:
+#        href: "https://example.com"
+#        label: "Link title"
+#  assertions:
+#    count:
+#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
+#      'div.ecl-meta span.ecl-meta__item': 3
+#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
+#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
+#- array:
+#    '#type': pattern
+#    '#id': dialog
+#    '#variant': default
+#    '#fields':
+#      aria_hidden: false
+#      title: "Dialog title"
+#      description: "Dialog description"
+#      body: "<p>Dialog body</p>"
+#      dismiss:
+#        hide: false
+#        label: "Dismiss label"
+#  assertions:
+#    count:
+#      'div.ecl-dialog[aria-hidden="false"] button.ecl-dialog__dismiss[aria-label="Dismiss label"]': 1
+#    equals:
+#      'div.ecl-dialog[aria-hidden="false"] h3#ecl-dialog-title': "Dialog title"
+#      'div.ecl-dialog[aria-hidden="false"] p#ecl-dialog-description': "Dialog description"
+#      'div.ecl-dialog[aria-hidden="false"] div.ecl-dialog__body': "<p>Dialog body</p>"

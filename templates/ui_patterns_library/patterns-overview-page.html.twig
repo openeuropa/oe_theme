@@ -23,13 +23,20 @@
   <div class="ecl-u-clearfix ecl-u-pv-l">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
-    {% include '@ecl/ec-component-button' with {
-      'href': url('ui_patterns.patterns.single', {'name': pattern_name }),
-      'label': "View as standalone"|t,
-      'type': 'link',
-      'modifier': 'call',
-      'extra_classes': 'ecl-u-f-r',
-      'icon': 'caret-right',
+    {% include '@ecl/link' with {
+      'link': {
+        'type': 'standalone',
+        'path': url('ui_patterns.patterns.single', {'name': pattern_name }),
+        'label': "View as standalone"|t,
+        'icon_position': 'after'
+      },
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'fullscreen',
+        'size': 's',
+      },
+      'extra_classes': 'ecl-u-f-r'
     } %}
     <h2 class="ecl-u-mt-none">{{ pattern.label }}</h2>
     {{ pattern.meta }}
