@@ -246,8 +246,13 @@ function oe_theme_preprocess_form_element(array &$variables): void {
   if (in_array($variables['element']['#type'], ['checkbox', 'radio'])) {
     $variables['label_display'] = 'none';
   }
-  if (in_array($variables['element']['#type'], ['textfield', 'password'])) {
-    $variables['ecl_type'] = 'text-input';
+  $ecl_type_mappings = [
+    'textfield' => 'text-input',
+    'password' => 'text-input',
+    'textarea' => 'text-area',
+  ];
+  if (isset($ecl_type_mappings[$variables['element']['#type']])) {
+    $variables['ecl_type'] = $ecl_type_mappings[$variables['element']['#type']];
   }
 }
 
