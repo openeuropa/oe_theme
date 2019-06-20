@@ -15,7 +15,6 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
    * Test footer block rendering.
    */
   public function testFooterBlockRendering(): void {
-
     // Override config "oe_corporate_blocks.data.footer" with some custom data.
     /* @var $config_obj \Drupal\Core\Config\Config */
     $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.data.footer');

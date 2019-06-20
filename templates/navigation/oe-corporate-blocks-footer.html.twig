@@ -12,105 +12,18 @@
 #}
 {% set _back_to_top = {
   link: {
-    'label': 'Go to top',
+    'label': 'Go to top'|t,
     'path': '#top',
   },
   'icon': {
-    'path': '/dist/images/icons/sprites/icons.svg',
+    'path': ecl_icon_path,
     'size': 'fluid',
   },
 } %}
 
-{% set _identity = custom_footer|default([]) %}
-
-{% set _sections_about_ec_links = {} %}
-{% for item in corporate_footer.about_ec.items %}
-  {% set _item = {
-    'link': {
-      'label': item.label,
-      'path': item.href,
-      'icon_position': 'after'
-    }
-  } %}
-  {% set _sections_about_ec_links = _sections_about_ec_links|merge([_item]) %}
-{% endfor %}
-
-{% set _sections_about_ec = {
-  'title': corporate_footer.about_ec.title|default(''),
-  'links': _sections_about_ec_links
-} %}
-
-{% set _sections_social_media_links = {} %}
-{% for item in corporate_footer.social_media.items %}
-  {%  if (item.type == 'social-network') %}
-    {% set _item = {
-      'link': {
-        'label': item.link.label,
-        'path': item.link.href,
-        'icon_position': 'before'
-      },
-      'icon': {
-        'path': '/dist/images/icons/sprites/icons.svg',
-        'type': 'branded',
-        'name': item.icon|default(''),
-      }
-    } %}
-  {% else %}
-    {% set _item = {
-      'link': {
-        'label': item.link.label,
-        'path': item.link.href,
-        'icon_position': 'after'
-      },
-      'icon': {
-        'path': '/dist/images/icons/sprites/icons.svg',
-        'type': 'ui',
-        'name': 'external',
-      }
-    } %}
-  {% endif %}
-  {% set _sections_social_media_links = _sections_social_media_links|merge([_item]) %}
-{% endfor %}
-
-{% set _sections_social_media = {
-  'title': corporate_footer.social_media.title|default('Follow us'|t),
-  'links': _sections_social_media_links
-} %}
-
-{% set _sections_about_eu_links = {} %}
-{% for item in corporate_footer.about_eu.items %}
-  {% set _item = {
-    'link': {
-      'label': item.label,
-      'path': item.href,
-      'icon_position': 'after'
-    },
-    'icon': {
-      'path': '/dist/images/icons/sprites/icons.svg',
-      'type': 'ui',
-      'name': 'external',
-    }
-  } %}
-  {% set _sections_about_eu_links = _sections_about_eu_links|merge([_item]) %}
-{% endfor %}
-
-{% set _sections_about_eu = {
-  'title': corporate_footer.about_eu.title|default(''),
-  'links': _sections_about_eu_links
-} %}
-
-{% set _sections = [_sections_about_ec, _sections_social_media, _sections_about_eu] %}
-
-{% set _common = {} %}
-{% for item in corporate_footer.bottom_links %}
-  {% set _item = {
-    'link': {
-      'label': item.label,
-      'path': item.href
-    }
-  } %}
-  {% set _common = _common|merge([_item]) %}
-{% endfor %}
+{% set _identity = custom_footer %}
+{% set _sections = corporate_footer.sections %}
+{% set _common = corporate_footer.common %}
 
 {% include '@ecl/footer' with {
   'back_to_top': _back_to_top,
