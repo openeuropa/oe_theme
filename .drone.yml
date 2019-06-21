@@ -69,6 +69,7 @@ pipeline:
       # - ./vendor/bin/phpunit
       # @todo: Manually add tests to run until port to ECL 2.0 is completed.
       - ./vendor/bin/phpunit --filter StatusMessagesTest
+      - ./vendor/bin/phpunit --filter ParagraphsTest::testQuote
       - ./vendor/bin/phpunit --filter RenderingTest::testRendering
 
   behat:

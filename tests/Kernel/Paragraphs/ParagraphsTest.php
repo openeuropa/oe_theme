@@ -131,10 +131,10 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('blockquote .ecl-blockquote__body')->html();
+    $actual = $crawler->filter('blockquote.ecl-blockquote .ecl-blockquote__body')->html();
     $this->assertEquals($expected['body'], trim($actual));
 
-    $actual = $crawler->filter('blockquote footer.ecl-blockquote__author cite')->text();
+    $actual = $crawler->filter('blockquote.ecl-blockquote footer.ecl-blockquote__attribution cite.ecl-blockquote__author')->text();
     $this->assertEquals($expected['attribution'], trim($actual));
   }
 

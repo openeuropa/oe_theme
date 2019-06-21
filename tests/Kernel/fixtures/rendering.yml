@@ -701,16 +701,16 @@
 #      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
 #      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
 #      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
-#- array:
-#    '#type': pattern
-#    '#id': blockquote
-#    '#fields':
-#      body: "Quote text"
-#      author: "Quote author"
-#  assertions:
-#    equals:
-#      '.ecl-blockquote__author': "― Quote author"
-#      '.ecl-blockquote__body': "Quote text"
+- array:
+    '#type': pattern
+    '#id': blockquote
+    '#fields':
+      body: "Quote text"
+      author: "Quote author"
+  assertions:
+    equals:
+      '.ecl-blockquote__author': "Quote author"
+      '.ecl-blockquote__body': "Quote text"
 #- array:
 #    '#type': pattern
 #    '#id': context_nav
