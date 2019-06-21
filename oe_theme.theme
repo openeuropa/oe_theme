@@ -239,6 +239,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
  */
 function oe_theme_preprocess_radios(array &$variables): void {
   $element = &$variables['element'];
+  $variables['invalid'] = !empty($element['#errors']);
 
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['label'] = ['#markup' => $element['#title']];

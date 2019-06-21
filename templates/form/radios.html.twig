@@ -12,7 +12,7 @@
 {%
   set classes = [
     'ecl-radio__group',
-    attributes.hasClass('error') ? 'ecl-radio__group--invalid',
+    invalid ? 'ecl-radio__group--invalid',
   ]
 %}
 <div{{ attributes.setAttribute("role", "radiogroup").addClass(classes) }}>
