@@ -13,13 +13,12 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% set ecl_array = element.ecl_array %}
-{% include '@ecl/generic-component-form-text-input' with {
-  'id': ecl_array.id,
-  'name': ecl_array.name,
-  'has_error': ecl_array.has_error,
-  'is_disabled': ecl_array.disabled,
-  'type': ecl_array.type,
-  'extra_classes': ecl_array.class|safe_join(' '),
-  'extra_attributes': ecl_array.extra_attributes,
+{% include '@ecl/text-input' with {
+  'id': input_array.id,
+  'name': input_array.name,
+  'has_error': input_array.has_error,
+  'is_disabled': input_array.disabled,
+  'type': input_array.type,
+  'extra_classes': input_array.class|safe_join(' '),
+  'extra_attributes': input_array.extra_attributes,
 } %}

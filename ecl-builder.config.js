@@ -52,5 +52,6 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-social-media-follow/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-social-media-share/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-tag/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-text-input/*.twig', to: path.resolve(outputFolder, 'templates/components') },
   ]
 };

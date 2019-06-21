@@ -810,16 +810,16 @@ function oe_theme_theme_suggestions_form_alter(array &$suggestions, array $varia
  * Implements hook_preprocess_input().
  */
 function oe_theme_preprocess_input__search(array &$variables): void {
-  _oe_theme_preprocess_input_text($variables['element']);
+  $variables['input_array'] = _oe_theme_preprocess_search_input_text($variables['element']);
 }
 
 /**
  * Implements hook_preprocess_form().
  */
 function oe_theme_preprocess_form__oe_search_search_form(array &$variables): void {
-  _oe_theme_preprocess_input_text($variables['element']['keys']);
-  $variables['input'] = $variables['element']['keys']['ecl_array'];
-  $variables['label'] = t('Search');
+  $variables['input_array'] = _oe_theme_preprocess_search_input_text($variables['element']['keys']);
+  $variables['input_array']['hide_label'] = TRUE;
+  $variables['label'] = $variables['input_array']['label'] = t('Search');
 }
 
 /**
@@ -830,29 +830,33 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
  *
  * @param array $element
  *   Set of element data.
+ *
+ * @return array
+ *   The ECL array for the input element.
  */
-function _oe_theme_preprocess_input_text(array &$element): void {
+function _oe_theme_preprocess_search_input_text(array $element): array {
   // Generate the extra attributes array from the general attributes.
   $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
-  $element['ecl_array'] = [
+  $ecl_array = [
     'id' => $element['#attributes']['id'],
     'name' => $element['#attributes']['name'],
     'disabled' => isset($element['#attributes']['disabled']) ? $element['#attributes']['disabled'] : FALSE,
     'type' => $element['#attributes']['type'],
     'class' => $element['#attributes']['class'],
   ];
-  $extra_attributes = array_diff_key($extra_attributes, $element['ecl_array']);
-  $element['ecl_array']['extra_attributes'] = [];
+  $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
+  $ecl_array['extra_attributes'] = [];
   foreach ($extra_attributes as $key => $value) {
     if (is_string($value)) {
-      $element['ecl_array']['extra_attributes'][] = [
+      $ecl_array['extra_attributes'][] = [
         'name' => $key,
         'value' => $value,
       ];
     }
   }
   // Map rest array elements.
-  $element['ecl_array']['has_error'] = !empty($element['#errors']);
+  $ecl_array['invalid'] = !empty($element['#errors']);
+  return $ecl_array;
 }
 
 /**
