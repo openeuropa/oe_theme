@@ -210,7 +210,6 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
  */
 function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $element = &$variables['element'];
-  $variables['has_error'] = !empty($element['#errors']);
 
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['title'] = ['#markup' => $element['#title']];
@@ -222,7 +221,6 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
     'id' => 'id',
     'name' => 'name',
     'value' => 'value',
-    'checked' => 'checked',
     'disabled' => 'disabled',
   ];
   $extra_attributes = array_diff_key($extra_attributes, $predefined_attributes);
@@ -233,6 +231,26 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
         'value' => $value,
       ];
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_input__radio().
+ */
+function oe_theme_preprocess_radios(array &$variables): void {
+  $element = &$variables['element'];
+
+  if (isset($element['#title']) && $element['#title'] !== '') {
+    $variables['label'] = ['#markup' => $element['#title']];
+  }
+}
+
+/**
+ * Implements hook_preprocess_input__radio().
+ */
+function oe_theme_preprocess_fieldset(array &$variables): void {
+  if ($variables['element']['#type'] == 'radios') {
+    $variables['legend_display'] = FALSE;
   }
 }
 

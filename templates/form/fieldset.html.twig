@@ -24,10 +24,12 @@
       required ? 'form-required',
     ]
   %}
+  {% if legend_display %}
   {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
   <legend{{ legend.attributes.addClass('ecl-form-legend') }}>
     <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
   </legend>
+  {% endif %}
   <div class="fieldset-wrapper">
     {% if errors %}
       <div>
