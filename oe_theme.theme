@@ -235,7 +235,7 @@ function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_input__radio().
+ * Implements hook_preprocess_radios().
  */
 function oe_theme_preprocess_radios(array &$variables): void {
   $element = &$variables['element'];
@@ -247,7 +247,7 @@ function oe_theme_preprocess_radios(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_input__radio().
+ * Implements hook_preprocess_fieldset().
  */
 function oe_theme_preprocess_fieldset(array &$variables): void {
   if ($variables['element']['#type'] == 'radios') {

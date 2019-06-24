@@ -1,8 +1,8 @@
-#- array:
-#    '#plain_text': 'Dummy placeholder for form rendering test.'
-#  assert:
-#    count:
-#      'form.ecl-form': 1
+- array:
+    '#plain_text': 'Dummy placeholder for form rendering test.'
+  assert:
+    count:
+      'form.ecl-form': 1
 - array:
     '#type': button
     '#value': Preview
