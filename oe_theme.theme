@@ -538,7 +538,6 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
   foreach (array_values($variables['items']) as $key => $item) {
     $variables['items'][$key] = [
       'id' => $variables['identifier'] . '-' . $key,
-      'level' => $key,
       'toggle' => [
         'label' => $item['title'],
         'icon' => [
