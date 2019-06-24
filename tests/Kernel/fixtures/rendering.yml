@@ -44,7 +44,7 @@
       - 'Textarea'
       - 'Text'
     count:
-      'textarea.form-textarea.ecl-textarea': 1
+      'textarea.form-textarea.ecl-text-area': 1
 - array:
     '#type': select
     '#title': Select element
