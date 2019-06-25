@@ -13,15 +13,11 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl/ec-component-form-radio' with {
+{% include '@ecl/radio/radio-button' with {
     'id': attributes.id,
     'name': attributes.name,
     'value': attributes.value,
-    'checked': attributes.checked is defined,
-    'is_disabled': attributes.disabled is defined,
-    'has_error': has_error,
-    'has_extra': has_extra,
+    'disabled': attributes.disabled is defined,
     'label': title,
-    'extra_attributes': extra_attributes,
-    'input_attributes': input_attributes,
+    'extra_attributes': input_attributes,
 } %}{{ children }}
