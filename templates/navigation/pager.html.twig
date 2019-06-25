@@ -24,14 +24,7 @@
  */
 #}
 {% if items %}
-  {% include '@ecl/ec-component-pager' with {
-    'current_page': current,
-    'pages': items.pages,
-    'first': items.first,
-    'previous': items.previous,
-    'next': items.next,
-    'last': items.last,
-    'max_page': max_page,
-    'label_page': 'Page'|t,
+  {% include '@ecl/pagination' with {
+    'items': ecl_items,
   } %}
 {% endif %}
