@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.1.0](https://github.com/openeuropa/oe_theme/tree/1.1.0) (2019-06-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.0.0...1.1.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1978: Add message library. [\#242](https://github.com/openeuropa/oe_theme/pull/242) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1977: Update @ecl/buttons for ecl2. [\#238](https://github.com/openeuropa/oe_theme/pull/238) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-736: Setup theme to start upgrade to ECL 2.0. [\#235](https://github.com/openeuropa/oe_theme/pull/235) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-1892: Add ecl classes to block titles. [\#234](https://github.com/openeuropa/oe_theme/pull/234) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1948: Theming of Document media type. [\#233](https://github.com/openeuropa/oe_theme/pull/233) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1897: Removed drone permission fix. [\#230](https://github.com/openeuropa/oe_theme/pull/230) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [1.0.0](https://github.com/openeuropa/oe_theme/tree/1.0.0) (2019-05-15)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.17.0...1.0.0)
 
@@ -9,6 +21,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-1864: Update changelog file for 1.0.0 release. [\#228](https://github.com/openeuropa/oe_theme/pull/228) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1807: Make sure that moderation block is always right below the tabs - part 2 [\#226](https://github.com/openeuropa/oe_theme/pull/226) ([upchuk](https://github.com/upchuk))
 
 ## [0.17.0](https://github.com/openeuropa/oe_theme/tree/0.17.0) (2019-05-14)
