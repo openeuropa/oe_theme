@@ -7,7 +7,7 @@
 {% include '@ecl/file' with {
   'title': file.title,
   'language': file.language_code|to_native_language,
-  'meta': file.size|format_size ~ ' - ' ~ file.extension|upper,
+  'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
   'icon': {
     'path': ecl_icon_path,
     'type': 'general',

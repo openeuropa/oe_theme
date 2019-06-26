@@ -178,79 +178,77 @@
 #    equals:
 #      'div.ecl-banner--video section.ecl-file--video div.ecl-file__caption': Video caption
 #      'div.ecl-banner--video div.ecl-col-lg-6 p.ecl-paragraph': "Banner description"
-#- array:
-#    '#type': pattern
-#    '#id': file
-#    '#fields':
-#      button_label: "Download"
-#      file:
-#        title: "File title example"
-#        name: "document.pdf"
-#        url: "http://example.com"
-#        mime: "application/pdf"
-#        size: "10000"
-#        language_code: "en"
-#  assertions:
-#    count:
-#      'span.ecl-file__icon': 1
-#      'a.ecl-file__download[href="http://example.com"]': 1
-#    equals:
-#      'div.ecl-file__title': "File title example"
-#      'span.ecl-file__language': "English"
-#      'span.ecl-file__properties': "(9.77 KB - PDF)"
-#      # The screen reader sees the span sr-only text as well, not just the label.
-#      'a.ecl-file__download': "Download(9.77 KB - PDF)"
-#- array:
-#    '#type': pattern
-#    '#id': file_translation
-#    '#fields':
-#      button_label: "Download"
-#      file:
-#        variant: "translation"
-#        title: "File title example"
-#        name: "document.pdf"
-#        url: "http://example.com"
-#        mime: "application/pdf"
-#        size: "10000"
-#        language_code: "en"
-#      translations:
-#        - mime: "application/pdf"
-#          url: "http://example.com/document_fr.pdf"
-#          size: "150000"
-#          name: "document.pdf"
-#          language_code: "fr"
-#        - mime: "application/pdf"
-#          url: "http://example.com/document_it.pdf"
-#          size: "160000"
-#          name: "document.pdf"
-#          language_code: "it"
-#        - mime: "application/pdf"
-#          url: "http://example.com/document_hu.pdf"
-#          size: "170000"
-#          name: "document.pdf"
-#          language_code: "hu"
-#  assertions:
-#    count:
-#      'span.ecl-file__icon': 1
-#      'a.ecl-file__download[href="http://example.com"]': 1
-#      'div.ecl-file__translations': 1
-#      'li.ecl-file__translations-item': 3
-#      'a[href="http://example.com/document_fr.pdf"]': 1
-#      'a[href="http://example.com/document_it.pdf"]': 1
-#      'a[href="http://example.com/document_hu.pdf"]': 1
-#    equals:
-#      'div.ecl-file__title': "File title example"
-#      'span.ecl-file__language': "English"
-#      'span.ecl-file__properties': "(9.77 KB - PDF)"
-#      # The screen reader sees the span sr-only text as well, not just the label.
-#      'a.ecl-file__download': "Download(9.77 KB - PDF)"
-#      'button.ecl-file__translations-toggle': "Available translations (3)"
-#      '.ecl-file__translations-item:nth-child(1) span.ecl-file__translations-title': "français"
-#      '.ecl-file__translations-item:nth-child(1) div.ecl-file__translations-info': "(146.48 KB - PDF)"
-#      '.ecl-file__translations-item:nth-child(2) span.ecl-file__translations-title': "italiano"
-#      '.ecl-file__translations-item:nth-child(2) div.ecl-file__translations-info': "(156.25 KB - PDF)"
-#      '.ecl-file__translations-item:nth-child(3) span.ecl-file__translations-title': "magyar"
-#      '.ecl-file__translations-item:nth-child(3) div.ecl-file__translations-info': "(166.02 KB - PDF)"
+- array:
+    '#type': pattern
+    '#id': file
+    '#fields':
+      button_label: "Download"
+      file:
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+  assertions:
+    count:
+      'svg.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'div.ecl-file__language': "English"
+      'div.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download': "Download "
+- array:
+    '#type': pattern
+    '#id': file_translation
+    '#fields':
+      button_label: "Download"
+      file:
+        variant: "translation"
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+      translations:
+        - mime: "application/pdf"
+          url: "http://example.com/document_fr.pdf"
+          size: "150000"
+          name: "document.pdf"
+          language_code: "fr"
+        - mime: "application/pdf"
+          url: "http://example.com/document_it.pdf"
+          size: "160000"
+          name: "document.pdf"
+          language_code: "it"
+        - mime: "application/pdf"
+          url: "http://example.com/document_hu.pdf"
+          size: "170000"
+          name: "document.pdf"
+          language_code: "hu"
+  assertions:
+    count:
+      'svg.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file__translation-container': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 3
+#      'a.ecl-file__translation-download[href="http://example.com/document_fr.pdf"]': 1
+#      'a.ecl-file__translation-download[href="http://example.com/document_it.pdf"]': 1
+#      'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'div.ecl-file__language': "English"
+      'div.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download': "Download "
+      'button.ecl-file__translation-toggle': "Available translations (3)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
 #- array:
 #    '#type': pattern
 #    '#id': file_link
@@ -284,36 +282,44 @@
 #      'a[href="http://example.com/presentation.PPT"] span.ecl-icon--presentation + span.ecl-file__title': "Example presentation"
 #      'a[href="http://example.com/video.mpeg"] span.ecl-icon--video + span.ecl-file__title': "Example video"
 #      'a[href="http://example.com/spreadsheet.xls"] span.ecl-icon--spreadsheet + span.ecl-file__title': "Example spreadsheet"
-#- array:
-#    '#type': pattern
-#    '#id': file_image
-#    '#fields':
-#      variant: "image"
-#      src: "https://placehold.it/450x250"
-#      alt: "placeholder image"
-#      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-#  assertions:
-#    count:
-#      'section.ecl-file--image': 1
-#      'img.ecl-file__image[src="https://placehold.it/450x250"]': 1
-#    equals:
-#      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-#- array:
-#    '#type': pattern
-#    '#id': file_video
-#    '#fields':
-#      variant: "video"
-#      src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
-#      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-#      is_iframe: true
-#      ratio: "16-9"
-#  assertions:
-#    count:
-#      'div.ecl-u-ratio-16-9': 1
-#      'section.ecl-file--video': 1
-#      'iframe.ecl-file__video[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
-#    equals:
-#      'div.ecl-file__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- array:
+    '#type': pattern
+    '#id': file_image
+    '#fields':
+      variant: "image"
+      src: "https://placehold.it/450x250"
+      alt: "placeholder image"
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+  assertions:
+    count:
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="https://placehold.it/450x250"]': 1
+    equals:
+      'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+- array:
+    '#type': pattern
+    '#id': file_video
+    '#fields':
+      variant: "video"
+      src: "//defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"
+      src_type: "video/mp4"
+      caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+      tracks:
+        src': ""
+        kind': "captions"
+        src_lang': "en"
+        label': "English"
+  assertions:
+    count:
+      'figure.ecl-media-container': 1
+      'video.ecl-media-container__media': 1
+      'video.ecl-media-container__media source[src="//defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"]': 1
+      'video.ecl-media-container__media source[type="video/mp4"]': 1
+      'video.ecl-media-container__media track[kind="captions"]': 1
+      'video.ecl-media-container__media track[label="English"]': 1
+      'video.ecl-media-container__media track[srclang="en"]': 1
+    equals:
+      'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
 #- array:
 #    '#type': pattern
 #    '#id': gallery

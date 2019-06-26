@@ -69,15 +69,17 @@ pipeline:
       # - ./vendor/bin/phpunit
       # @todo: Manually add tests to run until port to ECL 2.0 is completed.
       - ./vendor/bin/phpunit --filter DateValueObjectTest
+      - ./vendor/bin/phpunit --filter FilePatternRenderingTest
       - ./vendor/bin/phpunit --filter FileValueObjectTest
       - ./vendor/bin/phpunit --filter GalleryItemValueObjectTest
       - ./vendor/bin/phpunit --filter ImageValueObjectTest
+      - ./vendor/bin/phpunit --filter PagerTest
       - ./vendor/bin/phpunit --filter ParagraphsTest::testAccordions
       - ./vendor/bin/phpunit --filter ParagraphsTest::testQuote
       - ./vendor/bin/phpunit --filter RenderingTest::testRendering
       - ./vendor/bin/phpunit --filter SearchFormBlockTest
       - ./vendor/bin/phpunit --filter StatusMessagesTest
-      - ./vendor/bin/phpunit --filter PagerTest
+      - ./vendor/bin/phpunit --filter TwigFiltersTest
 
   behat:
     group: test
