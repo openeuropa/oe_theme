@@ -8,9 +8,6 @@
 {# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
 {% for item in translations %}
-  <pre>
-    {{ dump(item) }}
-  </pre>
   {% set _translations = _translations|merge([{
     'title': item.language_code|to_native_language,
     'meta': item.size|format_size ~ ' - ' ~ file.extension|upper,
