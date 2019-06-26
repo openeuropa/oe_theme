@@ -613,30 +613,29 @@
 #      '.ecl-lang-select-page__option a[lang="it"]': "Italian"
 #      '.ecl-breadcrumb__segment--first a[href="http://www.example.com/"]': "European Commission"
 #      '.ecl-breadcrumb__segment--last span': "Announcements"
-#- array:
-#    '#type': pattern
-#    '#id': accordion
-#    '#fields':
-#      identifier: "id"
-#      items:
-#        - icon: "icon-1"
-#          title: "Title 1"
-#          body: "Body 1"
-#        - icon: "icon-2"
-#          title: "Title 2"
-#          body: "Body 2"
-#  assertions:
-#    count:
-#      '.ecl-accordion__header': 2
-#      '.ecl-accordion__header-icon': 2
-#      '.ecl-accordion__panel': 2
-#      'button#ecl-accordion-header-id-0 > .ecl-icon--icon-1': 1
-#      'button#ecl-accordion-header-id-1 > .ecl-icon--icon-2': 1
-#    equals:
-#      'button#ecl-accordion-header-id-0': "Title 1"
-#      'dd#ecl-accordion-panel-id-0': "Body 1"
-#      'button#ecl-accordion-header-id-1': "Title 2"
-#      'dd#ecl-accordion-panel-id-1': "Body 2"
+- array:
+    '#type': pattern
+    '#id': accordion
+    '#fields':
+      identifier: "id"
+      items:
+        - icon: "icon-1"
+          title: "Title 1"
+          body: "Body 1"
+        - icon: "icon-2"
+          title: "Title 2"
+          body: "Body 2"
+  assertions:
+    count:
+      '.ecl-accordion__title': 2
+      '.ecl-accordion__title .ecl-accordion__toggle .ecl-button__icon': 2
+      '.ecl-accordion__content#id-0': 1
+      '.ecl-accordion__content#id-1': 1
+    equals:
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0"]': "Title 1"
+      '.ecl-accordion__content#id-0': "Body 1"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1"]': "Title 2"
+      '.ecl-accordion__content#id-1': "Body 2"
 #- array:
 #    '#type': pattern
 #    '#id': dropdown

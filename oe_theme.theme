@@ -538,13 +538,16 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
   foreach (array_values($variables['items']) as $key => $item) {
     $variables['items'][$key] = [
       'id' => $variables['identifier'] . '-' . $key,
-      'heading' => [
-        'title' => $item['title'],
-        'icon' => $item['icon'],
-        'level' => $key,
+      'toggle' => [
+        'label' => $item['title'],
+        'icon' => [
+          'path' => $variables['ecl_icon_path'],
+          'type' => 'general',
+          'name' => $item['icon'],
+          'size' => 's',
+        ],
       ],
-      'body' => $item['body'],
-      'isExpanded' => $key === 0,
+      'content' => $item['body'],
     ];
   }
 }

@@ -89,23 +89,19 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-0')->text();
+    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-button__label')->eq(0)->text();
     $this->assertEquals('Item title 1', trim($actual));
 
-    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-0 .ecl-editor')->text();
+    $actual = $crawler->filter('.ecl-accordion__content')->eq(0)->text();
     $this->assertEquals('Item body 1', trim($actual));
 
-    $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-0 span.ecl-icon--arrow-up');
-    $this->assertCount(1, $actual);
-
-    $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-1')->text();
+    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-button__label')->eq(1)->text();
     $this->assertEquals('Item title 2', trim($actual));
 
-    $actual = $crawler->filter('dd#ecl-accordion-panel-paragraph-3-1 .ecl-editor')->text();
+    $actual = $crawler->filter('.ecl-accordion__content')->eq(1)->text();
     $this->assertEquals('Item body 2', trim($actual));
 
-    $actual = $crawler->filter('button#ecl-accordion-header-paragraph-3-1 span.ecl-icon--copy');
-    $this->assertCount(1, $actual);
+    $this->assertCount(2, $crawler->filter('.ecl-button__icon'));
   }
 
   /**
