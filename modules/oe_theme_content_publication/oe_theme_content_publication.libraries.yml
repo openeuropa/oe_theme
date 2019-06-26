@@ -1,0 +1,5 @@
+publication_css:
+  version: VERSION
+  css:
+    theme:
+      css/publication.css: {}

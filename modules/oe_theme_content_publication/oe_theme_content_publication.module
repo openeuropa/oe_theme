@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Publication content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Component\Utility\NestedArray;
+
+/**
+ * Implements template_preprocess_node() for the Publication node type.
+ */
+function oe_theme_content_news_preprocess_node__oe_publication__full(&$variables) {
+  if (NestedArray::keyExists($variables, ['content', 'oe_documents'])) {
+    $variables['content']['oe_documents']['#attached']['library'][] = 'oe_theme_content_publication/publication_css';
+  }
+}
