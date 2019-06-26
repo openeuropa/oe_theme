@@ -4,10 +4,22 @@
  * File video component.
  */
 #}
-{% include '@ecl/ec-component-file' with {
-  'variant': 'video',
+{% include '@ecl/media-container' with {
   'src': src,
-  'caption': caption,
-  'is_iframe': is_iframe,
-  'ratio': ratio,
+  'description': caption,
+  'sources': [
+    {
+      'src': src,
+      'type': src_type|default('video/mp4'),
+    },
+  ],
+  'tracks': [
+    {
+      'src': tracks.src|default(''),
+      'kind': tracks.kind|default('captions'),
+      'src_lang': tracks.src_lang|default('en'),
+      'label': tracks.label|default('English'),
+    },
+  ],
+  'alt': alt,
 } %}
