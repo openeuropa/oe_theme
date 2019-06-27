@@ -22,8 +22,7 @@ class PolicyContentType extends NodeViewRoutesBase {
    * {@inheritdoc}
    */
   public function applies(): bool {
-    /** @var \Drupal\Core\Entity\ContentEntityInterface $entity */
-    $entity = $this->getEntityFromCurrentRoute();
+    $entity = $this->getNode();
 
     return $entity instanceof NodeInterface && $entity->bundle() === 'oe_policy';
   }
@@ -34,7 +33,7 @@ class PolicyContentType extends NodeViewRoutesBase {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $entity = $this->getEntityFromCurrentRoute();
+    $entity = $this->getNode();
     if ($entity->get('oe_summary')->isEmpty()) {
       return $metadata;
     }
