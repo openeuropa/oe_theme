@@ -73,6 +73,7 @@ pipeline:
       - ./vendor/bin/phpunit --filter RenderingTest::testRendering
       - ./vendor/bin/phpunit --filter SearchFormBlockTest
       - ./vendor/bin/phpunit --filter StatusMessagesTest
+      - ./vendor/bin/phpunit --filter PagerTest
 
   behat:
     group: test
