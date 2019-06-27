@@ -205,6 +205,20 @@ Alternatively, you can use the following Drupal Console command to disable/enabl
 ./vendor/bin/drupal site:mode prod # Enable all caches.
 ```
 
+Note: to fully disable Twig caching the following additional manual steps are required:
+
+1. Open `./build/sites/default/services.yml`
+2. Set `cache: false` in `twig.config:` property. E.g.:
+
+```yaml
+parameters:
+     twig.config:
+       cache: false
+ ```
+3. Rebuild Drupal cache: `./vendor/bin/drush cr`
+
+This is due to the following [Drupal Console issue][15].
+
 ### Working with ECL components
 
 You can use the ECL components in your Twig templates by referencing them using the [ECL Twig Loader][16]
