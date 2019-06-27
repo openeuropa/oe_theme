@@ -604,13 +604,9 @@
           label: "Announcements"
       infos:
         - text: "Monday 8 February"
-          icon_type: "general"
-          icon_name: "calendar"
-          icon_path: "/dist/images/icons/sprites/icons.svg"
+          icon: "calendar"
         - text: "Munich, Germany"
-          icon_type: "general"
-          icon_name: "location"
-          icon_path: "/dist/images/icons/sprites/icons.svg"
+          icon: "location"
   assertions:
     count:
       '.ecl-page-header': 1

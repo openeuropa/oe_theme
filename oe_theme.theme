@@ -122,7 +122,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
 }
 
 /**
- * Implements oe_theme_preprocess_oe_corporate_blocks_footer().
+ * Implements hook_preprocess_oe_corporate_blocks_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_footer(array &$variables): void {
   $corporate_footer = $variables['corporate_footer'];

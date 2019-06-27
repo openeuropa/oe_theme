@@ -5,7 +5,7 @@ page_header:
     identity:
       type: "text"
       label: "Identity"
-      description: "Name of the site (deprecated)"
+      description: "Name of the site."
       preview: "Digital single market"
     title:
       type: "text"
@@ -53,10 +53,6 @@ page_header:
       description: "A list of infos of the current page."
       preview:
         - text: "Monday 8 February"
-          icon_type: "general"
-          icon_name: "calendar"
-          icon_path: "/dist/images/icons/sprites/icons.svg"
+          icon: "calendar"
         - text: "Munich, Germany"
-          icon_type: "general"
-          icon_name: "location"
-          icon_path: "/dist/images/icons/sprites/icons.svg"
+          icon: "location"

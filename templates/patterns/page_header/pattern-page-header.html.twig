@@ -33,9 +33,9 @@
   {% set _info = {
     'text' : infos_item.text,
     'icon' : {
-      'type' : infos_item.icon_type,
-      'name' : infos_item.icon_name,
-      'path' : infos_item.icon_path
+      'type' : 'general',
+      'name' : infos_item.icon,
+      'path' : ecl_icon_path
     }
   } %}
   {% set _infos = _infos|merge([_info]) %}
