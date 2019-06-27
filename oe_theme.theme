@@ -347,8 +347,8 @@ function oe_theme_preprocess_pager(array &$variables): void {
     $previous_link['type'] = 'previous';
     $previous_link['aria_label'] = t('Go to previous page');
     $label = t('‹ Previous');
-    if (isset($tags[0])) {
-      $label = $tags[0];
+    if (isset($tags[1])) {
+      $label = $tags[1];
     }
     $previous_link['link']['link'] = [
       'path' => $variables['items']['previous']['href'],
@@ -403,8 +403,8 @@ function oe_theme_preprocess_pager(array &$variables): void {
     $first_link['type'] = 'next';
     $first_link['aria_label'] = t('Go to next page');
     $label = t('Next ›');
-    if (isset($tags[0])) {
-      $label = $tags[0];
+    if (isset($tags[3])) {
+      $label = $tags[3];
     }
     $first_link['link']['link'] = [
       'path' => $variables['items']['next']['href'],
@@ -419,8 +419,8 @@ function oe_theme_preprocess_pager(array &$variables): void {
     $last_link['type'] = 'last';
     $last_link['aria_label'] = t('Go to last page');
     $label = t('Last ››');
-    if (isset($tags[0])) {
-      $label = $tags[0];
+    if (isset($tags[4])) {
+      $label = $tags[4];
     }
     $last_link['link']['link'] = [
       'path' => $variables['items']['last']['href'],
