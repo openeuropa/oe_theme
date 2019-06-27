@@ -18,7 +18,7 @@ services:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: selenium/standalone-chrome-debug:3.141.59-oxygen
+    image: selenium/standalone-chrome-debug:3.11
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
