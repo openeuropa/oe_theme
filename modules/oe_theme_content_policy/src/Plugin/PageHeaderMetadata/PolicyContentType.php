@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_policy\Plugin\PageHeaderMetadata;
 
 use Drupal\node\NodeInterface;
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 
 /**
  * Page header metadata for the OpenEuropa Policy content entity.
@@ -16,7 +16,7 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\EntityCanonicalRoutePage;
  *   weight = -1
  * )
  */
-class PolicyContentType extends EntityCanonicalRoutePage {
+class PolicyContentType extends NodeViewRoutesBase {
 
   /**
    * {@inheritdoc}
