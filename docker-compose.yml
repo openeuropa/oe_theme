@@ -22,7 +22,7 @@ services:
 #      - 3306:3306
   # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
-    image: selenium/standalone-chrome-debug:3.11
+    image: selenium/standalone-chrome-debug:3.141.59-oxygen
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
