@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Default entity metadata extractor")
  * )
  *
- * @deprecated in 1.x, will be removed in 2.0.
+ * @todo: This is deprecated in 1.x, will be removed in 2.0.
  */
 class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
