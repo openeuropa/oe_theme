@@ -6,12 +6,30 @@
  * @see ./core/modules/system/templates/block--system-branding-block.html.twig
  */
 #}
+{% set _header_link = {
+  url: url('<front>'),
+  aria_label: site_name
+}
+%}
+{% set _header_image = {
+  src: ecl_logo_path ~ '/logo--en.svg',
+  alt: site_name ~ ' logo'|t,
+  title: site_name,
+}
+%}
 {% block content %}
   {% if site_logo %}
-    {% include '@ecl/generic-component-logo' with {
-      'href': url('<front>'),
-      'title': site_name,
-      'type': 'right',
-    } only %}
+    <a
+      class="ecl-link ecl-link--standalone"
+      href="{{ _header_link.url }}"
+      aria-label="{{ _header_link.aria_label }}"
+    >
+      <img
+        alt="{{ _header_image.alt }}"
+        title="{{ _header_image.title }}"
+        class="ecl-site-header__logo-image"
+        src="{{ _header_image.src }}"
+      />
+    </a>
   {% endif %}
 {% endblock %}
