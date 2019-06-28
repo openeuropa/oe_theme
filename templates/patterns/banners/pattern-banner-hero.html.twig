@@ -4,10 +4,11 @@
  * Banner hero.
  */
 #}
-{% include '@ecl/ec-component-banner' with {
-  'type': 'hero',
+{% include '@ecl/hero-banner' with {
+  'type': banner_type|e,
   'image': image.src,
   'title': title,
-  'href': url,
+  'link': link,
   'description': description,
+  'centered': centered,
 } %}
