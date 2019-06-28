@@ -5,8 +5,9 @@
 (function (ECL, Drupal) {
   Drupal.behaviors.eclFileTranslations = {
     attach: function attach() {
-      ECL.initExpandables('button.ecl-file__translations-toggle');
-      ECL.dropdown('div.ecl-file__translations-toggle');
+      var fileElement = document.querySelector("[data-ecl-file]");
+      var file = new ECL.FileDownload(fileElement);
+      file.init();
     }
   };
 })(ECL, Drupal);

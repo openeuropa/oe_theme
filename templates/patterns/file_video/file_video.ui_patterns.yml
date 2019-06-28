@@ -5,8 +5,13 @@ file_video:
     src:
       type: "Url"
       label: "Source"
-      description: "Source of the video (A Drupal Url object)"
-      preview: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
+      description: "Source of the video. (A Drupal Url object)"
+      preview: "//defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"
+    src_type:
+      type: "text"
+      label: "Source type"
+      description: "Type of the video source."
+      preview: "video/mp4"
     caption:
       type: "text"
       label: "Caption"
@@ -15,10 +20,24 @@ file_video:
     is_iframe:
       type: "boolean"
       label: "Iframe"
-      description: "Video is displayed in an iframe or not."
+      description: "Video is displayed in an iframe or not. (deprecated)"
       preview: true
     ratio:
       type: "text"
       label: "Ratio"
-      description: "Ratio of the video."
+      description: "Ratio of the video. (deprecated)"
       preview: "16-9"
+    alt:
+      type: "text"
+      label: "Alt"
+      description: "Alternative text for the image."
+      preview: "placeholder image"
+    tracks:
+      type: "array"
+      label: "Tracks"
+      description: "The video tracks."
+      preview:
+        src': "/captions/bunny-en.vtt"
+        kind': "captions"
+        src_lang': "en"
+        label': "English"
