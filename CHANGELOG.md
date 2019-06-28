@@ -1,16 +1,25 @@
 # Change Log
 
+## [1.2.0](https://github.com/openeuropa/oe_theme/tree/1.2.0) (2019-06-28)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.1.0...1.2.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1775: Fixing upgrade path of entity view display. [\#252](https://github.com/openeuropa/oe_theme/pull/252) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-2014: Theming of publication content type. [\#241](https://github.com/openeuropa/oe_theme/pull/241) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.1.0](https://github.com/openeuropa/oe_theme/tree/1.1.0) (2019-06-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.0.0...1.1.0)
 
 **Merged pull requests:**
 
-- OPENEUROPA-1978: Add message library. [\#242](https://github.com/openeuropa/oe_theme/pull/242) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- OPENEUROPA-1977: Update @ecl/buttons for ecl2. [\#238](https://github.com/openeuropa/oe_theme/pull/238) ([voidtek](https://github.com/voidtek))
-- OPENEUROPA-736: Setup theme to start upgrade to ECL 2.0. [\#235](https://github.com/openeuropa/oe_theme/pull/235) ([ademarco](https://github.com/ademarco))
+- Update CHANGELOG.md for release 1.1.0. [\#246](https://github.com/openeuropa/oe_theme/pull/246) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1892: Add ecl classes to block titles. [\#234](https://github.com/openeuropa/oe_theme/pull/234) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1948: Theming of Document media type. [\#233](https://github.com/openeuropa/oe_theme/pull/233) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1927: Theming of Policy content type. [\#232](https://github.com/openeuropa/oe_theme/pull/232) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1897: Removed drone permission fix. [\#230](https://github.com/openeuropa/oe_theme/pull/230) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1775: Add responsive image formatter. [\#222](https://github.com/openeuropa/oe_theme/pull/222) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1798: Page header content is not reflecting changes made before node is published [\#215](https://github.com/openeuropa/oe_theme/pull/215) ([hernani](https://github.com/hernani))
 
 ## [1.0.0](https://github.com/openeuropa/oe_theme/tree/1.0.0) (2019-05-15)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.17.0...1.0.0)
@@ -116,7 +125,6 @@
 **Merged pull requests:**
 
 - Update CHANGELOG.md for 0.12.0 release. [\#193](https://github.com/openeuropa/oe_theme/pull/193) ([sergepavle](https://github.com/sergepavle))
-- OPENEUROPA-1660: News content type theming. [\#192](https://github.com/openeuropa/oe_theme/pull/192) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1744: Implement site switcher in oe\_theme. [\#190](https://github.com/openeuropa/oe_theme/pull/190) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1756: Fix styling of Apply button for moderation block. [\#189](https://github.com/openeuropa/oe_theme/pull/189) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1659: Theme oe\_page content. [\#188](https://github.com/openeuropa/oe_theme/pull/188) ([imanoleguskiza](https://github.com/imanoleguskiza))
@@ -152,7 +160,6 @@
 
 - OPENEUROPA-1562: Update the changelog for the release 0.9.0. [\#167](https://github.com/openeuropa/oe_theme/pull/167) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1549: Renaming config to actually get imported. [\#166](https://github.com/openeuropa/oe_theme/pull/166) ([upchuk](https://github.com/upchuk))
-- OPENEUROPA-1531: Create MediaValueObject, GalleryValueObject and ImageMediaValueObject. [\#163](https://github.com/openeuropa/oe_theme/pull/163) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1533: Add --strict flag for Behat tests executions. [\#158](https://github.com/openeuropa/oe_theme/pull/158) ([sergepavle](https://github.com/sergepavle))
 
 ## [0.8.0](https://github.com/openeuropa/oe_theme/tree/0.8.0) (2019-01-22)
