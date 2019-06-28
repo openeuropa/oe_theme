@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\block\Entity\Block;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Show the page header block on the homepage.
@@ -48,6 +49,11 @@ function oe_theme_helper_update_8001(): ?MarkupInterface {
 function oe_theme_helper_update_8002() {
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $view_display = $storage->load('media.av_portal_photo.oe_theme_main_content');
+  if (!$view_display instanceof EntityViewDisplayInterface) {
+    // If there is no display, it means it was not imported so we do nothing.
+    return;
+  }
+
   $view_content = $view_display->get('content');
   if (isset($view_content['oe_media_avportal_photo'])) {
     $view_content['oe_media_avportal_photo']['type'] = 'avportal_photo_responsive';
