@@ -5,12 +5,7 @@
  */
 #}
 {# @todo: Termorarily disable more link, fix this. #}
-{% include '@ecl/ec-component-social-media-link' with {
-  'variant': 'horizontal',
-  'text': title,
-  'social_icons': links,
-  'more': {
-    'label': '',
-    'href': '',
-  }
+{% include '@ecl/social-media-follow' with {
+  'description': title,
+  'links': links,
 } %}
