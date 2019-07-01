@@ -4,9 +4,23 @@
  * Link block.
  */
 #}
-{% include '@ecl/ec-component-context-nav' with {
+
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    'label': _item.label,
+    'path': _item.href,
+  }]) %}
+{% endfor %}
+
+{% set _item_more = {
+  'label': more_label|default('More'|t)
+}
+%}
+
+{% include '@ecl/contextual-navigation' with {
   'label': label,
-  'items': items,
-  'limit': limit,
-  'more_label': more_label|default('More'|t),
+  'items': _items,
+  'items_limit': limit,
+  'item_more': _item_more,
 } %}
