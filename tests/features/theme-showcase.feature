@@ -51,10 +51,6 @@ Feature: Theme showcase
     When I press "Dropdown"
     Then the "dropdown content" is visible
 
-  Scenario: The demo site footer features placeholder blocks
-    When I am on the homepage
-    Then I should see the "corporate footer" element in the "footer"
-
   @javascript
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage

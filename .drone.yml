@@ -68,11 +68,14 @@ pipeline:
       # @todo: Re-run line below after port to ECL 2.0 is completed.
       # - ./vendor/bin/phpunit
       # @todo: Manually add tests to run until port to ECL 2.0 is completed.
+      - ./vendor/bin/phpunit --filter BreadcrumbTest
+      - ./vendor/bin/phpunit --filter CorporateBlocksFooterTest
       - ./vendor/bin/phpunit --filter DateValueObjectTest
       - ./vendor/bin/phpunit --filter FilePatternRenderingTest
       - ./vendor/bin/phpunit --filter FileValueObjectTest
       - ./vendor/bin/phpunit --filter GalleryItemValueObjectTest
       - ./vendor/bin/phpunit --filter ImageValueObjectTest
+      - ./vendor/bin/phpunit --filter PageHeaderBlockTest
       - ./vendor/bin/phpunit --filter PagerTest
       - ./vendor/bin/phpunit --filter ParagraphsTest::testAccordions
       - ./vendor/bin/phpunit --filter ParagraphsTest::testQuote

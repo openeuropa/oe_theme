@@ -74,31 +74,27 @@ class BreadcrumbTest extends EntityKernelTestBase {
     foreach ($links as $title => $url) {
       $breadcrumb->addLink(Link::createFromRoute($title, $url));
     }
+
     $render_array = $breadcrumb->toRenderable();
     $html = $this->renderRoot($render_array);
-
     $crawler = new Crawler($html);
-
     // Assert wrapper contains ECL class.
     $actual = $crawler->filter('nav.ecl-breadcrumb');
     $this->assertCount(1, $actual);
 
     // Check if the number of rendered list item is correct.
-    $li_item_count = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li');
+    $li_item_count = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__segment');
     $this->assertCount(3, $li_item_count);
 
     // Check if the number of rendered links is correct.
-    $links_count = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li a');
+    $links_count = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__segment a.ecl-breadcrumb__link');
     $this->assertCount(2, $links_count);
 
-    // Check if the number of rendered span is correct.
-    $span_count = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li span');
-    $this->assertCount(1, $span_count);
-
+    // Check if the number of rendered span is correct and
     // Check if the last element of the links is a span instead of an html link.
-    $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last()->children()->first();
-    $this->assertEquals('span', trim($span->nodeName()));
-    $this->assertEquals('Last', trim($span->text()));
+    $current_page = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__current-page');
+    $this->assertCount(1, $current_page);
+    $this->assertEquals('Last', trim($current_page->text()));
 
     // Remove the last element which is not a link from the array.
     array_pop($links);
@@ -106,7 +102,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     // Assert that remaining links are rendered correctly.
     $position = 0;
     foreach ($links as $title => $url) {
-      $link = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
+      $link = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__segment a.ecl-breadcrumb__link')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $position++;
     }
@@ -124,17 +120,15 @@ class BreadcrumbTest extends EntityKernelTestBase {
     $breadcrumb = new Breadcrumb();
     $breadcrumb->addLink(Link::createFromRoute('Home', '<front>'));
     $render_array = $breadcrumb->toRenderable();
-    $html = $this->renderRoot($render_array);
 
+    $html = $this->renderRoot($render_array);
     $crawler = new Crawler($html);
 
-    // Check if the number of rendered span is correct.
-    $span_count = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li span');
-    $this->assertCount(1, $span_count);
-
+    // Check if the number of rendered span is correct and
     // Check if the last element of the links is filled with the page title.
-    $span = $crawler->filter('ol.ecl-breadcrumb__segments-wrapper li')->last();
-    $this->assertEquals('Test full view mode', trim($span->text()));
+    $current_page = $crawler->filter('ol.ecl-breadcrumb__container li.ecl-breadcrumb__current-page');
+    $this->assertCount(1, $current_page);
+    $this->assertEquals('Test full view mode', trim($current_page->text()));
   }
 
 }
