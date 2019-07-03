@@ -19,14 +19,16 @@ banner_hero:
       label: "Title"
       description: "Hero title"
       preview: "White Paper on the future of Europe"
-    link:
-      type: "array"
-      label: "Link"
-      description: "Hero link."
-      preview:
-        link:
-          href: "http://example.com"
-          label: "Subscribe"
+    url:
+      type: "url"
+      label: "Url"
+      description: "Hero link url."
+      preview: "http://example.com"
+    label:
+      type: "text"
+      label: "Label"
+      description: "Hero link label."
+      preview: "Subscribe"
     description:
       type: "text"
       label: "Description"

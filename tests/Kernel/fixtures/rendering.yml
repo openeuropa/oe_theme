@@ -153,10 +153,8 @@
       image:
         src: "http://via.placeholder.com/150x150"
       title: "Banner title"
-      link:
-        link:
-          path: "http://example.com"
-          label: "Subscribe"
+      url: "http://example.com"
+      label: "Subscribe"
       description: "Banner description"
       centered: TRUE
   assertions:
@@ -167,6 +165,7 @@
       'div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'div.ecl-hero-banner__content a.ecl-hero-banner__link[href="http://example.com"]': Subscribe
+
 #- array:
 #    '#type': pattern
 #    '#id': banner_video
