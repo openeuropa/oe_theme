@@ -10,12 +10,12 @@ use Drupal\Core\Image\ImageInterface;
 use Drupal\image\Plugin\ImageEffect\ScaleImageEffect;
 
 /**
- * Scales an image resource.
+ * Scales an image and upscales it for retina screens if needed.
  *
  * @ImageEffect(
  *   id = "retina_image_scale",
- *   label = @Translation("Retina Scale"),
- *   description = @Translation("Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.")
+ *   label = @Translation("Retina Image Scale"),
+ *   description = @Translation("Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated. If the image is smaller than the specified dimensions, it will be upscaled according to the multiplier value.")
  * )
  */
 class RetinaScaleImageEffect extends ScaleImageEffect {
@@ -26,12 +26,15 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
   public function applyEffect(ImageInterface $image) {
     $target_with = $this->configuration['width'];
     $target_height = $this->configuration['height'];
-    $upscale = $this->configuration['upscale'];
-    if (!$upscale) {
+    // If we are not upscaling the image, check to see if it's smaller
+    // than the defined dimensions.
+    if (!$upscale = $this->configuration['upscale']) {
       if (
-      (!empty($target_with) && $this->configuration['width'] > $image->getWidth()) ||
-      (!empty($target_height) && $this->configuration['height'] > $image->getHeight())
+      (!empty($target_with) && $target_with > $image->getWidth()) ||
+      (!empty($target_height) && $target_height > $image->getHeight())
       ) {
+        // If the image is smaller than the defined dimensions,
+        // upscale it according to the defined multiplier.
         $target_with = $image->getWidth() * $this->configuration['multiplier'];
         $target_height = $image->getHeight() * $this->configuration['multiplier'];
         $upscale = TRUE;
@@ -56,12 +59,15 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
     if ($dimensions['width'] && $dimensions['height']) {
       $target_with = $this->configuration['width'];
       $target_height = $this->configuration['height'];
-      $upscale = $this->configuration['upscale'];
-      if (!$this->configuration['upscale']) {
+      // If we are not upscaling the image, check to see if it's smaller
+      // than the defined dimensions.
+      if (!$upscale = $this->configuration['upscale']) {
         if (
           (!empty($target_with) && $this->configuration['width'] > $dimensions['width']) ||
           (!empty($target_height) && $this->configuration['height'] > $dimensions['height'])
         ) {
+          // If the image is smaller than the defined dimensions,
+          // upscale it according to the defined multiplier.
           $target_with = $dimensions['width'] * $this->configuration['multiplier'];
           $target_height = $dimensions['height'] * $this->configuration['multiplier'];
           $upscale = TRUE;
@@ -103,6 +109,7 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
       '#title' => t('Multiplier'),
       '#default_value' => $this->configuration['multiplier'],
       '#required' => TRUE,
+      '#description' => t("The image will be upscaled according to this multiplier if it is smaller than the dimensions defined in the 'Width' and 'Height' properties."),
       '#min' => 1,
     ];
 
