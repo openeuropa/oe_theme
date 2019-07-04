@@ -107,12 +107,15 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildConfigurationForm($form, $form_state);
     $form['multiplier'] = [
-      '#type' => 'number',
+      '#type' => 'select',
       '#title' => t('Multiplier'),
+      '#options' => [
+        2 => '2x',
+        3 => '3x',
+      ],
       '#default_value' => $this->configuration['multiplier'],
       '#required' => TRUE,
       '#description' => t("The image will be upscaled according to this multiplier if it is smaller than the dimensions defined in the 'Width' and 'Height' properties."),
-      '#min' => 1,
     ];
 
     return $form;
