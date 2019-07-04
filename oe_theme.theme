@@ -21,7 +21,10 @@ use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 function oe_theme_preprocess(&$variables) {
   global $base_url;
   $theme = \Drupal::theme()->getActiveTheme();
-  $variables['ecl_icon_path'] = $base_url . '/' . $theme->getPath() . '/dist/images/icons/sprites/icons.svg';
+  $variables['ecl_images_path'] = $base_url . '/' . $theme->getPath() . '/dist/images';
+  $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
+  $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
+  $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
 }
 
 /**
@@ -708,10 +711,21 @@ function oe_theme_preprocess_pattern_link_block(array &$variables): void {
 function _oe_theme_preprocess_pattern_social_media_links(array &$variables): void {
   // Format social media links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {
-    $variables['links'][$key]['variant'] = $link['service'];
-    $variables['links'][$key]['link'] = [
-      'label' => $link['label'],
-      'href' => $link['url'],
+    $variables['links'][$key]['path'] = $link['url'];
+    $variables['links'][$key]['icon_position'] = 'before';
+    $variables['links'][$key]['icon'] = [
+      [
+        'path' => $variables['ecl_social_icon_path'],
+        'name' => $link['service'],
+        'size' => 'xl',
+        'extra_classes' => 'ecl-social-media-follow__icon',
+      ],
+      [
+        'path' => $variables['ecl_social_icon_path'],
+        'name' => $link['service'] . '_hover',
+        'size' => 'xl',
+        'extra_classes' => 'ecl-social-media-follow__icon-hover',
+      ],
     ];
   }
 }
