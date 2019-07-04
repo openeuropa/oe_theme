@@ -145,22 +145,27 @@
     count:
       'div.ecl-radio--disabled label.ecl-radio__label': 1
       'div.ecl-radio--disabled input[disabled]': 1
-#- array:
-#    '#type': pattern
-#    '#id': banner_hero
-#    '#fields':
-#      image:
-#        src: "http://via.placeholder.com/150x150"
-#      title: "Banner title"
-#      url: "http://example.com"
-#      description: "Banner description"
-#  assertions:
-#    count:
-#      'div.ecl-banner--hero': 1
-#      'img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
-#    equals:
-#      'div.ecl-banner__content h3.ecl-heading a.ecl-link[href="http://example.com"]': Banner title
-#      'div.ecl-banner__content p.ecl-banner__description': "Banner description"
+- array:
+    '#type': pattern
+    '#id': banner_hero
+    '#fields':
+      banner_type: "image"
+      image:
+        src: "http://via.placeholder.com/150x150"
+      title: "Banner title"
+      url: "http://example.com"
+      label: "Subscribe"
+      description: "Banner description"
+      centered: TRUE
+  assertions:
+    count:
+      'section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered': 1
+      'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+    equals:
+      'div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
+      'div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-hero-banner__content a.ecl-hero-banner__link[href="http://example.com"]': Subscribe
+
 #- array:
 #    '#type': pattern
 #    '#id': banner_video
