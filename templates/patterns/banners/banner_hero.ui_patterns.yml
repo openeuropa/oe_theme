@@ -20,7 +20,7 @@ banner_hero:
       description: "Hero title"
       preview: "White Paper on the future of Europe"
     url:
-      type: "url"
+      type: "Url"
       label: "Url"
       description: "Hero link url."
       preview: "http://example.com"
