@@ -81,8 +81,10 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
    * {@inheritdoc}
    */
   public function getSummary() {
+    // Since we are extending the image scale effect and not altering it in any
+    // major way, we use the same theme.
     $summary = [
-      '#theme' => 'retina_image_scale_summary',
+      '#theme' => 'image_scale_summary',
       '#data' => $this->configuration,
     ];
     $summary += parent::getSummary();
