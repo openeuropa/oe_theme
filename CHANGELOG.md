@@ -1,10 +1,19 @@
 # Change Log
 
+## [1.3.0](https://github.com/openeuropa/oe_theme/tree/1.3.0) (2019-07-08)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.2.0...1.3.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1996: Search box too small [\#260](https://github.com/openeuropa/oe_theme/pull/260) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2025: Use custom image effect to prevent retina image reducction. [\#254](https://github.com/openeuropa/oe_theme/pull/254) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [1.2.0](https://github.com/openeuropa/oe_theme/tree/1.2.0) (2019-06-28)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.1.0...1.2.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.2.0. [\#253](https://github.com/openeuropa/oe_theme/pull/253) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1775: Fixing upgrade path of entity view display. [\#252](https://github.com/openeuropa/oe_theme/pull/252) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-2014: Theming of publication content type. [\#241](https://github.com/openeuropa/oe_theme/pull/241) ([sergepavle](https://github.com/sergepavle))
 
