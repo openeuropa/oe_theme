@@ -44,7 +44,6 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     ]);
     $this->assertToolkitOperationsCalled(['scale']);
 
-    // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], 10, 'Width was passed correctly');
     $this->assertEqual($calls['scale'][0][1], 10, 'Height was based off aspect ratio and passed correctly');
@@ -61,7 +60,6 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     ]);
     $this->assertToolkitOperationsCalled(['scale']);
 
-    // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 4, 'Width was passed correctly');
   }
@@ -71,12 +69,11 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
    */
   public function testRetinaScaleEffectForcedUpscaling(): void {
     $this->assertImageEffect('retina_image_scale', [
-      // Set the desired width to be much higher than the image width.
+      // Set the desired width to be higher than the image width.
       'width' => $this->image->getWidth() * 10,
     ]);
     $this->assertToolkitOperationsCalled(['scale']);
 
-    // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 2, 'Width is double the original size.');
   }
@@ -86,13 +83,12 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
    */
   public function testTripleMultiplierRetinaScaleEffect(): void {
     $this->assertImageEffect('retina_image_scale', [
-      // Set the desired width to be much higher than the image width.
+      // Set the desired width to be higher than the image width.
       'width' => $this->image->getWidth() * 10,
       'multiplier' => 3,
     ]);
     $this->assertToolkitOperationsCalled(['scale']);
 
-    // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 3, 'Width is triple the original size.');
   }

@@ -26,27 +26,30 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
   public function applyEffect(ImageInterface $image) {
     // If we are not upscaling the image, check to see if it's smaller
     // than the defined dimensions.
-    if (!$upscale = $this->configuration['upscale']) {
-      if (
-      (!empty($target_with = $this->configuration['width']) && $target_with > $image->getWidth()) ||
-      (!empty($target_height = $this->configuration['height']) && $target_height > $image->getHeight())
-      ) {
+    $upscale = $this->configuration['upscale'];
+    $target_width = $this->configuration['width'];
+    $target_height = $this->configuration['height'];
+    if (!$upscale) {
+      if ((!empty($target_width) && $target_width > $image->getWidth()) || (!empty($target_height) && $target_height > $image->getHeight())) {
         // If the image is smaller than the defined dimensions,
         // upscale it according to the defined multiplier.
-        $target_with = $image->getWidth() * $this->configuration['multiplier'];
+        $target_width = $image->getWidth() * $this->configuration['multiplier'];
         $target_height = $image->getHeight() * $this->configuration['multiplier'];
         $upscale = TRUE;
       }
     }
-    if (!$image->scale($target_with, $target_height, $upscale)) {
+
+    if (!$image->scale($target_width, $target_height, $upscale)) {
       $this->logger->error('Image scale failed using the %toolkit toolkit on %path (%mimetype, %dimensions)', [
         '%toolkit' => $image->getToolkitId(),
         '%path' => $image->getSource(),
         '%mimetype' => $image->getMimeType(),
         '%dimensions' => $image->getWidth() . 'x' . $image->getHeight(),
       ]);
+
       return FALSE;
     }
+
     return TRUE;
   }
 
@@ -54,23 +57,27 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
    * {@inheritdoc}
    */
   public function transformDimensions(array &$dimensions, $uri) {
-    if ($dimensions['width'] && $dimensions['height']) {
-      // If we are not upscaling the image, check to see if it's smaller
-      // than the defined dimensions.
-      if (!$upscale = $this->configuration['upscale']) {
-        if (
-          (!empty($target_with = $this->configuration['width']) && $this->configuration['width'] > $dimensions['width']) ||
-          (!empty($target_height = $this->configuration['height']) && $this->configuration['height'] > $dimensions['height'])
-        ) {
-          // If the image is smaller than the defined dimensions,
-          // upscale it according to the defined multiplier.
-          $target_with = $dimensions['width'] * $this->configuration['multiplier'];
-          $target_height = $dimensions['height'] * $this->configuration['multiplier'];
-          $upscale = TRUE;
-        }
-      }
-      Image::scaleDimensions($dimensions, $target_with, $target_height, $upscale);
+    if (!$dimensions['width'] || !$dimensions['height']) {
+      return;
     }
+
+    // If we are not upscaling the image, check to see if it's smaller
+    // than the defined dimensions.
+    $upscale = $this->configuration['upscale'];
+    $target_width = $this->configuration['width'];
+    $target_height = $this->configuration['height'];
+
+    if (!$upscale) {
+      if ((!empty($target_width) && $this->configuration['width'] > $dimensions['width']) || (!empty($target_height) && $this->configuration['height'] > $dimensions['height'])) {
+        // If the image is smaller than the defined dimensions,
+        // upscale it according to the defined multiplier.
+        $target_width = $dimensions['width'] * $this->configuration['multiplier'];
+        $target_height = $dimensions['height'] * $this->configuration['multiplier'];
+        $upscale = TRUE;
+      }
+    }
+
+    Image::scaleDimensions($dimensions, $target_width, $target_height, $upscale);
   }
 
   /**
