@@ -46,7 +46,6 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 2, 'Width is double the original size.');
-    $this->assertEqual($calls['scale'][0][1], $this->image->getHeight() * 2, 'Height is double the original size.');
   }
 
   /**
@@ -64,13 +63,12 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 3, 'Width is triple the original size.');
-    $this->assertEqual($calls['scale'][0][1], $this->image->getHeight() * 3, 'Height is triple the original size.');
   }
 
   /**
    * Test the image_scale_effect() function using a big enough image.
    */
-  public function testScaleEffect() {
+  public function testScaleEffect(): void {
     $this->assertImageEffect('image_scale', [
       // Set the image width to be smaller than the image width.
       'width' => 10,
@@ -82,6 +80,22 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], 10, 'Width was passed correctly');
     $this->assertEqual($calls['scale'][0][1], 10, 'Height was based off aspect ratio and passed correctly');
+  }
+
+  /**
+   * Test the image_scale_effect() function using upscaling.
+   */
+  public function testScaleEffectWithUpscaling(): void {
+    $this->assertImageEffect('image_scale', [
+      // Set the desired width to be higher than the image width.
+      'width' => $this->image->getWidth() * 4,
+      'upscale' => TRUE,
+    ]);
+    $this->assertToolkitOperationsCalled(['scale']);
+
+    // Check the parameters.
+    $calls = $this->imageTestGetAllCalls();
+    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 4, 'Width was passed correctly');
   }
 
   /**
