@@ -67,7 +67,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   }
 
   /**
-   * Test the retina scale effect using an image smalled than desired.
+   * Test the retina scale effect using an image smaller than desired.
    */
   public function testRetinaScaleEffectForcedUpscaling(): void {
     $this->assertImageEffect('retina_image_scale', [
