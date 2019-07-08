@@ -30,6 +30,7 @@ class BlockTest extends EntityKernelTestBase {
     'image',
     'breakpoint',
     'responsive_image',
+    'oe_theme_helper',
   ];
 
   /**

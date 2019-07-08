@@ -1,0 +1,7 @@
+image.effect.retina_image_scale:
+  type: image.effect.image_scale
+  label: 'Retina Image scale'
+  mapping:
+    multiplier:
+      type: integer
+      label: 'Multiplier'
