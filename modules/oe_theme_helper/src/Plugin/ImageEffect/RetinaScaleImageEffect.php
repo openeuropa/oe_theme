@@ -24,14 +24,12 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
    * {@inheritdoc}
    */
   public function applyEffect(ImageInterface $image) {
-    $target_with = $this->configuration['width'];
-    $target_height = $this->configuration['height'];
     // If we are not upscaling the image, check to see if it's smaller
     // than the defined dimensions.
     if (!$upscale = $this->configuration['upscale']) {
       if (
-      (!empty($target_with) && $target_with > $image->getWidth()) ||
-      (!empty($target_height) && $target_height > $image->getHeight())
+      (!empty($target_with = $this->configuration['width']) && $target_with > $image->getWidth()) ||
+      (!empty($target_height = $this->configuration['height']) && $target_height > $image->getHeight())
       ) {
         // If the image is smaller than the defined dimensions,
         // upscale it according to the defined multiplier.
@@ -57,14 +55,12 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
    */
   public function transformDimensions(array &$dimensions, $uri) {
     if ($dimensions['width'] && $dimensions['height']) {
-      $target_with = $this->configuration['width'];
-      $target_height = $this->configuration['height'];
       // If we are not upscaling the image, check to see if it's smaller
       // than the defined dimensions.
       if (!$upscale = $this->configuration['upscale']) {
         if (
-          (!empty($target_with) && $this->configuration['width'] > $dimensions['width']) ||
-          (!empty($target_height) && $this->configuration['height'] > $dimensions['height'])
+          (!empty($target_with = $this->configuration['width']) && $this->configuration['width'] > $dimensions['width']) ||
+          (!empty($target_height = $this->configuration['height']) && $this->configuration['height'] > $dimensions['height'])
         ) {
           // If the image is smaller than the defined dimensions,
           // upscale it according to the defined multiplier.
@@ -108,14 +104,14 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
     $form = parent::buildConfigurationForm($form, $form_state);
     $form['multiplier'] = [
       '#type' => 'select',
-      '#title' => t('Multiplier'),
+      '#title' => $this->t('Multiplier'),
       '#options' => [
         2 => '2x',
         3 => '3x',
       ],
       '#default_value' => $this->configuration['multiplier'],
       '#required' => TRUE,
-      '#description' => t("The image will be upscaled according to this multiplier if it is smaller than the dimensions defined in the 'Width' and 'Height' properties."),
+      '#description' => $this->t("The image will be upscaled according to this multiplier if it is smaller than the dimensions defined in the 'Width' and 'Height' properties."),
     ];
 
     return $form;

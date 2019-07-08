@@ -12,10 +12,9 @@ use Drupal\FunctionalTests\Image\ToolkitTestBase;
  * @group image
  */
 class RetinaScaleEffectTest extends ToolkitTestBase {
+
   /**
-   * Modules to enable.
-   *
-   * @var array
+   * {@inheritdoc}
    */
   public static $modules = ['image', 'oe_theme_helper'];
 
@@ -29,7 +28,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->manager = $this->container->get('plugin.manager.image.effect');
   }
@@ -37,7 +36,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   /**
    * Test the retina_image_scale_effect() function.
    */
-  public function testRetinaScaleEffect() {
+  public function testRetinaScaleEffect(): void {
     $this->assertImageEffect('retina_image_scale', [
       // Set the desired width to be much higher than the image width.
       'width' => $this->image->getWidth() * 10,
@@ -53,7 +52,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   /**
    * Test the image_scale_effect() function using a multiplier of 3.
    */
-  public function testTripleMultiplierRetinaScaleEffect() {
+  public function testTripleMultiplierRetinaScaleEffect(): void {
     $this->assertImageEffect('retina_image_scale', [
       // Set the desired width to be much higher than the image width.
       'width' => $this->image->getWidth() * 10,
@@ -69,20 +68,34 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   }
 
   /**
+   * Test the image_scale_effect() function using a big enough image.
+   */
+  public function testScaleEffect() {
+    $this->assertImageEffect('image_scale', [
+      // Set the image width to be smaller than the image width.
+      'width' => 10,
+      'height' => 10,
+    ]);
+    $this->assertToolkitOperationsCalled(['scale']);
+
+    // Check the parameters.
+    $calls = $this->imageTestGetAllCalls();
+    $this->assertEqual($calls['scale'][0][0], 10, 'Width was passed correctly');
+    $this->assertEqual($calls['scale'][0][1], 10, 'Height was based off aspect ratio and passed correctly');
+  }
+
+  /**
    * Asserts the effect processing of an image effect plugin.
    *
    * @param string $effect_name
    *   The name of the image effect to test.
    * @param array $data
    *   The data to pass to the image effect.
-   *
-   * @return bool
-   *   TRUE if the assertion succeeded, FALSE otherwise.
    */
-  protected function assertImageEffect($effect_name, array $data) {
+  protected function assertImageEffect($effect_name, array $data): void {
     /** @var \Drupal\image\ImageEffectInterface $effect */
     $effect = $this->manager->createInstance($effect_name, ['data' => $data]);
-    return $this->assertTrue($effect->applyEffect($this->image), 'Function returned the expected value.');
+    $this->assertTrue($effect->applyEffect($this->image), 'Function returned the expected value.');
   }
 
 }
