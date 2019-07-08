@@ -28,49 +28,17 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp(): void {
+  protected function setUp() {
     parent::setUp();
     $this->manager = $this->container->get('plugin.manager.image.effect');
   }
 
   /**
-   * Test the retina_image_scale_effect() function.
+   * Test the retina scale effect using a big enough image.
    */
   public function testRetinaScaleEffect(): void {
-    $this->assertImageEffect('retina_image_scale', [
-      // Set the desired width to be much higher than the image width.
-      'width' => $this->image->getWidth() * 10,
-    ]);
-    $this->assertToolkitOperationsCalled(['scale']);
-
-    // Check the parameters.
-    $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 2, 'Width is double the original size.');
-  }
-
-  /**
-   * Test the image_scale_effect() function using a multiplier of 3.
-   */
-  public function testTripleMultiplierRetinaScaleEffect(): void {
-    $this->assertImageEffect('retina_image_scale', [
-      // Set the desired width to be much higher than the image width.
-      'width' => $this->image->getWidth() * 10,
-      // Set a multiplier of three for the test.
-      'multiplier' => 3,
-    ]);
-    $this->assertToolkitOperationsCalled(['scale']);
-
-    // Check the parameters.
-    $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 3, 'Width is triple the original size.');
-  }
-
-  /**
-   * Test the image_scale_effect() function using a big enough image.
-   */
-  public function testScaleEffect(): void {
     $this->assertImageEffect('image_scale', [
-      // Set the image width to be smaller than the image width.
+      // Set the desired width to be smaller than the image width.
       'width' => 10,
       'height' => 10,
     ]);
@@ -83,9 +51,9 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   }
 
   /**
-   * Test the image_scale_effect() function using upscaling.
+   * Test the retina scale effect using upscaling.
    */
-  public function testScaleEffectWithUpscaling(): void {
+  public function testScaleEffectDefaultUpscaling(): void {
     $this->assertImageEffect('image_scale', [
       // Set the desired width to be higher than the image width.
       'width' => $this->image->getWidth() * 4,
@@ -96,6 +64,37 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     // Check the parameters.
     $calls = $this->imageTestGetAllCalls();
     $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 4, 'Width was passed correctly');
+  }
+
+  /**
+   * Test the retina scale effect using an image smalled than desired.
+   */
+  public function testRetinaScaleEffectForcedUpscaling(): void {
+    $this->assertImageEffect('retina_image_scale', [
+      // Set the desired width to be much higher than the image width.
+      'width' => $this->image->getWidth() * 10,
+    ]);
+    $this->assertToolkitOperationsCalled(['scale']);
+
+    // Check the parameters.
+    $calls = $this->imageTestGetAllCalls();
+    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 2, 'Width is double the original size.');
+  }
+
+  /**
+   * Test the retina scale effect using a multiplier of 3.
+   */
+  public function testTripleMultiplierRetinaScaleEffect(): void {
+    $this->assertImageEffect('retina_image_scale', [
+      // Set the desired width to be much higher than the image width.
+      'width' => $this->image->getWidth() * 10,
+      'multiplier' => 3,
+    ]);
+    $this->assertToolkitOperationsCalled(['scale']);
+
+    // Check the parameters.
+    $calls = $this->imageTestGetAllCalls();
+    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 3, 'Width is triple the original size.');
   }
 
   /**
