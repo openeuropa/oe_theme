@@ -13,6 +13,8 @@ use Drupal\image\Entity\ImageStyle;
  * Use retina image styles on medium and small image styles.
  */
 function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): void {
+  \Drupal::service('plugin.manager.image.effect')->clearCachedDefinitions();
+
   $image_styles = [
     'oe_theme_medium_2x_no_crop',
     'oe_theme_small_2x_no_crop',
