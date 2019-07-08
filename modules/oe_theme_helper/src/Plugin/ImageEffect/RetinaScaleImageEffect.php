@@ -111,7 +111,7 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
       ],
       '#default_value' => $this->configuration['multiplier'],
       '#required' => TRUE,
-      '#description' => $this->t("The image will be upscaled according to this multiplier if it is smaller than the dimensions defined in the 'Width' and 'Height' properties."),
+      '#description' => $this->t('The image will be upscaled (regardless of the value of the "Upscale" option) according to this multiplier if it is smaller than the dimensions defined in the "Width" and "Height" properties.'),
     ];
 
     return $form;
