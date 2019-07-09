@@ -651,14 +651,15 @@
   assertions:
     count:
       '.ecl-accordion2__title': 2
-      '.ecl-accordion2__title .ecl-accordion2__toggle .ecl-button__icon': 2
-      '.ecl-accordion2__content#id-0': 1
-      '.ecl-accordion2__content#id-1': 1
+      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon': 2
+      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-title': 2
+      '.ecl-accordion2__content#id-0-content': 1
+      '.ecl-accordion2__content#id-1-content': 1
     equals:
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0"]': "Title 1"
-      '.ecl-accordion2__content#id-0': "Body 1"
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1"]': "Title 2"
-      '.ecl-accordion2__content#id-1': "Body 2"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"]': "Title 1"
+      '.ecl-accordion2__content#id-0-content': "Body 1"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"]': "Title 2"
+      '.ecl-accordion2__content#id-1-content': "Body 2"
 #- array:
 #    '#type': pattern
 #    '#id': dropdown
