@@ -650,15 +650,15 @@
           body: "Body 2"
   assertions:
     count:
-      '.ecl-accordion__title': 2
-      '.ecl-accordion__title .ecl-accordion__toggle .ecl-button__icon': 2
-      '.ecl-accordion__content#id-0': 1
-      '.ecl-accordion__content#id-1': 1
+      '.ecl-accordion2__title': 2
+      '.ecl-accordion2__title .ecl-accordion2__toggle .ecl-button__icon': 2
+      '.ecl-accordion2__content#id-0': 1
+      '.ecl-accordion2__content#id-1': 1
     equals:
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0"]': "Title 1"
-      '.ecl-accordion__content#id-0': "Body 1"
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1"]': "Title 2"
-      '.ecl-accordion__content#id-1': "Body 2"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0"]': "Title 1"
+      '.ecl-accordion2__content#id-0': "Body 1"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1"]': "Title 2"
+      '.ecl-accordion2__content#id-1': "Body 2"
 #- array:
 #    '#type': pattern
 #    '#id': dropdown

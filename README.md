@@ -242,7 +242,7 @@ Or:
 } %}
 ```
 
-JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.accordions()`.
+JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.Accordion2()`.
 
 *Important:* not all ECL templates are available to the theme for include, whenever you need include a new ECL template
 remember to add it to the `copy` section of [ecl-builder.config.js](ecl-builder.config.js) and run:
