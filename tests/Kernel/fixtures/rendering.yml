@@ -239,9 +239,9 @@
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file__translation-container': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 3
-#      'a.ecl-file__translation-download[href="http://example.com/document_fr.pdf"]': 1
-#      'a.ecl-file__translation-download[href="http://example.com/document_it.pdf"]': 1
-#      'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_it.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
