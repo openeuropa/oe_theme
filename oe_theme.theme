@@ -238,7 +238,6 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
     $paragraph = $field_item->entity;
     $variables['items'][] = [
       'title' => $builder->viewField($paragraph->get('field_oe_text')),
-      'icon' => $paragraph->get('field_oe_icon')->value,
       'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
     ];
   }
@@ -661,9 +660,6 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
         'label' => $item['title'],
         'icon' => [
           'path' => $variables['ecl_icon_path'],
-          'type' => 'general',
-          'name' => $item['icon'],
-          'size' => 's',
         ],
       ],
       'content' => $item['body'],
