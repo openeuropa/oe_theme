@@ -25,3 +25,8 @@ services:
     arguments: ['@language_manager']
     tags:
     - { name: twig.extension }
+  oe_theme_helper.metadata_event_subscriber:
+    class: Drupal\oe_theme_helper\EventSubscribers\MetadataEventSubscriber
+    arguments: ['@current_route_match', '@entity_type.manager', '@entity.repository']
+    tags:
+      - { name: event_subscriber }
