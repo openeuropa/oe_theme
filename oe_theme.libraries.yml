@@ -12,9 +12,9 @@ accordions:
   dependencies:
     - core/drupal
     - oe_theme/base
-message:
+context_nav:
   js:
-    js/message.js: {}
+    js/context_nav.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base
@@ -30,15 +30,15 @@ dropdown:
   dependencies:
     - core/drupal
     - oe_theme/base
-context_nav:
-  js:
-    js/context_nav.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
 file_translations:
   js:
     js/file_translations.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
+gallery:
+  js:
+    js/gallery.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base
@@ -51,6 +51,12 @@ inpage_navigation:
 lang_select_pages:
   js:
     js/lang_select_pages.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
+message:
+  js:
+    js/message.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base

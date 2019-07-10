@@ -7,34 +7,119 @@ gallery:
       label: "Items"
       description: "List of GalleryItemValueObject objects."
       preview:
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-          caption: "Example image caption"
-          icon: "camera"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example image caption"
-          icon: "audio"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-          caption: "Example image caption"
-          icon: "camera"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-          caption: "Example image caption"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-        - thumbnail:
-            src: "http://placehold.it/285x185"
-            alt: "Example alt text"
-          caption: "Example image caption"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 1'
+          icon:
+            name: "image"
+            icon_type: "general"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 2'
+          icon:
+            name: "video"
+            icon_type: "general"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 3'
+          icon:
+            name: "audio"
+            icon_type: "general"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 4'
+          icon:
+            name: "file"
+            icon_type: "general"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 5'
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 6'
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 7'
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 8'
+    close:
+      type: "array"
+      label: "Close button"
+      description: "The close button."
+      preview:
+        variant: 'ghost'
+        label: 'Close'
+        icon:
+          icon_type: 'ui'
+          name: 'close'
+          size: 's'
+    previous:
+      type: "array"
+      label: "Previous button"
+      description: "The previous button."
+      preview:
+        variant: 'ghost'
+        label: 'Previous'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-270'
+          size: 'l'
+    next:
+      type: "array"
+      label: "Next button"
+      description: "The next button."
+      preview:
+        variant: 'ghost'
+        label: 'Next'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-90'
+          size: 'l'
+    download:
+      type: "array"
+      label: "Download link"
+      description: "The download link."
+      preview:
+        link:
+          label: 'Download'
+        icon:
+          icon_type: 'ui'
+          name: 'download'
+          size: 'fluid'
+    share:
+      type: "array"
+      label: "Share link"
+      description: "The share link."
+      preview:
+        link:
+          label: 'Share'
+        icon:
+          icon_type: 'general'
+          name: 'share'
+          size: 'fluid'
+    counter_separator:
+      type: "string"
+      label: "Counter separator"
+      description: "The counter separator."
+      preview: "of"
+  libraries:
+    - oe_theme/gallery

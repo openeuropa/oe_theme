@@ -6,10 +6,11 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
+        "php": "^7.1",
         "drupal/core": "^8.7",
+        "drupal/twig_xdebug": "^1.1",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "dev-master",
-        "php": "^7.1"
+        "openeuropa/ecl-twig-loader": "dev-master"
     },
     "require-dev": {
         "cweagans/composer-patches": "~1.0",

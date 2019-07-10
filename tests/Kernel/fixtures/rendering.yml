@@ -325,85 +325,171 @@
       'video.ecl-media-container__media track[srclang="en"]': 1
     equals:
       'figcaption.ecl-media-container__caption': "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
-#- array:
-#    '#type': pattern
-#    '#id': gallery
-#    '#fields':
-#      items:
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#            alt: "Example alt"
-#            responsive: true
-#          caption: "Example caption"
-#          icon: 'camera'
-#  assertions:
-#    count:
-#      '.ecl-gallery': 1
-#      '.ecl-gallery .ecl-row': 1
-#      '.ecl-gallery .ecl-row .ecl-gallery__item': 1
-#      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 1
-#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img.jpg"]': 1
-#      '.ecl-gallery__item-container .ecl-gallery__image[alt="Example alt"]': 1
-#      '.ecl-gallery__item-container span.ecl-gallery__caption': 1
-#      '.ecl-gallery__item-container span.ecl-icon': 1
-#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
-#    equals:
-#      'span.ecl-gallery__caption': "Example caption"
-#- array:
-#    '#type': pattern
-#    '#id': gallery
-#    '#fields':
-#      items:
-#        - thumbnail:
-#            src: "http://img_1.jpg"
-#            name: "img_1.jpg"
-#          icon: "camera"
-#        - thumbnail:
-#            src: "http://img_2.jpg"
-#            name: "img_2.jpg"
-#            responsive: false
-#          icon: "audio"
-#  assertions:
-#    count:
-#      '.ecl-gallery': 1
-#      '.ecl-gallery .ecl-row': 1
-#      '.ecl-gallery .ecl-row .ecl-gallery__item': 2
-#      '.ecl-gallery .ecl-row .ecl-gallery__item .ecl-gallery__item-container': 2
-#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"]': 1
-#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_1.jpg"].ecl-image--fluid': 1
-#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
-#      '.ecl-gallery__item-container .ecl-gallery__image[src="http://img_2.jpg"].ecl-image--fluid': 0
-#      '.ecl-gallery__item-container span.ecl-gallery__caption': 0
-#      '.ecl-gallery__item-container span.ecl-icon': 2
-#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--camera': 1
-#      '.ecl-gallery__item-container span.ecl-icon.ecl-icon--audio': 1
-#- array:
-#    '#type': pattern
-#    '#id': gallery
-#    '#fields':
-#      items:
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#        - thumbnail:
-#            src: "http://img.jpg"
-#            name: "img.jpg"
-#  assertions:
-#    count:
-#      '.ecl-gallery': 1
-#      '.ecl-gallery .ecl-row': 2
-#      '.ecl-gallery .ecl-row .ecl-gallery__item': 5
-#      '.ecl-gallery__item-container span.ecl-icon': 0
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#fields':
+      items:
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 1'
+          icon:
+            name: "image"
+            icon_type: "general"
+      close:
+        variant: 'ghost'
+        label: 'Close'
+        icon:
+          icon_type: 'ui'
+          name: 'close'
+          size: 's'
+      previous:
+        variant: 'ghost'
+        label: 'Previous'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-270'
+          size: 'l'
+      next:
+        variant: 'ghost'
+        label: 'Next'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-90'
+          size: 'l'
+      download:
+        link:
+          label: 'Download'
+        icon:
+          icon_type: 'ui'
+          name: 'download'
+          size: 'fluid'
+      share:
+        link:
+          label: 'Share'
+        icon:
+          icon_type: 'general'
+          name: 'share'
+          size: 'fluid'
+      counter_separator: "of"
+  assertions:
+    count:
+      # Check the main gallery items.
+      'section.ecl-gallery': 1
+      'li.ecl-gallery__item': 1
+      'a.ecl-gallery__item-link[href="http://placehold.it/285x185"]': 1
+      'figure.ecl-gallery__image-container img[src="http://placehold.it/285x185"]': 1
+      'figure.ecl-gallery__image-container img[alt="Example alt text"]': 1
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description': 1
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description span.ecl-gallery__meta': 1
+      'figure.ecl-gallery__image-container svg.ecl-gallery__image-icon': 1
+      # Check the overlay items.
+      'dialog.ecl-gallery__overlay': 1
+      'header.ecl-gallery__close button.ecl-gallery__close-button': 1
+      'section.ecl-gallery__slider': 1
+      'section.ecl-gallery__slider button.ecl-gallery__slider-previous': 1
+      'section.ecl-gallery__slider button.ecl-gallery__slider-next': 1
+      'footer.ecl-gallery__detail': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-counter': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions a.ecl-gallery__download': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions a.ecl-gallery__share': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-description': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-meta': 1
+    contains:
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description': "Example image caption"
+    equals:
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description span.ecl-gallery__meta': "Copyright, Author, Licence for image 1"
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-description': "Example image caption"
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-meta': "Copyright, Author, Licence for image 1"
+- array:
+    '#type': pattern
+    '#id': gallery
+    '#fields':
+      items:
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text"
+          description: "Example image caption"
+          share_path: '/share#example-image.jpg'
+          meta: 'Copyright, Author, Licence for image 1'
+          icon:
+            name: "image"
+            icon_type: "general"
+        - path: "http://placehold.it/285x185"
+          alt: "Example alt text 2"
+          description: "Example image caption 2"
+          share_path: '/share#example-image2.jpg'
+          meta: 'Copyright, Author, Licence for image 2'
+          icon:
+            name: "image"
+            icon_type: "general"
+      close:
+        variant: 'ghost'
+        label: 'Close'
+        icon:
+          icon_type: 'ui'
+          name: 'close'
+          size: 's'
+      previous:
+        variant: 'ghost'
+        label: 'Previous'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-270'
+          size: 'l'
+      next:
+        variant: 'ghost'
+        label: 'Next'
+        icon:
+          icon_type: 'ui'
+          name: 'corner-arrow'
+          transform: 'rotate-90'
+          size: 'l'
+      download:
+        link:
+          label: 'Download'
+        icon:
+          icon_type: 'ui'
+          name: 'download'
+          size: 'fluid'
+      share:
+        link:
+          label: 'Share'
+        icon:
+          icon_type: 'general'
+          name: 'share'
+          size: 'fluid'
+      counter_separator: "of"
+  assertions:
+    count:
+      # Check the main gallery items.
+      'section.ecl-gallery': 1
+      'li.ecl-gallery__item': 2
+      'a.ecl-gallery__item-link[href="http://placehold.it/285x185"]': 2
+      'figure.ecl-gallery__image-container img[src="http://placehold.it/285x185"]': 2
+      'figure.ecl-gallery__image-container img[alt="Example alt text"]': 1
+      'figure.ecl-gallery__image-container img[alt="Example alt text 2"]': 1
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
+      'figure.ecl-gallery__image-container figcaption.ecl-gallery__description span.ecl-gallery__meta': 2
+      'figure.ecl-gallery__image-container svg.ecl-gallery__image-icon': 2
+      # Check the overlay items.
+      'dialog.ecl-gallery__overlay': 1
+      'header.ecl-gallery__close button.ecl-gallery__close-button': 1
+      'section.ecl-gallery__slider': 1
+      'section.ecl-gallery__slider button.ecl-gallery__slider-previous': 1
+      'section.ecl-gallery__slider button.ecl-gallery__slider-next': 1
+      'footer.ecl-gallery__detail': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-counter': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions a.ecl-gallery__download': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-actions a.ecl-gallery__share': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-description': 1
+      'footer.ecl-gallery__detail div.ecl-gallery__detail-meta': 1
 #- array:
 #    '#type': pattern
 #    '#id': list_item

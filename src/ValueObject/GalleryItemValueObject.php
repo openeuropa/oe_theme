@@ -10,63 +10,91 @@ namespace Drupal\oe_theme\ValueObject;
 class GalleryItemValueObject extends ValueObjectBase {
 
   /**
-   * The caption of the gallery item.
+   * The path to the gallery item.
    *
    * @var string
    */
-  protected $caption;
+  protected $path;
 
   /**
-   * Extra classes of the gallery item.
+   * The alternative to the gallery item.
    *
    * @var string
    */
-  protected $classes;
+  protected $alt;
 
   /**
-   * Thumbnail of the gallery item.
-   *
-   * @var \Drupal\oe_theme\ValueObject\ImageValueObject
-   */
-  protected $thumbnail;
-
-  /**
-   * Icon of the gallery item.
+   * The description of the gallery item.
    *
    * @var string
+   */
+  protected $description;
+
+  /**
+   * The metadata of the gallery item.
+   *
+   * @var string
+   */
+  protected $meta;
+
+  /**
+   * The icon associated with the gallery item.
+   *
+   * @var array
    */
   protected $icon;
 
   /**
+   * The path to share the item.
+   *
+   * @var string
+   */
+  protected $sharePath;
+
+  /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail
-   *   Thumbnail to be rendered on the gallery item.
-   * @param string|null $caption
-   *   Caption for the gallery item.
-   * @param string|null $classes
-   *   Extra classes for the gallery item.
-   * @param string|null $icon
-   *   Icon for the gallery item.
+   * @param string $path
+   *   The path to the item.
+   * @param string $alt
+   *   The alternative text of the item.
+   * @param string $description
+   *   The description of the item.
+   * @param string $meta
+   *   The metadata of the item.
+   * @param array $icon
+   *   The icon of the item.
+   * @param string $share_path
+   *   The path to share the item.
    */
-  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
-    $this->caption = $caption;
-    $this->classes = $classes;
-    $this->thumbnail = $thumbnail;
+  private function __construct(string $path, string $alt = '', string $description = '', string $meta = '', array $icon = [], string $share_path = '') {
+    $this->path = $path;
+    $this->alt = $alt;
+    $this->description = $description;
+    $this->meta = $meta;
     $this->icon = $icon;
+    $this->sharePath = $share_path;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
-    $values += ['caption' => NULL, 'classes' => NULL, 'icon' => NULL];
+    $values += [
+      'alt' => '',
+      'description' => '',
+      'meta' => '',
+      'share_path' => '',
+      'icon' => [],
+    ];
 
     return new static(
-      ImageValueObject::fromArray($values['thumbnail']),
-      $values['caption'],
-      $values['classes'],
-      $values['icon']
+      $values['path'],
+      $values['alt'],
+      $values['description'],
+      $values['meta'],
+      $values['icon'],
+      $values['share_path']
     );
   }
 
@@ -76,8 +104,8 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getCaption(): ?string {
-    return $this->caption;
+  public function getPath(): string {
+    return $this->path;
   }
 
   /**
@@ -86,18 +114,8 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getClasses(): ?string {
-    return $this->classes;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return \Drupal\oe_theme\ValueObject\ImageValueObject
-   *   Property value.
-   */
-  public function getThumbnail(): ImageValueObject {
-    return $this->thumbnail;
+  public function getAlt(): string {
+    return $this->alt;
   }
 
   /**
@@ -106,22 +124,51 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getIcon(): ?string {
+  public function getDescription(): string {
+    return $this->description;
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getMeta(): string {
+    return $this->meta;
+  }
+
+  /**
+   * Getter.
+   *
+   * @return []]
+   *   Property value.
+   */
+  public function getIcon() {
     return $this->icon;
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getSharePath(): string {
+    return $this->sharePath;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getArray(): array {
-    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail */
-    $thumbnail = $this->getThumbnail();
-
     return [
-      'thumbnail' => $thumbnail->getArray(),
-      'caption' => $this->getCaption(),
-      'classes' => $this->getClasses(),
+      'path' => $this->getPath(),
+      'alt' => $this->getAlt(),
+      'description' => $this->getDescription(),
+      'meta' => $this->getMeta(),
       'icon' => $this->getIcon(),
+      'share_path' => $this->getSharePath(),
     ];
   }
 
