@@ -2,20 +2,22 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_helper\EventSubscribers;
+namespace Drupal\oe_theme_helper\EventSubscriber;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\node\NodeInterface;
-use Drupal\oe_theme_helper\Event\MetadataSourceRetrieveEventInterface;
-use Drupal\oe_theme_helper\MetadataEvents;
+use Drupal\oe_theme_helper\Event\NodeMetadataEvent;
+use Drupal\oe_theme_helper\PageHeaderMetadataEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Subscribes to the event fired on try to retrieve information for metadata.
+ * Provides the node entity on the default node-related routes.
+ *
+ * @see \Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase
  */
-class MetadataEventSubscriber implements EventSubscriberInterface {
+class DefaultNodeMetadataEventSubscriber implements EventSubscriberInterface {
 
   /**
    * The current route match.
@@ -39,7 +41,7 @@ class MetadataEventSubscriber implements EventSubscriberInterface {
   protected $entityRepository;
 
   /**
-   * Creates a new MetadataEventSubscriber object.
+   * Creates a new DefaultNodeMetadataEventSubscriber object.
    *
    * @param \Drupal\Core\Routing\RouteMatchInterface $current_route_match
    *   The current route match.
@@ -55,12 +57,12 @@ class MetadataEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * Metadata source retrieving event handler.
+   * Returns the node from the current route for common node routes.
    *
-   * @param \Drupal\oe_theme_helper\Event\MetadataSourceRetrieveEventInterface $event
-   *   Metadata source retrieving event.
+   * @param \Drupal\oe_theme_helper\Event\NodeMetadataEvent $event
+   *   The event.
    */
-  public function onMetadataSourceRetrieving(MetadataSourceRetrieveEventInterface $event): void {
+  public function getNode(NodeMetadataEvent $event): void {
     $supported = [
       'entity.node.canonical',
       'entity.node.latest_version',
@@ -76,7 +78,7 @@ class MetadataEventSubscriber implements EventSubscriberInterface {
       $node = $this->entityTypeManager->getStorage('node')->loadRevision($node_revision);
       $translated_node = $node ? $this->entityRepository->getTranslationFromContext($node) : NULL;
 
-      $event->setNodeMetadataSource($translated_node);
+      $event->setNode($translated_node);
       $event->addCacheableDependency($translated_node)
         ->addCacheContexts(['route']);
 
@@ -87,7 +89,7 @@ class MetadataEventSubscriber implements EventSubscriberInterface {
     $node = $this->currentRouteMatch->getParameter('node');
 
     if ($node instanceof NodeInterface) {
-      $event->setNodeMetadataSource($node);
+      $event->setNode($node);
       $event->addCacheableDependency($node)
         ->addCacheContexts(['route']);
     }
@@ -98,8 +100,7 @@ class MetadataEventSubscriber implements EventSubscriberInterface {
    * {@inheritdoc}
    */
   public static function getSubscribedEvents(): array {
-    // Subscribing to listening to the Metadata event.
-    $events[MetadataEvents::COLLECT_ENTITY][] = ['onMetadataSourceRetrieving'];
+    $events[PageHeaderMetadataEvents::NODE][] = ['getNode'];
 
     return $events;
   }
