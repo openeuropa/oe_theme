@@ -65,4 +65,3 @@ default:
         priorities dropdown menu: "#nav-menu-expandable-group-3"
   formatters:
     progress: ~
-
