@@ -10,9 +10,8 @@
 {% if links -%}
   {% include '@ecl/language-list/language-list-overlay' with {
     items: languages,
-    icon_path: icon_path,
+    icon_path: ecl_icon_path,
     title: 'Select your language'|t,
     close_label: 'Close'|t,
-    extra_classes: 'ecl-site-header__language-list',
   } %}
 {%- endif %}
