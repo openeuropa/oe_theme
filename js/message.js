@@ -5,10 +5,9 @@
 (function (ECL, Drupal) {
   Drupal.behaviors.eclMessage = {
     attach: function attach() {
-      var messageElements = document.querySelectorAll("[data-ecl-message]");
-      messageElements.forEach((messageElement) => {
-        var message = new ECL.Message(messageElement);
-        message.init();
+      var elements = document.querySelectorAll('[data-ecl-message]');
+      elements.forEach(function(element) {
+        (new ECL.Message(element)).init();
       });
     }
   };
