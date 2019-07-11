@@ -1,0 +1,41 @@
+timeline:
+  label: "Timeline"
+  description: "A timeline is a way of displaying a list of events in chronological order."
+  fields:
+    limit:
+      type: "numeric"
+      label: "Limit"
+      description: "Number of items to show"
+      preview: 3
+      escape: false
+    button_label:
+      type: "text"
+      label: "Button label"
+      description: "Show timeline button label."
+      preview: "Show all timeline items"
+    items:
+      type: "array"
+      label: "Timeline items"
+      description: "List of timeline items."
+      preview:
+        -
+          title: "Item 1"
+          body: "Lorem ipsum dolor"
+        -
+          title: "Item 2"
+          body: "Lorem ipsum dolor"
+        -
+          title: "Item 3"
+          body: "Lorem ipsum dolor"
+        -
+          title: "Item 4"
+          body: "Lorem ipsum dolor"
+        -
+          title: "Item 5"
+          body: "Lorem ipsum dolor"
+        -
+          title: "Item 6"
+          body: "Lorem ipsum dolor"
+  libraries:
+    - oe_theme/timelines
+
