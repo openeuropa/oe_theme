@@ -570,8 +570,6 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       'active' => $language_code === $current_language,
     ];
   }
-  $variables['icon_path'] = base_path() . $variables['directory'] . '/dist/images/icons/sprites/icons.svg';
-
 }
 
 /**
@@ -1048,5 +1046,4 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
     'alt' => t('European Commission logo'),
     'path' => base_path() . $variables['directory'] . '/dist/images/logo/logo--' . \Drupal::languageManager()->getCurrentLanguage()->getId() . '.svg',
   ];
-  $variables['icon_path'] = base_path() . $variables['directory'] . '/dist/images/icons/sprites/icons.svg';
 }
