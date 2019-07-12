@@ -5,9 +5,10 @@
 (function (ECL, Drupal) {
   Drupal.behaviors.eclFileTranslations = {
     attach: function attach() {
-      var fileElement = document.querySelector("[data-ecl-file]");
-      var file = new ECL.FileDownload(fileElement);
-      file.init();
+      var elements = document.querySelectorAll('[data-ecl-file]');
+      elements.forEach(function(element) {
+        (new ECL.FileDownload(element)).init();
+      });
     }
   };
 })(ECL, Drupal);
