@@ -28,7 +28,7 @@ Feature: Page header block component.
     Given I am an anonymous user
     When I am on "the user registration page"
     Then I should see the heading "Create new account" in the "page header"
-    Then I should not see the "page header site identity" element in the "page"
+    And I should not see the "page header site identity" element in the "page"
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Create new account"
 

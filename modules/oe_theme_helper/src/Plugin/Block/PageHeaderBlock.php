@@ -112,6 +112,7 @@ class PageHeaderBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#metas' => $metadata['metas'] ?? [],
       '#infos' => $metadata['infos'] ?? [],
     ];
+
     return $this->addBreadcrumbSegments($build, $title);
   }
 

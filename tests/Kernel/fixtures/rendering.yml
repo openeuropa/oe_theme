@@ -623,8 +623,7 @@
       '.ecl-page-header__info-list': 1
       '.ecl-page-header__info-item': 2
     equals:
-      # @todo: Add this following test when identity is on ecl2.
-      #'.ecl-page-header__identity': "Digital single market"
+      'h2.ecl-u-type-heading-2': "Digital single market"
       'h1.ecl-page-header__title': "Business, Economy, Euro"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-page-header__meta-list': "News article | 6 July 2015 | Brussels"

@@ -41,6 +41,14 @@
   {% set _infos = _infos|merge([_info]) %}
 {% endfor %}
 
+{% if identity is not empty %}
+  <div class="ecl-u-bg-blue ecl-u-pv-2xs">
+    <div class="ecl-container ">
+      <h2 class="ecl-u-color-white ecl-u-type-heading-2">{{ identity }}</h2>
+    </div>
+  </div>
+{% endif %}
+
 {% include '@ecl/page-header' with {
   'title': title,
   'description': introduction,
