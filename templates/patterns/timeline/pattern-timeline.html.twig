@@ -17,6 +17,6 @@
 
 {% include '@ecl/ec-component-timeline' with {
   'limit': limit,
-  'button_label': button_label,
+  'button_label': button_label|default("Show all timeline"|t),
   'items': items,
 } only %}
