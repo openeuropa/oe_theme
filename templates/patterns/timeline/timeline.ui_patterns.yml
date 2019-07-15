@@ -19,23 +19,23 @@ timeline:
       description: "List of timeline items."
       preview:
         -
-          title: "Item 1"
-          body: "Lorem ipsum dolor"
+          title: "By late-2013"
+          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
         -
-          title: "Item 2"
-          body: "Lorem ipsum dolor"
+          title: "By late-2014"
+          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
         -
-          title: "Item 3"
-          body: "Lorem ipsum dolor"
+          title: "By late-2015"
+          body: "The Commission will convene the first energy infrastructure forum to discuss and find solutions to issues that are common to all regions across Europe."
         -
-          title: "Item 4"
-          body: "Lorem ipsum dolor"
+          title: "By late-2016"
+          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
         -
-          title: "Item 5"
-          body: "Lorem ipsum dolor"
+          title: "By late-2017"
+          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
         -
-          title: "Item 6"
-          body: "Lorem ipsum dolor"
+          title: "By late-2018"
+          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
   libraries:
     - oe_theme/timelines
 

@@ -993,3 +993,59 @@
       '.ecl-timeline__item:nth-child(1) .ecl-timeline__body': "Lorem Ipsum 1"
       '.ecl-timeline__item:nth-child(2) .ecl-timeline__body': "Lorem Ipsum 2"
       '.ecl-timeline__item:nth-child(3) .ecl-timeline__body': "Lorem Ipsum 3"
+- array:
+    '#type': pattern
+    '#id': timeline
+    '#fields':
+      limit: 0
+      items:
+        -
+          title: "Item 1"
+          body: "Lorem Ipsum 1"
+        -
+          title: "Item 2"
+          body: "Lorem Ipsum 2"
+        -
+          title: "Item 3"
+          body: "Lorem Ipsum 3"
+  assertions:
+    count:
+      'ul.ecl-timeline__list': 1
+      'li.ecl-timeline__item': 3
+      'li.ecl-timeline__item.ecl-timeline__item--over-limit': 0
+      'button.ecl-timeline__button': 0
+    equals:
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__body': "Lorem Ipsum 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__body': "Lorem Ipsum 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__body': "Lorem Ipsum 3"
+- array:
+    '#type': pattern
+    '#id': timeline
+    '#fields':
+      limit: 1
+      items:
+        -
+          title: "Item 1"
+          body: "Lorem Ipsum 1"
+        -
+          title: "Item 2"
+          body: "Lorem Ipsum 2"
+        -
+          title: "Item 3"
+          body: "Lorem Ipsum 3"
+  assertions:
+    count:
+      'ul.ecl-timeline__list': 1
+      'li.ecl-timeline__item': 3
+      'li.ecl-timeline__item.ecl-timeline__item--over-limit': 2
+    equals:
+      'button.ecl-timeline__button': "Show all timeline"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__body': "Lorem Ipsum 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__body': "Lorem Ipsum 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__body': "Lorem Ipsum 3"
