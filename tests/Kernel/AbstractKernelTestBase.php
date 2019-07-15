@@ -40,6 +40,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installSchema('system', 'sequences');
+    $this->installConfig(['user']);
     $this->installConfig(['system', 'image', 'responsive_image']);
 
     $this->container->get('theme_installer')->install(['oe_theme']);

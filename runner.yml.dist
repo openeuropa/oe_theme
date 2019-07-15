@@ -14,7 +14,7 @@ drupal:
     profile: "minimal"
     name: "OpenEuropa"
   post_install:
-    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_content_policy oe_theme_content_page oe_theme_content_news oe_theme_content_policy -y"
+    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_content_policy oe_content_publication oe_theme_content_page oe_theme_content_news oe_theme_content_policy oe_theme_content_publication -y"
     - "./vendor/bin/drush en config_devel toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush theme:enable seven -y"
@@ -29,6 +29,7 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+      file_private_path: 'sites/default/files/private'
     databases:
       sparql_default:
         default:

@@ -18,8 +18,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "entity_canonical_route",
  *   label = @Translation("Default entity metadata extractor")
  * )
- *
- * @todo: This is deprecated in 1.x, will be removed in 2.0.
+ * phpcs:disable Drupal.Commenting.Deprecated
+ * @deprecated in 1.1.x and is removed from 2.0.0.
+ * phpcs:enable Drupal.Commenting.Deprecated
  */
 class EntityCanonicalRoutePage extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
