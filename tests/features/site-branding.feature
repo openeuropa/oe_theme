@@ -1,4 +1,4 @@
-@api
+@api @ecl2
 Feature: Site branding
   In order to have my site branded with the official European Commission visual identity
   As a product owner
@@ -10,14 +10,12 @@ Feature: Site branding
     When I am on "the user registration page"
     Then I should see the "logo" element in the "header"
 
-  @ecl2
   Scenario: The breadcrumb is visible everywhere.
     When I am on the homepage
     Then I should see the "breadcrumb" element in the "page"
     When I am on "the user registration page"
     Then I should see the "breadcrumb" element in the "page"
 
-  @ecl2
   Scenario: The page header is visible everywhere.
     When I am on the homepage
     Then I should see the "page header" element in the "page"
