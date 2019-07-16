@@ -10,28 +10,27 @@
  */
 #}
 
-{% set _search_form = {
-  text_input: {
-    id: input_array.id,
-    name: input_array.name,
-    label: input_array.label|default('Search'|t),
-    hide_label: input_array.hide_label|default(false),
-    invalid: input_array.invalid,
-    disabled: input_array.disabled,
-    type: input_array.type,
-    extra_classes: input_array.class|safe_join(' '),
-    extra_attributes: input_array.extra_attributes ~ ' ' ~ 'ecl-search-form__text-input',
+{% set _text_input = {
+  id: input_array.id,
+  name: input_array.name,
+  label: input_array.label|default('Search'|t),
+  hide_label: input_array.hide_label|default(false),
+  invalid: input_array.invalid,
+  disabled: input_array.disabled,
+  type: input_array.type,
+  extra_classes: input_array.class|safe_join(' '),
+  extra_attributes: input_array.extra_attributes
+}
+%}
+{% set _button = {
+  variant: 'search',
+  icon: {
+    type: 'general',
+    name: 'search',
+    path: ecl_icon_path,
   },
-  button: {
-    variant: 'search',
-    icon: {
-      type: 'general',
-      name: 'search',
-      path: ecl_icon_path,
-    },
-    label: 'Search',
-    extra_classes: 'ecl-search-form__button'
-  }
+  label: 'Search',
+  extra_classes: 'ecl-search-form__button'
 }
 %}
 
@@ -53,8 +52,8 @@
 {# Print the result #}
 
 <form class="{{ _css_class }}" role="search"{{ _extra_attributes|raw }}>
-  {% include '@ecl/text-input' with _search_form.text_input only %}
-  {% include '@ecl/button' with _search_form.button only %}
+  {% include '@ecl/text-input' with _text_input only %}
+  {% include '@ecl/button' with _button only %}
   {{ element.form_build_id }}
   {{ element.form_token }}
   {{ element.form_id }}
