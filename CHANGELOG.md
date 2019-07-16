@@ -1,10 +1,19 @@
 # Change Log
 
+## [1.4.0](https://github.com/openeuropa/oe_theme/tree/1.4.0) (2019-07-16)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.3.0...1.4.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2060: Implement timeline pattern. [\#268](https://github.com/openeuropa/oe_theme/pull/268) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2046: Implementation of Event dispatching and event subscriber. [\#266](https://github.com/openeuropa/oe_theme/pull/266) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.3.0](https://github.com/openeuropa/oe_theme/tree/1.3.0) (2019-07-08)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.2.0...1.3.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.3.0. [\#262](https://github.com/openeuropa/oe_theme/pull/262) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1996: Search box too small [\#260](https://github.com/openeuropa/oe_theme/pull/260) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-2025: Use custom image effect to prevent retina image reducction. [\#254](https://github.com/openeuropa/oe_theme/pull/254) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
