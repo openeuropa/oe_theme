@@ -4,29 +4,57 @@
  * Theme override for a 'form' element.
  *
  * @see ./core/themes/stable/templates/form/form.html.twig
- * @see @ecl/generic-component-search-form.twig
+ * @see @ecl/ec-component-search-form.twig
  *
  * In order to avoid usage of not secure form template in ecl we have to partically copy code from @ecl/search-form.twig
  */
 #}
 
-<form {{ attributes.addClass('ecl-search-form').setAttribute('role', 'search') }}>
-  {% include '@ecl/text-input' with {
-    'id': input_array.id,
-    'name': input_array.name,
-    'label': input_array.label|default('Search'|t),
-    'hide_label': input_array.hide_label|default(false),
-    'invalid': input_array.invalid,
-    'disabled': input_array.disabled,
-    'type': input_array.type,
-    'extra_classes': input_array.class|safe_join(' '),
-    'extra_attributes': input_array.extra_attributes,
-  } %}
-  {% include '@ecl/button' with {
-    'label': label|default('Search'|t),
-    'variant': 'search',
-    'extra_classes': 'ecl-search-form__button'
-  } %}
+{% set _search_form = {
+  text_input: {
+    id: input_array.id,
+    name: input_array.name,
+    label: input_array.label|default('Search'|t),
+    hide_label: input_array.hide_label|default(false),
+    invalid: input_array.invalid,
+    disabled: input_array.disabled,
+    type: input_array.type,
+    extra_classes: input_array.class|safe_join(' '),
+    extra_attributes: input_array.extra_attributes ~ ' ' ~ 'ecl-search-form__text-input',
+  },
+  button: {
+    variant: 'search',
+    icon: {
+      type: 'general',
+      name: 'search',
+      path: ecl_icon_path,
+    },
+    label: 'Search',
+    extra_classes: 'ecl-search-form__button'
+  }
+}
+%}
+
+{% set _css_class = 'ecl-search-form' %}
+{% set _extra_attributes = 'ecl-site-header__search' %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Print the result #}
+
+<form class="{{ _css_class }}" role="search"{{ _extra_attributes|raw }}>
+  {% include '@ecl/text-input' with _search_form.text_input only %}
+  {% include '@ecl/button' with _search_form.button only %}
   {{ element.form_build_id }}
   {{ element.form_token }}
   {{ element.form_id }}

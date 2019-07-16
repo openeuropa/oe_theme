@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\block\Entity\Block;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -39,5 +40,21 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
         break;
       }
     }
+  }
+}
+
+/**
+ * Change the region of the search block.
+ */
+function oe_theme_helper_post_update_change_region_of_search_block() {
+  $block = Block::load('oe_theme_search_form');
+
+  if (!$block) {
+    return t('The oe_search block was not found.');
+  }
+
+  if ($block->getTheme() == 'oe_theme') {
+    $block->setRegion('site_header_search');
+    $block->save();
   }
 }
