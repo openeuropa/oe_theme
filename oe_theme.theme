@@ -1024,6 +1024,16 @@ function oe_theme_preprocess_block(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_block__system_branding_block().
+ *
+ * For preprocessing default mode of System Branding block.
+ */
+function oe_theme_preprocess_block__system_branding_block(&$variables) {
+  $langId = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $langId . '.svg';
+}
+
+/**
  * Implements template_preprocess_preprocess_media__document__default().
  *
  * For preprocessing default mode of document media type.
