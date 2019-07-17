@@ -54,7 +54,7 @@ function oe_theme_helper_post_update_change_region_of_search_block() {
   }
 
   if ($block->getTheme() == 'oe_theme') {
-    $block->setRegion('site_header_search');
+    $block->setRegion('site_header_secondary');
     $block->save();
   }
 }
