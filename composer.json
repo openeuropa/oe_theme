@@ -8,7 +8,7 @@
     "require": {
         "drupal/core": "^8.7",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "~0.1",
+        "openeuropa/ecl-twig-loader": "dev-OPENEUROPA-2054",
         "php": "^7.1"
     },
     "require-dev": {
@@ -25,7 +25,7 @@
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context" : "~0.1",
-        "openeuropa/code-review": "~1.0@beta",
+        "openeuropa/code-review": "dev-OPENEUROPA-2054",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_content": "~1.0",
         "openeuropa/oe_corporate_blocks": "~1.0",
