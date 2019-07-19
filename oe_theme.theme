@@ -1032,7 +1032,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
   $lang_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
   $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_id . '.svg';
 
-  $variables['site_logo_alt'] = isset($variables['site_name']) ?
+  $variables['site_logo_alt'] = !empty($variables['site_name']) ?
     t('@site_name logo', ['@site_name' => $variables['site_name']]) :
     '';
 }
