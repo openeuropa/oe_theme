@@ -642,23 +642,22 @@
     '#fields':
       identifier: "id"
       items:
-        - icon: "icon-1"
-          title: "Title 1"
+        - title: "Title 1"
           body: "Body 1"
-        - icon: "icon-2"
-          title: "Title 2"
+        - title: "Title 2"
           body: "Body 2"
   assertions:
     count:
-      '.ecl-accordion__title': 2
-      '.ecl-accordion__title .ecl-accordion__toggle .ecl-button__icon': 2
-      '.ecl-accordion__content#id-0': 1
-      '.ecl-accordion__content#id-1': 1
+      '.ecl-accordion2__title': 2
+      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon': 2
+      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-title': 2
+      '.ecl-accordion2__content#id-0-content': 1
+      '.ecl-accordion2__content#id-1-content': 1
     equals:
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0"]': "Title 1"
-      '.ecl-accordion__content#id-0': "Body 1"
-      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1"]': "Title 2"
-      '.ecl-accordion__content#id-1': "Body 2"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"]': "Title 1"
+      '.ecl-accordion2__content#id-0-content': "Body 1"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"]': "Title 2"
+      '.ecl-accordion2__content#id-1-content': "Body 2"
 #- array:
 #    '#type': pattern
 #    '#id': dropdown

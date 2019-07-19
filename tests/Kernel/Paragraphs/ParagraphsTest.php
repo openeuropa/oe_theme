@@ -89,19 +89,19 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-button__label')->eq(0)->text();
+    $actual = $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle span.ecl-accordion2__toggle-title')->eq(0)->text();
     $this->assertEquals('Item title 1', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion__content')->eq(0)->text();
+    $actual = $crawler->filter('.ecl-accordion2__content')->eq(0)->text();
     $this->assertEquals('Item body 1', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-button__label')->eq(1)->text();
+    $actual = $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle span.ecl-accordion2__toggle-title')->eq(1)->text();
     $this->assertEquals('Item title 2', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion__content')->eq(1)->text();
+    $actual = $crawler->filter('.ecl-accordion2__content')->eq(1)->text();
     $this->assertEquals('Item body 2', trim($actual));
 
-    $this->assertCount(2, $crawler->filter('.ecl-button__icon'));
+    $this->assertCount(2, $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon'));
   }
 
   /**
