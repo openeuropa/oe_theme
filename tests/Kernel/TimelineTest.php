@@ -178,11 +178,6 @@ class TimelineTest extends AbstractKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
-    $entity_type_manager = \Drupal::entityTypeManager()->getStorage('node');
-    $entity_type_manager->resetCache();
-    /** @var \Drupal\node\NodeInterface $node */
-    $node = $entity_type_manager->load($node->id());
-
     // Verify the timeline is correctly rendered by ECL.
     $display = EntityViewDisplay::collectRenderDisplay($node, 'default');
     $build = $display->build($node);
