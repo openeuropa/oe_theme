@@ -14,7 +14,7 @@ use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests the timeline field type definition.
+ * Tests the timeline field rendering.
  */
 class TimelineTest extends AbstractKernelTestBase {
 
@@ -51,7 +51,7 @@ class TimelineTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected $modules = [
     'field',
     'link',
     'text',
@@ -102,7 +102,7 @@ class TimelineTest extends AbstractKernelTestBase {
       ],
     ])->save();
 
-    // Add text field to entity, to sort by.
+    // Add a timeline field.
     $fieldStorage = FieldStorageConfig::create([
       'field_name' => 'field_timeline',
       'entity_type' => 'node',
@@ -164,7 +164,7 @@ class TimelineTest extends AbstractKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
-    // Verify the timeline is correctly rendered by ECL.
+    // Test that the timeline is rendered using the formatter configuration.
     $display = EntityViewDisplay::collectRenderDisplay($node, 'default');
     $build = $display->build($node);
     $output = $this->renderRoot($build);
@@ -185,13 +185,12 @@ class TimelineTest extends AbstractKernelTestBase {
     $show_more_button = $crawler->filter('.ecl-timeline__button');
     $this->assertCount(1, $show_more_button);
 
-    // Change the limit to show all item without show more button.
+    // Change the limit to show all items without the "show more" button.
     $this->displayOptions['settings']['limit'] = 0;
     $display->setComponent('field_timeline', $this->displayOptions)->save();
 
     $build = $display->build($node);
     $output = $this->renderRoot($build);
-    $this->verbose($output);
     $this->assertNotContains('.ecl-timeline__button', (string) $output);
     $this->assertNotContains('.ecl-timeline__item--over-limit', (string) $output);
   }
