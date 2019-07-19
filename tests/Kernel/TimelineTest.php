@@ -35,20 +35,6 @@ class TimelineTest extends AbstractKernelTestBase {
   protected $nodeViewBuilder;
 
   /**
-   * A field storage to use in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldStorageConfig
-   */
-  protected $fieldStorage;
-
-  /**
-   * The field used in this test class.
-   *
-   * @var \Drupal\field\Entity\FieldConfig
-   */
-  protected $field;
-
-  /**
    * The display options to use in the formatter.
    *
    * @var array
@@ -117,16 +103,16 @@ class TimelineTest extends AbstractKernelTestBase {
     ])->save();
 
     // Add text field to entity, to sort by.
-    $this->fieldStorage = FieldStorageConfig::create([
+    $fieldStorage = FieldStorageConfig::create([
       'field_name' => 'field_timeline',
       'entity_type' => 'node',
       'type' => 'timeline_field',
       'cardinality' => -1,
       'entity_types' => ['node'],
     ]);
-    $this->fieldStorage->save();
+    $fieldStorage->save();
 
-    $this->field = FieldConfig::create([
+    $field = FieldConfig::create([
       'label' => 'Timeline field',
       'field_name' => 'field_timeline',
       'entity_type' => 'node',
@@ -134,14 +120,14 @@ class TimelineTest extends AbstractKernelTestBase {
       'settings' => [],
       'required' => FALSE,
     ]);
-    $this->field->save();
+    $field->save();
 
     EntityViewDisplay::create([
-      'targetEntityType' => $this->field->getTargetEntityTypeId(),
-      'bundle' => $this->field->getTargetBundle(),
+      'targetEntityType' => $field->getTargetEntityTypeId(),
+      'bundle' => $field->getTargetBundle(),
       'mode' => 'default',
       'status' => TRUE,
-    ])->setComponent($this->fieldStorage->getName(), $this->displayOptions)
+    ])->setComponent($fieldStorage->getName(), $this->displayOptions)
       ->save();
   }
 
