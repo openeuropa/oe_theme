@@ -46,7 +46,7 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
 /**
  * Change the region of the search block.
  */
-function oe_theme_helper_post_update_8200_change_region_of_search_block() {
+function oe_theme_helper_post_update_8201_change_region_of_search_block() {
   $block = Block::load('oe_theme_search_form');
 
   if (!$block) {
