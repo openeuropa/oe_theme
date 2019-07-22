@@ -2,12 +2,32 @@
 /**
  * @file
  * Default implementation for the navigation list item component.
+ *
+ * @see @ecl/navigation-lists
  */
 #}
-{% include '@ecl/ec-component-list-item' with {
-  'variant': 'navigation',
-  'title': title,
-  'href': url,
-  'detail': detail,
-  'screen_reader': 'List item'|t
+
+{% set _infos = {} %}
+{% for infos_item in infos %}
+  {% set _info = {
+    label : infos_item.text,
+    icon : {
+      type : 'general',
+      name : infos_item.icon,
+      path : ecl_icon_path
+    }
+  } %}
+  {% set _infos = _infos|merge([_info]) %}
+{% endfor %}
+
+{% include '@ecl/card' with {
+  card : {
+    description: detail,
+    title: {
+      label: title,
+      path: url
+    },
+    meta: meta,
+    infos: _infos
+  }
 } only %}

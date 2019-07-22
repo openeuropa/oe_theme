@@ -4,10 +4,12 @@
  * Default implementation for the highlight list item component.
  */
 #}
-{% include '@ecl/ec-component-list-item' with {
-  'variant': 'highlight',
-  'href': url,
-  'title': title,
-  'primary_image': image,
-  'screen_reader': 'List item'|t
+{% include '@ecl/card' with {
+  'card' : {
+    'title': {
+      label: title,
+      path: url,
+    },
+    'image': image.src,
+  }
 } only %}

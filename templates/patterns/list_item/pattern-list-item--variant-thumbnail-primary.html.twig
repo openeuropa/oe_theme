@@ -2,14 +2,44 @@
 /**
  * @file
  * Default theme implementation for a ECL thumbnail list item component.
+ *
+ * @see @ecl/content-item
  */
 #}
-{% include '@ecl/ec-component-list-item' with {
-  'variant': 'thumbnail',
-  'title': title,
-  'metas': meta,
-  'href': url,
-  'detail': detail,
-  'primary_image': image,
-  'screen_reader': 'List item'|t
+
+{% set _image_position = image_position|default('before') %}
+
+{% set _meta = '' %}
+{% for meta_item in meta %}
+  {% if _meta != '' %}
+    {% set _meta = _meta ~ ' | ' %}
+  {% endif %}
+  {% set _meta = _meta ~ meta_item %}
+{% endfor %}
+
+{% set _infos = {} %}
+{% for infos_item in infos %}
+  {% set _info = {
+    label : infos_item.text,
+    icon : {
+      type : 'general',
+      name : infos_item.icon,
+      path : ecl_icon_path
+    }
+  } %}
+  {% set _infos = _infos|merge([_info]) %}
+{% endfor %}
+
+{% include '@oe_theme/components-custom/ec-component-card/card-thumbnail.html.twig' with {
+  card : {
+    description: detail,
+    title: {
+      label: title,
+      path: url
+    },
+    image: image,
+    image_position: _image_position,
+    meta: meta,
+    infos: _infos
+  }
 } only %}
