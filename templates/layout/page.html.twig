@@ -8,10 +8,13 @@
 #}
 
 {% block site_header %}
-<header class="ecl-site-header" role="banner">
+<header class="ecl-site-header">
   {{ page.site_top_bar }}
-  <div class="ecl-container ecl-site-header__banner">
-    {{ page.site_header }}
+  <div class="ecl-site-header__container ecl-container">
+    <div class="ecl-site-header__banner">
+      {{ page.site_header }}
+    </div>
+    {{ page.site_header_secondary }}
   </div>
 </header>
 {% endblock %}

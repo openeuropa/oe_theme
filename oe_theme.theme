@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
+use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -1017,6 +1018,23 @@ function oe_theme_preprocess_block(&$variables) {
       'ecl-heading--h2',
     ],
   ]);
+}
+
+/**
+ * Implements template_preprocess_block__system_branding_block().
+ *
+ * Add required variables to follow ECL guidelines.
+ */
+function oe_theme_preprocess_block__system_branding_block(&$variables) {
+  $lang_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_id . '.svg';
+
+  $variables['site_logo_alt'] = !empty($variables['site_name']) ?
+    t('@site_name logo', ['@site_name' => $variables['site_name']]) :
+    '';
+
+  $route_options = ['absolute' => TRUE];
+  $variables['site_logo_href'] = Url::fromRoute('<front>', [], $route_options)->toString();
 }
 
 /**

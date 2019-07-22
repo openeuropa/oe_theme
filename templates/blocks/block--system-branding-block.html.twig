@@ -6,12 +6,20 @@
  * @see ./core/modules/system/templates/block--system-branding-block.html.twig
  */
 #}
+
 {% block content %}
   {% if site_logo %}
-    {% include '@ecl/generic-component-logo' with {
-      'href': url('<front>'),
-      'title': site_name,
-      'type': 'right',
-    } only %}
+    <a
+      class="ecl-link ecl-link--standalone"
+      href="{{ site_logo_href }}"
+      aria-label="{{ site_name }}"
+    >
+      <img
+        alt="{{ site_logo_alt }}"
+        title="{{ site_name }}"
+        class="ecl-site-header__logo-image"
+        src="{{ site_logo }}"
+      />
+    </a>
   {% endif %}
 {% endblock %}

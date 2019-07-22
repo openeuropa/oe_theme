@@ -13,6 +13,7 @@ base theme: stable
 regions:
   site_top_bar: "Site top bar"
   site_header: "Site header"
+  site_header_secondary: "Site header secondary"
   page_header: "Page header"
   navigation: "Navigation"
   content: "Content"

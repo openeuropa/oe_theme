@@ -7,7 +7,7 @@ dependencies:
     - oe_theme
 id: oe_theme_search_form
 theme: oe_theme
-region: site_header
+region: site_header_secondary
 weight: 3
 provider: null
 plugin: oe_search

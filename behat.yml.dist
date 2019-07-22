@@ -17,7 +17,7 @@ default:
               language switcher: ".ecl-language-list"
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
               language switcher overlay: ".ecl-dialog__body"
-              logo: "a.ecl-logo"
+              logo: ".ecl-site-header__logo-image"
               page header: ".ecl-page-header"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search form: ".ecl-search-form"
