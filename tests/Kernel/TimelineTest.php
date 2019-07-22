@@ -51,7 +51,7 @@ class TimelineTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $modules = [
+  protected static $modules = [
     'field',
     'link',
     'text',
