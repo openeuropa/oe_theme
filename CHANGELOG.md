@@ -1,10 +1,20 @@
 # Change Log
 
+## [1.5.0](https://github.com/openeuropa/oe_theme/tree/1.5.0) (2019-07-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.4.0...1.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2082: Change 'Related links' field label to h2. [\#275](https://github.com/openeuropa/oe_theme/pull/275) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2061: Style timeline formatter with ECL and provide test. [\#274](https://github.com/openeuropa/oe_theme/pull/274) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-627: Fix permission files. [\#271](https://github.com/openeuropa/oe_theme/pull/271) ([voidtek](https://github.com/voidtek))
+
 ## [1.4.0](https://github.com/openeuropa/oe_theme/tree/1.4.0) (2019-07-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.3.0...1.4.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 1.3.0. [\#270](https://github.com/openeuropa/oe_theme/pull/270) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2060: Implement timeline pattern. [\#268](https://github.com/openeuropa/oe_theme/pull/268) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2046: Implementation of Event dispatching and event subscriber. [\#266](https://github.com/openeuropa/oe_theme/pull/266) ([sergepavle](https://github.com/sergepavle))
 
