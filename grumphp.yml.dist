@@ -11,8 +11,6 @@ parameters:
     - inc
     - theme
     - install
-  tasks.phpcs.exclude:
-    - Drupal.Commenting.Deprecated
 
   extra_tasks:
     phpparser:
