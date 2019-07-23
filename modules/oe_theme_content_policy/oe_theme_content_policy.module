@@ -12,8 +12,8 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Implements hook_field_widget_WIDGET_TYPE_form_alter().
  *
- * @todo: Remove during ECLv2 timeline component implementation.
+ * @todo Remove with the ECLv2 timeline component implementation.
  */
-function oe_theme_content_policy_field_widget_timeline_widget_form_alter(&$element, FormStateInterface $form_state, $context) {
+function oe_theme_content_policy_field_widget_timeline_widget_form_alter(array &$element, FormStateInterface $form_state, array $context): void {
   $element['label']['#access'] = FALSE;
 }
