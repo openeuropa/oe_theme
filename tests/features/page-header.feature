@@ -46,7 +46,7 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Robots are everywhere nowadays"
 
-  Scenario: Page content type has custom metadata  shown in the page header.
+  Scenario: Page content type has custom metadata shown in the page header.
     Given "oe_page" content:
       | title   | oe_summary                           | oe_content_content_owner                                                |
       | My page | http://www.example.org is a web page | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
@@ -67,6 +67,16 @@ Feature: Page header block component.
     And I should see the link "http://www.example.org" in the "page header intro"
     And I should see "News" in the "page header meta"
     And I should see "02 April 2019" in the "page header meta"
+
+  Scenario: Policy content type has custom metadata shown in the page header.
+    Given "oe_policy" content:
+      | title     | oe_summary                           | oe_content_content_owner                                                |
+      | My Policy | http://www.example.org is a web page | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+    And I am an anonymous user
+    When I go to the "My Policy" page
+    Then I should see the text "http://www.example.org is a web page" in the "page header intro"
+    # The default text format should be applied, converting URLs into links.
+    And I should see the link "http://www.example.org" in the "page header intro"
 
   Scenario: The page header block shows the content language switcher.
     Given the following "Spanish" translation for the "Robots are everywhere" demo page:

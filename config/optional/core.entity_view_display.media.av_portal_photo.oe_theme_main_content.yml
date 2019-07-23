@@ -17,9 +17,9 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: oe_theme_small_no_crop
+      responsive_image_style: oe_theme_main_content
     third_party_settings: {  }
-    type: avportal_photo
+    type: avportal_photo_responsive
     region: content
 hidden:
   created: true

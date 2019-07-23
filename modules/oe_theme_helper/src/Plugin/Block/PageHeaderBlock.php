@@ -22,7 +22,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   id = "oe_theme_helper_page_header",
  *   admin_label = @Translation("Page header"),
  *   category = @Translation("OpenEuropa"),
- *   context = {
+ *   context_definitions = {
  *     "page_header" = @ContextDefinition("map", label = @Translation("Page header metadata"))
  *   }
  * )

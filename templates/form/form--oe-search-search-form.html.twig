@@ -10,9 +10,9 @@
  */
 #}
 
-<form {{ attributes.addClass(['ecl-search-form', 'ecl-search-form--']) }}>
+<form {{ attributes.addClass(['ecl-search-form', 'ecl-site-header__search']) }}>
   <label class="ecl-search-form__textfield-wrapper">
-    <span class="ecl-u-sr-only">{{ "Search this website" }}</span>
+    <span class="ecl-u-sr-only">{{ "Search this website"|t }}</span>
     {% include '@ecl/generic-component-form-text-input' with {
       'id': 'search',
       'type': 'search',

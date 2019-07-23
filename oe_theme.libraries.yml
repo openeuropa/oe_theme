@@ -59,3 +59,9 @@ tables:
   dependencies:
     - core/drupal
     - oe_theme/base
+timelines:
+  js:
+    js/timelines.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base

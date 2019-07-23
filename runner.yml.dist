@@ -14,7 +14,7 @@ drupal:
     profile: "minimal"
     name: "OpenEuropa"
   post_install:
-    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_theme_content_page oe_theme_content_news -y"
+    - "./vendor/bin/drush en oe_theme_helper oe_multilingual oe_search oe_corporate_blocks oe_content oe_content_page oe_content_policy oe_content_publication oe_theme_content_page oe_theme_content_news oe_theme_content_policy oe_theme_content_publication -y"
     - "./vendor/bin/drush en config_devel toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
     - "./vendor/bin/drush theme:enable seven -y"
@@ -29,6 +29,7 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+      file_private_path: 'sites/default/files/private'
     databases:
       sparql_default:
         default:
@@ -47,6 +48,8 @@ commands:
     - { task: "symlink", from: "${drupal.root}/core/.stylelintrc.json", to: ".stylelintrc.json" }
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }
+    # Generate settings.testing.php, it will be used when running functional tests.
+    - { task: "process-php", type: "write", config: "drupal.settings", source: "${drupal.root}/sites/default/default.settings.php", destination: "${drupal.root}/sites/default/settings.testing.php", override: true }
     - { task: "run", command: "setup:phpunit" }
     - { task: "run", command: "setup:behat" }
   setup:phpunit:
