@@ -1085,6 +1085,7 @@
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
       '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': "Item 3"
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': "Item 4"
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__toggle .ecl-button__label': "Show timelines"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 5"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "Lorem Ipsum 1"
@@ -1093,59 +1094,47 @@
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': "Lorem Ipsum 4"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': "Lorem Ipsum 5"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__content': "Lorem Ipsum 6"
-#- array:
-#    '#type': pattern
-#    '#id': timeline
-#    '#fields':
-#      limit: 0
-#      items:
-#        -
-#          title: "Item 1"
-#          body: "Lorem Ipsum 1"
-#        -
-#          title: "Item 2"
-#          body: "Lorem Ipsum 2"
-#        -
-#          title: "Item 3"
-#          body: "Lorem Ipsum 3"
-#  assertions:
-#    count:
-#      'ul.ecl-timeline__list': 1
-#      'li.ecl-timeline__item': 3
-#      'li.ecl-timeline__item.ecl-timeline__item--over-limit': 0
-#      'button.ecl-timeline__button': 0
-#    equals:
-#      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
-#      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
-#      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
-#      '.ecl-timeline__item:nth-child(1) .ecl-timeline__body': "Lorem Ipsum 1"
-#      '.ecl-timeline__item:nth-child(2) .ecl-timeline__body': "Lorem Ipsum 2"
-#      '.ecl-timeline__item:nth-child(3) .ecl-timeline__body': "Lorem Ipsum 3"
-#- array:
-#    '#type': pattern
-#    '#id': timeline
-#    '#fields':
-#      limit: 1
-#      items:
-#        -
-#          title: "Item 1"
-#          body: "Lorem Ipsum 1"
-#        -
-#          title: "Item 2"
-#          body: "Lorem Ipsum 2"
-#        -
-#          title: "Item 3"
-#          body: "Lorem Ipsum 3"
-#  assertions:
-#    count:
-#      'ul.ecl-timeline__list': 1
-#      'li.ecl-timeline__item': 3
-#      'li.ecl-timeline__item.ecl-timeline__item--over-limit': 2
-#    equals:
-#      'button.ecl-timeline__button': "Show all timeline"
-#      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
-#      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
-#      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
-#      '.ecl-timeline__item:nth-child(1) .ecl-timeline__body': "Lorem Ipsum 1"
-#      '.ecl-timeline__item:nth-child(2) .ecl-timeline__body': "Lorem Ipsum 2"
-#      '.ecl-timeline__item:nth-child(3) .ecl-timeline__body': "Lorem Ipsum 3"
+- array:
+    '#type': pattern
+    '#id': timeline
+    '#fields':
+      toggle_collapsed: 'Show timelines'
+      toggle_expended: 'Hide timelines'
+      items:
+        -
+          title: "Item 1"
+          content: "Lorem Ipsum 1"
+        -
+          title: "Item 2"
+          content: "Lorem Ipsum 2"
+        -
+          title: "Item 3"
+          content: "Lorem Ipsum 3"
+        -
+          title: "Item 4"
+          content: "Lorem Ipsum 4"
+        -
+          title: "Item 5"
+          content: "Lorem Ipsum 5"
+        -
+          title: "Item 6"
+          content: "Lorem Ipsum 6"
+  assertions:
+    count:
+      'ol.ecl-timeline2': 1
+      'li.ecl-timeline2__item': 6
+      'li.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
+      'li.ecl-timeline2__item.ecl-timeline2__item--collapsed': 0
+    equals:
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
+      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': "Item 3"
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': "Item 4"
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': "Item 5"
+      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "Lorem Ipsum 1"
+      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': "Lorem Ipsum 2"
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': "Lorem Ipsum 3"
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': "Lorem Ipsum 4"
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': "Lorem Ipsum 5"
+      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': "Lorem Ipsum 6"
