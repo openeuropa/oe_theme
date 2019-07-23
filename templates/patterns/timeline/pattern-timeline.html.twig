@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Timeline component.
+ */
+#}
+
+
+
+{% include '@ecl/timeline' with {
+  'toggle_collapsed': toggle_collapsed|default('Show '|t),
+  'toggle_expanded': toggle_expanded,
+  'hide': {
+    'from': hide_from,
+    'to': hide_to,
+  },
+  'items': items,
+  'icon_path': ecl_icon_path,
+} only %}

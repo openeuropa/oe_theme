@@ -1,0 +1,58 @@
+timeline:
+  label: "Timeline"
+  description: "A timeline is a way of displaying a list of events in chronological order."
+  fields:
+    toggle_collapsed:
+      type: "text"
+      label: "Toggle collapsed"
+      description: "Show timeline collapsed button label."
+      preview: "Show timelines"
+    toggle_expanded:
+      type: "text"
+      label: "Toggle expanded"
+      description: "Show timeline expanded button label."
+      preview: "Hide timelines"
+    hide_from:
+      type: "numeric"
+      label: "Timeline index for starting hiding"
+      description: "Item index after which to start hiding timeline items."
+      escape: false
+      preview: 2
+    hide_to:
+      type: "numeric"
+      label: "Timeline index for starting displaying"
+      description: "Item index after which to resume displaying timeline items."
+      escape: false
+      preview: 4
+    items:
+      type: "array"
+      label: "Timeline items"
+      description: "List of timeline items."
+      preview:
+        -
+          label: "By late-2013"
+          title: "Lorem ipsum dolor ..."
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+        -
+          label: "By late-2014"
+          title: "Lorem ipsum dolor ..."
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+        -
+          label: "By late-2015"
+          title: "Lorem ipsum dolor ..."
+          content: "The Commission will convene the first energy infrastructure forum to discuss and find solutions to issues that are common to all regions across Europe."
+        -
+          label: "By late-2016"
+          title: "Lorem ipsum dolor ..."
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+        -
+          label: "By late-2017"
+          title: "Lorem ipsum dolor ..."
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+        -
+          label: "By late-2018"
+          title: "Lorem ipsum dolor ..."
+          content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+  libraries:
+    - oe_theme/timelines
+
