@@ -1,10 +1,18 @@
 # Change Log
 
+## [1.5.1](https://github.com/openeuropa/oe_theme/tree/1.5.1) (2019-07-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.5.0...1.5.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2047: Add class for timeline to limit width. [\#278](https://github.com/openeuropa/oe_theme/pull/278) ([nagyad](https://github.com/nagyad))
+
 ## [1.5.0](https://github.com/openeuropa/oe_theme/tree/1.5.0) (2019-07-23)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.4.0...1.5.0)
 
 **Merged pull requests:**
 
+- Release 1.5.0 - Update CHANGELOG.md. [\#276](https://github.com/openeuropa/oe_theme/pull/276) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2082: Change 'Related links' field label to h2. [\#275](https://github.com/openeuropa/oe_theme/pull/275) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2061: Style timeline formatter with ECL and provide test. [\#274](https://github.com/openeuropa/oe_theme/pull/274) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-627: Fix permission files. [\#271](https://github.com/openeuropa/oe_theme/pull/271) ([voidtek](https://github.com/voidtek))
