@@ -46,6 +46,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     'filter',
     'oe_media',
     'oe_content',
+    'oe_content_timeline_field',
     'oe_content_news',
     'oe_content_page',
     'oe_content_policy',
@@ -84,6 +85,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->installConfig([
       'oe_media',
       'oe_content',
+      'oe_content_timeline_field',
       'oe_content_news',
       'oe_content_page',
       'oe_content_policy',
