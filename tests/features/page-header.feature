@@ -78,6 +78,17 @@ Feature: Page header block component.
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
 
+  Scenario: Publication content type has custom metadata shown in the page header.
+    Given "oe_publication" content:
+      | title          | oe_summary                           | oe_teaser | body    | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                |
+      | My publication | http://www.example.org is a web page | My teaser | My body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+    And I am an anonymous user
+    When I go to the "My publication" page
+    Then I should see the text "http://www.example.org is a web page" in the "page header intro"
+    # The default text format should be applied, converting URLs into links.
+    And I should see the link "http://www.example.org" in the "page header intro"
+    And I should see "02 April 2019" in the "page header meta"
+
   Scenario: The page header block shows the content language switcher.
     Given the following "Spanish" translation for the "Robots are everywhere" demo page:
       | Title | Los robots estan en todas partes |
