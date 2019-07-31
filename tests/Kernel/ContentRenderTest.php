@@ -11,6 +11,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our content types render with correct markup.
+ *
+ * @group ecl1
  */
 class ContentRenderTest extends AbstractKernelTestBase {
 

@@ -8,6 +8,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test site switcher block rendering.
+ *
+ * @group ecl1
  */
 class CorporateBlocksSiteSwitcherTest extends CorporateBlocksTestBase {
 

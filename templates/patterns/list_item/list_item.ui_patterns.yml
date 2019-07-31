@@ -64,7 +64,7 @@ list_item:
     infos:
       type: "array"
       label: "Infos"
-      description: "A list of infos of the current page."
+      description: "A list of infos of the page."
       preview:
         - text: "Monday 8 February"
           icon: "calendar"

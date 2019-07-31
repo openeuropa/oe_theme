@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class MainMenuTest.
+ *
+ * @group ecl1
  */
 class MainMenuTest extends AbstractKernelTestBase {
 
