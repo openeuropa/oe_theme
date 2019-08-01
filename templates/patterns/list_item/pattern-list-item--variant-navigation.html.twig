@@ -2,30 +2,14 @@
 /**
  * @file
  * Default implementation for the navigation list item component.
- *
- * @see @ecl/navigation-lists
  */
 #}
-
-{% set _infos = {} %}
-{% for infos_item in infos %}
-  {% set _info = {
-    label : infos_item.text,
-    icon : {
-      type : 'general',
-      name : infos_item.icon,
-      path : ecl_icon_path
-    }
-  } %}
-  {% set _infos = _infos|merge([_info]) %}
-{% endfor %}
-
 {% include '@ecl/card' with {
   card : {
-    description: detail,
     title: {
       label: title,
       path: url
-    }
+    },
+    description: detail
   }
 } only %}

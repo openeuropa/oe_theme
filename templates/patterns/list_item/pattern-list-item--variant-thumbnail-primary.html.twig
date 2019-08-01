@@ -6,16 +6,7 @@
  * @see @ecl/content-item
  */
 #}
-
 {% set _image_position = image_position|default('before') %}
-
-{% set _meta = '' %}
-{% for meta_item in meta %}
-  {% if _meta != '' %}
-    {% set _meta = _meta ~ ' | ' %}
-  {% endif %}
-  {% set _meta = _meta ~ meta_item %}
-{% endfor %}
 
 {% set _infos = {} %}
 {% for infos_item in infos %}
