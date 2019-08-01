@@ -245,6 +245,18 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
+  // Add space between paragraphs.
+  if (($variables['entity_type'] === 'node' &&
+      $variables['field_name'] === 'paragraphs' &&
+      $variables['element']['#bundle'] === 'landing_page') ||
+    ($variables['entity_type'] === 'block_content' &&
+      $variables['field_name'] === 'field_content' &&
+      $variables['element']['#bundle'] === 'content_block')) {
+    foreach ($variables['items'] as &$item) {
+      $item['attributes']->addClass('ecl-u-mv-s');
+    }
+  }
+
   if ($variables['field_name'] === 'body') {
     $variables['attributes']['class'][] = 'ecl-editor';
   }
