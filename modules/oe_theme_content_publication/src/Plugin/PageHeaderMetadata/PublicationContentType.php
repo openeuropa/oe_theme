@@ -9,7 +9,6 @@ use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\node\NodeInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -79,9 +78,9 @@ class PublicationContentType extends NodeViewRoutesBase {
    * {@inheritdoc}
    */
   public function applies(): bool {
-    $entity = $this->getNode();
+    $node = $this->getNode();
 
-    return $entity instanceof NodeInterface && $entity->bundle() === 'oe_publication';
+    return $node && $node->bundle() === 'oe_publication';
   }
 
   /**
@@ -90,28 +89,28 @@ class PublicationContentType extends NodeViewRoutesBase {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $entity = $this->getNode();
-    if ($entity->get('oe_summary')->isEmpty()) {
-      return $metadata;
+    $node = $this->getNode();
+    if (!($node->get('oe_summary')->isEmpty())) {
+
+      $summary = $node->get('oe_summary')->first();
+
+      $metadata['introduction'] = [
+        // We strip the tags because the component expects only one paragraph of
+        // text and the field is using a text format which adds paragraph tags.
+        '#type' => 'inline_template',
+        '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
+        '#context' => [
+          'summary' => [
+            '#type' => 'processed_text',
+            '#text' => $summary->value,
+            '#format' => $summary->format,
+            '#langcode' => $summary->getLangcode(),
+          ],
+        ],
+      ];
     }
 
-    $summary = $entity->get('oe_summary')->first();
-    $metadata['introduction'] = [
-      // We strip the tags because the component expects only one paragraph of
-      // text and the field is using a text format which adds paragraph tags.
-      '#type' => 'inline_template',
-      '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
-      '#context' => [
-        'summary' => [
-          '#type' => 'processed_text',
-          '#text' => $summary->value,
-          '#format' => $summary->format,
-          '#langcode' => $summary->getLangcode(),
-        ],
-      ],
-    ];
-
-    $timestamp = $entity->get('oe_publication_date')->date->getTimestamp();
+    $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
     $metadata['metas'] = [
       $this->dateFormatter->format($timestamp, 'oe_theme_publication_date'),
     ];
