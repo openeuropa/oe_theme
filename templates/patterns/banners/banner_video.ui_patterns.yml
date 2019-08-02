@@ -8,8 +8,7 @@ banner_video:
       description: "Banner video"
       preview:
         src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
-        is_iframe: "true"
-        ratio: "16-9"
+        is_iframe: true
         caption: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit"
     description:
       type: "text"
