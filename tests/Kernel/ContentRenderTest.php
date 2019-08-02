@@ -256,6 +256,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
         ],
       ],
       'oe_summary' => 'Summary',
+      'oe_publication_date' => '2019-04-05',
       'uid' => 0,
       'status' => 1,
     ]);
