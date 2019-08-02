@@ -165,24 +165,26 @@
       'div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'div.ecl-hero-banner__content a.ecl-hero-banner__link[href="http://example.com"]': Subscribe
-
-#- array:
-#    '#type': pattern
-#    '#id': banner_video
-#    '#fields':
-#      video:
-#        src: "https://ec.europa.eu/avservices/play.cfm?ref=I101631"
-#        is_iframe: "true"
-#        ratio: "16-9"
-#        caption: "Video caption"
-#      description: "<p class=\"ecl-paragraph\">Banner description</p>"
-#  assertions:
-#    count:
-#      'div.ecl-banner--video': 1
-#      'div.ecl-banner--video section.ecl-file--video div.ecl-u-ratio-16-9 iframe[src="https://ec.europa.eu/avservices/play.cfm?ref=I101631"]': 1
-#    equals:
-#      'div.ecl-banner--video section.ecl-file--video div.ecl-file__caption': Video caption
-#      'div.ecl-banner--video div.ecl-col-lg-6 p.ecl-paragraph': "Banner description"
+- array:
+    '#type': pattern
+    '#id': banner_video
+    '#fields':
+      video:
+        description: "Video caption"
+        image: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        alt: "Jean Monnet banner."
+        sources:
+          - source: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+            video_type: "video/mp4"
+      description: "Banner description"
+  assertions:
+    count:
+      'section.ecl-video-banner': 1
+      'video.ecl-media-container__media[alt="Jean Monnet banner."][poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'source[src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"][type="video/mp4"]': 1
+    equals:
+      'figcaption.ecl-media-container__caption': Video caption
+      'p.ecl-u-type-paragraph': "Banner description"
 - array:
     '#type': pattern
     '#id': file
