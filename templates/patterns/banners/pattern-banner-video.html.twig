@@ -33,18 +33,7 @@
     <div class="ecl-container ecl-video-banner__container">
       <div class="ecl-row">
         <div class="ecl-col-sm-12 ecl-col-md-6">
-          {% if _video.is_iframe is defined and _video.is_iframe %}
-            <figure class="ecl-media-container">
-              <iframe class="ecl-media-container__media" src="{{ _video.src }}" allowfullscreen="allowfullscreen" scrolling="no"></iframe>
-              <figcaption class="ecl-media-container__caption">{{ _video.caption }}</figcaption>
-            </figure>
-          {% else %}
-              {% include '@ecl/media-container' with {
-                'sources': _video.sources,
-                'image': _video.image,
-                'description': _video.caption,
-              } %}
-          {% endif %}
+          {% include '@ecl/media-container' with _video %}
         </div>
         <div class="ecl-col-sm-12 ecl-col-md-6">
           <p class="ecl-u-type-paragraph">

@@ -672,13 +672,12 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
-  if (isset($variables['video']['is_iframe']) && !$variables['video']['is_iframe'] && !empty($variables['video']['src'])) {
-    $variables['video']['sources'] = [
-      [
-        'src' => $variables['video']['src'],
-        'type' => mime_content_type($variables['video']['src']),
-      ],
-    ];
+  if (!empty($variables['video']['sources'])) {
+    // We need to rename the variables that the pattern module uses.
+    foreach ($variables['video']['sources'] as &$source) {
+      $source['src'] = $source['source'];
+      $source['type'] = $source['video_type'];
+    }
   }
 }
 
