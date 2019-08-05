@@ -13,17 +13,15 @@ timeline:
       label: "Timeline index for starting displaying"
       description: "Item index after which to resume displaying timeline items. Default is null."
       escape: false
-      preview: 0
+      preview: 3
     button_label:
       type: "text"
       label: "Button label"
       description: "Show timeline button label."
-      preview: "Show all timeline items"
     button_label_hidden:
       type: "text"
       label: "Button label hidden"
       description: "Hidden timeline button label."
-      preview: "Hidden all timeline items"
     items:
       type: "array"
       label: "Timeline items"
@@ -55,4 +53,3 @@ timeline:
           body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
   libraries:
     - oe_theme/timelines
-
