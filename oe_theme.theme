@@ -673,10 +673,9 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
   if (!empty($variables['video']['sources'])) {
-    // We need to rename the variables that the pattern module uses.
+    // We need to rename the variables that the Patterns module uses.
     foreach ($variables['video']['sources'] as &$source) {
-      $source['src'] = $source['source'];
-      $source['type'] = $source['video_type'];
+      $source['type'] = $source['src_type'];
     }
   }
 }

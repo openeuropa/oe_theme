@@ -174,14 +174,14 @@
         image: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
         alt: "Jean Monnet banner."
         sources:
-          - source: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
-            video_type: "video/mp4"
+          - src: "https://defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"
+            src_type: "video/mp4"
       description: "Banner description"
   assertions:
     count:
       'section.ecl-video-banner': 1
       'video.ecl-media-container__media[alt="Jean Monnet banner."][poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
-      'source[src="https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"][type="video/mp4"]': 1
+      'source[src="https://defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"][type="video/mp4"]': 1
     equals:
       'figcaption.ecl-media-container__caption': Video caption
       'p.ecl-u-type-paragraph': "Banner description"
