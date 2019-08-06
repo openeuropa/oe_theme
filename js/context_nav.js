@@ -3,13 +3,12 @@
  * ECL contextual navigation behavior.
  */
 (function (ECL, Drupal) {
-  Drupal.behaviors.eclContextualNavs = {
+  Drupal.behaviors.eclFileTranslations = {
     attach: function attach() {
       var elements = document.querySelectorAll('[data-ecl-contextual-navigation]');
-      for (var i = 0; i < elements.length; i += 1) {
-        var contextualNavigation = new ECL.ContextualNavigation(elements[i]);
-        contextualNavigation.init();
-      }
+      elements.forEach(function(element) {
+        (new ECL.ContextualNavigation(element)).init();
+      });
     }
   };
 })(ECL, Drupal);
