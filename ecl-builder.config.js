@@ -39,6 +39,7 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-gallery/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-hero-banner/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-icon/*.twig', to: path.resolve(outputFolder, 'templates/components') },
+    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-inpage-navigation/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-language-list/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-link/*.twig', to: path.resolve(outputFolder, 'templates/components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-media-container/*.twig', to: path.resolve(outputFolder, 'templates/components') },
