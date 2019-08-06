@@ -46,6 +46,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     'filter',
     'oe_media',
     'oe_content',
+    'oe_content_timeline_field',
     'oe_content_news',
     'oe_content_page',
     'oe_content_policy',
@@ -84,6 +85,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->installConfig([
       'oe_media',
       'oe_content',
+      'oe_content_timeline_field',
       'oe_content_news',
       'oe_content_page',
       'oe_content_policy',
@@ -145,7 +147,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertContains('Body', $body_wrapper->text());
 
     // Related links.
-    $related_links_heading = $crawler->filter('.ecl-heading--h3');
+    $related_links_heading = $crawler->filter('.ecl-heading--h2');
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
     $this->assertCount(2, $related_links);
@@ -191,7 +193,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertContains('Body', $body_wrapper->text());
 
     // Related links.
-    $related_links_heading = $crawler->filter('.ecl-heading--h3');
+    $related_links_heading = $crawler->filter('.ecl-heading--h2');
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
     $this->assertCount(2, $related_links);
@@ -254,6 +256,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
         ],
       ],
       'oe_summary' => 'Summary',
+      'oe_publication_date' => '2019-04-05',
       'uid' => 0,
       'status' => 1,
     ]);
