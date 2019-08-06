@@ -79,6 +79,11 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
     // fields, while keeping all the rest markup-free.
     array_unshift($suggestions, 'field__bare');
   }
+
+  // Add suggestions for all 'Entity reference revisions' for each target type.
+  if ($variables['element']['#field_type'] === 'entity_reference_revisions') {
+    $suggestions[] = 'field__' . $variables['element']['#field_type'] . '__' . $variables['element']['#items']->getFieldDefinition()->getSetting('target_type');
+  }
 }
 
 /**
