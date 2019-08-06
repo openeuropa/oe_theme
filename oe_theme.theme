@@ -1048,3 +1048,12 @@ function oe_theme_preprocess_media__document__default(&$variables) {
     $variables['file'] = FileValueObject::fromFileEntity($file_object);
   }
 }
+
+/**
+ * Implements hook_preprocess_pattern_timeline().
+ */
+function oe_theme_preprocess_pattern_timeline(array &$variables): void {
+  foreach ($variables['items'] as &$item) {
+    $item['content'] = $item['body'];
+  }
+}
