@@ -97,7 +97,7 @@
         {{- _content_item.title.label }}
       {%- endif -%}
     </div>
-    <p class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _content_item.description }}</p>
+    <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _content_item.description }}</div>
     {% if _content_item.infos is defined and _content_item.infos is not empty and _content_item.infos is iterable %}
       <ul class="ecl-content-item__info ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
         {% for info in _content_item.infos %}

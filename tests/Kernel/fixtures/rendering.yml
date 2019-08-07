@@ -457,7 +457,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
-      'article.ecl-content-item p.ecl-content-item__description': "Item text"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
       'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(1)': "Munich, Germany"
       'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(2)': "Live stream available"
 - array:
@@ -487,7 +487,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
-      'article.ecl-content-item p.ecl-content-item__description': "Item text"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
       'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(1)': "Munich, Germany"
       'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(2)': "Live stream available"
 - array:
