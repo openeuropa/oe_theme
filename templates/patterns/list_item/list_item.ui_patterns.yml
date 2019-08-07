@@ -61,12 +61,3 @@ list_item:
       preview:
         src: "https://placeimg.com/1200/900/arch"
         alt: "Alternative text for image"
-    infos:
-      type: "array"
-      label: "Infos"
-      description: "A list of infos of the page."
-      preview:
-        - text: "Munich, Germany"
-          icon: "location"
-        - text: "Live stream available"
-          icon: "livestreaming"

@@ -416,11 +416,6 @@
       meta:
         - "News article"
         - "6 July 2015"
-      infos:
-        - text: "Munich, Germany"
-          icon: "location"
-        - text: "Live stream available"
-          icon: "livestreaming"
   assertions:
     count:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]': 1
@@ -428,8 +423,6 @@
       'article.ecl-card header.ecl-card__header div.ecl-card__meta': "News article | 6 July 2015"
       'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
       'article.ecl-card section.ecl-card__body div.ecl-card__description': "Item text"
-      'article.ecl-card footer.ecl-card__footer li.ecl-card__info-item:nth-child(1)': "Munich, Germany"
-      'article.ecl-card footer.ecl-card__footer li.ecl-card__info-item:nth-child(2)': "Live stream available"
 - array:
     '#type': pattern
     '#id': list_item
@@ -444,22 +437,14 @@
       meta:
         - "News article"
         - "6 July 2015"
-      infos:
-        - text: "Munich, Germany"
-          icon: "location"
-        - text: "Live stream available"
-          icon: "livestreaming"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(1)': "Munich, Germany"
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(2)': "Live stream available"
 - array:
     '#type': pattern
     '#id': list_item
@@ -474,22 +459,14 @@
       meta:
         - "News article"
         - "6 July 2015"
-      infos:
-        - text: "Munich, Germany"
-          icon: "location"
-        - text: "Live stream available"
-          icon: "livestreaming"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(1)': "Munich, Germany"
-      'article.ecl-content-item ul.ecl-content-item__info li.ecl-content-item__info-item:nth-child(2)': "Live stream available"
 - array:
     '#type': pattern
     '#id': list_item
