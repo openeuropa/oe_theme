@@ -95,7 +95,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
     $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
     $this->assertContains('KB - PDF)', $file_info_properties->text());
 
-    $file_download_link = $file_row->filter('a.ecl-file__download');
+    $file_download_link = $file_row->filter('.ecl-file__download');
     $this->assertContains('/test.pdf', $file_download_link->attr('href'));
     $this->assertContains('Download', $file_download_link->text());
   }
