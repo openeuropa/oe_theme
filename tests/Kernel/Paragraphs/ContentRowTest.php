@@ -19,7 +19,7 @@ class ContentRowTest extends ParagraphsTestBase {
    * Tests the rendering of the paragraph type.
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
-   * @todo Update (restore) after porting to ECL2 other components.
+   * @todo Update (restore) after porting to ECL2 other components: Link blocks (OPENEUROPA-2092), List item (OPENEUROPA-1989, OPENEUROPA-1990, OPENEUROPA-2124).
    */
   public function testRendering(): void {
     // Create multiple paragraphs to be referenced in the content row.
@@ -99,6 +99,10 @@ class ContentRowTest extends ParagraphsTestBase {
     // Verify that there is a full size column rendered.
     $this->assertCount(1, $crawler->filter('.ecl-row .ecl-col-md-12'));
     // Do a smoke test that inner paragraphs are rendered.
+    // @codingStandardsIgnoreStart
+    //$this->assertContains('Links block title', $html);
+    //$this->assertContains('List item title', $html);
+    // @codingStandardsIgnoreEnd
     $this->assertContains('List block title', $html);
     $this->assertContains('Rich text without title.', $html);
     $this->assertContains('Rich text with title.', $html);
@@ -123,6 +127,10 @@ class ContentRowTest extends ParagraphsTestBase {
 
     // Verify that the right column still contains all the paragraphs.
     $right_column_html = $right_column->html();
+    // @codingStandardsIgnoreStart
+    //$this->assertContains('Links block title', $right_column_html);
+    //$this->assertContains('List item title', $right_column_html);
+    // @codingStandardsIgnoreEnd
     $this->assertContains('List block title', $right_column_html);
     $this->assertContains('Rich text without title.', $right_column_html);
     $this->assertContains('Rich text with title.', $right_column_html);
@@ -134,6 +142,9 @@ class ContentRowTest extends ParagraphsTestBase {
     $navigation_items = $left_column->filter('ul.ecl-inpage-navigation__list li');
     $this->assertCount(3, $navigation_items);
     // Check the order, text and anchor of each item.
+    // @codingStandardsIgnoreStart
+    // $this->assertNavigationItem($navigation_items->eq(0), 'List item title', $right_column);
+    // @codingStandardsIgnoreEnd
     $this->assertNavigationItem($navigation_items->eq(1), 'List block title', $right_column);
     $this->assertNavigationItem($navigation_items->eq(2), 'Rich text title', $right_column);
 
