@@ -912,7 +912,6 @@ function oe_theme_preprocess_pattern_list_item_block_one_column(array &$variable
   foreach ((array) $variables['items'] as $key => $value) {
     $variables['items'][$key]['#fields']['extra_classes'] = 'ecl-col-12';
   }
-  var_dump($variables['items']);
 }
 
 /**
