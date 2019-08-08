@@ -293,6 +293,12 @@ docker-compose exec -u node node npx patch-package @ecl/[component-name]
 
 Patches will be generated in `./patches` and applied when running `npm install`.
 
+#### Upgrade from 1.x to 2.x
+
+Note that the following models are deprecated after upgrading from 1.x to 2.x:
+
+- `dialog pattern`
+
 ## Contributing
 
 Please read [the full documentation](https://github.com/openeuropa/openeuropa) for details on our code of conduct, and the process for submitting pull requests to us.
