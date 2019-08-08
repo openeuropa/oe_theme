@@ -610,33 +610,6 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_dialog(array &$variables): void {
-  // Make sure it has default values.
-  $variables += [
-    'dialog_id' => Html::getUniqueId('ecl-dialog'),
-    'title' => [],
-    'description' => [],
-  ];
-
-  // Format the "title" variable.
-  $variables['title'] = [
-    'id' => Html::getUniqueId('ecl-dialog-title'),
-    'value' => $variables['title'],
-  ];
-
-  // Format the "description" variable.
-  $variables['description'] = [
-    'id' => Html::getUniqueId('ecl-dialog-description'),
-    'value' => $variables['description'],
-  ];
-
-  // Format the "hidden" variable.
-  $variables['hidden'] = $variables['hidden'] ? 'true' : 'false';
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
   foreach ($variables['items'] as &$item) {
     $item = GalleryItemValueObject::fromArray($item);
