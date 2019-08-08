@@ -168,18 +168,18 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('article.ecl-card'));
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card section.ecl-card__body div.ecl-card__description')->text()));
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item'));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
 
-    $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__meta')->text()));
+    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
     // No images should be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block'));
 
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
@@ -253,6 +253,24 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
+    // Change the variant to thumbnail secondary.
+    $paragraph->get('oe_paragraphs_variant')->setValue('navigation');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));
 
     // @codingStandardsIgnoreStart
     // Change the variant to date.

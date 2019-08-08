@@ -2,17 +2,15 @@
 /**
  * @file
  * Default item list component.
- *
- * @see @ecl/card
  */
 #}
-{% include '@ecl/card' with {
-  card : {
-    description: detail,
+{% include '@oe_theme/compositions/ec-component-content-item/content-item.html.twig' with {
+  content_item : {
     title: {
       label: title,
       path: url
     },
+    description: detail,
     meta: meta
   }
 } only %}
