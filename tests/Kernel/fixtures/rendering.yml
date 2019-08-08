@@ -545,76 +545,157 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#- array:
-#    '#type': pattern
-#    '#id': list_item_block_one_column
-#    '#fields':
-#      title: "Block title"
-#      items:
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "Business, Economy, Euro"
-#            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#      button_label: "View all"
-#      button_url: "http://example.com"
-#  assertions:
-#    count:
-#      'a.ecl-button[href="http://example.com"]': 1
-#      'ul.ecl-listing--two-columns': 0
-#      'ul.ecl-listing--three-columns': 0
-#    equals:
-#      'h3.ecl-u-type-heading-3': "Block title"
-#      'h3.ecl-list-item__title': "Business, Economy, Euro"
-#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#      'a.ecl-button': "View all"
-#- array:
-#    '#type': pattern
-#    '#id': list_item_block_two_columns
-#    '#fields':
-#      items:
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "List item 1"
-#            detail: "Description for list item 1."
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "List item 2"
-#            detail: "Description for list item 2."
-#      button_label: "View all"
-#      button_url: "http://example.com"
-#  assertions:
-#    count:
-#      'ul.ecl-listing--two-columns': 1
-#      'ul.ecl-listing--three-columns': 0
-#- array:
-#    '#type': pattern
-#    '#id': list_item_block_three_columns
-#    '#fields':
-#      items:
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "List item 1"
-#            detail: "Description for list item 1."
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "List item 1"
-#            detail: "Description for list item 2."
-#        - '#type': "pattern"
-#          '#id': "list_item"
-#          '#fields':
-#            title: "List item 3"
-#            detail: "Description for list item 3."
-#      button_label: "View all"
-#      button_url: "http://example.com"
-#  assertions:
-#    count:
-#      'ul.ecl-listing--two-columns': 0
-#      'ul.ecl-listing--three-columns': 1
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      title: "Block title"
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 1
+      'article.ecl-content-item.ecl-col-12': 1
+      'article.ecl-content-item.ecl-col-6': 0
+      'article.ecl-content-item.ecl-col-4': 0
+      'a.ecl-link[href="http://example.com"]': 1
+    equals:
+      'h3.ecl-u-type-heading-3': "Block title"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-link': "View all"
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 0
+      'article.ecl-content-item.ecl-col-12': 1
+      'article.ecl-content-item.ecl-col-6': 0
+      'article.ecl-content-item.ecl-col-4': 0
+      'a.ecl-link[href="http://example.com"]': 1
+    equals:
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-link': "View all"
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      title: "Block title"
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 1
+      'article.ecl-content-item.ecl-col-12': 1
+      'article.ecl-content-item.ecl-col-6': 0
+      'article.ecl-content-item.ecl-col-4': 0
+      'a.ecl-link[href="http://example.com"]': 0
+    equals:
+      'h3.ecl-u-type-heading-3': "Block title"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item_block_one_column
+    '#fields':
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "Business, Economy, Euro"
+            detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 0
+      'article.ecl-content-item.ecl-col-12': 1
+      'article.ecl-content-item.ecl-col-6': 0
+      'article.ecl-content-item.ecl-col-4': 0
+      'a.ecl-link[href="http://example.com"]': 0
+    equals:
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item_block_two_columns
+    '#fields':
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 1"
+            detail: "Description for list item 1."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 2"
+            detail: "Description for list item 2."
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 0
+      'article.ecl-content-item.ecl-col-12': 0
+      'article.ecl-content-item.ecl-col-6': 2
+      'article.ecl-content-item.ecl-col-4': 0
+      'a.ecl-link[href="http://example.com"]': 0
+    equals:
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "List item 1"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "Description for list item 1."
+      'article.ecl-content-item:nth-child(2) div.ecl-content-item__title': "List item 2"
+      'article.ecl-content-item:nth-child(2) div.ecl-content-item__description': "Description for list item 2."
+- array:
+    '#type': pattern
+    '#id': list_item_block_three_columns
+    '#fields':
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 1"
+            detail: "Description for list item 1."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 2"
+            detail: "Description for list item 2."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 3"
+            detail: "Description for list item 3."
+  assertions:
+    count:
+      'h3.ecl-u-type-heading-3': 0
+      'article.ecl-content-item.ecl-col-12': 0
+      'article.ecl-content-item.ecl-col-6': 0
+      'article.ecl-content-item.ecl-col-4': 3
+      'a.ecl-link[href="http://example.com"]': 0
+    equals:
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "List item 1"
+      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "Description for list item 1."
+      'article.ecl-content-item:nth-child(2) div.ecl-content-item__title': "List item 2"
+      'article.ecl-content-item:nth-child(2) div.ecl-content-item__description': "Description for list item 2."
+      'article.ecl-content-item:nth-child(3) div.ecl-content-item__title': "List item 3"
+      'article.ecl-content-item:nth-child(3) div.ecl-content-item__description': "Description for list item 3."
 - array:
     '#type': pattern
     '#id': page_header
