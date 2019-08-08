@@ -61,3 +61,7 @@ list_item:
       preview:
         src: "https://placeimg.com/1200/900/arch"
         alt: "Alternative text for image"
+    extra_classes:
+      type: "text"
+      label: "Extra classes"
+      description: "List item title"
