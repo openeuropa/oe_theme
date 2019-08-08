@@ -7,14 +7,16 @@
  */
 #}
 {{ attach_library('oe_theme/inpage_navigation') }}
-<div class="ecl-row">
-  <div class="ecl-col-md-3 ecl-u-z-navigation">
-    {% include '@ecl/inpage-navigation' with {
-      'title': title,
-      'links': links
-    } %}
-  </div>
-  <div class="ecl-col-md-9">
-    {{ content.field_oe_paragraphs }}
+<div class="ecl-container">
+  <div class="ecl-row ecl-u-mt-l">
+    <div class="ecl-col-md-3 ecl-u-z-navigation">
+      {% include '@ecl/inpage-navigation' with {
+        'title': title,
+        'links': links
+      } %}
+    </div>
+    <div class="ecl-col-md-9">
+      {{ content.field_oe_paragraphs }}
+    </div>
   </div>
 </div>
