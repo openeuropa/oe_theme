@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,6 +8,11 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
+
+{# Print the result #}
+
 <h3 class="ecl-u-type-heading-3">
   {%- include 'field--bare.html.twig' -%}
 </h3>
+
+{% endspaceless %}

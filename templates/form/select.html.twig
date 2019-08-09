@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,36 +8,42 @@
  * @see ./core/themes/stable/templates/form/select.html.twig
  */
 #}
+
+{# Internal properties #}
+
 {% set extra_attributes = ['ecl-select'] %}
 {% if attributes.hasClass('error') %}
   {% set extra_attributes = extra_attributes|merge(['ecl-select--invalid']) %}
 {% endif %}
-{% spaceless %}
-  <div class="ecl-select__container{{ disabled ? ' ecl-select__container--disabled' }}">
-    <select{{ attributes.addClass(extra_attributes) }}>
-      {% for option in options %}
-        {% if option.type == 'optgroup' %}
-          <optgroup label="{{ option.label }}">
-            {% for sub_option in option.options %}
-              <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
-            {% endfor %}
-          </optgroup>
-        {% elseif option.type == 'option' %}
-          <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
-        {% endif %}
-      {% endfor %}
-    </select>
-    <div class="ecl-select__icon">
-      {% include '@ecl/icon' with {
-        icon: {
-          path: ecl_icon_path,
-          type: "ui",
-          name: "corner-arrow",
-          size: "s",
-          transform: "rotate-180"
-        },
-        extra_classes: "ecl-select__icon-shape"
-      } only %}
-    </div>
+
+{# Print the result #}
+
+<div class="ecl-select__container{{ disabled ? ' ecl-select__container--disabled' }}">
+  <select{{ attributes.addClass(extra_attributes) }}>
+    {% for option in options %}
+      {% if option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% elseif option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% endif %}
+    {% endfor %}
+  </select>
+  <div class="ecl-select__icon">
+    {% include '@ecl/icon' with {
+      icon: {
+        path: ecl_icon_path,
+        type: "ui",
+        name: "corner-arrow",
+        size: "s",
+        transform: "rotate-180"
+      },
+      extra_classes: "ecl-select__icon-shape"
+    } only %}
   </div>
+</div>
+
 {% endspaceless %}

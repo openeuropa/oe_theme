@@ -9,17 +9,16 @@
  * @ingroup themeable
  */
 #}
-
 {% include '@ecl/ec-component-site-switcher' with {
-  'variant': 'header',
-  'political': {
-    'href': links.political.href,
-    'label': links.political.label,
-    'is_active': links.political.active
+  variant: 'header',
+  political: {
+    href: links.political.href,
+    label: links.political.label,
+    is_active: links.political.active
   },
-  'info': {
-    'href': links.info.href,
-    'label': links.info.label,
-    'is_active': links.info.active
-  },
+  info: {
+    href: links.info.href,
+    label: links.info.label,
+    is_active: links.info.active
+  }
 } only %}

@@ -1,11 +1,11 @@
 {#
 /**
  * @file
- * Sical media links: horizontal.
+ * Default implementation for the horizontal social media links component.
  */
 #}
-{# @todo: Termorarily disable more link, fix this. #}
+{# @todo: Temporarily disable more link, fix this. #}
 {% include '@ecl/social-media-follow' with {
-  'description': title,
-  'links': links,
-} %}
+  description: title,
+  links: links
+} only %}

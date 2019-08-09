@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -7,10 +9,11 @@
  * @see @ecl/ec-component-search-form.twig
  *
  * @todo: (OPENEUROPA-2015) Use the @ecl/search-form twig
- *
  * In order to avoid usage of not secure form template in ecl we have to partically copy code from @ecl/search-form.twig
  */
 #}
+
+{# Internal properties #}
 
 {% set _text_input = {
   id: input_array.id,
@@ -24,12 +27,13 @@
   extra_attributes: input_array.extra_attributes
 }
 %}
+
 {% set _button = {
   variant: 'search',
   icon: {
     type: 'general',
     name: 'search',
-    path: ecl_icon_path,
+    path: ecl_icon_path
   },
   label: 'Search',
   extra_classes: 'ecl-search-form__button'
@@ -60,3 +64,5 @@
   {{ element.form_token }}
   {{ element.form_id }}
 </form>
+
+{% endspaceless %}

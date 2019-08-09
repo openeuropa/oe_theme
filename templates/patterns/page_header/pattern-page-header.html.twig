@@ -1,9 +1,13 @@
+{% spaceless %}
+
 {#
 /**
  * @file
  * Default implementation for the page header component.
  */
 #}
+
+{# Internal properties #}
 
 {% set _meta = '' %}
 {% for meta in metas %}
@@ -16,30 +20,32 @@
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
   {% set _links = {
-    'label' : breadcrumb_item.label,
-    'path' : breadcrumb_item.href
+    label : breadcrumb_item.label,
+    path : breadcrumb_item.href
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
 {% set _breadcrumb = {
-  'links' : _breadcrumb_links,
-  'navigation_text' : '',
-  'ellipsis_label': '',
-  'icon_file_path' : ecl_icon_path
+  links : _breadcrumb_links,
+  navigation_text : '',
+  ellipsis_label: '',
+  icon_file_path : ecl_icon_path
 } %}
 
 {% set _infos = {} %}
 {% for infos_item in infos %}
   {% set _info = {
-    'text' : infos_item.text,
-    'icon' : {
-      'type' : 'general',
-      'name' : infos_item.icon,
-      'path' : ecl_icon_path
+    text : infos_item.text,
+    icon : {
+      type : 'general',
+      name : infos_item.icon,
+      path : ecl_icon_path
     }
   } %}
   {% set _infos = _infos|merge([_info]) %}
 {% endfor %}
+
+{# Print the result #}
 
 {% if identity is not empty %}
   <div class="ecl-u-bg-blue ecl-u-pv-2xs">
@@ -50,9 +56,11 @@
 {% endif %}
 
 {% include '@ecl/page-header' with {
-  'title': title,
-  'description': introduction,
-  'breadcrumb': _breadcrumb,
-  'meta': _meta,
-  'infos': _infos
-} %}
+  title: title,
+  description: introduction,
+  breadcrumb: _breadcrumb,
+  meta: _meta,
+  infos: _infos
+} only %}
+
+{% endspaceless %}

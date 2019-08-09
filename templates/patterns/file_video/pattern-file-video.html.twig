@@ -1,25 +1,25 @@
 {#
 /**
  * @file
- * File video component.
+ * Default implementation for the file video component.
  */
 #}
 {% include '@ecl/media-container' with {
-  'src': src,
-  'description': caption,
-  'sources': [
+  src: src,
+  description: caption,
+  sources: [
     {
-      'src': src,
-      'type': src_type|default('video/mp4'),
-    },
+      src: src,
+      type: src_type|default('video/mp4'),
+    }
   ],
-  'tracks': [
+  tracks: [
     {
-      'src': tracks.src|default(''),
-      'kind': tracks.kind|default('captions'),
-      'src_lang': tracks.src_lang|default('en'),
-      'label': tracks.label|default('English'),
-    },
+      src: tracks.src|default(''),
+      kind: tracks.kind|default('captions'),
+      src_lang: tracks.src_lang|default('en'),
+      label: tracks.label|default('English'),
+    }
   ],
-  'alt': alt,
-} %}
+  alt: alt
+} only %}

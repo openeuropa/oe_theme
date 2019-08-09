@@ -24,7 +24,5 @@
  */
 #}
 {% if items %}
-  {% include '@ecl/pagination' with {
-    'items': ecl_items,
-  } %}
+  {% include '@ecl/pagination' with { items: ecl_items } %}
 {% endif %}

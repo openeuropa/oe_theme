@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,6 +8,11 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
+
+{# Print the result #}
+
 <div class="ecl-editor">
   {%- include 'field--bare.html.twig' -%}
 </div>
+
+{% endspaceless %}

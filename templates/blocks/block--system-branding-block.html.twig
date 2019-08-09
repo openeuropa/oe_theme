@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,6 +8,8 @@
  * @see ./core/modules/system/templates/block--system-branding-block.html.twig
  */
 #}
+
+{# Print the result #}
 
 {% block content %}
   {% if site_logo %}
@@ -23,3 +27,5 @@
     </a>
   {% endif %}
 {% endblock %}
+
+{% endspaceless %}

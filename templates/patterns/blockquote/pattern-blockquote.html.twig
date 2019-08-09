@@ -1,10 +1,10 @@
 {#
 /**
  * @file
- * Link block.
+ * Default implementation for the block quote component.
  */
 #}
 {% include '@ecl/blockquote' with {
-  'author': author,
-  'citation': body,
-} %}
+  author: author,
+  citation: body
+} only %}

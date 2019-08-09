@@ -1,5 +1,4 @@
 {#
-
 /**
  * @file
  * The body template file of the language_selection_page module.
@@ -9,16 +8,13 @@
  *  - destination: url of the page without a language set.
  *  - languages: links to the page in all available language.
  */
-
 #}
-
 {% include '@ecl/ec-component-language-list' with {
   languages: languages,
   variant: 'splash',
   logo: true,
   messages: {
     dismiss: 'Close'|t,
-    heading: 'Select your language'|t,
+    heading: 'Select your language'|t
   }
 } %}
-

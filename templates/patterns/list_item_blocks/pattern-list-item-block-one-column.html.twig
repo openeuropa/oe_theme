@@ -1,9 +1,14 @@
+{% spaceless %}
+
 {#
 /**
  * @file
- * List item block: one column.
+ * Default implementation for the one column list item block component.
  */
 #}
+
+{# Print the result #}
+
 {% if title %}
 <h3 class="ecl-u-type-heading-3">
   {{ title }}
@@ -17,18 +22,20 @@
 {% if button_label and button_url %}
 <div class="ecl-u-clearfix ecl-u-pv-m">
   {% include '@ecl/link' with {
-    'link': {
-      'type': 'standalone',
-      'path': button_url,
-      'label': button_label
+    link: {
+      type: 'standalone',
+      path: button_url,
+      label: button_label
     },
-    'icon': {
-      'path': ecl_icon_path,
-      'type': 'ui',
-      'name': 'fullscreen',
-      'size': 's',
+    icon: {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: 'fullscreen',
+      size: 's'
     },
-    'extra_classes': 'ecl-u-f-r',
-  } %}
+    extra_classes: 'ecl-u-f-r'
+  } only %}
 </div>
 {% endif %}
+
+{% endspaceless %}

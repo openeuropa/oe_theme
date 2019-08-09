@@ -1,60 +1,58 @@
 {#
 /**
  * @file
- * File translation pattern.
+ * Default implementation for the file translation component.
  */
 #}
-
-{# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
 {% for item in translations %}
   {% set _translations = _translations|merge([{
-    'title': item.language_code|to_native_language,
-    'meta': '(' ~ item.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')',
-    'lang': item.language_code,
-    'download': {
-      'link': {
-        'label': button_label|default('Download'|t),
-        'path': item.url,
-      },
-    },
+    title: item.language_code|to_native_language,
+    meta: '(' ~ item.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')',
+    lang: item.language_code,
+    download: {
+      link: {
+        label: button_label|default('Download'|t),
+        path: item.url
+      }
+    }
   }]) %}
 {% endfor %}
 
 {% include '@ecl/file' with {
-  'title': file.title,
-  'language': file.language_code|to_language,
-  'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
-  'icon': {
-    'path': ecl_icon_path,
-    'type': 'general',
-    'name': file.extension|to_file_icon,
-    'size': '2xl',
+  title: file.title,
+  language: file.language_code|to_language,
+  meta: '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
+  icon: {
+    path: ecl_icon_path,
+    type: 'general',
+    name: file.extension|to_file_icon,
+    size: '2xl'
   },
-  'download': {
-    'link': {
-      'label': button_label|default('Download'|t),
-      'path': file.url,
+  download: {
+    link: {
+      label: button_label|default('Download'|t),
+      path: file.url
     },
-    'icon': {
-      'path': ecl_icon_path,
-      'type': 'ui',
-      'name': 'download',
-      'size': 'fluid',
-    },
+    icon: {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: 'download',
+      size: 'fluid'
+    }
   },
-  'translation': {
-    'toggle': {
-      'label': "Available translations (@count)"|t({ '@count': translations|length}),
-      'icon': {
-        'path': ecl_icon_path,
-        'type': 'ui',
-        'name': 'corner-arrow',
-        'size': 'fluid',
-        'transform': 'rotate-180',
-      },
+  translation: {
+    toggle: {
+      label: "Available translations (@count)"|t({ '@count': translations|length}),
+      icon: {
+        path: ecl_icon_path,
+        type: 'ui',
+        name: 'corner-arrow',
+        size: 'fluid',
+        transform: 'rotate-180'
+      }
     },
-    'description': 'Looking for another language which is not on the list? Find out why.'|t,
-    'items': _translations,
+    description: 'Looking for another language which is not on the list? Find out why.'|t,
+    items: _translations
   }
 } only %}

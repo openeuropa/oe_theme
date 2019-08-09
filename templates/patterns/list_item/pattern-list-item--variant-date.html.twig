@@ -1,19 +1,19 @@
 {#
 /**
  * @file
- * Date item list component.
+ * Default implementation for the date list item component.
  */
 #}
 {% include '@ecl/ec-component-list-item' with {
-  'variant': 'date',
-  'href': url,
-  'title': title,
-  'detail': detail,
-  'date': {
-    'week_day': date.week_day,
-    'day': date.day,
-    'month': date.month_name,
-    'year': date.year,
+  variant: 'date',
+  href: url,
+  title: title,
+  detail: detail,
+  date: {
+    week_day: date.week_day,
+    day: date.day,
+    month: date.month_name,
+    year: date.year
   },
-  'screen_reader': 'List item'|t
+  screen_reader: 'List item'|t
 } only %}

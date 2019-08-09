@@ -139,6 +139,8 @@ class ParagraphsTest extends ParagraphsTestBase {
   /**
    * Tests the list item paragraph type.
    *
+   * @group wip
+   *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testListItem(): void {
@@ -180,8 +182,14 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
+
+    // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // @codingStandardsIgnoreStart
     // @todo will be updated on OPENEUROPA-2124

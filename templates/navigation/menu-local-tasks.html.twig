@@ -8,17 +8,17 @@
 #}
 {% if primary %}
   {% include '@ecl/ec-component-navigation-list' with {
-    'title': 'Primary tabs'|t,
-    'display': 'tabs',
-    'links': primary_links,
-    'extra_classes': 'ecl-u-mb-l',
+    title: 'Primary tabs'|t,
+    display: 'tabs',
+    links: primary_links,
+    extra_classes: 'ecl-u-mb-l'
   } %}
 {% endif %}
 {% if secondary %}
   {% include '@ecl/ec-component-navigation-list' with {
-    'title': 'Secondary tabs'|t,
-    'display': 'small',
-    'links': secondary_links,
-    'extra_classes': 'ecl-u-mb-l',
+    title: 'Secondary tabs'|t,
+    display: 'small',
+    links: secondary_links,
+    extra_classes: 'ecl-u-mb-l'
   } %}
 {% endif %}
