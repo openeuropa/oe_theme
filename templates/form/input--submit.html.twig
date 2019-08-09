@@ -6,13 +6,13 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% set extraAttributes = [] %}
+{% set _extra_attributes = [] %}
 {% for name,value in attributes %}
-  {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
+  {% set _extra_attributes = _extra_attributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
 {% include '@ecl/button' with {
-  'label': attributes.value,
-  'variant': 'primary',
-  'extra_attributes': extraAttributes,
+  label: attributes.value,
+  variant: 'primary',
+  extra_attributes: _extra_attributes
 } %}

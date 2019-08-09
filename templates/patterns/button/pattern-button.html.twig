@@ -1,38 +1,38 @@
 {#
 /**
  * @file
- * Button.
+ * Default implementation for the button component.
  */
 #}
 {% if variant == 'default' %}
   {% include '@ecl/link' with {
-    'link': {
-      'type': type_attribute,
-      'label': label,
-      'path': href,
-      'icon_position': icon_position|default('after')
+    link: {
+      type: type_attribute,
+      label: label,
+      path: href,
+      icon_position: icon_position|default('after')
     },
-    'icon': {
-      'path': ecl_icon_path,
-      'type': 'ui',
-      'name': icon,
-      'size': 's'
+    icon: {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: icon,
+      size: 's'
     },
-    'icon_position': icon_position|default('after'),
-    'label': label
+    icon_position: icon_position|default('after'),
+    label: label
   } only %}
 {% else %}
   {% include '@ecl/button' with {
-    'label': label,
-    'variant': variant|replace({'_':'-'}),
-    'type': type_attribute,
-    'icon': {
-      'path': ecl_icon_path,
-      'type': 'ui',
-      'name': icon,
-      'size': 's'
+    label: label,
+    variant: variant|replace({'_':'-'}),
+    type: type_attribute,
+    icon: {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: icon,
+      size: 's'
     },
-    'icon_position': icon_position|default('after'),
-    'disabled': disabled
+    icon_position: icon_position|default('after'),
+    disabled: disabled
   } only %}
 {% endif %}

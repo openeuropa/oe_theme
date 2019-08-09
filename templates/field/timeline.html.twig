@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -5,10 +7,14 @@
  */
 #}
 
+{# Print the result #}
+
 <div class="ecl-editor">
-{{ pattern('timeline', {
-  'limit': limit,
-  'button_label': show_more,
-  'items': items,
-}) }}
+  {{ pattern('timeline', {
+    limit: limit,
+    button_label: show_more,
+    items: items
+  }) }}
 </div>
+
+{% endspaceless %}

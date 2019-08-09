@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,6 +8,11 @@
  * @see ./core/themes/stable/templates/form/form.html.twig
  */
 #}
+
+{# Print the result #}
+
 <form{{ attributes.addClass('ecl-form') }}>
   {{ children }}
 </form>
+
+{% endspaceless %}

@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,12 +8,19 @@
 #}
 
 {% if pattern is not empty %}
-  {% set style = pattern.meta['#pattern'].additional.style %}
-  {{ pattern.meta }}
-
-  {# Rendered pattern preview. #}
-  <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
-    {{ pattern.rendered }}
+  <div class="ecl-container">
+    <div class="ecl-row">
+      <div class="ecl-col-12">
+        {{ pattern.meta }}
+      </div>
+    </div>
+    <div class="ecl-row">
+      {# Rendered pattern preview. #}
+      <div class="ecl-u-clearfix ecl-u-pv-xl ecl-col-12" style="{{ pattern.meta['#pattern'].additional.style }}">
+        {{ pattern.rendered }}
+      </div>
+    </div>
   </div>
-
 {% endif %}
+
+{% endspaceless %}

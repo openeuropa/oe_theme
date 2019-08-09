@@ -1,11 +1,11 @@
 {#
 /**
  * @file
- * File image component.
+ * Default implementation for the file image component.
  */
 #}
 {% include '@ecl/media-container' with {
-  'image': src,
-  'alt': alt,
-  'description': caption,
-} %}
+  image: src,
+  alt: alt,
+  description: caption
+} only %}

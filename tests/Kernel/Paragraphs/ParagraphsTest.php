@@ -139,6 +139,8 @@ class ParagraphsTest extends ParagraphsTestBase {
   /**
    * Tests the list item paragraph type.
    *
+   * @group wip
+   *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testListItem(): void {
@@ -179,7 +181,12 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
     // No images should be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+
+    // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
@@ -189,6 +196,16 @@ class ParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
+
+    // The description should not be rendered in this variant.
+    // @todo Fix it on INNO-XXXX
+    // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+    // Neither the date.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // Neither the metas.
+    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
     $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
     $this->assertCount(1, $link_element);
@@ -254,7 +271,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
-    // Change the variant to thumbnail secondary.
+    // Change the variant to navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('navigation');
     $paragraph->save();
 
@@ -391,7 +408,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-heading--h3')->text()));
+    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
   }
 
   /**

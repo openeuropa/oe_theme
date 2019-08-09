@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,7 +8,14 @@
  * @see ./core/modules/system/templates/content-edit/filter-guidelines.html.twig
  */
 #}
+
+{# Print the result #}
+
 <div{{ attributes.addClass('ecl-help-block') }}>
-  <h4>{{ format.label }}</h4>
+  <h4 class="ecl-u-type-heading-4">
+    {{ format.label }}
+  </h4>
   {{ tips }}
 </div>
+
+{% endspaceless %}

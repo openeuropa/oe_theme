@@ -10,24 +10,18 @@
  * @see templates_preprocess_oe_corporate_blocks_footer()
  */
 #}
-{% set _back_to_top = {
-  link: {
-    'label': 'Go to top'|t,
-    'path': '#top',
-  },
-  'icon': {
-    'path': ecl_icon_path,
-    'size': 'fluid',
-  },
-} %}
-
-{% set _identity = custom_footer %}
-{% set _sections = corporate_footer.sections %}
-{% set _common = corporate_footer.common %}
-
 {% include '@ecl/footer' with {
-  'back_to_top': _back_to_top,
-  'identity': _identity,
-  'sections': _sections,
-  'common': _common,
-} %}
+  back_to_top: {
+    link: {
+      label: 'Go to top'|t,
+      path: '#top'
+    },
+    icon: {
+      path: ecl_icon_path,
+      size: 'fluid'
+    }
+  },
+  identity: custom_footer,
+  sections: corporate_footer.sections,
+  common: corporate_footer.common
+} only %}

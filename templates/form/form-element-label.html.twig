@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,15 +8,22 @@
  * @see ./core/themes/stable/templates/form/form-element-label.html.twig
  */
 #}
-{%
-  set classes = [
-    'ecl-form-label',
-    title_display == 'after' ? 'option',
-    title_display == 'invisible' ? 'visually-hidden ecl-form-label--hidden',
-    required ? 'js-form-required',
-    required ? 'form-required',
-  ]
+
+{# Internal properties #}
+
+{% set classes = [
+  'ecl-form-label',
+  title_display == 'after' ? 'option',
+  title_display == 'invisible' ? 'visually-hidden ecl-form-label--hidden',
+  required ? 'js-form-required',
+  required ? 'form-required',
+]
 %}
+
+{# Print the result #}
+
 {% if title is not empty or required -%}
   <label{{ attributes.addClass(classes) }}>{{ title }}</label>
 {%- endif %}
+
+{% endspaceless %}

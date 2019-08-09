@@ -22,23 +22,23 @@
 {# @todo: open a follow up on INNO board. #}
 {% for type, messages in message_list %}
   {% include '@ecl/message' with {
-    'title': status_headings[type],
-    'description': _self.message_list(messages),
-    'variant': (type == 'status' ? 'success' : type),
-    'extra_attributes': extra_attributes,
-    'icon': {
-      'path': ecl_icon_path,
-      'type': 'notifications',
-      'name': (type == 'status' ? 'success' : type),
-      'size': 'l',
+    title: status_headings[type],
+    description: _self.message_list(messages),
+    variant: (type == 'status' ? 'success' : type),
+    extra_attributes: extra_attributes,
+    icon: {
+      path: ecl_icon_path,
+      type: 'notifications',
+      name: (type == 'status' ? 'success' : type),
+      size: 'l'
     },
-    'close': {
-      'label': 'Close this message'|t,
-      'icon' : {
-        'path': ecl_icon_path,
-        'type': 'ui',
-        'name': 'close',
-        'size': 's',
+    close: {
+      label: 'Close this message'|t,
+      icon : {
+        path: ecl_icon_path,
+        type: 'ui',
+        name: 'close',
+        size: 's'
       }
     },
   } only %}

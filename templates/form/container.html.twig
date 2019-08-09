@@ -1,3 +1,5 @@
+{% spaceless %}
+
 {#
 /**
  * @file
@@ -6,10 +8,19 @@
  * @see ./core/themes/stable/templates/form/container.html.twig
  */
 #}
-{%
-  set classes = [
-    has_parent ? 'js-form-wrapper',
-    has_parent ? 'form-wrapper ecl-form-group',
-  ]
+
+{# Internal properties #}
+
+{% set classes = [
+  has_parent ? 'js-form-wrapper',
+  has_parent ? 'form-wrapper ecl-form-group'
+]
 %}
-<div{{ attributes.addClass(classes) }}>{{ children }}</div>
+
+{# Print the result #}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ children }}
+</div>
+
+{% endspaceless %}
