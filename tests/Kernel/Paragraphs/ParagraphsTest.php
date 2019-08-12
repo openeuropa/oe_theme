@@ -193,7 +193,6 @@ class ParagraphsTest extends ParagraphsTestBase {
     // The description should not be rendered in this variant.
     // @todo Fix it on OPENEUROPA-2123
     // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
-
     // Neither the date.
     $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
