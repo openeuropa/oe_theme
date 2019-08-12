@@ -200,10 +200,12 @@ class ParagraphsTest extends ParagraphsTestBase {
     // The description should not be rendered in this variant.
     // @todo Fix it on INNO-XXXX
     // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+
     // Neither the date.
     $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
@@ -235,7 +237,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
 
-    $image_element = $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block');
+    $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-lg-block');
     $this->assertCount(1, $image_element);
     $this->assertContains(
       file_url_transform_relative(file_create_url($image->getFileUri())),
@@ -244,6 +246,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
+    // The date field should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant to thumbnail secondary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_secondary');
@@ -261,7 +268,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
 
-    $image_element = $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block');
+    $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-lg-block');
     $this->assertCount(1, $image_element);
     $this->assertContains(
       file_url_transform_relative(file_create_url($image->getFileUri())),
@@ -270,6 +277,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
+    // The date field should not be rendered.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
 
     // Change the variant to navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('navigation');
@@ -286,7 +298,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > div'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block'));
+
+    // No images should be rendered in this variant.
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+
+    // Neither the metas.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));
 
     // @codingStandardsIgnoreStart

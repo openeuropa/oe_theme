@@ -75,8 +75,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
     $media->save();
 
     $build = $this->mediaViewBuilder->view($media, 'default');
-    $html = $this->renderRoot($build);
-    $crawler = new Crawler($html);
+    $crawler = new Crawler($this->renderRoot($build));
 
     // File wrapper.
     $file_wrapper = $crawler->filter('.ecl-file');
