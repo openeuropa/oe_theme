@@ -560,15 +560,21 @@
       button_url: "http://example.com"
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 1
-      'article.ecl-content-item.ecl-col-12': 1
-      'article.ecl-content-item.ecl-col-6': 0
-      'article.ecl-content-item.ecl-col-4': 0
-      'a.ecl-link[href="http://example.com"]': 1
+      'div.ecl-content-item-block__title': 1
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
+      'div.ecl-content-item-block__item': 1
+      'div.ecl-content-item-block__item.ecl-col-12': 1
+      'div.ecl-content-item-block__item.ecl-col-6': 0
+      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__button': 1
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
-      'h3.ecl-u-type-heading-3': "Block title"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': "View all"
 - array:
     '#type': pattern
@@ -584,14 +590,20 @@
       button_url: "http://example.com"
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 0
-      'article.ecl-content-item.ecl-col-12': 1
-      'article.ecl-content-item.ecl-col-6': 0
-      'article.ecl-content-item.ecl-col-4': 0
-      'a.ecl-link[href="http://example.com"]': 1
+      'div.ecl-content-item-block__title': 0
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__item': 1
+      'div.ecl-content-item-block__item.ecl-col-12': 1
+      'div.ecl-content-item-block__item.ecl-col-6': 0
+      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__button': 1
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': "View all"
 - array:
     '#type': pattern
@@ -606,15 +618,21 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 1
-      'article.ecl-content-item.ecl-col-12': 1
-      'article.ecl-content-item.ecl-col-6': 0
-      'article.ecl-content-item.ecl-col-4': 0
-      'a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__title': 1
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
+      'div.ecl-content-item-block__item': 1
+      'div.ecl-content-item-block__item.ecl-col-12': 1
+      'div.ecl-content-item-block__item.ecl-col-6': 0
+      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__button': 0
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'h3.ecl-u-type-heading-3': "Block title"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -627,14 +645,20 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 0
-      'article.ecl-content-item.ecl-col-12': 1
-      'article.ecl-content-item.ecl-col-6': 0
-      'article.ecl-content-item.ecl-col-4': 0
-      'a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__title': 0
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__item': 1
+      'div.ecl-content-item-block__item.ecl-col-12': 1
+      'div.ecl-content-item-block__item.ecl-col-6': 0
+      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__button': 0
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "Business, Economy, Euro"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_two_columns
@@ -652,16 +676,22 @@
             detail: "Description for list item 2."
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 0
-      'article.ecl-content-item.ecl-col-12': 0
-      'article.ecl-content-item.ecl-col-6': 2
-      'article.ecl-content-item.ecl-col-4': 0
-      'a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__title': 0
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__item': 2
+      'div.ecl-content-item-block__item.ecl-col-12': 0
+      'div.ecl-content-item-block__item.ecl-col-6': 2
+      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 2
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__button': 0
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "List item 1"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "Description for list item 1."
-      'article.ecl-content-item:nth-child(2) div.ecl-content-item__title': "List item 2"
-      'article.ecl-content-item:nth-child(2) div.ecl-content-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -684,18 +714,24 @@
             detail: "Description for list item 3."
   assertions:
     count:
-      'h3.ecl-u-type-heading-3': 0
-      'article.ecl-content-item.ecl-col-12': 0
-      'article.ecl-content-item.ecl-col-6': 0
-      'article.ecl-content-item.ecl-col-4': 3
-      'a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__title': 0
+      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__item': 3
+      'div.ecl-content-item-block__item.ecl-col-12': 0
+      'div.ecl-content-item-block__item.ecl-col-6': 0
+      'div.ecl-content-item-block__item.ecl-col-4': 3
+      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__button': 0
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__title': "List item 1"
-      'article.ecl-content-item:nth-child(1) div.ecl-content-item__description': "Description for list item 1."
-      'article.ecl-content-item:nth-child(2) div.ecl-content-item__title': "List item 2"
-      'article.ecl-content-item:nth-child(2) div.ecl-content-item__description': "Description for list item 2."
-      'article.ecl-content-item:nth-child(3) div.ecl-content-item__title': "List item 3"
-      'article.ecl-content-item:nth-child(3) div.ecl-content-item__description': "Description for list item 3."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__title': "List item 3"
+      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__description': "Description for list item 3."
 - array:
     '#type': pattern
     '#id': page_header

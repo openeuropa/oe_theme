@@ -367,7 +367,7 @@ class ParagraphsTest extends ParagraphsTestBase {
         'type' => 'oe_list_item',
         'oe_paragraphs_variant' => 'default',
         'field_oe_title' => 'Item title ' . $i,
-        'field_oe_text_long' => 'Item description 1' . $i,
+        'field_oe_text_long' => 'Item description ' . $i,
         'field_oe_link' => [
           'uri' => 'http://www.example.com/page/' . $i,
         ],
@@ -388,7 +388,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     ]);
     $paragraph->save();
 
-    $crawler = new Crawler($this->renderParagraph($paragraph));
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
     $this->assertEquals('List block title', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
 
     // Verify that the referenced paragraphs are being rendered.

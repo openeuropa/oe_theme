@@ -64,7 +64,7 @@
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
   <div class="ecl-row">
     {% if _content_item_block.title %}
-      <div class="ecl-col-12">
+      <div class="ecl-content-item-block__title ecl-col-12">
         <h3 class='ecl-u-type-heading-3'>{{ _content_item_block.title }}</h3>
       </div>
     {% endif %}
@@ -72,15 +72,15 @@
 
   <div class="ecl-row">
     {% for _item in _content_item_block.items %}
-      <div class="{{ _extra_classes_item }}">
+      <div class="ecl-content-item-block__item {{ _extra_classes_item }}">
         {{ _item }}
       </div>
     {% endfor %}
   </div>
 
-  {% if _content_item_block.button %}
+  {% if _content_item_block.button.path %}
     <div class="ecl-row">
-      <div class="ecl-col-12">
+      <div class="ecl-content-item-block__button ecl-col-12">
         <div class="ecl-u-clearfix ecl-u-pv-m">
           {% include '@ecl/link' with {
             link: _content_item_block.button|merge({type:'standalone'}),
