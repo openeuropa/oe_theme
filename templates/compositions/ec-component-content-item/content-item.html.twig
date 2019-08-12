@@ -9,10 +9,10 @@
     - "content_item" (associative array) (default: predefined structure): format:
         {
           description: '', (string) (default: ''): Description of Content Item
-          meta: [], (array) (default: []): Meta's for the Content Item
+          meta: [], (array) (default: []): Meta information for the Content Item
           title: {}, (associative array) (default: {}): Predefined structure compatible with Link component. If Content Item type is a 'tile', only label property is required.
-          image: '', (string) (default: ''): Url/path to background image (non required if Content Item type is a 'tile')
-          image_position: 'after' (string) (Can be 'before' or 'after'. Is required only if Icon is specified)
+          image: '', (string) (default: ''): Url/path to background image
+          image_position: 'after' (string) (Can be 'before' or 'after'. Is required only if Image is specified)
         }
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
@@ -59,10 +59,10 @@
 
 {% macro image(src, alt, class1, class2) %}
   <div role="img" aria-label="{{ alt }}" class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl {{ class1 }}"
-       style="background-image:url(&quot;{{ src }}&quot;);background-size:contain;height:5rem;width:7.5rem"></div>
+       style="background-image:url('{{ src }}');background-size:contain;height:5rem;width:7.5rem"></div>
   <div role="img" aria-label="{{ alt }}"
        class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl ecl-u-d-none {{ class2 }}"
-       style="background-image:url(&quot;{{ src }}&quot;);background-size:contain;height:8.75rem;width:13.125rem">
+       style="background-image:url('{{ src }}');background-size:contain;height:8.75rem;width:13.125rem">
   </div>
 {% endmacro %}
 

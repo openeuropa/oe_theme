@@ -416,7 +416,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-heading--h3')->text()));
+    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
   }
 
   /**

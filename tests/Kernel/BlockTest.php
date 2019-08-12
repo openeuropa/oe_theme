@@ -88,7 +88,7 @@ class BlockTest extends EntityKernelTestBase {
     $crawler = new Crawler($html);
 
     // Assert block title contains ECL classes.
-    $actual = $crawler->filter('h2.ecl-heading--h2');
+    $actual = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(1, $actual);
   }
 
