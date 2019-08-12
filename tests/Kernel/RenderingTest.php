@@ -99,6 +99,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
 
     $form = $this->container->get('form_builder')->buildForm($this, $form_state);
     $html = $this->renderRoot($form);
+
     $this->assertRendering($html, $assertions);
   }
 

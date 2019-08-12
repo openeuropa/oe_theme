@@ -797,6 +797,11 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
   // Set up the correct variant name.
   $variables['variant'] = 'list_item_block_' . $paragraph->get('field_oe_list_item_block_layout')->first()->value;
 
+  $variables['items'] = [];
+  foreach ($variables['paragraph']->get('field_oe_paragraphs') as $delta => $item) {
+    $variables['items'][] = $variables['content']['field_oe_paragraphs'][$delta];
+  }
+
   // Prepare the button variables if a link has been specified.
   if ($paragraph->get('field_oe_link')->isEmpty()) {
     return;
