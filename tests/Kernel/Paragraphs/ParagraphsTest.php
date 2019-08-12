@@ -179,7 +179,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
     // No images should be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-u-d-lg-block'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
 
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
