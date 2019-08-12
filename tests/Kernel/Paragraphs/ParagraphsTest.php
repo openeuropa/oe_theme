@@ -180,6 +180,8 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
 
     // @codingStandardsIgnoreStart
     // @todo will be updated on OPENEUROPA-2124
@@ -245,6 +247,8 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
 
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
     $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-lg-block');
     $this->assertCount(1, $image_element);
     $this->assertContains(
@@ -279,6 +283,8 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
 
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
     $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-lg-block');
     $this->assertCount(1, $image_element);
     $this->assertContains(
@@ -315,6 +321,8 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
 
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));

@@ -419,6 +419,9 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
@@ -441,6 +444,8 @@
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div.ecl-content-item__image__before': 1
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
@@ -463,6 +468,8 @@
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
@@ -532,6 +539,9 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
