@@ -181,11 +181,14 @@ class ParagraphsTest extends ParagraphsTestBase {
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
 
+    // @codingStandardsIgnoreStart
     // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // @codingStandardsIgnoreEnd
+    //
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
     $paragraph->save();
@@ -195,14 +198,18 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
 
+    // @codingStandardsIgnoreStart
     // The description should not be rendered in this variant.
     // @todo Fix it on OPENEUROPA-2123
     // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+    //
     // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // @codingStandardsIgnoreEnd
+    //
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
@@ -216,8 +223,12 @@ class ParagraphsTest extends ParagraphsTestBase {
       file_url_transform_relative(file_create_url($image->getFileUri())),
       $image_element->attr('style')
     );
+
+    // @codingStandardsIgnoreStart
     // @todo will be fixed on OPENEUROPA-2123.
     // $this->assertEquals('Druplicon', $image_element->attr('alt'));
+    // @codingStandardsIgnoreEnd
+    //
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();
@@ -244,11 +255,14 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
+    // @codingStandardsIgnoreStart
     // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // @codingStandardsIgnoreEnd
+    //
     // Change the variant to thumbnail secondary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_secondary');
     $paragraph->save();
@@ -275,11 +289,14 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
+    // @codingStandardsIgnoreStart
     // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    // @codingStandardsIgnoreEnd
+    //
     // Change the variant to navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('navigation');
     $paragraph->save();
@@ -324,9 +341,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     // $this->assertEquals('Sep', trim($crawler->filter('.ecl-date-block__month')->text()));
     // $this->assertEquals('1981', trim($crawler->filter('.ecl-date-block__year')->text()));
     //
-    // // No images should be rendered in this variant.
+    // No images should be rendered in this variant.
     // $this->assertCount(0, $crawler->filter('img.ecl-image'));
-    // // Neither the metas.
+    // Neither the metas.
     // $this->assertCount(0, $crawler->filter('.ecl-meta__item'));
     // @codingStandardsIgnoreEnd
   }
