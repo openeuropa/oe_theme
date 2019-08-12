@@ -8,7 +8,7 @@
   Parameters:
     - "content_item_block" (associative array) (default: predefined structure): format:
         {
-          type: '', (string) (default: ''): Type of Content Item Block
+          type: '', (string) (default: 'one'): Type of Content Item Block
           title: '', (string) (default: ''): Title of Content Item Block
           items: [], (array) (default: []): Content Item's for the Content Item Block
           button: {}, (associative array) (default: {}): Predefined structure compatible with Link component.
@@ -51,6 +51,14 @@
   {% endfor %}
 {% endif %}
 
+{% set _extra_classes_item = 'ecl-col-12' %}
+{% if _content_item_block.type == 'two' %}
+  {% set _extra_classes_item = 'ecl-col-6' %}
+{% endif %}
+{% if _content_item_block.type == 'three' %}
+  {% set _extra_classes_item = 'ecl-col-4' %}
+{% endif %}
+
 {# Print the result #}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
@@ -63,7 +71,11 @@
   </div>
 
   <div class="ecl-row">
-      {{ _content_item_block.items }}
+    {% for _item in _content_item_block.items %}
+      <div class="{{ _extra_classes_item }}">
+        {{ _item }}
+      </div>
+    {% endfor %}
   </div>
 
   {% if _content_item_block.button %}
