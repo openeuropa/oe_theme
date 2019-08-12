@@ -711,6 +711,79 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
 }
 
 /**
+ * Implements hook_preprocess_paragraph() for paragraph--oe-content-row--variant-columns_layout.html.twig.
+ *
+ * Prepares layout grid rows and columns for displaying content
+ * in "columns layout" variant of the "content row" paragraph type.
+ */
+function oe_theme_preprocess_paragraph__oe_content_row__variant_columns_layout(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Default number of columns in the grid.
+  $grid_column_count = 12;
+
+  // Number of columns for displaying content, default is 1.
+  $column_count = 1;
+  // Array of column widths (relative to the grid e.g. [4,8] or [3,6,3]).
+  $layout = [];
+  if (!$paragraph->get('field_oe_content_row_layout')->isEmpty()) {
+    // Layout settings can be defined as an integer (number of equal columns),
+    // or as a string representing the column widths in the format: '3-6-3'.
+    $layout_settings = $paragraph->get('field_oe_content_row_layout')->value;
+    if (is_numeric($layout_settings)) {
+      // Set column count and layout for equal width columns.
+      $column_count = (int) $layout_settings;
+      $layout = array_fill(0, $column_count, $grid_column_count / $column_count);
+    }
+    else {
+      // Set column count and layout for variable width columns.
+      $layout = explode('-', $layout_settings) ?? [$grid_column_count];
+      $column_count = count($layout);
+    }
+  }
+
+  // Create a shortcut to the render array for the field.
+  $field_render = &$variables['content']['field_oe_paragraphs'];
+  // Array for the template to loop through.
+  $rows = [];
+  // Default row array used in $rows.
+  $row = [
+    'columns' => [],
+  ];
+  if ($column_count > 1) {
+    // Get paragraph entities referenced for the content row paragraph.
+    $sub_paragraphs = $paragraph->get('field_oe_paragraphs')->referencedEntities();
+    // Calculate number of rows or add default fallback.
+    $row_count = $sub_paragraphs ? (int) ceil(count($sub_paragraphs) / $column_count) : 1;
+
+    // Index of sub paragraph.
+    $delta = 0;
+    // Collect rows and columns for multi-column display.
+    for ($i = 0; $i < $row_count; $i++) {
+      $rows[$i] = $row;
+      for ($j = 0; $j < $column_count; $j++) {
+        $rows[$i]['columns'][] = [
+          'width' => $layout[$j],
+          'content' => $field_render[$delta] ?? [],
+        ];
+        $delta++;
+      }
+    }
+  }
+  else {
+    // Add row and column for single-column display.
+    $row['columns'][] = [
+      'width' => $grid_column_count,
+      'content' => $field_render,
+    ];
+    $rows[] = $row;
+  }
+
+  $variables['rows'] = $rows;
+}
+
+/**
  * Implements hook_preprocess_pattern().
  */
 function oe_theme_preprocess_pattern_date_block(array &$variables): void {
