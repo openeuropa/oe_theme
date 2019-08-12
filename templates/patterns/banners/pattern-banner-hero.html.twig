@@ -1,14 +1,17 @@
 {#
 /**
  * @file
- * Default implementation for the hero banner component.
+ * Banner hero.
  */
 #}
+
+{% set _link = {'link' : {'path' : url, 'label' : label}} %}
+
 {% include '@ecl/hero-banner' with {
-  type: banner_type|e,
-  image: image.src,
-  title: title,
-  link: {'link' : {'path' : url, 'label' : label}},
-  description: description,
-  centered: centered
-} only %}
+  'type': banner_type|e,
+  'image': image.src,
+  'title': title,
+  'link': _link,
+  'description': description,
+  'centered': centered,
+} %}

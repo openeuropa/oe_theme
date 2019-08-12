@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -10,58 +8,46 @@
   {% set patterns = patterns|sort %}
 
   {# List of available patterns with anchor links. #}
-  <div class="ecl-container ecl-u-clearfix ecl-u-pv-xs ecl-u-bg-grey-5">
-    <div class="ecl-row">
-      <ul>
-        {% for pattern_name, pattern in patterns %}
-          <li>
-            <a class="ecl-link ecl-link--standalone" href="#{{ pattern_name }}">{{ pattern.label }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+  <div class="ecl-link-block">
+    <ul class="ecl-link-block__list">
+      {% for pattern_name, pattern in patterns %}
+        <li class="ecl-link-block__item">
+          <a class="ecl-link ecl-link--standalone ecl-link-block__link" href="#{{ pattern_name }}">{{ pattern.label }}</a>
+        </li>
+      {% endfor %}
+    </ul>
   </div>
 
   {% for pattern_name, pattern in patterns %}
-    <div class="ecl-u-clearfix ecl-u-pv-l">
-      {# Pattern name and desciption. #}
-      {% include '@ecl/link' with {
-        link: {
-          type: 'standalone',
-          path: url('ui_patterns.patterns.single', {'name': pattern_name }),
-          label: "View as standalone"|t,
-          icon_position: 'after'
-        },
-        icon: {
-          path: ecl_icon_path,
-          type: 'ui',
-          name: 'fullscreen',
-          size: 'xs',
-        },
-        extra_classes: 'ecl-u-f-r ecl-u-mr-m',
-        extra_attributes: [{'name': 'name', 'value': pattern_name}]
-      } %}
-      <div class="ecl-container">
-        <div class="ecl-row">
-          <div class="ecl-col-12">
-            <h2 class="ecl-u-type-heading-2">{{ pattern.label }}</h2>
-          </div>
-        </div>
-        <div class="ecl-row">
-          <div class="ecl-col-12">
-            {{ pattern.meta }}
-          </div>
-        </div>
-        <div class="ecl-row">
-          {# Rendered pattern preview. #}
-          <div class="ecl-u-clearfix ecl-u-pv-xl ecl-col-12" style="{{ pattern.meta['#pattern'].additional.style }}">
-            {{ pattern.rendered }}
-          </div>
-        </div>
-      </div>
+
+  <div class="ecl-u-clearfix ecl-u-pv-l">
+    {# Pattern name and desciption. #}
+    <a name="{{ pattern_name }}"></a>
+    {% include '@ecl/link' with {
+      'link': {
+        'type': 'standalone',
+        'path': url('ui_patterns.patterns.single', {'name': pattern_name }),
+        'label': "View as standalone"|t,
+        'icon_position': 'after'
+      },
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'fullscreen',
+        'size': 'xs',
+      },
+      'extra_classes': 'ecl-u-f-r'
+    } %}
+    <h2 class="ecl-u-mt-none">{{ pattern.label }}</h2>
+    {{ pattern.meta }}
+
+    {# Rendered pattern preview. #}
+    {% set style = pattern.meta['#pattern'].additional.style %}
+    <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
+      {{ pattern.rendered }}
     </div>
+    <hr>
+  </div>
 
   {% endfor %}
 {% endif %}
-
-{% endspaceless %}

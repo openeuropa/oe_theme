@@ -6,7 +6,9 @@
  * @see ./core/themes/stable/templates/navigation/menu.html.twig
  */
 #}
+{{ attach_library('oe_theme/navigation') }}
 {% if links %}
-  {{ attach_library('oe_theme/navigation') }}
-  {% include '@ecl/ec-component-navigation-menu' with { links: links } %}
+  {% include '@ecl/ec-component-navigation-menu' with {
+    'links': links,
+  } %}
 {% endif %}

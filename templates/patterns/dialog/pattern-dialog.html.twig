@@ -1,15 +1,19 @@
 {#
 /**
  * @file
- * Default implementation for the dialog component.
+ * Dialog component.
  */
 #}
 {% embed '@ecl/ec-component-dialog' with {
-  theme: variant,
-  dialog_aria_hidden: hidden,
-  dialog_title: { value: 'Dialog'|t }|merge(title),
-  dialog_description: description,
-  dismiss: { label: 'Dismiss this dialog window'|t }|merge(dismiss)
+  'theme': variant,
+  'dialog_aria_hidden': hidden,
+  'dialog_title': {
+    value: 'Dialog'|t,
+  }|merge(title),
+  'dialog_description': description,
+  'dismiss': {
+    label: 'Dismiss this dialog window'|t,
+  }|merge(dismiss),
 } %}
   {% block dialog_body %}
     {{ body }}

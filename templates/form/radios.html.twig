@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -8,28 +6,23 @@
  * @see ./core/themes/stable/templates/form/radios.html.twig
  */
 #}
+{% set _label = label|default('') %}
+{% set _label_id = label_id|default('') %}
 
-{# Internal properties #}
-
-{% set classes = [
-  'ecl-radio__group',
-  invalid ? 'ecl-radio__group--invalid',
-]
+{%
+  set classes = [
+    'ecl-radio__group',
+    invalid ? 'ecl-radio__group--invalid',
+  ]
 %}
-
-{# Print the result #}
-
 <div{{ attributes.setAttribute("role", "radiogroup").addClass(classes) }}>
-  {% set _label = label|default('') %}
   {%- if _label is not empty %}
     <div
       class="ecl-form-label{{ hide_label ? ' ecl-form-label--hidden'}}"
-      id="{{ label_id|default('') }}"
+      id="{{ _label_id }}"
     >
       {%- block label _label -%}
     </div>
   {% endif %}
   {{ children }}
 </div>
-
-{% endspaceless %}

@@ -1,20 +1,21 @@
 {#
 /**
  * @file
- * Default implementation for the social icon component.
+ * Social icon.
  */
 #}
 {% if url %}
   {% include '@ecl/ec-component-social-icon' with {
-    variant: service,
-    link: {
-      label: label,
-      href: url
-    }
-  } only %}
+    'variant': service,
+    'link': {
+      'label': label,
+      'href': url,
+    },
+  } %}
 {% else %}
   {% include '@ecl/ec-component-social-icon' with {
-    variant: service,
-    label: label
-  } only %}
+    'variant': service,
+    'label': label,
+  } %}
 {% endif %}
+

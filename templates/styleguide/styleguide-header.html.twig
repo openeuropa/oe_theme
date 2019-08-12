@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -8,17 +6,9 @@
  *@see ./modules/contrib/styleguide/templates/styleguide-content.html.twig
  */
 #}
-
-{# Print the result #}
-
-<h2 class="ecl-u-type-heading-2">
-  {{ "@name styleguide"|t({ '@name': theme_info.name }) }}
+<h2>{{ "@name styleguide"|t({'@name': theme_info.name}) }}
 </h2>
-
 {% if theme_info.description %}
-  <div class="ecl-u-type-paragraph ecl-u-mb-l">
-    {{ theme_info.description }}
-  </div>
+    <p>{{ theme_info.description }}</p>
 {% endif %}
-
-{% endspaceless %}
+<div class="break"><br /></div>

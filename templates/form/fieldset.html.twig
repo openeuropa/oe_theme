@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -8,56 +6,45 @@
  * @see ./core/themes/stable/templates/form/fieldset.html.twig
  */
 #}
-
-{# Internal properties #}
-
-{% set classes = [
-  'ecl-fieldset',
-  'js-form-item',
-  'form-item',
-  'js-form-wrapper',
-  'form-wrapper',
-]
+{%
+  set classes = [
+    'ecl-fieldset',
+    'js-form-item',
+    'form-item',
+    'js-form-wrapper',
+    'form-wrapper',
+  ]
 %}
 
-{# Print the result #}
-
 <fieldset{{ attributes.addClass(classes) }}>
-  {% if legend_display %}
-    {% set legend_span_classes = [
+  {%
+    set legend_span_classes = [
       'fieldset-legend',
       required ? 'js-form-required',
       required ? 'form-required',
     ]
-    %}
-
+  %}
+  {% if legend_display %}
     {#  Always wrap fieldset legends in a SPAN for CSS positioning. #}
     <legend{{ legend.attributes.addClass('ecl-form-legend') }}>
       <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
     </legend>
   {% endif %}
-
   <div class="fieldset-wrapper">
     {% if errors %}
       <div>
         {{ errors }}
       </div>
     {% endif %}
-
     {% if prefix %}
       <span class="field-prefix">{{ prefix }}</span>
     {% endif %}
-
     {{ children }}
-
     {% if suffix %}
       <span class="field-suffix">{{ suffix }}</span>
     {% endif %}
-
     {% if description.content %}
       <div{{ description.attributes.addClass('description') }}>{{ description.content }}</div>
     {% endif %}
   </div>
 </fieldset>
-
-{% endspaceless %}

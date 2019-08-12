@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -9,16 +7,9 @@
  */
 #}
 
-{# Internal properties #}
-
 {% if attributes.hasClass('error') %}
   {% set attributes = attributes.addClass('ecl-text-area--invalid') %}
 {% endif %}
-
-{# Print the result #}
-
 <div{{ wrapper_attributes }}>
   <textarea{{ attributes.addClass('ecl-text-area') }}>{{ value }}</textarea>
 </div>
-
-{% endspaceless %}

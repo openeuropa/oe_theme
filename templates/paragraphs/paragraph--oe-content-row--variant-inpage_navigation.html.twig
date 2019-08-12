@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -8,20 +6,15 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-
-{# Print the result #}
-
 {{ attach_library('oe_theme/inpage_navigation') }}
 <div class="ecl-row">
   <div class="ecl-col-md-3 ecl-u-z-navigation">
     {% include '@ecl/ec-component-inpage-navigation' with {
-      title: title,
-      links: links
+      'title': title,
+      'links': links
     } %}
   </div>
   <div class="ecl-col-md-9">
     {{ content.field_oe_paragraphs }}
   </div>
 </div>
-
-{% endspaceless %}

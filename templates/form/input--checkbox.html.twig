@@ -14,14 +14,14 @@
  */
 #}
 {% include '@ecl/ec-component-form-checkbox' with {
-  id: attributes.id,
-  name: attributes.name,
-  value: attributes.value,
-  label: title,
-  checked: attributes.checked is defined,
-  is_disabled: attributes.disabled is defined,
-  has_error: has_error,
-  extra_classes: has_extra,
-  extra_attributes: extra_attributes,
-  input_attributes: input_attributes
+    'id': attributes.id,
+    'name': attributes.name,
+    'value': attributes.value,
+    'label': title,
+    'checked': attributes.checked is defined,
+    'is_disabled': attributes.disabled is defined,
+    'has_error': has_error,
+    'extra_classes': has_extra,
+    'extra_attributes': extra_attributes,
+    'input_attributes': input_attributes,
 } %}{{ children }}

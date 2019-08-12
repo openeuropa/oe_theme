@@ -1,20 +1,23 @@
 {#
 /**
  * @file
- * Default implementation for the file link component.
+ * File link pattern.
  */
 #}
+
+{# Process value objects into ECL compatible array. #}
 {% set _files = [] %}
 {% for item in files %}
   {% set _files = _files|merge([{
-    title: item.title,
-    type: item.extension,
-    icon: item.extension|to_file_icon,
-    href: item.url
+    'title': item.title,
+    'type': item.extension,
+    'icon': item.extension|to_file_icon,
+    'href': item.url
   }]) %}
 {% endfor %}
 
+{# Include ECL component. #}
 {% include '@ecl/ec-component-file' with {
-  variant: 'link',
-  links: _files
+  'variant': 'link',
+  'links': _files,
 } only %}

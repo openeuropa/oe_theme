@@ -1,5 +1,3 @@
-{% spaceless %}
-
 {#
 /**
  * @file
@@ -8,17 +6,10 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-
-{# Internal properties #}
-
-{% set classes = [
-  'ecl-text-input',
-  attributes.hasClass('error') ? 'ecl-text-input--invalid',
+{%
+  set classes = [
+    'ecl-text-input',
+    attributes.hasClass('error') ? 'ecl-text-input--invalid',
 ]
 %}
-
-{# Print the result #}
-
 <input{{ attributes.addClass(classes) }} />{{ children }}
-
-{% endspaceless %}

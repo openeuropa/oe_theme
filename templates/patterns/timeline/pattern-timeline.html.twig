@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default implementation for the timeline component.
+ * Timeline component.
  */
 #}
 {% set total_num = items|length %}
@@ -12,12 +12,12 @@
 {% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
 
 {% include '@ecl/timeline' with {
-  toggle_collapsed: _toggle_collapsed,
-  toggle_expanded: _toggle_expanded,
-  hide: {
-    from: limit,
-    to: limit_to|default(0)
+  'toggle_collapsed': _toggle_collapsed,
+  'toggle_expanded': _toggle_expanded,
+  'hide': {
+    'from': limit,
+    'to': limit_to|default(0),
   },
-  items: items,
-  icon_path: ecl_icon_path
+  'items': items,
+  'icon_path': ecl_icon_path,
 } only %}

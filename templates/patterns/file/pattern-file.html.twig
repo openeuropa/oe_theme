@@ -1,29 +1,29 @@
 {#
 /**
  * @file
- * Default implementation for the file component.
+ * File download pattern.
  */
 #}
 {% include '@ecl/file' with {
-  title: file.title,
-  language: file.language_code|to_native_language,
-  meta: '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
-  icon: {
-    path: ecl_icon_path,
-    type: 'general',
-    name: file.extension|to_file_icon,
-    size: '2xl'
+  'title': file.title,
+  'language': file.language_code|to_native_language,
+  'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
+  'icon': {
+    'path': ecl_icon_path,
+    'type': 'general',
+    'name': file.extension|to_file_icon,
+    'size': '2xl',
   },
-  download: {
-    link: {
-      label: button_label|default('Download'|t),
-      path: file.url
+  'download': {
+    'link': {
+      'label': button_label|default('Download'|t),
+      'path': file.url,
     },
-    icon: {
-      path: ecl_icon_path,
-      type: 'ui',
-      name: 'download',
-      size: 'fluid'
-    }
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'ui',
+      'name': 'download',
+      'size': 'fluid',
+    },
   }
 } only %}

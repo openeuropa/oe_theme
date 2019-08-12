@@ -1,7 +1,9 @@
 {#
 /**
  * @file
- * Default implementation for the accordion component.
+ * Accordion component.
  */
 #}
-{% include '@ecl/accordion2' with { items: items } only %}
+{% include '@ecl/accordion2' with {
+  'panels': items,
+} %}
