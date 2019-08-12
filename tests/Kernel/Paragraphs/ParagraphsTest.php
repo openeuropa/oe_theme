@@ -181,6 +181,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
 
+    // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
     $paragraph->save();
@@ -200,6 +205,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+
     $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
