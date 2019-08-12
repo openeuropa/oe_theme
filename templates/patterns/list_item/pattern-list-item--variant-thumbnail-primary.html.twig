@@ -4,8 +4,6 @@
  * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
-{% set _image_position = image_position|default('before') %}
-
 {% include '@oe_theme/compositions/ec-component-content-item/content-item.html.twig' with {
   content_item : {
     title: {
@@ -14,7 +12,7 @@
     },
     description: detail,
     image: image,
-    image_position: _image_position,
+    image_position: image_position|default('before'),
     meta: meta
   }
 } only %}
