@@ -6,13 +6,10 @@
    * Theme implementation for a ECL Content Item Block.
    */
   Parameters:
-    - "content_item_block" (associative array) (default: predefined structure): format:
-        {
-          type: '', (string) (default: 'one'): Type of Content Item Block
-          title: '', (string) (default: ''): Title of Content Item Block
-          items: [], (array) (default: []): Content Item's for the Content Item Block
-          button: {}, (associative array) (default: {}): Predefined structure compatible with Link component.
-        }
+    - "type" (string) (default: 'one'): Type of Content Item Block
+    - "title" (string) (default: ''): Title of Content Item Block
+    - "items" (array) (default: []): Content Item's for the Content Item Block
+    - "button" (associative array) (default: {}): Predefined structure compatible with Link component.
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
         {
@@ -25,64 +22,57 @@
 
 {# Internal properties #}
 
-{% set _content_item_block = {
-  type: 'one',
-  title: '',
-  items: [],
-  button: {}
-} %}
-
-{% if content_item_block is defined %}
-  {% set _content_item_block = _content_item_block|merge(content_item_block) %}
-{% endif %}
-
 {% set _css_class = 'ecl-content-item-block ecl-container' %}
 {% set _extra_attributes = '' %}
+{% set _type = type|default('one') %}
+{% set _title = title|default('') %}
+{% set _items = items|default([]) %}
+{% set _button = button|default({}) %}
 
 {# Internal logic - Process properties #}
 
-{% if extra_classes is defined and extra_classes is not empty %}
+{% if extra_classes %}
   {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
 {% endif %}
 
-{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+{% if extra_attributes %}
   {% for attr in extra_attributes %}
     {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
   {% endfor %}
 {% endif %}
 
 {% set _extra_classes_item = 'ecl-col-12' %}
-{% if _content_item_block.type == 'two' %}
+{% if _type == 'two' %}
   {% set _extra_classes_item = 'ecl-col-6' %}
-{% elseif _content_item_block.type == 'three' %}
+{% elseif _type == 'three' %}
   {% set _extra_classes_item = 'ecl-col-4' %}
 {% endif %}
 
 {# Print the result #}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  <div class="ecl-row">
-    {% if _content_item_block.title %}
+  {% if _title %}
+    <div class="ecl-row">
       <div class="ecl-content-item-block__title ecl-col-12">
-        <h3 class='ecl-u-type-heading-3'>{{ _content_item_block.title }}</h3>
+        <h3 class='ecl-u-type-heading-3'>{{ _title }}</h3>
       </div>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 
   <div class="ecl-row">
-    {% for _item in _content_item_block.items %}
+    {% for _item in _items %}
       <div class="ecl-content-item-block__item {{ _extra_classes_item }}">
         {{ _item }}
       </div>
     {% endfor %}
   </div>
 
-  {% if _content_item_block.button.path %}
+  {% if _button.path %}
     <div class="ecl-row">
       <div class="ecl-content-item-block__button ecl-col-12">
         <div class="ecl-u-clearfix ecl-u-pv-m">
           {% include '@ecl/link' with {
-            link: _content_item_block.button|merge({type:'standalone'}),
+            link: _button|merge({type:'standalone'}),
             'extra_classes': 'ecl-u-f-r'
           } only %}
         </div>

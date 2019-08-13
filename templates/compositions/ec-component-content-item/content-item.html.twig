@@ -6,14 +6,11 @@
    * Theme implementation for a ECL Content Item.
    */
   Parameters:
-    - "content_item" (associative array) (default: predefined structure): format:
-        {
-          description: '', (string) (default: ''): Description of Content Item
-          meta: [], (array) (default: []): Meta information for the Content Item
-          title: {}, (associative array) (default: {}): Predefined structure compatible with Link component. If Content Item type is a 'tile', only label property is required.
-          image: '', (string) (default: ''): Url/path to background image
-          image_position: 'after' (string) (Can be 'before' or 'after'. Is required only if Image is specified)
-        }
+    - "description" (string) (default: ''): Description of Content Item
+    - "meta" (array) (default: []): Meta information for the Content Item
+    - "title" (associative array) (default: {}): Predefined structure compatible with Link component. If Content Item type is a 'tile', only label property is required.
+    - "image" (string) (default: ''): Url/path to background image
+    - "image_position" (string) (Can be 'before' or 'after'. Is required only if Image is specified)
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
         {
@@ -26,22 +23,15 @@
 
 {# Internal properties #}
 
-{% set _content_item = {
-  type: 'default',
-  description: '',
-  meta: [],
-  title: {},
-  image: '',
-  image_position: 'before',
-  links: []
-} %}
-
-{% if content_item is defined %}
-  {% set _content_item = _content_item|merge(content_item) %}
-{% endif %}
-
 {% set _css_class = 'ecl-content-item ecl-u-d-flex ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pv-m' %}
 {% set _extra_attributes = '' %}
+{% set _type = type|default('default') %}
+{% set _description = description|default('') %}
+{% set _meta = meta|default([]) %}
+{% set _title = title|default({}) %}
+{% set _image = image|default('') %}
+{% set _image_position = image_position|default('before') %}
+{% set _links = links|default([]) %}
 
 {# Internal logic - Process properties #}
 
@@ -67,26 +57,26 @@
 {% endmacro %}
 
 <article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  {% if _content_item.image and _content_item.image_position == 'before' %}
-    {{ _self.image(_content_item.image.src, _content_item.image.alt, 'ecl-u-d-lg-block ecl-content-item__image__before', 'ecl-u-d-lg-none') }}
+  {% if _image and _image_position == 'before' %}
+    {{ _self.image(_image.src, _image.alt, 'ecl-u-d-lg-block ecl-content-item__image__before', 'ecl-u-d-lg-none') }}
   {% endif %}
   <div class="ecl-u-flex-grow-1">
-    {% if _content_item.meta is not empty %}
-      <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ _content_item.meta|join(" | ") }}</div>
+    {% if _meta is not empty %}
+      <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ _meta|join(" | ") }}</div>
     {% endif %}
     <div class="ecl-content-item__title ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-mt-xs">
-      {%- if _content_item.title.path %}
+      {%- if _title.path %}
         {% include '@ecl/link' with {
-          link: _content_item.title|merge({type:'standalone'})
+          link: _title|merge({type:'standalone'})
         } only %}
       {% else %}
-        {{- _content_item.title.label }}
+        {{- _title.label }}
       {%- endif -%}
     </div>
-    <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _content_item.description }}</div>
+    <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _description }}</div>
   </div>
-  {% if _content_item.image and _content_item.image_position == 'after' %}
-    {{ _self.image(_content_item.image.src, _content_item.image.alt, 'ecl-u-d-lg-none', 'ecl-u-d-lg-block ecl-content-item__image__after') }}
+  {% if _image and _image_position == 'after' %}
+    {{ _self.image(_image.src, _image.alt, 'ecl-u-d-lg-none', 'ecl-u-d-lg-block ecl-content-item__image__after') }}
   {% endif %}
 </article>
 {% endspaceless %}
