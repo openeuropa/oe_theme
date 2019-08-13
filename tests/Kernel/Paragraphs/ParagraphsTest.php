@@ -506,8 +506,6 @@ class ParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Test 'contextual navigation' paragraph rendering.
-   *
-   * @group ecl1
    */
   public function testContextualNavigation(): void {
     $paragraph = Paragraph::create([
