@@ -16,8 +16,6 @@
   {% set extra_attributes = extra_attributes|merge(['ecl-select--invalid']) %}
 {% endif %}
 
-{# Print the result #}
-
 <div class="ecl-select__container{{ disabled ? ' ecl-select__container--disabled' }}">
   <select{{ attributes.addClass(extra_attributes) }}>
     {% for option in options %}

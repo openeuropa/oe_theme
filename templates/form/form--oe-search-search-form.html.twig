@@ -55,8 +55,6 @@
   {% endfor %}
 {% endif %}
 
-{# Print the result #}
-
 <form class="{{ _css_class }}" role="search"{{ _extra_attributes|raw }}>
   {% include '@ecl/text-input' with _text_input only %}
   {% include '@ecl/button' with _button only %}
