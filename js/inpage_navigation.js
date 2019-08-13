@@ -14,7 +14,10 @@
    */
   Drupal.behaviors.eclInpageNavigation = {
     attach: function attach() {
-      ECL.navigationInpages();
+      var elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
+      elements.forEach(function(element) {
+        (new ECL.InpageNavigation(element)).init();
+      });
     }
   };
 
