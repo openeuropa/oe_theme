@@ -8,6 +8,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test language switcher rendering.
+ *
+ * @group ecl1
  */
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 

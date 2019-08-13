@@ -75,25 +75,23 @@ class MediaRenderTest extends AbstractKernelTestBase {
     $media->save();
 
     $build = $this->mediaViewBuilder->view($media, 'default');
-    $html = $this->renderRoot($build);
-
-    $crawler = new Crawler($html);
+    $crawler = new Crawler($this->renderRoot($build));
 
     // File wrapper.
     $file_wrapper = $crawler->filter('.ecl-file');
     $this->assertCount(1, $file_wrapper);
 
     // File row.
-    $file_row = $crawler->filter('.ecl-file .ecl-row');
+    $file_row = $crawler->filter('.ecl-file .ecl-file__container');
     $this->assertCount(1, $file_row);
 
     $file_title = $file_row->filter('.ecl-file__title');
     $this->assertContains('test.pdf', $file_title->text());
 
-    $file_info_language = $file_row->filter('.ecl-file__info span.ecl-file__language');
+    $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->text());
 
-    $file_info_properties = $file_row->filter('.ecl-file__info span.ecl-file__properties');
+    $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
     $this->assertContains('KB - PDF)', $file_info_properties->text());
 
     $file_download_link = $file_row->filter('.ecl-file__download');

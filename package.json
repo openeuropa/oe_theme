@@ -13,12 +13,12 @@
         "prepare": "patch-package"
     },
     "dependencies": {
-        "@ecl/builder": "2.7.0",
-        "@ecl/ec-preset-dev": "2.7.0",
-        "@ecl/ec-preset-website": "2.7.0",
-        "@ecl/ec-theme-default": "2.7.0",
+        "@ecl/builder": "2.9.0",
+        "@ecl/ec-preset-dev": "2.9.0",
+        "@ecl/ec-preset-website": "2.9.0",
+        "@ecl/ec-theme-default": "2.9.0",
         "@ecl/stylelint-config": "0.2.1",
-        "@ecl-twig/ec-components": "2.7.0",
+        "@ecl-twig/ec-components": "2.8.0",
         "node-sass": "4.12.0",
         "chokidar-cli": "1.2.0",
         "npm-run-all": "4.0.2",

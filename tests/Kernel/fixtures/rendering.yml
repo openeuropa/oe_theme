@@ -406,76 +406,95 @@
 #      '.ecl-gallery .ecl-row': 2
 #      '.ecl-gallery .ecl-row .ecl-gallery__item': 5
 #      '.ecl-gallery__item-container span.ecl-icon': 0
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#fields':
-#      url: "http://example.com"
-#      title: "Item title"
-#      detail: "Item text"
-#  assertions:
-#    count:
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "Item text"
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "thumbnail_primary"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      detail: "Item text"
-#      image:
-#        src: "http://via.placeholder.com/150x150"
-#        alt: "Alternate text for primary image"
-#  assertions:
-#    count:
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/150x150"][alt="Alternate text for primary image"]': 1
-#      '.ecl-list-item__secondary': 0
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "Item text"
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "thumbnail_secondary"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      detail: "Item text"
-#      image:
-#        src: "http://via.placeholder.com/120x80"
-#        alt: "Alternate text for secondary image"
-#  assertions:
-#    count:
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      '.ecl-list-item__secondary img.ecl-image[src="http://via.placeholder.com/120x80"][alt="Alternate text for secondary image"]': 1
-#      '.ecl-list-item__primary': 0
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "Item text"
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "highlight"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      image:
-#        src: "http://via.placeholder.com/300x300"
-#        alt: "Alternate text for image"
-#  assertions:
-#    count:
-#      '.ecl-list-item.ecl-list-item--highlight': 1
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      '.ecl-list-item__primary img.ecl-image[src="http://via.placeholder.com/300x300"][alt="Alternate text for image"]': 1
-#      '.ecl-list-item__secondary': 0
-#      'div.ecl-list-item__detail': 0
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail: "Item text"
+      meta:
+        - "News article"
+        - "6 July 2015"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alternate text for primary image"
+      meta:
+        - "News article"
+        - "6 July 2015"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div.ecl-content-item__image__before': 1
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternate text for secondary image"
+      meta:
+        - "News article"
+        - "6 July 2015"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 1
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "highlight"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/300x300"
+        alt: "Alternate text for secondary image"
+  assertions:
+    count:
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]': 1
+      # @todo will be fixed on OPENEUROPA-2123.
+      # 'article.ecl-card header.ecl-card__header div.ecl-card__image[alt="Alternate text for image"]': 1
+      'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
+    equals:
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
+      'article.ecl-card section.ecl-card__body div.ecl-card__description': ""
+      'article.ecl-card footer.ecl-card__footer': ""
+# @todo will be triggered on OPENEUROPA-2124
 #- array:
 #    '#type': pattern
 #    '#id': list_item
@@ -492,22 +511,40 @@
 #    equals:
 #      'h3.ecl-list-item__title': "Item title"
 #      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+# @todo will be triggered on OPENEUROPA-2124
 #- array:
 #    '#type': pattern
 #    '#id': list_item
-#    '#variant': "navigation"
+#    '#variant': "date"
 #    '#fields':
 #      title: "Item title"
 #      url: "http://example.com"
 #      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 #  assertions:
 #    count:
-#      '.ecl-list-item.ecl-list-item--navigation': 1
+#      '.ecl-list-item.ecl-list-item--block': 1
 #      'a.ecl-list-item__link[href="http://example.com"]': 1
 #      'div.ecl-list-item__detail': 1
 #    equals:
 #      'h3.ecl-list-item__title': "Item title"
 #      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 #- array:
 #    '#type': pattern
 #    '#id': list_item_block_one_column
@@ -527,7 +564,7 @@
 #      'ul.ecl-listing--two-columns': 0
 #      'ul.ecl-listing--three-columns': 0
 #    equals:
-#      'h3.ecl-heading': "Block title"
+#      'h3.ecl-u-type-heading-3': "Block title"
 #      'h3.ecl-list-item__title': "Business, Economy, Euro"
 #      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 #      'a.ecl-button': "View all"
@@ -975,18 +1012,6 @@
 #      'span.ecl-social-icon--facebook': 1
 #    equals:
 #      'span.ecl-social-icon--facebook': "Facebook"
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#fields':
-#      url: "http://example.com"
-#      title: ""
-#      detail: ""
-#  assertions:
-#    count:
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      'h3.ecl-list-item__title.ecl-heading.ecl-heading--h3': 0
-#      'div.ecl-list-item__detail.ecl-paragraph': 0
 #- array:
 #    '#type': pattern
 #    '#id': featured_item

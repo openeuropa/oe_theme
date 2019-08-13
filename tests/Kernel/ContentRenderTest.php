@@ -11,6 +11,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our content types render with correct markup.
+ *
+ * @group ecl1
  */
 class ContentRenderTest extends AbstractKernelTestBase {
 
@@ -147,7 +149,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertContains('Body', $body_wrapper->text());
 
     // Related links.
-    $related_links_heading = $crawler->filter('.ecl-heading--h2');
+    $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
     $this->assertCount(2, $related_links);
@@ -193,7 +195,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertContains('Body', $body_wrapper->text());
 
     // Related links.
-    $related_links_heading = $crawler->filter('.ecl-heading--h2');
+    $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
     $this->assertCount(2, $related_links);

@@ -1026,8 +1026,7 @@ function oe_theme_preprocess_responsive_image_formatter(&$variables) {
 function oe_theme_preprocess_block(&$variables) {
   $variables['title_attributes'] = array_merge_recursive($variables['title_attributes'], [
     'class' => [
-      'ecl-heading',
-      'ecl-heading--h2',
+      'ecl-u-type-heading-2',
     ],
   ]);
 }

@@ -83,12 +83,10 @@ class BlockTest extends EntityKernelTestBase {
     $block = $this->placeBlock('block_content:' . $block_content->uuid());
     $build = $this->container->get('entity.manager')->getViewBuilder('block')->view($block, 'block');
 
-    $html = $this->renderRoot($build);
-
-    $crawler = new Crawler($html);
+    $crawler = new Crawler($this->renderRoot($build));
 
     // Assert block title contains ECL classes.
-    $actual = $crawler->filter('h2.ecl-heading--h2');
+    $actual = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(1, $actual);
   }
 

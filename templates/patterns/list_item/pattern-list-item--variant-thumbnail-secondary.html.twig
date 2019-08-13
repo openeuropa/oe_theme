@@ -4,12 +4,6 @@
  * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
-{% include '@ecl/ec-component-list-item' with {
-  'variant': 'thumbnail',
-  'title': title,
-  'metas': meta,
-  'href': url,
-  'detail': detail,
-  'secondary_image': image,
-  'screen_reader': 'List item'|t
-} only %}
+{% include 'pattern-list-item--variant-thumbnail-primary.html.twig' with {
+  image_position : 'after'
+} %}

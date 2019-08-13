@@ -14,6 +14,7 @@ use Drupal\Tests\UnitTestCase;
  * Tests for the custom Twig filters extension.
  *
  * @group oe_theme_helper
+ *
  * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\Filters
  */
 class TwigFiltersTest extends UnitTestCase {

@@ -9,6 +9,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class MenuLocalTasks.
+ *
+ * @group ecl1
  */
 class MenuLocalTasksTest extends AbstractKernelTestBase {
 
