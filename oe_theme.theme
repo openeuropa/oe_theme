@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
+use Drupal\Component\Utility\SortArray;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -156,7 +157,7 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
-  uasort ($variables['primary'], '_oe_theme_weight_comparator');
+  uasort($variables['primary'],[SortArray::class, 'sortByWeightProperty']);
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
@@ -169,7 +170,7 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
     }
   }
 
-  uasort ($variables['secondary'], '_oe_theme_weight_comparator');
+  uasort($variables['primary'],[SortArray::class, 'sortByWeightProperty']);
   foreach ($variables['secondary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
@@ -181,29 +182,6 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
       ];
     }
   }
-}
-
-/**
- * Helper function to sort local tasks.
- *
- * Compares two objects based on their '#weight' property.
- *
- * @param array $item1
- *   The first item.
- * @param array $item2
- *   The second item.
- *
- * @return bool|void
- *   Returns the result of the comparison -1, 0, 1.
- */
-function _oe_theme_weight_comparator(array $item1, array $item2) {
-  if (!isset($item1, $item2)) {
-    return 0;
-  }
-  if (!isset($item1['#weight'], $item2['#weight'])) {
-    return 0;
-  }
-  return $item1['#weight'] > $item2['#weight'];
 }
 
 /**
