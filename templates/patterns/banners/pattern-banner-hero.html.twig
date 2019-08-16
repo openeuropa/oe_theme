@@ -5,13 +5,16 @@
  */
 #}
 
-{% set _link = {'link' : {'path' : url, 'label' : label}} %}
+{% if not button %}
+  {% set _link = {'link' : {'path' : url, 'label' : label}} %}
+{% endif %}
 
 {% include '@ecl/hero-banner' with {
   'type': banner_type|e,
   'image': image.src,
   'title': title,
   'link': _link,
+  'button': button,
   'description': description,
   'centered': centered,
 } %}

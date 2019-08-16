@@ -29,6 +29,14 @@ banner_hero:
       label: "Label"
       description: "Hero link label."
       preview: "Subscribe"
+    button:
+      type: "text"
+      label: "Button"
+      description: "Hero button, this will not render the url + label as link"
+      preview:
+        variant: "call"
+        href: "#"
+        label: "European commission"
     description:
       type: "text"
       label: "Description"
