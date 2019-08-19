@@ -298,6 +298,7 @@ Patches will be generated in `./patches` and applied when running `npm install`.
 Note that the following models are deprecated after upgrading from 1.x to 2.x:
 
 - `dialog pattern`
+- `file_link pattern`
 
 ## Contributing
 

@@ -17,15 +17,6 @@ function oe_theme_patterns_render_test_preprocess_pattern_file(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_pattern_file_link().
- */
-function oe_theme_patterns_render_test_preprocess_pattern_file_link(&$variables) {
-  foreach ($variables['files'] as $index => $file) {
-    $variables['files'][$index] = FileValueObject::fromArray($file);
-  }
-}
-
-/**
  * Implements hook_preprocess_pattern_file_translation().
  */
 function oe_theme_patterns_render_test_preprocess_pattern_file_translation(&$variables) {

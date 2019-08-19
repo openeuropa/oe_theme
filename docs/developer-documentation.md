@@ -108,7 +108,6 @@ Provides the following factory methods:
 Used in the following patterns:
 
 - [`file`](../templates/patterns/file/file.ui_patterns.yml)
-- [`file_link`](../templates/patterns/file_link/file_link.ui_patterns.yml)
 - [`file_translation`](../templates/patterns/file_translation/file_translation.ui_patterns.yml)
 
 Provides the following factory methods:
