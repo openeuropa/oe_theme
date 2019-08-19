@@ -6,22 +6,19 @@
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
  * - children: Optional additional rendered elements.
- * - is_disabled: Optional (boolean): is disabled (optional, default: false).
- * - has_error: Optional (boolean): has error (optional, default: false).
- * - has_extra: Optional (string): extra CSS classes (optional, default: '').
+ * - disabled: Optional (boolean): is disabled (optional, default: false).
+ * - invalid: Optional (boolean): has error (optional, default: false).
  *
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl/ec-component-form-checkbox' with {
+{% include '@oe_theme/compositions/ec-component-checkbox/checkbox.html.twig' with {
     'id': attributes.id,
     'name': attributes.name,
     'value': attributes.value,
     'label': title,
     'checked': attributes.checked is defined,
-    'is_disabled': attributes.disabled is defined,
-    'has_error': has_error,
-    'extra_classes': has_extra,
-    'extra_attributes': extra_attributes,
+    'disabled': attributes.disabled is defined,
+    'invalid': invalid,
     'input_attributes': input_attributes,
-} %}{{ children }}
+} only %}{{ children }}

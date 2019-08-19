@@ -1,0 +1,105 @@
+{% spaceless %}
+
+{#
+  Parameters:
+  - "id" (string) (default: '')
+  - "name" (string) (default: '')
+  - "value" (string) (default: '')
+  - "disabled" (boolean) (default: false)
+  - "invalid" (boolean) (default: false)
+  - "checked" (boolean) (default: false)
+  - "helper_id" (string) (default: '')
+  - "extra_classes" (optional) (string) (default: '')
+  - "extra_attributes" (optional) (array) (default: [])
+    - "name" (string) Attribute name, eg. 'data-test'
+    - "value" (string) Attribute value, eg: 'data-test-1'
+  Blocks:
+  - "helper_text"
+  - "label"
+#}
+
+{# Internal properties #}
+
+{% set _id = id|default('') %}
+{% set _name = name|default('') %}
+{% set _value = value|default('') %}
+{% set _disabled = disabled|default(false) %}
+{% set _invalid = invalid|default(false) %}
+{% set _checked = checked|default(false) %}
+{% set _helper_id = helper_id|default('') %}
+
+{% set _helper_text = helper_text|default('') %}
+{% set _label = label|default('') %}
+
+{% set _css_class = 'ecl-checkbox' %}
+{% set _extra_attributes = '' %}
+{% set _extra_input_attributes = '' %}
+
+{# Internal logic - Process properties #}
+
+{% if _disabled %}
+  {% set _css_class = _css_class ~ ' ecl-checkbox--disabled' %}
+{% endif %}
+
+{% if _invalid %}
+  {% set _css_class = _css_class ~ ' ecl-checkbox--invalid' %}
+{% endif %}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+
+{% if input_attributes is defined and input_attributes is not empty and input_attributes is iterable %}
+  {% for attr in input_attributes %}
+    {% set _extra_input_attributes = _extra_input_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Print the result #}
+
+<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+  <input
+    id="{{ _id }}"
+    name="{{ _name }}"
+    class="ecl-checkbox__input"
+    type="checkbox"
+    value="{{ _value }}"
+    {{ _disabled ? "disabled" }}
+    {{ _checked ? "checked" }}
+    {{ _helper_id is not empty ? "aria-describedby=\"" ~ _helper_id ~ "\"" -}}
+    {{ _extra_input_attributes|raw }}
+  />
+
+  <label for="{{ _id }}" class="ecl-checkbox__label">
+    <span class="ecl-checkbox__box">
+      {% include '@ecl/icon' with {
+        icon: {
+          path: ecl_icon_path,
+          type: "ui",
+          name: "check",
+          size: "s"
+        },
+        extra_classes: 'ecl-checkbox__icon',
+      } only %}
+    </span>
+    {%- block label _label -%}
+  </label>
+
+  {% if _helper_text is not empty %}
+    <p
+      class="ecl-checkbox__help ecl-help-block"
+      {{ _helper_id is not empty ? "id=\"" ~ _helper_id ~ "\""}}
+    >
+      {%- block helper_text _helper_text -%}
+    </p>
+  {% endif %}
+</div>
+
+{% endspaceless %}

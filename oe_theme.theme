@@ -318,6 +318,7 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
  */
 function _oe_theme_preprocess_input_label_wrapper(array &$variables): void {
   $element = &$variables['element'];
+  $variables['invalid'] = !empty($element['#errors']);
 
   if (isset($element['#title']) && $element['#title'] !== '') {
     $variables['title'] = ['#markup' => $element['#title']];
