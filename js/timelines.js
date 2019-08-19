@@ -7,7 +7,7 @@
     attach: function attach() {
       var elements = document.querySelectorAll('[data-ecl-timeline]');
       elements.forEach(function(element) {
-        (new ECL.Timeline(element)).init();
+        (new ECL.Timeline2(element)).init();
       });
     }
   };

@@ -5,14 +5,12 @@
  */
 #}
 {% include '@oe_theme/compositions/ec-component-content-item/content-item.html.twig' with {
-  content_item : {
-    title: {
-      label: title,
-      path: url
-    },
-    description: detail,
-    image: image,
-    image_position: image_position|default('before'),
-    meta: meta
-  }
+  title: {
+    label: title,
+    path: url
+  },
+  description: detail,
+  image: image,
+  image_position: 'before',
+  meta: meta
 } only %}

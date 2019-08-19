@@ -358,8 +358,6 @@ class ParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Tests the list item block paragraph type.
-   *
-   * @group ecl1
    */
   public function testListItemBlock() {
     // Create three list items to be referenced from the list item block.
@@ -369,7 +367,7 @@ class ParagraphsTest extends ParagraphsTestBase {
         'type' => 'oe_list_item',
         'oe_paragraphs_variant' => 'default',
         'field_oe_title' => 'Item title ' . $i,
-        'field_oe_text_long' => 'Item description 1' . $i,
+        'field_oe_text_long' => 'Item description ' . $i,
         'field_oe_link' => [
           'uri' => 'http://www.example.com/page/' . $i,
         ],
@@ -390,35 +388,37 @@ class ParagraphsTest extends ParagraphsTestBase {
     ]);
     $paragraph->save();
 
-    $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
+    $crawler = new Crawler($this->renderParagraph($paragraph));
+    $this->assertEquals('List block title', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
 
-    $this->assertEquals('List block title', trim($crawler->filter('.ecl-heading')->text()));
     // Verify that the referenced paragraphs are being rendered.
-    $this->assertCount(3, $crawler->filter('.ecl-listing .ecl-list-item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item article.ecl-content-item'));
+
     // Verify that the one column variant is being rendered. No class is added
     // to this variant, so we check that neither the two or three columns class
     // modifiers are there.
-    $this->assertCount(0, $crawler->filter('.ecl-listing.ecl-listing--two-columns'));
-    $this->assertCount(0, $crawler->filter('.ecl-listing.ecl-listing--three-columns'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
 
     // Change the variant to two columns.
     $paragraph->get('field_oe_list_item_block_layout')->setValue('two_columns');
     $paragraph->save();
-    $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
 
-    // Verify that the referenced paragraphs are being rendered under the
-    // correct variant.
-    $this->assertCount(3, $crawler->filter('.ecl-listing.ecl-listing--two-columns .ecl-list-item'));
+    $crawler = new Crawler($this->renderParagraph($paragraph));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
 
     // Change the variant to three columns.
     $paragraph->get('field_oe_list_item_block_layout')->setValue('three_columns');
     $paragraph->save();
-    $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
 
-    $this->assertCount(3, $crawler->filter('.ecl-listing.ecl-listing--three-columns .ecl-list-item'));
+    $crawler = new Crawler($this->renderParagraph($paragraph));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
   }
 
   /**
