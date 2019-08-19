@@ -1,10 +1,20 @@
 # Change Log
 
+## [1.6.0](https://github.com/openeuropa/oe_theme/tree/1.6.0) (2019-08-19)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.5.1...1.6.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2145: Add spacing between paragraphs. [\#285](https://github.com/openeuropa/oe_theme/pull/285) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2135: Add publication date to Publication page header metadata [\#282](https://github.com/openeuropa/oe_theme/pull/282) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2104: Upgrade ECL 1 to the latest version. [\#281](https://github.com/openeuropa/oe_theme/pull/281) ([sergepavle](https://github.com/sergepavle))
+
 ## [1.5.1](https://github.com/openeuropa/oe_theme/tree/1.5.1) (2019-07-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.5.0...1.5.1)
 
 **Merged pull requests:**
 
+- Release-1.5.1: Update changelog. [\#279](https://github.com/openeuropa/oe_theme/pull/279) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2047: Add class for timeline to limit width. [\#278](https://github.com/openeuropa/oe_theme/pull/278) ([nagyad](https://github.com/nagyad))
 
 ## [1.5.0](https://github.com/openeuropa/oe_theme/tree/1.5.0) (2019-07-23)
@@ -153,7 +163,6 @@
 - OPENEUROPA-1745: Update CHANGELOG.md for 0.13.0 release. [\#196](https://github.com/openeuropa/oe_theme/pull/196) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1672: Theme the news teaser [\#195](https://github.com/openeuropa/oe_theme/pull/195) ([upchuk](https://github.com/upchuk))
 - Openeuropa 1660 - Theming the News content type [\#194](https://github.com/openeuropa/oe_theme/pull/194) ([upchuk](https://github.com/upchuk))
-- OPENEUROPA-1754: Update page header pattern. [\#191](https://github.com/openeuropa/oe_theme/pull/191) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [0.12.0](https://github.com/openeuropa/oe_theme/tree/0.12.0) (2019-04-05)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.11.0...0.12.0)
@@ -161,6 +170,7 @@
 **Merged pull requests:**
 
 - Update CHANGELOG.md for 0.12.0 release. [\#193](https://github.com/openeuropa/oe_theme/pull/193) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1754: Update page header pattern. [\#191](https://github.com/openeuropa/oe_theme/pull/191) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1744: Implement site switcher in oe\_theme. [\#190](https://github.com/openeuropa/oe_theme/pull/190) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1756: Fix styling of Apply button for moderation block. [\#189](https://github.com/openeuropa/oe_theme/pull/189) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1659: Theme oe\_page content. [\#188](https://github.com/openeuropa/oe_theme/pull/188) ([imanoleguskiza](https://github.com/imanoleguskiza))
@@ -209,7 +219,6 @@
 - OPENEUROPA-1387: Move "Deprecation warnings in Twig" patch to openeuropa/drupal-core-require-dev [\#155](https://github.com/openeuropa/oe_theme/pull/155) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1474: Fix fromFileEntity method to provide file URL by URI. [\#153](https://github.com/openeuropa/oe_theme/pull/153) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1381: Use Url objects on ui\_patterns. [\#152](https://github.com/openeuropa/oe_theme/pull/152) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- OPENEUROPA-1378: Implement DateValueObject for Date pattern fields [\#150](https://github.com/openeuropa/oe_theme/pull/150) ([drupol](https://github.com/drupol))
 
 ## [0.7.0](https://github.com/openeuropa/oe_theme/tree/0.7.0) (2018-11-27)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.3...0.7.0)
@@ -221,6 +230,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-1378: Implement DateValueObject for Date pattern fields [\#150](https://github.com/openeuropa/oe_theme/pull/150) ([drupol](https://github.com/drupol))
 - Update CHANGELOG.md for 0.7.0 release. [\#149](https://github.com/openeuropa/oe_theme/pull/149) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1344: Complete conversion of file extension to ECL icons. [\#148](https://github.com/openeuropa/oe_theme/pull/148) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1346: Use Drupal core services to access native language names [\#147](https://github.com/openeuropa/oe_theme/pull/147) ([pfrenssen](https://github.com/pfrenssen))
