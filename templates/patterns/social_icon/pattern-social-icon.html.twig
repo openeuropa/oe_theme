@@ -4,18 +4,15 @@
  * Social icon.
  */
 #}
-{% if url %}
-  {% include '@ecl/ec-component-social-icon' with {
-    'variant': service,
-    'link': {
-      'label': label,
-      'href': url,
-    },
-  } %}
-{% else %}
-  {% include '@ecl/ec-component-social-icon' with {
-    'variant': service,
+{% include '@ecl/link' with {
+  'link': {
+    'type': 'default',
     'label': label,
-  } %}
-{% endif %}
-
+    'path': url,
+    'icon_position': 'before'
+  },
+  'icon': {
+    'path': ecl_social_icon_path,
+    'name': service
+  }
+} only %}

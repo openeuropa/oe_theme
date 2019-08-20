@@ -1070,32 +1070,19 @@
         'a.ecl-social-media-follow__link[href="http://facebook.com"] span': "Facebook"
         'a.ecl-social-media-follow__link[href="http://twitter.com"] span': "Twitter"
         'a.ecl-social-media-follow__link[href="http://instagram.com"] span': "Instagram"
-#- array:
-#    '#type': pattern
-#    '#id': social_icon
-#    '#fields':
-#      service: "facebook"
-#      label: "Facebook"
-#      url: "http://facebook.com"
-#  assertions:
-#    count:
-#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 1
-#    equals:
-#      'a.ecl-social-icon--facebook': "Facebook"
-#- array:
-#    '#type': pattern
-#    '#id': social_icon
-#    '#fields':
-#      service: "facebook"
-#      label: "Facebook"
-#      url: ""
-#  assertions:
-#    count:
-#      'a.ecl-social-icon--facebook[href="http://facebook.com"]': 0
-#      'a.ecl-social-icon--facebook': 0
-#      'span.ecl-social-icon--facebook': 1
-#    equals:
-#      'span.ecl-social-icon--facebook': "Facebook"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: "http://facebook.com"
+  assertions:
+    count:
+      'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before[href="http://facebook.com"]': 1
+      'svg.ecl-link__icon': 1
+    equals:
+      'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before span.ecl-link__label': "Facebook"
 #- array:
 #    '#type': pattern
 #    '#id': featured_item
