@@ -12,10 +12,10 @@
  */
 #}
 {% include '@ecl/radio/radio-button' with {
-    'id': attributes.id,
-    'name': attributes.name,
-    'value': attributes.value,
-    'disabled': attributes.disabled is defined,
-    'label': title,
-    'extra_attributes': input_attributes,
+  id: attributes.id,
+  name: attributes.name,
+  value: attributes.value,
+  disabled: attributes.disabled is defined,
+  label: title,
+  extra_attributes: input_attributes
 } %}{{ children }}

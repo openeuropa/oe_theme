@@ -13,12 +13,13 @@
  */
 #}
 {% include '@oe_theme/compositions/ec-component-checkbox/checkbox.html.twig' with {
-    'id': attributes.id,
-    'name': attributes.name,
-    'value': attributes.value,
-    'label': title,
-    'checked': attributes.checked is defined,
-    'disabled': attributes.disabled is defined,
-    'invalid': invalid,
-    'input_attributes': input_attributes,
+  id: attributes.id,
+  name: attributes.name,
+  value: attributes.value,
+  label: title,
+  checked: attributes.checked is defined,
+  disabled: attributes.disabled is defined,
+  invalid: invalid,
+  icon_path: ecl_icon_path,
+  extra_input_attributes: input_attributes
 } only %}{{ children }}

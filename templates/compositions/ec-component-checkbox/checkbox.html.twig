@@ -9,8 +9,12 @@
   - "invalid" (boolean) (default: false)
   - "checked" (boolean) (default: false)
   - "helper_id" (string) (default: '')
+  - "icon_path" (string) (default: '')
   - "extra_classes" (optional) (string) (default: '')
   - "extra_attributes" (optional) (array) (default: [])
+    - "name" (string) Attribute name, eg. 'data-test'
+    - "value" (string) Attribute value, eg: 'data-test-1'
+  - "extra_input_attributes" (optional) (array) (default: [])
     - "name" (string) Attribute name, eg. 'data-test'
     - "value" (string) Attribute value, eg: 'data-test-1'
   Blocks:
@@ -30,6 +34,7 @@
 
 {% set _helper_text = helper_text|default('') %}
 {% set _label = label|default('') %}
+{% set _icon_path = icon_path|default('') %}
 
 {% set _css_class = 'ecl-checkbox' %}
 {% set _extra_attributes = '' %}
@@ -56,8 +61,8 @@
 {% endif %}
 
 
-{% if input_attributes is defined and input_attributes is not empty and input_attributes is iterable %}
-  {% for attr in input_attributes %}
+{% if extra_input_attributes is defined and extra_input_attributes is not empty and extra_input_attributes is iterable %}
+  {% for attr in extra_input_attributes %}
     {% set _extra_input_attributes = _extra_input_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
   {% endfor %}
 {% endif %}
@@ -81,7 +86,7 @@
     <span class="ecl-checkbox__box">
       {% include '@ecl/icon' with {
         icon: {
-          path: ecl_icon_path,
+          path: _icon_path,
           type: "ui",
           name: "check",
           size: "s"
