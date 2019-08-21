@@ -5,7 +5,10 @@
 (function (ECL, Drupal) {
   Drupal.behaviors.eclNavigationMenu = {
     attach: function attach() {
-      ECL.megamenu();
+      var elements = document.querySelectorAll('[data-ecl-expandable]');
+      elements.forEach(function(element) {
+        (new ECL.Expandable(element)).init();
+      });
     }
   };
 })(ECL, Drupal);

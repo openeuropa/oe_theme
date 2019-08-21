@@ -1,0 +1,164 @@
+{% spaceless %}
+
+{#
+  Parameters:
+    - "menu_label" (string) (default: ''): visible on mobile
+    - "menu_aria_label" (string)  (default: ''): label displayed before the list
+    - "links" (array) (default: []): [{
+        "href" (string): target of the link
+        "label" (string): label of the link
+        "is_active" (boolean): does the menu contains the current page? (default: false)
+        "children_links" (array): [{
+          "href" (string)
+          "label" (string)
+          "is_active" (boolean): is it the current page?
+        }]
+      }]
+    - "extra_classes" (string) (default: '')
+    - "extra_attributes" (array) (default: []): format: [
+        {
+          "name" (string) (default: ''),
+          "value" (string) (default: '')
+        },
+        ...
+      ]
+  Blocks:
+    - "navigation": instead of providing an array of links, you can also embed the template and fill the "navigation" block directly
+#}
+
+{# Internal properties #}
+
+{% set _menu_label = menu_label|default('') %}
+{% set _menu_aria_label = menu_aria_label|default('') %}
+{% set _links = links|default([]) %}
+{% set _css_class = 'ecl-navigation-menu' %}
+{% set _extra_attributes = '' %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Print the result #}
+
+<style type="text/css" media="screen">
+  .ecl-navigation-menu__group:before {
+    background-color: #f5f5f5;
+    content: "";
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    -webkit-transform: translate(-50%);
+    -ms-transform: translate(-50%);
+    transform: translate(-50%);
+    width: 100vw;
+  }
+</style>
+
+<nav class="{{ _css_class }} ecl-u-bg-blue-25" aria-label="{{ _menu_aria_label }}"{{ _extra_attributes|raw }}>
+  <div class="ecl-container ecl-u-pa-none">
+    {% include '@ecl/button' with {
+      label: _menu_label,
+      extra_classes: 'ecl-u-d-none ecl-navigation-menu__toggle ecl-navigation-menu__hamburger ecl-navigation-menu__hamburger--squeeze',
+      extra_attributes: [
+        { name: 'aria-controls', value: 'nav-menu-expandable-root' },
+        { name: 'aria-expanded', value: 'false' }
+      ],
+      disabled: disabled
+    } only %}
+    <span class="ecl-navigation-menu__hamburger-box"><span class="ecl-navigation-menu__hamburger-inner"></span></span>
+    <ul class="ecl-navigation-menu__root ecl-unordered-list ecl-unordered-list--no-bullet" id="nav-menu-expandable-root" aria-hidden="true">
+      {% block navigation %}
+        {% if _links is not empty and _links is iterable %}
+          {% for _link in _links %}
+            {% set _link_class_name = 'ecl-navigation-menu__item' ~ (_link.is_active ? ' ecl-navigation-menu__item--active' : '') %}
+            <li class="{{ _link_class_name }} ecl-u-pa-s" style="display: inline-block;" data-ecl-expandable="true">
+              {% if _link.children_links is not defined or _link.children_links is empty %}
+                {% include '@ecl/link' with {
+                  link: {
+                    type: 'standalone',
+                    label: _link.label,
+                    path: _link.href
+                  },
+                  extra_classes: 'ecl-navigation-menu__link ecl-u-type-bold ecl-u-pa-s'
+                } only %}
+              {% else %}
+                {% set _id = loop.index %}
+                {% set _label_expanded = _link.label %}
+                {% set _label_collapsed = _link.label %}
+                {% set _expanded = expanded|default(false) %}
+
+                {% set _button_attributes = [
+                  { name: 'aria-controls', value: _id ~ '-content' },
+                  { name: 'data-ecl-expandable-toggle', value: 'true' },
+                  { name: 'data-ecl-label-expanded', value: _label_expanded },
+                  { name: 'data-ecl-label-collapsed', value: _label_collapsed ~ 'hehe' },
+                ]
+                %}
+
+                {% if _expanded %}
+                  {% set _button_attributes = _button_attributes|merge([
+                    { name: 'aria-expanded', value: _expanded },
+                  ])
+                  %}
+
+                  {% set _label = _label_expanded %}
+                  {% set _content_hidden_attribute = '' %}
+
+                {% else %}
+                  {% set _label = _label_collapsed %}
+                  {% set _content_hidden_attribute = 'hidden' %}
+                {% endif %}
+
+                {% include '@ecl/button' with {
+                  label: _label,
+                  variant: 'secondary',
+                  type: 'button',
+                  icon_position: "after",
+                  extra_classes: 'ecl-expandable__toggle',
+                  extra_attributes: _button_attributes,
+                } only %}
+
+                <div class="ecl-navigation-menu__group ecl-container" id="{{ _id ~ '-content' }}" style="position: absolute; top: 100%; width: 100%; left: 0; z-index: 1;">
+                  <div class="ecl-row ecl-u-pa-m">
+                    {% for _column in _link.children_links %}
+                      <div class="ecl-col ecl-col-4 ecl-u-pt-xs ecl-u-pa-xs">
+                        <div class="ecl-container">
+                          {% if _column.title is defined and _column.title is not empty %}
+                            <div class="ecl-navigation-menu__title ecl-row">{{ _column.title }}</div>
+                          {% endif %}
+                          {% for _child_link in _column.links %}
+                            <div class="ecl-navigation-menu__item ecl-row">
+                              {% set _child_link_class_name = 'ecl-u-m-xs ecl-navigation-menu__link' ~ (_child_link.is_active ? ' ecl-navigation-menu__link--active' : '') %}
+                              {% include '@ecl/link' with {
+                                link: {
+                                  type: 'standalone',
+                                  label: _child_link.label,
+                                  path: _child_link.href,
+                                  extra_classes: _child_link_class_name
+                                }
+                              } only %}
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            </li>
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    </ul>
+  </div>
+</nav>
+{% endspaceless %}
