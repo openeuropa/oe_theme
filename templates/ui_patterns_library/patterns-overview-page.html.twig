@@ -8,15 +8,20 @@
   {% set patterns = patterns|sort %}
 
   {# List of available patterns with anchor links. #}
-  <div class="ecl-link-block">
-    <ul class="ecl-link-block__list">
-      {% for pattern_name, pattern in patterns %}
-        <li class="ecl-link-block__item">
-          <a class="ecl-link ecl-link--standalone ecl-link-block__link" href="#{{ pattern_name }}">{{ pattern.label }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+  {% set _links = {} %}
+  {% for pattern_name, pattern in patterns %}
+    {% set _link = {
+      link: {
+        label : pattern.label,
+        path : '#' ~ pattern_name,
+        type: 'standalone'
+      }
+    } %}
+    {% set _links = _links|merge([_link]) %}
+  {% endfor %}
+  {% include '@oe_theme/compositions/ec-component-link-block/link-block.html.twig' with {
+    links: _links,
+  } %}
 
   {% for pattern_name, pattern in patterns %}
 

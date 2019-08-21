@@ -1,0 +1,62 @@
+{% spaceless %}
+
+{#
+  /**
+   * @file
+   * Theme implementation for a ECL Link Block.
+   */
+    Parameters:
+      - "title" (string) (default: ''): optional title of the link block
+      - "links" (array) (default: []): collection of standalone @ecl/generic-component-link
+      - "extra_classes" (string) (default: '')
+      - "extra_attributes" (array) (default: []): format: [
+          {
+            "name" (string) (default: ''),
+            "value" (string) (default: '')
+          },
+          ...
+        ]
+      - "system" (string) (default: "generic")
+#}
+
+{# Internal properties #}
+
+{% set _title = title|default('') %}
+{% set _links = links|default([]) %}
+{% set _css_class = 'ecl-link-block' %}
+{% set _extra_attributes = '' %}
+{% set _system = system|default('generic') %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+<div class="{{ _css_class }} ecl-container ecl-u-bg-grey-5"{{ _extra_attributes|raw }}>
+  {% if _title is not empty %}
+    <div class="ecl-link-block__title ecl-row ecl-u-pl-m ecl-u-pr-m">
+      <h5 class="ecl-u-type-heading-5 ecl-u-mt-xs ecl-u-mb-none">{{ _title }}</h5>
+    </div>
+  {% endif %}
+  {% if _links is not empty and _links is iterable %}
+    <div class="ecl-row ecl-u-pl-m ecl-u-pr-m">
+      <ul class="ecl-link-block__list ecl-unordered-list--no-bullet ecl-u-ma-none">
+        {% for _link in _links %}
+          <li class="ecl-link-block__item ecl-u-mt-xs ecl-u-mb-xs">
+            {% include '@ecl/link' with {
+              extra_classes: 'ecl-link-block__link'
+            }|merge(_link|default({})) only %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+</div>
+{% endspaceless %}
