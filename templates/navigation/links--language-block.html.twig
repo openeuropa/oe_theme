@@ -8,10 +8,19 @@
 #}
 {{ attach_library('oe_theme/dialogs') }}
 {% if links -%}
+  {% include '@oe_theme/compositions/ec-component-language-list/language-list-button.html.twig' with {
+    label: current_language.label,
+    path: current_language.path,
+    code: current_language.lang,
+    icon_path: ecl_icon_path
+  } only %}
   {% include '@ecl/language-list/language-list-overlay' with {
     items: languages,
     icon_path: ecl_icon_path,
     title: 'Select your language'|t,
     close_label: 'Close'|t,
+    extra_attributes: [
+      { name: 'hidden', value: '' }
+    ]
   } %}
 {%- endif %}
