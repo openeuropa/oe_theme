@@ -8,8 +8,6 @@ Feature: Theme showcase
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
     Then I should see the "search form" element in the "header"
-    # @todo: Should be added on the scope of OPENEUROPA-1992
-    # And I should see the "sites switcher" element in the "header"
     And I should see the "language switcher" element in the "header"
 
   Scenario: The demo site navigation features placeholder menu links

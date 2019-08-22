@@ -58,3 +58,16 @@ function oe_theme_helper_post_update_8201_change_region_of_search_block() {
     $block->save();
   }
 }
+
+/**
+ * Delete the block oe_theme_site_switcher.
+ */
+function oe_theme_helper_post_update_8202_delete_the_block_oe_theme_site_switcher() {
+  $block = Block::load('oe_theme_site_switcher');
+
+  if (!$block) {
+    return t('The oe_site_switcher block was not found.');
+  }
+
+  $block->delete();
+}
