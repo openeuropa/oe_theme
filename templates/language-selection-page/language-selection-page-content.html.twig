@@ -1,5 +1,4 @@
 {#
-
 /**
  * @file
  * The body template file of the language_selection_page module.
@@ -9,10 +8,8 @@
  *  - destination: url of the page without a language set.
  *  - languages: links to the page in all available language.
  */
-
 #}
-
-{% include '@ecl/language-list/language-list-splash' with {
+{% include '@ecl/language-list/language-list-page' with {
   items: languages,
   icon_path: ecl_icon_path,
   logo: logo,
