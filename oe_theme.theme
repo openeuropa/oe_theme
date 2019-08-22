@@ -544,11 +544,12 @@ function oe_theme_preprocess_pager(array &$variables): void {
  * Implements hook_preprocess_links().
  */
 function oe_theme_preprocess_links__language_block(array &$variables): void {
-  $current_language = \Drupal::languageManager()
+  $current_language_id = \Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
 
   $variables['languages'] = [];
+  $variables['current_language'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
@@ -567,8 +568,17 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
       'lang' => $lang_prefix,
-      'active' => $language_code === $current_language,
+      'active' => $language_code === $current_language_id,
     ];
+
+    if ($language_code === $current_language_id) {
+      $variables['current_language'] = [
+        'path' => $href,
+        'hreflang' => $language_code,
+        'label' => $link['link']['#title'],
+        'lang' => $lang_prefix,
+      ];
+    }
   }
 }
 
@@ -585,8 +595,10 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   $variables['current'] = $translation->language()->getName();
   /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
   $languages = \Drupal::service('language_manager')->getNativeLanguages();
-  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['unavailable'] = $languages[$current_language]->getName();
+  $current_language_id = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+  $variables['unavailable'] = $languages[$current_language_id]->getName();
 
   // Normalize the links to an array of options suitable for the ECL
   // "ecl-lang-select-pages" template.
@@ -599,11 +611,16 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
+    // Get the language prefix.
+    $lang_prefix = \Drupal::configFactory()
+      ->get('language.negotiation')
+      ->get('url.prefixes.' . $language_code);
+
     $variables['options'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_code,
+      'lang' => $lang_prefix,
     ];
   }
 }
@@ -995,8 +1012,18 @@ function oe_theme_preprocess_block(&$variables) {
  * Add required variables to follow ECL guidelines.
  */
 function oe_theme_preprocess_block__system_branding_block(&$variables) {
-  $lang_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_id . '.svg';
+  /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
+  $languages = \Drupal::service('language_manager')->getNativeLanguages();
+  $current_language_id = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+
+  // Get the language prefix.
+  $lang_prefix = \Drupal::configFactory()
+    ->get('language.negotiation')
+    ->get('url.prefixes.' . $current_language_id);
+
+  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_prefix . '.svg';
 
   $variables['site_logo_alt'] = !empty($variables['site_name']) ?
     t('@site_name logo', ['@site_name' => $variables['site_name']]) :
