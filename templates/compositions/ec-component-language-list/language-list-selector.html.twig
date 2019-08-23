@@ -42,19 +42,19 @@
   {% endfor %}
 {% endif %}
 
-<div class="ecl-site-header__selector">
+<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
   <a class="ecl-link ecl-link--standalone" href="{{ _path }}" data-ecl-language-selector>
     {{- _label -}}
     <span class="ecl-site-header__language-icon">
-    {% include '@ecl/icon' with {
-      icon: {
-        path: _icon_path,
-        type: 'general',
-        name: 'language'
-      }
-    } only %}
-    <span class="ecl-site-header__language-code">{{ _code }}</span>
-  </span>
+      {% include '@ecl/icon' with {
+        icon: {
+          path: _icon_path,
+          type: 'general',
+          name: 'language'
+        }
+      } only %}
+      <span class="ecl-site-header__language-code">{{ _code }}</span>
+    </span>
   </a>
 </div>
 {% endspaceless %}

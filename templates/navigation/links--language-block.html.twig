@@ -8,7 +8,7 @@
 #}
 {{ attach_library('oe_theme/dialogs') }}
 {% if links -%}
-  {% include '@oe_theme/compositions/ec-component-language-list/language-list-button.html.twig' with {
+  {% include '@oe_theme/compositions/ec-component-language-list/language-list-selector.html.twig' with {
     label: current_language.label,
     path: current_language.path,
     code: current_language.lang,
