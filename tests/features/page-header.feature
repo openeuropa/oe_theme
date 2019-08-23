@@ -30,7 +30,6 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Create new account"
 
-  @run
   Scenario: Change the title to verify that the page header is updated accordingly.
     Given I am logged in as a user that can "edit any" demo pages
     When I go to the "Robots are everywhere" page

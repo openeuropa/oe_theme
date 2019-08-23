@@ -7,7 +7,7 @@
  */
 #}
 {% if primary %}
-  {% include '@ecl/ec-component-navigation-list' with {
+  {% include '@oe_theme/compositions/ec-component-navigation/navigation-list.html.twig' with {
     'title': 'Primary tabs'|t,
     'display': 'tabs',
     'links': primary_links,
@@ -15,7 +15,7 @@
   } %}
 {% endif %}
 {% if secondary %}
-  {% include '@ecl/ec-component-navigation-list' with {
+  {% include '@oe_theme/compositions/ec-component-navigation/navigation-list.html.twig' with {
     'title': 'Secondary tabs'|t,
     'display': 'small',
     'links': secondary_links,
