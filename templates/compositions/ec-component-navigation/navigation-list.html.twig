@@ -1,15 +1,10 @@
 {% spaceless %}
 
 {#
-  /**
-   * @file
-   * Theme implementation for a ECL Language List Button.
-   */
   Parameters:
-    - "label" (string): Label of Language List Button
-    - "code" (string): Language code of Language List Button
-    - "path" (string) (Link url): URL of Language List Button
-    - "icon_path" (string) (Link url): Icon Path
+    - "title" (string) (default: 'Navigation'): for screen readers
+    - "display" (string) (default: 'default'): can be 'default', 'tabs' or 'small'
+    - "links" (array) (default: []): collection of @ecl/generic-component-link
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
         {
@@ -22,13 +17,11 @@
 
 {# Internal properties #}
 
-{% set _label = label|default('') %}
-{% set _code = code|default('') %}
-{% set _path = path|default('') %}
-{% set _icon_path = icon_path|default('') %}
-
-{% set _css_class = 'ecl-site-header__selector' %}
-{% set _extra_attributes = [] %}
+{% set _title = title|default('Navigation') %}
+{% set _display = display|default('default') %}
+{% set _links = links|default([]) %}
+{% set _css_class = 'ecl-navigation-list' %}
+{% set _extra_attributes = '' %}
 
 {# Internal logic - Process properties #}
 
@@ -42,19 +35,19 @@
   {% endfor %}
 {% endif %}
 
-<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  <a class="ecl-link ecl-link--standalone" href="{{ _path }}" data-ecl-language-selector>
-    {{- _label -}}
-    <span class="ecl-site-header__language-icon">
-      {% include '@ecl/icon' with {
-        icon: {
-          path: _icon_path,
-          type: 'general',
-          name: 'language'
-        }
-      } only %}
-      <span class="ecl-site-header__language-code">{{ _code }}</span>
-    </span>
-  </a>
-</div>
+{% if _links is not empty and _links is iterable %}
+  <nav class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+    <h2 class="ecl-u-sr-only ecl-u-type-heading-2">{{ _title }}</h2>
+    <ul class="ecl-navigation-list ecl-navigation-list--{{ _display }} ecl-unordered-list--no-bullet ecl-u-pa-s ecl-u-border-bottom ecl-u-border-color-grey-25">
+      {% for _link in _links %}
+        {% set _active_class = _link.is_active is defined and _link.is_active == true ? ' ecl-navigation-list__link--active' : '' %}
+        <li class="ecl-navigation-list__item ecl-u-d-inline ecl-u-ma-s">
+          {% include '@ecl/link' with {
+            'extra_classes': 'ecl-navigation-list__link' ~ _active_class,
+          }|merge(_link|default({})) only %}
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
 {% endspaceless %}
