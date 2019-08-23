@@ -7,7 +7,11 @@
  */
 #}
 {% block site_header %}
-<header class="ecl-site-header">
+<header
+  class="ecl-site-header"
+  data-ecl-site-header
+  data-ecl-auto-init-todo="SiteHeader"
+>
   {{ page.site_top_bar }}
   <div class="ecl-site-header__container ecl-container">
     <div class="ecl-site-header__banner">
@@ -29,15 +33,15 @@
 {% endblock %}
 
 {% block content %}
-<section class="main-content ecl-u-mv-l">
+<main class="ecl-u-pv-xl" id="main">
   <div class="ecl-container">
     <div class="ecl-row">
-      <div class="ecl-col">
+      <div class="ecl-col-sm-12">
         {{ page.content }}
       </div>
     </div>
   </div>
-</section>
+</main>
 {% endblock %}
 
 {% if page.footer %}
