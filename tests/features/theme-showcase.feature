@@ -53,7 +53,7 @@ Feature: Theme showcase
     When I press "Dropdown"
     Then the "dropdown content" is visible
 
-  @javascript
+  @javascript @ecl2
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage
     Then the "language switcher overlay" is not visible
@@ -98,7 +98,7 @@ Feature: Theme showcase
     When I press "Close"
     Then the "language switcher overlay" is not visible
 
-  @javascript
+  @javascript @ecl2
   Scenario: Site visitor can change language using the language switcher
     When I am on the homepage
     Then the "language switcher link" element should contain "English"
