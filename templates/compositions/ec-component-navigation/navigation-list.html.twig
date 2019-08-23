@@ -1,0 +1,60 @@
+{% spaceless %}
+
+{#
+  /**
+   * @file
+   * Theme implementation for a ECL Language List Button.
+   */
+  Parameters:
+    - "label" (string): Label of Language List Button
+    - "code" (string): Language code of Language List Button
+    - "path" (string) (Link url): URL of Language List Button
+    - "icon_path" (string) (Link url): Icon Path
+    - "extra_classes" (string) (default: '')
+    - "extra_attributes" (array) (default: []): format: [
+        {
+          "name" (string) (default: ''),
+          "value" (string) (default: '')
+        },
+        ...
+      ]
+#}
+
+{# Internal properties #}
+
+{% set _label = label|default('') %}
+{% set _code = code|default('') %}
+{% set _path = path|default('') %}
+{% set _icon_path = icon_path|default('') %}
+
+{% set _css_class = 'ecl-site-header__selector' %}
+{% set _extra_attributes = [] %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+  <a class="ecl-link ecl-link--standalone" href="{{ _path }}" data-ecl-language-selector>
+    {{- _label -}}
+    <span class="ecl-site-header__language-icon">
+      {% include '@ecl/icon' with {
+        icon: {
+          path: _icon_path,
+          type: 'general',
+          name: 'language'
+        }
+      } only %}
+      <span class="ecl-site-header__language-code">{{ _code }}</span>
+    </span>
+  </a>
+</div>
+{% endspaceless %}
