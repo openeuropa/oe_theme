@@ -968,6 +968,7 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
 
   $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
   $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
+
   $ecl_array['extra_attributes'] = [];
   foreach ($extra_attributes as $key => $value) {
     if (is_string($value)) {
@@ -1012,8 +1013,6 @@ function oe_theme_preprocess_block(&$variables) {
  * Add required variables to follow ECL guidelines.
  */
 function oe_theme_preprocess_block__system_branding_block(&$variables) {
-  /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
-  $languages = \Drupal::service('language_manager')->getNativeLanguages();
   $current_language_id = \Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
@@ -1060,17 +1059,11 @@ function oe_theme_preprocess_pattern_timeline(array &$variables): void {
  * Implements template_preprocess_language_selection_page_content().
  */
 function oe_theme_preprocess_language_selection_page_content(&$variables) {
-  if (!empty($variables['languages'])) {
-    foreach ($variables['languages'] as &$language) {
-      $language['path'] = $language['href'];
-      unset($language['href']);
-      unset($language['hreflang']);
-      $language['active'] = \Drupal::languageManager()->getCurrentLanguage()->getId() === $language['lang'];
-
-    }
+  if (empty($variables['languages'])) {
+    return;
   }
-  $variables['logo'] = [
-    'alt' => t('European Commission logo'),
-    'path' => $variables['ecl_logo_path'] . '/logo--mute.svg',
-  ];
+
+  foreach ($variables['languages'] as &$language) {
+    $language['path'] = $language['href'];
+  }
 }
