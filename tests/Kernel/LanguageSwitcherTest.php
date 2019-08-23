@@ -19,7 +19,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $crawler = $this->renderLanguageBlock();
 
     // Make sure that language switcher overlay is present.
-    $actual = $crawler->filter('.ecl-language-list.ecl-language-list--overlay');
+    $actual = $crawler->filter('.ecl-language-list--overlay');
     $this->assertCount(1, $actual);
 
     // Make sure that language switcher overlay title is set.
@@ -28,19 +28,18 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
-
     $lang_config = $this->container->get('config.factory')->get('language.negotiation');
 
     // Make sure that language links are properly rendered.
     foreach ($this->container->get('language_manager')->getLanguages() as $language) {
-      $id = $language->getId();
-      $name = $languages[$id]->getName();
-
-      // Get the language prefix.
-      $lang_prefix = $lang_config->get('url.prefixes.' . $id);
+      $lang_id = $language->getId();
+      $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
 
       $actual = $crawler->filter(".ecl-language-list--overlay a.ecl-language-list__link[lang={$lang_prefix}]")->text();
-      $this->assertEquals($name, preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual));
+      $this->assertEquals(
+        $languages[$lang_id]->getName(),
+        preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
+      );
     }
   }
 
@@ -51,8 +50,6 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The language code.
    * @param string $lang_prefix
    *   The language prefix.
-   *
-   * @group ecl1
    *
    * @dataProvider renderingDataProvider
    */
@@ -65,17 +62,18 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
+    $language_name = $languages[$langcode]->getName();
 
     // Make sure that language switcher link is properly rendered.
-    $actual = $crawler->filter('a.ecl-lang-select-sites__link > .ecl-lang-select-sites__label')->text();
-    $this->assertEquals($languages[$langcode]->getName(), $actual);
+    $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
+    $this->assertContains($language_name, $actual);
 
-    $actual = $crawler->filter('a.ecl-lang-select-sites__link > .ecl-lang-select-sites__code > .ecl-lang-select-sites__code-text')->text();
+    $actual = $crawler->filter('a[data-ecl-language-selector] .ecl-site-header__language-code')->text();
     $this->assertEquals($lang_prefix, $actual);
 
-    // Make sure that English language link is set as active.
-    $actual = $crawler->filter(".ecl-dialog a.ecl-language-list__button--active[lang={$lang_prefix}]")->text();
-    $this->assertEquals($languages[$langcode]->getName(), trim($actual));
+    // Make sure that the actual language link is set as active.
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__item--is-active a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+    $this->assertEquals($language_name . ' ', trim($actual));
   }
 
   /**
