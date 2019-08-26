@@ -7,7 +7,7 @@
    */
     Parameters:
       - "title" (string) (default: ''): optional title of the link block
-      - "links" (array) (default: []): collection of standalone @ecl/generic-component-link
+      - "links" (array) (default: []): collection of standalone @ecl/link
       - "extra_classes" (string) (default: '')
       - "extra_attributes" (array) (default: []): format: [
           {
@@ -16,7 +16,6 @@
           },
           ...
         ]
-      - "system" (string) (default: "generic")
 #}
 
 {# Internal properties #}
@@ -25,7 +24,6 @@
 {% set _links = links|default([]) %}
 {% set _css_class = 'ecl-link-block' %}
 {% set _extra_attributes = '' %}
-{% set _system = system|default('generic') %}
 
 {# Internal logic - Process properties #}
 
