@@ -46,7 +46,7 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
 /**
  * Change the region of the search block.
  */
-function oe_theme_helper_post_update_8201_change_region_of_search_block() {
+function oe_theme_helper_post_update_00001_change_region_of_search_block() {
   $block = Block::load('oe_theme_search_form');
 
   if (!$block) {
@@ -62,7 +62,7 @@ function oe_theme_helper_post_update_8201_change_region_of_search_block() {
 /**
  * Delete the block oe_theme_site_switcher.
  */
-function oe_theme_helper_post_update_8202_delete_the_block_oe_theme_site_switcher() {
+function oe_theme_helper_post_update_00002_delete_the_block_oe_theme_site_switcher() {
   $block = Block::load('oe_theme_site_switcher');
 
   if (!$block) {
