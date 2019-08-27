@@ -78,7 +78,7 @@
     value="{{ _value }}"
     {{ _disabled ? "disabled" }}
     {{ _checked ? "checked" }}
-    {{ _helper_id is not empty ? "aria-describedby=\"" ~ _helper_id ~ "\"" -}}
+    {{ _helper_id is not empty ? "aria-describedby=\"" ~ _helper_id ~ "\"" }}
     {{ _extra_input_attributes|raw }}
   />
 
@@ -100,7 +100,7 @@
   {% if _helper_text is not empty %}
     <p
       class="ecl-checkbox__help ecl-help-block"
-      {{ _helper_id is not empty ? "id=\"" ~ _helper_id ~ "\""}}
+      {{ _helper_id is not empty ? "id=\"" ~ _helper_id ~ "\"" }}
     >
       {%- block helper_text _helper_text -%}
     </p>
