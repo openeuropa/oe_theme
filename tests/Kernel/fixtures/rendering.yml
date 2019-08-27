@@ -829,28 +829,52 @@
 #      '.ecl-field__body': 1
 #    equals:
 #      '.ecl-field__body': "Field body"
-#- array:
-#    '#type': pattern
-#    '#id': link_block
-#    '#fields':
-#      title: "Link block title"
-#      links:
-#        - label: 'Link 1'
-#          url: 'http://link-1.com'
-#        - label: 'Link 2'
-#          url: 'http://link-2.com'
-#        - label: 'Link 3'
-#          url: 'http://link-3.com'
-#  assertions:
-#    count:
-#      'a.ecl-link-block__link[href="http://link-1.com"]': 1
-#      'a.ecl-link-block__link[href="http://link-2.com"]': 1
-#      'a.ecl-link-block__link[href="http://link-3.com"]': 1
-#    equals:
-#      '.ecl-link-block__title': "Link block title"
-#      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-#      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-#      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+- array:
+    '#type': pattern
+    '#id': link_block
+    '#fields':
+      title: "Link block title"
+      links:
+        - label: 'Link 1'
+          url: 'http://link-1.com'
+        - label: 'Link 2'
+          url: 'http://link-2.com'
+        - label: 'Link 3'
+          url: 'http://link-3.com'
+  assertions:
+    count:
+      '.ecl-link-block__title': 1
+      '.ecl-link-block__item': 3
+      'a.ecl-link-block__link[href="http://link-1.com"]': 1
+      'a.ecl-link-block__link[href="http://link-2.com"]': 1
+      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+    equals:
+      '.ecl-link-block__title': "Link block title"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+- array:
+    '#type': pattern
+    '#id': link_block
+    '#fields':
+      links:
+        - label: 'Link 1'
+          url: 'http://link-1.com'
+        - label: 'Link 2'
+          url: 'http://link-2.com'
+        - label: 'Link 3'
+          url: 'http://link-3.com'
+  assertions:
+    count:
+      '.ecl-link-block__title': 0
+      '.ecl-link-block__item': 3
+      'a.ecl-link-block__link[href="http://link-1.com"]': 1
+      'a.ecl-link-block__link[href="http://link-2.com"]': 1
+      'a.ecl-link-block__link[href="http://link-3.com"]': 1
+    equals:
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
 - array:
     '#type': pattern
     '#id': blockquote

@@ -15,8 +15,6 @@ class ParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Test links block paragraph rendering.
-   *
-   * @group ecl1
    */
   public function testLinksBlock(): void {
     $paragraph = Paragraph::create([

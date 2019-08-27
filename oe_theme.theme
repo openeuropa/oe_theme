@@ -680,16 +680,6 @@ function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_link_block(array &$variables): void {
-  // Format links in order to respect ECL expectations.
-  foreach ($variables['links'] as $key => $link) {
-    $variables['links'][$key]['href'] = $link['url'];
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function _oe_theme_preprocess_pattern_social_media_links(array &$variables): void {
   // Format social media links in order to respect ECL expectations.
   foreach ($variables['links'] as $key => $link) {

@@ -4,7 +4,20 @@
  * Link block.
  */
 #}
-{% include '@ecl/ec-component-link-block' with {
-  'title': title,
-  'links': links,
+
+{% set _links = {} %}
+{% for link in links %}
+  {% set _link = {
+    link: {
+      label : link.label,
+      path : link.url,
+      type: 'standalone'
+    }
+  } %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% include '@oe_theme/compositions/ec-component-link-block/link-block.html.twig' with {
+  title: title,
+  links: _links,
 } %}
