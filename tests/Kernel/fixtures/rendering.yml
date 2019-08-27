@@ -85,37 +85,37 @@
       - 'Radio'
     count:
       'div.ecl-radio__group--invalid': 1
-#- array:
-#    '#type': checkbox
-#    '#title': Checkbox
-#    '#attributes':
-#      'foo': bar
-#  assert:
-#    contains:
-#      - 'Checkbox'
-#      - 'foo="bar"'
-#    count:
-#      'label.ecl-form-label.ecl-checkbox': 1
-#      'input.ecl-checkbox__input.ecl-u-sr-only': 1
-#      'span.ecl-checkbox__label': 1
-#- array:
-#    '#type': checkbox
-#    '#title': Checkbox
-#    '#disabled': true
-#  assert:
-#    contains:
-#      - 'Checkbox'
-#    count:
-#      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--is-disabled': 1
-#- array:
-#    '#type': checkbox
-#    '#title': Checkbox
-#    '#set_validation_error': true
-#  assert:
-#    contains:
-#      - 'Checkbox'
-#    count:
-#      'label.ecl-form-label.ecl-checkbox.ecl-checkbox--has-error': 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#attributes':
+      'foo': bar
+  assert:
+    contains:
+      - 'Checkbox'
+      - 'foo="bar"'
+    count:
+      'label.ecl-checkbox__label': 1
+      'input.ecl-checkbox__input': 1
+      'span.ecl-checkbox__box': 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#disabled': true
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'div.ecl-checkbox.ecl-checkbox--disabled': 1
+- array:
+    '#type': checkbox
+    '#title': Checkbox
+    '#set_validation_error': true
+  assert:
+    contains:
+      - 'Checkbox'
+    count:
+      'div.ecl-checkbox.ecl-checkbox--invalid': 1
 #- array:
 #    '#type': fieldset
 #    '#title': Fieldset
