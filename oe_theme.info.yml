@@ -16,6 +16,7 @@ regions:
   site_header_secondary: "Site header secondary"
   page_header: "Page header"
   navigation: "Navigation"
+  sidebar: "Sidebar"
   content: "Content"
   footer: "Footer"
 
