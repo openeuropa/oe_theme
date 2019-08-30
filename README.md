@@ -300,9 +300,7 @@ Note that the following models are deprecated after upgrading from 1.x to 2.x:
 - `dialog pattern`
 - `file_link pattern`
 
-Note that the following blocks are deprecated after upgrading from 1.x to 2.x:
-
-- `Corporate Blocks Site Switcher`
+Note that the `oe_corporate_blocks` 1.x is not supported.
 
 ## Contributing
 
