@@ -12,12 +12,7 @@
     label: current_language.label,
     path: current_language.path,
     code: current_language.lang,
-    icon_path: ecl_icon_path
-  } only %}
-  {% include '@ecl/language-list/language-list-overlay' with {
-    items: languages,
     icon_path: ecl_icon_path,
-    title: 'Select your language'|t,
-    close_label: 'Close'|t
-  } %}
+    items: languages
+  } only %}
 {%- endif %}

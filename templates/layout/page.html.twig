@@ -9,8 +9,8 @@
 {% block site_header %}
 <header
   class="ecl-site-header"
-  data-ecl-site-header
-  data-ecl-auto-init-todo="SiteHeader"
+  data-ecl-site-header="true"
+  data-ecl-auto-init="SiteHeader"
 >
   {{ page.site_top_bar }}
   <div class="ecl-site-header__container ecl-container">
@@ -49,4 +49,3 @@
     {{ page.footer }}
   {% endblock %}
 {% endif %}
-

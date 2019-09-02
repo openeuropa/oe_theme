@@ -6,6 +6,11 @@
    * Theme implementation for a ECL Language List Button.
    */
   Parameters:
+    - "items" (array) (default: [])
+      - "lang" (string) (default: '')
+      - "label" (string) (default: '')
+      - "path" (string) (default: '')
+      - "active (boolean) (default: false)
     - "label" (string): Label of Language List Button
     - "code" (string): Language code of Language List Button
     - "path" (string) (Link url): URL of Language List Button
@@ -43,7 +48,7 @@
 {% endif %}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  <a class="ecl-link ecl-link--standalone" href="{{ _path }}" data-ecl-language-selector>
+  <a class="ecl-link ecl-link--standalone ecl-site-header__selector-link" href="{{ _path }}" data-ecl-language-selector="true">
     {{- _label -}}
     <span class="ecl-site-header__language-icon">
       {% include '@ecl/icon' with {
@@ -56,5 +61,11 @@
       <span class="ecl-site-header__language-code">{{ _code }}</span>
     </span>
   </a>
+  {% include '@ecl/language-list/language-list-overlay' with {
+    items: items,
+    icon_path: _icon_path,
+    title: 'Select your language'|t,
+    close_label: 'Close'|t
+  } only %}
 </div>
 {% endspaceless %}
