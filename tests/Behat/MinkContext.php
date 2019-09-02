@@ -67,7 +67,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   public function assertOverlayVisibility($element): void {
     $node = $this->getSession()->getPage()->find('css', $element);
-    Assert::assertEquals($node->getAttribute('hidden'), null,  sprintf('Overlay "%s" is not visible, but it should be.', $element));
+    Assert::assertEquals($node->getAttribute('hidden'), NULL, sprintf('Overlay "%s" is not visible, but it should be.', $element));
   }
 
   /**
