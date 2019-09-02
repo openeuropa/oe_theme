@@ -61,6 +61,25 @@ class MinkContext extends DrupalExtensionMinkContext {
   }
 
   /**
+   * Assert visibility of given overlay element.
+   *
+   * @Then the overlay :element is visible
+   */
+  public function assertOverlayVisibility($element): void {
+    $node = $this->getSession()->getPage()->find('css', $element);
+    Assert::assertEquals($node->getAttribute('hidden'), null,  sprintf('Overlay "%s" is not visible, but it should be.', $element));
+  }
+
+  /**
+   * Assert non visibility of given overlay element.
+   *
+   * @Then the overlay :element is not visible
+   */
+  public function assertOverlayNonVisibility($element): void {
+    $this->assertSession()->elementAttributeExists('css', $element, 'hidden');
+  }
+
+  /**
    * Open language switcher dialog.
    *
    * @When I open the language switcher dialog
