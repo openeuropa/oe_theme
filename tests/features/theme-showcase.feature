@@ -56,10 +56,10 @@ Feature: Theme showcase
   @javascript @ecl2
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage
-    Then the "language switcher overlay" is not visible
+    Then the overlay "language switcher links" is not visible
 
     When I open the language switcher dialog
-    Then the "language switcher overlay" is visible
+    Then the overlay "language switcher links" is visible
 
     And I should see the following links in the "language switcher":
       | български   |
@@ -96,7 +96,7 @@ Feature: Theme showcase
     Then the active language switcher link in the dialog is "polski"
 
     When I press "Close"
-    Then the "language switcher overlay" is not visible
+    Then the "language switcher links" is not visible
 
   @javascript @ecl2
   Scenario: Site visitor can change language using the language switcher
