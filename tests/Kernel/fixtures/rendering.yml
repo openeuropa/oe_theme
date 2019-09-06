@@ -381,8 +381,8 @@
       title: "Item title"
       detail: "Item text"
       meta:
-        - "News article"
-        - "6 July 2015"
+        - "Meta 1"
+        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -390,7 +390,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -405,8 +405,8 @@
         src: "http://via.placeholder.com/150x150"
         alt: "Alternate text for primary image"
       meta:
-        - "News article"
-        - "6 July 2015"
+        - "Meta 1"
+        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -414,7 +414,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 1
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -429,8 +429,8 @@
         src: "http://via.placeholder.com/120x80"
         alt: "Alternate text for secondary image"
       meta:
-        - "News article"
-        - "6 July 2015"
+        - "Meta 1"
+        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -438,7 +438,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "News article | 6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -478,23 +478,31 @@
 #    equals:
 #      'h3.ecl-list-item__title': "Item title"
 #      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-# @todo will be triggered on OPENEUROPA-2124
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "date"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#  assertions:
-#    count:
-#      '.ecl-list-item.ecl-list-item--block': 1
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      'div.ecl-list-item__detail': 1
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+      date:
+        day: "6"
+        month_name: "July"
+        year: "2015"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2 | 6 July 2015"
 - array:
     '#type': pattern
     '#id': list_item

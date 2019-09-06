@@ -181,14 +181,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
 
-    // @codingStandardsIgnoreStart
-    // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertNotContains('24 Sep 1981', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('highlight');
     $paragraph->save();
@@ -198,19 +193,10 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
 
-    // @codingStandardsIgnoreStart
     // The description should not be rendered in this variant.
-    // @todo Fix it on OPENEUROPA-2123
-    // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
-    //
-    // @todo will be updated on OPENEUROPA-2124
-    // No date should be rendered neither.
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
-    // @codingStandardsIgnoreEnd
-    //
-    // Neither the metas.
+    $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+
+    // No date must be given nor the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
     $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
@@ -224,11 +210,8 @@ class ParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('style')
     );
 
-    // @codingStandardsIgnoreStart
-    // @todo will be fixed on OPENEUROPA-2123.
-    // $this->assertEquals('Druplicon', $image_element->attr('alt'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();
@@ -257,14 +240,9 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
-    // @codingStandardsIgnoreStart
-    // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertNotContains('24 Sep 1981', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
     // Change the variant to thumbnail secondary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_secondary');
     $paragraph->save();
@@ -293,14 +271,9 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
-    // @codingStandardsIgnoreStart
-    // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
-    // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertNotContains('24 Sep 1981', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
     // Change the variant to navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('navigation');
     $paragraph->save();
@@ -325,33 +298,26 @@ class ParagraphsTest extends ParagraphsTestBase {
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));
 
-    // @codingStandardsIgnoreStart
-    // Change the variant to date.
-    // @todo will be triggered on OPENEUROPA-2124
-    // $paragraph->get('oe_paragraphs_variant')->setValue('date');
-    // $paragraph->save();
-    //
-    // $html = $this->renderParagraph($paragraph);
-    // $crawler = new Crawler($html);
-    //
-    // $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--date'));
-    // $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
-    // $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
-    //
-    // $link_element = $crawler->filter('.ecl-list-item__link');
-    // $this->assertCount(1, $link_element);
-    // $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
-    //
-    // $this->assertEquals('Thu', trim($crawler->filter('.ecl-date-block__week-day')->text()));
-    // $this->assertEquals('24', trim($crawler->filter('.ecl-date-block__day')->text()));
-    // $this->assertEquals('Sep', trim($crawler->filter('.ecl-date-block__month')->text()));
-    // $this->assertEquals('1981', trim($crawler->filter('.ecl-date-block__year')->text()));
-    //
+    $paragraph->get('oe_paragraphs_variant')->setValue('date');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item'));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $this->assertEquals('Meta 1 | Meta 2 | Meta 3 | 24 Sep 1981', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+
     // No images should be rendered in this variant.
-    // $this->assertCount(0, $crawler->filter('img.ecl-image'));
-    // Neither the metas.
-    // $this->assertCount(0, $crawler->filter('.ecl-meta__item'));
-    // @codingStandardsIgnoreEnd
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
   }
 
   /**

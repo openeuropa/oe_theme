@@ -854,24 +854,6 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
 }
 
 /**
- * Implements hook_preprocess_pattern().
- */
-function oe_theme_preprocess_pattern_date_block(array &$variables): void {
-  // This make sure that the variant value will always fallback to
-  // "default" if an empty or not valid value is passed.
-  $variants = [
-    'default',
-    'ongoing',
-    'cancelled',
-    'past',
-  ];
-
-  $variables['variant'] = in_array($variables['variant'], $variants, TRUE) ?
-    $variables['variant'] :
-    'default';
-}
-
-/**
  * Implements hook_preprocess_pattern_file__preview().
  */
 function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
@@ -893,13 +875,6 @@ function oe_theme_preprocess_pattern_file_translation__preview(array &$variables
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_list_item__variant_date__preview(array &$variables): void {
-  $variables['date'] = DateValueObject::fromArray($variables['date']);
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_date_block__preview(array &$variables): void {
   $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
 

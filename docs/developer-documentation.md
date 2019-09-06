@@ -89,7 +89,7 @@ Below a list of available value object along with its factory methods:
 
 Used in the following patterns:
 
-- [`date_block`](../templates/patterns/date_block/date_block.ui_patterns.yml)
+- [`list-item`](../templates/patterns/list-item/list-item.ui_patterns.yml)
 
 Provides the following factory methods:
 

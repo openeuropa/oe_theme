@@ -299,6 +299,7 @@ Note that the following models are deprecated after upgrading from 1.x to 2.x:
 
 - `dialog pattern`
 - `file_link pattern`
+- `date_block pattern`
 
 ## Contributing
 
