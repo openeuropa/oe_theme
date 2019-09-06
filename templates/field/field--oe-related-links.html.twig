@@ -1,6 +1,16 @@
-<h2 class="ecl-heading ecl-heading--h2">{{ 'Related links'|t }}</h2>
-<ul class="ecl-list--unstyled">
-  {% for item in items %}
-    {{ item.content }}
-  {% endfor %}
-</ul>
+{#
+/**
+ * @file
+ * Theme override for the related links field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+<div class="ecl-u-mv-m">
+  <h2 class="ecl-heading ecl-heading--h2">{{ 'Related links'|t }}</h2>
+  <ul class="ecl-list--unstyled">
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  </ul>
+</div>

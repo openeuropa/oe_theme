@@ -4,25 +4,27 @@
  * List item block: one column.
  */
 #}
-{% if title %}
-<h3 class="ecl-heading ecl-heading--h3">
-  {{ title }}
-</h3>
-{% endif %}
+<div class="ecl-u-mv-m">
+  {% if title %}
+    <h3 class="ecl-heading ecl-heading--h3">
+      {{ title }}
+    </h3>
+  {% endif %}
 
-<ul class="ecl-listing{{ type ? " ecl-listing--" ~ type }}">
-  {{ items }}
-</ul>
+  <ul class="ecl-listing{{ type ? " ecl-listing--" ~ type }}">
+    {{ items }}
+  </ul>
 
-{% if button_label and button_url %}
-<div class="ecl-u-clearfix ecl-u-pv-m">
-  {% include '@ecl/ec-component-button' with {
-    'href': button_url,
-    'label': button_label,
-    'type': 'link',
-    'modifier': 'call',
-    'extra_classes': 'ecl-u-f-r',
-    'icon': 'caret-right',
-  } %}
+  {% if button_label and button_url %}
+    <div class="ecl-u-clearfix ecl-u-pv-m">
+      {% include '@ecl/ec-component-button' with {
+        'href': button_url,
+        'label': button_label,
+        'type': 'link',
+        'modifier': 'call',
+        'extra_classes': 'ecl-u-f-r',
+        'icon': 'caret-right',
+      } %}
+    </div>
+  {% endif %}
 </div>
-{% endif %}

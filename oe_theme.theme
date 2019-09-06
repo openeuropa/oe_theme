@@ -79,11 +79,6 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
     // fields, while keeping all the rest markup-free.
     array_unshift($suggestions, 'field__bare');
   }
-
-  // Add suggestions for all 'Entity reference revisions' for each target type.
-  if ($variables['element']['#field_type'] === 'entity_reference_revisions') {
-    $suggestions[] = 'field__' . $variables['element']['#field_type'] . '__' . $variables['element']['#items']->getFieldDefinition()->getSetting('target_type');
-  }
 }
 
 /**
@@ -252,6 +247,7 @@ function oe_theme_preprocess_form_element(array &$variables): void {
 function oe_theme_preprocess_field(&$variables, $hook): void {
   if ($variables['field_name'] === 'body') {
     $variables['attributes']['class'][] = 'ecl-editor';
+    $variables['attributes']['class'][] = 'ecl-u-mv-m';
   }
 
   // Add the ECL image class to the image fields.
