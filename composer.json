@@ -35,15 +35,11 @@
         "openeuropa/oe_search": "~1.0",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "behat/mink-selenium2-driver": "dev-master#8684ee4 as 1.3.x-dev",
-        "behat/mink": "dev-master#a534fe7"
+        "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "We need to alias a specific version of 'behat/mink-selenium2-driver' to '1.3.x-dev' since this branch is not available any longer. For more information check: https://github.com/minkphp/MinkSelenium2Driver/issues/313.",
-        "Upcoming ~1.4 of 'behat/mink-selenium2-driver' is known to have issues with latest 'behat/mink', so we need to pinpoint a specific version of the latter. For more information check: https://www.drupal.org/project/drupal/issues/3078671#comment-13244409."
+        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
     ],
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
