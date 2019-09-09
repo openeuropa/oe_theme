@@ -1,0 +1,11 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-accordion2/accordion2.html.twig
++++ b/node_modules/@ecl-twig/ec-component-accordion2/accordion2.html.twig
+@@ -47,6 +47,7 @@
+ <div
+   class="{{ _css_class }}"{{ _extra_attributes|raw }}
+   data-ecl-accordion2
++  data-ecl-auto-init="Accordion2"
+ >
+   {% if _items is not empty %}
+     {% for _item in _items %}

@@ -960,6 +960,7 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
       ];
     }
   }
+
   // Map rest of the array elements.
   $ecl_array['invalid'] = !empty($element['#errors']);
   return $ecl_array;
@@ -1011,10 +1012,12 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
  * For preprocessing default mode of document media type.
  */
 function oe_theme_preprocess_media__document__default(&$variables) {
-  if (!$variables['media']->get('oe_media_file')->isEmpty()) {
-    $file_object = $variables['media']->get('oe_media_file')->first()->entity;
-    $variables['file'] = FileValueObject::fromFileEntity($file_object);
+  if ($variables['media']->get('oe_media_file')->isEmpty()) {
+    return;
   }
+
+  $file_object = $variables['media']->get('oe_media_file')->first()->entity;
+  $variables['file'] = FileValueObject::fromFileEntity($file_object);
 }
 
 /**

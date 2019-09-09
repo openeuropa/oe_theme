@@ -1,0 +1,11 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-language-list/language-list-overlay.html.twig
++++ b/node_modules/@ecl-twig/ec-component-language-list/language-list-overlay.html.twig
+@@ -77,6 +77,7 @@
+       overlay: true,
+       icon_path: _icon_path
+     } only %}
++  </div>
+ </div>
+ 
+ {% endspaceless %}

@@ -1,0 +1,16 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-file/file.html.twig
++++ b/node_modules/@ecl-twig/ec-component-file/file.html.twig
+@@ -46,7 +46,11 @@
+ 
+ {# Print the result #}
+ 
+-<div class="{{ _css_class }}"{{ _extra_attributes|raw }} data-ecl-file>
++<div
++  class="{{ _css_class }}"{{ _extra_attributes|raw }}
++  data-ecl-file
++  data-ecl-auto-init="FileDownload"
++>
+   <div class="ecl-file__container">
+     {% include '../ec-component-icon/icon.html.twig' with {
+       icon: _icon,
