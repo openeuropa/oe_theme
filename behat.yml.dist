@@ -27,7 +27,7 @@ default:
             pages:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"
-              ECL dropdown component: "components/dropdown"
+              ECL dropdown component: "/en/components/dropdown"
               image creation: "/en/media/add/image"
               recent content: "/en/node"
               user registration: "/user/register"
