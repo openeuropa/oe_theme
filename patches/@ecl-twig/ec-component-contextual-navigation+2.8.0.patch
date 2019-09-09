@@ -1,0 +1,11 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-contextual-navigation/contextual-navigation.html.twig
++++ b/node_modules/@ecl-twig/ec-component-contextual-navigation/contextual-navigation.html.twig
+@@ -43,6 +43,7 @@
+ <nav
+   class="{{ _css_class }}"{{ _extra_attributes|raw }}
+   data-ecl-contextual-navigation
++  data-ecl-auto-init="ContextualNavigation"
+ >
+   <div class="ecl-contextual-navigation__label">{{ _label }}</div>
+   <ul

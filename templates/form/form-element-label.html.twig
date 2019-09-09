@@ -10,11 +10,11 @@
   set classes = [
     'ecl-form-label',
     title_display == 'after' ? 'option',
-    title_display == 'invisible' ? 'visually-hidden ecl-form-label--hidden',
+    title_display == 'invisible' ? 'visually-hidden',
     required ? 'js-form-required',
     required ? 'form-required',
   ]
 %}
 {% if title is not empty or required -%}
-  <label{{ attributes.addClass(classes) }}>{{ title }}</label>
+  <label{{ attributes.addClass(classes) }}{{ title_display == 'invisible' ? ' hidden ' }}>{{ title }}</label>
 {%- endif %}
