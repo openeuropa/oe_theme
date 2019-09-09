@@ -273,8 +273,11 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
     $url = $link['#link']['url'];
     if ($url->access($variables['user'])) {
       $variables['primary_links'][] = [
-        'href' => $url,
-        'label' => $link['#link']['title'],
+        'link' => [
+          'path' => $url,
+          'label' => $link['#link']['title'],
+          'type'=> 'standalone',
+        ],
         'is_active' => $link['#active'],
       ];
     }
@@ -285,8 +288,11 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
     $url = $link['#link']['url'];
     if ($url->access($variables['user'])) {
       $variables['secondary_links'][] = [
-        'href' => $url,
-        'label' => $link['#link']['title'],
+        'link' => [
+          'path' => $url,
+          'label' => $link['#link']['title'],
+          'type'=> 'standalone',
+        ],
         'is_active' => $link['#active'],
       ];
     }
