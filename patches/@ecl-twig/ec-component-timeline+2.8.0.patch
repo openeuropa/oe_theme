@@ -1,0 +1,17 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-timeline/timeline.html.twig
++++ b/node_modules/@ecl-twig/ec-component-timeline/timeline.html.twig
+@@ -59,8 +59,11 @@ Parameters:
+ 
+ {# Print the result #}
+ 
+-<ol class="{{ _css_class }}"{{ _extra_attributes|raw }}
+-    data-ecl-timeline="true">
++<ol
++  class="{{ _css_class }}"{{ _extra_attributes|raw }}
++  data-ecl-timeline
++  data-ecl-auto-init="Timeline2"
++>
+   {% if _items is not empty %}
+     {% for _item in _items %}
+       {# Decide on per item if it should display. #}
