@@ -1,6 +1,7 @@
 base:
   js:
     dist/scripts/ecl-ec-preset-website.js: {}
+    js/ecl_auto_init.js: {}
 style:
   css:
     theme:
