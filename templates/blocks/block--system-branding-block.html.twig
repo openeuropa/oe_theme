@@ -7,18 +7,16 @@
  */
 #}
 {% block content %}
-  {% if site_logo %}
-    <a
-      class="ecl-link ecl-link--standalone"
-      href="{{ site_logo_href }}"
-      aria-label="{{ site_name }}"
-    >
-      <img
-        alt="{{ site_logo_alt }}"
-        title="{{ site_name }}"
-        class="ecl-site-header__logo-image"
-        src="{{ site_logo }}"
-      />
-    </a>
-  {% endif %}
+  <a
+    class="ecl-link ecl-link--standalone"
+    href="{{ site_logo_href }}"
+    aria-label="{{ site_name }}"
+  >
+    <img
+      alt="{{ site_logo_alt }}"
+      title="{{ site_name }}"
+      class="ecl-site-header__logo-image"
+      src="{{ ecl_logo_path ~ '/logo--' ~ current_language_id|to_native_language_id ~ '.svg'}}"
+    />
+  </a>
 {% endblock %}

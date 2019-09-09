@@ -558,16 +558,11 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ->setAbsolute(TRUE)
       ->toString();
 
-    // Get the language prefix.
-    $lang_prefix = \Drupal::configFactory()
-      ->get('language.negotiation')
-      ->get('url.prefixes.' . $language_code);
-
     $variables['languages'][] = [
       'path' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $lang_prefix,
+      'lang' => $language_code,
       'active' => $language_code === $current_language_id,
     ];
 
@@ -576,7 +571,7 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
         'path' => $href,
         'hreflang' => $language_code,
         'label' => $link['link']['#title'],
-        'lang' => $lang_prefix,
+        'lang' => $language_code,
       ];
     }
   }
@@ -611,16 +606,11 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    // Get the language prefix.
-    $lang_prefix = \Drupal::configFactory()
-      ->get('language.negotiation')
-      ->get('url.prefixes.' . $language_code);
-
     $variables['options'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $lang_prefix,
+      'lang' => $language_code,
     ];
   }
 }
@@ -1013,16 +1003,9 @@ function oe_theme_preprocess_block(&$variables) {
  * Add required variables to follow ECL guidelines.
  */
 function oe_theme_preprocess_block__system_branding_block(&$variables) {
-  $current_language_id = \Drupal::languageManager()
+  $variables['current_language_id'] = \Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
-
-  // Get the language prefix.
-  $lang_prefix = \Drupal::configFactory()
-    ->get('language.negotiation')
-    ->get('url.prefixes.' . $current_language_id);
-
-  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_prefix . '.svg';
 
   $variables['site_logo_alt'] = !empty($variables['site_name']) ?
     t('@site_name logo', ['@site_name' => $variables['site_name']]) :

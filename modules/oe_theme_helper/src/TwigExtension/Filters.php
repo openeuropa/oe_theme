@@ -37,6 +37,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('format_size', 'format_size'),
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
       new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
+      new \Twig_SimpleFilter('to_native_language_id', [$this, 'toNativeLanguageId']),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
     ];
@@ -82,6 +83,28 @@ class Filters extends \Twig_Extension {
   }
 
   /**
+   * Get a native language id given its code.
+   *
+   * @param string $language_code
+   *   The language code as defined by the W3C language tags document.
+   *
+   * @return string
+   *   The native language id.
+   *
+   * @throws \InvalidArgumentException
+   *   Thrown when the passed in language code does not exist.
+   */
+  public function toNativeLanguageId($language_code): string {
+    // The fallback implemented in case we don't have enabled language.
+    $predefined = self::getEuropeanUnionLanguageList() + LanguageManager::getStandardLanguageList();
+    if (!empty($predefined[$language_code][2])) {
+      return $predefined[$language_code][2];
+    }
+
+    throw new \InvalidArgumentException('The language code ' . $language_code . ' does not exist.');
+  }
+
+  /**
    * Returns a list of language data.
    *
    * This is the data that is expected to be returned by the overridden language
@@ -93,30 +116,30 @@ class Filters extends \Twig_Extension {
    */
   public static function getEuropeanUnionLanguageList(): array {
     return [
-      'bg' => ['Bulgarian', 'български'],
-      'cs' => ['Czech', 'čeština'],
-      'da' => ['Danish', 'dansk'],
-      'de' => ['German', 'Deutsch'],
-      'et' => ['Estonian', 'eesti'],
-      'el' => ['Greek', 'ελληνικά'],
-      'en' => ['English', 'English'],
-      'es' => ['Spanish', 'español'],
-      'fr' => ['French', 'français'],
-      'ga' => ['Irish', 'Gaeilge'],
-      'hr' => ['Croatian', 'hrvatski'],
-      'it' => ['Italian', 'italiano'],
-      'lt' => ['Lithuanian', 'lietuvių'],
-      'lv' => ['Latvian', 'latviešu'],
-      'hu' => ['Hungarian', 'magyar'],
-      'mt' => ['Maltese', 'Malti'],
-      'nl' => ['Dutch', 'Nederlands'],
-      'pl' => ['Polish', 'polski'],
-      'pt-pt' => ['Portuguese', 'português'],
-      'ro' => ['Romanian', 'română'],
-      'sk' => ['Slovak', 'slovenčina'],
-      'sl' => ['Slovenian', 'slovenščina'],
-      'fi' => ['Finnish', 'suomi'],
-      'sv' => ['Swedish', 'svenska'],
+      'bg' => ['Bulgarian', 'български', 'bg'],
+      'cs' => ['Czech', 'čeština', 'cs'],
+      'da' => ['Danish', 'dansk', 'da'],
+      'de' => ['German', 'Deutsch', 'de'],
+      'et' => ['Estonian', 'eesti', 'et'],
+      'el' => ['Greek', 'ελληνικά', 'el'],
+      'en' => ['English', 'English', 'en'],
+      'es' => ['Spanish', 'español', 'es'],
+      'fr' => ['French', 'français', 'fr'],
+      'ga' => ['Irish', 'Gaeilge', 'ga'],
+      'hr' => ['Croatian', 'hrvatski', 'hr'],
+      'it' => ['Italian', 'italiano', 'it'],
+      'lt' => ['Lithuanian', 'lietuvių', 'lt'],
+      'lv' => ['Latvian', 'latviešu', 'lv'],
+      'hu' => ['Hungarian', 'magyar', 'hu'],
+      'mt' => ['Maltese', 'Malti', 'mt'],
+      'nl' => ['Dutch', 'Nederlands', 'nl'],
+      'pl' => ['Polish', 'polski', 'pl'],
+      'pt-pt' => ['Portuguese', 'português', 'pt'],
+      'ro' => ['Romanian', 'română', 'ro'],
+      'sk' => ['Slovak', 'slovenčina', 'sk'],
+      'sl' => ['Slovenian', 'slovenščina', 'sl'],
+      'fi' => ['Finnish', 'suomi', 'fi'],
+      'sv' => ['Swedish', 'svenska', 'sv'],
     ];
   }
 

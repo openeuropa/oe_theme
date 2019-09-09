@@ -11,7 +11,7 @@
   {% include '@oe_theme/compositions/ec-component-language-list/language-list-selector.html.twig' with {
     label: current_language.label,
     path: current_language.path,
-    code: current_language.lang,
+    code: current_language.lang|to_native_language_id,
     icon_path: ecl_icon_path,
     items: languages
   } only %}
