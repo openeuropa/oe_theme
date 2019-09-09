@@ -25,12 +25,12 @@ default:
               search form: ".ecl-search-form"
               sites switcher: ".ecl-site-switcher--header"
             pages:
-              user registration: "/user/register"
+              content management: "/en/admin/content"
               ECL components overview: "/en/components"
               ECL dropdown component: "components/dropdown"
-              recent content: "/en/node"
               image creation: "/en/media/add/image"
-              content management: "/en/admin/content"
+              recent content: "/en/node"
+              user registration: "/user/register"
   extensions:
     Drupal\MinkExtension:
       goutte: ~
