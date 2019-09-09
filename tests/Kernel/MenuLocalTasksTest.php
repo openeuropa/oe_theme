@@ -9,8 +9,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class MenuLocalTasks.
- *
- * @group ecl1
  */
 class MenuLocalTasksTest extends AbstractKernelTestBase {
 
@@ -47,7 +45,7 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-navigation-list-wrapper');
+    $actual = $crawler->filter('nav.ecl-navigation-list');
     $this->assertCount(1, $actual);
 
     // Assert list contains ECL classes.
