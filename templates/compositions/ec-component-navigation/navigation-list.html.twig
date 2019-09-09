@@ -1,7 +1,7 @@
 {#
   Parameters:
     - "title" (string) (default: 'Navigation'): for screen readers
-    - "links" (array) (default: []): collection of @ecl/generic-component-link
+    - "links" (array) (default: []): collection of @ecl/link
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
         {
@@ -38,7 +38,7 @@
     <h2 hidden>{{ _title }}</h2>
     <ul class="ecl-navigation-list ecl-unordered-list--no-bullet ecl-u-pb-m ecl-u-border-bottom ecl-u-border-color-grey-25">
       {% for _link in _links %}
-        {% set _active_class = _link.is_active is defined and _link.is_active == true ? ' ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
+        {% set _active_class = _link.is_active is defined and _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
         <li class="ecl-navigation-list__item ecl-unordered-list__item ecl-u-d-inline ecl-u-pa-m{{ _active_class }}">
           {% include '@ecl/link' with {
           }|merge(_link|default({})) only %}

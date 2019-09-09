@@ -276,7 +276,7 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
         'link' => [
           'path' => $url,
           'label' => $link['#link']['title'],
-          'type'=> 'standalone',
+          'type' => 'standalone',
         ],
         'is_active' => $link['#active'],
       ];
@@ -291,7 +291,7 @@ function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
         'link' => [
           'path' => $url,
           'label' => $link['#link']['title'],
-          'type'=> 'standalone',
+          'type' => 'standalone',
         ],
         'is_active' => $link['#active'],
       ];
