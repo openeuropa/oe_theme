@@ -3,14 +3,13 @@
 {#
   /**
    * @file
-   * Theme implementation for a ECL Content Item.
+   * Theme implementation for a ECL Content Item for date.
    */
   Parameters:
-    - "description" (string) (default: ''): Description of Content Item
-    - "meta" (array) (default: []): Meta information for the Content Item
+    - "description" (string) (default: ''): Description of Content Item Date
+    - "meta" (array) (default: []): Meta information for the Content Item Date
     - "title" (associative array) (default: {}): Predefined structure compatible with Link component. If Content Item type is a 'tile', only label property is required.
-    - "image" (string) (default: ''): Url/path to background image
-    - "image_position" (string) (Can be 'before' or 'after'. Is required only if Image is specified)
+    - "date" (associative array) (default: {}): Predefined structure compatible with Date block component.
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
         {
@@ -23,7 +22,7 @@
 
 {# Internal properties #}
 
-{% set _css_class = 'ecl-content-item ecl-u-d-flex ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pv-m' %}
+{% set _css_class = 'ecl-content-item-date ecl-u-d-flex ecl-u-pv-m' %}
 {% set _extra_attributes = '' %}
 {% set _type = type|default('default') %}
 {% set _description = description|default('') %}
@@ -45,26 +44,23 @@
   {% endfor %}
 {% endif %}
 
-{# Create macro #}
-
-{% macro image(src, alt, class1, class2) %}
-  <div role="img" aria-label="{{ alt }}" class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl {{ class1 }}"
-       style="background-image:url('{{ src }}');background-size:contain;height:5rem;width:7.5rem"></div>
-  <div role="img" aria-label="{{ alt }}"
-       class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl ecl-u-d-none {{ class2 }}"
-       style="background-image:url('{{ src }}');background-size:contain;height:8.75rem;width:13.125rem">
-  </div>
-{% endmacro %}
-
 <article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  {% if _image and _image_position == 'before' %}
-    {{ _self.image(_image.src, _image.alt, 'ecl-u-d-lg-block ecl-content-item__image__before', 'ecl-u-d-lg-none') }}
-  {% endif %}
+  <div class="ecl-content-item-date__date ecl-u-flex-grow-0 ecl-u-mr-m">
+    {% include '@oe_theme/compositions/ec-component-date-block/date-block.html.twig' with {
+      variant: variant|replace({'_':'-'})|to_date_status,
+      week_day: date.week_day,
+      day: date.day,
+      month_fullname: date.month_fullname,
+      month_name: date.month_name,
+      month: date.month,
+      year: date.year
+    } only %}
+  </div>
   <div class="ecl-u-flex-grow-1">
     {% if _meta is not empty %}
-      <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ _meta|join(" | ") }}</div>
+      <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ _meta|join(" | ") }}</div>
     {% endif %}
-    <div class="ecl-content-item__title ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-mt-xs">
+    <div class="ecl-content-item-date__title ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-mt-xs">
       {%- if _title.path %}
         {% include '@ecl/link' with {
           link: _title|merge({type:'standalone'})
@@ -73,10 +69,7 @@
         {{- _title.label }}
       {%- endif -%}
     </div>
-    <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _description }}</div>
+    <div class="ecl-content-item-date__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _description }}</div>
   </div>
-  {% if _image and _image_position == 'after' %}
-    {{ _self.image(_image.src, _image.alt, 'ecl-u-d-lg-none', 'ecl-u-d-lg-block ecl-content-item__image__after') }}
-  {% endif %}
 </article>
 {% endspaceless %}

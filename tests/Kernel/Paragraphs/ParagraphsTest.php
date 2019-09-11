@@ -182,6 +182,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
 
     // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
@@ -202,6 +203,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     // @codingStandardsIgnoreEnd
     //
     // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
@@ -254,6 +256,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
     // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
@@ -287,6 +290,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
 
     // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
@@ -315,33 +319,33 @@ class ParagraphsTest extends ParagraphsTestBase {
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));
 
-    // @codingStandardsIgnoreStart
     // Change the variant to date.
-    // @todo will be triggered on OPENEUROPA-2124
-    // $paragraph->get('oe_paragraphs_variant')->setValue('date');
-    // $paragraph->save();
-    //
-    // $html = $this->renderParagraph($paragraph);
-    // $crawler = new Crawler($html);
-    //
-    // $this->assertCount(1, $crawler->filter('.ecl-list-item.ecl-list-item--date'));
-    // $this->assertEquals('Item title', trim($crawler->filter('.ecl-list-item__title')->text()));
-    // $this->assertEquals('Item description', trim($crawler->filter('.ecl-list-item__detail')->text()));
-    //
-    // $link_element = $crawler->filter('.ecl-list-item__link');
-    // $this->assertCount(1, $link_element);
-    // $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
-    //
-    // $this->assertEquals('Thu', trim($crawler->filter('.ecl-date-block__week-day')->text()));
-    // $this->assertEquals('24', trim($crawler->filter('.ecl-date-block__day')->text()));
-    // $this->assertEquals('Sep', trim($crawler->filter('.ecl-date-block__month')->text()));
-    // $this->assertEquals('1981', trim($crawler->filter('.ecl-date-block__year')->text()));
-    //
+    $paragraph->get('oe_paragraphs_variant')->setValue('date');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item-date'));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item-date div.ecl-content-item-date__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item-date div.ecl-content-item-date__description')->text()));
+
+    $link_element = $crawler->filter('article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item-date div.ecl-content-item-date__meta')->text()));
+
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item-date time.ecl-date-block'));
+    $this->assertEquals('24', trim($crawler->filter('article.ecl-content-item-date span.ecl-date-block__day')->text()));
+    $this->assertEquals('Sep', trim($crawler->filter('article.ecl-content-item-date abbr.ecl-date-block__month')->text()));
+    $this->assertEquals('1981', trim($crawler->filter('article.ecl-content-item-date span.ecl-date-block__year')->text()));
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item-date abbr.ecl-date-block__month[title="September"]'));
+
     // No images should be rendered in this variant.
-    // $this->assertCount(0, $crawler->filter('img.ecl-image'));
-    // Neither the metas.
-    // $this->assertCount(0, $crawler->filter('.ecl-meta__item'));
-    // @codingStandardsIgnoreEnd
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item-date > div[role="img"]'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item-date > div.ecl-content-item-date__image__before'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item-date > div.ecl-content-item-date__image__after'));
   }
 
   /**

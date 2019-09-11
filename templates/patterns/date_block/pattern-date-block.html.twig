@@ -4,9 +4,6 @@
  * Date block.
  */
 #}
-
-{{ dump() }}
-
 {% include '@oe_theme/compositions/ec-component-date-block/date-block.html.twig' with {
   variant: variant|replace({'_':'-'})|to_date_status,
   week_day: date.week_day,
