@@ -14,6 +14,8 @@ default:
             elements:
               about dropdown menu: "#nav-menu-expandable-group-2 .ecl-navigation-menu__links"
               breadcrumb: "nav.ecl-breadcrumb"
+              dropdown content: ".ecl-link-block__list"
+              list item image: ".ecl-list-item__primary"
               language switcher: ".ecl-language-list"
               language switcher link: ".ecl-lang-select-sites__link .ecl-lang-select-sites__label"
               language switcher overlay: ".ecl-dialog__body"
@@ -22,15 +24,13 @@ default:
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search form: ".ecl-search-form"
               sites switcher: ".ecl-site-switcher--header"
-              dropdown content: ".ecl-link-block__list"
-              list item image: ".ecl-list-item__primary"
             pages:
-              user registration: "/user/register"
-              ECL components overview: "/en/components"
-              ECL dropdown component: "components/dropdown"
-              recent content: "/en/node"
-              image creation: "/en/media/add/image"
               content management: "/en/admin/content"
+              ECL components overview: "/en/components"
+              ECL dropdown component: "/en/components/dropdown"
+              image creation: "/en/media/add/image"
+              recent content: "/en/node"
+              user registration: "/user/register"
   extensions:
     Drupal\MinkExtension:
       goutte: ~
@@ -48,8 +48,8 @@ default:
         drupal_root: "build"
       region_map:
         about dropdown menu: "#nav-menu-expandable-group-2"
-        header: ".ecl-site-header"
         footer: "footer.ecl-footer"
+        header: ".ecl-site-header"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-language-list"
         language page switcher: ".ecl-page-header .ecl-lang-select-page"

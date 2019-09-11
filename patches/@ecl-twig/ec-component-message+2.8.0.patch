@@ -1,0 +1,17 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-message/message.html.twig
++++ b/node_modules/@ecl-twig/ec-component-message/message.html.twig
+@@ -43,7 +43,12 @@
+ 
+ {# Print the result #}
+ 
+-<div class="{{ _css_class }}" data-ecl-message role="alert"{{ _extra_attributes|raw }}>
++<div
++  class="{{ _css_class }}"{{ _extra_attributes|raw }}
++  role="alert"
++  data-ecl-message
++  data-ecl-auto-init="Message"
++>
+   {% include '../ec-component-icon/icon.html.twig' with {
+     icon: _icon,
+     extra_classes: 'ecl-message__icon',
