@@ -7,6 +7,8 @@
  */
 #}
 
+{% set _main_content_class = page.sidebar ? 'ecl-col-12 ecl-col-lg-9' : 'ecl-col' %}
+
 {% block site_header %}
 <header class="ecl-site-header">
   {{ page.site_top_bar }}
@@ -33,7 +35,12 @@
 <section class="main-content ecl-u-mv-l">
   <div class="ecl-container">
     <div class="ecl-row">
-      <div class="ecl-col">
+      {% if page.sidebar %}
+        <div class="ecl-col-12 ecl-col-lg-3">
+          {{ page.sidebar }}
+        </div>
+      {% endif %}
+      <div class="{{ _main_content_class }}">
         {{ page.content }}
       </div>
     </div>
