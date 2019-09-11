@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\block\Entity\Block;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -40,4 +41,17 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
       }
     }
   }
+}
+
+/**
+ * Delete the block oe_theme_site_switcher.
+ */
+function oe_theme_helper_post_update_00001() {
+  $block = Block::load('oe_theme_site_switcher');
+
+  if (!$block) {
+    return t('The oe_site_switcher block was not found.');
+  }
+
+  $block->delete();
 }

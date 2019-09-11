@@ -22,7 +22,6 @@ default:
               page header: ".ecl-page-header__body"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search form: ".ecl-search-form"
-              sites switcher: ".ecl-site-switcher--header"
               dropdown content: ".ecl-link-block__list"
               list item image: ".ecl-list-item__primary"
             pages:
