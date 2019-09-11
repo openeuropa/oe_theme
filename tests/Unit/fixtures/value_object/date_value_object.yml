@@ -8,6 +8,7 @@
     week_day: "Sun"
     month: "11"
     month_name: "Nov"
+    month_fullname: "November"
     year: "2018"
 
 # Same day different hour.
@@ -20,6 +21,7 @@
     week_day: "Sun"
     month: "11"
     month_name: "Nov"
+    month_fullname: "November"
     year: "2018"
 
 # Different start and end dates.
@@ -32,6 +34,7 @@
     week_day: "Tue-Mon"
     month: "12"
     month_name: "Dec"
+    month_fullname: "December"
     year: "2018"
 
 # Different dates same day number different months same year.
@@ -44,6 +47,7 @@
     week_day: "Sun-Tue"
     month: "11-12"
     month_name: "Nov-Dec"
+    month_fullname: "November-December"
     year: "2018"
 
 # Different dates same day name and different years.
@@ -56,4 +60,5 @@
     week_day: "Tue-Tue"
     month: "12-01"
     month_name: "Dec-Jan"
+    month_fullname: "December-January"
     year: "2018-2019"

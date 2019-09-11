@@ -90,6 +90,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
       'year' => $this->getYear(),
       'week_day' => $this->getWeekDay(),
       'month_name' => $this->getMonthName(),
+      'month_fullname' => $this->getMonthFullName(),
     ];
   }
 
@@ -126,6 +127,13 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    */
   public function getMonthName(): string {
     return $this->getDateInterval('M', 'Y');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getMonthFullName(): string {
+    return $this->getDateInterval('F', 'Y');
   }
 
   /**
