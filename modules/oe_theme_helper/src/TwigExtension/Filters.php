@@ -121,7 +121,7 @@ class Filters extends \Twig_Extension {
   }
 
   /**
-   * Get date variant class given its variant.
+   * Get date variant class given its status.
    *
    * @param string $status
    *   File extension.
@@ -129,7 +129,7 @@ class Filters extends \Twig_Extension {
    * @return string
    *   File icon class name.
    */
-  public static function toDateStatus(string $variant): string {
+  public static function toDateStatus(string $status): string {
     $variant_mapping = [
       'default' => 'default',
       'ongoing' => 'ongoing',
@@ -137,8 +137,9 @@ class Filters extends \Twig_Extension {
       'past' => 'past',
     ];
 
-    return array_key_exists($variant, $variant_mapping) ? $variant_mapping[$variant] : $variant;
+    return array_key_exists($status, $variant_mapping) ? $variant_mapping[$status] : $status;
   }
+
   /**
    * Get file icon class given its extension.
    *
