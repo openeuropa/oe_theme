@@ -15,6 +15,7 @@ use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
+use Drupal\oe_theme_helper\TwigExtension\Filters;
 
 /**
  * Implements hook_preprocess().
@@ -558,11 +559,14 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ->setAbsolute(TRUE)
       ->toString();
 
+    $eu_lang_list = Filters::getEuropeanUnionLanguageList();
+    $language_prefix = !empty($eu_lang_list[$language_code][2]) ? $eu_lang_list[$language_code][2] : $language_code;
+
     $variables['languages'][] = [
       'path' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_code,
+      'lang' => $language_prefix,
       'active' => $language_code === $current_language_id,
     ];
 
@@ -571,7 +575,6 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
         'path' => $href,
         'hreflang' => $language_code,
         'label' => $link['link']['#title'],
-        'lang' => $language_code,
       ];
     }
   }
@@ -606,11 +609,14 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
+    $eu_lang_list = Filters::getEuropeanUnionLanguageList();
+    $language_prefix = !empty($eu_lang_list[$language_code][2]) ? $eu_lang_list[$language_code][2] : $language_code;
+
     $variables['options'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_code,
+      'lang' => $language_prefix,
     ];
   }
 }

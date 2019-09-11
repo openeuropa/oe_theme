@@ -96,7 +96,7 @@ class Filters extends \Twig_Extension {
    */
   public function toNativeLanguageId($language_code): string {
     // The fallback implemented in case we don't have enabled language.
-    $predefined = self::getEuropeanUnionLanguageList() + LanguageManager::getStandardLanguageList();
+    $predefined = self::getEuropeanUnionLanguageList();
     if (!empty($predefined[$language_code][2])) {
       return $predefined[$language_code][2];
     }

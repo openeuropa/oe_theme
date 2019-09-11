@@ -36,6 +36,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
 
       $actual = $crawler->filter(".ecl-language-list--overlay a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+      // Remove all non printable characters in $actual.
       $this->assertEquals(
         $languages[$lang_id]->getName(),
         preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
