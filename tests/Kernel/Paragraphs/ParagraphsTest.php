@@ -198,13 +198,12 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
 
-    // @codingStandardsIgnoreStart
     // The description should not be rendered in this variant.
-    // @todo Fix it on OPENEUROPA-2123
-    // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
-    //
+    $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+
     // @todo will be updated on OPENEUROPA-2124
     // No date should be rendered neither.
+    // @codingStandardsIgnoreStart
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__week-day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
     // $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
@@ -224,11 +223,8 @@ class ParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('style')
     );
 
-    // @codingStandardsIgnoreStart
-    // @todo will be fixed on OPENEUROPA-2123.
-    // $this->assertEquals('Druplicon', $image_element->attr('alt'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();
