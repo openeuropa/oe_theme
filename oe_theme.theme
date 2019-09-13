@@ -963,7 +963,6 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
     'type' => $element['#attributes']['type'],
     'class' => $element['#attributes']['class'],
   ];
-  $ecl_array['class'][] = 'ecl-search-form__text-input';
 
   $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
   $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
