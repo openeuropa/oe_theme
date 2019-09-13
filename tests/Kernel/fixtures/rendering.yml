@@ -1191,17 +1191,17 @@
     count:
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
-      'li.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      'li.ecl-timeline2__item.ecl-timeline2__item--collapsed': 2
+      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
+      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 2
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': 0
     equals:
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': ""
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': ""
       '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__toggle .ecl-button__label': "Show 2 more items"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': ""
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
@@ -1237,8 +1237,8 @@
     count:
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 6
-      'li.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
-      'li.ecl-timeline2__item.ecl-timeline2__item--collapsed': 0
+      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
+      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 0
     equals:
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
@@ -1281,16 +1281,16 @@
     count:
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
-      'li.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      'li.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
+      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
+      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
     equals:
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': ""
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': ""
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': ""
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show all timelines"
@@ -1328,16 +1328,16 @@
     count:
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
-      'li.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      'li.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
+      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
+      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
     equals:
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': ""
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': ""
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': ""
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show 4 more items"
