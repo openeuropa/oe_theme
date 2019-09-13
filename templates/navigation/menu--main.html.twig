@@ -8,5 +8,8 @@
 #}
 {{ attach_library('oe_theme/navigation') }}
 {% if links %}
-  {% include '@oe_theme/compositions/ec-component-navigation-menu/navigation-menu.html.twig' with { links: links } %}
+  {% include '@ecl/menu-legacy' with {
+    label: 'Main Navigation'|t,
+    items: links
+  }%}
 {% endif %}
