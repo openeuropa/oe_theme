@@ -77,7 +77,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
           'label' => $item['title'],
           'href' => $item['url'],
           'isCurrent' => $item['in_active_trail'],
-          ],
+        ],
         ],
       ];
     }, $variables['items'][$name]['below']);
