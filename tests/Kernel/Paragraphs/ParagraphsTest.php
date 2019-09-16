@@ -222,11 +222,8 @@ class ParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('style')
     );
 
-    // @codingStandardsIgnoreStart
-    // @todo will be fixed on OPENEUROPA-2123.
-    // $this->assertEquals('Druplicon', $image_element->attr('alt'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();
