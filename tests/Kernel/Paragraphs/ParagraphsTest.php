@@ -221,6 +221,32 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
+    // Change the variant and test that the markup changed.
+    $paragraph->get('oe_paragraphs_variant')->setValue('block');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card section.ecl-card__body div.ecl-card__description')->text()));
+
+    // No date should be rendered neither.
+    $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__month'));
+    $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
+
+    // Neither the metas.
+    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+
+    $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
+    $this->assertCount(1, $link_element);
+    $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
+
+    // No image should be rendered neither.
+    $this->assertCount(0, $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image'));
+
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
     $paragraph->save();

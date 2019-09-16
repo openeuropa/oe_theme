@@ -458,26 +458,25 @@
       article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
       article.ecl-card section.ecl-card__body div.ecl-card__description: 0
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
+      'article.ecl-card footer.ecl-card__footer': ""
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "block"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item test"
+  assertions:
+    count:
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-card header.ecl-card__header div.ecl-card__image': 0
+      'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title: "Item title"
-      article.ecl-card footer.ecl-card__footer: ""
-# @todo will be triggered on OPENEUROPA-2124
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "block"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#  assertions:
-#    count:
-#      '.ecl-list-item.ecl-list-item--block': 1
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      'div.ecl-list-item__detail': 1
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
+      'article.ecl-card section.ecl-card__body div.ecl-card__description': "Item test"
+      'article.ecl-card footer.ecl-card__footer': ""
 - array:
     '#type': pattern
     '#id': list_item
