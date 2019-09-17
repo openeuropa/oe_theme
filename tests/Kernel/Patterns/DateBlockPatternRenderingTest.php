@@ -9,8 +9,6 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test date block pattern rendering.
- *
- * @group ecl1
  */
 class DateBlockPatternRenderingTest extends AbstractKernelTestBase {
 

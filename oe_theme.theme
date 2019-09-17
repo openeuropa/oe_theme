@@ -866,9 +866,7 @@ function oe_theme_preprocess_pattern_date_block(array &$variables): void {
     'past',
   ];
 
-  $variables['variant'] = in_array($variables['variant'], $variants, TRUE) ?
-    $variables['variant'] :
-    'default';
+  $variables['variant'] = in_array($variables['variant'], $variants, TRUE) ? $variables['variant'] : 'default';
 }
 
 /**

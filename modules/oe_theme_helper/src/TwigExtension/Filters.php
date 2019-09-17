@@ -38,6 +38,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
       new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
+      new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
     ];
   }
 
@@ -117,6 +118,26 @@ class Filters extends \Twig_Extension {
       'fi' => ['Finnish', 'suomi'],
       'sv' => ['Swedish', 'svenska'],
     ];
+  }
+
+  /**
+   * Get date variant class given its status.
+   *
+   * @param string $status
+   *   File extension.
+   *
+   * @return string
+   *   File icon class name.
+   */
+  public static function toDateStatus(string $status): string {
+    $variant_mapping = [
+      'default' => 'default',
+      'ongoing' => 'ongoing',
+      'cancelled' => 'canceled',
+      'past' => 'past',
+    ];
+
+    return array_key_exists($status, $variant_mapping) ? $variant_mapping[$status] : $status;
   }
 
   /**

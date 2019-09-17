@@ -25,6 +25,7 @@ class DateValueObjectTest extends AbstractUnitTestBase {
     $this->assertEquals($expected['week_day'], $date->getWeekDay());
     $this->assertEquals($expected['month'], $date->getMonth());
     $this->assertEquals($expected['month_name'], $date->getMonthName());
+    $this->assertEquals($expected['month_fullname'], $date->getMonthfullName());
     $this->assertEquals($expected['year'], $date->getYear());
   }
 

@@ -4,16 +4,19 @@
  * Date item list component.
  */
 #}
-{% include '@ecl/ec-component-list-item' with {
-  'variant': 'date',
-  'href': url,
-  'title': title,
-  'detail': detail,
-  'date': {
-    'week_day': date.week_day,
-    'day': date.day,
-    'month': date.month_name,
-    'year': date.year,
+{% include '@oe_theme/compositions/ec-component-content-item/content-item-date.html.twig' with {
+  title: {
+    label: title,
+    path: url
   },
-  'screen_reader': 'List item'|t
+  date: {
+    day: date.day,
+    month: date.month,
+    month_name: date.month_name,
+    month_fullname: date.month_fullname,
+    year: date.year
+  },
+  description: detail,
+  meta: meta,
+  variant: variant
 } only %}

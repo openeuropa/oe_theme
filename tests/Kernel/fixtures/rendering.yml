@@ -478,23 +478,35 @@
 #    equals:
 #      'h3.ecl-list-item__title': "Item title"
 #      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-# @todo will be triggered on OPENEUROPA-2124
-#- array:
-#    '#type': pattern
-#    '#id': list_item
-#    '#variant': "date"
-#    '#fields':
-#      title: "Item title"
-#      url: "http://example.com"
-#      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-#  assertions:
-#    count:
-#      '.ecl-list-item.ecl-list-item--block': 1
-#      'a.ecl-list-item__link[href="http://example.com"]': 1
-#      'div.ecl-list-item__detail': 1
-#    equals:
-#      'h3.ecl-list-item__title': "Item title"
-#      'div.ecl-list-item__detail': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+      meta:
+        - "News article"
+        - "6 July 2015"
+  assertions:
+    count:
+      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+    equals:
+      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__title': "Item title"
+      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
 - array:
     '#type': pattern
     '#id': list_item

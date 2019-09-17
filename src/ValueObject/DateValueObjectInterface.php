@@ -74,4 +74,12 @@ interface DateValueObjectInterface extends ValueObjectInterface {
    */
   public function getMonthName(): string;
 
+  /**
+   * Get month full name.
+   *
+   * @return string
+   *   Month full name.
+   */
+  public function getMonthFullName(): string;
+
 }
