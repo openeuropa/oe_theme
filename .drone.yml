@@ -4,7 +4,7 @@ workspace:
 
 services:
   web:
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     environment:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
@@ -33,7 +33,7 @@ pipeline:
 
   composer-install:
     group: prepare
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     volumes:
       - /cache:/cache
     commands:
@@ -41,7 +41,7 @@ pipeline:
 
   composer-update-lowest:
     group: post-prepare
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     volumes:
       - /cache:/cache
     commands:
@@ -51,31 +51,31 @@ pipeline:
         COMPOSER_BOUNDARY: lowest
 
   site-install:
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       - ./vendor/bin/run drupal:site-install
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       # @todo: remove the `@group ecl1` on PHPUnit tests to have them executed. We will remove this after porting is completed.
       - ./vendor/bin/phpunit --exclude-group ecl1
 
   behat:
     group: test
-    image: fpfis/httpd-php-ci:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       - ./vendor/bin/behat --strict --tags ecl2
 
   before-release:
-    image: fpfis/httpd-php-dev:7.1
+    image: fpfis/httpd-php-ci:${PHP_VERSION=7.2}
     commands:
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
     when:
@@ -91,6 +91,9 @@ pipeline:
         COMPOSER_BOUNDARY: highest
 
 matrix:
+  PHP_VERSION:
+    - 7.1
+    - 7.2
   COMPOSER_BOUNDARY:
     - lowest
     - highest
