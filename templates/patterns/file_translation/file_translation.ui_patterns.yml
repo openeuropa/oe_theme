@@ -38,5 +38,3 @@ file_translation:
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
-  libraries:
-      - oe_theme/file_translations

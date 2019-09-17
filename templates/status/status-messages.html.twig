@@ -17,7 +17,6 @@
   {% set extra_attributes = extra_attributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{{ attach_library('oe_theme/message') }}
 {# Icons are missing, they should be handled within the ECL component. #}
 {# @todo: open a follow up on INNO board. #}
 {% for type, messages in message_list %}

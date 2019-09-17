@@ -19,18 +19,6 @@ dropdown:
   dependencies:
     - core/drupal
     - oe_theme/base
-context_nav:
-  js:
-    js/context_nav.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-lang_select_pages:
-  js:
-    js/lang_select_pages.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
 navigation:
   js:
     js/navigation.js: {}

@@ -33,5 +33,3 @@ context_nav:
       label: "More label"
       description: "Label of the \"see more items\" button"
       preview: "See more"
-  libraries:
-    - oe_theme/context_nav
