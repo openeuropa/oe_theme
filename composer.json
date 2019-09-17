@@ -23,6 +23,7 @@
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
+        "guzzlehttp/guzzle": "~6.3",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0.0-beta4",
@@ -39,7 +40,8 @@
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
+        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully.",
+        "We explicitly require guzzlehttp/guzzle to allow tests after 'composer update --prefer-lowest' to complete successfully."
     ],
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
