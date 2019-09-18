@@ -7,10 +7,10 @@ tag:
       label: "Type"
       description: "Type of tag (link, button, removable)"
       preview: "link"
-    path:
+    url:
       type: "text"
-      label: "Path"
-      description: "Tag path"
+      label: "Url"
+      description: "Tag url"
       preview: "#"
     label:
       type: "text"

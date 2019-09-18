@@ -1527,3 +1527,15 @@
       'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
       'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
       'ul li.ecl-unordered-list__item:nth-child(3)': "Live streaming available"
+- array:
+    '#type': pattern
+    '#id': tag
+    '#fields':
+      tag_type: "link"
+      url: "http://example.com"
+      label: "Tag label"
+  assertions:
+    equals:
+      'a.ecl-tag': "Tag label"
+    count:
+      'a.ecl-tag[href="http://example.com"]': 1
