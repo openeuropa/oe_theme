@@ -4,23 +4,16 @@
  * Link block.
  */
 #}
-
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
-    'label': _item.label,
-    'path': _item.href,
+    label: _item.label,
+    path: _item.href
   }]) %}
 {% endfor %}
-
-{% set _item_more = {
-  'label': more_label|default('More'|t)
-}
-%}
-
-{% include '@ecl/contextual-navigation' with {
-  'label': label,
-  'items': _items,
-  'items_limit': limit,
-  'item_more': _item_more,
+{% include '@oe_theme/compositions/ec-component-contextual-navigation/contextual-navigation.html.twig' with {
+  label: label,
+  items: _items,
+  items_limit: limit,
+  item_more: { label: more_label|default('More'|t) }
 } %}
