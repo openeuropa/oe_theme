@@ -62,7 +62,6 @@ release:
     - { task: "remove", file: "oe_theme/js" }
     - { task: "remove", file: "oe_theme/templates" }
     - { task: "copy", from: "css", to: "oe_theme/css" }
-    - { task: "copy", from: "fonts", to: "oe_theme/fonts" }
     - { task: "copy", from: "images", to: "oe_theme/images" }
     - { task: "copy", from: "js", to: "oe_theme/js" }
     - { task: "copy", from: "templates", to: "oe_theme/templates" }
