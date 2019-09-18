@@ -9,24 +9,27 @@
   <p class="ecl-u-type-paragraph-m">{{ pattern.description }}</p>
 
   {# Pattern fields descriptions. #}
-  <table class="ecl-table">
-    <thead class="ecl-table__head">
-    <tr class="ecl-table__row">
-      <th scope="col" class="ecl-table__header">{{ "Field"|t }}</th>
-      <th scope="col" class="ecl-table__header">{{ "Label"|t }}</th>
-      <th scope="col" class="ecl-table__header">{{ "Type"|t }}</th>
-      <th scope="col" class="ecl-table__header">{{ "Description"|t }}</th>
-    </tr>
-    </thead>
-    <tbody class="ecl-table__body">
-    {% for field in pattern.fields %}
-      <tr class="ecl-table__row">
-        <td data-ecl-table-header="{{ "Field"|t }}" class="ecl-table__cell"><code>{{ field.name }}</code></td>
-        <td data-ecl-table-header="{{ "Label"|t }}" class="ecl-table__cell">{{ field.label }}</td>
-        <td data-ecl-table-header="{{ "Type"|t }}" class="ecl-table__cell"><code>{{ field.type }}</code></td>
-        <td data-ecl-table-header="{{ "Description"|t }}" class="ecl-table__cell">{{ field.description }}</td>
-      </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+  {% set _rows = [] %}
+  {% for field in pattern.fields %}
+    {% set _rows = _rows|merge([
+      { cells: [
+        { 'label': field.name, 'data-ecl-table-header': 'Field'|t },
+        { 'label': field.label, 'data-ecl-table-header': 'Label'|t },
+        { 'label': field.type, 'data-ecl-table-header': 'Type'|t },
+        { 'label': field.description, 'data-ecl-table-header': 'Description'|t }
+      ]}
+    ]) %}
+  {% endfor %}
+  {% include '@ecl/table' with {
+    zebra: true,
+    headers: [
+      [
+        { 'label': 'Field'|t },
+        { 'label': 'Label'|t },
+        { 'label': 'Type'|t },
+        { 'label': 'Description'|t }
+      ]
+    ],
+    rows: _rows
+  } %}
 {% endif %}
