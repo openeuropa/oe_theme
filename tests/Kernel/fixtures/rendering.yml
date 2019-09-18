@@ -457,9 +457,9 @@
       article.ecl-card header.ecl-card__header div.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card section.ecl-card__body div.ecl-card__description: 0
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title: "Item title"
-      article.ecl-card section.ecl-card__body div.ecl-card__description: ""
       article.ecl-card footer.ecl-card__footer: ""
 # @todo will be triggered on OPENEUROPA-2124
 #- array:

@@ -1,15 +1,6 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-card/card.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-card/card.html.twig
-@@ -78,7 +78,7 @@
- <article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-   <header class="ecl-card__header">
-     {% if _card.image %}
--      <div class="ecl-card__image" alt="card image" style="background-image:url('{{ _card.image }}')"></div>
-+      <div class="ecl-card__image" alt="{{ _card.image.alt }}" style="background-image:url('{{ _card.image.src }}')"></div>
-     {% endif %}
-     {% if _card.meta is not empty %}
-       <div class="ecl-card__meta">{{ _card.meta|join(" | ") }}</div>
 @@ -94,7 +94,9 @@
      </h1>
    </header>
