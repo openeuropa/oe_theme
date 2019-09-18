@@ -650,7 +650,7 @@ function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
     return;
   }
 
-  // We need to rename the variables that the Patterns module uses.
+  // Map UI Patterns fields to ECL component fields.
   foreach ($variables['video']['sources'] as &$source) {
     $source['type'] = $source['src_type'];
   }

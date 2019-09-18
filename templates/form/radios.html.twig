@@ -17,11 +17,7 @@
 %}
 <div{{ attributes.setAttribute("role", "radiogroup").addClass(classes) }}>
   {%- if _label is not empty %}
-    <div
-      class="ecl-form-label"
-      id="{{ _label_id }}"
-      {{ hide_label ? 'hidden'}}
-    >
+    <div class="ecl-form-label" id="{{ _label_id }}"{{ hide_label ? ' hidden'}}>
       {%- block label _label -%}
     </div>
   {% endif %}
