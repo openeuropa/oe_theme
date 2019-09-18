@@ -10,8 +10,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class MainMenuTest.
- *
- * @group ecl1
  */
 class MainMenuTest extends AbstractKernelTestBase {
 
@@ -75,18 +73,19 @@ class MainMenuTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-navigation-menu');
+    $actual = $crawler->filter('nav.ecl-menu-legacy');
     $this->assertCount(1, $actual);
 
     // Assert that parent link is correctly rendered.
-    $link = $crawler->filter('nav.ecl-navigation-menu a.ecl-navigation-menu__link')->first();
-    $this->assertEquals('Parent item', trim($link->text()));
+    $link = $crawler->filter('nav.ecl-menu-legacy a.ecl-menu-legacy__link')->first();
+    // Remove all non-printable characters.
+    $this->assertEquals('Parent item', preg_replace('/[\x00-\x1F\x80-\xFF]/', '', trim($link->text())));
     $this->assertEquals('http://parent.eu', trim($link->extract(['href'])[0]));
 
     // Assert children are rendered correctly.
     $position = 0;
     foreach ($children as $title => $url) {
-      $link = $crawler->filter('.ecl-navigation-menu__group a.ecl-navigation-menu__link')->eq($position);
+      $link = $crawler->filter('.ecl-menu-legacy__mega a.ecl-menu-legacy__sublink')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $this->assertEquals($url, trim($link->extract(['href'])[0]));
       $position++;

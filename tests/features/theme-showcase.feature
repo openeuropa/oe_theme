@@ -10,6 +10,7 @@ Feature: Theme showcase
     Then I should see the "search form" element in the "header"
     And I should see the "language switcher" element in the "header"
 
+  @ecl2
   Scenario: The demo site navigation features placeholder menu links
     When I am on the homepage
     Then I should see the following links in the "navigation" region:
@@ -30,6 +31,7 @@ Feature: Theme showcase
       | Departments        |
 
   @javascript
+  #todo: Fix on the ticket OPENEUROPA-2152.
   Scenario: The demo site navigation menu features dropdown menus
     When I am on the homepage
     Then the "priorities dropdown menu" is not visible
