@@ -646,11 +646,13 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
-  if (!empty($variables['video']['sources'])) {
-    // We need to rename the variables that the Patterns module uses.
-    foreach ($variables['video']['sources'] as &$source) {
-      $source['type'] = $source['src_type'];
-    }
+  if (empty($variables['video']['sources'])) {
+    return;
+  }
+
+  // Map UI Patterns fields to ECL component fields.
+  foreach ($variables['video']['sources'] as &$source) {
+    $source['type'] = $source['src_type'];
   }
 }
 
@@ -958,6 +960,7 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
       ];
     }
   }
+
   // Map rest of the array elements.
   $ecl_array['invalid'] = !empty($element['#errors']);
   return $ecl_array;
@@ -1009,10 +1012,12 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
  * For preprocessing default mode of document media type.
  */
 function oe_theme_preprocess_media__document__default(&$variables) {
-  if (!$variables['media']->get('oe_media_file')->isEmpty()) {
-    $file_object = $variables['media']->get('oe_media_file')->first()->entity;
-    $variables['file'] = FileValueObject::fromFileEntity($file_object);
+  if ($variables['media']->get('oe_media_file')->isEmpty()) {
+    return;
   }
+
+  $file_object = $variables['media']->get('oe_media_file')->first()->entity;
+  $variables['file'] = FileValueObject::fromFileEntity($file_object);
 }
 
 /**

@@ -96,10 +96,7 @@ class ContentRowTest extends ParagraphsTestBase {
     // Verify that there is a full size column rendered.
     $this->assertCount(1, $crawler->filter('.ecl-row .ecl-col-md-12'));
     // Do a smoke test that inner paragraphs are rendered.
-    // @todo will be added on OPENEUROPA-2092
-    // @codingStandardsIgnoreStart
-    // $this->assertContains('Links block title', $html);
-    // @codingStandardsIgnoreEnd
+    $this->assertContains('Links block title', $html);
     $this->assertContains('List item title', $html);
     $this->assertContains('List block title', $html);
     $this->assertContains('Rich text without title.', $html);
@@ -123,10 +120,7 @@ class ContentRowTest extends ParagraphsTestBase {
 
     // Verify that the right column still contains all the paragraphs.
     $right_column_html = $right_column->html();
-    // @todo will be added on OPENEUROPA-2092
-    // @codingStandardsIgnoreStart
-    //$this->assertContains('Links block title', $right_column_html);
-    // @codingStandardsIgnoreEnd
+    $this->assertContains('Links block title', $right_column_html);
     $this->assertContains('List item title', $right_column_html);
     $this->assertContains('List block title', $right_column_html);
     $this->assertContains('Rich text without title.', $right_column_html);

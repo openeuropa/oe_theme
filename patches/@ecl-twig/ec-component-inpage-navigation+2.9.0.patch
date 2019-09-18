@@ -1,0 +1,16 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-inpage-navigation/inpage-navigation.html.twig
++++ b/node_modules/@ecl-twig/ec-component-inpage-navigation/inpage-navigation.html.twig
+@@ -40,7 +40,11 @@
+ 
+ {# Print the result #}
+ 
+-<nav class="{{ _css_class }}"{{ _extra_attributes }} data-ecl-inpage-navigation="true">
++<nav
++  class="{{ _css_class }}"{{ _extra_attributes }}
++  data-ecl-inpage-navigation
++  data-ecl-auto-init="InpageNavigation"
++>
+   <div class="ecl-inpage-navigation__title">{{ title }}</div>
+   <div class="ecl-inpage-navigation__body">
+     <button type="button" class="ecl-inpage-navigation__trigger"

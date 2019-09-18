@@ -196,12 +196,9 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
 
-    // @codingStandardsIgnoreStart
     // The description should not be rendered in this variant.
-    // @todo Fix it on OPENEUROPA-2123
-    // $this->assertCount(0, $crawler->filter('.ecl-card__description'));
-    // @codingStandardsIgnoreEnd
-    //
+    $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
     $this->assertCount(0, $crawler->filter('.ecl-date-block__day'));

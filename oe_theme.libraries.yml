@@ -1,23 +1,12 @@
 base:
   js:
     dist/scripts/ecl-ec-preset-website.js: {}
+    js/ecl_auto_init.js: {}
 style:
   css:
     theme:
       dist/styles/ecl-ec-preset-website.css: {}
       css/style.css: {}
-accordions:
-  js:
-    js/accordions.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-message:
-  js:
-    js/message.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
 dialogs:
   js:
     js/dialogs.js: {}
@@ -30,30 +19,6 @@ dropdown:
   dependencies:
     - core/drupal
     - oe_theme/base
-context_nav:
-  js:
-    js/context_nav.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-file_translations:
-  js:
-    js/file_translations.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-inpage_navigation:
-  js:
-    js/inpage_navigation.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-lang_select_pages:
-  js:
-    js/lang_select_pages.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
 navigation:
   js:
     js/navigation.js: {}
@@ -63,12 +28,6 @@ navigation:
 tables:
   js:
     js/tables.js: {}
-  dependencies:
-    - core/drupal
-    - oe_theme/base
-timelines:
-  js:
-    js/timelines.js: {}
   dependencies:
     - core/drupal
     - oe_theme/base

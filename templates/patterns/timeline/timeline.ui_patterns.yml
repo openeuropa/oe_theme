@@ -51,5 +51,3 @@ timeline:
           label: "23 December 2017"
           title: "By late-2018"
           body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
-  libraries:
-    - oe_theme/timelines

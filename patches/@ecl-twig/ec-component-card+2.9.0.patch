@@ -1,0 +1,14 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-card/card.html.twig
++++ b/node_modules/@ecl-twig/ec-component-card/card.html.twig
+@@ -94,7 +94,9 @@
+     </h1>
+   </header>
+   <section class="ecl-card__body">
+-    <div class="ecl-card__description">{{ _card.description }}</div>
++    {% if _card.description is not empty %}
++      <div class="ecl-card__description">{{ _card.description }}</div>
++    {% endif %}
+     {% if _card.links is defined and _card.links is not empty and _card.links is iterable %}
+       <ul class="ecl-card__link-container">
+         {% for link in _card.links %}
