@@ -458,8 +458,9 @@
       article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
       article.ecl-card section.ecl-card__body div.ecl-card__description: 0
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
-      'article.ecl-card footer.ecl-card__footer': ""
+    equals:
+      article.ecl-card header.ecl-card__header h1.ecl-card__title: "Item title"
+      article.ecl-card footer.ecl-card__footer: ""
 - array:
     '#type': pattern
     '#id': list_item
