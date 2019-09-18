@@ -1,0 +1,19 @@
+tag:
+  label: "Tag"
+  description: "The tag component is used to display structured information."
+  fields:
+    tag_type:
+      type: "text"
+      label: "Type"
+      description: "Type of tag (link, button, removable)"
+      preview: "link"
+    path:
+      type: "text"
+      label: "Path"
+      description: "Tag path"
+      preview: "#"
+    label:
+      type: "text"
+      label: "Label"
+      description: "Tag label"
+      preview: "Tag 1"
