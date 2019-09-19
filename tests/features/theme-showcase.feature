@@ -10,8 +10,7 @@ Feature: Theme showcase
     Then I should see the "search form" element in the "header"
     # @todo: Should be added on the scope of OPENEUROPA-1992
     # And I should see the "sites switcher" element in the "header"
-    # @todo: Should be added on the scope of OPENEUROPA-1974
-    # And I should see the "language switcher" element in the "header"
+    And I should see the "language switcher" element in the "header"
 
   Scenario: The demo site navigation features placeholder menu links
     When I am on the homepage
@@ -54,13 +53,13 @@ Feature: Theme showcase
     When I press "Dropdown"
     Then the "dropdown content" is visible
 
-  @javascript
+  @javascript @ecl2
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage
-    Then the "language switcher overlay" is not visible
+    Then the overlay "language switcher links" is not visible
 
     When I open the language switcher dialog
-    Then the "language switcher overlay" is visible
+    Then the overlay "language switcher links" is visible
 
     And I should see the following links in the "language switcher":
       | български   |
@@ -97,9 +96,9 @@ Feature: Theme showcase
     Then the active language switcher link in the dialog is "polski"
 
     When I press "Close"
-    Then the "language switcher overlay" is not visible
+    Then the "language switcher links" is not visible
 
-  @javascript
+  @javascript @ecl2
   Scenario: Site visitor can change language using the language switcher
     When I am on the homepage
     Then the "language switcher link" element should contain "English"

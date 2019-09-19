@@ -61,13 +61,32 @@ class MinkContext extends DrupalExtensionMinkContext {
   }
 
   /**
+   * Assert visibility of given overlay element.
+   *
+   * @Then the overlay :element is visible
+   */
+  public function assertOverlayVisibility($element): void {
+    $node = $this->getSession()->getPage()->find('css', $element);
+    Assert::assertEquals($node->getAttribute('hidden'), NULL, sprintf('Overlay "%s" is not visible, but it should be.', $element));
+  }
+
+  /**
+   * Assert non visibility of given overlay element.
+   *
+   * @Then the overlay :element is not visible
+   */
+  public function assertOverlayNonVisibility($element): void {
+    $this->assertSession()->elementAttributeExists('css', $element, 'hidden');
+  }
+
+  /**
    * Open language switcher dialog.
    *
    * @When I open the language switcher dialog
    */
   public function openLanguageSwitcher(): void {
     $this->getRegion('header')
-      ->find('css', '.ecl-lang-select-sites__link')
+      ->find('css', 'a[data-ecl-language-selector]')
       ->click();
   }
 
@@ -80,7 +99,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @Then the active language switcher link in the dialog is :label
    */
   public function assertActiveLanguageSwitcherLink($label): void {
-    $selector = 'a.ecl-language-list__button--active';
+    $selector = '.ecl-language-list__item--is-active a.ecl-language-list__link';
     $overlay = $this->getLanguageSwitcherOverlay();
     $this->assertSession()->elementsCount('css', $selector, 1, $overlay);
     $this->assertSession()->elementTextContains('css', $selector, $label);
@@ -142,9 +161,8 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
   protected function getLanguageSwitcherOverlay(): NodeElement {
-    $selector = 'div.ecl-language-list.ecl-language-list--overlay';
-
-    return $this->assertSession()->elementExists('css', $selector);
+    return $this->assertSession()
+      ->elementExists('css', 'div.ecl-language-list--overlay');
   }
 
   /**

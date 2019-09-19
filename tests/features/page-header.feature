@@ -48,7 +48,6 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Robots are everywhere nowadays"
 
-  @ecl2
   Scenario: Page content type has custom metadata shown in the page header.
     Given "oe_page" content:
       | title   | oe_summary                           | oe_content_content_owner                                                |
@@ -104,6 +103,7 @@ Feature: Page header block component.
 
     When I visit the "French" translation page for the "Robots are everywhere" demo page
     Then I should see the heading "Robots are everywhere" in the "page header"
-    And I should see "français" in the "unavailable languages in the language page switcher"
-    And I should see "English" in the "selected language in the language page switcher"
-    And I should see the link "español" in the "language page switcher"
+    # @todo Will be tested on OPENEUROPA-2013.
+    # And I should see "français" in the "unavailable languages in the language page switcher"
+    # And I should see "English" in the "selected language in the language page switcher"
+    # And I should see the link "español" in the "language page switcher"

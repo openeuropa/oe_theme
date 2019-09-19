@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_helper\TwigExtension;
 
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
  * Collection of extra Twig filters.
@@ -37,6 +38,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('format_size', 'format_size'),
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
       new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
+      new \Twig_SimpleFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
     ];
@@ -73,12 +75,29 @@ class Filters extends \Twig_Extension {
       return $languages[$language_code]->getName();
     }
     // The fallback implemented in case we don't have enabled language.
-    $predefined = self::getEuropeanUnionLanguageList() + LanguageManager::getStandardLanguageList();
+    $predefined = EuropeanUnionLanguages::getLanguageList() + LanguageManager::getStandardLanguageList();
     if (!empty($predefined[$language_code][1])) {
       return $predefined[$language_code][1];
     }
 
     throw new \InvalidArgumentException('The language code ' . $language_code . ' does not exist.');
+  }
+
+  /**
+   * Get an internal language ID given its code.
+   *
+   * @param string $language_code
+   *   The language code as defined by the W3C language tags document.
+   *
+   * @return string
+   *   The internal language ID, or the given language code if none found.
+   */
+  public function toInternalLanguageId($language_code): string {
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      return EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
+
+    return $language_code;
   }
 
   /**
@@ -90,34 +109,11 @@ class Filters extends \Twig_Extension {
    * @return array
    *   An array with language codes as keys, and English and native language
    *   names as values.
+   *
+   * @deprecated use EuropeanUnionLanguages::getLanguageList() instead.
    */
   public static function getEuropeanUnionLanguageList(): array {
-    return [
-      'bg' => ['Bulgarian', 'български'],
-      'cs' => ['Czech', 'čeština'],
-      'da' => ['Danish', 'dansk'],
-      'de' => ['German', 'Deutsch'],
-      'et' => ['Estonian', 'eesti'],
-      'el' => ['Greek', 'ελληνικά'],
-      'en' => ['English', 'English'],
-      'es' => ['Spanish', 'español'],
-      'fr' => ['French', 'français'],
-      'ga' => ['Irish', 'Gaeilge'],
-      'hr' => ['Croatian', 'hrvatski'],
-      'it' => ['Italian', 'italiano'],
-      'lt' => ['Lithuanian', 'lietuvių'],
-      'lv' => ['Latvian', 'latviešu'],
-      'hu' => ['Hungarian', 'magyar'],
-      'mt' => ['Maltese', 'Malti'],
-      'nl' => ['Dutch', 'Nederlands'],
-      'pl' => ['Polish', 'polski'],
-      'pt-pt' => ['Portuguese', 'português'],
-      'ro' => ['Romanian', 'română'],
-      'sk' => ['Slovak', 'slovenčina'],
-      'sl' => ['Slovenian', 'slovenščina'],
-      'fi' => ['Finnish', 'suomi'],
-      'sv' => ['Swedish', 'svenska'],
-    ];
+    return EuropeanUnionLanguages::getLanguageList();
   }
 
   /**

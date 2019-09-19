@@ -15,6 +15,7 @@ use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
  * Implements hook_preprocess().
@@ -544,11 +545,12 @@ function oe_theme_preprocess_pager(array &$variables): void {
  * Implements hook_preprocess_links().
  */
 function oe_theme_preprocess_links__language_block(array &$variables): void {
-  $current_language = \Drupal::languageManager()
+  $current_language_id = \Drupal::languageManager()
     ->getCurrentLanguage()
     ->getId();
 
   $variables['languages'] = [];
+  $variables['current_language'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
@@ -557,18 +559,27 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ->setAbsolute(TRUE)
       ->toString();
 
-    // Get the language prefix.
-    $lang_prefix = \Drupal::configFactory()
-      ->get('language.negotiation')
-      ->get('url.prefixes.' . $language_code);
+    $language_internal = $language_code;
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
 
     $variables['languages'][] = [
-      'href' => $href,
+      'path' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $lang_prefix,
-      'is_active' => $language_code === $current_language,
+      'lang' => $language_internal,
+      'active' => $language_code === $current_language_id,
     ];
+
+    if ($language_code === $current_language_id) {
+      $variables['current_language'] = [
+        'path' => $href,
+        'hreflang' => $language_code,
+        'lang' => $language_internal,
+        'label' => $link['link']['#title'],
+      ];
+    }
   }
 }
 
@@ -585,8 +596,10 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   $variables['current'] = $translation->language()->getName();
   /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
   $languages = \Drupal::service('language_manager')->getNativeLanguages();
-  $current_language = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['unavailable'] = $languages[$current_language]->getName();
+  $current_language_id = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
+  $variables['unavailable'] = $languages[$current_language_id]->getName();
 
   // Normalize the links to an array of options suitable for the ECL
   // "ecl-lang-select-pages" template.
@@ -599,11 +612,14 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
+    $eu_lang_list = Filters::getEuropeanUnionLanguageList();
+    $language_prefix = !empty($eu_lang_list[$language_code][2]) ? $eu_lang_list[$language_code][2] : $language_code;
+
     $variables['options'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_code,
+      'lang' => $language_prefix,
     ];
   }
 }
@@ -951,6 +967,7 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
 
   $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
   $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
+
   $ecl_array['extra_attributes'] = [];
   foreach ($extra_attributes as $key => $value) {
     if (is_string($value)) {
@@ -995,8 +1012,9 @@ function oe_theme_preprocess_block(&$variables) {
  * Add required variables to follow ECL guidelines.
  */
 function oe_theme_preprocess_block__system_branding_block(&$variables) {
-  $lang_id = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['site_logo'] = $variables['ecl_logo_path'] . '/logo--' . $lang_id . '.svg';
+  $variables['current_language_id'] = \Drupal::languageManager()
+    ->getCurrentLanguage()
+    ->getId();
 
   $variables['site_logo_alt'] = !empty($variables['site_name']) ?
     t('@site_name logo', ['@site_name' => $variables['site_name']]) :
@@ -1026,5 +1044,18 @@ function oe_theme_preprocess_media__document__default(&$variables) {
 function oe_theme_preprocess_pattern_timeline(array &$variables): void {
   foreach ($variables['items'] as &$item) {
     $item['content'] = $item['body'];
+  }
+}
+
+/**
+ * Implements template_preprocess_language_selection_page_content().
+ */
+function oe_theme_preprocess_language_selection_page_content(&$variables) {
+  if (empty($variables['languages'])) {
+    return;
+  }
+
+  foreach ($variables['languages'] as &$language) {
+    $language['path'] = $language['href'];
   }
 }

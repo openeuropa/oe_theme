@@ -8,13 +8,11 @@
 #}
 {{ attach_library('oe_theme/dialogs') }}
 {% if links -%}
-    {% include '@ecl/ec-component-language-list' with {
-        languages: languages,
-        variant: 'overlay',
-        messages: {
-            dismiss: 'Close'|t,
-            heading: 'Select your language'|t,
-        },
-        extra_classes: 'ecl-site-header__language-list'
-    } %}
+  {% include '@oe_theme/compositions/ec-component-language-list/language-list-selector.html.twig' with {
+    label: current_language.label,
+    path: current_language.path,
+    code: current_language.lang,
+    icon_path: ecl_icon_path,
+    items: languages
+  } only %}
 {%- endif %}
