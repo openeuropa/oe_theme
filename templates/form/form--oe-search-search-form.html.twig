@@ -7,6 +7,11 @@
  * @see @ecl/ec-component-search-form.twig
  */
 #}
+{% set extra_attributes = [
+  {name: 'id', value: 'oe-search-search-form'},
+  {name: 'method', value: 'post'},
+  {name: 'accept-charset', value: 'UTF-8'},
+]%}
 {% set text_input = {
   id: input_array.id,
   name: input_array.name,
