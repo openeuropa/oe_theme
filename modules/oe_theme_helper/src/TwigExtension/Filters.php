@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_helper\TwigExtension;
 
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
  * Collection of extra Twig filters.
@@ -37,7 +38,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('format_size', 'format_size'),
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
       new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
-      new \Twig_SimpleFilter('to_native_language_id', [$this, 'toNativeLanguageId']),
+      new \Twig_SimpleFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
     ];
@@ -74,7 +75,7 @@ class Filters extends \Twig_Extension {
       return $languages[$language_code]->getName();
     }
     // The fallback implemented in case we don't have enabled language.
-    $predefined = self::getEuropeanUnionLanguageList() + LanguageManager::getStandardLanguageList();
+    $predefined = EuropeanUnionLanguages::getLanguageList() + LanguageManager::getStandardLanguageList();
     if (!empty($predefined[$language_code][1])) {
       return $predefined[$language_code][1];
     }
@@ -83,22 +84,21 @@ class Filters extends \Twig_Extension {
   }
 
   /**
-   * Get a native language id given its code.
+   * Get an internal language ID given its code.
    *
    * @param string $language_code
    *   The language code as defined by the W3C language tags document.
    *
    * @return string
-   *   The native language id.
+   *   The internal language ID.
    *
    * @throws \InvalidArgumentException
    *   Thrown when the passed in language code does not exist.
    */
-  public function toNativeLanguageId($language_code): string {
+  public function toInternalLanguageId($language_code): string {
     // The fallback implemented in case we don't have enabled language.
-    $predefined = self::getEuropeanUnionLanguageList();
-    if (!empty($predefined[$language_code][2])) {
-      return $predefined[$language_code][2];
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      return EuropeanUnionLanguages::getInternalLanguageCode($language_code);
     }
 
     throw new \InvalidArgumentException('The language code ' . $language_code . ' does not exist.');
@@ -113,34 +113,11 @@ class Filters extends \Twig_Extension {
    * @return array
    *   An array with language codes as keys, and English and native language
    *   names as values.
+   *
+   * @deprecated use EuropeanUnionLanguages::getLanguageList() instead.
    */
   public static function getEuropeanUnionLanguageList(): array {
-    return [
-      'bg' => ['Bulgarian', 'български', 'bg'],
-      'cs' => ['Czech', 'čeština', 'cs'],
-      'da' => ['Danish', 'dansk', 'da'],
-      'de' => ['German', 'Deutsch', 'de'],
-      'et' => ['Estonian', 'eesti', 'et'],
-      'el' => ['Greek', 'ελληνικά', 'el'],
-      'en' => ['English', 'English', 'en'],
-      'es' => ['Spanish', 'español', 'es'],
-      'fr' => ['French', 'français', 'fr'],
-      'ga' => ['Irish', 'Gaeilge', 'ga'],
-      'hr' => ['Croatian', 'hrvatski', 'hr'],
-      'it' => ['Italian', 'italiano', 'it'],
-      'lt' => ['Lithuanian', 'lietuvių', 'lt'],
-      'lv' => ['Latvian', 'latviešu', 'lv'],
-      'hu' => ['Hungarian', 'magyar', 'hu'],
-      'mt' => ['Maltese', 'Malti', 'mt'],
-      'nl' => ['Dutch', 'Nederlands', 'nl'],
-      'pl' => ['Polish', 'polski', 'pl'],
-      'pt-pt' => ['Portuguese', 'português', 'pt'],
-      'ro' => ['Romanian', 'română', 'ro'],
-      'sk' => ['Slovak', 'slovenčina', 'sk'],
-      'sl' => ['Slovenian', 'slovenščina', 'sl'],
-      'fi' => ['Finnish', 'suomi', 'fi'],
-      'sv' => ['Swedish', 'svenska', 'sv'],
-    ];
+    return EuropeanUnionLanguages::getLanguageList();
   }
 
   /**

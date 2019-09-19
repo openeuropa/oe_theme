@@ -15,7 +15,7 @@ use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
-use Drupal\oe_theme_helper\TwigExtension\Filters;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
  * Implements hook_preprocess().
@@ -559,14 +559,16 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       ->setAbsolute(TRUE)
       ->toString();
 
-    $eu_lang_list = Filters::getEuropeanUnionLanguageList();
-    $language_prefix = !empty($eu_lang_list[$language_code][2]) ? $eu_lang_list[$language_code][2] : $language_code;
+    $language_internal = $language_code;
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
 
     $variables['languages'][] = [
       'path' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_prefix,
+      'lang' => $language_internal,
       'active' => $language_code === $current_language_id,
     ];
 
@@ -574,6 +576,7 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       $variables['current_language'] = [
         'path' => $href,
         'hreflang' => $language_code,
+        'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
     }
