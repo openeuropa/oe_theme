@@ -10,6 +10,7 @@
 {% if links %}
   {% include '@ecl/menu-legacy' with {
     label: 'Main Navigation'|t,
-    items: links
-  }%}
+    items: links,
+    icon_path: ecl_icon_path
+  } only %}
 {% endif %}
