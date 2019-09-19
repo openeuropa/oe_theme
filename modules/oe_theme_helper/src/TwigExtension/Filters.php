@@ -90,18 +90,14 @@ class Filters extends \Twig_Extension {
    *   The language code as defined by the W3C language tags document.
    *
    * @return string
-   *   The internal language ID.
-   *
-   * @throws \InvalidArgumentException
-   *   Thrown when the passed in language code does not exist.
+   *   The internal language ID, or the given language code if none found.
    */
   public function toInternalLanguageId($language_code): string {
-    // The fallback implemented in case we don't have enabled language.
     if (EuropeanUnionLanguages::hasLanguage($language_code)) {
       return EuropeanUnionLanguages::getInternalLanguageCode($language_code);
     }
 
-    throw new \InvalidArgumentException('The language code ' . $language_code . ' does not exist.');
+    return $language_code;
   }
 
   /**

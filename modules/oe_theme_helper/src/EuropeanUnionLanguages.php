@@ -62,13 +62,13 @@ class EuropeanUnionLanguages {
   }
 
   /**
-   * Get a language ID given its code.
+   * Assert whether the given language is a European Union one.
    *
    * @param string $language_code
    *   The language code as defined by the W3C language tags document.
    *
    * @return bool
-   *   Whereas the given language exists.
+   *   Whereas the given language is a European Union one.
    */
   public static function hasLanguage(string $language_code): bool {
     return isset(self::$languages[$language_code]);
