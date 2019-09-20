@@ -1,0 +1,84 @@
+- array:
+    '#header':
+      - 'Name'
+      - 'Registration date'
+      - 'Email'
+    '#rows':
+      -
+        - 'John Doe'
+        - '01/01/2016'
+        - 'john.doe@mail.com'
+  assertions:
+    count:
+      'table.ecl-table': 1
+      'thead.ecl-table__head': 1
+      'thead.ecl-table__head tr.ecl-table__row': 1
+      'thead.ecl-table__head th.ecl-table__header': 3
+      'tbody.ecl-table__body': 1
+      'tbody.ecl-table__body tr.ecl-table__row': 1
+      'tbody.ecl-table__body td.ecl-table__cell': 3
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Name"]': 1
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Registration date"]': 1
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Email"]': 1
+    equals:
+      'thead.ecl-table__head th.ecl-table__header:nth-child(1)': "Name"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(2)': "Registration date"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(3)': "Email"
+      'tbody.ecl-table__body td.ecl-table__cell:nth-child(1)': "John Doe"
+      'tbody.ecl-table__body td.ecl-table__cell:nth-child(2)': "01/01/2016"
+      'tbody.ecl-table__body td.ecl-table__cell:nth-child(3)': "john.doe@mail.com"
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Name"]': "John Doe"
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Registration date"]': "01/01/2016"
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Email"]': "john.doe@mail.com"
+- array:
+    '#header':
+      - 'Name'
+      - 'Registration date'
+      - 'Email'
+    '#rows':
+      -
+        - 'John Doe'
+        - '01/01/2016'
+        - 'john.doe@mail.com'
+      -
+        - 'Jane Doe'
+        - '06/12/2016'
+        - 'jane.doe@mail.com'
+      -
+        - 'Jack Doe'
+        - '03/05/2017'
+        - 'jack.doe@mail.com'
+  assertions:
+    count:
+      'table.ecl-table': 1
+      'thead.ecl-table__head': 1
+      'thead.ecl-table__head tr.ecl-table__row': 1
+      'thead.ecl-table__head th.ecl-table__header': 3
+      'tbody.ecl-table__body': 1
+      'tbody.ecl-table__body tr.ecl-table__row': 3
+      'tbody.ecl-table__body td.ecl-table__cell': 9
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Name"]': 3
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Registration date"]': 3
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Email"]': 3
+    equals:
+      'thead.ecl-table__head th.ecl-table__header:nth-child(1)': "Name"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(2)': "Registration date"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(3)': "Email"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(1)': "John Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(2)': "01/01/2016"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(3)': "john.doe@mail.com"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell:nth-child(1)': "Jane Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell:nth-child(2)': "06/12/2016"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell:nth-child(3)': "jane.doe@mail.com"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell:nth-child(1)': "Jack Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell:nth-child(2)': "03/05/2017"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell:nth-child(3)': "jack.doe@mail.com"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Name"]': "John Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Registration date"]': "01/01/2016"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Email"]': "john.doe@mail.com"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell[data-ecl-table-header="Name"]': "Jane Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell[data-ecl-table-header="Registration date"]': "06/12/2016"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(2) td.ecl-table__cell[data-ecl-table-header="Email"]': "jane.doe@mail.com"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Name"]': "Jack Doe"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Registration date"]': "03/05/2017"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Email"]': "jack.doe@mail.com"
