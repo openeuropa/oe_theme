@@ -940,6 +940,17 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
   $variables['input_array'] = _oe_theme_preprocess_search_input_text($variables['element']['keys']);
   $variables['input_array']['hide_label'] = TRUE;
   $variables['label'] = $variables['input_array']['label'] = t('Search');
+
+  $variables['extra_attributes'] = [];
+  foreach ($variables['attributes'] as $key => $value) {
+    if (is_string($value)) {
+      $variables['extra_attributes'][] = [
+        'name' => $key,
+        'value' => $value,
+      ];
+    }
+  }
+
 }
 
 /**
