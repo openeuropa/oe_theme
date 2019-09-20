@@ -1066,8 +1066,9 @@ function oe_theme_preprocess_table(array &$variables): void {
       $cell['colspan'] = (string) $cell['attributes']['colspan'];
     }
 
-    for ($i = 1; $i <= ($cell['colspan'] ? intval($cell['colspan']) : 1); $i++) {
-      $name_col[] = ((array) $cell['label'])['#markup'] ?: $cell['label'];
+    for ($i = 1; $i <= (array_key_exists('colspan', $cell) ? intval($cell['colspan']) : 1); $i++) {
+      $cell_label = (array) $cell['label'];
+      $name_col[] = array_key_exists('#markup', $cell_label) ? $cell_label['#markup'] : $cell['label'];
     }
   }
   $variables['headers'] = [$variables['header']];
