@@ -1103,3 +1103,17 @@ function oe_theme_preprocess_table(array &$variables): void {
     }
   }
 }
+
+/**
+ * Implements template_preprocess_block__oe_theme_main_page_content().
+ */
+function oe_theme_preprocess_block__oe_theme_main_page_content(&$variables) {
+  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+}
+
+/**
+ * Implements template_preprocess_block__oe_theme_tabs().
+ */
+function oe_theme_preprocess_block__oe_theme_tabs(&$variables) {
+  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+}
