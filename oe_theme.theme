@@ -1051,34 +1051,26 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
 function oe_theme_preprocess_table(array &$variables): void {
   $variables['zebra'] = 'true';
 
-  foreach ($variables['header'] as &$item) {
-    $item['label'] = $item['content'];
+  $name_col = [];
+  foreach ($variables['header'] as $key => &$cell) {
+    $cell['label'] = $cell['content'];
+
+    if ($cell['attributes']['colspan']) {
+      $cell['colspan'] = (string) $cell['attributes']['colspan'];
+    }
+
+    for ($i = 1; $i <= ($cell['colspan'] ? intval($cell['colspan']) : 1); $i++) {
+      $name_col[] = ((array) $cell['label'])['#markup'] ?: $cell['label'];
+    }
   }
   $variables['headers'] = [$variables['header']];
 
   foreach ($variables['rows'] as &$row) {
+    $col = 0;
     foreach ($row['cells'] as &$cell) {
       $cell['label'] = $cell['content'];
+      $cell['data-ecl-table-header'] = $name_col[$col];
+      $col += 1;
     }
-  }
-}
-
-/**
- * Implements hook_preprocess_pattern_views_view_table().
- */
-function oe_theme_preprocess_views_view_table(array &$variables): void {
-  $variables['zebra'] = 'true';
-
-  foreach ($variables['header'] as &$item) {
-    $item['label'] = $item['content'] . $item['sort_indicator'];
-    $item['extra_classes'] = 'select-all views-field views-field-node-bulk-form';
-  }
-  $variables['headers'] = [$variables['header']];
-
-  foreach ($variables['rows'] as &$row) {
-    foreach ($row['columns'] as &$cell) {
-      $cell['label'] = $cell['content'];
-    }
-    $row['cells'] = $row['columns'];
   }
 }
