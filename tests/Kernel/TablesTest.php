@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Symfony\Component\DomCrawler\Crawler;
-
 /**
  * Tests the rendering of the table component.
  */
@@ -28,7 +26,7 @@ class TablesTest extends AbstractKernelTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testSingleTable(array $structure, array $assertions): void {
-    $build = array_merge([ '#theme' => 'table', '#caption' => 'Default table'], $structure);
+    $build = array_merge(['#theme' => 'table', '#caption' => 'Default table'], $structure);
 
     $html = $this->renderRoot($build);
     $this->assertRendering($html, $assertions);
