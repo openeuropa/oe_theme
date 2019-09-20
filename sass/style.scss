@@ -3,12 +3,6 @@
 @import "./components/form";
 @import "./components/toolbar";
 
-.main-content {
-  .block {
-    margin-bottom: map-get($ecl-spacing, 'm');
-  }
-}
-
 /**
  * Required field
  */
@@ -22,11 +16,6 @@
   width: 6px;
   height: 6px;
   margin: 0 0.3em;
-}
-
-// Remove top margin from text formats containers.
-.form-item-text-format-value + .ecl-form-group {
-  margin-top: 0;
 }
 
 // Align "Apply" botton in moderation block.
