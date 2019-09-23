@@ -16,6 +16,7 @@ use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess().
@@ -941,11 +942,15 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
   $variables['input_array']['hide_label'] = TRUE;
   $variables['label'] = $variables['input_array']['label'] = t('Search');
 
+  // ECL Twig expects an array of string attributes, keyed by a name/value pair.
+  // We use Drupal's Attribute class to make sure that we always get a printable
+  // string, regardless of what we get as input from accessor preprocesses.
   $variables['extra_attributes'] = [];
-  foreach ($variables['attributes'] as $key => $value) {
+  $attributes = new Attribute($variables['attributes']);
+  foreach ($attributes as $key => $value) {
     $variables['extra_attributes'][] = [
       'name' => $key,
-      'value' => $value,
+      'value' => (string) $value,
     ];
   }
 
