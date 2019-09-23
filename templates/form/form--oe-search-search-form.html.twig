@@ -5,14 +5,9 @@
  *
  * @see ./core/themes/stable/templates/form/form.html.twig
  * @see @ecl/ec-component-search-form.twig
- *
- * @todo: (OPENEUROPA-2015) Use the @ecl/search-form twig
- *
- * In order to avoid usage of not secure form template in ecl we have to partically copy code from @ecl/search-form.twig
  */
 #}
-
-{% set _text_input = {
+{% set text_input = {
   id: input_array.id,
   name: input_array.name,
   label: input_array.label|default('Search'|t),
@@ -20,43 +15,24 @@
   invalid: input_array.invalid,
   disabled: input_array.disabled,
   type: input_array.type,
-  extra_classes: input_array.class|safe_join(' '),
+  extra_classes: input_array.class|merge(['ecl-search-form__text-input'])|safe_join(' '),
   extra_attributes: input_array.extra_attributes
-}
-%}
-{% set _button = {
+} %}
+{% set button = {
   variant: 'search',
   icon: {
     type: 'general',
     name: 'search',
     path: ecl_icon_path,
+    size: 'fluid'
   },
   label: 'Search',
   extra_classes: 'ecl-search-form__button'
-}
-%}
-
-{% set _css_class = 'ecl-search-form' %}
-{% set _extra_attributes = 'ecl-site-header__search' %}
-
-{# Internal logic - Process properties #}
-
-{% if extra_classes is defined and extra_classes is not empty %}
-  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
-{% endif %}
-
-{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
-  {% for attr in extra_attributes %}
-    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
-  {% endfor %}
-{% endif %}
-
-{# Print the result #}
-
-<form class="{{ _css_class }}" role="search"{{ _extra_attributes|raw }}>
-  {% include '@ecl/text-input' with _text_input only %}
-  {% include '@ecl/button' with _button only %}
+} %}
+{% set extra_attributes = attributes|to_ecl_attributes %}
+{% extends '@ecl/search-form' %}
+{% block extra_form_elements %}
   {{ element.form_build_id }}
   {{ element.form_token }}
   {{ element.form_id }}
-</form>
+{% endblock %}

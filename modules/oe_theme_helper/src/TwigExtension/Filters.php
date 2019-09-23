@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_helper\TwigExtension;
 
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
@@ -41,6 +42,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
+      new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
     ];
   }
 
@@ -184,6 +186,37 @@ class Filters extends \Twig_Extension {
     }
 
     return 'file';
+  }
+
+  /**
+   * Convert Drupal attribute arrays to ECL Twig compatible ones.
+   *
+   * ECL Twig expects an array of string attributes, keyed by a name/value pair.
+   * We use Drupal's Attribute class to make sure that we always get a printable
+   * string, regardless of what we get as input from accessor preprocesses.
+   *
+   * @param mixed $attributes
+   *   Drupal attributes, what we initialize the Drupal's Attribute class with.
+   *
+   * @return array
+   *   An ECL Twig compatible attributes list.
+   */
+  public function toEclAttributes($attributes): array {
+    // Only deal with iterable data.
+    if (!is_iterable($attributes)) {
+      return [];
+    }
+
+    $ecl_attributes = [];
+    $attributes = new Attribute($attributes);
+    foreach ($attributes as $key => $value) {
+      $ecl_attributes[] = [
+        'name' => $key,
+        'value' => (string) $value,
+      ];
+    }
+
+    return $ecl_attributes;
   }
 
 }

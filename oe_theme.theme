@@ -955,7 +955,7 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
  *   The ECL array for the input element.
  */
 function _oe_theme_preprocess_search_input_text(array $element): array {
-  // Process element attributes into an ecl input array.
+  // Process element attributes into an ECL input array.
   $ecl_array = [
     'id' => $element['#attributes']['id'],
     'name' => $element['#attributes']['name'],
@@ -963,20 +963,6 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
     'type' => $element['#attributes']['type'],
     'class' => $element['#attributes']['class'],
   ];
-  $ecl_array['class'][] = 'ecl-search-form__text-input';
-
-  $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
-  $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
-
-  $ecl_array['extra_attributes'] = [];
-  foreach ($extra_attributes as $key => $value) {
-    if (is_string($value)) {
-      $ecl_array['extra_attributes'][] = [
-        'name' => $key,
-        'value' => $value,
-      ];
-    }
-  }
 
   // Map rest of the array elements.
   $ecl_array['invalid'] = !empty($element['#errors']);
