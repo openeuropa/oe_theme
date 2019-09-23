@@ -16,7 +16,6 @@ use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess().
@@ -941,19 +940,6 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
   $variables['input_array'] = _oe_theme_preprocess_search_input_text($variables['element']['keys']);
   $variables['input_array']['hide_label'] = TRUE;
   $variables['label'] = $variables['input_array']['label'] = t('Search');
-
-  // ECL Twig expects an array of string attributes, keyed by a name/value pair.
-  // We use Drupal's Attribute class to make sure that we always get a printable
-  // string, regardless of what we get as input from accessor preprocesses.
-  $variables['extra_attributes'] = [];
-  $attributes = new Attribute($variables['attributes']);
-  foreach ($attributes as $key => $value) {
-    $variables['extra_attributes'][] = [
-      'name' => $key,
-      'value' => (string) $value,
-    ];
-  }
-
 }
 
 /**
@@ -969,7 +955,7 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
  *   The ECL array for the input element.
  */
 function _oe_theme_preprocess_search_input_text(array $element): array {
-  // Process element attributes into an ecl input array.
+  // Process element attributes into an ECL input array.
   $ecl_array = [
     'id' => $element['#attributes']['id'],
     'name' => $element['#attributes']['name'],
@@ -977,19 +963,6 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
     'type' => $element['#attributes']['type'],
     'class' => $element['#attributes']['class'],
   ];
-
-  $extra_attributes = !empty($element['#attributes']) ? $element['#attributes'] : [];
-  $extra_attributes = array_diff_key($extra_attributes, $ecl_array);
-
-  $ecl_array['extra_attributes'] = [];
-  foreach ($extra_attributes as $key => $value) {
-    if (is_string($value)) {
-      $ecl_array['extra_attributes'][] = [
-        'name' => $key,
-        'value' => $value,
-      ];
-    }
-  }
 
   // Map rest of the array elements.
   $ecl_array['invalid'] = !empty($element['#errors']);

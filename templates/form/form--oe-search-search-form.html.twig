@@ -29,6 +29,7 @@
   label: 'Search',
   extra_classes: 'ecl-search-form__button'
 } %}
+{% set extra_attributes = attributes|to_ecl_attributes %}
 {% extends '@ecl/search-form' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}
