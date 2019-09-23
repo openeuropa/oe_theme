@@ -943,12 +943,10 @@ function oe_theme_preprocess_form__oe_search_search_form(array &$variables): voi
 
   $variables['extra_attributes'] = [];
   foreach ($variables['attributes'] as $key => $value) {
-    if (is_string($value)) {
-      $variables['extra_attributes'][] = [
-        'name' => $key,
-        'value' => $value,
-      ];
-    }
+    $variables['extra_attributes'][] = [
+      'name' => $key,
+      'value' => $value,
+    ];
   }
 
 }
