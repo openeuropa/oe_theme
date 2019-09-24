@@ -22,8 +22,7 @@ use Drupal\oe_theme_helper\EuropeanUnionLanguages;
  */
 function oe_theme_preprocess(&$variables) {
   global $base_url;
-  $theme = \Drupal::theme()->getActiveTheme();
-  $variables['ecl_images_path'] = $base_url . '/' . $theme->getPath() . '/dist/images';
+  $variables['ecl_images_path'] = $base_url . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
   $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
