@@ -1,10 +1,73 @@
 # Change Log
 
+## [2.0.0-alpha1](https://github.com/openeuropa/oe_theme/tree/2.0.0-alpha1) (2019-09-24)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.7.0...2.0.0-alpha1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2124: ECL 2.0: List item patterns \(other\) [\#323](https://github.com/openeuropa/oe_theme/pull/323) ([voidtek](https://github.com/voidtek))
+- Fix wrong path reference if using subtheme [\#309](https://github.com/openeuropa/oe_theme/pull/309) ([golddragon007](https://github.com/golddragon007))
+
+## [1.7.0](https://github.com/openeuropa/oe_theme/tree/1.7.0) (2019-09-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.0.0+2.x-snapshot2...1.7.0)
+
+**Merged pull requests:**
+
+- Update CHANGELOG.md for release 1.7.0. [\#330](https://github.com/openeuropa/oe_theme/pull/330) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2328: Fix artifact build. [\#327](https://github.com/openeuropa/oe_theme/pull/327) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2280: Not correct spacing between "Listing item block" paragraph [\#326](https://github.com/openeuropa/oe_theme/pull/326) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2083: ECL 2.0: Use extra\_blocks on form. [\#321](https://github.com/openeuropa/oe_theme/pull/321) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2077: ECL 2.0: Skip Link [\#287](https://github.com/openeuropa/oe_theme/pull/287) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1974: ECL 2.0: Multilingual components. [\#240](https://github.com/openeuropa/oe_theme/pull/240) ([sergepavle](https://github.com/sergepavle))
+
+## [0.0.0+2.x-snapshot2](https://github.com/openeuropa/oe_theme/tree/0.0.0+2.x-snapshot2) (2019-09-19)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.0.0+2.x-snapshot1...0.0.0+2.x-snapshot2)
+
+## [0.0.0+2.x-snapshot1](https://github.com/openeuropa/oe_theme/tree/0.0.0+2.x-snapshot1) (2019-09-18)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.6.0...0.0.0+2.x-snapshot1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1766: Update ecl-twig to 2.9. [\#322](https://github.com/openeuropa/oe_theme/pull/322) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1985: Update date blocks pattern. [\#320](https://github.com/openeuropa/oe_theme/pull/320) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1974: Update ecl to 2.11.0 [\#317](https://github.com/openeuropa/oe_theme/pull/317) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2243: Remove site switcher from oe\_theme 1.x [\#315](https://github.com/openeuropa/oe_theme/pull/315) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch by aliasing. [\#314](https://github.com/openeuropa/oe_theme/pull/314) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch by aliasing. [\#313](https://github.com/openeuropa/oe_theme/pull/313) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch by aliasing. [\#312](https://github.com/openeuropa/oe_theme/pull/312) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2259: Fix behat/mink-selenium2-driver missing branch by aliasing. [\#310](https://github.com/openeuropa/oe_theme/pull/310) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2159: Create OpenEuropa Corporate Blocks 2.x [\#306](https://github.com/openeuropa/oe_theme/pull/306) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2092: ECL 2.0: Link blocks [\#304](https://github.com/openeuropa/oe_theme/pull/304) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2058: ECL 2.0: Social media Icons [\#302](https://github.com/openeuropa/oe_theme/pull/302) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2027: File link patterns [\#301](https://github.com/openeuropa/oe_theme/pull/301) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2018: Add remaining form elements - Checkbox [\#300](https://github.com/openeuropa/oe_theme/pull/300) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1984: ECL2: Add the contextual navigation component. [\#256](https://github.com/openeuropa/oe_theme/pull/256) ([voidtek](https://github.com/voidtek))
+
+## [1.6.0](https://github.com/openeuropa/oe_theme/tree/1.6.0) (2019-08-19)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.5.1...1.6.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-1766: Prepare release 1.6.0. [\#299](https://github.com/openeuropa/oe_theme/pull/299) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1766: Update @ecl packages to 2.10.0. [\#297](https://github.com/openeuropa/oe_theme/pull/297) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1990: ECL 2.0: List item blocks. [\#292](https://github.com/openeuropa/oe_theme/pull/292) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1986: ECL 2.0: Deprecate the dialog pattern [\#291](https://github.com/openeuropa/oe_theme/pull/291) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2088: ECL 2.0: Inpage Navigation. [\#290](https://github.com/openeuropa/oe_theme/pull/290) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1962: Update the branch 2.x. [\#289](https://github.com/openeuropa/oe_theme/pull/289) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1983: Update video banner to ECL2. [\#286](https://github.com/openeuropa/oe_theme/pull/286) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2145: Add spacing between paragraphs. [\#285](https://github.com/openeuropa/oe_theme/pull/285) ([sergepavle](https://github.com/sergepavle))
+- ECL 2.0: List item patterns [\#283](https://github.com/openeuropa/oe_theme/pull/283) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2135: Add publication date to Publication page header metadata [\#282](https://github.com/openeuropa/oe_theme/pull/282) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2104: Upgrade ECL 1 to the latest version. [\#281](https://github.com/openeuropa/oe_theme/pull/281) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2086: ECL 2.0: Timeline. [\#277](https://github.com/openeuropa/oe_theme/pull/277) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2054: Skip avoidance of deprecated error after new version of code review. [\#273](https://github.com/openeuropa/oe_theme/pull/273) ([dxvargas](https://github.com/dxvargas))
+
 ## [1.5.1](https://github.com/openeuropa/oe_theme/tree/1.5.1) (2019-07-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.5.0...1.5.1)
 
 **Merged pull requests:**
 
+- Release-1.5.1: Update changelog. [\#279](https://github.com/openeuropa/oe_theme/pull/279) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2047: Add class for timeline to limit width. [\#278](https://github.com/openeuropa/oe_theme/pull/278) ([nagyad](https://github.com/nagyad))
 
 ## [1.5.0](https://github.com/openeuropa/oe_theme/tree/1.5.0) (2019-07-23)
@@ -16,6 +79,8 @@
 - OPENEUROPA-2082: Change 'Related links' field label to h2. [\#275](https://github.com/openeuropa/oe_theme/pull/275) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2061: Style timeline formatter with ECL and provide test. [\#274](https://github.com/openeuropa/oe_theme/pull/274) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-627: Fix permission files. [\#271](https://github.com/openeuropa/oe_theme/pull/271) ([voidtek](https://github.com/voidtek))
+-  OPENEUROPA-2034: ECL2: Change Accordion to Accordion2 component. [\#265](https://github.com/openeuropa/oe_theme/pull/265) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2015: ECL2: Update Site header. [\#255](https://github.com/openeuropa/oe_theme/pull/255) ([voidtek](https://github.com/voidtek))
 
 ## [1.4.0](https://github.com/openeuropa/oe_theme/tree/1.4.0) (2019-07-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.3.0...1.4.0)
@@ -24,7 +89,10 @@
 
 - Update CHANGELOG.md for release 1.3.0. [\#270](https://github.com/openeuropa/oe_theme/pull/270) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2060: Implement timeline pattern. [\#268](https://github.com/openeuropa/oe_theme/pull/268) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2062: update 2.x branch with latest master changes. [\#267](https://github.com/openeuropa/oe_theme/pull/267) ([brummbar](https://github.com/brummbar))
 - OPENEUROPA-2046: Implementation of Event dispatching and event subscriber. [\#266](https://github.com/openeuropa/oe_theme/pull/266) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2026: ECL2: Add link on file translation item and fix js issue. [\#264](https://github.com/openeuropa/oe_theme/pull/264) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-2012: ECL2: Add Identity on the page header. [\#261](https://github.com/openeuropa/oe_theme/pull/261) ([voidtek](https://github.com/voidtek))
 
 ## [1.3.0](https://github.com/openeuropa/oe_theme/tree/1.3.0) (2019-07-08)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.2.0...1.3.0)
@@ -33,7 +101,11 @@
 
 - Update CHANGELOG.md for release 1.3.0. [\#262](https://github.com/openeuropa/oe_theme/pull/262) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1996: Search box too small [\#260](https://github.com/openeuropa/oe_theme/pull/260) ([voidtek](https://github.com/voidtek))
-- OPENEUROPA-2025: Use custom image effect to prevent retina image reducction. [\#254](https://github.com/openeuropa/oe_theme/pull/254) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1982: ECL2: Update hero banner to ECL2.0 [\#259](https://github.com/openeuropa/oe_theme/pull/259) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1991: Update social media to ECL2.0. [\#258](https://github.com/openeuropa/oe_theme/pull/258) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1766: ECL2: Update @ecl to 2.7.0. [\#257](https://github.com/openeuropa/oe_theme/pull/257) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1981: ECL2: Update the component pattern file to ECL2. [\#248](https://github.com/openeuropa/oe_theme/pull/248) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1973: ECL2: Update page-header and footer to ecl2. [\#239](https://github.com/openeuropa/oe_theme/pull/239) ([voidtek](https://github.com/voidtek))
 
 ## [1.2.0](https://github.com/openeuropa/oe_theme/tree/1.2.0) (2019-06-28)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/1.1.0...1.2.0)
@@ -42,6 +114,10 @@
 
 - Update CHANGELOG.md for release 1.2.0. [\#253](https://github.com/openeuropa/oe_theme/pull/253) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1775: Fixing upgrade path of entity view display. [\#252](https://github.com/openeuropa/oe_theme/pull/252) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1976: ECL2: Update pager to ECL 2.0. [\#247](https://github.com/openeuropa/oe_theme/pull/247) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1979 [\#245](https://github.com/openeuropa/oe_theme/pull/245) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1980: Upgrade Accordion to ECL2. [\#244](https://github.com/openeuropa/oe_theme/pull/244) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-1975: Upgrade blockquote to ECL2. [\#243](https://github.com/openeuropa/oe_theme/pull/243) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-2014: Theming of publication content type. [\#241](https://github.com/openeuropa/oe_theme/pull/241) ([sergepavle](https://github.com/sergepavle))
 
 ## [1.1.0](https://github.com/openeuropa/oe_theme/tree/1.1.0) (2019-06-25)
@@ -49,7 +125,11 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-2025: Use custom image effect to prevent retina image reducction. [\#254](https://github.com/openeuropa/oe_theme/pull/254) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - Update CHANGELOG.md for release 1.1.0. [\#246](https://github.com/openeuropa/oe_theme/pull/246) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-1978: Add message library. [\#242](https://github.com/openeuropa/oe_theme/pull/242) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-1977: Update @ecl/buttons for ecl2. [\#238](https://github.com/openeuropa/oe_theme/pull/238) ([voidtek](https://github.com/voidtek))
+- OPENEUROPA-736: Setup theme to start upgrade to ECL 2.0. [\#235](https://github.com/openeuropa/oe_theme/pull/235) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1892: Add ecl classes to block titles. [\#234](https://github.com/openeuropa/oe_theme/pull/234) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1948: Theming of Document media type. [\#233](https://github.com/openeuropa/oe_theme/pull/233) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1927: Theming of Policy content type. [\#232](https://github.com/openeuropa/oe_theme/pull/232) ([sergepavle](https://github.com/sergepavle))
@@ -161,9 +241,9 @@
 **Merged pull requests:**
 
 - Update CHANGELOG.md for 0.12.0 release. [\#193](https://github.com/openeuropa/oe_theme/pull/193) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-1660: News content type theming. [\#192](https://github.com/openeuropa/oe_theme/pull/192) ([upchuk](https://github.com/upchuk))
 - OPENEUROPA-1744: Implement site switcher in oe\_theme. [\#190](https://github.com/openeuropa/oe_theme/pull/190) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1756: Fix styling of Apply button for moderation block. [\#189](https://github.com/openeuropa/oe_theme/pull/189) ([sergepavle](https://github.com/sergepavle))
-- OPENEUROPA-1659: Theme oe\_page content. [\#188](https://github.com/openeuropa/oe_theme/pull/188) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
 ## [0.11.0](https://github.com/openeuropa/oe_theme/tree/0.11.0) (2019-03-19)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.10.0...0.11.0)
@@ -183,6 +263,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-1659: Theme oe\_page content. [\#188](https://github.com/openeuropa/oe_theme/pull/188) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1635: Update the changelog for the release 0.10.0. [\#175](https://github.com/openeuropa/oe_theme/pull/175) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1603: Provide a simple search box that will submit searched terms to the external Europa search service. [\#173](https://github.com/openeuropa/oe_theme/pull/173) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-1609 Fix behat.yml.dist to use drupal-extension properly. [\#171](https://github.com/openeuropa/oe_theme/pull/171) ([nagyad](https://github.com/nagyad))
@@ -196,6 +277,7 @@
 
 - OPENEUROPA-1562: Update the changelog for the release 0.9.0. [\#167](https://github.com/openeuropa/oe_theme/pull/167) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1549: Renaming config to actually get imported. [\#166](https://github.com/openeuropa/oe_theme/pull/166) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-1531: Create MediaValueObject, GalleryValueObject and ImageMediaValueObject. [\#163](https://github.com/openeuropa/oe_theme/pull/163) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-1533: Add --strict flag for Behat tests executions. [\#158](https://github.com/openeuropa/oe_theme/pull/158) ([sergepavle](https://github.com/sergepavle))
 
 ## [0.8.0](https://github.com/openeuropa/oe_theme/tree/0.8.0) (2019-01-22)
@@ -209,7 +291,6 @@
 - OPENEUROPA-1387: Move "Deprecation warnings in Twig" patch to openeuropa/drupal-core-require-dev [\#155](https://github.com/openeuropa/oe_theme/pull/155) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1474: Fix fromFileEntity method to provide file URL by URI. [\#153](https://github.com/openeuropa/oe_theme/pull/153) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1381: Use Url objects on ui\_patterns. [\#152](https://github.com/openeuropa/oe_theme/pull/152) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- OPENEUROPA-1378: Implement DateValueObject for Date pattern fields [\#150](https://github.com/openeuropa/oe_theme/pull/150) ([drupol](https://github.com/drupol))
 
 ## [0.7.0](https://github.com/openeuropa/oe_theme/tree/0.7.0) (2018-11-27)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.3...0.7.0)
@@ -221,6 +302,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-1378: Implement DateValueObject for Date pattern fields [\#150](https://github.com/openeuropa/oe_theme/pull/150) ([drupol](https://github.com/drupol))
 - Update CHANGELOG.md for 0.7.0 release. [\#149](https://github.com/openeuropa/oe_theme/pull/149) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-1344: Complete conversion of file extension to ECL icons. [\#148](https://github.com/openeuropa/oe_theme/pull/148) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-1346: Use Drupal core services to access native language names [\#147](https://github.com/openeuropa/oe_theme/pull/147) ([pfrenssen](https://github.com/pfrenssen))
@@ -247,7 +329,6 @@
 
 - OPENEUROPA-1241: Change the drone file to create the package only highest dependencies. [\#129](https://github.com/openeuropa/oe_theme/pull/129) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-1241: Update CHANGELOG.md. [\#128](https://github.com/openeuropa/oe_theme/pull/128) ([voidtek](https://github.com/voidtek))
-- OPENEUROPA-780: Make sure component dependencies are as relaxed as possible. [\#124](https://github.com/openeuropa/oe_theme/pull/124) ([aritomelo](https://github.com/aritomelo))
 
 ## [0.6.2](https://github.com/openeuropa/oe_theme/tree/0.6.2) (2018-09-13)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/0.6.1...0.6.2)
@@ -265,6 +346,7 @@
 
 **Merged pull requests:**
 
+- OPENEUROPA-780: Make sure component dependencies are as relaxed as possible. [\#124](https://github.com/openeuropa/oe_theme/pull/124) ([aritomelo](https://github.com/aritomelo))
 - Update CHANGELOG.md for release 0.6.1 [\#119](https://github.com/openeuropa/oe_theme/pull/119) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-772: Update compose.json to have openeuropa/drupal-core-require-dev. [\#118](https://github.com/openeuropa/oe_theme/pull/118) ([voidtek](https://github.com/voidtek))
 - OPENEUROPA-772: Move styleguide into require-dev. [\#117](https://github.com/openeuropa/oe_theme/pull/117) ([richardcanoe](https://github.com/richardcanoe))
