@@ -46,7 +46,7 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
 /**
  * Change the region of the search block.
  */
-function oe_theme_helper_post_update_00001() {
+function oe_theme_helper_post_update_20001() {
   $block = Block::load('oe_theme_search_form');
 
   if (!$block) {
@@ -62,7 +62,7 @@ function oe_theme_helper_post_update_00001() {
 /**
  * Delete the block oe_theme_site_switcher.
  */
-function oe_theme_helper_post_update_00002() {
+function oe_theme_helper_post_update_20002() {
   $block = Block::load('oe_theme_site_switcher');
 
   if (!$block) {
