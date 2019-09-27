@@ -1056,10 +1056,8 @@ function oe_theme_preprocess_block__oe_theme_main_page_content(&$variables) {
  * Implements hook_preprocess_table().
  */
 function oe_theme_preprocess_table(array &$variables): void {
-  $variables['zebra'] = 'true';
-
   $name_col = [];
-  foreach ($variables['header'] as $key => &$cell) {
+  foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
 
     if ($cell['attributes']['colspan']) {
