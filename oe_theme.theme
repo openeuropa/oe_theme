@@ -1060,7 +1060,8 @@ function oe_theme_preprocess_table(array &$variables): void {
     for ($i = 1; $i <= (array_key_exists('colspan', $cell) ? intval($cell['colspan']) : 1); $i++) {
       $cell_label = (array) $cell['label'];
       // The contents of a drupal cell can be a render array so we need to make
-      // sure we have an string to set as the 'data-ecl-table-header' property later
+      // sure we have an string to set as the 'data-ecl-table-header' property
+      // later.
       $name_col[] = array_key_exists('#markup', $cell_label) ? $cell_label['#markup'] : $cell['label'];
     }
   }
