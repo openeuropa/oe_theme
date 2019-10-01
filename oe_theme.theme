@@ -9,7 +9,9 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
@@ -1063,7 +1065,17 @@ function oe_theme_preprocess_table(array &$variables): void {
     // each row cell. Table headers may be strings or render arrays, so in the
     // latter case we need to extract the text from it.
     if (is_array($cell['label'])) {
-      $cell_content = (string) $renderer->render($cell['label']);
+      $render_array = $cell['label'];
+      $context = new RenderContext();
+      $cell_content = (string) $renderer->executeInRenderContext($context, function () use ($render_array, $renderer) {
+        return $renderer->render($render_array);
+      });
+      // Handle any bubbled cacheability metadata.
+      if (!$context->isEmpty()) {
+        $bubbleable_metadata = $context->pop();
+        BubbleableMetadata::createFromRenderArray($variables)
+          ->merge($bubbleable_metadata)->applyTo($variables);
+      }
       $cell_header_data = strip_tags($cell_content);
     }
     else {
