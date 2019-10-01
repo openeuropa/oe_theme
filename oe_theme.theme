@@ -1049,26 +1049,35 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
  * Implements hook_preprocess_table().
  */
 function oe_theme_preprocess_table(array &$variables): void {
+  /** @var \Drupal\Core\Render\RendererInterface $renderer */
+  $renderer = \Drupal::service('renderer');
+
   $ecl_table_header_data = [];
   foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
 
-    if ($cell['attributes']['colspan']) {
-      $cell['colspan'] = (string) $cell['attributes']['colspan'];
-    }
-
     // We need to generate the value of the data-ecl-table-header attribute for
     // each row cell. Table headers may be strings or render arrays, so we count
     // on the inline template render element to do the right thing.
-    $cell_header_data = [
+    $cell_header_render_array = [
       '#type' => 'inline_template',
       '#template' => '{{ label|striptags }}',
       '#context' => [
         'label' => $cell['label'],
       ],
     ];
+    $cell_header_data = $renderer->render($cell_header_render_array);
 
-    for ($i = 1; $i <= (array_key_exists('colspan', $cell) ? intval($cell['colspan']) : 1); $i++) {
+    // Assign colspan value to the cell, if any. It will be used later.
+    if ($cell['attributes']['colspan']) {
+      $cell['colspan'] = (int) $cell['attributes']['colspan'];
+    }
+
+    // Account for colspan values when counting the number of columns.
+    // This ensures that header content is is displayed on related columns
+    // when the table is displayed on small screen devices.
+    $columns_count = isset($cell['colspan']) ? $cell['colspan'] : 1;
+    for ($i = 1; $i <= $columns_count; $i++) {
       $ecl_table_header_data[] = $cell_header_data;
     }
   }
