@@ -9,9 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Element;
-use Drupal\Core\Render\RenderContext;
 use Drupal\Component\Utility\Random;
 use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
@@ -1051,8 +1049,6 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
  * Implements hook_preprocess_table().
  */
 function oe_theme_preprocess_table(array &$variables): void {
-  /** @var \Drupal\Core\Render\RendererInterface $renderer */
-  $renderer = \Drupal::service('renderer');
   $ecl_table_header_data = [];
   foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
@@ -1062,25 +1058,16 @@ function oe_theme_preprocess_table(array &$variables): void {
     }
 
     // We need to generate the value of the data-ecl-table-header attribute for
-    // each row cell. Table headers may be strings or render arrays, so in the
-    // latter case we need to extract the text from it.
-    if (is_array($cell['label'])) {
-      $render_array = $cell['label'];
-      $context = new RenderContext();
-      $cell_content = (string) $renderer->executeInRenderContext($context, function () use ($render_array, $renderer) {
-        return $renderer->render($render_array);
-      });
-      // Handle any bubbled cacheability metadata.
-      if (!$context->isEmpty()) {
-        $bubbleable_metadata = $context->pop();
-        BubbleableMetadata::createFromRenderArray($variables)
-          ->merge($bubbleable_metadata)->applyTo($variables);
-      }
-      $cell_header_data = strip_tags($cell_content);
-    }
-    else {
-      $cell_header_data = $cell['label'];
-    }
+    // each row cell. Table headers may be strings or render arrays, so we count
+    // on the inline template render element to do the right thing.
+    $cell_header_data = [
+      '#type' => 'inline_template',
+      '#template' => '{{ label|striptags }}',
+      '#context' => [
+        'label' => $cell['label'],
+      ],
+    ];
+
     for ($i = 1; $i <= (array_key_exists('colspan', $cell) ? intval($cell['colspan']) : 1); $i++) {
       $ecl_table_header_data[] = $cell_header_data;
     }
