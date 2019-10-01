@@ -1062,7 +1062,7 @@ function oe_theme_preprocess_table(array &$variables): void {
     // on the inline template render element to do the right thing.
     $cell_header_render_array = [
       '#type' => 'inline_template',
-      '#template' => '{{ label|striptags }}',
+      '#template' => '{{ label|render|striptags }}',
       '#context' => [
         'label' => $cell['content'],
       ],
