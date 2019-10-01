@@ -82,3 +82,38 @@
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Name"]': "Jack Doe"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Registration date"]': "03/05/2017"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(3) td.ecl-table__cell[data-ecl-table-header="Email"]': "jack.doe@mail.com"
+- array:
+    '#header':
+      - 'Header 1'
+      - { data: 'Header 2', colspan: 2 }
+      - 'Header 3'
+    '#rows':
+      -
+        - 'Cell 1'
+        - 'Cell 2'
+        - 'Cell 3'
+        - 'Cell 4'
+  assertions:
+    count:
+      'table.ecl-table': 1
+      'thead.ecl-table__head': 1
+      'thead.ecl-table__head tr.ecl-table__row': 1
+      'thead.ecl-table__head th.ecl-table__header': 3
+      'tbody.ecl-table__body': 1
+      'tbody.ecl-table__body tr.ecl-table__row': 1
+      'tbody.ecl-table__body td.ecl-table__cell': 4
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Header 1"]': 1
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Header 2"]': 2
+      'tbody.ecl-table__body td.ecl-table__cell[data-ecl-table-header="Header 3"]': 1
+    equals:
+      'thead.ecl-table__head th.ecl-table__header:nth-child(1)': "Header 1"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(2)': "Header 2"
+      'thead.ecl-table__head th.ecl-table__header:nth-child(3)': "Header 3"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(1)': "Cell 1"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(2)': "Cell 2"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(3)': "Cell 3"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(4)': "Cell 4"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 1"]': "Cell 1"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"]': "Cell 2"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"] ~ td': "Cell 3"
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 3"]': "Cell 4"
