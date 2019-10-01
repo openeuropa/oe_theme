@@ -1052,6 +1052,7 @@ function oe_theme_preprocess_table(array &$variables): void {
   /** @var \Drupal\Core\Render\RendererInterface $renderer */
   $renderer = \Drupal::service('renderer');
 
+  // Assign data to table headers as ECL expects it.
   $ecl_table_header_data = [];
   foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
@@ -1063,14 +1064,14 @@ function oe_theme_preprocess_table(array &$variables): void {
       '#type' => 'inline_template',
       '#template' => '{{ label|striptags }}',
       '#context' => [
-        'label' => $cell['label'],
+        'label' => $cell['content'],
       ],
     ];
     $cell_header_data = $renderer->render($cell_header_render_array);
 
     // Assign colspan value to the cell, if any. It will be used later.
-    if ($cell['attributes']['colspan']) {
-      $cell['colspan'] = (int) $cell['attributes']['colspan'];
+    if (isset($cell['attributes']['colspan'])) {
+      $cell['colspan'] = (int) $cell['attributes']['colspan']->value();
     }
 
     // Account for colspan values when counting the number of columns.
@@ -1083,12 +1084,13 @@ function oe_theme_preprocess_table(array &$variables): void {
   }
   $variables['headers'] = [$variables['header']];
 
+  // Assign data to table rows as ECL expects it.
   foreach ($variables['rows'] as &$row) {
-    $col = 0;
+    $index = 0;
     foreach ($row['cells'] as &$cell) {
       $cell['label'] = $cell['content'];
-      $cell['data-ecl-table-header'] = $ecl_table_header_data[$col];
-      $col += 1;
+      $cell['data-ecl-table-header'] = $ecl_table_header_data[$index];
+      $index++;
     }
   }
 }
