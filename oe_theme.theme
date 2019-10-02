@@ -1054,6 +1054,7 @@ function oe_theme_preprocess_table(array &$variables): void {
 
   // Assign data to table headers as ECL expects it.
   $ecl_table_header_data = [];
+  $variables['header'] = isset($variables['header']) ? $variables['header'] : [];
   foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
 
@@ -1089,7 +1090,9 @@ function oe_theme_preprocess_table(array &$variables): void {
     $index = 0;
     foreach ($row['cells'] as &$cell) {
       $cell['label'] = $cell['content'];
-      $cell['data-ecl-table-header'] = $ecl_table_header_data[$index];
+      if (isset($ecl_table_header_data[$index])) {
+        $cell['data-ecl-table-header'] = $ecl_table_header_data[$index];
+      }
       $index++;
     }
   }

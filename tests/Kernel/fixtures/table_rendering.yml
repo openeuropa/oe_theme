@@ -117,3 +117,20 @@
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"]': "Cell 2"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 2"] ~ td': "Cell 3"
       'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell[data-ecl-table-header="Header 3"]': "Cell 4"
+- array:
+    '#header':
+      - data:
+          '#markup': '<b>Bold header</b>'
+    '#rows': []
+  assertions:
+    contains:
+      'thead.ecl-table__head th.ecl-table__header:nth-child(1)': '<b>Bold header</b>'
+- array:
+    '#header': []
+    '#rows':
+      -
+        - data:
+            '#markup': '<b>Bold cell</b>'
+  assertions:
+    contains:
+      'tbody.ecl-table__body tr.ecl-table__row:nth-child(1) td.ecl-table__cell:nth-child(1)': '<b>Bold cell</b>'
