@@ -295,14 +295,16 @@ Patches will be generated in `./patches` and applied when running `npm install`.
 
 #### Upgrade from 1.x to 2.x
 
-Note that the following models are deprecated after upgrading from 1.x to 2.x:
-
-- `dialog pattern`
-- `file_link pattern`
+- The following patterns have been removed on 2.x:
+  - `dialog`
+  - `file_link`
+- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
+  you should use version 2.x instead.
 
 ## Contributing
 
-Please read [the full documentation](https://github.com/openeuropa/openeuropa) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [the full documentation](https://github.com/openeuropa/openeuropa) for details on our code of conduct,
+and the process for submitting pull requests to us.
 
 ## Versioning
 

@@ -23,7 +23,6 @@ default:
               page header: ".ecl-page-header"
               priorities dropdown menu: "#nav-menu-expandable-group-3 .ecl-navigation-menu__links"
               search form: ".ecl-search-form"
-              sites switcher: ".ecl-site-switcher--header"
             pages:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"

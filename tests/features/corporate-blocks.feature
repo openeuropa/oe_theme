@@ -8,8 +8,6 @@ Feature: Corporate blocks feature
     Given I am an anonymous user
     When I am on "<page>"
     Then I should see the "search form" element in the "header"
-    # @todo: Should be added on the scope of OPENEUROPA-1992
-    # And I should see the "sites switcher" element in the "header"
 
     Examples:
       | page                        |
