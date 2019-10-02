@@ -219,7 +219,7 @@ class ParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('style')
     );
 
-    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+    $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
 
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('block');
@@ -229,7 +229,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card section.ecl-card__body div.ecl-card__description')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
