@@ -80,7 +80,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals($test_data['about_eu_links'][1]['href'], $actual->attr('href'));
     $this->assertEquals($test_data['about_eu_links'][1]['label'] . ' ', trim($actual->text()));
 
-    $third_column = $crawler->filter('footer.ecl-footer section.ecl-footer__common div.ecl-footer__common-container');
+    $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__common div.ecl-footer__common-container');
 
     $actual = $third_column->filter('a:nth-child(1)');
     $this->assertEquals($test_data['bottom_links'][0]['href'], $actual->attr('href'));
@@ -90,7 +90,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals($test_data['bottom_links'][1]['href'], $actual->attr('href'));
     $this->assertEquals($test_data['bottom_links'][1]['label'], trim($actual->text()));
 
-    $actual = $crawler->filter('footer.ecl-footer section.ecl-footer__common div.ecl-footer__common-container a.ecl-footer__common-link');
+    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__common div.ecl-footer__common-container a.ecl-footer__common-link');
     $this->assertCount(2, $actual);
   }
 
