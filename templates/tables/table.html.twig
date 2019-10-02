@@ -1,11 +1,13 @@
 {#
 /**
  * @file
- * Theme override to display a table.
- *
- * @see ./core/themes/stable/templates/dataset/table.html.twig
+ * Table themed using the ECL table component.
  */
 #}
-{{ attach_library('oe_theme/tables') }}
-{% set attributes = attributes.addClass(['ecl-table', 'ecl-table--responsive']) %}
-{% include '@stable/dataset/table.html.twig' %}
+{% include '@ecl/table' with {
+  'zebra': zebra|default(false),
+  'headers': headers,
+  'rows': rows,
+  'extra_classes': extra_classes,
+  'extra_attributes': extra_attributes,
+} only %}
