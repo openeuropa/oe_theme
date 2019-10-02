@@ -4,7 +4,7 @@ patch-package
 @@ -94,7 +94,9 @@
      </h1>
    </header>
-   <section class="ecl-card__body">
+   <div class="ecl-card__body">
 -    <div class="ecl-card__description">{{ _card.description }}</div>
 +    {% if _card.description is not empty %}
 +      <div class="ecl-card__description">{{ _card.description }}</div>
