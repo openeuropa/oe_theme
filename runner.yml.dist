@@ -66,6 +66,7 @@ release:
     - { task: "copy", from: "images", to: "oe_theme/images" }
     - { task: "copy", from: "js", to: "oe_theme/js" }
     - { task: "copy", from: "templates", to: "oe_theme/templates" }
+    - { task: "copy", from: "components", to: "oe_theme/components" }
     - task: "append"
       file: "oe_theme/oe_theme.info.yml"
       text: |
