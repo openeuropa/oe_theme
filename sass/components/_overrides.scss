@@ -1,0 +1,6 @@
+// @todo: Temporary fix until the theme updates to ECL 2.12
+@include ecl-media-breakpoint-up('md') {
+  .ecl-menu-legacy__mega {
+    z-index: 1;
+  }
+}

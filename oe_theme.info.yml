@@ -6,7 +6,7 @@ core: 8.x
 
 libraries:
   - oe_theme/base
-  - oe_theme/style
+  - oe_theme/style-eu
 
 base theme: stable
 

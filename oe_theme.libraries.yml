@@ -3,12 +3,18 @@ base:
     dist/scripts/ecl-ec-preset-website.js: {}
     dist/scripts/ecl-ec-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
-style:
+style-ec:
   css:
     theme:
       dist/styles/ecl-ec-preset-website.css: {}
       dist/styles/ecl-ec-preset-legacy-website.css: {}
-      css/style.css: {}
+      css/style-ec.css: {}
+style-eu:
+  css:
+    theme:
+      dist/styles/ecl-eu-preset-website.css: {}
+      dist/styles/ecl-eu-preset-legacy-website.css: {}
+      css/style-eu.css: {}
 dialogs:
   js:
     js/dialogs.js: {}
