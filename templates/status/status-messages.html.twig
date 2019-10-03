@@ -17,14 +17,13 @@
   {% set extra_attributes = extra_attributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{# Icons are missing, they should be handled within the ECL component. #}
-{# @todo: open a follow up on INNO board. #}
 {% for type, messages in message_list %}
   {% include '@ecl/message' with {
     'title': status_headings[type],
     'description': _self.message_list(messages),
     'variant': (type == 'status' ? 'success' : type),
     'extra_attributes': extra_attributes,
+    'extra_classes': 'ecl-u-mb-l',
     'icon': {
       'path': ecl_icon_path,
       'type': 'notifications',

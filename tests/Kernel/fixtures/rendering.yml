@@ -164,7 +164,7 @@
     equals:
       'div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
-      'div.ecl-hero-banner__content a.ecl-hero-banner__link[href="http://example.com"]': Subscribe
+      'div.ecl-hero-banner__content a.ecl-link[href="http://example.com"]': Subscribe
 - array:
     '#type': pattern
     '#id': banner_video
@@ -180,10 +180,10 @@
   assertions:
     count:
       'section.ecl-video-banner': 1
-      'video.ecl-media-container__media[alt="Jean Monnet banner."][poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'video.ecl-media-container__media[poster="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
       'source[src="https://defiris.ec.streamcloud.be/findmedia/11/101631/LR_I101631INT1W.mp4?latest=0004553892"][type="video/mp4"]': 1
     equals:
-      'figcaption.ecl-media-container__caption': Video caption
+      'figcaption.ecl-media-container__caption': 'Video caption'
       'p.ecl-u-type-paragraph': "Banner description"
 - array:
     '#type': pattern
@@ -454,10 +454,10 @@
   assertions:
     count:
       article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[alt="Alternate text for secondary image"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
-      article.ecl-card section.ecl-card__body div.ecl-card__description: 0
+      article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title: "Item title"
       article.ecl-card footer.ecl-card__footer: ""
@@ -476,7 +476,7 @@
       'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
     equals:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
-      'article.ecl-card section.ecl-card__body div.ecl-card__description': "Item test"
+      'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
       'article.ecl-card footer.ecl-card__footer': ""
 - array:
     '#type': pattern

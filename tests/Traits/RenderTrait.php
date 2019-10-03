@@ -47,14 +47,16 @@ trait RenderTrait {
     // Assert presence of given strings.
     if (isset($assertions['contains'])) {
       foreach ($assertions['contains'] as $string) {
-        $this->assertContains($string, $html);
+        $message = "String '{$string}' not found in:" . PHP_EOL . $html;
+        $this->assertContains($string, $html, $message);
       }
     }
 
     // Assert occurrences of given elements.
     if (isset($assertions['count'])) {
       foreach ($assertions['count'] as $name => $expected) {
-        $this->assertCount($expected, $crawler->filter($name));
+        $message = "Wrong number of occurrences found for element '{$name}' in:" . PHP_EOL . $html;
+        $this->assertCount($expected, $crawler->filter($name), $message);
       }
     }
 
@@ -65,7 +67,7 @@ trait RenderTrait {
           $actual = trim($crawler->filter($name)->text());
         }
         catch (\InvalidArgumentException $exception) {
-          $this->fail(sprintf('Element "%s" not found (exception: "%s").', $name, $exception->getMessage()));
+          $this->fail(sprintf('Element "%s" not found (exception: "%s") in: ' . PHP_EOL . ' %s', $name, $exception->getMessage(), $html));
         }
         $this->assertEquals($expected, $actual);
       }
