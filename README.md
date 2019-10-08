@@ -49,6 +49,17 @@ Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alt
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
 module.
 
+The OpenEuropa theme supports both the EC and EU component libraries:
+
+- Use the "European Commission" component library for European Commission websites hosted under the `ec.europa.eu` domain
+- Use the "European Union" component library for European Union websites hosted under the `europa.eu` domain
+
+The theme uses the "European Commission" component library by default, you can change that by visiting the theme setting
+page.
+
+Note for developers: changing the component library will only load different CSS and JS assets, the actual HTML is the
+same between the two libraries.
+
 ## Companion sub-modules
 
 * [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
