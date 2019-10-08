@@ -1,0 +1,7 @@
+oe_theme.settings:
+  type: theme_settings
+  label: 'OpenEuropa Theme settings'
+  mapping:
+    component_library:
+      type: string
+      label: 'ECL component library, either EC or EU'
