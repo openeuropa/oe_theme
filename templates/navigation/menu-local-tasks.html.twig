@@ -15,6 +15,7 @@
 {% if secondary %}
   {% include '@oe_theme/compositions/ec-component-navigation/local-tasks.html.twig' with {
     title: 'Secondary tabs'|t,
-    links: secondary_links
+    links: secondary_links,
+    variant: 'secondary'
   } %}
 {% endif %}
