@@ -31,11 +31,11 @@
   {% set _list_class = ' ecl-u-pb-s ecl-u-type-s' %}
   {% set _list_item_class = ' ecl-u-pa-s' %}
 {% endif %}
-{% if extra_classes is defined and extra_classes is not empty %}
+{% if extra_classes is not empty %}
   {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
 {% endif %}
 
-{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+{% if extra_attributes is not empty %}
   {% for attr in extra_attributes %}
     {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
   {% endfor %}
@@ -43,15 +43,14 @@
 
 {# Print the result #}
 
-{% if _links is not empty and _links is iterable %}
+{% if _links is not empty %}
   <nav class="{{ _css_class }}"{{ _extra_attributes|raw }}>
     <h2 hidden>{{ _title }}</h2>
     <ul class="ecl-navigation-list ecl-unordered-list--no-bullet ecl-u-border-bottom ecl-u-border-color-grey-25{{ _list_class }}">
       {% for _link in _links %}
-        {% set _active_class = _link.is_active is defined and _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
+        {% set _active_class = _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
         <li class="ecl-navigation-list__item ecl-unordered-list__item ecl-u-d-inline{{ _list_item_class }}{{ _active_class }}">
-          {% include '@ecl/link' with {
-          }|merge(_link|default({})) only %}
+          {% include '@ecl/link' with _link only %}
         </li>
       {% endfor %}
     </ul>
