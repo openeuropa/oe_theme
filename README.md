@@ -67,6 +67,18 @@ same between the two libraries.
 * [OpenEuropa Theme Policy](/modules/oe_theme_content_policy/README.md)
 * [OpenEuropa Theme Publication](/modules/oe_theme_content_publication/README.md)
 
+## Image styles
+
+OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
+The following is a list of all the vailable styles and their preferred usage: 
+
+* List item (oe_theme_list_item): To be used on content lists with small thumbnails.
+* Featured list item (oe_theme_list_item_featured): To be used on highlights and content lists with big thumbnails.
+* Medium (oe_theme_medium_no_crop): Medium sized image, part of the Main content responsive image style.
+* Small (oe_theme_small_no_crop): Small sized image, part of the Main content responsive image style.
+* Main content (oe_theme_main_content): Responsive image style, to be used on any image that is rendered inside
+a content page.
+
 
 ## Development
 
