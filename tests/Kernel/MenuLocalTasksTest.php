@@ -8,7 +8,7 @@ use Drupal\Core\Url;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests that Drupal local tasks are properly rendere.
+ * Tests that Drupal local tasks are properly rendered.
  */
 class MenuLocalTasksTest extends AbstractKernelTestBase {
 
