@@ -1,0 +1,54 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-page-header/page-header.html.twig
++++ b/node_modules/@ecl-twig/ec-component-page-header/page-header.html.twig
+@@ -52,26 +52,30 @@
+         extra_classes: 'ecl-page-header__breadcrumb'
+       }) only %}
+     {% endif %}
+-    {% if _meta is not empty %}
+-      <div class="ecl-page-header__meta-list">{{ _meta }}</div>
+-    {% endif %}
+-    <h1 class="ecl-page-header__title">{{ _title }}</h1>
+-    {% if _description is not empty %}
+-      <p class="ecl-page-header__description">{{ _description }}</p>
+-    {% endif %}
+-    {% if infos is defined and infos is not empty and infos is iterable %}
+-      <ul class="ecl-page-header__info-list">
+-        {% for info in infos %}
+-          <li class="ecl-page-header__info-item">
+-            {% include '../ec-component-icon/icon.html.twig' with {
+-              icon: info.icon|merge({ size: 's' }),
+-              extra_classes: 'ecl-page-header__info-icon'
+-            } only %}
+-            {{- info.text -}}
+-          </li>
+-        {% endfor %}
+-      </ul>
+-    {% endif %}
++    {# This wrapper is added in order to fix style discrepancies between EC and EU page headers. #}
++    {# @todo: remove this patch as soon as this is fixed: https://webgate.ec.europa.eu/CITnet/jira/browse/INNO-1844 #}
++    <div class="ecl-page-header__title-wrapper">
++      {% if _meta is not empty %}
++        <div class="ecl-page-header__meta-list">{{ _meta }}</div>
++      {% endif %}
++      <h1 class="ecl-page-header__title">{{ _title }}</h1>
++      {% if _description is not empty %}
++        <p class="ecl-page-header__description">{{ _description }}</p>
++      {% endif %}
++      {% if infos is defined and infos is not empty and infos is iterable %}
++        <ul class="ecl-page-header__info-list">
++          {% for info in infos %}
++            <li class="ecl-page-header__info-item">
++              {% include '../ec-component-icon/icon.html.twig' with {
++                icon: info.icon|merge({ size: 's' }),
++                extra_classes: 'ecl-page-header__info-icon'
++              } only %}
++              {{- info.text -}}
++            </li>
++          {% endfor %}
++        </ul>
++      {% endif %}
++    </div>
+   </div>
+ </div>
+ {% endspaceless %}
