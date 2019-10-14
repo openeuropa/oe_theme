@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-timeline/timeline.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-timeline/timeline.html.twig
-@@ -59,8 +59,11 @@ Parameters:
+@@ -63,8 +63,11 @@ Parameters:
  
  {# Print the result #}
  

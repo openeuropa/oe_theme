@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-inpage-navigation/inpage-navigation.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-inpage-navigation/inpage-navigation.html.twig
-@@ -40,7 +40,11 @@
+@@ -43,7 +43,11 @@
  
  {# Print the result #}
  

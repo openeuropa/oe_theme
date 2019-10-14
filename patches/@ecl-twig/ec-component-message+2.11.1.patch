@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-message/message.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-message/message.html.twig
-@@ -43,7 +43,12 @@
+@@ -47,7 +47,12 @@
  
  {# Print the result #}
  

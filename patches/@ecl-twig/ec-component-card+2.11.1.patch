@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-card/card.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-card/card.html.twig
-@@ -94,7 +94,9 @@
+@@ -97,7 +97,9 @@
      </h1>
    </header>
    <div class="ecl-card__body">
