@@ -12,7 +12,7 @@ default:
         - Drupal\Tests\oe_theme\Behat\CleanupContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
-              about dropdown menu: "#ecl-menu-legacy__item-1 .ecl-menu-legacy__mega"
+              about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
               breadcrumb: "nav.ecl-breadcrumb"
               dropdown content: ".ecl-link-block__list"
               language switcher: ".ecl-language-list"
@@ -21,7 +21,7 @@ default:
               list item image: ".ecl-list-item__primary"
               logo: ".ecl-site-header__logo-image"
               page header: ".ecl-page-header"
-              priorities dropdown menu: "#ecl-menu-legacy__item-2 .ecl-menu-legacy__mega"
+              priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
               search form: ".ecl-search-form"
             pages:
               content management: "/en/admin/content"
@@ -46,7 +46,7 @@ default:
       drupal:
         drupal_root: "build"
       region_map:
-        about dropdown menu: "#ecl-menu-legacy__item-1 .ecl-menu-legacy__mega"
+        about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
         footer: "footer.ecl-footer"
         header: ".ecl-site-header"
         language dialog: ".ecl-dialog"
@@ -59,7 +59,7 @@ default:
         page header title: ".ecl-page-header .ecl-page-header__title"
         page header intro: ".ecl-page-header .ecl-page-header__description"
         page header meta: ".ecl-page-header .ecl-page-header__meta-list"
-        priorities dropdown menu: "#ecl-menu-legacy__item-2 .ecl-menu-legacy__mega"
+        priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
   formatters:
