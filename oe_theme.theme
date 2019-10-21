@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Url;
 use Drupal\Component\Utility\Random;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -883,5 +884,22 @@ function oe_theme_preprocess_media__document__default(&$variables) {
   if (!$variables['media']->get('oe_media_file')->isEmpty()) {
     $file_object = $variables['media']->get('oe_media_file')->first()->entity;
     $variables['file'] = FileValueObject::fromFileEntity($file_object);
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph__oe_social_media_follow().
+ */
+function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['variant'] = $paragraph->get('field_oe_social_media_variant')->getValue()[0];
+  $variables['label'] = $paragraph->get('field_oe_title')->value;
+  $links = $paragraph->get('field_oe_social_media_links')->getValue();
+  $variables['links'] = [];
+  foreach (Element::children($links) as $index) {
+    $variables['links'][$index]['service'] = $links[$index]["link_type"];
+    $variables['links'][$index]['label'] = $links[$index]['title'];
+    $variables['links'][$index]['url'] = Url::fromUri($links[$index]['uri']);
   }
 }
