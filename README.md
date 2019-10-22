@@ -309,6 +309,7 @@ Patches will be generated in `./patches` and applied when running `npm install`.
 - The following patterns have been removed on 2.x:
   - `dialog`
   - `file_link`
+- The `variant` field on the `field` pattern has been removed.
 - [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
   you should use version 2.x instead.
 
