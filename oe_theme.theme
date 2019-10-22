@@ -893,7 +893,7 @@ function oe_theme_preprocess_media__document__default(&$variables) {
 function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  $variables['variant'] = $paragraph->get('field_oe_social_media_variant')->getValue()[0];
+  $variables['variant'] = $paragraph->get('field_oe_social_media_variant')->value;
   $variables['label'] = $paragraph->get('field_oe_title')->value;
   $links = $paragraph->get('field_oe_social_media_links')->getValue();
   $variables['links'] = [];
