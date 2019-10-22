@@ -807,14 +807,14 @@
           url: 'http://example.com/3'
   assertions:
     count:
-      'a.ecl-link-block__link[href="http://example.com/1"]': 1
-      'a.ecl-link-block__link[href="http://example.com/2"]': 1
-      'a.ecl-link-block__link[href="http://example.com/3"]': 1
+      'a[href="http://example.com/1"]': 1
+      'a[href="http://example.com/2"]': 1
+      'a[href="http://example.com/3"]': 1
     equals:
-      'button.ecl-button': "Dropdown"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+      'span.ecl-button__label': "Dropdown"
+      '.ecl-unordered-list .ecl-unordered-list__item:nth-child(1)': "Link 1"
+      '.ecl-unordered-list .ecl-unordered-list__item:nth-child(2)': "Link 2"
+      '.ecl-unordered-list .ecl-unordered-list__item:nth-child(3)': "Link 3"
 #- array:
 #    '#type': pattern
 #    '#id': field

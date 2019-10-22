@@ -14,7 +14,7 @@ default:
             elements:
               about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
               breadcrumb: "nav.ecl-breadcrumb"
-              dropdown content: ".ecl-link-block__list"
+              dropdown content: ".ecl-unordered-list"
               language switcher: ".ecl-language-list"
               language switcher link: ".ecl-site-header__selector"
               language switcher links: ".ecl-language-list--overlay"
