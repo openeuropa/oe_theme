@@ -1,4 +1,4 @@
-@api
+@api @ecl2
 Feature: Page header block component.
   In order to better understand the context of the page
   As a site user
@@ -10,7 +10,6 @@ Feature: Page header block component.
       | Robots are everywhere               | /robots    | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
       | The benefits of ergonomic equipment | /ergonomic | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
 
-  @ecl2
   Scenario Outline: The page header block shows the current page metadata.
     Given I am an anonymous user
     When I go to the "<page>" page
@@ -23,7 +22,6 @@ Feature: Page header block component.
       | Robots are everywhere               |
       | The benefits of ergonomic equipment |
 
-  @ecl2
   Scenario: The standard title is shown on other pages.
     Given I am an anonymous user
     When I am on "the user registration page"
@@ -58,7 +56,6 @@ Feature: Page header block component.
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
 
-  @ecl2
   Scenario: News content type has custom metadata shown in the page header.
     Given "oe_news" content:
       | title        | oe_summary                           | oe_teaser | body    | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                |
@@ -71,7 +68,6 @@ Feature: Page header block component.
     And I should see "News" in the "page header meta"
     And I should see "02 April 2019" in the "page header meta"
 
-  @ecl2
   Scenario: Policy content type has custom metadata shown in the page header.
     Given "oe_policy" content:
       | title     | oe_summary                           | oe_content_content_owner                                                |
