@@ -12,6 +12,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -706,23 +707,13 @@ function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
-  $defaults = [
-    'wrapper_id' => 'ecl-button-dropdown',
-    'expandable_id' => 'expandable-ecl-button-dropdown',
-    'button_id' => 'button-ecl-button-dropdown',
-  ];
-
-  foreach ($defaults as $key => $id) {
-    if (!empty($variables[$key])) {
-      continue;
-    }
-
-    $variables[$key] = Html::getUniqueId($id);
-  }
-
-  // @todo: Remove this duplicated code and reuse the link_block from below.
+  $variables['id'] = Html::getUniqueId('ecl-button-dropdown');
   foreach ($variables['links'] as $key => $link) {
-    $variables['links'][$key]['href'] = $link['url'];
+    $url = Url::fromUri($link['url']);
+    $link = Link::fromTextAndUrl($link['label'], $url);
+    $variables['links'][$key] = [
+      'label' => $link->toRenderable(),
+    ];
   }
 }
 

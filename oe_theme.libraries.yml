@@ -25,10 +25,4 @@ dialogs:
     js/dialogs.js: {}
   dependencies:
     - core/drupal
-
-dropdown:
-  js:
-    js/dropdown.js: {}
-  dependencies:
-    - core/drupal
     - oe_theme/base
