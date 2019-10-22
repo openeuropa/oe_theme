@@ -262,6 +262,45 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
       ],
     ];
   }
+
+  // Custom footer.
+  $custom_footer = $variables['custom_footer'];
+  if (empty($custom_footer)) {
+    return;
+  }
+  if (!empty($custom_footer['site_identity'])) {
+    $identity['title'] = $custom_footer['site_identity'];
+  }
+  if (!empty($custom_footer['social_links'])) {
+    $identity['follow'] = ['label' => t('Follow us:')];
+    foreach ($custom_footer['social_links'] as $item) {
+      $identity['follow']['links'][] = [
+        'link' => [
+          'label' => $item['label'],
+          'path' => $item['href'],
+          'icon_position' => !empty($item['social_network']) ? 'before' : 'after',
+        ],
+        'icon' => [
+          'path' => $variables['ecl_icon_path'],
+          'type' => !empty($item['social_network']) ? 'branded' : 'ui',
+          'name' => !empty($item['social_network']) ? $item['social_network'] : 'external',
+        ],
+      ];
+    }
+  }
+
+  if (!empty($custom_footer['other_links'])) {
+    foreach ($custom_footer['other_links'] as $item) {
+      $identity['info'][] = [
+        'link' => [
+          'label' => $item['label'],
+          'path' => $item['href'],
+        ],
+      ];
+    }
+  }
+
+  $variables['custom_footer'] = $identity ?? [];
 }
 
 /**

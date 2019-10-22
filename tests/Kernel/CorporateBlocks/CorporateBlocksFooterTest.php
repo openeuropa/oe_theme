@@ -106,43 +106,43 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $crawler = new Crawler($html);
 
     // Make sure that custom footer block is present.
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__custom');
+    $actual = $crawler->filter('footer.ecl-footer section.ecl-footer__identity');
     $this->assertCount(1, $actual);
 
-    // Make sure that footer block rendered correctly.
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column');
+    // Make sure that custom footer block rendered correctly.
+    $actual = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12');
     $this->assertCount(3, $actual);
 
-    $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(1)');
+    $first_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(1)');
 
-    $actual = $first_column->filter('h2.ecl-footer__column-title');
+    $actual = $first_column->filter('h1.ecl-footer__identity-title');
     $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($actual->text()));
 
-    $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(2)');
-    $actual = $second_column->filter('p.ecl-footer__custom-label');
+    $second_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(2)');
+    $actual = $second_column->filter('span.ecl-footer__identity-label');
     $this->assertEquals('Follow us:', trim($actual->text()));
 
-    $actual = $second_column->filter('ul li:nth-child(1) > a');
+    $actual = $second_column->filter('a')->eq(0);
     $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], trim($actual->text()));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], preg_replace('/[^[:print:]]/', '', trim($actual->text())));
 
-    $actual = $second_column->filter('ul li:nth-child(2) > a');
+    $actual = $second_column->filter('a')->eq(1);
     $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], trim($actual->text()));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], preg_replace('/[^[:print:]]/', '', trim($actual->text())));
 
-    $actual = $second_column->filter('ul li:nth-child(3) > a');
+    $actual = $second_column->filter('a')->eq(2);
     $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], trim($actual->text()));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], preg_replace('/[^[:print:]]/', '', trim($actual->text())));
 
-    $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(3)');
+    $third_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(3)');
 
-    $actual = $third_column->filter('ul li:nth-child(1) > a');
+    $actual = $third_column->filter('a')->eq(0);
     $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.contact']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.contact']['label'], trim($actual->text()));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.contact']['label'], preg_replace('/[^[:print:]]/', '', trim($actual->text())));
 
-    $actual = $third_column->filter('ul li:nth-child(2) > a');
+    $actual = $third_column->filter('a')->eq(1);
     $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.legal_notice']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.legal_notice']['label'], trim($actual->text()));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.legal_notice']['label'], preg_replace('/[^[:print:]]/', '', trim($actual->text())));
   }
 
   /**
