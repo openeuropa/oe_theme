@@ -64,19 +64,19 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
   // Massage data to be compliant with ECL navigation menu data structure.
   $variables['links'] = array_map(function ($item) {
     return [
-      'href' => $item['url'],
       'label' => $item['title'],
-      'is_active' => $item['in_active_trail'],
+      'href' => $item['url'],
+      'isCurrent' => $item['in_active_trail'],
     ];
   }, $variables['items']);
 
   foreach ($variables['items'] as $name => $link) {
-    $variables['links'][$name]['children_links'] = array_map(function ($item) {
+    $variables['links'][$name]['children'] = array_map(function ($item) {
       return [
-        'links' => [[
-          'href' => $item['url'],
+        'items' => [[
           'label' => $item['title'],
-          'is_active' => $item['in_active_trail'],
+          'href' => $item['url'],
+          'isCurrent' => $item['in_active_trail'],
         ],
         ],
       ];

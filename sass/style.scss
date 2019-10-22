@@ -1,5 +1,6 @@
 @import '@ecl/ec-theme-default/index';
 @import '@ecl/ec-component-form-help-block/ec-component-form-help-block';
+@import '@ecl/ec-base/ec-base';
 @import "./components/form";
 @import "./components/toolbar";
 
@@ -22,5 +23,12 @@
 .entity-moderation-form {
   .ecl-button {
     margin-bottom: 1em;
+  }
+}
+
+// @todo: Temporary fix until the theme updates to ECL 2.12
+@include ecl-media-breakpoint-up('md') {
+  .ecl-menu-legacy__mega {
+    z-index: 1;
   }
 }
