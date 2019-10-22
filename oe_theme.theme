@@ -1187,3 +1187,20 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
   // Pattern preview will pass along a \Drupal\Core\Render\Markup object.
   $variables['url'] = Url::fromUserInput((string) $variables['url']);
 }
+
+/**
+ * Implements template_preprocess_oe_corporate_blocks_footer().
+ *
+ * Adapting data for ECL 1 custom footer.
+ */
+function oe_theme_preprocess_oe_corporate_blocks_footer(&$variables) {
+  if (!empty($variables['custom_footer']['social_links'])) {
+    $variables['custom_footer']['social_links']['label'] = t('Follow us:');
+    foreach ($variables['custom_footer']['social_links']['links'] as &$link) {
+      if (!empty($link['link']['social_network'])) {
+        $link['type'] = 'social-network';
+        $link['icon'] = $link['link']['social_network'];
+      }
+    }
+  }
+}
