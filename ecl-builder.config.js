@@ -13,21 +13,30 @@ const banner = `${pkg.name} - ${
   pkg.version
 } Built on ${new Date().toISOString()}`;
 
+const style_options = {
+  banner,
+  includePaths,
+  sourceMap: isProd ? 'file' : true,
+};
+
 module.exports = {
   styles: [
     {
-      entry: path.resolve(__dirname, 'sass/style.scss'),
-      dest: path.resolve(outputFolder, 'css/style.css'),
-      options: {
-        banner,
-        includePaths,
-        sourceMap: isProd ? 'file' : true,
-      },
+      entry: path.resolve(__dirname, 'sass/style-ec.scss'),
+      dest: path.resolve(outputFolder, 'css/style-ec.css'),
+      options: style_options,
+    },
+    {
+      entry: path.resolve(__dirname, 'sass/style-eu.scss'),
+      dest: path.resolve(outputFolder, 'css/style-eu.css'),
+      options: style_options,
     },
   ],
   copy: [
-    { from: path.resolve(nodeModules, '@ecl/ec-preset-website/dist'), to: path.resolve(outputFolder, 'dist') },
-    { from: path.resolve(nodeModules, '@ecl/ec-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist') },
+    { from: path.resolve(nodeModules, '@ecl/ec-preset-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
+    { from: path.resolve(nodeModules, '@ecl/ec-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
+    { from: path.resolve(nodeModules, '@ecl/eu-preset-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
+    { from: path.resolve(nodeModules, '@ecl/eu-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-accordion2/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-blockquote/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'components') },

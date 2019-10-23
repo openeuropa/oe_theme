@@ -71,3 +71,12 @@ function oe_theme_helper_post_update_20002() {
 
   $block->delete();
 }
+
+/**
+ * Add default component library theme setting.
+ */
+function oe_theme_helper_post_update_20003() {
+  \Drupal::configFactory()->getEditable('oe_theme.settings')
+    ->set('component_library', 'ec')
+    ->save();
+}

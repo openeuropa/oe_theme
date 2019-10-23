@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
@@ -18,11 +19,35 @@ use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes.
+  // @todo: remove this once the core issue below is fixed.
+  // @link https://www.drupal.org/node/943212
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['component_library'] = [
+    '#type' => 'select',
+    '#title' => t('Component library'),
+    '#options' => [
+      'ec' => t('European Commission'),
+      'eu' => t('European Union'),
+    ],
+    '#default_value' => theme_get_setting('component_library'),
+    '#description' => t('Choose "European Commission" for websites hosted under the ec.europa.eu domain and "European Union" for websites hosted under the europa.eu domain.'),
+  ];
+}
+
+/**
  * Implements hook_preprocess().
  */
 function oe_theme_preprocess(&$variables) {
   global $base_url;
-  $variables['ecl_images_path'] = $base_url . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/images';
+  $variables['ecl_component_library'] = theme_get_setting('component_library');
+  $variables['ecl_images_path'] = $base_url . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
   $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
