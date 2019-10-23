@@ -1,0 +1,26 @@
+text_featured_media:
+  label: "Text with Featured media"
+  description: "Shows a rich text with featured media on the right."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "The heading of the text."
+      preview: "Lorem ipsum"
+    image:
+      type: "ImageValueObject"
+      label: "Image"
+      description: "Image on the right of the text."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for featured item image"
+    caption:
+      type: "text"
+      label: "Caption"
+      description: "Description of the image."
+      preview: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+    text:
+      type: "text"
+      label: "Full text"
+      description: "The full rich text."
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete."
