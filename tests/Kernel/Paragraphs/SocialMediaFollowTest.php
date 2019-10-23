@@ -13,28 +13,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class SocialMediaFollowTest extends ParagraphsTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-    'node',
-    'user',
-    'options',
-    'field',
-    'link',
-    'typed_link',
-    'system',
-    'oe_paragraphs',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installConfig(['typed_link']);
-  }
-
-  /**
    * Tests the rendering of the paragraph type.
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
