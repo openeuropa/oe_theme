@@ -14,6 +14,13 @@ use Symfony\Component\DomCrawler\Crawler;
 class ParagraphsTest extends ParagraphsTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  public static $modules = [
+    'typed_link',
+  ];
+
+  /**
    * Test links block paragraph rendering.
    */
   public function testLinksBlock(): void {

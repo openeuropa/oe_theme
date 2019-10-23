@@ -14,6 +14,13 @@ use Symfony\Component\DomCrawler\Crawler;
 class ContentRowTest extends ParagraphsTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  public static $modules = [
+    'typed_link',
+  ];
+
+  /**
    * Tests the rendering of the paragraph type.
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
