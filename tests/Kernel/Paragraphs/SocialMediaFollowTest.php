@@ -27,6 +27,14 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+    $this->installConfig(['typed_link']);
+  }
+
+  /**
    * Tests the rendering of the paragraph type.
    *
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
