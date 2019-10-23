@@ -829,18 +829,20 @@
 #    equals:
 #      '.ecl-field__label': "Field text"
 #      '.ecl-field__body': "Field body"
-#- array:
-#    '#type': pattern
-#    '#id': field
-#    '#fields':
-#      variant: "aligned"
-#      body: "Field body"
-#  assertions:
-#    count:
-#      '.ecl-field__label': 0
-#      '.ecl-field__body': 1
-#    equals:
-#      '.ecl-field__body': "Field body"
+- array:
+    '#type': pattern
+    '#id': field
+    '#fields':
+      label: "Field label"
+      body: "Field body"
+  assertions:
+    count:
+      '.ecl-description-list.ecl-description-list--horizontal': 1
+      '.ecl-description-list__term': 1
+      '.ecl-description-list__definition': 1
+    equals:
+      '.ecl-description-list__term': "Field label"
+      '.ecl-description-list__definition': "Field body"
 - array:
     '#type': pattern
     '#id': link_block
