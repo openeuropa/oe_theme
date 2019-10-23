@@ -845,6 +845,25 @@
       '.ecl-description-list__definition': "Field body"
 - array:
     '#type': pattern
+    '#id': field_list
+    '#fields':
+      items:
+        - label: "When"
+          body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - label: "Where"
+          body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - label: "Live streaming"
+          body: "08:00 CET | 00d:23h:35m"
+  assertions:
+    count:
+      '.ecl-description-list.ecl-description-list--horizontal': 1
+      '.ecl-description-list__term': 3
+      '.ecl-description-list__definition': 3
+    equals:
+      '.ecl-description-list__term': "When"
+      '.ecl-description-list__definition': "Thursday 15 November, 08:00 AM to Friday 16 November"
+- array:
+    '#type': pattern
     '#id': link_block
     '#fields':
       title: "Link block title"
