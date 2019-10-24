@@ -1,11 +1,11 @@
 text_featured_media:
   label: "Text with Featured media"
-  description: "Shows a rich text with featured media on the right."
+  description: "Shows a rich text with a title and a featured media on the right, if any."
   fields:
     title:
       type: "text"
       label: "Title"
-      description: "The heading of the text."
+      description: "The title, displayed above text and media."
       preview: "Lorem ipsum"
     image:
       type: "ImageValueObject"

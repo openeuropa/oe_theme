@@ -1389,7 +1389,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-editor': "Some more text"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -1401,10 +1401,14 @@
       text: "Some more text"
   assertions:
     count:
-      'div.ecl-row': 0
-      'figure.ecl-media-container': 0
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'figcaption.ecl-media-container__caption': 0
+      'h2.ecl-u-type-heading-2': 0
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figcaption.ecl-media-container__caption': 1
+    equals:
+      'figcaption.ecl-media-container__caption': "Some caption text for the image"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -1417,11 +1421,12 @@
     count:
       'div.ecl-row': 1
       'figure.ecl-media-container': 0
+      'div.ecl-col-md-6.ecl-editor': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-editor': "Some more text"
+      'div.ecl-col-12.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -1439,4 +1444,21 @@
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-editor': "Some more text"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      image:
+        src: ""
+      caption: "Some caption"
+      text: ""
+  assertions:
+    count:
+      'div.ecl-row': 0
+      'figure.ecl-media-container': 0
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
