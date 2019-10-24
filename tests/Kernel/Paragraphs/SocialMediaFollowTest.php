@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
+use Drupal\Core\Url;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -36,7 +37,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
       [
         'title' => 'Facebook',
         'uri' => 'https://facebook.com',
-        'link_type' => 'facebook',
+        'link_type' => 'pinterest',
       ],
       [
         'title' => 'Flickr',
@@ -143,7 +144,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertContains('Email', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--email.ecl-social-media-link__link'));
     $this->assertContains('Facebook', $links_html);
-    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--facebook.ecl-social-media-link__link'));
+    $this->assertCount(0, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--facebook.ecl-social-media-link__link'));
     $this->assertContains('Flickr', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--flickr.ecl-social-media-link__link'));
     $this->assertContains('Google+', $links_html);
@@ -153,7 +154,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertContains('LinkedIn', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--linkedin.ecl-social-media-link__link'));
     $this->assertContains('Pinterest', $links_html);
-    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
+    $this->assertCount(2, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
     $this->assertContains('RSS', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--rss.ecl-social-media-link__link'));
     $this->assertContains('Storify', $links_html);
@@ -165,6 +166,21 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--yammer.ecl-social-media-link__link'));
     $this->assertContains('Youtube', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--youtube.ecl-social-media-link__link'));
+
+    // Change variant to vertical layout.
+    $links = $paragraph->get('field_oe_social_media_links')->getValue();
+    foreach ($links as $key => $link) {
+      if ($link['title'] == 'Facebook') {
+        $links[$key]['link_type'] = 'facebook';
+      }
+    }
+    $paragraph->get('field_oe_social_media_links')->setValue($links);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--facebook.ecl-social-media-link__link'));
+    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
   }
 
 }
