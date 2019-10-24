@@ -897,9 +897,9 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
   $variables['label'] = $paragraph->get('field_oe_title')->value;
   $links = $paragraph->get('field_oe_social_media_links')->getValue();
   $variables['links'] = [];
-  foreach (Element::children($links) as $index) {
-    $variables['links'][$index]['service'] = $links[$index]['link_type'];
-    $variables['links'][$index]['label'] = $links[$index]['title'];
-    $variables['links'][$index]['url'] = Url::fromUri($links[$index]['uri']);
+  foreach ($links as $key => $link) {
+    $variables['links'][$key]['service'] = $link['link_type'];
+    $variables['links'][$key]['label'] = $link['title'];
+    $variables['links'][$key]['url'] = Url::fromUri($link['uri']);
   }
 }
