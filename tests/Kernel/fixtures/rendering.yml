@@ -1394,7 +1394,6 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      title: ""
       image:
         src: "http://via.placeholder.com/150x150"
       caption: "Some caption text for the image"
@@ -1414,7 +1413,6 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      image: ""
       caption: "Some caption text for the image"
       text: "Some more text"
   assertions:
@@ -1434,7 +1432,6 @@
       title: "Heading"
       image:
         src: "http://via.placeholder.com/150x150"
-      caption: ""
       text: "Some more text"
   assertions:
     count:
@@ -1450,10 +1447,7 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      image:
-        src: ""
       caption: "Some caption"
-      text: ""
   assertions:
     count:
       'div.ecl-row': 0
