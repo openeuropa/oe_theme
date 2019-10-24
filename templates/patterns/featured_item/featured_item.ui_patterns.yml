@@ -5,17 +5,15 @@ featured_item:
     default:
       label: "Default"
       description: "Default type of the featured item."
-    extended:
-      label: "Extended"
-      description: "External type of the featured item."
+    tile:
+      label: "Tile"
+      description: "Simple type of the featured item."
   fields:
-    image:
-      type: "array"
-      label: "Image"
-      description: "Image of the featured item."
-      preview:
-        src: "https://placeimg.com/1000/500/arch"
-        alt: "Alternative text for featured item image"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Description of the featured item."
+      preview: "Transparently designing and evaluating evidence-based EU legislation, backed by citizens views."
     metas:
       type: "array"
       label: "Metas"
@@ -25,14 +23,47 @@ featured_item:
         - "6 July 2015"
         - "Brussels"
     title:
-      type: "text"
+      type: "array"
       label: "Title"
-      description: "The title of the page."
-      preview: "Business, Economy, Euro"
+      description: "The title of the page. It must be an array compatible with Link component. If the variant is 'tile', only the label property is required."
+      preview:
+        label: "Business, Economy, Euro"
+        path: "http://example.com"
+    image:
+      type: "array"
+      label: "Image"
+      description: "Image of the featured item."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for featured item image"
+    tags:
+      type: "array"
+      label: "Tags"
+      description: "List of tags compatible with EC Tag component structure."
+      preview:
+        - href: "http://example.com"
+          label: "Tag 1"
+        - href: "http://example.com"
+          label: "Tag 2"
+    infos:
+      type: "array"
+      label: "Info"
+      description: "A collection of information elements."
+      preview:
+        - label: "2018/10/22"
+          icon:
+            icon_type: 'general'
+            icon_name: 'calendar'
+        - label: "Luxembourg"
+          icon:
+            icon_type: 'general'
+            icon_name: 'location'
     link:
       type: "array"
-      label: "Link"
-      description: "Link in the featured item."
+      label: "Links"
+      description: "A collection of links"
       preview:
-        href: "http://example.com"
-        label: "European Commission"
+        - path: "http://example.com"
+          label: "European Commission"
+        - path: "http://example.com"
+          label: "European Union"

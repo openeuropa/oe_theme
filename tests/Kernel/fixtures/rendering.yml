@@ -1143,49 +1143,72 @@
       'svg.ecl-link__icon': 1
     equals:
       'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before span.ecl-link__label': "Facebook"
-#- array:
-#    '#type': pattern
-#    '#id': featured_item
-#    '#variant': "default"
-#    '#fields':
-#      image:
-#        src: "http://via.placeholder.com/120x80"
-#        alt: "Alternative of image"
-#      metas:
-#        - "Breaking news article"
-#        - "Brussels"
-#      title: "Featured news article"
-#      link:
-#        href: "https://example.com"
-#        label: "Link title"
-#  assertions:
-#    count:
-#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-#      'div.ecl-meta span.ecl-meta__item': 2
-#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 0
-#- array:
-#    '#type': pattern
-#    '#id': featured_item
-#    '#variant': "extended"
-#    '#fields':
-#      image:
-#        src: "http://via.placeholder.com/120x80"
-#        alt: "Alternative of image"
-#      metas:
-#        - "Breaking news article"
-#        - "Brussels"
-#        - "European Commission"
-#      title: "Featured news article"
-#      link:
-#        href: "https://example.com"
-#        label: "Link title"
-#  assertions:
-#    count:
-#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-#      'div.ecl-meta span.ecl-meta__item': 3
-#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description: "Example description"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      title:
+        label: "Example title"
+        path: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      tags:
+        - path: "http://tag1.com"
+          label: "Tag 1"
+        - path: "http://tag2.com"
+          label: "Tag 2"
+      infos:
+        - label: "2018/10/22"
+          icon:
+            icon_type: 'general'
+            icon_name: 'calendar'
+        - label: "Luxembourg"
+          icon:
+            icon_type: 'general'
+            icon_name: 'location'
+  assertions:
+    count:
+      "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
+      'h1.ecl-card__title a[href="http://example.com"]': 1
+      'li.ecl-card__tag-item a.ecl-tag[href="http://tag1.com"]': 1
+      'li.ecl-card__info-item svg': 2
+    equals:
+      'div.ecl-card__meta': "Breaking news article | Brussels"
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description': "Example description"
+      'a.ecl-card__tag:nth-child(1)': "Tag 1"
+      #'a.ecl-card__tag:nth-child(2)': "Tag 2"
+      #'span.ecl-card__info-label:nth-child(1)' : "2018/10/22"
+      #'span.ecl-card__info-label:nth-child(2)' : "Luxembourg"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "tile"
+    '#fields':
+      description: "Example description"
+      title:
+        label: "Example title"
+      link:
+        - path: "http://link1.com"
+          label: "European Commission"
+        - path: "http://link2.com"
+          label: "European Union"
+  assertions:
+    count:
+      'li.ecl-card__link-item': 2
+      'a.ecl-card__link[href="http://link1.com"]': 1
+      'a.ecl-card__link[href="http://link2.com"]': 1
+    equals:
+      'h1.ecl-card__title': "Example title"
+      'div.ecl-card__description': "Example description"
+      'a.ecl-card__link:nth-child(1)': "European Commission"
+      #'a.ecl-card__link:nth-child(2)': "European Union"
 - array:
     '#type': pattern
     '#id': timeline

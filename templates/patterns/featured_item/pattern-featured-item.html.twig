@@ -4,10 +4,16 @@
  * Field.
  */
 #}
-{% include '@ecl/ec-component-featured-item' with {
-  'variant': variant,
-  'image': image,
-  'metas': metas,
+{% set card = {
+  'type': variant,
+  'description': description,
+  'meta': metas,
   'title': title,
-  'link': link,
+  'image': image,
+  'tags': tags,
+  'infos': infos,
+  'links': link,
+} %}
+{% include '@ecl/card' with {
+  'card': card,
 } %}
