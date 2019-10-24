@@ -4,6 +4,14 @@
  * Dropdown component.
  */
 #}
+{% set _links = {} %}
+{% for link in links %}
+  {% set _link = {
+    label: link(link.label, link.url)
+  } %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
 {% include '@ecl/dropdown-legacy' with {
   'id': id,
   'button': {
@@ -18,6 +26,6 @@
     },
   },
   'list': {
-    'items': links,
+    'items': _links,
   },
 } %}

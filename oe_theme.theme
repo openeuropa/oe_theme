@@ -12,7 +12,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Component\Utility\Random;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -708,13 +707,6 @@ function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
   $variables['id'] = Html::getUniqueId('ecl-button-dropdown');
-  foreach ($variables['links'] as $key => $link) {
-    $url = Url::fromUri($link['url']);
-    $link = Link::fromTextAndUrl($link['label'], $url);
-    $variables['links'][$key] = [
-      'label' => $link->toRenderable(),
-    ];
-  }
 }
 
 /**
