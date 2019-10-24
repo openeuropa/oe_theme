@@ -24,7 +24,7 @@
   } %}
 
   {% for pattern_name, pattern in patterns %}
-  <div class="ecl-u-clearfix ecl-u-pv-l">
+  <div class="ecl-u-clearfix ecl-u-pv-4xl ecl-u-border-bottom ecl-u-border-color-grey-50">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
     {% include '@ecl/link' with {
@@ -47,10 +47,9 @@
 
     {# Rendered pattern preview. #}
     {% set style = pattern.meta['#pattern'].additional.style %}
-    <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
+    <div class="ecl-u-clearfix ecl-u-pt-4xl" style="{{ style }}">
       {{ pattern.rendered }}
     </div>
-    <hr>
   </div>
   {% endfor %}
 {% endif %}
