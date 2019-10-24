@@ -45,7 +45,7 @@ Feature: Theme showcase
     And the "about dropdown menu" is not visible
     But the "priorities dropdown menu" is visible
 
-  @javascript
+  @javascript @ecl2
   Scenario: The dropdown component shows/hides on click event
     When I am on "the ECL dropdown component page"
     Then the "dropdown content" is not visible

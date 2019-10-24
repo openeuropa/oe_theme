@@ -10,7 +10,7 @@ dropdown:
     links:
       type: "array"
       label: "Links"
-      description: "Array of links"
+      description: "Array of links, 'url' values must be a string or object of type \\Drupal\\Core\\Url."
       preview:
         - label: 'European Commission'
           url: 'http://example.com'
@@ -18,5 +18,3 @@ dropdown:
           url: 'http://example.com'
         - label: 'Jobs, Growth and Investment'
           url: 'http://example.com'
-  libraries:
-    - oe_theme/dropdown

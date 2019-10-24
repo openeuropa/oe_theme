@@ -4,7 +4,28 @@
  * Dropdown component.
  */
 #}
-{% include '@ecl/ec-component-dropdown' with {
-  'button_label': button_label,
-  'links': links,
+{% set _links = {} %}
+{% for link in links %}
+  {% set _link = {
+    label: link(link.label, link.url)
+  } %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% include '@ecl/dropdown-legacy' with {
+  'id': id,
+  'button': {
+    'label': button_label,
+    'variant': 'secondary',
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'ui',
+      'name': 'corner-arrow',
+      'transform': 'rotate-180',
+      'size': 'fluid',
+    },
+  },
+  'list': {
+    'items': _links,
+  },
 } %}
