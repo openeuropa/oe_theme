@@ -1176,16 +1176,15 @@
     count:
       "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
       'h1.ecl-card__title a[href="http://example.com"]': 1
-      'li.ecl-card__tag-item a.ecl-tag[href="http://tag1.com"]': 1
       'li.ecl-card__info-item svg': 2
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description': "Example description"
-      'a.ecl-card__tag:nth-child(1)': "Tag 1"
-      #'a.ecl-card__tag:nth-child(2)': "Tag 2"
-      #'span.ecl-card__info-label:nth-child(1)' : "2018/10/22"
-      #'span.ecl-card__info-label:nth-child(2)' : "Luxembourg"
+      'li.ecl-card__tag-item a.ecl-tag[href="http://tag1.com"]': "Tag 1"
+      'li.ecl-card__tag-item a.ecl-tag[href="http://tag2.com"]': "Tag 2"
+      'li.ecl-card__info-item:nth-child(1) span.ecl-card__info-label' : "2018/10/22"
+      'li.ecl-card__info-item:nth-child(2) span.ecl-card__info-label' : "Luxembourg"
 - array:
     '#type': pattern
     '#id': featured_item
@@ -1202,13 +1201,11 @@
   assertions:
     count:
       'li.ecl-card__link-item': 2
-      'a.ecl-card__link[href="http://link1.com"]': 1
-      'a.ecl-card__link[href="http://link2.com"]': 1
     equals:
       'h1.ecl-card__title': "Example title"
       'div.ecl-card__description': "Example description"
-      'a.ecl-card__link:nth-child(1)': "European Commission"
-      #'a.ecl-card__link:nth-child(2)': "European Union"
+      'a.ecl-card__link[href="http://link1.com"]': "European Commission"
+      'a.ecl-card__link[href="http://link2.com"]': "European Union"
 - array:
     '#type': pattern
     '#id': timeline
