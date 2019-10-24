@@ -10,7 +10,7 @@ dropdown:
     links:
       type: "array"
       label: "Links"
-      description: "Array of links, 'url' values must be a string or object of type \Drupal\Core\Url."
+      description: "Array of links, 'url' values must be a string or object of type \\Drupal\\Core\\Url."
       preview:
         - label: 'European Commission'
           url: 'http://example.com'
