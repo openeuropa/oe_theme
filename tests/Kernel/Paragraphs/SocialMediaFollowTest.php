@@ -36,7 +36,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
       [
         'title' => 'Facebook',
         'uri' => 'https://facebook.com',
-        'link_type' => 'pinterest',
+        'link_type' => '',
       ],
       [
         'title' => 'Flickr',
@@ -153,7 +153,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertContains('LinkedIn', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--linkedin.ecl-social-media-link__link'));
     $this->assertContains('Pinterest', $links_html);
-    $this->assertCount(2, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
+    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
     $this->assertContains('RSS', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--rss.ecl-social-media-link__link'));
     $this->assertContains('Storify', $links_html);
@@ -179,7 +179,6 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--facebook.ecl-social-media-link__link'));
-    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--pinterest.ecl-social-media-link__link'));
   }
 
 }
