@@ -13,13 +13,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class SocialMediaFollowTest extends ParagraphsTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  public static $modules = [
-    'typed_link',
-  ];
-
-  /**
    * Creates link items for Social media follow paragraph.
    *
    * @return array
