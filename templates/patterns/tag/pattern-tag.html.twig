@@ -4,10 +4,12 @@
  * Tag.
  */
 #}
-{% include '@ecl/ec-component-tag/tag' with {
-  'tag': {
-    'type': tag_type,
-    'path': url,
-    'label': label,
-  }
-} %}
+{% if variant == 'default' %}
+  {% include '@ecl/ec-component-tag/tag' with {
+    'tag': {
+      'type': tag_type,
+      'path': url,
+      'label': label,
+    }
+  } %}
+{% endif %}

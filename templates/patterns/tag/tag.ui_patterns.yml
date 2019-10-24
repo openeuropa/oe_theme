@@ -1,6 +1,10 @@
 tag:
   label: "Tag"
   description: "The tag component is used to display structured information."
+  variants:
+    default:
+      label: "Default"
+      description: "Displays the url and label in a tag."
   fields:
     tag_type:
       type: "text"
