@@ -1390,3 +1390,53 @@
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: ""
+      image:
+        src: "http://via.placeholder.com/150x150"
+      caption: "Some caption text for the image"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 0
+      'figure.ecl-media-container': 0
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'figcaption.ecl-media-container__caption': 0
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      image: ""
+      caption: "Some caption text for the image"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 0
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      image:
+        src: "http://via.placeholder.com/150x150"
+      caption: ""
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-editor': "Some more text"

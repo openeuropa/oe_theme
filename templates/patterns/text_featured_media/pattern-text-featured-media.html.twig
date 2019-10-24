@@ -5,19 +5,24 @@
  */
 #}
 
-{% if title is not empty and text is not empty %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
+{% set _title = title|default('') %}
+{% set _image = image|default('') %}
+{% set _caption = caption|default('') %}
+{% set _text = text|default('') %}
+
+{% if _title is not empty and _text is not empty %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ _title }}</h2>
   <div class="ecl-row">
-    {% if image is not empty %}
+    {% if _image is not empty %}
       <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-l ecl-u-mb-md-none">
         <figure class="ecl-media-container">
-          <img class="ecl-media-container__media" src="{{ image.src }}" alt="{{ image.alt }}">
-          {% if caption is not empty %}
-            <figcaption class="ecl-media-container__caption">{{ caption }}</figcaption>
+          <img class="ecl-media-container__media" src="{{ _image.src }}" alt="{{ _image.alt }}">
+          {% if _caption is not empty %}
+            <figcaption class="ecl-media-container__caption">{{ _caption }}</figcaption>
           {% endif %}
         </figure>
       </div>
     {% endif %}
-    <div class="ecl-col-12 ecl-col-md-6 ecl-editor">{{ text }}</div>
+    <div class="ecl-col-12 ecl-col-md-6 ecl-editor">{{ _text }}</div>
   </div>
 {% endif %}
