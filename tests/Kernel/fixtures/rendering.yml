@@ -829,18 +829,43 @@
 #    equals:
 #      '.ecl-field__label': "Field text"
 #      '.ecl-field__body': "Field body"
-#- array:
-#    '#type': pattern
-#    '#id': field
-#    '#fields':
-#      variant: "aligned"
-#      body: "Field body"
-#  assertions:
-#    count:
-#      '.ecl-field__label': 0
-#      '.ecl-field__body': 1
-#    equals:
-#      '.ecl-field__body': "Field body"
+- array:
+    '#type': pattern
+    '#id': field
+    '#fields':
+      label: "Field label"
+      body: "Field body"
+  assertions:
+    count:
+      '.ecl-description-list.ecl-description-list--horizontal': 1
+      '.ecl-description-list__term': 1
+      '.ecl-description-list__definition': 1
+    equals:
+      '.ecl-description-list__term': "Field label"
+      '.ecl-description-list__definition': "Field body"
+- array:
+    '#type': pattern
+    '#id': field_list
+    '#fields':
+      items:
+        - label: "When"
+          body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - label: "Where"
+          body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - label: "Live streaming"
+          body: "08:00 CET | 00d:23h:35m"
+  assertions:
+    count:
+      '.ecl-description-list.ecl-description-list--horizontal': 1
+      '.ecl-description-list__term': 3
+      '.ecl-description-list__definition': 3
+    equals:
+      '.ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      '.ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
 - array:
     '#type': pattern
     '#id': link_block

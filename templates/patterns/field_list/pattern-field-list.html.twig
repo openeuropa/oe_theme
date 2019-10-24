@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Field list.
+ */
+#}
+{% if items %}
+  <dl class="ecl-description-list ecl-description-list--horizontal">
+  {% for item in items %}
+    <dt class="ecl-description-list__term">{{ item.label }}</dt>
+    <dd class="ecl-description-list__definition">{{ item.body }}</dd>
+  {% endfor %}
+</dl>
+{% endif %}

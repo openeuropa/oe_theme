@@ -4,8 +4,10 @@
  * Field.
  */
 #}
-{% include '@ecl/ec-component-field' with {
-  'variant': variant,
-  'label': label,
-  'body': body,
-} %}
+{% if label %}
+<dl class="ecl-description-list ecl-description-list--horizontal">
+  <dt class="ecl-description-list__term">{{ label }}</dt>
+  <dd class="ecl-description-list__definition">{{ body }}</dd>
+</dl>
+{% endif %}
+

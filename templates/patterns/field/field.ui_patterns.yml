@@ -2,11 +2,6 @@ field:
   label: "Field"
   description: "The field component is used to display structured information."
   fields:
-    variant:
-      type: "text"
-      label: "Variant"
-      description: "Type of field"
-      preview: ""
     label:
       type: "text"
       label: "Label"
