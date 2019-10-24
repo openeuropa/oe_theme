@@ -1,0 +1,17 @@
+icons_with_text:
+  label: "Icons with text"
+  description: "A list of icons with a text."
+  fields:
+    items:
+      type: "array"
+      label: "Items"
+      description: "List of items, each having an 'icon' and a 'text' field"
+      preview:
+        - icon: "file"
+          text: "Culture | Innovation"
+        - icon: "calendar"
+          text: "15-16 November 2019, 08:00 AM"
+        - icon: "location"
+          text: "Brussels, Belgium"
+        - icon: "livestreaming"
+          text: "Live streaming available"
