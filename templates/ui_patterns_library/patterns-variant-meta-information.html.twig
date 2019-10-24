@@ -5,21 +5,23 @@
  */
 #}
 {% if variant is not empty %}
-  {% include '@ecl/table' with {
-    zebra: true,
-    headers: [
-      [
-        { 'label': 'Variant'|t },
-        { 'label': 'Name'|t },
-        { 'label': 'Description'|t }
-      ]
-    ],
-    rows: [{
-      cells: [
-        { 'label': variant.label, 'data-ecl-table-header': 'Variant'|t },
-        { 'label': variant.name, 'data-ecl-table-header': 'Name'|t },
-        { 'label': variant.description, 'data-ecl-table-header': 'Description'|t }
-      ]
-    }]
-  } %}
+  <div class="ecl-u-pt-2xl ecl-u-pb-xl">
+    {% include '@ecl/table' with {
+      zebra: true,
+      headers: [
+        [
+          { 'label': 'Variant'|t },
+          { 'label': 'Name'|t },
+          { 'label': 'Description'|t }
+        ]
+      ],
+      rows: [{
+        cells: [
+          { 'label': variant.label, 'data-ecl-table-header': 'Variant'|t },
+          { 'label': variant.name, 'data-ecl-table-header': 'Name'|t },
+          { 'label': variant.description, 'data-ecl-table-header': 'Description'|t }
+        ]
+      }]
+    } %}
+  </div>
 {% endif %}

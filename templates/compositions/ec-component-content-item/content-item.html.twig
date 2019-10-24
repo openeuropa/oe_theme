@@ -49,10 +49,10 @@
 
 {% macro image(src, alt, class1, class2) %}
   <div role="img" aria-label="{{ alt }}" class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl {{ class1 }}"
-       style="background-image:url('{{ src }}');background-size:contain;height:5rem;width:7.5rem"></div>
+       style="background-image:url('{{ src }}');background-size:cover;height:8.75rem;width:13.125rem"></div>
   <div role="img" aria-label="{{ alt }}"
        class="ecl-u-ratio-3-2 ecl-u-flex-shrink-0 ecl-u-mr-xl ecl-u-d-none {{ class2 }}"
-       style="background-image:url('{{ src }}');background-size:contain;height:8.75rem;width:13.125rem">
+       style="background-image:url('{{ src }}');background-size:cover;height:8.75rem;width:13.125rem">
   </div>
 {% endmacro %}
 
