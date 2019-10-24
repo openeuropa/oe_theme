@@ -32,7 +32,6 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'options',
     'oe_paragraphs',
     'allowed_formats',
-    'typed_link',
   ];
 
   /**

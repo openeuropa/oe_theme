@@ -13,11 +13,19 @@ use Symfony\Component\DomCrawler\Crawler;
 class SocialMediaFollowTest extends ParagraphsTestBase {
 
   /**
-   * Tests the rendering of the paragraph type.
-   *
-   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+   * {@inheritdoc}
    */
-  public function testRendering(): void {
+  public static $modules = [
+    'typed_link',
+  ];
+
+  /**
+   * Creates link items for Social media follow paragraph.
+   *
+   * @return array
+   *   Returns array of link items.
+   */
+  protected function getSocialMediaLinks(): array {
     // Create social media link items.
     $items = [
       [
@@ -26,7 +34,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
         'link_type' => 'email',
       ],
       [
-        'title' => 'Facebookk',
+        'title' => 'Facebook',
         'uri' => 'https://facebook.com',
         'link_type' => 'facebook',
       ],
@@ -66,7 +74,12 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
         'link_type' => 'storify',
       ],
       [
-        'title' => 'Twitter',
+        'title' => '1st Twitter',
+        'uri' => 'https://twitter.com',
+        'link_type' => 'twitter',
+      ],
+      [
+        'title' => '2nd Twitter',
         'uri' => 'https://twitter.com',
         'link_type' => 'twitter',
       ],
@@ -80,14 +93,28 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
         'uri' => 'https://youtube.com',
         'link_type' => 'youtube',
       ],
+      [
+        'title' => 'Vimeo',
+        'uri' => 'https://vimeo.com',
+        'link_type' => 'vimeo',
+      ],
     ];
 
+    return $items;
+  }
+
+  /**
+   * Tests the rendering of the paragraph type.
+   *
+   * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+   */
+  public function testRendering(): void {
     // Create social media follow paragraph with horizontal variant.
     $paragraph = Paragraph::create([
       'type' => 'oe_social_media_follow',
       'field_oe_title' => 'Social media title',
       'field_oe_social_media_variant' => 'horizontal',
-      'field_oe_social_media_links' => $items,
+      'field_oe_social_media_links' => $this->getSocialMediaLinks(),
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
@@ -131,8 +158,9 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--rss.ecl-social-media-link__link'));
     $this->assertContains('Storify', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--storify.ecl-social-media-link__link'));
-    $this->assertContains('Twitter', $links_html);
-    $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--twitter.ecl-social-media-link__link'));
+    $this->assertContains('1st Twitter', $links_html);
+    $this->assertContains('2nd Twitter', $links_html);
+    $this->assertCount(2, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--twitter.ecl-social-media-link__link'));
     $this->assertContains('Yammer', $links_html);
     $this->assertCount(1, $crawler->filter('.ecl-link.ecl-social-icon.ecl-social-icon--yammer.ecl-social-media-link__link'));
     $this->assertContains('Youtube', $links_html);
