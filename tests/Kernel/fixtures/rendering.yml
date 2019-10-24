@@ -1470,3 +1470,37 @@
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+- array:
+    '#type': pattern
+    '#id': icons_with_text
+    '#fields':
+      items:
+        -
+          icon: "file"
+          text: "Culture | Innovation"
+        -
+          icon: "calendar"
+          text: "15-16 November 2019, 08:00 AM"
+        -
+          icon: "location"
+          text: "Brussels, Belgium"
+        -
+          icon: "livestreaming"
+          text: "Live streaming available"
+  assertions:
+    count:
+      'ul.ecl-unordered-list--no-bullet': 1
+      'ul li.ecl-unordered-list__item': 4
+      'ul li.ecl-unordered-list__item svg': 4
+    equals:
+      'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
+      'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
+      'ul li.ecl-unordered-list__item:nth-child(3)': "Brussels, Belgium"
+      'ul li.ecl-unordered-list__item:nth-child(4)': "Live streaming available"
+- array:
+    '#type': pattern
+    '#id': icons_with_text
+    '#fields':
+  assertions:
+    count:
+      'ul.ecl-unordered-list--no-bullet': 0
