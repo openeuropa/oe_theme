@@ -4,16 +4,41 @@
  * Field.
  */
 #}
+
+{#
+  In order to replicate the extended functionality we add a button
+  at the end of the description if the variant is set to "extended".
+ #}
+{% set _description %}
+  <p class="ecl-paragraph">
+    {{ description }}
+  </p>
+  {% if variant == 'extended' %}
+    <a href="{{ link.path }}" class="ecl-button ecl-button--call">
+      <span class="ecl-button__container">
+        <span class="ecl-button__label">{{ link.label }}</span>
+        {% include '@ecl/icon' with {
+          icon: {
+            path: ecl_icon_path,
+            type: "ui",
+            name: "corner-arrow",
+            size: "xs",
+            transform: "rotate-90"
+          },
+          extra_classes: "ecl-button__icon ecl-button__icon--after"
+        } only %}
+      </span>
+    </a>
+  {% endif %}
+{% endset %}
+
 {% set card = {
-  'type': variant,
-  'description': description,
+  'description': _description,
   'meta': metas,
   'title': title,
   'image': image,
-  'tags': tags,
-  'infos': infos,
-  'links': link,
 } %}
+
 {% include '@ecl/card' with {
   'card': card,
 } %}
