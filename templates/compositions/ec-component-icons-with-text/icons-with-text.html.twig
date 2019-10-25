@@ -18,19 +18,20 @@ Parameters:
 {% set _extra_classes = 'ecl-u-mr-s' %}
 
 {# Print the result #}
-{% if _items not empty %}
+
+{% if _items %}
 <ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
   {% for _item in _items %}
-  <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{% if not loop.first %} ecl-u-mt-l{% endif %}">
-    {% include '@ecl/icon' with {
-      icon: {
-        path: _icon_path,
-        type: 'general',
-        name: _item.icon
-      },
-      extra_classes: _extra_classes
-    } only %}{{- _item.text -}}
-  </li>
+    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{% if not loop.first %} ecl-u-mt-l{% endif %}">
+      {% include '@ecl/icon' with {
+        icon: {
+          path: _icon_path,
+          type: 'general',
+          name: _item.icon
+        },
+        extra_classes: _extra_classes
+      } only %}{{- _item.text -}}
+    </li>
   {% endfor %}
 </ul>
 {% endif %}

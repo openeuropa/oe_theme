@@ -1500,7 +1500,6 @@
 - array:
     '#type': pattern
     '#id': icons_with_text
-    '#fields':
   assertions:
     count:
       'ul.ecl-unordered-list--no-bullet': 0
