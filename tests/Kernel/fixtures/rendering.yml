@@ -1503,3 +1503,26 @@
   assertions:
     count:
       'ul.ecl-unordered-list--no-bullet': 0
+- array:
+    '#type': pattern
+    '#id': icons_with_text
+    '#fields':
+      items:
+        -
+          icon: "file"
+          text: "Culture | Innovation"
+        -
+          text: "15-16 November 2019, 08:00 AM"
+        -
+          icon: "location"
+        -
+          icon: "livestreaming"
+          text: "Live streaming available"
+  assertions:
+    count:
+      'ul.ecl-unordered-list--no-bullet': 1
+      'ul li.ecl-unordered-list__item': 2
+      'ul li.ecl-unordered-list__item svg': 2
+    equals:
+      'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
+      'ul li.ecl-unordered-list__item:nth-child(2)': "Live streaming available"
