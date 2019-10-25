@@ -1,0 +1,205 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Event content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\media\MediaInterface;
+use Drupal\oe_content_event\Entity\EventProfile;
+
+/**
+ * Implements template_preprocess_node() for the Event node type.
+ */
+function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
+  if ($variables['view_mode'] !== 'full') {
+    return;
+  }
+
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $event_status = $node->get('oe_event_status')->value;
+  $current_time = \Drupal::time()->getCurrentTime();
+  /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
+  $date_formatter = \Drupal::service('date.formatter');
+
+  $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->value;
+
+  // Prepare the registration button.
+  $registration_button = [
+    'label' => t('Register'),
+    'state' => 'disabled',
+    'url' => $node->get('oe_event_registration_url')->uri,
+  ];
+  // Get the registration related information.
+  if ($registration_status = $node->get('oe_event_registration_status')->value) {
+    $registration_start_date = $node->get('oe_event_registration_start_date')->date->getTimestamp();
+    $registration_end_date = $node->get('oe_event_registration_end_date')->date->getTimestamp();
+  }
+
+  // No registration information are set.
+  if (!$registration_status && $event_status !== 'cancelled') {
+    $registration_button['description'] = t('Registration is not yet opened for this event.');
+  }
+  if (isset($registration_start_date) && $registration_status === 'open' && $event_status !== 'cancelled' && $event_status !== 'postponed') {
+    // Registration in the future with date.
+    if ($registration_start_date > $current_time) {
+      $registration_button['description'] = t('Registration will open on %start_date, until %end_date.', [
+        '%start_date' => $date_formatter->format($registration_start_date, 'oe_theme_event_date'),
+        '%end_date' => $date_formatter->format($registration_end_date, 'oe_theme_event_date'),
+      ]);
+    }
+    // Registration is active.
+    if ($registration_start_date < $current_time && $registration_end_date > $current_time) {
+      $registration_button['state'] = 'active';
+      // Difference between two dates in days.
+      $date_diff = round(($registration_end_date - $current_time)/60/60/24);
+      $registration_button['description'] = t('Book your seat, %days day(s) left to register.', [
+        '%days' => $date_diff,
+      ]);
+    }
+    // Registration is closed.
+    elseif ($registration_start_date < $current_time && $registration_end_date < $current_time) {
+      $registration_button['description'] = t('Registration for this event has ended.');
+    }
+  }
+  $variables['content']['registration_button'] = $registration_button;
+
+  // Prepare the practical information list of fields.
+  $variables['content']['practical_information'] = [];
+
+  // Get the date of the event.
+  $start_date = $node->get('oe_event_start_date')->date->getTimestamp();
+  $end_date = $node->get('oe_event_end_date')->date->getTimestamp();
+  // Check if the event is more than one day long.
+  $date_string = $date_formatter->format($start_date, 'oe_theme_event_date') . ' to ' . $date_formatter->format($end_date, 'oe_theme_event_date');
+  if (($end_date - $start_date) <= 86400) {
+    $date_string = $date_formatter->format($start_date, 'oe_theme_event_date');
+  }
+  $practical_information[] = [
+    'label' => t('When'),
+    'body' => $date_string,
+  ];
+  // Get the location of the event from the Venue.
+  $event_venue = $node->get('oe_event_venue')->entity;
+  // Make sure that no field label is show.
+  $display_options = ['label' => 'hidden'];
+  $practical_information[] = [
+    'label' => t('Where'),
+    'body' => $event_venue->get('postal_address')->view($display_options),
+  ];
+  // Get live streaming date if the online type is set to any value.
+  if (!$node->get('oe_event_online_type')->isEmpty()) {
+    $livestream_date = $node->get('oe_event_online_time_start')->date->getTimestamp();
+    $practical_information[] = [
+      'label' => t('Live stream'),
+      'body' => $date_formatter->format($livestream_date, 'custom', 'H:i:s T, j F Y', 'CET'),
+    ];
+  }
+  // Get the list of languages and render it as plain text.
+  $display_options['settings'] = ['link' => FALSE];
+  $practical_information[] = [
+    'label' => t('Languages'),
+    'body' => $node->get('oe_event_languages')->view($display_options),
+  ];
+  // Get the organiser value and render as plain text.
+  $display_options['settings'] = ['link' => FALSE];
+  $practical_information[] = [
+    'label' => t('Organiser'),
+    'body' => $node->get('oe_event_organiser_name')->isEmpty() ? $node->get('oe_event_organiser_internal')->view($display_options) : $node->get('oe_event_organiser_name')->value,
+  ];
+  // Get the website and render as a link.
+  $display_options = ['label' => 'hidden'];
+  $practical_information[] = [
+    'label' => t('Website'),
+    'body' => $node->get('oe_event_website')->view($display_options),
+  ];
+  // Get the target audience and render as plain text.
+  // @todo: add the field as soon as vocabulary is specified.
+
+  // Get the registration capacity and render as plain text.
+  if (!$node->get('oe_event_registration_capacity')->isEmpty()) {
+    $practical_information[] = [
+      'label' => t('Number of seats'),
+      'body' => $node->get('oe_event_registration_capacity')->value,
+    ];
+  }
+  // Get the entrance fee and render as plain text.
+  if (!$node->get('oe_event_entrance_fee')->isEmpty()) {
+    $practical_information[] = [
+      'label' => t('Entrance fee'),
+      'body' => $node->get('oe_event_entrance_fee')->value,
+    ];
+  }
+  $variables['content']['practical_information']['items'] = $practical_information;
+
+  // Prepare the social media links pattern fields.
+  if (!$node->get('oe_event_social_media_links')->isEmpty()) {
+    $social_media_links['title'] = t('Social media');
+    foreach ($node->get('oe_event_social_media_links')->getValue() as $values) {
+      $social_media_links['links'][] = [
+        'uri' => $values['uri'],
+        'label' => $values['title'],
+        'service' => $values['link_type'],
+      ];
+    }
+    $variables['content']['social_media_links'] = $social_media_links;
+  }
+
+  // Prepare the featured image for file_image pattern.
+  $media = $node->get('oe_event_featured_media')->entity;
+  if ($media instanceof MediaInterface) {
+    $image_file = $media->get('oe_media_image')->entity;
+    $variables['content']['featured_media']['src'] = $image_file->getFileUri();
+    $variables['content']['featured_media']['alt'] = $media->getName();
+    $variables['content']['featured_media']['caption'] = $node->get('oe_event_featured_media_legend')->isEmpty() ? '' : $node->get('oe_event_featured_media_legend')->value;
+  }
+
+  // Prepare the full text for the description section.
+  $variables['content']['full_text'] = !$node->get('body')->isEmpty() ? $node->get('body')->value : '';
+
+  // Prepare the contact fields.
+  if (!$node->get('oe_event_contact')->isEmpty()) {
+    $contact_items = [];
+    $display_options = ['label' => 'hidden'];
+    // Get the labels for contact types from the field definition.
+    $contact_types = FieldConfig::loadByName('event_profile', 'oe_event_contact', 'contact_type')->getSetting('allowed_values');
+    foreach ($node->get('oe_event_contact')->getValue() as $reference) {
+      if ($contact = EventProfile::load($reference['target_id'])) {
+        $contact_items[] = [
+          'items' => [
+            [
+              'label' => t('Name'),
+              'body' => $contact->get('name')->value,
+            ],
+            [
+              'label' => t('Phone number'),
+              'body' => $contact->get('phone_number')->value,
+            ],
+            [
+              'label' => t('Postal address'),
+              'body' => $contact->get('address')->isEmpty() ? '' : $contact->get('address')->view($display_options),
+            ],
+            [
+              'label' => t('Email address'),
+              'body' => $contact->get('email')->value,
+            ],
+          ],
+          'contact_type' => $contact_types[$contact->get('contact_type')->value],
+        ];
+      }
+    }
+    $variables['content']['contacts'] = $contact_items;
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node--oe-event--teaser.html.twig.
+ */
+function oe_theme_content_event_preprocess_node__oe_event__teaser(&$variables) {
+  return;
+}

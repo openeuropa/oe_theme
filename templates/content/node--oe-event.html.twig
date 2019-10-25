@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle event.
+ */
+#}
+
+{% if content.description_summary %}
+<div class="ecl-row">
+  <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last">
+    <ul class="ecl-unordered-list ecl-unordered-list--no-bullet"><li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--file"></use></svg>Culture | Innovation</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--location"></use></svg>Brussels, Belgium</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--livestreaming"></use></svg>Live streaming available</li></ul>
+  </div>
+  <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-2xl ecl-u-mt-md-none ecl-editor">
+    {{ content.description_summary }}
+    <p class="ecl-u-type-paragraph ecl-u-mb-none">
+      <a href="#description" class="ecl-u-mt-l ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-after"><span class="ecl-link__label">Read more</span></a>
+    </p>
+  </div>
+</div>
+{% endif %}
+
+{# Registration button #}
+{% if content.registration_button.state != 'disabled' %}
+  <a href="{{ content.registration_button.url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</a>
+{% else %}
+  <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta" disabled="" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</button>
+{% endif %}
+
+{# Practical information #}
+{% if content.practical_information %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">Practical information</h2>
+  <div class="ecl-col-12 ecl-col-md-6">
+    {{ pattern('field_list', content.practical_information) }}
+    {# Social media links #}
+    {{ pattern('social_media_links_horizontal', content.social_media_links) }}
+  </div>
+{% endif %}
+
+{# Registration button #}
+{% if content.registration_button.state != 'disabled' %}
+  <a href="{{ content.registration_button.url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</a>
+{% else %}
+  <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta" disabled="" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</button>
+{% endif %}
+
+{# Description #}
+{% if content.featured_media or content.full_text %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="description">Description</h2>
+  <div class="ecl-row">
+    {% if content.featured_media %}
+      <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-l ecl-u-mb-md-none">
+        <figure class="ecl-media-container">
+          {{ pattern('file_image', content.featured_media) }}
+          {% if content.featured_media.legend %}
+            <figcaption class="ecl-media-container__caption">{{ content.featured_media.legend }}</figcaption>
+          {% endif %}
+        </figure>
+      </div>
+    {% endif %}
+
+    {% if content.full_text %}
+      <div class="ecl-col-12 {{ content.featured_media is not empty ? 'ecl-col-md-6 '}}ecl-editor">
+        {{ content.full_text }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{# Contacts #}
+{% if content.contacts %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="description">Contacts</h2>
+  {% for _item in content.contacts %}
+    {% if loop.first %}
+      <div class="ecl-row">
+    {% endif %}
+      <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
+        <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ _item.contact_type }}</h3>
+        {{ pattern('field_list', _item) }}
+      </div>
+    {% if loop.index is divisible by(3) %}
+      </div>
+      <div class="ecl-row">
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endif %}
+
