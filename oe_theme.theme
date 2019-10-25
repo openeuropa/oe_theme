@@ -937,9 +937,7 @@ function oe_theme_preprocess_pattern_date_block__preview(array &$variables): voi
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_text_featured_media__preview(array &$variables): void {
-  if (is_array($variables['image'])) {
-    $variables['image'] = ImageValueObject::fromArray($variables['image']);
-  }
+  $variables['image'] = ImageValueObject::fromArray($variables['image']);
 }
 
 /**

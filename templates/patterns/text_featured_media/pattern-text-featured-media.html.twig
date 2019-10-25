@@ -21,7 +21,7 @@
       </div>
     {% endif %}
     {% if text %}
-      <div class="ecl-col-12{{ (image is empty) ? '' : ' ecl-col-md-6' }} ecl-editor">{{ text }}</div>
+      <div class="ecl-col-12{{ image is not empty ? ' ecl-col-md-6' }} ecl-editor">{{ text }}</div>
     {% endif %}
   </div>
 {% endif %}
