@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Text with featured media.
+ */
+#}
+
+{% if title %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
+{% endif %}
+{% if image or text %}
+  <div class="ecl-row">
+    {% if image %}
+      <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-l ecl-u-mb-md-none">
+        <figure class="ecl-media-container">
+          <img class="ecl-media-container__media" src="{{ image.src }}" alt="{{ image.alt }}">
+          {% if caption %}
+            <figcaption class="ecl-media-container__caption">{{ caption }}</figcaption>
+          {% endif %}
+        </figure>
+      </div>
+    {% endif %}
+    {% if text %}
+      <div class="ecl-col-12{{ image is not empty ? ' ecl-col-md-6' }} ecl-editor">{{ text }}</div>
+    {% endif %}
+  </div>
+{% endif %}
