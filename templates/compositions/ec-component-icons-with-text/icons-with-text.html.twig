@@ -13,9 +13,17 @@ Parameters:
 
 {# Internal properties #}
 
-{% set _items = items|default([]) %}
 {% set _icon_path = icon_path|default('') %}
 {% set _extra_classes = 'ecl-u-mr-s' %}
+
+{# Internal logic - Process properties #}
+
+{% set _items = [] %}
+{% for item in  items %}
+  {% if item.icon and item.text %}
+    {% set _items = _items|merge([item]) %}
+  {% endif %}
+{% endfor %}
 
 {# Print the result #}
 
