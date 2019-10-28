@@ -107,43 +107,43 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $crawler = new Crawler($html);
 
     // Make sure that custom footer block is present.
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__custom');
-    $this->assertCount(1, $actual);
+    $custom_footer = $crawler->filter('footer.ecl-footer div.ecl-footer__custom');
+    $this->assertCount(1, $custom_footer);
 
     // Make sure that footer block rendered correctly.
-    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column');
-    $this->assertCount(3, $actual);
+    $custom_footer_columns = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column');
+    $this->assertCount(3, $custom_footer_columns);
 
     $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(1)');
 
-    $actual = $first_column->filter('h2.ecl-footer__column-title');
-    $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($actual->text()));
+    $first_column_title = $first_column->filter('h2.ecl-footer__column-title');
+    $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($first_column_title->text()));
 
     $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(2)');
-    $actual = $second_column->filter('p.ecl-footer__custom-label');
-    $this->assertEquals('Follow us:', trim($actual->text()));
+    $second_column_title = $second_column->filter('p.ecl-footer__custom-label');
+    $this->assertEquals('Follow us:', trim($second_column_title->text()));
 
-    $actual = $second_column->filter('ul li:nth-child(1) > a');
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], trim($actual->text()));
+    $second_column_link1 = $second_column->filter('ul li:nth-child(1) > a');
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $second_column_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], trim($second_column_link1->text()));
 
-    $actual = $second_column->filter('ul li:nth-child(2) > a');
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], trim($actual->text()));
+    $second_column_link2 = $second_column->filter('ul li:nth-child(2) > a');
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $second_column_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], trim($second_column_link2->text()));
 
-    $actual = $second_column->filter('ul li:nth-child(3) > a');
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], trim($actual->text()));
+    $second_column_link3 = $second_column->filter('ul li:nth-child(3) > a');
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $second_column_link3->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], trim($second_column_link3->text()));
 
     $third_column = $crawler->filter('footer.ecl-footer div.ecl-footer__custom div.ecl-row div.ecl-footer__column:nth-child(3)');
 
-    $actual = $third_column->filter('ul li:nth-child(1) > a');
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.contact']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.contact']['label'], trim($actual->text()));
+    $third_column_link1 = $third_column->filter('ul li:nth-child(1) > a');
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['url'], $third_column_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['label'], trim($third_column_link1->text()));
 
-    $actual = $third_column->filter('ul li:nth-child(2) > a');
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.legal_notice']['url'], $actual->attr('href'));
-    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.generic.legal_notice']['label'], trim($actual->text()));
+    $third_column_link2 = $third_column->filter('ul li:nth-child(2) > a');
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['url'], $third_column_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['label'], trim($third_column_link2->text()));
   }
 
   /**
@@ -209,7 +209,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
    */
   protected function getTestCustomFooterConfigsData(): array {
     return [
-      'oe_corporate_blocks.footer_link.generic.contact' => [
+      'oe_corporate_blocks.footer_link.general.contact' => [
         'langcode' => 'en',
         'status' => TRUE,
         'dependencies' => [],
@@ -218,7 +218,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
         'url' => 'https://ec.europa.eu/info/contact_en',
         'weight' => -10,
       ],
-      'oe_corporate_blocks.footer_link.generic.legal_notice' => [
+      'oe_corporate_blocks.footer_link.general.legal_notice' => [
         'langcode' => 'en',
         'status' => TRUE,
         'dependencies' => [],

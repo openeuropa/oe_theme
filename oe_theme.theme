@@ -889,7 +889,7 @@ function oe_theme_preprocess_media__document__default(&$variables) {
 /**
  * Implements template_preprocess_oe_corporate_blocks_footer().
  *
- * Adapting data for ECL 1 custom footer.
+ * Adapting data for ECL custom footer.
  */
 function oe_theme_preprocess_oe_corporate_blocks_footer(&$variables) {
   if (!empty($variables['custom_footer']['social_links'])) {
