@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * The OE Link Lists theming module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements template_preprocess_item_list() for Title display plugin.
+ */
+function oe_theme_link_lists_preprocess_item_list__title_link_display_plugin(&$variables) {
+  $items = $variables['items'];
+  $variables['items'] = [];
+  foreach ($items as $item) {
+    /** @var \Drupal\Core\Link $link */
+    $link = $item['value'];
+    $variables['items'][] = [
+      'label' => $link->getText(),
+      'url' => $link->getUrl(),
+    ];
+  }
+}

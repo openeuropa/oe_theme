@@ -1,0 +1,7 @@
+name: OpenEuropa Theme Link Lists
+type: module
+description: Companion module for styling the OpenEuropa Link Lists
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - oe_link_lists:oe_link_lists
