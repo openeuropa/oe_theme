@@ -11,8 +11,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our content types render with correct markup.
- *
- * @group ecl1
  */
 class ContentRenderTest extends AbstractKernelTestBase {
 
@@ -45,8 +43,13 @@ class ContentRenderTest extends AbstractKernelTestBase {
     'datetime',
     'node',
     'media',
+    'views',
+    'entity_browser',
+    'media_avportal',
+    'media_avportal_mock',
     'filter',
     'oe_media',
+    'oe_media_avportal',
     'oe_content',
     'oe_content_timeline_field',
     'oe_content_news',
@@ -82,10 +85,15 @@ class ContentRenderTest extends AbstractKernelTestBase {
       'media',
       'filter',
       'rdf_entity',
+      'oe_media',
+      'media_avportal',
+      'oe_media_avportal',
     ]);
 
+    // Importing of configs which related to media av_portal output.
+    $this->container->get('config.installer')->installDefaultConfig('theme', 'oe_theme');
+
     $this->installConfig([
-      'oe_media',
       'oe_content',
       'oe_content_timeline_field',
       'oe_content_news',
@@ -115,12 +123,29 @@ class ContentRenderTest extends AbstractKernelTestBase {
    * Tests that the News node type is rendered with the correct ECL markup.
    */
   public function testNews(): void {
+
+    $media = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'av_portal_photo',
+        'oe_media_avportal_photo' => 'P-038924/00-15',
+        'uid' => 0,
+        'status' => 1,
+      ]);
+
+    $media->save();
+
     $node = $this->nodeStorage->create([
       'type' => 'oe_news',
       'title' => 'Test news node',
       'oe_teaser' => 'Teaser',
       'oe_summary' => 'Summary',
       'body' => 'Body',
+      'oe_news_featured_media' => [
+        [
+          'target_id' => (int) $media->id(),
+        ],
+      ],
       'oe_publication_date' => '2019-04-05',
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
@@ -148,10 +173,14 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertCount(1, $body_wrapper);
     $this->assertContains('Body', $body_wrapper->text());
 
+    // Featured media.
+    $image_wrapper = $crawler->filter('article.ecl-u-type-paragraph picture');
+    $this->assertCount(1, $image_wrapper);
+
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertContains('Related links', $related_links_heading->text());
-    $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
+    $related_links = $crawler->filter('.ecl-list .ecl-link.ecl-link--standalone');
     $this->assertCount(2, $related_links);
     $link_one = $related_links->first();
 
@@ -197,7 +226,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertContains('Related links', $related_links_heading->text());
-    $related_links = $crawler->filter('.ecl-list--unstyled .ecl-list-item__link');
+    $related_links = $crawler->filter('.ecl-list .ecl-link.ecl-link--standalone');
     $this->assertCount(2, $related_links);
   }
 
@@ -274,16 +303,16 @@ class ContentRenderTest extends AbstractKernelTestBase {
     $this->assertCount(1, $file_wrapper);
 
     // File row.
-    $file_row = $crawler->filter('.ecl-file .ecl-row');
+    $file_row = $crawler->filter('.ecl-file .ecl-file__container');
     $this->assertCount(1, $file_row);
 
     $file_title = $file_row->filter('.ecl-file__title');
     $this->assertContains('test.pdf', $file_title->text());
 
-    $file_info_language = $file_row->filter('.ecl-file__info span.ecl-file__language');
+    $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->text());
 
-    $file_info_properties = $file_row->filter('.ecl-file__info span.ecl-file__properties');
+    $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
     $this->assertContains('KB - PDF)', $file_info_properties->text());
 
     $file_download_link = $file_row->filter('.ecl-file__download');
