@@ -11,7 +11,7 @@ gallery:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
-          icon: "camera"
+          icon: "video"
         - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example image caption"
@@ -20,7 +20,7 @@ gallery:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
-          icon: "camera"
+          icon: "video"
         - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
