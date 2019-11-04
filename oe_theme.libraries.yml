@@ -26,3 +26,10 @@ dialogs:
   dependencies:
     - core/drupal
     - oe_theme/base
+
+gallery:
+  js:
+    js/gallery.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/base
