@@ -1149,6 +1149,19 @@
     '#variant': "default"
     '#fields':
       title: "Example title"
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-card__title': 1
+      'div.ecl-card__description': 0
+    equals:
+      'h1.ecl-card__title': "Example title"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      title: "Example title"
       description: "Example description"
       image:
         src: "http://via.placeholder.com/120x80"

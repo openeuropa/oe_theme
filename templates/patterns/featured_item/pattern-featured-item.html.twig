@@ -9,11 +9,13 @@
   In order to replicate the extended functionality we add a button
   at the end of the description if the variant is set to "extended".
  #}
-{% set _description %}
-  <p class="ecl-paragraph">
-    {{ description }}
-  </p>
-  {% if variant == 'extended' %}
+{% if variant == 'extended' %}
+  {% set _description %}
+    {% if description %}
+      <p class="ecl-paragraph">
+        {{ description }}
+      </p>
+    {% endif %}
     <a href="{{ link.href }}" class="ecl-button ecl-button--call">
       <span class="ecl-button__container">
         <span class="ecl-button__label">{{ link.label }}</span>
@@ -29,11 +31,11 @@
         } only %}
       </span>
     </a>
-  {% endif %}
-{% endset %}
+  {% endset %}
+{% endif %}
 
 {% set card = {
-  'description': _description,
+  'description': _description|default(description),
   'meta': metas,
   'title': {
     'label': title,
