@@ -658,9 +658,16 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
-  foreach ($variables['items'] as &$item) {
-    $item = GalleryItemValueObject::fromArray($item);
+function oe_theme_preprocess_pattern_gallery(array &$variables): void {
+  foreach ($variables['items'] as $i => &$item) {
+    /** @var Drupal\oe_theme\ValueObject\GalleryItemValueObject $gallery_item_object */
+    $gallery_item_object = GalleryItemValueObject::fromArray($item);
+    $item = [
+      'path' => $gallery_item_object->getThumbnail()->getSource(),
+      'alt' => $gallery_item_object->getThumbnail()->getAlt(),
+      'icon' => $gallery_item_object->getIcon(),
+      'description' => $gallery_item_object->getCaption(),
+    ];
   }
 }
 
