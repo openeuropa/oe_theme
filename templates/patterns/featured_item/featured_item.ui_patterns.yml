@@ -1,13 +1,13 @@
 featured_item:
   label: "Featured item"
-  description: "The featured item component uses a different visualisation to attract user attention. It's always the first item on the \"Latest section\"."
+  description: "The featured item component uses a different visualisation to attract user attention."
   variants:
     default:
       label: "Default"
-      description: "Default type of the featured item."
+      description: "A featured item with a title, an image, a description and some meta information."
     extended:
       label: "Extended"
-      description: "External type of the featured item."
+      description: "Like the default variant but with an extra button on it."
   fields:
     description:
       type: "text"
