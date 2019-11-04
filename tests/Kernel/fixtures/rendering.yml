@@ -1148,64 +1148,45 @@
     '#id': featured_item
     '#variant': "default"
     '#fields':
+      title: "Example title"
       description: "Example description"
-      metas:
-        - "Breaking news article"
-        - "Brussels"
-      title:
-        label: "Example title"
-        path: "http://example.com"
       image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternative of image"
-      tags:
-        - path: "http://tag1.com"
-          label: "Tag 1"
-        - path: "http://tag2.com"
-          label: "Tag 2"
-      infos:
-        - label: "2018/10/22"
-          icon:
-            icon_type: 'general'
-            icon_name: 'calendar'
-        - label: "Luxembourg"
-          icon:
-            icon_type: 'general'
-            icon_name: 'location'
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      link:
+        href: "https://example.com"
+        label: "Link title"
   assertions:
     count:
       "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
-      'h1.ecl-card__title a[href="http://example.com"]': 1
-      'li.ecl-card__info-item svg': 2
+      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'a.ecl-button': 0
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description': "Example description"
-      'li.ecl-card__tag-item a.ecl-tag[href="http://tag1.com"]': "Tag 1"
-      'li.ecl-card__tag-item a.ecl-tag[href="http://tag2.com"]': "Tag 2"
-      'li.ecl-card__info-item:nth-child(1) span.ecl-card__info-label' : "2018/10/22"
-      'li.ecl-card__info-item:nth-child(2) span.ecl-card__info-label' : "Luxembourg"
 - array:
     '#type': pattern
     '#id': featured_item
-    '#variant': "tile"
+    '#variant': "extended"
     '#fields':
+      title: "Example title"
       description: "Example description"
-      title:
-        label: "Example title"
       link:
-        - path: "http://link1.com"
-          label: "European Commission"
-        - path: "http://link2.com"
-          label: "European Union"
+        href: "https://example.com"
+        label: "Link title"
   assertions:
     count:
-      'li.ecl-card__link-item': 2
+      "div.ecl-card__image": 0
+      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'a.ecl-button[href="https://example.com"]': 1
     equals:
-      'h1.ecl-card__title': "Example title"
-      'div.ecl-card__description': "Example description"
-      'a.ecl-card__link[href="http://link1.com"]': "European Commission"
-      'a.ecl-card__link[href="http://link2.com"]': "European Union"
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description .ecl-paragraph': "Example description"
+      'a.ecl-button': "Link title"
 - array:
     '#type': pattern
     '#id': timeline

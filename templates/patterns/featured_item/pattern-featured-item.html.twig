@@ -14,7 +14,7 @@
     {{ description }}
   </p>
   {% if variant == 'extended' %}
-    <a href="{{ link.path }}" class="ecl-button ecl-button--call">
+    <a href="{{ link.href }}" class="ecl-button ecl-button--call">
       <span class="ecl-button__container">
         <span class="ecl-button__label">{{ link.label }}</span>
         {% include '@ecl/icon' with {
@@ -35,8 +35,11 @@
 {% set card = {
   'description': _description,
   'meta': metas,
-  'title': title,
-  'image': image,
+  'title': {
+    'label': title,
+    'path': link.href
+  },
+  'image': image
 } %}
 
 {% include '@ecl/card' with {

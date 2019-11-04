@@ -9,6 +9,13 @@ featured_item:
       label: "Extended"
       description: "Like the default variant but with an extra button on it."
   fields:
+    image:
+      type: "array"
+      label: "Image"
+      description: "Image of the featured item."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for featured item image"
     description:
       type: "text"
       label: "Description"
@@ -27,17 +34,10 @@ featured_item:
       label: "Title"
       description: "The title of the page."
       preview: "Business, Economy, Euro"
-    image:
-      type: "array"
-      label: "Image"
-      description: "Image of the featured item."
-      preview:
-        src: "https://placeimg.com/1000/500/arch"
-        alt: "Alternative text for featured item image"
     link:
       type: "array"
       label: "Link"
       description: "Link in the featured item."
       preview:
-        path: "http://example.com"
-        label: "See more"
+        href: "http://example.com"
+        label: "Read more"
