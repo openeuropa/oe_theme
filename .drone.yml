@@ -72,7 +72,7 @@ pipeline:
     group: test
     image: fpfis/httpd-php-ci:7.1
     commands:
-      - ./vendor/bin/behat --strict --tags ecl2
+      - ./vendor/bin/behat --strict --tags=~wip
 
   before-release:
     image: fpfis/httpd-php-dev:7.1

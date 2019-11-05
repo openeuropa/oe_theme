@@ -1,4 +1,4 @@
-@api @ecl2
+@api
 Feature: News content type.
   As a user
   I want to access the content of a news

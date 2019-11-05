@@ -1,4 +1,4 @@
-@api @ecl2
+@api
 Feature: Site branding
   In order to have my site branded with the official European Commission visual identity
   As a product owner
