@@ -4,10 +4,10 @@
  * Field.
  */
 #}
-{% include '@ecl/ec-component-featured-item' with {
-  'variant': variant,
-  'image': image,
-  'metas': metas,
-  'title': title,
-  'link': link,
-} %}
+{% extends '@ecl/ec-component-featured-item' %}
+{# Add description field. #}
+{% block body %}
+  <p class="ecl-paragraph">
+    {{ description }}
+  </p>
+{% endblock %}

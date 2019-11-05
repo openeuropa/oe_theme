@@ -29,6 +29,11 @@ featured_item:
       label: "Title"
       description: "The title of the page."
       preview: "Business, Economy, Euro"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Description of the featured item."
+      preview: "Transparently designing and evaluating evidence-based EU legislation, backed by citizens views."
     link:
       type: "array"
       label: "Link"
