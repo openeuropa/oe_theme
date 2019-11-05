@@ -4,40 +4,31 @@
   /**
    * @file
    * Theme implementation for a ECL list of icons with text.
+   *
+   * Parameters:
+   *   - "items" (array) (default: [])
+   *     - "icon" (string) (default: 'file')
+   *     - "text" (string) (default: '')
    */
-Parameters:
-- "items" (array) (default: [])
-  - "icon" (string) (default: '')
-  - "text" (string) (default: '')
 #}
 
 {# Internal properties #}
 
 {% set _icon_path = icon_path|default('') %}
-{% set _extra_classes = 'ecl-u-mr-s' %}
-
-{# Internal logic - Process properties #}
-
-{% set _items = [] %}
-{% for item in  items %}
-  {% if item.icon and item.text %}
-    {% set _items = _items|merge([item]) %}
-  {% endif %}
-{% endfor %}
 
 {# Print the result #}
 
-{% if _items %}
+{% if items %}
 <ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
-  {% for _item in _items %}
-    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{% if not loop.first %} ecl-u-mt-l{% endif %}">
+  {% for _item in items if _item.text %}
+    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not loop.first ? ' ecl-u-mt-l' }}">
       {% include '@ecl/icon' with {
         icon: {
           path: _icon_path,
           type: 'general',
-          name: _item.icon
+          name: _item.icon|default('file')
         },
-        extra_classes: _extra_classes
+        extra_classes: 'ecl-u-mr-s'
       } only %}{{- _item.text -}}
     </li>
   {% endfor %}

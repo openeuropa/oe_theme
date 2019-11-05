@@ -1521,8 +1521,9 @@
   assertions:
     count:
       'ul.ecl-unordered-list--no-bullet': 1
-      'ul li.ecl-unordered-list__item': 2
-      'ul li.ecl-unordered-list__item svg': 2
+      'ul li.ecl-unordered-list__item': 3
+      'ul li.ecl-unordered-list__item svg': 3
     equals:
       'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
-      'ul li.ecl-unordered-list__item:nth-child(2)': "Live streaming available"
+      'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
+      'ul li.ecl-unordered-list__item:nth-child(3)': "Live streaming available"
