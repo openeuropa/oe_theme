@@ -1,13 +1,49 @@
 {#
 /**
  * @file
- * Field.
+ * Featured item pattern.
  */
 #}
-{% include '@ecl/ec-component-featured-item' with {
-  'variant': variant,
-  'image': image,
-  'metas': metas,
-  'title': title,
-  'link': link,
+
+{#
+  In order to replicate the extended functionality we add a button
+  at the end of the description if the variant is set to "extended".
+ #}
+{% if variant == 'extended' %}
+  {% set _description %}
+    {% if description %}
+      <p class="ecl-paragraph">
+        {{ description }}
+      </p>
+    {% endif %}
+    <a href="{{ link.href }}" class="ecl-button ecl-button--call">
+      <span class="ecl-button__container">
+        <span class="ecl-button__label">{{ link.label }}</span>
+        {% include '@ecl/icon' with {
+          icon: {
+            path: ecl_icon_path,
+            type: "ui",
+            name: "corner-arrow",
+            size: "xs",
+            transform: "rotate-90"
+          },
+          extra_classes: "ecl-button__icon ecl-button__icon--after"
+        } only %}
+      </span>
+    </a>
+  {% endset %}
+{% endif %}
+
+{% set card = {
+  'description': _description|default(description),
+  'meta': metas,
+  'title': {
+    'label': title,
+    'path': link.href
+  },
+  'image': image
+} %}
+
+{% include '@ecl/card' with {
+  'card': card,
 } %}

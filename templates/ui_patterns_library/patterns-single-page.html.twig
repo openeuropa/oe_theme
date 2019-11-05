@@ -6,11 +6,10 @@
 #}
 
 {% if pattern is not empty %}
-  {% set style = pattern.meta['#pattern'].additional.style %}
   {{ pattern.meta }}
 
   {# Rendered pattern preview. #}
-  <div class="ecl-u-clearfix ecl-u-pv-xl" style="{{ style }}">
+  <div class="ecl-u-clearfix ecl-u-pv-xl">
     {{ pattern.rendered }}
   </div>
 

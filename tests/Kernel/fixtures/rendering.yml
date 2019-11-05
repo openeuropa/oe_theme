@@ -1143,49 +1143,63 @@
       'svg.ecl-link__icon': 1
     equals:
       'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before span.ecl-link__label': "Facebook"
-#- array:
-#    '#type': pattern
-#    '#id': featured_item
-#    '#variant': "default"
-#    '#fields':
-#      image:
-#        src: "http://via.placeholder.com/120x80"
-#        alt: "Alternative of image"
-#      metas:
-#        - "Breaking news article"
-#        - "Brussels"
-#      title: "Featured news article"
-#      link:
-#        href: "https://example.com"
-#        label: "Link title"
-#  assertions:
-#    count:
-#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-#      'div.ecl-meta span.ecl-meta__item': 2
-#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 0
-#- array:
-#    '#type': pattern
-#    '#id': featured_item
-#    '#variant': "extended"
-#    '#fields':
-#      image:
-#        src: "http://via.placeholder.com/120x80"
-#        alt: "Alternative of image"
-#      metas:
-#        - "Breaking news article"
-#        - "Brussels"
-#        - "European Commission"
-#      title: "Featured news article"
-#      link:
-#        href: "https://example.com"
-#        label: "Link title"
-#  assertions:
-#    count:
-#      'img.ecl-image--fluid[src="http://via.placeholder.com/120x80"]': 1
-#      'div.ecl-meta span.ecl-meta__item': 3
-#      'a.ecl-link--standalone.ecl-featured-item__title[href="https://example.com"]': 1
-#      'a.ecl-button.ecl-button--call.ecl-button--caret-right': 1
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      title: "Example title"
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-card__title': 1
+      'div.ecl-card__description': 0
+    equals:
+      'h1.ecl-card__title': "Example title"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+  assertions:
+    count:
+      "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
+      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'a.ecl-button': 0
+    equals:
+      'div.ecl-card__meta': "Breaking news article | Brussels"
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description': "Example description"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "extended"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'a.ecl-button[href="https://example.com"]': 1
+    equals:
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description .ecl-paragraph': "Example description"
+      'a.ecl-button': "Link title"
 - array:
     '#type': pattern
     '#id': timeline
