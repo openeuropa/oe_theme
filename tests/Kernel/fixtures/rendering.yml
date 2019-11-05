@@ -1528,8 +1528,9 @@
       'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
       'ul li.ecl-unordered-list__item:nth-child(3)': "Live streaming available"
 - array:
-    '#type': pattern
-    '#id': tag
+    '#type': "pattern"
+    '#id': "tag"
+    '#variant': "default"
     '#fields':
       tag_type: "link"
       url: "http://example.com"
