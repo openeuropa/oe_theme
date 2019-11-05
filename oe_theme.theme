@@ -660,14 +660,7 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
  */
 function oe_theme_preprocess_pattern_gallery(array &$variables): void {
   foreach ($variables['items'] as $i => &$item) {
-    /** @var Drupal\oe_theme\ValueObject\GalleryItemValueObject $gallery_item_object */
-    $gallery_item_object = GalleryItemValueObject::fromArray($item);
-    $item = [
-      'path' => $gallery_item_object->getThumbnail()->getSource(),
-      'alt' => $gallery_item_object->getThumbnail()->getAlt(),
-      'icon' => $gallery_item_object->getIcon(),
-      'description' => $gallery_item_object->getCaption(),
-    ];
+    $item['media'] = GalleryItemValueObject::fromArray($item);
   }
 }
 

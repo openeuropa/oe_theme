@@ -14,7 +14,10 @@
       'type': 'general',
       'name': _item.icon,
       'size': 's'
-    }
+    },
+    'path': _item.media.thumbnail.src,
+    'alt': _item.media.thumbnail.alt,
+    'description': _item.media.caption
   }) %}
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
@@ -77,5 +80,3 @@
   },
   'items': _items
 } %}
-
-{{ attach_library('oe_theme/gallery') }}

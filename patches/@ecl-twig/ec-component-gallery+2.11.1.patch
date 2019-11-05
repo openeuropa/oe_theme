@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-gallery/gallery.html.twig
++++ b/node_modules/@ecl-twig/ec-component-gallery/gallery.html.twig
+@@ -50,7 +50,7 @@
+
+ {# Print the result #}
+
+-<section class="{{ _css_class }}"{{ _extra_attributes }} data-ecl-gallery>
++<section class="{{ _css_class }}"{{ _extra_attributes|raw }} data-ecl-gallery>
+   <ul class="ecl-gallery__list">
+     {% for _item in _items %}
+       {% include '../ec-component-gallery/gallery-item.html.twig' with {
