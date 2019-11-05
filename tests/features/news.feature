@@ -1,4 +1,4 @@
-@api
+@api @ecl2
 Feature: News content type.
   As a user
   I want to access the content of a news
@@ -11,7 +11,7 @@ Feature: News content type.
       | Full news title | Short summary | News teaser | News body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
 
     When I am on "the recent content page"
-    Then I should see the heading "Full news title"
+    Then I should see the link "Full news title"
     And I should see the text "News teaser"
     And I should see the text "02 April 2019"
     But I should not see the text "Short summary"
@@ -36,11 +36,11 @@ Feature: News content type.
     And I press "Save"
 
     When I am on "the recent content page"
-    Then I should see the heading "Shorter title"
+    Then I should see the link "Shorter title"
     And I should see the text "News teaser"
     And I should see the text "02 April 2019"
     But I should not see the text "Full news title"
     And I should not see the text "Short summary"
     And I should not see the text "News body"
     And I should see a "list item image" element
-    And the "list item image" element should contain "example_1.jpeg"
+    And the "list item" element should contain "example_1.jpeg"
