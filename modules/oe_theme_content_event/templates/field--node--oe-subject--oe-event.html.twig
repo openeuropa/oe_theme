@@ -1,0 +1,11 @@
+{#
+  Theme override for oe_subject field in order to render inline comma separated format.
+#}
+{% set separator = ' | ' %}
+
+{% for item in items %}
+  {% if loop.last %}
+    {% set separator = '' %}
+  {% endif %}
+  {{ item.content }}{{ separator }}
+{% endfor %}

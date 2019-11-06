@@ -5,11 +5,10 @@
  */
 #}
 
-{% if content.description_summary %}
 <div class="ecl-row">
-  <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last">
-    <ul class="ecl-unordered-list ecl-unordered-list--no-bullet"><li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--file"></use></svg>Culture | Innovation</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--location"></use></svg>Brussels, Belgium</li><li class="ecl-u-mt-l ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item"><svg focusable="false" aria-hidden="true" class="ecl-u-mr-s ecl-icon ecl-icon--m"><use xlink:href="dist/images/icons.1dbe9812.svg#general--livestreaming"></use></svg>Live streaming available</li></ul>
-  </div>
+    <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last">
+      {{ pattern('icons_with_text', content.icons_with_text) }}
+    </div>
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-2xl ecl-u-mt-md-none ecl-editor">
     {{ content.description_summary }}
     <p class="ecl-u-type-paragraph ecl-u-mb-none">
@@ -17,7 +16,6 @@
     </p>
   </div>
 </div>
-{% endif %}
 
 {# Registration button #}
 {% if content.registration_button.state != 'disabled' %}

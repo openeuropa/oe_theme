@@ -1,0 +1,21 @@
+{#
+  Theme override for address field in order to render inline comma separated format.
+#}
+{% set separator = ', ' %}
+
+{% if organization %}
+  {{ organization }}{{ separator }}
+{% endif %}
+{% if address_line1 %}
+  {{ address_line1 }}{{ separator }}
+{% endif %}
+{% if address_line2 %}
+  {{ address_line2 }}{{ separator }}
+{% endif %}
+{% if dependent_locality.code %}
+  {{ dependent_locality.code }}{{ separator }}
+{% endif %}
+{% if locality.code or postal_code or administrative_area.code %}
+  {{ locality.code }}{{ separator }}{{ postal_code }} {{ administrative_area.code }}
+{% endif %}
+{{ country.name }}
