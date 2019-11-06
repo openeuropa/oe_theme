@@ -5,34 +5,78 @@
  */
 #}
 {# Process value objects into ECL compatible array. #}
+
 {% set _items = [] %}
 {% for item in items %}
-  {% set _classes = item.classes ~ ' ecl-col-md-3' %}
-
-  {% set _icon = null %}
-  {% if item.icon %}
-    {% set _icon = 'ecl-icon--' ~ item.icon %}
-  {% endif %}
-
-  {% set _items = _items|merge([{
-    'caption': item.caption,
-    'classes': _classes,
-    'image': item.thumbnail,
-    'icon': _icon,
-  }]) %}
+  {% set _item = {
+    'icon': {
+      'path': ecl_icon_path,
+      'type': 'general',
+      'name': item.icon,
+      'size': 's'
+    },
+    'path': item.thumbnail.src,
+    'alt': item.thumbnail.alt,
+    'description': item.caption
+  } %}
+  {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% set _rows = [] %}
-{% for _row in _items|batch(4, '') %}
-  {% set _items = [] %}
-  {% for _item in _row %}
-    {% if _item %}
-      {% set _items = _items|merge([_item]) %}
-    {% endif %}
-  {% endfor %}
-  {% set _rows = _rows|merge([_items]) %}
-{% endfor %}
-
-{% include '@ecl/ec-component-gallery' with {
-  'rows': _rows,
+{% include '@ecl/gallery' with {
+  'overlay': {
+    'close': {
+      'variant': 'ghost',
+      'label': 'Close'|t,
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'close',
+        'size': 's',
+      },
+    },
+    'previous': {
+      'variant': 'ghost',
+      'label': 'Previous'|t,
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'corner-arrow',
+        'transform': 'rotate-270',
+        'size': 'l',
+      },
+      'icon_position': 'before',
+    },
+    'next': {
+      'variant': 'ghost',
+      'label': 'Next'|t,
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'corner-arrow',
+        'transform': 'rotate-90',
+        'size': 'l',
+      },
+    },
+    'download': {
+      'label': 'Download'|t,
+      'link': {},
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'download',
+        'size': 'fluid',
+      },
+    },
+    'share': {
+      'label': 'Share',
+      'link': {},
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'general',
+        'name': 'share',
+        'size': 'fluid',
+      },
+    },
+  },
+  'items': _items
 } %}

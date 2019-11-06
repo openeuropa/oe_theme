@@ -1,6 +1,10 @@
 gallery:
   label: "Gallery"
-  description: "Gallery of available media."
+  description: "A gallery with a media browser (it currently only support images, other media types will be added later)."
+  variants:
+    default:
+      label: "Default"
+      description: "Default gallery displaying a grid of media items."
   fields:
     items:
       type: "array"
@@ -11,7 +15,7 @@ gallery:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
-          icon: "camera"
+          icon: "video"
         - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example image caption"
@@ -20,7 +24,7 @@ gallery:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
           caption: "Example image caption"
-          icon: "camera"
+          icon: "video"
         - thumbnail:
             src: "http://placehold.it/285x185"
             alt: "Example alt text"
