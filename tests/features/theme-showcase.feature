@@ -28,20 +28,21 @@ Feature: Theme showcase
       | Commission at work |
       | Departments        |
 
-  @javascript @wip
-  #todo: Fix on the ticket OPENEUROPA-2152.
+  @javascript
   Scenario: The demo site navigation menu features dropdown menus
     When I am on the homepage
-    Then the "priorities dropdown menu" is not visible
-    And the "about dropdown menu" is not visible
+    # We can't check the visibility of the submenues
+    # because their position is absolute which gives us false positives.
+    Then I should not visibly see the link "Commission at work"
+    Then I should not visibly see the link "Democratic change"
 
     When I click "About" in the "navigation"
-    And the "about dropdown menu" is visible
-    But the "priorities dropdown menu" is not visible
+    Then I should see the link "Commission at work"
+    But I should not visibly see the link "Democratic change"
 
     When I click "Priorities" in the "navigation"
-    And the "about dropdown menu" is not visible
-    But the "priorities dropdown menu" is visible
+    Then I should not visibly see the link "Commission at work"
+    But I should see the link "Democratic change"
 
   @javascript
   Scenario: The dropdown component shows/hides on click event
