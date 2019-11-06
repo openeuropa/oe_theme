@@ -7,18 +7,18 @@
 {# Process value objects into ECL compatible array. #}
 
 {% set _items = [] %}
-{% for _item in items %}
-  {% set _item = _item|merge({
+{% for item in items %}
+  {% set _item = {
     'icon': {
       'path': ecl_icon_path,
       'type': 'general',
-      'name': _item.icon,
+      'name': item.icon,
       'size': 's'
     },
-    'path': _item.thumbnail.src,
-    'alt': _item.thumbnail.alt,
-    'description': _item.caption
-  }) %}
+    'path': item.thumbnail.src,
+    'alt': item.thumbnail.alt,
+    'description': item.caption
+  } %}
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
