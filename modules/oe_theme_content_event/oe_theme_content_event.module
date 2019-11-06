@@ -12,6 +12,15 @@ use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\Entity\EventProfile;
 
 /**
+ * Implements hook_theme_suggestions_alter().
+ */
+function oe_content_event_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
+  if ($hook === 'address_plain') {
+    $suggestions[] = 'address_plain__oe_event';
+  }
+}
+
+/**
  * Implements template_preprocess_node() for the Event node type.
  */
 function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
@@ -25,6 +34,9 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   $current_time = \Drupal::time()->getCurrentTime();
   /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
   $date_formatter = \Drupal::service('date.formatter');
+  // Get the location of the event from the Venue.
+  $event_venue = $node->get('oe_event_venue')->entity;
+  $postal_address_render = $event_venue->get('postal_address')->view(['label' => 'hidden', 'type' => 'address_plain']);
 
   $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->value;
 
@@ -56,7 +68,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     if ($registration_start_date < $current_time && $registration_end_date > $current_time) {
       $registration_button['state'] = 'active';
       // Difference between two dates in days.
-      $date_diff = round(($registration_end_date - $current_time)/60/60/24);
+      $date_diff = round(($registration_end_date - $current_time) / 60 / 60 / 24);
       $registration_button['description'] = t('Book your seat, %days day(s) left to register.', [
         '%days' => $date_diff,
       ]);
@@ -83,13 +95,9 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     'label' => t('When'),
     'body' => $date_string,
   ];
-  // Get the location of the event from the Venue.
-  $event_venue = $node->get('oe_event_venue')->entity;
-  // Make sure that no field label is show.
-  $display_options = ['label' => 'hidden'];
   $practical_information[] = [
     'label' => t('Where'),
-    'body' => $event_venue->get('postal_address')->view($display_options),
+    'body' => $postal_address_render,
   ];
   // Get live streaming date if the online type is set to any value.
   if (!$node->get('oe_event_online_type')->isEmpty()) {
@@ -100,26 +108,22 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     ];
   }
   // Get the list of languages and render it as plain text.
-  $display_options['settings'] = ['link' => FALSE];
   $practical_information[] = [
     'label' => t('Languages'),
-    'body' => $node->get('oe_event_languages')->view($display_options),
+    'body' => $node->get('oe_event_languages')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]),
   ];
   // Get the organiser value and render as plain text.
-  $display_options['settings'] = ['link' => FALSE];
   $practical_information[] = [
     'label' => t('Organiser'),
-    'body' => $node->get('oe_event_organiser_name')->isEmpty() ? $node->get('oe_event_organiser_internal')->view($display_options) : $node->get('oe_event_organiser_name')->value,
+    'body' => $node->get('oe_event_organiser_name')->isEmpty() ? $node->get('oe_event_organiser_internal')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]) : $node->get('oe_event_organiser_name')->value,
   ];
   // Get the website and render as a link.
-  $display_options = ['label' => 'hidden'];
   $practical_information[] = [
     'label' => t('Website'),
-    'body' => $node->get('oe_event_website')->view($display_options),
+    'body' => $node->get('oe_event_website')->view(['label' => 'hidden']),
   ];
   // Get the target audience and render as plain text.
   // @todo: add the field as soon as vocabulary is specified.
-
   // Get the registration capacity and render as plain text.
   if (!$node->get('oe_event_registration_capacity')->isEmpty()) {
     $practical_information[] = [
@@ -153,7 +157,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   $media = $node->get('oe_event_featured_media')->entity;
   if ($media instanceof MediaInterface) {
     $image_file = $media->get('oe_media_image')->entity;
-    $variables['content']['featured_media']['src'] = $image_file->getFileUri();
+    $variables['content']['featured_media']['src'] = file_url_transform_relative(file_create_url($image_file->getFileUri()));
     $variables['content']['featured_media']['alt'] = $media->getName();
     $variables['content']['featured_media']['caption'] = $node->get('oe_event_featured_media_legend')->isEmpty() ? '' : $node->get('oe_event_featured_media_legend')->value;
   }
@@ -164,7 +168,6 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // Prepare the contact fields.
   if (!$node->get('oe_event_contact')->isEmpty()) {
     $contact_items = [];
-    $display_options = ['label' => 'hidden'];
     // Get the labels for contact types from the field definition.
     $contact_types = FieldConfig::loadByName('event_profile', 'oe_event_contact', 'contact_type')->getSetting('allowed_values');
     foreach ($node->get('oe_event_contact')->getValue() as $reference) {
@@ -181,7 +184,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
             ],
             [
               'label' => t('Postal address'),
-              'body' => $contact->get('address')->isEmpty() ? '' : $contact->get('address')->view($display_options),
+              'body' => $contact->get('address')->isEmpty() ? '' : $contact->get('address')->view(['label' => 'hidden', 'type' => 'address_plain']),
             ],
             [
               'label' => t('Email address'),
@@ -195,11 +198,33 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     $variables['content']['contacts'] = $contact_items;
   }
 
+  // Prepare the icons with text for rendering.
+  $variables['content']['icons_with_text'] = [
+    'items' => [
+      [
+        'icon' => 'file',
+        'text' => $node->get('oe_subject')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]),
+      ],
+      [
+        'icon' => 'calendar',
+        'text' => $date_string,
+      ],
+      [
+        'icon' => 'location',
+        'text' => $postal_address_render,
+      ],
+      [
+        'icon' => 'livestreaming',
+        'text' => $node->get('oe_event_online_type')->isEmpty() ? '' : t('Live streaming available'),
+      ],
+    ],
+  ];
+
 }
 
 /**
  * Implements hook_preprocess_HOOK() for node--oe-event--teaser.html.twig.
  */
 function oe_theme_content_event_preprocess_node__oe_event__teaser(&$variables) {
-  return;
+
 }
