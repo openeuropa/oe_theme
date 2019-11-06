@@ -297,6 +297,7 @@
 - array:
     '#type': pattern
     '#id': gallery
+    '#variant': default
     '#fields':
       items:
         - thumbnail:
@@ -319,6 +320,7 @@
 - array:
     '#type': pattern
     '#id': gallery
+    '#variant': default
     '#fields':
       items:
         - thumbnail:
@@ -345,6 +347,7 @@
 - array:
     '#type': pattern
     '#id': gallery
+    '#variant': default
     '#fields':
       items:
         - thumbnail:

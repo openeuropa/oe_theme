@@ -658,9 +658,9 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_gallery(array &$variables): void {
-  foreach ($variables['items'] as $i => &$item) {
-    $item['media'] = GalleryItemValueObject::fromArray($item);
+function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
+  foreach ($variables['items'] as &$item) {
+    $item = GalleryItemValueObject::fromArray($item);
   }
 }
 

@@ -1,6 +1,10 @@
 gallery:
   label: "Gallery"
   description: "Gallery of available media."
+  variants:
+    default:
+      label: "Default"
+      description: "Simple gallery, just displaying a grid of media items, with no additional behaviour"
   fields:
     items:
       type: "array"
