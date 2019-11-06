@@ -26,4 +26,3 @@ dialogs:
   dependencies:
     - core/drupal
     - oe_theme/base
-

@@ -1,10 +1,10 @@
 gallery:
   label: "Gallery"
-  description: "Gallery of available media."
+  description: "A gallery with a media browser (it currently only support images, other media types will be added later)."
   variants:
     default:
       label: "Default"
-      description: "Simple gallery, just displaying a grid of media items, with no additional behaviour"
+      description: "Default gallery displaying a grid of media items."
   fields:
     items:
       type: "array"

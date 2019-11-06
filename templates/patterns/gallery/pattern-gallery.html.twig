@@ -22,16 +22,6 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% if variant == 'default' %}
-  {# We are disabling exposing of javascript overlay on click. #}
-  {% set extra_attributes = [
-    {
-      'name': ' data-ecl-auto-initialized',
-      'value': 'true'
-    },
-  ] %}
-{% endif %}
-
 {% include '@ecl/gallery' with {
   'overlay': {
     'close': {
@@ -88,6 +78,5 @@
       },
     },
   },
-  'items': _items,
-  'extra_attributes': extra_attributes|default([]),
+  'items': _items
 } %}
