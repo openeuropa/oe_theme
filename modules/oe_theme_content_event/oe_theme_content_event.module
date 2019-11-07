@@ -104,7 +104,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     $livestream_date = $node->get('oe_event_online_time_start')->date->getTimestamp();
     $practical_information[] = [
       'label' => t('Live stream'),
-      'body' => $date_formatter->format($livestream_date, 'custom', 'H:i:s T, j F Y', 'CET'),
+      'body' => $date_formatter->format($livestream_date, 'custom', 'H:i T, j F Y', 'CET'),
     ];
   }
   // Get the list of languages and render it as plain text.
