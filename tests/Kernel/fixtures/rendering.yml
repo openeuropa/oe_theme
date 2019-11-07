@@ -116,13 +116,6 @@
       - 'Checkbox'
     count:
       'div.ecl-checkbox.ecl-checkbox--invalid': 1
-#- array:
-#    '#type': fieldset
-#    '#title': Fieldset
-#  assert:
-#    count:
-#      'fieldset.ecl-fieldset.js-form-item.form-item.js-form-wrapper.form-wrapper': 1
-#      'legend.ecl-form-legend': 1
 - array:
     '#type': radio
     '#title': Radio
