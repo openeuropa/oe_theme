@@ -172,19 +172,24 @@ class TimelineTest extends AbstractKernelTestBase {
     $output = $this->renderRoot($build);
     $crawler = new Crawler($output);
 
-    $timeline_item = $crawler->filter('.ecl-timeline__item');
-    $this->assertCount(3, $timeline_item);
+    // Assert the timeline items are the number of entries plus one for the
+    // "See more" button.
+    $timeline_item = $crawler->filter('.ecl-timeline2__item');
+    $this->assertCount(4, $timeline_item);
 
-    $timeline_title = $crawler->filter('.ecl-timeline__title');
-    $this->assertCount(3, $timeline_title);
-
-    $timeline_body = $crawler->filter('.ecl-timeline__body');
+    $timeline_body = $crawler->filter('.ecl-timeline2__label');
     $this->assertCount(3, $timeline_body);
 
-    $hidden_timeline_item = $crawler->filter('.ecl-timeline__item--over-limit');
+    $timeline_title = $crawler->filter('.ecl-timeline2__title');
+    $this->assertCount(3, $timeline_title);
+
+    $timeline_body = $crawler->filter('.ecl-timeline2__content');
+    $this->assertCount(3, $timeline_body);
+
+    $hidden_timeline_item = $crawler->filter('.ecl-timeline2__item--collapsed');
     $this->assertCount(1, $hidden_timeline_item);
 
-    $show_more_button = $crawler->filter('.ecl-timeline__button');
+    $show_more_button = $crawler->filter('.ecl-timeline2__item--toggle');
     $this->assertCount(1, $show_more_button);
 
     // Change the limit to show all items without the "show more" button.
@@ -193,8 +198,8 @@ class TimelineTest extends AbstractKernelTestBase {
 
     $build = $display->build($node);
     $output = $this->renderRoot($build);
-    $this->assertNotContains('.ecl-timeline__button', (string) $output);
-    $this->assertNotContains('.ecl-timeline__item--over-limit', (string) $output);
+    $this->assertNotContains('.ecl-timeline2__item--toggle', (string) $output);
+    $this->assertNotContains('.ecl-timeline2__item--collapsed', (string) $output);
   }
 
 }
