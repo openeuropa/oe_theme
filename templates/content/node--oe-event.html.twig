@@ -27,10 +27,16 @@
 {# Practical information #}
 {% if content.practical_information %}
   <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">Practical information</h2>
-  <div class="ecl-col-12 ecl-col-md-6">
-    {{ pattern('field_list', content.practical_information) }}
-    {# Social media links #}
-    {{ pattern('social_media_links_horizontal', content.social_media_links) }}
+  <div class="ecl-row">
+    <div class="ecl-col-12">
+      {{ pattern('field_list', content.practical_information) }}
+    </div>
+  </div>
+  <div class="ecl-row">
+    <div class="ecl-col-12 ecl-col-md-6">
+      {# Social media links #}
+      {{ pattern('social_media_links_horizontal', content.social_media_links) }}
+    </div>
   </div>
 {% endif %}
 
