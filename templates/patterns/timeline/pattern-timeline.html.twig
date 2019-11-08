@@ -11,7 +11,7 @@
 {% set _toggle_collapsed = button_label|default('Show @numb more items'|trans({'@numb': hidden_num})) %}
 {% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
 
-{% include '@ecl/timeline2' with {
+{% include '@ecl/timeline' with {
   'toggle_collapsed': _toggle_collapsed,
   'toggle_expanded': _toggle_expanded,
   'hide': {
