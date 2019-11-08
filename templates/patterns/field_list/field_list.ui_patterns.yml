@@ -4,10 +4,10 @@ field_list:
   variants:
     default:
       label: "Default"
-      description: "The default component modifier is vertical. It will align the term and the definition vertically."
+      description: "The default component modifier is vertical. It will align the field items vertically."
     horizontal:
       label: "Horizontal"
-      description: "It will align the term and definition horizontally."
+      description: "It will align the field items horizontally."
   fields:
     items:
       type: "array"
