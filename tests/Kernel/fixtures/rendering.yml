@@ -843,17 +843,42 @@
 - array:
     '#type': pattern
     '#id': field_list
+    '#variant': horizontal
     '#fields':
       items:
-        - label: "When"
-          body: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - label: "Where"
-          body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-        - label: "Live streaming"
-          body: "08:00 CET | 00d:23h:35m"
+        - term: "When"
+          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - term: "Where"
+          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - term: "Live streaming"
+          definition: "08:00 CET | 00d:23h:35m"
   assertions:
     count:
       '.ecl-description-list.ecl-description-list--horizontal': 1
+      '.ecl-description-list__term': 3
+      '.ecl-description-list__definition': 3
+    equals:
+      '.ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      '.ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      '.ecl-description-list .ecl-description-list__term:nth-child(5)': "Live streaming"
+      '.ecl-description-list .ecl-description-list__definition:nth-child(6)': "08:00 CET | 00d:23h:35m"
+- array:
+    '#type': pattern
+    '#variant': default
+    '#id': field_list
+    '#fields':
+      items:
+        - term: "When"
+          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - term: "Where"
+          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - term: "Live streaming"
+          definition: "08:00 CET | 00d:23h:35m"
+  assertions:
+    count:
+      '.ecl-description-list.ecl-description-list--default': 1
       '.ecl-description-list__term': 3
       '.ecl-description-list__definition': 3
     equals:
