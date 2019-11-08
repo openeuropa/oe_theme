@@ -1,15 +1,22 @@
 field_list:
   label: "Field list"
   description: "A list of field components to display structured information."
+  variants:
+    default:
+      label: "Default"
+      description: "The default component modifier is vertical. It will align the term and the definition vertically."
+    horizontal:
+      label: "Horizontal"
+      description: "It will align the term and definition horizontally."
   fields:
     items:
       type: "array"
       label: "Field items"
-      description: "List of field items, each having a 'label' and a 'body'"
+      description: "List of field items, each having a 'term' and a 'definition'"
       preview:
-        - label: "When"
-          body: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - label: "Where"
-          body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-        - label: "Live streaming"
-          body: "08:00 CET | 00d:23h:35m"
+        - term: "When"
+          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - term: "Where"
+          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - term: "Live streaming"
+          definition: "08:00 CET | 00d:23h:35m"
