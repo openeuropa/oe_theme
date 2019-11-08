@@ -16,7 +16,7 @@ const banner = `${pkg.name} - ${
 const style_options = {
   banner,
   includePaths,
-  sourceMap: isProd ? 'file' : true,
+  sourceMap: isProd ? 'file' : 'none',
 };
 
 module.exports = {
