@@ -15,8 +15,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the timeline field rendering.
- *
- * @group ecl1
  */
 class TimelineTest extends AbstractKernelTestBase {
 
