@@ -77,6 +77,9 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
+            },
+            "openeuropa/oe_paragraphs": {
+                "text-with-media-patch": "https://github.com/openeuropa/oe_paragraphs/compare/1.1.0...OPENEUROPA-2485.diff"
             }
         }
     },

@@ -841,6 +841,45 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
 }
 
 /**
+ * Implements hook_preprocess_paragraph() for paragraph--oe-text-feature-media.html.twig.
+ */
+function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  // Extract the media if present.
+  if ($paragraph->get('field_oe_media')->isEmpty()) {
+    return;
+  }
+  /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $media_item */
+  $media_item = $paragraph->get('field_oe_media')->first();
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $media_item->get('entity')->getValue();
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability->addCacheableDependency($media);
+  // Extract the image if present.
+  if ($media->get('oe_media_image')->isEmpty()) {
+    return;
+  }
+
+  // Format image to follow ECL structure.
+  /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $media_item */
+  $file_item = $media->get('oe_media_image')->first();
+  $file = $file_item->get('entity')->getValue();
+  $variables['image'] = [
+    'src' => file_url_transform_relative(file_create_url($file->getFileUri())),
+    'alt' => $file_item->get('alt')->getValue(),
+  ];
+
+  $cacheability->addCacheableDependency($file);
+  $cacheability->applyTo($variables);
+}
+
+/**
  * Implements hook_preprocess_pattern().
  */
 function oe_theme_preprocess_pattern_date_block(array &$variables): void {
