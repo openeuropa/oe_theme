@@ -642,16 +642,9 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    $language_internal = $language_code;
-    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
-      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
-    }
-
     $variables['optional_languages'][] = [
       'href' => $href,
-      'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_internal,
     ];
   }
 }
