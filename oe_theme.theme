@@ -632,9 +632,8 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
     ->getId();
   $variables['unavailable'] = $languages[$current_language_id]->getName();
 
-  // Normalize the links to an array of options suitable for the ECL
-  // "ecl-lang-select-pages" template.
-  $variables['options'] = [];
+  // Normalize the links to an array of optional languages suitable for the ECL.
+  $variables['optional_languages'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
@@ -643,14 +642,16 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    $eu_lang_list = Filters::getEuropeanUnionLanguageList();
-    $language_prefix = !empty($eu_lang_list[$language_code][2]) ? $eu_lang_list[$language_code][2] : $language_code;
+    $language_internal = $language_code;
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
 
-    $variables['options'][] = [
+    $variables['optional_languages'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_prefix,
+      'lang' => $language_internal,
     ];
   }
 }
