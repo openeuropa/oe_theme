@@ -2,6 +2,7 @@
 
 {#
   Parameters:
+    - "expandable_id" (string) (default: ''): unique ID for the expandable component.
     - "unavailable" (string) (default: ''): language currently unavailable.
     - "current" (string) (default: ''): language currently displayed instead of the selected, unavailable, one.
     - "optional_languages" (array) (default: []): array of links to the content in different languages. Format:
@@ -15,7 +16,7 @@
     - "icon_path" (string) (default: ''): path to ECL SVG icon assets.
 #}
 
-<div class="ecl-lang-select-page ecl-u-bg-blue ecl-u-pb-m">
+<div class="ecl-lang-select-page ecl-u-bg-blue">
   <div class="ecl-container">
     <div class="ecl-u-d-flex ecl-u-type-color-white ecl-u-align-items-start ecl-u-font-s">
       <span class="ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
@@ -35,15 +36,12 @@
       {# If we have more than one optional languages then use an expandable to display them. #}
       {% if optional_languages %}
         {% set languages %}
-          <ul class="ecl-u-d-flex ecl-u-flex-wrap ecl-unordered-list ecl-unordered-list--no-bullet">
-            {% for language in optional_languages %}
-              <li class="ecl-u-mt-none ecl-u-d-flex ecl-unordered-list__item">
-                <a href="{{ language.href }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
-              </li>
-            {% endfor %}
-          </ul>
+          {% for language in optional_languages %}
+            <a href="{{ language.href }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
+          {% endfor %}
         {% endset %}
         {% include '@ecl/expandable' with {
+          'id': expandable_id,
           'label_expanded': current,
           'label_collapsed': current,
           'expanded': false,

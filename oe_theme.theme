@@ -647,6 +647,9 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       'label' => $link['link']['#title'],
     ];
   }
+
+  // Generate unique element ID for the expandable component.
+  $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
 }
 
 /**
