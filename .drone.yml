@@ -29,7 +29,7 @@ pipeline:
     image: node:9.5.0
     commands:
       - npm install --unsafe-perm
-      - npm run build
+      - NODE_ENV=production npm run build
 
   composer-install:
     group: prepare
@@ -77,9 +77,6 @@ pipeline:
   before-release:
     image: fpfis/httpd-php-dev:7.1
     commands:
-      # Rebuild styles without Source map for releases.
-      - npm rebuild node-sass
-      - NODE_ENV=production npm run build:styles
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
     when:
       event: tag
