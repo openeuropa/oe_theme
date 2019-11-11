@@ -1133,3 +1133,20 @@ function oe_theme_preprocess_block__oe_theme_main_page_content(&$variables) {
 function oe_theme_preprocess_block__oe_theme_tabs(&$variables) {
   $variables['attributes']['class'][] = 'ecl-u-mv-l';
 }
+
+/**
+ * Implements hook_preprocess_paragraph__oe_social_media_follow().
+ */
+function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['variant'] = $paragraph->get('field_oe_social_media_variant')->value;
+  $variables['label'] = $paragraph->get('field_oe_title')->value;
+  $links = $paragraph->get('field_oe_social_media_links')->getValue();
+  $variables['links'] = [];
+  foreach ($links as $key => $link) {
+    $variables['links'][$key]['service'] = $link['link_type'];
+    $variables['links'][$key]['label'] = $link['title'];
+    $variables['links'][$key]['url'] = Url::fromUri($link['uri']);
+  }
+}
