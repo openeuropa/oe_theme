@@ -36,9 +36,13 @@
       {# If we have more than one optional languages then use an expandable to display them. #}
       {% if optional_languages %}
         {% set languages %}
-          {% for language in optional_languages %}
-            <a href="{{ language.href }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
-          {% endfor %}
+          <ul class="ecl-u-d-flex ecl-u-flex-wrap ecl-unordered-list ecl-unordered-list--no-bullet">
+            {% for language in optional_languages %}
+              <li class="ecl-u-mt-none ecl-u-d-flex ecl-unordered-list__item">
+                <a href="{{ language.href }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
+              </li>
+            {% endfor %}
+          </ul>
         {% endset %}
         {% include '@ecl/expandable' with {
           'id': expandable_id,
