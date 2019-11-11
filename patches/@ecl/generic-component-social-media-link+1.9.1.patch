@@ -1,0 +1,17 @@
+patch-package
+--- a/node_modules/@ecl/generic-component-social-media-link/generic-component-social-media-link.twig
++++ b/node_modules/@ecl/generic-component-social-media-link/generic-component-social-media-link.twig
+@@ -60,8 +60,10 @@
+         }|merge(_social_icon) %}
+       </li>
+     {% endfor %}
+-    <li class="ecl-social-media-link__item">
+-      <a class="ecl-social-media-link__link" href="{{ _more.href }}" title="{{ _more.label }}">{{ _more.label }}</a>
+-    </li>
++    {% if _more.href is not empty %}
++      <li class="ecl-social-media-link__item">
++        <a class="ecl-social-media-link__link" href="{{ _more.href }}" title="{{ _more.label }}">{{ _more.label }}</a>
++      </li>
++    {% endif %}
+   </ul>
+ </div>
