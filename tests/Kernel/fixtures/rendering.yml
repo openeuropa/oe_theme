@@ -749,9 +749,8 @@
     count:
       '.ecl-page-header': 1
       '.ecl-breadcrumb__segment': 2
-      # @todo: Add these following tests when language_switcher is on ecl2.
-      #'.ecl-lang-select-page--primary': 1
-      #'.ecl-lang-select-page__option': 3
+      '.ecl-lang-select-page button.ecl-button': 1
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link': 2
       '.ecl-page-header__meta-list': 1
       '.ecl-page-header__info-list': 1
       '.ecl-page-header__info-item': 2
@@ -760,11 +759,10 @@
       'h1.ecl-page-header__title': "Business, Economy, Euro"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-page-header__meta-list': "News article | 6 July 2015 | Brussels"
-      # @todo: Add these following tests when language_switcher is on ecl2.
-      #'.ecl-lang-select-page__unavailable': "English"
-      #'.ecl-lang-select-page__option--is-selected': "French"
-      #'.ecl-lang-select-page__option a[lang="es"]': "Spanish"
-      #'.ecl-lang-select-page__option a[lang="it"]': "Italian"
+      '.ecl-lang-select-page .ecl-u-type-strike': "English"
+      '.ecl-lang-select-page button.ecl-button': "French"
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="es"]': "Spanish"
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="it"]': "Italian"
       '.ecl-breadcrumb__segment:nth-child(1) a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment:nth-child(2)': "Announcements"
       '.ecl-page-header__info-item:nth-child(1)': "Monday 8 February"
