@@ -635,6 +635,12 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   // Normalize the links to an array of optional languages suitable for the ECL.
   $variables['options'] = [];
   foreach ($variables['links'] as $language_code => $link) {
+
+    $language_internal = $language_code;
+    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
+      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
+
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
     $href = $url
@@ -644,7 +650,9 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 
     $variables['options'][] = [
       'href' => $href,
+      'hreflang' => $language_code,
       'label' => $link['link']['#title'],
+      'lang' => $language_internal,
     ];
   }
 

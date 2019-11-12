@@ -9,6 +9,7 @@
       [
         {
           "href" (string) URL of the content (default: ''),
+          "hreflang" (string) language code to be used as link attribute,
           "label" (string) link label, i.e. the language name in its native form (default: '')
         },
         ...
@@ -38,7 +39,7 @@
         <ul class="ecl-u-d-flex ecl-u-flex-wrap ecl-unordered-list ecl-unordered-list--no-bullet">
           {% for language in options %}
             <li class="ecl-u-mt-none ecl-u-d-flex ecl-unordered-list__item">
-              <a href="{{ language.href }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
+              <a href="{{ language.href }}" lang="{{ language.hreflang }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
             </li>
           {% endfor %}
         </ul>
