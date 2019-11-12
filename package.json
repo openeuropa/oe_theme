@@ -4,7 +4,7 @@
     "description": "OpenEuropa base theme.",
     "private": true,
     "scripts": {
-        "build:copy": "ecl-builder copy",
+        "build:copy": "ecl-builder copy && mv components/ec-component-timeline/timeline.html.twig components/ec-component-timeline/ecl-timeline.html.twig",
         "build:styles": "ecl-builder styles",
         "build": "npm-run-all --parallel build:* -ln",
         "watch:scripts": "chokidar \"./sass/**/*.js\" -i \"/node_modules/\" -c \"eslint {path} & npm run build:scripts\"",
