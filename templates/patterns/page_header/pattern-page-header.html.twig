@@ -49,10 +49,23 @@
   </div>
 {% endif %}
 
+{% if language_switcher %}
+  {% set _language_switcher %}
+    {% include '@oe_theme/compositions/ec-component-content-language-switcher/content-language-switcher.html.twig' with {
+      'expandable_id': language_switcher.expandable_id,
+      'unavailable': language_switcher.unavailable,
+      'current': language_switcher.current,
+      'options': language_switcher.options,
+      'icon_path': ecl_icon_path,
+    } only %}
+  {% endset %}
+{% endif %}
+
 {% include '@ecl/page-header' with {
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,
   'meta': _meta,
-  'infos': _infos
+  'infos': _infos,
+  'language_switcher': _language_switcher
 } %}

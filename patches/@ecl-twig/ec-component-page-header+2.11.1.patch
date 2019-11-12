@@ -1,8 +1,20 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-page-header/page-header.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-page-header/page-header.html.twig
-@@ -52,26 +52,30 @@
-         extra_classes: 'ecl-page-header__breadcrumb'
+@@ -4,6 +4,7 @@
+     - "title" (string) (default: '') Title of header
+     - "description" (string) (default: '') Description of header
+     - "meta" (string) (default: '') Meta of header
++    - "language_switcher" (string) (default: '') Language switcher block
+     - "infos" (array) (default: []) Array of infos. format: [
+         {
+             "text" (string) Label of info
+@@ -49,29 +50,38 @@
+   <div class="ecl-container">
+     {% if breadcrumb is defined %}
+       {% include '../ec-component-breadcrumb/breadcrumb.html.twig' with breadcrumb|merge({
+-        extra_classes: 'ecl-page-header__breadcrumb'
++        extra_classes: not language_switcher ? 'ecl-page-header__breadcrumb'
        }) only %}
      {% endif %}
 -    {% if _meta is not empty %}
@@ -24,7 +36,11 @@ patch-package
 -          </li>
 -        {% endfor %}
 -      </ul>
--    {% endif %}
++    {% if language_switcher %}
++      <div class="ecl-u-mb-xl ecl-u-border-bottom ecl-u-border-color-white">
++        {{ language_switcher }}
++      </div>
+     {% endif %}
 +    {# This wrapper is added in order to fix style discrepancies between EC and EU page headers. #}
 +    {# @todo: remove this patch as soon as this is fixed: https://webgate.ec.europa.eu/CITnet/jira/browse/INNO-1844 #}
 +    <div class="ecl-page-header__title-wrapper">

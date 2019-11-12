@@ -633,7 +633,7 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   $variables['unavailable'] = $languages[$current_language_id]->getName();
 
   // Normalize the links to an array of optional languages suitable for the ECL.
-  $variables['optional_languages'] = [];
+  $variables['options'] = [];
   foreach ($variables['links'] as $language_code => $link) {
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
@@ -642,12 +642,20 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    $variables['optional_languages'][] = [
+    $variables['options'][] = [
       'href' => $href,
       'label' => $link['link']['#title'],
     ];
   }
 
+  // Generate unique element ID for the expandable component.
+  $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_page_header(array &$variables): void {
   // Generate unique element ID for the expandable component.
   $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
 }
