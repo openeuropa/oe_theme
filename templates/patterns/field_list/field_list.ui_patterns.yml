@@ -12,11 +12,11 @@ field_list:
     items:
       type: "array"
       label: "Field items"
-      description: "List of field items, each having a 'term' and a 'definition'"
+      description: "List of field items, each having a 'label' and a 'body'"
       preview:
-        - term: "When"
-          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - term: "Where"
-          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-        - term: "Live streaming"
-          definition: "08:00 CET | 00d:23h:35m"
+        - label: "When"
+          body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - label: "Where"
+          body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - label: "Live streaming"
+          body: "08:00 CET | 00d:23h:35m"
