@@ -1,15 +1,15 @@
 {#
 /**
  * @file
- * Theme override for a set of links used in the language switcher block.
+ * Theme override for a set of links used in the content language switcher block.
  *
  * @see ./core/modules/stable/navigation/links.html.twig
  */
 #}
-{% include '@ecl/ec-component-lang-select-page' with {
-  is_primary: true,
-  unavailable: unavailable|default('English'|t),
-  current: current,
-  options: options,
-  dropdown_label: 'Select your language'|t
-} %}
+{% include '@oe_theme/compositions/ec-component-content-language-switcher/content-language-switcher.html.twig' with {
+  'expandable_id': expandable_id,
+  'unavailable': unavailable,
+  'current': current,
+  'optional_languages': optional_languages,
+  'icon_path': ecl_icon_path,
+} only %}

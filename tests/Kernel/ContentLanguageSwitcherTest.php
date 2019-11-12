@@ -10,8 +10,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test content language switcher rendering.
- *
- * @group ecl1
  */
 class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
@@ -110,8 +108,8 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The label of the language.
    */
   protected function assertUnavailableLanguage(Crawler $crawler, string $expected): void {
-    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__unavailable')->text();
-    $this->assertEquals($expected, $actual);
+    $actual = $crawler->filter('.ecl-lang-select-page .ecl-u-type-strike')->text();
+    $this->assertEquals($expected, trim($actual));
   }
 
   /**
@@ -123,8 +121,8 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The label of the language.
    */
   protected function assertSelectedLanguage(Crawler $crawler, string $expected): void {
-    $actual = $crawler->filter('.ecl-lang-select-page > .ecl-lang-select-page__list > .ecl-lang-select-page__option--is-selected')->text();
-    $this->assertEquals($expected, $actual);
+    $actual = $crawler->filter('.ecl-lang-select-page .ecl-button.ecl-button--secondary')->text();
+    $this->assertEquals($expected, trim($actual));
   }
 
   /**
@@ -136,7 +134,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The labels of the translations that should be rendered as links.
    */
   protected function assertTranslationLinks(Crawler $crawler, array $expected): void {
-    $elements = $crawler->filter('.ecl-lang-select-page  > .ecl-lang-select-page__list > .ecl-lang-select-page__option > .ecl-link');
+    $elements = $crawler->filter('.ecl-lang-select-page .ecl-expandable__content .ecl-link');
     $this->assertSameSize($expected, $elements);
 
     $actual = array_column(iterator_to_array($elements), 'nodeValue');
