@@ -4,10 +4,15 @@
  * Field.
  */
 #}
-{% if label %}
-<dl class="ecl-description-list ecl-description-list--horizontal">
-  <dt class="ecl-description-list__term">{{ label }}</dt>
-  <dd class="ecl-description-list__definition">{{ body }}</dd>
-</dl>
-{% endif %}
+
+{% set _items = [] %}
+{% set _items = _items|merge([{
+  term: label,
+  definition: body
+}]) %}
+
+{% include '@ecl/description-list' with {
+  'variant': variant,
+  'items': _items,
+} %}
 

@@ -321,7 +321,8 @@ Patches will be generated in `./patches` and applied when running `npm install`.
 - The following patterns have been removed on 2.x:
   - `dialog`
   - `file_link`
-- The `variant` field on the `field` pattern has been removed.
+- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
+  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
 - [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
   you should use version 2.x instead.
 

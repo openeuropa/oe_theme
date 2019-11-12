@@ -1,6 +1,13 @@
 field_list:
   label: "Field list"
   description: "A list of field components to display structured information."
+  variants:
+    default:
+      label: "Default"
+      description: "The default component modifier is vertical. It will align the field items vertically."
+    horizontal:
+      label: "Horizontal"
+      description: "It will align the field items horizontally."
   fields:
     items:
       type: "array"
