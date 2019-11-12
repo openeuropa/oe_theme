@@ -12,7 +12,7 @@ use Drupal\image\Entity\ImageStyle;
 /**
  * Update dimensions of 'List item' image style.
  */
-function oe_theme_content_news_post_update_00001(array &$sandbox): void {
+function oe_theme_content_news_post_update_20001(array &$sandbox): void {
   $image_style = ImageStyle::load('oe_theme_list_item');
   $effects = $image_style->getEffects();
   /** @var \Drupal\image\ImageEffectInterface $effect */
