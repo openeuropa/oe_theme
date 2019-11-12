@@ -65,8 +65,7 @@ pipeline:
     group: test
     image: fpfis/httpd-php-ci:7.1
     commands:
-      # @todo: remove the `@group ecl1` on PHPUnit tests to have them executed. We will remove this after porting is completed.
-      - ./vendor/bin/phpunit --exclude-group ecl1
+      - ./vendor/bin/phpunit
 
   behat:
     group: test
