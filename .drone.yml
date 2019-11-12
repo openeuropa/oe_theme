@@ -29,7 +29,7 @@ pipeline:
     image: node:9.5.0
     commands:
       - npm install --unsafe-perm
-      - npm run build
+      - NODE_ENV=production npm run build
 
   composer-install:
     group: prepare

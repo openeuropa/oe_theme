@@ -9,14 +9,9 @@ const nodeModules = __dirname + '/node_modules';
 // SCSS includePaths
 const includePaths = [nodeModules];
 
-const banner = `${pkg.name} - ${
-  pkg.version
-} Built on ${new Date().toISOString()}`;
-
 const style_options = {
-  banner,
   includePaths,
-  sourceMap: isProd ? 'file' : true,
+  sourceMap: isProd ? 'none' : true,
 };
 
 module.exports = {
