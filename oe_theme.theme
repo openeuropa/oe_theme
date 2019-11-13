@@ -1059,15 +1059,6 @@ function oe_theme_preprocess_media__document__default(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_pattern_timeline().
- */
-function oe_theme_preprocess_pattern_timeline(array &$variables): void {
-  foreach ($variables['items'] as &$item) {
-    $item['content'] = $item['body'];
-  }
-}
-
-/**
  * Implements template_preprocess_language_selection_page_content().
  */
 function oe_theme_preprocess_language_selection_page_content(&$variables) {

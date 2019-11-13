@@ -4,6 +4,16 @@
  * Timeline component.
  */
 #}
+
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    label: _item.label,
+    title: _item.title,
+    content: _item.body
+  }]) %}
+{% endfor %}
+
 {% set total_num = items|length %}
 {% set hide_from = limit_to == 0 ? total_num : limit_to %}
 {% set hidden_num = total_num - (items|slice(0, limit)|length + items|slice(hide_from)|length) %}
@@ -18,6 +28,6 @@
     'from': limit,
     'to': limit_to|default(0),
   },
-  'items': items,
+  'items': _items,
   'icon_path': ecl_icon_path,
 } only %}
