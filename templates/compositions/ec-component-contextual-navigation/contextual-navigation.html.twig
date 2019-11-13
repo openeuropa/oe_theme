@@ -70,6 +70,7 @@
           <li class="{{ _item_classes }}">
             {% include '@ecl-twig/button' with _item_more|merge({
               type: 'button',
+              variant: 'ghost',
               extra_attributes: [
                 { name: 'data-ecl-contextual-navigation-more', value: 'true' },
               ],
