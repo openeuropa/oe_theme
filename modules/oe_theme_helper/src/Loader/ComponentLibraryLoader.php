@@ -52,7 +52,7 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
    * {@inheritdoc}
    */
   protected function findTemplate($name) {
-    // @todo: Remove this method override once the migration to ECL 2.0 is done.
+    // @todo: Remove this method override once first stable release is out.
     try {
       return parent::findTemplate($name);
     }
