@@ -22,7 +22,7 @@
 <ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
   {% for _item in items if _item.text %}
     <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not loop.first ? ' ecl-u-mt-l' }}">
-      {% include '@ecl/icon' with {
+      {% include '@ecl-twig/icon' with {
         icon: {
           path: _icon_path,
           type: 'general',

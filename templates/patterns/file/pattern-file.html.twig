@@ -4,7 +4,7 @@
  * File download pattern.
  */
 #}
-{% include '@ecl/file' with {
+{% include '@ecl-twig/file' with {
   'title': file.title,
   'language': file.language_code|to_native_language,
   'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',

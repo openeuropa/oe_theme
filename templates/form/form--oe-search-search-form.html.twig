@@ -4,7 +4,7 @@
  * Theme override for a 'form' element.
  *
  * @see ./core/themes/stable/templates/form/form.html.twig
- * @see @ecl/ec-component-search-form.twig
+ * @see @ecl-twig/ec-component-search-form.twig
  */
 #}
 {% set text_input = {
@@ -30,7 +30,7 @@
   extra_classes: 'ecl-search-form__button'
 } %}
 {% set extra_attributes = attributes|to_ecl_attributes %}
-{% extends '@ecl/search-form' %}
+{% extends '@ecl-twig/search-form' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}
   {{ element.form_token }}

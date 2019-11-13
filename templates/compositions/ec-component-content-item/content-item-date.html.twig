@@ -62,7 +62,7 @@
     {% endif %}
     <div class="ecl-content-item-date__title ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-mt-xs">
       {%- if _title.path %}
-        {% include '@ecl/link' with {
+        {% include '@ecl-twig/link' with {
           link: _title|merge({type:'standalone'})
         } only %}
       {% else %}

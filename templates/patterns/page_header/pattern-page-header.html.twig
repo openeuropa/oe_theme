@@ -61,11 +61,11 @@
   {% endset %}
 {% endif %}
 
-{% include '@ecl/page-header' with {
+{% include '@ecl-twig/page-header' with {
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,
   'meta': _meta,
   'infos': _infos,
-  'language_switcher': _language_switcher
+  'composition': _language_switcher
 } %}

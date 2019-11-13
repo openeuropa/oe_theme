@@ -1,7 +1,7 @@
 {#
   Parameters:
     - "title" (string) (default: 'Navigation'): for screen readers
-    - "links" (array) (default: []): collection of @ecl/link
+    - "links" (array) (default: []): collection of @ecl-twig/link
     - "variant" (string) (default: 'primary'): type of local tasks
     - "extra_classes" (string) (default: '')
     - "extra_attributes" (array) (default: []): format: [
@@ -50,7 +50,7 @@
       {% for _link in _links %}
         {% set _active_class = _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
         <li class="ecl-navigation-list__item ecl-unordered-list__item ecl-u-d-inline{{ _list_item_class }}{{ _active_class }}">
-          {% include '@ecl/link' with _link only %}
+          {% include '@ecl-twig/link' with _link only %}
         </li>
       {% endfor %}
     </ul>

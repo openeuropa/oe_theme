@@ -7,7 +7,7 @@
    */
     Parameters:
       - "title" (string) (default: ''): optional title of the link block
-      - "links" (array) (default: []): collection of standalone @ecl/link
+      - "links" (array) (default: []): collection of standalone @ecl-twig/link
       - "extra_classes" (string) (default: '')
       - "extra_attributes" (array) (default: []): format: [
           {
@@ -48,7 +48,7 @@
       <ul class="ecl-link-block__list ecl-unordered-list--no-bullet ecl-u-ma-none">
         {% for _link in _links %}
           <li class="ecl-link-block__item ecl-u-mt-xs ecl-u-mb-xs">
-            {% include '@ecl/link' with {
+            {% include '@ecl-twig/link' with {
               extra_classes: 'ecl-link-block__link'
             }|merge(_link|default({})) only %}
           </li>
