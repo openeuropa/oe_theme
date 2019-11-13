@@ -1,0 +1,47 @@
+navigation_menu:
+  label: "Navigation menu"
+  description: "Default implementation of the main navigation menu."
+  fields:
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label for the menu, only visible on mobile."
+      preview: "Navigation"
+    items:
+      type: "array"
+      label: "Links"
+      description: "A list of links that make up the navigation menu, including children items."
+      preview:
+        - href: "#"
+          label: "About the eu"
+          children:
+            - href: '#'
+              label: 'The EU in brief'
+            - href: '#'
+              label: 'EU citizenship'
+            - href: '#'
+              label: 'Countries'
+            - href: '#'
+              label: 'The euro'
+        - href: "#"
+          label: "EU law"
+          children:
+            - href: '#'
+              label: 'Eu Treaties'
+            - href: '#'
+              label: 'Application of EU law'
+            - href: '#'
+              label: 'Regulations'
+        - href: "#"
+          label: "Contact"
+    number:
+      type: "numeric"
+      label: "Number"
+      description: "The amount of link items to show in a submenu row or column"
+      preview: 3
+      escape: false
+    alignment:
+      type: "text"
+      label: "Alignment"
+      description: "Whether the menu items will be ordered horizontally or vertically. Defaults to horizontal."
+      preview: "vertical"

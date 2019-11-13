@@ -8,9 +8,10 @@
 #}
 {{ attach_library('oe_theme/navigation') }}
 {% if links %}
-  {% include '@ecl-twig/menu-legacy' with {
+  {{ pattern('navigation_menu', {
     label: 'Menu'|t,
     items: links,
-    icon_path: ecl_icon_path
-  } only %}
+    number: 4,
+    alignment: 'horizontal',
+  }) }}
 {% endif %}
