@@ -262,7 +262,7 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
 
   /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
   foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
-    $paragraph = $field_item->entity;
+    $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($field_item->entity);
     $variables['items'][] = [
       'title' => $builder->viewField($paragraph->get('field_oe_text')),
       'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
