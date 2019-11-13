@@ -4,13 +4,11 @@ Feature: Theme showcase
   As a developer
   I want to make sure that I can setup a demo site.
 
-  @ecl2
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
     Then I should see the "search form" element in the "header"
     And I should see the "language switcher" element in the "header"
 
-  @ecl2
   Scenario: The demo site navigation features placeholder menu links
     When I am on the homepage
     Then I should see the following links in the "navigation" region:
@@ -31,21 +29,22 @@ Feature: Theme showcase
       | Departments        |
 
   @javascript
-  #todo: Fix on the ticket OPENEUROPA-2152.
   Scenario: The demo site navigation menu features dropdown menus
     When I am on the homepage
-    Then the "priorities dropdown menu" is not visible
-    And the "about dropdown menu" is not visible
+    # We can't check the visibility of the submenues
+    # because their position is absolute which gives us false positives.
+    Then I should not visibly see the link "Commission at work"
+    Then I should not visibly see the link "Democratic change"
 
     When I click "About" in the "navigation"
-    And the "about dropdown menu" is visible
-    But the "priorities dropdown menu" is not visible
+    Then I should see the link "Commission at work"
+    But I should not visibly see the link "Democratic change"
 
     When I click "Priorities" in the "navigation"
-    And the "about dropdown menu" is not visible
-    But the "priorities dropdown menu" is visible
+    Then I should not visibly see the link "Commission at work"
+    But I should see the link "Democratic change"
 
-  @javascript @ecl2
+  @javascript
   Scenario: The dropdown component shows/hides on click event
     When I am on "the ECL dropdown component page"
     Then the "dropdown content" is not visible
@@ -53,7 +52,7 @@ Feature: Theme showcase
     When I press "Dropdown"
     Then the "dropdown content" is visible
 
-  @javascript @ecl2
+  @javascript
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage
     Then the overlay "language switcher links" is not visible
@@ -98,7 +97,7 @@ Feature: Theme showcase
     When I press "Close"
     Then the "language switcher links" is not visible
 
-  @javascript @ecl2
+  @javascript
   Scenario: Site visitor can change language using the language switcher
     When I am on the homepage
     Then the "language switcher link" element should contain "English"

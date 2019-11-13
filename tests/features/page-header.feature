@@ -1,4 +1,4 @@
-@api @ecl2
+@api
 Feature: Page header block component.
   In order to better understand the context of the page
   As a site user
