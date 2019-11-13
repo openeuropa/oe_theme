@@ -1,7 +1,6 @@
 parameters:
-  oe_theme_helper.twig_loader.namespaces: ['ec-europa', 'ecl']
+  oe_theme_helper.twig_loader.namespaces: ['ecl-twig']
   oe_theme_helper.twig_loader.theme: 'oe_theme'
-  oe_theme_helper.twig_loader.system: 'ec'
   # Having components outside the './templates' directory will enforce the right
   # loading order. This is necessary when ECL components have the same name
   # as Drupal templates, for example: "table.html.twig", etc.
@@ -14,7 +13,6 @@ services:
       - '@app.root'
       - '%oe_theme_helper.twig_loader.theme%'
       - '%oe_theme_helper.twig_loader.directory%'
-      - '%oe_theme_helper.twig_loader.system%'
       - '@theme_handler'
       - '@logger.factory'
     tags:
