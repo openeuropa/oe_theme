@@ -92,19 +92,16 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
     return [
       'label' => $item['title'],
       'href' => $item['url'],
-      'isCurrent' => $item['in_active_trail'],
+      'is_current' => $item['in_active_trail'],
     ];
   }, $variables['items']);
 
   foreach ($variables['items'] as $name => $link) {
     $variables['links'][$name]['children'] = array_map(function ($item) {
       return [
-        'items' => [[
-          'label' => $item['title'],
-          'href' => $item['url'],
-          'isCurrent' => $item['in_active_trail'],
-        ],
-        ],
+        'label' => $item['title'],
+        'href' => $item['url'],
+        'is_current' => $item['in_active_trail'],
       ];
     }, $variables['items'][$name]['below']);
   }
@@ -760,6 +757,38 @@ function oe_theme_preprocess_pattern_social_media_links_vertical(array &$variabl
  */
 function oe_theme_preprocess_pattern_social_media_links_horizontal(array &$variables): void {
   _oe_theme_preprocess_pattern_social_media_links($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_navigation_menu(array &$variables): void {
+  if (!isset($variables['items'])) {
+    return;
+  }
+  foreach ($variables['items'] as &$item) {
+    if (!isset($item['children'])) {
+      continue;
+    }
+    $children = [];
+    $index = 0;
+    foreach ($item['children'] as $key => $child) {
+      if ($variables['alignment'] == 'horizontal') {
+        $children[$index]['items'][] = $child;
+        $index++;
+        if ($index == $variables['number']) {
+          $index = 0;
+        }
+      }
+      elseif ($variables['alignment'] == 'vertical') {
+        $children[$index]['items'][] = $child;
+        if (count($children[$index]['items']) == $variables['number']) {
+          $index++;
+        }
+      }
+    }
+    $item['children'] = $children;
+  }
 }
 
 /**

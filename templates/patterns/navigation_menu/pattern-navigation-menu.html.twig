@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Default implementation for the navigation menu component.
+ */
+#}
+{% if items %}
+  {% include '@ecl/menu-legacy' with {
+    label: label|default('Menu'),
+    items: items,
+    icon_path: ecl_icon_path
+  } only %}
+{% endif %}
