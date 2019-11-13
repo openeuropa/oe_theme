@@ -250,7 +250,7 @@ You can use the ECL components in your Twig templates by referencing them using 
 as shown below:
 
 ```twig
-{% include '@ecl/logos' with {
+{% include '@ecl-twig/logos' with {
   'to': 'https://ec.europa.eu',
   'title': 'European Commission',
 } %}
@@ -301,17 +301,17 @@ ECL components can be patched by using the [`patch-package`][18] NPM project.
 
 To patch a component:
 
-1. Modify its source files directly in `./node_modules/@ecl/[component-name]`
+1. Modify its source files directly in `./node_modules/@ecl-twig/[component-name]`
 2. Run:
 
 ```bash
-npx patch-package @ecl/[component-name]
+npx patch-package @ecl-twig/[component-name]
 ```
 
 Or, when using Docker Compose:
 
 ```bash
-docker-compose exec -u node node npx patch-package @ecl/[component-name]
+docker-compose exec -u node node npx patch-package @ecl-twig/[component-name]
 ```
 
 Patches will be generated in `./patches` and applied when running `npm install`.
