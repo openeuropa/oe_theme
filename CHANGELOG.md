@@ -1,10 +1,27 @@
-# Change Log
+# Changelog
+
+## [2.0.0-alpha4](https://github.com/openeuropa/oe_theme/tree/2.0.0-alpha4) (2019-11-14)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-alpha3...2.0.0-alpha4)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2398: Update ECL Twig to 2.15 [\#368](https://github.com/openeuropa/oe_theme/pull/368) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2013: Re-enable language switcher on page header pattern. [\#367](https://github.com/openeuropa/oe_theme/pull/367) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2015: Make Search label translatable. [\#365](https://github.com/openeuropa/oe_theme/pull/365) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2013: Add content language switcher [\#364](https://github.com/openeuropa/oe_theme/pull/364) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2467: Remove SASS source mapping from final CSS artifacts. [\#359](https://github.com/openeuropa/oe_theme/pull/359) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2478: Add vertical and horizontal variants to fields patterns [\#358](https://github.com/openeuropa/oe_theme/pull/358) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-2471: Style Social media follow paragraph for 2.x [\#357](https://github.com/openeuropa/oe_theme/pull/357) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2152:  Fix remaining tests on 2.x branch [\#355](https://github.com/openeuropa/oe_theme/pull/355) ([ademarco](https://github.com/ademarco))
 
 ## [2.0.0-alpha3](https://github.com/openeuropa/oe_theme/tree/2.0.0-alpha3) (2019-11-06)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-alpha2...2.0.0-alpha3)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.0.0-alpha3. [\#356](https://github.com/openeuropa/oe_theme/pull/356) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2144: ECL 2.0: Gallery pattern. [\#353](https://github.com/openeuropa/oe_theme/pull/353) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2449: Make sure that all content types are properly themed. [\#350](https://github.com/openeuropa/oe_theme/pull/350) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2430: Create an "Icons with text" pattern. [\#348](https://github.com/openeuropa/oe_theme/pull/348) ([sergepavle](https://github.com/sergepavle))
