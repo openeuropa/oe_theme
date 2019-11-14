@@ -766,24 +766,28 @@ function oe_theme_preprocess_pattern_navigation_menu(array &$variables): void {
   if (!isset($variables['items'])) {
     return;
   }
+  // Set default number of rows or columns.
+  $variables['number'] = $variables['number'] ?? 1;
+
   foreach ($variables['items'] as &$item) {
     if (!isset($item['children'])) {
       continue;
     }
     $children = [];
     $index = 0;
+
     foreach ($item['children'] as $key => $child) {
-      if ($variables['alignment'] == 'horizontal') {
+      if ($variables['alignment'] == 'vertical') {
         $children[$index]['items'][] = $child;
-        $index++;
-        if ($index == $variables['number']) {
-          $index = 0;
+        if (count($children[$index]['items']) === $variables['number']) {
+          $index++;
         }
       }
-      elseif ($variables['alignment'] == 'vertical') {
+      else {
         $children[$index]['items'][] = $child;
-        if (count($children[$index]['items']) == $variables['number']) {
-          $index++;
+        $index++;
+        if ($index === $variables['number']) {
+          $index = 0;
         }
       }
     }

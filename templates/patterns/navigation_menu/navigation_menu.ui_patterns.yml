@@ -23,6 +23,14 @@ navigation_menu:
               label: 'Countries'
             - href: '#'
               label: 'The euro'
+            - href: '#'
+              label: 'Project charters'
+            - href: '#'
+              label: 'Member states'
+            - href: '#'
+              label: 'Policies and publications'
+            - href: '#'
+              label: 'Economy'
         - href: "#"
           label: "EU law"
           children:
@@ -32,6 +40,12 @@ navigation_menu:
               label: 'Application of EU law'
             - href: '#'
               label: 'Regulations'
+            - href: '#'
+              label: 'Priorities'
+            - href: '#'
+              label: 'Funding'
+            - href: '#'
+              label: 'HORIZON2020'
         - href: "#"
           label: "Contact"
     number:
