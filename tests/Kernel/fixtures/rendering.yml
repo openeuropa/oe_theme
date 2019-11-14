@@ -198,7 +198,7 @@
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
-      'a.ecl-file__download': "Download "
+      'a.ecl-file__download .ecl-link__label': "Download"
 - array:
     '#type': pattern
     '#id': file_translation
@@ -241,8 +241,8 @@
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
-      'a.ecl-file__download': "Download "
-      'button.ecl-file__translation-toggle': "Available translations (3)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - PDF)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
@@ -309,7 +309,7 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 1
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 1
     equals:
-      'figcaption.ecl-gallery__description': "Example caption"
+      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
 - array:
     '#type': pattern
     '#id': gallery
@@ -335,8 +335,8 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 2
     equals:
-      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': ""
-      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': ""
+      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
 - array:
     '#type': pattern
     '#id': gallery
@@ -382,7 +382,7 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
     '#type': pattern
@@ -406,7 +406,7 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
     '#type': pattern
@@ -430,7 +430,7 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
     '#type': pattern
@@ -450,7 +450,7 @@
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title: "Item title"
+      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
       article.ecl-card footer.ecl-card__footer: ""
 - array:
     '#type': pattern
@@ -466,7 +466,7 @@
       'article.ecl-card header.ecl-card__header div.ecl-card__image': 0
       'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
     equals:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title': "Item title"
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
       'article.ecl-card footer.ecl-card__footer': ""
 - array:
@@ -493,7 +493,7 @@
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
       'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title': "Item title"
+      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
       'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
@@ -513,7 +513,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__title': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
@@ -753,13 +753,13 @@
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
       '.ecl-page-header__meta-list': "News article | 6 July 2015 | Brussels"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
-      '.ecl-lang-select-page button.ecl-button': "French"
+      '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="es"]': "Spanish"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="it"]': "Italian"
       '.ecl-breadcrumb__segment:nth-child(1) a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment:nth-child(2)': "Announcements"
-      '.ecl-page-header__info-item:nth-child(1)': "Monday 8 February"
-      '.ecl-page-header__info-item:nth-child(2)': "Munich, Germany"
+      '.ecl-page-header__info-item:nth-child(1)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>Monday 8 February'
+      '.ecl-page-header__info-item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Munich, Germany'
 - array:
     '#type': pattern
     '#id': accordion
@@ -778,9 +778,9 @@
       '.ecl-accordion2__content#id-0-content': 1
       '.ecl-accordion2__content#id-1-content': 1
     equals:
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"]': "Title 1"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"] .ecl-accordion2__toggle-title': "Title 1"
       '.ecl-accordion2__content#id-0-content': "Body 1"
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"]': "Title 2"
+      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"] .ecl-accordion2__toggle-title': "Title 2"
       '.ecl-accordion2__content#id-1-content': "Body 2"
 - array:
     '#type': pattern
@@ -801,9 +801,9 @@
       '.ecl-dropdown-legacy__content a[href="http://example.com/3"]': 1
     equals:
       'button.ecl-dropdown-legacy__toggle span.ecl-button__label': "Dropdown"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1)': "Link 1"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2)': "Link 2"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3)': "Link 3"
+      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
+      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
+      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
 - array:
     '#type': pattern
     '#id': field
@@ -902,10 +902,10 @@
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="http://link-3.com"]': 1
     equals:
-      '.ecl-link-block__title': "Link block title"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+      '.ecl-link-block__title h5': "Link block title"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - array:
     '#type': pattern
     '#id': link_block
@@ -925,9 +925,9 @@
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="http://link-3.com"]': 1
     equals:
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1)': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2)': "Link 2"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(3)': "Link 3"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - array:
     '#type': pattern
     '#id': blockquote
@@ -984,7 +984,7 @@
       'a.ecl-link--icon-before': 1
       'a.ecl-link--icon-before svg': 1
     equals:
-      'a.ecl-link--default[href="http://example.com"]': " Button label"
+      'a.ecl-link--default[href="http://example.com"] .ecl-link__label': "Button label"
 - array:
     '#type': pattern
     '#id': button
@@ -1216,7 +1216,7 @@
     equals:
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description .ecl-paragraph': "Example description"
-      'a.ecl-button': "Link title"
+      'a.ecl-button .ecl-button__label': "Link title"
 - array:
     '#type': pattern
     '#id': timeline
@@ -1227,7 +1227,8 @@
         -
           label: "13 September 2017"
           title: "Item 1"
-          body: "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+          body:
+            '#markup': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
         -
           label: "28-29 September 2017"
           title: "Item 2"
@@ -1259,7 +1260,7 @@
       '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__toggle .ecl-button__label': "Show 2 more items"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': "Lorem Ipsum 2"
       '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': "Lorem Ipsum 3"
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': "Lorem Ipsum 4"
@@ -1317,7 +1318,7 @@
         -
           label: "13 September 2017"
           title: "Item 1"
-          body: "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+          body: '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
         -
           label: "28-29 September 2017"
           title: "Item 2"
@@ -1349,7 +1350,7 @@
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show all timelines"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': "Lorem Ipsum 2"
       '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': "Lorem Ipsum 3"
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': "Lorem Ipsum 4"
@@ -1364,7 +1365,7 @@
         -
           label: "13 September 2017"
           title: "Item 1"
-          body: "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+          body: '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
         -
           label: "28-29 September 2017"
           title: "Item 2"
@@ -1396,7 +1397,7 @@
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show 4 more items"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': "<a href='/example' class='ecl-link'>Economic and Monetary Union package of proposals</a>"
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': "Lorem Ipsum 2"
       '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': "Lorem Ipsum 3"
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': "Lorem Ipsum 4"
@@ -1510,10 +1511,10 @@
       'ul li.ecl-unordered-list__item': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
-      'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
-      'ul li.ecl-unordered-list__item:nth-child(3)': "Brussels, Belgium"
-      'ul li.ecl-unordered-list__item:nth-child(4)': "Live streaming available"
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Brussels, Belgium'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -1541,9 +1542,10 @@
       'ul li.ecl-unordered-list__item': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': "Culture | Innovation"
-      'ul li.ecl-unordered-list__item:nth-child(2)': "15-16 November 2019, 08:00 AM"
-      'ul li.ecl-unordered-list__item:nth-child(3)': "Live streaming available"
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+
 - array:
     '#type': "pattern"
     '#id': "tag"

@@ -92,7 +92,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
     return [
       'label' => $item['title'],
       'href' => $item['url'],
-      'isCurrent' => $item['in_active_trail'],
+      'is_current' => $item['in_active_trail'],
     ];
   }, $variables['items']);
 
@@ -102,7 +102,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
         'items' => [[
           'label' => $item['title'],
           'href' => $item['url'],
-          'isCurrent' => $item['in_active_trail'],
+          'is_current' => $item['in_active_trail'],
         ],
         ],
       ];
@@ -262,7 +262,7 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
 
   /** @var \Drupal\entity_reference_revisions\Plugin\Field\FieldType\EntityReferenceRevisionsItem $field_item */
   foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
-    $paragraph = $field_item->entity;
+    $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($field_item->entity);
     $variables['items'][] = [
       'title' => $builder->viewField($paragraph->get('field_oe_text')),
       'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
@@ -1056,15 +1056,6 @@ function oe_theme_preprocess_media__document__default(&$variables) {
 
   $file_object = $variables['media']->get('oe_media_file')->first()->entity;
   $variables['file'] = FileValueObject::fromFileEntity($file_object);
-}
-
-/**
- * Implements hook_preprocess_pattern_timeline().
- */
-function oe_theme_preprocess_pattern_timeline(array &$variables): void {
-  foreach ($variables['items'] as &$item) {
-    $item['content'] = $item['body'];
-  }
 }
 
 /**

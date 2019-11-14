@@ -12,7 +12,7 @@
   {% set _links = _links|merge([_link]) %}
 {% endfor %}
 
-{% include '@ecl/dropdown-legacy' with {
+{% include '@ecl-twig/dropdown-legacy' with {
   'id': id,
   'button': {
     'label': button_label,

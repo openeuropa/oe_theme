@@ -51,7 +51,7 @@
   <a class="ecl-link ecl-link--standalone ecl-site-header__selector-link" href="{{ _path }}" data-ecl-language-selector="true">
     {{- _label -}}
     <span class="ecl-site-header__language-icon">
-      {% include '@ecl/icon' with {
+      {% include '@ecl-twig/icon' with {
         icon: {
           path: _icon_path,
           type: 'general',
@@ -61,7 +61,7 @@
       <span class="ecl-site-header__language-code">{{ _code }}</span>
     </span>
   </a>
-  {% include '@ecl/language-list/language-list-overlay' with {
+  {% include '@ecl-twig/language-list/language-list-overlay' with {
     items: items,
     icon_path: _icon_path,
     title: 'Select your language'|t,

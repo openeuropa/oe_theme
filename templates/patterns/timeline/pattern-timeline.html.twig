@@ -4,6 +4,16 @@
  * Timeline component.
  */
 #}
+
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    label: _item.label,
+    title: _item.title,
+    content: _item.body
+  }]) %}
+{% endfor %}
+
 {% set total_num = items|length %}
 {% set hide_from = limit_to == 0 ? total_num : limit_to %}
 {% set hidden_num = total_num - (items|slice(0, limit)|length + items|slice(hide_from)|length) %}
@@ -11,13 +21,13 @@
 {% set _toggle_collapsed = button_label|default('Show @numb more items'|trans({'@numb': hidden_num})) %}
 {% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
 
-{% include '@ecl/timeline/ecl-timeline' with {
+{% include '@ecl-twig/timeline' with {
   'toggle_collapsed': _toggle_collapsed,
   'toggle_expanded': _toggle_expanded,
   'hide': {
     'from': limit,
     'to': limit_to|default(0),
   },
-  'items': items,
+  'items': _items,
   'icon_path': ecl_icon_path,
 } only %}

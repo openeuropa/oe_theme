@@ -8,7 +8,7 @@
 #}
 {{ attach_library('oe_theme/navigation') }}
 {% if links %}
-  {% include '@ecl/menu-legacy' with {
+  {% include '@ecl-twig/menu-legacy' with {
     label: 'Menu'|t,
     items: links,
     icon_path: ecl_icon_path

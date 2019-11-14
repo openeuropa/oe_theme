@@ -27,7 +27,7 @@
   <div class="ecl-u-clearfix ecl-u-pv-4xl ecl-u-border-bottom ecl-u-border-color-grey-50">
     {# Pattern name and desciption. #}
     <a name="{{ pattern_name }}"></a>
-    {% include '@ecl/link' with {
+    {% include '@ecl-twig/link' with {
       'link': {
         'type': 'standalone',
         'path': url('ui_patterns.patterns.single', {name: pattern_name }),

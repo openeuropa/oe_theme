@@ -64,7 +64,7 @@ trait RenderTrait {
     if (isset($assertions['equals'])) {
       foreach ($assertions['equals'] as $name => $expected) {
         try {
-          $actual = trim($crawler->filter($name)->text());
+          $actual = trim($crawler->filter($name)->html());
         }
         catch (\InvalidArgumentException $exception) {
           $this->fail(sprintf('Element "%s" not found (exception: "%s") in: ' . PHP_EOL . ' %s', $name, $exception->getMessage(), $html));

@@ -30,7 +30,8 @@ timeline:
         -
           label: "13 September 2012"
           title: "By late-2013"
-          body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar."
+          body:
+            '#markup': '<a href="#">Lorem ipsum</a> dolor sit amet, consectetur adipiscing elit. Integer nec tellus congue, pretium nibh eu, mattis ligula. Integer tempus varius enim ut scelerisque. Curabitur rutrum vestibulum elit ac pulvinar.'
         -
           label: "14 February 2014"
           title: "By late-2014"
