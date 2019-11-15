@@ -11,7 +11,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
-use Drupal\Component\Utility\Random;
 use Drupal\Core\Url;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -694,36 +693,7 @@ function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_accordion(array &$variables): void {
   // If no identifier is provided generate a random, unique one.
   if (empty($variables['identifier'])) {
-    $random = new Random();
-    $variables['identifier'] = $random->string(8, TRUE);
-  }
-
-  // Format items in order to respect ECL expectations.
-  foreach (array_values($variables['items']) as $key => $item) {
-    $variables['items'][$key] = [
-      'id' => $variables['identifier'] . '-' . $key,
-      'toggle' => [
-        'label' => $item['title'],
-        'icon' => [
-          'path' => $variables['ecl_icon_path'],
-        ],
-      ],
-      'content' => $item['body'],
-    ];
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
-  if (empty($variables['video']['sources'])) {
-    return;
-  }
-
-  // Map UI Patterns fields to ECL component fields.
-  foreach ($variables['video']['sources'] as &$source) {
-    $source['type'] = $source['src_type'];
+    $variables['identifier'] = Html::getUniqueId('ecl-accordion');
   }
 }
 
@@ -732,45 +702,6 @@ function oe_theme_preprocess_pattern_banner_video(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
   $variables['id'] = Html::getUniqueId('ecl-button-dropdown');
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function _oe_theme_preprocess_pattern_social_media_links(array &$variables): void {
-  // Format social media links in order to respect ECL expectations.
-  foreach ($variables['links'] as $key => $link) {
-    $variables['links'][$key]['path'] = $link['url'];
-    $variables['links'][$key]['icon_position'] = 'before';
-    $variables['links'][$key]['icon'] = [
-      [
-        'path' => $variables['ecl_social_icon_path'],
-        'name' => $link['service'],
-        'size' => 'xl',
-        'extra_classes' => 'ecl-social-media-follow__icon',
-      ],
-      [
-        'path' => $variables['ecl_social_icon_path'],
-        'name' => $link['service'] . '_hover',
-        'size' => 'xl',
-        'extra_classes' => 'ecl-social-media-follow__icon-hover',
-      ],
-    ];
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_social_media_links_vertical(array &$variables): void {
-  _oe_theme_preprocess_pattern_social_media_links($variables);
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_social_media_links_horizontal(array &$variables): void {
-  _oe_theme_preprocess_pattern_social_media_links($variables);
 }
 
 /**

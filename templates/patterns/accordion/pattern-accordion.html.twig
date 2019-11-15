@@ -4,6 +4,20 @@
  * Accordion component.
  */
 #}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    id: identifier ~ '-' ~ loop.index0,
+    toggle: {
+      label: _item.title,
+      icon: {
+        path: ecl_icon_path
+      }
+    },
+    content: _item.body
+  }]) %}
+{% endfor %}
+
 {% include '@ecl-twig/accordion2' with {
-  'panels': items,
+  'items': _items,
 } %}
