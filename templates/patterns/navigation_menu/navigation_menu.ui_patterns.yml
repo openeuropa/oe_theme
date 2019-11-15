@@ -52,10 +52,10 @@ navigation_menu:
       type: "numeric"
       label: "Number"
       description: "The amount of link items to show in a submenu row or column"
-      preview: 3
+      preview: 4
       escape: false
     alignment:
       type: "text"
       label: "Alignment"
       description: "Whether the menu items will be ordered horizontally or vertically. Defaults to horizontal."
-      preview: "vertical"
+      preview: "horizontal"

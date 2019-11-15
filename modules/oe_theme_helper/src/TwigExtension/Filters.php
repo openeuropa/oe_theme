@@ -43,6 +43,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
+      new \Twig_SimpleFilter('to_ecl_menu_links', [$this, 'toEclMenuLinks']),
     ];
   }
 
@@ -217,6 +218,47 @@ class Filters extends \Twig_Extension {
     }
 
     return $ecl_attributes;
+  }
+
+  /**
+   * Converts a simple array of links into a complex set of ECL menu links.
+   *
+   * @param array $links
+   *   Nested array of links for the menu, including the children.
+   * @param int $number
+   *   The number of links to show in each row or column.
+   * @param string $alignment
+   *   Whether to order the items by columns or by rows.
+   *
+   * @return array
+   *   An array of properly grouped links.
+   */
+  public function toEclMenuLinks(array $links, int $number = 4, string $alignment = 'horizontal'): array {
+    foreach ($links as &$link) {
+      if (!isset($link['children'])) {
+        continue;
+      }
+      $children = [];
+      $index = 0;
+
+      foreach ($link['children'] as $key => $child) {
+        if ($alignment == 'vertical') {
+          $children[$index]['items'][] = $child;
+          if (count($children[$index]['items']) === $number) {
+            $index++;
+          }
+        }
+        else {
+          $children[$index]['items'][] = $child;
+          $index++;
+          if ($index === $number) {
+            $index = 0;
+          }
+        }
+      }
+      $link['children'] = $children;
+    }
+    return $links;
   }
 
 }

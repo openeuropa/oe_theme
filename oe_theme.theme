@@ -760,42 +760,6 @@ function oe_theme_preprocess_pattern_social_media_links_horizontal(array &$varia
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_navigation_menu(array &$variables): void {
-  if (!isset($variables['items'])) {
-    return;
-  }
-  // Set default number of rows or columns.
-  $variables['number'] = $variables['number'] ?? 1;
-
-  foreach ($variables['items'] as &$item) {
-    if (!isset($item['children'])) {
-      continue;
-    }
-    $children = [];
-    $index = 0;
-
-    foreach ($item['children'] as $key => $child) {
-      if ($variables['alignment'] == 'vertical') {
-        $children[$index]['items'][] = $child;
-        if (count($children[$index]['items']) === $variables['number']) {
-          $index++;
-        }
-      }
-      else {
-        $children[$index]['items'][] = $child;
-        $index++;
-        if ($index === $variables['number']) {
-          $index = 0;
-        }
-      }
-    }
-    $item['children'] = $children;
-  }
-}
-
-/**
  * Implements hook_preprocess_html() for html.html.twig.
  *
  * Add css class for splash page.
