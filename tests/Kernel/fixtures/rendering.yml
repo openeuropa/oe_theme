@@ -1590,8 +1590,9 @@
       number: 2
       alignment: "horizontal"
   assertions:
-    equals:
+    contains:
       '.ecl-menu-legacy__hamburger': "Menu"
+    equals:
       'li.ecl-menu-legacy__item:nth-child(1) a.ecl-link span.ecl-link__label': "About the eu"
       'li.ecl-menu-legacy__item:nth-child(2) a.ecl-link span.ecl-link__label': "EU law"
       'li.ecl-menu-legacy__item:nth-child(3) a.ecl-link': "Contact"
@@ -1634,8 +1635,9 @@
       number: 2
       alignment: "vertical"
   assertions:
-    equals:
+    contains:
       '.ecl-menu-legacy__hamburger': "Menu"
+    equals:
       'li.ecl-menu-legacy__item:nth-child(1) a.ecl-link span.ecl-link__label': "About the eu"
       'li.ecl-menu-legacy__item:nth-child(2) a.ecl-link span.ecl-link__label': "EU law"
       'li.ecl-menu-legacy__item:nth-child(3) a.ecl-link': "Contact"
