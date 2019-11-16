@@ -1,6 +1,13 @@
 navigation_menu:
   label: "Navigation menu"
   description: "Default implementation of the main navigation menu."
+  variants:
+    vertical:
+      label: "Vertical"
+      description: "Menu items will be arranged vertically, the 'number' parameter indicates how many links each column will display (4 in the example below)."
+    horizontal:
+      label: "Horizontal"
+      description: "Menu items will be arranged vertically, the 'number' parameter indicates how many links each row will display (4 in the example below)."
   fields:
     label:
       type: "text"
@@ -51,11 +58,6 @@ navigation_menu:
     number:
       type: "numeric"
       label: "Number"
-      description: "The amount of link items to show in a submenu row or column"
+      description: "The amount of link items to show in a submenu row or column, check variant descriptions for more information."
       preview: 4
       escape: false
-    alignment:
-      type: "text"
-      label: "Alignment"
-      description: "Whether the menu items will be ordered horizontally or vertically. Defaults to horizontal."
-      preview: "horizontal"

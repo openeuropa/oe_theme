@@ -1545,7 +1545,6 @@
       'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
       'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
       'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
-
 - array:
     '#type': "pattern"
     '#id': "tag"
@@ -1562,6 +1561,7 @@
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
+    '#variant': "horizontal"
     '#fields':
       label: "Menu"
       items:
@@ -1588,7 +1588,6 @@
         - href: "#"
           label: "Contact"
       number: 2
-      alignment: "horizontal"
   assertions:
     contains:
       '.ecl-menu-legacy__hamburger': "Menu"
@@ -1607,6 +1606,7 @@
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
+    '#variant': "vertical"
     '#fields':
       label: "Menu"
       items:
@@ -1633,7 +1633,6 @@
         - href: "#"
           label: "Contact"
       number: 2
-      alignment: "vertical"
   assertions:
     contains:
       '.ecl-menu-legacy__hamburger': "Menu"

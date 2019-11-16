@@ -233,7 +233,7 @@ class Filters extends \Twig_Extension {
    * @return array
    *   An array of properly grouped links.
    */
-  public function toEclMenuLinks(array $links, int $number = 4, string $alignment = 'horizontal'): array {
+  public function toEclMenuLinks(array $links, int $number = 1, string $alignment = 'horizontal'): array {
     foreach ($links as &$link) {
       if (!isset($link['children'])) {
         continue;

@@ -4,16 +4,11 @@
  * Default implementation for the navigation menu component.
  */
 #}
-
-
-{% set _number = number|default(1) %}
-{% set _alignment = alignment|default('horizontal') %}
-{% set _items = items|to_ecl_menu_links(_number, _alignment) %}
-
-{% if _items %}
+{% if items %}
+  {% set items = items|to_ecl_menu_links(number, variant) %}
   {% include '@ecl-twig/menu-legacy' with {
     label: label|default('Menu'),
-    items: _items,
+    items: items,
     icon_path: ecl_icon_path
   } only %}
 {% endif %}
