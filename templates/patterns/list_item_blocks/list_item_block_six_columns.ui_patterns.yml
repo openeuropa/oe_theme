@@ -12,23 +12,23 @@ list_item_block_six_columns:
       label: "Layout items"
       description: "Array of renderable items"
       preview:
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 1' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 2' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 3' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 4' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 5' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 6' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 7' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 8' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 9' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 10' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 11' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 12' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 13' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 14' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 15' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 16' }
-        - { type: 'pattern', id: 'link', url: '#', text: 'A simple link 17' }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 1' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 2' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 3' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 4' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 5' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 6' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 7' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 8' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 9' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 10' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 11' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 12' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 13' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 14' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 15' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 16' } }
+        - { type: 'pattern', id: 'link', fields: { url: '#', text: 'A simple link 17' } }
     button_label:
       type: "text"
       label: "Button label"
