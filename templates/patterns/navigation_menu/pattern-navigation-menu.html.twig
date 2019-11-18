@@ -5,10 +5,37 @@
  */
 #}
 {% if items %}
-  {% set items = items|to_ecl_menu_links(number, variant) %}
+  {# Number of columns to split the links into, defaults to 4. #}
+  {% set columns = columns|default(4) %}
+  {% set columns = items|length // columns %}
+
+  {# Process items as expected by ECL component. #}
+  {% set _items = [] %}
+  {% for item in items %}
+
+    {# Process children, if any. #}
+    {% set _children = [] %}
+    {% if item.children %}
+      {# Batch children array and append each batch to "item" property. #}
+      {% set batches = item.children|batch(2) %}
+      {% for batch in batches %}
+        {% set _children = _children|merge([{
+          items: batch
+        }]) %}
+      {% endfor %}
+    {% endif %}
+
+    {# Process menu items. #}
+    {% set _items = _items|merge([{
+      href: item.item,
+      label: item.label,
+      children: _children
+    }]) %}
+  {% endfor %}
+
   {% include '@ecl-twig/menu-legacy' with {
-    label: label|default('Menu'),
-    items: items,
+    label: label|default('Menu'|t),
+    items: _items,
     icon_path: ecl_icon_path
   } only %}
 {% endif %}

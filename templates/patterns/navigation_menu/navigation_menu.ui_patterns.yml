@@ -4,10 +4,7 @@ navigation_menu:
   variants:
     vertical:
       label: "Vertical"
-      description: "Menu items will be arranged vertically, the 'number' parameter indicates how many links each column will display (4 in the example below)."
-    horizontal:
-      label: "Horizontal"
-      description: "Menu items will be arranged vertically, the 'number' parameter indicates how many links each row will display (4 in the example below)."
+      description: "Menu items will be arranged vertically, the 'columns' parameter indicates in how many columns the links will be split into."
   fields:
     label:
       type: "text"
@@ -55,9 +52,9 @@ navigation_menu:
               label: 'HORIZON2020'
         - href: "#"
           label: "Contact"
-    number:
+    columns:
       type: "numeric"
-      label: "Number"
-      description: "The amount of link items to show in a submenu row or column, check variant descriptions for more information."
+      label: "Columns"
+      description: "The number of columns the links will be split into, defaults to 4."
       preview: 4
       escape: false
