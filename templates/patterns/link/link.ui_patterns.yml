@@ -1,0 +1,21 @@
+link:
+  label: 'Link'
+  description: 'A simple link.'
+  variants:
+    standalone:
+      label: 'Standalone'
+      description: 'A simple standalone link.'
+    cta:
+      label: 'Call to action'
+      description: 'A call to action link.'
+  fields:
+    text:
+      type: 'text'
+      label: 'text'
+      description: 'The link text.'
+      preview: 'A simple link'
+    url:
+      type: 'object'
+      label: "Link"
+      description: 'A Drupal URL object.'
+      preview: ~
