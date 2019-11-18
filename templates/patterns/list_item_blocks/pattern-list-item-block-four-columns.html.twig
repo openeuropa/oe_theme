@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * List item block: four columns.
+ */
+#}
+{% include '@oe_theme/compositions/ec-component-content-item-block/content-item-block.html.twig' with {
+  type: 'four',
+  title: title,
+  items: items,
+  button: {
+    path: button_url,
+    label: button_label
+  }
+} only %}
