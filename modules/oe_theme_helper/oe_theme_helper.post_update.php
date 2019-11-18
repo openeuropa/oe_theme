@@ -63,6 +63,15 @@ function oe_theme_helper_post_update_20001() {
  * Delete the block oe_theme_site_switcher.
  */
 function oe_theme_helper_post_update_20002() {
+  $original_name = 'oe_theme_helper_post_update_00001';
+  /** @var Drupal\Core\KeyValueStore\KeyValueStoreInterface $post_update_store */
+  $post_update_store = \Drupal::service('keyvalue')->get('post_update');
+  $executed_updates = $post_update_store->get('existing_updates');
+
+  if (in_array($original_name, $executed_updates)) {
+    return t('Original post update hook "@name" has been already executed.', ['@name' => $original_name]);
+
+  }
   $block = Block::load('oe_theme_site_switcher');
 
   if (!$block) {
