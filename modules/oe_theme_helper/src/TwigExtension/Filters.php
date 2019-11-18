@@ -43,7 +43,6 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
-      new \Twig_SimpleFilter('to_ecl_menu_links', [$this, 'toEclMenuLinks']),
     ];
   }
 
