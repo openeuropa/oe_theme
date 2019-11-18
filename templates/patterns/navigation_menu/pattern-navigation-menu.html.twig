@@ -35,8 +35,9 @@
 
     {# Process menu items. #}
     {% set _items = _items|merge([{
-      href: item.item,
+      href: item.href,
       label: item.label,
+      is_current: item.is_current,
       children: _children
     }]) %}
   {% endfor %}

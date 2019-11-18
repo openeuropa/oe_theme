@@ -43,6 +43,15 @@ class MainMenuTest extends AbstractKernelTestBase {
    */
   public function testMainMenuRendering(): void {
     $menu_tree = \Drupal::menuTree();
+
+    $leaf = MenuLinkContent::create([
+      'title' => 'Leaf item',
+      'link' => ['uri' => 'http://leaf.eu'],
+      'menu_name' => 'main',
+      'expanded' => TRUE,
+    ]);
+    $leaf->save();
+
     $parent = MenuLinkContent::create([
       'title' => 'Parent item',
       'link' => ['uri' => 'http://parent.eu'],
@@ -66,7 +75,9 @@ class MainMenuTest extends AbstractKernelTestBase {
       $child->save();
     }
 
-    $tree = $menu_tree->load('main', new MenuTreeParameters());
+    $parameters = new MenuTreeParameters();
+    $parameters->setActiveTrail(["menu_link_content:" . $parent->uuid(), "menu_link_content:" . $child->uuid()]);
+    $tree = $menu_tree->load('main', $parameters);
     $build = $menu_tree->build($tree);
     $html = $this->renderRoot($build);
 
@@ -76,11 +87,16 @@ class MainMenuTest extends AbstractKernelTestBase {
     $actual = $crawler->filter('nav.ecl-menu-legacy');
     $this->assertCount(1, $actual);
 
+    // Assert that there are two parent links but only one active link.
+    $links = $crawler->filter('nav.ecl-menu-legacy a.ecl-menu-legacy__link');
+    $this->assertEquals(2, $links->count());
+    $active_link = $crawler->filter('nav.ecl-menu-legacy a.ecl-menu-legacy__link.ecl-menu-legacy__link--current');
+    $this->assertEquals(1, $active_link->count());
+
     // Assert that parent link is correctly rendered.
-    $link = $crawler->filter('nav.ecl-menu-legacy a.ecl-menu-legacy__link')->first();
     // Remove all non-printable characters.
-    $this->assertEquals('Parent item', preg_replace('/[\x00-\x1F\x80-\xFF]/', '', trim($link->text())));
-    $this->assertEquals('http://parent.eu', trim($link->extract(['href'])[0]));
+    $this->assertEquals('Parent item', preg_replace('/[\x00-\x1F\x80-\xFF]/', '', trim($active_link->text())));
+    $this->assertEquals('http://parent.eu', trim($active_link->extract(['href'])[0]));
 
     // Assert children are rendered correctly.
     $position = 0;
@@ -90,6 +106,12 @@ class MainMenuTest extends AbstractKernelTestBase {
       $this->assertEquals($url, trim($link->extract(['href'])[0]));
       $position++;
     }
+
+    // Assert the last children is active.
+    $link = $crawler->filter('.ecl-menu-legacy__mega a.ecl-menu-legacy__sublink.ecl-menu-legacy__sublink--current');
+    $this->assertEquals(1, $link->count());
+    $this->assertEquals('Child 3', trim($link->text()));
+    $this->assertEquals('http://child-3.eu', trim($link->extract(['href'])[0]));
   }
 
 }
