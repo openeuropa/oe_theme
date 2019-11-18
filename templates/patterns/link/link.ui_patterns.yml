@@ -17,5 +17,6 @@ link:
     url:
       type: 'object'
       label: "Link"
-      description: 'A Drupal URL object.'
-      preview: ~
+      description: 'A Drupal URL object. Strings will be passed to Url::fromUserInput().'
+      preview: '#'
+      escape: true

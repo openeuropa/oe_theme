@@ -1685,3 +1685,34 @@
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.7'
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.8'
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(3) a.ecl-link': 'Child 1.9'
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--standalone': 'Link text'
+    count:
+      'a.ecl-link[href="/"]': 1
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+      variant: 'standalone'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--standalone': 'Link text'
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+      variant: 'cta'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--cta': 'Link text'
