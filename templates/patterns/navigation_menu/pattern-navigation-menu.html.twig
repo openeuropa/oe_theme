@@ -7,7 +7,6 @@
 {% if items %}
   {# Number of columns to split the links into, defaults to 4. #}
   {% set columns = columns|default(4) %}
-  {% set columns = items|length // columns %}
 
   {# Process items as expected by ECL component. #}
   {% set _items = [] %}
@@ -16,8 +15,12 @@
     {# Process children, if any. #}
     {% set _children = [] %}
     {% if item.children %}
+      {# Calculate the amount if items we will have in each column. #}
+      {% set column_items = item.children|length / columns %}
+      {% set column_items = column_items|round %}
+
       {# Batch children array and append each batch to "item" property. #}
-      {% set batches = item.children|batch(2) %}
+      {% set batches = item.children|batch(column_items) %}
       {% for batch in batches %}
         {% set _children = _children|merge([{
           items: batch
