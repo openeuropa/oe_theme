@@ -1,0 +1,54 @@
+navigation_menu:
+  label: "Navigation menu"
+  description: "Default implementation of the main navigation menu."
+  variants:
+    vertical:
+      label: "Vertical"
+      description: "Menu items will be arranged vertically, in 4 columns."
+  fields:
+    label:
+      type: "text"
+      label: "Label"
+      description: "Label for the menu, only visible on mobile."
+      preview: "Navigation"
+    items:
+      type: "array"
+      label: "Links"
+      description: "A list of links that make up the navigation menu, including children items."
+      preview:
+        - href: "#"
+          label: "About the eu"
+          children:
+            - href: '#'
+              label: 'Child 1.1'
+            - href: '#'
+              label: 'Child 1.2'
+            - href: '#'
+              label: 'Child 1.3'
+            - href: '#'
+              label: 'Child 1.4'
+            - href: '#'
+              label: 'Child 1.5'
+            - href: '#'
+              label: 'Child 1.6'
+            - href: '#'
+              label: 'Child 1.7'
+            - href: '#'
+              label: 'Child 1.8'
+        - href: "#"
+          label: "EU law"
+          children:
+            - href: '#'
+              label: 'Eu Treaties'
+            - href: '#'
+              label: 'Application of EU law'
+            - href: '#'
+              label: 'Regulations'
+            - href: '#'
+              label: 'Priorities'
+            - href: '#'
+              label: 'Funding'
+            - href: '#'
+              label: 'HORIZON2020'
+        - href: "#"
+          label: "Contact"

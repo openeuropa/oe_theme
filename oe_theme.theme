@@ -99,12 +99,9 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
   foreach ($variables['items'] as $name => $link) {
     $variables['links'][$name]['children'] = array_map(function ($item) {
       return [
-        'items' => [[
-          'label' => $item['title'],
-          'href' => $item['url'],
-          'is_current' => $item['in_active_trail'],
-        ],
-        ],
+        'label' => $item['title'],
+        'href' => $item['url'],
+        'is_current' => $item['in_active_trail'],
       ];
     }, $variables['items'][$name]['below']);
   }

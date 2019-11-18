@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Default implementation for the navigation menu component.
+ */
+#}
+{% if items %}
+  {# Number of columns to split the links into, set to 4. #}
+  {% set columns = 4 %}
+
+  {# Process items as expected by ECL component. #}
+  {% set _items = [] %}
+  {% for item in items %}
+
+    {# Process children, if any. #}
+    {% set _children = [] %}
+    {% if item.children %}
+      {# Calculate the amount if items we will have in each column. #}
+      {# By default each column gets one child, unless we have more than 4 children. #}
+      {% set column_items = 1 %}
+      {# If we do ahve more than 4 children then we arrange them fairly. #}
+      {% if item.children|length > 4 %}
+        {% set column_items = item.children|length / columns %}
+        {% set column_items = column_items|round(0, 'ceil') %}
+      {% endif %}
+
+      {# Batch children array and append each batch to "item" property. #}
+      {% set batches = item.children|batch(column_items) %}
+      {% for batch in batches %}
+        {% set _children = _children|merge([{
+          items: batch
+        }]) %}
+      {% endfor %}
+    {% endif %}
+
+    {# Process menu items. #}
+    {% set _items = _items|merge([{
+      href: item.href,
+      label: item.label,
+      is_current: item.is_current,
+      children: _children
+    }]) %}
+  {% endfor %}
+
+  {% include '@ecl-twig/menu-legacy' with {
+    label: label|default('Menu'|t),
+    items: _items,
+    icon_path: ecl_icon_path
+  } only %}
+{% endif %}
