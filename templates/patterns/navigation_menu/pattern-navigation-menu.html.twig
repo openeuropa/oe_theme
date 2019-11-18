@@ -17,7 +17,7 @@
     {% if item.children %}
       {# Calculate the amount if items we will have in each column. #}
       {% set column_items = item.children|length / columns %}
-      {% set column_items = column_items|round %}
+      {% set column_items = column_items|round(0, 'ceil') %}
 
       {# Batch children array and append each batch to "item" property. #}
       {% set batches = item.children|batch(column_items) %}
