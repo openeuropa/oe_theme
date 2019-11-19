@@ -30,6 +30,7 @@
   extra_classes: 'ecl-search-form__button'
 } %}
 {% set extra_attributes = attributes|to_ecl_attributes %}
+{% set extra_classes = 'ecl-site-header__search' %}
 {% extends '@ecl-twig/search-form' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}
