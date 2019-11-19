@@ -84,8 +84,13 @@ function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
   $thumbnail_item = $media->get('thumbnail');
   $thumbnail_file = $thumbnail_item->entity;
 
-  $normal_style = ImageStyle::load('oe_theme_list_item');
-  $normal_image = file_url_transform_relative($normal_style->buildUrl($thumbnail_file->getFileUri()));
+  // According to current implementation of ECL 2,
+  // we don't use anymore <picture> tag and don't support retina version.
+  // For avoiding bad experience,
+  // we are preferring to use image style
+  // with bigger resolution ('oe_theme_list_item_2x').
+  $best_resolution_image_style = ImageStyle::load('oe_theme_list_item_2x');
+  $normal_image = file_url_transform_relative($best_resolution_image_style->buildUrl($thumbnail_file->getFileUri()));
 
   $variables['image'] = [
     'src' => $normal_image,
@@ -93,7 +98,7 @@ function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
   ];
 
   $cache
-    ->addCacheableDependency($normal_style)
+    ->addCacheableDependency($best_resolution_image_style)
     ->addCacheableDependency($thumbnail_file)
     ->applyTo($variables);
 }
