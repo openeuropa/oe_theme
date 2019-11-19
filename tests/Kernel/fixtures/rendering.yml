@@ -704,6 +704,40 @@
       'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__description': "Description for list item 3."
 - array:
     '#type': pattern
+    '#id': list_item_block_four_columns
+    '#fields':
+      items:
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
+  assertions:
+    equals:
+      'div.ecl-content-item-block__item.ecl-col-3:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-3:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-3:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-3:nth-child(4) a.ecl-link': 'A simple link 4'
+- array:
+    '#type': pattern
+    '#id': list_item_block_six_columns
+    '#fields':
+      items:
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 1' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 2' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 3' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 5' } }
+        - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
+  assertions:
+    equals:
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(5) a.ecl-link': 'A simple link 5'
+      'div.ecl-content-item-block__item.ecl-col-2:nth-child(6) a.ecl-link': 'A simple link 6'
+- array:
+    '#type': pattern
     '#id': page_header
     '#fields':
       identity: "Digital single market"
@@ -1685,3 +1719,34 @@
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.7'
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.8'
       'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(3) a.ecl-link': 'Child 1.9'
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--standalone': 'Link text'
+    count:
+      'a.ecl-link[href="/"]': 1
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+      variant: 'standalone'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--standalone': 'Link text'
+- array:
+    '#type': 'pattern'
+    '#id': 'link'
+    '#fields':
+      url: '/'
+      text: 'Link text'
+      variant: 'cta'
+  assertions:
+    equals:
+      'a.ecl-link.ecl-link--cta': 'Link text'

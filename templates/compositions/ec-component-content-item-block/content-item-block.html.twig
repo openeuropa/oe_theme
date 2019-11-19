@@ -46,6 +46,10 @@
   {% set _extra_classes_item = 'ecl-col-6' %}
 {% elseif _type == 'three' %}
   {% set _extra_classes_item = 'ecl-col-4' %}
+{% elseif _type == 'four' %}
+  {% set _extra_classes_item = 'ecl-col-3' %}
+{% elseif _type == 'six' %}
+  {% set _extra_classes_item = 'ecl-col-2' %}
 {% endif %}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
@@ -59,7 +63,7 @@
 
   <div class="ecl-row">
     {% for _item in _items %}
-      <div class="ecl-content-item-block__item {{ _extra_classes_item }}">
+      <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
         {{ _item }}
       </div>
     {% endfor %}
