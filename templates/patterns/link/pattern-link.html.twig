@@ -4,7 +4,4 @@
  * Link pattern.
  */
 #}
-{% set attributes = {
-  'class': 'ecl-link ecl-link--' ~ variant|default('standalone')
-} %}
 {{ link(text, url, attributes) }}

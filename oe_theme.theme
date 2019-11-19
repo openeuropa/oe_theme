@@ -18,6 +18,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -1156,9 +1157,23 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_link(array &$variables): void {
+  // Set default variant to 'standalone', if none given.
+  $variables['variant'] = $variables['variant'] ?: 'standalone';
+  $attributes = [];
+
+  // Make sure we always have an URL object in place.
   if (is_string($variables['url'])) {
     $variables['url'] = Url::fromUserInput($variables['url']);
   }
+
+  // Extract attributes from the URL object and set them as default.
+  if ($variables['url'] instanceof Url) {
+    $attributes = (array) $variables['url']->getOption('attributes');
+  }
+
+  // Add ECL link classes to attributes.
+  $variables['attributes'] = new Attribute($attributes);
+  $variables['attributes']->addClass('ecl-link', 'ecl-link--' . $variables['variant']);
 }
 
 /**
