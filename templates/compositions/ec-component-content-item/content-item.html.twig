@@ -48,13 +48,23 @@
 {# Create macro #}
 
 {% macro image(src, alt, position) %}
-  <div role="img" aria-label="{{ alt }}" class="
-  ecl-u-ratio-3-2
-  ecl-u-flex-shrink-0
-  ecl-u-d-lg-block
-  ecl-content-item__image__after
-  ecl-u-d-lg-block ecl-content-item__image__{{ position }} ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-sm-l"
-       style="background-image:url('{{ src }}');background-size:cover;height:8.75rem;width:13.125rem"></div>
+  <div role="img"
+       aria-label="{{ alt }}"
+       class="
+          ecl-u-ratio-3-2
+          ecl-u-flex-shrink-0
+          ecl-u-d-lg-block
+          ecl-content-item__image__after
+          ecl-u-d-lg-block ecl-content-item__image__{{ position }}
+          ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-sm-l
+          ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-l
+          ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-sm-none"
+       style="
+         background-image: url('{{ src }}');
+         background-size: cover;
+         height:8.75rem;
+         width:13.125rem"
+  ></div>
 {% endmacro %}
 
 <article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
