@@ -7,9 +7,13 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\media\MediaInterface;
+use Drupal\node\NodeInterface;
 use Drupal\oe_content_event\Entity\EventProfile;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Implements hook_theme_suggestions_alter().
@@ -30,15 +34,54 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
 
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
-  $event_status = $node->get('oe_event_status')->value;
-  $current_time = \Drupal::time()->getCurrentTime();
+
+  // Get the summary description of the event.
+  $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->isEmpty() ? '' : $node->get('oe_event_description_summary')->value;
+
+  // Get the summary report of the event.
+  $variables['content']['report_summary'] = $node->get('oe_event_report_summary')->isEmpty() ? '' : $node->get('oe_event_report_summary')->value;
+
+  // Prepare the full text for the description section.
+  $variables['content']['description'] = $node->get('body')->isEmpty() ? '' : $node->get('body')->value;
+
+  // Prepare the full text for the report section that is only visible after
+  // the event.
+  if (_oe_theme_content_event_is_date_passed($node)) {
+    $variables['content']['report'] = $node->get('body')->isEmpty() ? '' : $node->get('body')->value;
+  }
+
+  // Prepare the icons with text block.
+  $variables['content']['icons_with_text'] = _oe_theme_content_event_prepare_icons_with_text_block($node);
+
+  // Prepare the registration button for rendering.
+  $variables['content']['registration_button'] = _oe_theme_content_event_prepare_registration_button($node);
+
+  // Prepare the practical information list of fields.
+  $variables['content']['practical_information']['items'] = _oe_theme_content_event_prepare_practical_information($node);
+
+  // Prepare the social media links pattern fields.
+  $variables['content']['social_media_links'] = _oe_theme_content_event_prepare_social_media($node);
+
+  // Prepare the event contacts for rendering.
+  $variables['content']['contacts'] = _oe_theme_content_event_prepare_contacts($node);
+
+  // Prepare the description text with featured media and cache.
+  _oe_theme_content_event_prepare_featured_media($variables);
+}
+
+/**
+ * Helper function to prepare the event registration button array for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return array
+ *   The button array as ECL expects.
+ */
+function _oe_theme_content_event_prepare_registration_button(NodeInterface $node): array {
   /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
   $date_formatter = \Drupal::service('date.formatter');
-  // Get the location of the event from the Venue.
-  $event_venue = $node->get('oe_event_venue')->entity;
-  $postal_address_render = $event_venue->get('postal_address')->view(['label' => 'hidden', 'type' => 'address_plain']);
-
-  $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->value;
+  $current_time = \Drupal::time()->getRequestTime();
 
   // Prepare the registration button.
   $registration_button = [
@@ -46,84 +89,116 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     'state' => 'disabled',
     'url' => $node->get('oe_event_registration_url')->uri,
   ];
-  // Get the registration related information.
+  $event_status = $event_status = $node->get('oe_event_status')->value;
+
+  // Get registration dates if any registration status is set.
   if ($registration_status = $node->get('oe_event_registration_status')->value) {
-    $registration_start_date = $node->get('oe_event_registration_start_date')->date->getTimestamp();
-    $registration_end_date = $node->get('oe_event_registration_end_date')->date->getTimestamp();
+    /** @var \Drupal\oe_theme\ValueObject\DateValueObject $registration_dates */
+    $registration_dates = DateValueObject::fromArray([
+      'start' => $node->get('oe_event_registration_start_date')->date->getTimestamp(),
+      'end' => $node->get('oe_event_registration_end_date')->date->getTimestamp(),
+    ]);
   }
 
   // No registration information are set.
   if (!$registration_status && $event_status !== 'cancelled') {
     $registration_button['description'] = t('Registration is not yet opened for this event.');
   }
-  if (isset($registration_start_date) && $registration_status === 'open' && $event_status !== 'cancelled' && $event_status !== 'postponed') {
-    // Registration in the future with date.
-    if ($registration_start_date > $current_time) {
-      $registration_button['description'] = t('Registration will open on %start_date, until %end_date.', [
-        '%start_date' => $date_formatter->format($registration_start_date, 'oe_theme_event_date'),
-        '%end_date' => $date_formatter->format($registration_end_date, 'oe_theme_event_date'),
+
+  if (isset($registration_dates) && $registration_status === 'open' && $event_status !== 'cancelled' && $event_status !== 'postponed') {
+    // Registration in the future.
+    if ($registration_dates->getStartTime() > $current_time) {
+      $registration_button['description'] = t('Registration will open on @start_date, until @end_date.', [
+        '@start_date' => $date_formatter->format($registration_dates->getStartTime(), 'oe_theme_event_date_hour'),
+        '@end_date' => $date_formatter->format($registration_dates->getEndTime(), 'oe_theme_event_date_hour'),
       ]);
     }
     // Registration is active.
-    if ($registration_start_date < $current_time && $registration_end_date > $current_time) {
+    if ($registration_dates->getStartTime() < $current_time && $registration_dates->getEndTime() > $current_time) {
       $registration_button['state'] = 'active';
       // Difference between two dates in days.
-      $date_diff = round(($registration_end_date - $current_time) / 60 / 60 / 24);
-      $registration_button['description'] = t('Book your seat, %days day(s) left to register.', [
-        '%days' => $date_diff,
+      $date_diff = $date_formatter->formatTimeDiffUntil($registration_dates->getEndTime());
+      $registration_button['description'] = t('Book your seat, @time_left left to register.', [
+        '@time_left' => $date_diff,
       ]);
     }
     // Registration is closed.
-    elseif ($registration_start_date < $current_time && $registration_end_date < $current_time) {
+    elseif ($registration_dates->getStartTime() < $current_time && $registration_dates->getEndTime() < $current_time) {
       $registration_button['description'] = t('Registration for this event has ended.');
     }
   }
-  $variables['content']['registration_button'] = $registration_button;
 
-  // Prepare the practical information list of fields.
-  $variables['content']['practical_information'] = [];
+  return $registration_button;
+}
 
-  // Get the date of the event.
-  $start_date = $node->get('oe_event_start_date')->date->getTimestamp();
-  $end_date = $node->get('oe_event_end_date')->date->getTimestamp();
-  // Check if the event is more than one day long.
-  $date_string = $date_formatter->format($start_date, 'oe_theme_event_date') . ' to ' . $date_formatter->format($end_date, 'oe_theme_event_date');
-  if (($end_date - $start_date) <= 86400) {
-    $date_string = $date_formatter->format($start_date, 'oe_theme_event_date');
-  }
+/**
+ * Prepares the practical information section as an array for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node object.
+ *
+ * @return array
+ *   The prepared array.
+ */
+function _oe_theme_content_event_prepare_practical_information(NodeInterface $node): array {
+  /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
+  $date_formatter = \Drupal::service('date.formatter');
+  /** @var \Drupal\Core\Render\Renderer $renderer */
+  $renderer = \Drupal::service('renderer');
+
+  // Get the dates of the event.
+  /** @var \Drupal\oe_theme\ValueObject\DateValueObject $event_dates */
+  $event_dates = _oe_theme_content_event_get_event_dates($node);
+
+  // Get the location of the event from the Venue.
+  $postal_address_rendered = _oe_theme_content_event_get_rendered_address($node);
+
+  // Create the event date string depending on if it is on the same day.
+  $event_date_string = $event_dates->isSameDate() ?
+    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date') :
+    t('@start_date to @end_date', ['@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'), '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date')]);
   $practical_information[] = [
     'label' => t('When'),
-    'body' => $date_string,
+    'body' => $event_date_string,
   ];
   $practical_information[] = [
     'label' => t('Where'),
-    'body' => $postal_address_render,
+    'body' => $postal_address_rendered,
   ];
   // Get live streaming date if the online type is set to any value.
   if (!$node->get('oe_event_online_type')->isEmpty()) {
     $livestream_date = $node->get('oe_event_online_time_start')->date->getTimestamp();
     $practical_information[] = [
       'label' => t('Live stream'),
-      'body' => $date_formatter->format($livestream_date, 'custom', 'H:i T, j F Y', 'CET'),
+      'body' => $date_formatter->format($livestream_date, 'oe_theme_event_date_hour_timezone'),
     ];
   }
   // Get the list of languages and render it as plain text.
+  $render_array = $node->get('oe_event_languages')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
   $practical_information[] = [
     'label' => t('Languages'),
-    'body' => $node->get('oe_event_languages')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]),
+    'body' => $renderer->render($render_array),
   ];
   // Get the organiser value and render as plain text.
+  if ($node->get('oe_event_organiser_name')->isEmpty()) {
+    $render_array = $node->get('oe_event_organiser_internal')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
+    $organiser = $renderer->render($render_array);
+  }
+  else {
+    $organiser = $node->get('oe_event_organiser_name')->value;
+  }
   $practical_information[] = [
     'label' => t('Organiser'),
-    'body' => $node->get('oe_event_organiser_name')->isEmpty() ? $node->get('oe_event_organiser_internal')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]) : $node->get('oe_event_organiser_name')->value,
+    'body' => $organiser,
   ];
   // Get the website and render as a link.
-  $practical_information[] = [
-    'label' => t('Website'),
-    'body' => $node->get('oe_event_website')->view(['label' => 'hidden']),
-  ];
-  // Get the target audience and render as plain text.
-  // @todo: add the field as soon as vocabulary is specified.
+  if (!$node->get('oe_event_registration_capacity')->isEmpty()) {
+    $render_array = $node->get('oe_event_website')->view(['label' => 'hidden']);
+    $practical_information[] = [
+      'label' => t('Website'),
+      'body' => $renderer->render($render_array),
+    ];
+  }
   // Get the registration capacity and render as plain text.
   if (!$node->get('oe_event_registration_capacity')->isEmpty()) {
     $practical_information[] = [
@@ -138,80 +213,166 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
       'body' => $node->get('oe_event_entrance_fee')->value,
     ];
   }
-  $variables['content']['practical_information']['items'] = $practical_information;
 
-  // Prepare the social media links pattern fields.
-  if (!$node->get('oe_event_social_media_links')->isEmpty()) {
-    $social_media_links['title'] = t('Social media');
-    foreach ($node->get('oe_event_social_media_links')->getValue() as $values) {
-      $social_media_links['links'][] = [
-        'uri' => $values['uri'],
-        'label' => $values['title'],
-        'service' => $values['link_type'],
-      ];
-    }
-    $variables['content']['social_media_links'] = $social_media_links;
-  }
+  return $practical_information;
+}
+
+/**
+ * Prepares the image with caching.
+ *
+ * @param array $variables
+ *   The preprocess variables.
+ */
+function _oe_theme_content_event_prepare_featured_media(array &$variables): void {
+  $cache = CacheableMetadata::createFromRenderArray($variables);
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
 
   // Prepare the featured image for file_image pattern.
   $media = $node->get('oe_event_featured_media')->entity;
   if ($media instanceof MediaInterface) {
-    $image_file = $media->get('oe_media_image')->entity;
-    $variables['content']['featured_media']['src'] = file_url_transform_relative(file_create_url($image_file->getFileUri()));
-    $variables['content']['featured_media']['alt'] = $media->getName();
-    $variables['content']['featured_media']['caption'] = $node->get('oe_event_featured_media_legend')->isEmpty() ? '' : $node->get('oe_event_featured_media_legend')->value;
+    // Retrieve the correct translation to display.
+    // @see \Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase::getEntitiesToView()
+    if ($media instanceof TranslatableInterface) {
+      $media = \Drupal::service('entity.repository')->getTranslationFromContext($media);
+    }
+
+    // Check if the media can be displayed to the current user.
+    $access = $media->access('view', NULL, TRUE);
+
+    // Don't render the image if the user has not enough permissions.
+    if ($access->isAllowed()) {
+      $image_file = $media->get('oe_media_image')->entity;
+      $variables['content']['featured_media']['src'] = file_url_transform_relative(file_create_url($image_file->getFileUri()));
+      $variables['content']['featured_media']['alt'] = $media->getName();
+      $variables['content']['featured_media']['caption'] = $node->get('oe_event_featured_media_legend')->isEmpty() ? '' : $node->get('oe_event_featured_media_legend')->value;
+    }
+
+    // Apply the cache metadata.
+    $cache->addCacheableDependency($media)
+      ->addCacheableDependency($access)
+      ->applyTo($variables);
   }
+}
 
-  // Prepare the full text for the description section.
-  $variables['content']['full_text'] = !$node->get('body')->isEmpty() ? $node->get('body')->value : '';
-
+/**
+ * Prepares the referenced event profile entities as an array for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node object.
+ *
+ * @return array
+ *   The prepared contacts array.
+ */
+function _oe_theme_content_event_prepare_contacts(NodeInterface $node): array {
+  $contact_items = [];
   // Prepare the contact fields.
   if (!$node->get('oe_event_contact')->isEmpty()) {
-    $contact_items = [];
-    // Get the labels for contact types from the field definition.
-    $contact_types = FieldConfig::loadByName('event_profile', 'oe_event_contact', 'contact_type')->getSetting('allowed_values');
-    foreach ($node->get('oe_event_contact')->getValue() as $reference) {
-      if ($contact = EventProfile::load($reference['target_id'])) {
-        $contact_items[] = [
-          'items' => [
-            [
-              'label' => t('Name'),
-              'body' => $contact->get('name')->value,
-            ],
-            [
-              'label' => t('Phone number'),
-              'body' => $contact->get('phone_number')->value,
-            ],
-            [
-              'label' => t('Postal address'),
-              'body' => $contact->get('address')->isEmpty() ? '' : $contact->get('address')->view(['label' => 'hidden', 'type' => 'address_plain']),
-            ],
-            [
-              'label' => t('Email address'),
-              'body' => $contact->get('email')->value,
-            ],
-          ],
-          'contact_type' => $contact_types[$contact->get('contact_type')->value],
-        ];
-      }
-    }
-    $variables['content']['contacts'] = $contact_items;
+    return $contact_items;
   }
 
+  /** @var \Drupal\Core\Render\Renderer $renderer */
+  $renderer = \Drupal::service('renderer');
+
+  // Get the labels for contact types from the field definition.
+  $contact_types = FieldConfig::loadByName('event_profile', 'oe_event_contact', 'contact_type')->getSetting('allowed_values');
+  foreach ($node->get('oe_event_contact')->getValue() as $reference) {
+    if ($contact = EventProfile::load($reference['target_id'])) {
+      $render_array = $contact->get('address')->view(['label' => 'hidden', 'type' => 'address_plain']);
+      $contact_items[] = [
+        'items' => [
+          [
+            'label' =>  $contact->get('name')->isEmpty() ? '' : t('Name'),
+            'body' => $contact->get('name')->value,
+          ],
+          [
+            'label' => $contact->get('phone_number')->isEmpty() ? '' : t('Phone number'),
+            'body' => $contact->get('phone_number')->value,
+          ],
+          [
+            'label' => $contact->get('address')->isEmpty() ? '' : t('Postal address'),
+            'body' => $contact->get('address')->isEmpty() ? '' : $renderer->render($render_array),
+          ],
+          [
+            'label' => $contact->get('email')->isEmpty() ? '' : t('Email address'),
+            'body' => $contact->get('email')->value,
+          ],
+        ],
+        'contact_type' => $contact_types[$contact->get('contact_type')->value],
+      ];
+    }
+  }
+
+  return $contact_items;
+}
+
+/**
+ * Prepares the social media links as an array for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node object.
+ *
+ * @return array
+ *   The prepared social media links array.
+ */
+function _oe_theme_content_event_prepare_social_media(NodeInterface $node): array {
+  $social_media_links = [];
+  if ($node->get('oe_event_social_media_links')->isEmpty()) {
+    return $social_media_links;
+  }
+
+  $social_media_links['title'] = t('Social media');
+  foreach ($node->get('oe_event_social_media_links')->getValue() as $values) {
+    $social_media_links['links'][] = [
+      'uri' => $values['uri'],
+      'label' => $values['title'],
+      'service' => $values['link_type'],
+    ];
+  }
+
+  return $social_media_links;
+}
+
+/**
+ * Prepares the icons with text block for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node object.
+ *
+ * @return array
+ *   The prepared icons and text array.
+ */
+function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $node): array {
+  /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
+  $date_formatter = \Drupal::service('date.formatter');
+
+  // Get the dates of the event.
+  /** @var \Drupal\oe_theme\ValueObject\DateValueObject $event_dates */
+  $event_dates = _oe_theme_content_event_get_event_dates($node);
+
+  // Get the location of the event from the Venue.
+  $postal_address_rendered = _oe_theme_content_event_get_rendered_address($node);
+
+  // Create the event date string depending on if it is on the same day.
+  $event_date_string = $event_dates->isSameDate() ?
+    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date') :
+    t('@start_date', ['@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour')]);
+
   // Prepare the icons with text for rendering.
-  $variables['content']['icons_with_text'] = [
+  $render_array = $node->get('oe_subject')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
+  $icons_text = [
     'items' => [
       [
         'icon' => 'file',
-        'text' => $node->get('oe_subject')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]),
+        'text' => $render_array,
       ],
       [
         'icon' => 'calendar',
-        'text' => $date_string,
+        'text' => $event_date_string,
       ],
       [
         'icon' => 'location',
-        'text' => $postal_address_render,
+        'text' => $postal_address_rendered,
       ],
       [
         'icon' => 'livestreaming',
@@ -220,6 +381,74 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
     ],
   ];
 
+  return $icons_text;
+}
+
+/**
+ * Helper function to get the dates of the event.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
+ *   The dates as a value object.
+ */
+function _oe_theme_content_event_get_event_dates(NodeInterface $node) {
+  // Get the dates of the event.
+  /** @var \Drupal\oe_theme\ValueObject\DateValueObject $event_dates */
+  return DateValueObject::fromArray([
+    'start' => $node->get('oe_event_start_date')->date->getTimestamp(),
+    'end' => $node->get('oe_event_end_date')->date->getTimestamp(),
+  ]);
+}
+
+/**
+ * Helper function to get the address string of the event.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return array|\Drupal\Component\Render\MarkupInterface|string
+ *   The rendered address.
+ */
+function _oe_theme_content_event_get_rendered_address(NodeInterface $node) {
+  /** @var \Drupal\oe_content_event\Entity\EventVenue $event_venue */
+  $event_venue = $node->get('oe_event_venue')->entity;
+  if ($event_venue->get('postal_address')->isEmpty()) {
+    return '';
+  }
+
+  /** @var \Drupal\Core\Render\Renderer $renderer */
+  $renderer = \Drupal::service('renderer');
+  // Get the location of the event from the Venue.
+  $render_array = $event_venue->get('postal_address')->view(['label' => 'hidden', 'type' => 'address_plain']);
+
+  return $renderer->render($render_array);
+}
+
+/**
+ * Checks if the the dates are in the past.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The node object.
+ *
+ * @return bool
+ *   TRUE/FALSE
+ */
+function _oe_theme_content_event_is_date_passed(NodeInterface $node) {
+  /** @var \Drupal\oe_theme\ValueObject\DateValueObject $event_dates */
+  $event_dates = _oe_theme_content_event_get_event_dates($node);
+  $current_time = \Drupal::time()->getRequestTime();
+  if ($event_dates->getStartTime() > $current_time) {
+    if ($event_dates->isSameDate()) {
+      return TRUE;
+    }
+    else if ($event_dates->getEndTime() > $current_time) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
 }
 
 /**

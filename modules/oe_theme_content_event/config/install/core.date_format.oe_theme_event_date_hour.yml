@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_theme_event_date_hour
+label: 'Event date with hour'
+locked: false
+pattern: 'j F Y, H:i'

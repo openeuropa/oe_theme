@@ -10,9 +10,9 @@
       {{ pattern('icons_with_text', content.icons_with_text) }}
     </div>
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-2xl ecl-u-mt-md-none ecl-editor">
-    {{ content.description_summary }}
+    {{ content.report is not empty ? content.report_summary : content.description_summary }}
     <p class="ecl-u-type-paragraph ecl-u-mb-none">
-      <a href="#description" class="ecl-u-mt-l ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-after"><span class="ecl-link__label">Read more</span></a>
+      <a href="#{{ content.report is not empty ? 'report' : 'description' }}" class="ecl-u-mt-l ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-after"><span class="ecl-link__label">Read more</span></a>
     </p>
   </div>
 </div>
@@ -26,12 +26,14 @@
 
 {# Practical information #}
 {% if content.practical_information %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">Practical information</h2>
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Practical information'|t }}</h2>
   <div class="ecl-row">
     <div class="ecl-col-12">
-      {{ pattern('field_list', content.practical_information) }}
+      {{ pattern('field_list', content.practical_information, 'horizontal') }}
     </div>
   </div>
+{% endif %}
+{% if content.social_media_links %}
   <div class="ecl-row">
     <div class="ecl-col-12 ecl-col-md-6">
       {# Social media links #}
@@ -40,16 +42,9 @@
   </div>
 {% endif %}
 
-{# Registration button #}
-{% if content.registration_button.state != 'disabled' %}
-  <a href="{{ content.registration_button.url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</a>
-{% else %}
-  <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta" disabled="" title="{{ content.registration_button.description }}">{{ content.registration_button.label }}</button>
-{% endif %}
-
-{# Description #}
-{% if content.featured_media or content.full_text %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="description">Description</h2>
+{# Description and Report #}
+{% if content.featured_media or content.description or content.report %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="{{ content.report is not empty ? 'report' : 'description' }}">{{ content.report is not empty ? 'Report'|t : 'Description'|t }}</h2>
   <div class="ecl-row">
     {% if content.featured_media %}
       <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-l ecl-u-mb-md-none">
@@ -62,24 +57,24 @@
       </div>
     {% endif %}
 
-    {% if content.full_text %}
+    {% if content.description or content.report %}
       <div class="ecl-col-12 {{ content.featured_media is not empty ? 'ecl-col-md-6 '}}ecl-editor">
-        {{ content.full_text }}
+        {{ content.report is not empty ? content.report : content.description }}
       </div>
     {% endif %}
   </div>
 {% endif %}
 
 {# Contacts #}
-{% if content.contacts %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="description">Contacts</h2>
+{% if content.contacts is iterable %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="description">{{ 'Contacts'|t }}</h2>
   {% for _item in content.contacts %}
     {% if loop.first %}
       <div class="ecl-row">
     {% endif %}
       <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
         <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ _item.contact_type }}</h3>
-        {{ pattern('field_list', _item) }}
+        {{ pattern('field_list', _item, 'horizontal') }}
       </div>
     {% if loop.index is divisible by(3) %}
       </div>
