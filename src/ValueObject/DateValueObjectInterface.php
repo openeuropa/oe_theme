@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
+use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 
@@ -33,6 +34,22 @@ interface DateValueObjectInterface extends ValueObjectInterface {
    *   A new ValueObject object.
    */
   public static function fromDateTimeItem(DateTimeItem $dateTimeItem): DateValueObjectInterface;
+
+  /**
+   * Get the start timestamp.
+   *
+   * @return int
+   *   Returns timestamp.
+   */
+  public function getStartTime(): int;
+
+  /**
+   * Get the end timestamp.
+   *
+   * @return int
+   *   Returns timestamp.
+   */
+  public function getEndTime(): int;
 
   /**
    * Get day.
@@ -81,5 +98,19 @@ interface DateValueObjectInterface extends ValueObjectInterface {
    *   Month full name.
    */
   public function getMonthFullName(): string;
+
+  /**
+   * Checks if the start and end date are the same.
+   *
+   * @param bool $strict
+   *   To check in a strict way by comparing the timestamp (TRUE) or
+   *   date strings (FALSE).
+   * @param string $format
+   *   The format to compare for.
+   *
+   * @return bool
+   *   TRUE/FALSE.
+   */
+  public function isSameDate(bool $strict = FALSE, string $format = 'dmY'): bool;
 
 }

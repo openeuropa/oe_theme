@@ -97,6 +97,20 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * {@inheritdoc}
    */
+  public function getStartTime(): int {
+    return $this->start->getTimestamp();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getEndTime(): int {
+    return $this->end->getTimestamp();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getDay(): string {
     return $this->getDateInterval('d', 'm');
   }
@@ -134,6 +148,16 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    */
   public function getMonthFullName(): string {
     return $this->getDateInterval('F', 'Y');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function isSameDate(bool $strict = FALSE, string $format = 'dmY'): bool {
+    if (!$strict) {
+      return $this->start->format($format) == $this->end->format($format);
+    }
+    return $this->getStartTime() === $this->getEndTime();
   }
 
   /**
