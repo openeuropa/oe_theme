@@ -17,7 +17,7 @@ function oe_theme_content_news_post_update_20001(array &$sandbox): void {
   $effects = $image_style->getEffects();
   /** @var \Drupal\image\ImageEffectInterface $effect */
   foreach ($effects as $effect) {
-    if ($effect->getPluginId() == 'image_scale_and_crop') {
+    if ($effect->getPluginId() === 'image_scale_and_crop') {
       $configuration = $effect->getConfiguration();
       $image_style->deleteImageEffect($effect);
       $configuration['data']['width'] = 180;
