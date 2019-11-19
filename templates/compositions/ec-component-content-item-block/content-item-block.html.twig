@@ -43,13 +43,13 @@
 
 {% set _extra_classes_item = 'ecl-col-12' %}
 {% if _type == 'two' %}
-  {% set _extra_classes_item = 'ecl-col-6' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-6' %}
 {% elseif _type == 'three' %}
-  {% set _extra_classes_item = 'ecl-col-4' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-4' %}
 {% elseif _type == 'four' %}
-  {% set _extra_classes_item = 'ecl-col-3' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-3' %}
 {% elseif _type == 'six' %}
-  {% set _extra_classes_item = 'ecl-col-2' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-2' %}
 {% endif %}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
