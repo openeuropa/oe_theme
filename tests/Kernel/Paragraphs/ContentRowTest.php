@@ -113,8 +113,8 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph));
 
     // Verify the layout.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
-    $right_column = $crawler->filter('.ecl-row .ecl-col-md-9');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-lg-3.ecl-u-z-navigation');
+    $right_column = $crawler->filter('.ecl-row .ecl-col-lg-9');
     $this->assertCount(1, $left_column);
     $this->assertCount(1, $right_column);
 
@@ -144,7 +144,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph, 'en'));
 
     // Assert that side-menu is correctly rendered with the default title.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-lg-3.ecl-u-z-navigation');
     $this->assertContains('Page contents', $left_column->html());
   }
 
@@ -187,7 +187,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // Assert that side-menu "English" translation is correctly rendered.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-lg-3.ecl-u-z-navigation');
     $this->assertContains('English page navigation', $left_column->html());
     $this->assertContains('English rich text title', $left_column->html());
 
@@ -195,7 +195,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // Assert that side-menu "French" translation is correctly rendered.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-md-3.ecl-u-z-navigation');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-lg-3.ecl-u-z-navigation');
     $this->assertContains('French page navigation', $left_column->html());
     $this->assertContains('French rich text title', $left_column->html());
   }
