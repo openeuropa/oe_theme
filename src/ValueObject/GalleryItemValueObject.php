@@ -7,7 +7,7 @@ namespace Drupal\oe_theme\ValueObject;
 /**
  * Handle information about a gallery item.
  */
-class GalleryItemValueObject extends ValueObjectBase {
+class GalleryItemValueObject extends ValueObjectBase implements GalleryValueObjectInterface {
 
   /**
    * The caption of the gallery item.
@@ -40,7 +40,7 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageValueObjectInterface $thumbnail
+   * @param \Drupal\oe_theme\ValueObject\ValueObjectInterface $thumbnail
    *   Thumbnail to be rendered on the gallery item.
    * @param string|null $caption
    *   Caption for the gallery item.
@@ -49,7 +49,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @param string|null $icon
    *   Icon for the gallery item.
    */
-  private function __construct(ImageValueObjectInterface $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
+  private function __construct(ValueObjectInterface $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
     $this->thumbnail = $thumbnail;
@@ -71,46 +71,6 @@ class GalleryItemValueObject extends ValueObjectBase {
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getCaption(): ?string {
-    return $this->caption;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getClasses(): ?string {
-    return $this->classes;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return \Drupal\oe_theme\ValueObject\ImageValueObject
-   *   Property value.
-   */
-  public function getThumbnail(): ImageValueObject {
-    return $this->thumbnail;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getIcon(): ?string {
-    return $this->icon;
-  }
-
-  /**
    * {@inheritdoc}
    */
   public function getArray(): array {
@@ -123,6 +83,34 @@ class GalleryItemValueObject extends ValueObjectBase {
       'classes' => $this->getClasses(),
       'icon' => $this->getIcon(),
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCaption(): ?string {
+    return $this->caption;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getClasses(): ?string {
+    return $this->classes;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getThumbnail(): ImageValueObjectInterface {
+    return $this->thumbnail;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getIcon(): ?string {
+    return $this->icon;
   }
 
 }
