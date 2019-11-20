@@ -44,6 +44,32 @@ function oe_theme_helper_post_update_use_retina_image_styles(array &$sandbox): v
 }
 
 /**
+ * Delete the block oe_theme_site_switcher.
+ */
+function oe_theme_helper_post_update_00001() {
+  // The OpenEuropa Theme 2.x was released with a hook update originally named
+  // as follows. Here we restore its original name, so we are sure that this is
+  // not executed twice on sites where oe_theme_helper_post_update_00001()
+  // was already ran. We also keep an empty oe_theme_helper_post_update_20002()
+  // since, in all cases, we need to invalidate that hook.
+  $original_name = 'oe_theme_helper_post_update_20002';
+  /** @var Drupal\Core\KeyValueStore\KeyValueStoreInterface $post_update_store */
+  $post_update_store = \Drupal::service('keyvalue')->get('post_update');
+  $executed_updates = $post_update_store->get('existing_updates');
+
+  if (in_array($original_name, $executed_updates)) {
+    return t('Original post update hook "@name" has been already executed.', ['@name' => $original_name]);
+  }
+  $block = Block::load('oe_theme_site_switcher');
+
+  if (!$block) {
+    return t('The oe_site_switcher block was not found.');
+  }
+
+  $block->delete();
+}
+
+/**
  * Change the region of the search block.
  */
 function oe_theme_helper_post_update_20001() {
@@ -60,25 +86,10 @@ function oe_theme_helper_post_update_20001() {
 }
 
 /**
- * Delete the block oe_theme_site_switcher.
+ * Empty hook. Moved to oe_theme_helper_post_update_00001().
  */
 function oe_theme_helper_post_update_20002() {
-  $original_name = 'oe_theme_helper_post_update_00001';
-  /** @var Drupal\Core\KeyValueStore\KeyValueStoreInterface $post_update_store */
-  $post_update_store = \Drupal::service('keyvalue')->get('post_update');
-  $executed_updates = $post_update_store->get('existing_updates');
-
-  if (in_array($original_name, $executed_updates)) {
-    return t('Original post update hook "@name" has been already executed.', ['@name' => $original_name]);
-
-  }
-  $block = Block::load('oe_theme_site_switcher');
-
-  if (!$block) {
-    return t('The oe_site_switcher block was not found.');
-  }
-
-  $block->delete();
+  // @see oe_theme_helper_post_update_00001() for more information.
 }
 
 /**
