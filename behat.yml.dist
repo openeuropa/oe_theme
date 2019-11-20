@@ -25,7 +25,9 @@ default:
               priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
               search form: ".ecl-search-form"
             pages:
+              AV Portal photo creation: 'media/add/av_portal_photo'
               content management: "/en/admin/content"
+              event creation: "/en/node/add/oe_event"
               ECL components overview: "/en/components"
               ECL dropdown component: "/en/components/dropdown"
               image creation: "/en/media/add/image"
@@ -64,5 +66,12 @@ default:
         priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
+        Online link: "#edit-oe-event-online-link-0"
+        Website: "#edit-oe-event-website-0"
+        Social media links: "#oe-event-social-media-links-values"
+        Description: "#edit-oe-event-featured-media"
+        Event report: "#edit-group-report"
+        Event partner: "#edit-oe-event-partner-wrapper"
+        Event contact: "#edit-oe-event-contact-wrapper"
   formatters:
     progress: ~
