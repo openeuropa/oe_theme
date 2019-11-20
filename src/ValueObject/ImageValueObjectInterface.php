@@ -10,6 +10,18 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
  * Interface ImageValueObjectInterface.
  */
 interface ImageValueObjectInterface extends ValueObjectInterface {
+
+  /**
+   * Build and return a value object from a given array.
+   *
+   * @param array $values
+   *   List of values.
+   *
+   * @return \Drupal\oe_theme\ValueObject\ImageValueObjectInterface
+   *   A new ValueObject object.
+   */
+  public static function fromArray(array $values = []): ValueObjectInterface;
+
   /**
    * Get the image source.
    *
