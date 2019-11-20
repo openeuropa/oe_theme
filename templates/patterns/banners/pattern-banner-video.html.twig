@@ -17,6 +17,18 @@
 
   {# Internal logic - Process properties #}
 
+  {% if _video.sources %}
+    {% set _sources = [] %}
+    {% for _source in _video.sources %}
+      {% set _sources = _sources|merge([_source|merge({
+        type: _source.src_type
+      })]) %}
+    {% endfor %}
+    {% set _video = _video|merge({
+      sources: _sources
+    }) %}
+  {% endif %}
+
   {% if extra_classes is defined and extra_classes is not empty %}
     {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
   {% endif %}

@@ -534,18 +534,18 @@
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-6': 0
-      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link .ecl-link__label': "View all"
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -564,17 +564,17 @@
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-6': 0
-      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link .ecl-link__label': "View all"
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -592,11 +592,11 @@
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-6': 0
-      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -619,11 +619,11 @@
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-6': 0
-      'div.ecl-content-item-block__item.ecl-col-4': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -649,12 +649,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
       'div.ecl-content-item-block__item': 2
-      'div.ecl-content-item-block__item.ecl-col-12': 0
-      'div.ecl-content-item-block__item.ecl-col-6': 2
-      'div.ecl-content-item-block__item.ecl-col-4': 0
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 2
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6': 2
+      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 2
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -687,12 +685,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
       'div.ecl-content-item-block__item': 3
-      'div.ecl-content-item-block__item.ecl-col-12': 0
-      'div.ecl-content-item-block__item.ecl-col-6': 0
-      'div.ecl-content-item-block__item.ecl-col-4': 3
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-md-6': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4': 3
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 3
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -713,10 +709,10 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-3:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-3:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-3:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-3:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(4) a.ecl-link': 'A simple link 4'
 - array:
     '#type': pattern
     '#id': list_item_block_six_columns
@@ -730,12 +726,12 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(4) a.ecl-link': 'A simple link 4'
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(5) a.ecl-link': 'A simple link 5'
-      'div.ecl-content-item-block__item.ecl-col-2:nth-child(6) a.ecl-link': 'A simple link 6'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(5) a.ecl-link': 'A simple link 5'
+      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(6) a.ecl-link': 'A simple link 6'
 - array:
     '#type': pattern
     '#id': page_header
@@ -1002,7 +998,7 @@
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"]': "Item five"
       'div.ecl-contextual-navigation__label': "Navigation title"
-      'button.ecl-contextual-navigation__more': "More label"
+      'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - array:
     '#type': pattern
     '#id': button

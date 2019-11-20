@@ -22,7 +22,7 @@
 
 {# Internal properties #}
 
-{% set _css_class = 'ecl-content-item-block ecl-container' %}
+{% set _css_class = 'ecl-content-item-block' %}
 {% set _extra_attributes = '' %}
 {% set _type = type|default('one') %}
 {% set _title = title|default('') %}
@@ -43,13 +43,13 @@
 
 {% set _extra_classes_item = 'ecl-col-12' %}
 {% if _type == 'two' %}
-  {% set _extra_classes_item = 'ecl-col-6' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-6' %}
 {% elseif _type == 'three' %}
-  {% set _extra_classes_item = 'ecl-col-4' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-4' %}
 {% elseif _type == 'four' %}
-  {% set _extra_classes_item = 'ecl-col-3' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-3' %}
 {% elseif _type == 'six' %}
-  {% set _extra_classes_item = 'ecl-col-2' %}
+  {% set _extra_classes_item = 'ecl-col-12 ecl-col-md-2' %}
 {% endif %}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
@@ -74,7 +74,17 @@
       <div class="ecl-content-item-block__button ecl-col-12">
         <div class="ecl-u-clearfix ecl-u-pv-m">
           {% include '@ecl-twig/link' with {
-            link: _button|merge({type:'standalone'}),
+            'icon': {
+              'path': icon_path,
+              'type': 'ui',
+              'name': 'corner-arrow',
+              'size': 'xs',
+              'transform': 'rotate-90'
+            },
+            link: _button|merge({
+              'type': 'cta',
+              'icon_position': 'after'
+            }),
             'extra_classes': 'ecl-u-f-r'
           } only %}
         </div>

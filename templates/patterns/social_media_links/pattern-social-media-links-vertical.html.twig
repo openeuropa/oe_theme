@@ -4,9 +4,32 @@
  * Sical media links: vertical.
  */
 #}
-{# @todo: Termorarily disable more link, fix this. #}
+
+{% set _links = [] %}
+{% for _link in links %}
+  {% set _links = _links|merge([{
+    path: _link.url,
+    label: _link.label,
+    icon_position: 'before',
+    icon: [
+      {
+        path: ecl_social_icon_path,
+        name: _link.service,
+        size: 'xl',
+        extra_classes: 'ecl-social-media-follow__icon',
+      },
+      {
+        path: ecl_social_icon_path,
+        name: _link.service ~ '_hover',
+        size: 'xl',
+        extra_classes: 'ecl-social-media-follow__icon-hover',
+      }
+    ]
+  }]) %}
+{% endfor %}
+
 {% include '@ecl-twig/social-media-follow' with {
   'variant': 'vertical',
   'description': title,
-  'links': links,
+  'links': _links,
 } %}

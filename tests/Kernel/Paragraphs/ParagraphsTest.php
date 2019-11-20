@@ -261,7 +261,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
+    $this->assertCount(2, $crawler->filter('article.ecl-content-item > div'));
 
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
@@ -295,7 +295,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(3, $crawler->filter('article.ecl-content-item > div'));
+    $this->assertCount(2, $crawler->filter('article.ecl-content-item > div'));
 
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
@@ -411,26 +411,24 @@ class ParagraphsTest extends ParagraphsTestBase {
     // to this variant, so we check that neither the two or three columns class
     // modifiers are there.
     $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item'));
 
     // Change the variant to two columns.
     $paragraph->get('field_oe_list_item_block_layout')->setValue('two_columns');
     $paragraph->save();
 
     $crawler = new Crawler($this->renderParagraph($paragraph));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
-    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item'));
 
     // Change the variant to three columns.
     $paragraph->get('field_oe_list_item_block_layout')->setValue('three_columns');
     $paragraph->save();
 
     $crawler = new Crawler($this->renderParagraph($paragraph));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item'));
-    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-6 article.ecl-content-item'));
-    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-4 article.ecl-content-item'));
+    $this->assertCount(0, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item'));
+    $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item'));
   }
 
   /**
