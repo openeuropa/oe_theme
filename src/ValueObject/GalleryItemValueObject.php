@@ -40,7 +40,7 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail
+   * @param \Drupal\oe_theme\ValueObject\ImageValueObjectInterface $thumbnail
    *   Thumbnail to be rendered on the gallery item.
    * @param string|null $caption
    *   Caption for the gallery item.
@@ -49,7 +49,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @param string|null $icon
    *   Icon for the gallery item.
    */
-  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
+  private function __construct(ImageValueObjectInterface $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
     $this->thumbnail = $thumbnail;
