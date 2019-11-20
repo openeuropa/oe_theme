@@ -158,7 +158,10 @@ function _oe_theme_content_event_prepare_practical_information(NodeInterface $no
   // Create the event date string depending on if it is on the same day.
   $event_date_string = $event_dates->isSameDate() ?
     $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date') :
-    t('@start_date to @end_date', ['@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'), '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date')]);
+    t('@start_date to @end_date', [
+      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'),
+      '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date'),
+    ]);
   $practical_information[] = [
     'label' => t('When'),
     'body' => $event_date_string,
@@ -284,7 +287,7 @@ function _oe_theme_content_event_prepare_contacts(NodeInterface $node): array {
       $contact_items[] = [
         'items' => [
           [
-            'label' =>  $contact->get('name')->isEmpty() ? '' : t('Name'),
+            'label' => $contact->get('name')->isEmpty() ? '' : t('Name'),
             'body' => $contact->get('name')->value,
           ],
           [
@@ -483,7 +486,7 @@ function _oe_theme_content_event_is_date_passed(NodeInterface $node) {
     if ($event_dates->isSameDate()) {
       return TRUE;
     }
-    else if ($event_dates->getEndTime() > $current_time) {
+    elseif ($event_dates->getEndTime() > $current_time) {
       return TRUE;
     }
   }
