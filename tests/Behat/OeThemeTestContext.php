@@ -360,4 +360,69 @@ class OeThemeTestContext extends RawDrupalContext {
     }
   }
 
+  /**
+   * Finds a datetime field.
+   *
+   * @param string $field
+   *   The field name.
+   *
+   * @return \Behat\Mink\Element\NodeElement[]
+   *   The elements found.
+   *
+   * @throws \Exception
+   *   Thrown when the field was not found.
+   */
+  public function findDateFields($field) {
+    $field_selectors = $this->getSession()->getPage()->findAll('css', '.field--widget-datetime-default');
+    $field_selectors = array_filter($field_selectors, function ($field_selector) use ($field) {
+      return $field_selector->has('named', ['content', $field]);
+    });
+    if (empty($field_selectors)) {
+      throw new \Exception("Date field {$field} was not found.");
+    }
+    return $field_selectors;
+  }
+
+  /**
+   * Fills a date or time field at a datetime widget.
+   *
+   * Example: When I fill in "Start date" with the date "29-08-2016".
+   * Example: When I fill in "Start date" with the time "06:59:00AM".
+   *
+   * @param string $field_group
+   *   The field component's label.
+   * @param string $date_component
+   *   The field to be filled.
+   * @param string $value
+   *   The value of the field.
+   *
+   * @throws \Exception
+   *    Thrown when more than one elements match the given field in the given
+   *    field group.
+   *
+   * @When I fill in :field_group with the :date_component :value
+   */
+  public function fillDateField($field_group, $date_component, $value) {
+    $field_selectors = $this->findDateFields($field_group);
+    if (count($field_selectors) > 1) {
+      throw new \Exception("More than one elements were found.");
+    }
+    $field_selector = reset($field_selectors);
+    $field_selector->fillField(ucfirst($date_component), $value);
+  }
+
+  /**
+   * Selects option in select field in a region.
+   *
+   * @When I select :option from :select in the :region region
+   */
+  public function selectOption(string $select, string $option, string $region): void {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    if (!$regionObj) {
+      throw new \Exception(sprintf('No region "%s" found on the page %s.', $region, $session->getCurrentUrl()));
+    }
+    $regionObj->selectFieldOption($select, $option);
+  }
+
 }
