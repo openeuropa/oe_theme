@@ -15,6 +15,24 @@ Pattern fields can accept either one of the following types:
 - A renderable markup, i.e. a Drupal render array or a string
 - A value object or a list of value objects
 
+## How to work with patterns
+
+Patterns define what can be considered the theme API: the OpenEuropa Theme maintainers commit to never change
+pattern definitions between minor releases, so that updating to a new version of the theme can happen seamlessly.
+
+For this reason it is not recommended to include ECL Twig components in your theme, as their data structure might change
+without notice. You should use patterns instead.
+
+If you need an ECL Twig component that is not currently provided by the theme you should try to contribute it back
+in a form of a pattern.
+
+Patterns accept either value objects or structured arrays. In order to know which is which check pattern definitions
+or visit your site at `/components` to have an overview of what patterns are currently available.
+
+Data should be massaged in preprocesses before being fed to a pattern. The UI Patterns module provides a set of useful
+[theme suggestions][3] which can be used to either override the pattern template or process data in a specialized
+preprocess function.
+
 ## Using value objects
 
 The scope of value objects is to make sure that data is passed to the final templates in a consistent and predictable way.
@@ -155,3 +173,4 @@ Provides the following factory methods:
 
 [1]: https://www.drupal.org/project/ui_patterns
 [2]: https://ui-patterns.readthedocs.io
+[3]: https://ui-patterns.readthedocs.io/en/8.x-1.x/content/developer-documentation.html#working-with-pattern-suggestions

@@ -10,6 +10,8 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Companion sub-modules](#companion-sub-modules)
+- [Image styles](#image-styles)
+- [Upgrade from 1.x to 2.x](#upgrade-from-1.x-to-2.x)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
@@ -72,13 +74,22 @@ same between the two libraries.
 OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
 The following is a list of all the vailable styles and their preferred usage: 
 
-* List item (oe_theme_list_item): To be used on content lists with small thumbnails.
-* Featured list item (oe_theme_list_item_featured): To be used on highlights and content lists with big thumbnails.
-* Medium (oe_theme_medium_no_crop): Medium sized image, part of the Main content responsive image style.
-* Small (oe_theme_small_no_crop): Small sized image, part of the Main content responsive image style.
-* Main content (oe_theme_main_content): Responsive image style, to be used on any image that is rendered inside
+* List item (`oe_theme_list_item`): To be used on content lists with small thumbnails.
+* Featured list item (`oe_theme_list_item_featured`): To be used on highlights and content lists with big thumbnails.
+* Medium (`oe_theme_medium_no_crop`): Medium sized image, part of the Main content responsive image style.
+* Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
+* Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
 
+## Upgrade from 1.x to 2.x
+
+- The following patterns have been removed on 2.x:
+  - `dialog`
+  - `file_link`
+- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
+  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
+- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
+  you should use version 2.x instead.
 
 ## Development
 
@@ -90,6 +101,9 @@ meaning:
 - Project setup and installation can be easily handled thanks to the integration with the [Task Runner][4] project.
 - All system requirements are containerized using [Docker Composer][5].
 - Every change to the code base will be automatically tested using [Drone][17].
+
+Make sure you read the [developer documentation](./docs/developer-documentation.md) before starting to use the theme
+in your projects.
 
 ### Project setup
 
@@ -256,17 +270,6 @@ as shown below:
 } %}
 ```
 
-Or:
-
-```twig
-{% include '@ec-europa/ecl-logos' with {
-  'to': 'https://ec.europa.eu',
-  'title': 'European Commission',
-} %}
-```
-
-JavaScript components can be accessed by `ECL.methodName()`, e.g. `ECL.Accordion2()`.
-
 *Important:* not all ECL templates are available to the theme for include, whenever you need include a new ECL template
 remember to add it to the `copy` section of [ecl-builder.config.js](ecl-builder.config.js) and run:
 
@@ -315,16 +318,6 @@ docker-compose exec -u node node npx patch-package @ecl-twig/[component-name]
 ```
 
 Patches will be generated in `./patches` and applied when running `npm install`.
-
-#### Upgrade from 1.x to 2.x
-
-- The following patterns have been removed on 2.x:
-  - `dialog`
-  - `file_link`
-- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
-  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
-- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
-  you should use version 2.x instead.
 
 ## Contributing
 
