@@ -63,4 +63,5 @@ interface ImageValueObjectInterface extends ValueObjectInterface {
    * @return $this
    */
   public static function fromImageItem(ImageItem $image_item): ImageValueObjectInterface;
+
 }

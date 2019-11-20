@@ -95,7 +95,7 @@ class EventContentType extends NodeViewRoutesBase {
     $event_type_value = $event_type_field->value;
     $event_type_options = $event_type_field->getFieldDefinition()->getSetting('allowed_values');
     $metadata['metas'] = [
-      $this->t($event_type_options[$event_type_value]),
+      $this->t('@term', ['@term' => $event_type_options[$event_type_value]]),
     ];
 
     return $metadata;
