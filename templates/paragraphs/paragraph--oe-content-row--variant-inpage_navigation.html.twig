@@ -6,16 +6,14 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-<div class="ecl-container">
-  <div class="ecl-row ecl-u-mt-l">
-    <div class="ecl-col-md-3 ecl-u-z-navigation">
-      {% include '@ecl-twig/inpage-navigation' with {
-        'title': title,
-        'links': links
-      } %}
-    </div>
-    <div class="ecl-col-md-9">
-      {{ content.field_oe_paragraphs }}
-    </div>
+<div class="ecl-row">
+  <div class="ecl-col-lg-3 ecl-u-z-navigation">
+    {% include '@ecl-twig/inpage-navigation' with {
+      'title': title,
+      'links': links
+    } %}
+  </div>
+  <div class="ecl-col-lg-9">
+    {{ content.field_oe_paragraphs }}
   </div>
 </div>
