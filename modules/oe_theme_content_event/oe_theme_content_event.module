@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\TranslatableInterface;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_event\Entity\EventProfile;
@@ -36,21 +37,19 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   $node = $variables['node'];
 
   // Get the summary description of the event.
-  $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->isEmpty() ? '' : $node->get('oe_event_description_summary')->value;
+  $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->value;
 
   // Get the summary report of the event.
-  $variables['content']['report_summary'] = $node->get('oe_event_report_summary')->isEmpty() ? '' : $node->get('oe_event_report_summary')->value;
+  $variables['content']['report_summary'] = $node->get('oe_event_report_summary')->value;
 
   // Prepare the full text for the description section.
-  $variables['content']['description'] = $node->get('body')->isEmpty() ? '' : $node->get('body')->value;
+  $variables['content']['description'] = $node->get('body')->value;
 
   // Prepare the full text for the report section that is only visible after
   // the event.
   if (_oe_theme_content_event_is_date_passed($node)) {
-    $variables['content']['report'] = $node->get('body')->isEmpty() ? '' : $node->get('body')->value;
-
+    $variables['content']['report'] = $node->get('body')->value;
   }
-  $variables['content']['gallery'] = _oe_theme_content_event_prepare_gallery($node);
 
   // Prepare the icons with text block.
   $variables['content']['icons_with_text'] = _oe_theme_content_event_prepare_icons_with_text_block($node);
@@ -247,8 +246,17 @@ function _oe_theme_content_event_prepare_featured_media(array &$variables): void
 
     // Don't render the image if the user has not enough permissions.
     if ($access->isAllowed()) {
-      $image_file = $media->get('oe_media_image')->entity;
-      $variables['content']['featured_media']['src'] = file_url_transform_relative(file_create_url($image_file->getFileUri()));
+      $source = $media->getSource();
+      // Check for the source plugin.
+      if ($source->getPluginId() === 'media_avportal_photo') {
+        $uri = 'avportal://' . $media->get('oe_media_avportal_photo')->value . '.jpg';
+      }
+      else {
+        $image_file = $media->get('oe_media_image')->entity;
+        $uri = $image_file->getFileUri();
+      }
+      $image_style = ImageStyle::load('oe_theme_medium_no_crop');
+      $variables['content']['featured_media']['src'] = file_url_transform_relative($image_style->buildUrl($uri));
       $variables['content']['featured_media']['alt'] = $media->getName();
       $variables['content']['featured_media']['caption'] = $node->get('oe_event_featured_media_legend')->isEmpty() ? '' : $node->get('oe_event_featured_media_legend')->value;
     }
@@ -390,44 +398,6 @@ function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $no
 }
 
 /**
- * Prepares the media gallery for ECL.
- *
- * @param \Drupal\node\NodeInterface $node
- *   The event node object.
- *
- * @return array
- *   The gallery array.
- */
-function _oe_theme_content_event_prepare_gallery(NodeInterface $node) {
-  if ($node->get('oe_event_gallery')->isEmpty()) {
-    return [];
-  }
-
-  $media_entities = $node->get('oe_event_gallery')->referencedEntities();
-
-  foreach ($media_entities as $media_entity) {
-    if ($media_entity instanceof MediaInterface) {
-      // Retrieve the correct translation to display.
-      // @see \Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase::getEntitiesToView()
-      if ($media_entity instanceof TranslatableInterface) {
-        $media_entity = \Drupal::service('entity.repository')
-          ->getTranslationFromContext($media_entity);
-      }
-
-      // Check if the media can be displayed to the current user.
-      $access = $media_entity->access('view', NULL, TRUE);
-
-      // Don't render the image if the user has not enough permissions.
-      if ($access->isAllowed()) {
-        $media_source[] = $media_entity->getSource();
-      }
-    }
-  }
-
-  return [];
-}
-
-/**
  * Helper function to get the dates of the event.
  *
  * @param \Drupal\node\NodeInterface $node
@@ -483,10 +453,7 @@ function _oe_theme_content_event_is_date_passed(NodeInterface $node) {
   $event_dates = _oe_theme_content_event_get_event_dates($node);
   $current_time = \Drupal::time()->getRequestTime();
   if ($event_dates->getStartTime() > $current_time) {
-    if ($event_dates->isSameDate()) {
-      return TRUE;
-    }
-    elseif ($event_dates->getEndTime() > $current_time) {
+    if ($event_dates->isSameDate() || $event_dates->getEndTime() > $current_time) {
       return TRUE;
     }
   }
