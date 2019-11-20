@@ -48,7 +48,9 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // the event.
   if (_oe_theme_content_event_is_date_passed($node)) {
     $variables['content']['report'] = $node->get('body')->isEmpty() ? '' : $node->get('body')->value;
+
   }
+  $variables['content']['gallery'] = _oe_theme_content_event_prepare_gallery($node);
 
   // Prepare the icons with text block.
   $variables['content']['icons_with_text'] = _oe_theme_content_event_prepare_icons_with_text_block($node);
@@ -267,7 +269,7 @@ function _oe_theme_content_event_prepare_featured_media(array &$variables): void
 function _oe_theme_content_event_prepare_contacts(NodeInterface $node): array {
   $contact_items = [];
   // Prepare the contact fields.
-  if (!$node->get('oe_event_contact')->isEmpty()) {
+  if ($node->get('oe_event_contact')->isEmpty()) {
     return $contact_items;
   }
 
@@ -382,6 +384,44 @@ function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $no
   ];
 
   return $icons_text;
+}
+
+/**
+ * Prepares the media gallery for ECL.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node object.
+ *
+ * @return array
+ *   The gallery array.
+ */
+function _oe_theme_content_event_prepare_gallery(NodeInterface $node) {
+  if ($node->get('oe_event_gallery')->isEmpty()) {
+    return [];
+  }
+
+  $media_entities = $node->get('oe_event_gallery')->referencedEntities();
+
+  foreach ($media_entities as $media_entity) {
+    if ($media_entity instanceof MediaInterface) {
+      // Retrieve the correct translation to display.
+      // @see \Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase::getEntitiesToView()
+      if ($media_entity instanceof TranslatableInterface) {
+        $media_entity = \Drupal::service('entity.repository')
+          ->getTranslationFromContext($media_entity);
+      }
+
+      // Check if the media can be displayed to the current user.
+      $access = $media_entity->access('view', NULL, TRUE);
+
+      // Don't render the image if the user has not enough permissions.
+      if ($access->isAllowed()) {
+        $media_source[] = $media_entity->getSource();
+      }
+    }
+  }
+
+  return [];
 }
 
 /**
