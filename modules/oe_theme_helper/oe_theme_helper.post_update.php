@@ -63,7 +63,7 @@ function oe_theme_helper_post_update_00001() {
   $block = Block::load('oe_theme_site_switcher');
 
   if (!$block) {
-    return t('The oe_site_switcher block was not found.');
+    return t('The oe_theme_site_switcher block was not found.');
   }
 
   $block->delete();
