@@ -86,7 +86,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
     $this->assertCount(1, $file_row);
 
     $file_title = $file_row->filter('.ecl-file__title');
-    $this->assertContains('test.pdf', $file_title->text());
+    $this->assertContains('test document', $file_title->text());
 
     $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->text());

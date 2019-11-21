@@ -996,8 +996,11 @@ function oe_theme_preprocess_media__document__default(&$variables) {
     return;
   }
 
-  $file_object = $variables['media']->get('oe_media_file')->first()->entity;
-  $variables['file'] = FileValueObject::fromFileEntity($file_object);
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $variables['media'];
+  $file_object = $media->get('oe_media_file')->first()->entity;
+  $variables['file'] = FileValueObject::fromFileEntity($file_object)
+    ->setTitle($media->getName());
 }
 
 /**
