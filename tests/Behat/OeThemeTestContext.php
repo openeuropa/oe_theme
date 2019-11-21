@@ -407,6 +407,10 @@ class OeThemeTestContext extends RawDrupalContext {
     if (count($field_selectors) > 1) {
       throw new \Exception("More than one elements were found.");
     }
+    if ($date_component === 'relative') {
+      $date_component = 'date';
+      $value = date('m/d/Y', strtotime($value));
+    }
     $field_selector = reset($field_selectors);
     $field_selector->fillField(ucfirst($date_component), $value);
   }
