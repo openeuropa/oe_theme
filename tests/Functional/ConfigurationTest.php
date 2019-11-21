@@ -39,21 +39,20 @@ class ConfigurationTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     // Assert that we load the EC component library by default.
-    $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
     $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
     $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
     $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
     $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
     // Assert that we do not load the EU component library by default.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
     $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+
+    // Assert that the ECL Editor preset is always loaded.
+    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
   }
 
   /**
@@ -83,21 +82,20 @@ class ConfigurationTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     // Assert that we load the EU component library.
-    $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
     $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
     $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
     $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
     $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
     // Assert that we do not load the EC component library.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
     $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
+
+    // Assert that the ECL Editor preset is always loaded.
+    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
 
     // Visit theme administration page.
     $this->drupalGet('/admin/appearance/settings/oe_theme');
@@ -110,21 +108,20 @@ class ConfigurationTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     // Assert that we load the EC component library by default.
-    $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
     $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
     $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
     $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
     $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
     // Assert that we do not load the EU component library by default.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
     $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
     $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+
+    // Assert that the ECL Editor preset is always loaded.
+    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
   }
 
   /**
