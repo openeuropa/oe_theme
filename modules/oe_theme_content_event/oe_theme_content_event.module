@@ -48,7 +48,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // Prepare the full text for the report section that is only visible after
   // the event.
   if (_oe_theme_content_event_is_date_passed($node)) {
-    $variables['content']['report'] = $node->get('body')->value;
+    $variables['content']['report'] = $node->get('oe_event_report_text')->value;
   }
 
   // Prepare the icons with text block.
@@ -106,7 +106,11 @@ function _oe_theme_content_event_prepare_registration_button(NodeInterface $node
     $registration_button['description'] = t('Registration is not yet opened for this event.');
   }
 
-  if (isset($registration_dates) && $registration_status === 'open' && $event_status !== 'cancelled' && $event_status !== 'postponed') {
+  if (isset($registration_dates) &&
+    ($registration_status === 'open' || $registration_status === 'closed') &&
+    $event_status !== 'cancelled' &&
+    $event_status !== 'postponed'
+  ) {
     // Registration in the future.
     if ($registration_dates->getStartTime() > $current_time) {
       $registration_button['description'] = t('Registration will open on @start_date, until @end_date.', [
@@ -118,7 +122,7 @@ function _oe_theme_content_event_prepare_registration_button(NodeInterface $node
     if ($registration_dates->getStartTime() < $current_time && $registration_dates->getEndTime() > $current_time) {
       $registration_button['state'] = 'active';
       // Difference between two dates in days.
-      $date_diff = $date_formatter->formatTimeDiffUntil($registration_dates->getEndTime());
+      $date_diff = $date_formatter->formatTimeDiffUntil($registration_dates->getEndTime(), ['granularity' => 1]);
       $registration_button['description'] = t('Book your seat, @time_left left to register.', [
         '@time_left' => $date_diff,
       ]);
@@ -156,19 +160,21 @@ function _oe_theme_content_event_prepare_practical_information(NodeInterface $no
 
   // Create the event date string depending on if it is on the same day.
   $event_date_string = $event_dates->isSameDate() ?
-    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date') :
+    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_long_date_hour') :
     t('@start_date to @end_date', [
-      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'),
+      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_long_date_hour'),
       '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date'),
     ]);
   $practical_information[] = [
     'label' => t('When'),
     'body' => $event_date_string,
   ];
-  $practical_information[] = [
-    'label' => t('Where'),
-    'body' => $postal_address_rendered,
-  ];
+  if (!empty($postal_address_rendered)) {
+    $practical_information[] = [
+      'label' => t('Where'),
+      'body' => $postal_address_rendered,
+    ];
+  }
   // Get live streaming date if the online type is set to any value.
   if (!$node->get('oe_event_online_type')->isEmpty()) {
     $livestream_date = $node->get('oe_event_online_time_start')->date->getTimestamp();
@@ -368,8 +374,11 @@ function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $no
 
   // Create the event date string depending on if it is on the same day.
   $event_date_string = $event_dates->isSameDate() ?
-    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date') :
-    t('@start_date', ['@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour')]);
+    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour') :
+    t('@start_date to @end_date', [
+      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'),
+      '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date'),
+    ]);
 
   // Prepare the icons with text for rendering.
   $render_array = $node->get('oe_subject')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
@@ -452,8 +461,8 @@ function _oe_theme_content_event_is_date_passed(NodeInterface $node) {
   /** @var \Drupal\oe_theme\ValueObject\DateValueObject $event_dates */
   $event_dates = _oe_theme_content_event_get_event_dates($node);
   $current_time = \Drupal::time()->getRequestTime();
-  if ($event_dates->getStartTime() > $current_time) {
-    if ($event_dates->isSameDate() || $event_dates->getEndTime() > $current_time) {
+  if ($event_dates->getStartTime() < $current_time) {
+    if ($event_dates->isSameDate() || $event_dates->getEndTime() < $current_time) {
       return TRUE;
     }
   }
