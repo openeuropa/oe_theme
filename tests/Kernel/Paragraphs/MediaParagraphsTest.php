@@ -56,13 +56,42 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test text with featured media paragraph rendering.
    */
   public function testTextWithMedia(): void {
+
+    // Create a paragraph without the media.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_text_feature_media',
+      'field_oe_title' => 'Title',
+      'field_oe_plain_text_long' => 'Caption',
+      'field_oe_text_long' => 'Full text',
+    ]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    // Assert the title is rendered properly.
+    $title = $crawler->filter('h2.ecl-u-type-heading-2');
+    $this->assertCount(1, $title);
+    $this->assertContains('Title', $title->text());
+
+    // Assert there is no image.
+    $figure = $crawler->filter('figure.ecl-media-container');
+    $this->assertCount(0, $figure);
+
+    // Assert text is rendered properly.
+    $text = $crawler->filter('.ecl-col-12.ecl-editor');
+    $this->assertCount(1, $text);
+    $this->assertContains('Full text', $text->text());
+
+    // Create a file to add to the media.
     $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 
+    // Create a media and add it to the paragraph.
     $media = Media::create([
       'bundle' => 'image',
-      'name' => 'test document',
+      'name' => 'test image',
       'oe_media_image' => [
         'target_id' => $file->id(),
         'alt' => 'Alt',
@@ -70,15 +99,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media->save();
 
-    $paragraph = Paragraph::create([
-      'type' => 'oe_text_feature_media',
-      'field_oe_title' => 'Title',
-      'field_oe_media' => [
-        'target_id' => $media->id(),
-      ],
-      'field_oe_plain_text_long' => 'Caption',
-      'field_oe_text_long' => 'Full text',
-    ]);
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
