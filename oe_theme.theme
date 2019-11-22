@@ -12,6 +12,9 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
+use Drupal\media\Entity\MediaType;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -849,33 +852,53 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
-  // Extract the media if present.
+  // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;
   }
-  /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $media_item */
-  $media_item = $paragraph->get('field_oe_media')->first();
   /** @var \Drupal\media\Entity\Media $media */
-  $media = $media_item->get('entity')->getValue();
+  $media = $paragraph->get('field_oe_media')->entity;
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
   $cacheability->addCacheableDependency($media);
-  // Extract the image if present.
-  if ($media->get('oe_media_image')->isEmpty()) {
+
+  $source = $media->getSource();
+  // We only support images and avportal photos for now.
+  if (!($source instanceof MediaAvPortalSourceInterface) && !($source instanceof Image)) {
+    $cacheability->applyTo($variables);
     return;
   }
 
-  // Format image to follow ECL structure.
-  /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $media_item */
-  $file_item = $media->get('oe_media_image')->first();
-  $file = $file_item->get('entity')->getValue();
+  // If its a media source we support, fetch the required data.
+  $mediatype = MediaType::load($media->bundle());
+  $source_field = $source->getSourceFieldDefinition($mediatype);
+  $source_value = $source->getSourceFieldValue($media);
+
+  // We bail out if the media doesn't point to a resource.
+  if (empty($source_value)) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  // Retrieve the image style we want to apply.
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_list_item_featured');
+
+  if ($source instanceof MediaAvPortalSourceInterface) {
+    $url = $style->buildUrl('avportal://' . $source_value . '.jpg');
+
+  }
+  if ($source instanceof Image) {
+    /** @var \Drupal\file\Entity\File $file */
+    $file = $media->get($source_field->getName())->entity;
+    $url = $style->buildUrl($file->getFileUri());
+    $cacheability->addCacheableDependency($file);
+  }
   $variables['image'] = [
-    'src' => file_url_transform_relative(file_create_url($file->getFileUri())),
-    'alt' => $file_item->get('alt')->getValue(),
+    'src' => $url,
+    'alt' => $media->get($source_field->getName())->alt,
   ];
 
-  $cacheability->addCacheableDependency($file);
   $cacheability->applyTo($variables);
 }
 
