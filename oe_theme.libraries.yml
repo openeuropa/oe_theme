@@ -7,7 +7,7 @@ component_library_ec:
     dist/ec/scripts/ecl-ec-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
-    - oe_theme/common
+    - core/drupal
 
 component_library_eu:
   css:
@@ -18,14 +18,12 @@ component_library_eu:
     dist/eu/scripts/ecl-eu-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
-    - oe_theme/common
+    - core/drupal
 
-common:
+editor:
   css:
     theme:
       dist/styles/ecl-ec-preset-editor.css: {}
-  js:
-    js/ecl_auto_init.js: {}
 
 dialogs:
   js:
