@@ -1186,10 +1186,10 @@
       url: "http://facebook.com"
   assertions:
     count:
-      'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before[href="http://facebook.com"]': 1
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before[href="http://facebook.com"]': 1
       'svg.ecl-link__icon': 1
     equals:
-      'a.ecl-link.ecl-link--default.ecl-link--icon.ecl-link--icon-before span.ecl-link__label': "Facebook"
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before span.ecl-link__label': "Facebook"
 - array:
     '#type': pattern
     '#id': featured_item

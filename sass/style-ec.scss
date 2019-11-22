@@ -1,5 +1,5 @@
-@import '@ecl/ec-theme-default/index';
+@import '@ecl/ec-theme-default/exports/all';
+@import '@ecl/ec-theme-default/exports/colors';
 @import '@ecl/ec-component-form-help-block/ec-component-form-help-block';
 @import "./components/form";
 @import "./components/toolbar";
-@import "./components/overrides";
