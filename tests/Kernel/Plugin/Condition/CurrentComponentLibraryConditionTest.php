@@ -17,14 +17,11 @@ class CurrentComponentLibraryConditionTest extends AbstractKernelTestBase {
    */
   public function testCondition(): void {
     $manager = \Drupal::service('plugin.manager.condition');
-    /** @var $condition \Drupal\Core\Condition\ConditionInterface */
     $condition = $manager->createInstance('oe_theme_helper_current_component_library');
     $condition->setConfiguration(['component_library' => 'ec']);
 
-    /** @var $condition_empty \Drupal\Core\Condition\ConditionInterface */
     $condition_empty = $manager->createInstance('oe_theme_helper_current_component_library');
 
-    /** @var $condition_negated \Drupal\Core\Condition\ConditionInterface */
     $condition_negated = $manager->createInstance('oe_theme_helper_current_component_library');
     $condition_negated->setConfiguration(['component_library' => 'ec', 'negate' => TRUE]);
 

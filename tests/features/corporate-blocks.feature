@@ -4,7 +4,7 @@ Feature: Corporate blocks feature
   As an anonymous user
   I want see all Corporate blocks on all pages
 
-  Scenario Outline: The corporate blocks are available throughout the site
+  Scenario Outline: The corporate blocks are available throughout the site.
     Given I am an anonymous user
     When I am on "<page>"
     Then I should see the "search form" element in the "header"
@@ -13,8 +13,20 @@ Feature: Corporate blocks feature
       | page                        |
       | the homepage                |
       | the user registration page  |
+@run
+  Scenario Outline: By default the European Commission footer is displayed.
+    Given I am an anonymous user
+    When I am on "<page>"
+    Then I should see "European Commission" in the "footer" element
+    And I should see "Follow the European Commission" in the "footer" element
+    And I should see "European Union" in the "footer" element
 
-  Scenario Outline: The demo site footer features placeholder blocks
+    Examples:
+      | page                        |
+      | the homepage                |
+      | the user registration page  |
+
+  Scenario Outline: The European Union footer is displayed if the EU style is chosen.
     Given I am an anonymous user
     When I am on "<page>"
     Then I should see "European Commission" in the "footer" element
