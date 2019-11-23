@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\block\Entity\Block;
+use Drupal\Core\Config\FileStorage;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -106,4 +107,14 @@ function oe_theme_helper_post_update_20003() {
  */
 function oe_theme_helper_post_update_20004() {
   \Drupal::service('plugin.manager.condition')->clearCachedDefinitions();
+}
+
+/**
+ * Add EU corporate block to active configuration storage.
+ */
+function oe_theme_helper_post_update_20005() {
+  $config_path = drupal_get_path('theme', 'oe_theme') . '/config/optional';
+  $source = new FileStorage($config_path);
+  $config_storage = \Drupal::service('config.storage');
+  $config_storage->write('block.block.oe_theme_eu_corporate_footer', $source->read('block.block.oe_theme_eu_corporate_footer'));
 }
