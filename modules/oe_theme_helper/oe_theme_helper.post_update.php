@@ -100,3 +100,10 @@ function oe_theme_helper_post_update_20003() {
     ->set('component_library', 'ec')
     ->save();
 }
+
+/**
+ * Clear condition plugin cache.
+ */
+function oe_theme_helper_post_update_20004() {
+  \Drupal::service('plugin.manager.condition')->clearCachedDefinitions();
+}
