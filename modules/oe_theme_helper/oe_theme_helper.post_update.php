@@ -110,11 +110,28 @@ function oe_theme_helper_post_update_20004() {
 }
 
 /**
- * Add EU corporate block to active configuration storage.
+ * Remove current corporate footer block.
  */
 function oe_theme_helper_post_update_20005() {
+  \Drupal::configFactory()->getEditable('block.block.oe_theme_corporate_footer')->delete();
+}
+
+/**
+ * Add EC and EU corporate blocks to active configuration storage.
+ */
+function oe_theme_helper_post_update_20006() {
   $config_path = drupal_get_path('theme', 'oe_theme') . '/config/optional';
   $source = new FileStorage($config_path);
   $config_storage = \Drupal::service('config.storage');
-  $config_storage->write('block.block.oe_theme_eu_corporate_footer', $source->read('block.block.oe_theme_eu_corporate_footer'));
+  $config_factory = \Drupal::configFactory();
+
+  $blocks = [
+    'block.block.oe_theme_ec_corporate_footer',
+    'block.block.oe_theme_eu_corporate_footer',
+  ];
+
+  foreach ($blocks as $block) {
+    $config_storage->write($block, $source->read($block));
+    $config_factory->getEditable($block)->save();
+  }
 }

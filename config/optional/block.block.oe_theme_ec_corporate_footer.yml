@@ -6,7 +6,7 @@ dependencies:
     - oe_theme_helper
   theme:
     - oe_theme
-id: oe_theme_corporate_footer
+id: oe_theme_ec_corporate_footer
 theme: oe_theme
 region: footer
 weight: 0
