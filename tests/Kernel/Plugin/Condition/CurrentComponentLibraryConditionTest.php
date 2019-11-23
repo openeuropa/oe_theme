@@ -21,21 +21,27 @@ class CurrentComponentLibraryConditionTest extends AbstractKernelTestBase {
     $condition = $manager->createInstance('oe_theme_helper_current_component_library');
     $condition->setConfiguration(['component_library' => 'ec']);
 
+    /** @var $condition_empty \Drupal\Core\Condition\ConditionInterface */
+    $condition_empty = $manager->createInstance('oe_theme_helper_current_component_library');
+
     /** @var $condition_negated \Drupal\Core\Condition\ConditionInterface */
     $condition_negated = $manager->createInstance('oe_theme_helper_current_component_library');
     $condition_negated->setConfiguration(['component_library' => 'ec', 'negate' => TRUE]);
 
     $this->assertEqual($condition->summary(), new FormattableMarkup('The current component library is @component_library', ['@component_library' => 'ec']));
+    $this->assertEqual($condition_empty->summary(), new FormattableMarkup('The current component library is set to any value.', []));
     $this->assertEqual($condition_negated->summary(), new FormattableMarkup('The current component library is not @component_library', ['@component_library' => 'ec']));
 
     // Assert condition values, by default the component library set to "ec".
-    $this->assertTrue($condition->execute());
-    $this->assertFalse($condition_negated->execute());
+    $this->assertTrue($condition->execute(), 'Condition asserting that component library is "ec" should be true.');
+    $this->assertTrue($condition_empty->execute(), 'Condition that has no component library value set should always be true.');
+    $this->assertFalse($condition_negated->execute(), 'Condition asserting that component library is not "ec" should be false.');
 
     // Change component library to "eu" and assert new condition execution.
     $this->config('oe_theme.settings')->set('component_library', 'eu')->save();
-    $this->assertFalse($condition->execute());
-    $this->assertTrue($condition_negated->execute());
+    $this->assertFalse($condition->execute(), 'Condition asserting that component library is "ec" should be false.');
+    $this->assertTrue($condition_empty->execute(), 'Condition that has no component library value set should always be true.');
+    $this->assertTrue($condition_negated->execute(), 'Condition asserting that component library is not "ec" should be true.');
   }
 
 }

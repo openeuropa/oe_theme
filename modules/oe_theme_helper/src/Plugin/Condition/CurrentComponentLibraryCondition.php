@@ -72,10 +72,14 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    // We allow for an empty value to be set. By doing that we make sure that
+    // no settings about this condition is actually saved in block visibility
+    // settings, unless the user explicitly sets one.
     $form['component_library'] = [
       '#type' => 'select',
       '#title' => $this->t('Component library'),
       '#options' => [
+        '' => $this->t('- Any -'),
         'ec' => $this->t('European Commission'),
         'eu' => $this->t('European Union'),
       ],
@@ -97,6 +101,10 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function evaluate() {
+    if (empty($this->configuration['component_library'])) {
+      return TRUE;
+    }
+
     $component_library = $this->configFactory->get('oe_theme.settings')->get('component_library');
     return $component_library === $this->configuration['component_library'];
   }
@@ -105,6 +113,10 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function summary() {
+    if (empty($this->configuration['component_library'])) {
+      return $this->t('The current component library is set to any value.');
+    }
+
     if ($this->isNegated()) {
       return $this->t('The current component library is not @component_library', ['@component_library' => $this->configuration['component_library']]);
     }
