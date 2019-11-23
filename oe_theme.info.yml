@@ -31,6 +31,7 @@ config_devel:
     - responsive_image.styles.oe_theme_main_content
   optional:
     - block.block.oe_theme_corporate_footer
+    - block.block.oe_theme_eu_corporate_footer
     - block.block.oe_theme_language_switcher
     - block.block.oe_theme_main_navigation
     - block.block.oe_theme_main_page_content
