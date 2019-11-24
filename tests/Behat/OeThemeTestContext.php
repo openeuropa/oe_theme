@@ -300,12 +300,12 @@ class OeThemeTestContext extends RawDrupalContext {
    * @Given the theme is configured to use the :component_library style
    */
   public function setCorporateLibrary(string $component_library): void {
-    $component_libary_name = [
+    $component_library_name = [
       'European Commission' => 'ec',
       'European Union' => 'eu',
     ];
     \Drupal::configFactory()->getEditable('oe_theme.settings')
-      ->set('component_library', $component_libary_name[$component_library])->save();
+      ->set('component_library', $component_library_name[$component_library])->save();
   }
 
   /**
