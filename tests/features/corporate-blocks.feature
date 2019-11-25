@@ -24,7 +24,7 @@ Feature: Corporate blocks feature
       | the home page               |
       | the user registration page  |
 
-  Scenario Outline: The European Commission footer or the European Union one si shown depending on the which style is chosen.
+  Scenario Outline: Changing the site's style will display either the European Commission or the European Union footer.
     Given I am an anonymous user
     When I am on "<page>"
     Then I should see the "European Commission" footer
