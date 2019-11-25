@@ -329,7 +329,7 @@ class OeThemeTestContext extends RawDrupalContext {
   }
 
   /**
-   * Assert presence of absence of footer blocks.
+   * Assert presence or absence of footer blocks.
    *
    * @param string $component_library
    *   Component library name: either 'European Commission' or 'European Union'.

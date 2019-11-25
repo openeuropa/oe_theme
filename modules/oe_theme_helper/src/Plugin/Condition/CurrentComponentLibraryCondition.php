@@ -115,7 +115,7 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    */
   public function summary() {
     if (empty($this->configuration['component_library'])) {
-      return $this->t('The current component library is set to any value.');
+      return $this->t('The current component library can be set to anything');
     }
 
     if ($this->isNegated()) {

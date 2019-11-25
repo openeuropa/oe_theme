@@ -26,7 +26,7 @@ class CurrentComponentLibraryConditionTest extends AbstractKernelTestBase {
     $condition_negated->setConfiguration(['component_library' => 'ec', 'negate' => TRUE]);
 
     $this->assertEqual($condition->summary(), new FormattableMarkup('The current component library is @component_library', ['@component_library' => 'ec']));
-    $this->assertEqual($condition_empty->summary(), new FormattableMarkup('The current component library is set to any value.', []));
+    $this->assertEqual($condition_empty->summary(), new FormattableMarkup('The current component library can be set to anything', []));
     $this->assertEqual($condition_negated->summary(), new FormattableMarkup('The current component library is not @component_library', ['@component_library' => 'ec']));
 
     // Assert condition values, by default the component library set to "ec".
