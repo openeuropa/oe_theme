@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Condition;
 
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -128,9 +129,7 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    $tags = parent::getCacheTags();
-    $tags[] = 'config:oe_theme.settings';
-    return $tags;
+    return Cache::mergeTags(['config:oe_theme.settings'], parent::getCacheTags());
   }
 
 }
