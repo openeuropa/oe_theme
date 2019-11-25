@@ -14,13 +14,13 @@
     <div class="ecl-container">
       <div class="ecl-row">
         <section class="ecl-footer__section ecl-col-12 ecl-col-md-4">
-          <h1 class="ecl-footer__section-title">{{ 'Contact the EU'|t }}</h1>
+          <h1 class="ecl-footer__section-title">{{ corporate_footer.contact_title }}</h1>
           <ul class="ecl-footer__section-list">
             {% for item in corporate_footer.contact %}
               <li class="ecl-footer__section-item">{{ item|render|replace({'<a': '<a class="ecl-footer__section-link ecl-link ecl-link--standalone"'})|raw }}</li>
             {% endfor %}
           </ul>
-          <h1 class="ecl-footer__section-title">{{ 'Find an EU social media account'|t }}</h1>
+          <h1 class="ecl-footer__section-title">{{ corporate_footer.social_media_title }}</h1>
           <ul class="ecl-footer__section-list">
             {% for item in corporate_footer.social_media %}
               <li class="ecl-footer__section-item"><span><a href="{{ item.href }}" class="ecl-footer__section-link ecl-link ecl-link--standalone">{{ item.label }}</a></span></li>
@@ -28,7 +28,7 @@
           </ul>
         </section>
         <section class="ecl-footer__section ecl-col-12 ecl-col-md-8">
-          <h1 class="ecl-footer__section-title">{{ 'EU institution'|t }}</h1>
+          <h1 class="ecl-footer__section-title">{{ corporate_footer.institution_links_title }}</h1>
           <ul class="ecl-footer__section-list ecl-footer__columns">
             {% for item in corporate_footer.institution_links %}
               <li class="ecl-footer__section-item"><a href="{{ item.href }}" class="ecl-footer__section-link ecl-link ecl-link--standalone">{{ item.label }}</a></li>

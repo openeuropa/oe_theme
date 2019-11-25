@@ -15,9 +15,9 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
    * Test European Commission footer block rendering.
    */
   public function testEcFooterBlockRendering(): void {
-    // Override config "oe_corporate_blocks.data.footer" with test.
+    // Override config "oe_corporate_blocks.ec_data.footer" with test.
     /* @var $config_obj \Drupal\Core\Config\Config */
-    $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.data.footer');
+    $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.ec_data.footer');
     $test_data = $this->getFixtureContent('ec_footer.yml');
     $config_obj->setData($test_data);
     $config_obj->save();
@@ -129,7 +129,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(1)');
 
     $actual = $first_column->filter('h1.ecl-footer__section-title');
-    $this->assertEquals('Contact the EU', trim($actual->first()->text()));
+    $this->assertEquals('Contact title', trim($actual->first()->text()));
 
     $actual = $first_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(1)');
     $this->assertEquals('Contact 1 <a class="ecl-footer__section-link ecl-link ecl-link--standalone" href="#">link</a>', trim($actual->html()));
@@ -138,11 +138,11 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals('Contact 2 <a class="ecl-footer__section-link ecl-link ecl-link--standalone" href="#">link</a>', trim($actual->html()));
 
     $actual = $first_column->filter('h1.ecl-footer__section-title');
-    $this->assertEquals('Find an EU social media account', trim($actual->last()->text()));
+    $this->assertEquals('Social media title', trim($actual->last()->text()));
 
     $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(2)');
     $actual = $second_column->filter('h1.ecl-footer__section-title');
-    $this->assertEquals('EU institution', trim($actual->text()));
+    $this->assertEquals('Institution links title', trim($actual->text()));
 
     $actual = $second_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(1) > a');
     $this->assertEquals('https://europa.eu/institution_links1', $actual->attr('href'));
