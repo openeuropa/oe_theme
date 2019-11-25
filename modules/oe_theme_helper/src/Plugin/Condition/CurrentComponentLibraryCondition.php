@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a configurable 'Current component library' condition.
  *
- * This condition check if the current component library is equal to a given
+ * This condition checks if the current component library is equal to a given
  * value.
  *
  * @Condition(
