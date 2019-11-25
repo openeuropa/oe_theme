@@ -28,7 +28,7 @@
         "openeuropa/code-review": "~1.0.0-beta4",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_content": "~1.4",
-        "openeuropa/oe_corporate_blocks": "dev-2.x",
+        "openeuropa/oe_corporate_blocks": "~2.1",
         "openeuropa/oe_media": "~1.0",
         "openeuropa/oe_multilingual": "~1.0",
         "openeuropa/oe_paragraphs": "~1.1",
@@ -41,6 +41,9 @@
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
         "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
     ],
+    "conflict": {
+        "openeuropa/oe_corporate_blocks": "<2.1.0"
+    },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
