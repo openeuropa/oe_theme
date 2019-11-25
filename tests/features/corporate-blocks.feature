@@ -24,18 +24,23 @@ Feature: Corporate blocks feature
       | the home page               |
       | the user registration page  |
 
-  Scenario: The European Commission footer or the European Union one si shown depending on the which style is chosen.
+  Scenario Outline: The European Commission footer or the European Union one si shown depending on the which style is chosen.
     Given I am an anonymous user
-    When I am on "the home page"
+    When I am on "<page>"
     Then I should see "European Commission" footer
     And I should not see "European Union" footer
 
     When the theme is configured to use the "European Union" style
-    When I am on "the user registration page"
+    And I reload the page
     Then I should not see "European Commission" footer
     But I should see "European Union" footer instead
 
     When the theme is configured to use the "European Commission" style
-    When I am on "the home page"
+    And I reload the page
     Then I should not see "European Union" footer
     But I should see "European Commission" footer instead
+
+    Examples:
+      | page                        |
+      | the home page               |
+      | the user registration page  |

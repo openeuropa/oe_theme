@@ -43,16 +43,6 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
 }
 
 /**
- * Implements hook_preprocess_page().
- */
-function oe_theme_preprocess_page(array &$variables): void {
-  // Make sure page cache gets invalidated when theme settings change.
-  $cacheability = CacheableMetadata::createFromRenderArray($variables);
-  $cacheability->addCacheTags(['config:oe_theme.settings']);
-  $cacheability->applyTo($variables);
-}
-
-/**
  * Implements hook_preprocess().
  */
 function oe_theme_preprocess(&$variables) {
