@@ -276,4 +276,88 @@ class OeThemeTestContext extends RawDrupalContext {
     return reset($nodes);
   }
 
+  /**
+   * Assert given corporate footer presence on page.
+   *
+   * @Then I should see the :component_library footer( instead)
+   */
+  public function assertFooterBlockOnPage(string $component_library): void {
+    $this->assertFooter($component_library, TRUE);
+  }
+
+  /**
+   * Assert given corporate footer absence on page.
+   *
+   * @Then I should not see the :component_library footer( instead)
+   */
+  public function assertMissingFooterBlockOnPage(string $component_library): void {
+    $this->assertFooter($component_library, FALSE);
+  }
+
+  /**
+   * Set theme's corporate library value.
+   *
+   * @Given the theme is configured to use the :component_library style
+   */
+  public function setCorporateLibrary(string $component_library): void {
+    $component_library_name = [
+      'European Commission' => 'ec',
+      'European Union' => 'eu',
+    ];
+    \Drupal::configFactory()->getEditable('oe_theme.settings')
+      ->set('component_library', $component_library_name[$component_library])->save();
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    // Static caches are typically cleared at the end of the request since a
+    // typical web request is short lived and the process disappears when the
+    // page is delivered. But if a Behat test is using DrupalContext then Drupal
+    // will be bootstrapped early on (in the BeforeSuiteScope step). This starts
+    // a request which is not short lived, but can live for several minutes
+    // while the tests run. During the lifetime of this request there will be
+    // steps executed that do requests of their own, changing the state of the
+    // Drupal site. This does not however update any of the statically cached
+    // data of the parent request, so this is totally unaware of the changes.
+    // This causes unexpected behaviour like the failure to invalidate some
+    // caches because DatabaseCacheTagsChecksum::invalidateTags() keeps a local
+    // storage of which cache tags were invalidated, and this is not reset in
+    // time.
+    //
+    // We have a step in EWCMS that does the same thing, ideally we would need
+    // to port this in our traits and remove it from here.
+    // @todo: reuse reset check sums once available as a trait.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
+  }
+
+  /**
+   * Assert presence or absence of footer blocks.
+   *
+   * @param string $component_library
+   *   Component library name: either 'European Commission' or 'European Union'.
+   * @param bool $presence
+   *   Wheres presence (TRUE) or absence (FALSE) should be asserted.
+   */
+  public function assertFooter(string $component_library, bool $presence): void {
+    // Map component library with the expected first footer title.
+    // This is necessary as the ECL gives us no other ways of determining
+    // which footer is which.
+    $expected_title = [
+      'European Commission' => 'European Commission',
+      'European Union' => 'Contact the EU',
+    ];
+
+    // Make sure a corporate footer is present on the mapge.
+    $this->assertSession()->elementExists('css', 'h1.ecl-footer__section-title');
+
+    // Get the actual first footer title.
+    $page = $this->getSession()->getPage();
+    $actual_title = trim($page->find('css', 'h1.ecl-footer__section-title')->getText());
+
+    // Assert presence or absence of given footer block.
+    $title_found = $actual_title === $expected_title[$component_library];
+    if ($title_found !== $presence) {
+      $expectation = $presence ? 'present' : 'absent';
+      throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
+    }
+  }
+
 }

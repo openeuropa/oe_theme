@@ -20,17 +20,4 @@ abstract class CorporateBlocksTestBase extends AbstractKernelTestBase {
     'oe_corporate_blocks',
   ];
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installConfig(['oe_corporate_blocks']);
-  }
-
-  /**
-   * Test data for the corporate block.
-   */
-  abstract protected function getTestConfigData(): array;
-
 }

@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_corporate_blocks
+    - oe_theme_helper
+  theme:
+    - oe_theme
+id: oe_theme_eu_corporate_footer
+theme: oe_theme
+region: footer
+weight: 0
+provider: null
+plugin: oe_corporate_blocks_eu_footer
+settings:
+  id: oe_corporate_blocks_eu_footer
+  label: 'European Union corporate footer'
+  provider: oe_corporate_blocks
+  label_display: '0'
+visibility:
+  oe_theme_helper_current_component_library:
+    id: oe_theme_helper_current_component_library
+    component_library: eu
+    negate: false
+    context_mapping: {  }

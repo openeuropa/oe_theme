@@ -12,25 +12,25 @@ use Symfony\Component\DomCrawler\Crawler;
 class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
 
   /**
-   * Test footer block rendering.
+   * Test European Commission footer block rendering.
    */
-  public function testFooterBlockRendering(): void {
-    // Override config "oe_corporate_blocks.data.footer" with some custom data.
+  public function testEcFooterBlockRendering(): void {
+    // Override config "oe_corporate_blocks.ec_data.footer" with test.
     /* @var $config_obj \Drupal\Core\Config\Config */
-    $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.data.footer');
-    $test_data = $this->getTestConfigData();
+    $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.ec_data.footer');
+    $test_data = $this->getFixtureContent('ec_footer.yml');
     $config_obj->setData($test_data);
     $config_obj->save();
 
     // Setup and render footer block.
     $config = [
-      'id' => 'oe_footer',
+      'id' => 'oe_corporate_blocks_ec_footer',
       'label' => 'OpenEuropa footer block',
       'provider' => 'oe_corporate_blocks',
       'label_display' => '0',
     ];
 
-    $render = $this->buildBlock('oe_footer', $config);
+    $render = $this->buildBlock('oe_corporate_blocks_ec_footer', $config);
 
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
@@ -95,61 +95,72 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
   }
 
   /**
-   * {@inheritdoc}
+   * Test European Union footer block rendering.
    */
-  protected function getTestConfigData(): array {
-    return [
-      'about_ec_title' => 'First section title',
-      'about_ec_links' => [
-        [
-          'label' => '1st section 1st link',
-          'href' => 'http://example.com/1-1.html',
-        ],
-        [
-          'label' => '1st section 2nd link',
-          'href' => 'http://example.com/1-2.html',
-        ],
-      ],
-      'social_media_title' => 'Second section title',
-      'social_media_links' => [
-        [
-          'type' => 'social-network',
-          'icon' => 'facebook',
-          'link' => [
-            'label' => '2nd section 1st link',
-            'href' => 'http://example.com/2-1.html',
-          ],
-        ],
-        [
-          'type' => 'external',
-          'link' => [
-            'label' => '2nd section 2nd link',
-            'href' => 'http://example.com/2-2.html',
-          ],
-        ],
-      ],
-      'about_eu_title' => 'Third section title',
-      'about_eu_links' => [
-        [
-          'label' => '3rd section 1st link',
-          'href' => 'http://example.com/3-1.html',
-        ],
-        [
-          'label' => '3rd section 2nd link',
-          'href' => 'http://example.com/3-2.html',
-        ],
-      ],
-      'bottom_links' => [
-        [
-          'label' => '4th section 1st link',
-          'href' => 'http://example.com/4-1.html',
-        ],
-        [
-          'label' => '4th section 2nd link',
-          'href' => 'http://example.com/4-2.html',
-        ],
-      ],
+  public function testEuFooterBlockRendering(): void {
+    // Override config "oe_corporate_blocks.eu_data.footer" with test data.
+    /* @var $config_obj \Drupal\Core\Config\Config */
+    $config_obj = \Drupal::service('config.factory')->getEditable('oe_corporate_blocks.eu_data.footer');
+    $test_data = $this->getFixtureContent('eu_footer.yml');
+    $config_obj->setData($test_data);
+    $config_obj->save();
+
+    // Setup and render footer block.
+    $config = [
+      'id' => 'oe_corporate_blocks_eu_footer',
+      'label' => 'OpenEuropa footer block',
+      'provider' => 'oe_corporate_blocks',
+      'label_display' => '0',
     ];
+
+    $render = $this->buildBlock('oe_corporate_blocks_eu_footer', $config);
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    // Make sure that footer block is present.
+    $actual = $crawler->filter('footer.ecl-footer');
+    $this->assertCount(1, $actual);
+
+    // Make sure that footer block rendered correctly.
+    $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section');
+    $this->assertCount(2, $actual);
+
+    $first_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(1)');
+
+    $actual = $first_column->filter('h1.ecl-footer__section-title');
+    $this->assertEquals('Contact title', trim($actual->first()->text()));
+
+    $actual = $first_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(1)');
+    $this->assertEquals('Contact 1 <a class="ecl-footer__section-link ecl-link ecl-link--standalone" href="#">link</a>', trim($actual->html()));
+
+    $actual = $first_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(2)');
+    $this->assertEquals('Contact 2 <a class="ecl-footer__section-link ecl-link ecl-link--standalone" href="#">link</a>', trim($actual->html()));
+
+    $actual = $first_column->filter('h1.ecl-footer__section-title');
+    $this->assertEquals('Social media title', trim($actual->last()->text()));
+
+    $second_column = $crawler->filter('footer.ecl-footer div.ecl-footer__sections div.ecl-row section.ecl-footer__section:nth-child(2)');
+    $actual = $second_column->filter('h1.ecl-footer__section-title');
+    $this->assertEquals('Institution links title', trim($actual->text()));
+
+    $actual = $second_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(1) > a');
+    $this->assertEquals('https://europa.eu/institution_links1', $actual->attr('href'));
+    $this->assertEquals('Institution link 1', trim($actual->text()));
+
+    $actual = $second_column->filter('ul.ecl-footer__section-list li.ecl-footer__section-item:nth-child(2) > a');
+    $this->assertEquals('https://europa.eu/institution_links2', $actual->attr('href'));
+    $this->assertEquals('Institution link 2', trim($actual->text()));
+
+    $common = $crawler->filter('footer.ecl-footer .ecl-footer__common');
+
+    $actual = $common->filter('a:nth-child(1)');
+    $this->assertEquals('https://europa.eu/other_links1', $actual->attr('href'));
+    $this->assertEquals('Other link 1', trim($actual->text()));
+
+    $actual = $common->filter('a:nth-child(2)');
+    $this->assertEquals('https://europa.eu/other_links2', $actual->attr('href'));
+    $this->assertEquals('Other link 2', trim($actual->text()));
   }
 
 }

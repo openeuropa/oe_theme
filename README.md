@@ -69,6 +69,14 @@ same between the two libraries.
 * [OpenEuropa Theme Policy](/modules/oe_theme_content_policy/README.md)
 * [OpenEuropa Theme Publication](/modules/oe_theme_content_publication/README.md)
 
+## Corporate blocks
+
+When using the theme in conjunction with the [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks)
+component changing the component library will show a different footer block, namely:
+
+- The European Commission footer, shipping with a set of links and references that must be present on all European Commission sites. 
+- The European Union footer, shipping with a set of links and references that must be present on all European Union sites. 
+
 ## Image styles
 
 OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
