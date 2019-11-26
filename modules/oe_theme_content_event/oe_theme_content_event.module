@@ -42,13 +42,14 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // Get the summary report of the event.
   $variables['content']['report_summary'] = $node->get('oe_event_report_summary')->value;
 
-  // Prepare the full text for the description section.
-  $variables['content']['description'] = $node->get('body')->value;
-
   // Prepare the full text for the report section that is only visible after
   // the event.
   if (_oe_theme_content_event_is_date_passed($node)) {
     $variables['content']['report'] = $node->get('oe_event_report_text')->value;
+  }
+  else {
+    // Prepare the full text for the description section.
+    $variables['content']['description'] = $node->get('body')->value;
   }
 
   // Prepare the icons with text block.
@@ -468,11 +469,4 @@ function _oe_theme_content_event_is_date_passed(NodeInterface $node) {
   }
 
   return FALSE;
-}
-
-/**
- * Implements hook_preprocess_HOOK() for node--oe-event--teaser.html.twig.
- */
-function oe_theme_content_event_preprocess_node__oe_event__teaser(&$variables) {
-
 }
