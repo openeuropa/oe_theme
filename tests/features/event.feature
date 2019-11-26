@@ -64,6 +64,7 @@ Feature: Event content type.
     And I fill in "Languages" with "Hungarian"
 
     # Organiser field group.
+    When I uncheck "Organiser is internal"
     Then I fill in "Organiser name" with "Organiser name"
 
     # Event website field group.
@@ -197,6 +198,7 @@ Feature: Event content type.
     And I fill in "Name" with "Name of the venue"
 
     # Organiser field group.
+    When I uncheck "Organiser is internal"
     Then I fill in "Organiser name" with "Organiser name"
 
     # Description field group.
@@ -272,6 +274,7 @@ Feature: Event content type.
     And I fill in "Name" with "Name of the venue"
 
     # Organiser field group.
+    When I uncheck "Organiser is internal"
     Then I fill in "Organiser name" with "Organiser name"
 
     # Description field group.
