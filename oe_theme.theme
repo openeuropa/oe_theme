@@ -263,10 +263,24 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
     ];
   }
 
+  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+}
+
+/**
+ * Implements hook_preprocess_oe_corporate_blocks_eu_footer().
+ */
+function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
+  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+}
+
+/**
+ * Prepare data for site specific footer preprocess.
+ */
+function _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer(array $variables): array {
   // Site specific footer.
   $site_specific_footer = $variables['site_specific_footer'];
   if (empty($site_specific_footer)) {
-    return;
+    return [];
   }
   if (!empty($site_specific_footer['site_identity'])) {
     $identity['title'] = $site_specific_footer['site_identity'];
@@ -300,7 +314,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
     }
   }
 
-  $variables['custom_footer'] = $identity ?? [];
+  return $identity ?? [];
 }
 
 /**

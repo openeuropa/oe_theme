@@ -100,7 +100,7 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
       $config_factory->getEditable($config_name)->setData($config_data)->save();
     }
     \Drupal::configFactory()->getEditable('system.site')->set('name', 'Site Identity')->save();
-    $render = $this->buildBlock('oe_footer', $config);
+    $render = $this->buildBlock('oe_corporate_blocks_ec_footer', $config);
 
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
@@ -212,6 +212,53 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $actual = $common->filter('a:nth-child(2)');
     $this->assertEquals('https://europa.eu/other_links2', $actual->attr('href'));
     $this->assertEquals('Other link 2', trim($actual->text()));
+
+    /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+    $config_factory = \Drupal::service('config.factory');
+    $custom_footer_data = $this->getTestCustomFooterConfigsData();
+    foreach ($custom_footer_data as $config_name => $config_data) {
+      $config_factory->getEditable($config_name)->setData($config_data)->save();
+    }
+    \Drupal::configFactory()->getEditable('system.site')->set('name', 'Site Identity')->save();
+    $render = $this->buildBlock('oe_corporate_blocks_eu_footer', $config);
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    // Make sure that custom footer block is present.
+    $custom_footer = $crawler->filter('footer.ecl-footer section.ecl-footer__identity');
+    $this->assertCount(1, $custom_footer);
+
+    // Make sure that footer block rendered correctly.
+    $identity = $crawler->filter('footer.ecl-footer section.ecl-footer__identity h1.ecl-footer__identity-title');
+    $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($identity->text()));
+
+    $custom_footer_social = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row .ecl-col-12.ecl-col-md-6:nth-child(1)');
+
+    $custom_footer_social_title = $custom_footer_social->filter('span.ecl-footer__identity-label');
+    $this->assertEquals('Follow us:', trim($custom_footer_social_title->text()));
+
+    $social_link1 = $custom_footer_social->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $social_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link1->text())));
+
+    $social_link2 = $custom_footer_social->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $social_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link2->text())));
+
+    $social_link3 = $custom_footer_social->filter('a')->eq(2);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $social_link3->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link3->text())));
+
+    $custom_footer_other_links = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row .ecl-col-12.ecl-col-md-6:nth-child(2)');
+
+    $other_link1 = $custom_footer_other_links->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['url'], $other_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['label'], preg_replace('/[^[:print:]]/', '', trim($other_link1->text())));
+
+    $other_link2 = $custom_footer_other_links->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['url'], $other_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['label'], preg_replace('/[^[:print:]]/', '', trim($other_link2->text())));
   }
 
   /**

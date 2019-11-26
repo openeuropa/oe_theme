@@ -10,6 +10,41 @@
  */
 #}
 <footer class="ecl-footer ecl-footer--updated">
+  {% if custom_footer %}
+  <section class="ecl-footer__identity">
+    <div class="ecl-container"><h1 class="ecl-footer__identity-title">{{ custom_footer.title }}</h1>
+      <div class="ecl-row">
+        <div class="ecl-footer__identity-follow ecl-col-12 ecl-col-md-6">
+          <span class="ecl-footer__identity-label">{{ custom_footer.follow.label }}</span>
+          {% for item in custom_footer.follow.links %}
+            {% include '@ecl-twig/ec-component-link/ecl-link.html.twig' with item|merge({
+              link: item.link|default({})|merge({
+                type: 'standalone',
+              }),
+              icon: item.icon|default({})|merge({
+                size: 'xs',
+              }),
+              extra_classes: 'ecl-footer__identity-link'
+            }) only %}
+          {% endfor %}
+        </div>
+        <div class="ecl-footer__identity-info ecl-col-12 ecl-col-md-6">
+          {% for item in custom_footer.info %}
+            {% include '@ecl-twig/ec-component-link/ecl-link.html.twig' with item|merge({
+              link: item.link|default({})|merge({
+                type: 'standalone',
+              }),
+              icon: item.icon|default({})|merge({
+                size: 'xs',
+              }),
+              extra_classes: 'ecl-footer__identity-link'
+            }) only %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
   <div class="ecl-footer__sections">
     <div class="ecl-container">
       <div class="ecl-row">
