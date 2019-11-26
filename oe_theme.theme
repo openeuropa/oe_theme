@@ -263,17 +263,17 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
     ];
   }
 
-  // Custom footer.
-  $custom_footer = $variables['custom_footer'];
-  if (empty($custom_footer)) {
+  // Site specific footer.
+  $site_specific_footer = $variables['site_specific_footer'];
+  if (empty($site_specific_footer)) {
     return;
   }
-  if (!empty($custom_footer['site_identity'])) {
-    $identity['title'] = $custom_footer['site_identity'];
+  if (!empty($site_specific_footer['site_identity'])) {
+    $identity['title'] = $site_specific_footer['site_identity'];
   }
-  if (!empty($custom_footer['social_links'])) {
+  if (!empty($site_specific_footer['social_links'])) {
     $identity['follow'] = ['label' => t('Follow us:')];
-    foreach ($custom_footer['social_links'] as $item) {
+    foreach ($site_specific_footer['social_links'] as $item) {
       $identity['follow']['links'][] = [
         'link' => [
           'label' => $item['label'],
@@ -289,8 +289,8 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
     }
   }
 
-  if (!empty($custom_footer['other_links'])) {
-    foreach ($custom_footer['other_links'] as $item) {
+  if (!empty($site_specific_footer['other_links'])) {
+    foreach ($site_specific_footer['other_links'] as $item) {
       $identity['info'][] = [
         'link' => [
           'label' => $item['label'],
@@ -1225,21 +1225,4 @@ function oe_theme_preprocess_pattern_link(array &$variables): void {
 function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
   // Pattern preview will pass along a \Drupal\Core\Render\Markup object.
   $variables['url'] = Url::fromUserInput((string) $variables['url']);
-}
-
-/**
- * Implements template_preprocess_oe_corporate_blocks_footer().
- *
- * Adapting data for ECL 1 custom footer.
- */
-function oe_theme_preprocess_oe_corporate_blocks_footer(&$variables) {
-  if (!empty($variables['custom_footer']['social_links'])) {
-    $variables['custom_footer']['social_links']['label'] = t('Follow us:');
-    foreach ($variables['custom_footer']['social_links']['links'] as &$link) {
-      if (!empty($link['link']['social_network'])) {
-        $link['type'] = 'social-network';
-        $link['icon'] = $link['link']['social_network'];
-      }
-    }
-  }
 }
