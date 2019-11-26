@@ -1,10 +1,21 @@
 # Change Log
 
+## [2.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/2.0.0-beta2) (2019-11-26)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-beta1...2.0.0-beta2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2391: Switch between the EC and EU footer blocks. [\#379](https://github.com/openeuropa/oe_theme/pull/379) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2480: Add ECL Editor preset. [\#378](https://github.com/openeuropa/oe_theme/pull/378) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2509: Use media title for document name. [\#374](https://github.com/openeuropa/oe_theme/pull/374) ([dxvargas](https://github.com/dxvargas))
+- OPENEUROPA-2485: Theme Text with Featured media paragraph. [\#363](https://github.com/openeuropa/oe_theme/pull/363) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [2.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/2.0.0-beta1) (2019-11-20)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-alpha4...2.0.0-beta1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.0.0-beta1. [\#376](https://github.com/openeuropa/oe_theme/pull/376) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2480: Fix inpage navigation. [\#375](https://github.com/openeuropa/oe_theme/pull/375) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2482: Add 4 / 6 columns layout and a link pattern [\#373](https://github.com/openeuropa/oe_theme/pull/373) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2480: Prepare for Theme 2.0.0-beta1 release [\#372](https://github.com/openeuropa/oe_theme/pull/372) ([ademarco](https://github.com/ademarco))
