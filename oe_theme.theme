@@ -12,6 +12,9 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
+use Drupal\media\Entity\MediaType;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -838,6 +841,60 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
   }
 
   $variables['links'] = $links;
+}
+
+/**
+ * Implements hook_preprocess_paragraph() for paragraph--oe-text-feature-media.html.twig.
+ */
+function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables): void {
+  $variables['image'] = [];
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Bail out if there is no media present.
+  if ($paragraph->get('field_oe_media')->isEmpty()) {
+    return;
+  }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $paragraph->get('field_oe_media')->entity;
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability->addCacheableDependency($media);
+
+  $source = $media->getSource();
+  // We only support images and avportal photos for now.
+  if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  // If it's a media source we support, fetch the required data.
+  $media_type = MediaType::load($media->bundle());
+  $source_field = $source->getSourceFieldDefinition($media_type);
+  $field_name = $source_field->getName();
+  $source_value = $source->getSourceFieldValue($media);
+
+  if ($source instanceof MediaAvPortalSourceInterface) {
+    $uri = 'avportal://' . $source_value . '.jpg';
+  }
+
+  if ($source instanceof Image) {
+    /** @var \Drupal\file\Entity\File $file */
+    $file = $media->get($field_name)->entity;
+    $uri = $file->getFileUri();
+    $cacheability->addCacheableDependency($file);
+  }
+  $variables['image'] = [
+    'src' => file_create_url($uri),
+    'alt' => $media->get($field_name)->alt,
+  ];
+
+  $cacheability->applyTo($variables);
 }
 
 /**

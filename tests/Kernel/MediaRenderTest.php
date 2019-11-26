@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\media\Entity\Media;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -15,7 +14,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
   /**
    * The media storage.
    *
-   * @var Drupal\media\MediaStorage
+   * @var \Drupal\media\MediaStorage
    */
   protected $mediaStorage;
 
@@ -64,7 +63,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = Media::create([
+    $media = $this->mediaStorage->create([
       'bundle' => 'document',
       'name' => 'test document',
       'oe_media_file' => [
