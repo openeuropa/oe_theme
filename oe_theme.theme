@@ -879,21 +879,18 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   $field_name = $source_field->getName();
   $source_value = $source->getSourceFieldValue($media);
 
-  // Retrieve the image style we want to apply.
-  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_list_item_featured');
-
   if ($source instanceof MediaAvPortalSourceInterface) {
-    $url = $style->buildUrl('avportal://' . $source_value . '.jpg');
+    $uri = 'avportal://' . $source_value . '.jpg';
   }
 
   if ($source instanceof Image) {
     /** @var \Drupal\file\Entity\File $file */
     $file = $media->get($field_name)->entity;
-    $url = $style->buildUrl($file->getFileUri());
+    $uri = $file->getFileUri();
     $cacheability->addCacheableDependency($file);
   }
   $variables['image'] = [
-    'src' => $url,
+    'src' => file_create_url($uri),
     'alt' => $media->get($field_name)->alt,
   ];
 
