@@ -126,6 +126,8 @@ Feature: Event content type.
     And I should see the text "Where"
     And I should see the text "Rue belliard 28, Brussels, 1000 Belgium"
     And I should see the text "Live stream"
+    And I should see the text "Online link"
+    And I should see the link "Online link"
     And I should see the text "22 February 2019, 02:22 CET"
     And I should see the text "Languages"
     And I should see the text "Hungarian"
@@ -228,7 +230,7 @@ Feature: Event content type.
     And I fill in "Start date" with the date "02/21/2019"
     And I press "Save"
 
-    Then I should not see the text "21 February 2019, 02:21 to 21 February 2032"
+    Then I should see the text "21 February 2019, 02:21 CET to 21 February 2032"
     And I should not see the text "Report"
     And I should not see the text "Report text paragraph"
     And I should not see the text "Report summary text"
@@ -236,7 +238,7 @@ Feature: Event content type.
     And I should see the text "Full text paragraph"
     And I should see the text "Description summary text"
 
-  @javascript @cleanup:media @av_portal @run
+  @javascript @cleanup:media @av_portal
   Scenario: Registration button title changes according to the dates of the registration.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, administer event venue entities, administer event profile entities, view the administration theme" permission
 
