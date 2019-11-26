@@ -183,6 +183,11 @@ function _oe_theme_content_event_prepare_practical_information(NodeInterface $no
       'label' => t('Live stream'),
       'body' => $date_formatter->format($livestream_date, 'oe_theme_event_date_hour_timezone'),
     ];
+    $render_array = $node->get('oe_event_online_link')->view(['label' => 'hidden']);
+    $practical_information[] = [
+      'label' => t('Online link'),
+      'body' => $renderer->render($render_array),
+    ];
   }
   // Get the list of languages and render it as plain text.
   $render_array = $node->get('oe_event_languages')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
@@ -375,9 +380,9 @@ function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $no
 
   // Create the event date string depending on if it is on the same day.
   $event_date_string = $event_dates->isSameDate() ?
-    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour') :
+    $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour_timezone') :
     t('@start_date to @end_date', [
-      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour'),
+      '@start_date' => $date_formatter->format($event_dates->getStartTime(), 'oe_theme_event_date_hour_timezone'),
       '@end_date' => $date_formatter->format($event_dates->getEndTime(), 'oe_theme_event_date'),
     ]);
 
