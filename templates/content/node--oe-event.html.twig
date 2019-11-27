@@ -10,9 +10,9 @@
       {{ pattern('icons_with_text', content.icons_with_text) }}
     </div>
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-2xl ecl-u-mt-md-none ecl-editor">
-    {{ content.report is not empty ? content.report_summary : content.description_summary }}
+    {{ content.report_summary ? content.report_summary : content.description_summary }}
     <p class="ecl-u-type-paragraph ecl-u-mb-none">
-      <a href="#{{ content.report is not empty ? 'report' : 'description' }}" class="ecl-u-mt-l ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-after"><span class="ecl-link__label">Read more</span></a>
+      <a href="#{{ content.report_summary ? 'report' : 'description' }}" class="ecl-u-mt-l ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-after"><span class="ecl-link__label">Read more</span></a>
     </p>
   </div>
 </div>
@@ -28,41 +28,23 @@
 {% if content.practical_information %}
   <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Practical information'|t }}</h2>
   <div class="ecl-row">
-    <div class="ecl-col-12">
+    <div class="ecl-col-12 ecl-editor">
       {{ pattern('field_list', content.practical_information, 'horizontal') }}
     </div>
   </div>
 {% endif %}
 {% if content.social_media_links %}
   <div class="ecl-row">
-    <div class="ecl-col-12 ecl-col-md-6">
+    <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-2xl">
       {# Social media links #}
       {{ pattern('social_media_links_horizontal', content.social_media_links) }}
     </div>
   </div>
 {% endif %}
 
-{# Description and Report #}
-{% if content.featured_media or content.description or content.report %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l" id="{{ content.report is not empty ? 'report' : 'description' }}">{{ content.report is not empty ? 'Report'|t : 'Description'|t }}</h2>
-  <div class="ecl-row">
-    {% if content.featured_media %}
-      <div class="ecl-col-12 ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-l ecl-u-mb-md-none">
-        <figure class="ecl-media-container">
-          {{ pattern('file_image', content.featured_media) }}
-          {% if content.featured_media.legend %}
-            <figcaption class="ecl-media-container__caption">{{ content.featured_media.legend }}</figcaption>
-          {% endif %}
-        </figure>
-      </div>
-    {% endif %}
-
-    {% if content.description or content.report %}
-      <div class="ecl-col-12 {{ content.featured_media is not empty ? 'ecl-col-md-6 '}}ecl-editor">
-        {{ content.report is not empty ? content.report : content.description }}
-      </div>
-    {% endif %}
-  </div>
+{# Text with featured media #}
+{% if content.featured%}
+  {{ pattern('text_featured_media', content.featured) }}
 {% endif %}
 
 {# Contacts #}
