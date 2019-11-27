@@ -40,15 +40,15 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // Prepare the texts with featured media.
   if (_oe_theme_content_event_is_date_passed($node)) {
     $variables['content']['featured']['title'] = t('Report');
-    $variables['content']['featured']['text'] = $node->get('oe_event_report_text')->value;
+    $variables['content']['featured']['text']['#markup'] = $node->get('oe_event_report_text')->value;
     // Get the summary report of the event.
-    $variables['content']['report_summary'] = $node->get('oe_event_report_summary')->value;
+    $variables['content']['report_summary']['#markup'] = $node->get('oe_event_report_summary')->value;
   }
   else {
     $variables['content']['featured']['title'] = t('Description');
-    $variables['content']['featured']['text'] = $node->get('body')->value;
+    $variables['content']['featured']['text']['#markup'] = $node->get('body')->value;
     // Get the summary description of the event.
-    $variables['content']['description_summary'] = $node->get('oe_event_description_summary')->value;
+    $variables['content']['description_summary']['#markup'] = $node->get('oe_event_description_summary')->value;
   }
 
   // Prepare the icons with text block.
