@@ -18,7 +18,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  *
  * This is a base plugin as it should be extended to return extra metadata
  * for the node.
- * phpcs:disable Drupal.Commenting.Deprecated
  */
 abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implements ContainerFactoryPluginInterface {
 
