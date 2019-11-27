@@ -545,7 +545,7 @@
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link .ecl-link__label': "View all"
+      'a.ecl-link': "View all"
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -574,7 +574,7 @@
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link .ecl-link__label': "View all"
+      'a.ecl-link': "View all"
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
