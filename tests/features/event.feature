@@ -1,4 +1,4 @@
-@api
+@api @event
 Feature: Event content type.
   As a user
   I want to access the content of a event
