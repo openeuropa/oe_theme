@@ -92,6 +92,57 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
 
     $actual = $crawler->filter('footer.ecl-footer div.ecl-footer__common div.ecl-footer__common-container a.ecl-footer__common-link');
     $this->assertCount(2, $actual);
+
+    /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+    $config_factory = \Drupal::service('config.factory');
+    $custom_footer_data = $this->getTestCustomFooterConfigsData();
+    foreach ($custom_footer_data as $config_name => $config_data) {
+      $config_factory->getEditable($config_name)->setData($config_data)->save();
+    }
+    \Drupal::configFactory()->getEditable('system.site')->set('name', 'Site Identity')->save();
+    $render = $this->buildBlock('oe_corporate_blocks_ec_footer', $config);
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    // Make sure that custom footer block is present.
+    $custom_footer = $crawler->filter('footer.ecl-footer section.ecl-footer__identity');
+    $this->assertCount(1, $custom_footer);
+
+    // Make sure that footer block rendered correctly.
+    $custom_footer_columns = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12');
+    $this->assertCount(3, $custom_footer_columns);
+
+    $first_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(1)');
+
+    $first_column_title = $first_column->filter('h1.ecl-footer__identity-title');
+    $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($first_column_title->text()));
+
+    $second_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(2)');
+    $second_column_title = $second_column->filter('span.ecl-footer__identity-label');
+    $this->assertEquals('Follow us:', trim($second_column_title->text()));
+
+    $second_column_link1 = $second_column->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $second_column_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], preg_replace('/[^[:print:]]/', '', trim($second_column_link1->text())));
+
+    $second_column_link2 = $second_column->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $second_column_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], preg_replace('/[^[:print:]]/', '', trim($second_column_link2->text())));
+
+    $second_column_link3 = $second_column->filter('a')->eq(2);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $second_column_link3->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], preg_replace('/[^[:print:]]/', '', trim($second_column_link3->text())));
+
+    $third_column = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row div.ecl-col-12:nth-child(3)');
+
+    $third_column_link1 = $third_column->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['url'], $third_column_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['label'], preg_replace('/[^[:print:]]/', '', trim($third_column_link1->text())));
+
+    $third_column_link2 = $third_column->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['url'], $third_column_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['label'], preg_replace('/[^[:print:]]/', '', trim($third_column_link2->text())));
   }
 
   /**
@@ -161,6 +212,109 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $actual = $common->filter('a:nth-child(2)');
     $this->assertEquals('https://europa.eu/other_links2', $actual->attr('href'));
     $this->assertEquals('Other link 2', trim($actual->text()));
+
+    /** @var \Drupal\Core\Config\ConfigFactoryInterface $config_factory */
+    $config_factory = \Drupal::service('config.factory');
+    $custom_footer_data = $this->getTestCustomFooterConfigsData();
+    foreach ($custom_footer_data as $config_name => $config_data) {
+      $config_factory->getEditable($config_name)->setData($config_data)->save();
+    }
+    \Drupal::configFactory()->getEditable('system.site')->set('name', 'Site Identity')->save();
+    $render = $this->buildBlock('oe_corporate_blocks_eu_footer', $config);
+
+    $html = (string) $this->container->get('renderer')->renderRoot($render);
+    $crawler = new Crawler($html);
+
+    // Make sure that custom footer block is present.
+    $custom_footer = $crawler->filter('footer.ecl-footer section.ecl-footer__identity');
+    $this->assertCount(1, $custom_footer);
+
+    // Make sure that footer block rendered correctly.
+    $identity = $crawler->filter('footer.ecl-footer section.ecl-footer__identity h1.ecl-footer__identity-title');
+    $this->assertEquals(\Drupal::configFactory()->getEditable('system.site')->get('name'), trim($identity->text()));
+
+    $custom_footer_social = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row .ecl-col-12.ecl-col-md-6:nth-child(1)');
+
+    $custom_footer_social_title = $custom_footer_social->filter('span.ecl-footer__identity-label');
+    $this->assertEquals('Follow us:', trim($custom_footer_social_title->text()));
+
+    $social_link1 = $custom_footer_social->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['url'], $social_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.facebook']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link1->text())));
+
+    $social_link2 = $custom_footer_social->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['url'], $social_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.twitter']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link2->text())));
+
+    $social_link3 = $custom_footer_social->filter('a')->eq(2);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['url'], $social_link3->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.social.other_social_media']['label'], preg_replace('/[^[:print:]]/', '', trim($social_link3->text())));
+
+    $custom_footer_other_links = $crawler->filter('footer.ecl-footer section.ecl-footer__identity div.ecl-row .ecl-col-12.ecl-col-md-6:nth-child(2)');
+
+    $other_link1 = $custom_footer_other_links->filter('a')->eq(0);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['url'], $other_link1->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.contact']['label'], preg_replace('/[^[:print:]]/', '', trim($other_link1->text())));
+
+    $other_link2 = $custom_footer_other_links->filter('a')->eq(1);
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['url'], $other_link2->attr('href'));
+    $this->assertEquals($custom_footer_data['oe_corporate_blocks.footer_link.general.legal_notice']['label'], preg_replace('/[^[:print:]]/', '', trim($other_link2->text())));
+  }
+
+  /**
+   * Test data for the custom footer.
+   */
+  protected function getTestCustomFooterConfigsData(): array {
+    return [
+      'oe_corporate_blocks.footer_link.general.contact' => [
+        'langcode' => 'en',
+        'status' => TRUE,
+        'dependencies' => [],
+        'id' => 'contact',
+        'label' => 'Custom Contact',
+        'url' => 'https://ec.europa.eu/info/contact_en',
+        'weight' => -10,
+      ],
+      'oe_corporate_blocks.footer_link.general.legal_notice' => [
+        'langcode' => 'en',
+        'status' => TRUE,
+        'dependencies' => [],
+        'id' => 'legal_notice',
+        'label' => 'Custom Contact',
+        'url' => 'https://ec.europa.eu/info/legal-notice_en',
+        'weight' => -9,
+      ],
+      'oe_corporate_blocks.footer_link.social.facebook' => [
+        'langcode' => 'en',
+        'status' => TRUE,
+        'dependencies' => [],
+        'id' => 'facebook',
+        'social_network' => 'facebook',
+        'label' => 'Custom Facebook',
+        'url' => 'https://www.facebook.com/EuropeanCommission',
+        'weight' => -10,
+      ],
+      'oe_corporate_blocks.footer_link.social.other_social_media' => [
+        'langcode' => 'en',
+        'status' => TRUE,
+        'dependencies' => [],
+        'id' => 'other_social_media',
+        'social_network' => '',
+        'label' => 'Custom Other social media',
+        'url' => 'https://europa.eu/european-union/contact/social-networks_en#n:+i:4+e:1+t:+s',
+        'weight' => -8,
+      ],
+      'oe_corporate_blocks.footer_link.social.twitter' => [
+        'langcode' => 'en',
+        'status' => TRUE,
+        'dependencies' => [],
+        'id' => 'twitter',
+        'social_network' => 'twitter',
+        'label' => 'Custom Twitter',
+        'url' => 'https://twitter.com/EU_commission',
+        'weight' => -9,
+      ],
+    ];
   }
 
 }

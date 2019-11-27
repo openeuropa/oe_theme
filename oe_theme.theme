@@ -262,6 +262,59 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
       ],
     ];
   }
+
+  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+}
+
+/**
+ * Implements hook_preprocess_oe_corporate_blocks_eu_footer().
+ */
+function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
+  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+}
+
+/**
+ * Prepare data for site specific footer preprocess.
+ */
+function _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer(array $variables): array {
+  // Site specific footer.
+  $site_specific_footer = $variables['site_specific_footer'];
+  if (empty($site_specific_footer)) {
+    return [];
+  }
+  if (!empty($site_specific_footer['site_identity'])) {
+    $identity['title'] = $site_specific_footer['site_identity'];
+  }
+  if (!empty($site_specific_footer['social_links'])) {
+    $identity['follow'] = ['label' => t('Follow us:')];
+    foreach ($site_specific_footer['social_links'] as $item) {
+      $identity['follow']['links'][] = [
+        'link' => [
+          'label' => $item['label'],
+          'path' => $item['href'],
+          'icon_position' => !empty($item['social_network']) ? 'before' : 'after',
+        ],
+        'icon' => [
+          'path' => $variables['ecl_icon_path'],
+          'type' => !empty($item['social_network']) ? 'branded' : 'ui',
+          'name' => !empty($item['social_network']) ? $item['social_network'] : 'external',
+        ],
+      ];
+    }
+  }
+
+  if (!empty($site_specific_footer['other_links'])) {
+    foreach ($site_specific_footer['other_links'] as $item) {
+      $identity['info'][] = [
+        'link' => [
+          'label' => $item['label'],
+          'path' => $item['href'],
+        ],
+      ];
+    }
+  }
+
+  return $identity ?? [];
 }
 
 /**
