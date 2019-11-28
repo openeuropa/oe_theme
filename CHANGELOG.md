@@ -1,10 +1,20 @@
 # Change Log
 
+## [2.0.0](https://github.com/openeuropa/oe_theme/tree/2.0.0) (2019-11-28)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-beta2...2.0.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2557: Add wrapper around meta information on page header. [\#383](https://github.com/openeuropa/oe_theme/pull/383) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-0000: Remove missing component template and other deprecation before stable release [\#381](https://github.com/openeuropa/oe_theme/pull/381) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-2340: Implement site specific footer 2.x. [\#342](https://github.com/openeuropa/oe_theme/pull/342) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/2.0.0-beta2) (2019-11-26)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-beta1...2.0.0-beta2)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.0.0-beta2. [\#380](https://github.com/openeuropa/oe_theme/pull/380) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2391: Switch between the EC and EU footer blocks. [\#379](https://github.com/openeuropa/oe_theme/pull/379) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2480: Add ECL Editor preset. [\#378](https://github.com/openeuropa/oe_theme/pull/378) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2509: Use media title for document name. [\#374](https://github.com/openeuropa/oe_theme/pull/374) ([dxvargas](https://github.com/dxvargas))
