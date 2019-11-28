@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.event_profile.oe_event_contact.address
+    - field.field.event_profile.oe_event_contact.contact_type
+    - field.field.event_profile.oe_event_contact.email
+    - field.field.event_profile.oe_event_contact.phone_number
+    - oe_content_event.event_profile_type.oe_event_contact
+  module:
+    - address
+    - options
+id: event_profile.oe_event_contact.default
+targetEntityType: event_profile
+bundle: oe_event_contact
+mode: default
+content:
+  address:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: address_plain
+    region: content
+  contact_type:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  email:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  phone_number:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  langcode: true

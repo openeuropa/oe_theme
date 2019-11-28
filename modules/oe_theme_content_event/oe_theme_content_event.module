@@ -18,15 +18,6 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
- * Implements hook_theme_suggestions_alter().
- */
-function oe_content_event_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-  if ($hook === 'address_plain') {
-    $suggestions[] = 'address_plain__oe_event';
-  }
-}
-
-/**
  * Implements template_preprocess_node() for the Event node type.
  */
 function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
@@ -40,15 +31,15 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   // Prepare the texts with featured media.
   if (_oe_theme_content_event_is_date_passed($node)) {
     $variables['content']['featured']['title'] = t('Report');
-    $variables['content']['featured']['text']['#markup'] = $node->get('oe_event_report_text')->value;
+    $variables['content']['featured']['text'] = $variables['elements']['oe_event_report_text'];
     // Get the summary report of the event.
-    $variables['content']['report_summary']['#markup'] = $node->get('oe_event_report_summary')->value;
+    $variables['content']['report_summary'] = $variables['elements']['oe_event_report_summary'];
   }
   else {
     $variables['content']['featured']['title'] = t('Description');
-    $variables['content']['featured']['text']['#markup'] = $node->get('body')->value;
+    $variables['content']['featured']['text'] = $variables['elements']['body'];
     // Get the summary description of the event.
-    $variables['content']['description_summary']['#markup'] = $node->get('oe_event_description_summary')->value;
+    $variables['content']['description_summary'] = $variables['elements']['oe_event_description_summary'];
   }
 
   // Prepare the icons with text block.
@@ -58,7 +49,7 @@ function oe_theme_content_event_preprocess_node__oe_event(&$variables) {
   $variables['content']['registration_button'] = _oe_theme_content_event_prepare_registration_button($node);
 
   // Prepare the practical information list of fields.
-  $variables['content']['practical_information']['items'] = _oe_theme_content_event_prepare_practical_information($node);
+  $variables['content']['practical_information']['items'] = _oe_theme_content_event_prepare_practical_information($node, $variables);
 
   // Prepare the social media links pattern fields.
   $variables['content']['social_media_links'] = _oe_theme_content_event_prepare_social_media($node);
@@ -141,11 +132,13 @@ function _oe_theme_content_event_prepare_registration_button(NodeInterface $node
  *
  * @param \Drupal\node\NodeInterface $node
  *   The event node object.
+ * @param array $variables
+ *   The preprocess variables.
  *
  * @return array
  *   The prepared array.
  */
-function _oe_theme_content_event_prepare_practical_information(NodeInterface $node): array {
+function _oe_theme_content_event_prepare_practical_information(NodeInterface $node, array $variables): array {
   /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
   $date_formatter = \Drupal::service('date.formatter');
   /** @var \Drupal\Core\Render\Renderer $renderer */
@@ -177,27 +170,23 @@ function _oe_theme_content_event_prepare_practical_information(NodeInterface $no
   }
   // Get live streaming date if the online type is set to any value.
   if (!$node->get('oe_event_online_type')->isEmpty()) {
-    $livestream_date = $node->get('oe_event_online_time_start')->date->getTimestamp();
     $practical_information[] = [
       'label' => t('Live stream'),
-      'body' => $date_formatter->format($livestream_date, 'oe_theme_event_date_hour_timezone'),
+      'body' => $renderer->render($variables['elements']['oe_event_online_time_start']),
     ];
-    $render_array = $node->get('oe_event_online_link')->view(['label' => 'hidden']);
     $practical_information[] = [
       'label' => t('Online link'),
-      'body' => $renderer->render($render_array),
+      'body' => $renderer->render($variables['elements']['oe_event_online_link']),
     ];
   }
   // Get the list of languages and render it as plain text.
-  $render_array = $node->get('oe_event_languages')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
   $practical_information[] = [
     'label' => t('Languages'),
-    'body' => $renderer->render($render_array),
+    'body' => $renderer->render($variables['elements']['oe_event_languages']),
   ];
   // Get the organiser value and render as plain text.
   if ($node->get('oe_event_organiser_name')->isEmpty()) {
-    $render_array = $node->get('oe_event_organiser_internal')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
-    $organiser = $renderer->render($render_array);
+    $organiser = $renderer->render($variables['elements']['oe_event_organiser_internal']);
   }
   else {
     $organiser = $node->get('oe_event_organiser_name')->value;
@@ -208,10 +197,9 @@ function _oe_theme_content_event_prepare_practical_information(NodeInterface $no
   ];
   // Get the website and render as a link.
   if (!$node->get('oe_event_registration_capacity')->isEmpty()) {
-    $render_array = $node->get('oe_event_website')->view(['label' => 'hidden']);
     $practical_information[] = [
       'label' => t('Website'),
-      'body' => $renderer->render($render_array),
+      'body' => $renderer->render($variables['elements']['oe_event_website']),
     ];
   }
   // Get the registration capacity and render as plain text.
@@ -306,10 +294,11 @@ function _oe_theme_content_event_prepare_contacts(NodeInterface $node): array {
   $contact_types = FieldConfig::loadByName('event_profile', 'oe_event_contact', 'contact_type')->getSetting('allowed_values');
   foreach ($node->get('oe_event_contact')->getValue() as $reference) {
     if ($contact = EventProfile::load($reference['target_id'])) {
-      $render_array = $contact->get('address')->view(['label' => 'hidden', 'type' => 'address_plain']);
+      $render_array = $contact->get('address')->view('default');
       $contact_items[] = [
         'items' => [
           [
+            // We have to provide empty label if we don't want it appear.
             'label' => $contact->get('name')->isEmpty() ? '' : t('Name'),
             'body' => $contact->get('name')->value,
           ],
@@ -390,7 +379,7 @@ function _oe_theme_content_event_prepare_icons_with_text_block(NodeInterface $no
     ]);
 
   // Prepare the icons with text for rendering.
-  $render_array = $node->get('oe_subject')->view(['label' => 'hidden', 'settings' => ['link' => FALSE]]);
+  $render_array = $node->get('oe_subject')->view('default');
   $icons_text = [
     'items' => [
       [
@@ -452,7 +441,7 @@ function _oe_theme_content_event_get_rendered_address(NodeInterface $node) {
   /** @var \Drupal\Core\Render\Renderer $renderer */
   $renderer = \Drupal::service('renderer');
   // Get the location of the event from the Venue.
-  $render_array = $event_venue->get('postal_address')->view(['label' => 'hidden', 'type' => 'address_plain']);
+  $render_array = $event_venue->get('postal_address')->view('default');
 
   return $renderer->render($render_array);
 }

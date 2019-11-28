@@ -1,0 +1,325 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_author
+    - field.field.node.oe_event.oe_event_contact
+    - field.field.node.oe_event.oe_event_description_summary
+    - field.field.node.oe_event.oe_event_end_date
+    - field.field.node.oe_event.oe_event_entrance_fee
+    - field.field.node.oe_event.oe_event_featured_media
+    - field.field.node.oe_event.oe_event_featured_media_legend
+    - field.field.node.oe_event.oe_event_gallery
+    - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_online_description
+    - field.field.node.oe_event.oe_event_online_link
+    - field.field.node.oe_event.oe_event_online_time_end
+    - field.field.node.oe_event.oe_event_online_time_start
+    - field.field.node.oe_event.oe_event_online_type
+    - field.field.node.oe_event.oe_event_organiser_internal
+    - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_partner
+    - field.field.node.oe_event.oe_event_registration_capacity
+    - field.field.node.oe_event.oe_event_registration_end_date
+    - field.field.node.oe_event.oe_event_registration_start_date
+    - field.field.node.oe_event.oe_event_registration_status
+    - field.field.node.oe_event.oe_event_registration_url
+    - field.field.node.oe_event.oe_event_report_summary
+    - field.field.node.oe_event.oe_event_report_text
+    - field.field.node.oe_event.oe_event_social_media_links
+    - field.field.node.oe_event.oe_event_start_date
+    - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_type
+    - field.field.node.oe_event.oe_event_venue
+    - field.field.node.oe_event.oe_event_website
+    - field.field.node.oe_event.oe_subject
+    - field.field.node.oe_event.oe_teaser
+    - node.type.oe_event
+  module:
+    - datetime
+    - link
+    - options
+    - rdf_skos
+    - text
+    - typed_link
+    - user
+id: node.oe_event.default
+targetEntityType: node
+bundle: oe_event
+mode: default
+content:
+  body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_contact:
+    weight: 29
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_event_description_summary:
+    weight: 16
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_end_date:
+    weight: 3
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_entrance_fee:
+    weight: 25
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_featured_media:
+    type: entity_reference_entity_view
+    weight: 17
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  oe_event_featured_media_legend:
+    weight: 18
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_gallery:
+    type: entity_reference_label
+    weight: 15
+    region: content
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_event_languages:
+    type: skos_concept_entity_reference_label
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_event_online_description:
+    weight: 10
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_online_link:
+    weight: 13
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_event_online_time_end:
+    weight: 12
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: oe_theme_event_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_online_time_start:
+    weight: 11
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: oe_theme_event_date_hour_timezone
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_online_type:
+    weight: 9
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_event_organiser_internal:
+    type: skos_concept_entity_reference_label
+    weight: 30
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_event_organiser_name:
+    weight: 14
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_partner:
+    weight: 28
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_event_registration_capacity:
+    weight: 26
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_registration_end_date:
+    weight: 24
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_registration_start_date:
+    weight: 23
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_registration_status:
+    weight: 22
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_event_registration_url:
+    weight: 21
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_event_report_summary:
+    weight: 19
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_report_text:
+    weight: 20
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_event_social_media_links:
+    type: typed_link
+    weight: 8
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  oe_event_start_date:
+    weight: 2
+    label: hidden
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_event_status:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_event_type:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_event_venue:
+    type: entity_reference_revisions_entity_view
+    weight: 27
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  oe_event_website:
+    weight: 7
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_subject:
+    type: skos_concept_entity_reference_label
+    weight: 31
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  links: true
+  oe_author: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_teaser: true
