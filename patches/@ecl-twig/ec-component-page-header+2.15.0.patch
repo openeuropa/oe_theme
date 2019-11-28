@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-page-header/ecl-page-header.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-page-header/ecl-page-header.html.twig
-@@ -50,11 +50,13 @@
+@@ -50,16 +50,20 @@
    <div class="ecl-container">
    {% if breadcrumb is defined %}
      {% include '@ecl-twig/ec-component-breadcrumb/ecl-breadcrumb.html.twig' with breadcrumb|merge({
@@ -15,5 +15,13 @@ patch-package
 +      {{- composition|raw -}}
 +    </div>
    {% endif %}
-     <div class="ecl-page-header__title-wrapper">
+-    <div class="ecl-page-header__title-wrapper">
      {% if _meta is not empty %}
++    <div class="ecl-page-header__title-wrapper">
+       <div class="ecl-page-header__meta-list">{{ _meta }}</div>
++    </div>
+     {% endif %}
++    <div class="ecl-page-header__title-wrapper">
+     <h1 class="ecl-page-header__title">{{ _title }}</h1>
+     {% if _description is not empty %}
+       <p class="ecl-page-header__description">{{ _description }}</p>
