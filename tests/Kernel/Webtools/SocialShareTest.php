@@ -37,6 +37,10 @@ class SocialShareTest extends AbstractKernelTestBase {
 
     $html = (string) $this->container->get('renderer')->renderRoot($render);
     $crawler = new Crawler($html);
+
+    // Make sure that social media share block is correctly rendered.
+    $custom_footer = $crawler->filter('p.ecl-social-media-share__description');
+    $this->assertCount(1, $custom_footer);
   }
 
 }
