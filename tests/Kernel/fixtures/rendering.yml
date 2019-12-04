@@ -1222,7 +1222,7 @@
   assertions:
     count:
       "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
-      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
@@ -1241,7 +1241,7 @@
   assertions:
     count:
       "div.ecl-card__image": 0
-      'h1.ecl-card__title a[href="https://example.com"]': 1
+      'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
     equals:
       'h1.ecl-card__title a': "Example title"
