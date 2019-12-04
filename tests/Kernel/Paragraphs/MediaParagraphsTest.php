@@ -125,6 +125,32 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $text = $crawler->filter('.ecl-col-md-6.ecl-editor');
     $this->assertCount(1, $text);
     $this->assertContains('Full text', $text->text());
+
+    // Remove the caption and assert the element is no longer rendered.
+    $paragraph->set('field_oe_plain_text_long', '');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $figure = $crawler->filter('figure.ecl-media-container');
+    $this->assertCount(1, $figure);
+    // The image in the figure element has the source and alt defined in the
+    // referenced media but the caption is no longer rendered.
+    $image = $figure->filter('.ecl-media-container__media');
+    $this->assertContains('/example_1.jpeg', $image->attr('src'));
+    $this->assertContains('Alt', $image->attr('alt'));
+    $caption = $figure->filter('.ecl-media-container__caption');
+    $this->assertCount(0, $caption);
+
+    // Remove the text and assert the element is no longer rendered.
+    $paragraph->set('field_oe_text_long', '');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert text is no longer rendered.
+    $text = $crawler->filter('.ecl-editor');
+    $this->assertCount(0, $text);
   }
 
 }
