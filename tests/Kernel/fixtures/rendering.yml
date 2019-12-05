@@ -444,7 +444,7 @@
         alt: "Alternate text for secondary image"
   assertions:
     count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]: 1
+      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
@@ -462,7 +462,7 @@
       detail: "Item test"
   assertions:
     count:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
       'article.ecl-card header.ecl-card__header div.ecl-card__image': 0
       'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
     equals:
