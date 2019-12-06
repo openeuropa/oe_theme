@@ -6,13 +6,21 @@
  * @see ./core/themes/stable/templates/form/select.html.twig
  */
 #}
-{% set extra_attributes = ['ecl-select'] %}
+{% set extra_classes = ['ecl-select'] %}
 {% if attributes.hasClass('error') %}
-  {% set extra_attributes = extra_attributes|merge(['ecl-select--invalid']) %}
+  {% set extra_classes = extra_classes|merge(['ecl-select--invalid']) %}
+{% endif %}
+
+{% set wrapper_attributes = create_attribute({'class': 'ecl-select__container'}) %}
+{% if disabled %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('ecl-select__container--disabled') %}
+{% endif %}
+{% if wrapper_classes is defined and wrapper_classes is not empty %}
+  {% set wrapper_attributes = wrapper_attributes.addClass(wrapper_classes) %}
 {% endif %}
 {% spaceless %}
-  <div class="ecl-select__container{{ disabled ? ' ecl-select__container--disabled' }}">
-    <select{{ attributes.addClass(extra_attributes) }}>
+  <div{{ wrapper_attributes }}>
+    <select{{ attributes.addClass(extra_classes) }}>
       {% for option in options %}
         {% if option.type == 'optgroup' %}
           <optgroup label="{{ option.label }}">
