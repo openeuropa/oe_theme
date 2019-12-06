@@ -151,6 +151,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert text is no longer rendered.
     $text = $crawler->filter('.ecl-editor');
     $this->assertCount(0, $text);
+
+    // Remove the title and assert the element is no longer rendered.
+    $paragraph->set('field_oe_title', '');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert title is no longer rendered.
+    $title = $crawler->filter('h2.ecl-u-type-heading-2');
+    $this->assertCount(0, $title);
   }
 
 }

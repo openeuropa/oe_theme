@@ -11,24 +11,21 @@
   Unfortunately even when the field is empty the variable content.* still contains information (such as the weight)
   so we can't pass it to the pattern directly.
  #}
-{% set _title = '' %}
 {% if not (paragraph.field_oe_title.isEmpty == true) and content.field_oe_title is defined %}
   {% set _title = content.field_oe_title %}
 {% endif %}
 
-{% set _caption = '' %}
 {% if not (paragraph.field_oe_plain_text_long.isEmpty == true) and content.field_oe_plain_text_long is defined %}
   {% set _caption = content.field_oe_plain_text_long %}
 {% endif %}
 
-{% set _text = '' %}
 {% if not (paragraph.field_oe_text_long.isEmpty == true) and content.field_oe_text_long is defined %}
   {% set _text = content.field_oe_text_long %}
 {% endif %}
 
 {{ pattern('text_featured_media', {
-    'title': _title,
+    'title': _title|default(''),
     'image': image,
-    'caption': _caption,
-    'text': _text,
+    'caption': _caption|default(''),
+    'text': _text|default(''),
 }) }}
