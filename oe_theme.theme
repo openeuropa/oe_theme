@@ -1214,7 +1214,6 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
       'label' => $other_link['title'],
       'url' => Url::fromUri($other_link['uri']),
     ];
-  }
 }
 
 /**
