@@ -35,7 +35,7 @@ pipeline:
     group: prepare
     image: fpfis/httpd-php-ci:7.1
     volumes:
-      - /cache:/cache
+      - /cache/${DRONE_REPO_NAME}:/cache
     commands:
       - composer install --ansi --no-suggest --no-progress
 
@@ -43,7 +43,7 @@ pipeline:
     group: post-prepare
     image: fpfis/httpd-php-ci:7.1
     volumes:
-      - /cache:/cache
+      - /cache/${DRONE_REPO_NAME}:/cache
     commands:
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
