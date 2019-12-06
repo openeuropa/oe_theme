@@ -1208,6 +1208,11 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
     $variables['links'][$key]['label'] = $link['title'];
     $variables['links'][$key]['url'] = Url::fromUri($link['uri']);
   }
+  if (!empty($paragraph->get('field_oe_social_media_see_more')->getValue())) {
+    $other_link = $paragraph->get('field_oe_social_media_see_more')->getValue();
+    $variables['links'][$key + 1]['label'] = $other_link[0]['title'];
+    $variables['links'][$key + 1]['url'] = Url::fromUri($other_link[0]['uri']);
+  }
 }
 
 /**
