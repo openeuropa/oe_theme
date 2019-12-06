@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display the "content row" type paragraph in the "columns layout" variant.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{% for row in rows %}
+  <div class="ecl-row">
+    {% for column in row.columns %}
+      <div class="ecl-col-md-{{ column.width }}">
+        {{ column.content }}
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}

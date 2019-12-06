@@ -74,6 +74,9 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
+            },
+            "openeuropa/oe_paragraphs": {
+                "Add new variant for the Content row type - column Layout": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_paragraphs/pull/66.patch"
             }
         }
     },
