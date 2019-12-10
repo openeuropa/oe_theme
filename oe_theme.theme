@@ -1209,11 +1209,14 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
     $variables['links'][$key]['url'] = Url::fromUri($link['uri']);
   }
   if (!empty($paragraph->get('field_oe_social_media_see_more')->first()->getValue())) {
-    $other_link = $paragraph->get('field_oe_social_media_see_more')->first()->getValue();
+    $other_link = $paragraph->get('field_oe_social_media_see_more')
+      ->first()
+      ->getValue();
     $variables['links'][] = [
       'label' => $other_link['title'],
       'url' => Url::fromUri($other_link['uri']),
     ];
+  }
 }
 
 /**
