@@ -7,25 +7,32 @@
 
 {% set _links = [] %}
 {% for _link in links %}
-  {% set _links = _links|merge([{
-    path: _link.url,
-    label: _link.label,
-    icon_position: 'before',
-    icon: [
-      {
-        path: ecl_social_icon_path,
-        name: _link.service,
-        size: 'xl',
-        extra_classes: 'ecl-social-media-follow__icon',
-      },
-      {
-        path: ecl_social_icon_path,
-        name: _link.service ~ '_hover',
-        size: 'xl',
-        extra_classes: 'ecl-social-media-follow__icon-hover',
-      }
-    ]
-  }]) %}
+  {% if _link.service is not empty %}
+    {% set _links = _links|merge([{
+      path: _link.url,
+      label: _link.label,
+      icon_position: 'before',
+      icon: [
+        {
+          path: ecl_social_icon_path,
+          name: _link.service,
+          size: 'xl',
+          extra_classes: 'ecl-social-media-follow__icon',
+        },
+        {
+          path: ecl_social_icon_path,
+          name: _link.service ~ '_hover',
+          size: 'xl',
+          extra_classes: 'ecl-social-media-follow__icon-hover',
+        }
+      ]
+    }]) %}
+  {% else %}
+    {% set _links = _links|merge([{
+      path: _link.url,
+      label: _link.label
+    }]) %}
+  {% endif %}
 {% endfor %}
 
 {% include '@ecl-twig/social-media-follow' with {
