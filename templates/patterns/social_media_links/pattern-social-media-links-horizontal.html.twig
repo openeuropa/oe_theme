@@ -7,10 +7,12 @@
 
 {% set _links = [] %}
 {% for _link in links %}
+  {% set _links = _links|merge([{
+    path: _link.url,
+    label: _link.label
+  }]) %}
   {% if _link.service is not empty %}
-    {% set _links = _links|merge([{
-      path: _link.url,
-      label: _link.label,
+    {% set _link = _link|merge([{
       icon_position: 'before',
       icon: [
         {
@@ -26,11 +28,6 @@
           extra_classes: 'ecl-social-media-follow__icon-hover',
         }
       ]
-    }]) %}
-  {% else %}
-    {% set _links = _links|merge([{
-      path: _link.url,
-      label: _link.label
     }]) %}
   {% endif %}
 {% endfor %}
