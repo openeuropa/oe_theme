@@ -11,13 +11,19 @@
   {% set extra_classes = extra_classes|merge(['ecl-select--invalid']) %}
 {% endif %}
 
-{% set wrapper_attributes = create_attribute({'class': 'ecl-select__container'}) %}
+{# Set default wrapper classes. #}
+{# This also allows overriding templates to take control of classes like width modifiers. #}
+{% set wrapper_classes = wrapper_classes|default([
+  'ecl-select__container',
+  'ecl-select__container--m',
+]) %}
+
+{% set wrapper_attributes = create_attribute({'class': wrapper_classes}) %}
+
 {% if disabled %}
   {% set wrapper_attributes = wrapper_attributes.addClass('ecl-select__container--disabled') %}
 {% endif %}
-{% if wrapper_classes is defined and wrapper_classes is not empty %}
-  {% set wrapper_attributes = wrapper_attributes.addClass(wrapper_classes) %}
-{% endif %}
+
 {% spaceless %}
   <div{{ wrapper_attributes }}>
     <select{{ attributes.addClass(extra_classes) }}>

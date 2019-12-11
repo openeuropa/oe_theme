@@ -55,7 +55,11 @@
   assert:
     contains:
       - 'Select element'
+      - '<option value="1">One</option>'
+      - '<option value="2">Two</option>'
+      - '<option value="3">Three</option>'
     count:
+      'div.ecl-select__container.ecl-select__container--m': 1
       'select.form-select.ecl-select': 1
 - array:
     '#type': radios
