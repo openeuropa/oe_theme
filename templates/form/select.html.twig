@@ -6,13 +6,27 @@
  * @see ./core/themes/stable/templates/form/select.html.twig
  */
 #}
-{% set extra_attributes = ['ecl-select'] %}
+{% set extra_classes = ['ecl-select'] %}
 {% if attributes.hasClass('error') %}
-  {% set extra_attributes = extra_attributes|merge(['ecl-select--invalid']) %}
+  {% set extra_classes = extra_classes|merge(['ecl-select--invalid']) %}
 {% endif %}
+
+{# Set default wrapper classes. #}
+{# This also allows overriding templates to take control of classes like width modifiers. #}
+{% set wrapper_classes = wrapper_classes|default([
+  'ecl-select__container',
+  'ecl-select__container--m',
+]) %}
+
+{% set wrapper_attributes = create_attribute({'class': wrapper_classes}) %}
+
+{% if disabled %}
+  {% set wrapper_attributes = wrapper_attributes.addClass('ecl-select__container--disabled') %}
+{% endif %}
+
 {% spaceless %}
-  <div class="ecl-select__container{{ disabled ? ' ecl-select__container--disabled' }}">
-    <select{{ attributes.addClass(extra_attributes) }}>
+  <div{{ wrapper_attributes }}>
+    <select{{ attributes.addClass(extra_classes) }}>
       {% for option in options %}
         {% if option.type == 'optgroup' %}
           <optgroup label="{{ option.label }}">
