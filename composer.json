@@ -31,7 +31,7 @@
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_media": "~1.0",
         "openeuropa/oe_multilingual": "~1.0",
-        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/oe_paragraphs": "~1.2.0",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
@@ -77,6 +77,9 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
+            },
+            "openeuropa/oe_paragraphs": {
+                "latest-master": "https://github.com/openeuropa/oe_paragraphs/compare/1.2.0...master.diff"
             }
         }
     },

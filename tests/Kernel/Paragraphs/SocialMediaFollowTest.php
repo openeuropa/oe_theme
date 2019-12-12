@@ -24,6 +24,10 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
       'field_oe_title' => 'Social media title',
       'field_oe_social_media_variant' => 'horizontal',
       'field_oe_social_media_links' => $this->getSocialMediaLinks(),
+      'field_oe_social_media_see_more' => [
+        'title' => 'Other social networks',
+        'uri' => 'https://europa.eu/european-union/contact/social-networks_en',
+      ],
     ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
@@ -74,6 +78,7 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#yammer\']'));
     $this->assertContains('Youtube', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#youtube\']'));
+    $this->assertContains('Other social networks', $links_html);
 
     // Fix the Facebook link type.
     $paragraph->get('field_oe_social_media_links')->get(1)->set('link_type', 'facebook');
