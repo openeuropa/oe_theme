@@ -1,0 +1,7 @@
+oe_theme_js_test.ajax_rebuild_test_form:
+  path: '/oe_theme_js_test/ajax_dropdown'
+  defaults:
+    _form: 'Drupal\oe_theme_js_test\Form\AjaxDropdownsTestForm'
+    _title: 'Ajax dropdowns test form'
+  requirements:
+    _access: 'TRUE'
