@@ -1,10 +1,21 @@
 # Change Log
 
+## [2.1.0](https://github.com/openeuropa/oe_theme/tree/2.1.0) (2019-12-16)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0...2.1.0)
+
+**Merged pull requests:**
+
+- ISSUE-386: Add support for extra container classes in select template. [\#392](https://github.com/openeuropa/oe_theme/pull/392) ([kp77](https://github.com/kp77))
+- OPENEUROPA-2606: Render optional link of Social media follow paragraph. [\#391](https://github.com/openeuropa/oe_theme/pull/391) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2614: Make sure elements are not shown when related fields are empty. [\#389](https://github.com/openeuropa/oe_theme/pull/389) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2612: Remove underline from cards title. [\#388](https://github.com/openeuropa/oe_theme/pull/388) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [2.0.0](https://github.com/openeuropa/oe_theme/tree/2.0.0) (2019-11-28)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0-beta2...2.0.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.0.0. [\#384](https://github.com/openeuropa/oe_theme/pull/384) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2557: Add wrapper around meta information on page header. [\#383](https://github.com/openeuropa/oe_theme/pull/383) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-0000: Remove missing component template and other deprecation before stable release [\#381](https://github.com/openeuropa/oe_theme/pull/381) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2340: Implement site specific footer 2.x. [\#342](https://github.com/openeuropa/oe_theme/pull/342) ([sergepavle](https://github.com/sergepavle))
