@@ -5,3 +5,11 @@ image.effect.retina_image_scale:
     multiplier:
       type: integer
       label: 'Multiplier'
+
+field.formatter.settings.address_custom:
+  type: mapping
+  label: 'Address custom formatter settings'
+  mapping:
+    delimiter:
+      type: string
+      label: 'Delimiter for address items.'
