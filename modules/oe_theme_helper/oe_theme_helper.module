@@ -54,7 +54,7 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
   return [
     'address_custom' => [
       'variables' => [
-        'address',
+        'address' => NULL,
         'address_items' => [],
         'address_delimiter' => NULL,
       ],
