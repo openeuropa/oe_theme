@@ -28,7 +28,7 @@ class AddressCustomFormatterTest extends FormatterTestBase {
   }
 
   /**
-   * Tests belgian address formatting.
+   * Tests formatting of address.
    */
   public function testCustomFormatterAddress() {
     $entity = EntityTest::create([]);

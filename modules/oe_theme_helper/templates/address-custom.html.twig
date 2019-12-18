@@ -20,5 +20,5 @@
 ]
 %}
 <p class="address" translate="no">
-  {{ ordered_address|filter(value => value)|join(address_delimiter) }}
+  {{ ordered_address|filter(v => v is not empty)|join(address_delimiter) }}
 </p>

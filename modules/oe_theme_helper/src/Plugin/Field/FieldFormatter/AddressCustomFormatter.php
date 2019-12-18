@@ -175,7 +175,6 @@ class AddressCustomFormatter extends FormatterBase implements ContainerFactoryPl
     $address_format = $this->addressFormatRepository->get($country_code);
     $values = $this->getValues($address, $address_format);
     $values['country'] = $countries[$country_code];
-    $values = array_filter($values);
     $element = [
       '#theme' => 'address_custom',
       '#address' => $address,
