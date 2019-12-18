@@ -36,7 +36,8 @@
         "openeuropa/oe_search": "~1.0",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4"
+        "symfony/dom-crawler": "~3.4",
+        "twig/twig": "~1.41"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
