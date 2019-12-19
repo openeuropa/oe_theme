@@ -52,7 +52,7 @@ function oe_theme_helper_entity_view_alter(array &$build, EntityInterface $entit
  */
 function oe_theme_helper_theme($existing, $type, $theme, $path) {
   return [
-    'address_custom' => [
+    'oe_address_inline' => [
       'variables' => [
         'address' => NULL,
         'address_items' => [],

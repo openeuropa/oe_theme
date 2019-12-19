@@ -8,9 +8,9 @@ use Drupal\entity_test\Entity\EntityTest;
 use Drupal\Tests\address\Kernel\Formatter\FormatterTestBase;
 
 /**
- * Test AddressCustomFormatter plugin.
+ * Test AddressInlineFormatter plugin.
  */
-class AddressCustomFormatterTest extends FormatterTestBase {
+class AddressInlineFormatterTest extends FormatterTestBase {
 
   /**
    * {@inheritdoc}
@@ -24,13 +24,13 @@ class AddressCustomFormatterTest extends FormatterTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->createField('address', 'address_custom');
+    $this->createField('address', 'oe_address_inline');
   }
 
   /**
    * Tests formatting of address.
    */
-  public function testCustomFormatterAddress() {
+  public function testInlineFormatterAddress() {
     $entity = EntityTest::create([]);
     $entity->{$this->fieldName} = [
       'country_code' => 'BE',

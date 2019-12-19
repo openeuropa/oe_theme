@@ -6,9 +6,9 @@ image.effect.retina_image_scale:
       type: integer
       label: 'Multiplier'
 
-field.formatter.settings.address_custom:
+field.formatter.settings.oe_address_inline:
   type: mapping
-  label: 'Address custom formatter settings'
+  label: 'Address inline formatter settings'
   mapping:
     delimiter:
       type: string

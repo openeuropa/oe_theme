@@ -20,17 +20,17 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Plugin implementation of the 'address_custom' formatter.
+ * Plugin implementation of the 'oe_address_inline' formatter.
  *
  * @FieldFormatter(
- *   id = "address_custom",
- *   label = @Translation("Custom"),
+ *   id = "oe_address_inline",
+ *   label = @Translation("Inline address"),
  *   field_types = {
  *     "address",
  *   },
  * )
  */
-class AddressCustomFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
+class AddressInlineFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
 
   /**
    * The address format repository.
@@ -176,7 +176,7 @@ class AddressCustomFormatter extends FormatterBase implements ContainerFactoryPl
     $values = $this->getValues($address, $address_format);
     $values['country'] = $countries[$country_code];
     $element = [
-      '#theme' => 'address_custom',
+      '#theme' => 'oe_address_inline',
       '#address' => $address,
       '#address_items' => $values,
       '#address_delimiter' => $this->getSetting('delimiter'),
