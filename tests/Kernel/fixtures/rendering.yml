@@ -313,7 +313,7 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 1
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 1
     equals:
-      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
 - array:
     '#type': pattern
     '#id': gallery
@@ -339,8 +339,8 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 2
     equals:
-      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
-      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
 - array:
     '#type': pattern
     '#id': gallery
@@ -792,8 +792,8 @@
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="it"]': "Italian"
       '.ecl-breadcrumb__segment:nth-child(1) a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb__segment:nth-child(2)': "Announcements"
-      '.ecl-page-header__info-item:nth-child(1)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>Monday 8 February'
-      '.ecl-page-header__info-item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Munich, Germany'
+      '.ecl-page-header__info-item:nth-child(1)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>Monday 8 February'
+      '.ecl-page-header__info-item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Munich, Germany'
 - array:
     '#type': pattern
     '#id': accordion
@@ -1545,10 +1545,10 @@
       'ul li.ecl-unordered-list__item': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Brussels, Belgium'
-      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Brussels, Belgium'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -1576,9 +1576,9 @@
       'ul li.ecl-unordered-list__item': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="http://localhost/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': "pattern"
     '#id': "tag"

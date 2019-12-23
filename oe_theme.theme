@@ -49,9 +49,8 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
  * Implements hook_preprocess().
  */
 function oe_theme_preprocess(&$variables) {
-  global $base_url;
   $variables['ecl_component_library'] = theme_get_setting('component_library');
-  $variables['ecl_images_path'] = $base_url . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
+  $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
   $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
