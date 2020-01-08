@@ -8,7 +8,6 @@ component_library_ec:
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal
-    - oe_theme/external_svg
 
 component_library_eu:
   css:
@@ -20,7 +19,6 @@ component_library_eu:
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal
-    - oe_theme/external_svg
 
 editor:
   css:
