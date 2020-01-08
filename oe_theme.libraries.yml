@@ -6,10 +6,9 @@ component_library_ec:
   js:
     dist/ec/scripts/ecl-ec-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
-    js/svg4ie.js: { preprocess: false }
   dependencies:
     - core/drupal
-    - oe_theme/svg4everybody
+    - oe_theme/external_svg
 
 component_library_eu:
   css:
@@ -19,10 +18,9 @@ component_library_eu:
   js:
     dist/eu/scripts/ecl-eu-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
-    js/svg4ie.js: { preprocess: false }
   dependencies:
     - core/drupal
-    - oe_theme/svg4everybody
+    - oe_theme/external_svg
 
 editor:
   css:
@@ -35,6 +33,7 @@ dialogs:
   dependencies:
     - core/drupal
 
-svg4everybody:
+external_svg:
   js:
-    js/svg4everybody.min.js: { preprocess: false }
+    dist/js/svg4everybody.js: {}
+    js/external_svg.js: {}
