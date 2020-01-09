@@ -29,7 +29,8 @@
         "patch-package": "^5.1.1",
         "stylelint": "9.1.1",
         "stylelint-config-prettier": "2.1.0",
-        "stylelint-no-browser-hacks": "^1.1.0"
+        "stylelint-no-browser-hacks": "^1.1.0",
+        "svg4everybody": "2.1.9"
     },
     "engines": {
         "node": ">=8",

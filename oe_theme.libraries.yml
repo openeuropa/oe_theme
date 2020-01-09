@@ -30,3 +30,8 @@ dialogs:
     js/dialogs.js: {}
   dependencies:
     - core/drupal
+
+external_svg:
+  js:
+    dist/js/svg4everybody.min.js: { minified: true }
+    js/external_svg.js: {}
