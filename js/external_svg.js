@@ -4,7 +4,7 @@
  */
 (function (Drupal) {
   Drupal.behaviors.svg4Everybody = {
-    attach: function attach() {
+    attach: function () {
       svg4everybody();
     }
   };

@@ -33,5 +33,5 @@ dialogs:
 
 external_svg:
   js:
-    dist/js/svg4everybody.js: {}
+    dist/js/svg4everybody.min.js: { minified: true }
     js/external_svg.js: {}
