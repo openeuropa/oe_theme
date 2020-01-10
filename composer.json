@@ -12,12 +12,11 @@
         "php": "^7.1"
     },
     "require-dev": {
-        "composer/installers": "~1.5",
-        "consolidation/annotated-command": "^2.8.2",
-        "consolidation/robo": "~1.4",
         "cweagans/composer-patches": "~1.0",
+        "composer/installers": "~1.5",
+        "consolidation/robo": "~1.4",
+        "consolidation/annotated-command": "^2.8.2",
         "drupal-composer/drupal-scaffold": "^2.5.2",
-        "drupal/address": "^1.7",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
@@ -25,7 +24,7 @@
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "nikic/php-parser": "~3.0",
-        "openeuropa/behat-transformation-context": "~0.1",
+        "openeuropa/behat-transformation-context" : "~0.1",
         "openeuropa/code-review": "~1.0.0-beta4",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_content": "~1.4",
@@ -36,8 +35,7 @@
         "openeuropa/oe_search": "~1.0",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "twig/twig": "~1.41"
+        "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
