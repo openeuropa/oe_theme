@@ -8,7 +8,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Test share this block rendering.
+ * Test social share block rendering.
  */
 class SocialShareTest extends AbstractKernelTestBase {
 
