@@ -47,3 +47,18 @@ function oe_theme_helper_entity_view_alter(array &$build, EntityInterface $entit
   // show at the top, above any other elements.
   $build['content_moderation_control']['#weight'] = -500;
 }
+
+/**
+ * Implements hook_theme().
+ */
+function oe_theme_helper_theme($existing, $type, $theme, $path) {
+  return [
+    'oe_theme_helper_address_inline' => [
+      'variables' => [
+        'address' => NULL,
+        'address_items' => [],
+        'address_delimiter' => NULL,
+      ],
+    ],
+  ];
+}

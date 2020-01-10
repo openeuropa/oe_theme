@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default template for the 'oe_theme_helper_address_inline' address formatter.
+ *
+ * Available variables:
+ *   - address: Address object.
+ *   - address_items: Address items.
+ *   - address_delimiter: Delimiter between address items.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set ordered_address = [
+  address_items.addressLine1,
+  address_items.addressLine2,
+  address_items.postalCode,
+  address_items.locality,
+]
+%}
+<p class="address" translate="no">
+  {{ ordered_address|filter(v => v is not empty)|join(address_delimiter) }}
+</p>
