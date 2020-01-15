@@ -33,6 +33,7 @@
         "openeuropa/oe_multilingual": "~1.0",
         "openeuropa/oe_paragraphs": "~1.3.0",
         "openeuropa/oe_search": "~1.0",
+        "openeuropa/oe_webtools": "dev-master",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
