@@ -12,13 +12,15 @@
  */
 #}
 {%
-  set ordered_address = [
-  address_items.addressLine1,
-  address_items.addressLine2,
-  address_items.postalCode,
-  address_items.locality,
-]
+  set ordered_address = []
 %}
+
+{% for address_elem in ['addressLine1', 'addressLine2', 'postalCode', 'locality'] %}
+  {% if address_items[address_elem] %}
+    {% set ordered_address = ordered_address|merge([address_items[address_elem]]) %}
+  {% endif %}
+{% endfor %}
+
 <p class="address" translate="no">
-  {{ ordered_address|filter(v => v is not empty)|join(address_delimiter) }}
+  {{ ordered_address|join(address_delimiter) }}
 </p>
