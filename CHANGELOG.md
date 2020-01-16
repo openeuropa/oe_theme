@@ -1,10 +1,21 @@
 # Change Log
 
+## [2.1.1](https://github.com/openeuropa/oe_theme/tree/2.1.1) (2020-01-10)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.0...2.1.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2642: Revert changes related to oe\_event into 2.x. [\#398](https://github.com/openeuropa/oe_theme/pull/398) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2693: On IE11 the icons are not displayed. [\#397](https://github.com/openeuropa/oe_theme/pull/397) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2642: \[oe\_theme\] Create a formatter for address field. [\#396](https://github.com/openeuropa/oe_theme/pull/396) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2393: Make sure that javascript behaviours are bind once. [\#387](https://github.com/openeuropa/oe_theme/pull/387) ([nagyad](https://github.com/nagyad))
+
 ## [2.1.0](https://github.com/openeuropa/oe_theme/tree/2.1.0) (2019-12-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.0.0...2.1.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.1.0. [\#395](https://github.com/openeuropa/oe_theme/pull/395) ([ademarco](https://github.com/ademarco))
 - ISSUE-386: Add support for extra container classes in select template. [\#392](https://github.com/openeuropa/oe_theme/pull/392) ([kp77](https://github.com/kp77))
 - OPENEUROPA-2606: Render optional link of Social media follow paragraph. [\#391](https://github.com/openeuropa/oe_theme/pull/391) ([22Alexandra](https://github.com/22Alexandra))
 - OPENEUROPA-2614: Make sure elements are not shown when related fields are empty. [\#389](https://github.com/openeuropa/oe_theme/pull/389) ([imanoleguskiza](https://github.com/imanoleguskiza))
