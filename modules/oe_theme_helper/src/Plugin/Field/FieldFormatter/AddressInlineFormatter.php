@@ -4,107 +4,25 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
-use CommerceGuys\Addressing\AddressFormat\AddressField;
-use CommerceGuys\Addressing\AddressFormat\AddressFormat;
-use CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface;
-use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
-use CommerceGuys\Addressing\Locale;
-use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
 use Drupal\address\AddressInterface;
-use Drupal\Core\Field\FieldDefinitionInterface;
+use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Plugin implementation of the 'oe_address_inline' formatter.
+ * Plugin implementation of the 'oe_theme_helper_address_inline' formatter.
  *
  * @FieldFormatter(
- *   id = "oe_address_inline",
+ *   id = "oe_theme_helper_address_inline",
  *   label = @Translation("Inline address"),
  *   field_types = {
  *     "address",
  *   },
  * )
  */
-class AddressInlineFormatter extends FormatterBase implements ContainerFactoryPluginInterface {
-
-  /**
-   * The address format repository.
-   *
-   * @var \CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface
-   */
-  protected $addressFormatRepository;
-
-  /**
-   * The country repository.
-   *
-   * @var \CommerceGuys\Addressing\Country\CountryRepositoryInterface
-   */
-  protected $countryRepository;
-
-  /**
-   * The subdivision repository.
-   *
-   * @var \CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface
-   */
-  protected $subdivisionRepository;
-
-  /**
-   * Constructs an AddressPlainFormatter object.
-   *
-   * @param string $plugin_id
-   *   The plugin_id for the formatter.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Field\FieldDefinitionInterface $field_definition
-   *   The definition of the field to which the formatter is associated.
-   * @param array $settings
-   *   The formatter settings.
-   * @param string $label
-   *   The formatter label display setting.
-   * @param string $view_mode
-   *   The view mode.
-   * @param array $third_party_settings
-   *   Any third party settings.
-   * @param \CommerceGuys\Addressing\AddressFormat\AddressFormatRepositoryInterface $address_format_repository
-   *   The address format repository.
-   * @param \CommerceGuys\Addressing\Country\CountryRepositoryInterface $country_repository
-   *   The country repository.
-   * @param \CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface $subdivision_repository
-   *   The subdivision repository.
-   *
-   * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-   */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AddressFormatRepositoryInterface $address_format_repository, CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository) {
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings);
-
-    $this->addressFormatRepository = $address_format_repository;
-    $this->countryRepository = $country_repository;
-    $this->subdivisionRepository = $subdivision_repository;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $pluginId, $pluginDefinition) {
-    // @see \Drupal\Core\Field\FormatterPluginManager::createInstance().
-    return new static(
-      $pluginId,
-      $pluginDefinition,
-      $configuration['field_definition'],
-      $configuration['settings'],
-      $configuration['label'],
-      $configuration['view_mode'],
-      $configuration['third_party_settings'],
-      $container->get('address.address_format_repository'),
-      $container->get('address.country_repository'),
-      $container->get('address.subdivision_repository')
-    );
-  }
+class AddressInlineFormatter extends AddressDefaultFormatter implements ContainerFactoryPluginInterface {
 
   /**
    * {@inheritdoc}
@@ -186,58 +104,6 @@ class AddressInlineFormatter extends FormatterBase implements ContainerFactoryPl
         ],
       ],
     ];
-  }
-
-  /**
-   * Gets the address values used for rendering.
-   *
-   * @param \Drupal\address\AddressInterface $address
-   *   The address.
-   * @param \CommerceGuys\Addressing\AddressFormat\AddressFormat $address_format
-   *   The address format.
-   *
-   * @return array
-   *   The values, keyed by address field.
-   */
-  protected function getValues(AddressInterface $address, AddressFormat $address_format) {
-    $values = [];
-    foreach (AddressField::getAll() as $field) {
-      $getter = 'get' . ucfirst($field);
-      $values[$field] = $address->$getter();
-    }
-
-    $original_values = [];
-    $subdivision_fields = $address_format->getUsedSubdivisionFields();
-    $parents = [];
-    foreach ($subdivision_fields as $index => $field) {
-      $value = $values[$field];
-      if (empty($value)) {
-        unset($values[$field]);
-        break;
-      }
-      $parents[] = $index ? $original_values[$subdivision_fields[$index - 1]] : $address->getCountryCode();
-      $subdivision = $this->subdivisionRepository->get($value, $parents);
-      if (!$subdivision) {
-        break;
-      }
-
-      // Remember the original value so that it can be used for $parents.
-      $original_values[$field] = $value;
-      // Replace the value with the expected code.
-      if (Locale::matchCandidates($address->getLocale(), $subdivision->getLocale())) {
-        $values[$field] = $subdivision->getLocalCode();
-      }
-      else {
-        $values[$field] = $subdivision->getCode();
-      }
-
-      if (!$subdivision->hasChildren()) {
-        // The current subdivision has no children, stop.
-        break;
-      }
-    }
-
-    return $values;
   }
 
 }
