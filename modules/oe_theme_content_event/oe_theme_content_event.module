@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Event content type.
+ */
+
+declare(strict_types = 1);
