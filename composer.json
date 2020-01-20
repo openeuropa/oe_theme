@@ -21,6 +21,7 @@
         "drupal/config_devel": "~1.2",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
+        "drupal/field_group": "~3.0@rc",
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",

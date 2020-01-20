@@ -73,12 +73,14 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
       '#default_value' => $this->label,
     ];
 
-    $form['variant'] = [
-      '#title' => $this->t('Variant'),
-      '#type' => 'select',
-      '#options' => $pattern->getVariantsAsOptions(),
-      '#default_value' => $this->getSetting('variant'),
-    ];
+    if ($pattern->hasVariants()) {
+      $form['variant'] = [
+        '#title' => $this->t('Variant'),
+        '#type' => 'select',
+        '#options' => $pattern->getVariantsAsOptions(),
+        '#default_value' => $this->getSetting('variant'),
+      ];
+    }
 
     return $form;
   }

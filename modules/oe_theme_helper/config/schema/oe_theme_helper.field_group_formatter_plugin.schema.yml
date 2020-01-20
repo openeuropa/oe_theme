@@ -1,10 +1,10 @@
 field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base:
-  type: mapping
+  type: field_group.field_group_formatter_plugin.base
   label: 'Mapping for the base pattern formatter settings'
   mapping:
     label:
       type: label
-      label: 'Label of the fieldgroup'
+      label: 'Field group label'
     variant:
       type: string
       label: 'Pattern variant'
