@@ -6,3 +6,22 @@
  */
 
 declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  // Run only on event content type.
+  if ($entity->bundle() !== 'oe_event') {
+    return;
+  }
+
+  // Field labels are different in frontend and backend.
+  // Here we override them, per view mode.
+  if ($build['#view_mode'] === 'full') {
+    $build["oe_event_dates"]["#title"] = t('When');
+  }
+}
