@@ -1,0 +1,7 @@
+name: OpenEuropa Theme Content Entity
+type: module
+description: Companion module for the OE Content Entity module
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - oe_content_entity:oe_content_entity

@@ -22,6 +22,7 @@ drupal:
     - "./vendor/bin/drush en oe_theme_content_news -y"
     - "./vendor/bin/drush en oe_theme_content_policy -y"
     - "./vendor/bin/drush en oe_theme_content_publication -y"
+    - "./vendor/bin/drush en oe_theme_content_entity -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"
     - "./vendor/bin/drush theme:enable oe_theme -y"
