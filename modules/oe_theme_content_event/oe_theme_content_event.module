@@ -22,6 +22,20 @@ function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $
   // Field labels are different in frontend and backend.
   // Here we override them, per view mode.
   if ($build['#view_mode'] === 'full') {
-    $build["oe_event_dates"]["#title"] = t('When');
+    $label_overrides = [
+      'oe_event_dates' => t('When'),
+      'oe_event_online_type' => t('Live stream'),
+      'oe_event_languages' => t('Languages'),
+      'oe_event_website' => t('Website'),
+      'oe_event_registration_capacity' => t('Number of seats'),
+      'oe_event_entrance_fee' => t('Entrance fee'),
+      'oe_event_venue' => t('Where'),
+    ];
+
+    foreach ($label_overrides as $name => $label_override) {
+      if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
+        $build[$name]['#title'] = $label_override;
+      }
+    }
   }
 }
