@@ -36,18 +36,22 @@ dependencies:
     - node.type.oe_event
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - link
+    - rdf_skos
     - user
 third_party_settings:
   field_group:
     group_practical_information:
       children:
-        - extra_field_oe_theme_content_event_organiser
+        - oe_event_venue
         - oe_event_dates
+        - oe_event_languages
+        - extra_field_oe_theme_content_event_organiser
         - oe_event_website
-        - oe_event_entrance_fee
         - oe_event_registration_capacity
+        - oe_event_entrance_fee
       parent_name: ''
       weight: 0
       format_type: oe_theme_helper_field_list_pattern
@@ -63,12 +67,12 @@ bundle: oe_event
 mode: default
 content:
   extra_field_oe_theme_content_event_organiser:
-    weight: 1
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   oe_event_dates:
-    weight: 2
+    weight: 1
     label: above
     settings:
       timezone_override: ''
@@ -78,13 +82,21 @@ content:
     type: daterange_custom
     region: content
   oe_event_entrance_fee:
-    weight: 4
+    weight: 6
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
+  oe_event_languages:
+    type: skos_concept_entity_reference_label
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
   oe_event_registration_capacity:
     weight: 5
     label: above
@@ -93,8 +105,17 @@ content:
     third_party_settings: {  }
     type: string
     region: content
+  oe_event_venue:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_event_website:
-    weight: 3
+    weight: 4
     label: above
     settings:
       trim_length: 80
@@ -119,7 +140,6 @@ hidden:
   oe_event_featured_media: true
   oe_event_featured_media_legend: true
   oe_event_gallery: true
-  oe_event_languages: true
   oe_event_online_dates: true
   oe_event_online_description: true
   oe_event_online_link: true
@@ -135,7 +155,6 @@ hidden:
   oe_event_report_text: true
   oe_event_status: true
   oe_event_type: true
-  oe_event_venue: true
   oe_social_media_links: true
   oe_subject: true
   oe_teaser: true
