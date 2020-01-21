@@ -7,7 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Entity\Display\EntityDisplayInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -39,10 +38,6 @@ function oe_theme_helper_page_attachments(array &$page) {
  * Implements hook_entity_view_alter().
  */
 function oe_theme_helper_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
-
-  $build["field_text_1"]["#title"] = 'sfdsfsaf';
-  $r = 8;
-
   if (!isset($build['content_moderation_control'])) {
     return;
   }
