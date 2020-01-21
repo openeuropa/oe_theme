@@ -1,0 +1,141 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_event.body
+    - field.field.node.oe_event.oe_author
+    - field.field.node.oe_event.oe_event_contact
+    - field.field.node.oe_event.oe_event_dates
+    - field.field.node.oe_event.oe_event_description_summary
+    - field.field.node.oe_event.oe_event_entrance_fee
+    - field.field.node.oe_event.oe_event_featured_media
+    - field.field.node.oe_event.oe_event_featured_media_legend
+    - field.field.node.oe_event.oe_event_gallery
+    - field.field.node.oe_event.oe_event_languages
+    - field.field.node.oe_event.oe_event_online_dates
+    - field.field.node.oe_event.oe_event_online_description
+    - field.field.node.oe_event.oe_event_online_link
+    - field.field.node.oe_event.oe_event_online_type
+    - field.field.node.oe_event.oe_event_organiser_internal
+    - field.field.node.oe_event.oe_event_organiser_is_internal
+    - field.field.node.oe_event.oe_event_organiser_name
+    - field.field.node.oe_event.oe_event_partner
+    - field.field.node.oe_event.oe_event_registration_capacity
+    - field.field.node.oe_event.oe_event_registration_dates
+    - field.field.node.oe_event.oe_event_registration_status
+    - field.field.node.oe_event.oe_event_registration_url
+    - field.field.node.oe_event.oe_event_report_summary
+    - field.field.node.oe_event.oe_event_report_text
+    - field.field.node.oe_event.oe_event_status
+    - field.field.node.oe_event.oe_event_type
+    - field.field.node.oe_event.oe_event_venue
+    - field.field.node.oe_event.oe_event_website
+    - field.field.node.oe_event.oe_social_media_links
+    - field.field.node.oe_event.oe_subject
+    - field.field.node.oe_event.oe_teaser
+    - node.type.oe_event
+  module:
+    - datetime_range
+    - field_group
+    - link
+    - user
+third_party_settings:
+  field_group:
+    group_practical_information:
+      children:
+        - extra_field_oe_theme_content_event_organiser
+        - oe_event_dates
+        - oe_event_website
+        - oe_event_entrance_fee
+        - oe_event_registration_capacity
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_field_list_pattern
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: 'Practical information'
+      region: content
+id: node.oe_event.default
+targetEntityType: node
+bundle: oe_event
+mode: default
+content:
+  extra_field_oe_theme_content_event_organiser:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_event_dates:
+    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'j F Y, H:i'
+      separator: to
+    third_party_settings: {  }
+    type: daterange_custom
+    region: content
+  oe_event_entrance_fee:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_registration_capacity:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_event_website:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  body: true
+  langcode: true
+  links: true
+  oe_author: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_event_contact: true
+  oe_event_description_summary: true
+  oe_event_featured_media: true
+  oe_event_featured_media_legend: true
+  oe_event_gallery: true
+  oe_event_languages: true
+  oe_event_online_dates: true
+  oe_event_online_description: true
+  oe_event_online_link: true
+  oe_event_online_type: true
+  oe_event_organiser_internal: true
+  oe_event_organiser_is_internal: true
+  oe_event_organiser_name: true
+  oe_event_partner: true
+  oe_event_registration_dates: true
+  oe_event_registration_status: true
+  oe_event_registration_url: true
+  oe_event_report_summary: true
+  oe_event_report_text: true
+  oe_event_status: true
+  oe_event_type: true
+  oe_event_venue: true
+  oe_social_media_links: true
+  oe_subject: true
+  oe_teaser: true

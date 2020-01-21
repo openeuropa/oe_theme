@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Event content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ */
+function oe_theme_content_event_install() {
+  // If we are installing from config, we bail out.
+  if (!empty($install_state['config_install_path'])) {
+    return;
+  }
+
+  // Import of configs from profile.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/tasks');
+  $displays = [
+    'core.entity_view_display.node.oe_event.default',
+  ];
+
+  foreach ($displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityViewDisplay::load($values['id']);
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
+    }
+    $config->save();
+  }
+}
