@@ -6,7 +6,7 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
+use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 
 /**
  * Extra field displaying organiser information on events.
@@ -20,7 +20,7 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayBase;
  *   visible = true
  * )
  */
-class OrganiserExtraField extends ExtraFieldDisplayBase {
+class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
 
   use StringTranslationTrait;
 
@@ -34,8 +34,8 @@ class OrganiserExtraField extends ExtraFieldDisplayBase {
   /**
    * {@inheritdoc}
    */
-  public function view(ContentEntityInterface $entity) {
-    $is_internal = $entity->get('oe_event_organiser_is_internal')->value === 1;
+  public function viewElements(ContentEntityInterface $entity) {
+    $is_internal = (int) $entity->get('oe_event_organiser_is_internal')->value === 1;
 
     // If the organiser is internal and not empty, show it.
     if ($is_internal && !$entity->get('oe_event_organiser_internal')->isEmpty()) {
