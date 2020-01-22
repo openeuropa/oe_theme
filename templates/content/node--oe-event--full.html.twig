@@ -8,12 +8,22 @@
 #}
 <article{{ attributes }}>
 
+  <div class="ecl-row">
+    <div class="ecl-col-12 ecl-col-md-6 ecl-editor">
+      {{ content.oe_event_description_summary }}
+    </div>
+    <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
+    </div>
+  </div>
+
   {% if content.group_practical_information is not empty %}
     <h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Practical information'|t }}</h2>
     {{ content.group_practical_information }}
   {% endif %}
 
-  {{ content|without('group_practical_information') }}
+  {{ content|without(
+    'group_practical_information',
+    'oe_event_description_summary') }}
 
 </article>
 

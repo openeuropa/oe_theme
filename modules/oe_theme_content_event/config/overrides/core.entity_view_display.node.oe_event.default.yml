@@ -40,6 +40,7 @@ dependencies:
     - field_group
     - link
     - rdf_skos
+    - text
     - user
 third_party_settings:
   field_group:
@@ -53,7 +54,7 @@ third_party_settings:
         - oe_event_registration_capacity
         - oe_event_entrance_fee
       parent_name: ''
-      weight: 0
+      weight: 1
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: horizontal
@@ -67,7 +68,7 @@ bundle: oe_event
 mode: default
 content:
   extra_field_oe_theme_content_event_contacts:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -86,6 +87,13 @@ content:
     third_party_settings: {  }
     type: daterange_custom
     region: content
+  oe_event_description_summary:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   oe_event_entrance_fee:
     weight: 6
     label: above
@@ -141,7 +149,6 @@ hidden:
   oe_content_navigation_title: true
   oe_content_short_title: true
   oe_event_contact: true
-  oe_event_description_summary: true
   oe_event_featured_media: true
   oe_event_featured_media_legend: true
   oe_event_gallery: true
