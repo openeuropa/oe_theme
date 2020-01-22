@@ -54,7 +54,7 @@ third_party_settings:
         - oe_event_registration_capacity
         - oe_event_entrance_fee
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: horizontal
@@ -68,12 +68,17 @@ bundle: oe_event
 mode: default
 content:
   extra_field_oe_theme_content_event_contacts:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_description:
     weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_details:
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
