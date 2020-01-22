@@ -17,15 +17,21 @@
     </div>
   </div>
 
-  {% if content.group_practical_information is not empty %}
+  {% if content.group_practical_information is not empty or content.oe_social_media_links is not empty%}
     <h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Practical information'|t }}</h2>
-    {{ content.group_practical_information }}
+    <div class="ecl-row">
+      <div class="ecl-col-12 ecl-col-md-6">
+        {{ content.group_practical_information }}
+        {{ content.oe_social_media_links }}
+      </div>
+    </div>
   {% endif %}
 
   {{ content|without(
+    'extra_field_oe_theme_content_event_details',
     'group_practical_information',
     'oe_event_description_summary',
-    'extra_field_oe_theme_content_event_details'
+    'oe_social_media_links'
   ) }}
 
 </article>
