@@ -38,6 +38,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
     'link',
     'file',
     'text',
+    'typed_link',
     'maxlength',
     'entity_reference',
     'datetime',
@@ -88,6 +89,7 @@ class ContentRenderTest extends AbstractKernelTestBase {
       'oe_media',
       'media_avportal',
       'oe_media_avportal',
+      'typed_link',
     ]);
 
     // Importing of configs which related to media av_portal output.
