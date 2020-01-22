@@ -28,11 +28,18 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   use StringTranslationTrait;
 
   /**
-   * Entity view builder object.
+   * Entity view builder object for "oe_contact" entity type.
    *
    * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
-  protected $viewBuilder;
+  protected $contactViewBuilder;
+
+  /**
+   * Entity view builder object for "oe_venue" entity type.
+   *
+   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
+   */
+  protected $venueViewBuilder;
 
   /**
    * ContactsExtraField constructor.
@@ -48,7 +55,8 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('oe_contact');
+    $this->contactViewBuilder = $entity_type_manager->getViewBuilder('oe_contact');
+    $this->venueViewBuilder = $entity_type_manager->getViewBuilder('oe_venue');
   }
 
   /**
@@ -72,14 +80,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-
-    $subjects = $this->viewBuilder->viewField($entity->get('oe_subject'), [
-      'label' => 'hidden',
-      'settings' => [
-        'link' => FALSE,
-      ],
-    ]);
-
+    // The pattern will take care of not displaying empty items.
     return [
       '#type' => 'pattern',
       '#id' => 'icons_with_text',
@@ -87,10 +88,87 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
         'items' => [
           [
             'icon' => 'file',
-            'text' => $subjects,
+            'text' => $this->getRenderableSubject($entity),
+          ],
+          [
+            'icon' => 'calendar',
+            'text' => $this->getRenderableDates($entity),
+          ],
+          [
+            'icon' => 'location',
+            'text' => $this->getRenderableLocation($entity),
+          ],
+          [
+            'icon' => 'livestreaming',
+            'text' => $entity->get('oe_event_online_type')->isEmpty() ? '' : $this->t('Live streaming available'),
           ],
         ],
       ],
+    ];
+  }
+
+  /**
+   * Get event subject as a renderable array.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
+   *
+   * @return array
+   *   Renderable array.
+   */
+  protected function getRenderableSubject(ContentEntityInterface $entity): array {
+    return $this->contactViewBuilder->viewField($entity->get('oe_subject'), [
+      'label' => 'hidden',
+      'settings' => [
+        'link' => FALSE,
+      ],
+    ]);
+  }
+
+  /**
+   * Get event dates as a renderable array.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
+   *
+   * @return array
+   *   Renderable array.
+   */
+  protected function getRenderableDates(ContentEntityInterface $entity): array {
+    return $this->contactViewBuilder->viewField($entity->get('oe_event_dates'), [
+      'label' => 'hidden',
+      'type' => 'daterange_custom',
+      'settings' => [
+        'date_format' => 'j F Y, H:i',
+        'separator' => $this->t('to'),
+      ],
+    ]);
+  }
+
+  /**
+   * Get event location as a renderable array.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
+   *
+   * @return array
+   *   Renderable array.
+   */
+  protected function getRenderableLocation(ContentEntityInterface $entity): array {
+    /** @var \Drupal\oe_content_entity_venue\Entity\Venue $venue */
+    $venue = $entity->get('oe_event_venue')->entity;
+
+    // Return an empty value is no address is set.
+    if ($venue->get('oe_address')->isEmpty()) {
+      return [];
+    }
+
+    // Only display locality and country, inline.
+    $renderable = $this->venueViewBuilder->viewField($venue->get('oe_address'));
+    $renderable[0]['locality']['#value'] .= ',&nbsp;';
+    return [
+      'locality' => $renderable[0]['locality'],
+      'country' => $renderable[0]['country'],
     ];
   }
 
