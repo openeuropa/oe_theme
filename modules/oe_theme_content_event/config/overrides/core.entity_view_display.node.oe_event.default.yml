@@ -39,6 +39,7 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - link
+    - oe_theme_helper
     - rdf_skos
     - text
     - user
@@ -54,7 +55,7 @@ third_party_settings:
         - oe_event_registration_capacity
         - oe_event_entrance_fee
       parent_name: ''
-      weight: 3
+      weight: 2
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: horizontal
@@ -68,12 +69,12 @@ bundle: oe_event
 mode: default
 content:
   extra_field_oe_theme_content_event_contacts:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_description:
-    weight: 2
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -149,6 +150,18 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  oe_social_media_links:
+    type: oe_theme_helper_social_media_links_formatter
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      trim_length: '80'
+      rel: nofollow
+      target: _blank
+      url_only: false
+      url_plain: false
+    third_party_settings: {  }
 hidden:
   body: true
   langcode: true
@@ -177,6 +190,5 @@ hidden:
   oe_event_report_text: true
   oe_event_status: true
   oe_event_type: true
-  oe_social_media_links: true
   oe_subject: true
   oe_teaser: true
