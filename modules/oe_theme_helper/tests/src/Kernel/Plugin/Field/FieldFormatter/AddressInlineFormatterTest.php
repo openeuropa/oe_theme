@@ -40,7 +40,7 @@ class AddressInlineFormatterTest extends FormatterTestBase {
     ];
 
     $this->renderEntityFields($entity, $this->display);
-    $expected = 'Rue de la Loi, 56, 1000, Brussels';
+    $expected = 'Rue de la Loi, 56, 1000 Brussels, Belgium';
     $this->assertRaw($expected);
   }
 
