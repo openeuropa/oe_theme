@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Loader;
 
-use Drupal\Core\Extension\ThemeHandler;
-use Drupal\Core\Logger\LoggerChannelFactory;
+use Drupal\Core\Extension\ThemeHandlerInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use OpenEuropa\Twig\Loader\EuropaComponentLibraryLoader;
 use Drupal\Core\Messenger\MessengerTrait;
 
@@ -26,14 +26,14 @@ class ComponentLibraryLoader extends EuropaComponentLibraryLoader {
   /**
    * Logger factory.
    *
-   * @var \Drupal\Core\Logger\LoggerChannelInterface
+   * @var \Drupal\Core\Logger\LoggerChannelFactoryInterface
    */
   protected $logger;
 
   /**
    * {@inheritdoc}
    */
-  public function __construct($namespaces, $root, $theme, $directory, ThemeHandler $theme_handler, LoggerChannelFactory $logger_factory) {
+  public function __construct($namespaces, $root, $theme, $directory, ThemeHandlerInterface $theme_handler, LoggerChannelFactoryInterface $logger_factory) {
     // Make sure the theme exists before getting its path.
     // This is necessary when the "oe_theme_helper" module is enabled before
     // the theme is or the theme is disabled and the "oe_theme_helper" is not.
