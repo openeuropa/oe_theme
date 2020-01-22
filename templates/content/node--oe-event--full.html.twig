@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display a node.
+ *
+ * @see ./core/themes/stable/templates/content/node.html.twig
+ */
+#}
+<article{{ attributes }}>
+
+  {% if content.group_practical_information is not empty %}
+    <h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Practical information'|t }}</h2>
+    {{ content.group_practical_information }}
+  {% endif %}
+
+  {{ content|without('group_practical_information') }}
+
+</article>
+

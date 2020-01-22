@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for the contacts extra field on event content type.
+ *
+ * @see ./templates/field/field.html.twig
+ * @see \Drupal\oe_theme_content_event\Plugin\ExtraField\Display\ContactsExtraField::viewElements()
+ */
+#}
+<h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Contact'|t }}</h2>
+<div class="ecl-row">
+  <div class="ecl-col-12 ecl-col-md-6">
+    <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ 'General contact'|t }}</h3>
+    {{ element.oe_general }}
+  </div>
+  <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
+    <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ 'Press contact'|t }}</h3>
+    {{ element.oe_press }}
+  </div>
+</div>
