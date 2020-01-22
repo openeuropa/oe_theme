@@ -13,6 +13,7 @@
       {{ content.oe_event_description_summary }}
     </div>
     <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
+      {{ content.extra_field_oe_theme_content_event_details }}
     </div>
   </div>
 
@@ -23,7 +24,9 @@
 
   {{ content|without(
     'group_practical_information',
-    'oe_event_description_summary') }}
+    'oe_event_description_summary',
+    'extra_field_oe_theme_content_event_details'
+  ) }}
 
 </article>
 

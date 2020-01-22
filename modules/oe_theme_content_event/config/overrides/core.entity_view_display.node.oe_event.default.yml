@@ -72,6 +72,11 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  extra_field_oe_theme_content_event_details:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   extra_field_oe_theme_content_event_organiser:
     weight: 3
     region: content
