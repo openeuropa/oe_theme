@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Module file used for theming the Event content type.
+ * Module install file.
  */
 
 declare(strict_types = 1);
@@ -13,16 +13,17 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 /**
  * Implements hook_install().
  */
-function oe_theme_content_event_install() {
+function oe_theme_content_entity_contact_install() {
   // If we are installing from config, we bail out.
   if (\Drupal::isConfigSyncing() === TRUE) {
     return;
   }
 
   // Override entity view displays.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/overrides');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/overrides');
   $displays = [
-    'core.entity_view_display.node.oe_event.default',
+    'core.entity_view_display.oe_contact.oe_general.default',
+    'core.entity_view_display.oe_contact.oe_press.default',
   ];
 
   foreach ($displays as $display) {
