@@ -29,7 +29,8 @@ function oe_theme_helper_page_attachments(array &$page) {
   }
 
   // Load ECL component library assets.
-  if (\Drupal::service('theme.manager')->getActiveTheme()->getName() === 'oe_theme') {
+  $active_theme = \Drupal::service('theme.manager')->getActiveTheme();
+  if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemes())) {
     $page['#attached']['library'][] = 'oe_theme/component_library_' . theme_get_setting('component_library');
   }
 }
