@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
+use CommerceGuys\Addressing\Locale;
 use Drupal\address\AddressInterface;
 use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -92,11 +94,25 @@ class AddressInlineFormatter extends AddressDefaultFormatter implements Containe
     $countries = $this->countryRepository->getList();
     $address_format = $this->addressFormatRepository->get($country_code);
     $values = $this->getValues($address, $address_format);
-    $values['country'] = $countries[$country_code];
+
+    $address_elements['%country'] = Html::escape($countries[$country_code]);
+    foreach ($address_format->getUsedFields() as $field) {
+      $address_elements['%' . $field] = Html::escape($values[$field]);
+    }
+
+    if (Locale::matchCandidates($address_format->getLocale(), $address->getLocale())) {
+      $format_string = '%country' . "\n" . $address_format->getLocalFormat();
+    }
+    else {
+      $format_string = $address_format->getFormat() . "\n" . '%country';
+    }
+
+    $items = self::replacePlaceholders($format_string, $address_elements);
+
     return [
       '#theme' => 'oe_theme_helper_address_inline',
       '#address' => $address,
-      '#address_items' => $values,
+      '#address_items' => $items,
       '#address_delimiter' => $this->getSetting('delimiter'),
       '#cache' => [
         'contexts' => [
@@ -104,6 +120,35 @@ class AddressInlineFormatter extends AddressDefaultFormatter implements Containe
         ],
       ],
     ];
+  }
+
+  /**
+   * Replaces placeholders in the given string.
+   *
+   * @param string $string
+   *   The string containing the placeholders.
+   * @param array $replacements
+   *   An array of replacements keyed by their placeholders.
+   *
+   * @return array
+   *   The exploded lines.
+   */
+  public static function replacePlaceholders($string, array $replacements) {
+    // Make sure the replacements don't have any unneeded newlines.
+    $replacements = array_map('trim', $replacements);
+    $string = strtr($string, $replacements);
+    // Remove noise caused by empty placeholders.
+    $lines = explode("\n", $string);
+    foreach ($lines as $index => $line) {
+      // Remove leading punctuation, excess whitespace.
+      $line = trim(preg_replace('/^[-,]+/', '', $line, 1));
+      $line = preg_replace('/\s\s+/', ' ', $line);
+      $lines[$index] = $line;
+    }
+    // Remove empty lines.
+    $lines = array_filter($lines);
+
+    return $lines;
   }
 
 }
