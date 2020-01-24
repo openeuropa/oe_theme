@@ -9,8 +9,8 @@
 <article{{ attributes }}>
 
   <div class="ecl-row">
-    <div class="ecl-col-12 ecl-col-md-6 ecl-editor">
-      {{ content.oe_event_description_summary }}
+    <div class="ecl-col-12 ecl-col-md-6">
+      {{ content.extra_field_oe_theme_content_event_summary }}
       {{ content.extra_field_oe_theme_content_event_registration_button }}
     </div>
     <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
@@ -31,6 +31,7 @@
   {{ content|without(
     'extra_field_oe_theme_content_event_details',
     'extra_field_oe_theme_content_event_registration_button',
+    'extra_field_oe_theme_content_event_summary',
     'group_practical_information',
     'oe_event_description_summary',
     'oe_social_media_links'

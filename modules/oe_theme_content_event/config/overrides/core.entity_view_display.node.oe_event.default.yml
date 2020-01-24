@@ -55,7 +55,7 @@ third_party_settings:
         - oe_event_registration_capacity
         - oe_event_entrance_fee
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: horizontal
@@ -69,22 +69,32 @@ bundle: oe_event
 mode: default
 content:
   extra_field_oe_theme_content_event_contacts:
-    weight: 5
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_description:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_details:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_organiser:
     weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_registration_button:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_summary:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -98,13 +108,6 @@ content:
     third_party_settings: {  }
     type: daterange_custom
     region: content
-  oe_event_description_summary:
-    type: text_default
-    weight: 0
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   oe_event_entrance_fee:
     weight: 6
     label: above
@@ -152,7 +155,7 @@ content:
     region: content
   oe_social_media_links:
     type: oe_theme_helper_social_media_links_formatter
-    weight: 3
+    weight: 4
     region: content
     label: hidden
     settings:
@@ -172,6 +175,7 @@ hidden:
   oe_content_navigation_title: true
   oe_content_short_title: true
   oe_event_contact: true
+  oe_event_description_summary: true
   oe_event_featured_media: true
   oe_event_featured_media_legend: true
   oe_event_gallery: true
