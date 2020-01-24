@@ -6,6 +6,8 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\Tests\oe_content\Behat\DateFieldContext
+        - Drupal\Tests\oe_content\Behat\MediaCreationContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
@@ -28,6 +30,7 @@ default:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"
               ECL dropdown component: "/en/components/dropdown"
+              event creation: "/en/node/add/oe_event"
               image creation: "/en/media/add/image"
               recent content: "/en/node"
               user registration: "/user/register"
@@ -64,5 +67,13 @@ default:
         priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
+        Online link: "#edit-oe-event-online-link-0"
+        Website: "#edit-oe-event-website-0"
+        Social media links: "#oe-social-media-links-values"
+        Social media follow: ".ecl-social-media-follow"
+        Description: "#edit-oe-event-featured-media"
+        Event report: "#edit-group-report"
+        Event partner: "#edit-oe-event-partner-wrapper"
+        Event contact: "#edit-oe-event-contact-wrapper"
   formatters:
     progress: ~

@@ -60,7 +60,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_theme\\": "./tests/"
+            "Drupal\\Tests\\oe_theme\\": "./tests/",
+            "Drupal\\Tests\\oe_content\\": "./build/modules/contrib/oe_content/tests/"
         }
     },
     "repositories": {

@@ -63,4 +63,18 @@ class DrupalContext extends RawDrupalContext {
     \Drupal::service('module_installer')->uninstall(['oe_theme_demo']);
   }
 
+  /**
+   * Selects option in select field in a region.
+   *
+   * @When I select :option from :select in the :region region
+   */
+  public function selectOption(string $select, string $option, string $region): void {
+    $session = $this->getSession();
+    $regionObj = $session->getPage()->find('region', $region);
+    if (!$regionObj) {
+      throw new \Exception(sprintf('No region "%s" found on the page %s.', $region, $session->getCurrentUrl()));
+    }
+    $regionObj->selectFieldOption($select, $option);
+  }
+
 }
