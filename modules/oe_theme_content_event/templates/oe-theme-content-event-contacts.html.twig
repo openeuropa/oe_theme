@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for the contacts extra field on event content type.
+ *
+ * @see \Drupal\oe_theme_content_event\Plugin\ExtraField\Display\ContactsExtraField::viewElements()
+ */
+#}
+{% if general is not empty or press is not empty %}
+  <h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ 'Contact'|t }}</h2>
+  <div class="ecl-row">
+    {% if general is not empty %}
+      <div class="ecl-col-12 ecl-col-md-6">
+        <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ 'General contact'|t }}</h3>
+        {{ general }}
+      </div>
+    {% endif %}
+    {% if press is not empty %}
+      <div class="ecl-col-12 ecl-col-md-6{{ general is not empty ? ' ecl-u-mt-l ecl-u-mt-md-none'}}">
+        <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">{{ 'Press contact'|t }}</h3>
+        {{ press }}
+      </div>
+    {% endif %}
+  </div>
+{% endif %}

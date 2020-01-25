@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -72,6 +73,8 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
+    $cacheability = new CacheableMetadata();
+
     // Return an empty array if empty, so the field can be considered empty.
     if ($entity->get('oe_event_contact')->isEmpty()) {
       return [];
@@ -79,17 +82,25 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
 
     // We get here renderable arrays for contact entities.
     // We also divide them by bundle, so we can display them in a grid layout.
-    // We also know that the field only accepts those two bundles.
-    $renderables = [
-      'oe_general' => [],
-      'oe_press' => [],
+    $build = [
+      '#theme' => 'oe_theme_content_event_contacts',
+      '#general' => [],
+      '#press' => [],
     ];
     /** @var \Drupal\Core\Field\FieldItemInterface $item */
     foreach ($entity->get('oe_event_contact') as $item) {
-      $renderables[$item->entity->bundle()][] = $this->viewBuilder->view($item->entity);
+      if ($item->entity->bundle() === 'oe_general') {
+        $build['#general'][] = $this->viewBuilder->view($item->entity);
+        $cacheability->addCacheableDependency($item->entity);
+      }
+      if ($item->entity->bundle() === 'oe_press') {
+        $build['#press'][] = $this->viewBuilder->view($item->entity);
+        $cacheability->addCacheableDependency($item->entity);
+      }
     }
 
-    return $renderables;
+    $cacheability->applyTo($build);
+    return $build;
   }
 
 }
