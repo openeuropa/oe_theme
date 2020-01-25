@@ -7,3 +7,4 @@ dependencies:
   - extra_field:extra_field
   - oe_content:oe_content_event
   - oe_theme:oe_theme_content_entity_contact
+  - oe_theme:oe_theme_content_entity_venue

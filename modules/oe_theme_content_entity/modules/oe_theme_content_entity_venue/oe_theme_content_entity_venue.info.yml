@@ -1,0 +1,8 @@
+name: OpenEuropa Theme Content Entity Venue
+description: Companion module for the OE Content Entity module
+package: OpenEuropa
+type: module
+core: 8.x
+
+dependencies:
+  - oe_content_entity_venue:oe_content_entity_venue
