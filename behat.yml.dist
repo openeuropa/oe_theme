@@ -23,6 +23,7 @@ default:
               list item: ".ecl-content-item"
               list item image: ".ecl-content-item__image__before"
               logo: ".ecl-site-header__logo-image"
+              media container: ".ecl-media-container"
               page header: ".ecl-page-header"
               priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
               search form: ".ecl-search-form"

@@ -16,7 +16,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 function oe_theme_content_event_theme() {
   return [
     'oe_theme_content_event_registration_button' => [
-      'variables' => ['label' => NULL, 'url' => NULL, 'description' => NULL, 'disabled' => NULL],
+      'variables' => ['label' => NULL, 'url' => NULL, 'description' => NULL, 'enabled' => NULL],
     ],
     'oe_theme_content_event_summary' => [
       'variables' => ['text' => NULL],

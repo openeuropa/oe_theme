@@ -53,43 +53,61 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
       return [];
     }
 
-    // Default label and description.
-    $label = t('Register');
-    $description = t('Register here');
+    // Set default registration button values.
+    $url = $view_builder->viewField($event->get('oe_event_registration_url'));
+    $build = [
+      '#theme' => 'oe_theme_content_event_registration_button',
+      '#label' => t('Register'),
+      '#url' => $url[0]['#url']->toString(),
+      '#description' => t('Register here'),
+      '#enabled' => FALSE,
+    ];
+
+    // Registration is active.
+    if ($event->isRegistrationPeriodActive($now) && $event->isRegistrationOpen()) {
+      /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
+      $date_formatter = \Drupal::service('date.formatter');
+      $date_diff = $date_formatter->formatDiff($now->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
+      $build['#description'] = t('Book your seat, @time_left left to register.', [
+        '@time_left' => $date_diff,
+      ]);
+      $build['#enabled'] = TRUE;
+
+      return $build;
+    }
 
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
-      $label = t('Registration will open on @date', [
+      $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
+        '@start_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date', 'oe_event_date_hour'),
+        '@end_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date', 'oe_event_date_hour'),
+      ]);
+      $build['#description'] = t('Registration will open on @date', [
         '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date'),
       ]);
-      $description = t('Registration will open on @start_date, until @end_date.', [
-        '@start_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date'),
-        '@end_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date'),
-      ]);
+
+      return $build;
     }
 
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
-      $label = t('Registration period ended on @date', [
+      $build['#label'] = t('Registration period ended on @date', [
         '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date'),
       ]);
-      $description = t('Registration for this event has ended.');
+      $build['#description'] = t('Registration for this event has ended.');
+
+      return $build;
     }
 
     // Registration period is closed.
     if ($event->isRegistrationClosed()) {
-      $label = t('Registration is now closed.');
-      $description = t('Registration is now closed for this event.');
+      $build['#label'] = t('Registration is now closed.');
+      $build['#description'] = t('Registration is now closed for this event.');
+
+      return $build;
     }
 
-    $url = $view_builder->viewField($event->get('oe_event_registration_url'));
-    return [
-      '#theme' => 'oe_theme_content_event_registration_button',
-      '#label' => $label,
-      '#url' => $url[0]['#url']->toString(),
-      '#description' => $description,
-      '#disabled' => $event->isRegistrationClosed() || $event->isRegistrationPeriodOver($now),
-    ];
+    return $build;
   }
 
   /**

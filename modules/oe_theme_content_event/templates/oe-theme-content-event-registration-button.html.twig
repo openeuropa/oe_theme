@@ -6,7 +6,7 @@
  * @see \Drupal\oe_theme_content_event\Plugin\ExtraField\Display\RegistrationButtonExtraField::lazyBuilder()
  */
 #}
-{% if not disabled %}
+{% if enabled %}
   <a href="{{ url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta" title="{{ description }}">{{ label }}</a>
 {% else %}
   <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta" disabled="" title="{{ description }}">{{ label }}</button>
