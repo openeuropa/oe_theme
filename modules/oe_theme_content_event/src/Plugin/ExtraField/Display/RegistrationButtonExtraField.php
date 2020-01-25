@@ -59,16 +59,19 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
 
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
-      $label = t('Registration will open on @datetime', [
-        '@datetime' => $event->getRegistrationStartDate()->format('j F Y, H:i'),
+      $label = t('Registration will open on @date', [
+        '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date'),
       ]);
-      $description = t('Registration is not yet opened for this event.');
+      $description = t('Registration will open on @start_date, until @end_date.', [
+        '@start_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date'),
+        '@end_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date'),
+      ]);
     }
 
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
-      $label = t('Registration period ended on @datetime', [
-        '@datetime' => $event->getRegistrationEndDate()->format('j F Y, H:i'),
+      $label = t('Registration period ended on @date', [
+        '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date'),
       ]);
       $description = t('Registration for this event has ended.');
     }
@@ -87,6 +90,38 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
       '#description' => $description,
       '#disabled' => $event->isRegistrationClosed() || $event->isRegistrationPeriodOver($now),
     ];
+  }
+
+  /**
+   * Get rendered date field portion (i.e. start or end date).
+   *
+   * This is a static method since it is used in the lazy loader above.
+   * Rendering dates will make sure that both translation and timezone are
+   * properly handled.
+   *
+   * @param \Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator $entity
+   *   Entity object.
+   * @param string $field_name
+   *   Date range field name, assumed to have values.
+   * @param string $portion
+   *   Date portion, either 'start_date' or 'end_date'.
+   * @param string $format
+   *   Date format name, defaults to 'oe_event_long_date_hour'.
+   *
+   * @return string
+   *   Rendered date portion.
+   */
+  public static function getRenderedDatePortion(EventEntityDecorator $entity, string $field_name, string $portion, string $format = 'oe_event_long_date_hour') {
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+    $renderable = $view_builder->viewField($entity->get($field_name), [
+      'label' => 'hidden',
+      'type' => 'daterange_default',
+      'settings' => [
+        'format_type' => $format,
+      ],
+    ]);
+
+    return $renderable[0][$portion]['#text'];
   }
 
 }

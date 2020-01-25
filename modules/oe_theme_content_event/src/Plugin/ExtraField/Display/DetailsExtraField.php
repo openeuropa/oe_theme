@@ -137,9 +137,9 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   protected function getRenderableDates(ContentEntityInterface $entity): array {
     return $this->contactViewBuilder->viewField($entity->get('oe_event_dates'), [
       'label' => 'hidden',
-      'type' => 'daterange_custom',
+      'type' => 'daterange_default',
       'settings' => [
-        'date_format' => 'j F Y, H:i',
+        'format_type' => 'oe_event_date_hour',
         'separator' => $this->t('to'),
       ],
     ]);
