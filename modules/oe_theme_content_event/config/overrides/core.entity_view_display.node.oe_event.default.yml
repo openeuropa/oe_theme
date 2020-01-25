@@ -41,7 +41,6 @@ dependencies:
     - link
     - oe_theme_helper
     - rdf_skos
-    - text
     - user
 third_party_settings:
   field_group:
@@ -103,10 +102,10 @@ content:
     label: above
     settings:
       timezone_override: ''
-      date_format: 'j F Y, H:i'
+      format_type: oe_event_long_date_hour
       separator: to
     third_party_settings: {  }
-    type: daterange_custom
+    type: daterange_default
     region: content
   oe_event_entrance_fee:
     weight: 6

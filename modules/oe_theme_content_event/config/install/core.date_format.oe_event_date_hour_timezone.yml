@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_event_date_hour_timezone
+label: 'Event date with hour and timezone'
+locked: false
+pattern: 'j F Y, H:i T'
