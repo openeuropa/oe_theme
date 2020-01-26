@@ -28,3 +28,14 @@ field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base:
 field_group.field_group_formatter_plugin.oe_theme_helper_field_list_pattern:
   type: field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base
   label: 'Mapping for the field list pattern formatter settings'
+
+field.formatter.settings.oe_theme_helper_social_media_links_formatter:
+  type: field.formatter.settings.link
+  label: 'Social media link formatter settings'
+  mapping:
+    title:
+      type: label
+      label: 'Block title'
+    variant:
+      type: string
+      label: 'Pattern variant'

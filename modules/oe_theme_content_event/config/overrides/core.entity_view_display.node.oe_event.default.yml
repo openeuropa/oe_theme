@@ -191,9 +191,11 @@ content:
     region: content
     label: hidden
     settings:
-      trim_length: '80'
+      trim_length: 80
       rel: nofollow
       target: _blank
+      title: 'Social media'
+      variant: horizontal
       url_only: false
       url_plain: false
     third_party_settings: {  }
