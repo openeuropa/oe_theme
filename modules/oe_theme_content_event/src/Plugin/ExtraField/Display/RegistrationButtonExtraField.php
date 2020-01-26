@@ -79,11 +79,11 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
       $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
-        '@start_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date', 'oe_event_date_hour'),
-        '@end_date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date', 'oe_event_date_hour'),
+        '@start_date' => self::getRegistrationDateComponent($event, 'start_date', 'oe_event_date_hour'),
+        '@end_date' => self::getRegistrationDateComponent($event, 'end_date', 'oe_event_date_hour'),
       ]);
       $build['#description'] = t('Registration will open on @date', [
-        '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'start_date'),
+        '@date' => self::getRegistrationDateComponent($event, 'start_date'),
       ]);
 
       return $build;
@@ -92,7 +92,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
       $build['#label'] = t('Registration period ended on @date', [
-        '@date' => self::getRenderedDatePortion($event, 'oe_event_registration_dates', 'end_date'),
+        '@date' => self::getRegistrationDateComponent($event, 'end_date'),
       ]);
       $build['#description'] = t('Registration for this event has ended.');
 
@@ -111,7 +111,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
   }
 
   /**
-   * Get rendered date field portion (i.e. start or end date).
+   * Get rendered registration date field component (i.e. start or end date).
    *
    * This is a static method since it is used in the lazy loader above.
    * Rendering dates will make sure that both translation and timezone are
@@ -119,19 +119,17 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    *
    * @param \Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator $entity
    *   Entity object.
-   * @param string $field_name
-   *   Date range field name, assumed to have values.
-   * @param string $portion
-   *   Date portion, either 'start_date' or 'end_date'.
+   * @param string $component
+   *   Date component, either 'start_date' or 'end_date'.
    * @param string $format
    *   Date format name, defaults to 'oe_event_long_date_hour'.
    *
    * @return string
    *   Rendered date portion.
    */
-  public static function getRenderedDatePortion(EventEntityDecorator $entity, string $field_name, string $portion, string $format = 'oe_event_long_date_hour') {
+  public static function getRegistrationDateComponent(EventEntityDecorator $entity, string $component, string $format = 'oe_event_long_date_hour') {
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-    $renderable = $view_builder->viewField($entity->get($field_name), [
+    $renderable = $view_builder->viewField($entity->get('oe_event_registration_dates'), [
       'label' => 'hidden',
       'type' => 'daterange_default',
       'settings' => [
@@ -139,7 +137,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
       ],
     ]);
 
-    return $renderable[0][$portion]['#text'];
+    return $renderable[0][$component]['#text'];
   }
 
 }
