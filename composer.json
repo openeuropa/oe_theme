@@ -17,6 +17,7 @@
         "consolidation/robo": "~1.4",
         "consolidation/annotated-command": "^2.8.2",
         "drupal-composer/drupal-scaffold": "^2.5.2",
+        "drupal/address": "^1.7",
         "drupal/config_devel": "~1.2",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
