@@ -62,3 +62,15 @@ If the variable `{{ langcode }}` contains `es`:
 ```
 
 Output: `Español`.
+
+## Additional formatters
+
+### Social media field formatter
+
+It provides formatter for the social media links in order to configure horizontal or vertical variants of the pattern.
+Social media field requires [typed_link](https://www.drupal.org/project/typed_link) module.
+
+### Field group formatter
+
+This formatter is made to format the fields - that are orgnaised under a certion field group - with the Field list pattern.
+Additional formatters for other patterns can be implemented by extending the [PatternFormatterBase](modules/oe_theme_helper/src/Plugin/field_group/FieldGroupFormatter/PatternFormatterBase.php) class.
