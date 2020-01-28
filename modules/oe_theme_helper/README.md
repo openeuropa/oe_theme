@@ -65,17 +65,17 @@ Output: `Español`.
 
 ## Additional formatters
 
-### Social media field formatter
+**Social media field formatter**
 
 It provides formatter for the social media links in order to configure horizontal or vertical variants of the pattern.
 Social media field requires [typed_link](https://www.drupal.org/project/typed_link) module.
 
-### Field group formatter
+**Field group formatter**
 
-This formatter is made to format the fields - that are orgnaised under a certion field group - with the Field list pattern.
+This formatter is made to format the fields - that are organised under a certain field group - with the Field list pattern.
 Additional formatters for other patterns can be implemented by extending the [PatternFormatterBase](modules/oe_theme_helper/src/Plugin/field_group/FieldGroupFormatter/PatternFormatterBase.php) class.
 
-### Inline address formatter
+**Inline address formatter**
 
 This formatter provides the possibility to configure and render address field values with
 a defined separator. Default separator is ", ". Example: Rue Belliard 28, Brussels, 1000 Belgium. It works with

@@ -8,7 +8,8 @@ It provides configurations and functionalities specific for corporate custom ent
 Default view mode override is shipped to show a limited set of fields.
 This can be overridden by providing a Full view mode.
 
-Currently these are shipped ofr the following entities:
+Currently these are shipped for the following entities:
+
 * Contact
     * General bundle
     * Press bundle
