@@ -31,11 +31,12 @@ bundle: oe_general
 mode: default
 content:
   oe_address:
-    weight: 5
-    label: hidden
-    settings: {  }
+    weight: 4
+    label: above
+    settings:
+      delimiter: ', '
     third_party_settings: {  }
-    type: address_default
+    type: oe_theme_helper_address_inline
     region: content
   oe_email:
     weight: 6

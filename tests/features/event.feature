@@ -112,7 +112,7 @@ Feature: Event content type.
     # Icons with text.
     And I should see the text "EU financing"
     And I should see the text "21 February 2019, 02:21"
-    And I should see the text "Rue belliard 28 Brussels 1000 Belgium"
+    And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
     And I should see the text "Live streaming available"
 
     # Past event registration button has the title below.
@@ -124,7 +124,7 @@ Feature: Event content type.
     And I should see the text "When"
     And I should see the text "Thursday 21 February 2019, 02:21"
     And I should see the text "Where"
-    And I should see the text "Rue belliard 28 Brussels 1000 Belgium"
+    And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
     And I should see the text "Live stream"
     And I should see the text "Online link"
     And I should see the link "Online link"
@@ -158,7 +158,8 @@ Feature: Event content type.
     # Event contact values.
     And I should see the text "Contacts"
     And I should see the text "General contact"
-    And I should see the text "Budapest Back street 3 9000 Hungary"
+    And I should see the text "General contact"
+    And I should see the text "Budapest, Back street 3, 9000, Hungary"
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
 

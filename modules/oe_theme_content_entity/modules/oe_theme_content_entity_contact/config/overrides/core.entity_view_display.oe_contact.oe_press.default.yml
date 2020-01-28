@@ -42,9 +42,10 @@ content:
   oe_address:
     weight: 4
     label: above
-    settings: {  }
+    settings:
+      delimiter: ', '
     third_party_settings: {  }
-    type: address_default
+    type: oe_theme_helper_address_inline
     region: content
   oe_email:
     weight: 2
