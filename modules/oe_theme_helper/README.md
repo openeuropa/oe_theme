@@ -74,3 +74,9 @@ Social media field requires [typed_link](https://www.drupal.org/project/typed_li
 
 This formatter is made to format the fields - that are orgnaised under a certion field group - with the Field list pattern.
 Additional formatters for other patterns can be implemented by extending the [PatternFormatterBase](modules/oe_theme_helper/src/Plugin/field_group/FieldGroupFormatter/PatternFormatterBase.php) class.
+
+### Inline address formatter
+
+This formatter provides the possibility to configure and render address field values with
+a defined separator. Default separator is ", ". Example: Rue Belliard 28, Brussels, 1000 Belgium. It works with
+[address](https://www.drupal.org/project/address) module.
