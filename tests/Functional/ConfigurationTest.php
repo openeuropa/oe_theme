@@ -27,15 +27,20 @@ class ConfigurationTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme']);
+    $this->container->get('theme_installer')->install(['oe_theme', 'oe_theme_subtheme_test']);
     $this->container->get('theme_handler')->setDefault('oe_theme');
     $this->container->set('theme.registry', NULL);
   }
 
   /**
-   * Test that the the default settings are applied correctly.
+   * Test that the the default libraries are loaded correctly.
+   *
+   * @dataProvider defaultLibraryLoadingThemeProvider
    */
-  public function testDefaultSettings(): void {
+  public function testDefaultLibraryLoading(string $active_theme): void {
+    $this->container->get('theme_handler')->setDefault($active_theme);
+    $this->container->set('theme.registry', NULL);
+
     $this->drupalGet('<front>');
 
     // Assert that we load the EC component library by default.
@@ -53,6 +58,19 @@ class ConfigurationTest extends BrowserTestBase {
 
     // Assert that the ECL Editor preset is always loaded.
     $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+  }
+
+  /**
+   * Return list of themes with which to test the loading of default libraries.
+   *
+   * @return array
+   *   Theme names.
+   */
+  public function defaultLibraryLoadingThemeProvider() {
+    return [
+      ['oe_theme'],
+      ['oe_theme_subtheme_test'],
+    ];
   }
 
   /**
