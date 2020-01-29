@@ -3,14 +3,17 @@
 This module is a theming companion module to the [OpenEuropa Content Entity](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_entity) module.
 It provides configurations and functionalities specific for corporate custom entities.
 
-### Configurations shipped
+### Overridden configuration
 
-Default view mode override is shipped to show a limited set of fields.
-This can be overridden by providing a Full view mode.
-
-Currently these are shipped for the following entities:
-
+Installing this module will override the default view modes of the following entity types:
+ 
 * Contact
-    * General bundle
-    * Press bundle
+  * General bundle
+  * Press bundle
 * Venue
+  * Default bundle
+
+The entity types above are shipped by the [OpenEuropa Content Entity](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_entity)
+module. This is necessary in order to guarantee that fields and formatter settings are displayed correctly.
+
+If you want to customize how those entity types look like create the `full` view mode on their bundles and take over.  
