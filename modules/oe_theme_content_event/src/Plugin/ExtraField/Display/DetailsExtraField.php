@@ -42,7 +42,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   protected $venueViewBuilder;
 
   /**
-   * ContactsExtraField constructor.
+   * DetailsExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -64,7 +64,9 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $configuration, $plugin_id, $plugin_definition,
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
       $container->get('entity_type.manager')
     );
   }

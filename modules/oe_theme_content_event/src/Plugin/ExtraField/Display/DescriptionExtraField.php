@@ -40,7 +40,7 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   protected $viewBuilder;
 
   /**
-   * ContactsExtraField constructor.
+   * DescriptionExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

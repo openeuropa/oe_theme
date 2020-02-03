@@ -55,7 +55,7 @@ class PatternFormatterTest extends BrowserTestBase {
     ]);
     $this->drupalLogin($admin_user);
 
-    // Create content type, with underscores.
+    // Create content type.
     $this->drupalCreateContentType([
       'name' => 'Test',
       'type' => 'test',

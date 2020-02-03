@@ -42,7 +42,7 @@ List of Extra field definitions:
 * [Description](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DescriptionExtraField.php)
 
     Ships lazy builder callbacks and rendereable arrays with a conditional Description or Report title with their respective content.
-    This section is accompanied by the featured media and it's legend. Read more about [auto placeholdering](https://www.drupal.org/docs/8/api/render-api/auto-placeholdering) with lazy builders.
+    This section is accompanied by the featured media and its legend. Read more about [auto placeholdering](https://www.drupal.org/docs/8/api/render-api/auto-placeholdering) with lazy builders.
 
 * [Details](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DetailsExtraField.php)
 
