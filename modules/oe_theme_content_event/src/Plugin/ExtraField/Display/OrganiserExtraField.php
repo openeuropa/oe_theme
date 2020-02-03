@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
@@ -39,9 +40,12 @@ class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
 
     // If the organiser is internal and not empty, show it.
     if ($is_internal && !$entity->get('oe_event_organiser_internal')->isEmpty()) {
-      return [
+      $build = [
         '#markup' => $entity->get('oe_event_organiser_internal')->entity->label(),
       ];
+      CacheableMetadata::createFromObject($entity->get('oe_event_organiser_internal')->entity)
+        ->applyTo($build);
+      return $build;
     }
 
     // If the organiser is not internal and not empty, show it.
