@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.1.2](https://github.com/openeuropa/oe_theme/tree/2.1.2) (2020-01-22)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.1...2.1.2)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2747: Fix error in signature of ComponentLibraryLoader constructor. [\#407](https://github.com/openeuropa/oe_theme/pull/407) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.1.1](https://github.com/openeuropa/oe_theme/tree/2.1.1) (2020-01-10)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.0...2.1.1)
 
