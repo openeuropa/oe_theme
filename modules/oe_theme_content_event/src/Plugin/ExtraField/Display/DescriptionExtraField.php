@@ -147,15 +147,10 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
     $now = (new \DateTime())->setTimestamp($current_time);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
-    // If we are past the end date and an event report is available, show it.
-    if ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) {
-      return $view_builder->viewField($node->get('oe_event_report_text'), [
-        'label' => 'hidden',
-      ]);
-    }
-
-    // Default to event body, otherwise.
-    return $view_builder->viewField($node->get('body'), [
+    // By default, we show the event body field.
+    // If the end date is past and event report is available, show that instead.
+    $field_name = ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
+    return $view_builder->viewField($node->get($field_name), [
       'label' => 'hidden',
     ]);
   }
