@@ -47,19 +47,20 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     $now = (new \DateTime())->setTimestamp($current_time);
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
     $event = new EventNodeWrapper($node);
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
     // If event has no registration information then don't display anything.
     if (!$event->hasRegistration()) {
       return [];
     }
 
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
+    $link = $node->get('oe_event_registration_url')->first();
+
     // Set default registration button values.
-    $url = $view_builder->viewField($node->get('oe_event_registration_url'));
     $build = [
       '#theme' => 'oe_theme_content_event_registration_button',
       '#label' => t('Register'),
-      '#url' => $url[0]['#url']->toString(),
+      '#url' => $link->getUrl()->toString(),
       '#description' => t('Register here'),
       '#enabled' => FALSE,
     ];
