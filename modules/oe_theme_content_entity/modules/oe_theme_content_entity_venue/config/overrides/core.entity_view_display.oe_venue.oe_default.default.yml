@@ -15,7 +15,7 @@ mode: default
 content:
   oe_address:
     weight: 4
-    label: above
+    label: hidden
     settings:
       delimiter: ', '
     third_party_settings: {  }
