@@ -77,8 +77,6 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $cacheability = new CacheableMetadata();
-
     // Display event description using "text_featured_media" pattern.
     $build = [
       '#type' => 'pattern',
@@ -99,7 +97,7 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
     // Get media thumbnail and add media entity as cacheable dependency.
     if (!$entity->get('oe_event_featured_media')->isEmpty()) {
       $build['#fields']['image'] = $this->getRenderableFeaturedMediaValueObject($entity);
-      $cacheability->addCacheableDependency($entity->get('oe_event_featured_media')->entity)
+      CacheableMetadata::createFromObject($entity->get('oe_event_featured_media')->entity)
         ->applyTo($build);
     }
 
