@@ -6,7 +6,6 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\node\NodeInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
@@ -43,6 +42,8 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    *   Render array.
    */
   public static function lazyBuilder($id): array {
+    /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
+    $date_formatter = \Drupal::service('date.formatter');
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
@@ -67,8 +68,6 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
 
     // Registration is active.
     if ($event->isRegistrationPeriodActive($now) && $event->isRegistrationOpen()) {
-      /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
-      $date_formatter = \Drupal::service('date.formatter');
       $date_diff = $date_formatter->formatDiff($now->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Book your seat, @time_left left to register.', [
         '@time_left' => $date_diff,
@@ -81,11 +80,11 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
       $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
-        '@start_date' => self::getRegistrationDateComponent($node, 'start_date', 'oe_event_date_hour'),
-        '@end_date' => self::getRegistrationDateComponent($node, 'end_date', 'oe_event_date_hour'),
+        '@start_date' => $date_formatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
+        '@end_date' => $date_formatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
       ]);
       $build['#description'] = t('Registration will open on @date', [
-        '@date' => self::getRegistrationDateComponent($node, 'start_date'),
+        '@date' => $date_formatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
 
       return $build;
@@ -94,7 +93,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
       $build['#label'] = t('Registration period ended on @date', [
-        '@date' => self::getRegistrationDateComponent($node, 'end_date'),
+        '@date' => $date_formatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
       $build['#description'] = t('Registration for this event has ended.');
 
@@ -110,36 +109,6 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     }
 
     return $build;
-  }
-
-  /**
-   * Get rendered registration date field component (i.e. start or end date).
-   *
-   * This is a static method since it is used in the lazy loader above.
-   * Rendering dates will make sure that both translation and timezone are
-   * properly handled.
-   *
-   * @param \Drupal\node\NodeInterface $node
-   *   Entity object.
-   * @param string $component
-   *   Date component, either 'start_date' or 'end_date'.
-   * @param string $format
-   *   Date format name, defaults to 'oe_event_long_date_hour'.
-   *
-   * @return string
-   *   Rendered date portion.
-   */
-  public static function getRegistrationDateComponent(NodeInterface $node, string $component, string $format = 'oe_event_long_date_hour') {
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-    $renderable = $view_builder->viewField($node->get('oe_event_registration_dates'), [
-      'label' => 'hidden',
-      'type' => 'daterange_default',
-      'settings' => [
-        'format_type' => $format,
-      ],
-    ]);
-
-    return $renderable[0][$component]['#text'];
   }
 
 }
