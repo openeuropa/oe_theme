@@ -91,14 +91,16 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
     ];
     /** @var \Drupal\Core\Field\FieldItemInterface $item */
     foreach ($entity->get('oe_event_contact') as $item) {
-      if ($item->entity->bundle() === 'oe_general') {
-        $build['#general'][] = $this->viewBuilder->view($item->entity);
-        $cacheability->addCacheableDependency($item->entity);
+      $bundle = $item->entity->bundle();
+
+      // We only handle 'oe_press' or 'oe_general' bundles.
+      if (!in_array($bundle, ['oe_general', 'oe_press'])) {
+        continue;
       }
-      if ($item->entity->bundle() === 'oe_press') {
-        $build['#press'][] = $this->viewBuilder->view($item->entity);
-        $cacheability->addCacheableDependency($item->entity);
-      }
+
+      $key = ($bundle === 'oe_general') ? '#general' : '#press';
+      $build[$key][] = $this->viewBuilder->view($item->entity);
+      $cacheability->addCacheableDependency($item->entity);
     }
 
     $cacheability->applyTo($build);
