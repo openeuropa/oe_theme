@@ -12,7 +12,6 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\oe_theme\ValueObject\ValueObjectInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -97,7 +96,8 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
 
     // Get media thumbnail and add media entity as cacheable dependency.
     if (!$entity->get('oe_event_featured_media')->isEmpty()) {
-      $build['#fields']['image'] = $this->getRenderableFeaturedMediaValueObject($entity);
+      $thumbnail = $entity->get('oe_event_featured_media')->entity->get('thumbnail')->first();
+      $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
       CacheableMetadata::createFromObject($entity->get('oe_event_featured_media')->entity)
         ->applyTo($build);
     }
@@ -173,23 +173,6 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
     return $this->viewBuilder->viewField($entity->get('oe_event_featured_media_legend'), [
       'label' => 'hidden',
     ]);
-  }
-
-  /**
-   * Get event featured media legend as a renderable array.
-   *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   Content entity.
-   *
-   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
-   *   Value object.
-   */
-  protected function getRenderableFeaturedMediaValueObject(ContentEntityInterface $entity): ValueObjectInterface {
-    $renderable = $this->viewBuilder->viewField($entity->get('oe_event_featured_media'), [
-      'type' => 'media_thumbnail',
-    ]);
-
-    return ImageValueObject::fromImageItem($renderable[0]['#item']);
   }
 
 }
