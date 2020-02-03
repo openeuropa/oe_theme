@@ -42,7 +42,7 @@ class FieldListPattern extends PatternFormatterBase {
     foreach (Element::children($element) as $field_name) {
       // Assign field label and content to the pattern's fields.
       $pattern['#fields']['items'][] = [
-        'label' => isset($element[$field_name]['#title']) ? $element[$field_name]['#title'] : '',
+        'label' => $element[$field_name]['#title'] ?? '',
         'body' => [
           '#label_display' => 'hidden',
         ] + $element[$field_name],
