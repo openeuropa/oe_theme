@@ -6,3 +6,4 @@ core: 8.x
 
 dependencies:
   - oe_content_entity_venue:oe_content_entity_venue
+  - oe_theme:oe_theme_content_entity
