@@ -10,7 +10,6 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\node\Entity\Node;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\ValueObjectInterface;
@@ -61,7 +60,9 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $configuration, $plugin_id, $plugin_definition,
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
       $container->get('entity_type.manager')
     );
   }
@@ -114,13 +115,14 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   Render array.
    */
   public static function lazyTitleBuilder($id): array {
-    $event = new EventNodeWrapper(Node::load($id));
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+    $event = new EventNodeWrapper($node);
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $title = t('Description');
 
     // If we are past the end date and an event report is available, set title.
-    if ($event->isOver($now) && !$event->get('oe_event_report_text')->isEmpty()) {
+    if ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) {
       $title = t('Report');
     }
 
@@ -139,20 +141,21 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   Render array.
    */
   public static function lazyTextBuilder($id): array {
-    $event = new EventNodeWrapper(Node::load($id));
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+    $event = new EventNodeWrapper($node);
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
     // If we are past the end date and an event report is available, show it.
-    if ($event->isOver($now) && !$event->get('oe_event_report_text')->isEmpty()) {
-      return $view_builder->viewField($event->get('oe_event_report_text'), [
+    if ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) {
+      return $view_builder->viewField($node->get('oe_event_report_text'), [
         'label' => 'hidden',
       ]);
     }
 
     // Default to event body, otherwise.
-    return $view_builder->viewField($event->get('body'), [
+    return $view_builder->viewField($node->get('body'), [
       'label' => 'hidden',
     ]);
   }

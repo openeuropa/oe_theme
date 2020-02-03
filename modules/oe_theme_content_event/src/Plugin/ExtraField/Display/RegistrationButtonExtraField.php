@@ -6,7 +6,7 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
@@ -45,7 +45,8 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
   public static function lazyBuilder($id): array {
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
-    $event = new EventNodeWrapper(Node::load($id));
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+    $event = new EventNodeWrapper($node);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
     // If event has no registration information then don't display anything.
@@ -54,7 +55,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     }
 
     // Set default registration button values.
-    $url = $view_builder->viewField($event->get('oe_event_registration_url'));
+    $url = $view_builder->viewField($node->get('oe_event_registration_url'));
     $build = [
       '#theme' => 'oe_theme_content_event_registration_button',
       '#label' => t('Register'),
@@ -79,11 +80,11 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
       $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
-        '@start_date' => self::getRegistrationDateComponent($event, 'start_date', 'oe_event_date_hour'),
-        '@end_date' => self::getRegistrationDateComponent($event, 'end_date', 'oe_event_date_hour'),
+        '@start_date' => self::getRegistrationDateComponent($node, 'start_date', 'oe_event_date_hour'),
+        '@end_date' => self::getRegistrationDateComponent($node, 'end_date', 'oe_event_date_hour'),
       ]);
       $build['#description'] = t('Registration will open on @date', [
-        '@date' => self::getRegistrationDateComponent($event, 'start_date'),
+        '@date' => self::getRegistrationDateComponent($node, 'start_date'),
       ]);
 
       return $build;
@@ -92,7 +93,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
       $build['#label'] = t('Registration period ended on @date', [
-        '@date' => self::getRegistrationDateComponent($event, 'end_date'),
+        '@date' => self::getRegistrationDateComponent($node, 'end_date'),
       ]);
       $build['#description'] = t('Registration for this event has ended.');
 
@@ -117,7 +118,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    * Rendering dates will make sure that both translation and timezone are
    * properly handled.
    *
-   * @param \Drupal\oe_content_event\EventNodeWrapper $entity
+   * @param \Drupal\node\NodeInterface $node
    *   Entity object.
    * @param string $component
    *   Date component, either 'start_date' or 'end_date'.
@@ -127,9 +128,9 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    * @return string
    *   Rendered date portion.
    */
-  public static function getRegistrationDateComponent(EventNodeWrapper $entity, string $component, string $format = 'oe_event_long_date_hour') {
+  public static function getRegistrationDateComponent(NodeInterface $node, string $component, string $format = 'oe_event_long_date_hour') {
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
-    $renderable = $view_builder->viewField($entity->get('oe_event_registration_dates'), [
+    $renderable = $view_builder->viewField($node->get('oe_event_registration_dates'), [
       'label' => 'hidden',
       'type' => 'daterange_default',
       'settings' => [

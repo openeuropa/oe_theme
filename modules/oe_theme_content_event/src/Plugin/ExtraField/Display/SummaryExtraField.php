@@ -7,7 +7,6 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\node\Entity\Node;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
@@ -53,19 +52,20 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase {
    *   Render array.
    */
   public static function lazyBuilder($id): array {
-    $event = new EventNodeWrapper(Node::load($id));
+    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
+    $event = new EventNodeWrapper($node);
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
     // Show description summary by default.
-    $renderable = $view_builder->viewField($event->get('oe_event_description_summary'), [
+    $renderable = $view_builder->viewField($node->get('oe_event_description_summary'), [
       'label' => 'hidden',
     ]);
 
     // If the event is over and an event report summary is available, use that.
-    if ($event->isOver($now) && !$event->get('oe_event_report_summary')->isEmpty()) {
-      $renderable = $view_builder->viewField($event->get('oe_event_report_summary'), [
+    if ($event->isOver($now) && !$node->get('oe_event_report_summary')->isEmpty()) {
+      $renderable = $view_builder->viewField($node->get('oe_event_report_summary'), [
         'label' => 'hidden',
       ]);
     }

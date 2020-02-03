@@ -57,7 +57,9 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-      $configuration, $plugin_id, $plugin_definition,
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
       $container->get('entity_type.manager')
     );
   }
