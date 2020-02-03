@@ -7,7 +7,7 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator;
+use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
  * Extra field displaying the event registration button.
@@ -45,7 +45,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
   public static function lazyBuilder($id): array {
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
-    $event = new EventEntityDecorator(Node::load($id));
+    $event = new EventNodeWrapper(Node::load($id));
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
 
     // If event has no registration information then don't display anything.
@@ -117,7 +117,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    * Rendering dates will make sure that both translation and timezone are
    * properly handled.
    *
-   * @param \Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator $entity
+   * @param \Drupal\oe_content_event\EventNodeWrapper $entity
    *   Entity object.
    * @param string $component
    *   Date component, either 'start_date' or 'end_date'.
@@ -127,7 +127,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
    * @return string
    *   Rendered date portion.
    */
-  public static function getRegistrationDateComponent(EventEntityDecorator $entity, string $component, string $format = 'oe_event_long_date_hour') {
+  public static function getRegistrationDateComponent(EventNodeWrapper $entity, string $component, string $format = 'oe_event_long_date_hour') {
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
     $renderable = $view_builder->viewField($entity->get('oe_event_registration_dates'), [
       'label' => 'hidden',

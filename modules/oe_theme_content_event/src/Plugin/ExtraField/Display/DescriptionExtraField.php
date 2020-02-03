@@ -11,7 +11,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator;
+use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\ValueObjectInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -116,7 +116,7 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   Render array.
    */
   public static function lazyTitleBuilder($id): array {
-    $event = new EventEntityDecorator(Node::load($id));
+    $event = new EventNodeWrapper(Node::load($id));
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $title = t('Description');
@@ -141,7 +141,7 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   Render array.
    */
   public static function lazyTextBuilder($id): array {
-    $event = new EventEntityDecorator(Node::load($id));
+    $event = new EventNodeWrapper(Node::load($id));
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');

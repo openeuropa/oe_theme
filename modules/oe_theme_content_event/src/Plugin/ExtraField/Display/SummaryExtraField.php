@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_event\EntityDecorator\Node\EventEntityDecorator;
+use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
  * Extra field displaying either the event summary or a report summary.
@@ -53,7 +53,7 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase {
    *   Render array.
    */
   public static function lazyBuilder($id): array {
-    $event = new EventEntityDecorator(Node::load($id));
+    $event = new EventNodeWrapper(Node::load($id));
     $current_time = \Drupal::time()->getRequestTime();
     $now = (new \DateTime())->setTimestamp($current_time);
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
