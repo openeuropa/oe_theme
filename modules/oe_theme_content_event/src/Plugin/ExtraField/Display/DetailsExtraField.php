@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -157,21 +158,30 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    *   Renderable array.
    */
   protected function getRenderableLocation(ContentEntityInterface $entity): array {
+    // Return an empty value is no address is set.
+    if ($entity->get('oe_event_venue')->isEmpty()) {
+      return [];
+    }
+
     /** @var \Drupal\oe_content_entity_venue\Entity\Venue $venue */
     $venue = $entity->get('oe_event_venue')->entity;
 
-    // Return an empty value is no address is set.
+    // Initialize empty build array, we need this to pass cache metadata.
+    $build = [];
+    CacheableMetadata::createFromObject($venue)->applyTo($build);
+
+    // If address is empty only return cache metadata, so it can bubble up.
     if ($venue->get('oe_address')->isEmpty()) {
-      return [];
+      return $build;
     }
 
     // Only display locality and country, inline.
     $renderable = $this->venueViewBuilder->viewField($venue->get('oe_address'));
     $renderable[0]['locality']['#value'] .= ',&nbsp;';
-    return [
-      'locality' => $renderable[0]['locality'],
-      'country' => $renderable[0]['country'],
-    ];
+
+    $build['locality'] = $renderable[0]['locality'];
+    $build['country'] = $renderable[0]['country'];
+    return $build;
   }
 
 }
