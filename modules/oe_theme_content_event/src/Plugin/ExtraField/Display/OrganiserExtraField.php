@@ -35,7 +35,7 @@ class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $is_internal = (int) $entity->get('oe_event_organiser_is_internal')->value === 1;
+    $is_internal = (bool) $entity->get('oe_event_organiser_is_internal')->value;
 
     // If the organiser is internal and not empty, show it.
     if ($is_internal && !$entity->get('oe_event_organiser_internal')->isEmpty()) {
