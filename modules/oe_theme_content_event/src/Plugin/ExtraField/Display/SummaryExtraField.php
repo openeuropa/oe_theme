@@ -7,9 +7,7 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -25,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
 
   use StringTranslationTrait;
 
@@ -37,13 +35,6 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   protected $viewBuilder;
 
   /**
-   * Time service.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-  protected $time;
-
-  /**
    * SummaryExtraField constructor.
    *
    * @param array $configuration
@@ -52,15 +43,14 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity view builder object.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-    $this->time = $time;
   }
 
   /**
@@ -71,8 +61,8 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements Contai
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('datetime.time')
+      $container->get('datetime.time'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -88,7 +78,6 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    */
   public function viewElements(ContentEntityInterface $entity) {
     $event = new EventNodeWrapper($entity);
-    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
 
     // Show description summary by default.
     $renderable = $this->viewBuilder->viewField($entity->get('oe_event_description_summary'), [
@@ -96,16 +85,19 @@ class SummaryExtraField extends ExtraFieldDisplayFormattedBase implements Contai
     ]);
 
     // If the event is over and an event report summary is available, use that.
-    if ($event->isOver($now) && !$entity->get('oe_event_report_summary')->isEmpty()) {
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_summary')->isEmpty()) {
       $renderable = $this->viewBuilder->viewField($entity->get('oe_event_report_summary'), [
         'label' => 'hidden',
       ]);
     }
 
-    return [
+    $build = [
       '#theme' => 'oe_theme_content_event_summary',
       '#text' => $renderable,
     ];
+
+    $this->applyRegistrationDateMaxAge($build, $event);
+    return $build;
   }
 
 }

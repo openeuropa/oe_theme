@@ -8,9 +8,7 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -27,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
 
   use StringTranslationTrait;
 
@@ -39,13 +37,6 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   protected $viewBuilder;
 
   /**
-   * Time service.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-  protected $time;
-
-  /**
    * DescriptionExtraField constructor.
    *
    * @param array $configuration
@@ -54,15 +45,14 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity view builder object.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-    $this->time = $time;
   }
 
   /**
@@ -73,8 +63,8 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('datetime.time')
+      $container->get('datetime.time'),
+      $container->get('entity_type.manager')
     );
   }
 
@@ -122,17 +112,16 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
     $event = new EventNodeWrapper($entity);
-    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
     $title = t('Description');
 
     // If we are past the end date and an event report is available, set title.
-    if ($event->isOver($now) && !$entity->get('oe_event_report_text')->isEmpty()) {
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
       $title = t('Report');
     }
 
-    return [
-      '#markup' => $title,
-    ];
+    $build = ['#markup' => $title];
+    $this->applyRegistrationDateMaxAge($build, $event);
+    return $build;
   }
 
   /**
@@ -146,11 +135,10 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    */
   public function getRenderableText(ContentEntityInterface $entity): array {
     $event = new EventNodeWrapper($entity);
-    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
 
     // By default, we show the event body field.
     // If the end date is past and event report is available, show that instead.
-    $field_name = ($event->isOver($now) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
+    $field_name = ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
     return $this->viewBuilder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);

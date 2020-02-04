@@ -8,8 +8,6 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -25,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
 
   /**
    * Entity view builder object.
@@ -33,13 +31,6 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
    * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
   protected $viewBuilder;
-
-  /**
-   * Time service.
-   *
-   * @var \Drupal\Component\Datetime\TimeInterface
-   */
-  protected $time;
 
   /**
    * Date formatter service.
@@ -57,17 +48,16 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity view builder object.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   Date formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, DateFormatterInterface $date_formatter) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-    $this->time = $time;
     $this->dateFormatter = $date_formatter;
   }
 
@@ -79,8 +69,8 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager'),
       $container->get('datetime.time'),
+      $container->get('entity_type.manager'),
       $container->get('date.formatter')
     );
   }
@@ -89,7 +79,6 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
     $event = new EventNodeWrapper($entity);
 
     // If event has no registration information then don't display anything.
@@ -110,8 +99,8 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
     ];
 
     // Registration is active.
-    if ($event->isRegistrationPeriodActive($now) && $event->isRegistrationOpen()) {
-      $date_diff = $this->dateFormatter->formatDiff($now->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
+    if ($event->isRegistrationPeriodActive($this->requestDateTime) && $event->isRegistrationOpen()) {
+      $date_diff = $this->dateFormatter->formatDiff($this->requestDateTime->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Book your seat, @time_left left to register.', [
         '@time_left' => $date_diff,
       ]);
@@ -121,7 +110,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
     }
 
     // Registration yet has to come.
-    if ($event->isRegistrationPeriodYetToCome($now)) {
+    if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
       $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
         '@start_date' => $this->dateFormatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
         '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
@@ -134,7 +123,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
     }
 
     // Registration period is over.
-    if ($event->isRegistrationPeriodOver($now)) {
+    if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
       $build['#label'] = t('Registration period ended on @date', [
         '@date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
@@ -151,6 +140,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implem
       return $build;
     }
 
+    $this->applyRegistrationDateMaxAge($build, $event);
     return $build;
   }
 
