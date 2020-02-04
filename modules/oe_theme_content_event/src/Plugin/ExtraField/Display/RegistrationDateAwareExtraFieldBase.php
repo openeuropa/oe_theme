@@ -8,7 +8,7 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\oe_content_event\EventNodeWrapper;
+use Drupal\oe_content_event\EventNodeWrapperInterface;
 
 /**
  * Base class for fields that conditionally render on the registration period.
@@ -30,7 +30,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
   protected $requestDateTime;
 
   /**
-   * TimeAwareExtraFieldBase constructor.
+   * RegistrationDateAwareExtraFieldBase constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -52,16 +52,18 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param \Drupal\oe_content_event\EventNodeWrapper $event
+   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
    *   Event wrapper object.
    */
-  protected function applyRegistrationDateMaxAge(array &$build, EventNodeWrapper $event): void {
+  protected function applyRegistrationDateMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+    $cacheable = CacheableMetadata::createFromRenderArray($build);
+    $cacheable->addCacheContexts(['timezone']);
+
     // Do nothing is the registration is closed.
-    if ($event->isRegistrationClosed()) {
+    if ($event->isRegistrationClosed($this->requestDateTime)) {
+      $cacheable->applyTo($build);
       return;
     }
-
-    $cacheable = CacheableMetadata::createFromRenderArray($build);
 
     // Set start date time interval as max-age if registration is yet to come.
     if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
