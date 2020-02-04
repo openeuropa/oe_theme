@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -38,6 +39,20 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   protected $viewBuilder;
 
   /**
+   * Node storage object.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $nodeStorage;
+
+  /**
+   * Time service.
+   *
+   * @var \Drupal\Component\Datetime\TimeInterface
+   */
+  protected $time;
+
+  /**
    * DescriptionExtraField constructor.
    *
    * @param array $configuration
@@ -48,10 +63,14 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity view builder object.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   Time service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('oe_contact');
+    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
+    $this->nodeStorage = $entity_type_manager->getStorage('node');
+    $this->time = $time;
   }
 
   /**
@@ -62,7 +81,8 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('datetime.time')
     );
   }
 
@@ -82,14 +102,8 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
       '#type' => 'pattern',
       '#id' => 'text_featured_media',
       '#fields' => [
-        'title' => [
-          '#lazy_builder' => [DescriptionExtraField::class . '::lazyTitleBuilder', [$entity->id()]],
-          '#create_placeholder' => TRUE,
-        ],
-        'text' => [
-          '#lazy_builder' => [DescriptionExtraField::class . '::lazyTextBuilder', [$entity->id()]],
-          '#create_placeholder' => TRUE,
-        ],
+        'title' => $this->getRenderableTitle($entity),
+        'text' => $this->getRenderableText($entity),
         'caption' => $this->getRenderableFeaturedMediaLegend($entity),
       ],
     ];
@@ -106,23 +120,21 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   }
 
   /**
-   * Lazy builder callback to conditionally render the block title.
+   * Get renderable section title, either 'Description' or 'Report'.
    *
-   * @param string|int|null $id
-   *   Entity ID.
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
    *
    * @return array
    *   Render array.
    */
-  public static function lazyTitleBuilder($id): array {
-    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
-    $event = new EventNodeWrapper($node);
-    $current_time = \Drupal::time()->getRequestTime();
-    $now = (new \DateTime())->setTimestamp($current_time);
+  public function getRenderableTitle(ContentEntityInterface $entity): array {
+    $event = new EventNodeWrapper($entity);
+    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
     $title = t('Description');
 
     // If we are past the end date and an event report is available, set title.
-    if ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) {
+    if ($event->isOver($now) && !$entity->get('oe_event_report_text')->isEmpty()) {
       $title = t('Report');
     }
 
@@ -132,25 +144,22 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   }
 
   /**
-   * Lazy builder callback to conditionally render either body or event report.
+   * Get renderable event description, either the body or the event report.
    *
-   * @param string|int|null $id
-   *   Entity ID.
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
    *
    * @return array
    *   Render array.
    */
-  public static function lazyTextBuilder($id): array {
-    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
-    $event = new EventNodeWrapper($node);
-    $current_time = \Drupal::time()->getRequestTime();
-    $now = (new \DateTime())->setTimestamp($current_time);
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('node');
+  public function getRenderableText(ContentEntityInterface $entity): array {
+    $event = new EventNodeWrapper($entity);
+    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
 
     // By default, we show the event body field.
     // If the end date is past and event report is available, show that instead.
-    $field_name = ($event->isOver($now) && !$node->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
-    return $view_builder->viewField($node->get($field_name), [
+    $field_name = ($event->isOver($now) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
+    return $this->viewBuilder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
   }
