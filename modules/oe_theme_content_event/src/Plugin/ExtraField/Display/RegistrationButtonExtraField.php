@@ -4,9 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Component\Datetime\TimeInterface;
+use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_content_event\EventNodeWrapper;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying the event registration button.
@@ -20,34 +25,72 @@ use Drupal\oe_content_event\EventNodeWrapper;
  *   visible = true
  * )
  */
-class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
+class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * Entity view builder object.
+   *
+   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
+   */
+  protected $viewBuilder;
+
+  /**
+   * Time service.
+   *
+   * @var \Drupal\Component\Datetime\TimeInterface
+   */
+  protected $time;
+
+  /**
+   * Date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
+   * RegistrationButtonExtraField constructor.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   Entity view builder object.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   Time service.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   Date formatter service.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, DateFormatterInterface $date_formatter) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
+    $this->time = $time;
+    $this->dateFormatter = $date_formatter;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('datetime.time'),
+      $container->get('date.formatter')
+    );
+  }
 
   /**
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    return [
-      '#lazy_builder' => [RegistrationButtonExtraField::class . '::lazyBuilder', [$entity->id()]],
-      '#create_placeholder' => TRUE,
-    ];
-  }
-
-  /**
-   * Lazy builder callback to render registration button.
-   *
-   * @param string|int|null $id
-   *   Entity ID.
-   *
-   * @return array
-   *   Render array.
-   */
-  public static function lazyBuilder($id): array {
-    /** @var \Drupal\Core\Datetime\DateFormatter $date_formatter */
-    $date_formatter = \Drupal::service('date.formatter');
-    $current_time = \Drupal::time()->getRequestTime();
-    $now = (new \DateTime())->setTimestamp($current_time);
-    $node = \Drupal::entityTypeManager()->getStorage('node')->load($id);
-    $event = new EventNodeWrapper($node);
+    $now = (new \DateTime())->setTimestamp($this->time->getRequestTime());
+    $event = new EventNodeWrapper($entity);
 
     // If event has no registration information then don't display anything.
     if (!$event->hasRegistration()) {
@@ -55,7 +98,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     }
 
     /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
-    $link = $node->get('oe_event_registration_url')->first();
+    $link = $entity->get('oe_event_registration_url')->first();
 
     // Set default registration button values.
     $build = [
@@ -68,7 +111,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
 
     // Registration is active.
     if ($event->isRegistrationPeriodActive($now) && $event->isRegistrationOpen()) {
-      $date_diff = $date_formatter->formatDiff($now->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
+      $date_diff = $this->dateFormatter->formatDiff($now->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Book your seat, @time_left left to register.', [
         '@time_left' => $date_diff,
       ]);
@@ -80,11 +123,11 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($now)) {
       $build['#label'] = t('Registration will open on @start_date, until @end_date.', [
-        '@start_date' => $date_formatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
-        '@end_date' => $date_formatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
+        '@start_date' => $this->dateFormatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
       ]);
       $build['#description'] = t('Registration will open on @date', [
-        '@date' => $date_formatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
 
       return $build;
@@ -93,7 +136,7 @@ class RegistrationButtonExtraField extends ExtraFieldDisplayFormattedBase {
     // Registration period is over.
     if ($event->isRegistrationPeriodOver($now)) {
       $build['#label'] = t('Registration period ended on @date', [
-        '@date' => $date_formatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
       $build['#description'] = t('Registration for this event has ended.');
 
