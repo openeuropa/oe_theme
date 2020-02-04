@@ -39,13 +39,6 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   protected $viewBuilder;
 
   /**
-   * Node storage object.
-   *
-   * @var \Drupal\Core\Entity\EntityStorageInterface
-   */
-  protected $nodeStorage;
-
-  /**
    * Time service.
    *
    * @var \Drupal\Component\Datetime\TimeInterface
@@ -69,7 +62,6 @@ class DescriptionExtraField extends ExtraFieldDisplayFormattedBase implements Co
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-    $this->nodeStorage = $entity_type_manager->getStorage('node');
     $this->time = $time;
   }
 
