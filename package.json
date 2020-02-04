@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@ecl/builder": "2.16.0",
-        "@ecl/ec-preset-editor": "2.16.0",
+        "@ecl/ec-preset-editor": "2.22.1",
         "@ecl/ec-preset-legacy-website": "2.16.0",
         "@ecl/ec-component-form-help-block": "2.16.0",
         "@ecl/ec-theme-default": "2.16.0",
