@@ -135,3 +135,29 @@ function oe_theme_helper_post_update_20006() {
     $config_factory->getEditable($block)->save();
   }
 }
+
+/**
+ * Add Ratio 3:2 medium image style.
+ */
+function oe_theme_helper_post_update_20007(array &$sandbox): void {
+  // Create image style.
+  $image_style = ImageStyle::create([
+    'name' => 'oe_theme_ratio_3_2_medium',
+    'label' => 'Ratio 3:2 medium',
+  ]);
+
+  // Create effect.
+  $effect = [
+    'id' => 'image_scale_and_crop',
+    'weight' => 1,
+    'data' => [
+      'anchor' => 'center-center',
+      'width' => '600',
+      'height' => '400',
+    ],
+  ];
+
+  // Add effect to the image style and save.
+  $image_style->addImageEffect($effect);
+  $image_style->save();
+}

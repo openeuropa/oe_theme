@@ -144,4 +144,25 @@ class ImageValueObject extends ValueObjectBase {
     );
   }
 
+  /**
+   * Construct object from a styled image.
+   *
+   * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
+   *   Field holding the image.
+   * @param string $style
+   *   The style.
+   *
+   * @return $this
+   */
+  public static function fromStyledImageItem(ImageItem $image_item, string $style): ValueObjectInterface {
+    $image_file = $image_item->get('entity')->getTarget();
+    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style);
+
+    return new static(
+      $style->buildUrl($image_file->get('uri')->getString()),
+      $image_item->get('alt')->getString(),
+      $image_item->get('title')->getString()
+    );
+  }
+
 }

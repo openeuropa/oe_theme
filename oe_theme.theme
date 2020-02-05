@@ -12,6 +12,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Url;
+use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\oe_theme\ValueObject\FileValueObject;
@@ -912,6 +913,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
 
   /** @var \Drupal\media\Entity\Media $media */
   $media = $paragraph->get('field_oe_media')->entity;
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
@@ -925,11 +930,9 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   }
 
   $thumbnail = $media->get('thumbnail')->first();
-  $image = $thumbnail->get('entity')->getTarget();
-  $uri = $image->get('uri')->getString();
-  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_medium_no_crop');
+  $object = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
   $variables['image'] = [
-    'src' => file_create_url($style->buildUrl($uri)),
+    'src' => $object['src'],
     'alt' => $thumbnail->alt,
   ];
 

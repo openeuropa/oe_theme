@@ -138,6 +138,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // referenced media but the caption is no longer rendered.
     $image = $figure->filter('.ecl-media-container__media');
     $this->assertContains('/example_1.jpeg', $image->attr('src'));
+    $this->assertContains('oe_theme_medium_no_crop', $image->attr('src'));
     $this->assertContains('Alt', $image->attr('alt'));
     $caption = $figure->filter('.ecl-media-container__caption');
     $this->assertCount(0, $caption);
