@@ -8,7 +8,6 @@ use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\oe_content_event\EventNodeWrapperInterface;
 
 /**
  * Base class for fields that conditionally render on the registration period.
@@ -48,44 +47,29 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
   }
 
   /**
-   * Apply max-age depending from the registration period time interval.
+   * Apply max-age relative to a given timestamp.
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
-   *   Event wrapper object.
+   * @param int $timestamp
+   *   Date timestamp used to calculate relative max-age.
    */
-  protected function applyRegistrationDatesMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+  protected function applyRelativeMaxAge(array &$build, int $timestamp): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
-
-    // Do nothing is the registration is closed.
-    if ($event->isRegistrationClosed($this->requestDateTime)) {
-      $cacheable->applyTo($build);
-      return;
-    }
-
-    // Set start date time interval as max-age if registration is yet to come.
-    if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $cacheable->setCacheMaxAge($event->getRegistrationStartDate()->getTimestamp() - $this->requestTime);
-    }
-
-    // Set end date time interval as max-age if registration is in progress.
-    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $cacheable->setCacheMaxAge($event->getRegistrationEndDate()->getTimestamp() - $this->requestTime);
-    }
+    $cacheable->setCacheMaxAge($timestamp - $this->requestTime);
     $cacheable->applyTo($build);
   }
 
   /**
-   * Apply max-age depending from the registration period time interval.
+   * Apply max-age calculated as midnight minus a given timestamp.
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
-   *   Event wrapper object.
+   * @param int $timestamp
+   *   Date timestamp used to calculate relative max-age.
    */
-  protected function applyMidnightMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+  protected function applyMidnightRelativeMaxAge(array &$build, int $timestamp): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
 
@@ -94,10 +78,8 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
       ->setTimestamp($this->requestTime)
       ->setTime(23, 59, 59)
       ->getTimestamp();
-    if ($midnight > $event->getRegistrationStartDate()->getTimestamp()) {
-      $cacheable->setCacheMaxAge($midnight - $event->getRegistrationStartDate()->getTimestamp());
-      $cacheable->applyTo($build);
-    }
+    $cacheable->setCacheMaxAge($midnight - $timestamp);
+    $cacheable->applyTo($build);
   }
 
 }

@@ -78,25 +78,24 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
    */
   public function viewElements(ContentEntityInterface $entity) {
     $event = new EventNodeWrapper($entity);
+    $build = ['#theme' => 'oe_theme_content_event_summary'];
 
-    // Show description summary by default.
-    $renderable = $this->viewBuilder->viewField($entity->get('oe_event_description_summary'), [
-      'label' => 'hidden',
-    ]);
+    // By default 'oe_event_description_summary' is what we display.
+    $field_name = 'oe_event_description_summary';
 
-    // If the event is over and an event report summary is available, use that.
-    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_summary')->isEmpty()) {
-      $renderable = $this->viewBuilder->viewField($entity->get('oe_event_report_summary'), [
-        'label' => 'hidden',
-      ]);
+    // If the event is not over then set a relative max-age.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyRelativeMaxAge($build, $event->getEndDate()->getTimestamp());
     }
 
-    $build = [
-      '#theme' => 'oe_theme_content_event_summary',
-      '#text' => $renderable,
-    ];
+    // If the event is over then we use 'oe_event_report_summary', if any.
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_summary')->isEmpty()) {
+      $field_name = 'oe_event_report_summary';
+    }
 
-    $this->applyRegistrationDatesMaxAge($build, $event);
+    $build['#text'] = $this->viewBuilder->viewField($entity->get($field_name), [
+      'label' => 'hidden',
+    ]);
     return $build;
   }
 

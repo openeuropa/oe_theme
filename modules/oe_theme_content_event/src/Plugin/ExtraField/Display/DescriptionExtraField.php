@@ -86,7 +86,6 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       '#fields' => [
         'title' => $this->getRenderableTitle($entity),
         'text' => $this->getRenderableText($entity),
-        'caption' => $this->getRenderableFeaturedMediaLegend($entity),
       ],
     ];
 
@@ -96,6 +95,11 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
       CacheableMetadata::createFromObject($entity->get('oe_event_featured_media')->entity)
         ->applyTo($build);
+
+      // Only display a caption if we have an image to be captioned by.
+      $build['#fields']['caption'] = $this->viewBuilder->viewField($entity->get('oe_event_featured_media_legend'), [
+        'label' => 'hidden',
+      ]);
     }
 
     return $build;
@@ -112,15 +116,21 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
     $event = new EventNodeWrapper($entity);
-    $title = t('Description');
 
-    // If we are past the end date and an event report is available, set title.
-    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
-      $title = t('Report');
+    // By default the title is 'Description'.
+    $build = ['#markup' => t('Description')];
+
+    // If the event is not over then set a relative max-age.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyRelativeMaxAge($build, $event->getEndDate()->getTimestamp());
+      return $build;
     }
 
-    $build = ['#markup' => $title];
-    $this->applyRegistrationDatesMaxAge($build, $event);
+    // If the event is over and we have a report, then change the title.
+    if (!$entity->get('oe_event_report_text')->isEmpty()) {
+      $build = ['#markup' => t('Report')];
+    }
+
     return $build;
   }
 
@@ -136,27 +146,23 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
   public function getRenderableText(ContentEntityInterface $entity): array {
     $event = new EventNodeWrapper($entity);
 
-    // By default, we show the event body field.
-    // If the end date is past and event report is available, show that instead.
-    $field_name = ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
-    return $this->viewBuilder->viewField($entity->get($field_name), [
-      'label' => 'hidden',
-    ]);
-  }
+    // By default 'body' is the event description field.
+    // If the event is over and we have a report, we use 'oe_event_report_text'.
+    $field_name = 'body';
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
+      $field_name = 'oe_event_report_text';
+    }
 
-  /**
-   * Get event featured media legend as a renderable array.
-   *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   Content entity.
-   *
-   * @return array
-   *   Renderable array.
-   */
-  protected function getRenderableFeaturedMediaLegend(ContentEntityInterface $entity): array {
-    return $this->viewBuilder->viewField($entity->get('oe_event_featured_media_legend'), [
+    $build = $this->viewBuilder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
+
+    // If the event is not over then set a relative max-age.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyRelativeMaxAge($build, $event->getEndDate()->getTimestamp());
+    }
+
+    return $build;
   }
 
 }
