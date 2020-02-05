@@ -120,7 +120,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
     }
 
     $build = ['#markup' => $title];
-    $this->applyRegistrationDateMaxAge($build, $event);
+    $this->applyRegistrationDatesMaxAge($build, $event);
     return $build;
   }
 

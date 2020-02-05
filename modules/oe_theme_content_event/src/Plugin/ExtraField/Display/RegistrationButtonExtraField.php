@@ -99,22 +99,27 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
 
     // Add max-age derived from registration dates.
     if ($event->hasRegistrationDates()) {
-      $this->applyRegistrationDateMaxAge($build, $event);
+      $this->applyRegistrationDatesMaxAge($build, $event);
     }
 
     // Registration is active.
     if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
       $date_diff = $this->dateFormatter->formatDiff($this->requestDateTime->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
-      $build['#description'] = t('Book your seat, @time_left left to register.', [
+      $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
         '@time_left' => $date_diff,
+        '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
       ]);
 
+      // We invalidate this message every day at midnight.
+      $this->applyMidnightMaxAge($build, $event);
       return $build;
     }
 
     // Registration yet has to come.
     if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $build['#description'] = t('Registration will open on @start_date, until @end_date.', [
+      $date_diff = $this->dateFormatter->formatDiff($this->requestDateTime->getTimestamp(), $event->getRegistrationStartDate()->getTimestamp(), ['granularity' => 1]);
+      $build['#description'] = t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
+        '@time_left' => $date_diff,
         '@start_date' => $this->dateFormatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
         '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
       ]);
@@ -128,14 +133,6 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $build['#description'] = t('Registration period ended on @date', [
         '@date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
-      $build['#enabled'] = FALSE;
-
-      return $build;
-    }
-
-    // Registration period is closed.
-    if ($event->isRegistrationClosed($this->requestDateTime)) {
-      $build['#description'] = t('Registration is now closed.');
       $build['#enabled'] = FALSE;
 
       return $build;

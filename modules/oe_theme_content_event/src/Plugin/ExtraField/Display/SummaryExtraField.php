@@ -96,7 +96,7 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
       '#text' => $renderable,
     ];
 
-    $this->applyRegistrationDateMaxAge($build, $event);
+    $this->applyRegistrationDatesMaxAge($build, $event);
     return $build;
   }
 

@@ -55,7 +55,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
    * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
    *   Event wrapper object.
    */
-  protected function applyRegistrationDateMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+  protected function applyRegistrationDatesMaxAge(array &$build, EventNodeWrapperInterface $event): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
 
@@ -75,6 +75,29 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
       $cacheable->setCacheMaxAge($event->getRegistrationEndDate()->getTimestamp() - $this->requestTime);
     }
     $cacheable->applyTo($build);
+  }
+
+  /**
+   * Apply max-age depending from the registration period time interval.
+   *
+   * @param array $build
+   *   Render array to apply the max-age to.
+   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
+   *   Event wrapper object.
+   */
+  protected function applyMidnightMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+    $cacheable = CacheableMetadata::createFromRenderArray($build);
+    $cacheable->addCacheContexts(['timezone']);
+
+    // Get the timestamp of today at 1 second to midnight.
+    $midnight = (new \DateTime())
+      ->setTimestamp($this->requestTime)
+      ->setTime(23, 59, 59)
+      ->getTimestamp();
+    if ($midnight > $event->getRegistrationStartDate()->getTimestamp()) {
+      $cacheable->setCacheMaxAge($midnight - $event->getRegistrationStartDate()->getTimestamp());
+      $cacheable->applyTo($build);
+    }
   }
 
 }
