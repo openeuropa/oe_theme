@@ -97,41 +97,47 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       '#enabled' => TRUE,
     ];
 
-    // Add max-age derived from registration dates.
-    if ($event->hasRegistrationDates()) {
-      $this->applyRegistrationDatesMaxAge($build, $event);
-    }
-
-    // Registration is active.
-    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $date_diff = $this->dateFormatter->formatDiff($this->requestDateTime->getTimestamp(), $event->getRegistrationEndDate()->getTimestamp(), ['granularity' => 1]);
-      $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
-        '@time_left' => $date_diff,
-        '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
-      ]);
-
-      // We invalidate this message every day at midnight.
-      $this->applyMidnightMaxAge($build, $event);
-      return $build;
-    }
-
-    // Registration yet has to come.
+    // Current request happens before the registration starts.
     if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $date_diff = $this->dateFormatter->formatDiff($this->requestDateTime->getTimestamp(), $event->getRegistrationStartDate()->getTimestamp(), ['granularity' => 1]);
+      $timestamp = $event->getRegistrationStartDate()->getTimestamp();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $timestamp, ['granularity' => 1]);
       $build['#description'] = t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
         '@time_left' => $date_diff,
-        '@start_date' => $this->dateFormatter->format($event->getRegistrationStartDate()->getTimestamp(), 'oe_event_date_hour'),
-        '@end_date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_date_hour'),
+        '@start_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
+      // We invalidate this message every day at midnight.
+      $this->applyMidnightRelativeMaxAge($build, $timestamp);
+
+      // We invalidate this message when the registration period starts.
+      $this->applyRelativeMaxAge($build, $timestamp);
       return $build;
     }
 
-    // Registration period is over.
+    // Current request happens within the registration period.
+    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
+      $timestamp = $event->getRegistrationEndDate()->getTimestamp();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $timestamp, ['granularity' => 1]);
+      $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
+        '@time_left' => $date_diff,
+        '@end_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
+      ]);
+
+      // We invalidate this message every day at midnight.
+      $this->applyMidnightRelativeMaxAge($build, $timestamp);
+
+      // We invalidate this message when the registration period ends.
+      $this->applyRelativeMaxAge($build, $timestamp);
+      return $build;
+    }
+
+    // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
+      $timestamp = $event->getRegistrationEndDate()->getTimestamp();
       $build['#description'] = t('Registration period ended on @date', [
-        '@date' => $this->dateFormatter->format($event->getRegistrationEndDate()->getTimestamp(), 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($timestamp, 'oe_event_long_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
