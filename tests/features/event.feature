@@ -20,7 +20,6 @@ Feature: Event content type.
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I select "Open" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2019"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2019"
@@ -116,7 +115,6 @@ Feature: Event content type.
     And I should see the text "Live streaming available"
 
     # Past event registration button has the title below.
-    And I should see the button "Registration for this event has ended."
     And I should see "Registration period ended on Saturday 23 February 2019, 14:23"
 
     # Practical information.
@@ -187,7 +185,6 @@ Feature: Event content type.
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I select "Open" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2032"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2032"
@@ -221,21 +218,22 @@ Feature: Event content type.
     And I should see the text "Full text paragraph"
     And I should see the text "Description summary text"
 
-    # Edit the event and put the start date in the past so the event is ongoing.
+    # Edit the event and put the end date in the past so the event is over.
     When I click "Edit"
-    And I fill in "Start date" of "Event date" with the date "02/21/2019"
+    And I fill in "Start date" of "Event date" with the date "01/21/2019"
+    And I fill in "End date" of "Event date" with the date "01/23/2019"
     And I press "Save"
 
-    Then I should see the text "21 February 2019, 02:21 to 21 February 2032, 14:21"
-    And I should not see the text "Report"
-    And I should not see the text "Report text paragraph"
-    And I should not see the text "Report summary text"
-    But I should see the text "Description"
-    And I should see the text "Full text paragraph"
-    And I should see the text "Description summary text"
+    Then I should see the text "21 January 2019, 02:21 to 23 January 2032, 14:21"
+    And I should see the text "Report"
+    And I should see the text "Report text paragraph"
+    And I should see the text "Report summary text"
+    But I should not see the text "Description"
+    And I should not see the text "Full text paragraph"
+    And I should not see the text "Description summary text"
 
   @javascript
-  Scenario: Registration button title changes according to the dates of the registration.
+  Scenario: Registration button block changes according to the dates of the registration.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, view the administration theme" permission
 
     And the following images:
@@ -258,7 +256,6 @@ Feature: Event content type.
     # Registration field group.
     When I press "Registration"
     Then I fill in "Registration URL" with "http://example.com"
-    And I select "Closed" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2032"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/23/2032"
@@ -281,12 +278,12 @@ Feature: Event content type.
     When I press "Save"
 
     # The registration is in the future.
-    Then I should see "Registration will open on 23 February 2032, 02:23, until 23 February 2032, 14:23."
+    # @todo Test this part too "Registration will open in @time_left."
+    Then I should see "You can register from 23 February 2032, 02:23, until 23 February 2032, 14:23."
 
     # Change the registration status to active by moving the end date to the future.
     When I click "Edit"
     And I press "Registration"
-    And I select "Open" from "Registration status"
     And I fill in "Start date" of "Registration date" with the date "02/23/2019"
     And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
     And I fill in "End date" of "Registration date" with the date "02/25/2019"
