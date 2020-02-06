@@ -139,7 +139,13 @@ function oe_theme_helper_post_update_20006() {
 /**
  * Add Ratio 3:2 medium image style.
  */
-function oe_theme_helper_post_update_20007(array &$sandbox): void {
+function oe_theme_helper_post_update_20007(array &$sandbox) {
+  // If the image style already exists, we bail out.
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_ratio_3_2_medium');
+  if ($style) {
+    return 'The image style was previously created.';
+  }
+
   // Create image style.
   $image_style = ImageStyle::create([
     'name' => 'oe_theme_ratio_3_2_medium',
