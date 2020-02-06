@@ -930,11 +930,7 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   }
 
   $thumbnail = $media->get('thumbnail')->first();
-  $object = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-  $variables['image'] = [
-    'src' => $object['src'],
-    'alt' => $thumbnail->alt,
-  ];
+  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
 
   $cacheability->applyTo($variables);
 }
