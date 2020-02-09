@@ -46,4 +46,18 @@ class Time extends CoreTime {
     return $this->requestTimeManager->get();
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCurrentTime() {
+    return $this->requestTimeManager->get();
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCurrentMicroTime() {
+    return $this->requestTimeManager->get();
+  }
+
 }

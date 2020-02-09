@@ -9,6 +9,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
+use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -50,13 +51,15 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
    *   The plugin implementation definition.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   *   Time based cache tag generator service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity view builder object.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   Date formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $time, $cache_tag_generator);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
     $this->dateFormatter = $date_formatter;
   }
@@ -70,6 +73,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $plugin_id,
       $plugin_definition,
       $container->get('datetime.time'),
+      $container->get('oe_theme_helper.time_based_cache_tag_generator'),
       $container->get('entity_type.manager'),
       $container->get('date.formatter')
     );
@@ -99,45 +103,45 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
 
     // Current request happens before the registration starts.
     if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $timestamp = $event->getRegistrationStartDate()->getTimestamp();
-      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $timestamp, ['granularity' => 1]);
+      $datetime = $event->getRegistrationStartDate();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
         '@time_left' => $date_diff,
-        '@start_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
-        '@end_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
+        '@start_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
       // We invalidate this message every day at midnight.
-      $this->applyMidnightRelativeMaxAge($build, $timestamp);
+      $this->applyMidnightTag($build, $datetime);
 
       // We invalidate this message when the registration period starts.
-      $this->applyRelativeMaxAge($build, $timestamp);
+      $this->applyHourTag($build, $datetime);
       return $build;
     }
 
     // Current request happens within the registration period.
     if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $timestamp = $event->getRegistrationEndDate()->getTimestamp();
-      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $timestamp, ['granularity' => 1]);
+      $datetime = $event->getRegistrationEndDate();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
         '@time_left' => $date_diff,
-        '@end_date' => $this->dateFormatter->format($timestamp, 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
       ]);
 
       // We invalidate this message every day at midnight.
-      $this->applyMidnightRelativeMaxAge($build, $timestamp);
+      $this->applyMidnightTag($build, $datetime);
 
       // We invalidate this message when the registration period ends.
-      $this->applyRelativeMaxAge($build, $timestamp);
+      $this->applyHourTag($build, $datetime);
       return $build;
     }
 
     // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
-      $timestamp = $event->getRegistrationEndDate()->getTimestamp();
+      $datetime = $event->getRegistrationEndDate();
       $build['#description'] = t('Registration period ended on @date', [
-        '@date' => $this->dateFormatter->format($timestamp, 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
