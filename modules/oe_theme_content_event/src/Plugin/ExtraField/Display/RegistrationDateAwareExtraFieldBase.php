@@ -6,8 +6,10 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
 
 /**
  * Base class for fields that conditionally render on the registration period.
@@ -29,6 +31,13 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
   protected $requestDateTime;
 
   /**
+   * Time based cache tag generator service.
+   *
+   * @var \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface
+   */
+  protected $cacheTagGenerator;
+
+  /**
    * RegistrationDateAwareExtraFieldBase constructor.
    *
    * @param array $configuration
@@ -39,46 +48,43 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
    *   The plugin implementation definition.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   *   Time based cache tag generator service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->requestTime = $time->getRequestTime();
     $this->requestDateTime = (new \DateTime())->setTimestamp($this->requestTime);
+    $this->cacheTagGenerator = $cache_tag_generator;
   }
 
   /**
-   * Apply max-age relative to a given timestamp.
+   * Apply current hour invalidation tag.
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param int $timestamp
-   *   Date timestamp used to calculate relative max-age.
+   * @param \Drupal\Core\Datetime\DrupalDateTime $datetime
+   *   Datetime used to generate invalidation tag.
    */
-  protected function applyRelativeMaxAge(array &$build, int $timestamp): void {
+  protected function applyHourTag(array &$build, DrupalDateTime $datetime): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
-    $cacheable->setCacheMaxAge($timestamp - $this->requestTime);
+    $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($datetime->getPhpDateTime()));
     $cacheable->applyTo($build);
   }
 
   /**
-   * Apply max-age calculated as midnight minus a given timestamp.
+   * Apply midnight invalidation tag.
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param int $timestamp
-   *   Date timestamp used to calculate relative max-age.
+   * @param \Drupal\Core\Datetime\DrupalDateTime $datetime
+   *   Datetime used to generate invalidation tag.
    */
-  protected function applyMidnightRelativeMaxAge(array &$build, int $timestamp): void {
+  protected function applyMidnightTag(array &$build, DrupalDateTime $datetime): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
-
-    // Get the timestamp of today at 1 second to midnight.
-    $midnight = (new \DateTime())
-      ->setTimestamp($this->requestTime)
-      ->setTime(23, 59, 59)
-      ->getTimestamp();
-    $cacheable->setCacheMaxAge($midnight - $timestamp);
+    $cacheable->addCacheTags($this->cacheTagGenerator->generateTagsUntilMidnight($datetime->getPhpDateTime()));
     $cacheable->applyTo($build);
   }
 

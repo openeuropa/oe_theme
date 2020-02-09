@@ -9,6 +9,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_event\EventNodeWrapper;
+use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -45,11 +46,13 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
    *   The plugin implementation definition.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
+   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   *   Time based cache tag generator service.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   Entity view builder object.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityTypeManagerInterface $entity_type_manager) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $time, $cache_tag_generator);
     $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
   }
 
@@ -62,6 +65,7 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
       $plugin_id,
       $plugin_definition,
       $container->get('datetime.time'),
+      $container->get('oe_theme_helper.time_based_cache_tag_generator'),
       $container->get('entity_type.manager')
     );
   }
@@ -85,7 +89,7 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
 
     // If the event is not over then set a relative max-age.
     if (!$event->isOver($this->requestDateTime)) {
-      $this->applyRelativeMaxAge($build, $event->getEndDate()->getTimestamp());
+      $this->applyHourTag($build, $event->getEndDate());
     }
 
     // If the event is over then we use 'oe_event_report_summary', if any.

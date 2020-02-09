@@ -36,3 +36,5 @@ services:
     arguments: ['@current_route_match', '@entity_type.manager', '@entity.repository']
     tags:
       - { name: event_subscriber }
+  oe_theme_helper.time_based_cache_tag_generator:
+    class: Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGenerator
