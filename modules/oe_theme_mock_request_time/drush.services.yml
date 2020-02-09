@@ -1,0 +1,6 @@
+services:
+  oe_theme_mock_request_time.commands:
+    class: Drupal\oe_theme_mock_request_time\Commands\MockRequestTimeCommands
+    arguments: ['@oe_theme_mock_request_time.request_time_manager']
+    tags:
+      - { name: drush.command }
