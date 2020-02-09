@@ -145,7 +145,7 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Construct object from a styled image.
+   * Construct object from a Drupal image field after styling the image.
    *
    * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
    *   Field holding the image.
