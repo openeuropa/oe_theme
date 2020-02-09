@@ -1,7 +1,0 @@
-name: 'OpenEuropa theme request time mock'
-type: module
-description: "Allows to set a mock REQUEST_TIME, affecting the both 'datetime.time' and cache invalidation."
-package: OpenEuropa
-hidden: true
-version: VERSION
-core: 8.x

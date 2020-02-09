@@ -20,6 +20,7 @@
         "drupal-composer/drupal-scaffold": "^2.5.2",
         "drupal/address": "^1.7",
         "drupal/config_devel": "~1.2",
+        "drupal/datetime_testing": "1.x-dev",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
         "drupal/extra_field": "^1.1",
