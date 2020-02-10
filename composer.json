@@ -25,6 +25,7 @@
         "drupal/drupal-extension": "~4.0",
         "drupal/extra_field": "^1.1",
         "drupal/field_group": "~3.0@rc",
+        "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
