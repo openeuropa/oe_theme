@@ -29,6 +29,7 @@
         "drupal/styleguide": "~1.0-alpha3",
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
+        "friends-of-behat/service-container-extension": "^1.0",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.0.0-beta4",

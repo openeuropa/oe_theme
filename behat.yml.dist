@@ -12,6 +12,8 @@ default:
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - Drupal\Tests\oe_theme\Behat\CleanupContext
+        - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
+        - Drupal\Tests\oe_content\Behat\Content\EventContentContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
@@ -76,5 +78,8 @@ default:
         Event report: "#edit-group-report"
         Event partner: "#edit-oe-event-partner-wrapper"
         Event contact: "#edit-oe-event-contact-wrapper"
+    FriendsOfBehat\ServiceContainerExtension:
+      imports:
+        - 'build/modules/contrib/oe_content/tests/Behat/config/services.yml'
   formatters:
     progress: ~
