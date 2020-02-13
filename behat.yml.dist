@@ -53,6 +53,9 @@ default:
       api_driver: "drupal"
       drupal:
         drupal_root: "build"
+      subcontexts:
+          paths:
+            - "%paths.base%/build/modules/contrib/datetime_testing"
       region_map:
         about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
         footer: "footer.ecl-footer"

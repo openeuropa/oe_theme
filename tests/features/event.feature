@@ -1,8 +1,58 @@
-@api @event
+@api @event @datetime_testing
 Feature: Event content type.
   As a user
   I want to access the content of a event
   So I can find the information I'm looking for.
+
+  @javascript
+  Scenario: When an anonymous user visits and event page the registration button and page text should change according to the actual time.
+    Given I am on the homepage
+    And the date is "17 February 2020 2pm"
+    And the following Event Content:
+      | Title                   | My first event            |
+      | Type                    | exhibitions               |
+      | Description summary     | Event description summary |
+      | Description             | Event description         |
+      | Start date              | 2020-06-15T12:30:00       |
+      | End date                | 2020-06-20T18:30:00       |
+      | Registration start date | 2020-03-01T12:30:00       |
+      | Registration end date   | 2020-03-10T18:30:00       |
+      | Registration URL        | http://example.com        |
+      | Summary for report      | Report summary            |
+      | Report text             | Report text               |
+
+    When I am visiting the "My first event" content
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30."
+    # If inactive, button element is used.
+    And I should see the button "Register here"
+    And I should not see the link "Register here"
+
+    When the date is "05 March 2020 2pm"
+    And I run cron
+    And I reload the page
+    Then I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30"
+    # If active, link element is used with button style.
+    And I should see the link "Register here"
+    And I should not see the button "Register here"
+
+    When the date is "21 June 2020 2pm"
+    And I run cron
+    And I reload the page
+    Then I should see "Registration period ended on Tuesday 10 March 2020, 19:30"
+    # If active, link element is used with button style.
+    And I should not see the link "Register here"
+    And I should see the button "Register here"
+
+    When the date is "15 March 2020 2pm"
+    Then I should see the heading "Report"
+    And I should not see the heading "Description"
+    And I should see the text "Report summary"
+    And I should see the text "Report text"
+    And I should not see the text "Event description summary"
+    And I should not see the text "Event description"
 
   @javascript
   Scenario: I can create an Event page and I can see the information with the correct layout.

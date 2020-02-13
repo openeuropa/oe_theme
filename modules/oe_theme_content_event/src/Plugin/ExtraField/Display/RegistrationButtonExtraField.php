@@ -103,45 +103,46 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
 
     // Current request happens before the registration starts.
     if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $datetime = $event->getRegistrationStartDate();
-      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime->getTimestamp(), ['granularity' => 1]);
+      $datetime_start = $event->getRegistrationStartDate();
+      $datetime_end = $event->getRegistrationEndDate();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp());
       $build['#description'] = t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
         '@time_left' => $date_diff,
-        '@start_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
-        '@end_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
+        '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
       // We invalidate this message every day at midnight.
-      $this->applyMidnightTag($build, $datetime);
+      $this->applyMidnightTag($build, $datetime_start);
 
       // We invalidate this message when the registration period starts.
-      $this->applyHourTag($build, $datetime);
+      $this->applyHourTag($build, $datetime_start);
       return $build;
     }
 
     // Current request happens within the registration period.
     if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $datetime = $event->getRegistrationEndDate();
-      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime->getTimestamp(), ['granularity' => 1]);
+      $datetime_start = $event->getRegistrationEndDate();
+      $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
       $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
         '@time_left' => $date_diff,
-        '@end_date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_date_hour'),
+        '@end_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
       ]);
 
       // We invalidate this message every day at midnight.
-      $this->applyMidnightTag($build, $datetime);
+      $this->applyMidnightTag($build, $datetime_start);
 
       // We invalidate this message when the registration period ends.
-      $this->applyHourTag($build, $datetime);
+      $this->applyHourTag($build, $datetime_start);
       return $build;
     }
 
     // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
-      $datetime = $event->getRegistrationEndDate();
+      $datetime_start = $event->getRegistrationEndDate();
       $build['#description'] = t('Registration period ended on @date', [
-        '@date' => $this->dateFormatter->format($datetime->getTimestamp(), 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
       $build['#enabled'] = FALSE;
 
