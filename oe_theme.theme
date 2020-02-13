@@ -521,120 +521,163 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
  *
  * @see template_preprocess_pager()
  *
- * Overwrites the default Drupal pager in order to adapt to the ECL style
- * guide pager component requirements.
- * Most of the bare-bones are copy-pasted from the Drupal implementation.
+ * Generates pagination items for ECL pagination component.
  */
 function oe_theme_preprocess_pager(array &$variables): void {
-  // Get the tags for the first, previous, next and last links.
-  $tags = $variables['pager']['#tags'];
+  $element = $variables['pager']['#element'];
+  $parameters = $variables['pager']['#parameters'];
+  $route_name = $variables['pager']['#route_name'];
+  $route_parameters = $variables['pager']['#route_parameters'] ?? [];
+  global $pager_page_array, $pager_total;
+  // Maximum page number for this pager.
+  $pager_max = $pager_total[$element];
+  // Nothing to do if there is only one page.
+  if ($pager_max <= 1) {
+    return;
+  }
+  // Max number of pages to display next to the current page (left/right).
+  // The first and last page links are excluded from this count.
+  $pager_offset = 2;
+  // The page we are currently paged to.
+  $pager_current = $pager_page_array[$element] + 1;
+  // First page of the pagination calculated by offset from current.
+  $pager_first = $pager_offset < $pager_current ? $pager_current - $pager_offset : 1;
+  // Last page of the pagination calculated by offset from current.
+  $pager_last = $pager_current + $pager_offset;
 
-  $variables['ecl_items'] = [];
+  // Remove extra pages if last page is larger than maximum.
+  if ($pager_last > $pager_max) {
+    $pager_last = $pager_max;
+  }
 
-  // Generate fist link if it is available.
-  if (!empty($variables['items']['first']['href'])) {
-    $first_link = [];
-    $first_link['type'] = 'first';
-    $first_link['aria_label'] = t('Go to first page');
-    $label = t('‹‹ First');
-    if (isset($tags[0])) {
-      $label = $tags[0];
+  // Array to collect the pagination items.
+  $ecl_items = [];
+
+  // Prepare navigation link item for previous/next links with defaults.
+  $nav_link = [
+    'link' => [
+      'icon' => [
+        'path' => $variables['ecl_icon_path'],
+        'type' => 'ui',
+        'name' => 'corner-arrow',
+        'size' => 'xs',
+        'transform' => 'rotate-270',
+      ],
+    ],
+  ];
+  // Prepare ellipsis item.
+  $ellipsis = [
+    'type' => 'ellipsis',
+    'label' => '...',
+  ];
+
+  // Add 'Previous' navigation link.
+  if ($pager_current > 1) {
+    $options = [
+      'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] - 1),
+    ];
+    $nav_link['link']['link'] = [
+      'path' => Url::fromRoute($route_name, $route_parameters, $options),
+      'label' => t('Previous'),
+      'icon_position' => 'before',
+    ];
+    $nav_link['type'] = 'previous';
+    $nav_link['aria_label'] = t('Go to previous page');
+    $ecl_items[] = $nav_link;
+  }
+
+  // Add first page link.
+  if ($pager_first != $pager_current) {
+    $options = [
+      'query' => pager_query_add_page($parameters, $element, 0),
+    ];
+    $ecl_items[] = [
+      'type' => 'first',
+      'link' => [
+        'link' => [
+          'path' => Url::fromRoute($route_name, $route_parameters, $options),
+          'label' => '1',
+        ],
+      ],
+      'aria_label' => t('Go to page @number', ['@number' => 1]),
+    ];
+  }
+
+  // Add first ellipsis.
+  if ($pager_current - $pager_offset > 2) {
+    $ecl_items[] = $ellipsis;
+  }
+
+  // Generate page link items.
+  $i = $pager_first;
+  for (; $i <= $pager_current + $pager_offset && $i <= $pager_last; $i++) {
+    $label = (string) $i;
+    if ($i == $pager_current) {
+      $ecl_items[] = [
+        'type' => 'current',
+        'label' => $label,
+        'aria_label' => t('Page @number', ['@number' => $label]),
+      ];
     }
-    $first_link['link']['link'] = [
-      'path' => $variables['items']['first']['href'],
-      'label' => $label,
-    ];
-    $variables['ecl_items'][] = $first_link;
-  }
-
-  // Generate previous link if it is available.
-  if (!empty($variables['items']['previous']['href'])) {
-    $previous_link = [];
-    $previous_link['type'] = 'previous';
-    $previous_link['aria_label'] = t('Go to previous page');
-    $label = t('‹ Previous');
-    if (isset($tags[1])) {
-      $label = $tags[1];
-    }
-    $previous_link['link']['link'] = [
-      'path' => $variables['items']['previous']['href'],
-      'label' => $label,
-    ];
-    $variables['ecl_items'][] = $previous_link;
-  }
-
-  // Generate previous ellipses if needed.
-  if (isset($variables['ellipses']['previous']) && $variables['ellipses']['previous']) {
-    $ellipsis = [
-      'type' => 'ellipsis',
-      'label' => '...',
-    ];
-    $variables['ecl_items'][] = $ellipsis;
-  }
-
-  // Generate actual pager items.
-  if (!empty($variables['items']['pages'])) {
-    foreach ($variables['items']['pages'] as $page_key => $page_item) {
-      if ($page_key == $variables['current']) {
-        $current_link = [
-          'type' => 'current',
-          'aria_label' => t('Page @number', ['@number' => $page_key]),
-          'label' => (string) $page_key,
-        ];
-        $variables['ecl_items'][] = $current_link;
+    else {
+      // Skip first or last page.
+      if ($i == 1 || $i == $pager_max) {
         continue;
       }
-      $link = [];
-      $link['aria_label'] = t('Go to page @number', ['@number' => $page_key]);
-      $link['link']['link'] = [
-        'path' => $page_item['href'],
-        'label' => (string) $page_key,
+      $options = [
+        'query' => pager_query_add_page($parameters, $element, $i - 1),
       ];
-      $variables['ecl_items'][] = $link;
+      $ecl_items[] = [
+        'link' => [
+          'link' => [
+            'path' => Url::fromRoute($route_name, $route_parameters, $options),
+            'label' => $label,
+          ],
+        ],
+        'aria_label' => t('Go to page @number', ['@number' => $i]),
+      ];
     }
   }
 
-  // Generate next ellipses if needed.
-  if (isset($variables['ellipses']['next']) && $variables['ellipses']['next']) {
-    $ellipsis = [
-      'type' => 'ellipsis',
-      'label' => '...',
-    ];
-    $variables['ecl_items'][] = $ellipsis;
+  // Add second ellipsis.
+  if ($pager_last < $pager_max - 1) {
+    $ecl_items[] = $ellipsis;
   }
 
-  // Generate next link if it is available.
-  if (!empty($variables['items']['next']['href'])) {
-    $first_link = [];
-    $first_link['type'] = 'next';
-    $first_link['aria_label'] = t('Go to next page');
-    $label = t('Next ›');
-    if (isset($tags[3])) {
-      $label = $tags[3];
-    }
-    $first_link['link']['link'] = [
-      'path' => $variables['items']['next']['href'],
-      'label' => $label,
+  // Add last page link.
+  if ($pager_max != $pager_current) {
+    $options = [
+      'query' => pager_query_add_page($parameters, $element, $pager_max - 1),
     ];
-    $variables['ecl_items'][] = $first_link;
+    $ecl_items[] = [
+      'type' => 'last',
+      'link' => [
+        'link' => [
+          'path' => Url::fromRoute($route_name, $route_parameters, $options),
+          'label' => (string) $pager_max,
+        ],
+      ],
+      'aria_label' => t('Go to page @number', ['@number' => $pager_max]),
+    ];
   }
 
-  // Generate previous link if it is available.
-  if (!empty($variables['items']['last']['href'])) {
-    $last_link = [];
-    $last_link['type'] = 'last';
-    $last_link['aria_label'] = t('Go to last page');
-    $label = t('Last ››');
-    if (isset($tags[4])) {
-      $label = $tags[4];
-    }
-    $last_link['link']['link'] = [
-      'path' => $variables['items']['last']['href'],
-      'label' => $label,
+  // Add 'Next' navigation link.
+  if ($pager_current < $pager_max) {
+    $options = [
+      'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] + 1),
     ];
-    $variables['ecl_items'][] = $last_link;
+    $nav_link['link']['link'] = [
+      'path' => Url::fromRoute($route_name, $route_parameters, $options),
+      'label' => t('Next'),
+      'icon_position' => 'after',
+    ];
+    $nav_link['type'] = 'next';
+    $nav_link['aria_label'] = t('Go to next page');
+    $nav_link['link']['icon']['transform'] = 'rotate-90';
+    $ecl_items[] = $nav_link;
   }
-
+  $variables['label'] = t('Pagination');
+  $variables['ecl_items'] = $ecl_items;
 }
 
 /**
