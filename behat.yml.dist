@@ -12,6 +12,7 @@ default:
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - Drupal\Tests\oe_theme\Behat\CleanupContext
+        - Drupal\Tests\oe_theme\Behat\EventContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\EventContentContext
         - OpenEuropa\Behat\TransformationContext:
