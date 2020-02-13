@@ -26,25 +26,20 @@ Feature: Event content type.
     And I should see the text "Event description summary"
     And I should see the text "Event description"
     And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30."
-    # If inactive, button element is used.
-    And I should see the button "Register here"
-    And I should not see the link "Register here"
+    And I should see the registration button "Register here" inactive
 
     When the date is "05 March 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30"
-    # If active, link element is used with button style.
-    And I should see the link "Register here"
-    And I should not see the button "Register here"
+    And I should see the registration button "Register here" active
 
     When the date is "21 June 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see "Registration period ended on Tuesday 10 March 2020, 19:30"
     # If active, link element is used with button style.
-    And I should not see the link "Register here"
-    And I should see the button "Register here"
+    And I should see the registration button "Register here" inactive
 
     When the date is "15 March 2020 2pm"
     Then I should see the heading "Report"
