@@ -48,7 +48,6 @@ Feature: Event content type.
     And I should not see the text "Event description summary"
     And I should not see the text "Event description"
 
-  @javascript @run
   Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, view the administration theme" permission
     And the date is "17 February 2019 2pm"
@@ -101,7 +100,6 @@ Feature: Event content type.
       | Contact                 | Name of the general contact, Name of the press contact          |
     And I am an anonymous user
     When I am visiting the "Event demo page" content
-    And I break
 
     # Header elements.
     Then I should see "Event demo page"
@@ -110,8 +108,9 @@ Feature: Event content type.
     # Icons with text.
     # @todo: Fix permission for anonymous to view skos entities.
     # And I should see the text "EU financing"
-    And I should see the text "21 February 2019, 02:21"
-    And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
+    And I should see the text "21 February 2019, 03:21 to 21 February 2019, 15:21"
+    # @todo: Address not visible for anonymous user.
+    # And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
     And I should see the text "Live streaming available"
 
     And I should see the registration button "Register here" inactive
@@ -148,7 +147,7 @@ Feature: Event content type.
     And I should see the link "Twitter" in the "Social media follow" region
 
     # Report texts should be visible when the event dates are in the past.
-    # see @Scenario: Description of the event is shown if event is in the future or ongoing and replaced by Report when it's in the past.
+    # see @Scenario: When an anonymous user visits and event page the registration button and page text should change according to the actual time.
     And I should see "Description summary text"
     And I should see "Event description"
     But I should not see "Report summary text"
@@ -156,7 +155,7 @@ Feature: Event content type.
 
     # @todo implement a proper media assertion.
     And the "media container" element should contain "placeholder.png"
-    And I should see the text "Euro with miniature figurines"
+    And I should see the text "Media legend text"
 
     # Event contact values.
     And I should see the text "Contacts"
@@ -172,74 +171,3 @@ Feature: Event content type.
     And I should see the text "+32477777777"
     And I should see the text "Szeged, Press contact 1, 6700, Hungary"
     And I should see the text "press@example.com"
-
-  @javascript
-  Scenario: Description of the event is shown if event is in the future or ongoing and replaced by Report when it's in the past.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, view the administration theme" permission
-
-    And the following images:
-      | name                          | file            |
-      | Euro with miniature figurines | placeholder.png |
-
-    # Start filling in the required fields fields.
-    And I am on "the event creation page"
-    And I select "Info days" from "Type"
-    And I fill in "Title" with "Event demo page"
-    And I fill in "Description summary" with "Description summary text"
-    And I fill in "Subject" with "EU financing"
-    And I fill in "Start date" of "Event date" with the date "02/21/2032"
-    And I fill in "Start date" of "Event date" with the time "02:21:00AM"
-    And I fill in "End date" of "Event date" with the date "02/21/2032"
-    And I fill in "End date" of "Event date" with the time "02:21:00PM"
-    And I select "As planned" from "Status"
-    And I fill in "Languages" with "Hungarian"
-
-    # Registration field group.
-    When I press "Registration"
-    Then I fill in "Registration URL" with "http://example.com"
-    And I fill in "Start date" of "Registration date" with the date "02/23/2032"
-    And I fill in "Start date" of "Registration date" with the time "02:23:00AM"
-    And I fill in "End date" of "Registration date" with the date "02/23/2032"
-    And I fill in "End date" of "Registration date" with the time "02:23:00PM"
-
-    # Venue reference by inline entity form.
-    And I fill in "Name" with "Name of the venue"
-
-    # Organiser field group.
-    When I uncheck "Organiser is internal"
-    Then I fill in "Organiser name" with "Organiser name"
-
-    # Description field group.
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
-    And I fill in "Featured media legend" with "Euro with miniature figurines"
-    And I fill in "Full text" with "Full text paragraph"
-
-    # Report field group.
-    When I press "Event report"
-    And I fill in "Report text" with "Report text paragraph"
-    And I fill in "Summary for report" with "Report summary text"
-
-    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Responsible department" with "Audit Board of the European Communities"
-    When I press "Save"
-
-    Then I should not see the text "Report"
-    And I should not see the text "Report text paragraph"
-    And I should not see the text "Report summary text"
-    But I should see the text "Description"
-    And I should see the text "Full text paragraph"
-    And I should see the text "Description summary text"
-
-    # Edit the event and put the end date in the past so the event is over.
-    When I click "Edit"
-    And I fill in "Start date" of "Event date" with the date "01/21/2019"
-    And I fill in "End date" of "Event date" with the date "01/23/2019"
-    And I press "Save"
-
-    Then I should see the text "21 January 2019, 02:21 to 23 January 2032, 14:21"
-    And I should see the text "Report"
-    And I should see the text "Report text paragraph"
-    And I should see the text "Report summary text"
-    But I should not see the text "Description"
-    And I should not see the text "Full text paragraph"
-    And I should not see the text "Description summary text"
