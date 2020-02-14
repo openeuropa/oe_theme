@@ -14,7 +14,11 @@ default:
         - Drupal\Tests\oe_theme\Behat\CleanupContext
         - Drupal\Tests\oe_theme\Behat\EventContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
-        - Drupal\Tests\oe_content\Behat\Content\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\RawCorporateContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
