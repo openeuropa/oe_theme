@@ -8,7 +8,7 @@ Feature: Event content type.
   Scenario: When an anonymous user visits and event page the registration button and page text should change according to the actual time.
     Given I am on the homepage
     And the date is "17 February 2020 2pm"
-    And the following Event Content:
+    And the following Event Content entity:
       | Title                   | My first event            |
       | Type                    | exhibitions               |
       | Description summary     | Event description summary |
@@ -54,22 +54,22 @@ Feature: Event content type.
     And the following images:
       | name                          | file            |
       | Euro with miniature figurines | placeholder.png |
-    And the following Default Venue:
+    And the following Default Venue entity:
       | Name     | Name of the venue                                                                         |
       | Address  | country_code: BE - locality: Brussel - address_line1: Rue belliard 28 - postal_code: 1000 |
       | Capacity | Capacity of the venue                                                                     |
       | Room     | Room of the venue                                                                         |
-    And the following Press Contact:
+    And the following Press Contact entity:
       | Name         | Name of the press contact                                                                |
       | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
       | Email        | press@example.com                                                                      |
       | Phone number | +32477777777                                                                             |
-    And the following General Contact:
+    And the following General Contact entity:
       | Name         | Name of the general contact                                                                  |
       | Address      | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
       | Email        | general@example.com                                                                          |
       | Phone number | +32477792933                                                                                 |
-    And the following Event Content:
+    And the following Event Content entity:
       | Title                   | Event demo page                                                 |
       | Type                    | exhibitions                                                     |
       | Description summary     | Description summary text                                        |
