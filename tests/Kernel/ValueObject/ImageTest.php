@@ -72,8 +72,8 @@ class ImageTest extends KernelTestBase {
     $style->save();
 
     // Create an image item.
-    $alt = $this->randomMachineName();
-    $title = $this->randomMachineName();
+    $alt = $this->randomString();
+    $title = $this->randomString();
     $entity = EntityTest::create([
       'name' => $this->randomString(),
       'field_image' => [
@@ -88,6 +88,10 @@ class ImageTest extends KernelTestBase {
     $this->assertEquals($title, $object->getName());
     $this->assertEquals($alt, $object->getAlt());
     $this->assertContains('/styles/main_style/public/example_1.jpg', $object->getSource());
+
+    $invalid_image_style = $this->randomMachineName();
+    $this->setExpectedException(\InvalidArgumentException::class, sprintf('Could not load image style with name "%s".', $invalid_image_style));
+    ImageValueObject::fromStyledImageItem($entity->get('field_image')->first(), $invalid_image_style);
   }
 
 }

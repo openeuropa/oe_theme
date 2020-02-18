@@ -145,18 +145,26 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Construct object from a Drupal image field after styling the image.
+   * Construct object from a Drupal image field and image style.
    *
    * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
-   *   Field holding the image.
-   * @param string $style
-   *   The style.
+   *   The field image item instance.
+   * @param string $style_name
+   *   The image style name.
    *
    * @return $this
+   *   A image value object instance.
+   *
+   * @throws \InvalidArgumentException
+   *   Thrown when the image style is not found.
    */
-  public static function fromStyledImageItem(ImageItem $image_item, string $style): ValueObjectInterface {
+  public static function fromStyledImageItem(ImageItem $image_item, string $style_name): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
-    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style);
+
+    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style_name);
+    if (!$style) {
+      throw new \InvalidArgumentException(sprintf('Could not load image style with name "%s".', $style_name));
+    }
 
     return new static(
       $style->buildUrl($image_file->get('uri')->getString()),
