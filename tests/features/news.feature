@@ -32,7 +32,7 @@ Feature: News content type.
     And I click "Edit"
     And I fill in "Use existing media" with "My Image 1"
     # Introduce a short title.
-    And I fill in "Short title" with "Shorter title"
+    And I fill in "Alternative title" with "Shorter title"
     And I press "Save"
 
     When I am on "the recent content page"
