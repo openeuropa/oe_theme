@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Banner' type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+  {{ pattern('banner', {
+    'variant': variant,
+    'title': title,
+    'description': description,
+    'url': url,
+    'link_text': link_text,
+    'image': image,
+    'modifier': modifier,
+  }) }}

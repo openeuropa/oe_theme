@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Default banner component.
+ */
+#}
+
+{% set _link = {'path' : url, 'label' : link_text, icon_position: 'after'} %}
+
+{% if 'page' in modifier|render %}
+  {% include '@ecl-twig/ec-component-page-banner/ecl-page-banner.html.twig' with {
+    title: title,
+    baseline: description,
+    link: {
+      link: _link,
+      icon: {
+        path: "static/media/icons.865a18d2.svg",
+        type: "ui",
+        name: "corner-arrow",
+        size: "xs",
+        transform: "rotate-90"
+      }
+    },
+    type: "default"
+  } %}
+{% endif %}
+
+{% if 'hero' in modifier|render %}
+  {% include '@ecl-twig/ec-component-hero-banner/ecl-hero-banner.html.twig' with {
+    title: title,
+    description: description,
+    link: {
+      link: _link,
+      icon: {
+        path: "static/media/icons.865a18d2.svg",
+        type: "ui",
+        name: "corner-arrow",
+        size: "xs",
+        transform: "rotate-90"
+      }
+    },
+    type: "default"
+  } %}
+{% endif %}

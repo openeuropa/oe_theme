@@ -1,0 +1,52 @@
+banner:
+  label: "Banner"
+  description: ""
+  variants:
+    default:
+      label: "Banner: default"
+      description: "Default contains title, description and link with gray background."
+    hero:
+      label: "Banner: hero"
+      description: "Is a large web banner image, prominently placed on a web page, generally at the top."
+    primary:
+      label: "Banner: primary"
+      description: "Primary contains title, description and link with blue background."
+    image:
+      label: "Banner: image"
+      description: "Image contains title, description and link with an image as background."
+    image_shade:
+      label: "Banner: image shade"
+      description: "Image shade contains title, description and link with a shade effect on the background image."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Banner title."
+      preview: "EU Budget for the future"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Banner description."
+      preview: "The European Commission has put forward ambitious yet realistic proposals for a modern EU budget. It is time for an EU budget that reflects rapid developments in innovation, the economy, the environment and geopolitics, amongst others."
+    url:
+      type: "Url"
+      label: "URL"
+      description: "Banner link url."
+      preview: "http://example.com"
+    link_text:
+      type: "text"
+      label: "Link text"
+      description: "Banner link text."
+      preview: "Subscribe"
+    image:
+      type: "array"
+      label: "Image"
+      description: "Banner image."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for hero image"
+    modifier:
+      type: "text"
+      label: "Banner type"
+      description: "The banner type can be: Page banner, centered, Page banner, aligned left, Page banner, aligned right, Hero banner, centered, Hero banner, aligned left or Hero banner, aligned right."
+      preview: "hero_center"

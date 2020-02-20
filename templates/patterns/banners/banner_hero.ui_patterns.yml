@@ -1,5 +1,5 @@
 banner_hero:
-  label: "Banner: hero"
+  label: "Deprecated: Banner: hero"
   description: "Is a large web banner image, prominently placed on a web page, generally at the top."
   fields:
     banner_type:
@@ -39,3 +39,5 @@ banner_hero:
       label: "Centered"
       description: "Define if banner should be centered"
       preview: true
+  extra:
+    hidden: true
