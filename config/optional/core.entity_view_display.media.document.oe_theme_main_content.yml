@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.oe_theme_main_content
+    - field.field.media.document.oe_media_file
+    - media.type.document
+  module:
+    - file
+id: media.document.oe_theme_main_content
+targetEntityType: media
+bundle: document
+mode: oe_theme_main_content
+content:
+  oe_media_file:
+    weight: 0
+    label: hidden
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    type: file_default
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  thumbnail: true
+  uid: true
