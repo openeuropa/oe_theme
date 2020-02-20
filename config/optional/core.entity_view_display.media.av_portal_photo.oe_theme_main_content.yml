@@ -4,8 +4,8 @@ dependencies:
   config:
     - core.entity_view_mode.media.oe_theme_main_content
     - field.field.media.av_portal_photo.oe_media_avportal_photo
-    - image.style.oe_theme_small_no_crop
     - media.type.av_portal_photo
+    - responsive_image.styles.oe_theme_main_content
   module:
     - media_avportal
 id: media.av_portal_photo.oe_theme_main_content
