@@ -1082,9 +1082,9 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
 }
 
 /**
- * Implements template_preprocess_preprocess_media__document__default().
+ * Implements hook_preprocess_media__document__default().
  *
- * For preprocessing default mode of document media type.
+ * Prepares the default view mode for the document media type.
  */
 function oe_theme_preprocess_media__document__default(&$variables) {
   if ($variables['media']->get('oe_media_file')->isEmpty()) {
@@ -1096,6 +1096,15 @@ function oe_theme_preprocess_media__document__default(&$variables) {
   $file_object = $media->get('oe_media_file')->first()->entity;
   $variables['file'] = FileValueObject::fromFileEntity($file_object)
     ->setTitle($media->getName());
+}
+
+/**
+ * Implements hook_preprocess_media__document__oe_theme_main_content().
+ *
+ * Style the view mode used for embedding the document media entity.
+ */
+function oe_theme_preprocess_media__document__oe_theme_main_content(&$variables) {
+  oe_theme_preprocess_media__document__default($variables);
 }
 
 /**
