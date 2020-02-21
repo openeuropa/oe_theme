@@ -42,6 +42,7 @@ config_devel:
     - block.block.oe_theme_tabs
     - core.entity_view_display.media.av_portal_photo.oe_theme_main_content
     - core.entity_view_display.media.av_portal_video.oe_theme_main_content
+    - core.entity_view_display.media.document.oe_theme_main_content
     - core.entity_view_display.media.image.oe_theme_main_content
     - core.entity_view_display.media.remote_video.oe_theme_main_content
     - core.entity_view_mode.media.oe_theme_main_content
