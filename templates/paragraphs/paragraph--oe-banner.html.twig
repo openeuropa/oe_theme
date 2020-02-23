@@ -6,12 +6,12 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-  {{ pattern('banner', {
+  {{ pattern(pattern, {
     'variant': variant,
     'title': title,
     'description': description,
     'url': url,
-    'link_text': link_text,
+    'label': label,
     'image': image,
-    'modifier': modifier,
+    'alignment': alignment,
   }) }}

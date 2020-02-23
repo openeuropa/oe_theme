@@ -1,43 +1,59 @@
 banner_hero:
-  label: "Deprecated: Banner: hero"
-  description: "Is a large web banner image, prominently placed on a web page, generally at the top."
-  fields:
-    banner_type:
-      type: "text"
-      label: "Type"
-      description: "The Hero Banner type, it can be one of 'default','image','image-shade','primary'."
-      preview: "image"
+  label: "Hero banner"
+  description: "Hero banner displays a prominent message and related action. It can have an image as background."
+  variants:
+    default:
+      label: "Default"
+      description: "Default contains title, description and link with gray background."
+    primary:
+      label: "Primary"
+      description: "Primary contains title, description and link with blue background."
     image:
-      type: "array"
       label: "Image"
-      description: "Hero image"
-      preview:
-        src: "https://placeimg.com/1000/500/arch"
-        alt: "Alternative text for hero image"
+      description: "Image contains title, description and link with a background image."
+    image_shade:
+      label: "Image shade"
+      description: "Image shade contains title, description and link with a shade effect on the background image."
+  fields:
     title:
       type: "text"
       label: "Title"
-      description: "Hero title"
-      preview: "White Paper on the future of Europe"
-    url:
-      type: "Url"
-      label: "Url"
-      description: "Hero link url."
-      preview: "http://example.com"
-    label:
-      type: "text"
-      label: "Label"
-      description: "Hero link label."
-      preview: "Subscribe"
+      description: "Banner title."
+      preview: "EU Budget for the future"
     description:
       type: "text"
       label: "Description"
-      description: "Hero description"
-      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+      description: "Banner description."
+      preview: "The European Commission has put forward ambitious yet realistic proposals for a modern EU budget. It is time for an EU budget that reflects rapid developments in innovation, the economy, the environment and geopolitics, amongst others."
+    url:
+      type: "Url"
+      label: "URL"
+      description: "Banner link url."
+      preview: "http://example.com"
+    label:
+      type: "text"
+      label: "Link text"
+      description: "Banner link text."
+      preview: "Subscribe"
+    image:
+      type: "array"
+      label: "Image"
+      description: "Banner image."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+    alignment:
+      type: "text"
+      label: "Alignment"
+      description: "The Hero banner can be 'center' or 'left' (aligned left)."
+      preview: "left"
+    banner_type:
+      type: "text"
+      label: "Type (deprecated)"
+      description: "The Hero Banner type, it can be one of 'default','image','image-shade','primary'. Deprecated, use the Variant instead."
+      preview:
     centered:
       type: "boolean"
-      label: "Centered"
-      description: "Define if banner should be centered"
-      preview: true
-  extra:
-    hidden: true
+      label: "Centered (deprecated)"
+      description: "Define if banner should be centered. Deprecated, use the Alignment field instead."
+      preview:
+      escape: false
