@@ -218,20 +218,6 @@ Feature: Event content type.
     And I should see the text "Full text paragraph"
     And I should see the text "Description summary text"
 
-    # Edit the event and put the end date in the past so the event is over.
-    When I click "Edit"
-    And I fill in "Start date" of "Event date" with the date "01/21/2019"
-    And I fill in "End date" of "Event date" with the date "01/23/2019"
-    And I press "Save"
-
-    Then I should see the text "21 January 2019, 02:21 to 23 January 2032, 14:21"
-    And I should see the text "Report"
-    And I should see the text "Report text paragraph"
-    And I should see the text "Report summary text"
-    But I should not see the text "Description"
-    And I should not see the text "Full text paragraph"
-    And I should not see the text "Description summary text"
-
   @javascript
   Scenario: Registration button block changes according to the dates of the registration.
     Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, view the administration theme" permission
