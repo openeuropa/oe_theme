@@ -1,0 +1,30 @@
+navigation_links:
+  label: "Navigation links"
+  description: "The navigation list defines the children that will be shown on the parent page (current page)."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Title of the child."
+      preview: "Page title section (child A)"
+    href:
+      type: "text"
+      label: "Url"
+      description: "Url of the child."
+      preview: "http://link-a.com"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Short description. It can be used when the child page has another page as its main parent or the links on the title section (grandchildren) are too long."
+      preview: "Child summary section. Short description of the child A page."
+    links:
+      type: "array"
+      label: "Links"
+      description: "Array of links"
+      preview:
+        - label: 'Page title section (grandchild page A.1)'
+          url: 'http://link-a.com/1'
+        - label: 'Page title section (grandchild page A.2)'
+          url: 'http://link-a.com/2'
+        - label: 'Page title section (grandchild page A.3)'
+          url: 'http://link-a.com/3'
