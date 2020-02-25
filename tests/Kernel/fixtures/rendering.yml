@@ -873,6 +873,43 @@
       li.ecl-unordered-list__item: 3
 - array:
     '#type': pattern
+    '#id': navigation_links
+    '#fields':
+      title: 'Navigation links title'
+      href: 'http://example.com'
+      description: 'Navigation links description'
+  assertions:
+    equals:
+      'h2.ecl-u-ma-none.ecl-u-type-prolonged-xl.ecl-u-type-bold a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation links title'
+      'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 'Navigation links description'
+    count:
+      ul.ecl-u-mt-m.ecl-unordered-list.ecl-unordered-list--no-bullet: 0
+      li.ecl-unordered-list__item: 0
+- array:
+    '#type': pattern
+    '#id': navigation_links
+    '#fields':
+      title: 'Navigation links title'
+      href: 'http://example.com'
+      links:
+        - label: 'Child 1'
+          url: 'http://example.com/child1'
+        - label: 'Child 2'
+          url: 'http://example.com/child2'
+        - label: 'Child 3'
+          url: 'http://example.com/child3'
+  assertions:
+    equals:
+      'h2.ecl-u-ma-none.ecl-u-type-prolonged-xl.ecl-u-type-bold a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation links title'
+      'li.ecl-unordered-list__item:nth-child(1) a.ecl-link[href="http://example.com/child1"]': 'Child 1'
+      'li.ecl-unordered-list__item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
+      'li.ecl-unordered-list__item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
+    count:
+      ul.ecl-u-mt-m.ecl-unordered-list.ecl-unordered-list--no-bullet: 1
+      li.ecl-unordered-list__item: 3
+      'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 0
+- array:
+    '#type': pattern
     '#id': page_header
     '#fields':
       identity: "Digital single market"

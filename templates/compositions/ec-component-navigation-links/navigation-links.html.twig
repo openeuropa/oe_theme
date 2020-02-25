@@ -60,7 +60,7 @@
     <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
       {% for _link in _links %}
         <li class="ecl-unordered-list__item">
-            {% include '@ecl-twig/link' with _link %}
+          {% include '@ecl-twig/link' with { link: _link.link|merge({type:'standalone'}) } only %}
         </li>
       {% endfor %}
     </ul>
