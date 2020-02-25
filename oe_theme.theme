@@ -1243,3 +1243,56 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
   // Pattern preview will pass along a \Drupal\Core\Render\Markup object.
   $variables['url'] = Url::fromUserInput((string) $variables['url']);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Trim the description field on Featured items.
+ */
+function oe_theme_preprocess_pattern_featured_item(array &$variables): void {
+  if (empty($variables['length'])) {
+    return;
+  }
+  $variables['description'] = _oe_theme_trim_textfield($variables['description'], $variables['length']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Trim the detail field on link list items.
+ */
+function oe_theme_preprocess_pattern_list_item(array &$variables): void {
+  if (empty($variables['length'])) {
+    return;
+  }
+  $variables['detail'] = _oe_theme_trim_textfield($variables['detail'], $variables['length']);
+}
+
+/**
+ * Trims the contents of a text field.
+ *
+ * @param string|array $teaser
+ *   The teaser to be trimmed.
+ * @param int $size
+ *   The length of the trimmed teaser.
+ *
+ * @return string|array
+ *   The trimmed teaser.
+ */
+function _oe_theme_trim_textfield($teaser, $size = 150) {
+  if (is_string($teaser)) {
+    $teaser = text_summary($teaser, NULL, $size);
+  }
+  elseif (is_array($teaser)) {
+    if (isset($teaser['#markup'])) {
+      $teaser['#markup'] = text_summary($teaser['#markup'], NULL, $size);
+    }
+    elseif (isset($variable['#plain_text'])) {
+      $variable['#plain_text'] = text_summary($teaser['#plain_text'], NULL, $size);
+    }
+    elseif (isset($teaser['#type']) && $teaser['#type'] == 'processed_text') {
+      $teaser['#text'] = text_summary($teaser['#text'], $teaser['#format'], $size);
+    }
+  }
+  return $teaser;
+}

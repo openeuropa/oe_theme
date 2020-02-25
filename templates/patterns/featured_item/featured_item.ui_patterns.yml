@@ -21,6 +21,11 @@ featured_item:
       label: "Description"
       description: "Description of the featured item."
       preview: "Transparently designing and evaluating evidence-based EU legislation, backed by citizens views."
+    length:
+      type: numeric
+      label: "Max length"
+      description: "Used to trim the length of the Description field (optional)."
+      preview: 60
     metas:
       type: "array"
       label: "Metas"

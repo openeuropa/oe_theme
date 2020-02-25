@@ -39,6 +39,11 @@ list_item:
       label: "Detail"
       description: "Standfirst for the link item."
       preview: "Dolore duis elit in id voluptate nisi commodo quis."
+    length:
+      type: numeric
+      label: "Max length"
+      description: "Used to trim the length of the Detail field (optional)."
+      preview: 20
     meta:
       type: "array"
       label: "Metadata"
