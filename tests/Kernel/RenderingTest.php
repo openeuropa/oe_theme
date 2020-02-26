@@ -19,6 +19,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    */
   public static $modules = [
     'oe_theme_patterns_render_test',
+    'text',
   ];
 
   /**

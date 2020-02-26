@@ -1280,8 +1280,8 @@ function oe_theme_preprocess_pattern_list_item(array &$variables): void {
  *   The trimmed teaser.
  */
 function _oe_theme_trim_textfield($teaser, $size = 150) {
-  if (is_string($teaser)) {
-    $teaser = text_summary($teaser, NULL, $size);
+  if ((!is_array($teaser)) && ((!is_object($teaser) && settype($teaser, 'string') !== FALSE) || (is_object($teaser) && method_exists($teaser, '__toString')))) {
+    $teaser = text_summary((string) $teaser, NULL, $size);
   }
   elseif (is_array($teaser)) {
     if (isset($teaser['#markup'])) {

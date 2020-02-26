@@ -391,6 +391,27 @@
 - array:
     '#type': pattern
     '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail: "Item text"
+      length: 4
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "Item"
+- array:
+    '#type': pattern
+    '#id': list_item
     '#variant': "thumbnail_primary"
     '#fields':
       title: "Item title"
@@ -1232,6 +1253,32 @@
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description': "Example description"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      length: 8
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+      metas:
+        - "Breaking news article"
+        - "Brussels"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+  assertions:
+    count:
+      "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
+      'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
+      'a.ecl-button': 0
+    equals:
+      'div.ecl-card__meta': "Breaking news article | Brussels"
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description': "Example"
 - array:
     '#type': pattern
     '#id': featured_item
