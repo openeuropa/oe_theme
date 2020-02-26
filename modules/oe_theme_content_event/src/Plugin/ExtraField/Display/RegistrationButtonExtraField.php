@@ -79,7 +79,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // If event has no registration information then don't display anything.
     if (!$event->hasRegistration()) {

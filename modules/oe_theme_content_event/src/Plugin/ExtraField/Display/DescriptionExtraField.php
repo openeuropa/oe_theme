@@ -111,7 +111,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    *   Render array.
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
     $title = t('Description');
 
     // If we are past the end date and an event report is available, set title.
@@ -134,7 +134,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    *   Render array.
    */
   public function getRenderableText(ContentEntityInterface $entity): array {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // By default, we show the event body field.
     // If the end date is past and event report is available, show that instead.

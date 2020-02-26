@@ -77,7 +77,7 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // Show description summary by default.
     $renderable = $this->viewBuilder->viewField($entity->get('oe_event_description_summary'), [
