@@ -7,7 +7,7 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
         - Drupal\Tests\oe_content\Behat\DateFieldContext
-        - Drupal\Tests\oe_content\Behat\MediaCreationContext
+        - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
