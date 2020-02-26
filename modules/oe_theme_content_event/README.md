@@ -8,7 +8,7 @@ It provides the logic needed to theme the Event content type.
 This module requires the following contrib modules:
 
 * [Extra field](https://www.drupal.org/project/extra_field) (^1.1)
-* [Field group](https://www.drupal.org/project/field_group) (~3.0@rc)
+* [Field group](https://www.drupal.org/project/field_group) (~3.0)
 
 ### Shipped configuration
 
