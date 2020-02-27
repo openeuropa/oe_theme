@@ -412,6 +412,74 @@
 - array:
     '#type': pattern
     '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#markup': '<div>This is the detail. It is long.</div>'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail.</div>"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#plain_text': '<div>This is the detail. It is long.</div>'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "&lt;div&gt;This is the detail."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#type': 'processed_text'
+        '#text': '<div>This is the detail. It is long.</div>'
+        '#format': 'plain_text'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': "<p>&lt;div&gt;This is the detail.</p>"
+- array:
+    '#type': pattern
+    '#id': list_item
     '#variant': "thumbnail_primary"
     '#fields':
       title: "Item title"

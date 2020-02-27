@@ -7,10 +7,12 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
@@ -20,7 +22,6 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -1246,10 +1247,9 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
 
 /**
  * Implements hook_preprocess_HOOK().
- *
- * Trim the description field on Featured items.
  */
 function oe_theme_preprocess_pattern_featured_item(array &$variables): void {
+  // If the length value is set, trim the description value.
   if (empty($variables['length'])) {
     return;
   }
@@ -1258,10 +1258,9 @@ function oe_theme_preprocess_pattern_featured_item(array &$variables): void {
 
 /**
  * Implements hook_preprocess_HOOK().
- *
- * Trim the detail field on link list items.
  */
 function oe_theme_preprocess_pattern_list_item(array &$variables): void {
+  // If the length value is set, trim the detail value.
   if (empty($variables['length'])) {
     return;
   }
@@ -1271,28 +1270,41 @@ function oe_theme_preprocess_pattern_list_item(array &$variables): void {
 /**
  * Trims the contents of a text field.
  *
- * @param string|array $teaser
- *   The teaser to be trimmed.
+ * The method expects to receive one of the following: a string, a render array
+ * or an object that implements MarkupInterface.
+ * It will then try to trim the associated string to a size defined when
+ * invoking the method.
+ *
+ * @param string|array|object $text
+ *   The text to be trimmed.
  * @param int $size
- *   The length of the trimmed teaser.
+ *   The length of the trimmed text.
  *
  * @return string|array
- *   The trimmed teaser.
+ *   The trimmed text.
  */
-function _oe_theme_trim_textfield($teaser, $size = 150) {
-  if ((!is_array($teaser)) && ((!is_object($teaser) && settype($teaser, 'string') !== FALSE) || (is_object($teaser) && method_exists($teaser, '__toString')))) {
-    $teaser = text_summary((string) $teaser, NULL, $size);
+function _oe_theme_trim_textfield($text, int $size = 150) {
+  if (is_string($text) || $text instanceof MarkupInterface) {
+    // If $text is a string or a Markup object, trim and return the string.
+    return text_summary((string) $text, NULL, $size);
   }
-  elseif (is_array($teaser)) {
-    if (isset($teaser['#markup'])) {
-      $teaser['#markup'] = text_summary($teaser['#markup'], NULL, $size);
+
+  // If $text is an array, we handle the most common scenarios.
+  if (is_array($text)) {
+    if (isset($text['#markup'])) {
+      $text['#markup'] = text_summary($text['#markup'], NULL, $size);
+      return $text;
     }
-    elseif (isset($variable['#plain_text'])) {
-      $variable['#plain_text'] = text_summary($teaser['#plain_text'], NULL, $size);
+    if (isset($text['#plain_text'])) {
+      $text['#plain_text'] = text_summary($text['#plain_text'], NULL, $size);
+      return $text;
     }
-    elseif (isset($teaser['#type']) && $teaser['#type'] == 'processed_text') {
-      $teaser['#text'] = text_summary($teaser['#text'], $teaser['#format'], $size);
+    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
+      $text['#text'] = text_summary($text['#text'], $text['#format'], $size);
+      return $text;
     }
   }
-  return $teaser;
+
+  // Return the unchanged $text since we don't support other scenarios.
+  return $text;
 }
