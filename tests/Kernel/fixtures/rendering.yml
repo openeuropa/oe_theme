@@ -408,7 +408,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item"
+      'article.ecl-content-item div.ecl-content-item__description': "Item..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -430,7 +430,29 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail.</div>"
+      'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail. It...</div>"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#markup': '<div>This <a href="https://example.com">is the detail</a> with a link. It is long. So it should count properly only the words.</div>'
+      length: 30
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -452,7 +474,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "&lt;div&gt;This is the detail."
+      'article.ecl-content-item div.ecl-content-item__description': "&lt;div&gt;This is the detail. It...&lt;/div&gt;"
 - array:
     '#type': pattern
     '#id': list_item
@@ -476,7 +498,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "<p>&lt;div&gt;This is the detail.</p>"
+      'article.ecl-content-item div.ecl-content-item__description': "<p>&lt;div&gt;This is the detail. It...&lt;/div&gt;</p>"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1346,7 +1368,7 @@
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
-      'div.ecl-card__description': "Example"
+      'div.ecl-card__description': "Example..."
 - array:
     '#type': pattern
     '#id': featured_item

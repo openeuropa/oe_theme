@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -23,6 +22,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\smart_trim\Truncate\TruncateHTML;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -1285,25 +1285,31 @@ function oe_theme_preprocess_pattern_list_item(array &$variables): void {
  *   The trimmed text.
  */
 function _oe_theme_trim_textfield($text, int $size = 150) {
+  $truncate = new TruncateHTML();
+
   if (is_string($text) || $text instanceof MarkupInterface) {
     // If $text is a string or a Markup object, trim and return the string.
-    return Unicode::truncate($text, $size, TRUE);
+    return $output = $truncate->truncateChars($text, $size);
+  }
+
+  if (!is_array($text)) {
+    return $text;
   }
 
   // If $text is an array, we handle the most common scenarios.
-  if (is_array($text)) {
-    if (isset($text['#markup'])) {
-      $text['#markup'] = Unicode::truncate($text['#markup'], $size, TRUE);
-      return $text;
-    }
-    if (isset($text['#plain_text'])) {
-      $text['#plain_text'] = Unicode::truncate($text['#plain_text'], $size, TRUE);
-      return $text;
-    }
-    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
-      $text['#text'] = text_summary($text['#text'], $text['#format'], $size);
-      return $text;
-    }
+  if (isset($text['#markup'])) {
+    $text['#markup'] = $truncate->truncateChars($text['#markup'], $size);
+    return $text;
+  }
+
+  if (isset($text['#plain_text'])) {
+    $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $size);
+    return $text;
+  }
+
+  if (isset($text['#type']) && $text['#type'] == 'processed_text') {
+    $text['#text'] = $truncate->truncateChars($text['#text'], $size);
+    return $text;
   }
 
   // Return the unchanged $text since we don't support other scenarios.
