@@ -1,5 +1,5 @@
-navigation_links:
-  label: "Navigation links"
+navigation_list:
+  label: "Navigation list"
   description: "The navigation list defines the children that will be shown on the parent page (current page)."
   fields:
     title:

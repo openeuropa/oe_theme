@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Navigation links.
+ * Navigation list.
  */
 #}
 
@@ -17,7 +17,7 @@
   {% set _links = _links|merge([_link]) %}
 {% endfor %}
 
-{% include '@oe_theme/compositions/ec-component-navigation-links/navigation-links.html.twig' with {
+{% include '@oe_theme/compositions/ec-component-navigation-list/navigation-list.html.twig' with {
   title: title,
   href: href,
   description: description,
