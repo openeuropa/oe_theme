@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -1286,17 +1287,17 @@ function oe_theme_preprocess_pattern_list_item(array &$variables): void {
 function _oe_theme_trim_textfield($text, int $size = 150) {
   if (is_string($text) || $text instanceof MarkupInterface) {
     // If $text is a string or a Markup object, trim and return the string.
-    return text_summary((string) $text, NULL, $size);
+    return Unicode::truncate($text, $size, TRUE);
   }
 
   // If $text is an array, we handle the most common scenarios.
   if (is_array($text)) {
     if (isset($text['#markup'])) {
-      $text['#markup'] = text_summary($text['#markup'], NULL, $size);
+      $text['#markup'] = Unicode::truncate($text['#markup'], $size, TRUE);
       return $text;
     }
     if (isset($text['#plain_text'])) {
-      $text['#plain_text'] = text_summary($text['#plain_text'], NULL, $size);
+      $text['#plain_text'] = Unicode::truncate($text['#plain_text'], $size, TRUE);
       return $text;
     }
     if (isset($text['#type']) && $text['#type'] == 'processed_text') {

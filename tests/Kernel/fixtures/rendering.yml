@@ -395,7 +395,7 @@
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
-      length: 4
+      length: 6
       meta:
         - "Meta 1"
         - "Meta 2"

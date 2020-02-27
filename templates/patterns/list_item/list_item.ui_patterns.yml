@@ -43,7 +43,8 @@ list_item:
       type: numeric
       label: "Max length"
       description: "Used to trim the length of the Detail field (optional)."
-      preview: 20
+      preview: 25
+      escape: false
     meta:
       type: "array"
       label: "Metadata"

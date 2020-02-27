@@ -26,6 +26,7 @@ featured_item:
       label: "Max length"
       description: "Used to trim the length of the Description field (optional)."
       preview: 60
+      escape: false
     metas:
       type: "array"
       label: "Metas"
