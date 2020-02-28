@@ -121,7 +121,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   The entity.
    */
-  protected function addFeaturedMediaThumbnail(array $build, ContentEntityInterface $entity): void {
+  protected function addFeaturedMediaThumbnail(array &$build, ContentEntityInterface $entity): void {
     if ($entity->get('oe_event_featured_media')->isEmpty()) {
       return;
     }
