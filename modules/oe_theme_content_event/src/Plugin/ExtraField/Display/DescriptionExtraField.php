@@ -4,14 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\file\FileInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying the event description block.
@@ -26,47 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
-
-  use StringTranslationTrait;
-
-  /**
-   * Entity view builder object.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $viewBuilder;
-
-  /**
-   * DescriptionExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('datetime.time'),
-      $container->get('entity_type.manager')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -91,18 +49,13 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
     ];
 
     // Get media thumbnail and add media entity as cacheable dependency.
-    if (!$entity->get('oe_event_featured_media')->isEmpty()) {
-      $thumbnail = $entity->get('oe_event_featured_media')->entity->get('thumbnail')->first();
-      $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
-      CacheableMetadata::createFromObject($entity->get('oe_event_featured_media')->entity)
-        ->applyTo($build);
-    }
+    $this->addFeaturedMediaThumbnail($build, $entity);
 
     return $build;
   }
 
   /**
-   * Get renderable section title, either 'Description' or 'Report'.
+   * Get a renderable section title: either 'Description' or 'Report'.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -112,11 +65,11 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
     $event = EventNodeWrapper::getInstance($entity);
-    $title = t('Description');
+    $title = $this->t('Description');
 
     // If we are past the end date and an event report is available, set title.
     if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
-      $title = t('Report');
+      $title = $this->t('Report');
     }
 
     $build = ['#markup' => $title];
@@ -125,7 +78,10 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
   }
 
   /**
-   * Get renderable event description, either the body or the event report.
+   * Get a renderable event description.
+   *
+   * By default, we show the event body field. If, however, the event has
+   * passed AND an event report is available, we show that instead.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -136,10 +92,8 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
   public function getRenderableText(ContentEntityInterface $entity): array {
     $event = EventNodeWrapper::getInstance($entity);
 
-    // By default, we show the event body field.
-    // If the end date is past and event report is available, show that instead.
     $field_name = ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
-    return $this->viewBuilder->viewField($entity->get($field_name), [
+    return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
   }
@@ -154,9 +108,40 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    *   Renderable array.
    */
   protected function getRenderableFeaturedMediaLegend(ContentEntityInterface $entity): array {
-    return $this->viewBuilder->viewField($entity->get('oe_event_featured_media_legend'), [
+    return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_event_featured_media_legend'), [
       'label' => 'hidden',
     ]);
+  }
+
+  /**
+   * Adds the featured media thumbnail to the build.
+   *
+   * @param array $build
+   *   The description field build.
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity.
+   */
+  protected function addFeaturedMediaThumbnail(array $build, ContentEntityInterface $entity): void {
+    if ($entity->get('oe_event_featured_media')->isEmpty()) {
+      return;
+    }
+
+    $media = $entity->get('oe_event_featured_media')->entity;
+    if (!$media instanceof MediaInterface) {
+      return;
+    }
+
+    $cache = new CacheableMetadata();
+    $cache->addCacheableDependency($media);
+    $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+    if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
+      $cache->applyTo($build);
+      return;
+    }
+
+    $cache->addCacheableDependency($thumbnail->entity);
+    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+    $cache->applyTo($build);
   }
 
 }

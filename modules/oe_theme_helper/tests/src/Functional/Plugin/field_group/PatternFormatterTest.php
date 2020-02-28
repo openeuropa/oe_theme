@@ -10,7 +10,7 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
 
 /**
- * Test pattern field group formatters.
+ * Test the pattern field group formatter.
  */
 class PatternFormatterTest extends BrowserTestBase {
 
@@ -19,7 +19,7 @@ class PatternFormatterTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
     'text',
     'field_ui',
@@ -101,8 +101,6 @@ class PatternFormatterTest extends BrowserTestBase {
    * Test field list pattern formatter.
    */
   public function testFieldListPatternFormatter() {
-    $assert_session = $this->assertSession();
-
     $data = [
       'weight' => '1',
       'children' => [
@@ -132,11 +130,11 @@ class PatternFormatterTest extends BrowserTestBase {
     $this->drupalGet('node/1');
 
     $element_selector = 'dl.ecl-description-list.ecl-description-list--default';
-    $assert_session->elementExists('css', $element_selector);
-    $assert_session->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
-    $assert_session->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');
-    $assert_session->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(3)', 'Field 2');
-    $assert_session->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(4)', 'Content test 2');
+    $this->assertSession()->elementExists('css', $element_selector);
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(3)', 'Field 2');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(4)', 'Content test 2');
 
     // Set pattern variant to "horizontal".
     $group->format_settings['variant'] = 'horizontal';
@@ -146,11 +144,11 @@ class PatternFormatterTest extends BrowserTestBase {
     $this->drupalGet('node/1');
 
     $element_selector = 'dl.ecl-description-list.ecl-description-list--horizontal';
-    $assert_session->elementExists('css', $element_selector);
-    $assert_session->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
-    $assert_session->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');
-    $assert_session->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(3)', 'Field 2');
-    $assert_session->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(4)', 'Content test 2');
+    $this->assertSession()->elementExists('css', $element_selector);
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(1)', 'Field 1');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(2)', 'Content test 1');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dt.ecl-description-list__term:nth-child(3)', 'Field 2');
+    $this->assertSession()->elementTextContains('css', $element_selector . ' dd.ecl-description-list__definition:nth-child(4)', 'Content test 2');
   }
 
 }

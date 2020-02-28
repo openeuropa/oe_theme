@@ -9,7 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
 
 /**
- * Display typed links as social media.
+ * Displays typed links as social media.
  *
  * This formatter assumes that link categories will be compatible with
  * media service names used in the "Social media links: horizontal" pattern.
@@ -45,18 +45,18 @@ class SocialMediaLinksFormatter extends LinkFormatter {
     $summary = [];
 
     if (!empty($settings['trim_length'])) {
-      $summary[] = t('Link text trimmed to @limit characters', ['@limit' => $settings['trim_length']]);
+      $summary[] = $this->t('Link text trimmed to @limit characters', ['@limit' => $settings['trim_length']]);
     }
     else {
-      $summary[] = t('Link text not trimmed');
+      $summary[] = $this->t('Link text not trimmed');
     }
 
     if (!empty($settings['title'])) {
-      $summary[] = t('Block title: @title', ['@title' => $settings['title']]);
+      $summary[] = $this->t('Block title: @title', ['@title' => $settings['title']]);
     }
 
     if (!empty($settings['variant'])) {
-      $summary[] = t('Pattern variant: @variant', ['@variant' => $settings['variant']]);
+      $summary[] = $this->t('Pattern variant: @variant', ['@variant' => $settings['variant']]);
     }
 
     return $summary;
@@ -70,7 +70,7 @@ class SocialMediaLinksFormatter extends LinkFormatter {
 
     $elements['title'] = [
       '#type' => 'textfield',
-      '#title' => t('Block title'),
+      '#title' => $this->t('Block title'),
       '#default_value' => $this->getSetting('title'),
       '#required' => TRUE,
     ];
@@ -86,7 +86,8 @@ class SocialMediaLinksFormatter extends LinkFormatter {
       '#required' => TRUE,
     ];
 
-    // Hide following settings as their behaviour is controlled by the pattern.
+    // Hide the following settings as their behaviour is controlled by the
+    // pattern.
     $elements['url_only']['#access'] = FALSE;
     $elements['url_plain']['#access'] = FALSE;
     $elements['rel']['#access'] = FALSE;
@@ -117,7 +118,7 @@ class SocialMediaLinksFormatter extends LinkFormatter {
       $pattern['#fields']['links'][] = [
         'service' => $item->link_type,
         'label' => $elements[$delta]['#title'],
-        'url' => $elements[$delta]['#url']->toString(),
+        'url' => $elements[$delta]['#url'],
       ];
     }
 

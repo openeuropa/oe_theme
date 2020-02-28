@@ -6,14 +6,14 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\oe_content_event\EventNodeWrapperInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base class for fields that conditionally render on the registration period.
  */
-abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
 
   /**
    * Current request time, as a timestamp.
@@ -38,13 +38,28 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
+   *   The time service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->requestTime = $time->getRequestTime();
     $this->requestDateTime = (new \DateTime())->setTimestamp($this->requestTime);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('datetime.time')
+    );
   }
 
   /**
@@ -59,7 +74,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
 
-    // Do nothing is the registration is closed.
+    // Do nothing if the registration is closed.
     if ($event->isRegistrationClosed($this->requestDateTime)) {
       $cacheable->applyTo($build);
       return;
@@ -78,7 +93,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
   }
 
   /**
-   * Apply max-age depending from the registration period time interval.
+   * Apply max-age to invalidate at midnight tonight.
    *
    * @param array $build
    *   Render array to apply the max-age to.
@@ -94,7 +109,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
       ->setTimestamp($this->requestTime)
       ->setTime(23, 59, 59)
       ->getTimestamp();
-    if ($midnight > $event->getRegistrationStartDate()->getTimestamp()) {
+    if ($event->getRegistrationStartDate() && $midnight > $event->getRegistrationStartDate()->getTimestamp()) {
       $cacheable->setCacheMaxAge($midnight - $event->getRegistrationStartDate()->getTimestamp());
       $cacheable->applyTo($build);
     }

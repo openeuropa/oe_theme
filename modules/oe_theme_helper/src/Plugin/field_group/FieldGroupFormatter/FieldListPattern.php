@@ -31,7 +31,7 @@ class FieldListPattern extends PatternFormatterBase {
    * {@inheritdoc}
    */
   public function preRender(&$element, $rendering_object) {
-    // Instantiate pattern render array.
+    // Instantiate the pattern render array.
     $pattern = [
       '#type' => 'pattern',
       '#id' => $this->getPatternId(),

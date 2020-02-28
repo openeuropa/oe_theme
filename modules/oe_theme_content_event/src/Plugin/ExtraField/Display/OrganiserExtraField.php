@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
  * Extra field displaying organiser information on events.
@@ -38,25 +39,30 @@ class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
   public function viewElements(ContentEntityInterface $entity) {
     $is_internal = (bool) $entity->get('oe_event_organiser_is_internal')->value;
 
+    if (!$is_internal) {
+      // If the organiser is not internal and we have an organiser name, use
+      // that. Without an organiser name we return an empty array to indicate
+      // an empty field.
+      return !$entity->get('oe_event_organiser_name')->isEmpty() ? ['#markup' => $entity->get('oe_event_organiser_name')->value] : [];
+    }
+
     // If the organiser is internal and not empty, show it.
-    if ($is_internal && !$entity->get('oe_event_organiser_internal')->isEmpty()) {
-      $build = [
-        '#markup' => $entity->get('oe_event_organiser_internal')->entity->label(),
-      ];
-      CacheableMetadata::createFromObject($entity->get('oe_event_organiser_internal')->entity)
-        ->applyTo($build);
-      return $build;
+    if ($entity->get('oe_event_organiser_internal')->isEmpty()) {
+      return [];
     }
 
-    // If the organiser is not internal and not empty, show it.
-    if (!$is_internal && !$entity->get('oe_event_organiser_name')->isEmpty()) {
-      return [
-        '#markup' => $entity->get('oe_event_organiser_name')->value,
-      ];
+    $organiser = $entity->get('oe_event_organiser_internal')->entity;
+    if (!$organiser instanceof ConceptInterface) {
+      return [];
     }
 
-    // Return an empty array otherwise, so the field can be considered empty.
-    return [];
+    $build = [
+      '#markup' => $organiser->label(),
+    ];
+
+    CacheableMetadata::createFromObject($organiser)->applyTo($build);
+
+    return $build;
   }
 
 }

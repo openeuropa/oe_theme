@@ -17,7 +17,7 @@ class SocialMediaLinksFormatterTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'link',
     'typed_link',

@@ -6,11 +6,8 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 
 /**
  * Extra field displaying event details as a list of icons and text.
@@ -24,53 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
-
-  use StringTranslationTrait;
-
-  /**
-   * Entity view builder object for "oe_contact" entity type.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $contactViewBuilder;
-
-  /**
-   * Entity view builder object for "oe_venue" entity type.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $venueViewBuilder;
-
-  /**
-   * DetailsExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->contactViewBuilder = $entity_type_manager->getViewBuilder('oe_contact');
-    $this->venueViewBuilder = $entity_type_manager->getViewBuilder('oe_venue');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager')
-    );
-  }
+class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryPluginInterface {
 
   /**
    * {@inheritdoc}
@@ -111,7 +62,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   }
 
   /**
-   * Get event subject as a renderable array.
+   * Get the event subject as a renderable array.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -120,7 +71,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    *   Renderable array.
    */
   protected function getRenderableSubject(ContentEntityInterface $entity): array {
-    return $this->contactViewBuilder->viewField($entity->get('oe_subject'), [
+    return $this->entityTypeManager->getViewBuilder('oe_contact')->viewField($entity->get('oe_subject'), [
       'label' => 'hidden',
       'settings' => [
         'link' => FALSE,
@@ -129,7 +80,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   }
 
   /**
-   * Get event dates as a renderable array.
+   * Get the event dates as a renderable array.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -138,7 +89,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    *   Renderable array.
    */
   protected function getRenderableDates(ContentEntityInterface $entity): array {
-    return $this->contactViewBuilder->viewField($entity->get('oe_event_dates'), [
+    return $this->entityTypeManager->getViewBuilder('oe_contact')->viewField($entity->get('oe_event_dates'), [
       'label' => 'hidden',
       'type' => 'daterange_default',
       'settings' => [
@@ -149,7 +100,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
   }
 
   /**
-   * Get event location as a renderable array.
+   * Get the event location as a renderable array.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -158,15 +109,15 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    *   Renderable array.
    */
   protected function getRenderableLocation(ContentEntityInterface $entity): array {
-    // Return an empty value is no address is set.
     if ($entity->get('oe_event_venue')->isEmpty()) {
       return [];
     }
 
-    /** @var \Drupal\oe_content_entity_venue\Entity\Venue $venue */
     $venue = $entity->get('oe_event_venue')->entity;
+    if (!$venue instanceof VenueInterface) {
+      return [];
+    }
 
-    // Initialize empty build array, we need this to pass cache metadata.
     $build = [];
     CacheableMetadata::createFromObject($venue)->applyTo($build);
 
@@ -176,7 +127,7 @@ class DetailsExtraField extends ExtraFieldDisplayFormattedBase implements Contai
     }
 
     // Only display locality and country, inline.
-    $renderable = $this->venueViewBuilder->viewField($venue->get('oe_address'));
+    $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
     $renderable[0]['locality']['#value'] .= ',&nbsp;';
 
     $build['locality'] = $renderable[0]['locality'];

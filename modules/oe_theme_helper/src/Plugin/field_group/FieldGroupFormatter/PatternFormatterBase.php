@@ -69,7 +69,7 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
 
     $form['label'] = [
       '#type' => 'textfield',
-      '#title' => t('Field group label'),
+      '#title' => $this->t('Field group label'),
       '#default_value' => $this->label,
     ];
 
