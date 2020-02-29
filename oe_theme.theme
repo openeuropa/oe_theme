@@ -7,10 +7,12 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
@@ -20,7 +22,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\Core\Template\Attribute;
+use Drupal\smart_trim\Truncate\TruncateHTML;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -1242,4 +1244,74 @@ function oe_theme_preprocess_pattern_link(array &$variables): void {
 function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
   // Pattern preview will pass along a \Drupal\Core\Render\Markup object.
   $variables['url'] = Url::fromUserInput((string) $variables['url']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_featured_item(array &$variables): void {
+  // If the length value is set, trim the description value.
+  if (empty($variables['length'])) {
+    return;
+  }
+  $variables['description'] = _oe_theme_trim_textfield($variables['description'], $variables['length']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_list_item(array &$variables): void {
+  // If the length value is set, trim the detail value.
+  if (empty($variables['length'])) {
+    return;
+  }
+  $variables['detail'] = _oe_theme_trim_textfield($variables['detail'], $variables['length']);
+}
+
+/**
+ * Trims the contents of a text field.
+ *
+ * The method expects to receive one of the following: a string, a render array
+ * or an object that implements MarkupInterface.
+ * It will then try to trim the associated string to a size defined when
+ * invoking the method.
+ *
+ * @param string|array|object $text
+ *   The text to be trimmed.
+ * @param int $size
+ *   The length of the trimmed text.
+ *
+ * @return string|array
+ *   The trimmed text.
+ */
+function _oe_theme_trim_textfield($text, int $size = 150) {
+  $truncate = new TruncateHTML();
+
+  if (is_string($text) || $text instanceof MarkupInterface) {
+    // If $text is a string or a Markup object, trim and return the string.
+    return $output = $truncate->truncateChars($text, $size);
+  }
+
+  if (!is_array($text)) {
+    return $text;
+  }
+
+  // If $text is an array, we handle the most common scenarios.
+  if (isset($text['#markup'])) {
+    $text['#markup'] = $truncate->truncateChars($text['#markup'], $size);
+    return $text;
+  }
+
+  if (isset($text['#plain_text'])) {
+    $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $size);
+    return $text;
+  }
+
+  if (isset($text['#type']) && $text['#type'] == 'processed_text') {
+    $text['#text'] = $truncate->truncateChars($text['#text'], $size);
+    return $text;
+  }
+
+  // Return the unchanged $text since we don't support other scenarios.
+  return $text;
 }

@@ -19,7 +19,17 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    */
   public static $modules = [
     'oe_theme_patterns_render_test',
+    'text',
+    'filter',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+    $this->installConfig('filter');
+  }
 
   /**
    * {@inheritdoc}

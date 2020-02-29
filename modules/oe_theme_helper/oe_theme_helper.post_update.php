@@ -167,3 +167,10 @@ function oe_theme_helper_post_update_20007(array &$sandbox) {
   $image_style->addImageEffect($effect);
   $image_style->save();
 }
+
+/**
+ * Install new theme dependency smart_trim module.
+ */
+function oe_theme_helper_post_update_20008(array &$sandbox) {
+  \Drupal::service('module_installer')->install(['smart_trim']);
+}
