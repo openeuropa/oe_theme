@@ -4,7 +4,6 @@ Feature: Event content type.
   I want to access the content of a event
   So I can find the information I'm looking for.
 
-  @javascript
   Scenario: When an anonymous user visits and event page the registration button and page text should change according to the actual time.
     Given I am on the homepage
     And the date is "17 February 2020 2pm"
@@ -25,20 +24,20 @@ Feature: Event content type.
     Then I should see the heading "Description"
     And I should see the text "Event description summary"
     And I should see the text "Event description"
+    And the registration button is not active
     And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30."
-    And I should see the registration button "Register here" inactive
 
     When the date is "05 March 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30"
-    And I should see the registration button "Register here" active
+    And the registration button is active
 
     When the date is "21 June 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see "Registration period ended on Tuesday 10 March 2020, 19:30"
-    And I should see the registration button "Register here" inactive
+    And the registration button is not active
 
     When the date is "15 March 2020 2pm"
     Then I should see the heading "Report"
@@ -113,7 +112,7 @@ Feature: Event content type.
     # And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
     And I should see the text "Live streaming available"
 
-    And I should see the registration button "Register here" inactive
+    And the registration button is not active
     # Future event registration button has the title below.
     And I should see "Registration will open in 2 days 13 hours. You can register from 20 February 2019, 03:23, until 20 February 2019, 15:23."
 

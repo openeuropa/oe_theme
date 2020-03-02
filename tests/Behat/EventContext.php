@@ -4,49 +4,80 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Behat;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 
 /**
- * Class EventContext for steps testing oe_event.
+ * Provide steps to test the event content type display.
  */
 class EventContext extends RawDrupalContext {
 
   /**
-   * Asserting for an active registration button.
+   * Assert whether the registration button is not active.
    *
-   * @param string $button
-   *   The button label.
-   *
-   * @Then I (should ) see the registration button :button inactive
-   * @Then I (should ) see the :button registration button inactive
+   * @Then the registration button is active
    */
-  public function assertRegistrationButtonInactive(string $button): void {
-    $element = $this->getSession()->getPage();
-    $buttonObj = $element->findButton($button);
-    if (empty($buttonObj)) {
-      throw new \Exception(sprintf("The button '%s' was not found on the page %s", $button, $this->getSession()->getCurrentUrl()));
+  public function assertRegistrationButtonActive(): void {
+    $this->assertRegistrationButtonExists();
+    if ($this->getRegistrationButton()->getTagName() === 'button' && $this->getRegistrationButton()->hasAttribute('disabled')) {
+      throw new \Exception('The registration button was supposed to be active.');
     }
   }
 
   /**
-   * Asserting for inactive registration button.
+   * Assert whether the registration button is not active.
    *
-   * @param string $button
-   *   The button label.
-   *
-   * @Then I (should ) see the registration button :button active
-   * @Then I (should ) see the :button registration button active
+   * @Then the registration button is not active
    */
-  public function assertRegistrationButtonActive(string $button): void {
-    $element = $this->getSession()->getPage();
-    $result = $element->findLink($button);
+  public function assertRegistrationButtonNotActive(): void {
+    $this->assertRegistrationButtonExists();
+    if ($this->getRegistrationButton()->getTagName() === 'a') {
+      throw new \Exception('The registration button was not supposed to be active.');
+    }
+  }
 
-    if ($result && !$result->isVisible()) {
-      throw new \Exception(sprintf("The button '%s' was not found on the page %s", $button, $this->getSession()->getCurrentUrl()));
+  /**
+   * Get registration button, if any.
+   *
+   * @return \Behat\Mink\Element\NodeElement|null
+   *   Registration button, either a link or and actual button.
+   */
+  protected function getRegistrationButton(): ?NodeElement {
+    // Look for registration button as a button.
+    $button = $this->getSession()->getPage()->findButton('Register here');
+    if ($button instanceof NodeElement) {
+      return $button;
     }
 
-    if (empty($result)) {
-      throw new \Exception(sprintf("The button '%s' was not found on the page %s", $button, $this->getSession()->getCurrentUrl()));
+    // Look for registration button as a link.
+    $link = $this->getSession()->getPage()->findLink('Register here');
+    if ($link instanceof NodeElement) {
+      return $link;
+    }
+
+    // If none found return NULL.
+    return NULL;
+  }
+
+  /**
+   * Assert whether the registration button exists.
+   *
+   * @Then I should see the registration button
+   */
+  protected function assertRegistrationButtonExists(): void {
+    if (!$this->getRegistrationButton() instanceof NodeElement) {
+      throw new \Exception('The registration button was not found.');
+    }
+  }
+
+  /**
+   * Assert whether the registration button does not exist.
+   *
+   * @Then I should not see the registration button
+   */
+  protected function assertRegistrationButtonNotExists(): void {
+    if ($this->getRegistrationButton() instanceof NodeElement) {
+      throw new \Exception('The registration button was found but it was not supposed to be.');
     }
   }
 
