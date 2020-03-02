@@ -3,7 +3,7 @@ Feature: News content type.
   As a user
   I want to access the content of a news
   So I can find the information I'm looking for.
-  @run
+
   Scenario: News information is shown in teasers.
     Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities" permission
     And "oe_news" content:
