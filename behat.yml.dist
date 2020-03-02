@@ -13,6 +13,7 @@ default:
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - Drupal\Tests\oe_theme\Behat\CleanupContext
         - Drupal\Tests\oe_theme\Behat\EventContext
+        - Drupal\Tests\oe_theme\Behat\PreserveAnonymousPermissionsContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext

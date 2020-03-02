@@ -6,11 +6,26 @@ namespace Drupal\Tests\oe_theme\Behat;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\user\Entity\Role;
 
 /**
  * Provide steps to test the event content type display.
  */
 class EventContext extends RawDrupalContext {
+
+  /**
+   * Grant all necessary permissions so that anonymous users can see events.
+   *
+   * @Given anonymous users can see events
+   */
+  public function anonymousUsersCanSeeEvents(): void {
+    user_role_grant_permissions(Role::ANONYMOUS_ID, [
+      'view published oe_contact',
+      'view published oe_venue',
+      'view published oe_organisation',
+      'view published skos concept entities',
+    ]);
+  }
 
   /**
    * Assert whether the registration button is not active.
