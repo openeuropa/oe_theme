@@ -1,5 +1,20 @@
 # Change Log
 
+## [2.2.0](https://github.com/openeuropa/oe_theme/tree/2.2.0) (2020-03-02)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.3...2.2.0)
+
+**Closed issues:**
+
+- oe\_theme v2.1.3 Language switcher doesn't work using subtheme [\#426](https://github.com/openeuropa/oe_theme/issues/426)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2803: Add a length field for featured items and list items. [\#438](https://github.com/openeuropa/oe_theme/pull/438) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2871: Upgrade ecl-twig to 2.23 version. [\#434](https://github.com/openeuropa/oe_theme/pull/434) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2416: Style the "main content" view mode for document media. [\#431](https://github.com/openeuropa/oe_theme/pull/431) ([brummbar](https://github.com/brummbar))
+- OPENEUROPA-2863: \[EWCMS\] News featured media image doesn't scale on smaller screens. [\#430](https://github.com/openeuropa/oe_theme/pull/430) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2809: Add Ratio 3:2 medium image style. [\#420](https://github.com/openeuropa/oe_theme/pull/420) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [2.1.3](https://github.com/openeuropa/oe_theme/tree/2.1.3) (2020-02-05)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.2...2.1.3)
 
@@ -14,6 +29,7 @@
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.1.3. [\#419](https://github.com/openeuropa/oe_theme/pull/419) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-2734: Upgrade version of @ecl/ec-preset-editor. [\#418](https://github.com/openeuropa/oe_theme/pull/418) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2753: CSS and JS libraries are not loaded when child theme is the active theme [\#413](https://github.com/openeuropa/oe_theme/pull/413) ([ademarco](https://github.com/ademarco))
 - Update 2.x branch with patch release [\#411](https://github.com/openeuropa/oe_theme/pull/411) ([sergepavle](https://github.com/sergepavle))
