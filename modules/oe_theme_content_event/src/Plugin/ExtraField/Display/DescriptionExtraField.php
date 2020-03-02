@@ -67,7 +67,8 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
     // By default the title is 'Description'.
     $build = ['#markup' => t('Description')];
 
-    // If the event is not over then set a relative max-age.
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
     if (!$event->isOver($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getEndDate());
       return $build;
@@ -109,7 +110,8 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       'label' => 'hidden',
     ]);
 
-    // If the event is not over then set a relative max-age.
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
     if (!$event->isOver($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getEndDate());
     }

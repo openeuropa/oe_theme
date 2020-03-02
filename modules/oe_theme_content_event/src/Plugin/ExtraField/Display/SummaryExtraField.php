@@ -35,13 +35,11 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
     $event = new EventNodeWrapper($entity);
     $build = ['#theme' => 'oe_theme_content_event_summary'];
 
-    // By default 'oe_event_description_summary' is what we display.
+    // Display 'oe_event_description_summary' by default.
     $field_name = 'oe_event_description_summary';
 
-    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
-    $view_builder = $this->entityTypeManager->getViewBuilder('node');
-
-    // If the event is not over then set a relative max-age.
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
     if (!$event->isOver($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getEndDate());
     }
@@ -51,6 +49,8 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
       $field_name = 'oe_event_report_summary';
     }
 
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
     $build['#text'] = $view_builder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
