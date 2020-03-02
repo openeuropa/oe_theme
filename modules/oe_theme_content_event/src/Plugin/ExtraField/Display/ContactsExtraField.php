@@ -6,11 +6,6 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying contacts information on events.
@@ -24,45 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
-
-  use StringTranslationTrait;
-
-  /**
-   * Entity view builder object.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $viewBuilder;
-
-  /**
-   * ContactsExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('oe_contact');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager')
-    );
-  }
+class ContactsExtraField extends EventExtraFieldBase {
 
   /**
    * {@inheritdoc}
@@ -89,9 +46,10 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
       '#general' => [],
       '#press' => [],
     ];
-    /** @var \Drupal\Core\Field\FieldItemInterface $item */
-    foreach ($entity->get('oe_event_contact') as $item) {
-      $bundle = $item->entity->bundle();
+
+    /** @var \Drupal\oe_content_entity_contact\Entity\ContactInterface $contact */
+    foreach ($entity->get('oe_event_contact')->referencedEntities() as $contact) {
+      $bundle = $contact->bundle();
 
       // We only handle 'oe_press' or 'oe_general' bundles.
       if (!in_array($bundle, ['oe_general', 'oe_press'])) {
@@ -99,8 +57,8 @@ class ContactsExtraField extends ExtraFieldDisplayFormattedBase implements Conta
       }
 
       $key = ($bundle === 'oe_general') ? '#general' : '#press';
-      $build[$key][] = $this->viewBuilder->view($item->entity);
-      $cacheability->addCacheableDependency($item->entity);
+      $build[$key][] = $this->entityTypeManager->getViewBuilder('oe_contact')->view($contact);
+      $cacheability->addCacheableDependency($contact);
     }
 
     $cacheability->applyTo($build);

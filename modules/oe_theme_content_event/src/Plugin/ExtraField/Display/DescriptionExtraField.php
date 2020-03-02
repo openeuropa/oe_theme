@@ -4,15 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\file\FileInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying the event description block.
@@ -27,50 +25,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
-
-  use StringTranslationTrait;
-
-  /**
-   * Entity view builder object.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $viewBuilder;
-
-  /**
-   * DescriptionExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
-   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
-   *   Time based cache tag generator service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time, $cache_tag_generator);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('datetime.time'),
-      $container->get('oe_theme_helper.time_based_cache_tag_generator'),
-      $container->get('entity_type.manager')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -93,24 +47,13 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       ],
     ];
 
-    // Get media thumbnail and add media entity as cacheable dependency.
-    if (!$entity->get('oe_event_featured_media')->isEmpty()) {
-      $thumbnail = $entity->get('oe_event_featured_media')->entity->get('thumbnail')->first();
-      $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
-      CacheableMetadata::createFromObject($entity->get('oe_event_featured_media')->entity)
-        ->applyTo($build);
-
-      // Only display a caption if we have an image to be captioned by.
-      $build['#fields']['caption'] = $this->viewBuilder->viewField($entity->get('oe_event_featured_media_legend'), [
-        'label' => 'hidden',
-      ]);
-    }
+    $this->addFeaturedMediaThumbnail($build, $entity);
 
     return $build;
   }
 
   /**
-   * Get renderable section title, either 'Description' or 'Report'.
+   * Get a renderable section title: either 'Description' or 'Report'.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -119,7 +62,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    *   Render array.
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // By default the title is 'Description'.
     $build = ['#markup' => t('Description')];
@@ -139,7 +82,10 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
   }
 
   /**
-   * Get renderable event description, either the body or the event report.
+   * Get a renderable event description.
+   *
+   * By default, we show the event body field. If, however, the event has
+   * passed AND an event report is available, we show that instead.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -148,7 +94,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    *   Render array.
    */
   public function getRenderableText(ContentEntityInterface $entity): array {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // By default 'body' is the event description field.
     // If the event is over and we have a report, we use 'oe_event_report_text'.
@@ -157,7 +103,9 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       $field_name = 'oe_event_report_text';
     }
 
-    $build = $this->viewBuilder->viewField($entity->get($field_name), [
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $build = $view_builder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
 
@@ -167,6 +115,45 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
     }
 
     return $build;
+  }
+
+  /**
+   * Adds the featured media thumbnail to the build.
+   *
+   * @param array $build
+   *   The description field build.
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity.
+   */
+  protected function addFeaturedMediaThumbnail(array &$build, ContentEntityInterface $entity): void {
+    if ($entity->get('oe_event_featured_media')->isEmpty()) {
+      return;
+    }
+
+    $media = $entity->get('oe_event_featured_media')->entity;
+    if (!$media instanceof MediaInterface) {
+      return;
+    }
+
+    $cache = new CacheableMetadata();
+    $cache->addCacheableDependency($media);
+    $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+    if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
+      $cache->applyTo($build);
+      return;
+    }
+
+    $cache->addCacheableDependency($thumbnail->entity);
+    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+
+    // Only display a caption if we have an image to be captioned by.
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $build['#fields']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
+      'label' => 'hidden',
+    ]);
+
+    $cache->applyTo($build);
   }
 
 }

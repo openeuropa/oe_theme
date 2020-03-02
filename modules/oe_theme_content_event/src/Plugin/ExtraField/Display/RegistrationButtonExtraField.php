@@ -27,13 +27,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
 
   /**
-   * Entity view builder object.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $viewBuilder;
-
-  /**
    * Date formatter service.
    *
    * @var \Drupal\Core\Datetime\DateFormatterInterface
@@ -49,18 +42,17 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
+   *   The time service.
    * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
    *   Time based cache tag generator service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   Date formatter service.
+   *   The date formatter.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time, $cache_tag_generator);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, DateFormatterInterface $date_formatter) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $time, $cache_tag_generator);
     $this->dateFormatter = $date_formatter;
   }
 
@@ -72,9 +64,9 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $configuration,
       $plugin_id,
       $plugin_definition,
+      $container->get('entity_type.manager'),
       $container->get('datetime.time'),
       $container->get('oe_theme_helper.time_based_cache_tag_generator'),
-      $container->get('entity_type.manager'),
       $container->get('date.formatter')
     );
   }
@@ -83,7 +75,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $event = new EventNodeWrapper($entity);
+    $event = EventNodeWrapper::getInstance($entity);
 
     // If event has no registration information then don't display anything.
     if (!$event->hasRegistration()) {
@@ -96,8 +88,8 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
     // Set default registration button values.
     $build = [
       '#theme' => 'oe_theme_content_event_registration_button',
-      '#label' => t('Register here'),
-      '#url' => $link->getUrl()->toString(),
+      '#label' => $this->t('Register here'),
+      '#url' => $link->getUrl(),
       '#enabled' => TRUE,
     ];
 
@@ -106,7 +98,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $datetime_start = $event->getRegistrationStartDate();
       $datetime_end = $event->getRegistrationEndDate();
       $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp());
-      $build['#description'] = t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
+      $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
         '@time_left' => $date_diff,
         '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
         '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour'),
@@ -125,7 +117,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
     if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
       $datetime_start = $event->getRegistrationEndDate();
       $date_diff = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
-      $build['#description'] = t('Book your seat, @time_left left to register, registration will end on @end_date', [
+      $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
         '@time_left' => $date_diff,
         '@end_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
       ]);
@@ -141,7 +133,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
     // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
       $datetime_start = $event->getRegistrationEndDate();
-      $build['#description'] = t('Registration period ended on @date', [
+      $build['#description'] = $this->t('Registration period ended on @date', [
         '@date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
       $build['#enabled'] = FALSE;

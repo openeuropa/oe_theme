@@ -24,10 +24,15 @@ function oe_theme_content_event_theme() {
       ],
     ],
     'oe_theme_content_event_summary' => [
-      'variables' => ['text' => ''],
+      'variables' => [
+        'text' => '',
+      ],
     ],
     'oe_theme_content_event_contacts' => [
-      'variables' => ['general' => [], 'press' => []],
+      'variables' => [
+        'general' => [],
+        'press' => [],
+      ],
     ],
   ];
 }

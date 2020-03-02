@@ -4,13 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_event\EventNodeWrapper;
-use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying either the event summary or a report summary.
@@ -25,50 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * )
  */
 class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
-
-  use StringTranslationTrait;
-
-  /**
-   * Entity view builder object.
-   *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
-   */
-  protected $viewBuilder;
-
-  /**
-   * SummaryExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
-   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
-   *   Time based cache tag generator service.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   Entity view builder object.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityTypeManagerInterface $entity_type_manager) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $time, $cache_tag_generator);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('datetime.time'),
-      $container->get('oe_theme_helper.time_based_cache_tag_generator'),
-      $container->get('entity_type.manager')
-    );
-  }
 
   /**
    * {@inheritdoc}
@@ -87,6 +38,9 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
     // By default 'oe_event_description_summary' is what we display.
     $field_name = 'oe_event_description_summary';
 
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+
     // If the event is not over then set a relative max-age.
     if (!$event->isOver($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getEndDate());
@@ -97,7 +51,7 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
       $field_name = 'oe_event_report_summary';
     }
 
-    $build['#text'] = $this->viewBuilder->viewField($entity->get($field_name), [
+    $build['#text'] = $view_builder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
     return $build;

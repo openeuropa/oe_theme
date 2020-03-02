@@ -7,14 +7,14 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Base class for fields that conditionally render on the registration period.
  */
-abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
 
   /**
    * Current request time, as a timestamp.
@@ -46,20 +46,36 @@ abstract class RegistrationDateAwareExtraFieldBase extends ExtraFieldDisplayForm
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
    * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
    *   Time based cache tag generator service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->requestTime = $time->getRequestTime();
     $this->requestDateTime = (new \DateTime())->setTimestamp($this->requestTime);
     $this->cacheTagGenerator = $cache_tag_generator;
   }
 
   /**
-   * Apply current hour invalidation tag.
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('datetime.time'),
+      $container->get('oe_theme_helper.time_based_cache_tag_generator')
+    );
+  }
+
+  /**
+   * Apply max-age depending from the registration period time interval.
    *
    * @param array $build
    *   Render array to apply the max-age to.
