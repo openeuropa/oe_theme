@@ -73,7 +73,6 @@ default:
         Social media links: "#oe-social-media-links-values"
         Social media follow: ".ecl-social-media-follow"
         Description: "#edit-oe-event-featured-media"
-        Event report: "#edit-group-report"
         Event partner: "#edit-oe-event-partner-wrapper"
         Event contact: "#edit-oe-event-contact-wrapper"
   formatters:
