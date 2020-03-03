@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_ratio_3_2_medium
+label: 'Ratio 3:2 medium'
+effects:
+  5796bb6b-8278-4b53-b64e-080696536311:
+    uuid: 5796bb6b-8278-4b53-b64e-080696536311
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 400
+      anchor: center-center

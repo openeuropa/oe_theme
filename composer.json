@@ -8,6 +8,7 @@
     "require": {
         "php": "^7.1",
         "drupal/core": "^8.7",
+        "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
         "nesbot/carbon": "^2.29",
         "openeuropa/ecl-twig-loader": "~2.0"

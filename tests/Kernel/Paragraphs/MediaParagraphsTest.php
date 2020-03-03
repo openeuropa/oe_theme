@@ -137,7 +137,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // The image in the figure element has the source and alt defined in the
     // referenced media but the caption is no longer rendered.
     $image = $figure->filter('.ecl-media-container__media');
-    $this->assertContains('/example_1.jpeg', $image->attr('src'));
+    $this->assertContains('/styles/oe_theme_medium_no_crop/public/example_1.jpeg', $image->attr('src'));
     $this->assertContains('Alt', $image->attr('alt'));
     $caption = $figure->filter('.ecl-media-container__caption');
     $this->assertCount(0, $caption);
