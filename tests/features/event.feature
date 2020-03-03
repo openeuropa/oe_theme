@@ -140,7 +140,6 @@ Feature: Event content type.
     # Event contact values.
     And I should see the text "Contacts"
     And I should see the text "General contact"
-    And I should see the text "General contact"
     And I should see the text "Budapest, Back street 3, 9000, Hungary"
     And I should see the text "test@example.com"
     And I should see the text "0488779033"
