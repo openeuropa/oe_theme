@@ -59,8 +59,8 @@ List of Extra field definitions:
 * [Details](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DetailsExtraField.php) provides event details
   including Topic, Location, Dates, and Livestreaming availability information.
 * [Organiser](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/OrganiserExtraField.php) provides
-  organiser information, whether a simple organiser name or a label to a department OP (SKOS vocabulary.
+  organiser information, whether a simple organiser name or a label to a department OP (SKOS vocabulary).
 * [RegistrationButton](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/RegistrationButtonExtraField.php)
-  provides the registration button and related text, changing depending on the the event date.
+  provides the registration button and related text, changing depending on the event date.
 * [Summary](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/SummaryExtraField.php) provides the event
   short summary or the report short summary, depending on whether the event date is in the past or in the future.

@@ -7,7 +7,6 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\rdf_skos\Entity\ConceptInterface;
 
 /**
@@ -22,7 +21,7 @@ use Drupal\rdf_skos\Entity\ConceptInterface;
  *   visible = true
  * )
  */
-class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
+class OrganiserExtraField extends EventExtraFieldBase {
 
   use StringTranslationTrait;
 
@@ -56,10 +55,12 @@ class OrganiserExtraField extends ExtraFieldDisplayFormattedBase {
       return [];
     }
 
-    $build = [
-      '#markup' => $organiser->label(),
-    ];
-
+    $build = $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_event_organiser_internal'), [
+      'label' => 'hidden',
+      'settings' => [
+        'link' => FALSE,
+      ],
+    ]);
     CacheableMetadata::createFromObject($organiser)->applyTo($build);
 
     return $build;

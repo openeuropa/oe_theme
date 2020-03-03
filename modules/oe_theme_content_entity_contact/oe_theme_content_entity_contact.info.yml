@@ -5,5 +5,4 @@ type: module
 core: 8.x
 
 dependencies:
-  - oe_content_entity_contact:oe_content_entity_contact
-  - oe_theme:oe_theme_content_entity
+  - oe_content:oe_content_entity_contact
