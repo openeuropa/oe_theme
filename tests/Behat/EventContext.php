@@ -52,6 +52,37 @@ class EventContext extends RawDrupalContext {
   }
 
   /**
+   * Assert whether the registration button exists.
+   *
+   * @Then the registration button should be there
+   */
+  public function assertRegistrationButtonExists(): void {
+    if (!$this->getRegistrationButton() instanceof NodeElement) {
+      throw new \Exception('The registration button was not found.');
+    }
+  }
+
+  /**
+   * Assert whether the registration button does not exist.
+   *
+   * @Then the registration button should not be there
+   */
+  public function assertRegistrationButtonNotExists(): void {
+    if ($this->getRegistrationButton() instanceof NodeElement) {
+      throw new \Exception('The registration button was found but it was not supposed to be.');
+    }
+  }
+
+  /**
+   * Assert that the registration block is not displayed on the page.
+   *
+   * @Then I should not see the registration block
+   */
+  public function assertRegistrationBlockNotExists() {
+    $this->assertSession()->elementNotExists('css', '#event-registration-block');
+  }
+
+  /**
    * Get registration button, if any.
    *
    * @return \Behat\Mink\Element\NodeElement|null
@@ -72,28 +103,6 @@ class EventContext extends RawDrupalContext {
 
     // If none found return NULL.
     return NULL;
-  }
-
-  /**
-   * Assert whether the registration button exists.
-   *
-   * @Then I should see the registration button
-   */
-  protected function assertRegistrationButtonExists(): void {
-    if (!$this->getRegistrationButton() instanceof NodeElement) {
-      throw new \Exception('The registration button was not found.');
-    }
-  }
-
-  /**
-   * Assert whether the registration button does not exist.
-   *
-   * @Then I should not see the registration button
-   */
-  protected function assertRegistrationButtonNotExists(): void {
-    if ($this->getRegistrationButton() instanceof NodeElement) {
-      throw new \Exception('The registration button was found but it was not supposed to be.');
-    }
   }
 
 }

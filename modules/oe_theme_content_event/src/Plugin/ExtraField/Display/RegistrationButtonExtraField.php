@@ -77,8 +77,9 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
   public function viewElements(ContentEntityInterface $entity) {
     $event = EventNodeWrapper::getInstance($entity);
 
-    // If event has no registration information then don't display anything.
-    if (!$event->hasRegistration()) {
+    // If event has no registration information or the event is over
+    // then we don't display the whole registration block.
+    if (!$event->hasRegistration() || $event->isOver($this->requestDateTime)) {
       return [];
     }
 
@@ -91,6 +92,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       '#label' => $this->t('Register here'),
       '#url' => $link->getUrl(),
       '#enabled' => TRUE,
+      '#show_button' => TRUE,
     ];
 
     // Current request happens before the registration starts.
@@ -136,7 +138,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $build['#description'] = $this->t('Registration period ended on @date', [
         '@date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_long_date_hour'),
       ]);
-      $build['#enabled'] = FALSE;
+      $build['#show_button'] = FALSE;
 
       return $build;
     }

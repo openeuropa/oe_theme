@@ -4,48 +4,84 @@ Feature: Event content type.
   I want to access the content of a event
   So I can find the information I'm looking for.
 
-  Scenario: When an anonymous user visits and event page the registration button and page text should change according to the actual time.
-    Given I am on the homepage
-    And the date is "17 February 2020 2pm"
+  @run
+  Scenario: When an anonymous user visits an event page the registration button and page text should change according to the current time.
+    When am on homepage
     And the following Event Content entity:
       | Title                   | My first event            |
       | Type                    | exhibitions               |
       | Description summary     | Event description summary |
       | Description             | Event description         |
-      | Start date              | 2020-06-15T12:30:00       |
-      | End date                | 2020-06-20T18:30:00       |
       | Registration start date | 2020-03-01T12:30:00       |
       | Registration end date   | 2020-03-10T18:30:00       |
+      | Start date              | 2020-06-15T12:30:00       |
+      | End date                | 2020-06-20T18:30:00       |
       | Registration URL        | http://example.com        |
       | Summary for report      | Report summary            |
       | Report text             | Report text               |
 
+    # Assert event rendering message days before registration starts.
+    Given the date is "17 February 2020 2pm"
     When I am visiting the "My first event" content
     Then I should see the heading "Description"
     And I should see the text "Event description summary"
     And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
     And the registration button is not active
     And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30."
 
+    # Assert event rendering half an hour before the registration starts.
+    When the date is "01 March 2020 12pm"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button is not active
+    And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30."
+
+    # Assert event rendering while the registration is ongoing.
     When the date is "05 March 2020 2pm"
     And I run cron
     And I reload the page
-    Then I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30"
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
     And the registration button is active
+    And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30"
 
+    # Assert event rendering after the registration has ended.
+    When the date is "29 May 2020 2am"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button should not be there
+    But I should see "Registration period ended on Tuesday 10 March 2020, 19:30"
+
+    # Assert event rendering after the event has ended.
     When the date is "21 June 2020 2pm"
     And I run cron
     And I reload the page
-    Then I should see "Registration period ended on Tuesday 10 March 2020, 19:30"
-    And the registration button is not active
-
-    When the date is "15 March 2020 2pm"
     Then I should see the heading "Report"
-    And I should not see the heading "Description"
     And I should see the text "Report summary"
     And I should see the text "Report text"
+    But I should not see the heading "Description"
     And I should not see the text "Event description summary"
     And I should not see the text "Event description"
+    And I should not see the registration block
 
   @preserve_anonymous_permissions
   Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
