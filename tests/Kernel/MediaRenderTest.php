@@ -28,7 +28,7 @@ class MediaRenderTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'field',
     'file',
     'media',
@@ -73,29 +73,31 @@ class MediaRenderTest extends AbstractKernelTestBase {
 
     $media->save();
 
-    $build = $this->mediaViewBuilder->view($media, 'default');
-    $crawler = new Crawler($this->renderRoot($build));
+    foreach (['default', 'oe_theme_main_content'] as $view_mode) {
+      $build = $this->mediaViewBuilder->view($media, $view_mode);
+      $crawler = new Crawler($this->renderRoot($build));
 
-    // File wrapper.
-    $file_wrapper = $crawler->filter('.ecl-file');
-    $this->assertCount(1, $file_wrapper);
+      // File wrapper.
+      $file_wrapper = $crawler->filter('.ecl-file');
+      $this->assertCount(1, $file_wrapper);
 
-    // File row.
-    $file_row = $crawler->filter('.ecl-file .ecl-file__container');
-    $this->assertCount(1, $file_row);
+      // File row.
+      $file_row = $crawler->filter('.ecl-file .ecl-file__container');
+      $this->assertCount(1, $file_row);
 
-    $file_title = $file_row->filter('.ecl-file__title');
-    $this->assertContains('test document', $file_title->text());
+      $file_title = $file_row->filter('.ecl-file__title');
+      $this->assertContains('test document', $file_title->text());
 
-    $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->text());
+      $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
+      $this->assertContains('English', $file_info_language->text());
 
-    $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('KB - PDF)', $file_info_properties->text());
+      $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
+      $this->assertContains('KB - PDF)', $file_info_properties->text());
 
-    $file_download_link = $file_row->filter('.ecl-file__download');
-    $this->assertContains('/test.pdf', $file_download_link->attr('href'));
-    $this->assertContains('Download', $file_download_link->text());
+      $file_download_link = $file_row->filter('.ecl-file__download');
+      $this->assertContains('/test.pdf', $file_download_link->attr('href'));
+      $this->assertContains('Download', $file_download_link->text());
+    }
   }
 
 }

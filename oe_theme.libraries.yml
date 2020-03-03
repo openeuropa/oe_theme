@@ -25,12 +25,6 @@ editor:
     theme:
       dist/styles/ecl-ec-preset-editor.css: {}
 
-dialogs:
-  js:
-    js/dialogs.js: {}
-  dependencies:
-    - core/drupal
-
 external_svg:
   js:
     dist/js/svg4everybody.min.js: { minified: true }

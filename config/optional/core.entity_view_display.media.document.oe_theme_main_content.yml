@@ -3,23 +3,22 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.media.oe_theme_main_content
-    - field.field.media.av_portal_photo.oe_media_avportal_photo
-    - media.type.av_portal_photo
-    - responsive_image.styles.oe_theme_main_content
+    - field.field.media.document.oe_media_file
+    - media.type.document
   module:
-    - media_avportal
-id: media.av_portal_photo.oe_theme_main_content
+    - file
+id: media.document.oe_theme_main_content
 targetEntityType: media
-bundle: av_portal_photo
+bundle: document
 mode: oe_theme_main_content
 content:
-  oe_media_avportal_photo:
+  oe_media_file:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: oe_theme_main_content
+      use_description_as_link_text: true
     third_party_settings: {  }
-    type: avportal_photo_responsive
+    type: file_default
     region: content
 hidden:
   created: true

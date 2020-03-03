@@ -27,101 +27,109 @@ class ConfigurationTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
-    $this->container->set('theme.registry', NULL);
+    $this->container->get('theme_installer')->install(['oe_theme', 'oe_theme_subtheme_test']);
   }
 
   /**
-   * Test that the the default settings are applied correctly.
+   * Test that the the default libraries are loaded correctly.
    */
-  public function testDefaultSettings(): void {
-    $this->drupalGet('<front>');
+  public function testDefaultLibraryLoading(): void {
+    foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
+      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->set('theme.registry', NULL);
 
-    // Assert that we load the EC component library by default.
-    $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
-    $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
+      $this->drupalGet('<front>');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
-    $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+      // Assert that we load the EC component library by default.
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-    // Assert that we do not load the EU component library by default.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
-    $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
+      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
+      $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+      // Assert that we do not load the EU component library by default.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-    // Assert that the ECL Editor preset is always loaded.
-    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+
+      // Assert that the ECL Editor preset is always loaded.
+      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+    }
   }
 
   /**
    * Test that the correct library is loaded after changing theme settings.
    */
   public function testChangeComponentLibrary(): void {
-    $page = $this->getSession()->getPage();
-    $assert_session = $this->assertSession();
+    foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
+      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->set('theme.registry', NULL);
 
-    // Create a user that does have permission to administer theme settings.
-    $user = $this->drupalCreateUser(['administer themes']);
-    $this->drupalLogin($user);
+      $page = $this->getSession()->getPage();
+      $assert_session = $this->assertSession();
 
-    // Visit theme administration page.
-    $this->drupalGet('/admin/appearance/settings/oe_theme');
+      // Create a user that does have permission to administer theme settings.
+      $user = $this->drupalCreateUser(['administer themes']);
+      $this->drupalLogin($user);
 
-    // Assert configuration select is properly rendered.
-    $assert_session->selectExists('Component library');
-    $assert_session->optionExists('Component library', 'European Commission');
-    $assert_session->optionExists('Component library', 'European Union');
+      // Visit theme administration page.
+      $this->drupalGet('/admin/appearance/settings/oe_theme');
 
-    // Select EU component library and save configuration.
-    $page->selectFieldOption('Component library', 'European Union');
-    $page->pressButton('Save configuration');
+      // Assert configuration select is properly rendered.
+      $assert_session->selectExists('Component library');
+      $assert_session->optionExists('Component library', 'European Commission');
+      $assert_session->optionExists('Component library', 'European Union');
 
-    // Visit font page.
-    $this->drupalGet('<front>');
+      // Select EU component library and save configuration.
+      $page->selectFieldOption('Component library', 'European Union');
+      $page->pressButton('Save configuration');
 
-    // Assert that we load the EU component library.
-    $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
-    $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
+      // Visit font page.
+      $this->drupalGet('<front>');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
-    $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+      // Assert that we load the EU component library.
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
-    // Assert that we do not load the EC component library.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
-    $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
+      $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+      $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
+      // Assert that we do not load the EC component library.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
-    // Assert that the ECL Editor preset is always loaded.
-    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
 
-    // Visit theme administration page.
-    $this->drupalGet('/admin/appearance/settings/oe_theme');
+      // Assert that the ECL Editor preset is always loaded.
+      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
 
-    // Select EC component library and save configuration.
-    $page->selectFieldOption('Component library', 'European Commission');
-    $page->pressButton('Save configuration');
+      // Visit theme administration page.
+      $this->drupalGet('/admin/appearance/settings/oe_theme');
 
-    // Visit font page.
-    $this->drupalGet('<front>');
+      // Select EC component library and save configuration.
+      $page->selectFieldOption('Component library', 'European Commission');
+      $page->pressButton('Save configuration');
 
-    // Assert that we load the EC component library by default.
-    $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
-    $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
+      // Visit font page.
+      $this->drupalGet('<front>');
 
-    $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
-    $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+      // Assert that we load the EC component library by default.
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-    // Assert that we do not load the EU component library by default.
-    $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
-    $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
+      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
+      $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
-    $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+      // Assert that we do not load the EU component library by default.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-    // Assert that the ECL Editor preset is always loaded.
-    $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
+
+      // Assert that the ECL Editor preset is always loaded.
+      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
+    }
   }
 
   /**
