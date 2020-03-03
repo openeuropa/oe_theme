@@ -4,10 +4,8 @@ Feature: Event content type.
   I want to access the content of a event
   So I can find the information I'm looking for.
 
-  @run
   Scenario: When an anonymous user visits an event page the registration button and page text should change according to the current time.
-    When am on homepage
-    And the following Event Content entity:
+    Given the following Event Content entity:
       | Title                   | My first event            |
       | Type                    | exhibitions               |
       | Description summary     | Event description summary |
