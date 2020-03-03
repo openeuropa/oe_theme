@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Module file used for theming the Event content type.
+ * Install, update and uninstall functions for the module.
  */
 
 declare(strict_types = 1);
