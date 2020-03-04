@@ -41,7 +41,7 @@ services:
       - ./:/home/node/app
     command: "sleep infinity"
   sparql:
-      image: openeuropa/triple-store-dev
+      image: openeuropa/triple-store-dev:1.2.0
       environment:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba

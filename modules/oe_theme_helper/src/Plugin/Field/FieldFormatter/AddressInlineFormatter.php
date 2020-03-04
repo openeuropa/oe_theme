@@ -86,7 +86,7 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
    */
   protected function viewElement(AddressInterface $address, $langcode) {
     $country_code = $address->getCountryCode();
-    $countries = $this->countryRepository->getList();
+    $countries = $this->countryRepository->getList($langcode);
     $address_format = $this->addressFormatRepository->get($country_code);
     $values = $this->getValues($address, $address_format);
 

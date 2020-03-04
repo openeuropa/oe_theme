@@ -62,3 +62,20 @@ If the variable `{{ langcode }}` contains `es`:
 ```
 
 Output: `Español`.
+
+## Additional formatters
+
+**Social media field formatter**
+
+It provides a formatter for the social media links in order to configure horizontal or vertical variants of the pattern.
+The social media field requires the [typed_link](https://www.drupal.org/project/typed_link) module.
+
+**Field group formatter**
+
+This formatter is used to format the fields organised under a field group, using the Field list pattern.
+Additional formatters for other patterns can be implemented by extending the [PatternFormatterBase](modules/oe_theme_helper/src/Plugin/field_group/FieldGroupFormatter/PatternFormatterBase.php) class.
+
+**Inline address formatter**
+
+This formatter provides the possibility to configure and render address field values with
+a defined separator. Default separator is ", ". Example: Rue Belliard 28, Brussels, 1000 Belgium. It works with the [address](https://www.drupal.org/project/address) module.

@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Module install file.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ */
+function oe_theme_content_entity_venue_install() {
+  // If we are installing from config, we bail out.
+  if (\Drupal::isConfigSyncing() === TRUE) {
+    return;
+  }
+
+  // Override entity view displays.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_venue') . '/config/overrides');
+  $displays = [
+    'core.entity_view_display.oe_venue.oe_default.default',
+  ];
+
+  foreach ($displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityViewDisplay::load($values['id']);
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
+    }
+    $config->save();
+  }
+}
