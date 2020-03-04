@@ -86,9 +86,6 @@ Feature: Event content type.
     And I am on the homepage
     Given anonymous users can see events
     And the date is "17 February 2019 2pm"
-    And the following images:
-      | name                          | file            |
-      | Euro with miniature figurines | placeholder.png |
     And the following Event Content entity:
       | Title                   | Event demo page                                               |
       | Type                    | exhibitions                                                   |
@@ -238,8 +235,7 @@ Feature: Event content type.
     And I should see the link "Twitter" in the "event practical information"
 
     # Assert featured image.
-    # @todo implement a proper media assertion.
-    And the "media container" element should contain "placeholder"
+    And the "media container" element should contain "placeholder.png"
     And I should see the text "Media legend text"
 
     # Assert changing organiser type.
