@@ -119,7 +119,7 @@ Feature: Event content type.
     And I should see "Languages" in the "event practical information"
     And I should see "Valencian" in the "event practical information"
 
-    # Assert absence of registation block.
+    # Assert absence of registration block.
     And I should not see the registration block
 
     # Add registration details.
@@ -200,7 +200,7 @@ Feature: Event content type.
       | Online time end         | 2019-02-21T14:21:00                                           |
       | Online description      | Online description text                                       |
       | Online link             | uri: http://ec.europa.eu/info - title: The online link title  |
-      | Organiser is internal   | 0                                                             |
+      | Organiser is internal   | No                                                            |
       | Organiser name          | Name of the organiser                                         |
       | Event website           | uri: http://ec.europa.eu/info - title: Event website          |
       | Social media links      | uri: http://example.com - title: Twitter - link_type: twitter |
@@ -241,6 +241,14 @@ Feature: Event content type.
     # @todo implement a proper media assertion.
     And the "media container" element should contain "placeholder"
     And I should see the text "Media legend text"
+
+    # Assert changing organiser type.
+    When the Event Content "Event demo page" is updated as follows:
+      | Organiser is internal | Yes                                 |
+      | Internal organiser    | Directorate-General for Informatics |
+    And I reload the page
+    Then I should not see "Name of the organiser" in the "event practical information"
+    But I should see "Directorate-General for Informatics" in the "event practical information"
 
     # Assert showing report related information after the event ended.
     Given the date is "24 March 2025 2pm"
