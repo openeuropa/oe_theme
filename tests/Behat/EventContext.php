@@ -83,6 +83,15 @@ class EventContext extends RawDrupalContext {
   }
 
   /**
+   * Assert that the registration block is displayed on the page.
+   *
+   * @Then I should see the registration block
+   */
+  public function assertRegistrationBlockExists() {
+    $this->assertSession()->elementExists('css', '#event-registration-block');
+  }
+
+  /**
    * Get registration button, if any.
    *
    * @return \Behat\Mink\Element\NodeElement|null

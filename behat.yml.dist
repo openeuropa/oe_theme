@@ -78,13 +78,14 @@ default:
         priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
-        Online link: "#edit-oe-event-online-link-0"
-        Website: "#edit-oe-event-website-0"
         Social media links: "#oe-social-media-links-values"
         Social media follow: ".ecl-social-media-follow"
-        Description: "#edit-oe-event-featured-media"
-        Event partner: "#edit-oe-event-partner-wrapper"
-        Event contact: "#edit-oe-event-contact-wrapper"
+        event contacts: "#event-contacts"
+        event general contacts: "#event-contacts-general"
+        event press contacts: "#event-contacts-press"
+        event registration: "#event-registration-block"
+        event details: "#event-details"
+        event practical information: "#event-practical-information"
     FriendsOfBehat\ServiceContainerExtension:
       imports:
         - 'build/modules/contrib/oe_content/tests/Behat/config/services.yml'
