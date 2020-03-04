@@ -16,6 +16,7 @@ Feature: Event content type.
     And I am on "the event creation page"
     And I select "Info days" from "Type"
     And I fill in "Title" with "Event demo page"
+    And I fill in "Introduction" with "This is the event introduction"
 
     And I fill in "Description summary" with "Description summary text"
     And I fill in "Subject" with "EU financing"
@@ -101,6 +102,7 @@ Feature: Event content type.
     # Header elements.
     Then I should see "Event demo page"
     And I should see the text "Info days" in the "page header meta" region
+    And I should see the text "This is the event introduction" in the "page header intro"
 
     # Icons with text.
     And I should see the text "EU financing"
