@@ -25,6 +25,9 @@ class EventContext extends RawDrupalContext {
       'view published oe_organisation',
       'view published skos concept entities',
     ]);
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
   /**

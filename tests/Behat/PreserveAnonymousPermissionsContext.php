@@ -45,6 +45,9 @@ class PreserveAnonymousPermissionsContext extends RawDrupalContext {
 
     // Restore initial permission set by granting them.
     user_role_grant_permissions(Role::ANONYMOUS_ID, $this->anonymousPermissions);
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
 }
