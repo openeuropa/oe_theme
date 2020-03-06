@@ -1,4 +1,5 @@
-@api @event @datetime_testing
+@api @event
+#@datetime_testing
 Feature: Event content type.
   As a user
   I want to access the content of a event
@@ -80,7 +81,7 @@ Feature: Event content type.
     And I should not see the text "Event description summary"
     And I should not see the text "Event description"
     And I should not see the registration block
-
+@run
   @preserve_anonymous_permissions
   Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
     And I am on the homepage

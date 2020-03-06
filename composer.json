@@ -91,10 +91,6 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
-            },
-            "drupal/datetime_testing": {
-                "Provide Drush commands to set, get, freeze and unfreeze time: https://www.drupal.org/project/datetime_testing/issues/3112309": "https://www.drupal.org/files/issues/2020-02-10/datetime_testing-3112309.patch",
-                "Call to undefined method resetTime() if behat subcontext is used: https://www.drupal.org/project/datetime_testing/issues/3114849": "https://www.drupal.org/files/issues/2020-02-20/datetime_testing-3114849-2.patch"
             }
         }
     },
