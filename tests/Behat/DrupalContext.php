@@ -10,13 +10,15 @@ use Behat\Behat\Hook\Scope\BeforeFeatureScope;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
-use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
  * Class DrupalContext.
  */
 class DrupalContext extends RawDrupalContext {
+
+  use EntityLoadingTrait;
 
   /**
    * Installs the test module before executing any tests.
@@ -90,26 +92,8 @@ class DrupalContext extends RawDrupalContext {
    * @Given I visit the :title content
    */
   public function iAmViewingTheContent($title): void {
-    $nid = $this->getEntityByLabel('node', $title)->id();
+    $nid = $this->loadEntityByLabel('node', $title)->id();
     $this->visitPath("node/$nid");
-  }
-
-  /**
-   * Load an entity by label.
-   *
-   * @param string $entity_type_id
-   *   The entity type ID.
-   * @param string $label
-   *   The label of the entity to load.
-   *
-   * @return \Drupal\Core\Entity\ContentEntityInterface
-   *   The loaded entity.
-   */
-  protected function getEntityByLabel(string $entity_type_id, string $label): ContentEntityInterface {
-    $manager = \Drupal::entityTypeManager();
-    $label_field = $manager->getDefinition($entity_type_id)->getKey('label');
-    $entity_list = $manager->getStorage($entity_type_id)->loadByProperties([$label_field => $label]);
-    return array_shift($entity_list);
   }
 
   /**
