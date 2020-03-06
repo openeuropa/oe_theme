@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Facts and figures component.
+ */
+#}
+{% set _link = {'path' : view_all.0.path, 'label' : view_all.0.label} %}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    icon: {
+      path: ecl_icon_path,
+      type: "general",
+      name: _item.icon,
+    },
+    value: _item.value,
+    title: _item.title,
+    description: _item.description,
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/fact-figures' with {
+  'items': _items,
+  "view_all":{
+    "link": _link
+  }
+} %}
