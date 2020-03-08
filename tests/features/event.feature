@@ -10,10 +10,10 @@ Feature: Event content type.
       | Type                    | exhibitions               |
       | Description summary     | Event description summary |
       | Description             | Event description         |
-      | Registration start date | 2020-03-01T12:30:00       |
-      | Registration end date   | 2020-03-10T18:30:00       |
-      | Start date              | 2020-06-15T12:30:00       |
-      | End date                | 2020-06-20T18:30:00       |
+      | Registration start date | 2020-03-01 12:30:00       |
+      | Registration end date   | 2020-03-10 18:30:00       |
+      | Start date              | 2020-06-15 12:30:00       |
+      | End date                | 2020-06-20 18:30:00       |
       | Registration URL        | http://example.com        |
       | Summary for report      | Report summary            |
       | Report text             | Report text               |
@@ -27,10 +27,10 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button is not active
-    And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30." in the "event registration" region
+    And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
 
     # Assert event rendering half an hour before the registration starts.
-    When the time is frozen at "01 March 2020 12pm"
+    When the time is frozen at "01 March 2020 11am"
     And I run cron
     And I reload the page
     Then I should see the heading "Description"
@@ -40,7 +40,7 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button is not active
-    And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30." in the "event registration" region
+    And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
 
     # Assert event rendering while the registration is ongoing.
     When the time is frozen at "05 March 2020 2pm"
@@ -53,7 +53,7 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button is active
-    And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30" in the "event registration" region
+    And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 18:30" in the "event registration" region
 
     # Assert event rendering after the registration has ended.
     When the time is frozen at "29 May 2020 2am"
@@ -66,7 +66,7 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button should not be there
-    But I should see "Registration period ended on Tuesday 10 March 2020, 19:30" in the "event registration" region
+    But I should see "Registration period ended on Tuesday 10 March 2020, 18:30" in the "event registration" region
 
     # Assert event rendering after the event has ended.
     When the time is frozen at "21 June 2020 2pm"
@@ -91,8 +91,8 @@ Feature: Event content type.
       | Introduction            | Event introduction text                                       |
       | Description summary     | Description summary text                                      |
       | Description             | Event description                                             |
-      | Start date              | 2019-02-21T02:21:00                                           |
-      | End date                | 2019-02-21T14:21:00                                           |
+      | Start date              | 2019-02-21 10:30:00                                           |
+      | End date                | 2019-02-21 18:30:00                                           |
       | Status                  | as_planned                                                    |
       | Languages               | http://publications.europa.eu/resource/authority/language/0D0 |
     And I am an anonymous user
@@ -106,12 +106,12 @@ Feature: Event content type.
     # Assert event details.
     And I should see the text "Description summary text" in the "event details"
     And I should see the text "Financing" in the "event details"
-    And I should see the text "21 February 2019, 03:21 to 21 February 2019, 15:21" in the "event details"
+    And I should see the text "21 February 2019, 10:30 to 21 February 2019, 18:30" in the "event details"
 
     # Assert practical information.
     And I should see the heading "Practical information" in the "event practical information"
     And I should see "When" in the "event practical information"
-    And I should see "Thursday 21 February 2019, 03:21 to Thursday 21 February 2019, 15:21" in the "event practical information"
+    And I should see "Thursday 21 February 2019, 10:30 to Thursday 21 February 2019, 18:30" in the "event practical information"
     And I should see "Languages" in the "event practical information"
     And I should see "Valencian" in the "event practical information"
 
@@ -120,12 +120,12 @@ Feature: Event content type.
 
     # Add registration details.
     When the Event Content "Event demo page" is updated as follows:
-      | Registration start date | 2019-02-20T02:23:00 |
-      | Registration end date   | 2019-02-20T14:23:00 |
+      | Registration start date | 2019-02-20 08:30:00 |
+      | Registration end date   | 2019-02-20 15:30:00 |
       | Registration URL        | http://example.com  |
     And I reload the page
     Then I should see the registration block
-    And I should see "Registration will open in 2 days 13 hours. You can register from 20 February 2019, 03:23, until 20 February 2019, 15:23." in the "event registration"
+    And I should see "Registration will open in 2 days 18 hours. You can register from 20 February 2019, 08:30, until 20 February 2019, 15:30." in the "event registration"
     But the registration button is not active
 
     # Add related entities, such as venues and contacts and reload the page.
@@ -192,8 +192,8 @@ Feature: Event content type.
       | Entrance fee            | Free of charge                                                |
       | Registration capacity   | 12 seats                                                      |
       | Online type             | facebook                                                      |
-      | Online time start       | 2019-02-21T02:21:00                                           |
-      | Online time end         | 2019-02-21T14:21:00                                           |
+      | Online time start       | 2019-02-21 09:15:00                                           |
+      | Online time end         | 2019-02-21 14:00:00                                           |
       | Online description      | Online description text                                       |
       | Online link             | uri: http://ec.europa.eu/info - title: The online link title  |
       | Organiser is internal   | No                                                            |
@@ -218,7 +218,7 @@ Feature: Event content type.
     And I should see "Facebook" in the "event practical information"
 
     And I should see "Online time" in the "event practical information"
-    And I should see "21 February 2019, 03:21 CET to 21 February 2019, 15:21 CET" in the "event practical information"
+    And I should see "21 February 2019, 09:15 CET to 21 February 2019, 14:00 CET" in the "event practical information"
 
     And I should see "Languages" in the "event practical information"
     And I should see "Valencian" in the "event practical information"
