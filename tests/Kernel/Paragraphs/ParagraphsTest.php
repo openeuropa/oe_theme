@@ -561,4 +561,58 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('More links', trim($actual));
   }
 
+  /**
+   * Test 'Facts and figures' paragraph rendering.
+   */
+  public function testFactsFigures(): void {
+    // Create three Facts to be referenced from the Facts and figures paragraph.
+    $items = [];
+    for ($i = 1; $i < 4; $i++) {
+      $paragraph = Paragraph::create([
+        'type' => 'oe_fact',
+        'field_oe_icon' => 'arrow-up',
+        'field_oe_title' => $i . '0 millions',
+        'field_oe_subtitle' => 'Fact ' . $i,
+        'field_oe_plain_text_long' => 'Fact description ' . $i,
+      ]);
+      $paragraph->save();
+      $items[$i] = $paragraph;
+    }
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_facts_figures',
+      'field_oe_title' => 'Facts and figures',
+      'field_oe_paragraphs' => $items,
+      'field_oe_link' => [
+        'uri' => 'http://www.example.com/',
+        'title' => 'View all metrics',
+      ],
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+
+    $crawler = new Crawler($html);
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
+
+    $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
+    $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
+    $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
+    $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact description 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description')->text()));
+    $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')->text()));
+    $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')->text()));
+
+    $link = $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link');
+    $actual = $link->text();
+    $this->assertEquals('View all metrics', trim($actual));
+    $actual = $link->attr('href');
+    $this->assertEquals('http://www.example.com/', trim($actual));
+  }
+
 }
