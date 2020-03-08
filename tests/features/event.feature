@@ -17,9 +17,8 @@ Feature: Event content type.
       | Registration URL        | http://example.com        |
       | Summary for report      | Report summary            |
       | Report text             | Report text               |
-
     # Assert event rendering message days before registration starts.
-    Given the date is "17 February 2020 2pm"
+    Given the time is frozen at "17 February 2020 2pm"
     When I am visiting the "My first event" content
     Then I should see the heading "Description"
     And I should see the text "Event description summary"
@@ -31,7 +30,7 @@ Feature: Event content type.
     And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30." in the "event registration" region
 
     # Assert event rendering half an hour before the registration starts.
-    When the date is "01 March 2020 12pm"
+    When the time is frozen at "01 March 2020 12pm"
     And I run cron
     And I reload the page
     Then I should see the heading "Description"
@@ -44,7 +43,7 @@ Feature: Event content type.
     And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 13:30, until 10 March 2020, 19:30." in the "event registration" region
 
     # Assert event rendering while the registration is ongoing.
-    When the date is "05 March 2020 2pm"
+    When the time is frozen at "05 March 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see the heading "Description"
@@ -57,7 +56,7 @@ Feature: Event content type.
     And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 19:30" in the "event registration" region
 
     # Assert event rendering after the registration has ended.
-    When the date is "29 May 2020 2am"
+    When the time is frozen at "29 May 2020 2am"
     And I run cron
     And I reload the page
     Then I should see the heading "Description"
@@ -70,7 +69,7 @@ Feature: Event content type.
     But I should see "Registration period ended on Tuesday 10 March 2020, 19:30" in the "event registration" region
 
     # Assert event rendering after the event has ended.
-    When the date is "21 June 2020 2pm"
+    When the time is frozen at "21 June 2020 2pm"
     And I run cron
     And I reload the page
     Then I should see the heading "Report"
@@ -85,7 +84,7 @@ Feature: Event content type.
   Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
     And I am on the homepage
     Given anonymous users can see events
-    And the date is "17 February 2019 2pm"
+    And the time is frozen at "17 February 2019 2pm"
     And the following Event Content entity:
       | Title                   | Event demo page                                               |
       | Type                    | exhibitions                                                   |
@@ -247,7 +246,7 @@ Feature: Event content type.
     But I should see "Directorate-General for Informatics" in the "event practical information"
 
     # Assert showing report related information after the event ended.
-    Given the date is "24 March 2025 2pm"
+    Given the time is frozen at "24 March 2025 2pm"
     And I run cron
     And I reload the page
 
