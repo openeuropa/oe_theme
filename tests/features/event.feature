@@ -82,7 +82,6 @@ Feature: Event content type.
 
   @preserve_anonymous_permissions
   Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
-    And I am on the homepage
     Given anonymous users can see events
     And the time is frozen at "17 February 2019 2pm"
     And the following Event Content entity:
