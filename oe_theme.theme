@@ -1374,7 +1374,7 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
       'icon' => $sub_paragraph->get('field_oe_icon')->value,
       'value' => $sub_paragraph->get('field_oe_title')->value,
       'title' => $sub_paragraph->get('field_oe_subtitle')->value,
-      'description' => $sub_paragraph->get('field_oe_plain_text_long')->value
+      'description' => $sub_paragraph->get('field_oe_plain_text_long')->value,
     ];
   }
 }
