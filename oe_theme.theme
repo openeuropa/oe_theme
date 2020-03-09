@@ -14,6 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
@@ -1363,7 +1364,7 @@ function _oe_theme_trim_textfield($text, int $size = 150) {
  */
 function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): void {
   $paragraph = $variables['paragraph'];
-  $variables['title'] = $paragraph->get('field_oe_title');
+  $variables['title'] = $paragraph->get('field_oe_title')->value;
   $variables['view_all'][0]['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
   $variables['view_all'][0]['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
   $variables['items'] = [];
@@ -1371,10 +1372,92 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
     /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
     $variables['items'][] = [
-      'icon' => $sub_paragraph->get('field_oe_icon')->value,
+      'icon' => _oe_theme_icons_convert($sub_paragraph->get('field_oe_icon')->value),
       'value' => $sub_paragraph->get('field_oe_title')->value,
       'title' => $sub_paragraph->get('field_oe_subtitle')->value,
       'description' => $sub_paragraph->get('field_oe_plain_text_long')->value,
     ];
+  }
+}
+
+/**
+ * Helper function to convert icon names.
+ *
+ * @param $icon_name
+ *   The icon name to be converted.
+ *
+ * @return string
+ *   The converted icon name or digital if the icon name is not supported.
+ */
+function _oe_theme_icons_convert($icon_name): string {
+  $icons = [
+    'facebook' => 'branded--facebook',
+    'instagram' => 'branded--instagram',
+    'linkedin' => 'branded--linkedin',
+    'pinterest' => 'branded--pinterest',
+    'rss' => 'branded--rss',
+    'skype' => 'branded--skype',
+    'twitter' => 'branded--twitter',
+    'youtube' => 'branded--youtube',
+    'audio' => 'general--audio',
+    'book' => 'general--book',
+    'brochure' => 'general--brochure',
+    'budget' => 'general--budget',
+    'calendar' => 'general--calendar',
+    'copy' => 'general--copy',
+    'data' => 'general--data',
+    'digital' => 'general--digital',
+    'edit' => 'general--edit',
+    'energy' => 'general--energy',
+    'euro' => 'general--euro',
+    'faq' => 'general--faq',
+    'feedback' => 'general--feedback',
+    'file' => 'general--file',
+    'gear' => 'general--gear',
+    'generic-lang' => 'general--generic-lang',
+    'global' => 'general--global',
+    'growth' => 'general--growth',
+    'hamburger' => 'general--hamburger',
+    'image' => 'general--image',
+    'infographic' => 'general--infographic',
+    'language' => 'general--language',
+    'livestreaming' => 'general--livestreaming',
+    'location' => 'general--location',
+    'log-in' => 'general--log-in',
+    'logged-in' => 'general--logged-in',
+    'multiple-files' => 'general--multiple-files',
+    'organigram' => 'general--organigram',
+    'package' => 'general--package',
+    'presentation' => 'general--presentation',
+    'print' => 'general--print',
+    'regulation' => 'general--regulation',
+    'search' => 'general--search',
+    'share' => 'general--share',
+    'spinner' => 'general--spinner',
+    'spreadsheet' => 'general--spreadsheet',
+    'video' => 'general--video',
+    'error' => 'notifications--error',
+    'information' => 'notifications--information',
+    'success' => 'notifications--success',
+    'warning' => 'notifications--warning',
+    'check' => 'ui--check',
+    'check-filled' => 'ui--check-filled',
+    'close' => 'ui--close',
+    'close-filled' => 'ui--close-filled',
+    'corner-arrow' => 'ui--corner-arrow',
+    'download' => 'ui--download',
+    'external' => 'ui--external',
+    'fullscreen' => 'ui--fullscreen',
+    'minus' => 'ui--minus',
+    'plus' => 'ui--plus',
+    'rounded-arrow' => 'ui--rounded-arrow',
+    'solid-arrow' => 'ui--solid-arrow',
+  ];
+
+  if (array_key_exists($icon_name, $icons)) {
+    return $icons[$icon_name];
+  }
+  else {
+    return 'general--digital';
   }
 }
