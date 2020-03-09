@@ -3,14 +3,27 @@
 This module is a theming companion module to the [OpenEuropa Content Event](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event) module.
 It provides the logic needed to theme the Event content type.
 
-### Required contrib modules
+## Installation
+
+Make sure you you have read the OpenEuropa Content Event module's [README.md](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event/README.md)
+before enabling this module.
+
+After enabling this module make sure you assign the following permissions to the anonymous user role, so visitors can
+correctly access all event information.
+
+- `Venue: View any published entity`
+- `Organisation: View any published entity`
+- `Contact: View any published entity`
+- `View published SKOS Concept entities`
+
+## Required contrib modules
 
 This module requires the following contrib modules:
 
 * [Extra field](https://www.drupal.org/project/extra_field) (^1.1)
 * [Field group](https://www.drupal.org/project/field_group) (~3.0)
 
-### Shipped configuration
+## Shipped configuration
 
 The modules ships configurations for several date formats that are made for presenting event dates in different context.
 
@@ -21,7 +34,7 @@ List of shipped date formats:
 * Event date with hour and timezone, e.g. `27 January 2020, 11:10 CET`
 * Event long date with hour, e.g. `Monday 27 January 2020, 11:10`
 
-### Overridden configuration
+## Overridden configuration
 
 Installing this module will override the default event content type view mode, shipped by the
 [OpenEuropa Content Event](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event)
@@ -29,7 +42,7 @@ module. This is necessary in order to guarantee that fields and formatter settin
 
 If you want to customize how the event looks like create the `full` view mode and take over.  
 
-### Extra fields
+## Extra fields
 
 This module ships with a set of [extra field](https://www.drupal.org/project/extra_field) plugin definitions which are
 used to display complex rendering business logic. For example, the event registration button has several states

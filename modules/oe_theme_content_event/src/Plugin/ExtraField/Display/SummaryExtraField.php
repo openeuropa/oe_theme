@@ -32,31 +32,28 @@ class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $event = EventNodeWrapper::getInstance($entity);
+    $event = new EventNodeWrapper($entity);
+    $build = ['#theme' => 'oe_theme_content_event_summary'];
+
+    // Display 'oe_event_description_summary' by default.
+    $field_name = 'oe_event_description_summary';
+
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyHourTag($build, $event->getEndDate());
+    }
+
+    // If the event is over then we use 'oe_event_report_summary', if any.
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_summary')->isEmpty()) {
+      $field_name = 'oe_event_report_summary';
+    }
 
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
-
-    // If the event is over and an event report summary is available, use that.
-    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_summary')->isEmpty()) {
-      $renderable = $view_builder->viewField($entity->get('oe_event_report_summary'), [
-        'label' => 'hidden',
-      ]);
-    }
-    else {
-      // Otherwise, show the description summary.
-      $renderable = $view_builder->viewField($entity->get('oe_event_description_summary'), [
-        'label' => 'hidden',
-      ]);
-    }
-
-    $build = [
-      '#theme' => 'oe_theme_content_event_summary',
-      '#text' => $renderable,
-    ];
-
-    $this->applyRegistrationDatesMaxAge($build, $event);
-
+    $build['#text'] = $view_builder->viewField($entity->get($field_name), [
+      'label' => 'hidden',
+    ]);
     return $build;
   }
 

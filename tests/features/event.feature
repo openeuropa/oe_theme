@@ -1,147 +1,271 @@
-@api @event
+@api @event @datetime_testing
 Feature: Event content type.
   As a user
   I want to access the content of a event
   So I can find the information I'm looking for.
 
-  @javascript
-  Scenario: I can create an Event page and I can see the information with the correct layout.
-    Given I am logged in as a user with the "create oe_event content, access content, edit own oe_event content, view published skos concept entities, create av_portal_photo media, manage corporate content entities, view the administration theme" permission
+  Scenario: When an anonymous user visits an event page the registration button and page text should change according to the current time.
+    Given the following Event Content entity:
+      | Title                   | My first event            |
+      | Type                    | exhibitions               |
+      | Description summary     | Event description summary |
+      | Description             | Event description         |
+      | Registration start date | 2020-03-01 12:30:00       |
+      | Registration end date   | 2020-03-10 18:30:00       |
+      | Start date              | 2020-06-15 12:30:00       |
+      | End date                | 2020-06-20 18:30:00       |
+      | Registration URL        | http://example.com        |
+      | Summary for report      | Report summary            |
+      | Report text             | Report text               |
+    # Assert event rendering message days before registration starts.
+    Given the time is frozen at "17 February 2020 2pm"
+    When I am visiting the "My first event" content
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button is not active
+    And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
 
-    And the following images:
-      | name                          | file            |
-      | Euro with miniature figurines | placeholder.png |
+    # Assert event rendering half an hour before the registration starts.
+    When the time is frozen at "01 March 2020 11am"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button is not active
+    And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
 
-    # Start filling in all fields.
-    And I am on "the event creation page"
-    And I select "Info days" from "Type"
-    And I fill in "Title" with "Event demo page"
-    And I fill in "Introduction" with "This is the event introduction"
+    # Assert event rendering while the registration is ongoing.
+    When the time is frozen at "05 March 2020 2pm"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button is active
+    And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 18:30" in the "event registration" region
 
-    And I fill in "Description summary" with "Description summary text"
-    And I fill in "Subject" with "EU financing"
-    And I set "25-02-2019 10:30" as the "Start date" of "Event date"
-    And I set "28-02-2019 14:30" as the "End date" of "Event date"
+    # Assert event rendering after the registration has ended.
+    When the time is frozen at "29 May 2020 2am"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button should not be there
+    But I should see "Registration period ended on Tuesday 10 March 2020, 18:30" in the "event registration" region
 
-    # Registration field group.
-    When I press "Registration"
-    Then I fill in "Registration URL" with "http://example.com"
-    And I set "23-02-2019 08:30" as the "Start date" of "Registration date"
-    And I set "23-02-2019 18:30" as the "End date" of "Registration date"
-    And I fill in "Entrance fee" with "Free of charge"
-    And I fill in "Registration capacity" with "100 seats"
+    # Assert event rendering after the event has ended.
+    When the time is frozen at "21 June 2020 2pm"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Report"
+    And I should see the text "Report summary"
+    And I should see the text "Report text"
+    But I should not see the heading "Description"
+    And I should not see the text "Event description summary"
+    And I should not see the text "Event description"
+    And I should not see the registration block
 
-    # Venue reference by inline entity form.
-    And I fill in "Name" with "Name of the venue"
-    And I fill in "Capacity" with "Capacity of the venue"
-    And I fill in "Room" with "Room of the venue"
-    And I select "Belgium" from "Country"
-    And I wait for AJAX to finish
-    And I fill in "Street address" with "Rue belliard 28"
-    And I fill in "Postal code" with "1000"
-    And I fill in "City" with "Brussels"
+  @preserve_anonymous_permissions
+  Scenario: As an anonymous user, when I visit an event I can see the information in the correct layout
+    Given anonymous users can see events
+    And the time is frozen at "17 February 2019 2pm"
+    And the following Event Content entity:
+      | Title                   | Event demo page          |
+      | Type                    | exhibitions              |
+      | Introduction            | Event introduction text  |
+      | Description summary     | Description summary text |
+      | Description             | Event description        |
+      | Start date              | 2019-02-21 10:30:00      |
+      | End date                | 2019-02-21 18:30:00      |
+      | Status                  | as_planned               |
+      | Languages               | Valencian                |
+    And I am an anonymous user
+    When I am visiting the "Event demo page" content
 
-    # Online field group.
-    When I press "Online"
-    Then I select "Facebook" from "Online type"
-    And I set "26-02-2019 10:30" as the "Start date" of "Online time"
-    And I set "26-02-2019 12:30" as the "End date" of "Online time"
-    And I fill in "Online description" with "Online description text"
-    And I fill in "URL" with "http://ec.europa.eu/2" in the "Online link" region
-    And I fill in "Link text" with "Online link" in the "Online link" region
+    # Assert page header.
+    Then I should see "Event demo page" in the "page header title"
+    And I should see "Exhibitions" in the "page header meta"
+    And I should see "Event introduction text" in the "page header intro"
 
-    And I select "As planned" from "Status"
-    And I fill in "Languages" with "Hungarian"
+    # Assert event details.
+    And I should see the text "Description summary text" in the "event details"
+    And I should see the text "Financing" in the "event details"
+    And I should see the text "21 February 2019, 10:30 to 21 February 2019, 18:30" in the "event details"
 
-    # Organiser field group.
-    When I uncheck "Organiser is internal"
-    Then I fill in "Organiser name" with "Organiser name"
+    # Assert practical information.
+    And I should see the heading "Practical information" in the "event practical information"
+    And I should see "When" in the "event practical information"
+    And I should see "Thursday 21 February 2019, 10:30 to Thursday 21 February 2019, 18:30" in the "event practical information"
+    And I should see "Languages" in the "event practical information"
+    And I should see "Valencian" in the "event practical information"
 
-    # Event website field group.
-    And I fill in "URL" with "http://ec.europa.eu" in the "Website" region
-    And I fill in "Link text" with "Website" in the "Website" region
+    # Assert absence of registration block.
+    And I should not see the registration block
 
-    # Add a social media link
-    And I fill in "URL" with "http://twitter.com" in the "Social media links" region
-    And I fill in "Link text" with "Twitter" in the "Social media links" region
-    And I select "Twitter" from "Link type"
+    # Add registration details.
+    When the Event Content "Event demo page" is updated as follows:
+      | Registration start date | 2019-02-20 08:30:00 |
+      | Registration end date   | 2019-02-20 15:30:00 |
+      | Registration URL        | http://example.com  |
+    And I reload the page
+    Then I should see the registration block
+    And I should see "Registration will open in 2 days 18 hours. You can register from 20 February 2019, 08:30, until 20 February 2019, 15:30." in the "event registration"
+    But the registration button is not active
 
-    # Description field group.
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Description" region
-    And I fill in "Featured media legend" with "Euro with miniature figurines"
-    And I fill in "Full text" with "Full text paragraph"
+    # Add related entities, such as venues and contacts and reload the page.
+    Given the following Default Venue entity:
+      | Name     | DIGIT                                                                                      |
+      | Address  | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+      | Capacity | 12 people                                                                                  |
+      | Room     | B-28 03/A150                                                                               |
+    And the following Press Contact entity:
+      | Name         | First press contact                                                                      |
+      | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+      | Email        | press1@example.com                                                                       |
+      | Phone number | +32477777777                                                                             |
+    And the following Press Contact entity:
+      | Name         | Second press contact                                                                     |
+      | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+      | Email        | press2@example.com                                                                       |
+      | Phone number | +32477777778                                                                             |
+    And the following General Contact entity:
+      | Name         | A general contact                                                                        |
+      | Address      | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
+      | Email        | general@example.com                                                                          |
+      | Phone number | +32477792933                                                                                 |
+    And the Event Content "Event demo page" is updated as follows:
+      | Venue   | DIGIT                                                        |
+      | Contact | First press contact, Second press contact, A general contact |
+    And I reload the page
 
-    # Report field group.
-    When I press "Event report"
-    And I fill in "Report text" with "Report text paragraph"
-    And I fill in "Summary for report" with "Report summary text"
+    # Assert event details.
+    Then I should see "Brussels, Belgium" in the "event details"
 
-    # Event partner field group.
-    When I press "Add new partner"
-    And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the event partner" in the "Event partner" region
-    And I fill in "Use existing media" with "Euro with miniature figurines" in the "Event partner" region
-    And I fill in "Website" with "http://eventpartner.com" in the "Event partner" region
+    # Assert practical information.
+    And I should see "Practical information" in the "event practical information"
+    And I should see "Where" in the "event practical information"
+    And I should see "DIGIT Rue Belliard 28, 1000 Brussels, Belgium" in the "event practical information"
 
-    # Event contact field group.
-    When I press "Add new contact"
-    And I wait for AJAX to finish
-    Then I fill in "Name" with "Name of the event contact" in the "Event contact" region
-    And I select "Hungary" from "Country" in the "Event contact" region
-    And I wait for AJAX to finish
-    And I fill in "Street address" with "Back street 3" in the "Event contact" region
-    And I fill in "Postal code" with "9000" in the "Event contact" region
-    And I fill in "City" with "Budapest" in the "Event contact" region
-    And I fill in "Email" with "test@example.com" in the "Event contact" region
-    And I fill in "Phone number" with "0488779033" in the "Event contact" region
+    # Assert contacts.
+    And I should see the heading "Contacts" in the "event contacts"
+    And I should see the heading "General contact" in the "event contacts"
+    And I should see "Phone number"
+    And I should see "+32477792933"
+    And I should see "Address"
+    And I should see "Budapest, General contact 1, 1011, Hungary"
+    And I should see "general@example.com"
 
-    And I fill in "Content owner" with "Committee on Agriculture and Rural Development"
-    And I fill in "Responsible department" with "Audit Board of the European Communities"
-    When I press "Save"
+    And I should see the heading "Press contact" in the "event contacts"
+    And I should see "Name"
+    And I should see "First press contact"
+    And I should see "+32477777777"
+    And I should see "Szeged, Press contact 1, 6700, Hungary"
+    And I should see "press1@example.com"
 
-    # Header elements.
-    Then I should see "Event demo page"
-    And I should see the text "Info days" in the "page header meta" region
-    And I should see the text "This is the event introduction" in the "page header intro"
+    And I should see "Name"
+    And I should see "Second press contact"
+    And I should see "+32477777778"
+    And I should see "Szeged, Press contact 1, 6700, Hungary"
+    And I should see "press2@example.com"
 
-    # Icons with text.
-    And I should see the text "EU financing"
-    And I should see the text "25 February 2019, 10:30 to 28 February 2019, 14:30"
-    And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
-    And I should see the text "Live streaming available"
+    # Assert remaining event elements.
+    Given the following image:
+      | name              | file            |
+      | Image placeholder | placeholder.png |
+    And the Event Content "Event demo page" is updated as follows:
+      | Entrance fee            | Free of charge                                                |
+      | Registration capacity   | 12 seats                                                      |
+      | Online type             | facebook                                                      |
+      | Online time start       | 2019-02-21 09:15:00                                           |
+      | Online time end         | 2019-02-21 14:00:00                                           |
+      | Online description      | Online description text                                       |
+      | Online link             | uri: http://ec.europa.eu/info - title: The online link title  |
+      | Organiser is internal   | No                                                            |
+      | Organiser name          | Name of the organiser                                         |
+      | Event website           | uri: http://ec.europa.eu/info - title: Event website          |
+      | Social media links      | uri: http://example.com - title: Twitter - link_type: twitter |
+      | Featured media          | Image placeholder                                             |
+      | Featured media legend   | Media legend text                                             |
+    And I reload the page
 
-    # Practical information.
-    And I should see "Practical information"
-    And I should see the text "When"
-    And I should see the text "Monday 25 February 2019, 10:30"
-    And I should see the text "Where"
-    And I should see the text "Rue belliard 28, 1000 Brussels, Belgium"
-    And I should see the text "Live stream"
-    And I should see the text "Online link"
-    And I should see the link "Online link"
-    And I should see the text "26 February 2019, 10:30 CET"
-    And I should see the text "Languages"
-    And I should see the text "Hungarian"
-    And I should see the text "Organiser"
-    And I should see the text "Organiser name"
-    And I should see the text "Website"
-    And I should see the link "Website"
-    And I should see the text "Number of seats"
-    And I should see the text "100 seats"
-    And I should see the text "Entrance fee"
-    And I should see the text "Free of charge"
+    # Assert remaining practical information data.
+    And I should see "Entrance fee" in the "event practical information"
+    And I should see "Free of charge" in the "event practical information"
 
-    # Social media.
-    And I should see the text "Social media" in the "Social media follow" region
-    And I should see the link "Twitter" in the "Social media follow" region
+    And I should see "Number of seats" in the "event practical information"
+    And I should see "12 seats" in the "event practical information"
 
-    # @todo implement a proper media assertion.
+    And I should see "Online link" in the "event practical information"
+    And I should see "The online link title" in the "event practical information"
+
+    And I should see "Live stream" in the "event practical information"
+    And I should see "Facebook" in the "event practical information"
+
+    And I should see "Online time" in the "event practical information"
+    And I should see "21 February 2019, 09:15 CET to 21 February 2019, 14:00 CET" in the "event practical information"
+
+    And I should see "Languages" in the "event practical information"
+    And I should see "Valencian" in the "event practical information"
+
+    And I should see "Organiser" in the "event practical information"
+    And I should see "Name of the organiser" in the "event practical information"
+
+    And I should see "Website" in the "event practical information"
+    And I should see "Event website" in the "event practical information"
+
+    # Assert social media links.
+    And I should see "Social media" in the "event practical information"
+    And I should see the link "Twitter" in the "event practical information"
+
+    # Assert featured image.
     And the "media container" element should contain "placeholder.png"
-    And I should see the text "Euro with miniature figurines"
+    And I should see the text "Media legend text"
 
-    # Event contact values.
-    And I should see the text "Contacts"
-    And I should see the text "General contact"
-    And I should see the text "Budapest, Back street 3, 9000, Hungary"
-    And I should see the text "test@example.com"
-    And I should see the text "0488779033"
+    # Assert changing organiser type.
+    When the Event Content "Event demo page" is updated as follows:
+      | Organiser is internal | Yes                                 |
+      | Internal organiser    | Directorate-General for Informatics |
+    And I reload the page
+    Then I should not see "Name of the organiser" in the "event practical information"
+    But I should see "Directorate-General for Informatics" in the "event practical information"
+
+    # Assert showing report related information after the event ended.
+    Given the time is frozen at "24 March 2025 2pm"
+    And I run cron
+    And I reload the page
+
+    # If the event is over bu no report information is available, nothing changes.
+    Then I should see the heading "Description"
+    And I should see the text "Description summary text"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+
+    # As soon as report information is available we show it instead of the ordinary event information.
+    When the Event Content "Event demo page" is updated as follows:
+      | Summary for report      | Report summary |
+      | Report text             | Report text    |
+    And I reload the page
+
+    Then I should see the heading "Report"
+    And I should see the text "Report summary"
+    And I should see the text "Report text"
+    But I should not see the heading "Description"
+    And I should not see the text "Description summary text"
+    And I should not see the text "Event description"

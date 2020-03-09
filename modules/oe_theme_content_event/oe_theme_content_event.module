@@ -21,6 +21,7 @@ function oe_theme_content_event_theme() {
         'url' => '',
         'description' => '',
         'enabled' => FALSE,
+        'show_button' => TRUE,
       ],
     ],
     'oe_theme_content_event_summary' => [

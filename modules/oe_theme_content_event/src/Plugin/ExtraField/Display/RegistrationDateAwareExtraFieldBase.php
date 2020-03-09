@@ -6,8 +6,9 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\oe_content_event\EventNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -30,6 +31,13 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
   protected $requestDateTime;
 
   /**
+   * Time based cache tag generator service.
+   *
+   * @var \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface
+   */
+  protected $cacheTagGenerator;
+
+  /**
    * RegistrationDateAwareExtraFieldBase constructor.
    *
    * @param array $configuration
@@ -41,12 +49,15 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time service.
+   *   Time service.
+   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   *   Time based cache tag generator service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->requestTime = $time->getRequestTime();
     $this->requestDateTime = (new \DateTime())->setTimestamp($this->requestTime);
+    $this->cacheTagGenerator = $cache_tag_generator;
   }
 
   /**
@@ -58,7 +69,8 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
-      $container->get('datetime.time')
+      $container->get('datetime.time'),
+      $container->get('oe_theme_helper.time_based_cache_tag_generator')
     );
   }
 
@@ -67,52 +79,29 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
-   *   Event wrapper object.
+   * @param \Drupal\Core\Datetime\DrupalDateTime $datetime
+   *   Datetime used to generate invalidation tag.
    */
-  protected function applyRegistrationDatesMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+  protected function applyHourTag(array &$build, DrupalDateTime $datetime): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
-
-    // Do nothing if the registration is closed.
-    if ($event->isRegistrationClosed($this->requestDateTime)) {
-      $cacheable->applyTo($build);
-      return;
-    }
-
-    // Set start date time interval as max-age if registration is yet to come.
-    if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $cacheable->setCacheMaxAge($event->getRegistrationStartDate()->getTimestamp() - $this->requestTime);
-    }
-
-    // Set end date time interval as max-age if registration is in progress.
-    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $cacheable->setCacheMaxAge($event->getRegistrationEndDate()->getTimestamp() - $this->requestTime);
-    }
+    $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($datetime->getPhpDateTime()));
     $cacheable->applyTo($build);
   }
 
   /**
-   * Apply max-age to invalidate at midnight tonight.
+   * Apply midnight invalidation tag.
    *
    * @param array $build
    *   Render array to apply the max-age to.
-   * @param \Drupal\oe_content_event\EventNodeWrapperInterface $event
-   *   Event wrapper object.
+   * @param \Drupal\Core\Datetime\DrupalDateTime $datetime
+   *   Datetime used to generate invalidation tag.
    */
-  protected function applyMidnightMaxAge(array &$build, EventNodeWrapperInterface $event): void {
+  protected function applyMidnightTag(array &$build, DrupalDateTime $datetime): void {
     $cacheable = CacheableMetadata::createFromRenderArray($build);
     $cacheable->addCacheContexts(['timezone']);
-
-    // Get the timestamp of today at 1 second to midnight.
-    $midnight = (new \DateTime())
-      ->setTimestamp($this->requestTime)
-      ->setTime(23, 59, 59)
-      ->getTimestamp();
-    if ($event->getRegistrationStartDate() && $midnight > $event->getRegistrationStartDate()->getTimestamp()) {
-      $cacheable->setCacheMaxAge($midnight - $event->getRegistrationStartDate()->getTimestamp());
-      $cacheable->applyTo($build);
-    }
+    $cacheable->addCacheTags($this->cacheTagGenerator->generateTagsUntilMidnight($datetime->getPhpDateTime()));
+    $cacheable->applyTo($build);
   }
 
 }

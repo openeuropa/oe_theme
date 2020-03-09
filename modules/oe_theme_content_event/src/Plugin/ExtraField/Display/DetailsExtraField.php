@@ -128,14 +128,10 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
 
     // Only display locality and country, inline.
     $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
-    $renderable[0]['locality']['#value'] .= ',&nbsp;';
 
     $build['#fields']['items'][] = [
       'icon' => 'location',
-      'text' => [
-        'locality' => $renderable[0]['locality'],
-        'country' => $renderable[0]['country'],
-      ],
+      'text' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
     ];
   }
 

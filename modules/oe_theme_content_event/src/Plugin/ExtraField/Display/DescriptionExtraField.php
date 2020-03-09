@@ -44,11 +44,9 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       '#fields' => [
         'title' => $this->getRenderableTitle($entity),
         'text' => $this->getRenderableText($entity),
-        'caption' => $this->getRenderableFeaturedMediaLegend($entity),
       ],
     ];
 
-    // Get media thumbnail and add media entity as cacheable dependency.
     $this->addFeaturedMediaThumbnail($build, $entity);
 
     return $build;
@@ -65,15 +63,22 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
    */
   public function getRenderableTitle(ContentEntityInterface $entity): array {
     $event = EventNodeWrapper::getInstance($entity);
-    $title = $this->t('Description');
 
-    // If we are past the end date and an event report is available, set title.
-    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
-      $title = $this->t('Report');
+    // By default the title is 'Description'.
+    $build = ['#markup' => t('Description')];
+
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyHourTag($build, $event->getEndDate());
+      return $build;
     }
 
-    $build = ['#markup' => $title];
-    $this->applyRegistrationDatesMaxAge($build, $event);
+    // If the event is over and we have a report, then change the title.
+    if (!$entity->get('oe_event_report_text')->isEmpty()) {
+      $build = ['#markup' => t('Report')];
+    }
+
     return $build;
   }
 
@@ -92,25 +97,26 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
   public function getRenderableText(ContentEntityInterface $entity): array {
     $event = EventNodeWrapper::getInstance($entity);
 
-    $field_name = ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) ? 'oe_event_report_text' : 'body';
-    return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get($field_name), [
-      'label' => 'hidden',
-    ]);
-  }
+    // By default 'body' is the event description field.
+    // If the event is over and we have a report, we use 'oe_event_report_text'.
+    $field_name = 'body';
+    if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
+      $field_name = 'oe_event_report_text';
+    }
 
-  /**
-   * Get event featured media legend as a renderable array.
-   *
-   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
-   *   Content entity.
-   *
-   * @return array
-   *   Renderable array.
-   */
-  protected function getRenderableFeaturedMediaLegend(ContentEntityInterface $entity): array {
-    return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_event_featured_media_legend'), [
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $build = $view_builder->viewField($entity->get($field_name), [
       'label' => 'hidden',
     ]);
+
+    // If the event is not over then apply time-based tags, so that it can be
+    // correctly invalidated once the event is over.
+    if (!$event->isOver($this->requestDateTime)) {
+      $this->applyHourTag($build, $event->getEndDate());
+    }
+
+    return $build;
   }
 
   /**
@@ -141,6 +147,14 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
 
     $cache->addCacheableDependency($thumbnail->entity);
     $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+
+    // Only display a caption if we have an image to be captioned by.
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $build['#fields']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [
+      'label' => 'hidden',
+    ]);
+
     $cache->applyTo($build);
   }
 
