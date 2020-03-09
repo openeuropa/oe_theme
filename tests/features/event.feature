@@ -85,15 +85,15 @@ Feature: Event content type.
     Given anonymous users can see events
     And the time is frozen at "17 February 2019 2pm"
     And the following Event Content entity:
-      | Title                   | Event demo page                                               |
-      | Type                    | exhibitions                                                   |
-      | Introduction            | Event introduction text                                       |
-      | Description summary     | Description summary text                                      |
-      | Description             | Event description                                             |
-      | Start date              | 2019-02-21 10:30:00                                           |
-      | End date                | 2019-02-21 18:30:00                                           |
-      | Status                  | as_planned                                                    |
-      | Languages               | http://publications.europa.eu/resource/authority/language/0D0 |
+      | Title                   | Event demo page          |
+      | Type                    | exhibitions              |
+      | Introduction            | Event introduction text  |
+      | Description summary     | Description summary text |
+      | Description             | Event description        |
+      | Start date              | 2019-02-21 10:30:00      |
+      | End date                | 2019-02-21 18:30:00      |
+      | Status                  | as_planned               |
+      | Languages               | Valencian                |
     And I am an anonymous user
     When I am visiting the "Event demo page" content
 
