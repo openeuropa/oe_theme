@@ -92,8 +92,8 @@ class DrupalContext extends RawDrupalContext {
    * @Given I visit the :title content
    */
   public function iAmViewingTheContent($title): void {
-    $nid = $this->loadEntityByLabel('node', $title)->id();
-    $this->visitPath("node/$nid");
+    $node = $this->loadEntityByLabel('node', $title);
+    $this->visitPath($node->toUrl()->toString());
   }
 
   /**
