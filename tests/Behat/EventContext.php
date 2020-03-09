@@ -57,7 +57,7 @@ class EventContext extends RawDrupalContext {
   /**
    * Assert whether the registration button exists.
    *
-   * @Then the registration button should be there
+   * @Then the registration button should be visible|present
    */
   public function assertRegistrationButtonExists(): void {
     if (!$this->getRegistrationButton() instanceof NodeElement) {
