@@ -567,10 +567,15 @@ class ParagraphsTest extends ParagraphsTestBase {
   public function testFactsFigures(): void {
     // Create three Facts to be referenced from the Facts and figures paragraph.
     $items = [];
+    $icons = [
+      '1' => 'instagram',
+      '2' => 'success',
+      '3' => 'file',
+    ];
     for ($i = 1; $i < 4; $i++) {
       $paragraph = Paragraph::create([
         'type' => 'oe_fact',
-        'field_oe_icon' => 'arrow-up',
+        'field_oe_icon' => $icons[$i],
         'field_oe_title' => $i . '0 millions',
         'field_oe_subtitle' => 'Fact ' . $i,
         'field_oe_plain_text_long' => 'Fact description ' . $i,
@@ -598,6 +603,10 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
 
+    $this->assertEquals('Facts and figures', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#notifications--success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
     $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
@@ -613,6 +622,17 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('View all metrics', trim($actual));
     $actual = $link->attr('href');
     $this->assertEquals('http://www.example.com/', trim($actual));
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_facts_figures',
+      'field_oe_paragraphs' => $items,
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(0, $crawler->filter('h3.ecl-u-type-heading-3'));
+    $this->assertCount(0, $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
   }
 
 }

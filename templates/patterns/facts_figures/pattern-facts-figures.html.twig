@@ -1,16 +1,18 @@
 {#
 /**
  * @file
- * Facts and figures component.
+ * Facts and figures pattern template.
  */
 #}
-{% set _link = {'path' : view_all.0.path, 'label' : view_all.0.label} %}
+{% if view_all is not empty %}
+  {% set _link = {'path' : view_all.path, 'label' : view_all.label} %}
+{% endif %}
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
     icon: {
       path: ecl_icon_path,
-      name: _item.icon,
+      name: _item.icon|to_icon,
     },
     value: _item.value,
     title: _item.title,

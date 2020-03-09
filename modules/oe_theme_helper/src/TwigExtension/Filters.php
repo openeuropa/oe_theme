@@ -43,6 +43,7 @@ class Filters extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
+      new \Twig_SimpleFilter('to_icon', [$this, 'toIcon']),
     ];
   }
 
@@ -217,6 +218,83 @@ class Filters extends \Twig_Extension {
     }
 
     return $ecl_attributes;
+  }
+
+  /**
+   * Convert icon names to the ECL supported names.
+   *
+   * @param string $icon
+   *   The icon to be converted.
+   *
+   * @return string
+   *   The converted icon name or digital if the icon name is not supported.
+   */
+  public function toIcon(string $icon): string {
+    $icons = [
+      'facebook' => 'branded--facebook',
+      'instagram' => 'branded--instagram',
+      'linkedin' => 'branded--linkedin',
+      'pinterest' => 'branded--pinterest',
+      'rss' => 'branded--rss',
+      'skype' => 'branded--skype',
+      'twitter' => 'branded--twitter',
+      'youtube' => 'branded--youtube',
+      'audio' => 'general--audio',
+      'book' => 'general--book',
+      'brochure' => 'general--brochure',
+      'budget' => 'general--budget',
+      'calendar' => 'general--calendar',
+      'copy' => 'general--copy',
+      'data' => 'general--data',
+      'digital' => 'general--digital',
+      'edit' => 'general--edit',
+      'energy' => 'general--energy',
+      'euro' => 'general--euro',
+      'faq' => 'general--faq',
+      'feedback' => 'general--feedback',
+      'file' => 'general--file',
+      'gear' => 'general--gear',
+      'generic-lang' => 'general--generic-lang',
+      'global' => 'general--global',
+      'growth' => 'general--growth',
+      'hamburger' => 'general--hamburger',
+      'image' => 'general--image',
+      'infographic' => 'general--infographic',
+      'language' => 'general--language',
+      'livestreaming' => 'general--livestreaming',
+      'location' => 'general--location',
+      'log-in' => 'general--log-in',
+      'logged-in' => 'general--logged-in',
+      'multiple-files' => 'general--multiple-files',
+      'organigram' => 'general--organigram',
+      'package' => 'general--package',
+      'presentation' => 'general--presentation',
+      'print' => 'general--print',
+      'regulation' => 'general--regulation',
+      'search' => 'general--search',
+      'share' => 'general--share',
+      'spinner' => 'general--spinner',
+      'spreadsheet' => 'general--spreadsheet',
+      'video' => 'general--video',
+      'error' => 'notifications--error',
+      'information' => 'notifications--information',
+      'success' => 'notifications--success',
+      'warning' => 'notifications--warning',
+      'check' => 'ui--check',
+      'check-filled' => 'ui--check-filled',
+      'close' => 'ui--close',
+      'close-filled' => 'ui--close-filled',
+      'corner-arrow' => 'ui--corner-arrow',
+      'download' => 'ui--download',
+      'external' => 'ui--external',
+      'fullscreen' => 'ui--fullscreen',
+      'minus' => 'ui--minus',
+      'plus' => 'ui--plus',
+      'rounded-arrow' => 'ui--rounded-arrow',
+      'solid-arrow' => 'ui--solid-arrow',
+    ];
+
+    return $icons[$icon] ?? 'general--digital';
   }
 
 }
