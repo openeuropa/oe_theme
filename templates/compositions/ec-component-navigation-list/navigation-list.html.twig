@@ -10,57 +10,28 @@
       - "href" (string) (default: ''): url of the child
       - "description" (string) (default: ''): short description
       - "links" (array) (default: []): collection of standalone @ecl-twig/link items
-      - "extra_classes" (string) (default: '')
-      - "extra_attributes" (array) (default: []): format: [
-          {
-            "name" (string) (default: ''),
-            "value" (string) (default: '')
-          },
-          ...
-        ]
 #}
 
-{# Internal properties #}
-
-{% set _title = title|default('') %}
-{% set _href = href|default('') %}
-{% set _description = description|default('') %}
-{% set _links = links|default([]) %}
-{% set _css_class = '' %}
-{% set _extra_attributes = '' %}
-
-{# Internal logic - Process properties #}
-
-{% if extra_classes is defined and extra_classes is not empty %}
-  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
-{% endif %}
-
-{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
-  {% for attr in extra_attributes %}
-    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
-  {% endfor %}
-{% endif %}
-
-<div class="{{ _css_class }}" {{ _extra_attributes|raw }}>
+<div>
   <h2 class="ecl-u-ma-none ecl-u-type-prolonged-xl ecl-u-type-bold">
     {% include '@ecl-twig/link' with {
       'link': {
         'type': 'standalone',
-        'label': _title,
-        'path': _href,
+        'label': title,
+        'path': title_url,
       }
     } %}
   </h2>
-  {% if _description is not empty %}
+  {% if description is not empty %}
     <p class="ecl-u-mb-none ecl-u-mt-m ecl-u-type-color-grey ecl-u-type-paragraph">
-      {{  _description }}
+      {{  description }}
     </p>
   {% endif %}
-  {% if _links is not empty and _links is iterable %}
+  {% if links is not empty and links is iterable %}
     <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
-      {% for _link in _links %}
+      {% for link in links %}
         <li class="ecl-unordered-list__item">
-          {% include '@ecl-twig/link' with { link: _link.link|merge({type:'standalone'}) } only %}
+          {% include '@ecl-twig/link' with { link: link.link|merge({type:'standalone'}) } only %}
         </li>
       {% endfor %}
     </ul>

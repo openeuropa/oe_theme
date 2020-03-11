@@ -1,30 +1,30 @@
 navigation_list:
   label: "Navigation list"
-  description: "The navigation list defines the children that will be shown on the parent page (current page)."
+  description: "Navigation lists allow to structure groups of links together."
   fields:
     title:
       type: "text"
       label: "Title"
-      description: "Title of the child."
-      preview: "Page title section (child A)"
-    href:
+      description: "Title of the navigation list."
+      preview: "Policy on educational issues"
+    title_url:
       type: "text"
-      label: "Url"
-      description: "Url of the child."
-      preview: "http://link-a.com"
+      label: "Title URL"
+      description: "URL to link the title of the navigation list."
+      preview: "https://ec.europa.eu/info/education/policy-educational-issues_en"
     description:
       type: "text"
       label: "Description"
-      description: "Short description. It can be used when the child page has another page as its main parent or the links on the title section (grandchildren) are too long."
-      preview: "Child summary section. Short description of the child A page."
+      description: "Short description that accompanies the navigation list"
+      preview: "EU policy is designed to support national education systems and address common challenges."
     links:
       type: "array"
       label: "Links"
-      description: "Array of links"
+      description: "Array of links that form the navigation list."
       preview:
-        - label: 'Page title section (grandchild page A.1)'
-          url: 'http://link-a.com/1'
-        - label: 'Page title section (grandchild page A.2)'
-          url: 'http://link-a.com/2'
-        - label: 'Page title section (grandchild page A.3)'
-          url: 'http://link-a.com/3'
+        - label: 'Addressing shared challenges'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training_en'
+        - label: 'Setting objectives and measuring progress'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
+        - label: 'International cooperation'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/international-cooperation_en'
