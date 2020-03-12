@@ -17,26 +17,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'language',
-    'content_translation',
-    'paragraphs',
-    'user',
-    'system',
-    'file',
-    'field',
-    'entity_reference_revisions',
-    'datetime',
-    'image',
-    'link',
-    'text',
-    'filter',
-    'options',
-    'oe_paragraphs',
     'media',
     'oe_media',
     'oe_paragraphs_media',
     'allowed_formats',
     'oe_paragraphs_media_field_storage',
+    'views',
+    'entity_browser',
+    'media_avportal',
+    'media_avportal_mock',
+    'oe_media_avportal',
   ];
 
   /**
@@ -52,6 +42,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'media',
       'oe_media',
       'oe_paragraphs_media',
+      'media_avportal',
+      'oe_media_avportal',
     ]);
   }
 
@@ -509,6 +501,18 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
 
+    // Create a media using AV Portal image and add it to the paragraph.
+    $media = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'av_portal_photo',
+        'oe_media_avportal_photo' => 'P-038924/00-15',
+        'uid' => 0,
+        'status' => 1,
+      ]);
+
+    $media->save();
+
     $paragraph = Paragraph::create([
       'type' => 'oe_banner',
       'oe_paragraphs_variant' => 'oe_banner_image',
@@ -528,6 +532,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Title classes should not be rendered if the filled is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . (file_create_url('avportal://P-038924/00-15.jpg')) . ')',
+      $image_element->attr('style')
+    );
   }
 
 }
