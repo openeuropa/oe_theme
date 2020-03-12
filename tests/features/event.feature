@@ -139,15 +139,17 @@ Feature: Event content type.
       | Email        | press1@example.com                                                                       |
       | Phone number | +32477777777                                                                             |
     And the following Press Contact entity:
-      | Name         | Second press contact                                                                     |
-      | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
-      | Email        | press2@example.com                                                                       |
-      | Phone number | +32477777778                                                                             |
+      | Name               | Second press contact                                                                     |
+      | Address            | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+      | Email              | press2@example.com                                                                       |
+      | Phone number       | +32477777778                                                                             |
+      | Social media links | uri: http://facebook.com - title: Facebook - link_type: facebook                         |
     And the following General Contact entity:
-      | Name         | A general contact                                                                        |
-      | Address      | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
-      | Email        | general@example.com                                                                          |
-      | Phone number | +32477792933                                                                                 |
+      | Name               | A general contact                                                                            |
+      | Address            | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
+      | Email              | general@example.com                                                                          |
+      | Phone number       | +32477792933                                                                                 |
+      | Social media links | uri: http://instagram.com - title: Instagram - link_type: instagram                          |
     And the Event Content "Event demo page" is updated as follows:
       | Venue   | DIGIT                                                        |
       | Contact | First press contact, Second press contact, A general contact |
@@ -169,6 +171,7 @@ Feature: Event content type.
     And I should see "Address"
     And I should see "Budapest, General contact 1, 1011, Hungary"
     And I should see "general@example.com"
+    And I should see the link "Instagram" in the "event contacts"
 
     And I should see the heading "Press contact" in the "event contacts"
     And I should see "Name"
@@ -182,6 +185,7 @@ Feature: Event content type.
     And I should see "+32477777778"
     And I should see "Szeged, Press contact 1, 6700, Hungary"
     And I should see "press2@example.com"
+    And I should see the link "Facebook" in the "event contacts"
 
     # Assert remaining event elements.
     Given the following image:
