@@ -119,6 +119,14 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       return;
     }
 
+    if (!$venue->access('view', \Drupal::currentUser())) {
+      return;
+    }
+
+    if (!$venue->isPublished()) {
+      return;
+    }
+
     CacheableMetadata::createFromObject($venue)->applyTo($build);
 
     // If address is empty only return cache metadata, so it can bubble up.

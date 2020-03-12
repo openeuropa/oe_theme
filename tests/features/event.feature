@@ -85,15 +85,15 @@ Feature: Event content type.
     Given anonymous users can see events
     And the time is frozen at "17 February 2019 2pm"
     And the following Event Content entity:
-      | Title                   | Event demo page          |
-      | Type                    | exhibitions              |
-      | Introduction            | Event introduction text  |
-      | Description summary     | Description summary text |
-      | Description             | Event description        |
-      | Start date              | 2019-02-21 10:30:00      |
-      | End date                | 2019-02-21 18:30:00      |
-      | Status                  | as_planned               |
-      | Languages               | Valencian                |
+      | Title               | Event demo page          |
+      | Type                | exhibitions              |
+      | Introduction        | Event introduction text  |
+      | Description summary | Description summary text |
+      | Description         | Event description        |
+      | Start date          | 2019-02-21 10:30:00      |
+      | End date            | 2019-02-21 18:30:00      |
+      | Status              | as_planned               |
+      | Languages           | Valencian                |
     And I am an anonymous user
     When I am visiting the "Event demo page" content
 
@@ -192,19 +192,19 @@ Feature: Event content type.
       | name              | file            |
       | Image placeholder | placeholder.png |
     And the Event Content "Event demo page" is updated as follows:
-      | Entrance fee            | Free of charge                                                |
-      | Registration capacity   | 12 seats                                                      |
-      | Online type             | facebook                                                      |
-      | Online time start       | 2019-02-21 09:15:00                                           |
-      | Online time end         | 2019-02-21 14:00:00                                           |
-      | Online description      | Online description text                                       |
-      | Online link             | uri: http://ec.europa.eu/info - title: The online link title  |
-      | Organiser is internal   | No                                                            |
-      | Organiser name          | Name of the organiser                                         |
-      | Event website           | uri: http://ec.europa.eu/info - title: Event website          |
-      | Social media links      | uri: http://example.com - title: Twitter - link_type: twitter |
-      | Featured media          | Image placeholder                                             |
-      | Featured media legend   | Media legend text                                             |
+      | Entrance fee          | Free of charge                                                |
+      | Registration capacity | 12 seats                                                      |
+      | Online type           | facebook                                                      |
+      | Online time start     | 2019-02-21 09:15:00                                           |
+      | Online time end       | 2019-02-21 14:00:00                                           |
+      | Online description    | Online description text                                       |
+      | Online link           | uri: http://ec.europa.eu/info - title: The online link title  |
+      | Organiser is internal | No                                                            |
+      | Organiser name        | Name of the organiser                                         |
+      | Event website         | uri: http://ec.europa.eu/info - title: Event website          |
+      | Social media links    | uri: http://example.com - title: Twitter - link_type: twitter |
+      | Featured media        | Image placeholder                                             |
+      | Featured media legend | Media legend text                                             |
     And I reload the page
 
     # Assert remaining practical information data.
@@ -263,8 +263,8 @@ Feature: Event content type.
 
     # As soon as report information is available we show it instead of the ordinary event information.
     When the Event Content "Event demo page" is updated as follows:
-      | Summary for report      | Report summary |
-      | Report text             | Report text    |
+      | Summary for report | Report summary |
+      | Report text        | Report text    |
     And I reload the page
 
     Then I should see the heading "Report"
@@ -273,3 +273,61 @@ Feature: Event content type.
     But I should not see the heading "Description"
     And I should not see the text "Description summary text"
     And I should not see the text "Event description"
+
+  @preserve_anonymous_permissions
+  Scenario: Visitors without permission can't see published Venue and Contacts.
+    Given the following Default Venue entity:
+      | Name     | DIGIT                                                                                      |
+      | Address  | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+      | Capacity | 12 people                                                                                  |
+      | Room     | B-28 03/A150                                                                               |
+    And the following Press Contact entity:
+      | Name         | First press contact                                                                      |
+      | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+      | Email        | press1@example.com                                                                       |
+      | Phone number | +32477777777                                                                             |
+    And the following Press Contact entity:
+      | Name         | Second press contact                                                                     |
+      | Address      | country_code: HU - locality: Szeged - address_line1: Press contact 1 - postal_code: 6700 |
+      | Email        | press2@example.com                                                                       |
+      | Phone number | +32477777778                                                                             |
+    And the following General Contact entity:
+      | Name         | A general contact                                                                            |
+      | Address      | country_code: HU - locality: Budapest - address_line1: General contact 1 - postal_code: 1011 |
+      | Email        | general@example.com                                                                          |
+      | Phone number | +32477792933                                                                                 |
+    And the following Event Content entity:
+      | Title   | Event demo page                                              |
+      | Venue   | DIGIT                                                        |
+      | Contact | First press contact, Second press contact, A general contact |
+    When I am visiting the "Event demo page" content
+    Then I should not see the text "DIGIT"
+    And I should not see the text "First press contact"
+    And I should not see the text "Second press contact"
+    And I should not see the text "A general contact"
+    When anonymous users can see events
+    And I reload the page
+    Then I should see the text "DIGIT"
+    And I should see the text "First press contact"
+    And I should see the text "Second press contact"
+    And I should see the text "General contact"
+
+  @preserve_anonymous_permissions
+  Scenario: Unpublished Venues and Contacts are not visible for the visitors.
+    Given anonymous users can see events
+    And the following Default Venue entity:
+      | Name    | Unpublished venue                                                                          |
+      | Address | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+      | status  | 0                                                                                          |
+    And the following Event Content entity:
+      | Title | Event demo page   |
+      | Venue | Unpublished venue |
+    When I am visiting the "Event demo page" content
+    Then I should not see the text "Unpublished venue"
+    When the following Default Venue entity:
+      | Name    | Published venue                                                                            |
+      | Address | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+    And the Event Content "Event demo page" is updated as follows:
+      | Venue | Published venue |
+    And I am visiting the "Event demo page" content
+    Then I should see the text "Published venue"
