@@ -566,7 +566,6 @@
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
-      article.ecl-card footer.ecl-card__footer: ""
 - array:
     '#type': pattern
     '#id': list_item
@@ -583,7 +582,6 @@
     equals:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
-      'article.ecl-card footer.ecl-card__footer': ""
 - array:
     '#type': pattern
     '#id': list_item
