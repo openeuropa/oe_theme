@@ -1,15 +1,16 @@
 {% spaceless %}
 
 {#
-  /**
-   * @file
-   * Theme implementation for ECL Navigation List.
-   */
-    Parameters:
-      - "title" (string) (default: ''): title of the navigation list
-      - "title_url" (string) (default: ''): url of the title
-      - "description" (string) (default: ''): short description
-      - "links" (array) (default: []): collection of standalone @ecl-twig/link items
+/**
+ * @file
+ * Theme implementation for ECL Navigation List.
+ *
+ * Available variables:
+ * - "title" (string) (default: ''): title of the navigation list.
+ * - "title_url" (string) (default: ''): url of the title.
+ * - "description" (string) (default: ''): short description.
+ * - "links" (array) (default: []): collection of standalone @ecl-twig/link items.
+ */
 #}
 
 <div>
@@ -18,20 +19,20 @@
       'link': {
         'type': 'standalone',
         'label': title,
-        'path': title_url,
+        'path': title_url
       }
-    } %}
+    } only %}
   </h2>
   {% if description is not empty %}
     <p class="ecl-u-mb-none ecl-u-mt-m ecl-u-type-color-grey ecl-u-type-paragraph">
-      {{  description }}
+      {{ description }}
     </p>
   {% endif %}
   {% if links is not empty and links is iterable %}
     <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
       {% for link in links %}
         <li class="ecl-unordered-list__item">
-          {% include '@ecl-twig/link' with { link: link.link|merge({type:'standalone'}) } only %}
+          {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
         </li>
       {% endfor %}
     </ul>
