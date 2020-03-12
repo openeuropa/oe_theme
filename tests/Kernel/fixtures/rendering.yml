@@ -852,7 +852,7 @@
     '#id': navigation_list
     '#fields':
       title: 'Navigation list title'
-      href: 'http://example.com'
+      title_url: 'http://example.com'
       description: 'Navigation list description'
       links:
         - label: 'Child 1'
@@ -876,7 +876,7 @@
     '#id': navigation_list
     '#fields':
       title: 'Navigation list title'
-      href: 'http://example.com'
+      title_url: 'http://example.com'
       description: 'Navigation list description'
   assertions:
     equals:
@@ -890,7 +890,7 @@
     '#id': navigation_list
     '#fields':
       title: 'Navigation list title'
-      href: 'http://example.com'
+      title_url: 'http://example.com'
       links:
         - label: 'Child 1'
           url: 'http://example.com/child1'
