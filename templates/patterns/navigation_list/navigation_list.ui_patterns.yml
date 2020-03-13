@@ -1,0 +1,30 @@
+navigation_list:
+  label: "Navigation list"
+  description: "Navigation lists allow to structure groups of links together."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Title of the navigation list."
+      preview: "Policy on educational issues"
+    title_url:
+      type: "text"
+      label: "Title URL"
+      description: "URL to link the title of the navigation list."
+      preview: "https://ec.europa.eu/info/education/policy-educational-issues_en"
+    description:
+      type: "text"
+      label: "Description"
+      description: "Short description that accompanies the navigation list"
+      preview: "EU policy is designed to support national education systems and address common challenges."
+    links:
+      type: "array"
+      label: "Links"
+      description: "Array of links that form the navigation list."
+      preview:
+        - label: 'Addressing shared challenges'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training_en'
+        - label: 'Setting objectives and measuring progress'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
+        - label: 'International cooperation'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/international-cooperation_en'

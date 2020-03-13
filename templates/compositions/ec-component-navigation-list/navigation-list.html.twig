@@ -1,0 +1,41 @@
+{% spaceless %}
+
+{#
+/**
+ * @file
+ * Theme implementation for ECL Navigation List.
+ *
+ * Available variables:
+ * - "title" (string) (default: ''): title of the navigation list.
+ * - "title_url" (string) (default: ''): url of the title.
+ * - "description" (string) (default: ''): short description.
+ * - "links" (array) (default: []): collection of standalone @ecl-twig/link items.
+ */
+#}
+
+<div>
+  <h2 class="ecl-u-ma-none ecl-u-type-prolonged-xl ecl-u-type-bold">
+    {% include '@ecl-twig/link' with {
+      'link': {
+        'type': 'standalone',
+        'label': title,
+        'path': title_url
+      }
+    } only %}
+  </h2>
+  {% if description is not empty %}
+    <p class="ecl-u-mb-none ecl-u-mt-m ecl-u-type-color-grey ecl-u-type-paragraph">
+      {{ description }}
+    </p>
+  {% endif %}
+  {% if links is not empty and links is iterable %}
+    <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
+      {% for link in links %}
+        <li class="ecl-unordered-list__item">
+          {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+{% endspaceless %}

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Navigation list.
+ */
+#}
+
+{% set _links = [] %}
+{% for link in links %}
+  {% set _link = {
+    link: {
+      label : link.label,
+      path : link.url,
+      type: 'standalone'
+    }
+  } %}
+  {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% include '@oe_theme/compositions/ec-component-navigation-list/navigation-list.html.twig' with {
+  title: title,
+  title_url: title_url,
+  description: description,
+  links: _links,
+} only %}
