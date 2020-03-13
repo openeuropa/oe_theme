@@ -318,16 +318,32 @@ Feature: Event content type.
     And the following Default Venue entity:
       | Name    | Unpublished venue                                                                          |
       | Address | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
-      | status  | 0                                                                                          |
+      | status  | FALSE                                                                                      |
+    And the following Press Contact entity:
+      | Name   | First unpublished press contact |
+      | status | FALSE                           |
+    And the following Press Contact entity:
+      | Name   | Second unpublished press contact |
+      | status | FALSE                            |
     And the following Event Content entity:
-      | Title | Event demo page   |
-      | Venue | Unpublished venue |
+      | Title   | Event demo page                                                   |
+      | Venue   | Unpublished venue                                                 |
+      | Contact | First unpublished press contact, Second unpublished press contact |
     When I am visiting the "Event demo page" content
     Then I should not see the text "Unpublished venue"
+    And I should not see the text "First unpublished press contact"
+    And I should not see the text "Second unpublished press contact"
+
     When the following Default Venue entity:
-      | Name    | Published venue                                                                            |
-      | Address | country_code: BE - locality: Brussels - address_line1: Rue Belliard 28 - postal_code: 1000 |
+      | Name | Published venue |
+    And the following Press Contact entity:
+      | Name | First press contact |
+    And the following Press Contact entity:
+      | Name | Second press contact |
     And the Event Content "Event demo page" is updated as follows:
-      | Venue | Published venue |
+      | Venue   | Published venue                           |
+      | Contact | First press contact, Second press contact |
     And I am visiting the "Event demo page" content
     Then I should see the text "Published venue"
+    And I should see the text "First press contact"
+    And I should see the text "Second press contact"
