@@ -38,7 +38,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.0.0-beta4",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "dev-OPENEUROPA-2771",
+        "openeuropa/oe_content": "dev-EPIC-Event",
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_media": "dev-master",
         "openeuropa/oe_multilingual": "~1.0",
@@ -91,6 +91,9 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
+            },
+            "openeuropa/oe_content": {
+                "latest-master": "https://github.com/openeuropa/oe_content/compare/EPIC-Event...OPENEUROPA-2771.diff"
             }
         }
     },
