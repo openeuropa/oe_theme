@@ -10,10 +10,7 @@
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
-    icon: {
-      path: ecl_icon_path,
-      name: _item.icon|to_icon,
-    },
+    icon: to_ecl_icon(_item.icon),
     value: _item.value,
     title: _item.title,
     description: _item.description,
