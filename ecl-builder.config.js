@@ -14,6 +14,61 @@ const style_options = {
   sourceMap: isProd ? 'none' : true,
 };
 
+var copy = [
+  { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },
+  { from: path.resolve(nodeModules, '@ecl/ec-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
+  { from: path.resolve(nodeModules, '@ecl/eu-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
+  { from: path.resolve(nodeModules, 'svg4everybody/dist'), patterns: 'svg4everybody.min.js', to: path.resolve(outputFolder, 'dist/js') },
+];
+
+const components = [
+  'accordion2',
+  'blockquote',
+  'breadcrumb',
+  'button',
+  'card',
+  'description-list',
+  'dropdown-legacy',
+  'expandable',
+  'file',
+  'footer',
+  'gallery',
+  'hero-banner',
+  'icon',
+  'inpage-navigation',
+  'language-list',
+  'link',
+  'media-container',
+  'menu-legacy',
+  'message',
+  'page-banner',
+  'page-header',
+  'pagination',
+  'radio',
+  'search-form',
+  'site-header',
+  'skip-link',
+  'social-media-follow',
+  'social-media-share',
+  'table',
+  'tag',
+  'text-input',
+  'timeline',
+];
+
+components.forEach(function (name) {
+  copy.push({
+    from: path.resolve(nodeModules, '@ecl-twig'),
+    patterns: 'ec-component-' + name + '/*.twig',
+    to: path.resolve(outputFolder, 'components/ec')
+  });
+  copy.push({
+    from: path.resolve(nodeModules, '@ecl-twig'),
+    patterns: 'ec-component-' + name + '/*.twig',
+    to: path.resolve(outputFolder, 'components/eu')
+  });
+});
+
 module.exports = {
   styles: [
     {
@@ -27,42 +82,5 @@ module.exports = {
       options: style_options,
     },
   ],
-  copy: [
-    { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },
-    { from: path.resolve(nodeModules, '@ecl/ec-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
-    { from: path.resolve(nodeModules, '@ecl/eu-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-accordion2/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-blockquote/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-button/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-card/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-description-list/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-dropdown-legacy/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-expandable/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-file/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-footer/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-gallery/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-hero-banner/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-icon/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-inpage-navigation/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-language-list/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-link/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-media-container/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-menu-legacy/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-message/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-page-banner/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-page-header/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-pagination/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-radio/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-search-form/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-site-header/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-skip-link/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-social-media-follow/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-social-media-share/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-table/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-tag/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-text-input/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-timeline/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, 'svg4everybody/dist'), patterns: 'svg4everybody.min.js', to: path.resolve(outputFolder, 'dist/js') },
-  ]
+  copy: copy
 };
