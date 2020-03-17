@@ -10,7 +10,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 
 /**
- * Collection of extra Twig filters.
+ * Collection of extra Twig extensions as filters and functions.
  *
  * We don't enforce any strict type checking on filters' arguments as they are
  * coming straight from Twig templates.
@@ -25,7 +25,10 @@ class TwigExtension extends \Twig_Extension {
   protected $languageManager;
 
   /**
-   * Constructs a new Filters object.
+   * Constructs a new TwigExtension object.
+   *
+   * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
+   *   The language manager.
    */
   public function __construct(LanguageManagerInterface $languageManager) {
     $this->languageManager = $languageManager;
@@ -50,8 +53,8 @@ class TwigExtension extends \Twig_Extension {
    * {@inheritdoc}
    */
   public function getFunctions(): array {
-    return parent::getFunctions() + [
-      new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon']),
+    return [
+      new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -231,17 +234,16 @@ class TwigExtension extends \Twig_Extension {
   /**
    * Convert icon names to the ECL supported names and apply rotation if needed.
    *
+   * @param array $context
+   *   The twig context.
    * @param string $icon
    *   The icon to be converted.
    *
    * @return array
    *   Icon array for ECL components containing icon name, path and rotation.
    */
-  public function toEclIcon(string $icon): array {
-    // ECL Icons path.
-    $path = base_path() . drupal_get_path('theme', 'oe_theme') .
-      '/dist/' . theme_get_setting('component_library') .
-      '/images/icons/sprites/icons.svg';
+  public function toEclIcon(array $context, string $icon): array {
+    $path = $context['ecl_icon_path'];
 
     // ECL supported icons naming and rotation.
     $icons = [
@@ -482,7 +484,10 @@ class TwigExtension extends \Twig_Extension {
       return $icons[$icon];
     }
 
-    return 'general--digital';
+    return [
+      'name' => 'general--digital',
+      'path' => $path,
+    ];
   }
 
 }
