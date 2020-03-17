@@ -609,8 +609,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   }
 
   // Generate page link items.
-  $i = $pager_first;
-  for (; $i <= $pager_current + $pager_offset && $i <= $pager_last; $i++) {
+  for ($i = $pager_first; $i <= $pager_current + $pager_offset && $i <= $pager_last; $i++) {
     $label = (string) $i;
     if ($i == $pager_current) {
       $ecl_items[] = [
