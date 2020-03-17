@@ -12,6 +12,7 @@ services:
       - '%oe_theme_helper.twig_loader.directory%'
       - '@theme_handler'
       - '@logger.factory'
+      - '@config.factory'
     tags:
       - { name: twig.loader, priority: -100 }
   oe_theme_helper.route_subscriber:
