@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme_helper\Unit;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Template\Loader\StringLoader;
-use Drupal\oe_theme_helper\TwigExtension\Filters;
+use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
 
 /**
@@ -15,9 +15,9 @@ use Drupal\Tests\UnitTestCase;
  *
  * @group oe_theme_helper
  *
- * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\Filters
+ * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\TwigExtension
  */
-class TwigFiltersTest extends UnitTestCase {
+class TwigExtensionTest extends UnitTestCase {
 
   /**
    * The mocked language manager.
@@ -29,7 +29,7 @@ class TwigFiltersTest extends UnitTestCase {
   /**
    * The Twig extension being tested.
    *
-   * @var \Drupal\oe_theme_helper\TwigExtension\Filters
+   * @var \Drupal\oe_theme_helper\TwigExtension\TwigExtension
    */
   protected $extension;
 
@@ -54,7 +54,7 @@ class TwigFiltersTest extends UnitTestCase {
     $this->languageManager = $this->prophesize(LanguageManagerInterface::class);
     $native_languages = [];
     foreach ($this->getEuropeanUnionLanguageList() as $language_code => $language_names) {
-      list($language_name, $native_name) = $language_names;
+      [$language_name, $native_name] = $language_names;
       $this->languageManager->getLanguageName($language_code)->willReturn($language_name);
       $native_language = $this->prophesize(LanguageInterface::class);
       $native_language->getName()->willReturn($native_name);
@@ -63,7 +63,7 @@ class TwigFiltersTest extends UnitTestCase {
     $this->languageManager->getNativeLanguages()->willReturn($native_languages);
 
     // Instantiate the system under test.
-    $this->extension = new Filters($this->languageManager->reveal());
+    $this->extension = new TwigExtension($this->languageManager->reveal());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
@@ -243,7 +243,7 @@ class TwigFiltersTest extends UnitTestCase {
    *   names as values.
    */
   protected static function getEuropeanUnionLanguageList(): array {
-    return Filters::getEuropeanUnionLanguageList();
+    return TwigExtension::getEuropeanUnionLanguageList();
   }
 
 }
