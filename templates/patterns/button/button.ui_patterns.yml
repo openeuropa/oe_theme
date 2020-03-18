@@ -14,18 +14,21 @@ button:
     call:
       label: "Call to action"
       description: "Use these buttons sparingly on the most important actions like “Apply for funding” or “Watch live streaming”."
-    form:
-      label: "Form"
-      description: "The form buttons are used to confirm a choice or send information."
-    form_primary:
-      label: "Form primary"
-      description: "The form buttons are used to confirm a choice or send information."
-    splash_page:
-      label: "Splash page"
-      description: "Special buttons used on the site's splash page."
     ghost:
       label: "Ghost"
       description: "Ghost button."
+    search:
+      label: "Search"
+      description: "Search button."
+    form:
+      label: "Form (deprecated)"
+      description: "The form buttons are used to confirm a choice or send information. This was deprecated in ECL 2.x."
+    form_primary:
+      label: "Form primary (deprecated)"
+      description: "The form buttons are used to confirm a choice or send information. This was deprecated in ECL 2.x."
+    splash_page:
+      label: "Splash page (deprecated)"
+      description: "Special buttons used on the site's splash page. This was deprecated in ECL 2.x."
   fields:
     type_attribute:
       type: "text"

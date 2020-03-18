@@ -17,14 +17,14 @@ class PagerTest extends AbstractKernelTestBase {
    *
    * @var string
    */
-  const PREVIOUS_PAGE_LINK_TEXT = '‹ Previous';
+  const PREVIOUS_PAGE_LINK_TEXT = 'Previous';
 
   /**
    * The 'next' page link text.
    *
    * @var string
    */
-  const NEXT_PAGE_LINK_TEXT = 'Next ›';
+  const NEXT_PAGE_LINK_TEXT = 'Next';
 
   /**
    * Test rendering of the pager.
@@ -69,7 +69,7 @@ class PagerTest extends AbstractKernelTestBase {
 
     // Check the first pager variant (all elements visible).
     $first_pager = $crawler->filter('nav:first-of-type');
-    // Assert that the pager contain 'first' and 'previous' page links.
+    // Assert that the pager contain 'next' and 'previous' page links.
     $previous = $first_pager->filter('li.ecl-pagination__item--previous');
     $this->assertSpecialPagerElement($previous, TRUE, $this->generatePagerUrl('<none>', 6), 'Go to previous page');
     $this->assertContains(self::PREVIOUS_PAGE_LINK_TEXT, $first_pager->text());
@@ -147,30 +147,18 @@ class PagerTest extends AbstractKernelTestBase {
     // By specifications, the following links should be visible:
     // - links to the previous two pages (if applicable);
     // - links to the next two pages (if applicable).
-    $pager_first = $current_page - 4;
-    $pager_last = $current_page + 4;
-
-    // Prepare for checking loop.
-    $i = $pager_first;
-    if ($pager_last > $total_pages) {
-      // Adjust "center" if at end of query.
-      $i = $i + ($total_pages - $pager_last);
-      $pager_last = $total_pages;
-    }
-    if ($i <= 0) {
-      // Adjust "center" if at start of query.
-      $pager_last = $pager_last + (1 - $i);
-      if ($pager_last > $total_pages) {
-        $pager_last = $total_pages;
-      }
-      $i = 1;
-    }
+    $min = $current_page - 2;
+    $max = $current_page + 2;
+    // Re-center the min and max pages values. Also don't test the first and
+    // last page links, as they are handled separately.
+    $min = $min < 2 ? 2 : $min;
+    $max = $max > ($total_pages - 1) ? $total_pages - 1 : $max;
 
     // Keep track of how many links should be visible.
     $links_count = 0;
 
     $links = $wrapper->filter('a');
-    for (; $i <= $pager_last; $i++) {
+    for ($i = $min; $i <= $max; $i++) {
       // The current page doesn't have a link.
       if ($i === $current_page) {
         continue;
@@ -197,7 +185,7 @@ class PagerTest extends AbstractKernelTestBase {
     $this->{$show_start_links ? 'assertContains' : 'assertNotContains'}(self::PREVIOUS_PAGE_LINK_TEXT, $crawler->html());
 
     $first_page = $crawler->filter('li.ecl-pagination__item--first');
-    $this->assertSpecialPagerElement($first_page, $show_start_links, $this->generatePagerUrl($route_name, 1), 'Go to first page');
+    $this->assertSpecialPagerElement($first_page, $show_start_links, $this->generatePagerUrl($route_name, 1), 'Go to page 1');
 
     // When the current page is not the last one, the link to the next page
     // and one to the last page should be shown.
@@ -210,20 +198,20 @@ class PagerTest extends AbstractKernelTestBase {
     $this->{$show_end_links ? 'assertContains' : 'assertNotContains'}(self::NEXT_PAGE_LINK_TEXT, $crawler->html());
 
     $last_page = $crawler->filter('li.ecl-pagination__item--last');
-    $this->assertSpecialPagerElement($last_page, $show_end_links, $this->generatePagerUrl($route_name, $total_pages), "Go to last page");
+    $this->assertSpecialPagerElement($last_page, $show_end_links, $this->generatePagerUrl($route_name, $total_pages), "Go to page $total_pages");
 
     // Verify that only the needed links have been rendered.
     $this->assertCount($links_count, $links);
 
     // Assert that ellipsis are shown in the correct number.
     $ellipsis = $wrapper->filter('li.ecl-pagination__item--ellipsis');
-    // When the total number of pages is 9 or less, no ellipsis should be shown.
+    // When the total number of pages is 4 or less, no ellipsis should be shown.
     $ellipsis_count = 0;
-    if ($total_pages > 9) {
-      // One ellipsis is shown when more than 4 pages are left at the end.
-      $ellipsis_count += (int) ($total_pages - $current_page) > 4;
-      // One ellipsis is shown when more than 4 pages have passed from the 1st.
-      $ellipsis_count += (int) ($current_page - 4) > 1;
+    if ($total_pages > 4) {
+      // One ellipsis is shown when more than 3 pages are left at the end.
+      $ellipsis_count += (int) ($total_pages - $current_page) > 3;
+      // One ellipsis is shown when more than 3 pages have passed from the 1st.
+      $ellipsis_count += (int) ($current_page - 3) > 1;
     }
     $this->assertCount($ellipsis_count, $ellipsis);
   }
