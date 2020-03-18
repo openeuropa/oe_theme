@@ -61,9 +61,10 @@
       <span class="ecl-site-header__language-code">{{ _code }}</span>
     </span>
   </a>
-  {% include '@ecl-twig/language-list/language-list-overlay' with {
+  {% include '@ecl-twig/language-list/language-list' with {
     items: items,
     icon_path: _icon_path,
+    overlay: true,
     title: 'Select your language'|t,
     close_label: 'Close'|t,
     extra_attributes: [{ name: 'hidden'}]
