@@ -566,7 +566,6 @@
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
-      article.ecl-card footer.ecl-card__footer: ""
 - array:
     '#type': pattern
     '#id': list_item
@@ -583,7 +582,6 @@
     equals:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
-      'article.ecl-card footer.ecl-card__footer': ""
 - array:
     '#type': pattern
     '#id': list_item
@@ -1190,7 +1188,7 @@
       'a.ecl-link--icon-before': 1
       'a.ecl-link--icon-before svg': 1
     equals:
-      'a.ecl-link--default[href="http://example.com"] .ecl-link__label': "Button label"
+      'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
 - array:
     '#type': pattern
     '#id': button
