@@ -42,8 +42,20 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
       'ec' => t('European Commission'),
       'eu' => t('European Union'),
     ],
+    '#required' => TRUE,
     '#default_value' => theme_get_setting('component_library'),
     '#description' => t('Choose "European Commission" for websites hosted under the ec.europa.eu domain and "European Union" for websites hosted under the europa.eu domain.'),
+  ];
+  $form['branding'] = [
+    '#type' => 'select',
+    '#title' => t('Branding'),
+    '#options' => [
+      'core' => t('Core'),
+      'standardised' => t('Standardised'),
+    ],
+    '#required' => TRUE,
+    '#default_value' => theme_get_setting('branding'),
+    '#description' => t('Choose site branding.'),
   ];
 }
 
@@ -63,10 +75,12 @@ function oe_theme_preprocess(&$variables) {
  */
 function oe_theme_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
   // Add an ECL component library specific suggestion to all theme hooks.
-  $library = theme_get_setting('component_library');
+  $library = theme_get_setting('component_library') ?? 'ec';
+  $branding = theme_get_setting('branding') ?? 'core';
   $items = array_merge([$hook], $suggestions);
   foreach ($items as $suggestion) {
     $suggestions[] = $suggestion . '__' . $library;
+    $suggestions[] = $suggestion . '__' . $library . '__' . $branding;
   }
 }
 
