@@ -11,7 +11,7 @@ use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Tests for the custom Twig filters extension.
+ * Tests for the custom Twig filters and functions extension.
  *
  * @group oe_theme_helper
  *
@@ -244,6 +244,60 @@ class TwigExtensionTest extends UnitTestCase {
    */
   protected static function getEuropeanUnionLanguageList(): array {
     return TwigExtension::getEuropeanUnionLanguageList();
+  }
+
+  /**
+   * Tests converting an icon name to the ECL supported icons.
+   *
+   * @param string $icon_name
+   *   The icon name.
+   * @param array $expected_icon_array
+   *   The icon array to be rendered.
+   *
+   * @covers ::toEclIcon
+   * @dataProvider toEclIconProvider
+   */
+  public function testToEclIcon(string $icon_name, array $expected_icon_array) {
+    $context = ['ecl_icon_path' => '/path/to/theme/resources/icons/'];
+    // We join the resulting array from to_ecl_icon() function so that we have
+    // a visual representation of the array being returned by the function.
+    $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}", $context);
+    $this->assertEquals(implode('|', $expected_icon_array), $result);
+  }
+
+  /**
+   * Returns test cases for ::testToEclIcon().
+   *
+   * @return array[]
+   *   An icon array.
+   *
+   * @see ::testToEclIcon()
+   */
+  public function toEclIconProvider(): array {
+    return [
+      [
+        'right',
+        [
+          'name' => 'ui--rounded-arrow',
+          'transform' => 'rotate-90',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+      [
+        'close-dark',
+        [
+          'name' => 'ui--close-filled',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+      [
+        'not-supported-icon',
+        [
+          'name' => 'general--digital',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+    ];
   }
 
 }
