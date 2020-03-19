@@ -603,19 +603,32 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
 
-    $this->assertEquals('Facts and figures', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#notifications--success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
-    $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
-    $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
-    $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__title')->text()));
-    $this->assertEquals('Fact description 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description')->text()));
-    $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')->text()));
-    $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')->text()));
+    $this->assertEquals('Facts and figures', trim($crawler->filter('h3.ecl-u-type-heading-3')
+      ->text()));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')
+      ->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#notifications--success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')
+      ->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')
+      ->html());
+    $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')
+      ->text()));
+    $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')
+      ->text()));
+    $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')
+      ->text()));
+    $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title')
+      ->text()));
+    $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title')
+      ->text()));
+    $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__title')
+      ->text()));
+    $this->assertEquals('Fact description 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description')
+      ->text()));
+    $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')
+      ->text()));
+    $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')
+      ->text()));
 
     $link = $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link');
     $actual = $link->text();
@@ -633,6 +646,86 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('h3.ecl-u-type-heading-3'));
     $this->assertCount(0, $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link'));
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
+  }
+
+  /**
+   * Test 'timeline' paragraph rendering.
+   */
+  public function testTimeline(): void {
+    $paragraph = Paragraph::create([
+      'type' => 'oe_timeline',
+      'field_oe_timeline_expand' => '3',
+      'field_oe_timeline' => [
+        [
+          'label' => 'Label 1',
+          'title' => 'Title 1',
+          'body' => 'Description 1',
+        ],
+        [
+          'label' => 'Label 2',
+          'title' => 'Title 2',
+          'body' => 'Description 2',
+        ],
+        [
+          'label' => 'Label 3',
+          'title' => 'Title 3',
+          'body' => 'Description 3',
+        ],
+        [
+          'label' => 'Label 4',
+          'title' => 'Title 4',
+          'body' => 'Description 4',
+        ],
+        [
+          'label' => 'Label 5',
+          'title' => 'Title 5',
+          'body' => 'Description 5',
+        ],
+        [
+          'label' => 'Label 6',
+          'title' => 'Title 6',
+          'body' => 'Description 6',
+        ],
+      ],
+    ]);
+
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('ol.ecl-timeline2'));
+    $this->assertCount(7, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item'));
+    $this->assertCount(3, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed'));
+    $this->assertCount(1, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--toggle button.ecl-button.ecl-button--secondary.ecl-timeline2__toggle'));
+
+    $this->assertEquals('Label 1', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(1) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 1', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(1) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 1', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(1) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Label 2', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(2) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 2', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(2) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 2', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(2) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Label 3', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(3) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 3', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(3) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 3', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item:nth-child(3) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Label 4', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(4) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 4', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(4) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 4', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(4) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Label 5', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(5) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 5', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(5) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 5', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(5) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Label 6', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(6) div.ecl-timeline2__label')->text()));
+    $this->assertEquals('Title 6', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(6) div.ecl-timeline2__title')->text()));
+    $this->assertEquals('Description 6', trim($crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed:nth-child(6) div.ecl-timeline2__content')->text()));
+    $this->assertEquals('Show 3 more items', trim($crawler->filter('button.ecl-button.ecl-button--secondary.ecl-timeline2__toggle span.ecl-button__container span.ecl-button__label')->text()));
+
+    $paragraph->set('field_oe_timeline_expand', '6');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(6, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item'));
+    $this->assertCount(0, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--collapsed'));
+    $this->assertCount(0, $crawler->filter('ol.ecl-timeline2 li.ecl-timeline2__item.ecl-timeline2__item--toggle'));
   }
 
 }

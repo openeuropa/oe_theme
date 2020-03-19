@@ -34,6 +34,9 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'oe_paragraphs',
     'allowed_formats',
     'typed_link',
+    'oe_paragraphs_timeline',
+    'oe_content_timeline_field',
+    'node',
   ];
 
   /**
@@ -45,7 +48,13 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     $this->installEntitySchema('paragraph');
     $this->installEntitySchema('file');
     $this->installSchema('file', ['file_usage']);
-    $this->installConfig(['oe_paragraphs', 'filter']);
+    $this->installConfig([
+      'oe_paragraphs',
+      'filter',
+      'oe_paragraphs_timeline',
+      'oe_content_timeline_field',
+      'node',
+    ]);
   }
 
   /**
