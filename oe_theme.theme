@@ -1367,23 +1367,16 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
     $variables['title'] = $paragraph->get('field_oe_title')->value;
   }
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
-    $variables['view_all']['path'] = $paragraph->get('field_oe_link')
-      ->first()
-      ->getUrl();
-    $variables['view_all']['label'] = $paragraph->get('field_oe_link')
-      ->first()
-      ->get('title')
-      ->getValue();
+    $variables['view_all']['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
+    $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
   }
   $variables['items'] = [];
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
-  foreach ($paragraph->get('field_oe_paragraphs')
-             ->referencedEntities() as $sub_paragraph) {
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
-      ->getTranslationFromContext($sub_paragraph, $paragraph->language()
-        ->getId());
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
     $variables['items'][] = [
       'icon' => $sub_paragraph->get('field_oe_icon')->value,
       'value' => $sub_paragraph->get('field_oe_title')->value,
