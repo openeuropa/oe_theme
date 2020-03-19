@@ -8,7 +8,7 @@ use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests the rendering of paragraphs types.
+ * Tests the rendering of Timeline paragraph.
  */
 class TimelineParagraphTest extends ParagraphsTestBase {
 
