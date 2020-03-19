@@ -1946,3 +1946,52 @@
   assertions:
     equals:
       'a.ecl-link.ecl-link--cta': 'Link text'
+- array:
+    '#type': 'pattern'
+    '#id': 'facts_figures'
+    '#fields':
+      items:
+        - icon: 'instagram'
+          value: '00.0 million'
+          title: 'Lorem ipsum'
+          description: 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
+        - icon: 'external'
+          value: '10.0 millions'
+          title: 'Nam lacinia nisl eget diam mattis'
+          description: 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+      view_all:
+        label: 'View all metrics'
+        path: 'https://example.com'
+  assertions:
+    count:
+      'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': 1
+      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': 1
+      'div.ecl-fact-figures__view-all': 1
+    equals:
+      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title': 'Lorem ipsum'
+      'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
+      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
+      'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"]': 'View all metrics'
+- array:
+    '#type': 'pattern'
+    '#id': 'facts_figures'
+    '#fields':
+      items:
+        - icon: 'instagram'
+          value: '00.0 million'
+          title: 'Lorem ipsum'
+          description: 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
+        - icon: 'external'
+          value: '10.0 millions'
+          title: 'Nam lacinia nisl eget diam mattis'
+          description: 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+  assertions:
+    count:
+      'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures__view-all': 0

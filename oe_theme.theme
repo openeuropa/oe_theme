@@ -1357,3 +1357,31 @@ function _oe_theme_trim_textfield($text, int $size = 150) {
   // Return the unchanged $text since we don't support other scenarios.
   return $text;
 }
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): void {
+  $paragraph = $variables['paragraph'];
+  if (!$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['title'] = $paragraph->get('field_oe_title')->value;
+  }
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $variables['view_all']['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
+    $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
+  }
+  $variables['items'] = [];
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $variables['items'][] = [
+      'icon' => $sub_paragraph->get('field_oe_icon')->value,
+      'value' => $sub_paragraph->get('field_oe_title')->value,
+      'title' => $sub_paragraph->get('field_oe_subtitle')->value,
+      'description' => $sub_paragraph->get('field_oe_plain_text_long')->value,
+    ];
+  }
+}
