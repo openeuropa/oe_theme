@@ -24,7 +24,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
 This depends on the following software:
 
-* [PHP 7.1](http://php.net/)
+* [PHP 7.2 or 7.3](http://php.net/)
 
 ## Installation
 
