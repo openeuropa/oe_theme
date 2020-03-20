@@ -22,6 +22,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_media',
     'allowed_formats',
     'oe_paragraphs_media_field_storage',
+    'oe_paragraphs_banner',
     'views',
     'entity_browser',
     'media_avportal',
@@ -44,6 +45,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_paragraphs_media',
       'media_avportal',
       'oe_media_avportal',
+      'oe_paragraphs_banner',
     ]);
   }
 
