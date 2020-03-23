@@ -36,6 +36,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_media',
     'oe_paragraphs_media',
     'allowed_formats',
+    'oe_paragraphs_media_field_storage',
   ];
 
   /**
@@ -44,6 +45,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   protected function setUp() {
     parent::setUp();
 
+    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
+    oe_paragraphs_media_field_storage_install();
     $this->installEntitySchema('media');
     $this->installConfig([
       'media',
