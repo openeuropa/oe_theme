@@ -128,7 +128,8 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       return;
     }
 
-    $cacheability::createFromObject($venue)->applyTo($build);
+    $cacheability->addCacheableDependency($venue);
+    $cacheability->applyTo($build);
 
     // If address is empty only return cache metadata, so it can bubble up.
     if ($venue->get('oe_address')->isEmpty()) {
