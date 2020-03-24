@@ -119,7 +119,7 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       return;
     }
 
-    $cacheability = new CacheableMetadata();
+    $cacheability = CacheableMetadata::createFromRenderArray($build);
 
     $access = $venue->access('view', NULL, TRUE);
     $cacheability->addCacheableDependency($access);
