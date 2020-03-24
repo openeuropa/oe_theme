@@ -17,25 +17,17 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'language',
-    'content_translation',
-    'paragraphs',
-    'user',
-    'system',
-    'file',
-    'field',
-    'entity_reference_revisions',
-    'datetime',
-    'image',
-    'link',
-    'text',
-    'filter',
-    'options',
-    'oe_paragraphs',
     'media',
     'oe_media',
     'oe_paragraphs_media',
     'allowed_formats',
+    'oe_paragraphs_media_field_storage',
+    'oe_paragraphs_banner',
+    'views',
+    'entity_browser',
+    'media_avportal',
+    'media_avportal_mock',
+    'oe_media_avportal',
   ];
 
   /**
@@ -44,11 +36,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   protected function setUp() {
     parent::setUp();
 
+    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
+    oe_paragraphs_media_field_storage_install();
     $this->installEntitySchema('media');
     $this->installConfig([
       'media',
       'oe_media',
       'oe_paragraphs_media',
+      'media_avportal',
+      'oe_media_avportal',
+      'oe_paragraphs_banner',
     ]);
   }
 
@@ -161,6 +158,388 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert title is no longer rendered.
     $title = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(0, $title);
+  }
+
+  /**
+   * Test 'banner' paragraph rendering.
+   */
+  public function testBanner(): void {
+    // Create a file to add to the media.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file->setPermanent();
+    $file->save();
+
+    // Create a media and add it to the paragraph.
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => 'test image',
+      'oe_media_image' => [
+        'target_id' => $file->id(),
+        'alt' => 'Alt',
+      ],
+    ]);
+    $media->save();
+    $img_entity = $media->get('oe_media_image')->first();
+    $file_uri = $img_entity->get('entity')->getTarget()->get('uri')->getString();
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_banner',
+      'oe_paragraphs_variant' => 'oe_banner_image',
+      'field_oe_title' => 'Banner',
+      'field_oe_text' => 'Description',
+      'field_oe_link' => [
+        'uri' => 'http://www.example.com/',
+        'title' => 'Example',
+      ],
+      'field_oe_media' => [
+        'target_id' => $media->id(),
+      ],
+      'field_oe_banner_type' => 'hero_center',
+    ]);
+    $paragraph->save();
+
+    // Variant - image / Modifier - hero_center.
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . (file_create_url($file_uri)) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image / Modifier - hero_left.
+    $paragraph->get('field_oe_banner_type')->setValue('hero_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image / Modifier - page_center.
+    $paragraph->get('field_oe_banner_type')->setValue('page_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered'));
+    $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image / Modifier - page_left.
+    $paragraph->get('field_oe_banner_type')->setValue('page_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image'));
+    $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image-shade / Modifier - hero_center.
+    $paragraph->get('oe_paragraphs_variant')->setValue('oe_banner_image_shade');
+    $paragraph->get('field_oe_banner_type')->setValue('hero_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image-shade / Modifier - hero_left.
+    $paragraph->get('field_oe_banner_type')->setValue('hero_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image-shade / Modifier - page_center.
+    $paragraph->get('field_oe_banner_type')->setValue('page_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered'));
+    $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - image-shade / Modifier - page_left.
+    $paragraph->get('field_oe_banner_type')->setValue('page_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade'));
+    $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . file_create_url($file_uri) . ')',
+      $image_element->attr('style')
+    );
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - default / Modifier - hero_center.
+    $paragraph->get('oe_paragraphs_variant')->setValue('default');
+    $paragraph->get('field_oe_banner_type')->setValue('hero_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered'));
+
+    // No image should be displayed on 'default' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - default / Modifier - hero_left.
+    $paragraph->get('field_oe_banner_type')->setValue('hero_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default'));
+
+    // No image should be displayed on 'default' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - default / Modifier - page_center.
+    $paragraph->get('field_oe_banner_type')->setValue('page_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered'));
+
+    // No image should be displayed on 'default' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - default / Modifier - page_left.
+    $paragraph->get('field_oe_banner_type')->setValue('page_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default'));
+
+    // No image should be displayed on 'default' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - primary / Modifier - hero_center.
+    $paragraph->get('oe_paragraphs_variant')->setValue('oe_banner_primary');
+    $paragraph->get('field_oe_banner_type')->setValue('hero_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered'));
+
+    // No image should be displayed on 'primary' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - primary / Modifier - hero_left.
+    $paragraph->get('field_oe_banner_type')->setValue('hero_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary'));
+
+    // No image should be displayed on 'primary' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - primary / Modifier - page_center.
+    $paragraph->get('field_oe_banner_type')->setValue('page_center');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered'));
+
+    // No image should be displayed on 'primary' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Variant - primary / Modifier - page_left.
+    $paragraph->get('field_oe_banner_type')->setValue('page_left');
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--primary'));
+
+    // No image should be displayed on 'primary' variant.
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
+    $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
+
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+
+    // Create a media using AV Portal image and add it to the paragraph.
+    $media = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'av_portal_photo',
+        'oe_media_avportal_photo' => 'P-038924/00-15',
+        'uid' => 0,
+        'status' => 1,
+      ]);
+
+    $media->save();
+
+    $paragraph = Paragraph::create([
+      'type' => 'oe_banner',
+      'oe_paragraphs_variant' => 'oe_banner_image',
+      'field_oe_text' => 'Description',
+      'field_oe_link' => [
+        'uri' => 'http://www.example.com/',
+        'title' => 'Example',
+      ],
+      'field_oe_media' => [
+        'target_id' => $media->id(),
+      ],
+      'field_oe_banner_type' => 'hero_center',
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    // Title classes should not be rendered if the filled is empty.
+    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title'));
+    $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
+    $this->assertCount(1, $image_element);
+    $this->assertContains(
+      'url(' . (file_create_url('avportal://P-038924/00-15.jpg')) . ')',
+      $image_element->attr('style')
+    );
   }
 
 }

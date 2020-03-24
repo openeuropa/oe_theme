@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Facts and figures' #type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{% if title is not empty %}
+  <h3 class="ecl-u-type-heading-3">
+    {{ title }}
+  </h3>
+{% endif %}
+{{ pattern('facts_figures', {
+  'items': items,
+  'view_all': view_all
+}) }}

@@ -7,17 +7,17 @@ namespace Drupal\Tests\oe_theme_helper\Unit;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Template\Loader\StringLoader;
-use Drupal\oe_theme_helper\TwigExtension\Filters;
+use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Tests for the custom Twig filters extension.
+ * Tests for the custom Twig filters and functions extension.
  *
  * @group oe_theme_helper
  *
- * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\Filters
+ * @coversDefaultClass \Drupal\oe_theme_helper\TwigExtension\TwigExtension
  */
-class TwigFiltersTest extends UnitTestCase {
+class TwigExtensionTest extends UnitTestCase {
 
   /**
    * The mocked language manager.
@@ -29,7 +29,7 @@ class TwigFiltersTest extends UnitTestCase {
   /**
    * The Twig extension being tested.
    *
-   * @var \Drupal\oe_theme_helper\TwigExtension\Filters
+   * @var \Drupal\oe_theme_helper\TwigExtension\TwigExtension
    */
   protected $extension;
 
@@ -54,7 +54,7 @@ class TwigFiltersTest extends UnitTestCase {
     $this->languageManager = $this->prophesize(LanguageManagerInterface::class);
     $native_languages = [];
     foreach ($this->getEuropeanUnionLanguageList() as $language_code => $language_names) {
-      list($language_name, $native_name) = $language_names;
+      [$language_name, $native_name] = $language_names;
       $this->languageManager->getLanguageName($language_code)->willReturn($language_name);
       $native_language = $this->prophesize(LanguageInterface::class);
       $native_language->getName()->willReturn($native_name);
@@ -63,7 +63,7 @@ class TwigFiltersTest extends UnitTestCase {
     $this->languageManager->getNativeLanguages()->willReturn($native_languages);
 
     // Instantiate the system under test.
-    $this->extension = new Filters($this->languageManager->reveal());
+    $this->extension = new TwigExtension($this->languageManager->reveal());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
@@ -243,7 +243,61 @@ class TwigFiltersTest extends UnitTestCase {
    *   names as values.
    */
   protected static function getEuropeanUnionLanguageList(): array {
-    return Filters::getEuropeanUnionLanguageList();
+    return TwigExtension::getEuropeanUnionLanguageList();
+  }
+
+  /**
+   * Tests converting an icon name to the ECL supported icons.
+   *
+   * @param string $icon_name
+   *   The icon name.
+   * @param array $expected_icon_array
+   *   The icon array to be rendered.
+   *
+   * @covers ::toEclIcon
+   * @dataProvider toEclIconProvider
+   */
+  public function testToEclIcon(string $icon_name, array $expected_icon_array) {
+    $context = ['ecl_icon_path' => '/path/to/theme/resources/icons/'];
+    // We join the resulting array from to_ecl_icon() function so that we have
+    // a visual representation of the array being returned by the function.
+    $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}", $context);
+    $this->assertEquals(implode('|', $expected_icon_array), $result);
+  }
+
+  /**
+   * Returns test cases for ::testToEclIcon().
+   *
+   * @return array[]
+   *   An icon array.
+   *
+   * @see ::testToEclIcon()
+   */
+  public function toEclIconProvider(): array {
+    return [
+      [
+        'right',
+        [
+          'name' => 'ui--rounded-arrow',
+          'transform' => 'rotate-90',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+      [
+        'close-dark',
+        [
+          'name' => 'ui--close-filled',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+      [
+        'not-supported-icon',
+        [
+          'name' => 'general--digital',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+      ],
+    ];
   }
 
 }

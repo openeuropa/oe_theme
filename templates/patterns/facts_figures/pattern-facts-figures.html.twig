@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Facts and figures pattern template.
+ */
+#}
+{% if view_all is not empty %}
+  {% set _link = {'path' : view_all.path, 'label' : view_all.label} %}
+{% endif %}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    icon: _item.icon ? to_ecl_icon(_item.icon),
+    value: _item.value,
+    title: _item.title,
+    description: _item.description,
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/fact-figures' with {
+  'items': _items,
+  "view_all":{
+    "link": _link
+  }
+} %}
