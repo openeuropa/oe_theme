@@ -1,6 +1,6 @@
-banner_hero:
-  label: "Hero banner"
-  description: "Hero banner displays a prominent message and related action. It can have an image as background."
+banner_page:
+  label: "Page banner"
+  description: "A page banner is smaller than a Hero banner."
   variants:
     default:
       label: "Default"
@@ -44,16 +44,5 @@ banner_hero:
     alignment:
       type: "text"
       label: "Alignment"
-      description: "The Hero banner can be 'center' or 'left' (aligned left)."
+      description: "The Page banner can be 'center' or 'left' (aligned left)."
       preview: "left"
-    banner_type:
-      type: "text"
-      label: "Type (deprecated)"
-      description: "The Hero Banner type, it can be one of 'default','image','image-shade','primary'. Deprecated, use the Variant instead."
-      preview:
-    centered:
-      type: "boolean"
-      label: "Centered (deprecated)"
-      description: "Define if banner should be centered. Deprecated, use the Alignment field instead."
-      preview:
-      escape: false
