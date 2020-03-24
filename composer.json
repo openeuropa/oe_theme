@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.1",
+        "php": "~7.2.0 || ~7.3.0",
         "drupal/core-recommended": "^8.7",
         "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
@@ -42,7 +42,7 @@
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_media": "dev-master",
         "openeuropa/oe_multilingual": "~1.0",
-        "openeuropa/oe_paragraphs": "~1.3.0",
+        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "dev-master",
         "openeuropa/task-runner": "^1.0.0-beta5",
@@ -91,16 +91,10 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
-            },
-            "openeuropa/oe_paragraphs": {
-                "latest-master": "https://github.com/openeuropa/oe_paragraphs/compare/1.3.0...master.diff"
             }
         }
     },
     "config": {
-        "sort-packages": true,
-        "platform": {
-            "php": "7.1.9"
-        }
+        "sort-packages": true
     }
 }

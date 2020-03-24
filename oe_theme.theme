@@ -1396,3 +1396,102 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
     ];
   }
 }
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
+  $paragraph = $variables['paragraph'];
+  $variables['limit'] = $paragraph->get('field_oe_timeline_expand')->value;
+  $variables['items'] = $paragraph->get('field_oe_timeline')->getValue();
+}
+
+/**
+ * Implements hook_preprocess_paragraph() for oe_banner paragraph.
+ */
+function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  if (!$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['title'] = $paragraph->get('field_oe_title')->value;
+  }
+
+  $variables['description'] = $paragraph->get('field_oe_text')->value;
+
+  $link = $paragraph->get('field_oe_link')->first()->getValue();
+  $variables['url'] = Url::fromUri($link['uri']);
+  $variables['label'] = $link['title'];
+
+  // The alignment field value contains the information regarding the pattern
+  // type and centering.
+  $alignment = $paragraph->get('field_oe_banner_type')->value;
+  [$banner_type, $banner_alignment] = explode('_', $alignment);
+  // The beginning of the string determines the pattern.
+  $variables['pattern'] = 'banner_' . $banner_type;
+  // The end of the string determines the position.
+  $variables['alignment'] = $banner_alignment;
+
+  $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
+  if ($variant) {
+    $variables['variant'] = str_replace('oe_banner_', '', $variant);
+  }
+  else {
+    $variables['variant'] = 'default';
+  }
+
+  if ($variables['variant'] === 'default' || $variables['variant'] === 'primary') {
+    return;
+  }
+
+  // Bail out if there is no media present.
+  if ($paragraph->get('field_oe_media')->isEmpty()) {
+    return;
+  }
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $paragraph->get('field_oe_media')->entity;
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability->addCacheableDependency($media);
+
+  $source = $media->getSource();
+  // We only support images and AV Portal photos for now.
+  if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  $field_name = $source->getConfiguration()['source_field'];
+  if ($source instanceof Image && ($file_entity = $media->get($field_name)->entity)) {
+    $uri = $file_entity->getFileUri();
+    $cacheability->addCacheableDependency($file_entity);
+  }
+  elseif ($source instanceof MediaAvPortalSourceInterface) {
+    $resource_ref = $media->get($field_name)->value;
+    $uri = 'avportal://' . $resource_ref . '.jpg';
+  }
+
+  // The uri might be empty if the source is of type Image and the file entity
+  // was deleted.
+  if (empty($uri)) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  $values = [
+    'src' => file_create_url($uri),
+    'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
+    'name' => $media->getName(),
+  ];
+  $variables['image'] = ImageValueObject::fromArray($values);
+
+  $cacheability->applyTo($variables);
+}
