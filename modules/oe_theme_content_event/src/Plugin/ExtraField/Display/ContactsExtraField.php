@@ -51,6 +51,13 @@ class ContactsExtraField extends EventExtraFieldBase {
     foreach ($entity->get('oe_event_contact')->referencedEntities() as $contact) {
       $bundle = $contact->bundle();
 
+      $access = $contact->access('view', NULL, TRUE);
+      $cacheability->addCacheableDependency($access);
+
+      if (!$access->isAllowed()) {
+        continue;
+      }
+
       // We only handle 'oe_press' or 'oe_general' bundles.
       if (!in_array($bundle, ['oe_general', 'oe_press'])) {
         continue;

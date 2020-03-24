@@ -119,7 +119,17 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       return;
     }
 
-    CacheableMetadata::createFromObject($venue)->applyTo($build);
+    $cacheability = CacheableMetadata::createFromRenderArray($build);
+
+    $access = $venue->access('view', NULL, TRUE);
+    $cacheability->addCacheableDependency($access);
+
+    if (!$access->isAllowed()) {
+      return;
+    }
+
+    $cacheability->addCacheableDependency($venue);
+    $cacheability->applyTo($build);
 
     // If address is empty only return cache metadata, so it can bubble up.
     if ($venue->get('oe_address')->isEmpty()) {
