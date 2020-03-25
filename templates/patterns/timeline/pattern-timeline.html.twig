@@ -10,7 +10,7 @@
   {% set _items = _items|merge([{
     label: _item.label,
     title: _item.title,
-    content: _item.body
+    content: '<div class="ecl-editor">' ~ _item.body|render ~ '</div>'
   }]) %}
 {% endfor %}
 
