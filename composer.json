@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": "~7.2.0 || ~7.3.0",
-        "drupal/core-recommended": "^8.7",
+        "drupal/core": "^8.7",
         "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "~2.0"
