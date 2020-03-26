@@ -7,7 +7,7 @@ Feature: Event content type.
   Scenario: When an anonymous user visits an event page the registration button and page text should change according to the current time.
     Given the following Event Content entity:
       | Title                   | My first event            |
-      | Type                    | exhibitions               |
+      | Type                    | Exhibitions               |
       | Description summary     | Event description summary |
       | Description             | Event description         |
       | Registration start date | 2020-03-01 12:30:00       |
@@ -86,7 +86,7 @@ Feature: Event content type.
     And the time is frozen at "17 February 2019 2pm"
     And the following Event Content entity:
       | Title               | Event demo page          |
-      | Type                | exhibitions              |
+      | Type                | Exhibitions              |
       | Introduction        | Event introduction text  |
       | Description summary | Description summary text |
       | Description         | Event description        |

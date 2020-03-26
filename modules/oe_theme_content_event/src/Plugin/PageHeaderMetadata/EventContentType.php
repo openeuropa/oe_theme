@@ -39,7 +39,7 @@ class EventContentType extends NodeViewRoutesBase {
       ->getOptionsProvider('value', $node);
 
     $metadata['metas'] = [
-      $provider->getPossibleOptions()[$node->get('oe_event_type')->value],
+      $provider->getPossibleOptions()[$node->get('oe_event_type')->target_id],
     ];
 
     if ($node->get('oe_summary')->isEmpty()) {
