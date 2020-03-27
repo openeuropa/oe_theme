@@ -66,7 +66,7 @@ Feature: Page header block component.
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
     And I should see "News" in the "page header meta"
-    And I should see "02 April 2019" in the "page header meta"
+    And I should see "2 April 2019" in the "page header meta"
 
   Scenario: Policy content type has custom metadata shown in the page header.
     Given "oe_policy" content:
@@ -87,7 +87,7 @@ Feature: Page header block component.
     Then I should see the text "http://www.example.org is a web page" in the "page header intro"
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
-    And I should see "02 April 2019" in the "page header meta"
+    And I should see "2 April 2019" in the "page header meta"
 
   Scenario: The page header block shows the content language switcher.
     Given the following "Spanish" translation for the "Robots are everywhere" demo page:
