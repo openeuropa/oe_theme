@@ -25,3 +25,12 @@ function oe_theme_content_publication_post_update_00001_add_publication_date_for
   $publication_date_format = DateFormat::create($date_format_values);
   $publication_date_format->save();
 }
+
+/**
+ * Update a date format for the Publication page header metadata.
+ */
+function oe_theme_content_publication_post_update_00002(array &$sandbox): void {
+  $news_date_format = DateFormat::load('oe_theme_publication_date');
+  $news_date_format->set('pattern', 'j F Y');
+  $news_date_format->save();
+}
