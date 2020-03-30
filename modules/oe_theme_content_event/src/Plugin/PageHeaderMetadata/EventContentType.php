@@ -4,7 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\PageHeaderMetadata;
 
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Page header metadata for the OpenEuropa Event content entity.
@@ -16,6 +19,46 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
  * )
  */
 class EventContentType extends NodeViewRoutesBase {
+
+  /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
+   * Creates a new NodeViewRouteBase object.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
+   *   The event dispatcher.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
+   */
+  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $event_dispatcher);
+
+    $this->entityRepository = $entity_repository;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('event_dispatcher'),
+      $container->get('entity.repository')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -32,14 +75,10 @@ class EventContentType extends NodeViewRoutesBase {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    // Use business logic from "list_default" formatter.
     $node = $this->getNode();
-    $provider = $node->get('oe_event_type')->getFieldDefinition()
-      ->getFieldStorageDefinition()
-      ->getOptionsProvider('value', $node);
-
+    $translated_value = $this->entityRepository->getTranslationFromContext($node->get('oe_event_type')->entity);
     $metadata['metas'] = [
-      $provider->getPossibleOptions()[$node->get('oe_event_type')->target_id],
+      $translated_value->label(),
     ];
 
     if ($node->get('oe_summary')->isEmpty()) {

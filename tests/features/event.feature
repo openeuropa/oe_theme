@@ -298,6 +298,7 @@ Feature: Event content type.
       | Phone number | +32477792933                                                                                 |
     And the following Event Content entity:
       | Title   | Event demo page                                              |
+      | Type    | Exhibitions                                                  |
       | Venue   | DIGIT                                                        |
       | Contact | First press contact, Second press contact, A general contact |
     When I am visiting the "Event demo page" content
@@ -330,6 +331,7 @@ Feature: Event content type.
       | Published | Yes                 |
     And the following Event Content entity:
       | Title   | Event demo page                                                |
+      | Type    | Exhibitions                                                    |
       | Venue   | Event venue                                                    |
       | Contact | First press contact, Second press contact, Third press contact |
     When I am visiting the "Event demo page" content
