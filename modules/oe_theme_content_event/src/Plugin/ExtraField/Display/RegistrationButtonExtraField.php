@@ -110,7 +110,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
         ]);
       }
       else {
-        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp());
+        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
         $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
           '@time_left' => $date_diff_formatted,
           '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
