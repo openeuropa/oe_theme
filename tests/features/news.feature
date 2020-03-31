@@ -16,7 +16,7 @@ Feature: News content type.
     When I am on "the recent content page"
     Then I should see the link "Full news title"
     And I should see the text "News teaser"
-    And I should see the text "02 April 2019"
+    And I should see the text "2 April 2019"
     But I should not see the text "Short summary"
     And I should not see the text "News body"
     And I should not see an "list item image" element
@@ -32,7 +32,7 @@ Feature: News content type.
     When I am on "the recent content page"
     Then I should see the link "Shorter title"
     And I should see the text "News teaser"
-    And I should see the text "02 April 2019"
+    And I should see the text "2 April 2019"
     But I should not see the text "Full news title"
     And I should not see the text "Short summary"
     And I should not see the text "News body"
