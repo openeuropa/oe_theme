@@ -6,8 +6,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "~7.2.0 || ~7.3.0",
-        "drupal/core-recommended": "^8.7",
+        "php": ">=7.2",
+        "drupal/core": "^8.7",
         "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
         "nesbot/carbon": "^2.29",
@@ -34,6 +34,7 @@
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
+        "guzzlehttp/guzzle": "~6.3",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.0.0-beta4",

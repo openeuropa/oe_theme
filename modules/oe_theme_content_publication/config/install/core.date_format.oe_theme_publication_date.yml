@@ -4,4 +4,4 @@ dependencies: {  }
 id: oe_theme_publication_date
 label: 'Publication date'
 locked: false
-pattern: 'd F Y'
+pattern: 'j F Y'

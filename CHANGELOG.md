@@ -1,6 +1,24 @@
 # Change Log
 
-## [2.2.0](https://github.com/openeuropa/oe_theme/tree/2.2.0) (2020-03-02)
+## [2.3.0](https://github.com/openeuropa/oe_theme/tree/2.3.0) (2020-03-30)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.2.0...2.3.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3051: Use correct day format in date shown in news meta. [\#455](https://github.com/openeuropa/oe_theme/pull/455) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2943: Update composer.json file. [\#452](https://github.com/openeuropa/oe_theme/pull/452) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-0001: Use drupal/core instead of drupal/core-recommended. [\#451](https://github.com/openeuropa/oe_theme/pull/451) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3052: Remove ecl-editor wrapper from timeline tpl. [\#449](https://github.com/openeuropa/oe_theme/pull/449) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2988: Upgrade PHP version. [\#448](https://github.com/openeuropa/oe_theme/pull/448) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3020: Style Timeline paragraph. [\#447](https://github.com/openeuropa/oe_theme/pull/447) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2604: Drupal 8 recommended project. [\#444](https://github.com/openeuropa/oe_theme/pull/444) ([upchuk](https://github.com/upchuk))
+- OPENEUROPA-3009: Update ECL version. [\#443](https://github.com/openeuropa/oe_theme/pull/443) ([sergepavle](https://github.com/sergepavle))
+- OPENEUROPA-2873: Style Facts and figures paragraph. [\#440](https://github.com/openeuropa/oe_theme/pull/440) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2840: Add Navigation links composition and pattern. [\#435](https://github.com/openeuropa/oe_theme/pull/435) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-2851: Add banner pattern and style Banner paragraph. [\#432](https://github.com/openeuropa/oe_theme/pull/432) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-2821: Implement ECL pagination behavior for component. [\#428](https://github.com/openeuropa/oe_theme/pull/428) ([kp77](https://github.com/kp77))
+
+## [2.2.0](https://github.com/openeuropa/oe_theme/tree/2.2.0) (2020-03-03)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.1.3...2.2.0)
 
 **Closed issues:**
@@ -9,6 +27,7 @@
 
 **Merged pull requests:**
 
+- Release-2.2.0: Update changelog. [\#439](https://github.com/openeuropa/oe_theme/pull/439) ([nagyad](https://github.com/nagyad))
 - OPENEUROPA-2803: Add a length field for featured items and list items. [\#438](https://github.com/openeuropa/oe_theme/pull/438) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OPENEUROPA-2871: Upgrade ecl-twig to 2.23 version. [\#434](https://github.com/openeuropa/oe_theme/pull/434) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2416: Style the "main content" view mode for document media. [\#431](https://github.com/openeuropa/oe_theme/pull/431) ([brummbar](https://github.com/brummbar))
