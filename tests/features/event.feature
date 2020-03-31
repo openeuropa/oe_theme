@@ -27,7 +27,7 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button is not active
-    And I should see "Registration will open in 1 week 5 days. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
+    And I should see "Registration will open in 1 week. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
 
     # Assert event rendering half an hour before the registration starts.
     When the time is frozen at "01 March 2020 11am"
@@ -40,7 +40,7 @@ Feature: Event content type.
     And I should not see the text "Report summary"
     And I should not see the text "Report text"
     And the registration button is not active
-    And I should see "Registration will open in 1 hour 30 minutes. You can register from 1 March 2020, 12:30, until 10 March 2020, 18:30." in the "event registration" region
+    And I should see "Registration will open today, 1 March 2020, 12:30." in the "event registration" region
 
     # Assert event rendering while the registration is ongoing.
     When the time is frozen at "05 March 2020 2pm"
@@ -54,6 +54,19 @@ Feature: Event content type.
     And I should not see the text "Report text"
     And the registration button is active
     And I should see "Book your seat, 5 days left to register, registration will end on 10 March 2020, 18:30" in the "event registration" region
+
+    # Assert event rendering while the registration is ongoing and will end today.
+    When the time is frozen at "10 March 2020 2pm"
+    And I run cron
+    And I reload the page
+    Then I should see the heading "Description"
+    And I should see the text "Event description summary"
+    And I should see the text "Event description"
+    But I should not see the heading "Report"
+    And I should not see the text "Report summary"
+    And I should not see the text "Report text"
+    And the registration button is active
+    And I should see "Book your seat, the registration will end today, 10 March 2020, 18:30" in the "event registration" region
 
     # Assert event rendering after the registration has ended.
     When the time is frozen at "29 May 2020 2am"
@@ -124,7 +137,7 @@ Feature: Event content type.
       | Registration URL        | http://example.com  |
     And I reload the page
     Then I should see the registration block
-    And I should see "Registration will open in 2 days 18 hours. You can register from 20 February 2019, 08:30, until 20 February 2019, 15:30." in the "event registration"
+    And I should see "Registration will open in 2 days. You can register from 20 February 2019, 08:30, until 20 February 2019, 15:30." in the "event registration"
     But the registration button is not active
 
     # Add related entities, such as venues and contacts and reload the page.
