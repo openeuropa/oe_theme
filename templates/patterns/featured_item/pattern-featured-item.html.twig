@@ -13,7 +13,7 @@
   {% set _description %}
     {% if description %}
       <p class="ecl-paragraph">
-        {{ description }}
+        {{ trim_textfield(description) }}
       </p>
     {% endif %}
     <a href="{{ link.href }}" class="ecl-button ecl-button--call">
@@ -35,7 +35,7 @@
 {% endif %}
 
 {% set card = {
-  'description': _description|default(description),
+  'description': _description|default(trim_textfield(description)),
   'meta': metas,
   'title': {
     'label': title,
