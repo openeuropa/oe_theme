@@ -4,8 +4,11 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Unit;
 
+use Drupal\Component\Serialization\Json;
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
@@ -297,6 +300,112 @@ class TwigExtensionTest extends UnitTestCase {
           'path' => '/path/to/theme/resources/icons/',
         ],
       ],
+    ];
+  }
+
+  /**
+   * Tests trimming of textfield.
+   *
+   * @param mixed $textfield
+   *   The string, object or render array.
+   * @param array $context
+   *   The icon array to be rendered.
+   * @param mixed $expected_result
+   *   The icon array to be rendered.
+   *
+   * @covers ::trimTextfield
+   * @dataProvider trimTextfieldProvider
+   */
+  public function testTrimTextfield($textfield, array $context, $expected_result): void {
+    $context['input_data'] = $textfield;
+    $result = $this->twig->render("{{ trim_textfield(input_data)|json_encode() }}", $context);
+    $this->assertEquals(Html::escape(Json::encode($expected_result)), $result);
+  }
+
+  /**
+   * Returns test cases for ::testTrimTextfield().
+   *
+   * @return array[]
+   *   An icon array.
+   *
+   * @see ::testToEclIcon()
+   */
+  public function trimTextfieldProvider(): array {
+    return [
+      'empty length in context with string' =>
+        [
+          'Long string 1234567890 1234567890 0987654321',
+          [],
+          'Long string 1234567890 1234567890 0987654321',
+        ],
+      'empty length in context with markup object' =>
+        [
+          Markup::create('Long string 1234567890 1234567890 0987654321'),
+          [],
+          Markup::create('Long string 1234567890 1234567890 0987654321'),
+        ],
+      'empty length in context with plaintext render array' =>
+        [
+          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
+          [],
+          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
+        ],
+      'empty length in context with processed_text render array' =>
+        [
+          [
+            '#type' => 'processed_text',
+            '#text' => 'Long string 1234567890 1234567890 0987654321',
+          ],
+          [],
+          [
+            '#type' => 'processed_text',
+            '#text' => 'Long string 1234567890 1234567890 0987654321',
+          ],
+        ],
+      'defined length in context with string' =>
+        [
+          'Long string 1234567890 1234567890 0987654321',
+          ['length' => 11],
+          'Long string...',
+        ],
+      'defined length in context with markup object' =>
+        [
+          Markup::create('Long string 1234567890 1234567890 0987654321'),
+          ['length' => 11],
+          Markup::create('Long string...'),
+        ],
+      'defined length in context with plaintext render array' =>
+        [
+          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
+          ['length' => 11],
+          ['#plain_text' => 'Long string...'],
+        ],
+      'defined length in context with processed_text render array' =>
+        [
+          [
+            '#type' => 'processed_text',
+            '#text' => 'Long string 1234567890 1234567890 0987654321',
+          ],
+          ['length' => 11],
+          [
+            '#type' => 'processed_text',
+            '#text' => 'Long string...',
+          ],
+        ],
+      'defined length in context but not supported render element' =>
+        [
+          [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#value' => 'Long string 1234567890 1234567890 0987654321',
+          ],
+          ['length' => 11],
+          [
+            '#type' => 'html_tag',
+            '#tag' => 'p',
+            '#value' => 'Long string 1234567890 1234567890 0987654321',
+          ],
+        ],
     ];
   }
 
