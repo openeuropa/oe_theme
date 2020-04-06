@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\smart_trim\Truncate\TruncateHTML;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -55,6 +57,7 @@ class TwigExtension extends \Twig_Extension {
   public function getFunctions(): array {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
+      new \Twig_SimpleFunction('trim_textfield', [$this, 'trimTextfield'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -488,6 +491,61 @@ class TwigExtension extends \Twig_Extension {
       'name' => 'general--digital',
       'path' => $path,
     ];
+  }
+
+  /**
+   * Trims the contents of a text field.
+   *
+   * The method expects to receive one of the following: a string,
+   * a render array or an object that implements MarkupInterface.
+   * It will then try to trim the associated string to a size defined when
+   * invoking the method.
+   *
+   * @param array $context
+   *   The twig context.
+   * @param string|array|object $text
+   *   The text to be trimmed.
+   *
+   * @return string|array
+   *   The trimmed text.
+   */
+  public function trimTextfield(array $context, $text) {
+    $size = $context['length'] ?? NULL;
+
+    // Return original text if length not available.
+    if ($size === NULL) {
+      return $text;
+    }
+
+    $truncate = new TruncateHTML();
+
+    if (is_string($text) || $text instanceof MarkupInterface) {
+      // If $text is a string or a Markup object, trim and return the string.
+      return $output = $truncate->truncateChars($text, $size);
+    }
+
+    if (!is_array($text)) {
+      return $text;
+    }
+
+    // If $text is an array, we handle the most common scenarios.
+    if (isset($text['#markup'])) {
+      $text['#markup'] = $truncate->truncateChars($text['#markup'], $size);
+      return $text;
+    }
+
+    if (isset($text['#plain_text'])) {
+      $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $size);
+      return $text;
+    }
+
+    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
+      $text['#text'] = $truncate->truncateChars($text['#text'], $size);
+      return $text;
+    }
+
+    // Return the unchanged $text since we don't support other scenarios.
+    return $text;
   }
 
 }
