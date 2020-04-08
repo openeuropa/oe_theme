@@ -512,7 +512,7 @@ class TwigExtension extends \Twig_Extension {
   public function trimTextfield(array $context, $text) {
     $size = $context['length'] ?? NULL;
 
-    // Return original text if length not available.
+    // Return original text if length is not available.
     if ($size === NULL) {
       return $text;
     }

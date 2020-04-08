@@ -309,9 +309,9 @@ class TwigExtensionTest extends UnitTestCase {
    * @param mixed $textfield
    *   The string, object or render array.
    * @param array $context
-   *   The icon array to be rendered.
+   *   The context array.
    * @param mixed $expected_result
-   *   The icon array to be rendered.
+   *   The expected result.
    *
    * @covers ::trimTextfield
    * @dataProvider trimTextfieldProvider
@@ -326,9 +326,9 @@ class TwigExtensionTest extends UnitTestCase {
    * Returns test cases for ::testTrimTextfield().
    *
    * @return array[]
-   *   An icon array.
+   *   An array of test cases.
    *
-   * @see ::testToEclIcon()
+   * @see ::testTrimTextfield()
    */
   public function trimTextfieldProvider(): array {
     return [
