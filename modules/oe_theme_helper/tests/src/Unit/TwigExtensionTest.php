@@ -306,19 +306,16 @@ class TwigExtensionTest extends UnitTestCase {
   /**
    * Tests trimming of textfield.
    *
-   * @param mixed $textfield
-   *   The string, object or render array.
-   * @param array $context
-   *   The context array.
+   * @param array $variables
+   *   The variables array.
    * @param mixed $expected_result
    *   The expected result.
    *
    * @covers ::trimTextfield
    * @dataProvider trimTextfieldProvider
    */
-  public function testTrimTextfield($textfield, array $context, $expected_result): void {
-    $context['input_data'] = $textfield;
-    $result = $this->twig->render("{{ trim_textfield(input_data)|json_encode() }}", $context);
+  public function testTrimTextfield(array $variables, $expected_result): void {
+    $result = $this->twig->render("{{ smart_trim(input_data, length)|json_encode() }}", $variables);
     $this->assertEquals(Html::escape(Json::encode($expected_result)), $result);
   }
 
@@ -334,29 +331,33 @@ class TwigExtensionTest extends UnitTestCase {
     return [
       'empty length in context with string' =>
         [
-          'Long string 1234567890 1234567890 0987654321',
-          [],
+          [
+            'input_data' => 'Long string 1234567890 1234567890 0987654321',
+          ],
           'Long string 1234567890 1234567890 0987654321',
         ],
       'empty length in context with markup object' =>
         [
-          Markup::create('Long string 1234567890 1234567890 0987654321'),
-          [],
+          [
+            'input_data' => Markup::create('Long string 1234567890 1234567890 0987654321'),
+          ],
           Markup::create('Long string 1234567890 1234567890 0987654321'),
         ],
       'empty length in context with plaintext render array' =>
         [
-          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
-          [],
+          [
+            'input_data' => ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
+          ],
           ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
         ],
       'empty length in context with processed_text render array' =>
         [
           [
-            '#type' => 'processed_text',
-            '#text' => 'Long string 1234567890 1234567890 0987654321',
+            'input_data' => [
+              '#type' => 'processed_text',
+              '#text' => 'Long string 1234567890 1234567890 0987654321',
+            ],
           ],
-          [],
           [
             '#type' => 'processed_text',
             '#text' => 'Long string 1234567890 1234567890 0987654321',
@@ -364,29 +365,39 @@ class TwigExtensionTest extends UnitTestCase {
         ],
       'defined length in context with string' =>
         [
-          'Long string 1234567890 1234567890 0987654321',
-          ['length' => 11],
+          [
+            'input_data' => 'Long string 1234567890 1234567890 0987654321',
+            'length' => 11,
+          ],
           'Long string...',
         ],
       'defined length in context with markup object' =>
         [
-          Markup::create('Long string 1234567890 1234567890 0987654321'),
-          ['length' => 11],
+          [
+            'input_data' => Markup::create('Long string 1234567890 1234567890 0987654321'),
+            'length' => 11,
+          ],
           Markup::create('Long string...'),
         ],
       'defined length in context with plaintext render array' =>
         [
-          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
-          ['length' => 11],
+          [
+            'input_data' => [
+              '#plain_text' => 'Long string 1234567890 1234567890 0987654321',
+            ],
+            'length' => 11,
+          ],
           ['#plain_text' => 'Long string...'],
         ],
       'defined length in context with processed_text render array' =>
         [
           [
-            '#type' => 'processed_text',
-            '#text' => 'Long string 1234567890 1234567890 0987654321',
+            'input_data' => [
+              '#type' => 'processed_text',
+              '#text' => 'Long string 1234567890 1234567890 0987654321',
+            ],
+            'length' => 11,
           ],
-          ['length' => 11],
           [
             '#type' => 'processed_text',
             '#text' => 'Long string...',
@@ -395,11 +406,13 @@ class TwigExtensionTest extends UnitTestCase {
       'defined length in context but not supported render element' =>
         [
           [
-            '#type' => 'html_tag',
-            '#tag' => 'p',
-            '#value' => 'Long string 1234567890 1234567890 0987654321',
+            'input_data' => [
+              '#type' => 'html_tag',
+              '#tag' => 'p',
+              '#value' => 'Long string 1234567890 1234567890 0987654321',
+            ],
+            'length' => 11,
           ],
-          ['length' => 11],
           [
             '#type' => 'html_tag',
             '#tag' => 'p',

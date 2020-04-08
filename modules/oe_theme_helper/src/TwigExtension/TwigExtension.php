@@ -57,7 +57,7 @@ class TwigExtension extends \Twig_Extension {
   public function getFunctions(): array {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
-      new \Twig_SimpleFunction('trim_textfield', [$this, 'trimTextfield'], ['needs_context' => TRUE]),
+      new \Twig_SimpleFunction('smart_trim', [$this, 'trimTextfield']),
     ];
   }
 
@@ -501,17 +501,15 @@ class TwigExtension extends \Twig_Extension {
    * It will then try to trim the associated string to a size defined when
    * invoking the method.
    *
-   * @param array $context
-   *   The twig context.
    * @param string|array|object $text
    *   The text to be trimmed.
+   * @param int|null $size
+   *   The length.
    *
    * @return string|array
    *   The trimmed text.
    */
-  public function trimTextfield(array $context, $text) {
-    $size = $context['length'] ?? NULL;
-
+  public function trimTextfield($text, $size) {
     // Return original text if length is not available.
     if ($size === NULL) {
       return $text;
