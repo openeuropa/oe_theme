@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_event_long_date_hour
+label: 'Event long date with hour'
+locked: false
+pattern: 'l j F Y, H:i'

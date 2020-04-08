@@ -9,7 +9,7 @@
 {% for _item in items %}
   {% set _items = _items|merge([{
     term: _item.label,
-    definition: _item.body
+    definition: _item.body|render
   }]) %}
 {% endfor %}
 

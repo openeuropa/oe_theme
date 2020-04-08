@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Default template for the 'oe_theme_helper_address_inline' address formatter.
+ *
+ * Available variables:
+ *   - address: Address object.
+ *   - address_items: Address items.
+ *   - address_delimiter: Delimiter between address items.
+ *
+ * @ingroup themeable
+ */
+#}
+<span translate="no">
+  {{ address_items|join(address_delimiter) }}
+</span>

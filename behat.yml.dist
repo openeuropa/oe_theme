@@ -6,10 +6,19 @@ default:
       contexts:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MarkupContext
+        - Drupal\Tests\oe_content\Behat\DateFieldContext
+        - Drupal\Tests\oe_media\Behat\MediaContext
         - Drupal\Tests\oe_theme\Behat\DrupalContext
         - Drupal\Tests\oe_theme\Behat\MinkContext
         - Drupal\Tests\oe_theme\Behat\OeThemeTestContext
         - Drupal\Tests\oe_theme\Behat\CleanupContext
+        - Drupal\Tests\oe_theme\Behat\EventContext
+        - Drupal\Tests\oe_theme\Behat\PreserveAnonymousPermissionsContext
+        - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
+        - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
@@ -21,6 +30,7 @@ default:
               list item: ".ecl-content-item"
               list item image: ".ecl-content-item__image__before"
               logo: ".ecl-site-header__logo-image"
+              media container: ".ecl-media-container"
               page header: ".ecl-page-header"
               priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
               search form: ".ecl-search-form"
@@ -28,6 +38,7 @@ default:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"
               ECL dropdown component: "/en/components/dropdown"
+              event creation: "/en/node/add/oe_event"
               image creation: "/en/media/add/image"
               recent content: "/en/node"
               user registration: "/user/register"
@@ -47,6 +58,9 @@ default:
       api_driver: "drupal"
       drupal:
         drupal_root: "build"
+      subcontexts:
+          paths:
+            - "%paths.base%/build/modules/contrib/datetime_testing"
       region_map:
         about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
         footer: "footer.ecl-footer"
@@ -64,5 +78,16 @@ default:
         priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
+        Social media links: "#oe-social-media-links-values"
+        Social media follow: ".ecl-social-media-follow"
+        event contacts: "#event-contacts"
+        event general contacts: "#event-contacts-general"
+        event press contacts: "#event-contacts-press"
+        event registration: "#event-registration-block"
+        event details: "#event-details"
+        event practical information: "#event-practical-information"
+    FriendsOfBehat\ServiceContainerExtension:
+      imports:
+        - 'build/modules/contrib/oe_content/tests/Behat/config/services.yml'
   formatters:
     progress: ~

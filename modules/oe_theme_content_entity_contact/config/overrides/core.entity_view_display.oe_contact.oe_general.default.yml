@@ -1,0 +1,75 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_email
+    - field.field.oe_contact.oe_general.oe_phone
+    - field.field.oe_contact.oe_general.oe_social_media
+    - oe_content_entity_contact.oe_contact_type.oe_general
+  module:
+    - address
+    - field_group
+third_party_settings:
+  field_group:
+    group_contact_information:
+      children:
+        - oe_phone
+        - oe_address
+        - oe_email
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_field_list_pattern
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: 'Contact information'
+      region: content
+id: oe_contact.oe_general.default
+targetEntityType: oe_contact
+bundle: oe_general
+mode: default
+content:
+  oe_address:
+    weight: 4
+    label: above
+    settings:
+      delimiter: ', '
+    third_party_settings: {  }
+    type: oe_theme_helper_address_inline
+    region: content
+  oe_email:
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  oe_phone:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_social_media:
+    type: oe_theme_helper_social_media_links_formatter
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      rel: nofollow
+      target: _blank
+      title: 'Social media'
+      variant: horizontal
+      url_only: false
+      url_plain: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  name: true
+  status: true
