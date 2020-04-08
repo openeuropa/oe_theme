@@ -1505,3 +1505,10 @@ function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $varia
     $suggestions[] = 'page__' . $content_type;
   }
 }
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function oe_theme_preprocess_page(array &$variables): void {
+  $variables['main_attributes'] = new Attribute(['class' => ['ecl-u-pv-2xl ecl-u-pv-md-3xl']]);
+}
