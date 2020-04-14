@@ -13,7 +13,7 @@
   {% set _description %}
     {% if description %}
       <p class="ecl-paragraph">
-        {{ smart_trim(description, length) }}
+        {{ description|render|smart_trim(length) }}
       </p>
     {% endif %}
     <a href="{{ link.href }}" class="ecl-button ecl-button--call">
@@ -35,7 +35,7 @@
 {% endif %}
 
 {% set card = {
-  'description': _description|default(smart_trim(description, length)),
+  'description': _description|default(description|render|smart_trim(length)),
   'meta': metas,
   'title': {
     'label': title,

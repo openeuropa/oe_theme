@@ -7,6 +7,7 @@ namespace Drupal\oe_theme_helper\TwigExtension;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
@@ -48,6 +49,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
+      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim']),
     ];
   }
 
@@ -57,7 +59,6 @@ class TwigExtension extends \Twig_Extension {
   public function getFunctions(): array {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
-      new \Twig_SimpleFunction('smart_trim', [$this, 'trimTextfield']),
     ];
   }
 
@@ -496,50 +497,30 @@ class TwigExtension extends \Twig_Extension {
   /**
    * Trims the contents of a text field.
    *
-   * The method expects to receive one of the following: a string,
-   * a render array or an object that implements MarkupInterface.
-   * It will then try to trim the associated string to a size defined when
-   * invoking the method.
+   * The method expects to receive a string (already rendered).
+   * Inside a template we can use '|render' for passing to filter
+   * only string like in example: {{ long_text|render|smart_trim(10) }}.
    *
-   * @param string|array|object $text
+   * @param mixed $text
    *   The text to be trimmed.
-   * @param int|null $size
-   *   The length.
+   * @param int $limit
+   *   Amount of text to allow.
    *
    * @return string|array
    *   The trimmed text.
    */
-  public function trimTextfield($text, $size) {
+  public function smartTrim($text, $limit = NULL) {
     // Return original text if length is not available.
-    if ($size === NULL) {
+    if ($limit === NULL) {
       return $text;
     }
 
     $truncate = new TruncateHTML();
 
     if (is_string($text) || $text instanceof MarkupInterface) {
-      // If $text is a string or a Markup object, trim and return the string.
-      return $output = $truncate->truncateChars($text, $size);
-    }
-
-    if (!is_array($text)) {
-      return $text;
-    }
-
-    // If $text is an array, we handle the most common scenarios.
-    if (isset($text['#markup'])) {
-      $text['#markup'] = $truncate->truncateChars($text['#markup'], $size);
-      return $text;
-    }
-
-    if (isset($text['#plain_text'])) {
-      $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $size);
-      return $text;
-    }
-
-    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
-      $text['#text'] = $truncate->truncateChars($text['#text'], $size);
-      return $text;
+      // If $text is a string or a Markup object, trim
+      // and return the Markup object.
+      return Markup::create($truncate->truncateChars($text, $limit));
     }
 
     // Return the unchanged $text since we don't support other scenarios.

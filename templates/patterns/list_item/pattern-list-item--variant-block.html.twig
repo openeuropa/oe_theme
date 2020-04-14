@@ -11,6 +11,6 @@
       path: url,
       type: "standalone"
     },
-    description: smart_trim(detail, length)
+    description: detail|render|smart_trim(length)
   }
 } only %}

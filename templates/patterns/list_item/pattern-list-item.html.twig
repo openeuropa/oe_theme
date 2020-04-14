@@ -9,6 +9,6 @@
     label: title,
     path: url
   },
-  description: smart_trim(detail, length),
+  description: detail|render|smart_trim(length),
   meta: meta
 } only %}

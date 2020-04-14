@@ -16,7 +16,7 @@
     month_fullname: date.month_fullname,
     year: date.year
   },
-  description: smart_trim(detail, length),
+  description: detail|render|smart_trim(length),
   meta: meta,
   variant: variant
 } only %}
