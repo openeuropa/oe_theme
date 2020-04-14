@@ -38,3 +38,11 @@ services:
       - { name: event_subscriber }
   oe_theme_helper.time_based_cache_tag_generator:
     class: Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGenerator
+  oe_theme_helper.pattern_generator:
+    class: Drupal\oe_theme_helper\PatternGenerator\PatternGenerator
+    arguments: ['@entity_type.manager']
+  oe_theme_helper.paragraph_pattern_generation_subscriber:
+    class: Drupal\oe_theme_helper\EventSubscriber\ParagraphPatternGenerationSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

@@ -78,3 +78,12 @@ function oe_theme_helper_cron() {
   $tags = $generator->generateInvalidatingTags($datetime);
   Cache::invalidateTags($tags);
 }
+
+function oe_theme_helper_entity_type_alter(array &$entity_types) {
+  /** @var \Drupal\Core\Entity\EntityTypeInterface $paragraph */
+  $paragraph = $entity_types['paragraph'];
+  $paragraph->setHandlerClass('oe_theme_pattern_generator', \Drupal\oe_theme_helper\PatternGenerator\ParagraphPatternGenerator::class);
+  /** @var \Drupal\Core\Entity\EntityTypeInterface $node */
+  $node = $entity_types['node'];
+  $node->setHandlerClass('oe_theme_pattern_generator', \Drupal\oe_theme_helper\PatternGenerator\NodePatternGenerator::class);
+}
