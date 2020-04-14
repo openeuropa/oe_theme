@@ -34,6 +34,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * {@inheritdoc}
    */
   protected function setUp() {
+    $drupal_version = (float) substr(\Drupal::VERSION, 0, 3);
+    if ($drupal_version < 8.8) {
+      // Fix entity_reference_autocomplete match_limit schema errors.
+      $this->strictConfigSchema = FALSE;
+    }
     parent::setUp();
 
     $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
