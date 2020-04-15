@@ -4,8 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
@@ -509,6 +511,9 @@ class TwigExtension extends \Twig_Extension {
    */
   public function smartTrim($text, $limit) {
     $truncate = new TruncateHTML();
+    if ($text instanceof MarkupInterface) {
+      return Markup::create($truncate->truncateChars($text, $limit));
+    }
     return $truncate->truncateChars($text, $limit);
   }
 
