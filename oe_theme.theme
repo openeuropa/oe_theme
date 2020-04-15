@@ -1423,6 +1423,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   $variables['url'] = Url::fromUri($link['uri']);
   $variables['label'] = $link['title'];
 
+  if ($paragraph->get('field_oe_banner_full_width')->value === 'yes') {
+    $variables['full_width'] = TRUE;
+  }
+
   // The alignment field value contains the information regarding the pattern
   // type and centering.
   $alignment = $paragraph->get('field_oe_banner_type')->value;
