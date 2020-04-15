@@ -1495,3 +1495,21 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   $cacheability->applyTo($variables);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_banner_hero(array &$variables): void {
+  if ($variables['full_width'] === TRUE) {
+    $variables['div_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
+  if ($variables['full_width'] === TRUE) {
+    $variables['div_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
+  }
+}

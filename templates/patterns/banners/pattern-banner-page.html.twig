@@ -12,20 +12,22 @@
   {% set _variant = 'image-shade' %}
 {% endif %}
 
-{% include '@ecl-twig/page-banner' with {
-  title: title,
-  baseline: description,
-  link: {
-    link: _link,
-    icon: {
-      path: ecl_icon_path,
-      type: "ui",
-      name: "corner-arrow",
-      transform: "rotate-90",
-      size: "xs",
-    }
-  },
-  image: image.src,
-  type: _variant,
-  centered: alignment == 'center'
-} only %}
+<div{{ div_attributes }}>
+  {% include '@ecl-twig/page-banner' with {
+    title: title,
+    baseline: description,
+    link: {
+      link: _link,
+      icon: {
+        path: ecl_icon_path,
+        type: "ui",
+        name: "corner-arrow",
+        transform: "rotate-90",
+        size: "xs",
+      }
+    },
+    image: image.src,
+    type: _variant,
+    centered: alignment == 'center'
+  } only %}
+</div>

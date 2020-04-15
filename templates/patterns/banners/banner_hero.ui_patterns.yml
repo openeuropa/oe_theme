@@ -57,3 +57,9 @@ banner_hero:
       description: "Define if banner should be centered. Deprecated, use the Alignment field instead."
       preview:
       escape: false
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Define if the banner should be extended full width."
+      preview: false
+      escape: false

@@ -154,12 +154,14 @@
       label: "Subscribe"
       description: "Banner description"
       centered: true
+      full_width: true
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -176,12 +178,14 @@
       label: "Subscribe"
       description: "Banner description"
       centered: false
+      full_width: true
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--primary': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -197,11 +201,13 @@
       description: "Banner description"
       centered: false
       alignment: "center"
+      full_width: false
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'div.ecl-page-banner--full-width': 0
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': "Backwards compatibility test"
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': "Banner description"
@@ -218,12 +224,14 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
+      full_width: false
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner--full-width': 0
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -240,6 +248,7 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
+      full_width: false
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered': 0
@@ -247,6 +256,7 @@
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-page-banner--full-width': 0
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -263,12 +273,14 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
+      full_width: true
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -285,6 +297,7 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
+      full_width: true
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered': 0
@@ -292,6 +305,7 @@
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
       'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
@@ -308,12 +322,14 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
+      full_width: true
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
@@ -330,6 +346,7 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
+      full_width: true
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 0
@@ -337,6 +354,7 @@
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner--full-width': 1
     equals:
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
@@ -353,12 +371,14 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
+      full_width: false
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-page-banner--full-width': 0
     equals:
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
@@ -375,6 +395,7 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
+      full_width: false
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered': 0
@@ -382,6 +403,7 @@
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-page-banner--full-width': 0
     equals:
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
       'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
