@@ -313,13 +313,7 @@ class TwigExtensionTest extends UnitTestCase {
    * @dataProvider smartTrimProvider
    */
   public function testSmartTrim(array $variables, $expected_result): void {
-    if (isset($variables['length'])) {
-      $actual = $this->extension->smartTrim($variables['input_data'], $variables['length']);
-    }
-    else {
-      $actual = $this->extension->smartTrim($variables['input_data']);
-    }
-
+    $actual = $this->extension->smartTrim($variables['input_data'], $variables['length']);
     $this->assertEquals($expected_result, $actual);
   }
 
@@ -337,6 +331,7 @@ class TwigExtensionTest extends UnitTestCase {
         [
           [
             'input_data' => 'Long string 1234567890 1234567890 0987654321',
+            'length' => NULL,
           ],
           'Long string 1234567890 1234567890 0987654321',
         ],
@@ -344,6 +339,7 @@ class TwigExtensionTest extends UnitTestCase {
         [
           [
             'input_data' => Markup::create('Long string 1234567890 1234567890 0987654321'),
+            'length' => NULL,
           ],
           Markup::create('Long string 1234567890 1234567890 0987654321'),
         ],
@@ -351,6 +347,7 @@ class TwigExtensionTest extends UnitTestCase {
         [
           [
             'input_data' => ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
+            'length' => NULL,
           ],
           ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
         ],
@@ -361,6 +358,7 @@ class TwigExtensionTest extends UnitTestCase {
               '#type' => 'processed_text',
               '#text' => 'Long string 1234567890 1234567890 0987654321',
             ],
+            'length' => NULL,
           ],
           [
             '#type' => 'processed_text',
@@ -382,30 +380,6 @@ class TwigExtensionTest extends UnitTestCase {
             'length' => 11,
           ],
           Markup::create('Long string...'),
-        ],
-      'defined length with plaintext render array' =>
-        [
-          [
-            'input_data' => [
-              '#plain_text' => 'Long string 1234567890 1234567890 0987654321',
-            ],
-            'length' => 11,
-          ],
-          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
-        ],
-      'defined length with processed_text render array' =>
-        [
-          [
-            'input_data' => [
-              '#type' => 'processed_text',
-              '#text' => 'Long string 1234567890 1234567890 0987654321',
-            ],
-            'length' => 11,
-          ],
-          [
-            '#type' => 'processed_text',
-            '#text' => 'Long string 1234567890 1234567890 0987654321',
-          ],
         ],
     ];
   }

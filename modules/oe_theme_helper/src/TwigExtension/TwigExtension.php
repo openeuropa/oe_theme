@@ -4,10 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
-use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
@@ -509,22 +507,9 @@ class TwigExtension extends \Twig_Extension {
    * @return string|array
    *   The trimmed text.
    */
-  public function smartTrim($text, $limit = NULL) {
-    // Return original text if length is not available.
-    if ($limit === NULL) {
-      return $text;
-    }
-
+  public function smartTrim($text, $limit) {
     $truncate = new TruncateHTML();
-
-    if (is_string($text) || $text instanceof MarkupInterface) {
-      // If $text is a string or a Markup object, trim
-      // and return the Markup object.
-      return Markup::create($truncate->truncateChars($text, $limit));
-    }
-
-    // Return the unchanged $text since we don't support other scenarios.
-    return $text;
+    return $truncate->truncateChars($text, $limit);
   }
 
 }
