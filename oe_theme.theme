@@ -1502,10 +1502,12 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
  */
 function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   $node = \Drupal::routeMatch()->getParameter('node');
+  if (!$node) {
+    return;
+  }
   if (is_string($node)) {
     $node = Node::load($node);
   }
-
   $content_type = $node->bundle();
   $suggestions[] = 'page__' . $content_type;
 }
