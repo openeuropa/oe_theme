@@ -1423,7 +1423,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   $variables['url'] = Url::fromUri($link['uri']);
   $variables['label'] = $link['title'];
 
-  if ($paragraph->get('field_oe_banner_full_width')->value === 'yes') {
+  if ($paragraph->get('field_oe_banner_full_width')->value === '1') {
     $variables['full_width'] = TRUE;
   }
 

@@ -49,6 +49,6 @@ banner_page:
     full_width:
       type: "boolean"
       label: "Full width"
-      description: "Define if the banner should be extended full width."
+      description: "Define if the banner should be extended to full width."
       preview: false
       escape: false
