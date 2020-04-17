@@ -256,7 +256,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Variant - image / Modifier - page_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
-    $paragraph->get('field_oe_banner_full_width')->setValue('yes');
+    $paragraph->get('field_oe_banner_full_width')->setValue('1');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
@@ -317,7 +317,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Variant - image-shade / Modifier - page_center / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_center');
-    $paragraph->get('field_oe_banner_full_width')->setValue('no');
+    $paragraph->get('field_oe_banner_full_width')->setValue('0');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
@@ -378,7 +378,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Variant - default / Modifier - hero_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
-    $paragraph->get('field_oe_banner_full_width')->setValue('yes');
+    $paragraph->get('field_oe_banner_full_width')->setValue('1');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
@@ -503,7 +503,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Variant - primary / Modifier - page_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
-    $paragraph->get('field_oe_banner_full_width')->setValue('no');
+    $paragraph->get('field_oe_banner_full_width')->setValue('0');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
