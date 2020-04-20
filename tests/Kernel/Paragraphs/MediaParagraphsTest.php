@@ -551,7 +551,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Title classes should not be rendered if the field is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title'));
     // Link classes should not be rendered if the field is empty.
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content a.ecl-link'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
