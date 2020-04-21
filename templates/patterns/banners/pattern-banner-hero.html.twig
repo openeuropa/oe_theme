@@ -6,9 +6,8 @@
 #}
 
 {% if url is not empty and label is not empty %}
-  {% set _link = {'path' : url, 'label' : label, icon_position: 'after'} -%}
-  {% set _icon = {'path' : ecl_icon_path, 'type' : "ui", 'name' : "corner-arrow", 'transform' : "rotate-90", 'size' : "xs"} %}
-  {% set link_ = {'link' : _link, icon: _icon} %}
+  {% set _link = {'link' : {'path' : url, 'label' : label, icon_position: 'after'}} -%}
+  {% set _link = _link|merge({'icon' : {'path' : ecl_icon_path, 'type' : "ui", 'name' : "corner-arrow", 'transform' : "rotate-90", 'size' : "xs"}}) %}
 {% endif %}
 
 {% set _centered = alignment == 'center' %}
@@ -30,9 +29,10 @@
   {% include '@ecl-twig/hero-banner' with {
     title: title,
     description: description,
-    link: link_,
+    link: _link,
     image: image.src,
     type: _variant,
     centered: _centered
   } only %}
+
 </div>
