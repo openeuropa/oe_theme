@@ -11,9 +11,7 @@
       'path': url,
       'label': label,
       'icon_position': 'after'
-    }
-  } -%}
-  {% set _link = _link|merge({
+    },
     'icon': {
       'path': ecl_icon_path,
       'type': "ui",
@@ -21,7 +19,7 @@
       'transform': "rotate-90",
       'size': "xs"
     }
-  }) %}
+  } -%}
 {% endif %}
 
 {% set _centered = alignment == 'center' %}
