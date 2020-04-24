@@ -10,13 +10,17 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media\Plugin\media\Source\OEmbed;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -977,15 +981,40 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   // paragraph template.
   $cacheability->addCacheableDependency($media);
 
+  // Get the media source.
   $source = $media->getSource();
-  // We only support images and avportal photos for now.
-  if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
+
+  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed) {
+    // Load information about the media and the display.
+    $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
+    $source_field = $source->getSourceFieldDefinition($media_type);
+    $display_options = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content')->getComponent($source_field->getName());
+    // If its AvPortal video, render it and pass it as an embeddable media.
+    if ($source instanceof MediaAvPortalVideoSource) {
+      $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+      $cacheability->applyTo($variables);
+      return;
+    }
+
+    // If it is an OEmbed resource, render it and pass it as embeddable data
+    // only if it is of type video or html.
+    if ($source instanceof OEmbed) {
+      $oembed_type = $source->getMetadata($media, 'type');
+      if (in_array($oembed_type, ['video', 'html'])) {
+        $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+        $cacheability->applyTo($variables);
+        return;
+      }
+    }
+  }
+
+  // If its an image media, render it and assign it to the image variable.
+  if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+    $thumbnail = $media->get('thumbnail')->first();
+    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
     $cacheability->applyTo($variables);
     return;
   }
-
-  $thumbnail = $media->get('thumbnail')->first();
-  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
 
   $cacheability->applyTo($variables);
 }

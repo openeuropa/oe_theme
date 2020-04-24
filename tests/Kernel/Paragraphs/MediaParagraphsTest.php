@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
+use Drupal\Core\Url;
 use Drupal\media\Entity\Media;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
@@ -113,7 +114,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // The image in the figure element has the source and alt defined in the
     // referenced media.
     $image = $figure->filter('.ecl-media-container__media');
-    $this->assertContains('/example_1.jpeg', $image->attr('src'));
+    $this->assertContains('/styles/oe_theme_medium_no_crop/public/example_1.jpeg', $image->attr('src'));
     $this->assertContains('Alt', $image->attr('alt'));
     $caption = $figure->filter('.ecl-media-container__caption');
     $this->assertContains('Caption', $caption->text());
@@ -158,6 +159,28 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert title is no longer rendered.
     $title = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(0, $title);
+
+    // Create a remote video and add it to the paragraph.
+    $media = Media::create([
+      'bundle' => 'remote_video',
+      'oe_media_oembed_video' => [
+        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert remote video is rendered properly.
+    $video_iframe = $crawler->filter('div.ecl-media-container__media--ratio-16-9 iframe');
+    $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
+      'query' => [
+        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ])->toString();
+    $this->assertContains($partial_iframe_url, $video_iframe->attr('src'));
   }
 
   /**

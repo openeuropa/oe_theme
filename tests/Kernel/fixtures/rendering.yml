@@ -1891,6 +1891,7 @@
       'div.ecl-row': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -1910,6 +1911,7 @@
       'div.ecl-row': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
     equals:
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
@@ -1927,6 +1929,7 @@
       'figure.ecl-media-container': 0
       'div.ecl-col-md-6.ecl-editor': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -1944,6 +1947,7 @@
       'div.ecl-row': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
@@ -1959,9 +1963,27 @@
       'div.ecl-row': 0
       'figure.ecl-media-container': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': icons_with_text
