@@ -1419,9 +1419,11 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   $variables['description'] = $paragraph->get('field_oe_text')->value;
 
-  $link = $paragraph->get('field_oe_link')->first()->getValue();
-  $variables['url'] = Url::fromUri($link['uri']);
-  $variables['label'] = $link['title'];
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $link = $paragraph->get('field_oe_link')->first()->getValue();
+    $variables['url'] = Url::fromUri($link['uri']);
+    $variables['label'] = $link['title'];
+  }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
 
