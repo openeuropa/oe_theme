@@ -1232,14 +1232,14 @@ function oe_theme_preprocess_table(array &$variables): void {
  * Implements template_preprocess_block__oe_theme_main_page_content().
  */
 function oe_theme_preprocess_block__oe_theme_main_page_content(&$variables) {
-  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+  $variables['attributes']['class'][] = 'ecl-u-mb-2xl';
 }
 
 /**
  * Implements template_preprocess_block__oe_theme_tabs().
  */
 function oe_theme_preprocess_block__oe_theme_tabs(&$variables) {
-  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+  $variables['attributes']['class'][] = 'ecl-u-mb-2xl';
 }
 
 /**
@@ -1494,4 +1494,28 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   $variables['image'] = ImageValueObject::fromArray($values);
 
   $cacheability->applyTo($variables);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $route = \Drupal::routeMatch();
+  if ($route->getRouteName() === 'entity.node.canonical') {
+    $suggestions[] = 'page__node__' . $route->getParameter('node')->bundle();
+  }
+  if ($route->getRouteName() === 'entity.node.preview') {
+    $suggestions[] = 'page__node__' . $route->getParameter('node_preview')->bundle();
+    $suggestions[] = 'page__node__preview__' . $route->getParameter('node_preview')->bundle();
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function oe_theme_preprocess_page(array &$variables): void {
+  $variables['main_attributes'] = new Attribute([
+    'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
+    'id' => ['main-content'],
+  ]);
 }
