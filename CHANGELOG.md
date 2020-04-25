@@ -1,5 +1,12 @@
 # Change Log
 
+## [2.3.1](https://github.com/openeuropa/oe_theme/tree/2.3.1) (2020-04-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.3.0...2.3.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3152: Add facts and figures to EU family. [\#467](https://github.com/openeuropa/oe_theme/pull/467) ([ademarco](https://github.com/ademarco))
+
 ## [2.3.0](https://github.com/openeuropa/oe_theme/tree/2.3.0) (2020-03-30)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.2.0...2.3.0)
 
