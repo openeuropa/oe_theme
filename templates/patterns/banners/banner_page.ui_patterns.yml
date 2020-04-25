@@ -46,3 +46,9 @@ banner_page:
       label: "Alignment"
       description: "The Page banner can be 'center' or 'left' (aligned left)."
       preview: "left"
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Define if the banner should be extended to full width."
+      preview: false
+      escape: false

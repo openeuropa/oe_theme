@@ -44,7 +44,7 @@
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_media": "^1.4",
         "openeuropa/oe_multilingual": "~1.0",
-        "openeuropa/oe_paragraphs": "^1.4",
+        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "dev-master",
         "openeuropa/task-runner": "^1.0.0-beta5",
