@@ -539,10 +539,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_banner',
       'oe_paragraphs_variant' => 'oe_banner_image',
       'field_oe_text' => 'Description',
-      'field_oe_link' => [
-        'uri' => 'http://www.example.com/',
-        'title' => 'Example',
-      ],
       'field_oe_media' => [
         'target_id' => $media->id(),
       ],
@@ -552,8 +548,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    // Title classes should not be rendered if the filled is empty.
+    // Title classes should not be rendered if the field is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title'));
+    // Link classes should not be rendered if the field is empty.
+    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content a.ecl-link'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
