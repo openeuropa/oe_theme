@@ -117,13 +117,13 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
     if (empty($this->configuration['component_library'])) {
       return TRUE;
     }
-    $theme = $this->themeManager->getActiveTheme()->getName();
+    $theme_name = $this->themeManager->getActiveTheme()->getName();
 
-    if (empty($theme)) {
+    if (empty($theme_name)) {
       return;
     }
 
-    $component_library = $this->configFactory->get($theme . '.settings')->get('component_library');
+    $component_library = $this->configFactory->get($theme_name . '.settings')->get('component_library');
     return $component_library === $this->configuration['component_library'];
   }
 
@@ -146,13 +146,13 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    $theme = $this->themeManager->getActiveTheme()->getName();
+    $theme_name = $this->themeManager->getActiveTheme()->getName();
 
-    if (empty($theme)) {
+    if (empty($theme_name)) {
       return parent::getCacheTags();
     }
 
-    return Cache::mergeTags(['config:' . $theme . '.settings'], parent::getCacheTags());
+    return Cache::mergeTags(['config:' . $theme_name . '.settings'], parent::getCacheTags());
   }
 
 }

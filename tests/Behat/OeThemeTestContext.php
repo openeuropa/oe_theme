@@ -305,9 +305,9 @@ class OeThemeTestContext extends RawDrupalContext {
       'European Union' => 'eu',
     ];
 
-    $theme = \Drupal::theme()->getActiveTheme()->getName();
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
 
-    \Drupal::configFactory()->getEditable($theme . '.settings')
+    \Drupal::configFactory()->getEditable($theme_name . '.settings')
       ->set('component_library', $component_library_name[$component_library])->save();
 
     // Clears the static cache of DatabaseCacheTagsChecksum.
