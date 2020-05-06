@@ -1,5 +1,5 @@
 oe_theme_subtheme_test.settings:
-  type: theme_settings
+  type: oe_theme.settings
   label: 'OpenEuropa Theme subtheme test settings'
   mapping:
     component_library:
