@@ -1,7 +1,3 @@
 oe_theme_subtheme_test.settings:
   type: oe_theme.settings
   label: 'OpenEuropa Theme subtheme test settings'
-  mapping:
-    component_library:
-      type: string
-      label: 'ECL component library, either EC or EU'
