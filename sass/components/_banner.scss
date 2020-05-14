@@ -5,4 +5,22 @@
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+
+  // Fix page and hero banner text block left alignment.
+  @include ecl-media-breakpoint-up('lg') {
+    .ecl-page-banner__container {
+      width: $ecl-container-max-width-lg;
+    }
+    .ecl-hero-banner__container {
+      width: $ecl-container-max-width-lg;
+    }
+  }
+  @include ecl-media-breakpoint-up('xl') {
+    .ecl-page-banner__container {
+      width: $ecl-container-max-width-xl;
+    }
+    .ecl-hero-banner__container {
+      width: $ecl-container-max-width-xl;
+    }
+  }
 }
