@@ -9,3 +9,4 @@ dependencies:
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - oe_theme:oe_theme_content_entity_venue
+  - oe_time_caching:oe_time_caching
