@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Cache\Cache;
 
 /**
  * Implements hook_page_attachments().
@@ -63,19 +62,4 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
-}
-
-/**
- * Implements hook_cron().
- */
-function oe_theme_helper_cron() {
-  /** @var \Drupal\Component\Datetime\TimeInterface $time */
-  $time = \Drupal::service('datetime.time');
-  /** @var \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $generator */
-  $generator = \Drupal::service('oe_theme_helper.time_based_cache_tag_generator');
-
-  // Invalidate list of time-dependent tags until the current time.
-  $datetime = (new \DateTime())->setTimestamp($time->getCurrentTime());
-  $tags = $generator->generateInvalidatingTags($datetime);
-  Cache::invalidateTags($tags);
 }

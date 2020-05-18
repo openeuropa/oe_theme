@@ -7,7 +7,7 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
+use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -33,7 +33,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
   /**
    * Time based cache tag generator service.
    *
-   * @var \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface
+   * @var \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface
    */
   protected $cacheTagGenerator;
 
@@ -50,7 +50,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
    *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   Time service.
-   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   * @param \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
    *   Time based cache tag generator service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
@@ -70,7 +70,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('datetime.time'),
-      $container->get('oe_theme_helper.time_based_cache_tag_generator')
+      $container->get('oe_time_caching.time_based_cache_tag_generator')
     );
   }
 

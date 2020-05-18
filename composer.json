@@ -10,8 +10,8 @@
         "drupal/core": "^8.7",
         "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
-        "nesbot/carbon": "^2.29",
-        "openeuropa/ecl-twig-loader": "~2.0"
+        "openeuropa/ecl-twig-loader": "~2.0",
+        "openeuropa/oe_time_caching": "~1.0.0"
     },
     "require-dev": {
         "composer/installers": "~1.5",
