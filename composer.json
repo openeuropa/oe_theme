@@ -10,7 +10,8 @@
         "drupal/core": "^8.7",
         "drupal/smart_trim": "^1.2",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "~2.0"
+        "openeuropa/ecl-twig-loader": "~2.0",
+        "openeuropa/oe_time_caching": "~1.0.0"
     },
     "require-dev": {
         "composer/installers": "~1.5",
@@ -49,8 +50,7 @@
         "openeuropa/oe_webtools": "dev-master",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4",
-        "openeuropa/oe_time_caching": "dev-OPENEUROPA-3212"
+        "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
@@ -80,10 +80,6 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
-        },
-        "openeuropa/oe_time_caching": {
-            "type": "git",
-            "url": "https://github.com/openeuropa/oe_time_caching"
         }
     },
     "extra": {
