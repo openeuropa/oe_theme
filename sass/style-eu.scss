@@ -1,5 +1,10 @@
 @import '@ecl/eu-theme-default/exports/all';
 @import '@ecl/eu-theme-default/exports/colors';
 @import '@ecl/eu-component-form-help-block/eu-component-form-help-block';
+// Facts and Figure component is missing from EU family so we add it here.
+// @todo remove this after the above will be fixed upstream.
+@import '@ecl/ec-component-fact-figures/ec-component-fact-figures';
+@import '@ecl/ec-component-media-container/ec-component-media-container';
 @import "./components/form";
 @import "./components/toolbar";
+@import "./components/banner";

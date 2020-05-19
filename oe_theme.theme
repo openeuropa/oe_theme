@@ -9,13 +9,17 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media\Plugin\media\Source\OEmbed;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -975,15 +979,43 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   // paragraph template.
   $cacheability->addCacheableDependency($media);
 
+  // Get the media source.
   $source = $media->getSource();
-  // We only support images and avportal photos for now.
-  if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
+
+  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed) {
+    // Load information about the media and the display.
+    $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
+    $cacheability->addCacheableDependency($media_type);
+    $source_field = $source->getSourceFieldDefinition($media_type);
+    $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
+    $cacheability->addCacheableDependency($display);
+    $display_options = $display->getComponent($source_field->getName());
+    // If its an AvPortal video, render it and pass it as an embeddable media.
+    if ($source instanceof MediaAvPortalVideoSource) {
+      $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+      $cacheability->applyTo($variables);
+      return;
+    }
+
+    // If it is an OEmbed resource, render it and pass it as embeddable data
+    // only if it is of type video or html.
+    if ($source instanceof OEmbed) {
+      $oembed_type = $source->getMetadata($media, 'type');
+      if (in_array($oembed_type, ['video', 'html'])) {
+        $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+        $cacheability->applyTo($variables);
+        return;
+      }
+    }
+  }
+
+  // If its an image media, render it and assign it to the image variable.
+  if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+    $thumbnail = $media->get('thumbnail')->first();
+    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
     $cacheability->applyTo($variables);
     return;
   }
-
-  $thumbnail = $media->get('thumbnail')->first();
-  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
 
   $cacheability->applyTo($variables);
 }
@@ -1230,14 +1262,14 @@ function oe_theme_preprocess_table(array &$variables): void {
  * Implements template_preprocess_block__oe_theme_main_page_content().
  */
 function oe_theme_preprocess_block__oe_theme_main_page_content(&$variables) {
-  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+  $variables['attributes']['class'][] = 'ecl-u-mb-2xl';
 }
 
 /**
  * Implements template_preprocess_block__oe_theme_tabs().
  */
 function oe_theme_preprocess_block__oe_theme_tabs(&$variables) {
-  $variables['attributes']['class'][] = 'ecl-u-mv-l';
+  $variables['attributes']['class'][] = 'ecl-u-mb-2xl';
 }
 
 /**
@@ -1347,9 +1379,13 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   $variables['description'] = $paragraph->get('field_oe_text')->value;
 
-  $link = $paragraph->get('field_oe_link')->first()->getValue();
-  $variables['url'] = Url::fromUri($link['uri']);
-  $variables['label'] = $link['title'];
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $link = $paragraph->get('field_oe_link')->first();
+    $variables['url'] = $link->getUrl();
+    $variables['label'] = $link->get('title')->getValue();;
+  }
+
+  $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
 
   // The alignment field value contains the information regarding the pattern
   // type and centering.
@@ -1422,4 +1458,46 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   $variables['image'] = ImageValueObject::fromArray($values);
 
   $cacheability->applyTo($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_banner_hero(array &$variables): void {
+  if ($variables['full_width'] === TRUE) {
+    $variables['container_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
+  $route = \Drupal::routeMatch();
+  if ($route->getRouteName() === 'entity.node.canonical') {
+    $suggestions[] = 'page__node__' . $route->getParameter('node')->bundle();
+  }
+  if ($route->getRouteName() === 'entity.node.preview') {
+    $suggestions[] = 'page__node__' . $route->getParameter('node_preview')->bundle();
+    $suggestions[] = 'page__node__preview__' . $route->getParameter('node_preview')->bundle();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
+  if ($variables['full_width'] === TRUE) {
+    $variables['container_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function oe_theme_preprocess_page(array &$variables): void {
+  $variables['main_attributes'] = new Attribute([
+    'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
+    'id' => ['main-content'],
+  ]);
 }

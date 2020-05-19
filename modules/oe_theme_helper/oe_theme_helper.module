@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Cache\Cache;
 
 /**
  * Implements hook_page_attachments().
@@ -32,7 +31,8 @@ function oe_theme_helper_page_attachments(array &$page) {
   // Load ECL component library assets for oe_theme and its subthemes.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
-    $page['#attached']['library'][] = 'oe_theme/component_library_' . theme_get_setting('component_library', 'oe_theme');
+    $component_library = theme_get_setting('component_library') ?? 'ec';
+    $page['#attached']['library'][] = 'oe_theme/component_library_' . $component_library;
   }
 }
 
@@ -62,19 +62,4 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
       ],
     ],
   ];
-}
-
-/**
- * Implements hook_cron().
- */
-function oe_theme_helper_cron() {
-  /** @var \Drupal\Component\Datetime\TimeInterface $time */
-  $time = \Drupal::service('datetime.time');
-  /** @var \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $generator */
-  $generator = \Drupal::service('oe_theme_helper.time_based_cache_tag_generator');
-
-  // Invalidate list of time-dependent tags until the current time.
-  $datetime = (new \DateTime())->setTimestamp($time->getCurrentTime());
-  $tags = $generator->generateInvalidatingTags($datetime);
-  Cache::invalidateTags($tags);
 }

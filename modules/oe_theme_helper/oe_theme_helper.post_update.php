@@ -174,3 +174,10 @@ function oe_theme_helper_post_update_20007(array &$sandbox) {
 function oe_theme_helper_post_update_20008(array &$sandbox) {
   \Drupal::service('module_installer')->install(['smart_trim']);
 }
+
+/**
+ * Install new theme dependency oe_time_caching module.
+ */
+function oe_theme_helper_post_update_20009(array &$sandbox) {
+  \Drupal::service('module_installer')->install(['oe_time_caching']);
+}

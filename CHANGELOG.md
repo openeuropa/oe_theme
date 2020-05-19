@@ -1,5 +1,40 @@
 # Change Log
 
+## [2.5.0](https://github.com/openeuropa/oe_theme/tree/2.5.0) (2020-05-13)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.1...2.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3184: Fix banner alignment. [\#478](https://github.com/openeuropa/oe_theme/pull/478) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-3142: Prepare for sub theme capabilities. [\#474](https://github.com/openeuropa/oe_theme/pull/474) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3090: Update package.json ecl version to the latest release. [\#464](https://github.com/openeuropa/oe_theme/pull/464) ([22Alexandra](https://github.com/22Alexandra))
+
+## [2.4.1](https://github.com/openeuropa/oe_theme/tree/2.4.1) (2020-04-30)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.0...2.4.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3054: Add media container styling to EU library. [\#475](https://github.com/openeuropa/oe_theme/pull/475) ([brummbar](https://github.com/brummbar))
+
+## [2.4.0](https://github.com/openeuropa/oe_theme/tree/2.4.0) (2020-04-29)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.3.1...2.4.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3138: Refactor text with feature media to use videos. [\#469](https://github.com/openeuropa/oe_theme/pull/469) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Merge hotfix branch Release 2.3.x back into 2.x [\#468](https://github.com/openeuropa/oe_theme/pull/468) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-3091: Adapt banner preprocess for optional link. [\#465](https://github.com/openeuropa/oe_theme/pull/465) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3096: Update banner paragraph and patterns to support full width. [\#463](https://github.com/openeuropa/oe_theme/pull/463) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3095: Adapt theme to support full width elements. [\#459](https://github.com/openeuropa/oe_theme/pull/459) ([22Alexandra](https://github.com/22Alexandra))
+
+## [2.3.1](https://github.com/openeuropa/oe_theme/tree/2.3.1) (2020-04-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.3.0...2.3.1)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3152: Add facts and figures to EU family. [\#467](https://github.com/openeuropa/oe_theme/pull/467) ([ademarco](https://github.com/ademarco))
+
 ## [2.3.0](https://github.com/openeuropa/oe_theme/tree/2.3.0) (2020-03-30)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.2.0...2.3.0)
 

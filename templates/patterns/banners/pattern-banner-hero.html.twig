@@ -5,7 +5,22 @@
  */
 #}
 
-{% set _link = {'path' : url, 'label' : label, icon_position: 'after'} -%}
+{% if url is not empty and label is not empty %}
+  {% set _link = {
+    'link': {
+      'path': url,
+      'label': label,
+      'icon_position': 'after'
+    },
+    'icon': {
+      'path': ecl_icon_path,
+      'type': "ui",
+      'name': "corner-arrow",
+      'transform': "rotate-90",
+      'size': "xs"
+    }
+  } -%}
+{% endif %}
 
 {% set _centered = alignment == 'center' %}
 {% if alignment is null and centered is not empty %}
@@ -22,20 +37,14 @@
   {% set _variant = 'image-shade' %}
 {% endif %}
 
-{% include '@ecl-twig/hero-banner' with {
-  title: title,
-  description: description,
-  link: {
+<div{{ container_attributes }}>
+  {% include '@ecl-twig/hero-banner' with {
+    title: title,
+    description: description,
     link: _link,
-    icon: {
-      path: ecl_icon_path,
-      type: "ui",
-      name: "corner-arrow",
-      transform: "rotate-90",
-      size: "xs",
-    }
-  },
-  image: image.src,
-  type: _variant,
-  centered: _centered
-} only %}
+    image: image.src,
+    type: _variant,
+    centered: _centered
+  } only %}
+
+</div>
