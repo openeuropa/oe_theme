@@ -74,7 +74,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalLogin($user);
 
       // Visit theme administration page.
-      $this->drupalGet('/admin/appearance/settings/oe_theme');
+      $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 
       // Assert configuration select is properly rendered.
       $assert_session->selectExists('Component library');
@@ -105,7 +105,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
 
       // Visit theme administration page.
-      $this->drupalGet('/admin/appearance/settings/oe_theme');
+      $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 
       // Select EC component library and save configuration.
       $page->selectFieldOption('Component library', 'European Commission');

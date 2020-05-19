@@ -1,0 +1,11 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-radio/ecl-radio-button.html.twig
++++ b/node_modules/@ecl-twig/ec-component-radio/ecl-radio-button.html.twig
+@@ -35,6 +35,7 @@
+ {% set _label_css_class = 'ecl-radio__label' %}
+ {% set _helper_css_class = 'ecl-radio__help' %}
+ {% set _box_css_class = 'ecl-radio__box' %}
++{% set _extra_attributes = '' %}
+ 
+ {# Internal logic - Process properties #}
+ 

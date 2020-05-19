@@ -10,7 +10,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
-use Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface;
+use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,7 +47,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
    *   The entity type manager.
    * @param \Drupal\Component\Datetime\TimeInterface $time
    *   The time service.
-   * @param \Drupal\oe_theme_helper\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   * @param \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
    *   Time based cache tag generator service.
    * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
    *   The date formatter.
@@ -67,7 +67,7 @@ class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
       $plugin_definition,
       $container->get('entity_type.manager'),
       $container->get('datetime.time'),
-      $container->get('oe_theme_helper.time_based_cache_tag_generator'),
+      $container->get('oe_time_caching.time_based_cache_tag_generator'),
       $container->get('date.formatter')
     );
   }

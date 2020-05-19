@@ -1,4 +1,13 @@
-# Changelog
+# Change Log
+
+## [2.5.0](https://github.com/openeuropa/oe_theme/tree/2.5.0) (2020-05-13)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.1...2.5.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3184: Fix banner alignment. [\#478](https://github.com/openeuropa/oe_theme/pull/478) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-3142: Prepare for sub theme capabilities. [\#474](https://github.com/openeuropa/oe_theme/pull/474) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3090: Update package.json ecl version to the latest release. [\#464](https://github.com/openeuropa/oe_theme/pull/464) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [2.4.2](https://github.com/openeuropa/oe_theme/tree/2.4.2) (2020-05-14)
 

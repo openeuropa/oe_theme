@@ -9,6 +9,7 @@ use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Theme\ThemeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -32,6 +33,13 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
   protected $configFactory;
 
   /**
+   * The theme manager.
+   *
+   * @var \Drupal\Core\Theme\ThemeManagerInterface
+   */
+  protected $themeManager;
+
+  /**
    * Constructs a CurrentComponentLibraryCondition condition plugin.
    *
    * @param array $configuration
@@ -42,10 +50,13 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    *   The plugin implementation definition.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The configuration factory service.
+   * @param \Drupal\Core\Theme\ThemeManagerInterface $theme_manager
+   *   The theme manager.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, ConfigFactoryInterface $config_factory, ThemeManagerInterface $theme_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->configFactory = $config_factory;
+    $this->themeManager = $theme_manager;
   }
 
   /**
@@ -56,7 +67,8 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('config.factory')
+      $container->get('config.factory'),
+      $container->get('theme.manager')
     );
   }
 
@@ -105,8 +117,9 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
     if (empty($this->configuration['component_library'])) {
       return TRUE;
     }
+    $theme_name = $this->themeManager->getActiveTheme()->getName();
 
-    $component_library = $this->configFactory->get('oe_theme.settings')->get('component_library');
+    $component_library = $this->configFactory->get($theme_name . '.settings')->get('component_library');
     return $component_library === $this->configuration['component_library'];
   }
 
@@ -129,7 +142,9 @@ class CurrentComponentLibraryCondition extends ConditionPluginBase implements Co
    * {@inheritdoc}
    */
   public function getCacheTags() {
-    return Cache::mergeTags(['config:oe_theme.settings'], parent::getCacheTags());
+    $theme_name = $this->themeManager->getActiveTheme()->getName();
+
+    return Cache::mergeTags(['config:' . $theme_name . '.settings'], parent::getCacheTags());
   }
 
 }
