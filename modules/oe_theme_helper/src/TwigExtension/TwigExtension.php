@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
-use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
+use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -49,7 +49,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
-      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim']),
+      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
     ];
   }
 
@@ -497,24 +497,22 @@ class TwigExtension extends \Twig_Extension {
   /**
    * Trims the contents of a text field.
    *
-   * The method expects to receive a string (already rendered).
-   * Inside a template we can use '|render' for passing to filter
-   * only string like in example: {{ long_text|render|smart_trim(10) }}.
-   *
-   * @param mixed $text
-   *   The text to be trimmed.
+   * @param \Twig_Environment $env
+   *   A Twig_Environment instance.
+   * @param mixed $arg
+   *   String, Object or Render Array.
    * @param int $limit
    *   Amount of text to allow.
    *
-   * @return string|array
-   *   The trimmed text.
+   * @return \Drupal\Component\Render\MarkupInterface|string
+   *   The trimmed output.
    */
-  public function smartTrim($text, $limit) {
+  public function smartTrim(\Twig_Environment $env, $arg, $limit) {
+    /** @var \Drupal\Core\Template\TwigExtension $extension */
+    $extension = $env->getExtension(CoreTwigExtension::class);
+    $output = $extension->renderVar($arg);
     $truncate = new TruncateHTML();
-    if ($text instanceof MarkupInterface) {
-      return Markup::create($truncate->truncateChars($text, $limit));
-    }
-    return $truncate->truncateChars($text, $limit);
+    return Markup::create($truncate->truncateChars($output, $limit));
   }
 
 }
