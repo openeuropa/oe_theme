@@ -1675,6 +1675,17 @@
 - array:
     '#type': pattern
     '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description:
+        '#markup': '<div>Example description</div>'
+      length: 8
+  assertions:
+    equals:
+      'div.ecl-card__description': '<div>Example...</div>'
+- array:
+    '#type': pattern
+    '#id': featured_item
     '#variant': "extended"
     '#fields':
       title: "Example title"
