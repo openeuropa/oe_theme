@@ -41,6 +41,18 @@ class ListItemPatternRenderingTest extends AbstractKernelTestBase {
    */
   public function dataProvider(): array {
     return [
+      'Markup passed as a string' => [
+        'fields' => [
+          'title' => 'Title',
+          'length' => 5,
+          'detail' => '<script>Foo</script>',
+        ],
+        'assertions' => [
+          'equals' => [
+            '.ecl-content-item__description' => '&lt;script&gt;Foo&lt;/script&gt;',
+          ],
+        ],
+      ],
       'Markup passed via a render array' => [
         'fields' => [
           'title' => 'Title',
@@ -55,7 +67,7 @@ class ListItemPatternRenderingTest extends AbstractKernelTestBase {
           ],
         ],
       ],
-      'Markup passed via a Makrup object' => [
+      'Markup passed via a Markup object' => [
         'fields' => [
           'title' => 'Title',
           'length' => 5,

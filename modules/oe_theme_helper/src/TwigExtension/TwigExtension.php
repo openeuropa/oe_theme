@@ -4,13 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\TwigExtension;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
-use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -49,7 +49,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
-      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
+      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim']),
     ];
   }
 
@@ -497,22 +497,49 @@ class TwigExtension extends \Twig_Extension {
   /**
    * Trims the contents of a text field.
    *
-   * @param \Twig_Environment $env
-   *   A Twig_Environment instance.
-   * @param mixed $arg
+   * @param mixed $text
    *   String, Object or Render Array.
    * @param int $limit
    *   Amount of text to allow.
    *
-   * @return \Drupal\Component\Render\MarkupInterface|string
+   * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim(\Twig_Environment $env, $arg, $limit) {
-    /** @var \Drupal\Core\Template\TwigExtension $extension */
-    $extension = $env->getExtension(CoreTwigExtension::class);
-    $output = $extension->renderVar($arg);
+  public function smartTrim($text, $limit) {
     $truncate = new TruncateHTML();
-    return Markup::create($truncate->truncateChars($output, $limit));
+
+    // If $text is a Markup object, trim it and return the object.
+    if ($text instanceof MarkupInterface) {
+      return Markup::create($truncate->truncateChars($text, $limit));
+    }
+
+    // If $text is a string, trim it and return the string.
+    if (is_string($text)) {
+      return $truncate->truncateChars($text, $limit);
+    }
+
+    if (!is_array($text)) {
+      return $text;
+    }
+
+    // If $text is an array, we handle the most common scenarios.
+    if (isset($text['#markup'])) {
+      $text['#markup'] = $truncate->truncateChars($text['#markup'], $limit);
+      return $text;
+    }
+
+    if (isset($text['#plain_text'])) {
+      $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $limit);
+      return $text;
+    }
+
+    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
+      $text['#text'] = $truncate->truncateChars($text['#text'], $limit);
+      return $text;
+    }
+
+    // Return the unchanged $text since we don't support other scenarios.
+    return $text;
   }
 
 }
