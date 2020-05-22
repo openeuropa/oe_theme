@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
+use Drupal\Core\GeneratedLink;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Render\RenderContext;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
@@ -19,10 +21,12 @@ class TwigExtensionTest extends AbstractKernelTestBase {
    *   Twig variables.
    * @param array $assertions
    *   Test assertions.
+   * @param array $metadata
+   *   Expected bubbled render metadata, if any.
    *
    * @dataProvider smartTrimFilterDataProvider
    */
-  public function testSmartTrimFilter(array $variables, array $assertions): void {
+  public function testSmartTrimFilter(array $variables, array $assertions, array $metadata = []): void {
     $elements = [
       '#type' => 'inline_template',
       '#template' => '{{ content|smart_trim(length) }}',
@@ -32,8 +36,22 @@ class TwigExtensionTest extends AbstractKernelTestBase {
       ],
     ];
 
-    $html = $this->renderRoot($elements);
-    $this->assertRendering($html, $assertions);
+    $context = new RenderContext();
+    $renderer = $this->container->get('renderer');
+    $output = $renderer->executeInRenderContext($context, function () use (&$elements, $renderer) {
+      return (string) $renderer->render($elements);
+    });
+
+    if ($metadata) {
+      /** @var \Drupal\Core\Render\BubbleableMetadata $actual_metadata */
+      $actual_metadata = $context->pop();
+      $this->assertEqual($actual_metadata->getAttachments(), $metadata['attachments']);
+      $this->assertEqual($actual_metadata->getCacheContexts(), $metadata['contexts']);
+      $this->assertEqual($actual_metadata->getCacheTags(), $metadata['tags']);
+      $this->assertEqual($actual_metadata->getCacheMaxAge(), $metadata['max_age']);
+    }
+
+    $this->assertRendering($output, $assertions);
   }
 
   /**
@@ -53,6 +71,27 @@ class TwigExtensionTest extends AbstractKernelTestBase {
           'contains' => [
             'This is a very long text...',
           ],
+        ],
+      ],
+      'Trim a generated link with libraries, cache tags and contexts' => [
+        'variables' => [
+          'length' => 10,
+          'content' => (new GeneratedLink())
+            ->setGeneratedLink('<a href="http://example.com">This is a very long link</a>')
+            ->addCacheTags(['foo'])
+            ->addCacheContexts(['bar'])
+            ->addAttachments(['library' => ['system/base']]),
+        ],
+        'assertions' => [
+          'contains' => [
+            '<a href="http://example.com">This is a</a>...',
+          ],
+        ],
+        'metadata' => [
+          'attachments' => ['library' => ['system/base']],
+          'contexts' => ['bar'],
+          'tags' => ['foo'],
+          'max_age' => -1,
         ],
       ],
       'Do not trim a string if length is NULL' => [

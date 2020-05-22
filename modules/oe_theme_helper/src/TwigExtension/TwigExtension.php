@@ -5,9 +5,14 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\TwigExtension;
 
 use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\AttachmentsInterface;
+use Drupal\Core\Render\BubbleableMetadata;
 use Drupal\Core\Render\Markup;
+use Drupal\Core\Render\RenderableInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
@@ -29,13 +34,23 @@ class TwigExtension extends \Twig_Extension {
   protected $languageManager;
 
   /**
+   * The renderer.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
+
+  /**
    * Constructs a new TwigExtension object.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   The language manager.
+   * @param \Drupal\Core\Render\RendererInterface $renderer
+   *   The renderer service.
    */
-  public function __construct(LanguageManagerInterface $languageManager) {
+  public function __construct(LanguageManagerInterface $languageManager, RendererInterface $renderer) {
     $this->languageManager = $languageManager;
+    $this->renderer = $renderer;
   }
 
   /**
@@ -509,6 +524,10 @@ class TwigExtension extends \Twig_Extension {
    *   The trimmed output.
    */
   public function smartTrim(\Twig_Environment $env, $input, $limit) {
+    // Bubbles Twig template argument's cacheability & attachment metadata.
+    $this->bubbleArgMetadata($input);
+
+    // Render $input, so we can truncate its output.
     $truncate = new TruncateHTML();
 
     // If $input is a Markup object, trim it and return it as such.
@@ -516,9 +535,7 @@ class TwigExtension extends \Twig_Extension {
       return Markup::create($truncate->truncateChars((string) $input, $limit));
     }
 
-    // Render $input, so we can truncate its output.
-    $extension = $env->getExtension(CoreTwigExtension::class);
-    $output = $extension->renderVar($input);
+    $output = $env->getExtension(CoreTwigExtension::class)->renderVar($input);
 
     // If rendered output is a Markup object, trim it and return it as such.
     if ($output instanceof MarkupInterface) {
@@ -532,6 +549,33 @@ class TwigExtension extends \Twig_Extension {
 
     // Just return input if we didn't fall in any of the cases above.
     return $input;
+  }
+
+  /**
+   * Bubbles Twig template argument's cacheability & attachment metadata.
+   *
+   * For example: a generated link or generated URL object is passed as a Twig
+   * template argument, and its bubbleable metadata must be bubbled.
+   *
+   * @param mixed $arg
+   *   A Twig template argument that is about to be printed.
+   *
+   * @see \Drupal\Core\Template\TwigExtension::bubbleArgMetadata()
+   */
+  protected function bubbleArgMetadata($arg) {
+    // If it's a renderable, then it'll be up to the generated render array it
+    // returns to contain the necessary cacheability & attachment metadata. If
+    // it doesn't implement CacheableDependencyInterface or AttachmentsInterface
+    // then there is nothing to do here.
+    if ($arg instanceof RenderableInterface || !($arg instanceof CacheableDependencyInterface || $arg instanceof AttachmentsInterface)) {
+      return;
+    }
+
+    $arg_bubbleable = [];
+    BubbleableMetadata::createFromObject($arg)
+      ->applyTo($arg_bubbleable);
+
+    $this->renderer->render($arg_bubbleable);
   }
 
 }
