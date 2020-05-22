@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_theme_helper\Unit;
 
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
-use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
@@ -298,89 +297,6 @@ class TwigExtensionTest extends UnitTestCase {
           'path' => '/path/to/theme/resources/icons/',
         ],
       ],
-    ];
-  }
-
-  /**
-   * Tests trimming of textfield.
-   *
-   * @param array $variables
-   *   The variables array.
-   * @param mixed $expected_result
-   *   The expected result.
-   *
-   * @covers ::smartTrim
-   * @dataProvider smartTrimProvider
-   */
-  public function testSmartTrim(array $variables, $expected_result): void {
-    $actual = $this->extension->smartTrim($variables['input_data'], $variables['length']);
-    $this->assertEquals($expected_result, $actual);
-  }
-
-  /**
-   * Returns test cases for ::testSmartTrim().
-   *
-   * @return array[]
-   *   An array of test cases.
-   *
-   * @see ::testSmartTrim()
-   */
-  public function smartTrimProvider(): array {
-    return [
-      'empty length with string' =>
-        [
-          [
-            'input_data' => 'Long string 1234567890 1234567890 0987654321',
-            'length' => NULL,
-          ],
-          'Long string 1234567890 1234567890 0987654321',
-        ],
-      'empty length with markup object' =>
-        [
-          [
-            'input_data' => Markup::create('Long string 1234567890 1234567890 0987654321'),
-            'length' => NULL,
-          ],
-          Markup::create('Long string 1234567890 1234567890 0987654321'),
-        ],
-      'empty length with plaintext render array' =>
-        [
-          [
-            'input_data' => ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
-            'length' => NULL,
-          ],
-          ['#plain_text' => 'Long string 1234567890 1234567890 0987654321'],
-        ],
-      'empty length with processed_text render array' =>
-        [
-          [
-            'input_data' => [
-              '#type' => 'processed_text',
-              '#text' => 'Long string 1234567890 1234567890 0987654321',
-            ],
-            'length' => NULL,
-          ],
-          [
-            '#type' => 'processed_text',
-            '#text' => 'Long string 1234567890 1234567890 0987654321',
-          ],
-        ],
-      'defined length with string' =>
-        [
-          [
-            'input_data' => 'Long string 1234567890 1234567890 0987654321',
-            'length' => 11,
-          ],
-          'Long string...',
-        ],
-      'defined length with markup object' =>
-        [
-          [
-            'input_data' => Markup::create('Long string 1234567890 1234567890 0987654321'),
-            'length' => 11,
-          ],
-          Markup::create('Long string...'),
-        ],
     ];
   }
 

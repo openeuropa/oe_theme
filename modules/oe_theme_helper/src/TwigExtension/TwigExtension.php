@@ -11,6 +11,7 @@ use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
+use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -49,7 +50,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
-      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim']),
+      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
     ];
   }
 
@@ -495,51 +496,42 @@ class TwigExtension extends \Twig_Extension {
   }
 
   /**
-   * Trims the contents of a text field.
+   * Trim given input using smart_trim module heuristics.
    *
-   * @param mixed $text
-   *   String, Object or Render Array.
+   * @param \Twig_Environment $env
+   *   Current Twig environment.
+   * @param mixed $input
+   *   Input to be trimmed, it can be a string, an object or a render array.
    * @param int $limit
    *   Amount of text to allow.
    *
    * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim($text, $limit) {
+  public function smartTrim(\Twig_Environment $env, $input, $limit) {
     $truncate = new TruncateHTML();
 
-    // If $text is a Markup object, trim it and return the object.
-    if ($text instanceof MarkupInterface) {
-      return Markup::create($truncate->truncateChars($text, $limit));
+    // If $input is a Markup object, trim it and return it as such.
+    if ($input instanceof MarkupInterface) {
+      return Markup::create($truncate->truncateChars((string) $input, $limit));
     }
 
-    // If $text is a string, trim it and return the string.
-    if (is_string($text)) {
-      return $truncate->truncateChars($text, $limit);
+    // Render $input, so we can truncate its output.
+    $extension = $env->getExtension(CoreTwigExtension::class);
+    $output = $extension->renderVar($input);
+
+    // If rendered output is a Markup object, trim it and return it as such.
+    if ($output instanceof MarkupInterface) {
+      return Markup::create($truncate->truncateChars((string) $output, $limit));
     }
 
-    if (!is_array($text)) {
-      return $text;
+    // If rendered output is a scalar, trim it and return it as a string.
+    if (is_scalar($output)) {
+      return $truncate->truncateChars((string) $output, $limit);
     }
 
-    // If $text is an array, we handle the most common scenarios.
-    if (isset($text['#markup'])) {
-      $text['#markup'] = $truncate->truncateChars($text['#markup'], $limit);
-      return $text;
-    }
-
-    if (isset($text['#plain_text'])) {
-      $text['#plain_text'] = $truncate->truncateChars($text['#plain_text'], $limit);
-      return $text;
-    }
-
-    if (isset($text['#type']) && $text['#type'] == 'processed_text') {
-      $text['#text'] = $truncate->truncateChars($text['#text'], $limit);
-      return $text;
-    }
-
-    // Return the unchanged $text since we don't support other scenarios.
-    return $text;
+    // Just return input if we didn't fall in any of the cases above.
+    return $input;
   }
 
 }

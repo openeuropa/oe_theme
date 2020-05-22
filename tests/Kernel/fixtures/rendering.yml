@@ -1678,6 +1678,21 @@
     '#variant': "default"
     '#fields':
       description:
+        '#type': pattern
+        '#id': blockquote
+        '#fields':
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
+          author: 'John Doe'
+      length: 25
+  assertions:
+    equals:
+      'div.ecl-card__description': '<blockquote class="ecl-blockquote"><p class="ecl-blockquote__body">Lorem ipsum dolor sit...</p></blockquote>'
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description:
         '#markup': '<div>Example description</div>'
       length: 8
   assertions:
