@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme_helper\Unit;
 
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
+use Drupal\Core\Render\Renderer;
 use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\Tests\UnitTestCase;
@@ -25,6 +26,13 @@ class TwigExtensionTest extends UnitTestCase {
    * @var \Prophecy\Prophecy\ProphecyInterface|\Drupal\Core\Language\LanguageManagerInterface
    */
   protected $languageManager;
+
+  /**
+   * The mocked renderer.
+   *
+   * @var \Prophecy\Prophecy\ProphecyInterface|\Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
 
   /**
    * The Twig extension being tested.
@@ -62,8 +70,11 @@ class TwigExtensionTest extends UnitTestCase {
     }
     $this->languageManager->getNativeLanguages()->willReturn($native_languages);
 
+    // Create Renderer service mock.
+    $this->renderer = $this->prophesize(Renderer::class);
+
     // Instantiate the system under test.
-    $this->extension = new TwigExtension($this->languageManager->reveal());
+    $this->extension = new TwigExtension($this->languageManager->reveal(), $this->renderer->reveal());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
