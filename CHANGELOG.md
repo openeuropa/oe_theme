@@ -1,7 +1,20 @@
 # Change Log
 
+## [2.5.1](https://github.com/openeuropa/oe_theme/tree/2.5.1) (2020-05-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.5.0...2.5.1)
+
+**Closed issues:**
+
+- Responsive interface for a mobile – ECL1-1 and ECL-2 [\#433](https://github.com/openeuropa/oe_theme/issues/433)
+
+**Merged pull requests:**
+
+- OPENEUROPA-2892: Add margin-top to ecl-file class. [\#487](https://github.com/openeuropa/oe_theme/pull/487) ([22Alexandra](https://github.com/22Alexandra))
+- Merge release branch 2.4.x in 2.x [\#486](https://github.com/openeuropa/oe_theme/pull/486) ([ademarco](https://github.com/ademarco))
+- OPENEUROPA-3212: Replace caching service with new component. [\#483](https://github.com/openeuropa/oe_theme/pull/483) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [2.5.0](https://github.com/openeuropa/oe_theme/tree/2.5.0) (2020-05-13)
-[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.1...2.5.0)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.2...2.5.0)
 
 **Merged pull requests:**
 
@@ -10,7 +23,6 @@
 - OPENEUROPA-3090: Update package.json ecl version to the latest release. [\#464](https://github.com/openeuropa/oe_theme/pull/464) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [2.4.2](https://github.com/openeuropa/oe_theme/tree/2.4.2) (2020-05-14)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.4.1...2.4.2)
 
 **Merged pull requests:**
