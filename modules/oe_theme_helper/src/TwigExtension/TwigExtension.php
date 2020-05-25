@@ -526,11 +526,9 @@ class TwigExtension extends \Twig_Extension {
   public function smartTrim(\Twig_Environment $env, $input, $limit) {
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
-
-    // Render $input, so we can truncate its output.
     $truncate = new TruncateHTML();
 
-    // If $input is a Markup object, trim it and return it as such.
+    // If input is a Markup object, trim it and return it as such.
     if ($input instanceof MarkupInterface) {
       return Markup::create($truncate->truncateChars((string) $input, $limit));
     }
