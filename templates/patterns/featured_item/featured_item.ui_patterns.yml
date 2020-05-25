@@ -20,12 +20,12 @@ featured_item:
       type: "text"
       label: "Description"
       description: "Description of the featured item."
-      preview: "Transparently designing and evaluating evidence-based EU legislation, backed by citizens views."
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quid est igitur, inquit, quod requiras? Sed quod proximum fuit non vidit. Aperiendum est igitur, quid sit voluptas; Contemnit enim disserendi elegantiam, confuse loquitur."
     length:
       type: numeric
       label: "Max length"
       description: "Used to trim the length of the Description field (optional)."
-      preview: 60
+      preview: 150
       escape: false
     metas:
       type: "array"
