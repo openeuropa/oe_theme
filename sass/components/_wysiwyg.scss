@@ -1,0 +1,5 @@
+.ecl-editor {
+  .ecl-file + .ecl-file {
+    margin-top: $ecl-spacing-xs;
+  }
+}
