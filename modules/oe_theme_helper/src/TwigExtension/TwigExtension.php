@@ -163,7 +163,7 @@ class TwigExtension extends \Twig_Extension {
     $variant_mapping = [
       'default' => 'default',
       'ongoing' => 'ongoing',
-      'cancelled' => 'canceled',
+      'cancelled' => 'cancelled',
       'past' => 'past',
     ];
 
