@@ -1064,6 +1064,27 @@ function oe_theme_preprocess_pattern_list_item__variant_date__preview(array &$va
 /**
  * Implements hook_preprocess_HOOK().
  */
+function oe_theme_preprocess_pattern_list_item__variant_date_cancelled__preview(array &$variables): void {
+  $variables['date'] = DateValueObject::fromArray($variables['date']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_list_item__variant_date_ongoing__preview(array &$variables): void {
+  $variables['date'] = DateValueObject::fromArray($variables['date']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_list_item__variant_date_past__preview(array &$variables): void {
+  $variables['date'] = DateValueObject::fromArray($variables['date']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function oe_theme_preprocess_pattern_date_block__preview(array &$variables): void {
   $variables['date'] = DateValueObject::fromArray($variables['date']);
 }
