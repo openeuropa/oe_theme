@@ -718,7 +718,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "&lt;div&gt;This is the detail. It...&lt;/div&gt;"
+      'article.ecl-content-item div.ecl-content-item__description': '&lt;div&gt;This is the detail...'
 - array:
     '#type': pattern
     '#id': list_item
@@ -742,7 +742,7 @@
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "<p>&lt;div&gt;This is the detail. It...&lt;/div&gt;</p>"
+      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1672,6 +1672,32 @@
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description': "Example..."
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description:
+        '#type': pattern
+        '#id': blockquote
+        '#fields':
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
+          author: 'John Doe'
+      length: 25
+  assertions:
+    equals:
+      'div.ecl-card__description': '<blockquote class="ecl-blockquote"><p class="ecl-blockquote__body">Lorem ipsum dolor sit...</p></blockquote>'
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description:
+        '#markup': '<div>Example description</div>'
+      length: 8
+  assertions:
+    equals:
+      'div.ecl-card__description': '<div>Example...</div>'
 - array:
     '#type': pattern
     '#id': featured_item

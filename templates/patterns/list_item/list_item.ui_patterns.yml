@@ -38,12 +38,12 @@ list_item:
       type: "text"
       label: "Detail"
       description: "Standfirst for the link item."
-      preview: "Dolore duis elit in id voluptate nisi commodo quis."
+      preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ratio quidem vestra sic cogit. Respondeat totidem verbis. Praeclarae mortes sunt imperatoriae; Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Quae similitudo in genere etiam humano apparet."
     length:
       type: numeric
       label: "Max length"
       description: "Used to trim the length of the Detail field (optional)."
-      preview: 25
+      preview: 250
       escape: false
     meta:
       type: "array"

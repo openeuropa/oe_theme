@@ -28,7 +28,7 @@ services:
     parent: default_plugin_manager
   oe_theme_helper.twig_extension.twig_extension:
     class: Drupal\oe_theme_helper\TwigExtension\TwigExtension
-    arguments: ['@language_manager']
+    arguments: ['@language_manager', '@renderer']
     tags:
     - { name: twig.extension }
   oe_theme_helper.node_metadata_event_subscriber:
