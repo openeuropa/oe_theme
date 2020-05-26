@@ -858,6 +858,48 @@
 - array:
     '#type': pattern
     '#id': list_item
+    '#variant': "date_cancelled"
+    '#fields':
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+  assertions:
+    count:
+      'time.ecl-date-block.ecl-date-block--canceled': 1
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date_ongoing"
+    '#fields':
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+  assertions:
+    count:
+      'time.ecl-date-block.ecl-date-block--ongoing': 1
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date_past"
+    '#fields':
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+  assertions:
+    count:
+      'time.ecl-date-block.ecl-date-block--past': 1
+- array:
+    '#type': pattern
+    '#id': list_item
     '#variant': "navigation"
     '#fields':
       title: "Item title"
