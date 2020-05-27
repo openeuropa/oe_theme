@@ -34,6 +34,14 @@
   {% endset %}
 {% endif %}
 
+{% set _footer_items = [] %}
+{% for item in footer_items %}
+  {% set _footer_items = _footer_items|merge([{
+    'label': item.text,
+    'icon': to_ecl_icon(item.icon),
+  }]) %}
+{% endfor %}
+
 {% set card = {
   'description': _description|default(description|smart_trim(length)),
   'meta': metas,
@@ -42,6 +50,7 @@
     'path': link.href,
     'type': "standalone"
   },
+  'infos': _footer_items,
   'image': image
 } %}
 

@@ -35,6 +35,17 @@ featured_item:
         - "News article"
         - "6 July 2015"
         - "Brussels"
+    footer_items:
+      type: "Array"
+      label: "Footer items"
+      description: "A list of 'icon with text' pairs to be displayed on the card footer."
+      preview:
+        - icon: "calendar"
+          text: "15-16 November 2019, 08:00 AM"
+        - icon: "location"
+          text: "Brussels, Belgium"
+        - icon: "livestreaming"
+          text: "Live streaming available"
     title:
       type: "text"
       label: "Title"
