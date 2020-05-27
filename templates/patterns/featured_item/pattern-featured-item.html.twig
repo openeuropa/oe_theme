@@ -38,11 +38,7 @@
 {% for item in footer_items %}
   {% set _footer_items = _footer_items|merge([{
     'label': item.text,
-    'icon': {
-      path: ecl_icon_path,
-      type: 'general',
-      name: item.icon|default('file')
-    },
+    'icon': to_ecl_icon(item.icon),
   }]) %}
 {% endfor %}
 
