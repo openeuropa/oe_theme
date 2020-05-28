@@ -28,3 +28,12 @@ navigation_list:
           url: 'https://ec.europa.eu/info/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
         - label: 'International cooperation'
           url: 'https://ec.europa.eu/info/education/policy-educational-issues/international-cooperation_en'
+    secondary_links:
+      type: "array"
+      label: "Secondary Links"
+      description: "Secondary array of links that form the navigation list."
+      preview:
+        - label: 'Integrating migrants and refugees'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training/integrating-migrants-and-refugees_en'
+        - label: 'Early school leaving'
+          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training/early-school-leaving_en'

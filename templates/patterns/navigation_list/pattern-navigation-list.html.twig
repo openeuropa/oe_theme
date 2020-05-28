@@ -10,11 +10,21 @@
   {% set _link = {
     link: {
       label : link.label,
-      path : link.url,
-      type: 'standalone'
+      path : link.url
     }
   } %}
   {% set _links = _links|merge([_link]) %}
+{% endfor %}
+
+{% set _secondary_links = [] %}
+{% for secondary_link in secondary_links %}
+  {% set _secondary_link = {
+    link: {
+      label : secondary_link.label,
+      path : secondary_link.url
+    }
+  } %}
+  {% set _secondary_links = _secondary_links|merge([_secondary_link]) %}
 {% endfor %}
 
 {% include '@oe_theme/compositions/ec-component-navigation-list/navigation-list.html.twig' with {
@@ -22,4 +32,5 @@
   title_url: title_url,
   description: description,
   links: _links,
+  secondary_links: _secondary_links,
 } only %}
