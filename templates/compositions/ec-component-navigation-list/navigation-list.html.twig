@@ -29,7 +29,7 @@
       {{ description }}
     </p>
   {% endif %}
-  {% if links is not empty and links is iterable %}
+  {% if links is not empty %}
     <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
       {% for link in links %}
         <li class="ecl-unordered-list__item">
@@ -38,8 +38,8 @@
       {% endfor %}
     </ul>
   {% endif %}
-  {% if secondary_links is not empty and secondary_links is iterable %}
-    <div class="ecl-u-mt-m ecl-u-border-top ecl-u-border-color-grey-50"">
+  {% if secondary_links is not empty %}
+    <div class="ecl-u-mt-m ecl-u-border-top ecl-u-border-color-grey-50">
       <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
         {% for link in secondary_links %}
           <li class="ecl-unordered-list__item">
