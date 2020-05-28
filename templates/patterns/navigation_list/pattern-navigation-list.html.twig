@@ -10,8 +10,7 @@
   {% set _link = {
     link: {
       label : link.label,
-      path : link.url,
-      type: 'standalone'
+      path : link.url
     }
   } %}
   {% set _links = _links|merge([_link]) %}
@@ -22,8 +21,7 @@
   {% set _secondary_link = {
     link: {
       label : secondary_link.label,
-      path : secondary_link.url,
-      type: 'standalone'
+      path : secondary_link.url
     }
   } %}
   {% set _secondary_links = _secondary_links|merge([_secondary_link]) %}
