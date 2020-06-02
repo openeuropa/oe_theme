@@ -24,22 +24,13 @@ class ParagraphsTest extends BrowserTestBase {
   ];
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    // Enable OpenEuropa Theme.
-    $this->container->get('theme_installer')->install(['oe_theme']);
-
-    $user = $this->drupalCreateUser([], '', TRUE);
-    $this->drupalLogin($user);
-  }
-
-  /**
    * Test Accordion item paragraph form.
    */
   public function testAccordionParagraph(): void {
+    // Add an user.
+    $user = $this->drupalCreateUser([], '', TRUE);
+    $this->drupalLogin($user);
+
     $this->drupalGet('/node/add/oe_demo_landing_page');
     $page = $this->getSession()->getPage();
     $page->pressButton('Add Accordion');
@@ -48,6 +39,7 @@ class ParagraphsTest extends BrowserTestBase {
     // but the icon field is not.
     $this->assertSession()->elementExists('css', '.field--name-field-oe-text');
     $this->assertSession()->elementExists('css', '.field--name-field-oe-text-long');
+    $this->assertSession()->elementNotExists('css', '.field--name-field-oe-icon');
 
     $values = [
       'title[0][value]' => 'Test Accordion',
