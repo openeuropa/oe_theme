@@ -28,7 +28,7 @@
         "drupal/extra_field": "^1.1",
         "drupal/field_group": "~3.0",
         "drupal/inline_entity_form": "~1.0-rc3",
-        "drupal/json_field": "^1.0@RC",
+        "drupal/json_field": "^1.0.0-rc2",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "~1.0-alpha3",
         "drupal/typed_link": "~1.0",
