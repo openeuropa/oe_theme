@@ -119,6 +119,11 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       return;
     }
 
+    // Inherit language from parent entity.
+    if ($venue->hasTranslation($entity->language()->getId())) {
+      $venue = $venue->getTranslation($entity->language()->getId());
+    }
+
     $cacheability = CacheableMetadata::createFromRenderArray($build);
 
     $access = $venue->access('view', NULL, TRUE);
