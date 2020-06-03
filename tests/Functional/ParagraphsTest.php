@@ -7,14 +7,14 @@ namespace Drupal\Tests\oe_theme\Functional;
 use Drupal\Tests\BrowserTestBase;
 
 /**
- * Tests that theme configuration is correctly applied.
+ * Tests paragraphs forms.
  */
 class ParagraphsTest extends BrowserTestBase {
 
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'system',
     'node',
@@ -26,7 +26,7 @@ class ParagraphsTest extends BrowserTestBase {
   /**
    * Test Accordion item paragraph form.
    */
-  public function testAccordionParagraph(): void {
+  public function testAccordionItemParagraph(): void {
     // Add an user.
     $user = $this->drupalCreateUser([], '', TRUE);
     $this->drupalLogin($user);
@@ -37,9 +37,9 @@ class ParagraphsTest extends BrowserTestBase {
 
     // Assert the title and body fields of Accordion item paragraph are shown
     // but the icon field is not.
-    $this->assertSession()->elementExists('css', '.field--name-field-oe-text');
-    $this->assertSession()->elementExists('css', '.field--name-field-oe-text-long');
-    $this->assertSession()->elementNotExists('css', '.field--name-field-oe-icon');
+    $this->assertSession()->fieldExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text][0][value]');
+    $this->assertSession()->fieldExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]');
+    $this->assertSession()->fieldNotExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_icon]');
 
     $values = [
       'title[0][value]' => 'Test Accordion',

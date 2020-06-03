@@ -72,5 +72,7 @@ function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$elemen
     return;
   }
   // Hide icon field as it's not supported in ECL 2.
-  unset($element['subform']['field_oe_icon']);
+  if (isset($element['subform']['field_oe_icon'])) {
+    $element['subform']['field_oe_icon']['#access'] = FALSE;
+  }
 }
