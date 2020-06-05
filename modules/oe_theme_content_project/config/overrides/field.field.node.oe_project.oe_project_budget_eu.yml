@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.oe_project_budget_eu
+    - node.type.oe_project
+id: node.oe_project.oe_project_budget_eu
+field_name: oe_project_budget_eu
+entity_type: node
+bundle: oe_project
+label: 'EU contribution'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: €
+  suffix: ''
+field_type: float

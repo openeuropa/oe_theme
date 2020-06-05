@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Field list horizontal oe_project variant.
+ */
+#}
+<div class="ecl-u-bg-blue-5 ecl-u-border-all ecl-u-border-width-2 ecl-u-border-color-blue-25 ecl-u-mb-s ecl-u-pv-s ecl-u-pl-xs ecl-u-pr-xs">
+  {% set _items = [] %}
+  {% for _item in items %}
+    {% set _items = _items|merge([{
+      term: _item.label,
+      definition: _item.body|render
+    }]) %}
+  {% endfor %}
+
+  {% include '@ecl-twig/description-list' with {
+    'variant': variant,
+    'items': _items,
+  } %}
+</div>
