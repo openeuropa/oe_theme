@@ -1,0 +1,4 @@
+// Remove margin left to avoid overflow.
+#project-details .ecl-description-list__definition{
+  margin-left: 0;
+}
