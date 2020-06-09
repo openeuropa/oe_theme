@@ -33,20 +33,23 @@ class PercentageExtraField extends ProjectExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $build = [];
     // Get fields oe_project_budget and oe_project_budget_eu.
     $budget = $entity->get('oe_project_budget')->value;
     $budget_eu = $entity->get('oe_project_budget_eu')->value;
     $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
-    $build = [
-      '#plain_text' => $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]),
-    ];
-
+    $build = [];
+    if ($percentage > 0) {
+      $build = [
+        '#plain_text' => $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]),
+      ];
+    }
     return $build;
   }
 
   /**
    * Gets the percentage of total, without decimals.
+   *
+   * If input values are not greater that 0, returns 0.
    *
    * @param float $total
    *   The total value.
@@ -54,11 +57,11 @@ class PercentageExtraField extends ProjectExtraFieldBase {
    *   The percentage value.
    *
    * @return float
-   *   Percentage value.
+   *   Percentage value. Maximun value returned is 100.
    */
   private function getPercentage(float $total, float $part): float {
     $percentage = 0;
-    if (is_numeric($total) && $part >= 0) {
+    if (is_numeric($total) && $total > 0 && $part > 0) {
       $percentage = round(100 * $part / $total, 0);
     }
     if ($percentage > 100) {
