@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
-use Drupal\entity_test\Entity\EntityTest;
+use Drupal\entity_test\Entity\EntityTestMul;
 use Drupal\Tests\address\Kernel\Formatter\FormatterTestBase;
 
 /**
@@ -31,7 +31,7 @@ class AddressInlineFormatterTest extends FormatterTestBase {
    * Tests formatting of address.
    */
   public function testInlineFormatterAddress() {
-    $entity = EntityTest::create([]);
+    $entity = EntityTestMul::create([]);
     $entity->{$this->fieldName} = [
       'country_code' => 'BE',
       'locality' => 'Brussels',
