@@ -33,7 +33,7 @@
         "drupal/styleguide": "~1.0-alpha3",
         "drupal/typed_link": "~1.0",
         "drush/drush": "~9.0",
-        "openeuropa/rdf_skos": "~0.7",
+        "openeuropa/rdf_skos": "~0.8",
         "easyrdf/easyrdf": "0.10.0-alpha.1 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
         "guzzlehttp/guzzle": "~6.3",
@@ -95,9 +95,6 @@
         "patches": {
             "drupal/drupal-driver": {
                 "allow-date-only-date-fields": "https://patch-diff.githubusercontent.com/raw/jhedstrom/DrupalDriver/pull/201.patch"
-            },
-            "openeuropa/rdf_skos": {
-                "latest-master": "https://github.com/openeuropa/rdf_skos/compare/0.7.0...master.diff"
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-06-02/address_content_language-3144823-3.patch"
