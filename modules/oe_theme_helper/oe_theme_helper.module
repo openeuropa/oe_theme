@@ -63,3 +63,16 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter() for Accordion item.
+ */
+function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$element, &$form_state, $context) {
+  if ($element['#paragraph_type'] !== 'oe_accordion_item') {
+    return;
+  }
+  // Hide icon field as it's not supported in ECL 2.
+  if (isset($element['subform']['field_oe_icon'])) {
+    $element['subform']['field_oe_icon']['#access'] = FALSE;
+  }
+}

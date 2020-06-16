@@ -10,6 +10,7 @@
  * - "title_url" (string) (default: ''): url of the title.
  * - "description" (string) (default: ''): short description.
  * - "links" (array) (default: []): collection of standalone @ecl-twig/link items.
+ * - "secondary_links" (array) (default: []): secondary collection of standalone @ecl-twig/link items.
  */
 #}
 
@@ -28,7 +29,7 @@
       {{ description }}
     </p>
   {% endif %}
-  {% if links is not empty and links is iterable %}
+  {% if links is not empty %}
     <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
       {% for link in links %}
         <li class="ecl-unordered-list__item">
@@ -36,6 +37,17 @@
         </li>
       {% endfor %}
     </ul>
+  {% endif %}
+  {% if secondary_links is not empty %}
+    <div class="ecl-u-mt-m ecl-u-border-top ecl-u-border-color-grey-50">
+      <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
+        {% for link in secondary_links %}
+          <li class="ecl-unordered-list__item">
+            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
   {% endif %}
 </div>
 {% endspaceless %}
