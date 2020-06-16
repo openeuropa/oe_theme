@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
- * Extra field displaying contacts information on events.
+ * Extra field displaying eu budget percentage on projects.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_project_percentage",
