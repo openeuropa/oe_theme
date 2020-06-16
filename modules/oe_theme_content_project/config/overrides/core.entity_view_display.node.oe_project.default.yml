@@ -132,13 +132,13 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
   oe_project_dates:
-    type: daterange_custom
+    type: daterange_default
     weight: 1
     region: content
     label: above
     settings:
       timezone_override: ''
-      date_format: d.m.Y
+      format_type: oe_project_date
       separator: '-'
     third_party_settings: {  }
   oe_project_departments:
