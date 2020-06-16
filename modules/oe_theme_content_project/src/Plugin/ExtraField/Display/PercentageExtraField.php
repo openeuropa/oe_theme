@@ -33,7 +33,7 @@ class PercentageExtraField extends ProjectExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    // Get fields oe_project_budget and oe_project_budget_eu.
+    // Compute budget percentage field value.
     $budget = $entity->get('oe_project_budget')->value;
     $budget_eu = $entity->get('oe_project_budget_eu')->value;
     $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);

@@ -8,10 +8,10 @@ It provides the logic needed to theme the Project content type.
 Make sure you you have read the OpenEuropa Content Project module's [README.md](https://github.com/openeuropa/oe_content/blob/EPIC-Project/modules/oe_content_project/README.md)
 before enabling this module.
 
-----------TODO Check if we need to implement changes to permissions.
-
 After enabling this module make sure you assign the following permissions to the anonymous user role, so visitors can
 correctly access all project information.
+
+- `Organisation: View any published entity`
 
 ## Required contrib modules
 
@@ -23,7 +23,7 @@ This module requires the following contrib modules:
 ## Overridden configuration
 
 Installing this module will override the default project content type view mode, shipped by the
-[OpenEuropa Content Project](hhttps://github.com/openeuropa/oe_content/tree/EPIC-Project/modules/oe_content_project)
+[OpenEuropa Content Project](https://github.com/openeuropa/oe_content/tree/EPIC-Project/modules/oe_content_project)
 module. This is necessary in order to guarantee that fields and formatter settings are displayed correctly.
 
 If you want to customize how the project looks like create the `full` view mode and take over.

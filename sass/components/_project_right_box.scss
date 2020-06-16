@@ -1,4 +1,9 @@
 // Remove margin left to avoid overflow.
 #project-details .ecl-description-list__definition{
   margin-left: 0;
+
+}
+@media (min-width: 996px)
+.ecl-description-list--horizontal .ecl-description-list__definition {
+    width: 312px;
 }

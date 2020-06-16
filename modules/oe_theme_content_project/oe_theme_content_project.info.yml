@@ -7,3 +7,4 @@ dependencies:
   - extra_field:extra_field
   - oe_content:oe_content_project
   - oe_theme:oe_theme_helper
+  - field_group:field_group
