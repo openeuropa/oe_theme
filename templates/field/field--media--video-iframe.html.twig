@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for iframe video fields on media items.
+ */
+#}
+{% for item in items %}
+<figure class="ecl-media-container">
+  <div class="ecl-media-container__media ecl-media-container__media--ratio-{{ ratio|replace({'_': '-'}) }}">
+    {{ item.content }}
+  </div>
+</figure>
+{% endfor %}
