@@ -39,6 +39,7 @@
 {% set _css_class = 'ecl-checkbox' %}
 {% set _extra_attributes = '' %}
 {% set _extra_input_attributes = '' %}
+{% set _required = false %}
 
 {# Internal logic - Process properties #}
 
@@ -64,6 +65,9 @@
 {% if extra_input_attributes is defined and extra_input_attributes is not empty and extra_input_attributes is iterable %}
   {% for attr in extra_input_attributes %}
     {% set _extra_input_attributes = _extra_input_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+    {% if attr.name == 'required' %}
+      {% set _required = true %}
+    {% endif %}
   {% endfor %}
 {% endif %}
 
@@ -82,7 +86,7 @@
     {{ _extra_input_attributes|raw }}
   />
 
-  <label for="{{ _id }}" class="ecl-checkbox__label">
+  <label for="{{ _id }}" class="ecl-checkbox__label {{ _required ? "form-required" }}">
     <span class="ecl-checkbox__box">
       {% include '@ecl-twig/icon' with {
         icon: {

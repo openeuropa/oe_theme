@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the corporate contact forms.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\contact\Entity\ContactForm;
+
+/**
+ * Implements hook_form_FORM_ID_alter() for contact_message_form().
+ */
+function oe_theme_contact_forms_form_contact_message_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  /** @var \Drupal\Core\Entity\ContentEntityForm $form_object */
+  $form_object = $form_state->getFormObject();
+  /** @var \Drupal\contact\MessageInterface $contact_message */
+  $contact_message = $form_object->getEntity();
+  /** @var \Drupal\contact\Entity\ContactForm $contact_form */
+  $contact_form = ContactForm::load($contact_message->bundle());
+
+  // Display header as ecl paragraph.
+  $form['header']['#markup'] = '<p class="ecl-u-type-paragraph">' . $form['header']['#markup'] . '</p>';
+  // Logged in user name should display in its own line.
+  if ($form['name']['#type'] === 'item') {
+    $form['name']['#field_prefix'] = '<div class="ecl-u-mt-xs">';
+    $form['name']['#field_suffix'] = '</div>';
+  }
+  // Logged in user mail should display in its own line.
+  if ($form['mail']['#type'] === 'item') {
+    $form['mail']['#field_prefix'] = '<div class="ecl-u-mt-xs">';
+    $form['mail']['#field_suffix'] = '</div>';
+  }
+  // Add ecl link classes to the privacy link.
+  $privacy_link = $contact_form->getThirdPartySetting('oe_contact_forms', 'privacy_policy', FALSE);
+  $privacy_title = t('I have read and agree with the <a class="ecl-u-ml-2xs ecl-link ecl-link--default" href="@link" target="_blank">data protection terms</a></label>', [
+    '@link' => $privacy_link,
+  ]);
+  $form['privacy_policy']['#title'] = $privacy_title;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
+  if (!isset($variables['message_list']['status'])) {
+    return;
+  }
+
+  foreach ($variables['message_list']['status'] as $key => $value) {
+    // Target contact_messages.
+    if (!is_array($value) || !isset($value['#contact_message'])) {
+      continue;
+    }
+
+    /** @var \Drupal\contact\MessageInterface $contact_message */
+    $contact_message = $value['#contact_message'];
+    /** @var \Drupal\contact\Entity\ContactForm $contact_form */
+    $contact_form = ContactForm::load($contact_message->bundle());
+    $is_corporate_form = (boolean) $contact_form->getThirdPartySetting('oe_contact_forms', 'is_corporate_form', FALSE);
+
+    // We work only with corporate forms from here.
+    if (!$is_corporate_form) {
+      continue;
+    }
+
+    $optional_selected = $contact_form->getThirdPartySetting('oe_contact_forms', 'optional_fields', []);
+    $items = [];
+    $fields = [
+      'name',
+      'mail',
+      'subject',
+      'message',
+      'oe_topic',
+    ];
+
+    // Include the optional fields.
+    if (in_array('oe_country_residence', $optional_selected)) {
+      $fields[] = 'oe_country_residence';
+    }
+    if (in_array('oe_telephone', $optional_selected)) {
+      $fields[] = 'oe_telephone';
+    }
+
+    // Build the label body pairs for the field_list pattern.
+    foreach ($fields as $field_name) {
+      /** @var \Drupal\Core\Field\FieldItemList $field */
+      $field = $contact_message->get($field_name);
+      $display_settings = ['label' => 'hidden'];
+
+      if ($field_name == 'oe_country_residence') {
+        $display_settings = ['label' => 'hidden', 'settings' => ['link' => FALSE]];
+      }
+
+      $field_view = $field->view($display_settings);
+      $items[] = [
+        'label' => $field_view['#title'],
+        'body' => $field_view,
+      ];
+    }
+
+    $variables['message_list']['status'][$key] = [
+      '#type' => 'pattern',
+      '#id' => 'field_list',
+      '#variant' => 'horizontal',
+      '#fields' => [
+        'items' => $items,
+      ],
+    ];
+  }
+}
