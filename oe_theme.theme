@@ -1012,7 +1012,7 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
 
     // When dealing with iframe videos, also respect its given aspect ratio.
     if ($media->bundle() === 'video_iframe') {
-      $ratio = $media->get('field_oe_media_iframe_ratio')->value;
+      $ratio = $media->get('oe_media_iframe_ratio')->value;
       $variables['ratio'] = str_replace('_', ':', $ratio);
     }
 
@@ -1536,7 +1536,7 @@ function oe_theme_preprocess_page(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_field__media__field_media_oe_media_iframe__video_iframe__oe_theme_main_content(array &$variables): void {
+function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_theme_main_content(array &$variables): void {
   // Set video aspect ratio when rendering "oe_theme_main_content" display mode.
-  $variables['ratio'] = $variables['element']['#object']->get('field_oe_media_iframe_ratio')->value;
+  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value;
 }
