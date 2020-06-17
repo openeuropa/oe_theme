@@ -984,7 +984,7 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   $source = $media->getSource();
 
   if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-    // Default video aspect ration is set to 19:6.
+    // Default video aspect ratio is set to 16:9.
     $variables['ratio'] = '16:9';
 
     // Load information about the media and the display.
