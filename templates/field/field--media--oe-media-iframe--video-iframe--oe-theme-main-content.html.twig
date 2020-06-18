@@ -5,9 +5,8 @@
  */
 #}
 {% for item in items %}
-  <figure class="ecl-media-container">
-    <div class="ecl-media-container__media ecl-media-container__media--ratio-{{ ratio|replace({'_': '-'}) }}">
-      {{ item.content }}
-    </div>
-  </figure>
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': item.content,
+    'ratio': ratio|replace({'_': '-'}),
+  } %}
 {% endfor %}

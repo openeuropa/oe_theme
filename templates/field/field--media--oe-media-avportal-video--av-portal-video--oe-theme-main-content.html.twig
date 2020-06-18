@@ -5,9 +5,7 @@
  */
 #}
 {% for item in items %}
-  <figure class="ecl-media-container">
-    <div class="ecl-media-container__media ecl-media-container__media--ratio-16-9">
-      {{ item.content }}
-    </div>
-  </figure>
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': item.content,
+  } %}
 {% endfor %}
