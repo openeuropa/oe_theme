@@ -1,10 +1,20 @@
-# Change Log
+# Changelog
+
+## [2.7.0](https://github.com/openeuropa/oe_theme/tree/2.7.0) (2020-06-19)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.6.0...2.7.0)
+
+**Merged pull requests:**
+
+- OPENEUROPA-3301: Theme the video iframe media type [\#501](https://github.com/openeuropa/oe_theme/pull/501) ([ademarco](https://github.com/ademarco))
 
 ## [2.6.0](https://github.com/openeuropa/oe_theme/tree/2.6.0) (2020-06-16)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.5.1...2.6.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.6.0. [\#498](https://github.com/openeuropa/oe_theme/pull/498) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-3180: Fix issue with failed patch for oe\_content. [\#497](https://github.com/openeuropa/oe_theme/pull/497) ([sergepavle](https://github.com/sergepavle))
 - OPENEUROPA-2950: Invalidate container after changing twig\_extension service definition [\#495](https://github.com/openeuropa/oe_theme/pull/495) ([ademarco](https://github.com/ademarco))
 - OPENEUROPA-3180: Fix venue active language. [\#494](https://github.com/openeuropa/oe_theme/pull/494) ([sergepavle](https://github.com/sergepavle))
