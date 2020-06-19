@@ -21,23 +21,29 @@ function oe_theme_contact_forms_form_contact_message_form_alter(&$form, FormStat
   /** @var \Drupal\contact\Entity\ContactForm $contact_form */
   $contact_form = ContactForm::load($contact_message->bundle());
 
+  $is_corporate_form = (boolean) $contact_form->getThirdPartySetting('oe_contact_forms', 'is_corporate_form', FALSE);
+  if (!$is_corporate_form) {
+    // We only care about the corporate contact forms.
+    return;
+  }
+
   // Display header as ecl paragraph.
-  $form['header']['#markup'] = '<p class="ecl-u-type-paragraph">' . $form['header']['#markup'] . '</p>';
-  // Logged in user name should display in its own line.
-  if ($form['name']['#type'] === 'item') {
-    $form['name']['#field_prefix'] = '<div class="ecl-u-mt-xs">';
-    $form['name']['#field_suffix'] = '</div>';
+  if (isset($form['header'])) {
+    $form['header'] = [
+      '#type' => 'inline_template',
+      '#template' => '<p class="ecl-u-type-paragraph">{{ header }}</p>',
+      '#context' => [
+        'header' => $form['header'],
+      ],
+    ];
   }
-  // Logged in user mail should display in its own line.
-  if ($form['mail']['#type'] === 'item') {
-    $form['mail']['#field_prefix'] = '<div class="ecl-u-mt-xs">';
-    $form['mail']['#field_suffix'] = '</div>';
-  }
+
   // Add ecl link classes to the privacy link.
   $privacy_link = $contact_form->getThirdPartySetting('oe_contact_forms', 'privacy_policy', FALSE);
   $privacy_title = t('I have read and agree with the <a class="ecl-u-ml-2xs ecl-link ecl-link--default" href="@link" target="_blank">data protection terms</a></label>', [
     '@link' => $privacy_link,
   ]);
+
   $form['privacy_policy']['#title'] = $privacy_title;
 }
 
@@ -50,7 +56,7 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
   }
 
   foreach ($variables['message_list']['status'] as $key => $value) {
-    // Target contact_messages.
+    // Target contact_messages which are being rendered in the status message.
     if (!is_array($value) || !isset($value['#contact_message'])) {
       continue;
     }
@@ -66,23 +72,15 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
       continue;
     }
 
-    $optional_selected = $contact_form->getThirdPartySetting('oe_contact_forms', 'optional_fields', []);
+    $optional_fields = $contact_form->getThirdPartySetting('oe_contact_forms', 'optional_fields', []);
     $items = [];
-    $fields = [
+    $fields = array_merge([
       'name',
       'mail',
       'subject',
       'message',
       'oe_topic',
-    ];
-
-    // Include the optional fields.
-    if (in_array('oe_country_residence', $optional_selected)) {
-      $fields[] = 'oe_country_residence';
-    }
-    if (in_array('oe_telephone', $optional_selected)) {
-      $fields[] = 'oe_telephone';
-    }
+    ], array_values($optional_fields));
 
     // Build the label body pairs for the field_list pattern.
     foreach ($fields as $field_name) {
@@ -90,7 +88,7 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
       $field = $contact_message->get($field_name);
       $display_settings = ['label' => 'hidden'];
 
-      if ($field_name == 'oe_country_residence') {
+      if ($field->getFieldDefinition()->getType() == 'skos_concept_entity_reference') {
         $display_settings = ['label' => 'hidden', 'settings' => ['link' => FALSE]];
       }
 

@@ -1134,7 +1134,7 @@ function oe_theme_preprocess_input__search(array &$variables): void {
  * Implements hook_preprocess_input().
  */
 function oe_theme_preprocess_input(array &$variables) {
-  if ($variables['element']['#type'] == 'tel') {
+  if ($variables['element']['#type'] === 'tel') {
     $variables['attributes']['class'][] = 'ecl-text-input';
     $variables['attributes']['size'] = 60;
   }
