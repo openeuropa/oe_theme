@@ -5,6 +5,12 @@
  */
 #}
 
+{% set video_ratio = video_ratio|replace({':': '-'}) %}
+{% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
+{% if video_ratio not in allowed_values %}
+  {% set video_ratio = '16-9' %}
+{% endif %}
+
 {% if title %}
   <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
 {% endif %}
@@ -21,7 +27,7 @@
         {% elseif video %}
           {% include '@ecl-twig/media-container' with {
             'embedded_media': video,
-            'ration': '16-9',
+            'ratio': video_ratio,
             'description': caption,
           } %}
         {% endif %}

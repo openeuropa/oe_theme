@@ -29,6 +29,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'media_avportal',
     'media_avportal_mock',
     'oe_media_avportal',
+    'options',
+    'oe_media_iframe',
   ];
 
   /**
@@ -47,6 +49,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'media_avportal',
       'oe_media_avportal',
       'oe_paragraphs_banner',
+      'options',
+      'oe_media_iframe',
     ]);
   }
 
@@ -201,6 +205,42 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert remote video is rendered properly.
     $video_iframe = $crawler->filter('div.ecl-media-container__media--ratio-16-9 iframe');
     $this->assertContains('I-163162', $video_iframe->attr('src'));
+
+    // Create iframe video with aspect ration 16:9 and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'video_iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+      'oe_media_iframe_ratio' => '16_9',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert that iframe video is rendered properly.
+    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-16-9');
+    $this->assertCount(1, $media_container);
+    $video_iframe = $media_container->filter('iframe');
+    $this->assertContains('http://example.com', $video_iframe->attr('src'));
+
+    // Create iframe video with aspect ration 1:1 and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'video_iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+      'oe_media_iframe_ratio' => '1_1',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert that iframe video is rendered properly.
+    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-1-1');
+    $this->assertCount(1, $media_container);
+    $video_iframe = $media_container->filter('iframe');
+    $this->assertContains('http://example.com', $video_iframe->attr('src'));
   }
 
   /**
