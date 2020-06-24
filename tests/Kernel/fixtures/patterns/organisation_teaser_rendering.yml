@@ -1,0 +1,54 @@
+- fields:
+    logo:
+      src: "https://placeimg.com/100/100"
+      alt: "Alternative text for logo"
+    name: "Organisation name"
+    acronym: "Acronym"
+    address:
+      label: "Address"
+      body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+    website:
+      label: "Website"
+      body: "http://www.example.com"
+    contact_page_url:
+      url: "http://www.example.com/contact"
+      icon: "external"
+      label: "Custom contact page label"
+  assertions:
+    count:
+      div[role="img"].ecl-u-d-lg-block: 1
+      a.ecl-link[href="http://www.example.com/contact"]: 1
+    equals:
+      h4.ecl-u-type-heading-4: "Organisation name | Acronym"
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): "http://www.example.com"
+      a.ecl-link .ecl-link__label: "Custom contact page label"
+      a.ecl-link svg.ecl-icon: '<use xlink:href="#ui--external"></use>'
+- fields:
+    name: "Organisation name"
+  assertions:
+    count:
+      div[role="img"].ecl-u-d-lg-block: 0
+      dl.ecl-description-list: 0
+      a.ecl-link: 0
+    equals:
+      h4.ecl-u-type-heading-4: "Organisation name"
+- fields:
+    address:
+      label: "Address"
+      body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+    contact_page_url:
+      url: "/internal_link"
+  assertions:
+    count:
+      h4.ecl-u-type-heading-4: 0
+      a.ecl-link[href="/internal_link"]: 1
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): 0
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): 0
+    equals:
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      a.ecl-link .ecl-link__label: "Contact organisation"
+      a.ecl-link svg.ecl-icon: '<use xlink:href="#ui--corner-arrow"></use>'

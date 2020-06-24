@@ -1,0 +1,43 @@
+organisation_teaser:
+  label: "Organisation teaser"
+  description: "Teaser implementation of the Organisation entity."
+  fields:
+    logo:
+      type: "ImageValueObject"
+      label: "Logo"
+      description: "Logo (optional)."
+      preview :
+        src : "https://placeimg.com/100/100"
+        alt: "Alternative text for logo"
+    name:
+      type: "text"
+      label: "Name"
+      description: "Name text."
+      preview : "Organisation name"
+    acronym:
+      type: "text"
+      label: "Acronym"
+      description: "Acronym text (optional)."
+      preview : "Acronym"
+    address:
+      type: "array"
+      label: "Address"
+      description: "Address text (optional)."
+      preview:
+        label: "Address"
+        body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+    website:
+      type: "array"
+      label: "Website"
+      description: "Website URL (optional)."
+      preview:
+        label: "Website"
+        body: "http://www.example.com"
+    contact_page_url:
+      type: "array"
+      label: "Contact page URL"
+      description: "Contact page URL (optional)."
+      preview:
+        url: https://www.example.com/contact
+        icon: "external"
+        label: "Contact organisation"

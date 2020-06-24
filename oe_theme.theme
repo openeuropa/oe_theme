@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
@@ -1521,4 +1522,62 @@ function oe_theme_preprocess_page(array &$variables): void {
     'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
     'id' => ['main-content'],
   ]);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_oe_organisation(&$variables) {
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  $entity = &$variables['entity'];
+  // Prepare fields.
+  $fields_values = ['name', 'oe_acronym'];
+  foreach ($fields_values as $field) {
+    $variables[$field] = '';
+    if (!$entity->get($field)->isEmpty()) {
+      $variables[$field] = $entity->get($field)->value;
+    }
+  }
+
+  // Extract the image if present.
+  $variables['logo'] = '';
+  if (!$entity->get('oe_logo')->isEmpty()) {
+    /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $image_item */
+    $media_image = $entity->get('oe_logo')->entity;
+
+    if (!$media_image->get('oe_media_image')->isEmpty()) {
+      $image_item = $media_image->get('oe_media_image')->first();
+      $variables['logo'] = ImageValueObject::fromImageItem($image_item);
+      // Add cache data from media image and file.
+      $file = $image_item->get('entity')->getValue();
+      $cacheability->addCacheableDependency($media_image);
+      $cacheability->addCacheableDependency($file);
+    }
+  }
+
+  // Set contact page url and icon.
+  $variables['oe_contact_url'] = [];
+  if (!$entity->get('oe_contact_url')->isEmpty()) {
+    $link = $entity->get('oe_contact_url')->first()->getValue();
+    if (UrlHelper::isExternal($link['uri'])) {
+      $variables['oe_contact_url']['icon'] = 'external';
+      $variables['oe_contact_url']['url'] = $link['uri'];
+    }
+    else {
+      $variables['oe_contact_url']['url'] = Url::fromUri($link['uri']);
+    }
+  }
+
+  // Process contact items.
+  $contact_fields = ['oe_address', 'oe_website'];
+  foreach ($contact_fields as $field) {
+    $variables[$field] = [
+      'label' => $variables['content'][$field]['#title'],
+      'body' => [
+        '#label_display' => 'hidden',
+      ] + $variables['content'][$field],
+    ];
+  }
+
 }

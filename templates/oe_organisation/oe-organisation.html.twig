@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present a corporate content entity.
+ *
+ * Available variables:
+ * - entity: The entity item, with limited access to object properties and
+ *   methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ *   For example:
+ *   - entity.getEntityTypeId() will return the entity type ID.
+ *   - entity.hasField('field_example') returns TRUE if the entity includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   Calling other methods, such as entity.delete(), will result in
+ *   an exception.
+ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
+ * - label: The entity label.
+ * - content: The entity content.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - logo: ImageValueObject.
+ * - name: name value.
+ * - oe_acronym: acronym value.
+ * - oe_address: array with address field label and content.
+ * - oe_website: array with website field label and content.
+ * - oe_contact_url: array with url, icon and label of contact page url field.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% include '@oe_theme/compositions/ec-component-organisation-teaser/organisation-teaser.html.twig' with {
+  logo: logo,
+  name: name,
+  acronym: oe_acronym,
+  address: oe_address,
+  website: oe_website,
+  contact_page_url: oe_contact_url
+} %}
