@@ -86,7 +86,7 @@
     {{ _extra_input_attributes|raw }}
   />
 
-  <label for="{{ _id }}" class="ecl-checkbox__label {{ _required ? "form-required" }}">
+  <label for="{{ _id }}" class="ecl-checkbox__label{{ _required ? " form-required" }}">
     <span class="ecl-checkbox__box">
       {% include '@ecl-twig/icon' with {
         icon: {

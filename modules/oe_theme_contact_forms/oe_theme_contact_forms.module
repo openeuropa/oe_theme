@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\contact\Entity\ContactForm;
+use Drupal\contact\MessageInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter() for contact_message_form().
@@ -57,7 +58,11 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
 
   foreach ($variables['message_list']['status'] as $key => $value) {
     // Target contact_messages which are being rendered in the status message.
-    if (!is_array($value) || !isset($value['#contact_message'])) {
+    if (
+      !is_array($value) ||
+      !isset($value['#contact_message']) ||
+      !$value['#contact_message'] instanceof MessageInterface
+    ) {
       continue;
     }
 
@@ -74,13 +79,21 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
 
     $optional_fields = $contact_form->getThirdPartySetting('oe_contact_forms', 'optional_fields', []);
     $items = [];
-    $fields = array_merge([
+    $fields = [
       'name',
       'mail',
       'subject',
       'message',
       'oe_topic',
-    ], array_values($optional_fields));
+    ];
+
+    if (in_array('oe_country_residence', $optional_fields)) {
+      $fields[] = 'oe_country_residence';
+    }
+
+    if (in_array('oe_telephone', $optional_fields)) {
+      $fields[] = 'oe_telephone';
+    }
 
     // Build the label body pairs for the field_list pattern.
     foreach ($fields as $field_name) {
