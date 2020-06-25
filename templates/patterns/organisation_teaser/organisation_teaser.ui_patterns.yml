@@ -19,25 +19,17 @@ organisation_teaser:
       label: "Acronym"
       description: "Acronym text (optional)."
       preview : "Acronym"
-    address:
+    organisation_details:
       type: "array"
-      label: "Address"
-      description: "Address text (optional)."
+      label: "Organisation details"
+      description: "List of fields as specified in in field_list pattern (optional)."
       preview:
-        label: "Address"
-        body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
-    website:
-      type: "array"
-      label: "Website"
-      description: "Website URL (optional)."
-      preview:
-        label: "Website"
-        body: "http://www.example.com"
+        - label: "Address"
+          body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+        - label: "Website"
+          body: "http://www.example.com"
     contact_page_url:
-      type: "array"
+      type: "Url"
       label: "Contact page URL"
       description: "Contact page URL (optional)."
-      preview:
-        url: https://www.example.com/contact
-        icon: "external"
-        label: "Contact organisation"
+      preview: "mailto:me@example.com"

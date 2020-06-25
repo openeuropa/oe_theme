@@ -1527,16 +1527,16 @@ function oe_theme_preprocess_page(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_oe_organisation(&$variables) {
+function oe_theme_preprocess_oe_organisation(&$variables): void {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
   $entity = &$variables['entity'];
   // Prepare fields.
-  $fields_values = ['name', 'oe_acronym'];
-  foreach ($fields_values as $field) {
-    $variables[$field] = '';
+  $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
+  foreach ($fields_values as $field => $pattern_key) {
+    $variables[$pattern_key] = '';
     if (!$entity->get($field)->isEmpty()) {
-      $variables[$field] = $entity->get($field)->value;
+      $variables[$pattern_key] = $entity->get($field)->value;
     }
   }
 
@@ -1557,27 +1557,50 @@ function oe_theme_preprocess_oe_organisation(&$variables) {
   }
 
   // Set contact page url and icon.
-  $variables['oe_contact_url'] = [];
+  $variables['contact_page_url'] = '';
   if (!$entity->get('oe_contact_url')->isEmpty()) {
     $link = $entity->get('oe_contact_url')->first()->getValue();
     if (UrlHelper::isExternal($link['uri'])) {
-      $variables['oe_contact_url']['icon'] = 'external';
-      $variables['oe_contact_url']['url'] = $link['uri'];
+      $variables['contact_page_url'] = $link['uri'];
     }
     else {
-      $variables['oe_contact_url']['url'] = Url::fromUri($link['uri']);
+      $variables['contact_page_url'] = Url::fromUri($link['uri'])->toString();
     }
   }
 
-  // Process contact items.
+  // Process contact item.
+  $variables['organisation_details'] = [];
   $contact_fields = ['oe_address', 'oe_website'];
   foreach ($contact_fields as $field) {
-    $variables[$field] = [
-      'label' => $variables['content'][$field]['#title'],
-      'body' => [
-        '#label_display' => 'hidden',
-      ] + $variables['content'][$field],
-    ];
+    if (!empty($variables['content'][$field]['#title'])) {
+      $variables['organisation_details'][] = [
+        'label' => $variables['content'][$field]['#title'],
+        'body' => [
+            '#label_display' => 'hidden',
+          ] + $variables['content'][$field],
+      ];
+    }
   }
 
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_organisation_teaser(array &$variables): void {
+  $contact_page_url = &$variables['contact_page_url'];
+
+  // Define icon based on the url type.
+  $variables['contact_page']['url'] = $contact_page_url;
+  if (UrlHelper::isExternal($contact_page_url)) {
+    $variables['contact_page']['icon'] = 'external';
+    $variables['contact_page']['url'] = $contact_page_url;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
+  $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
 }

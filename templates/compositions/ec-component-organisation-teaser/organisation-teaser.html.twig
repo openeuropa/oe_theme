@@ -9,9 +9,9 @@
  * - "name": name of the organisation.
  * - "acronym": acronym of the organisation.
  * - "logo": logo of the organisation.
- * - "address": postal adress of the organisation.
- * - "website": website url of the organisation.
- * - "contact_page_url": Email adress or contact page to contact the organisation.
+ * - "organisation_details": list of fields.
+ * - "contact_page_url": email adress or contact page to contact the organisation.
+ * - "contact_page": array with processed organisation contact page url.
  */
 #}
 
@@ -25,13 +25,14 @@
 {% set _logo = logo|default({}) %}
 {% set _address = address|default([]) %}
 {% set _website = website|default([]) %}
+{% set _organisation_details = organisation_details|default([])%}
 
 {# Icon for the "Contact organisation" link. #}
 
 {% if contact_page_url is not empty %}
-  {% set _contact_page_url = contact_page_url.url|default('') %}
-  {% set _contact_page_icon = contact_page_url.icon|default('internal') %}
-  {% set _contact_page_label = contact_page_url.label|default('Contact organisation'|t) %}
+  {% set _contact_page_url = contact_page.url|default('') %}
+  {% set _contact_page_icon = contact_page.icon|default('internal') %}
+  {% set _contact_page_label = contact_page.label|default('Contact organisation'|t) %}
 
   {% if _contact_page_icon == 'internal' %}
     {% set _icon = {
@@ -53,22 +54,6 @@
     }
     %}
   {% endif %}
-{% endif %}
-
-{# Contact items. #}
-
-{% set _items = [] %}
-{% if _address %}
-  {% set _items = _items|merge([{
-    term: _address.label,
-    definition: _address.body|render
-  }]) %}
-{% endif %}
-{% if _website %}
-  {% set _items = _items|merge([{
-    term: _website.label,
-    definition: _website.body|render
-  }]) %}
 {% endif %}
 
 {# Internal logic - Process properties #}
@@ -109,10 +94,10 @@
       </h4>
     {% endif %}
 
-    {% if _items|length > 0 %}
-      {% include '@ecl-twig/description-list' with {
+    {% if _organisation_details|length > 0 %}
+      {% include '@oe_theme/patterns/field_list/pattern-field-list.html.twig' with {
         variant: 'horizontal',
-        items: _items
+        items: _organisation_details
       } %}
     {% endif %}
 
