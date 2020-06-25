@@ -1576,8 +1576,8 @@ function oe_theme_preprocess_oe_organisation(&$variables): void {
       $variables['organisation_details'][] = [
         'label' => $variables['content'][$field]['#title'],
         'body' => [
-            '#label_display' => 'hidden',
-          ] + $variables['content'][$field],
+          '#label_display' => 'hidden',
+        ] + $variables['content'][$field],
       ];
     }
   }
