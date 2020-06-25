@@ -22,7 +22,7 @@ organisation_teaser:
     organisation_details:
       type: "array"
       label: "Organisation details"
-      description: "List of fields as specified in in field_list pattern (optional)."
+      description: "List of fields as specified in the field_list pattern (optional)."
       preview:
         - label: "Address"
           body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
@@ -32,4 +32,4 @@ organisation_teaser:
       type: "Url"
       label: "Contact page URL"
       description: "Contact page URL (optional)."
-      preview: "mailto:me@example.com"
+      preview: "https://www.example.com/contact"
