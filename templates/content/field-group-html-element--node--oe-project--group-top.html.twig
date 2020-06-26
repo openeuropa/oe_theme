@@ -19,9 +19,12 @@
   <div class="ecl-col-12 ecl-col-md-6">
     {{ element.body }}
   </div>
+
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
-    {{ element.group_details }}
-    {{ element.group_budget }}
-    {{ element.group_resources }}
+    {% for k, element_content in element|filter((v, k) => k in ['group_details', 'group_budget', 'group_resources']) -%}
+      <div class="ecl-u-bg-blue-5 ecl-u-border-all ecl-u-border-width-2 ecl-u-border-color-blue-25 ecl-u-mb-s ecl-u-pv-s ecl-u-ph-xs">
+        {{ element_content }}
+      </div>
+    {% endfor %}
   </div>
 </div>
