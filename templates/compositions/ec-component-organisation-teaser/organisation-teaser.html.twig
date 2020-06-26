@@ -6,12 +6,12 @@
  * Theme implementation for ECL Organisation Teaser.
  *
  * Available variables:
- * - "name": name of the organisation.
- * - "acronym": acronym of the organisation.
- * - "logo": logo of the organisation.
- * - "organisation_details": list of fields.
- * - "contact_page_url": email adress or contact page to contact the organisation.
- * - "contact_page": array with processed organisation contact page url.
+ * - "name" (string) (default: ''): name of the organisation.
+ * - "acronym" (string) (default: ''): acronym of the organisation.
+ * - "logo" (ImageValueObject) (default: {}): logo of the organisation.
+ * - "organisation_details" (array) (default: []): list of fields.
+ * - "contact_page_url" (string) (default: ''): email adress or contact page to contact the organisation.
+ * - "contact_page" (array) (default: []): processed organisation contact page url.
  */
 #}
 
@@ -19,12 +19,9 @@
 
 {% set _css_class = 'ecl-content-item ecl-u-d-flex ecl-u-pb-m' %}
 {% set _extra_attributes = '' %}
-{% set _address = address|default('') %}
 {% set _name = name|default('') %}
 {% set _acronym = acronym|default('') %}
 {% set _logo = logo|default({}) %}
-{% set _address = address|default([]) %}
-{% set _website = website|default([]) %}
 {% set _organisation_details = organisation_details|default([])%}
 
 {# Icon for the "Contact organisation" link. #}
