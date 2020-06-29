@@ -32,9 +32,12 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase {
     $budget = $entity->get('oe_project_budget')->value;
     $budget_eu = $entity->get('oe_project_budget_eu')->value;
     $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
-    return [
-      '#plain_text' => $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]),
-    ];
+    if ($percentage) {
+      return [
+        '#plain_text' => $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]),
+      ];
+    }
+    return [];
   }
 
   /**
