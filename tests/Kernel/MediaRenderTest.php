@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Symfony\Component\DomCrawler\Crawler;
@@ -74,14 +75,20 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $setting->setThirdPartySetting('content_translation', 'enabled', TRUE);
     $setting->save();
 
+    // Create english file.
     $english_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
     $english_file->setPermanent();
     $english_file->save();
 
+    // Create spanish file.
     $spanish_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_es.pdf');
     $spanish_file->setPermanent();
     $spanish_file->save();
 
+    // View modes to test.
+    $view_modes = ['default', 'oe_theme_main_content'];
+
+    // Create a document media.
     /** @var \Drupal\media\MediaInterface $media */
     $media = $this->mediaStorage->create([
       'bundle' => 'document',
@@ -93,6 +100,19 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
 
     $media->save();
 
+    // Assert tha the media is rendered properly without translations.
+    foreach ($view_modes as $view_mode) {
+      $build = $this->mediaViewBuilder->view($media, $view_mode);
+      $crawler = new Crawler($this->renderRoot($build));
+
+      // Assert the rendering of the document.
+      $this->assertMainDocumentRendering($crawler, $media->language());
+      // Assert no translations are rendered.
+      $translation_list = $crawler->filter('.ecl-file__translation-list');
+      $this->assertCount(0, $translation_list);
+    }
+
+    // Translate the media to spanish.
     $media_spanish = $media->addTranslation('es', [
       'name' => 'test document ES',
       'oe_media_file' => [
@@ -101,6 +121,8 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     ]);
     $media_spanish->save();
 
+    // Assert that the media is rendered properly with translations in
+    // all available languages.
     $translation_languages = $media->getTranslationLanguages();
     foreach (['default', 'oe_theme_main_content'] as $view_mode) {
       foreach ($translation_languages as $document_langcode => $document_language) {
@@ -108,27 +130,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         $crawler = new Crawler($this->renderRoot($build));
 
         // Check the rendering of the current language document.
-        // File wrapper.
-        $file_wrapper = $crawler->filter('.ecl-file');
-        $this->assertCount(1, $file_wrapper);
-
-        // File row.
-        $file_row = $crawler->filter('.ecl-file .ecl-file__container');
-        $this->assertCount(1, $file_row);
-
-        $file_title = $file_row->filter('.ecl-file__title');
-        $this->assertContains('test document', $file_title->text());
-
-        $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
-        $this->assertContains($document_language->getName(), $file_info_language->text());
-
-        $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
-        $this->assertContains('KB - PDF)', $file_info_properties->text());
-
-        $file_download_link = $file_row->filter('.ecl-file__download');
-        $this->assertContains('/test_' . $document_langcode . '.pdf', $file_download_link->attr('href'));
-        $this->assertContains('Download', $file_download_link->text());
-
+        $this->assertMainDocumentRendering($crawler, $document_language);
         // Check the rendering of the available translations.
         // File translation list.
         $translation_list = $crawler->filter('.ecl-file__translation-list');
@@ -154,9 +156,39 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
 
         $translation_file_download_link = $translation_list->filter('.ecl-file__translation-download');
         $this->assertContains('/test_' . $translation_language->getId() . '.pdf', $translation_file_download_link->attr('href'));
-        $this->assertContains('Download', $file_download_link->text());
+        $this->assertContains('Download', $translation_file_download_link->text());
       }
     }
+  }
+
+  /**
+   * Helper test to assert the rendering of the main document.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The rendered html to check.
+   * @param \Drupal\Core\Language\LanguageInterface $language
+   *   The language of the media to check.
+   */
+  protected function assertMainDocumentRendering(Crawler $crawler, LanguageInterface $language): void {
+    $file_wrapper = $crawler->filter('.ecl-file');
+    $this->assertCount(1, $file_wrapper);
+
+    // File row.
+    $file_row = $crawler->filter('.ecl-file .ecl-file__container');
+    $this->assertCount(1, $file_row);
+
+    $file_title = $file_row->filter('.ecl-file__title');
+    $this->assertContains('test document', $file_title->text());
+
+    $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
+    $this->assertContains($language->getName(), $file_info_language->text());
+
+    $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
+    $this->assertContains('KB - PDF)', $file_info_properties->text());
+
+    $file_download_link = $file_row->filter('.ecl-file__download');
+    $this->assertContains('/test_' . $language->getId() . '.pdf', $file_download_link->attr('href'));
+    $this->assertContains('Download', $file_download_link->text());
   }
 
 }
