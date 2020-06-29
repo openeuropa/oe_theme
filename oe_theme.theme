@@ -1534,10 +1534,11 @@ function oe_theme_preprocess_oe_organisation(&$variables): void {
   // Prepare fields.
   $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
   foreach ($fields_values as $field => $pattern_key) {
-    $variables[$pattern_key] = '';
-    if (!$entity->get($field)->isEmpty()) {
-      $variables[$pattern_key] = $entity->get($field)->value;
+    if ($entity->get($field)->isEmpty()) {
+      $variables[$pattern_key] = '';
+      continue;
     }
+    $variables[$pattern_key] = $entity->get($field)->value;
   }
 
   // Extract the image if present.
@@ -1572,14 +1573,15 @@ function oe_theme_preprocess_oe_organisation(&$variables): void {
   $variables['organisation_details'] = [];
   $contact_fields = ['oe_address', 'oe_website'];
   foreach ($contact_fields as $field) {
-    if (!empty($variables['content'][$field]['#title'])) {
-      $variables['organisation_details'][] = [
-        'label' => $variables['content'][$field]['#title'],
-        'body' => [
-          '#label_display' => 'hidden',
-        ] + $variables['content'][$field],
-      ];
+    if (empty($variables['content'][$field]['#title'])) {
+      continue;
     }
+    $variables['organisation_details'][] = [
+      'label' => $variables['content'][$field]['#title'],
+      'body' => [
+        '#label_display' => 'hidden',
+      ] + $variables['content'][$field],
+    ];
   }
 
 }
@@ -1588,7 +1590,7 @@ function oe_theme_preprocess_oe_organisation(&$variables): void {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_organisation_teaser(array &$variables): void {
-  $contact_page_url = &$variables['contact_page_url'];
+  $contact_page_url = $variables['contact_page_url'];
 
   // Define icon based on the url type.
   $variables['contact_page']['url'] = $contact_page_url;
@@ -1602,5 +1604,7 @@ function oe_theme_preprocess_pattern_organisation_teaser(array &$variables): voi
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
-  $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
+  if (!empty($variables['logo'])) {
+    $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
+  }
 }

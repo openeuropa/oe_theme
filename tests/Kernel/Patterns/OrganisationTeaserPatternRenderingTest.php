@@ -38,7 +38,7 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
    * Data provider for testOrganisationTeaserPatternRendering.
    *
    * @return array
-   *   An array of test data arrays with assertations.
+   *   An array of test data arrays with assertions.
    */
   public function dataProvider(): array {
     return $this->getFixtureContent('patterns/organisation_teaser_rendering.yml');

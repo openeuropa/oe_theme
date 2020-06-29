@@ -8,7 +8,7 @@
       - label: "Address"
         body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
       - label: "Website"
-        body: "http://www.example.com"
+        body: '<a href="http://www.example.com">http://www.example.com</a>'
     contact_page_url: "http://www.example.com/contact"
   assertions:
     count:
@@ -19,7 +19,7 @@
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
-      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): "http://www.example.com"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): '<a href="http://www.example.com">http://www.example.com</a>'
       a.ecl-link .ecl-link__label: "Contact organisation"
       a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
 - fields:

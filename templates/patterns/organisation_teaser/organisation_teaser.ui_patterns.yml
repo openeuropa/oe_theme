@@ -27,7 +27,7 @@ organisation_teaser:
         - label: "Address"
           body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
         - label: "Website"
-          body: "http://www.example.com"
+          body: '<a href="http://www.example.com">http://www.example.com</a>'
     contact_page_url:
       type: "Url"
       label: "Contact page URL"
