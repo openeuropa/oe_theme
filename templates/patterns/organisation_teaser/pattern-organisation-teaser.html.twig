@@ -1,16 +1,82 @@
+{% spaceless %}
+
 {#
 /**
  * @file
  * Organisation teaser.
+ *
+ * Available variables:
+ * - "name" (string) (default: ''): name of the organisation.
+ * - "acronym" (string) (default: ''): acronym of the organisation.
+ * - "logo" (ImageValueObject) (default: {}): logo of the organisation.
+ * - "organisation_details" (array) (default: []): list of fields.
+ * - "contact_page_url" (string) (default: ''): email adress or contact page to contact the organisation.
+ * - "contact_page" (array) (default: []): processed organisation contact page url.
  */
 #}
 
-{% include '@oe_theme/compositions/ec-component-organisation-teaser/organisation-teaser.html.twig' with {
-  logo: logo,
-  name: name,
-  acronym: acronym,
-  organisation_details: organisation_details,
-  contact_page_url: contact_page_url,
-  contact_page: contact_page
-} %}
+{# Icon for the "Contact organisation" link. #}
 
+{% if contact_page_url is not empty %}
+  {% set _contact_page_url = contact_page.url %}
+  {% set _contact_page_icon = contact_page.icon|default('internal') %}
+  {% set _contact_page_label = contact_page.label|default('Contact organisation'|t) %}
+
+  {% if _contact_page_icon == 'internal' %}
+    {% set _icon = {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: 'corner-arrow',
+      size: 's',
+      color: 'primary',
+      transform: 'rotate-90'
+    }
+    %}
+  {% else %}
+    {% set _icon = {
+      path: ecl_icon_path,
+      type: 'ui',
+      name: _contact_page_icon,
+      size: 's',
+      color: 'primary'
+    }
+    %}
+  {% endif %}
+{% endif %}
+
+<article class="ecl-u-mb-l ecl-u-border-bottom ecl-u-border-width-3 ecl-u-border-color-grey-15 ecl-content-item ecl-u-d-flex ecl-u-pb-m">
+  {% if logo is not empty %}
+    <div role="img"
+      aria-label="{{ logo.alt }}"
+      class="ecl-u-flex-shrink-0 ecl-u-mr-s ecl-u-media-a-s ecl-u-media-bg-size-contain ecl-u-media-bg-repeat-none ecl-u-d-lg-block"
+      style="background-image: url('{{ logo.src }}');"></div>
+  {% endif %}
+
+  <div class="ecl-u-flex-grow-1 ecl-u-type-color-grey">
+    <h4 class="ecl-u-type-heading-4 ecl-u-mb-s ecl-u-mt-none">
+      {{ name }}{% if acronym is not empty %} | {{ acronym }}{% endif %}
+    </h4>
+
+    {% if organisation_details|length > 0 %}
+      {% include '@oe_theme/patterns/field_list/pattern-field-list.html.twig' with {
+        variant: 'horizontal',
+        items: organisation_details
+      } %}
+    {% endif %}
+
+    {% if _contact_page_url is not empty %}
+      <div class="ecl-u-mt-l ecl-u-type-bold">
+        {% include '@ecl-twig/link' with {
+          link: {
+            type: 'standalone',
+            label: _contact_page_label,
+            path: _contact_page_url,
+            icon_position: 'after'
+          },
+          icon: _icon
+        } %}
+      </div>
+    {% endif %}
+  </div>
+</article>
+{% endspaceless %}

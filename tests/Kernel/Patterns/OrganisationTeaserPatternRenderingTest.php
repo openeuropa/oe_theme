@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
@@ -41,7 +42,17 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertions.
    */
   public function dataProvider(): array {
-    return $this->getFixtureContent('patterns/organisation_teaser_rendering.yml');
+    $data = $this->getFixtureContent('patterns/organisation_teaser_rendering.yml');
+
+    foreach ($data as &$item) {
+      foreach ($item['fields'] as $field_name => $field_value) {
+        if ($field_name == 'logo' && !empty($field_value)) {
+          $item['fields'][$field_name] = ImageValueObject::fromArray($field_value);
+        }
+      }
+    }
+
+    return $data;
   }
 
 }

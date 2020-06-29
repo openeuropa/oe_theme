@@ -38,7 +38,7 @@
     contact_page_url: "/internal_link"
   assertions:
     count:
-      h4.ecl-u-type-heading-4: 0
+      h4.ecl-u-type-heading-4: 1
       a.ecl-link[href="/internal_link"]: 1
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): 0
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): 0
