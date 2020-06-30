@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Theme override for Funding extra field plugin.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - label_hidden: Whether to show the field label or not.
+ * - title_attributes: HTML attributes for the title.
+ * - label: The label for the field.
+ * - multiple: TRUE if a field can contain multiple items.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item's content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{% if items.0.content['#items'] %}
+{% set _items = items.0.content['#items'] %}
+{% else %}
+{% set _items = [] %}
+{% endif %}
+
+<div>
+  {% if _items is not empty %}
+    <h2 class="ecl-u-type-heading-2">{{ label }}</h2>
+    <ul class="ecl-unordered-list ecl-unordered-list--divider">
+      {% for item in _items %}
+        <li class="ecl-unordered-list__item">
+          <div class="ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-type-family-alt"><span class="ecl-u-type-uppercase">{{ item.fieldlabel }}</span></div>
+          <div class="ecl-u-d-inline-block ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-type-family-alt ecl-u-mt-xs">
+            {% include '@ecl-twig/link' with {
+              'link': {
+                'type': 'standalone',
+                'label': item.link.text,
+                'path': item.link.url
+              }
+            } only %}
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

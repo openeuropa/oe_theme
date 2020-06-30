@@ -134,6 +134,11 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  extra_field_oe_theme_content_project_funding:
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   extra_field_oe_theme_content_project_percentage:
     weight: 9
     region: content
