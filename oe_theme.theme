@@ -8,7 +8,6 @@
 declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
@@ -1522,20 +1521,6 @@ function oe_theme_preprocess_page(array &$variables): void {
     'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
     'id' => ['main-content'],
   ]);
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_organisation_teaser(array &$variables): void {
-  $contact_page_url = $variables['contact_page_url'];
-
-  // Define icon based on the url type.
-  $variables['contact_page']['url'] = $contact_page_url;
-  if (UrlHelper::isExternal($contact_page_url)) {
-    $variables['contact_page']['icon'] = 'external';
-    $variables['contact_page']['url'] = $contact_page_url;
-  }
 }
 
 /**
