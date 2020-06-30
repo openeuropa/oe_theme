@@ -7,8 +7,11 @@ dependencies:
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_departments
+    - field.field.node.oe_project.oe_project_funding_programme
+    - field.field.node.oe_project.oe_project_participants
     - field.field.node.oe_project.oe_project_result_files
     - field.field.node.oe_project.oe_project_results
     - field.field.node.oe_project.oe_project_website
@@ -92,6 +95,25 @@ third_party_settings:
         classes: ''
         id: ''
       label: Resources
+    group_result:
+      children:
+        - oe_project_results
+        - oe_project_result_files
+      parent_name: ''
+      weight: 1
+      format_type: html_element
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Results
 id: node.oe_project.default
 targetEntityType: node
 bundle: oe_project
@@ -150,7 +172,7 @@ content:
       link: true
     third_party_settings: {  }
   oe_project_result_files:
-    weight: 5
+    weight: 3
     label: hidden
     settings:
       view_mode: default
@@ -160,9 +182,9 @@ content:
     region: content
   oe_project_results:
     type: text_default
-    weight: 4
+    weight: 2
     region: content
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
   oe_project_website:
@@ -194,6 +216,9 @@ hidden:
   oe_content_navigation_title: true
   oe_content_short_title: true
   oe_project_calls: true
+  oe_project_coordinators: true
+  oe_project_funding_programme: true
+  oe_project_participants: true
   oe_subject: true
   oe_summary: true
   oe_teaser: true
