@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Project results fieldgroup html element.
+ *
+ * @see ./modules/contrib/field_group/templates/field-group-html-element.html.twig
+ */
+#}
+
+{% set project_results_exist = false %}
+{% if element.oe_project_results.0 is not empty %}
+  {% set project_results_exist = true %}
+{% endif %}
+
+{% set project_result_files_exist = false %}
+{% if element.oe_project_result_files.0 is not empty %}
+  {% set project_result_files_exist = true %}
+{% endif %}
+
+{% if project_results_exist or project_result_files_exist %}
+  <div id="project-results" class="ecl-row">
+    <div class="ecl-col-12">
+      <h2 class="ecl-u-type-heading-2">
+        {% if title %}
+          {{ title }}
+        {% else %}
+          {{ 'Results'|t }}
+        {% endif %}
+      </h2>
+      {% if project_results_exist %}
+        <div class="ecl-editor ecl-u-mb-l">
+          {{ element.oe_project_results }}
+        </div>
+      {% endif %}
+
+      {% if project_result_files_exist %}
+        {{ element.oe_project_result_files }}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
