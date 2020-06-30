@@ -20,8 +20,6 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
    * @param array $assertions
    *   Test assertions.
    *
-   * @throws \Exception
-   *
    * @dataProvider dataProvider
    */
   public function testOrganisationTeaserPatternRendering(array $fields, array $assertions) {
@@ -46,7 +44,7 @@ class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
 
     foreach ($data as &$item) {
       foreach ($item['fields'] as $field_name => $field_value) {
-        if ($field_name == 'logo' && !empty($field_value)) {
+        if ($field_name === 'logo' && !empty($field_value)) {
           $item['fields'][$field_name] = ImageValueObject::fromArray($field_value);
         }
       }
