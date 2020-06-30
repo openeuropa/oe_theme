@@ -1522,3 +1522,10 @@ function oe_theme_preprocess_page(array &$variables): void {
     'id' => ['main-content'],
   ]);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
+  $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
+}
