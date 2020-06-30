@@ -137,6 +137,9 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       return;
     }
 
+    // Retrieve the correct translation.
+    $media = \Drupal::service('entity.repository')->getTranslationFromContext($media);
+
     $cache = new CacheableMetadata();
     $cache->addCacheableDependency($media);
     $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
