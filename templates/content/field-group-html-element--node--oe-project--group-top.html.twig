@@ -21,20 +21,22 @@
   </div>
 
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
-    {% for k, element_content in element|filter((v, k) => k in ['group_details', 'group_budget', 'group_resources']) -%}
-      {# Field group can contain empty content. Need to ensure that content exists. #}
+    {% for k, element_content in element %}
+      {% if k in ['group_details', 'group_budget', 'group_resources'] %}
+        {# Field group can contain empty content. Need to ensure that content exists. #}
 
-      {% set content_exists = false %}
-      {% for field in element_content.pattern['#items'] %}
-        {% if (field.body.0 is not empty) %}
-          {% set content_exists = true %}
+        {% set content_exists = false %}
+        {% for field in element_content.pattern['#items'] %}
+          {% if (field.body.0 is not empty) %}
+            {% set content_exists = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if content_exists %}
+          <div class="ecl-u-bg-blue-5 ecl-u-border-all ecl-u-border-width-2 ecl-u-border-color-blue-25 ecl-u-mb-s ecl-u-pv-s ecl-u-ph-xs">
+            {{ element_content }}
+          </div>
         {% endif %}
-      {% endfor %}
-
-      {% if content_exists %}
-        <div class="ecl-u-bg-blue-5 ecl-u-border-all ecl-u-border-width-2 ecl-u-border-color-blue-25 ecl-u-mb-s ecl-u-pv-s ecl-u-ph-xs">
-          {{ element_content }}
-        </div>
       {% endif %}
     {% endfor %}
   </div>
