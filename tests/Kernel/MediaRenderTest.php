@@ -65,12 +65,12 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     // Make image media translatable.
     $setting = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
       'langcode' => 'en',
-      'statur' => TRUE,
+      'status' => TRUE,
       'id' => 'media.document',
       'target_entity_type_id' => 'media',
       'target_bundle' => 'document',
       'default_langcode' => 'site_default',
-      'language_alterable' => 'true',
+      'language_alterable' => TRUE,
     ]);
     $setting->setThirdPartySetting('content_translation', 'enabled', TRUE);
     $setting->save();
@@ -121,8 +121,8 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     ]);
     $media_spanish->save();
 
-    // Assert that the media is rendered properly with translations in
-    // all available languages.
+    // Assert that the media and its translations are rendered properly
+    // in all translated languages.
     $translation_languages = $media->getTranslationLanguages();
     foreach (['default', 'oe_theme_main_content'] as $view_mode) {
       foreach ($translation_languages as $document_langcode => $document_language) {
@@ -132,7 +132,6 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         // Check the rendering of the current language document.
         $this->assertMainDocumentRendering($crawler, $document_language);
         // Check the rendering of the available translations.
-        // File translation list.
         $translation_list = $crawler->filter('.ecl-file__translation-list');
         $this->assertCount(1, $translation_list);
 
@@ -148,11 +147,11 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         $translation_language = reset($translation_language);
 
         $language_names = $predefined = EuropeanUnionLanguages::getLanguageList() + LanguageManager::getStandardLanguageList();
-        $translation_file_info_language = $translation_list->filter('.ecl-file__translation-item .ecl-file__translation-info div.ecl-file__translation-title');
-        $this->assertContains($language_names[$translation_language->getId()][1], $translation_file_info_language->text());
+        $file_translation_info_language = $translation_list->filter('.ecl-file__translation-item .ecl-file__translation-info div.ecl-file__translation-title');
+        $this->assertContains($language_names[$translation_language->getId()][1], $file_translation_info_language->text());
 
-        $translation_file_info_properties = $translation_list->filter('.ecl-file__translation-item .ecl-file__translation-info div.ecl-file__translation-meta');
-        $this->assertContains('KB - PDF)', $translation_file_info_properties->text());
+        $file_translation_info_properties = $translation_list->filter('.ecl-file__translation-item .ecl-file__translation-info div.ecl-file__translation-meta');
+        $this->assertContains('KB - PDF)', $file_translation_info_properties->text());
 
         $translation_file_download_link = $translation_list->filter('.ecl-file__translation-download');
         $this->assertContains('/test_' . $translation_language->getId() . '.pdf', $translation_file_download_link->attr('href'));
