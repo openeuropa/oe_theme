@@ -99,21 +99,22 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
     foreach ($fields as $field_name) {
       /** @var \Drupal\Core\Field\FieldItemList $field */
       $field = $contact_message->get($field_name);
-      $display_settings = ['label' => 'hidden'];
-
-      if ($field->getFieldDefinition()->getType() == 'skos_concept_entity_reference') {
-        $display_settings = ['label' => 'hidden', 'settings' => ['link' => FALSE]];
-      }
-
-      $field_view = $field->view($display_settings);
-
-      if (!isset($field_view['#title'])) {
+      if ($field->isEmpty() || !$field->access()){
         continue;
       }
 
+      $display_settings = ['label' => 'hidden'];
+      if ($field->getFieldDefinition()->getType() == 'skos_concept_entity_reference') {
+        $display_settings += [
+          'settings' => [
+            'link' => FALSE,
+          ],
+        ];
+      }
+
       $items[] = [
-        'label' => $field_view['#title'],
-        'body' => $field_view,
+        'label' => $field->getFieldDefinition()->getLabel(),
+        'body' => $field->view($display_settings),
       ];
     }
 
