@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
-use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -152,9 +151,6 @@ class ContentRowTest extends ParagraphsTestBase {
    * Tests that side menu title translations are rendered correctly.
    */
   public function testSideMenuTranslation(): void {
-    // Create "French" language.
-    ConfigurableLanguage::createFromLangcode('fr')->save();
-
     // Create child paragraph with "French" translation.
     $child = Paragraph::create([
       'type' => 'oe_rich_text',
