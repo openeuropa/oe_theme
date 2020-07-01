@@ -99,7 +99,7 @@ function oe_theme_contact_forms_preprocess_status_messages(&$variables) {
     foreach ($fields as $field_name) {
       /** @var \Drupal\Core\Field\FieldItemList $field */
       $field = $contact_message->get($field_name);
-      if ($field->isEmpty() || !$field->access()){
+      if ($field->isEmpty() || !$field->access()) {
         continue;
       }
 

@@ -44,8 +44,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
   public function testContactForm(): void {
     $contact_form = ContactForm::create(['id' => 'oe_contact_form']);
     $contact_form->setThirdPartySetting('oe_contact_forms', 'is_corporate_form', TRUE);
-    $header = 'this is a test header';
-    $contact_form->setThirdPartySetting('oe_contact_forms', 'header', $header);
+    $contact_form->setThirdPartySetting('oe_contact_forms', 'header', 'this is a test header');
     $privacy_url = 'http://example.net';
     $contact_form->setThirdPartySetting('oe_contact_forms', 'privacy_policy', $privacy_url);
     $optional_selected = ['oe_telephone' => 'oe_telephone'];
