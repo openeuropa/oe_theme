@@ -25,7 +25,6 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\ui_patterns\Element\PatternContext;
 
 /**
  * Implements hook_form_FORM_ID_alter().

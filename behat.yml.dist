@@ -16,6 +16,7 @@ default:
         - Drupal\Tests\oe_theme\Behat\PreserveAnonymousPermissionsContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
