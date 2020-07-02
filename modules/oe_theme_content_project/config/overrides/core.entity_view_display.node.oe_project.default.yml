@@ -104,15 +104,15 @@ third_party_settings:
       format_type: html_element
       region: content
       format_settings:
-        id: ''
-        classes: ''
         element: div
-        show_label: false
+        show_label: true
         label_element: h3
         label_element_classes: ''
         attributes: ''
         effect: none
         speed: fast
+        id: ''
+        classes: ''
       label: Results
 id: node.oe_project.default
 targetEntityType: node
