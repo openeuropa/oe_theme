@@ -137,6 +137,7 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
       return;
     }
 
+    // @todo Add Kernel test for media translation.
     // Retrieve the correct translation.
     $media = \Drupal::service('entity.repository')->getTranslationFromContext($media);
 
