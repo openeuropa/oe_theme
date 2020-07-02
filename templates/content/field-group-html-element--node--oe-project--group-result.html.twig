@@ -20,17 +20,12 @@
 {% if project_results_exist or project_result_files_exist %}
   <div id="project-results" class="ecl-row">
     <div class="ecl-col-12">
-      <h2 class="ecl-u-type-heading-2">
-        {% if title %}
-          {{ title }}
-        {% else %}
-          {{ 'Results'|t }}
-        {% endif %}
-      </h2>
+      {% if title %}
+        <h2 class="ecl-u-type-heading-2">{{ title }}</h2>
+      {% endif %}
+
       {% if project_results_exist %}
-        <div class="ecl-editor ecl-u-mb-l">
-          {{ element.oe_project_results }}
-        </div>
+        <div class="ecl-editor ecl-u-mb-l">{{ element.oe_project_results }}</div>
       {% endif %}
 
       {% if project_result_files_exist %}
