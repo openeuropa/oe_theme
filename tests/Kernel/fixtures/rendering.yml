@@ -476,6 +476,7 @@
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+      more_info: "Custom information snippet."
   assertions:
     count:
       'svg.ecl-file__icon': 1
@@ -497,6 +498,7 @@
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
+      '.ecl-file__translation-description': "Custom information snippet."
 - array:
     '#type': pattern
     '#id': file_image

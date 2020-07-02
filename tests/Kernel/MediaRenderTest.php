@@ -137,7 +137,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
 
         // Check the translation list description.
         $translation_list_description = $translation_list->filter('.ecl-file__translation-item.ecl-file__translation-description');
-        $this->assertContains('Looking for another language which is not on the list? Find out why.', $translation_list_description->text());
+        $this->assertEmpty($translation_list_description->text());
 
         // Get the available translation language.
         $translation_language = array_filter($translation_languages, function ($langcode) use ($document_langcode) {
