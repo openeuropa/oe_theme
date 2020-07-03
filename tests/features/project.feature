@@ -1,10 +1,10 @@
-@api @project
+@api
 Feature: Project content type.
   As a user
   I want to access the content of a project
   So I can find the information I'm looking for.
 
-  Scenario: Project period field has label "Start date" if start date is equal with end date
+  Scenario: Project period field has label "Start date" if start date is equal with end date.
     Given I am an anonymous user
     And the following Project Content entity:
       | Title                     | Project page |
@@ -22,4 +22,3 @@ Feature: Project content type.
     And I reload the page
     Then I should see the text "Project duration"
     And I should see the text "01.07.2010 - 01.01.2012"
-

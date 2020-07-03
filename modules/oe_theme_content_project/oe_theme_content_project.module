@@ -29,8 +29,7 @@ function oe_theme_content_project_node_view_alter(array &$build, EntityInterface
 
     // If there is only a start date, set "Start date" as label.
     $dates = $entity->get('oe_project_dates')->getValue();
-    if (!empty($dates[0]) &&
-      (empty($dates[0]['end_value']) || $dates[0]['value'] === $dates[0]['end_value'])) {
+    if (!empty($dates[0]) && (empty($dates[0]['end_value']) || $dates[0]['value'] === $dates[0]['end_value'])) {
       $label_overrides['oe_project_dates'] = t('Start date');
     }
 

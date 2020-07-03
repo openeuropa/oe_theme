@@ -9,7 +9,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 
 /**
- * Extra field displaying eu budget percentage on projects.
+ * Extra field displaying EU budget percentage on projects.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_project_percentage",
@@ -53,7 +53,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase {
    * @return float
    *   Percentage value.
    */
-  private function getPercentage(float $total, float $part): float {
+  protected function getPercentage(float $total, float $part): float {
     $percentage = 0;
 
     if ($total > 0 && $part > 0) {
