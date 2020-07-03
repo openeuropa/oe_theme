@@ -8,3 +8,4 @@ dependencies:
   - field_group:field_group
   - oe_content:oe_content_project
   - oe_theme:oe_theme_helper
+  - ui_patterns:ui_patterns_field_group
