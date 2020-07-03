@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
 use Drupal\Core\Url;
-use Drupal\paragraphs\Entity\Paragraph;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -57,7 +56,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test text with featured media paragraph rendering.
    */
   public function testTextWithMedia(): void {
-
     // Create a paragraph without the media.
     $paragraph = $this->container
       ->get('entity_type.manager')
@@ -87,37 +85,27 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertContains('Full text', $text->text());
 
     // Set image media translatable.
-    $setting = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
-      'langcode' => 'en',
-      'status' => TRUE,
-      'id' => 'media.image',
-      'target_entity_type_id' => 'media',
-      'target_bundle' => 'image',
-      'default_langcode' => 'site_default',
-      'language_alterable' => TRUE,
-    ]);
-    $setting->setThirdPartySetting('content_translation', 'enabled', TRUE);
-    $setting->save();
+    $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    $this->container->get('router.builder')->rebuild();
 
-    // Create english file.
+    // Create English file.
     $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
-    // Create bulgarian file.
+
+    // Create Bulgarian file.
     $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
     // Create a media.
-    $media_storage = $this->container
-      ->get('entity_type.manager')
-      ->getStorage('media');
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
     $media = $media_storage->create([
       'bundle' => 'image',
       'name' => 'test image en',
       'oe_media_image' => [
         'target_id' => $en_file->id(),
-        'alt' => 'Alt',
+        'alt' => 'Alt en',
       ],
     ]);
     $media->save();
@@ -135,24 +123,33 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
     $paragraph->save();
 
-    // Render paragraph in english.
-    $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
+    // Add Bulgarian translation.
+    $paragraph->addTranslation('bg', ['field_oe_title' => 'Title bg'])->save();
 
-    // Assert the title is rendered properly.
-    $title = $crawler->filter('h2.ecl-u-type-heading-2');
-    $this->assertCount(1, $title);
-    $this->assertContains('Title', $title->text());
+    // Test the translated media is rendered with the translated paragraph.
+    foreach ($paragraph->getTranslationLanguages() as $paragraph_langcode => $paragraph_language) {
+      // Render paragraph.
+      $html = $this->renderParagraph($paragraph, $paragraph_langcode);
+      $crawler = new Crawler($html);
 
-    // Assert the image is rendered properly.
-    $figure = $crawler->filter('figure.ecl-media-container');
-    $this->assertCount(1, $figure);
-    // The image in the figure element has the source and alt defined in the
-    // referenced media.
-    $image = $figure->filter('.ecl-media-container__media');
-    // English media should be rendered.
-    $this->assertContains('/styles/oe_theme_medium_no_crop/public/example_1_en.jpeg', $image->attr('src'));
-    $this->assertContains('Alt', $image->attr('alt'));
+      // Assert the title is rendered properly.
+      $title = $crawler->filter('h2.ecl-u-type-heading-2');
+      $this->assertCount(1, $title);
+      $expected_title = $paragraph_langcode === 'bg' ? 'Title bg' : 'Title';
+      $this->assertContains($expected_title, $title->text());
+
+      // Assert the image is rendered properly.
+      $figure = $crawler->filter('figure.ecl-media-container');
+      $this->assertCount(1, $figure);
+
+      // The image in the figure element has the source and alt defined in the
+      // referenced media.
+      $image = $figure->filter('.ecl-media-container__media');
+      // Translated media should be rendered.
+      $this->assertContains('example_1_' . $paragraph_langcode . '.jpeg', $image->attr('src'));
+      $this->assertContains('Alt ' . $paragraph_langcode, $image->attr('alt'));
+    }
+
     $caption = $figure->filter('.ecl-media-container__caption');
     $this->assertContains('Caption', $caption->text());
 
@@ -160,28 +157,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $text = $crawler->filter('.ecl-col-md-6.ecl-editor');
     $this->assertCount(1, $text);
     $this->assertContains('Full text', $text->text());
-
-    // Remove the caption and assert the element is no longer rendered.
-    $paragraph->set('field_oe_plain_text_long', '');
-    $paragraph->save();
-    // Add Bulgarian translation.
-    $paragraph->addTranslation('bg', [
-      'field_oe_title' => 'Title BG',
-    ])->save();
-
-    // Render paragraph in Bulgarian.
-    $html = $this->renderParagraph($paragraph, 'bg');
-    $crawler = new Crawler($html);
-    $figure = $crawler->filter('figure.ecl-media-container');
-    $this->assertCount(1, $figure);
-    // The image in the figure element has the source and alt defined in the
-    // referenced media but the caption is no longer rendered.
-    $image = $figure->filter('.ecl-media-container__media');
-    // Bulgarian media should be rendered.
-    $this->assertContains('/styles/oe_theme_medium_no_crop/public/example_1_bg.jpeg', $image->attr('src'));
-    $this->assertContains('Alt bg', $image->attr('alt'));
-    $caption = $figure->filter('.ecl-media-container__caption');
-    $this->assertCount(0, $caption);
 
     // Remove the text and assert the element is no longer rendered.
     $paragraph->set('field_oe_text_long', '');
@@ -282,41 +257,32 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    */
   public function testBanner(): void {
     // Set image media translatable.
-    $setting = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
-      'langcode' => 'en',
-      'status' => TRUE,
-      'id' => 'media.image',
-      'target_entity_type_id' => 'media',
-      'target_bundle' => 'image',
-      'default_langcode' => 'site_default',
-      'language_alterable' => TRUE,
-    ]);
-    $setting->setThirdPartySetting('content_translation', 'enabled', TRUE);
-    $setting->save();
+    $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    $this->container->get('router.builder')->rebuild();
 
-    // Create english file.
+    // Create English file.
     $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
-    // Create bulgarian file.
+
+    // Create Bulgarian file.
     $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
     // Create a media.
-    $media_storage = $this->container
-      ->get('entity_type.manager')
-      ->getStorage('media');
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
     $media = $media_storage->create([
       'bundle' => 'image',
       'name' => 'test image en',
       'oe_media_image' => [
         'target_id' => $en_file->id(),
-        'alt' => 'Alt',
+        'alt' => 'Alt en',
       ],
     ]);
     $media->save();
-    // Translate the media to bulgarian.
+
+    // Translate the media to Bulgarian.
     $media_bg = $media->addTranslation('bg', [
       'name' => 'test image bg',
       'oe_media_image' => [
@@ -326,25 +292,21 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media_bg->save();
 
-    $file_uri_en = $en_file->get('uri')->getString();
-    $file_uri_bg = $bg_file->get('uri')->getString();
-
-    $paragraph = $this->container
-      ->get('entity_type.manager')
-      ->getStorage('paragraph')->create([
-        'type' => 'oe_banner',
-        'oe_paragraphs_variant' => 'oe_banner_image',
-        'field_oe_title' => 'Banner',
-        'field_oe_text' => 'Description',
-        'field_oe_link' => [
-          'uri' => 'http://www.example.com/',
-          'title' => 'Example',
-        ],
-        'field_oe_media' => [
-          'target_id' => $media->id(),
-        ],
-        'field_oe_banner_type' => 'hero_center',
-      ]);
+    $paragraph_storage = $this->container->get('entity_type.manager')->getStorage('paragraph');
+    $paragraph = $paragraph_storage->create([
+      'type' => 'oe_banner',
+      'oe_paragraphs_variant' => 'oe_banner_image',
+      'field_oe_title' => 'Banner',
+      'field_oe_text' => 'Description',
+      'field_oe_link' => [
+        'uri' => 'http://www.example.com/',
+        'title' => 'Example',
+      ],
+      'field_oe_media' => [
+        'target_id' => $media->id(),
+      ],
+      'field_oe_banner_type' => 'hero_center',
+    ]);
     $paragraph->save();
     // Add bulgarian translation.
     $paragraph->addTranslation('bg', [
@@ -358,25 +320,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . (file_create_url($file_uri_en)) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
 
-    // Render paragraph in bulgarian.
+    // Render paragraph in Bulgarian.
     $html = $this->renderParagraph($paragraph, 'bg');
     $crawler = new Crawler($html);
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     // Bulgarian media should be rendered.
-    $this->assertContains(
-      'url(' . (file_create_url($file_uri_bg)) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($bg_file->createFileUrl(), $image_element->attr('style'));
 
     // Variant - image / Modifier - hero_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
@@ -388,10 +344,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -407,10 +360,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -428,10 +378,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -448,10 +395,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -468,10 +412,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -488,10 +429,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -508,10 +446,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
-      'url(' . file_create_url($file_uri_en) . ')',
-      $image_element->attr('style')
-    );
+    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -687,18 +622,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Create a media using AV Portal image and add it to the paragraph.
-    $media = $this->container
-      ->get('entity_type.manager')
-      ->getStorage('media')->create([
-        'bundle' => 'av_portal_photo',
-        'oe_media_avportal_photo' => 'P-038924/00-15',
-        'uid' => 0,
-        'status' => 1,
-      ]);
+    $media = $media_storage->create([
+      'bundle' => 'av_portal_photo',
+      'oe_media_avportal_photo' => 'P-038924/00-15',
+      'uid' => 0,
+      'status' => 1,
+    ]);
 
     $media->save();
 
-    $paragraph = Paragraph::create([
+    $paragraph = $paragraph_storage->create([
       'type' => 'oe_banner',
       'oe_paragraphs_variant' => 'oe_banner_image',
       'field_oe_text' => 'Description',
