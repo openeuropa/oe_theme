@@ -63,30 +63,18 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
    */
   public function testDocumentMedia(): void {
     // Make image media translatable.
-    $setting = $this->container->get('entity_type.manager')->getStorage('language_content_settings')->create([
-      'langcode' => 'en',
-      'status' => TRUE,
-      'id' => 'media.document',
-      'target_entity_type_id' => 'media',
-      'target_bundle' => 'document',
-      'default_langcode' => 'site_default',
-      'language_alterable' => TRUE,
-    ]);
-    $setting->setThirdPartySetting('content_translation', 'enabled', TRUE);
-    $setting->save();
+    $this->container->get('content_translation.manager')->setEnabled('media', 'document', TRUE);
+    $this->container->get('router.builder')->rebuild();
 
     // Create english file.
     $english_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
     $english_file->setPermanent();
     $english_file->save();
 
-    // Create spanish file.
+    // Create Spanish file.
     $spanish_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_es.pdf');
     $spanish_file->setPermanent();
     $spanish_file->save();
-
-    // View modes to test.
-    $view_modes = ['default', 'oe_theme_main_content'];
 
     // Create a document media.
     /** @var \Drupal\media\MediaInterface $media */
@@ -99,6 +87,9 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     ]);
 
     $media->save();
+
+    // View modes to test.
+    $view_modes = ['default', 'oe_theme_main_content'];
 
     // Assert tha the media is rendered properly without translations.
     foreach ($view_modes as $view_mode) {
@@ -124,7 +115,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     // Assert that the media and its translations are rendered properly
     // in all translated languages.
     $translation_languages = $media->getTranslationLanguages();
-    foreach (['default', 'oe_theme_main_content'] as $view_mode) {
+    foreach ($view_modes as $view_mode) {
       foreach ($translation_languages as $document_langcode => $document_language) {
         $build = $this->mediaViewBuilder->view($media, $view_mode, $document_langcode);
         $crawler = new Crawler($this->renderRoot($build));
@@ -161,7 +152,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
   }
 
   /**
-   * Helper test to assert the rendering of the main document.
+   * Assert the rendering of the main document.
    *
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The rendered html to check.
