@@ -962,9 +962,6 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // Retrieve the correct paragraph translation.
-  $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($paragraph);
-
   // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;
@@ -1410,8 +1407,6 @@ function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
 function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
-  // Retrieve the correct paragraph translation.
-  $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($paragraph);
 
   if (!$paragraph->get('field_oe_title')->isEmpty()) {
     $variables['title'] = $paragraph->get('field_oe_title')->value;
