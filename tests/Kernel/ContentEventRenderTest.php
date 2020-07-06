@@ -13,7 +13,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that our Event content type render.
  *
- * @todo: Extend this test with more scenarios.
+ * @todo: Extend this test with ecl/markup rendering tests.
  */
 class ContentEventRenderTest extends AbstractKernelTestBase {
 
