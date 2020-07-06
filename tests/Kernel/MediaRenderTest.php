@@ -66,7 +66,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $this->container->get('content_translation.manager')->setEnabled('media', 'document', TRUE);
     $this->container->get('router.builder')->rebuild();
 
-    // Create english file.
+    // Create English file.
     $english_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
     $english_file->setPermanent();
     $english_file->save();
@@ -103,7 +103,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       $this->assertCount(0, $translation_list);
     }
 
-    // Translate the media to spanish.
+    // Translate the media to Spanish.
     $media_spanish = $media->addTranslation('es', [
       'name' => 'test document ES',
       'oe_media_file' => [
