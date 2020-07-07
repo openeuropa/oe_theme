@@ -61,7 +61,7 @@ third_party_settings:
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
-        variant: horizontal
+        variant: featured_horizontal
         direction: vertical
         classes: ''
         id: ''
@@ -76,7 +76,7 @@ third_party_settings:
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
-        variant: horizontal
+        variant: featured_horizontal
         direction: vertical
         classes: ''
         id: ''
@@ -90,7 +90,7 @@ third_party_settings:
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
-        variant: horizontal
+        variant: featured_horizontal
         direction: vertical
         classes: ''
         id: ''
