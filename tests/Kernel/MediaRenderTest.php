@@ -91,7 +91,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     // View modes to test.
     $view_modes = ['default', 'oe_theme_main_content'];
 
-    // Assert tha the media is rendered properly without translations.
+    // Assert that the media is rendered properly without translations.
     foreach ($view_modes as $view_mode) {
       $build = $this->mediaViewBuilder->view($media, $view_mode);
       $crawler = new Crawler($this->renderRoot($build));
