@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\file\Entity\File;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -61,18 +60,14 @@ class ContentEventRenderTest extends BrowserTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create image media that we will use for the English translation.
-    $this->container->get('file_system')->copy(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg', 'public://example_1.jpeg');
-    $en_image = File::create([
-      'uri' => 'public://example_1.jpeg',
-    ]);
-    $en_image->save();
+    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file->setPermanent();
+    $en_file->save();
 
-    // Create image media that we will use for the Bulgarian translation.
-    $this->container->get('file_system')->copy(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png', 'public://placeholder.png');
-    $bg_image = File::create([
-      'uri' => 'public://placeholder.png',
-    ]);
-    $bg_image->save();
+    // Create Bulgarian file.
+    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file->setPermanent();
+    $bg_file->save();
 
     // Create a media entity of image media type.
     /** @var \Drupal\media\Entity\Media $media */
@@ -80,7 +75,7 @@ class ContentEventRenderTest extends BrowserTestBase {
       'bundle' => 'image',
       'name' => 'Test image',
       'oe_media_image' => [
-        'target_id' => $en_image->id(),
+        'target_id' => $en_file->id(),
         'alt' => 'default en alt',
       ],
       'uid' => 0,
@@ -92,7 +87,7 @@ class ContentEventRenderTest extends BrowserTestBase {
     $media->addTranslation('bg', [
       'name' => 'Test image bg',
       'oe_media_image' => [
-        'target_id' => $bg_image->id(),
+        'target_id' => $bg_file->id(),
         'alt' => 'default bg alt',
       ],
     ]);
@@ -123,14 +118,14 @@ class ContentEventRenderTest extends BrowserTestBase {
     $node->save();
 
     $file_urls = [
-      'en' => $en_image->createFileUrl(),
-      'bg' => $bg_image->createFileUrl(),
+      'en' => $en_file->createFileUrl(),
+      'bg' => $bg_file->createFileUrl(),
     ];
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
       $node = $this->container->get('entity.repository')->getTranslationFromContext($node, $node_langcode);
       $this->drupalGet($node->toUrl());
-      $this->assertSession()->elementExists('css', 'img[src*="' . $file_urls[$node_langcode] . '"]');
+      $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
   }
 
