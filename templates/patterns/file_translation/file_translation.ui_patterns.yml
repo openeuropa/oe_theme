@@ -38,3 +38,8 @@ file_translation:
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+    more_info:
+      type: "text"
+      label: "More information"
+      description: "Informative text about the available translations."
+      preview: "Looking for another language which is not on the list? Find out why."
