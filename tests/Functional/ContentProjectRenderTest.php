@@ -52,6 +52,23 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * Tests that the Project page renders the top group correctly.
    */
   public function testProjectTopGroupRender(): void {
+    // Create a document for Project results.
+    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
+      'bundle' => 'document',
+      'name' => 'Test document',
+      'oe_media_file' => [
+        'target_id' => (int) $file->id(),
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+
+    $media->save();
+
     // Create a Project node.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->nodeStorage->create([
@@ -60,6 +77,12 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_teaser' => 'Teaser',
       'oe_summary' => 'Summary',
       'body' => 'Body',
+      'oe_project_results' => 'Project results...',
+      'oe_project_result_files' => [
+        [
+          'target_id' => (int) $media->id(),
+        ],
+      ],
       'oe_project_dates' => [
         'value' => '2020-05-10',
         'end_value' => '2025-05-15',
@@ -132,6 +155,25 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $values = $description_lists[2]->findAll('css', 'dd.ecl-description-list__definition');
     $this->assertCount(1, $values);
     $values[0]->hasLink('Example website');
+
+    // Assert top region - Project results.
+    $project_results = $this->assertSession()->elementExists('css', 'div#project-results');
+
+    // Assert results text.
+    $this->assertContains('Project results...', $project_results->getText());
+
+    // Assert result file.
+    $file_wrapper = $project_results->find('css', 'div.ecl-file');
+    $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
+    $file_title = $file_row->find('css', '.ecl-file__title');
+    $this->assertContains('Test document', $file_title->getText());
+    $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
+    $this->assertContains('English', $file_info_language->getText());
+    $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
+    $this->assertContains('KB - PDF)', $file_info_properties->getText());
+    $file_download_link = $file_row->find('css', '.ecl-file__download');
+    $this->assertContains('/test.pdf', $file_download_link->getAttribute('href'));
+    $this->assertContains('Download', $file_download_link->getText());
   }
 
 }

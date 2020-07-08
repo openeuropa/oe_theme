@@ -22,7 +22,6 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
-    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
@@ -166,9 +165,9 @@ content:
     label: hidden
     settings:
       view_mode: default
-      link: ''
+      link: false
     third_party_settings: {  }
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_entity_view
     region: content
   oe_project_results:
     type: text_default
