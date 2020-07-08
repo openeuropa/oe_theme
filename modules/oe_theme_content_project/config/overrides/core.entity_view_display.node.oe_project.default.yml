@@ -64,7 +64,6 @@ third_party_settings:
     group_budget:
       children:
         - oe_project_budget
-        - oe_project_budget_eu
         - extra_field_oe_theme_content_project_percentage
       parent_name: group_top
       weight: 3
@@ -123,17 +122,6 @@ content:
   oe_project_budget:
     type: number_decimal
     weight: 7
-    region: content
-    label: above
-    settings:
-      thousand_separator: .
-      decimal_separator: .
-      scale: 0
-      prefix_suffix: true
-    third_party_settings: {  }
-  oe_project_budget_eu:
-    type: number_decimal
-    weight: 8
     region: content
     label: above
     settings:
@@ -204,6 +192,7 @@ hidden:
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
+  oe_project_budget_eu: true
   oe_project_calls: true
   oe_project_coordinators: true
   oe_project_funding_programme: true
