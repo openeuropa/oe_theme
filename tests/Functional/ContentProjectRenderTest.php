@@ -53,6 +53,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   public function testProjectTopGroupRender(): void {
     // Create a Project node.
+    /** @var \Drupal\node\Entity\Node $node */
     $node = $this->nodeStorage->create([
       'type' => 'oe_project',
       'title' => 'Test project node',
@@ -112,6 +113,17 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertEquals('€100', $values[0]->getText());
     $this->assertEquals('€100', $values[1]->getText());
     $this->assertEquals('100% of the overall budget', $values[2]->getText());
+
+    // Change EU contribution and assert percentage field change.
+    $node->set('oe_project_budget_eu', 50);
+    $node->save();
+
+    $this->drupalGet($node->toUrl());
+
+    $description_lists = $project_details->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured');
+    $values = $description_lists[1]->findAll('css', 'dd.ecl-description-list__definition');
+    $this->assertEquals('€50', $values[1]->getText());
+    $this->assertEquals('50% of the overall budget', $values[2]->getText());
 
     // Assert the third description list block's labels and values.
     $labels = $description_lists[2]->findAll('css', 'dt.ecl-description-list__term');
