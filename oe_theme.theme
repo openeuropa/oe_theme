@@ -976,6 +976,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  // Retrieve the correct media translation.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
@@ -1467,6 +1471,9 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  // Retrieve the correct translation to display.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
 
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
