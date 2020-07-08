@@ -51,43 +51,27 @@ pipeline:
       matrix:
         COMPOSER_BOUNDARY: lowest
 
+  site-install:
+    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    commands:
+      - ./vendor/bin/run drupal:site-install
+
   grumphp:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
       - ./vendor/bin/grumphp run
 
-  phpunit-unit:
+  phpunit:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
-      - ./vendor/bin/phpunit --testsuite unit
-
-  phpunit-kernel:
-    group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
-    commands:
-      - ./vendor/bin/phpunit --testsuite kernel
-
-  phpunit-functional:
-    group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
-    commands:
-      - ./vendor/bin/run drupal:settings-setup
-      - ./vendor/bin/phpunit --testsuite functional
-
-  phpunit-functional-javascript:
-    group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
-    commands:
-      - ./vendor/bin/run drupal:settings-setup
-      - ./vendor/bin/phpunit --testsuite functional-javascript
+      - ./vendor/bin/phpunit
 
   behat:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
-      - ./vendor/bin/run drupal:site-install
       - ./vendor/bin/behat --strict
 
   before-release:

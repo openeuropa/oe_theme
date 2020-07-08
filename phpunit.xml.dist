@@ -10,22 +10,6 @@
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", null, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
   <testsuites>
-    <testsuite name="unit">
-      <directory>./modules/**/tests/src/Unit</directory>
-      <directory>./tests/Unit</directory>
-    </testsuite>
-    <testsuite name="kernel">
-      <directory>./modules/**/tests/src/Kernel</directory>
-      <directory>./tests/Kernel</directory>
-    </testsuite>
-    <testsuite name="functional">
-      <directory>./modules/**/tests/src/Functional</directory>
-      <directory>./tests/Functional</directory>
-    </testsuite>
-    <testsuite name="functional-javascript">
-      <directory>./modules/**/tests/src/FunctionalJavascript</directory>
-      <directory>./tests/FunctionalJavascript</directory>
-    </testsuite>
     <testsuite>
       <directory>./modules/**/tests/</directory>
       <directory>./tests/</directory>
