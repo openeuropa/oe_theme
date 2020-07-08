@@ -22,7 +22,6 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
-    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
