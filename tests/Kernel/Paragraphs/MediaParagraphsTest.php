@@ -320,7 +320,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -332,7 +335,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     // Bulgarian media should be rendered.
-    $this->assertContains($bg_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($bg_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
 
     // Variant - image / Modifier - hero_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
@@ -344,7 +350,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -360,7 +369,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -378,7 +390,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -395,7 +410,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -412,7 +430,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -429,7 +450,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -446,7 +470,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains($en_file->createFileUrl(), $image_element->attr('style'));
+    $this->assertContains(
+      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      $image_element->attr('style')
+    );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
