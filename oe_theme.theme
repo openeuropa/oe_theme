@@ -376,6 +376,10 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
+  // Sort local tasks by weight.
+  uasort($variables['primary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+  uasort($variables['secondary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
