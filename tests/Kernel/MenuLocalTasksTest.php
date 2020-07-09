@@ -24,7 +24,7 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
         'link1.link' => [
           '#theme' => 'menu_local_task',
           '#link' => [
-            'title' => 'Active link',
+            'title' => 'Third link - Active',
             'url' => Url::fromUri('http://www.active.com'),
           ],
           '#active' => TRUE,
@@ -33,7 +33,7 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
         'link2.link' => [
           '#theme' => 'menu_local_task',
           '#link' => [
-            'title' => 'Inactive link',
+            'title' => 'First link - Inactive',
             'url' => Url::fromUri('http://www.inactive.com'),
           ],
           '#active' => FALSE,
@@ -42,7 +42,7 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
         'link3.link' => [
           '#theme' => 'menu_local_task',
           '#link' => [
-            'title' => 'Middle link',
+            'title' => 'Second link',
             'url' => Url::fromUri('http://www.middlelink.com'),
           ],
           '#active' => FALSE,
@@ -65,24 +65,24 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
 
     // Assert active link contains ECL classes.
     $actual = $crawler->filter('li.ecl-navigation-list__item--active')->text();
-    $this->assertEquals('Active link', trim($actual));
+    $this->assertEquals('Third link - Active', trim($actual));
 
     // Assert regular link contains ECL classes and the links are ordered by
     // weight.
     $actual = $crawler->filter('li.ecl-navigation-list__item > a')
       ->eq(0)
       ->text();
-    $this->assertEquals('Inactive link', trim($actual));
+    $this->assertEquals('First link - Inactive', trim($actual));
 
     $actual = $crawler->filter('li.ecl-navigation-list__item > a')
       ->eq(1)
       ->text();
-    $this->assertEquals('Middle link', trim($actual));
+    $this->assertEquals('Second link', trim($actual));
 
     $actual = $crawler->filter('li.ecl-navigation-list__item > a')
       ->eq(2)
       ->text();
-    $this->assertEquals('Active link', trim($actual));
+    $this->assertEquals('Third link - Active', trim($actual));
   }
 
 }
