@@ -131,22 +131,25 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertCount(2, $labels);
     $this->assertEquals('Overall budget', $labels[0]->getText());
     $this->assertEquals('EU contribution', $labels[1]->getText());
+
+    // Assert definition content.
     $values = $description_lists[1]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(2, $values);
-    $this->assertEquals('€100', $values[0]->getText());
-    $this->assertContains('€100', $values[1]->getText());
-    $this->assertContains('100% of the overall budget', $values[1]->getText());
+    $this->assertEquals('<div content="100">€100</div>', trim($values[0]->getHtml()));
+    $definition_element = $values[1];
+    $values = $definition_element->findAll('css', 'div');
+    $this->assertEquals('<div>€100</div>', trim($values[0]->getOuterHtml()));
+    $this->assertEquals('<div class="ecl-u-mt-m">100% of the overall budget</div>', trim($values[1]->getOuterHtml()));
 
     // Change EU contribution and assert percentage field change.
     $node->set('oe_project_budget_eu', 50);
     $node->save();
-
     $this->drupalGet($node->toUrl());
-
     $description_lists = $project_details->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured');
     $values = $description_lists[1]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertContains('€50', $values[1]->getText());
-    $this->assertContains('50% of the overall budget', $values[1]->getText());
+    $definition_element = $values[1];
+    $values = $definition_element->findAll('css', 'div');
+    $this->assertEquals('<div>€50</div>', trim($values[0]->getOuterHtml()));
+    $this->assertEquals('<div class="ecl-u-mt-m">50% of the overall budget</div>', trim($values[1]->getOuterHtml()));
 
     // Assert the third description list block's labels and values.
     $labels = $description_lists[2]->findAll('css', 'dt.ecl-description-list__term');

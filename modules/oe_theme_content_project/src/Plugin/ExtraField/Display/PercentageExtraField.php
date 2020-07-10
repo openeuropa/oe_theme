@@ -80,6 +80,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
     $build = [];
     $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget_eu'), [
       'label' => 'hidden',
+      'type' => 'number_decimal',
       'settings' => [
         'thousand_separator' => '.',
         'decimal_separator' => '.',
