@@ -11,6 +11,7 @@ services:
     image: percona/percona-server:5.6
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=drupal
   sparql:
     image: openeuropa/triple-store-dev
     pull: true
