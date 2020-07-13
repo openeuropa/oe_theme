@@ -4,10 +4,11 @@
  * Default implementation for the navigation list item component.
  */
 #}
-{% include '@oe_theme/compositions/ec-component-content-item/content-item.html.twig' with {
+{% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
   title: {
     label: title,
     path: url
   },
-  description: detail|smart_trim(length)
+  description: detail|smart_trim(length),
+  field_list: field_list
 } only %}
