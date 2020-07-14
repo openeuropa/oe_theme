@@ -78,10 +78,10 @@ list_item:
         alt: "Alternative text for image"
     field_list:
         type: "array"
-        label: "Reference"
+        label: "Items"
         description: "Label of the field"
         preview:
-          - label: 'Addressing shared challenges'
-            body: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training_en'
-          - label: 'Setting objectives and measuring progress'
-            body: 'https://ec.europa.eu/info/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
+          - label: "Countries"
+            body: "Spain, France, Italy"
+          - label: "Deadline dates"
+            body: "1 April 2017 / 1 July 2017"

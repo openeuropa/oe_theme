@@ -619,6 +619,7 @@
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
+      lenght: 10
       meta:
         - "Meta 1"
         - "Meta 2"
@@ -751,6 +752,7 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
+      lenght: 10
       image:
         src: "http://via.placeholder.com/150x150"
         alt: "Alternate text for primary image"
@@ -775,6 +777,7 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
+      lenght: 10
       image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternate text for secondary image"
@@ -797,6 +800,7 @@
     '#variant': "highlight"
     '#fields':
       title: "Item title"
+      lenght: 10
       url: "http://example.com"
       image:
         src: "http://via.placeholder.com/300x300"
@@ -818,6 +822,7 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item test"
+      lenght: 10
   assertions:
     count:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
@@ -834,6 +839,7 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
+      lenght: 10
       date:
         day: '14'
         month_fullname: 'July'
@@ -905,6 +911,7 @@
       title: "Item title"
       url: "http://example.com"
       detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      lenght: 85
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1

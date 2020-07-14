@@ -4,13 +4,39 @@
   Default item list component.
 
   Parameters:
-    - "meta" (array) (default: []): Meta information for the Content Item
-    - "title" (string) (default: ''): Title for the list Content Item
-    - "url" (string) (default: ''): url path for the title Content Item
-    - "detail" (string) (default: ''): Description of Content Item
-    - "field_list" (array) (default: []): Field elements
+    - "meta" (array) (default: []): Meta information for the Content Item.
+    - "title" (string) (default: ''): Title for the list Content Item.
+    - "url" (string) (default: ''): url path for the title Content Item.
+    - "detail" (string) (default: ''): Description of Content Item.
+    - "field_list" (array) (default: []): Field elements.
+    - "image" (array) (default: []): Image for the item.
+    - "image_position" (string) (default: ''): Image before of after the item.
+    - "length" (int) (default: 0): Max lenght of detail field.
 #}
+
+{# Create macro #}
+
+{% macro image(src, alt, position) %}
+<div role="img"
+     aria-label="{{ alt }}"
+     class="ecl-u-ratio-3-2
+      ecl-u-flex-shrink-0
+      ecl-u-d-lg-block
+      ecl-content-item__image__{{ position }}
+      ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-sm-l
+      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-l
+      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-sm-none"
+     style="background-image: url('{{ src }}');
+       background-size: cover;
+       height:8.75rem;
+       width:13.125rem"
+></div>
+{% endmacro %}
+
 <article class="ecl-content-item ecl-u-d-sm-flex ecl-u-pb-m">
+  {% if image and image_position == 'before' %}
+    {{ _self.image(image.src, image.alt, image_position) }}
+  {% endif %}
   <div class="ecl-u-flex-grow-1">
     {% if meta is not empty %}
       <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ meta|join(" | ") }}</div>
@@ -29,7 +55,7 @@
       {%- endif -%}
     </div>
     {% if detail is not empty %}
-      <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ detail }}</div>
+      <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ detail|smart_trim(length) }}</div>
     {% endif %}
     {% if field_list %}
       {% include '@oe_theme/patterns/field_list/pattern-field-list.html.twig' with {
@@ -38,5 +64,8 @@
       } %}
     {% endif %}
   </div>
+  {% if image and image_position == 'after' %}
+    {{ _self.image(image.src, image.alt, image_position) }}
+  {% endif %}
 </article>
 {% endspaceless %}

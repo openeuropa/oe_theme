@@ -5,10 +5,9 @@
  */
 #}
 {% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
-  title: {
-    label: title,
-    path: url
-  },
+  title: title,
+  url: url,
   description: detail|smart_trim(length),
-  field_list: field_list
+  meta: meta,
+  detail: detail
 } only %}
