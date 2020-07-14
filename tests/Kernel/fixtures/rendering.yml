@@ -643,7 +643,6 @@
       length: 6
       meta:
         - "Meta 1"
-        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -651,7 +650,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
 - array:

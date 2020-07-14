@@ -7,7 +7,5 @@
 {% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
   title: title,
   url: url,
-  description: detail|smart_trim(length),
-  meta: meta,
-  detail: detail
+  detail: detail|smart_trim(length),
 } only %}

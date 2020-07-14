@@ -9,7 +9,7 @@
     - "detail" (string) (default: ''): Description of Content Item
     - "meta" (array) (default: []): Meta information for the Content Item Date
     - "date" (associative array) (default: {}): Predefined structure compatible with Date block component.
-    - "length" (int) (default: 0): Max lenght of detail field.
+    - "length" (int) (default: 0): Max length of detail field.
 #}
 <article class="ecl-content-item-date ecl-u-d-flex ecl-u-pv-m">
   <div class="ecl-content-item-date__date ecl-u-flex-grow-0 ecl-u-mr-m">
@@ -41,13 +41,7 @@
       {%- endif -%}
     </div>
     {% if detail is not empty %}
-      <div class="ecl-content-item-date__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ detail }}</div>
-    {% endif %}
-    {% if field_list %}
-      {% include '@oe_theme/patterns/field_list/pattern-field-list.html.twig' with {
-        variant: 'horizontal',
-        items: field_list
-      } %}
+      <div class="ecl-content-item-date__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ detail|smart_trim(length) }}</div>
     {% endif %}
   </div>
 </article>
