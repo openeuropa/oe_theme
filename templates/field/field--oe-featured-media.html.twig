@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * OE Featured Media field template.
+ *
+ * Preprocesssed variables:
+ * - _front_params: Array of parameters to generate ECL media-container markup.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{%
+  set title_classes = [
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+
+{% if _front_params %}
+  <div{{ attributes }}>
+    {% if label_hidden == false %}
+      <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+    {% endif %}
+    {% include '@ecl-twig/media-container' with _front_params only %}
+  </div>
+{% endif %}

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_featured_media
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_participants
     - field.field.node.oe_project.oe_project_result_files
@@ -25,6 +26,7 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - link
+    - oe_content_featured_media_field
     - rdf_skos
     - text
     - user
@@ -32,6 +34,7 @@ third_party_settings:
   field_group:
     group_top:
       children:
+        - oe_project_featured_media
         - body
         - group_details
         - group_budget
@@ -231,6 +234,14 @@ content:
     settings:
       view_mode: default
       link: ''
+    third_party_settings: {  }
+  oe_project_featured_media:
+    type: oe_featured_media_label
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link: false
     third_party_settings: {  }
   oe_project_result_files:
     weight: 3
