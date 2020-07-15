@@ -78,8 +78,8 @@ list_item:
         alt: "Alternative text for image"
     field_list:
         type: "array"
-        label: "Items"
-        description: "Label of the field"
+        label: "List of fields"
+        description: "List of fields to be displayed under the item description. Only used on default, thumbnail_primary and thumbnail_secondary variants"
         preview:
           - label: "Countries"
             body: "Spain, France, Italy"

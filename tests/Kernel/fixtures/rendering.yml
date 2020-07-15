@@ -619,7 +619,6 @@
       url: "http://example.com"
       title: "Item title"
       detail: "Item text"
-      lenght: 10
       meta:
         - "Meta 1"
         - "Meta 2"
@@ -733,12 +732,48 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      field_list:
+        - label: "Countries"
+          body: "Spain, France, Italy"
+        - label: "Deadline dates"
+          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list .ecl-description-list__term': 2
+      'article > div .ecl-description-list .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#type': 'processed_text'
+        '#text': '<div>This is the detail. It is long.</div>'
+        '#format': 'plain_text'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
@@ -751,23 +786,33 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
-      lenght: 10
       image:
         src: "http://via.placeholder.com/150x150"
         alt: "Alternate text for primary image"
       meta:
         - "Meta 1"
         - "Meta 2"
+      field_list:
+        - label: "Countries"
+          body: "Spain, France, Italy"
+        - label: "Deadline dates"
+          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 1
       'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list .ecl-description-list__term': 2
+      'article > div .ecl-description-list .ecl-description-list__definition': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
 - array:
     '#type': pattern
     '#id': list_item
@@ -776,30 +821,39 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
-      lenght: 10
       image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternate text for secondary image"
       meta:
         - "Meta 1"
         - "Meta 2"
+      field_list:
+        - label: "Countries"
+          body: "Spain, France, Italy"
+        - label: "Deadline dates"
+          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 1
+      'article > div .ecl-description-list .ecl-description-list__term': 2
+      'article > div .ecl-description-list .ecl-description-list__definition': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
+      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
+      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
 - array:
     '#type': pattern
     '#id': list_item
     '#variant': "highlight"
     '#fields':
       title: "Item title"
-      lenght: 10
       url: "http://example.com"
       image:
         src: "http://via.placeholder.com/300x300"
@@ -821,7 +875,6 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item test"
-      lenght: 10
   assertions:
     count:
       'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
@@ -838,7 +891,6 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item text"
-      lenght: 10
       date:
         day: '14'
         month_fullname: 'July'
@@ -910,7 +962,6 @@
       title: "Item title"
       url: "http://example.com"
       detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      lenght: 85
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
