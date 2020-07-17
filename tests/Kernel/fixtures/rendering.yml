@@ -461,15 +461,15 @@
         size: "10000"
         language_code: "en"
       translations:
-        - mime: "application/pdf"
-          url: "http://example.com/document_fr.pdf"
+        - mime: "application/vnd.ms-excel"
+          url: "http://example.com/document_fr.xls"
           size: "150000"
-          name: "document.pdf"
+          name: "document.xls"
           language_code: "fr"
-        - mime: "application/pdf"
-          url: "http://example.com/document_it.pdf"
+        - mime: "application/vnd.ms-powerpoint"
+          url: "http://example.com/document_it.ppt"
           size: "160000"
-          name: "document.pdf"
+          name: "document.ppt"
           language_code: "it"
         - mime: "application/pdf"
           url: "http://example.com/document_hu.pdf"
@@ -483,8 +483,8 @@
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file__translation-container': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 3
-      'a.ecl-file__translation-download[href="http://example.com/document_fr.pdf"]': 1
-      'a.ecl-file__translation-download[href="http://example.com/document_it.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
     equals:
       'div.ecl-file__title': "File title example"
@@ -493,9 +493,9 @@
       'a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-description': "Custom information snippet."
