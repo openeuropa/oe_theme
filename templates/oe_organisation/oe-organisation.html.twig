@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present an organisation entity.
+ *
+ * Available variables:
+ * - entity: The entity item, with limited access to object properties and
+ *   methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ *   For example:
+ *   - entity.getEntityTypeId() will return the entity type ID.
+ *   - entity.hasField('field_example') returns TRUE if the entity includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   Calling other methods, such as entity.delete(), will result in
+ *   an exception.
+ *   See \Drupal\Core\Entity\EntityInterface for a full list of methods.
+ * - label: The entity label.
+ * - content: The entity content.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - logo: ImageValueObject.
+ * - name: name value.
+ * - acronym: acronym value.
+ * - organisation_details: list of fields as specified in field_list pattern.
+ * - contact_page_url: url string.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{{ pattern('organisation_teaser', {
+  logo: logo,
+  name: name,
+  acronym: acronym,
+  organisation_details: organisation_details,
+  contact_page_url: contact_page_url
+}) }}

@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Project coordinators field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+
+{% set _title = title|default('Coordinators'|t) %}
+
+<h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-md-l">
+  {{ _title}}
+</h3>
+
+<div class="ecl-container">
+  <div class="ecl-row">
+    {% for item in items %}
+      <div class="ecl-col-12 ecl-col-md-6">
+        {{ item.content }}
+      </div>
+    {% endfor %}
+  </div>
+</div>

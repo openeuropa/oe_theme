@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @file
+ * Module file is used for theming the Organisation entity.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Url;
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\file\FileInterface;
+use Drupal\media\MediaInterface;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$variables): void {
+  $entity = $variables['entity'];
+  // Prepare fields.
+  $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
+  foreach ($fields_values as $entity_field => $pattern_field) {
+    if (!$entity->get($entity_field)->isEmpty()) {
+      $variables[$pattern_field] = $entity->get($entity_field)->value;
+    }
+  }
+
+  // Extract the image if Media and File entities exist.
+  $media_image = $entity->get('oe_logo')->entity;
+  if ($media_image instanceof MediaInterface) {
+    $cacheability = CacheableMetadata::createFromRenderArray($variables);
+    $cacheability->addCacheableDependency($media_image);
+    $image_item = $media_image->get('oe_media_image')->first();
+    $file = $image_item->get('entity')->getValue();
+
+    if ($file instanceof FileInterface) {
+      $variables['logo'] = ImageValueObject::fromImageItem($image_item);
+      $cacheability->addCacheableDependency($file);
+    }
+    $cacheability->applyTo($variables);
+  }
+
+  // Set contact page url and icon.
+  $variables['contact_page_url'] = '';
+  if (!$entity->get('oe_contact_url')->isEmpty()) {
+    $link = $entity->get('oe_contact_url')->first()->getValue();
+    if (UrlHelper::isExternal($link['uri'])) {
+      $variables['contact_page_url'] = $link['uri'];
+    }
+    else {
+      $variables['contact_page_url'] = Url::fromUri($link['uri'])->toString();
+    }
+  }
+
+  // Process contact item.
+  $variables['organisation_details'] = [];
+  $contact_fields = ['oe_address', 'oe_website'];
+  foreach ($contact_fields as $field) {
+    if (empty($variables['content'][$field]['#title'])) {
+      continue;
+    }
+    $variables['organisation_details'][] = [
+      'label' => $variables['content'][$field]['#title'],
+      'body' => [
+        '#label_display' => 'hidden',
+      ] + $variables['content'][$field],
+    ];
+  }
+
+}
