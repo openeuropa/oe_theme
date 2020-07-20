@@ -10,7 +10,7 @@
 {% for item in translations %}
   {% set _translations = _translations|merge([{
     'title': item.language_code|to_native_language,
-    'meta': '(' ~ item.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')',
+    'meta': '(' ~ item.size|format_size ~ ' - ' ~ item.extension|upper  ~ ')',
     'lang': item.language_code,
     'download': {
       'link': {
