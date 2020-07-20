@@ -26,14 +26,14 @@ class ContentProjectRenderTest extends BrowserTestBase {
   /**
    * The node storage.
    *
-   * @var \Drupal\node\NodeInterface
+   * @var \Drupal\node\NodeStorageInterface
    */
   protected $nodeStorage;
 
   /**
    * The organisation storage.
    *
-   * @var \Drupal\oe_content_entity_organisation\Entity\OrganisationInterface
+   * @var \Drupal\Core\Entity\ContentEntityStorageInterface
    */
   protected $organisationStorage;
 
@@ -238,9 +238,9 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertStakeholderOrganisationRendering($project_stakeholder, 'coordinator');
 
     // Unpublish Coordinator and publish Participant organisations.
-    $coordinator_organisation->set('status', 0);
+    $coordinator_organisation->set('status', CorporateEntityInterface::NOT_PUBLISHED);
     $coordinator_organisation->save();
-    $participant_organisation->set('status', 1);
+    $participant_organisation->set('status', CorporateEntityInterface::PUBLISHED);
     $participant_organisation->save();
 
     // Reload the page.
