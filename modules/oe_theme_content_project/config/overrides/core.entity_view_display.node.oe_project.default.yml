@@ -22,6 +22,7 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
@@ -174,7 +175,7 @@ content:
     region: content
     label: above
     settings:
-      link: true
+      link: false
     third_party_settings: {  }
   oe_project_participants:
     type: entity_reference_revisions_entity_view

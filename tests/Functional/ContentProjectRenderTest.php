@@ -45,6 +45,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     'composite_reference',
     'config',
     'datetime_range',
+    'entity_reference_revisions',
     'path',
     'system',
     'oe_theme_helper',
