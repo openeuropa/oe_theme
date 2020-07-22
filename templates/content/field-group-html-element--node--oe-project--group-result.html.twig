@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Project results fieldgroup html element.
+ *
+ * @see ./modules/contrib/field_group/templates/field-group-html-element.html.twig
+ */
+#}
+<div id="project-results" class="ecl-row">
+  <div class="ecl-col-12">
+    {% if title %}
+      <h2 class="ecl-u-type-heading-2">{{ title }}</h2>
+    {% endif %}
+    {{ children }}
+  </div>
+</div>

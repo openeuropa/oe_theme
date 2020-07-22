@@ -1,19 +1,30 @@
 {#
 /**
  * @file
- * Field list default variant.
+ * Field list.
  */
 #}
 
 {% set _items = [] %}
 {% for _item in items %}
-  {% set _items = _items|merge([{
-    term: _item.label,
-    definition: _item.body|render
-  }]) %}
+  {% set _body = _item.body|render %}
+  {% if _body %}
+    {% set _items = _items|merge([{
+      term: _item.label,
+      definition: _body
+    }]) %}
+  {% endif %}
 {% endfor %}
-
-{% include '@ecl-twig/description-list' with {
-  'variant': variant,
-  'items': _items,
-} %}
+{% if variant == 'featured_horizontal' %}
+  {% set variant = 'horizontal' %}
+  {% set extra_classes = 'ecl-description-list--featured' %}
+{% endif %}
+{% if _items %}
+  {% block content %}
+  {% include '@ecl-twig/description-list' with {
+    'variant': variant,
+    'items': _items,
+    'extra_classes': extra_classes,
+  } %}
+  {% endblock %}
+{% endif %}
