@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default template for the 'oe_theme_helper_in_page_navigation' in page navigation.
+ *
+ * Available variables:
+ *   - element: elements to render.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="ecl-container">
+  <div class="ecl-row ecl-u-mt-l">
+    <div class="ecl-col-lg-3">
+      {% include '@ecl-twig/inpage-navigation' with {
+        'title': element['#inline_title'],
+        'links': element['#links']
+      } %}
+    </div>
+    <div class="ecl-col-lg-9">
+      {{ element['#children'] }}
+    </div>
+  </div>
+</div>
+

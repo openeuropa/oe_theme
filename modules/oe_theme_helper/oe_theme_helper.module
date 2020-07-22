@@ -61,6 +61,10 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'address_delimiter' => NULL,
       ],
     ],
+    'field_group_in_page_navigation' => [
+      'render element' => 'element',
+      'template' => 'oe-theme-helper-in-page-navigation',
+    ],
   ];
 }
 
