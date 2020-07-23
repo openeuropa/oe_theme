@@ -535,32 +535,6 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
       ];
     }
   }
-  if ($variables['element']['#field_type'] === 'oe_featured_media') {
-    // Set _front_params array for ECL component.
-    foreach ($variables['element']['#items'] as $item) {
-      $variables['_front_params']['description'] = $item->getValue()['caption'];
-      $mid = $item->getValue()['target_id'];
-      /** @var \Drupal\media\Entity\Media $media */
-      $media = Media::load($mid);
-      $source = $media->getSource();
-      switch (TRUE) {
-        case $source instanceof Image:
-          $variables['_front_params']['image'] = File::load($media->getSource()->getSourceFieldValue($media))->url();
-          $variables['_front_params']['alt'] = $media->get('oe_media_image')->getValue()[0]['alt'];
-          break;
-
-        case $source instanceof OEmbed:
-          if (in_array($source->getMetadata($media, 'type'), ['video', 'html'])) {
-            $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
-            $source_field = $source->getSourceFieldDefinition($media_type);
-            $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
-            $display_options = $display->getComponent($source_field->getName());
-            $variables['_front_params']['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
-          }
-          break;
-      }
-    }
-  }
 }
 
 /**

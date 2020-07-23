@@ -26,7 +26,7 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - link
-    - oe_content_featured_media_field
+    - oe_theme_helper
     - rdf_skos
     - text
     - user
@@ -236,12 +236,11 @@ content:
       link: ''
     third_party_settings: {  }
   oe_project_featured_media:
-    type: oe_featured_media_label
+    type: oe_featured_media_entity_view
     weight: 0
     region: content
     label: hidden
-    settings:
-      link: false
+    settings: {  }
     third_party_settings: {  }
   oe_project_result_files:
     weight: 3
