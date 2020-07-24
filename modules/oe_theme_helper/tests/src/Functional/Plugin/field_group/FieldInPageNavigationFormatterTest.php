@@ -80,42 +80,42 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'label' => 'Field 1 label',
         'visibility' => 'above',
         'type' => 'string',
-        'weight' => 10,
+        'weight' => 11,
       ],
       'field_test_2' => [
         'content' => 'Field 2 content',
         'label' => 'Field 2 label',
         'visibility' => 'inline',
         'type' => 'string',
-        'weight' => 11,
+        'weight' => 21,
       ],
       'field_test_3' => [
         'content' => '',
         'label' => 'Field 3 label',
         'visibility' => 'inline',
         'type' => 'string',
-        'weight' => 12,
+        'weight' => 31,
       ],
       'field_test_4' => [
         'content' => 'Field 4 content',
         'label' => 'Field 4 label',
         'visibility' => 'above',
         'type' => 'string',
-        'weight' => 13,
+        'weight' => 41,
       ],
       'field_test_5' => [
         'content' => 'Field 5 content',
         'label' => 'Field 5 label',
         'visibility' => 'above',
         'type' => 'string',
-        'weight' => 14,
+        'weight' => 61,
       ],
       'field_test_6' => [
         'content' => 'Field 6 content',
         'label' => 'Field 6 label',
         'visibility' => 'hidden',
         'type' => 'string',
-        'weight' => 15,
+        'weight' => 62,
       ],
     ];
     $node_values = ['type' => "test"];
@@ -161,27 +161,8 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
   public function testFieldInPageNavigationFormmaterTest() {
     // Create display groups.
     $data = [
-      'label' => 'In-page navigation group',
-      'weight' => 0,
-      'group_name' => 'group_inpage_nav',
-      'children' => [
-        'group_1',
-        'group_2',
-        'group_3',
-        'group_4',
-        'group_5',
-        'group_6',
-        'field_test_5',
-        'field_test_6',
-      ],
-      'format_type' => 'oe_theme_helper_in_page_navigation',
-    ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
-    $data = [
-      'weight' => 1,
-      'group_name' => 'group_1',
+      'weight' => 10,
       'label' => 'Group 1',
-      'parent' => 'group_inpage_nav',
       'children' => [
         0 => 'field_test_1',
       ],
@@ -190,12 +171,10 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'open' => TRUE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_1 = $this->createGroup('node', 'test', 'view', 'default', $data);
     $data = [
-      'weight' => 2,
+      'weight' => 20,
       'label' => 'Group 2',
-      'group_name' => 'group_2',
-      'parent' => 'group_inpage_nav',
       'children' => [
         0 => 'field_test_2',
       ],
@@ -205,12 +184,10 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'open' => TRUE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_2 = $this->createGroup('node', 'test', 'view', 'default', $data);
     $data = [
-      'weight' => 2,
+      'weight' => 30,
       'label' => 'Group 3',
-      'group_name' => 'group_3',
-      'parent' => 'group_inpage_nav',
       'children' => [
         0 => 'field_test_3',
       ],
@@ -219,12 +196,10 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'show_label' => TRUE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_3 = $this->createGroup('node', 'test', 'view', 'default', $data);
     $data = [
-      'weight' => 3,
+      'weight' => 40,
       'label' => 'Group 4',
-      'group_name' => 'group_4',
-      'parent' => 'group_inpage_nav',
       'children' => [
         0 => 'field_test_4',
       ],
@@ -233,29 +208,42 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'open' => TRUE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_4 = $this->createGroup('node', 'test', 'view', 'default', $data);
     $data = [
-      'weight' => 4,
+      'weight' => 50,
       'label' => 'Group 5',
-      'group_name' => 'group_5',
-      'parent' => 'group_inpage_nav',
       'format_type' => 'details',
       'format_settings' => [
         'open' => TRUE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_5 = $this->createGroup('node', 'test', 'view', 'default', $data);
     $data = [
-      'weight' => 5,
+      'weight' => 60,
       'label' => 'Group 6',
-      'group_name' => 'group_6',
-      'parent' => 'group_inpage_nav',
       'format_type' => 'html_element',
       'format_settings' => [
         'show_label' => FALSE,
       ],
     ];
-    $this->createGroup('node', 'test', 'view', 'default', $data);
+    $group_6 = $this->createGroup('node', 'test', 'view', 'default', $data);
+    $data = [
+      'label' => 'In-page navigation group',
+      'weight' => 0,
+      'group_name' => 'group_inpage_nav',
+      'children' => [
+        $group_1->group_name,
+        $group_2->group_name,
+        $group_3->group_name,
+        $group_4->group_name,
+        $group_5->group_name,
+        $group_6->group_name,
+        'field_test_5',
+        'field_test_6',
+      ],
+      'format_type' => 'oe_theme_helper_in_page_navigation',
+    ];
+    $inline = $this->createGroup('node', 'test', 'view', 'default', $data);
     $html = $this->drupalGet('node/' . $this->node->id());
     $crawler = new Crawler($html);
     // The content is break into two elements, for navigation and content.
