@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -328,7 +329,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @return \Drupal\Core\Entity\EntityStorageInterface
    *   The entity type's storage.
    */
-  protected function getStorage($entity_type_id) {
+  protected function getStorage($entity_type_id): EntityStorageInterface {
     return \Drupal::entityTypeManager()->getStorage($entity_type_id);
   }
 
