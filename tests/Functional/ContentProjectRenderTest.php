@@ -17,27 +17,6 @@ use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 class ContentProjectRenderTest extends BrowserTestBase {
 
   /**
-   * The media storage.
-   *
-   * @var \Drupal\Core\Entity\ContentEntityStorageInterface
-   */
-  protected $mediaStorage;
-
-  /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface
-   */
-  protected $nodeStorage;
-
-  /**
-   * The organisation storage.
-   *
-   * @var \Drupal\Core\Entity\ContentEntityStorageInterface
-   */
-  protected $organisationStorage;
-
-  /**
    * {@inheritdoc}
    */
   public static $modules = [
@@ -59,15 +38,11 @@ class ContentProjectRenderTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
-    $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
-    $this->mediaStorage = $this->container->get('entity_type.manager')->getStorage('media');
-    $this->nodeStorage = $this->container->get('entity_type.manager')->getStorage('node');
-    $this->organisationStorage = $this->container->get('entity_type.manager')->getStorage('oe_organisation');
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
     // Give anonymous users permission to view organisation entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
@@ -84,7 +59,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = $this->mediaStorage->create([
+    $media = $this->getStorage('media')->create([
       'bundle' => 'document',
       'name' => 'Test document',
       'oe_media_file' => [
@@ -103,7 +78,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Create a Project node.
     /** @var \Drupal\node\Entity\Node $node */
-    $node = $this->nodeStorage->create([
+    $node = $this->getStorage('node')->create([
       'type' => 'oe_project',
       'title' => 'Test project node',
       'oe_teaser' => 'Teaser',
@@ -229,12 +204,12 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Assert header.
     $stakeholder_headers = $project_stakeholder->findAll('css', 'h2');
-    $this->assertEqual($stakeholder_headers[0]->getText(), 'Stakeholders');
+    $this->assertEquals($stakeholder_headers[0]->getText(), 'Stakeholders');
 
     // Assert Coordinators field.
     $stakeholder_sub_headers = $project_stakeholder->findAll('css', 'h3');
     $this->assertCount(1, $stakeholder_sub_headers);
-    $this->assertEqual($stakeholder_sub_headers[0]->getText(), 'Coordinators');
+    $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholder, 'coordinator');
 
     // Unpublish Coordinator and publish Participant organisations.
@@ -250,7 +225,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $project_stakeholder = $this->assertSession()->elementExists('css', 'div#project-stakeholder');
     $stakeholder_sub_headers = $project_stakeholder->findAll('css', 'h3');
     $this->assertCount(1, $stakeholder_sub_headers);
-    $this->assertEqual($stakeholder_sub_headers[0]->getText(), 'Participants');
+    $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
     $this->assertStakeholderOrganisationRendering($project_stakeholder, 'participant');
   }
 
@@ -271,7 +246,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = $this->mediaStorage->create([
+    $media = $this->getStorage('media')->create([
       'bundle' => 'image',
       'name' => "Test image $name",
       'oe_media_image' => [
@@ -282,7 +257,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     ]);
     $media->save();
 
-    $organisation = $this->organisationStorage->create([
+    $organisation = $this->getStorage('oe_organisation')->create([
       'bundle' => 'oe_stakeholder',
       'name' => $name,
       'oe_acronym' => "Acronym $name",
@@ -336,9 +311,25 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $values[1]->hasLink("http://www.example.com/website_$name");
 
     // Assert contact link.
-    $contact_links = $rendered_stakeholder_element->findAll('css', '.ecl-u-mt-l.ecl-u-type-bold');
+    $contact_links = $rendered_stakeholder_element->findAll('css', '.ecl-link');
     $this->assertCount(1, $contact_links);
-    $contact_links[0]->hasLink('Contact organisation');
+    $this->assertContains("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
+    $contact_link_labels = $rendered_stakeholder_element->findAll('css', '.ecl-link__label');
+    $this->assertCount(1, $contact_link_labels);
+    $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
+  }
+
+  /**
+   * Gets the entity type's storage.
+   *
+   * @param string $entity_type_id
+   *   The entity type ID to get a storage for.
+   *
+   * @return \Drupal\Core\Entity\EntityStorageInterface
+   *   The entity type's storage.
+   */
+  protected function getStorage($entity_type_id) {
+    return \Drupal::entityTypeManager()->getStorage($entity_type_id);
   }
 
 }

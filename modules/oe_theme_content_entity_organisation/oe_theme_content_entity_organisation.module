@@ -19,7 +19,6 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  */
 function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$variables): void {
   $entity = $variables['entity'];
-  // Prepare fields.
   $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
   foreach ($fields_values as $entity_field => $pattern_field) {
     if (!$entity->get($entity_field)->isEmpty()) {
@@ -30,6 +29,7 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
   // Extract the image if Media and File entities exist.
   $media_image = $entity->get('oe_logo')->entity;
   if ($media_image instanceof MediaInterface) {
+    $media_image = \Drupal::service('entity.repository')->getTranslationFromContext($media_image);
     $cacheability = CacheableMetadata::createFromRenderArray($variables);
     $cacheability->addCacheableDependency($media_image);
     $image_item = $media_image->get('oe_media_image')->first();
@@ -42,7 +42,7 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
     $cacheability->applyTo($variables);
   }
 
-  // Set contact page url and icon.
+  // Set contact page url.
   $variables['contact_page_url'] = '';
   if (!$entity->get('oe_contact_url')->isEmpty()) {
     $link = $entity->get('oe_contact_url')->first()->getValue();
@@ -54,11 +54,11 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
     }
   }
 
-  // Process contact item.
+  // Process organisation contact details.
   $variables['organisation_details'] = [];
   $contact_fields = ['oe_address', 'oe_website'];
   foreach ($contact_fields as $field) {
-    if (empty($variables['content'][$field]['#title'])) {
+    if ($entity->get($field)->isEmpty()) {
       continue;
     }
     $variables['organisation_details'][] = [
