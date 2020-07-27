@@ -9,11 +9,12 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
 use Symfony\Component\DomCrawler\Crawler;
+use Drupal\Component\Utility\Html;
 
 /**
- * Test the in page navigation field group formatter.
+ * Test the in-page navigation field group formatter.
  */
-class FieldInPageNavigationFormatterTest extends BrowserTestBase {
+class InPageNavigationFormatterTest extends BrowserTestBase {
 
   use FieldGroupTestTrait;
 
@@ -29,11 +30,11 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
   ];
 
   /**
-   * A node to use for testing.
+   * Fields configurations for testing.
    *
-   * @var \Drupal\node\NodeInterface
+   * @var array
    */
-  protected $node;
+  protected $fields;
 
   /**
    * {@inheritdoc}
@@ -41,26 +42,11 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
   public function setUp() {
     parent::setUp();
     // Enable oe_theme and set it as default.
-    $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
+    $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('config.factory')
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')
       ->save();
-
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
-    // Create test user.
-    $admin_user = $this->drupalCreateUser([
-      'access content',
-      'administer content types',
-      'administer node fields',
-      'administer node form display',
-      'administer node display',
-      'bypass node access',
-    ]);
-    $this->drupalLogin($admin_user);
 
     // Create content type.
     $this->drupalCreateContentType([
@@ -74,7 +60,7 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
       ->load('node.test.default');
 
     // Create test fields.
-    $fields = [
+    $this->fields = [
       'field_test_1' => [
         'content' => 'Field 1 content',
         'label' => 'Field 1 label',
@@ -118,9 +104,8 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'weight' => 62,
       ],
     ];
-    $node_values = ['type' => "test"];
 
-    foreach ($fields as $field_name => $field) {
+    foreach ($this->fields as $field_name => $field) {
       $field_storage = FieldStorageConfig::create([
         'field_name' => $field_name,
         'entity_type' => 'node',
@@ -145,20 +130,15 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'type' => 'text_default',
         'weight' => $field['weight'],
       ]);
-      // Create values for the testing node.
-      if ($field['content'] !== '') {
-        $node_values[$field_name][0]['value'] = $field['content'];
-      }
     }
     // Save display + create node.
     $display->save();
-    $this->node = $this->drupalCreateNode($node_values);
   }
 
   /**
-   * Test the in page navigation field group formatter.
+   * Tests the in-page navigation field group formatter.
    */
-  public function testFieldInPageNavigationFormmaterTest() {
+  public function testFormmater(): void {
     // Create display groups.
     $data = [
       'weight' => 10,
@@ -243,10 +223,18 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
       ],
       'format_type' => 'oe_theme_helper_in_page_navigation',
     ];
-    $inline = $this->createGroup('node', 'test', 'view', 'default', $data);
-    $html = $this->drupalGet('node/' . $this->node->id());
+    $this->createGroup('node', 'test', 'view', 'default', $data);
+    // Create values for the testing node.
+    $node_values = ['type' => "test"];
+    foreach ($this->fields as $field_name => $field) {
+      if ($field['content'] !== '') {
+        $node_values[$field_name][0]['value'] = $field['content'];
+      }
+    }
+    $node = $this->drupalCreateNode($node_values);
+    $html = $this->drupalGet('node/' . $node->id());
     $crawler = new Crawler($html);
-    // The content is break into two elements, for navigation and content.
+    // The content is broken into two elements, for navigation and content.
     $navigation_selector = 'article .ecl-container .ecl-col-lg-3 .ecl-inpage-navigation';
     $content_selector = 'article .ecl-container .ecl-col-lg-9';
     $this->assertSession()->elementExists('css', $navigation_selector);
@@ -254,7 +242,7 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
     // The navigation links match the content anchors.
     $anchor_links = [
       [
-        'id' => 'inline-nav-1',
+        'id' => "inline-nav-" . Html::cleanCssIdentifier('Group 1'),
         'label' => 'Group 1',
         'selector' => 'summary',
       ], [
@@ -264,11 +252,11 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
         'label' => 'Group 2',
         'selector' => 'summary',
       ], [
-        'id' => 'inline-nav-2',
+        'id' => "inline-nav-" . Html::cleanCssIdentifier('Group 4'),
         'label' => 'Group 4',
         'selector' => 'summary',
       ], [
-        'id' => 'inline-nav-3',
+        'id' => "inline-nav-" . Html::cleanCssIdentifier('Field 5 label'),
         'label' => 'Field 5 label',
         'selector' => 'div',
       ],
@@ -284,7 +272,7 @@ class FieldInPageNavigationFormatterTest extends BrowserTestBase {
     $this->assertSession()->pageTextNotContains('Group 5');
     // If a group has no visible label, don't include it in the navigation.
     $this->assertSession()->pageTextNotContains('Group 6');
-    // If a field has no visible label, don't include it in the navigation.
+    // If a field has label but hidden, don't include it in the navigation.
     $this->assertSession()->pageTextNotContains('Field 6 label');
     // If a group has all empty fields, don't show it in the navigation.
     $this->assertSession()->pageTextNotContains('Group 3');

@@ -7,11 +7,11 @@ namespace Drupal\oe_theme_helper\Element;
 use Drupal\Core\Render\Element\RenderElement;
 
 /**
- * Provides a render element for a html element.
+ * Provides a render element for an html element.
  *
  * @FormElement("field_group_in_page_navigation")
  */
-class InLinePaginationElement extends RenderElement {
+class InPageNavigationElement extends RenderElement {
 
   /**
    * {@inheritdoc}
@@ -22,7 +22,6 @@ class InLinePaginationElement extends RenderElement {
     return [
       '#process' => [
         [$class, 'processGroup'],
-        [$class, 'processHtmlElement'],
       ],
       '#pre_render' => [
         [$class, 'preRenderGroup'],

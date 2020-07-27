@@ -34,7 +34,7 @@ class PatternFormatterTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable oe_theme and set it as default.
-    $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
+    $this->container->get('theme_installer')->install(['oe_theme']);
     $this->container->get('config.factory')
       ->getEditable('system.theme')
       ->set('default', 'oe_theme')

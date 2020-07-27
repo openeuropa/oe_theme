@@ -64,6 +64,7 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'field_group_in_page_navigation' => [
       'render element' => 'element',
       'template' => 'oe-theme-helper-in-page-navigation',
+      'file' => 'templates/theme.inc',
     ],
   ];
 }

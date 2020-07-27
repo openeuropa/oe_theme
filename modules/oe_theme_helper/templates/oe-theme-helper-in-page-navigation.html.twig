@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default template for the 'oe_theme_helper_in_page_navigation' in page navigation.
+ * Default template for the 'oe_theme_helper_in_page_navigation' in-page navigation.
  *
  * Available variables:
  *   - element: elements to render.
@@ -9,17 +9,27 @@
  * @ingroup themeable
  */
 #}
+{% set _items = [] %}
+{% for _item in element['#links'] %}
+  {% set _group = element[_item.field]|render %}
+  {% if _group %}
+    {% set _items = _items|merge([{
+      href: _item.href,
+      label: _item.label
+    }]) %}
+  {% endif %}
+{% endfor %}
+
 <div class="ecl-container">
   <div class="ecl-row ecl-u-mt-l">
     <div class="ecl-col-lg-3">
       {% include '@ecl-twig/inpage-navigation' with {
         'title': element['#inline_title'],
-        'links': element['#links']
+        'links': _items
       } %}
     </div>
     <div class="ecl-col-lg-9">
-      {{ element['#children'] }}
+      {{ children }}
     </div>
   </div>
 </div>
-
