@@ -1,3 +1,4 @@
+@import '@ecl/ec-base/ec-base';
 // Apply global css.
 
 body {
@@ -10,4 +11,5 @@ a {
   &:focus {
     text-decoration: underline;
   }
+  color: $ecl-color-blue;
 }
