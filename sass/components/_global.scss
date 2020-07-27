@@ -1,10 +1,9 @@
 // Apply global css.
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: $ecl-font-family;
 }
 
 a {
-  font-family: $ecl-font-family;
   text-decoration: none;
 }
