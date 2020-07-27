@@ -1,4 +1,3 @@
-@import "@ecl/ec-component-link/ec-component-link";
 // Apply global css.
 
 body {
@@ -6,5 +5,6 @@ body {
 }
 
 a {
-  @extend .ecl-link--standalone;
+  font-family: $ecl-font-family;
+  text-decoration: none;
 }
