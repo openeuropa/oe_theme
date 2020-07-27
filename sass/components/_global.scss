@@ -1,0 +1,10 @@
+@import "@ecl/ec-component-link/ec-component-link";
+// Apply global css.
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+a {
+  @extend .ecl-link--standalone;
+}
