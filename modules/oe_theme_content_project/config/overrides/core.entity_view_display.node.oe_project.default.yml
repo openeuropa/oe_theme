@@ -103,7 +103,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: Results
-    group_stakeholder:
+    group_stakeholders:
       children:
         - oe_project_coordinators
         - oe_project_participants

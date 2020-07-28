@@ -201,17 +201,17 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertContains('Download', $file_download_link->getText());
 
     // Assert bottom region - Stakeholders.
-    $project_stakeholder = $this->assertSession()->elementExists('css', 'div#project-stakeholder');
+    $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
 
     // Assert header.
-    $stakeholder_headers = $project_stakeholder->findAll('css', 'h2');
+    $stakeholder_headers = $project_stakeholders->findAll('css', 'h2');
     $this->assertEquals($stakeholder_headers[0]->getText(), 'Stakeholders');
 
     // Assert Coordinators field.
-    $stakeholder_sub_headers = $project_stakeholder->findAll('css', 'h3');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
-    $this->assertStakeholderOrganisationRendering($project_stakeholder, 'coordinator');
+    $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
 
     // Unpublish Coordinator and publish Participant organisations.
     $coordinator_organisation->set('status', CorporateEntityInterface::NOT_PUBLISHED);
@@ -223,11 +223,11 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert Participants field.
-    $project_stakeholder = $this->assertSession()->elementExists('css', 'div#project-stakeholder');
-    $stakeholder_sub_headers = $project_stakeholder->findAll('css', 'h3');
+    $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
-    $this->assertStakeholderOrganisationRendering($project_stakeholder, 'participant');
+    $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
   }
 
   /**
@@ -241,7 +241,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @return \Drupal\oe_content_entity_organisation\Entity\OrganisationInterface
    *   Organisation entity.
    */
-  protected function createStakeholderOrganisationEntity($name, $status): OrganisationInterface {
+  protected function createStakeholderOrganisationEntity(string $name, int $status): OrganisationInterface {
     // Create image for logo.
     $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
     $file->setPermanent();
@@ -290,7 +290,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @param string $name
    *   Name of the entity.
    */
-  protected function assertStakeholderOrganisationRendering(NodeElement $rendered_stakeholder_element, $name): void {
+  protected function assertStakeholderOrganisationRendering(NodeElement $rendered_stakeholder_element, string $name): void {
     $headers = $rendered_stakeholder_element->findAll('css', 'article h4');
     $this->assertEquals("$name | Acronym $name", $headers[0]->getText());
 
@@ -329,7 +329,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @return \Drupal\Core\Entity\EntityStorageInterface
    *   The entity type's storage.
    */
-  protected function getStorage($entity_type_id): EntityStorageInterface {
+  protected function getStorage(string $entity_type_id): EntityStorageInterface {
     return \Drupal::entityTypeManager()->getStorage($entity_type_id);
   }
 

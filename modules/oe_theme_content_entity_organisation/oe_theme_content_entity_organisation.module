@@ -8,8 +8,6 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Url;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
@@ -45,13 +43,9 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
   // Set contact page url.
   $variables['contact_page_url'] = '';
   if (!$entity->get('oe_contact_url')->isEmpty()) {
-    $link = $entity->get('oe_contact_url')->first()->getValue();
-    if (UrlHelper::isExternal($link['uri'])) {
-      $variables['contact_page_url'] = $link['uri'];
-    }
-    else {
-      $variables['contact_page_url'] = Url::fromUri($link['uri'])->toString();
-    }
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
+    $link = $entity->get('oe_contact_url')->first();
+    $variables['contact_page_url'] = $link->getUrl()->toString();
   }
 
   // Process organisation contact details.
