@@ -22,6 +22,7 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
@@ -102,6 +103,25 @@ third_party_settings:
         id: ''
         classes: ''
       label: Results
+    group_stakeholders:
+      children:
+        - oe_project_coordinators
+        - oe_project_participants
+      parent_name: ''
+      weight: 2
+      format_type: html_element
+      region: content
+      format_settings:
+        element: div
+        show_label: true
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: Stakeholders
 id: node.oe_project.default
 targetEntityType: node
 bundle: oe_project
@@ -130,6 +150,15 @@ content:
       scale: 0
       prefix_suffix: true
     third_party_settings: {  }
+  oe_project_coordinators:
+    type: entity_reference_revisions_entity_view
+    weight: 10
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_project_dates:
     type: daterange_default
     weight: 1
@@ -146,7 +175,16 @@ content:
     region: content
     label: above
     settings:
-      link: true
+      link: false
+    third_party_settings: {  }
+  oe_project_participants:
+    type: entity_reference_revisions_entity_view
+    weight: 11
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
     third_party_settings: {  }
   oe_project_result_files:
     weight: 3
@@ -194,9 +232,7 @@ hidden:
   oe_content_short_title: true
   oe_project_budget_eu: true
   oe_project_calls: true
-  oe_project_coordinators: true
   oe_project_funding_programme: true
-  oe_project_participants: true
   oe_subject: true
   oe_summary: true
   oe_teaser: true
