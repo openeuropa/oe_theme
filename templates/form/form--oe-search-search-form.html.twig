@@ -16,7 +16,8 @@
   disabled: input_array.disabled,
   type: input_array.type,
   extra_classes: input_array.class|merge(['ecl-search-form__text-input'])|safe_join(' '),
-  extra_attributes: input_array.extra_attributes
+  extra_attributes: input_array.extra_attributes,
+  extra_group_classes: 'ecl-form-group--text-input'
 } %}
 {% set button = {
   variant: 'search',

@@ -4,13 +4,19 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying the event description block.
@@ -24,7 +30,52 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  *   visible = true
  * )
  */
-class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
+class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
+   * DescriptionExtraField constructor.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param mixed $plugin_definition
+   *   The plugin implementation definition.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   * @param \Drupal\Component\Datetime\TimeInterface $time
+   *   Time service.
+   * @param \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
+   *   Time based cache tag generator service.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, EntityRepositoryInterface $entity_repository) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $time, $cache_tag_generator);
+    $this->entityRepository = $entity_repository;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('datetime.time'),
+      $container->get('oe_time_caching.time_based_cache_tag_generator'),
+      $container->get('entity.repository')
+    );
+  }
 
   /**
    * {@inheritdoc}
@@ -136,6 +187,9 @@ class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase {
     if (!$media instanceof MediaInterface) {
       return;
     }
+
+    // Retrieve the translation of the media entity.
+    $media = $this->entityRepository->getTranslationFromContext($media);
 
     $cache = new CacheableMetadata();
     $cache->addCacheableDependency($media);

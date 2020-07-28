@@ -14,6 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -25,6 +26,7 @@ use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -374,6 +376,10 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
  * Implements hook_preprocess_menu_local_tasks().
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
+  // Sort local tasks by weight.
+  uasort($variables['primary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+  uasort($variables['secondary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
     $url = $link['#link']['url'];
@@ -974,6 +980,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  // Retrieve the correct media translation.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
@@ -982,7 +992,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   // Get the media source.
   $source = $media->getSource();
 
-  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed) {
+  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
+    // Default video aspect ratio is set to 16:9.
+    $variables['ratio'] = '16:9';
+
     // Load information about the media and the display.
     $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
     $cacheability->addCacheableDependency($media_type);
@@ -990,12 +1003,6 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
     $cacheability->addCacheableDependency($display);
     $display_options = $display->getComponent($source_field->getName());
-    // If its an AvPortal video, render it and pass it as an embeddable media.
-    if ($source instanceof MediaAvPortalVideoSource) {
-      $variables['video'] = $media->{$source_field->getName()}->view($display_options);
-      $cacheability->applyTo($variables);
-      return;
-    }
 
     // If it is an OEmbed resource, render it and pass it as embeddable data
     // only if it is of type video or html.
@@ -1007,6 +1014,18 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
         return;
       }
     }
+
+    // If its an AvPortal video or an iframe video, render it.
+    $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+    $cacheability->applyTo($variables);
+
+    // When dealing with iframe videos, also respect its given aspect ratio.
+    if ($media->bundle() === 'video_iframe') {
+      $ratio = $media->get('oe_media_iframe_ratio')->value;
+      $variables['ratio'] = str_replace('_', ':', $ratio);
+    }
+
+    return;
   }
 
   // If its an image media, render it and assign it to the image variable.
@@ -1196,12 +1215,27 @@ function oe_theme_preprocess_media__document__default(&$variables) {
   if ($variables['media']->get('oe_media_file')->isEmpty()) {
     return;
   }
-
+  // Generate the file information for the current language.
   /** @var \Drupal\media\Entity\Media $media */
   $media = $variables['media'];
   $file_object = $media->get('oe_media_file')->first()->entity;
   $variables['file'] = FileValueObject::fromFileEntity($file_object)
-    ->setTitle($media->getName());
+    ->setTitle($media->getName())
+    ->setLanguageCode($media->language()->getId());
+  // Generate the file information for all available translations.
+  foreach ($media->getTranslationLanguages() as $langcode => $language) {
+    // We don't want to include the information of the current language again.
+    if ($media->language()->getId() === $langcode) {
+      continue;
+    }
+    $translation = $media->getTranslation($langcode);
+    $file_object = $translation->get('oe_media_file')->first()->entity;
+    if ($file_object instanceof FileInterface) {
+      $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
+        ->setTitle($translation->getName())
+        ->setLanguageCode($translation->language()->getId());
+    }
+  }
 }
 
 /**
@@ -1442,6 +1476,9 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     return;
   }
 
+  // Retrieve the correct translation to display.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+
   // Caches are handled by the formatter usually. Since we are not rendering
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
@@ -1528,4 +1565,12 @@ function oe_theme_preprocess_page(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
   $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_theme_main_content(array &$variables): void {
+  // Set video aspect ratio when rendering "oe_theme_main_content" display mode.
+  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value;
 }

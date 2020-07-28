@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for an 'input' #type form element.
+ *
+ * @see ./core/themes/stable/templates/form/input.html.twig
+ */
+#}
+{%
+  set classes = [
+  'ecl-text-input',
+  attributes.hasClass('error') ? 'ecl-text-input--invalid',
+]
+%}
+<input{{ attributes.addClass(classes).setAttribute('size', '60') }} />{{ children }}

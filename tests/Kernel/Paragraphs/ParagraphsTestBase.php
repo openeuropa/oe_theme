@@ -19,13 +19,10 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'language',
     'content_translation',
     'paragraphs',
-    'user',
-    'system',
     'file',
     'field',
     'entity_reference_revisions',
     'datetime',
-    'image',
     'link',
     'text',
     'filter',
@@ -33,6 +30,9 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'typed_link',
     'oe_paragraphs',
     'allowed_formats',
+    'locale',
+    'oe_multilingual',
+    'oe_multilingual_demo',
   ];
 
   /**
@@ -44,7 +44,19 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     $this->installEntitySchema('paragraph');
     $this->installEntitySchema('file');
     $this->installSchema('file', ['file_usage']);
-    $this->installConfig(['oe_paragraphs', 'filter']);
+    $this->installSchema('locale', [
+      'locales_location',
+      'locales_source',
+      'locales_target',
+    ]);
+    $this->installConfig([
+      'oe_paragraphs',
+      'filter',
+      'locale',
+      'language',
+      'content_translation',
+      'oe_multilingual',
+    ]);
   }
 
   /**

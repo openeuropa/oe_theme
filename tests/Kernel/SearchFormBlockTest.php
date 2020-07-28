@@ -40,6 +40,9 @@ class SearchFormBlockTest extends AbstractKernelTestBase {
     // Make sure that search form block is present.
     $actual = $crawler->filter('form.ecl-search-form');
     $this->assertCount(1, $actual);
+    // Make sure that the wrapper element is present with the correct classes.
+    $actual = $crawler->filter('div.ecl-form-group.ecl-form-group--text-input');
+    $this->assertCount(1, $actual);
     // Make sure that search form block rendered correctly.
     $actual = $crawler->filter('input.ecl-text-input.ecl-search-form__text-input');
     $this->assertCount(1, $actual);

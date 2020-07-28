@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme override for the remote video fields on media items.
+ */
+#}
+{% for item in items %}
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': item.content,
+  } %}
+{% endfor %}

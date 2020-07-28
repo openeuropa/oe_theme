@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for iframe video fields on media items.
+ */
+#}
+{% for item in items %}
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': item.content,
+    'ratio': ratio|replace({'_': '-'}),
+  } %}
+{% endfor %}
