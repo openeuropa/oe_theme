@@ -62,5 +62,4 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
       ] + $variables['content'][$field],
     ];
   }
-
 }
