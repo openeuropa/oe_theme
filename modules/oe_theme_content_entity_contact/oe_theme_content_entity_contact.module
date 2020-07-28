@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Contact entity.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\oe_content_entity_contact\Entity\ContactInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function oe_theme_content_entity_contact_oe_contact_view_alter(array &$build, ContactInterface $entity, EntityViewDisplayInterface $display) {
+  // Field labels are different in frontend and backend.
+  // Here we override them, per view mode.
+  if ($build['#view_mode'] === 'default') {
+    $label_overrides = [
+      'oe_address' => t('Postal address'),
+      'oe_social_media' => t('Social media'),
+    ];
+
+    foreach ($label_overrides as $name => $label_override) {
+      if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
+        $build[$name]['#title'] = $label_override;
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_content_entity_contact_theme_suggestions_oe_contact(array $variables) {
+  $suggestions = [];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+  $suggestions[] = 'oe_contact__' . $sanitized_view_mode;
+
+  return $suggestions;
+}

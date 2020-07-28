@@ -23,7 +23,9 @@ function oe_theme_content_entity_contact_install() {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/overrides');
   $displays = [
     'core.entity_view_display.oe_contact.oe_general.default',
+    'core.entity_view_display.oe_contact.oe_general.oe_details',
     'core.entity_view_display.oe_contact.oe_press.default',
+    'core.entity_view_display.oe_contact.oe_press.oe_details',
   ];
 
   foreach ($displays as $display) {

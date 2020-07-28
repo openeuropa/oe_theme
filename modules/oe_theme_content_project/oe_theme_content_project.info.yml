@@ -9,6 +9,7 @@ dependencies:
   - oe_content:oe_content_project
   - oe_theme:oe_theme_content_entity_organisation
   - oe_theme:oe_theme_helper
+  - oe_theme:oe_theme_content_entity_contact
   - ui_patterns:ui_patterns_field_group
 
 config_devel:

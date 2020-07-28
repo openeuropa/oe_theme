@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Theme override for the Project contact field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+<div id="project-contact">
+  <h2 class="ecl-u-type-heading-2">{{ 'Contact'|t }}</h2>
+  {% for item in items %}
+    {{ item.content }}
+  {% endfor %}
+</div>

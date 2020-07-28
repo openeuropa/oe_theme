@@ -66,6 +66,16 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'params' => [],
       ],
     ],
+    'oe_theme_helper_social_media_icons_list' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+    'oe_theme_helper_social_media_links' => [
+      'variables' => [
+        'content' => [],
+      ],
+    ],
   ];
 }
 

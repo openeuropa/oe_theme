@@ -6,7 +6,6 @@ namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
 
 /**
  * Displays typed links as social media.
@@ -25,7 +24,7 @@ use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
  *   }
  * )
  */
-class SocialMediaLinksFormatter extends LinkFormatter {
+class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
 
   /**
    * {@inheritdoc}
@@ -41,15 +40,7 @@ class SocialMediaLinksFormatter extends LinkFormatter {
    * {@inheritdoc}
    */
   public function settingsSummary() {
-    $settings = $this->getSettings();
-    $summary = [];
-
-    if (!empty($settings['trim_length'])) {
-      $summary[] = $this->t('Link text trimmed to @limit characters', ['@limit' => $settings['trim_length']]);
-    }
-    else {
-      $summary[] = $this->t('Link text not trimmed');
-    }
+    $summary = parent::settingsSummary();
 
     if (!empty($settings['title'])) {
       $summary[] = $this->t('Block title: @title', ['@title' => $settings['title']]);
@@ -86,13 +77,6 @@ class SocialMediaLinksFormatter extends LinkFormatter {
       '#required' => TRUE,
     ];
 
-    // Hide the following settings as their behaviour is controlled by the
-    // pattern.
-    $elements['url_only']['#access'] = FALSE;
-    $elements['url_plain']['#access'] = FALSE;
-    $elements['rel']['#access'] = FALSE;
-    $elements['target']['#access'] = FALSE;
-
     return $elements;
   }
 
@@ -122,7 +106,11 @@ class SocialMediaLinksFormatter extends LinkFormatter {
       ];
     }
 
-    return [$pattern];
+    $output = [
+      '#theme' => 'oe_theme_helper_social_media_links',
+      '#content' => $pattern,
+    ];
+    return [$output];
   }
 
 }
