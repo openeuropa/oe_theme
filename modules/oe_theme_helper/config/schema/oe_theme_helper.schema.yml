@@ -39,3 +39,11 @@ field.formatter.settings.oe_theme_helper_social_media_links_formatter:
     variant:
       type: string
       label: 'Pattern variant'
+
+field.formatter.settings.oe_theme_helper_featured_media_formatter:
+  type: mapping
+  label: 'Featured media formatter settings'
+  mapping:
+    image_style:
+      type: string
+      label: 'Image style'

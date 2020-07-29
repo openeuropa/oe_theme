@@ -226,6 +226,14 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  oe_project_featured_media:
+    type: oe_theme_helper_featured_media_formatter
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
   oe_project_participants:
     type: entity_reference_revisions_entity_view
     weight: 11
@@ -234,13 +242,6 @@ content:
     settings:
       view_mode: default
       link: ''
-    third_party_settings: {  }
-  oe_project_featured_media:
-    type: oe_featured_media_entity_view
-    weight: 0
-    region: content
-    label: hidden
-    settings: {  }
     third_party_settings: {  }
   oe_project_result_files:
     weight: 3
