@@ -35,27 +35,6 @@
     {% endif %}
 
     {% if contact_page_url is not empty %}
-      {# Icon for the "Contact organisation" link. #}
-
-      {% if contact_page_url|is_external_url %}
-        {% set _icon = {
-          path: ecl_icon_path,
-          type: 'ui',
-          name: 'external',
-          size: 's',
-          color: 'primary'
-        } %}
-      {% else %}
-        {% set _icon = {
-          path: ecl_icon_path,
-          type: 'ui',
-          name: 'corner-arrow',
-          size: 's',
-          color: 'primary',
-          transform: 'rotate-90'
-        } %}
-      {% endif %}
-
       <div class="ecl-u-mt-l ecl-u-type-bold">
         {% include '@ecl-twig/link' with {
           link: {
@@ -64,7 +43,7 @@
             path: contact_page_url,
             icon_position: 'after'
           },
-          icon: _icon
+          icon: get_link_icon(contact_page_url)
         } %}
       </div>
     {% endif %}

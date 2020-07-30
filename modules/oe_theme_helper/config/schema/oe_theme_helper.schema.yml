@@ -47,3 +47,7 @@ field.formatter.settings.oe_theme_helper_featured_media_formatter:
     image_style:
       type: string
       label: 'Image style'
+
+field.formatter.settings.oe_theme_helper_social_media_icons_list_formatter:
+  type: field.formatter.settings.link
+  label: 'Social media icons list formatter settings'
