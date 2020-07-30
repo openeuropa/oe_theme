@@ -47,7 +47,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
   protected $entityRepository;
 
   /**
-   * Constructs a FormatterBase object.
+   * Constructs a FeaturedMediaFormatter object.
    *
    * @param string $plugin_id
    *   The plugin_id for the formatter.
@@ -95,11 +95,12 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $element['image_style'] = [
-      '#title' => t('Image style in case Media is image.'),
+      '#title' => t('Image style'),
       '#type' => 'select',
       '#default_value' => $this->getSetting('image_style'),
       '#empty_option' => t('None (original image)'),
       '#options' => image_style_options(FALSE),
+      '#description' => t('Image style to be used if the Media is an image.'),
     ];
 
     return $element;
@@ -118,10 +119,10 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
     // their styles in code.
     $image_style_setting = $this->getSetting('image_style');
     if (isset($image_styles[$image_style_setting])) {
-      $summary[] = t('Style: @style for image values', ['@style' => $image_styles[$image_style_setting]]);
+      $summary[] = t('@image_style image style', ['@image_style' => $image_styles[$image_style_setting]]);
     }
     else {
-      $summary[] = t('Original for image values');
+      $summary[] = t('Original image style.');
     }
 
     return $summary;
