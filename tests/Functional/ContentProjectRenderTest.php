@@ -53,36 +53,36 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   public function testProjectRendering(): void {
     // Create a document for Project results.
-    $file1 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
-    $file1->setPermanent();
-    $file1->save();
+    $file_1 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
+    $file_1->setPermanent();
+    $file_1->save();
 
-    $media1 = $this->getStorage('media')->create([
+    $media_1 = $this->getStorage('media')->create([
       'bundle' => 'document',
       'name' => 'Test document',
       'oe_media_file' => [
-        'target_id' => (int) $file1->id(),
+        'target_id' => (int) $file_1->id(),
       ],
       'uid' => 0,
       'status' => 1,
     ]);
-    $media1->save();
+    $media_1->save();
 
     // Create a document for Documents.
-    $file2 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://document.pdf');
-    $file2->setPermanent();
-    $file2->save();
+    $file_2 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://document.pdf');
+    $file_2->setPermanent();
+    $file_2->save();
 
-    $media2 = $this->getStorage('media')->create([
+    $media_2 = $this->getStorage('media')->create([
       'bundle' => 'document',
       'name' => 'Test document 2',
       'oe_media_file' => [
-        'target_id' => (int) $file2->id(),
+        'target_id' => (int) $file_2->id(),
       ],
       'uid' => 0,
       'status' => 1,
     ]);
-    $media2->save();
+    $media_2->save();
 
     // Create organisations for Coordinators and Participants fields.
     // Unpublished entity should not be shown.
@@ -109,7 +109,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_results' => 'Project results...',
       'oe_project_result_files' => [
         [
-          'target_id' => (int) $media1->id(),
+          'target_id' => (int) $media_1->id(),
         ],
       ],
       'oe_project_dates' => [
@@ -133,7 +133,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_participants' => [$participant_organisation],
       'oe_documents' => [
         [
-          'target_id' => (int) $media2->id(),
+          'target_id' => (int) $media_2->id(),
         ],
       ],
       'uid' => 0,
@@ -216,7 +216,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('KB - PDF)', $file_info_properties->getText());
+    $this->assertContains('2.96 KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
     $this->assertContains('/document.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
