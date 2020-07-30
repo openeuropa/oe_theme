@@ -35,7 +35,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
   protected $viewBuilder;
 
   /**
-   * EventExtraFieldBase constructor.
+   * PercentageExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

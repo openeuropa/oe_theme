@@ -10,3 +10,13 @@
     margin-left: 0;
   }
 }
+
+// Project Funding extra field.
+#project-funding {
+  .ecl-content-item__meta {
+    text-transform: uppercase;
+  }
+  article {
+    padding-bottom: 0.5rem !important;
+  }
+}
