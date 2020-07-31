@@ -13,8 +13,14 @@
 
 // Project Funding extra field.
 #project-funding {
+  .ecl-unordered-list__item {
+    max-width: calc(92ch);
+  }
   .ecl-content-item__meta {
     text-transform: uppercase;
+  }
+  .ecl-content-item__title {
+    color: #004494;
   }
   article {
     padding-bottom: 0.5rem !important;

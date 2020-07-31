@@ -10,7 +10,6 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Url;
 use Drupal\Core\Cache\CacheableMetadata;
 
 /**
@@ -69,53 +68,55 @@ class FundingExtraField extends ExtraFieldDisplayFormattedBase implements Contai
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $cacheability = new CacheableMetadata();
-    $pattern = [];
-    // Funding programs.
+    $build = [];
+
+    /** @var \Drupal\rdf_skos\Plugin\Field\FieldType\SkosConceptEntityReferenceItem $item */
     foreach ($entity->get('oe_project_funding_programme')->getIterator() as $item) {
-      $build = [
+      if ($item->isEmpty() || empty($item->entity)) {
+        continue;
+      }
+
+      $pattern = [
         '#type' => 'pattern',
         '#id' => 'list_item',
+        '#variant' => 'default',
         '#fields' => [
           'meta' => [
             'label' => $item->getFieldDefinition()->getLabel(),
           ],
           'title' => $item->entity->pref_label->view('skos_concept_entity_reference_label'),
-          'url' => Url::fromUri($item->entity->id()),
         ],
       ];
-      $concept_schemes = $this->entityTypeManager->getStorage('skos_concept')->loadMultiple([$item->entity->id()]);
+      $concept_schemes = $this->entityTypeManager->getStorage('skos_concept')
+        ->loadMultiple([$item->entity->id()]);
+      $cacheability = new CacheableMetadata();
       $cacheability->addCacheableDependency(array_pop($concept_schemes));
-      $cacheability->applyTo($build);
-      $pattern[] = $build;
+      $cacheability->applyTo($pattern);
+      $build[] = $pattern;
     }
 
-    // Calls for tenders.
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $item */
     foreach ($entity->get('oe_project_calls')->getIterator() as $item) {
-      // With <nolink> url we show only the title.
-      $url = '';
-      if ($item->uri !== 'route:<nolink>') {
-        $url = Url::fromUri($item->uri);
+      if ($item->isEmpty()) {
+        continue;
       }
-      // If there is no title, we use the url as title.
-      $title = $url;
-      if (isset($item->title) && $item->title !== '') {
-        $title = $item->title;
-      }
-      $pattern[] = [
+
+      $view = $item->view(['type' => 'link']);
+      $build[] = [
         '#type' => 'pattern',
         '#id' => 'list_item',
+        '#variant' => 'default',
         '#fields' => [
           'meta' => [
             'label' => $item->getFieldDefinition()->getLabel(),
           ],
-          'title' => $title,
-          'url' => $url,
+          'title' => $view['#title'],
+          'url' => $view['#url'],
         ],
       ];
     }
 
-    return [$pattern];
+    return [$build];
   }
 
   /**

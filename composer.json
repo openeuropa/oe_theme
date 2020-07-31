@@ -41,7 +41,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.1",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "dev-OPENEUROPA-3378",
+        "openeuropa/oe_content": "dev-EPIC-Project",
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "~1.8",

@@ -22,6 +22,7 @@ dependencies:
     - node.type.oe_project
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
@@ -74,8 +75,8 @@ third_party_settings:
       label: Budget
     group_resources:
       children:
-        - oe_departments
         - oe_project_website
+        - oe_departments
       parent_name: group_top
       weight: 4
       format_type: oe_theme_helper_field_list_pattern
@@ -107,7 +108,7 @@ third_party_settings:
         - oe_project_coordinators
         - oe_project_participants
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: html_element
       region: content
       format_settings:
@@ -134,7 +135,7 @@ content:
     third_party_settings: {  }
     region: content
   extra_field_oe_theme_content_project_funding:
-    weight: 3
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
