@@ -99,6 +99,9 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-06-02/address_content_language-3144823-3.patch"
+            },
+            "openeuropa/oe_content": {
+                "Use default preprocess for corporate entities": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_content/pull/240.patch"
             }
         }
     },
