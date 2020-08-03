@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\link\Plugin\Field\FieldFormatter\LinkFormatter;
 
 /**
- * Base class for the typed link field formatter.
+ * Base class for the formatters of the "Social media links" field.
  */
 abstract class SocialMediaBaseLinkFormatter extends LinkFormatter {
 

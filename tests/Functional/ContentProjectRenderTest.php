@@ -392,7 +392,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
    *   Contact entity.
    */
-  protected function createContactEntity(string $name, string $bundle, $status): ContactInterface {
+  protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
     $contact = $this->getStorage('oe_contact')->create([
       'bundle' => $bundle,
       'name' => $name,
