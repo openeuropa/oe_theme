@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.8.0](https://github.com/openeuropa/oe_theme/tree/2.8.0) (2020-08-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.7.0...2.8.0)
+
+**Closed issues:**
+
+- Fatal error for NewsContentType::create\(\) [\#212](https://github.com/openeuropa/oe_theme/issues/212)
+
+**Merged pull requests:**
+
+- EWPP-74: Apply default css to body and a tags. [\#525](https://github.com/openeuropa/oe_theme/pull/525) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-19: Test that the favicon provided by the theme is being used. [\#524](https://github.com/openeuropa/oe_theme/pull/524) ([22Alexandra](https://github.com/22Alexandra))
+- D8TEWPPE-60: Adapt privacy link to use also internal links. [\#519](https://github.com/openeuropa/oe_theme/pull/519) ([drishu](https://github.com/drishu))
+- EWPP-89: Fix translation file extension render. [\#517](https://github.com/openeuropa/oe_theme/pull/517) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3290: Sort menu local tasks by weight. [\#512](https://github.com/openeuropa/oe_theme/pull/512) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-3387: Fix translated media rendering for paragraphs and Event. [\#511](https://github.com/openeuropa/oe_theme/pull/511) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-16: Add temporary patch to fix search input width. [\#509](https://github.com/openeuropa/oe_theme/pull/509) ([nagyad](https://github.com/nagyad))
+- OPENEUROPA-3331: Fix document rendering. [\#508](https://github.com/openeuropa/oe_theme/pull/508) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- OPENEUROPA-3282: Add oe\_contact\_forms integration. [\#503](https://github.com/openeuropa/oe_theme/pull/503) ([drishu](https://github.com/drishu))
+
 ## [2.7.0](https://github.com/openeuropa/oe_theme/tree/2.7.0) (2020-06-19)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.6.0...2.7.0)
