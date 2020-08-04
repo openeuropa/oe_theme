@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
-use Behat\Mink\Exception\ElementNotFoundException;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -318,14 +317,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->drupalGet($node->toUrl());
 
     // Asset Contact entity visibility.
-    try {
-      $project_contacts = $this->assertSession()
-        ->elementExists('css', 'div#project-contacts');
-      $this->fail('Contact field exist on the page.');
-    }
-    catch (ElementNotFoundException $e) {
-      $this->pass('Contact field does not exist on the page.');
-    }
+    $this->assertSession()->elementNotExists('css', 'div#project-contacts');
   }
 
   /**
