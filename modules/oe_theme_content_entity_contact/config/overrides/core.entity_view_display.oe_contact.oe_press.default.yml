@@ -18,7 +18,6 @@ dependencies:
   module:
     - field_group
     - link
-    - oe_content_featured_media_field
     - oe_theme_helper
     - text
 third_party_settings:
@@ -87,12 +86,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   oe_image:
-    type: oe_featured_media_label
+    type: oe_theme_helper_featured_media_formatter
     weight: 4
     region: content
     label: hidden
     settings:
-      link: true
+      image_style: ''
     third_party_settings: {  }
   oe_mobile:
     type: string

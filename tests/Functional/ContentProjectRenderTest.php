@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 use Behat\Mink\Element\NodeElement;
 use Behat\Mink\Exception\ElementNotFoundException;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
@@ -340,20 +341,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   protected function createStakeholderOrganisationEntity(string $name, int $status): OrganisationInterface {
     // Create image for logo.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
-    $file->setPermanent();
-    $file->save();
-
-    $media = $this->getStorage('media')->create([
-      'bundle' => 'image',
-      'name' => "Test image $name",
-      'oe_media_image' => [
-        'target_id' => (int) $file->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media->save();
+    $media = $this->createMediaImage($name);
 
     $organisation = $this->getStorage('oe_organisation')->create([
       'bundle' => 'oe_stakeholder',
@@ -393,6 +381,9 @@ class ContentProjectRenderTest extends BrowserTestBase {
    *   Contact entity.
    */
   protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
+    // Create image for contact.
+    $media = $this->createMediaImage($name);
+
     $contact = $this->getStorage('oe_contact')->create([
       'bundle' => $bundle,
       'name' => $name,
@@ -418,6 +409,12 @@ class ContentProjectRenderTest extends BrowserTestBase {
         ],
       ],
       'oe_website' => ['uri' => "http://www.example.com/website_$name"],
+      'oe_image' => [
+        [
+          'target_id' => (int) $media->id(),
+          'caption' => "Caption $name",
+        ],
+      ],
       'status' => $status,
     ]);
 
@@ -523,6 +520,9 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertContains("http://www.example.com/social_media_$name", $social_media_links[0]->getAttribute('href'));
     $social_media_icon = $social_media_links[0]->find('css', 'use');
     $this->assertContains('facebook', $social_media_icon->getAttribute('xlink:href'));
+
+    // Assert image.
+    $this->assertFeaturedMediaField($rendered_element, $name);
   }
 
   /**
@@ -536,6 +536,58 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   protected function getStorage(string $entity_type_id): EntityStorageInterface {
     return \Drupal::entityTypeManager()->getStorage($entity_type_id);
+  }
+
+  /**
+   * Creates media image entity.
+   *
+   * @param string $name
+   *   Test data parameter.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media image instance.
+   */
+  protected function createMediaImage(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'image',
+      'name' => "Test image $name",
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => "Alternative text $name",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
+  }
+
+  /**
+   * Asserts featured media field rendering.
+   *
+   * @param \Behat\Mink\Element\NodeElement $rendered_element
+   *   Rendered element.
+   * @param string $name
+   *   Test parameter.
+   */
+  protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
+    $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
+    $this->assertCount(1, $figures);
+
+    // Assert image tag.
+    $image = $figures[0]->find('css', 'img');
+    $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
+    $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
+
+    // Assert caption.
+    $caption = $figures[0]->find('css', 'figcaption');
+    $this->assertEquals("Caption $name", $caption->getText());
   }
 
 }
