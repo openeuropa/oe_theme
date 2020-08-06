@@ -46,10 +46,10 @@
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "~1.8",
         "openeuropa/oe_multilingual": "~1.0",
-        "openeuropa/oe_paragraphs": "~1.6.0",
+        "openeuropa/oe_paragraphs": "~1.6",
         "openeuropa/oe_search": "~1.0",
-        "openeuropa/oe_webtools": "~1.8.0",
-        "openeuropa/oe_contact_forms": "~0.1.0",
+        "openeuropa/oe_webtools": "~1.8",
+        "openeuropa/oe_contact_forms": "~0.1",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
