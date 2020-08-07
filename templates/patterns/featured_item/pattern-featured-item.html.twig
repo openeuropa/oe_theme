@@ -38,7 +38,7 @@
 {% for item in footer_items %}
   {% set _footer_items = _footer_items|merge([{
     'label': item.text,
-    'icon': to_ecl_icon(item.icon),
+    'icon': to_ecl_icon(item.icon, 'xs'),
   }]) %}
 {% endfor %}
 
