@@ -87,6 +87,9 @@ class ContentProjectRenderTest extends BrowserTestBase {
           'uri' => 'http://proposal-call.com',
           'title' => 'Test call for proposal',
         ],
+        [
+          'uri' => 'http://proposal-call-no-title.com',
+        ],
       ],
       'oe_project_results' => 'Project results...',
       'oe_project_result_files' => [
@@ -209,7 +212,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $title = $project_funding->find('css', '.ecl-u-type-heading-2');
     $this->assertContains('Funding', $title->getText());
     $item = $project_funding->findAll('css', '.ecl-unordered-list__item');
-    $this->assertCount(2, $item);
+    $this->assertCount(3, $item);
     $meta = $item[0]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
     $this->assertEquals('Funding programme', $meta->getText());
     $title = $item[0]->find('css', '.ecl-content-item__title');
@@ -219,6 +222,11 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $link = $item[1]->find('css', '.ecl-link');
     $this->assertContains('Test call for proposal', $link->getText());
     $this->assertContains('http://proposal-call.com', $link->getAttribute('href'));
+    $meta = $item[2]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
+    $this->assertEquals('Call for proposals', $meta->getText());
+    $link = $item[2]->find('css', '.ecl-link');
+    $this->assertContains('http://proposal-call-no-title.com', $link->getText());
+    $this->assertContains('http://proposal-call-no-title.com', $link->getAttribute('href'));
 
     // Assert bottom region - Stakeholders.
     $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');

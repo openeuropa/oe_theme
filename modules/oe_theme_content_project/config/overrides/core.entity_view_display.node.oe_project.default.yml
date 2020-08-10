@@ -185,7 +185,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
   oe_project_calls:
-    type: link_separate
+    type: link
     weight: 14
     region: content
     label: hidden
