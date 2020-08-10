@@ -21,14 +21,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'address',
-    'composite_reference',
     'config',
-    'datetime_range',
-    'entity_reference_revisions',
-    'path',
     'system',
     'oe_theme_helper',
+    'path',
     'oe_theme_content_project',
   ];
 
@@ -47,6 +43,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Give anonymous users permission to view organisation entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_organisation')
       ->save();
   }
