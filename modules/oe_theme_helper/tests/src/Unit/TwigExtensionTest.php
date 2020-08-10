@@ -262,17 +262,19 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @param string $icon_name
    *   The icon name.
+   * @param string|null $size
+   *   The icon size.
    * @param array $expected_icon_array
    *   The icon array to be rendered.
    *
    * @covers ::toEclIcon
    * @dataProvider toEclIconProvider
    */
-  public function testToEclIcon(string $icon_name, array $expected_icon_array) {
+  public function testToEclIcon(string $icon_name, string $size = NULL, array $expected_icon_array) {
     $context = ['ecl_icon_path' => '/path/to/theme/resources/icons/'];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
-    $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}", $context);
+    $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}", $context);
     $this->assertEquals(implode('|', $expected_icon_array), $result);
   }
 
@@ -288,24 +290,39 @@ class TwigExtensionTest extends UnitTestCase {
     return [
       [
         'right',
+        'xs',
         [
           'name' => 'ui--rounded-arrow',
           'transform' => 'rotate-90',
           'path' => '/path/to/theme/resources/icons/',
+          'size' => 'xs',
         ],
       ],
       [
         'close-dark',
+        'xl',
         [
           'name' => 'ui--close-filled',
           'path' => '/path/to/theme/resources/icons/',
+          'size' => 'xl',
         ],
       ],
       [
         'not-supported-icon',
+        'm',
         [
           'name' => 'general--digital',
           'path' => '/path/to/theme/resources/icons/',
+          'size' => 'm',
+        ],
+      ],
+      [
+        'no-size',
+        NULL,
+        [
+          'name' => 'general--digital',
+          'path' => '/path/to/theme/resources/icons/',
+          'size' => '',
         ],
       ],
     ];

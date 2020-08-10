@@ -503,10 +503,7 @@ class TwigExtension extends \Twig_Extension {
 
     if (array_key_exists($icon, $icons)) {
       $icons[$icon]['path'] = $path;
-
-      if ($size) {
-        $icons[$icon]['size'] = $size;
-      }
+      $icons[$icon]['size'] = $size;
 
       return $icons[$icon];
     }
@@ -514,6 +511,7 @@ class TwigExtension extends \Twig_Extension {
     return [
       'name' => 'general--digital',
       'path' => $path,
+      'size' => $size,
     ];
   }
 
