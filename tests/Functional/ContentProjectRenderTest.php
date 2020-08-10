@@ -210,11 +210,11 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertContains('Funding', $title->getText());
     $item = $project_funding->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(2, $item);
-    $meta = $item[0]->find('css', '.ecl-content-item__meta');
+    $meta = $item[0]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
     $this->assertEquals('Funding programme', $meta->getText());
     $title = $item[0]->find('css', '.ecl-content-item__title');
     $this->assertContains('Anti Fraud Information System (AFIS)', $title->getText());
-    $meta = $item[1]->find('css', '.ecl-content-item__meta');
+    $meta = $item[1]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
     $this->assertEquals('Call for proposals', $meta->getText());
     $link = $item[1]->find('css', '.ecl-link');
     $this->assertContains('Test call for proposal', $link->getText());
