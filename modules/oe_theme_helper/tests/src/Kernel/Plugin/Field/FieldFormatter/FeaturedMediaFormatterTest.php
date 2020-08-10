@@ -72,6 +72,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
         'handler_settings' => [
           'target_bundles' => [
             'image' => 'image',
+            'remote_video' => 'remote_video',
           ],
         ],
         'sort' => [
@@ -87,11 +88,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
    * Test the featured media formatter.
    */
   public function testFormatter(): void {
-    \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    $this->container->get('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create(['uri' => 'public://example.jpg']);
     $image->save();
 
-    $media = \Drupal::service('entity_type.manager')
+    $media = $this->container->get('entity_type.manager')
       ->getStorage('media')->create([
         'bundle' => 'image',
         'name' => 'Test image',
@@ -119,13 +120,13 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     $node = Node::create($values);
     $node->save();
 
-    $node_storage = \Drupal::service('entity_type.manager')->getStorage('node');
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
     $node_storage->resetCache();
 
     /** @var \Drupal\node\NodeInterface $node */
     $node = $node_storage->load($node->id());
 
-    $view_builder = \Drupal::service('entity_type.manager')->getViewBuilder('node');
+    $view_builder = $this->container->get('entity_type.manager')->getViewBuilder('node');
 
     $build = $view_builder->viewField($node->get('featured_media_field'), [
       'type' => 'oe_theme_helper_featured_media_formatter',
@@ -141,7 +142,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       ],
     ]);
 
-    $media = \Drupal::service('entity_type.manager')
+    $media = $this->container->get('entity_type.manager')
       ->getStorage('media')->create([
         'bundle' => 'remote_video',
         'oe_media_oembed_video' => 'https://www.youtube.com/watch?v=OkPW9mK5Vw8',
