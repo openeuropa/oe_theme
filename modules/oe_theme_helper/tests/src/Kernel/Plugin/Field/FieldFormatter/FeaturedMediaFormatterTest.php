@@ -133,15 +133,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        '.ecl-media-container .ecl-media-container__media' => 1,
+        '.ecl-media-container .ecl-media-container__media[alt="default alt"][src="' . file_create_url('public://example.jpg') . '"]' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [
         '.ecl-media-container__caption' => 'Image caption text',
-      ],
-      'contains' => [
-        'default alt',
-        'example.jpg',
       ],
     ]);
 
@@ -177,14 +173,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
         '.ecl-media-container .ecl-media-container__media' => 1,
-        '.ecl-media-container iframe.media-oembed-content' => 1,
+        '.ecl-media-container iframe.media-oembed-content[src*="' . UrlHelper::encodePath('https://www.youtube.com/watch?v=OkPW9mK5Vw8') . '"]' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [
         '.ecl-media-container__caption' => 'Video caption text',
-      ],
-      'contains' => [
-        UrlHelper::encodePath('https://www.youtube.com/watch?v=OkPW9mK5Vw8'),
       ],
     ]);
   }
