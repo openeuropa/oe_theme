@@ -61,6 +61,11 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'address_delimiter' => NULL,
       ],
     ],
+    'oe_theme_helper_featured_media' => [
+      'variables' => [
+        'params' => [],
+      ],
+    ],
   ];
 }
 
