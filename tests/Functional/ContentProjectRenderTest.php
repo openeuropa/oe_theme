@@ -216,7 +216,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('2.96 KB - PDF)', $file_info_properties->getText());
+    $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
     $this->assertContains('/document.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
