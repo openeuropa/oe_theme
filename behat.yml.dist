@@ -87,6 +87,7 @@ default:
         event registration: "#event-registration-block"
         event details: "#event-details"
         event practical information: "#event-practical-information"
+        project funding header: "#project-funding .ecl-u-type-heading-2"
     FriendsOfBehat\ServiceContainerExtension:
       imports:
         - 'build/modules/contrib/oe_content/tests/Behat/config/services.yml'

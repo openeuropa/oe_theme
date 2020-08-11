@@ -21,14 +21,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'address',
-    'composite_reference',
     'config',
-    'datetime_range',
-    'entity_reference_revisions',
-    'path',
     'system',
     'oe_theme_helper',
+    'path',
     'oe_theme_content_project',
   ];
 
@@ -47,6 +43,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Give anonymous users permission to view organisation entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_organisation')
       ->save();
   }
@@ -85,6 +82,15 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_teaser' => 'Teaser',
       'oe_summary' => 'Summary',
       'body' => 'Body',
+      'oe_project_calls' => [
+        [
+          'uri' => 'http://proposal-call.com',
+          'title' => 'Test call for proposal',
+        ],
+        [
+          'uri' => 'http://proposal-call-no-title.com',
+        ],
+      ],
       'oe_project_results' => 'Project results...',
       'oe_project_result_files' => [
         [
@@ -107,6 +113,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_project_funding_programme' => 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020',
       'oe_project_coordinators' => [$coordinator_organisation],
       'oe_project_participants' => [$participant_organisation],
       'uid' => 0,
@@ -199,6 +206,27 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_download_link = $file_row->find('css', '.ecl-file__download');
     $this->assertContains('/test.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
+
+    // Assert funding programme.
+    $project_funding = $this->assertSession()->elementExists('css', 'div#project-funding');
+    $title = $project_funding->find('css', '.ecl-u-type-heading-2');
+    $this->assertContains('Funding', $title->getText());
+    $item = $project_funding->findAll('css', '.ecl-unordered-list__item');
+    $this->assertCount(3, $item);
+    $meta = $item[0]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
+    $this->assertEquals('Funding programme', $meta->getText());
+    $title = $item[0]->find('css', '.ecl-content-item__title');
+    $this->assertContains('Anti Fraud Information System (AFIS)', $title->getText());
+    $meta = $item[1]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
+    $this->assertEquals('Call for proposals', $meta->getText());
+    $link = $item[1]->find('css', '.ecl-link');
+    $this->assertContains('Test call for proposal', $link->getText());
+    $this->assertContains('http://proposal-call.com', $link->getAttribute('href'));
+    $meta = $item[2]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
+    $this->assertEquals('Call for proposals', $meta->getText());
+    $link = $item[2]->find('css', '.ecl-link');
+    $this->assertContains('http://proposal-call-no-title.com', $link->getText());
+    $this->assertContains('http://proposal-call-no-title.com', $link->getAttribute('href'));
 
     // Assert bottom region - Stakeholders.
     $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');

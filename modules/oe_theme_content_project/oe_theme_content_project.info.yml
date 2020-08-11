@@ -10,3 +10,7 @@ dependencies:
   - oe_theme:oe_theme_content_entity_organisation
   - oe_theme:oe_theme_helper
   - ui_patterns:ui_patterns_field_group
+
+config_devel:
+  install:
+    - core.date_format.oe_project_date
