@@ -232,7 +232,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: ''
+      image_style: oe_theme_medium_no_crop
     third_party_settings: {  }
   oe_project_participants:
     type: entity_reference_revisions_entity_view
