@@ -26,7 +26,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'media',
     'file',
     'image',
+    'views',
+    'entity_browser',
+    'media_avportal',
     'oe_media',
+    'oe_media_avportal',
     'oe_content_featured_media_field',
     'system',
   ];
@@ -45,8 +49,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'media',
       'image',
       'file',
+      'field',
       'system',
       'oe_media',
+      'media_avportal',
+      'oe_media_avportal',
       'oe_content_featured_media_field',
     ]);
 
@@ -71,8 +78,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
         'handler' => 'default:media',
         'handler_settings' => [
           'target_bundles' => [
+            'av_portal_photo' => 'av_portal_photo',
+            'av_portal_video' => 'av_portal_video',
             'image' => 'image',
             'remote_video' => 'remote_video',
+            'video_iframe' => 'video_iframe',
           ],
         ],
         'sort' => [
@@ -179,6 +189,140 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       ],
       'equals' => [
         '.ecl-media-container__caption' => 'Video caption text',
+      ],
+    ]);
+
+    $media = $this->container->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'av_portal_photo',
+        'oe_media_avportal_photo' => 'P-038924/00-15',
+      ]);
+    $media->save();
+
+    /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $thumbnail */
+    $thumbnail = $media->get('thumbnail')->first();
+    /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $file */
+    $file = $thumbnail->get('entity')->getTarget();
+
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My AV portal photo node',
+      'featured_media_field' => [
+        [
+          'target_id' => $media->id(),
+          'caption' => 'Image caption text',
+        ],
+      ],
+    ];
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = Node::create($values);
+    $node->save();
+
+    $node_storage = $this->container->get('entity_type.manager')->getStorage('node');
+    $node_storage->resetCache();
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $node = $node_storage->load($node->id());
+
+    $view_builder = $this->container->get('entity_type.manager')->getViewBuilder('node');
+
+    $build = $view_builder->viewField($node->get('featured_media_field'), [
+      'type' => 'oe_theme_helper_featured_media_formatter',
+    ]);
+
+    $this->assertRendering($this->renderRoot($build), [
+      'count' => [
+        '.ecl-media-container .ecl-media-container__media[alt="' . $thumbnail->get('alt')->getString() . '"][src="' . file_create_url($file->get('uri')->getString()) . '"]' => 1,
+        '.ecl-media-container .ecl-media-container__caption' => 1,
+      ],
+      'equals' => [
+        '.ecl-media-container__caption' => 'Image caption text',
+      ],
+    ]);
+
+    $media = $this->container->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'av_portal_video',
+        'oe_media_avportal_video' => 'I-163162',
+        'status' => 1,
+      ]);
+    $media->save();
+
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My AV portal video node',
+      'featured_media_field' => [
+        [
+          'target_id' => $media->id(),
+          'caption' => 'AV Video caption text',
+        ],
+      ],
+    ];
+
+    $node = Node::create($values);
+    $node->save();
+
+    $node_storage->resetCache();
+    $node = $node_storage->load($node->id());
+
+    $build = $view_builder->viewField($node->get('featured_media_field'), [
+      'type' => 'oe_theme_helper_featured_media_formatter',
+    ]);
+
+    $this->assertRendering($this->renderRoot($build), [
+      'count' => [
+        '.ecl-media-container .ecl-media-container__media' => 1,
+        '.ecl-media-container .ecl-media-container__caption' => 1,
+      ],
+      'equals' => [
+        '.ecl-media-container__caption' => 'AV Video caption text',
+      ],
+      'contains' => [
+        'iframe.media-avportal-content' => 'I-163162',
+      ],
+    ]);
+
+    $media = $this->container->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'video_iframe',
+        'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+        'oe_media_iframe_ratio' => '16_9',
+        'status' => 1,
+      ]);
+    $media->save();
+
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My iframe video node',
+      'featured_media_field' => [
+        [
+          'target_id' => $media->id(),
+          'caption' => 'Iframe Video caption text',
+        ],
+      ],
+    ];
+
+    $node = Node::create($values);
+    $node->save();
+
+    $node_storage->resetCache();
+    $node = $node_storage->load($node->id());
+
+    $build = $view_builder->viewField($node->get('featured_media_field'), [
+      'type' => 'oe_theme_helper_featured_media_formatter',
+    ]);
+
+    $this->assertRendering($this->renderRoot($build), [
+      'count' => [
+        '.ecl-media-container .ecl-media-container__media' => 1,
+        '.ecl-media-container .ecl-media-container__caption' => 1,
+      ],
+      'equals' => [
+        '.ecl-media-container__caption' => 'Iframe Video caption text',
+      ],
+      'contains' => [
+        'iframe.media-avportal-content' => 'example.com',
       ],
     ]);
   }
