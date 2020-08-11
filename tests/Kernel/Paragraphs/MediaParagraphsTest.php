@@ -86,6 +86,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
@@ -258,6 +261,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   public function testBanner(): void {
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
