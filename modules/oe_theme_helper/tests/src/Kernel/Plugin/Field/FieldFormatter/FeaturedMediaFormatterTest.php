@@ -28,9 +28,11 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'image',
     'views',
     'entity_browser',
+    'options',
     'media_avportal',
     'oe_media',
     'oe_media_avportal',
+    'oe_media_iframe',
     'oe_content_featured_media_field',
     'system',
   ];
@@ -54,6 +56,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'oe_media',
       'media_avportal',
       'oe_media_avportal',
+      'oe_media_iframe',
       'oe_content_featured_media_field',
     ]);
 
@@ -272,7 +275,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        '.ecl-media-container .ecl-media-container__media' => 1,
+        '.ecl-media-container .ecl-media-container__media--ratio-16-9' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [
@@ -287,7 +290,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       ->getStorage('media')->create([
         'bundle' => 'video_iframe',
         'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
-        'oe_media_iframe_ratio' => '16_9',
+        'oe_media_iframe_ratio' => '4_3',
         'status' => 1,
       ]);
     $media->save();
@@ -315,7 +318,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        '.ecl-media-container .ecl-media-container__media' => 1,
+        '.ecl-media-container .ecl-media-container__media--ratio-4-3' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [

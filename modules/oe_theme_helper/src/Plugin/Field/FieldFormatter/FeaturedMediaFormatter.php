@@ -176,7 +176,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
 
     if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
       // Default video aspect ratio is set to 16:9.
-      $params['ratio'] = '16:9';
+      $params['ratio'] = '16-9';
 
       // Load information about the media and the display.
       $media_type = $this->entityTypeManager->getStorage('media_type')->load($media->bundle());
@@ -203,7 +203,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
       // When dealing with iframe videos, also respect its given aspect ratio.
       if ($media->bundle() === 'video_iframe') {
         $ratio = $media->get('oe_media_iframe_ratio')->value;
-        $params['ratio'] = str_replace('_', ':', $ratio);
+        $params['ratio'] = str_replace('_', '-', $ratio);
       }
 
       $build['#params'] = $params;
