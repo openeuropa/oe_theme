@@ -275,7 +275,7 @@ class TwigExtensionTest extends UnitTestCase {
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
     $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}", $context);
-    $this->assertEquals(implode('|', $expected_icon_array), $result);
+    $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
   }
 
   /**
