@@ -95,6 +95,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
+      // Assert that the favicon provided by the theme is being used.
+      $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
+
       // Assert that we do not load the EC component library.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
@@ -120,6 +123,9 @@ class ConfigurationTest extends BrowserTestBase {
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+
+      // Assert that the favicon provided by the theme is being used.
+      $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');

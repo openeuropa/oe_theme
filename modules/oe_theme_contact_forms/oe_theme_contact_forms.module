@@ -10,6 +10,8 @@ declare(strict_types = 1);
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\contact\Entity\ContactForm;
 use Drupal\contact\MessageInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_form_FORM_ID_alter() for contact_message_form().
@@ -40,12 +42,18 @@ function oe_theme_contact_forms_form_contact_message_form_alter(&$form, FormStat
   }
 
   // Add ecl link classes to the privacy link.
-  $privacy_link = $contact_form->getThirdPartySetting('oe_contact_forms', 'privacy_policy', FALSE);
-  $privacy_title = t('I have read and agree with the <a class="ecl-u-ml-2xs ecl-link ecl-link--default" href="@link" target="_blank">data protection terms</a></label>', [
-    '@link' => $privacy_link,
-  ]);
+  $privacy_policy = $contact_form->getThirdPartySetting('oe_contact_forms', 'privacy_policy');
+  $privacy_link = Link::fromTextAndUrl('data protection terms', Url::fromUri($privacy_policy, [
+    'absolute' => TRUE,
+    'attributes' => [
+      'target' => '_blank',
+      'class' => ['ecl-u-ml-2xs', 'ecl-link', 'ecl-link--default'],
+    ],
+  ]));
 
-  $form['privacy_policy']['#title'] = $privacy_title;
+  $form['privacy_policy']['#title'] = t('I have read and agree with the @link', [
+    '@link' => $privacy_link->toString(),
+  ]);;
 }
 
 /**

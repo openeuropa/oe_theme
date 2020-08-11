@@ -57,6 +57,9 @@ class ContentEventRenderTest extends BrowserTestBase {
     // Make event node and image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('node', 'oe_event', TRUE);
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
     // Create image media that we will use for the English translation.

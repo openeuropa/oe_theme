@@ -62,8 +62,11 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
    * Tests that the Document media type is rendered with the correct ECL markup.
    */
   public function testDocumentMedia(): void {
-    // Make image media translatable.
+    // Make document media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'document', TRUE);
+    // Make file field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.document.oe_media_file');
+    $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
