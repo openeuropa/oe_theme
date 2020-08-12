@@ -262,20 +262,26 @@ class TwigExtensionTest extends UnitTestCase {
    *
    * @param string $icon_name
    *   The icon name.
-   * @param string|null $size
-   *   The icon size.
    * @param array $expected_icon_array
    *   The icon array to be rendered.
+   * @param string|null $size
+   *   The icon size.
    *
    * @covers ::toEclIcon
    * @dataProvider toEclIconProvider
    */
-  public function testToEclIcon(string $icon_name, string $size = NULL, array $expected_icon_array) {
+  public function testToEclIcon(string $icon_name, array $expected_icon_array, string $size = NULL) {
     $context = ['ecl_icon_path' => '/path/to/theme/resources/icons/'];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
-    $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}", $context);
-    $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
+    if ($size === NULL) {
+      $result = $this->twig->render("{{ to_ecl_icon('$icon_name')|join('|') }}", $context);
+      $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
+    }
+    else {
+      $result = $this->twig->render("{{ to_ecl_icon('$icon_name', '$size')|join('|') }}", $context);
+      $this->assertEquals(implode('|', array_filter($expected_icon_array)), $result);
+    }
   }
 
   /**
@@ -290,40 +296,48 @@ class TwigExtensionTest extends UnitTestCase {
     return [
       [
         'right',
-        'xs',
         [
           'name' => 'ui--rounded-arrow',
           'transform' => 'rotate-90',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xs',
         ],
+        'xs',
       ],
       [
         'close-dark',
-        'xl',
         [
           'name' => 'ui--close-filled',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xl',
         ],
+        'xl',
       ],
       [
         'not-supported-icon',
-        'm',
         [
           'name' => 'general--digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'm',
         ],
+        'm',
       ],
       [
         'no-size',
+        [
+          'name' => 'general--digital',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
         NULL,
+      ],
+      [
+        'empty-size',
         [
           'name' => 'general--digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => '',
         ],
+        '',
       ],
     ];
   }
