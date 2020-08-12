@@ -13,12 +13,10 @@
   {{ _title}}
 </h3>
 
-<div class="ecl-container">
-  <div class="ecl-row">
-    {% for item in items %}
-      <div class="ecl-col-12 ecl-col-md-6">
-        {{ item.content }}
-      </div>
-    {% endfor %}
-  </div>
+<div class="ecl-row">
+  {% for item in items %}
+    <div class="ecl-col-12 ecl-col-md-6">
+      {{ item.content }}
+    </div>
+  {% endfor %}
 </div>
