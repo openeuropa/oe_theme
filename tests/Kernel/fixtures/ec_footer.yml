@@ -1,28 +1,19 @@
-about_ec_title: First section title
-about_ec_links:
+site_name:
+  href: 'http://example.com/'
+  label: 'Site name'
+content_owner_details: 'Content owner details'
+class_navigation:
   - label: 1st section 1st link
     href: http://example.com/1-1.html
   - label: 1st section 2nd link
     href: http://example.com/1-2.html
-social_media_title: Second section title
-social_media_links:
-  - type: social-network
-    icon: facebook
-    link:
-      label: 2nd section 1st link
-      href: http://example.com/2-1.html
-  - type: external
-    link:
-      label: 2nd section 2nd link
-      href: http://example.com/2-2.html
-about_eu_title: Third section title
-about_eu_links:
+service_navigation:
+  - label: 2nd section 1st link
+    href: http://example.com/2-1.html
+  - label: 2nd section 2nd link
+    href: http://example.com/2-2.html
+legal_navigation:
   - label: 3rd section 1st link
     href: http://example.com/3-1.html
   - label: 3rd section 2nd link
     href: http://example.com/3-2.html
-bottom_links:
-  - label: 4th section 1st link
-    href: http://example.com/4-1.html
-  - label: 4th section 2nd link
-    href: http://example.com/4-2.html

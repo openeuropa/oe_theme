@@ -1,7 +1,10 @@
+content_owner_details: 'Content owner details'
 contact_title: 'Contact title'
 contact:
-  - 'Contact 1 <a href="#">link</a>'
-  - 'Contact 2 <a href="#">link</a>'
+  - href: 'https://europa.eu/contact1'
+    label: 'Contact link 1'
+  - href: 'https://europa.eu/contact2'
+    label: 'Contact link 2'
 social_media_title: 'Social media title'
 social_media:
   - label: 'Social media link 1'
@@ -12,8 +15,9 @@ institution_links:
     href: 'https://europa.eu/institution_links1'
   - label: 'Institution link 2'
     href: 'https://europa.eu/institution_links2'
-other_links:
-  - label: 'Other link 1'
-    href: 'https://europa.eu/other_links1'
-  - label: 'Other link 2'
-    href: 'https://europa.eu/other_links2'
+legal_links_title: 'Legal links title'
+legal_links:
+  - label: 'Legal link 1'
+    href: 'https://europa.eu/legal_links1'
+  - label: 'Legal link 2'
+    href: 'https://europa.eu/legal_links2'

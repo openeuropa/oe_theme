@@ -344,16 +344,16 @@ class OeThemeTestContext extends RawDrupalContext {
     // This is necessary as the ECL gives us no other ways of determining
     // which footer is which.
     $expected_title = [
-      'European Commission' => 'European Commission',
-      'European Union' => 'Contact the EU',
+      'European Commission' => 'Strategy',
+      'European Union' => 'Call us 00 800 6 7 8 9 10 11',
     ];
 
-    // Make sure a corporate footer is present on the mapge.
-    $this->assertSession()->elementExists('css', 'h1.ecl-footer__section-title');
+    // Make sure a corporate footer is present on the page.
+    $this->assertSession()->elementExists('css', 'footer.ecl-footer-core');
 
-    // Get the actual first footer title.
+    // Get the actual first footer link.
     $page = $this->getSession()->getPage();
-    $actual_title = trim($page->find('css', 'h1.ecl-footer__section-title')->getText());
+    $actual_title = trim($page->find('css', 'section.ecl-footer-core__section ul li a')->getText());
 
     // Assert presence or absence of given footer block.
     $title_found = $actual_title === $expected_title[$component_library];
