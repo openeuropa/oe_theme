@@ -5,79 +5,13 @@
  *
  * Available variables:
  * - corporate_footer: renderable array for corporate footer links
- * - custom_footer: renderable array for custom footer links
  * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-eu-footer.html.twig
  */
 #}
-<footer class="ecl-footer ecl-footer--updated">
-  {% if custom_footer %}
-  <section class="ecl-footer__identity">
-    <div class="ecl-container"><h1 class="ecl-footer__identity-title">{{ custom_footer.title }}</h1>
-      <div class="ecl-row">
-        <div class="ecl-footer__identity-follow ecl-col-12 ecl-col-md-6">
-          <span class="ecl-footer__identity-label">{{ custom_footer.follow.label }}</span>
-          {% for item in custom_footer.follow.links %}
-            {% include '@ecl-twig/ec-component-link/ecl-link.html.twig' with item|merge({
-              link: item.link|default({})|merge({
-                type: 'standalone',
-              }),
-              icon: item.icon|default({})|merge({
-                size: 'xs',
-              }),
-              extra_classes: 'ecl-footer__identity-link'
-            }) only %}
-          {% endfor %}
-        </div>
-        <div class="ecl-footer__identity-info ecl-col-12 ecl-col-md-6">
-          {% for item in custom_footer.info %}
-            {% include '@ecl-twig/ec-component-link/ecl-link.html.twig' with item|merge({
-              link: item.link|default({})|merge({
-                type: 'standalone',
-              }),
-              icon: item.icon|default({})|merge({
-                size: 'xs',
-              }),
-              extra_classes: 'ecl-footer__identity-link'
-            }) only %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-  <div class="ecl-footer__sections">
-    <div class="ecl-container">
-      <div class="ecl-row">
-        <section class="ecl-footer__section ecl-col-12 ecl-col-md-4">
-          <h1 class="ecl-footer__section-title">{{ corporate_footer.contact_title }}</h1>
-          <ul class="ecl-footer__section-list">
-            {% for item in corporate_footer.contact %}
-              <li class="ecl-footer__section-item">{{ item|render|replace({'<a': '<a class="ecl-footer__section-link ecl-link ecl-link--standalone"'})|raw }}</li>
-            {% endfor %}
-          </ul>
-          <h1 class="ecl-footer__section-title">{{ corporate_footer.social_media_title }}</h1>
-          <ul class="ecl-footer__section-list">
-            {% for item in corporate_footer.social_media %}
-              <li class="ecl-footer__section-item"><span><a href="{{ item.href }}" class="ecl-footer__section-link ecl-link ecl-link--standalone">{{ item.label }}</a></span></li>
-            {% endfor %}
-          </ul>
-        </section>
-        <section class="ecl-footer__section ecl-col-12 ecl-col-md-8">
-          <h1 class="ecl-footer__section-title">{{ corporate_footer.institution_links_title }}</h1>
-          <ul class="ecl-footer__section-list ecl-footer__columns">
-            {% for item in corporate_footer.institution_links %}
-              <li class="ecl-footer__section-item"><a href="{{ item.href }}" class="ecl-footer__section-link ecl-link ecl-link--standalone">{{ item.label }}</a></li>
-            {% endfor %}
-          </ul>
-        </section>
-      </div>
-    </div>
-  </div>
-  <div class="ecl-footer__common">
-    <div class="ecl-container ecl-footer__common-container">
-      {% for item in corporate_footer.other_links %}
-        <a href="{{ item.href }}" class="ecl-footer__common-link ecl-link ecl-link--standalone">{{ item.label }}</a>
-      {% endfor %}
-    </div>
-  </div>
-</footer>
+
+
+{% set _sections = corporate_footer.sections %}
+
+{% include '@ecl-twig/footer-core' with {
+  'sections': _sections,
+} %}
