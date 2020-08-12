@@ -185,53 +185,36 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
  */
 function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): void {
   $corporate_footer = $variables['corporate_footer'];
-
-  // Create the section for 'About EC'.
-  $about_ec = $corporate_footer['about_ec'];
-  $sections_about_ec = [
-    'title' => $about_ec['title'],
-    'links' => [],
+  $site_name = $corporate_footer['site_name'];
+  $site_name_link = [
+    'link' => [
+      'label' => $site_name['label'],
+      'path' => $site_name['href'],
+    ],
   ];
+  $content_owner_details = $corporate_footer['content_owner_details'];
 
-  foreach ($about_ec['items'] as $item) {
-    $sections_about_ec['links'][] = [
+  $class_navigation = [];
+  foreach ($corporate_footer['class_navigation'] as $link) {
+    $class_navigation[] = [
       'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
-        'icon_position' => 'after',
+        'label' => $link['label'],
+        'path' => $link['href'],
       ],
     ];
   }
 
-  // Create the section for 'Social media'.
-  $social_media = $corporate_footer['social_media'];
-  $sections_social_media = [
-    'title' => $social_media['title'],
-    'links' => [],
-  ];
-
-  foreach ($social_media['items'] as $item) {
-    if ($item['type'] == 'social-network') {
-      $sections_social_media['links'][] = [
-        'link' => [
-          'label' => $item['link']['label'],
-          'path' => $item['link']['href'],
-          'icon_position' => 'before',
-        ],
-        'icon' => [
-          'path' => $variables['ecl_icon_path'],
-          'type' => 'branded',
-          'name' => $item['icon'],
-        ],
-      ];
-    }
-    else {
-      $sections_social_media['links'][] = [
-        'link' => [
-          'label' => $item['link']['label'],
-          'path' => $item['link']['href'],
-          'icon_position' => 'after',
-        ],
+  $service_navigation = [];
+  foreach ($corporate_footer['service_navigation'] as $link) {
+    $service_navigation_link = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+        'icon_position' => 'after',
+      ],
+    ];
+    if (!empty($link['external']) && $link['external'] === TRUE) {
+      $service_navigation_link += [
         'icon' => [
           'path' => $variables['ecl_icon_path'],
           'type' => 'ui',
@@ -239,54 +222,125 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
         ],
       ];
     }
+
+      $service_navigation[] = $service_navigation_link;
   }
 
-  // Create the section for 'About EU'.
-  $about_eu = $corporate_footer['about_eu'];
-  $sections_about_eu = [
-    'title' => $about_eu['title'],
-    'links' => [],
-  ];
-
-  foreach ($about_eu['items'] as $item) {
-    $sections_about_eu['links'][] = [
+  $legal_navigation = [];
+  foreach ($corporate_footer['legal_navigation'] as $link) {
+    $legal_navigation[] = [
       'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
-        'icon_position' => 'after',
-      ],
-      'icon' => [
-        'path' => $variables['ecl_icon_path'],
-        'type' => 'ui',
-        'name' => 'external',
+        'label' => $link['label'],
+        'path' => $link['href'],
       ],
     ];
   }
 
   $variables['corporate_footer']['sections'] = [
-    $sections_about_ec,
-    $sections_social_media,
-    $sections_about_eu,
+    [
+      'title' => $site_name_link,
+      'description' => $content_owner_details,
+      'list_class_name' => 'ecl-footer-core__section1',
+    ],
+    [
+      'links' => $class_navigation,
+      'list_class_name' => 'ecl-footer-core__section2 ecl-footer-core__section--separator ecl-footer-core__list--columns',
+    ],
+    [
+      'links' => $service_navigation,
+      'list_class_name' => 'ecl-footer-core__section3',
+    ],
+    [
+      'links' => $legal_navigation,
+      'list_class_name' => 'ecl-footer-core__section4',
+    ],
   ];
-
-  // Create the list of bottom link.
-  foreach ($corporate_footer['bottom_links'] as $item) {
-    $variables['corporate_footer']['common'][] = [
-      'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
-      ],
-    ];
-  }
-
-  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
 }
 
 /**
  * Implements hook_preprocess_oe_corporate_blocks_eu_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
-  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+  $corporate_footer = $variables['corporate_footer'];
+  $content_owner_details = $corporate_footer['content_owner_details'];
+
+  $path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+  $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $logo = $variables['ecl_logo_path'] . '/logo--' . EuropeanUnionLanguages::getInternalLanguageCode($langcode) . '.svg';
+
+  $logo = [
+    'path' => $path,
+    'language' => $langcode,
+    'src_mobile' => $logo,
+    'src_desktop' => $logo,
+  ];
+
+
+  $contacts = [];
+  foreach ($corporate_footer['contact'] as $link) {
+    $contacts[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+
+  $social_media = [];
+  foreach ($corporate_footer['social_media'] as $link) {
+    $social_media[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+
+  $institution_links = [];
+  foreach ($corporate_footer['institution_links'] as $link) {
+    $institution_links[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+
+  $legal_links = [];
+  foreach ($corporate_footer['legal_links'] as $link) {
+    $legal_links[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  $variables['corporate_footer']['sections'] = [
+    [
+      'logo' => $logo,
+      'description' => $content_owner_details,
+      'list_class_name' => 'ecl-footer-core__section1',
+    ],
+    [
+      [
+        'title' => $corporate_footer['contact_title'],
+        'links' => $contacts,
+      ],
+      [
+        'title' => $corporate_footer['social_media_title'],
+        'links' => $social_media,
+      ],
+      [
+        'title' => $corporate_footer['legal_links_title'],
+        'links' => $legal_links,
+      ],
+    ],
+    [
+      'title' => $corporate_footer['institution_links_title'],
+      'links' => $institution_links,
+      'list_class_name' => 'ecl-footer-core__section4',
+    ],
+  ];
 }
 
 /**
