@@ -42,7 +42,7 @@
         "openeuropa/code-review": "~1.1",
         "openeuropa/drupal-core-require-dev": "^8.7",
         "openeuropa/oe_content": "~1.8",
-        "openeuropa/oe_corporate_blocks": "~2.2",
+        "openeuropa/oe_corporate_blocks": "dev-EWPP-129",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "~1.8",
         "openeuropa/oe_multilingual": "~1.0",
