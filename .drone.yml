@@ -9,6 +9,7 @@ services:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
     image: percona/percona-server:5.7
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=6000 --log_error_verbosity=3
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
   sparql:
