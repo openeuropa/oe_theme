@@ -1,4 +1,4 @@
-@api @footers
+@api
 Feature: Corporate blocks feature
   In order to be able to showcase Corporate blocks
   As an anonymous user

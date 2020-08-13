@@ -222,8 +222,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
         ],
       ];
     }
-
-      $service_navigation[] = $service_navigation_link;
+    $service_navigation[] = $service_navigation_link;
   }
 
   $legal_navigation = [];
@@ -274,7 +273,6 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): v
     'src_mobile' => $logo,
     'src_desktop' => $logo,
   ];
-
 
   $contacts = [];
   foreach ($corporate_footer['contact'] as $link) {
