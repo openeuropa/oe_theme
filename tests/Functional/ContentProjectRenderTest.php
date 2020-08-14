@@ -58,36 +58,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   public function testProjectRendering(): void {
     // Create a document for Project results.
-    $file_1 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
-    $file_1->setPermanent();
-    $file_1->save();
-
-    $media_1 = $this->getStorage('media')->create([
-      'bundle' => 'document',
-      'name' => 'Test document',
-      'oe_media_file' => [
-        'target_id' => (int) $file_1->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media_1->save();
+    $media_project_result = $this->createMediaDocument('project_result');
 
     // Create a document for Documents.
-    $file_2 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://document.pdf');
-    $file_2->setPermanent();
-    $file_2->save();
-
-    $media_2 = $this->getStorage('media')->create([
-      'bundle' => 'document',
-      'name' => 'Test document 2',
-      'oe_media_file' => [
-        'target_id' => (int) $file_2->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media_2->save();
+    $media_project_document = $this->createMediaDocument('project_document');
 
     // Create organisations for Coordinators and Participants fields.
     // Unpublished entity should not be shown.
@@ -117,7 +91,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_results' => 'Project results...',
       'oe_project_result_files' => [
         [
-          'target_id' => (int) $media_1->id(),
+          'target_id' => (int) $media_project_result->id(),
         ],
       ],
       'oe_project_dates' => [
@@ -142,7 +116,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_contact' => [$general_contact],
       'oe_documents' => [
         [
-          'target_id' => (int) $media_2->id(),
+          'target_id' => (int) $media_project_document->id(),
         ],
       ],
       'uid' => 0,
@@ -225,13 +199,13 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_wrapper = $project_details->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document 2', $file_title->getText());
+    $this->assertContains('Test document project_document', $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
     $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/document.pdf', $file_download_link->getAttribute('href'));
+    $this->assertContains('/sample_project_document.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
 
     // Assert top region - Project results.
@@ -244,13 +218,13 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_wrapper = $project_results->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document', $file_title->getText());
+    $this->assertContains('Test document project_result', $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
     $this->assertContains('KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/test.pdf', $file_download_link->getAttribute('href'));
+    $this->assertContains('/sample_project_result.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
 
     // Assert funding programme.
@@ -551,6 +525,35 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_media_image' => [
         'target_id' => (int) $file->id(),
         'alt' => "Alternative text $name",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
+  }
+
+  /**
+   * Creates media document entity.
+   *
+   * @param string $name
+   *   Test data parameter.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media image instance.
+   */
+  protected function createMediaDocument(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), "public://sample_$name.pdf");
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'document',
+      'name' => "Test document $name",
+      'oe_media_file' => [
+        'target_id' => (int) $file->id(),
       ],
       'uid' => 0,
       'status' => 1,
