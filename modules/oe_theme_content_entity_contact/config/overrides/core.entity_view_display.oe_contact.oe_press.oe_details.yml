@@ -2,14 +2,23 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.oe_contact.oe_details
     - field.field.oe_contact.oe_press.oe_address
+    - field.field.oe_contact.oe_press.oe_body
     - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_fax
+    - field.field.oe_contact.oe_press.oe_image
+    - field.field.oe_contact.oe_press.oe_mobile
+    - field.field.oe_contact.oe_press.oe_office
+    - field.field.oe_contact.oe_press.oe_organisation
     - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_press_contact_url
     - field.field.oe_contact.oe_press.oe_social_media
+    - field.field.oe_contact.oe_press.oe_website
     - oe_content_entity_contact.oe_contact_type.oe_press
   module:
-    - address
     - field_group
+    - oe_theme_helper
 third_party_settings:
   field_group:
     group_contact_information:
@@ -33,7 +42,7 @@ bundle: oe_press
 mode: oe_details
 content:
   name:
-    label: hidden
+    label: above
     type: string
     weight: 1
     region: content
@@ -80,4 +89,12 @@ content:
 hidden:
   created: true
   langcode: true
+  oe_body: true
+  oe_fax: true
+  oe_image: true
+  oe_mobile: true
+  oe_office: true
+  oe_organisation: true
+  oe_press_contact_url: true
+  oe_website: true
   status: true
