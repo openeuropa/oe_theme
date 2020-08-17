@@ -10,7 +10,17 @@ navigation_menu:
       type: "text"
       label: "Label"
       description: "Label for the menu, only visible on mobile."
-      preview: "Navigation"
+      preview:
+    close:
+      type: "text"
+      label: "Close button label"
+      description: "Label for closing the menu popup, only visible on mobile."
+      preview:
+    back:
+      type: "text"
+      label: "Back button label"
+      description: "Label for moving back on the menu popup, only visible on mobile."
+      preview:
     items:
       type: "array"
       label: "Links"
@@ -37,9 +47,11 @@ navigation_menu:
               label: 'Child 1.8'
         - href: "#"
           label: "EU law"
+          is_current: TRUE
           children:
             - href: '#'
               label: 'Eu Treaties'
+              is_current: TRUE
             - href: '#'
               label: 'Application of EU law'
             - href: '#'
