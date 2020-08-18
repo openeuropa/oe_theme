@@ -19,7 +19,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_result_files
     - field.field.node.oe_project.oe_project_results
     - field.field.node.oe_project.oe_project_website
-    - field.field.node.oe_project.oe_reference
+    - field.field.node.oe_project.oe_reference_code
     - field.field.node.oe_project.oe_subject
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
@@ -60,7 +60,7 @@ third_party_settings:
       label: Top
     group_details:
       children:
-        - oe_reference
+        - oe_reference_code
         - oe_project_dates
         - oe_project_locations
       parent_name: group_top
@@ -297,7 +297,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-  oe_reference:
+  oe_reference_code:
     type: string
     weight: 0
     region: content
