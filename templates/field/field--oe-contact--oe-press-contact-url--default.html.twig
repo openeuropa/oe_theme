@@ -6,18 +6,16 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
+{% for item in items %}
 <div class="ecl-u-border-top ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mt-s ecl-u-pt-l ecl-u-pb-l">
-  {% for item in items %}
-    {% set path = render_var(item.content['#url']) %}
-    {% set link_icon = get_link_icon(path) %}
-    {% include '@ecl-twig/link' with {
-      link: {
-        type: 'standalone',
-        label: 'Press contacts'|t,
-        path: path,
-        icon_position: 'after'
-      },
-      icon: link_icon
-    } %}
-  {% endfor %}
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: 'Press contacts'|t,
+      path: item.content['#url'],
+      icon_position: 'after'
+    },
+    icon: get_link_icon(item.content['#url'].toString())
+  } %}
 </div>
+{% endfor %}
