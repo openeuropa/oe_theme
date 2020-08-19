@@ -1,0 +1,21 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-page-header-core/ecl-page-header-core.html.twig
++++ b/node_modules/@ecl-twig/ec-component-page-header-core/ecl-page-header-core.html.twig
+@@ -44,11 +44,16 @@
+   <div class="ecl-container">
+   {% if _breadcrumb is not empty %}
+     {% include '@ecl-twig/ec-component-breadcrumb-core/ecl-breadcrumb-core.html.twig' with _breadcrumb|merge({
+-      extra_classes: 'ecl-page-header-core__breadcrumb',
++      extra_classes: not composition ? 'ecl-page-header-core__breadcrumb',
+       _compliance_: _compliance,
+       _compliance_inner_check_: true
+     }) only %}
+   {% endif %}
++  {% if composition is defined and composition is not empty %}
++    <div class="ecl-u-mb-xl ecl-u-border-bottom ecl-u-border-color-white">
++      {{- composition|raw -}}
++    </div>
++  {% endif %}
+   {% if _meta is not empty %}
+     <div class="ecl-page-header-core__meta">
+       <span class="ecl-u-type-uppercase">
