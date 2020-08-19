@@ -16,7 +16,7 @@
         path: child.href,
         label: child.label,
       } %}
-      {% if child.is_current is defined %}
+      {% if child.is_current is defined and child.is_current == true%}
         {% set _child = _child|merge({
           is_current: child.is_current,
         }) %}
@@ -30,7 +30,7 @@
       label: item.label,
       children: _children,
     } %}
-    {% if item.is_current is defined %}
+    {% if item.is_current is defined and item.is_current == true %}
       {% set _item = _item|merge({
         is_current: item.is_current,
       }) %}
