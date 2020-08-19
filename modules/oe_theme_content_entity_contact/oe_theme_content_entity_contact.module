@@ -29,14 +29,3 @@ function oe_theme_content_entity_contact_oe_contact_view_alter(array &$build, Co
     }
   }
 }
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter().
- */
-function oe_theme_content_entity_contact_theme_suggestions_oe_contact(array $variables) {
-  $suggestions = [];
-  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
-  $suggestions[] = 'oe_contact__' . $sanitized_view_mode;
-
-  return $suggestions;
-}

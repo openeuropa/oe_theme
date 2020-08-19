@@ -24,13 +24,13 @@ function oe_theme_content_entity_contact_post_update_00001(): void {
     'core.entity_view_display.oe_contact.oe_press.oe_details',
   ];
   foreach ($displays as $display) {
-    $values = $storage->read($display);
-    $config = EntityViewDisplay::load($values['id']);
-    if ($config) {
-      foreach ($values as $key => $value) {
-        $config->set($key, $value);
-      }
-      $config->save();
+    $display_values = $storage->read($display);
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $updated_display = \Drupal::entityTypeManager()
+        ->getStorage($view_display->getEntityTypeId())
+        ->updateFromStorageRecord($view_display, $display_values);
+      $updated_display->save();
     }
   }
 }
