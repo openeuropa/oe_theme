@@ -10,17 +10,17 @@ navigation_menu:
       type: "text"
       label: "Label"
       description: "Label for the menu, only visible on mobile."
-      preview:
+      preview: "Navigation"
     close:
       type: "text"
       label: "Close button label"
       description: "Label for closing the menu popup, only visible on mobile."
-      preview:
+      preview: "Close"
     back:
       type: "text"
       label: "Back button label"
       description: "Label for moving back on the menu popup, only visible on mobile."
-      preview:
+      preview: "Back"
     items:
       type: "array"
       label: "Links"
