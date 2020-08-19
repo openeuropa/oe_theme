@@ -8,16 +8,18 @@
 #}
 {% block site_header %}
 <header
-  class="ecl-site-header"
+  class="ecl-site-header-core"
   data-ecl-site-header="true"
-  data-ecl-auto-init="SiteHeader"
+  data-ecl-auto-init="SiteHeaderCore"
 >
   {{ page.site_top_bar }}
-  <div class="ecl-site-header__container ecl-container">
-    <div class="ecl-site-header__banner">
+  <div class="ecl-site-header-core__container ecl-container">
+    <div class="ecl-site-header-core__top">
       {{ page.site_header }}
+      <div class="ecl-site-header-core__action">
+        {{ page.site_header_secondary }}
+      </div>
     </div>
-    {{ page.site_header_secondary }}
   </div>
 </header>
 {% endblock %}
