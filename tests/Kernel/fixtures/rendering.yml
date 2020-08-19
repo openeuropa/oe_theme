@@ -559,7 +559,7 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 1
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 1
     equals:
-      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
 - array:
     '#type': pattern
     '#id': gallery
@@ -585,8 +585,8 @@
       '.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
       '.ecl-gallery__image-container .ecl-gallery__description-icon': 2
     equals:
-      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
-      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg><span class="ecl-gallery__meta" data-ecl-gallery-meta></span>'
+      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
+      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg>'
 - array:
     '#type': pattern
     '#id': gallery
