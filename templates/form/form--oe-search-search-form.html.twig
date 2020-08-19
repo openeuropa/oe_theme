@@ -30,11 +30,38 @@
   label: 'Search'|t,
   extra_classes: 'ecl-search-form__button'
 } %}
-{% set extra_attributes = attributes|to_ecl_attributes %}
-{% set extra_classes = 'ecl-site-header__search' %}
+{% set extra_attributes = attributes|to_ecl_attributes|merge([{'name': 'data-ecl-search-form'}]) %}
+{% set extra_classes = 'ecl-site-header-core__search' %}
 {% extends '@ecl-twig/search-form' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}
   {{ element.form_token }}
   {{ element.form_id }}
-{% endblock %}
+{% endblock extra_form_elements %}
+{% block search_form %}
+  <div class="ecl-site-header-core__search-container">
+      <a
+        class="ecl-link ecl-link--standalone ecl-site-header-core__search-toggle"
+        href="{{ _search_toggle.href }}"
+        data-ecl-search-toggle="true"
+        aria-controls="search-form-id"
+        aria-expanded="false"
+      >
+        {%- include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
+          icon: {
+            name: 'search',
+            path: ecl_icon_path,
+            type: 'general',
+            size: 's',
+            extra_attributes: [
+              { name: 'aria-hidden', value: true }
+            ],
+            _compliance_: _compliance,
+            _compliance_inner_check_: true
+          }
+        } only -%}
+        {{- text_input.label -}}
+      </a>
+  {{ parent() }}
+  </div>
+{% endblock search_form %}
