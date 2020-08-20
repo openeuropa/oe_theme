@@ -723,12 +723,11 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
     }
 
-    $variables['languages'][] = [
+    $language = [
       'path' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
       'lang' => $language_internal,
-      'active' => $language_code === $current_language_id,
     ];
 
     if ($language_code === $current_language_id) {
@@ -738,7 +737,10 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
         'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
+      $language['active'] = TRUE;
     }
+
+    $variables['languages'][] = $language;
   }
 }
 
