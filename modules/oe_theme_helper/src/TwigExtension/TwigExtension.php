@@ -606,7 +606,7 @@ class TwigExtension extends \Twig_Extension {
    * @return array
    *   Icon settings to be used in the ecl-twig/link component.
    */
-  public function getLinkIcon(array $context, string $path, string $size = 's') {
+  public function getLinkIcon(array $context, string $path, string $size = 's'): array {
     $icon_path = $context['ecl_icon_path'];
 
     $icon = [

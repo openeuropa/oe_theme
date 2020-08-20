@@ -508,7 +508,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * Creates media image entity.
    *
    * @param string $name
-   *   Test data parameter.
+   *   Name of the image media.
    *
    * @return \Drupal\media\MediaInterface
    *   Media image instance.
@@ -538,10 +538,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * Creates media document entity.
    *
    * @param string $name
-   *   Test data parameter.
+   *   Name of the document media.
    *
    * @return \Drupal\media\MediaInterface
-   *   Media image instance.
+   *   Media document instance.
    */
   protected function createMediaDocument(string $name): MediaInterface {
     // Create file instance.
@@ -569,7 +569,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    * @param \Behat\Mink\Element\NodeElement $rendered_element
    *   Rendered element.
    * @param string $name
-   *   Test parameter.
+   *   Name of the image media.
    */
   protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
     $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');

@@ -22,13 +22,19 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-link[href="http://facebook.com"]' => 1,
+        'a.ecl-link[href="http://twitter.com"]' => 1,
       ],
       'equals' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-link[href="http://facebook.com"] span' => "Facebook",
+        'a.ecl-link[href="http://twitter.com"] span' => "Twitter",
       ],
       'contains' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#twitter',
         'a.ecl-link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
+        'a.ecl-link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
       ],
     ]);
 
@@ -41,13 +47,19 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-link[href="http://facebook.com"]' => 1,
+        'a.ecl-link[href="http://twitter.com"]' => 1,
       ],
       'equals' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-link[href="http://facebook.com"] span' => "Face…",
+        'a.ecl-link[href="http://twitter.com"] span' => "Twit…",
       ],
       'contains' => [
+        'a.ecl-link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
         'a.ecl-link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
+        'a.ecl-link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
       ],
     ]);
   }

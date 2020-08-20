@@ -46,6 +46,7 @@ class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
       'type' => 'typed_link',
       'settings' => [
         'allowed_values' => [
+          'email' => 'Email',
           'facebook' => 'Facebook',
           'twitter' => 'Twitter',
         ],
@@ -62,9 +63,21 @@ class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
 
     $entity = EntityTest::create([
       'field_test' => [
-        'link_type' => 'facebook',
-        'uri' => 'http://facebook.com',
-        'title' => 'Facebook',
+        [
+          'link_type' => 'email',
+          'uri' => 'mailto:socialmedialink@example.com',
+          'title' => 'Email',
+        ],
+        [
+          'link_type' => 'facebook',
+          'uri' => 'http://facebook.com',
+          'title' => 'Facebook',
+        ],
+        [
+          'link_type' => 'twitter',
+          'uri' => 'http://twitter.com',
+          'title' => 'Twitter',
+        ],
       ],
     ]);
     $entity->save();
