@@ -75,7 +75,7 @@ default:
         page header title: ".ecl-page-header .ecl-page-header__title"
         page header intro: ".ecl-page-header .ecl-page-header__description"
         page header meta: ".ecl-page-header .ecl-page-header__meta-list"
-        priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu_mega"
+        priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
         selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
         Social media links: "#oe-social-media-links-values"
