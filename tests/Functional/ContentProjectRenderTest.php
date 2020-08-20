@@ -26,6 +26,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     'oe_theme_helper',
     'path',
     'oe_theme_content_project',
+    'block',
   ];
 
   /**
@@ -142,6 +143,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $node->save();
 
     $this->drupalGet($node->toUrl());
+
+    // Assert page header - metadata.
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header .ecl-page-header__meta-list', 'Project');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header .ecl-page-header__description', 'Summary');
 
     // Assert top region - Project details.
     $project_details = $this->assertSession()->elementExists('css', 'div#project-details');
