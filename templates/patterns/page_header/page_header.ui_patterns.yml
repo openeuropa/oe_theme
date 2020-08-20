@@ -49,8 +49,8 @@ page_header:
           label: "Announcements"
     infos:
       type: "array"
-      label: "Infos"
-      description: "A list of infos of the current page."
+      label: "Infos (deprecated)"
+      description: "A list of infos of the current page. This was deprecated from ECL 2.30."
       preview:
         - text: "Monday 8 February"
           icon: "calendar"
