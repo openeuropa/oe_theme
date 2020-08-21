@@ -40,15 +40,12 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable oe_theme and set it as default.
-    $this->assertTrue($this->container->get('theme_installer')->install(['oe_theme']));
-    $this->container->get('config.factory')
-      ->getEditable('system.theme')
-      ->set('default', 'oe_theme')
-      ->save();
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
 
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
-    $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
     $this->drupalCreateContentType(['type' => 'test', 'name' => 'Moderated'])->save();
 

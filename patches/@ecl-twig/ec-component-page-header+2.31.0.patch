@@ -25,3 +25,12 @@ patch-package
    {% endif %}
    {% if _title_wrapper %}
      <div class="ecl-page-header__title-wrapper">
+@@ -95,7 +99,7 @@
+       <p class="ecl-page-header__slogan">{{ _slogan|raw }}</p>
+     {% endif %}
+     {% if _description is not empty %}
+-      <p class="ecl-page-header__description">{{ _description|raw }}</p>
++      <p class="ecl-page-header__description">{{ _description }}</p>
+     {% endif %}
+   {% if _title_wrapper %}
+     </div>
