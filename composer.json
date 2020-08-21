@@ -41,7 +41,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.1",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "dev-OPENEUROPA-3119",
+        "openeuropa/oe_content": "dev-EPIC-Project",
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "dev-master",
@@ -99,9 +99,6 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-06-02/address_content_language-3144823-3.patch"
-            },
-            "openeuropa/oe_content": {
-                "Use default preprocess for corporate entities": "https://patch-diff.githubusercontent.com/raw/openeuropa/oe_content/pull/240.patch"
             }
         }
     },
