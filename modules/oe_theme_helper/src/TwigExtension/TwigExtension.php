@@ -77,6 +77,7 @@ class TwigExtension extends \Twig_Extension {
   public function getFunctions(): array {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
+      new \Twig_SimpleFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -590,6 +591,39 @@ class TwigExtension extends \Twig_Extension {
       ->applyTo($arg_bubbleable);
 
     $this->renderer->render($arg_bubbleable);
+  }
+
+  /**
+   * Gets icon based on the url that is used in ecl-twig/link component.
+   *
+   * @param array $context
+   *   The twig context.
+   * @param string $path
+   *   The internal path or external URL.
+   * @param string $size
+   *   Size of the icon. Default is "s".
+   *
+   * @return array
+   *   Icon settings to be used in the ecl-twig/link component.
+   */
+  public function getLinkIcon(array $context, string $path, string $size = 's'): array {
+    $icon_path = $context['ecl_icon_path'];
+
+    $icon = [
+      'path' => $icon_path,
+      'type' => 'ui',
+      'size' => $size,
+      'color' => 'primary',
+    ];
+    if (UrlHelper::isExternal($path)) {
+      $icon['name'] = 'external';
+    }
+    else {
+      $icon['name'] = 'corner-arrow';
+      $icon['transform'] = 'rotate-90';
+    }
+
+    return $icon;
   }
 
 }

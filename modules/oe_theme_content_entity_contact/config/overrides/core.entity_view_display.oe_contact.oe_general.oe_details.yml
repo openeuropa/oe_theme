@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.oe_contact.oe_details
     - field.field.oe_contact.oe_general.oe_address
     - field.field.oe_contact.oe_general.oe_body
     - field.field.oe_contact.oe_general.oe_email
@@ -17,24 +18,17 @@ dependencies:
     - oe_content_entity_contact.oe_contact_type.oe_general
   module:
     - field_group
-    - link
     - oe_theme_helper
-    - text
 third_party_settings:
   field_group:
     group_contact_information:
       children:
-        - oe_organisation
-        - oe_website
+        - name
         - oe_email
         - oe_phone
-        - oe_mobile
-        - oe_fax
         - oe_address
-        - oe_office
-        - oe_social_media
       parent_name: ''
-      weight: 2
+      weight: 0
       format_type: oe_theme_helper_field_list_pattern
       format_settings:
         variant: horizontal
@@ -42,126 +36,65 @@ third_party_settings:
         id: ''
       label: 'Contact information'
       region: content
-id: oe_contact.oe_general.default
+id: oe_contact.oe_general.oe_details
 targetEntityType: oe_contact
 bundle: oe_general
-mode: default
+mode: oe_details
 content:
   name:
     type: string
     weight: 0
     region: content
-    label: hidden
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   oe_address:
-    weight: 17
-    label: hidden
+    weight: 3
+    label: above
     settings:
       delimiter: ', '
     third_party_settings: {  }
     type: oe_theme_helper_address_inline
     region: content
-  oe_body:
-    type: text_default
-    weight: 1
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   oe_email:
-    weight: 13
-    label: hidden
+    weight: 1
+    label: above
     settings: {  }
     third_party_settings: {  }
-    type: email_mailto
+    type: basic_string
     region: content
-  oe_fax:
-    type: string
-    weight: 16
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  oe_image:
-    type: oe_theme_helper_featured_media_formatter
-    weight: 4
-    region: content
-    label: hidden
-    settings:
-      image_style: ''
-    third_party_settings: {  }
-  oe_mobile:
-    type: string
-    weight: 15
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  oe_office:
-    type: string
-    weight: 18
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  oe_organisation:
-    type: string
-    weight: 11
-    region: content
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
   oe_phone:
-    weight: 14
-    label: hidden
+    weight: 2
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  oe_press_contact_url:
-    type: link
-    weight: 3
-    region: content
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
   oe_social_media:
-    type: oe_theme_helper_social_media_icons_list_formatter
-    weight: 19
+    type: oe_theme_helper_social_media_links_formatter
+    weight: 5
     region: content
     label: hidden
     settings:
       trim_length: 80
-      url_only: false
-      url_plain: false
       rel: nofollow
       target: _blank
-    third_party_settings: {  }
-  oe_website:
-    type: link
-    weight: 12
-    region: content
-    label: hidden
-    settings:
-      trim_length: 80
+      title: 'Social media'
+      variant: horizontal
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
     third_party_settings: {  }
 hidden:
   created: true
   langcode: true
+  oe_body: true
+  oe_fax: true
+  oe_image: true
+  oe_mobile: true
+  oe_office: true
+  oe_organisation: true
+  oe_press_contact_url: true
+  oe_website: true
   status: true

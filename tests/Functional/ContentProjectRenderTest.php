@@ -6,11 +6,13 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\media\MediaInterface;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\oe_content_entity_contact\Entity\ContactInterface;
+use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
-use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 
 /**
  * Tests that our Project content type renders correctly.
@@ -25,6 +27,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     'system',
     'oe_theme_helper',
     'path',
+    'oe_theme_content_entity_contact',
     'oe_theme_content_project',
     'block',
   ];
@@ -46,6 +49,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_organisation')
+      ->grantPermission('view published oe_contact')
       ->save();
   }
 
@@ -54,41 +58,18 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   public function testProjectRendering(): void {
     // Create a document for Project results.
-    $file_1 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
-    $file_1->setPermanent();
-    $file_1->save();
-
-    $media_1 = $this->getStorage('media')->create([
-      'bundle' => 'document',
-      'name' => 'Test document',
-      'oe_media_file' => [
-        'target_id' => (int) $file_1->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media_1->save();
+    $media_project_result = $this->createMediaDocument('project_result');
 
     // Create a document for Documents.
-    $file_2 = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://document.pdf');
-    $file_2->setPermanent();
-    $file_2->save();
-
-    $media_2 = $this->getStorage('media')->create([
-      'bundle' => 'document',
-      'name' => 'Test document 2',
-      'oe_media_file' => [
-        'target_id' => (int) $file_2->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media_2->save();
+    $media_project_document = $this->createMediaDocument('project_document');
 
     // Create organisations for Coordinators and Participants fields.
     // Unpublished entity should not be shown.
     $coordinator_organisation = $this->createStakeholderOrganisationEntity('coordinator', CorporateEntityInterface::PUBLISHED);
     $participant_organisation = $this->createStakeholderOrganisationEntity('participant', CorporateEntityInterface::NOT_PUBLISHED);
+
+    // Create general contact.
+    $general_contact = $this->createContactEntity('general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
     // Create a Project node.
     /** @var \Drupal\node\Entity\Node $node */
@@ -110,7 +91,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_results' => 'Project results...',
       'oe_project_result_files' => [
         [
-          'target_id' => (int) $media_1->id(),
+          'target_id' => (int) $media_project_result->id(),
         ],
       ],
       'oe_project_dates' => [
@@ -132,9 +113,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_project_funding_programme' => 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020',
       'oe_project_coordinators' => [$coordinator_organisation],
       'oe_project_participants' => [$participant_organisation],
+      'oe_project_contact' => [$general_contact],
       'oe_documents' => [
         [
-          'target_id' => (int) $media_2->id(),
+          'target_id' => (int) $media_project_document->id(),
         ],
       ],
       'uid' => 0,
@@ -217,13 +199,13 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_wrapper = $project_details->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document 2', $file_title->getText());
+    $this->assertContains('Test document project_document', $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
     $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/document.pdf', $file_download_link->getAttribute('href'));
+    $this->assertContains('/sample_project_document.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
 
     // Assert top region - Project results.
@@ -236,13 +218,13 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $file_wrapper = $project_results->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document', $file_title->getText());
+    $this->assertContains('Test document project_result', $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
     $this->assertContains('English', $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
     $this->assertContains('KB - PDF)', $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/test.pdf', $file_download_link->getAttribute('href'));
+    $this->assertContains('/sample_project_result.pdf', $file_download_link->getAttribute('href'));
     $this->assertContains('Download', $file_download_link->getText());
 
     // Assert funding programme.
@@ -294,14 +276,30 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
+
+    // Assert Project's contacts.
+    $project_contacts = $this->assertSession()->elementExists('css', 'div#project-contacts');
+    $contact_headers = $project_contacts->findAll('css', 'h2');
+    $this->assertEquals($contact_headers[0]->getText(), 'Contact');
+    $this->assertContactRendering($project_contacts, 'general_contact');
+
+    // Unpublish Contact entity to test its visibility.
+    $general_contact->set('status', CorporateEntityInterface::NOT_PUBLISHED);
+    $general_contact->save();
+
+    // Reload the page.
+    $this->drupalGet($node->toUrl());
+
+    // Asset Contact entity visibility.
+    $this->assertSession()->elementNotExists('css', 'div#project-contacts');
   }
 
   /**
    * Creates a stakeholder organisation entity.
    *
-   * @var string $name
+   * @param string $name
    *   Name of the entity. Is used as a parameter for test data.
-   * @var int $status
+   * @param int $status
    *   Entity status. 1 - published, 0 - unpublished.
    *
    * @return \Drupal\oe_content_entity_organisation\Entity\OrganisationInterface
@@ -309,20 +307,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   protected function createStakeholderOrganisationEntity(string $name, int $status): OrganisationInterface {
     // Create image for logo.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
-    $file->setPermanent();
-    $file->save();
-
-    $media = $this->getStorage('media')->create([
-      'bundle' => 'image',
-      'name' => "Test image $name",
-      'oe_media_image' => [
-        'target_id' => (int) $file->id(),
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media->save();
+    $media = $this->createMediaImage($name);
 
     $organisation = $this->getStorage('oe_organisation')->create([
       'bundle' => 'oe_stakeholder',
@@ -346,6 +331,60 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $organisation->save();
 
     return $organisation;
+  }
+
+  /**
+   * Creates Contact entity.
+   *
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param int $status
+   *   Entity status.
+   *
+   * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
+   *   Contact entity.
+   */
+  protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
+    // Create image for contact.
+    $media = $this->createMediaImage($name);
+
+    $contact = $this->getStorage('oe_contact')->create([
+      'bundle' => $bundle,
+      'name' => $name,
+      'oe_address' => [
+        'country_code' => 'BE',
+        'locality' => 'Brussels',
+        'address_line1' => "Address $name",
+        'postal_code' => '1001',
+      ],
+      'oe_body' => "Body text $name",
+      'oe_email' => "$name@example.com",
+      'oe_fax' => "Fax number $name",
+      'oe_mobile' => "Mobile number $name",
+      'oe_office' => "Office $name",
+      'oe_organisation' => "Organisation $name",
+      'oe_phone' => "Phone number $name",
+      'oe_press_contact_url' => ['uri' => "http://www.example.com/press_contact_$name"],
+      'oe_social_media' => [
+        [
+          'uri' => "http://www.example.com/social_media_$name",
+          'title' => "Social media $name",
+          'link_type' => 'facebook',
+        ],
+      ],
+      'oe_website' => ['uri' => "http://www.example.com/website_$name"],
+      'oe_image' => [
+        [
+          'target_id' => (int) $media->id(),
+          'caption' => "Caption $name",
+        ],
+      ],
+      'status' => $status,
+    ]);
+
+    return $contact;
   }
 
   /**
@@ -387,6 +426,72 @@ class ContentProjectRenderTest extends BrowserTestBase {
   }
 
   /**
+   * Asserts rendering of Contact entity.
+   *
+   * @param \Behat\Mink\Element\NodeElement $rendered_element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the entity.
+   */
+  protected function assertContactRendering(NodeElement $rendered_element, string $name): void {
+    $contact_sub_headers = $rendered_element->findAll('css', 'h3');
+    $this->assertCount(1, $contact_sub_headers);
+    $this->assertEquals($contact_sub_headers[0]->getText(), 'general_contact');
+
+    // Body field.
+    $body = $rendered_element->findAll('css', '.ecl-editor');
+    $this->assertCount(1, $body);
+    $this->assertEquals("Body text $name", $body[0]->getText());
+
+    // Assert list of fields in field_list pattern.
+    $description_lists = $rendered_element->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
+    $this->assertCount(1, $description_lists);
+
+    // Assert labels in list of fields.
+    $description_list_labels = $description_lists[0]->findAll('css', 'dt.ecl-description-list__term');
+    $this->assertCount(9, $description_list_labels);
+    $labels = [
+      'Organisation',
+      'Website',
+      'Email',
+      'Phone number',
+      'Mobile number',
+      'Fax number',
+      'Postal address',
+      'Office',
+      'Social media',
+    ];
+    foreach ($labels as $key => $label) {
+      $this->assertEquals($label, $description_list_labels[$key]->getText());
+    }
+
+    // Assert values in list of fields.
+    $values = $description_lists[0]->findAll('css', 'dd.ecl-description-list__definition');
+    $this->assertCount(9, $values);
+    $this->assertEquals("Organisation $name", $values[0]->getText());
+
+    $values[1]->hasLink("http://www.example.com/website_$name");
+    $values[2]->hasLink("$name@example.com");
+    $this->assertEquals("Phone number $name", $values[3]->getText());
+    $this->assertEquals("Mobile number $name", $values[4]->getText());
+    $this->assertEquals("Fax number $name", $values[5]->getText());
+    $this->assertEquals("Address $name, 1001 Brussels, Belgium", $values[6]->getText());
+    $this->assertEquals("Office $name", $values[7]->getText());
+
+    // Assert social media link.
+    $social_media_links = $values[8]->findAll('css', '.ecl-link');
+    $this->assertCount(1, $social_media_links);
+    $social_media_link_label = $social_media_links[0]->find('css', '.ecl-link__label');
+    $this->assertEqual("Social media $name", $social_media_link_label->getText());
+    $this->assertContains("http://www.example.com/social_media_$name", $social_media_links[0]->getAttribute('href'));
+    $social_media_icon = $social_media_links[0]->find('css', 'use');
+    $this->assertContains('facebook', $social_media_icon->getAttribute('xlink:href'));
+
+    // Assert image.
+    $this->assertFeaturedMediaField($rendered_element, $name);
+  }
+
+  /**
    * Gets the entity type's storage.
    *
    * @param string $entity_type_id
@@ -397,6 +502,87 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   protected function getStorage(string $entity_type_id): EntityStorageInterface {
     return \Drupal::entityTypeManager()->getStorage($entity_type_id);
+  }
+
+  /**
+   * Creates media image entity.
+   *
+   * @param string $name
+   *   Name of the image media.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media image instance.
+   */
+  protected function createMediaImage(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'image',
+      'name' => "Test image $name",
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => "Alternative text $name",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
+  }
+
+  /**
+   * Creates media document entity.
+   *
+   * @param string $name
+   *   Name of the document media.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media document instance.
+   */
+  protected function createMediaDocument(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), "public://sample_$name.pdf");
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'document',
+      'name' => "Test document $name",
+      'oe_media_file' => [
+        'target_id' => (int) $file->id(),
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
+  }
+
+  /**
+   * Asserts featured media field rendering.
+   *
+   * @param \Behat\Mink\Element\NodeElement $rendered_element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the image media.
+   */
+  protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
+    $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
+    $this->assertCount(1, $figures);
+
+    // Assert image tag.
+    $image = $figures[0]->find('css', 'img');
+    $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
+    $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
+
+    // Assert caption.
+    $caption = $figures[0]->find('css', 'figcaption');
+    $this->assertEquals("Caption $name", $caption->getText());
   }
 
 }

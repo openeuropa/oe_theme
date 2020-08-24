@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_featured_media
@@ -115,7 +116,7 @@ third_party_settings:
         - oe_project_coordinators
         - oe_project_participants
       parent_name: ''
-      weight: 4
+      weight: 3
       format_type: html_element
       region: content
       format_settings:
@@ -160,11 +161,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  extra_field_oe_theme_content_project_funding:
-    weight: 3
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   extra_field_oe_theme_content_project_percentage:
     weight: 9
     region: content
@@ -210,6 +206,15 @@ content:
       rel: '0'
       target: '0'
     third_party_settings: {  }
+  oe_project_contact:
+    type: entity_reference_revisions_entity_view
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_project_coordinators:
     type: entity_reference_revisions_entity_view
     weight: 10
@@ -229,14 +234,6 @@ content:
       format_type: oe_project_date
       separator: '-'
     third_party_settings: {  }
-  oe_project_funding_programme:
-    type: skos_concept_entity_reference_label
-    weight: 13
-    region: content
-    label: hidden
-    settings:
-      link: false
-    third_party_settings: {  }
   oe_project_featured_media:
     type: oe_theme_helper_featured_media_formatter
     weight: 0
@@ -244,6 +241,14 @@ content:
     label: hidden
     settings:
       image_style: oe_theme_medium_no_crop
+    third_party_settings: {  }
+  oe_project_funding_programme:
+    type: skos_concept_entity_reference_label
+    weight: 13
+    region: content
+    label: hidden
+    settings:
+      link: false
     third_party_settings: {  }
   oe_project_participants:
     type: entity_reference_revisions_entity_view
