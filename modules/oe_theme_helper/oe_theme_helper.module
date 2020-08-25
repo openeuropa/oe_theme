@@ -61,6 +61,16 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'address_delimiter' => NULL,
       ],
     ],
+    'oe_theme_helper_in_page_navigation' => [
+      'render element' => 'element',
+      'template' => 'oe-theme-helper-in-page-navigation',
+      'file' => 'oe_theme_helper.theme.inc',
+    ],
+    'oe_theme_helper_in_page_navigation_item' => [
+      'render element' => 'element',
+      'template' => 'oe-theme-helper-in-page-navigation-item',
+      'file' => 'oe_theme_helper.theme.inc',
+    ],
   ];
 }
 

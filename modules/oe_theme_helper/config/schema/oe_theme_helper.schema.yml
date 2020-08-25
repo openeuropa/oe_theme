@@ -29,6 +29,14 @@ field_group.field_group_formatter_plugin.oe_theme_helper_field_list_pattern:
   type: field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base
   label: 'Mapping for the field list pattern formatter settings'
 
+field_group.field_group_formatter_plugin.oe_theme_helper_in_page_navigation:
+  type: field_group.field_group_formatter_plugin.base
+  label: 'Mapping for the In-page navigation field group formatter settings'
+
+field_group.field_group_formatter_plugin.oe_theme_helper_in_page_navigation_item:
+  type: field_group.field_group_formatter_plugin.base
+  label: 'Mapping for the In-page navigation item field group formatter settings'
+
 field.formatter.settings.oe_theme_helper_social_media_links_formatter:
   type: field.formatter.settings.link
   label: 'Social media link formatter settings'

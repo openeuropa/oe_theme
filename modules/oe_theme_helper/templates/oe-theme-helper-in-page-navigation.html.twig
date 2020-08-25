@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Default template for the 'oe_theme_helper_in_page_navigation' in-page navigation.
+ *
+ * Available variables:
+ * - element: Elements to render.
+ * - children: The children of the group.
+ * - title: Title of the navigation side.
+ * - links: Navigation links.
+ *
+ * @see template_preprocess_oe_theme_helper_in_page_navigation()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set classes = ['ecl-row', 'ecl-u-mt-l'] %}
+
+<div {{ attributes.addClass(classes) }}>
+  <div class="ecl-col-12 ecl-col-lg-3">
+    {% include '@ecl-twig/inpage-navigation' with {
+      'title': title,
+      'links': links
+    } %}
+  </div>
+  <div class="ecl-col-lg-9">
+    {{ children }}
+  </div>
+</div>
