@@ -19,3 +19,12 @@ patch-package
    {% if _meta is not empty %}
      <div class="ecl-page-header-core__meta">
        <span class="ecl-u-type-uppercase">
+@@ -58,7 +63,7 @@
+   {% endif %}
+     <h1 class="ecl-page-header-core__title">{{ _title }}</h1>
+   {% if _description is not empty %}
+-    <p class="ecl-page-header-core__description">{{ _description|raw }}</p>
++    <p class="ecl-page-header-core__description">{{ _description }}</p>
+   {% endif %}
+   </div>
+ </div>
