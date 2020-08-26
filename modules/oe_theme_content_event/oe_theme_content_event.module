@@ -7,8 +7,13 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\node\NodeInterface;
+use Drupal\oe_content_event\EventNodeWrapper;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Implements hook_theme().
@@ -66,4 +71,218 @@ function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $
       }
     }
   }
+}
+
+/**
+ * Implements template_preprocess_node() for the Event node type.
+ */
+function oe_theme_content_event_preprocess_node__oe_event__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  $pattern = [
+    '#type' => 'pattern',
+    '#id' => 'list_item',
+    '#variant' => 'thumbnail_primary',
+    '#fields' => [
+      'title' => $node->label(),
+      'url' => $node->toUrl(),
+      'detail' => $variables['content']['oe_teaser'],
+    ]
+  ];
+
+  $dates = $node->get('oe_event_dates')->first();
+  /** @var \Drupal\oe_content_entity_venue\Entity\VenueInterface $venue */
+  $venue = \Drupal::service('entity.repository')->getTranslationFromContext($node->get('oe_event_venue')->entity);
+  $venue_access = $venue->access('view', NULL, TRUE);
+
+  $cache = CacheableMetadata::createFromRenderArray($variables);
+  $cache->addCacheableDependency($venue);
+  $cache->addCacheableDependency($venue_access);
+  $cache->applyTo($variables);
+
+  // Add context specific theme suggestions.
+  $pattern['#context'] = [
+    'type' => 'theme_suggestion',
+    'suffix' => 'link_list__oe_event',
+  ];
+
+  // Events show no description, not on teasers nor on cards.
+  $pattern['#fields']['description'] = '';
+
+  // Add event meta information.
+  $pattern['#fields']['meta'] = _oe_theme_content_event_preprocess_get_event_meta($node);
+
+  // Handle list item pattern specific variables.
+  if ($pattern['#id'] === 'list_item') {
+    _oe_theme_content_event_preprocess_set_event_variant($pattern, $node);
+
+    // Add event dates.
+    $pattern['#fields']['date'] = DateValueObject::fromDateRangeItem($dates);
+    $pattern['#fields']['detail'] = [
+      '#type' => 'pattern',
+      '#id' => 'icons_with_text',
+      '#fields' => [
+        'items' => _oe_theme_content_event_preprocess_get_event_details($node),
+      ],
+      '#context' => [
+        'type' => 'theme_suggestion',
+        'suffix' => 'link_list__oe_event',
+      ],
+    ];
+
+    $variables['pattern'] = $pattern;
+
+    return;
+  }
+
+  // Handle featured item pattern specific variables.
+  $pattern['#fields']['footer_items'] = array_merge([
+    [
+      'icon' => 'calendar',
+      'text' => _oe_theme_content_event_preprocess_get_event_date($dates->start_date, $dates->end_date),
+    ],
+  ], _oe_theme_content_event_preprocess_get_event_details($node));
+
+  $variables['pattern'] = $pattern;
+}
+
+/**
+ * Returns the event details for the pattern preprocessing.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return array
+ *   The details.
+ */
+function _oe_theme_content_event_preprocess_get_event_details(NodeInterface $node): array {
+  $items = [];
+
+  $venue = \Drupal::service('entity.repository')->getTranslationFromContext($node->get('oe_event_venue')->entity);
+  if (!$venue->get('oe_address')->isEmpty()) {
+    $renderable =\Drupal::entityTypeManager()->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
+    $items[] = [
+      'icon' => 'location',
+      'text' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
+    ];
+  }
+
+  if (!$node->get('oe_event_online_type')->isEmpty()) {
+    $items[] = [
+      'icon' => 'livestreaming',
+      'text' => t('Live streaming available'),
+    ];
+  }
+
+  return $items;
+}
+
+/**
+ * Returns the event meta for the pattern preprocessing.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return array
+ *   The meta.
+ */
+function _oe_theme_content_event_preprocess_get_event_meta(NodeInterface $node): array {
+  $metas = [];
+
+  // Add the event type.
+  /** @var \Drupal\rdf_skos\Entity\ConceptInterface $type */
+  $type = $node->get('oe_event_type')->entity;
+  $type = \Drupal::service('entity.repository')->getTranslationFromContext($type);
+  $metas[] = $type->label();
+
+  // Add the event status, only if it doesn't go as planned.
+  $status = $node->get('oe_event_status')->value;
+  if ($status !== 'as_planned') {
+    $provider = $node->get('oe_event_status')->getFieldDefinition()
+      ->getFieldStorageDefinition()
+      ->getOptionsProvider('value', $node);
+    $metas[] = $provider->getPossibleOptions()[$status];
+  }
+
+  return $metas;
+}
+
+/**
+ * Returns the event date for the pattern preprocessing.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The event node.
+ *
+ * @return array
+ *   The meta.
+ */
+function _oe_theme_content_event_preprocess_get_event_date(DrupalDateTime $start, DrupalDateTime $end): string {
+  /** @var \Drupal\Core\Datetime\DateFormatInterface $date_formatter */
+  $date_formatter = \Drupal::service('date.formatter');
+  // If the event starts and ends on the same day then print just that.
+  if ($start->format('jFY') === $end->format('jFY')) {
+    return $date_formatter->format($start->getTimestamp(), 'oe_event_date');
+  }
+
+  // Print only start day if the event happens in the same month.
+  if ($start->format('FY') === $end->format('FY')) {
+    $start_formatted = $date_formatter->format($start->getTimestamp(), 'custom', 'j');
+    $end_formatted = $date_formatter->format($end->getTimestamp(), 'oe_event_date');
+    return sprintf('%s - %s', $start_formatted, $end_formatted);
+  }
+
+  // Print only start day and month if the event happens in the same year.
+  if ($start->format('Y') === $end->format('Y')) {
+    $start_formatted = $date_formatter->format($start->getTimestamp(), 'custom', 'j F');
+    $end_formatted = $date_formatter->format($end->getTimestamp(), 'oe_event_date');
+    return sprintf('%s - %s', $start_formatted, $end_formatted);
+  }
+
+  // Print both dates otherwise.
+  $start_formatted = $date_formatter->format($start->getTimestamp(), 'oe_event_date');
+  $end_formatted = $date_formatter->format($end->getTimestamp(), 'oe_event_date');
+  return sprintf('%s - %s', $start_formatted, $end_formatted);
+}
+
+/**
+ * Set event list item variant depending from the current request time.
+ *
+ * @param array $pattern
+ *   List item pattern.
+ * @param \Drupal\node\NodeInterface $node
+ *   Event node object.
+ */
+function _oe_theme_content_event_preprocess_set_event_variant(array &$pattern, NodeInterface $node): void {
+  $event = EventNodeWrapper::getInstance($node);
+  // If it's cancelled, then we don't mind when the event occurs.
+  if ($event->isCancelled()) {
+    $pattern['#variant'] = 'date_cancelled';
+    return;
+  }
+
+  $cacheable = CacheableMetadata::createFromRenderArray($pattern);
+  $cacheable->addCacheContexts(['timezone']);
+
+  $requested_date_time = (new \DateTime())->setTimestamp(\Drupal::time()->getRequestTime());
+
+  // If event is not started, cache it by its start date.
+  if ($requested_date_time < $event->getStartDate()->getPhpDateTime()) {
+    $pattern['#variant'] = 'date';
+    $cacheable->addCacheTags(\Drupal::service('oe_time_caching.time_based_cache_tag_generator')->generateTags($event->getStartDate()->getPhpDateTime()));
+    $cacheable->applyTo($pattern);
+    return;
+  }
+
+  // If event is ongoing, cache it by its end date.
+  if (($requested_date_time >= $event->getStartDate()->getPhpDateTime()) && !$event->isOver($requested_date_time)) {
+    $pattern['#variant'] = 'date_ongoing';
+    $cacheable->addCacheTags(\Drupal::service('oe_time_caching.time_based_cache_tag_generator')->generateTags($event->getEndDate()->getPhpDateTime()));
+    $cacheable->applyTo($pattern);
+    return;
+  }
+
+  // If we reach this point, then the event has happened already.
+  $pattern['#variant'] = 'date_past';
+  $cacheable->applyTo($pattern);
 }

@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle publication in the teaser view mode.
+ */
+#}
+{{ pattern('list_item', {
+  'variant': 'thumbnail_primary',
+  'url': url,
+  'title': title,
+  'meta': meta,
+  'detail': content.oe_teaser,
+}) }}
