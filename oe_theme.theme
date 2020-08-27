@@ -25,6 +25,7 @@ use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+use Drupal\oe_theme\ValueObject\MediaValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 
@@ -966,7 +967,6 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
  * Implements hook_preprocess_paragraph() for paragraph--oe-text-feature-media.html.twig.
  */
 function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables): void {
-  $variables['image'] = [];
 
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
@@ -976,71 +976,18 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     return;
   }
 
-  $cacheability = CacheableMetadata::createFromRenderArray($variables);
-
   /** @var \Drupal\media\Entity\Media $media */
   $media = $paragraph->get('field_oe_media')->entity;
   if (!$media instanceof MediaInterface) {
     // The media entity is not available anymore, bail out.
     return;
   }
-
   // Retrieve the correct media translation.
   $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
-
-  // Caches are handled by the formatter usually. Since we are not rendering
-  // the original render arrays, we need to propagate our caches to the
-  // paragraph template.
-  $cacheability->addCacheableDependency($media);
-
-  // Get the media source.
-  $source = $media->getSource();
-
-  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-    // Default video aspect ratio is set to 16:9.
-    $variables['ratio'] = '16:9';
-
-    // Load information about the media and the display.
-    $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
-    $cacheability->addCacheableDependency($media_type);
-    $source_field = $source->getSourceFieldDefinition($media_type);
-    $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
-    $cacheability->addCacheableDependency($display);
-    $display_options = $display->getComponent($source_field->getName());
-
-    // If it is an OEmbed resource, render it and pass it as embeddable data
-    // only if it is of type video or html.
-    if ($source instanceof OEmbed) {
-      $oembed_type = $source->getMetadata($media, 'type');
-      if (in_array($oembed_type, ['video', 'html'])) {
-        $variables['video'] = $media->{$source_field->getName()}->view($display_options);
-        $cacheability->applyTo($variables);
-        return;
-      }
-    }
-
-    // If its an AvPortal video or an iframe video, render it.
-    $variables['video'] = $media->{$source_field->getName()}->view($display_options);
-    $cacheability->applyTo($variables);
-
-    // When dealing with iframe videos, also respect its given aspect ratio.
-    if ($media->bundle() === 'video_iframe') {
-      $ratio = $media->get('oe_media_iframe_ratio')->value;
-      $variables['ratio'] = str_replace('_', ':', $ratio);
-    }
-
-    return;
-  }
-
-  // If its an image media, render it and assign it to the image variable.
-  if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
-    $thumbnail = $media->get('thumbnail')->first();
-    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-    $cacheability->applyTo($variables);
-    return;
-  }
-
-  $cacheability->applyTo($variables);
+  $variables = array_merge($variables, MediaValueObject::fromMediaObject($media, $paragraph->field_oe_plain_text_long->value, 'oe_theme_medium_no_crop', 'oe_theme_main_content')->getArray());
+  $variables['video'] = $variables['embedded_media'];
+  $variables['video_ratio'] = $variables['ratio'];
+  return;
 }
 
 /**

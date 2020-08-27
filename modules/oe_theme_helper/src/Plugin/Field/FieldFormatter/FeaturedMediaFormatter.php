@@ -4,20 +4,16 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\media\MediaInterface;
-use Drupal\media\Plugin\media\Source\OEmbed;
-use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
-use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
+use Drupal\oe_theme\ValueObject\MediaValueObject;
 
 /**
  * Display a featured media field using the ECL media container.
@@ -143,99 +139,23 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
   }
 
   /**
-   * Renders a single field item.
-   *
-   * @param \Drupal\Core\Field\FieldItemInterface $item
-   *   The individual field item.
-   * @param string $langcode
-   *   The language code.
-   *
-   * @return array
-   *   The ECL media-container parameters.
+   * {@inheritdoc}
    */
   protected function viewElement(FieldItemInterface $item, string $langcode): array {
-    $build = ['#theme' => 'oe_theme_helper_featured_media'];
-    $params = ['description' => $item->caption];
+    // Create media value object.
     $media = $item->entity;
-    $cacheability = CacheableMetadata::createFromRenderArray($build);
-
     if (!$media instanceof MediaInterface) {
       return [];
     }
-
     // Retrieve the correct media translation.
     $media = $this->entityRepository->getTranslationFromContext($media, $langcode);
 
-    // Caches are handled by the formatter usually. Since we are not rendering
-    // the original render arrays, we need to propagate our caches to the
-    // oe_theme_helper_featured_media template.
-    $cacheability->addCacheableDependency($media);
-
-    // Get the media source.
-    $source = $media->getSource();
-
-    if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-      // Default video aspect ratio is set to 16:9.
-      $params['ratio'] = '16-9';
-
-      // Load information about the media and the display.
-      $media_type = $this->entityTypeManager->getStorage('media_type')->load($media->bundle());
-      $cacheability->addCacheableDependency($media_type);
-      $source_field = $source->getSourceFieldDefinition($media_type);
-      $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
-      $cacheability->addCacheableDependency($display);
-      $display_options = $display->getComponent($source_field->getName());
-      $oembed_type = $source->getMetadata($media, 'type');
-
-      // If it is an OEmbed resource, render it and pass it as embeddable data
-      // only if it is of type video or html.
-      if ($source instanceof OEmbed && in_array($oembed_type, ['video', 'html'])) {
-        $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
-        $build['#params'] = $params;
-        $cacheability->applyTo($build);
-
-        return $build;
-      }
-
-      // If its an AvPortal video or an iframe video, render it.
-      $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
-
-      // When dealing with iframe videos, also respect its given aspect ratio.
-      if ($media->bundle() === 'video_iframe') {
-        $ratio = $media->get('oe_media_iframe_ratio')->value;
-        $params['ratio'] = str_replace('_', '-', $ratio);
-      }
-
-      $build['#params'] = $params;
-      $cacheability->applyTo($build);
-
-      return $build;
-    }
-
-    // If its an image media, render it and assign it to the image variable.
-    /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $thumbnail */
-    $thumbnail = $media->get('thumbnail')->first();
-    /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $file */
-    $file = $thumbnail->get('entity')->getTarget();
-    $image_style = $this->getSetting('image_style');
-    $style = $this->entityTypeManager->getStorage('image_style')->load($image_style);
-
-    if ($style) {
-      // Use image style url if set.
-      $image_url = $style->buildUrl($file->get('uri')->getString());
-      $cacheability->addCacheableDependency($image_style);
-    }
-    else {
-      // Use original file url.
-      $image_url = file_create_url($file->get('uri')->getString());
-    }
-
-    $params['alt'] = $thumbnail->get('alt')->getString();
-    $params['image'] = $image_url;
-    $build['#params'] = $params;
-    $cacheability->applyTo($build);
-
-    return $build;
+    $pattern = [
+      '#type' => 'pattern',
+      '#id' => 'media_container',
+      '#fields' => MediaValueObject::fromMediaObject($media, $item->caption, $this->getSetting('image_style'), 'oe_theme_main_content')->getArray(),
+    ];
+    return $pattern;
   }
 
 }

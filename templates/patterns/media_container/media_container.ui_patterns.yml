@@ -1,0 +1,46 @@
+media_container:
+  label: "Media container"
+  description: "Media container pattern."
+  fields:
+    compliance:
+      type: "boolean"
+      label: "Compliance"
+      description: "Activates debug."
+      preview: false
+    description:
+      type: "text"
+      label: "Description"
+      description: "Description text."
+      preview: "My description text"
+    embedded_media:
+      type: "text"
+      label: "Embedded media"
+      description: "Media to embed with the block Embedded media."
+      preview: ""
+    image:
+      type: "uri"
+      label: "URL of the image"
+      description: "Alternative text."
+      preview:
+        src: "https://placeimg.com/200/500/arch"
+    ratio:
+      type: "text"
+      label: "Ratio"
+      description: "Ratio of the elemend."
+      preview: "16-9"
+    sources:
+      type: "array"
+      label: "Sources"
+      description: "Attributes of the image to render"
+      preview:
+        type: "video"
+        src: "https://placeimg.com/1200/900/arch"
+    tracks:
+      type: "array"
+      label: "Tracks"
+      description: "Items of sources"
+      preview:
+        src: "https://placeimg.com/1200/900/arch"
+        kind: ""
+        src_lang: ""
+        label: ""

@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Media container pattern.
+ */
+#}
+{% if image %}
+  {% include '@ecl-twig/media-container' with {
+    'image': image.src,
+    'alt': image.alt,
+    'description': description
+  } %}
+{% elseif embedded_media %}
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': embedded_media,
+    'ratio': ratio,
+    'description': description,
+    'sources': sources,
+    'tracks': tracks
+  } %}
+{% endif %}

@@ -15,7 +15,7 @@
 {{ pattern('text_featured_media', {
   'title': not paragraph.field_oe_title.isEmpty ? content.field_oe_title,
   'image': image,
-  'video': video,
+  'video': embedded_media,
   'video_ratio': ratio,
   'caption': not paragraph.field_oe_plain_text_long.isEmpty ? content.field_oe_plain_text_long,
   'text': not paragraph.field_oe_text_long.isEmpty ? content.field_oe_text_long,
