@@ -15,6 +15,7 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+use Drupal\oe_theme\ValueObject\MediaValueObject;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -200,7 +201,11 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     }
 
     $cache->addCacheableDependency($thumbnail->entity);
-    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+    $media = [
+      'image' => ImageValueObject::fromImageItem($thumbnail),
+    ];
+
+    $build['#fields']['media'] = MediaValueObject::fromArray($media);
 
     // Only display a caption if we have an image to be captioned by.
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */

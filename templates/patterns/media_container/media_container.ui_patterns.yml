@@ -5,42 +5,18 @@ media_container:
     compliance:
       type: "boolean"
       label: "Compliance"
-      description: "Activates debug."
+      description: "Enables debug."
       preview: false
     description:
       type: "text"
-      label: "Description"
+      label: "Caption"
       description: "Description text."
       preview: "My description text"
-    embedded_media:
-      type: "text"
-      label: "Embedded media"
-      description: "Media to embed with the block Embedded media."
-      preview: ""
-    image:
-      type: "uri"
-      label: "URL of the image"
-      description: "Alternative text."
+    media:
+      type: "MediaValueObject"
+      label: "Media"
+      description: "Media element."
       preview:
-        src: "https://placeimg.com/200/500/arch"
-    ratio:
-      type: "text"
-      label: "Ratio"
-      description: "Ratio of the elemend."
-      preview: "16-9"
-    sources:
-      type: "array"
-      label: "Sources"
-      description: "Attributes of the image to render"
-      preview:
-        type: "video"
-        src: "https://placeimg.com/1200/900/arch"
-    tracks:
-      type: "array"
-      label: "Tracks"
-      description: "Items of sources"
-      preview:
-        src: "https://placeimg.com/1200/900/arch"
-        kind: ""
-        src_lang: ""
-        label: ""
+        image:
+          src: "https://placeimg.com/100/100"
+          alt: "Alternative text for logo"

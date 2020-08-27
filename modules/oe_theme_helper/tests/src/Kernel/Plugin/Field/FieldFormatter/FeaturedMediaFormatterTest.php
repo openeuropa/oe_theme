@@ -58,7 +58,14 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'oe_media_avportal',
       'oe_media_iframe',
       'oe_content_featured_media_field',
+      'oe_theme_helper',
     ]);
+    // Enable and set OpenEuropa Theme as default.
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    // Rebuild the ui_pattern definitions to collect the ones provided by
+    // oe_theme itself.
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
     // Create a content type.
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);

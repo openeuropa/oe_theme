@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
@@ -14,6 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme\ValueObject\MediaValueObject;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Display a featured media field using the ECL media container.
@@ -84,6 +86,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
   public static function defaultSettings() {
     return [
       'image_style' => '',
+      'view_mode' => 'oe_theme_main_content',
     ] + parent::defaultSettings();
   }
 
@@ -91,6 +94,11 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
+    foreach (\Drupal::service('entity_display.repository')->getViewModes('media') as $key => $value) {
+      if ($value['status'] === TRUE or 1) {
+        $view_mode[$key] = $value['label'];
+      }
+    }
     $element['image_style'] = [
       '#title' => t('Image style'),
       '#type' => 'select',
@@ -99,7 +107,13 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
       '#options' => image_style_options(FALSE),
       '#description' => t('Image style to be used if the Media is an image.'),
     ];
-
+    $element['view_mode'] = [
+      '#title' => t('View mode'),
+      '#type' => 'select',
+      '#default_value' => $this->getSetting('view_mode'),
+      '#options' => $view_mode,
+      '#description' => t('View mode of the media element.'),
+    ];
     return $element;
   }
 
@@ -142,19 +156,31 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
    * {@inheritdoc}
    */
   protected function viewElement(FieldItemInterface $item, string $langcode): array {
-    // Create media value object.
+    $pattern = [];
     $media = $item->entity;
     if (!$media instanceof MediaInterface) {
-      return [];
+      return $pattern;
     }
+    $image_style = $this->getSetting('image_style');
+    $view_mode = $this->getSetting('view_mode');
+    $cacheability = CacheableMetadata::createFromRenderArray($pattern);
     // Retrieve the correct media translation.
     $media = $this->entityRepository->getTranslationFromContext($media, $langcode);
+    // Caches are handled by the formatter usually. Since we are not rendering
+    // the original render arrays, we need to propagate our caches.
+    $cacheability->addCacheableDependency($media);
+    $cacheability->addCacheableDependency($this->entityTypeManager->getStorage('media_type')->load($media->bundle()));
+    $cacheability->addCacheableDependency(EntityViewDisplay::collectRenderDisplay($media, $view_mode));
 
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'media_container',
-      '#fields' => MediaValueObject::fromMediaObject($media, $item->caption, $this->getSetting('image_style'), 'oe_theme_main_content')->getArray(),
+      '#fields' => [
+        'media' => MediaValueObject::fromMediaObject($media, $image_style, $view_mode),
+        'description' => $item->caption,
+      ],
     ];
+    $cacheability->applyTo($pattern);
     return $pattern;
   }
 

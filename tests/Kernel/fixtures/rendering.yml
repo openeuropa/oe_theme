@@ -2135,8 +2135,9 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      image:
-        src: "http://via.placeholder.com/150x150"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
       caption: "Some caption text for the image"
       text: "Some more text"
   assertions:
@@ -2154,8 +2155,9 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      image:
-        src: "http://via.placeholder.com/150x150"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
       caption: "Some caption text for the image"
       text: "Some more text"
   assertions:
@@ -2192,8 +2194,9 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      image:
-        src: "http://via.placeholder.com/150x150"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
       text: "Some more text"
   assertions:
     count:
@@ -2225,7 +2228,8 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
       text: "Some more text"
   assertions:
     count:
@@ -2241,8 +2245,9 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      video_ratio: "invalid"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        video_ratio: "invalid"
   assertions:
     count:
       'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
@@ -2250,8 +2255,9 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      video_ratio: "1:1"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "1:1"
   assertions:
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1

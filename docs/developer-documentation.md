@@ -172,6 +172,25 @@ Provides the following factory methods:
 
 - `ImageValueObject::fromImageItem(ImageItem $image_item)`:  accepts a \Drupal\image\Plugin\Field\FieldType\ImageItem object.
 
+#### `MediaValueObject`
+
+Used in the following patterns:
+
+- [`media_container`](../templates/patterns/media_container/media_container.ui_patterns.yml)
+
+Provides the following factory methods:
+
+- `MediaValueObject::fromArray(array $values = [])`: accepts an array with the following properties:
+  - `video`: Embed media HTML code.
+  - `ratio`: Ratio of the video.
+  - `sources`: Media resources for media element.
+  - `tracks`: Text tracks for video elements.
+  - `image`: ImageValueObject media element.
+- `MediaValueObject::fromMediaObject(Media $media, string $image_style = '', string $view_mode = '')`:  accepts these values:
+  - `media`: \Drupal\media\Entity\Media media element.
+  - `image_style`: Image style.
+  - `view_mode`: Video display view mode.
+
 [1]: https://www.drupal.org/project/ui_patterns
 [2]: https://ui-patterns.readthedocs.io
 [3]: https://ui-patterns.readthedocs.io/en/8.x-1.x/content/developer-documentation.html#working-with-pattern-suggestions

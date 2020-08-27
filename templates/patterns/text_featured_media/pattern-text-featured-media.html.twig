@@ -4,31 +4,22 @@
  * Text with featured media.
  */
 #}
-
-{% set video_ratio = video_ratio|replace({':': '-'}) %}
-{% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
-{% if video_ratio not in allowed_values %}
-  {% set video_ratio = '16-9' %}
-{% endif %}
-
 {% if title %}
   <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
 {% endif %}
-{% if image or video or text %}
+{% if media.image or media.video or text %}
   <div class="ecl-row">
-    {% if image or video%}
+    {% if media.image or media.video%}
       <div class="ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-m ecl-u-mb-md-none">
         {{ pattern('media_container', {
           'compliance': compliance,
           'description': caption,
-          'embedded_media': video,
-          'image': image,
-          'ratio': video_ratio
+          'media': media
         }) }}
       </div>
     {% endif %}
     {% if text %}
-      <div class="{{ image or video ? ' ecl-col-md-6' : 'ecl-col-12' }} ecl-editor">{{ text }}</div>
+      <div class="{{ media.image or media.video ? ' ecl-col-md-6' : 'ecl-col-12' }} ecl-editor">{{ text }}</div>
     {% endif %}
   </div>
 {% endif %}
