@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
@@ -35,7 +36,8 @@ class EventRenderTest extends ContentRenderTestBase {
     'composite_reference',
     'oe_theme_content_event',
     'options',
-    'oe_time_caching'
+    'oe_time_caching',
+    'datetime_testing',
   ];
 
   /**
@@ -62,6 +64,9 @@ class EventRenderTest extends ContentRenderTestBase {
     oe_content_install();
   }
 
+  /**
+   * Test an event being rendered as a teaser.
+   */
   public function testEventTeaser(): void {
     $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
@@ -102,7 +107,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'oe_event_languages' => 'http://publications.europa.eu/resource/authority/language/BUL',
       'oe_event_dates' => [
         'value' => $date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-        'end_value' => $date->modify('+ 2 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'end_value' => $date->modify('+ 2 days')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'timezone' => 'Europe\Brussels',
       ],
       'oe_event_status' => 'as_planned',
@@ -118,17 +123,77 @@ class EventRenderTest extends ContentRenderTestBase {
     $node = Node::create($values);
     $node->save();
 
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = $this->container->get('datetime.time');
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $assert = new ListItemAssert();
-    $assert->assertVariant('date', $html);
-    $assert->assertPattern([
-      'title' => '',
-      'description' => '',
-      'meta' => [],
+
+    // Render the event details to assert the description is properly
+    // rendered.
+    $details = [
+      '#type' => 'pattern',
+      '#id' => 'icons_with_text',
+      '#fields' => [
+        'items' => [
+          [
+            'icon' => 'location',
+            'text' => 'Brussels, Belgium',
+          ],
+        ],
+      ],
+    ];
+    $details = $this->renderRoot($details);
+    $details = preg_replace("/\r\s+|\n\s+/", "", $details);
+    $expected_values = [
+      'title' => 'My node title',
+      'url' => '/node/1',
+      'description' => $details,
+      'meta' => 'Competitions and award ceremonies',
       // If NULL, it should assert that there is no value.
-      'image' => NULL
-    ], $html);
+      'image' => NULL,
+      'date' => [
+        'day' => '02-04',
+        'month' => '01',
+        'month_name' => 'Jan',
+        'year' => '2022',
+      ],
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('date', $html);
+
+    // Move the current date so the event is ongoing and rebuild the teaser.
+    $static_time = new DrupalDateTime('2022-01-03 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $time->setTime($static_time->getTimestamp());
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['meta'] = 'Competitions and award ceremonies';
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('date_ongoing', $html);
+
+    // Move the current date so the event is in the past and rebuild the teaser.
+    $static_time = new DrupalDateTime('2030-01-03 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $time->setTime($static_time->getTimestamp());
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['meta'] = 'Competitions and award ceremonies';
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('date_past', $html);
+
+    // Set status as cancelled and rebuild the teaser.
+    $node->set('oe_event_status', 'cancelled')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['meta'] = 'Competitions and award ceremonies | Cancelled';
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('date_cancelled', $html);
   }
 
 }

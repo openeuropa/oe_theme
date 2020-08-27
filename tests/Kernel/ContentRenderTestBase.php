@@ -75,6 +75,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
 
     $this->installEntitySchema('node');
     $this->installSchema('file', 'file_usage');
+    $this->installSchema('node', ['node_access']);
     $this->installEntitySchema('media');
     $this->installEntitySchema('file');
 
