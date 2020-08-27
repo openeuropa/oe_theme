@@ -40,8 +40,8 @@
 
   {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
-    close: close|default('Close'|t),
-    back: back|default('Back'|t),
+    close: 'Close'|t,
+    back: 'Back'|t,
     items: _items,
     icon_path: ecl_icon_path
   } only %}
