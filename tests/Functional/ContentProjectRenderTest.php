@@ -106,7 +106,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
           'title' => 'Example website',
         ],
       ],
-      'oe_reference' => 'Project reference',
+      'oe_reference_code' => 'Project reference',
       'oe_project_locations' => [
         [
           'country_code' => 'ES',
