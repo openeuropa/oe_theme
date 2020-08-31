@@ -31,6 +31,10 @@ abstract class InPageNavigationBase extends FieldGroupFormatterBase {
     }
 
     $element['#attributes'] = $element_attributes;
+
+    // Pass render object to template.
+    $entity_type = $rendering_object['#entity_type'];
+    $element['#entity'] = $rendering_object['#' . $entity_type];
   }
 
 }

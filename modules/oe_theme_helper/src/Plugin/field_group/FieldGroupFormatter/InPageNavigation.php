@@ -4,9 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
-use Drupal\Core\Template\Attribute;
 use Drupal\Core\Render\Element;
-use Drupal\Component\Utility\Html;
 
 /**
  * Display a field group using the ECL in-page navigation component.
@@ -33,9 +31,6 @@ class InPageNavigation extends InPageNavigationBase {
       '#title' => $this->getLabel(),
     ];
 
-    // Build page contents based on titles from the In-page navigation item
-    // groups.
-    $links = [];
     $children = Element::children($element);
     $length = count($children);
     $i = 0;
@@ -60,19 +55,10 @@ class InPageNavigation extends InPageNavigationBase {
         continue;
       }
 
-      // Generate list of links.
-      $label = $field_group_item->label;
-      $id = "inline-nav-" . Html::cleanCssIdentifier($label);
-      $links[] = [
-        'href' => "#" . $id,
-        'label' => $label,
-      ];
-
-      $element[$value]['#title_attributes'] = new Attribute();
-      $element[$value]['#title_attributes']->setAttribute('id', $id);
+      // Choose children In-page navigation item field groups to process
+      // in the render element.
+      $element['#in_page_navigation_items'][] = $field_group_item;
     }
-
-    $element['#links'] = $links;
   }
 
   /**
@@ -84,7 +70,7 @@ class InPageNavigation extends InPageNavigationBase {
    *   List of groups.
    *
    * @return object|null
-   *   Object if field group is found, FALSE otherwise.
+   *   Object if field group is found, NULL otherwise.
    */
   protected function getInPageNavigationItemGroup(string $field_name, array $field_groups): ?object {
     if (in_array($field_name, array_keys($field_groups))
