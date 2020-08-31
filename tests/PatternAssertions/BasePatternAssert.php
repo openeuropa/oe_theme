@@ -60,14 +60,14 @@ abstract class BasePatternAssert extends Assert {
   public function assertPattern(array $expected, string $html): void {
     $variant = $this->getPatternVariant($html);
     $this->assertBaseElements($html, $variant);
-    $map = $this->getAssertions($variant);
+    $assertion_map = $this->getAssertions($variant);
     $crawler = new Crawler($html);
-    foreach ($expected as $name => $value) {
-      if (isset($map[$name]) && is_array($map[$name]) && is_callable($map[$name][0])) {
-        $callback = array_shift($map[$name]);
-        $map[$name][] = $value;
-        $map[$name][] = $crawler;
-        call_user_func_array($callback, $map[$name]);
+    foreach ($expected as $name => $expected_value) {
+      if (isset($assertion_map[$name]) && is_array($assertion_map[$name]) && is_callable($assertion_map[$name][0])) {
+        $callback = array_shift($assertion_map[$name]);
+        array_unshift($assertion_map[$name], $expected_value);
+        $assertion_map[$name][] = $crawler;
+        call_user_func_array($callback, $assertion_map[$name]);
       }
     }
   }
@@ -87,16 +87,16 @@ abstract class BasePatternAssert extends Assert {
   /**
    * Asserts the value of an attribute of a particular element.
    *
+   * @param string|null $expected
+   *   The expected value.
    * @param string $selector
    *   The CSS selector to find the element.
    * @param string $attribute
    *   The name of the attribute to check.
-   * @param string $expected
-   *   The expected value.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertElementAttribute(string $selector, string $attribute, string $expected, Crawler $crawler): void {
+  protected function assertElementAttribute($expected, string $selector, string $attribute, Crawler $crawler): void {
     if (!$expected) {
       $this->assertElementNotExists($selector, $crawler);
       return;
@@ -109,14 +109,14 @@ abstract class BasePatternAssert extends Assert {
   /**
    * Asserts the text of a particular element.
    *
+   * @param string|null $expected
+   *   The expected value.
    * @param string $selector
    *   The CSS selector to find the element.
-   * @param string $expected
-   *   The expected value.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertElementText(string $selector, string $expected, Crawler $crawler): void {
+  protected function assertElementText($expected, string $selector, Crawler $crawler): void {
     if (!$expected) {
       $this->assertElementNotExists($selector, $crawler);
       return;
@@ -129,14 +129,14 @@ abstract class BasePatternAssert extends Assert {
   /**
    * Asserts the rendered html of a particular element.
    *
+   * @param string|null $expected
+   *   The expected value.
    * @param string $selector
    *   The CSS selector to find the element.
-   * @param string $expected
-   *   The expected value.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertElementHtml(string $selector, string $expected, Crawler $crawler): void {
+  protected function assertElementHtml($expected, string $selector, Crawler $crawler): void {
     if (!$expected) {
       $this->assertElementNotExists($selector, $crawler);
       return;

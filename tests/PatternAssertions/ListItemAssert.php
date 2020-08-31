@@ -15,10 +15,7 @@ class ListItemAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getAssertions($variant): array {
-    $base_selector = 'div.ecl-content-item';
-    if (strpos($variant, 'date') !== TRUE) {
-      $base_selector = 'div.ecl-content-item-date';
-    }
+    $base_selector = $this->getBaseItemSelector($variant);
     return [
       'title' => [
         [$this, 'assertElementText'],
@@ -37,10 +34,9 @@ class ListItemAssert extends BasePatternAssert {
         [$this, 'assertDate'],
         $variant,
       ],
-      // TODO: Find out why a rendered item has new lines.
       'description' => [
-        [$this, 'assertElementHtml'],
-        $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs',
+        [$this, 'assertDescription'],
+        $variant,
       ],
       'image' => [
         [$this, 'assertImage'],
@@ -113,14 +109,14 @@ class ListItemAssert extends BasePatternAssert {
   /**
    * Asserts the date block of a list item.
    *
+   * @param array|null $expected_date
+   *   The expected date values.
    * @param string $variant
    *   The variant of the pattern being checked.
-   * @param array $date
-   *   The expected date values.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertDate(string $variant, array $date, Crawler $crawler): void {
+  protected function assertDate($expected_date, string $variant, Crawler $crawler): void {
     $variant_class = 'ecl-date-block--date';
     switch ($variant) {
       case 'date_ongoing':
@@ -136,40 +132,75 @@ class ListItemAssert extends BasePatternAssert {
         break;
     }
     $date_block_selector = 'div.ecl-content-item-date__date.ecl-u-flex-grow-0.ecl-u-mr-m time.' . $variant_class;
-    if (!$date) {
+    if (!$expected_date) {
       $this->assertElementNotExists($date_block_selector, $crawler);
       return;
     }
     $this->assertElementExists($date_block_selector, $crawler);
     $date_block = $crawler->filter($date_block_selector);
-    $expected_datetime = $date['year'] . '-' . $date['month'] . '-' . $date['day'];
+    $expected_datetime = $expected_date['year'] . '-' . $expected_date['month'] . '-' . $expected_date['day'];
     self::assertEquals($expected_datetime, $date_block->attr('datetime'));
-    self::assertEquals($date['day'], $date_block->filter('span.ecl-date-block__day')->text());
-    self::assertEquals($date['month_name'], $date_block->filter('abbr.ecl-date-block__month')->text());
-    self::assertEquals($date['year'], $date_block->filter('span.ecl-date-block__year')->text());
+    self::assertEquals($expected_date['day'], $date_block->filter('span.ecl-date-block__day')->text());
+    self::assertEquals($expected_date['month_name'], $date_block->filter('abbr.ecl-date-block__month')->text());
+    self::assertEquals($expected_date['year'], $date_block->filter('span.ecl-date-block__year')->text());
   }
 
   /**
    * Asserts the image block of a list item.
    *
+   * @param array|null $expected_image
+   *   The expected image values.
    * @param string $variant
    *   The variant of the pattern being checked.
-   * @param array $image
-   *   The expected image values.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertImage(string $variant, array $image, Crawler $crawler): void {
+  protected function assertImage($expected_image, string $variant, Crawler $crawler): void {
     $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
     $image_div_selector = 'div.' . $variant_class;
-    if (!$image) {
+    if (!$expected_image) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
     }
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
-    self::assertEquals($image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($image['src'], $image_div->style('aria-label'));
+    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
+    self::assertContains($expected_image['src'], $image_div->style('aria-label'));
+  }
+
+  /**
+   * Asserts the description of the list item.
+   *
+   * @param array|null $expected
+   *   The expected description values.
+   * @param string $variant
+   *   The variant of the pattern being checked.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertDescription($expected, string $variant, Crawler $crawler): void {
+    $base_selector = $this->getBaseItemSelector($variant);
+    $description_selector = $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
+    $this->assertElementExists($description_selector, $crawler);
+    $description_element = $crawler->filter($description_selector);
+    $assert = new IconsTextAssert();
+    $assert->assertPattern($expected, $description_element->html());
+  }
+
+  /**
+   * Returns the base CSS selector for a list item depending on the variant.
+   *
+   * @param string $variant
+   *   The variant being checked.
+   *
+   * @return string
+   *   The base selector for the variant.
+   */
+  protected function getBaseItemSelector(string $variant): string {
+    if (strpos($variant, 'date') !== TRUE) {
+      return 'div.ecl-content-item-date';
+    }
+    return 'div.ecl-content-item';
   }
 
 }

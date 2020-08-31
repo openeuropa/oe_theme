@@ -134,12 +134,10 @@ class EventRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $assert = new ListItemAssert();
 
-    // Render the event details to assert the description is properly
-    // rendered.
-    $details = [
-      '#type' => 'pattern',
-      '#id' => 'icons_with_text',
-      '#fields' => [
+    $expected_values = [
+      'title' => 'My node title',
+      'url' => '/node/1',
+      'description' => [
         'items' => [
           [
             'icon' => 'location',
@@ -147,15 +145,7 @@ class EventRenderTest extends ContentRenderTestBase {
           ],
         ],
       ],
-    ];
-    $details = $this->renderRoot($details);
-    $details = preg_replace("/\r\s+|\n\s+/", "", $details);
-    $expected_values = [
-      'title' => 'My node title',
-      'url' => '/node/1',
-      'description' => $details,
       'meta' => 'Competitions and award ceremonies',
-      // If NULL, it should assert that there is no value.
       'image' => NULL,
       'date' => [
         'day' => '02-04',
