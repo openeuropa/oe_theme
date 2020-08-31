@@ -127,6 +127,7 @@ Used in the following patterns:
 
 - [`file`](../templates/patterns/file/file.ui_patterns.yml)
 - [`file_translation`](../templates/patterns/file_translation/file_translation.ui_patterns.yml)
+- [`file_teaser`](../templates/patterns/file_teaser/file_teaser.ui_patterns.yml)
 
 Provides the following factory methods:
 
@@ -136,6 +137,7 @@ Provides the following factory methods:
   - `mime`: file MIME type.
   - `size`: file size in bytes.
   - `title` (optional): file title, defaults to file `name` if empty.
+  - `teaser`: file teaser.
   - `language_code` (optional): two letter language code of the current file's language.
 
 - `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accepts an object implementing the
