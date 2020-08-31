@@ -107,6 +107,18 @@ class ContentProjectRenderTest extends BrowserTestBase {
         ],
       ],
       'oe_reference' => 'Project reference',
+      'oe_project_locations' => [
+        [
+          'country_code' => 'ES',
+          'administrative_area' => 'Burgos',
+          'locality' => 'Ages',
+          'postal_code' => '09199',
+        ],
+        [
+          'country_code' => 'DE',
+          'locality' => 'Munich',
+        ],
+      ],
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
@@ -142,13 +154,16 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Assert the first description list block's labels and values.
     $labels = $description_lists[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(2, $labels);
+    $this->assertCount(3, $labels);
     $this->assertEquals('Reference', $labels[0]->getText());
     $this->assertEquals('Project duration', $labels[1]->getText());
+    $this->assertEquals('Project locations', $labels[2]->getText());
     $values = $description_lists[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(2, $values);
+    $this->assertCount(3, $values);
     $this->assertEquals('Project reference', $values[0]->getText());
     $this->assertEquals('10.05.2020 - 15.05.2025', $values[1]->getText());
+    $this->assertContains('09199 Ages Burgos, Spain', $values[2]->getText());
+    $this->assertContains('Munich, Germany', $values[2]->getText());
 
     // Assert the second description list block's labels and values.
     $labels = $description_lists[1]->findAll('css', 'dt.ecl-description-list__term');

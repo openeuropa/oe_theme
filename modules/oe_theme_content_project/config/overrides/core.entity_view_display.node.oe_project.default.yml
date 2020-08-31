@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.oe_project.oe_project_dates
     - field.field.node.oe_project.oe_project_featured_media
     - field.field.node.oe_project.oe_project_funding_programme
+    - field.field.node.oe_project.oe_project_locations
     - field.field.node.oe_project.oe_project_participants
     - field.field.node.oe_project.oe_project_result_files
     - field.field.node.oe_project.oe_project_results
@@ -61,6 +62,7 @@ third_party_settings:
       children:
         - oe_reference
         - oe_project_dates
+        - oe_project_locations
       parent_name: group_top
       weight: 3
       format_type: oe_theme_helper_field_list_pattern
@@ -249,6 +251,14 @@ content:
     label: hidden
     settings:
       link: false
+    third_party_settings: {  }
+  oe_project_locations:
+    type: oe_theme_helper_address_inline
+    weight: 2
+    region: content
+    label: above
+    settings:
+      delimiter: ', '
     third_party_settings: {  }
   oe_project_participants:
     type: entity_reference_revisions_entity_view
