@@ -54,6 +54,13 @@ class FileValueObject extends ValueObjectBase {
   protected $title;
 
   /**
+   * File teaser.
+   *
+   * @var string
+   */
+  protected $teaser;
+
+  /**
    * Language code.
    *
    * @var string
@@ -108,11 +115,16 @@ class FileValueObject extends ValueObjectBase {
       $values['name'],
       $values['url'],
       $values['mime'],
-      $values['size']
+      $values['size'],
+      $values['teaser']
     );
 
     if (isset($values['title'])) {
       $file->setTitle($values['title']);
+    }
+
+    if (isset($values['teaser'])) {
+      $file->setTeaser($values['teaser']);
     }
 
     if (isset($values['language_code'])) {
@@ -178,6 +190,16 @@ class FileValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
+  public function getTeaser(): string {
+    return $this->teaser ? $this->teaser : '';
+  }
+
+  /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
   public function getLanguageCode(): string {
     return $this->languageCode;
   }
@@ -202,6 +224,20 @@ class FileValueObject extends ValueObjectBase {
    */
   public function setTitle(string $title): FileValueObject {
     $this->title = $title;
+
+    return $this;
+  }
+
+  /**
+   * Setter.
+   *
+   * @param string $teaser
+   *   Property value.
+   *
+   * @return $this
+   */
+  public function setTeaser(string $teaser): FileValueObject {
+    $this->teaser = $teaser;
 
     return $this;
   }
