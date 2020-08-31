@@ -1070,18 +1070,18 @@ function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_file_translation__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  foreach ((array) $variables['translations'] as $index => $translation) {
+  foreach ($variables['translations'] as $index => $translation) {
     $variables['translations'][$index] = FileValueObject::fromArray($translation);
   }
 }
 
 /**
- * Implements hook_preprocess_HOOK().
+ * Implements hook_preprocess_pattern_file_teaser__preview().
  */
 function oe_theme_preprocess_pattern_file_teaser__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  foreach ((array) $variables['translations'] as $index => $translation) {
+  foreach ($variables['translations'] as $index => $translation) {
     $variables['translations'][$index] = FileValueObject::fromArray($translation);
   }
 }
