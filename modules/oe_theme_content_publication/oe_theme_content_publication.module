@@ -25,5 +25,5 @@ function oe_theme_content_publication_preprocess_node__oe_publication__teaser(&$
   $variables['title'] = !$node->get('oe_content_short_title')->isEmpty() ? $node->get('oe_content_short_title')->value : $node->label();
 
   $date_formatter = \Drupal::service('date.formatter');
-  $variables['meta'][] = $date_formatter->format($node->get('oe_publication_date')->date->getTimestamp(), 'oe_theme_news_date');
+  $variables['meta'][] = $date_formatter->format($node->get('oe_publication_date')->date->getTimestamp(), 'oe_theme_publication_date');
 }
