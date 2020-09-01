@@ -1,13 +1,11 @@
 <?php
 
-declare(strict_types = 1);
-
 /**
  * @file
  * Module file used for theming the Publication content type.
  */
 
-use Drupal\Core\Cache\CacheableMetadata;
+declare(strict_types = 1);
 
 /**
  * Implements template_preprocess_node() for the Publication node type.

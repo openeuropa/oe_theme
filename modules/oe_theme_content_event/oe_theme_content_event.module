@@ -88,7 +88,7 @@ function oe_theme_content_event_preprocess_node__oe_event__teaser(&$variables) {
       'title' => $node->label(),
       'url' => $node->toUrl(),
       'detail' => $variables['content']['oe_teaser'],
-    ]
+    ],
   ];
 
   $dates = $node->get('oe_event_dates')->first();
@@ -161,7 +161,7 @@ function _oe_theme_content_event_preprocess_get_event_details(NodeInterface $nod
 
   $venue = \Drupal::service('entity.repository')->getTranslationFromContext($node->get('oe_event_venue')->entity);
   if (!$venue->get('oe_address')->isEmpty()) {
-    $renderable =\Drupal::entityTypeManager()->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
+    $renderable = \Drupal::entityTypeManager()->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
     $items[] = [
       'icon' => 'location',
       'text' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
@@ -211,11 +211,13 @@ function _oe_theme_content_event_preprocess_get_event_meta(NodeInterface $node):
 /**
  * Returns the event date for the pattern preprocessing.
  *
- * @param \Drupal\node\NodeInterface $node
- *   The event node.
+ * @param Drupal\Core\Datetime\DrupalDateTime $start
+ *   The start time.
+ * @param Drupal\Core\Datetime\DrupalDateTime $end
+ *   The end time.
  *
- * @return array
- *   The meta.
+ * @return string
+ *   The formatted date.
  */
 function _oe_theme_content_event_preprocess_get_event_date(DrupalDateTime $start, DrupalDateTime $end): string {
   /** @var \Drupal\Core\Datetime\DateFormatInterface $date_formatter */

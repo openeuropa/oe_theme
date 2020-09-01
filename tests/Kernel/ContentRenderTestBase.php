@@ -7,7 +7,6 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Base class for testing the content being rendered.
