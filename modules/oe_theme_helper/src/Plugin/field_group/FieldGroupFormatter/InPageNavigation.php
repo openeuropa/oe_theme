@@ -62,7 +62,7 @@ class InPageNavigation extends InPageNavigationBase {
    *   The object / entity being rendered.
    *
    * @return bool
-   *   Object if field group is found, NULL otherwise.
+   *   TRUE if provided field group is In-page navigation item, FALSE otherwise.
    */
   protected function isInPageNavigationItem(string $group, array $rendering_object): bool {
     return isset($rendering_object['#fieldgroups'][$group]) && $rendering_object['#fieldgroups'][$group]->format_type === 'oe_theme_helper_in_page_navigation_item';

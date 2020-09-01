@@ -103,6 +103,8 @@ class InPageNavigationTest extends BrowserTestBase {
    * -- Field group "Html elements"
    * --- Test field 2
    * --- Test field 3
+   * - Field group "In-page navigation item"
+   * -- Formatted extra field without content.
    */
   public function testOutput(): void {
     // Create "Html element" field group.
@@ -125,10 +127,14 @@ class InPageNavigationTest extends BrowserTestBase {
       [
         $group_html_element->group_name,
       ],
+      // It is empty extra field, so field group shouldn't be rendered.
+      [
+        'extra_field_empty_formatted_test',
+      ],
     ];
     $groups_inpage_nav_item = [];
     $children_group_inpage_nav = [];
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < 4; $i++) {
       $group = $this->createFieldGroup("inpage_nav_item_$i", 'oe_theme_helper_in_page_navigation_item', $children_group_inpage_nav_items[$i], $i);
       $groups_inpage_nav_item[] = $group;
       $children_group_inpage_nav[] = $group->group_name;
@@ -179,6 +185,9 @@ class InPageNavigationTest extends BrowserTestBase {
     $this->assertContains('300', $content_third_group);
     $this->assertContains('Field label field_test_3', $content_third_group);
     $this->assertContains('400', $content_third_group);
+
+    // Assert fourth field group - it mustn't exist.
+    $this->assertSession()->elementTextNotContains('css', 'body', 'Field group inpage_nav_item_3');
   }
 
   /**
