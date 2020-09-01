@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_page_attachments().
