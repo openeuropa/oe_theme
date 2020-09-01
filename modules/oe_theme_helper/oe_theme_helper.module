@@ -102,19 +102,12 @@ function template_preprocess_oe_theme_helper_in_page_navigation(array &$variable
 }
 
 /**
- * Default theme suggestions for custom field groups.
- *
- * @param array $variables
- *   An array of variables passed to the theme hook.
- * @param string $hook
- *   Hook name.
- *
- * @return array
- *   Theme suggestions.
+ * Implements hook_theme_suggestions_HOOK().
  */
-function _oe_theme_helper_field_group_theme_suggestions(array $variables, string $hook): array {
-  $element = $variables['element'];
+function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(array $variables) {
   $suggestions = [];
+  $element = $variables['element'];
+  $hook = 'oe_theme_helper_in_page_navigation';
 
   $name = !empty($element['#group_name']) ? $element['#group_name'] : NULL;
   $entity_type = !empty($element['#entity_type']) ? $element['#entity_type'] : NULL;
@@ -137,11 +130,4 @@ function _oe_theme_helper_field_group_theme_suggestions(array $variables, string
   }
 
   return $suggestions;
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK().
- */
-function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(array $variables) {
-  return _oe_theme_helper_field_group_theme_suggestions($variables, 'oe_theme_helper_in_page_navigation');
 }
