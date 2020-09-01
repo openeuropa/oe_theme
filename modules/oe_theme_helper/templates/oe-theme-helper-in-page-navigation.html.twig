@@ -16,6 +16,11 @@
 #}
 {% set _items = [] %}
 {% for item in items %}
+  {#
+     We need to pre-render each item content so to establish if to show its related navigation link.
+     This will only work if Twig debug is set to "false" since, otherwise, the element will contain
+     debug HTML comments, which make the element not empty.
+  #}
   {% set content = item.content|render %}
   {% if content|trim is not empty %}
     {% set _items = _items|merge([{
