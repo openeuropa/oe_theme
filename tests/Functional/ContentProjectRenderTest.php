@@ -63,6 +63,9 @@ class ContentProjectRenderTest extends BrowserTestBase {
     // Create a document for Documents.
     $media_project_document = $this->createMediaDocument('project_document');
 
+    // Create featured media.
+    $media_featured = $this->createMediaImage('project_featured_media');
+
     // Create organisations for Coordinators and Participants fields.
     // Unpublished entity should not be shown.
     $coordinator_organisation = $this->createStakeholderOrganisationEntity('coordinator', CorporateEntityInterface::PUBLISHED);
@@ -79,6 +82,10 @@ class ContentProjectRenderTest extends BrowserTestBase {
       'oe_teaser' => 'Teaser',
       'oe_summary' => 'Summary',
       'body' => 'Body',
+      'oe_featured_media' => [
+        'target_id' => (int) $media_featured->id(),
+        'caption' => "Caption project_featured_media",
+      ],
       'oe_project_calls' => [
         [
           'uri' => 'http://proposal-call.com',
@@ -147,6 +154,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
 
     // Assert the body text.
     $this->assertContains('Body', $project_details->getText());
+    $this->assertFeaturedMediaField($project_details, 'project_featured_media');
 
     // Assert the description blocks inside the Project details.
     $description_lists = $project_details->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured');
