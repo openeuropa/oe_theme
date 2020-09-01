@@ -18,17 +18,4 @@ namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
  */
 class InPageNavigationItem extends InPageNavigationBase {
 
-  /**
-   * {@inheritdoc}
-   */
-  public function preRender(&$element, $rendering_object) {
-    parent::preRender($element, $rendering_object);
-
-    $element += [
-      '#type' => 'oe_theme_helper_in_page_navigation_item',
-      '#title' => $this->getLabel(),
-      '#content' => $element,
-    ];
-  }
-
 }

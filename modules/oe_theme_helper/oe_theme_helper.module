@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Template\Attribute;
@@ -65,9 +66,6 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'oe_theme_helper_in_page_navigation' => [
       'render element' => 'element',
     ],
-    'oe_theme_helper_in_page_navigation_item' => [
-      'render element' => 'element',
-    ],
   ];
 }
 
@@ -96,20 +94,11 @@ function template_preprocess_oe_theme_helper_in_page_navigation(array &$variable
   $variables['title'] = $variables['element']['#title'];
   $variables['entity'] = $variables['element']['#entity'];
   $variables['items'] = $variables['element']['#items'];
-}
 
-/**
- * Prepares variables for in-page navigation item.
- *
- * Default template: oe-theme-helper-in-page-navigation-item.html.twig.
- *
- * @param array $variables
- *   An array of variables.
- */
-function template_preprocess_oe_theme_helper_in_page_navigation_item(array &$variables) {
-  $variables['title'] = $variables['element']['#title'];
-  $variables['children'] = $variables['element']['#children'];
-  $variables['entity'] = $variables['element']['#entity'];
+  // Process in-page navigation items, assigning them a unique ID.
+  foreach ($variables['items'] as $key => $item) {
+    $variables['items'][$key]['id'] = strtolower(Html::cleanCssIdentifier($variables['items'][$key]['label']));
+  }
 }
 
 /**
@@ -155,11 +144,4 @@ function _oe_theme_helper_field_group_theme_suggestions(array $variables, string
  */
 function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(array $variables) {
   return _oe_theme_helper_field_group_theme_suggestions($variables, 'oe_theme_helper_in_page_navigation');
-}
-
-/**
- * Implements hook_theme_suggestions_HOOK().
- */
-function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation_item(array $variables) {
-  return _oe_theme_helper_field_group_theme_suggestions($variables, 'oe_theme_helper_in_page_navigation_item');
 }

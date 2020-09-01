@@ -27,7 +27,7 @@ class InPageNavigation extends InPageNavigationBase {
     parent::preRender($element, $rendering_object);
 
     $element += [
-      '#type' => 'oe_theme_helper_in_page_navigation',
+      '#theme' => 'oe_theme_helper_in_page_navigation',
       '#title' => $this->getLabel(),
     ];
 
@@ -38,8 +38,8 @@ class InPageNavigation extends InPageNavigationBase {
         continue;
       }
 
-      $group_object = $rendering_object['#fieldgroups'][$group_name];
       // Bail out if field group has no children.
+      $group_object = $rendering_object['#fieldgroups'][$group_name];
       if (empty($group_object->children)) {
         continue;
       }
