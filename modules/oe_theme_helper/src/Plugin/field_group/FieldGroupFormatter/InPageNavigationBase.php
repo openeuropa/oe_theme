@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Template\Attribute;
 use Drupal\field_group\FieldGroupFormatterBase;
 
 /**
