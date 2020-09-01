@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_page_attachments().
@@ -92,12 +93,9 @@ function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$elemen
  *   An array of variables.
  */
 function template_preprocess_oe_theme_helper_in_page_navigation(array &$variables) {
-  $element = $variables['element'];
-
-  $variables['title'] = !empty($element['#title']) ? $element['#title'] : '';
-  $variables['children'] = !empty($element['#children']) ? $element['#children'] : '';
-  $variables['entity'] = !empty($element['#entity']) ? $element['#entity'] : '';
-  $variables['links'] = !empty($element['#links']) ? $element['#links'] : '';
+  $variables['title'] = $variables['element']['#title'];
+  $variables['entity'] = $variables['element']['#entity'];
+  $variables['items'] = $variables['element']['#items'];
 }
 
 /**
@@ -109,12 +107,9 @@ function template_preprocess_oe_theme_helper_in_page_navigation(array &$variable
  *   An array of variables.
  */
 function template_preprocess_oe_theme_helper_in_page_navigation_item(array &$variables) {
-  $element = $variables['element'];
-
-  $variables['title'] = !empty($element['#title']) ? $element['#title'] : '';
-  $variables['children'] = !empty($element['#children']) ? $element['#children'] : '';
-  $variables['entity'] = !empty($element['#entity']) ? $element['#entity'] : '';
-  $variables['title_attributes'] = !empty($element['#title_attributes']) ? $element['#title_attributes'] : '';
+  $variables['title'] = $variables['element']['#title'];
+  $variables['children'] = $variables['element']['#children'];
+  $variables['entity'] = $variables['element']['#entity'];
 }
 
 /**

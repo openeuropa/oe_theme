@@ -8,31 +8,19 @@
  * - title: Title of the group.
  * - children: The children of the group.
  * - entity: The rendering object.
- * - title_attributes: A list of HTML attributes for the label.
- * - attributes: A list of HTML attributes for the group wrapper.
  *
  * @see template_preprocess_oe_theme_helper_in_page_navigation_item()
  *
  * @ingroup themeable
  */
 #}
-
-{% if element['#last'] is empty %}
-  {% set class = 'ecl-u-mb-xl' %}
-{% endif %}
-
-{%
-  set title_classes = [
+{% set title_attribute = create_attribute({
+  'class': [
     'ecl-u-type-heading-2',
     'ecl-u-type-color-black',
     'ecl-u-mt-none',
     'ecl-u-mb-m'
   ]
-%}
-
-<div {{ attributes.addClass(class) }}>
-  <h2 {{ title_attributes.addClass(title_classes) }}>
-    {{ title }}
-  </h2>
-  {{ children }}
-</div>
+}) %}
+<h2 {{ title_attribute }}>{{ title }}</h2>
+{{ children }}

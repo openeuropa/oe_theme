@@ -16,21 +16,18 @@ abstract class InPageNavigationBase extends FieldGroupFormatterBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsForm() {
+    $form = parent::settingsForm();
+    // Set label required, because we use it for links and navigation label.
+    $form['label']['#required'] = TRUE;
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preRender(&$element, $rendering_object) {
     parent::preRender($element, $rendering_object);
-
-    // Build attributes.
-    $element_attributes = new Attribute();
-    if ($this->getSetting('id')) {
-      $element_attributes->setAttribute('id', Html::getUniqueId($this->getSetting('id')));
-    }
-
-    $classes = $this->getClasses();
-    if (!empty($classes)) {
-      $element_attributes->addClass($classes);
-    }
-
-    $element['#attributes'] = $element_attributes;
 
     // Pass render object to template.
     $entity_type = $rendering_object['#entity_type'];

@@ -11,6 +11,28 @@ use Drupal\Core\Template\Attribute;
 /**
  * Provides a render element for an in-page navigation element.
  *
+ * Properties:
+ * - #items: list of items to be rendered, each having 'label' and 'content'.
+ *
+ * See \Drupal\Core\Render\Element\Link for additional properties.
+ *
+ * Usage Example:
+ * @code
+ *   $build['navigation'] = [
+ *     '#type' => 'oe_theme_helper_in_page_navigation',
+ *     '#items' => [
+ *       [
+ *         'label' => 'First section',
+ *         'content' => 'First section content',
+ *       ],
+ *       [
+ *         'label' => 'Second section',
+ *         'content' => 'Second section content',
+ *       ],
+ *     ],
+ *   ];
+ * @endcode
+ *
  * @RenderElement("oe_theme_helper_in_page_navigation")
  */
 class InPageNavigation extends RenderElement {
@@ -19,6 +41,8 @@ class InPageNavigation extends RenderElement {
    * {@inheritdoc}
    */
   public function getInfo() {
+
+
     $class = get_class($this);
 
     return [
@@ -44,21 +68,14 @@ class InPageNavigation extends RenderElement {
    *   The modified element with all group members.
    */
   public static function preRenderInPageNavigation(array $element): array {
-    $links = [];
-
-    if (!empty($element['#in_page_navigation_items'])) {
-      foreach ($element['#in_page_navigation_items'] as $in_page_navigation_item) {
-        // Generate list of links.
-        $label = $in_page_navigation_item->label;
-        $id = "inline-nav-" . Html::cleanCssIdentifier($label);
-        $links[] = [
-          'href' => "#" . $id,
-          'label' => $label,
-        ];
-        $element[$in_page_navigation_item->group_name]['#title_attributes'] = new Attribute(['id' => $id]);
-      }
+    if (empty($element['#items'])) {
+      return [];
     }
-    $element['#links'] = $links;
+
+    // Process in-page navigation items, assigning them a unique ID.
+    foreach ($element['#items'] as $key => $item) {
+      $element['#items'][$key]['id'] = strtolower(Html::cleanCssIdentifier($element['#items'][$key]['label']));
+    }
 
     return $element;
   }

@@ -21,24 +21,13 @@ class InPageNavigationItem extends InPageNavigationBase {
   /**
    * {@inheritdoc}
    */
-  public function settingsForm() {
-    $form = parent::settingsForm();
-
-    // Set label required, because we use it for links and labels.
-    $form['label']['#required'] = TRUE;
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function preRender(&$element, $rendering_object) {
     parent::preRender($element, $rendering_object);
 
     $element += [
       '#type' => 'oe_theme_helper_in_page_navigation_item',
       '#title' => $this->getLabel(),
+      '#content' => $element,
     ];
   }
 

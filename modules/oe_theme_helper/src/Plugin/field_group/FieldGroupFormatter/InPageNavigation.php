@@ -32,52 +32,40 @@ class InPageNavigation extends InPageNavigationBase {
     ];
 
     $children = Element::children($element);
-    $length = count($children);
-    $i = 0;
-    foreach ($children as $value) {
-      // Mark first and last elements. It is helpful in theming.
-      if ($i === 0) {
-        $element[$value]['#first'] = TRUE;
-      }
-      if ($i === $length - 1) {
-        $element[$value]['#last'] = TRUE;
-      }
-      $i++;
-      $field_group_item = $this->getInPageNavigationItemGroup($value, $rendering_object['#fieldgroups']);
-      if (empty($field_group_item)) {
-        // It isn't In-page navigation item group.
+    foreach ($children as $key => $group_name) {
+      // Bail out if group does not exist or it's not of the right type.
+      if (!$this->isInPageNavigationItem($group_name, $rendering_object)) {
         continue;
       }
 
-      if (empty($field_group_item->children)) {
-        // Field group is empty, so it won't be rendered - no need to create
-        // link for it.
+      $group_object = $rendering_object['#fieldgroups'][$group_name];
+      // Bail out if field group has no children.
+      if (empty($group_object->children)) {
         continue;
       }
 
       // Choose children In-page navigation item field groups to process
       // in the render element.
-      $element['#in_page_navigation_items'][] = $field_group_item;
+      $element['#items'][] = [
+        'label' => $group_object->label,
+        'content' => $element[$group_name],
+      ];
     }
   }
 
   /**
-   * Returns if the field is a group or a field.
+   * Check if given group is an in-page navigation group item.
    *
-   * @param string $field_name
-   *   The name of the field.
-   * @param array $field_groups
-   *   List of groups.
+   * @param string $group
+   *   Field group name.
+   * @param array $rendering_object
+   *   The object / entity being rendered.
    *
-   * @return object|null
+   * @return bool
    *   Object if field group is found, NULL otherwise.
    */
-  protected function getInPageNavigationItemGroup(string $field_name, array $field_groups): ?object {
-    if (in_array($field_name, array_keys($field_groups))
-      && ($field_groups[$field_name]->format_type == 'oe_theme_helper_in_page_navigation_item')) {
-      return $field_groups[$field_name];
-    }
-    return NULL;
+  protected function isInPageNavigationItem(string $group, array $rendering_object): bool {
+    return isset($rendering_object['#fieldgroups'][$group]) && $rendering_object['#fieldgroups'][$group]->format_type === 'oe_theme_helper_in_page_navigation_item';
   }
 
 }
