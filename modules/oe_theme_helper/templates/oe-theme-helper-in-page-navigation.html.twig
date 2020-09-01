@@ -40,8 +40,8 @@
   {% block content %}
   <div class="ecl-col-lg-9">
     {% for item in _items %}
-      <div id="{{ item.id }}" class="{{ loop.first ? ' ecl-u-mb-2xl' }}">
-        <h2 class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
+      <div{{ loop.first ? ' class=" ecl-u-mb-2xl"' }}>
+        <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
         {{ item.content }}
       </div>
     {% endfor %}

@@ -146,7 +146,7 @@ class InPageNavigationTest extends BrowserTestBase {
     for ($i = 0; $i < 3; $i++) {
       $navigation_list_item_link = $navigation_list_items[$i]->find('css', '.ecl-link');
       $this->assertEquals("Field group inpage_nav_item_$i", $navigation_list_item_link->getText());
-      $this->assertEquals("#inline-nav-Field-group-inpage-nav-item-$i", $navigation_list_item_link->getAttribute('href'));
+      $this->assertEquals("#field-group-inpage-nav-item-$i", $navigation_list_item_link->getAttribute('href'));
     }
 
     // Assert content part.
@@ -243,7 +243,7 @@ class InPageNavigationTest extends BrowserTestBase {
   protected function assertContentHeader(NodeElement $content_item, int $number): void {
     $header = $content_item->find('css', 'h2.ecl-u-type-heading-2');
     $this->assertEquals("Field group inpage_nav_item_$number", $header->getText());
-    $this->assertEquals("inline-nav-Field-group-inpage-nav-item-$number", $header->getAttribute('id'));
+    $this->assertEquals("field-group-inpage-nav-item-$number", $header->getAttribute('id'));
   }
 
 }
