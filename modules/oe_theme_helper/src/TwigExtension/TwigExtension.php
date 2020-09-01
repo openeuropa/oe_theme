@@ -66,7 +66,6 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
       new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
-      new \Twig_SimpleFilter('strip_comments', [$this, 'stripComments']),
     ];
   }
 
@@ -250,19 +249,6 @@ class TwigExtension extends \Twig_Extension {
     }
 
     return $ecl_attributes;
-  }
-
-  /**
-   * Strip out comments from a given HTML.
-   *
-   * @param mixed $html
-   *   Html to remove comments from.
-   *
-   * @return string
-   *   HTML without comments.
-   */
-  public function stripComments($html): string {
-    return preg_replace('/<!--(.|\s)*?-->/', '', $html);
   }
 
   /**

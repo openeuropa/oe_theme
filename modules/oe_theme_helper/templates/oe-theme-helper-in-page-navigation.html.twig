@@ -17,7 +17,7 @@
 {% set _items = [] %}
 {% for item in items %}
   {% set content = item.content|render %}
-  {% if content|strip_comments|trim is not empty %}
+  {% if content|trim is not empty %}
     {% set _items = _items|merge([{
       id: item.id,
       href: '#' ~ item.id,
