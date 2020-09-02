@@ -15,7 +15,7 @@ class ListItemAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getAssertions($variant): array {
-    $base_selector = $this->getBaseItemSelector($variant);
+    $base_selector = 'div' . $this->getBaseItemClass($variant);
     return [
       'title' => [
         [$this, 'assertElementText'],
@@ -50,7 +50,8 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    $list_item = $crawler->filter('article.ecl-content-item-date.ecl-u-d-flex.ecl-u-pv-m');
+    $base_selector = 'article' . $this->getBaseItemClass($variant);
+    $list_item = $crawler->filter($base_selector . '.ecl-u-d-flex.ecl-u-pv-m');
     self::assertCount(1, $list_item);
   }
 
@@ -179,8 +180,8 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertDescription($expected, string $variant, Crawler $crawler): void {
-    $base_selector = $this->getBaseItemSelector($variant);
-    $description_selector = $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
+    $base_selector = $this->getBaseItemClass($variant);
+    $description_selector = 'div' . $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
     $this->assertElementExists($description_selector, $crawler);
     $description_element = $crawler->filter($description_selector);
     $assert = new IconsTextAssert();
@@ -196,11 +197,11 @@ class ListItemAssert extends BasePatternAssert {
    * @return string
    *   The base selector for the variant.
    */
-  protected function getBaseItemSelector(string $variant): string {
+  protected function getBaseItemClass(string $variant): string {
     if (strpos($variant, 'date') !== TRUE) {
-      return 'div.ecl-content-item-date';
+      return '.ecl-content-item-date';
     }
-    return 'div.ecl-content-item';
+    return '.ecl-content-item';
   }
 
 }
