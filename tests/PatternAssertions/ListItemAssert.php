@@ -36,7 +36,7 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertDescription'],
-        $variant,
+        $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs',
       ],
       'image' => [
         [$this, 'assertImage'],
@@ -184,8 +184,11 @@ class ListItemAssert extends BasePatternAssert {
     $description_selector = 'div' . $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
     $this->assertElementExists($description_selector, $crawler);
     $description_element = $crawler->filter($description_selector);
-    $assert = new IconsTextAssert();
-    $assert->assertPattern($expected, $description_element->html());
+    if ($expected instanceof PatternAssertStateInterface) {
+      $expected->assert($description_element->html());
+      return;
+    }
+    self::assertEquals($expected, $description_element->filter('p')->html());
   }
 
   /**

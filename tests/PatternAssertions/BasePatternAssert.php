@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Base class for asserting patterns.
  */
-abstract class BasePatternAssert extends Assert {
+abstract class BasePatternAssert extends Assert implements PatternAssertInterface {
 
   /**
    * Method that returns the assertions to be run by a particular pattern.
@@ -50,12 +50,7 @@ abstract class BasePatternAssert extends Assert {
   }
 
   /**
-   * Asserts that a rendered pattern is correct.
-   *
-   * @param array $expected
-   *   An array of expected values, keyed by field name.
-   * @param string $html
-   *   THe rendered pattern.
+   * {@inheritdoc}
    */
   public function assertPattern(array $expected, string $html): void {
     $variant = $this->getPatternVariant($html);
@@ -73,12 +68,7 @@ abstract class BasePatternAssert extends Assert {
   }
 
   /**
-   * Asserts that a rendered pattern uses a variant.
-   *
-   * @param string $variant
-   *   The variant to check for.
-   * @param string $html
-   *   The rendered pattern.
+   * {@inheritdoc}
    */
   public function assertVariant(string $variant, string $html): void {
     self::assertEquals($variant, $this->getPatternVariant($html));
