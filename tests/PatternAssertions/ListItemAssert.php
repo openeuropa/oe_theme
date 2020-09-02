@@ -51,7 +51,7 @@ class ListItemAssert extends BasePatternAssert {
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
     $base_selector = 'article' . $this->getBaseItemClass($variant);
-    $list_item = $crawler->filter($base_selector . '.ecl-u-d-flex.ecl-u-pv-m');
+    $list_item = $crawler->filter($base_selector);
     self::assertCount(1, $list_item);
   }
 
@@ -198,7 +198,7 @@ class ListItemAssert extends BasePatternAssert {
    *   The base selector for the variant.
    */
   protected function getBaseItemClass(string $variant): string {
-    if (strpos($variant, 'date') !== TRUE) {
+    if (strpos($variant, 'date') !== FALSE) {
       return '.ecl-content-item-date';
     }
     return '.ecl-content-item';
