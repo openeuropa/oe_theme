@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Provides a "Icon with text"-like pattern for event teaser details.
+ */
+#}
+{% spaceless %}
+  {% if items %}
+    <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
+      {% for item in items if item.text %}
+        <li class="ecl-u-d-flex ecl-u-align-items-center ecl-u-type-color-grey-75 ecl-unordered-list__item ecl-u-type-s">
+          {% include '@ecl-twig/icon' with {
+            icon: {
+              path: ecl_icon_path,
+              type: 'general',
+              name: item.icon|default('file')
+            },
+            extra_classes: 'ecl-u-mr-s'
+          } only %}{{- item.text -}}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endspaceless %}

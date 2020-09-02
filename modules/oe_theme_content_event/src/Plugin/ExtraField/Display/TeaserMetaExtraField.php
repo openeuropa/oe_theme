@@ -35,7 +35,7 @@ class TeaserMetaExtraField extends ExtraFieldDisplayFormattedBase implements Con
   protected $entityRepository;
 
   /**
-   * EventExtraFieldBase constructor.
+   * TeaserMetaExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
