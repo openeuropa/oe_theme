@@ -32,13 +32,3 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-type-paragraph';
   }
 }
-
-/**
- * Implements hook_preprocess_HOOK() for node--oe-news--teaser.html.twig.
- */
-function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
-  // Use the short title if present, with fallback to the title.
-  $variables['title'] = !$node->get('oe_content_short_title')->isEmpty() ? $node->get('oe_content_short_title')->value : $node->label();
-}

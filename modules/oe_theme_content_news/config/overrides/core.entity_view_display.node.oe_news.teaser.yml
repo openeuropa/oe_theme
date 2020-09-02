@@ -24,9 +24,14 @@ targetEntityType: node
 bundle: oe_news
 mode: teaser
 content:
+  extra_field_oe_theme_helper_short_title_with_fallback:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_news_featured_media:
     type: oe_theme_helper_media_thumbnail_url
-    weight: 1
+    weight: 2
     region: content
     label: hidden
     settings:
@@ -34,7 +39,7 @@ content:
     third_party_settings: {  }
   oe_publication_date:
     type: datetime_default
-    weight: 0
+    weight: 1
     region: content
     label: hidden
     settings:
@@ -43,7 +48,7 @@ content:
     third_party_settings: {  }
   oe_teaser:
     type: text_default
-    weight: 2
+    weight: 3
     region: content
     label: hidden
     settings: {  }
