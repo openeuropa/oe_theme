@@ -7,9 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\TypedData\TranslatableInterface;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 
 /**
