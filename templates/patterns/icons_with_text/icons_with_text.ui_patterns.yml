@@ -15,3 +15,8 @@ icons_with_text:
           text: "Brussels, Belgium"
         - icon: "livestreaming"
           text: "Live streaming available"
+    compact:
+      type: "boolean"
+      label: "Compact mode"
+      description: "When set to true it will display the list in a more compact fashion. Defaults to 'false'"
+      preview: false

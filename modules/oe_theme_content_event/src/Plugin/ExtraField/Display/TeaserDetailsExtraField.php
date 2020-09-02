@@ -74,11 +74,13 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    // We get here renderable arrays for contact entities.
-    // We also divide them by bundle, so we can display them in a grid layout.
     $build = [
-      '#theme' => 'oe_theme_content_event_teaser_details',
-      '#items' => [],
+      '#type' => 'pattern',
+      '#id' => 'icons_with_text',
+      '#fields' => [
+        'items' => [],
+        'compact' => TRUE,
+      ],
     ];
 
     $cache = CacheableMetadata::createFromRenderArray($build);
@@ -91,7 +93,7 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
       $cache->addCacheableDependency($venue_access);
       if ($venue_access->isAllowed() && !$venue->get('oe_address')->isEmpty()) {
         $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
-        $build['#items'][] = [
+        $build['#fields']['items'][] = [
           'icon' => 'location',
           'text' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
         ];
@@ -99,7 +101,7 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
     }
 
     if (!$entity->get('oe_event_online_type')->isEmpty()) {
-      $build['#items'][] = [
+      $build['#fields']['items'][] = [
         'icon' => 'livestreaming',
         'text' => t('Live streaming available'),
       ];

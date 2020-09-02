@@ -36,11 +36,6 @@ function oe_theme_content_event_theme() {
         'press' => [],
       ],
     ],
-    'oe_theme_content_event_teaser_details' => [
-      'variables' => [
-        'items' => [],
-      ],
-    ],
   ];
 }
 

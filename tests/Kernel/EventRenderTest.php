@@ -12,11 +12,15 @@ use Drupal\oe_content_entity_venue\Entity\Venue;
 use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
+use Drupal\Tests\user\Traits\UserCreationTrait;
+use Drupal\user\Entity\User;
 
 /**
  * Tests the event rendering.
  */
 class EventRenderTest extends ContentRenderTestBase {
+
+  use UserCreationTrait;
 
   /**
    * {@inheritdoc}
@@ -64,6 +68,10 @@ class EventRenderTest extends ContentRenderTestBase {
 
     module_load_include('install', 'oe_content');
     oe_content_install();
+
+    // Set current user to UID 1, so that by default we can access everything.
+    $account = User::load(1);
+    $this->setCurrentUser($account);
   }
 
   /**
@@ -158,6 +166,25 @@ class EventRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date', $html);
+
+    // Set the online type to be livestream and assert the details are updated.
+    $node->set('oe_event_online_type', 'livestream')->save();
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
+      'items' => [
+        [
+          'icon' => 'location',
+          'text' => 'Brussels, Belgium',
+        ],
+        [
+          'icon' => 'livestreaming',
+          'text' => t('Live streaming available'),
+        ],
+      ],
+    ]);
+    $assert->assertPattern($expected_values, $html);
 
     // Move the current date so the event is ongoing and rebuild the teaser.
     $static_time = new DrupalDateTime('2022-01-03 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
