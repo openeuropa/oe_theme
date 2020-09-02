@@ -38,9 +38,16 @@ function oe_theme_content_publication_post_update_00002(array &$sandbox): void {
 }
 
 /**
- * Override publication teaser view display.
+ * Enable Extra field module.
  */
 function oe_theme_content_publication_post_update_00003(): void {
+  \Drupal::service('module_installer')->install(['extra_field']);
+}
+
+/**
+ * Override publication teaser view display.
+ */
+function oe_theme_content_publication_post_update_00004(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00003_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');

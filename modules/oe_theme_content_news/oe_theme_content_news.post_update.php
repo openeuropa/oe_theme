@@ -21,9 +21,16 @@ function oe_theme_content_news_post_update_00001(array &$sandbox): void {
 }
 
 /**
- * Override news teaser view display.
+ * Enable Extra field module.
  */
 function oe_theme_content_news_post_update_00002(): void {
+  \Drupal::service('module_installer')->install(['extra_field']);
+}
+
+/**
+ * Override news teaser view display.
+ */
+function oe_theme_content_news_post_update_00003(): void {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00002_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_news.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
