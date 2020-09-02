@@ -29,11 +29,3 @@ function oe_theme_content_event_post_update_00001(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
-
-/**
- * Enable Twig field value module.
- */
-function oe_theme_content_event_post_update_00002(): void {
-  \Drupal::service('module_installer')->install(['twig_field_value']);
-  \Drupal::service('kernel')->invalidateContainer();
-}
