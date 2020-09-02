@@ -14,6 +14,14 @@ field.formatter.settings.oe_theme_helper_address_inline:
       type: string
       label: 'Delimiter for address items.'
 
+field.formatter.settings.oe_theme_helper_media_thumbnail_url:
+  type: mapping
+  label: 'Media thumbnail URL formatter settings'
+  mapping:
+    image_style:
+      type: string
+      label: 'Image style'
+
 field_group.field_group_formatter_plugin.oe_theme_helper_pattern_base:
   type: field_group.field_group_formatter_plugin.base
   label: 'Mapping for the base pattern formatter settings'
