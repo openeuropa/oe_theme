@@ -134,8 +134,8 @@ class InPageNavigationTest extends BrowserTestBase {
     ];
     $groups_inpage_nav_item = [];
     $children_group_inpage_nav = [];
-    for ($i = 0; $i < 4; $i++) {
-      $group = $this->createFieldGroup("inpage_nav_item_$i", 'oe_theme_helper_in_page_navigation_item', $children_group_inpage_nav_items[$i], $i);
+    foreach ($children_group_inpage_nav_items as $index => $item) {
+      $group = $this->createFieldGroup("inpage_nav_item_$index", 'oe_theme_helper_in_page_navigation_item', $item, $index);
       $groups_inpage_nav_item[] = $group;
       $children_group_inpage_nav[] = $group->group_name;
     }
@@ -145,23 +145,26 @@ class InPageNavigationTest extends BrowserTestBase {
     $this->drupalGet('node/' . $this->node->id());
 
     // Assert navigation part.
-    $this->assertSession()->elementTextContains('css', '.ecl-inpage-navigation__title', 'Field group main');
-    $navigation_list = $this->assertSession()->elementExists('css', '.ecl-inpage-navigation__list');
+    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
+    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation', $wrapper);
+    $navigation_title = $navigation->find('css', '.ecl-inpage-navigation__title');
+    $this->assertEquals('Field group main', $navigation_title->getText());
+    $navigation_list = $this->assertSession()->elementExists('css', '.ecl-inpage-navigation__list', $wrapper);
     $navigation_list_items = $navigation_list->findAll('css', '.ecl-inpage-navigation__item');
     $this->assertCount(3, $navigation_list_items);
-    for ($i = 0; $i < 3; $i++) {
-      $navigation_list_item_link = $navigation_list_items[$i]->find('css', '.ecl-link');
-      $this->assertEquals("Field group inpage_nav_item_$i", $navigation_list_item_link->getText());
-      $this->assertEquals("#field-group-inpage-nav-item-$i", $navigation_list_item_link->getAttribute('href'));
+    foreach ($navigation_list_items as $index => $item) {
+      $navigation_list_item_link = $item->find('css', 'a.ecl-inpage-navigation__link');
+      $this->assertEquals("Field group inpage_nav_item_$index", $navigation_list_item_link->getText());
+      $this->assertEquals("#field-group-inpage-nav-item-$index", $navigation_list_item_link->getAttribute('href'));
     }
 
     // Assert content part.
-    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $content_items = $wrapper->findAll('css', '.ecl-col-lg-9 > div');
+    $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
+    $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
     // Assert headers of field groups.
-    for ($i = 0; $i <= 2; $i++) {
-      $this->assertContentHeader($content_items[$i], $i);
+    foreach ($content_items as $index => $item) {
+      $this->assertContentHeader($item, $index);
     }
 
     // Assert first field group.

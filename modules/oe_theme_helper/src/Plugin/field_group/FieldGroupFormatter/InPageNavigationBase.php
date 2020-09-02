@@ -18,6 +18,9 @@ abstract class InPageNavigationBase extends FieldGroupFormatterBase {
     $form = parent::settingsForm();
     // Set label required, because we use it for links and navigation label.
     $form['label']['#required'] = TRUE;
+    // Hide classes and id attribute settings.
+    $form['id']['#access'] = FALSE;
+    $form['classes']['#access'] = FALSE;
     return $form;
   }
 
