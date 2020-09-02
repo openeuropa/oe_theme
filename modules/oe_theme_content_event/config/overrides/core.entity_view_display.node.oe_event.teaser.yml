@@ -39,7 +39,22 @@ id: node.oe_event.teaser
 targetEntityType: node
 bundle: oe_event
 mode: teaser
-content: {  }
+content:
+  extra_field_oe_theme_content_event_date_aware_status:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_teaser_details:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_teaser_meta:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   body: true
   extra_field_oe_theme_content_event_contacts: true
