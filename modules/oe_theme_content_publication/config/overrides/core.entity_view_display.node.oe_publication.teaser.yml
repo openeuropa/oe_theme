@@ -12,12 +12,30 @@ dependencies:
     - field.field.node.oe_publication.oe_teaser
     - node.type.oe_publication
   module:
+    - datetime
+    - text
     - user
 id: node.oe_publication.teaser
 targetEntityType: node
 bundle: oe_publication
 mode: teaser
-content: {  }
+content:
+  oe_publication_date:
+    type: datetime_default
+    weight: 0
+    region: content
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_theme_publication_date
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   langcode: true
   links: true
@@ -27,8 +45,6 @@ hidden:
   oe_content_navigation_title: true
   oe_content_short_title: true
   oe_documents: true
-  oe_publication_date: true
   oe_publication_type: true
   oe_subject: true
   oe_summary: true
-  oe_teaser: true
