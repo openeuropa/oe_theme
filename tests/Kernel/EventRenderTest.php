@@ -9,7 +9,9 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity_venue\Entity\Venue;
+use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 
 /**
  * Tests the event rendering.
@@ -137,14 +139,14 @@ class EventRenderTest extends ContentRenderTestBase {
     $expected_values = [
       'title' => 'My node title',
       'url' => '/node/1',
-      'description' => [
+      'description' => new PatternAssertState(new IconsTextAssert(), [
         'items' => [
           [
             'icon' => 'location',
             'text' => 'Brussels, Belgium',
           ],
         ],
-      ],
+      ]),
       'meta' => 'Competitions and award ceremonies',
       'image' => NULL,
       'date' => [
