@@ -89,7 +89,7 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
 
       $cache->addCacheableDependency($venue);
       $cache->addCacheableDependency($venue_access);
-      if (!$venue->get('oe_address')->isEmpty()) {
+      if ($venue_access->isAllowed() && !$venue->get('oe_address')->isEmpty()) {
         $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
         $build['#items'][] = [
           'icon' => 'location',
