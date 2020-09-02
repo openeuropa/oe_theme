@@ -8,7 +8,11 @@
   'variant': 'thumbnail_primary',
   'url': url,
   'title': title,
-  'meta': meta,
-  'detail': content.oe_teaser,
-  'image': image,
+  'meta': [
+    content.oe_publication_date|field_value
+  ],
+  'detail': content.oe_teaser|field_value,
+  'image': {
+    'src': content.oe_news_featured_media|field_value|render
+  }
 }) }}
