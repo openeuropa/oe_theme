@@ -45,6 +45,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'media',
     'views',
     'entity_browser',
+    'extra_field',
     'media_avportal',
     'media_avportal_mock',
     'filter',
