@@ -13,14 +13,3 @@ declare(strict_types = 1);
 function oe_theme_content_publication_preprocess_node__oe_publication__full(&$variables) {
   $variables['#attached']['library'][] = 'oe_theme_content_publication/oe_publication';
 }
-
-/**
- * Implements template_preprocess_node() for the Publication node type.
- */
-function oe_theme_content_publication_preprocess_node__oe_publication__teaser(&$variables) {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
-
-  // Use the short title if present, with fallback to the title.
-  $variables['title'] = !$node->get('oe_content_short_title')->isEmpty() ? $node->get('oe_content_short_title')->value : $node->label();
-}

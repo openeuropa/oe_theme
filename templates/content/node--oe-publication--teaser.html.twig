@@ -7,7 +7,7 @@
 {{ pattern('list_item', {
   'variant': 'thumbnail_primary',
   'url': url,
-  'title': title,
+  'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
   'meta': [
     content.oe_publication_date|field_value
   ],
