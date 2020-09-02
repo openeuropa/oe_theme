@@ -9,19 +9,21 @@
    *   - "items" (array) (default: [])
    *     - "icon" (string) (default: 'file')
    *     - "text" (string) (default: '')
+   *   - "compact" (string) (default: false)
    */
 #}
 
 {# Internal properties #}
 
 {% set _icon_path = icon_path|default('') %}
+{% set _compact = compact|default(false) %}
 
 {# Print the result #}
 
 {% if items %}
-<ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
+<ul class="ecl-unordered-list ecl-unordered-list--no-bullet{{ _compact ? ' ecl-u-type-s ecl-u-mt-m'}}">
   {% for _item in items if _item.text %}
-    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not loop.first ? ' ecl-u-mt-l' }}">
+    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not _compact and not loop.first ? ' ecl-u-mt-m' }}">
       {% include '@ecl-twig/icon' with {
         icon: {
           path: _icon_path,
