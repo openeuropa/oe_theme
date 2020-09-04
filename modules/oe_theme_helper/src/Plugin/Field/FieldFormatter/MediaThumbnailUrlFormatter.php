@@ -7,12 +7,15 @@ namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatter;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
  * Plugin implementation of the 'media_thumbnail_url' formatter.
+ *
+ * The formatter simply renders the final thumbnail URL.
  *
  * @FieldFormatter(
  *   id = "oe_theme_helper_media_thumbnail_url",
@@ -71,6 +74,7 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
       // to each element.
       $cache = new CacheableMetadata();
       $cache->addCacheableDependency($media);
+      $cache->addCacheableDependency($media->_referringItem);
 
       if ($media->get('thumbnail')->isEmpty()) {
         // In case the thumbnail is missing from the media entity, we should
@@ -80,7 +84,11 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
       }
 
       // Get default URL.
-      $uri = $media->get('thumbnail')->entity->getFileUri();
+      $thumbnail_file = $media->get('thumbnail')->entity;
+      if (!$thumbnail_file instanceof FileInterface) {
+        continue;
+      }
+      $uri = $thumbnail_file->getFileUri();
       $url = file_create_url($uri);
 
       // Get processed URL if image style is set.

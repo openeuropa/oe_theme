@@ -10,7 +10,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
- * Display whereas an event is "past", "ongoing", "future" or "cancelled".
+ * Display whether an event is "past", "ongoing", "future" or "cancelled".
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_event_date_aware_status",

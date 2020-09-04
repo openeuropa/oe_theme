@@ -8,6 +8,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Assertions for the list item pattern.
+ *
+ * @see ./templates/patterns/list_item/list_item.ui_patterns.yml
  */
 class ListItemAssert extends BasePatternAssert {
 

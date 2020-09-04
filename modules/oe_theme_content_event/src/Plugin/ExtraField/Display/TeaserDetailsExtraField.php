@@ -103,7 +103,7 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
     if (!$entity->get('oe_event_online_type')->isEmpty()) {
       $build['#fields']['items'][] = [
         'icon' => 'livestreaming',
-        'text' => t('Live streaming available'),
+        'text' => $this->t('Live streaming available'),
       ];
     }
 

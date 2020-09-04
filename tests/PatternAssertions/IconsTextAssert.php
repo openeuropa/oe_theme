@@ -8,6 +8,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Assertions for the icons with text pattern.
+ *
+ * @see ./templates/patterns/icons_with_text/icons-with-text.ui_patterns.yml
  */
 class IconsTextAssert extends BasePatternAssert {
 

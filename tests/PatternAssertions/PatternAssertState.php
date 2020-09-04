@@ -6,6 +6,10 @@ namespace Drupal\Tests\oe_theme\PatternAssertions;
 
 /**
  * Basic pattern assertion state.
+ *
+ * An assertion state object is used to contain the expected value of a
+ * rendered pattern and corresponding pattern assertion class.
+ * This is used when asserting patterns embedded in other patterns.
  */
 class PatternAssertState implements PatternAssertStateInterface {
 
