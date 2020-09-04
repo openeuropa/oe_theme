@@ -18,6 +18,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 class MediaThumbnailUrlFormatterTest extends AbstractKernelTestBase {
 
   use MediaTypeCreationTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -46,11 +47,10 @@ class MediaThumbnailUrlFormatterTest extends AbstractKernelTestBase {
       'entity_reference',
       'media',
     ]);
-
   }
 
   /**
-   * Test social media links formatting.
+   * Test media thumbnail url formatter.
    */
   public function testFormatter() {
     $media_type = $this->createMediaType('image');
@@ -94,6 +94,19 @@ class MediaThumbnailUrlFormatterTest extends AbstractKernelTestBase {
     $entity->save();
 
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('entity_test');
+
+    // Test formatter without an image style.
+    $build = $view_builder->viewField($entity->get('field_test'), [
+      'type' => 'oe_theme_helper_media_thumbnail_url',
+      'label' => 'hidden',
+    ]);
+    $this->assertRendering($this->renderRoot($build), [
+      'contains' => [
+        // Because the media has no thumbnail configured we use the generic
+        // no thumbnail file by default.
+        'files/media-icons/generic/no-thumbnail.png',
+      ],
+    ]);
 
     // Test formatter with the medium image style.
     $build = $view_builder->viewField($entity->get('field_test'), [
