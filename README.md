@@ -17,7 +17,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
-- [Contributing](#contributing)  
+- [Contributing](#contributing)
 - [Versioning](#versioning)
 
 ## Requirements
@@ -62,6 +62,13 @@ page.
 Note for developers: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
+### Updating to 2.9.0+
+
+If you are using the oe_content module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
+existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by oe_content
+so if you want to keep any customization you have made to your site you will need to redo those modifications and
+override the teaser templates no your own custom theme.
+
 ## Companion sub-modules
 
 * [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
@@ -74,13 +81,13 @@ same between the two libraries.
 When using the theme in conjunction with the [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks)
 component changing the component library will show a different footer block, namely:
 
-- The European Commission footer, shipping with a set of links and references that must be present on all European Commission sites. 
-- The European Union footer, shipping with a set of links and references that must be present on all European Union sites. 
+- The European Commission footer, shipping with a set of links and references that must be present on all European Commission sites.
+- The European Union footer, shipping with a set of links and references that must be present on all European Union sites.
 
 ## Image styles
 
 OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
-The following is a list of all the vailable styles and their preferred usage: 
+The following is a list of all the vailable styles and their preferred usage:
 
 * List item (`oe_theme_list_item`): To be used on content lists with small thumbnails.
 * Featured list item (`oe_theme_list_item_featured`): To be used on highlights and content lists with big thumbnails.
@@ -115,7 +122,7 @@ in your projects.
 
 ### Project setup
 
-Developing the theme requires a local copy of ECL assets, including Twig templates, SASS and JavaScript source files. 
+Developing the theme requires a local copy of ECL assets, including Twig templates, SASS and JavaScript source files.
 
 In order to fetch the required code you'll need to have [Node.js (>= 8)](https://nodejs.org/en) installed locally.
 
@@ -171,10 +178,10 @@ This will:
 
 ### Using Docker Compose
 
-Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and 
+Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and
 [Docker Compose](https://docs.docker.com/compose/) with the provided configuration.
 
-Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
+Docker provides the necessary services and tools such as a web server and a database server to get the site running,
 regardless of your local host configuration.
 
 #### Requirements:
@@ -186,7 +193,7 @@ regardless of your local host configuration.
 
 By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
 By convention, the `docker-compose.yml` contains your base configuration and it's provided by default.
-The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
+The override file, as its name implies, can contain configuration overrides for existing services or entirely new
 services.
 If a service is defined in both files, Docker Compose merges the configurations.
 
