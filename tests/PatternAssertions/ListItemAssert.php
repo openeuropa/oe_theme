@@ -18,6 +18,24 @@ class ListItemAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getAssertions($variant): array {
+    if ($variant == 'highlight') {
+      return [
+        'title' => [
+          [$this, 'assertElementText'],
+          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+        ],
+        'url' => [
+          [$this, 'assertElementAttribute'],
+          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+          'href',
+        ],
+        'image' => [
+          [$this, 'assertHighlightImage'],
+          $variant,
+        ],
+      ];
+    }
+
     $base_selector = 'div' . $this->getBaseItemClass($variant);
     return [
       'title' => [
@@ -42,7 +60,7 @@ class ListItemAssert extends BasePatternAssert {
         $base_selector . '__description',
       ],
       'image' => [
-        [$this, 'assertImage'],
+        [$this, 'assertThumbnailImage'],
         $variant,
       ],
       'additional_information' => [
@@ -153,7 +171,7 @@ class ListItemAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the image block of a list item.
+   * Asserts the image block of a thumbnail list item.
    *
    * @param array|null $expected_image
    *   The expected image values.
@@ -162,7 +180,7 @@ class ListItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertImage($expected_image, string $variant, Crawler $crawler): void {
+  protected function assertThumbnailImage($expected_image, string $variant, Crawler $crawler): void {
     $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
     $image_div_selector = 'div.' . $variant_class;
     if (!$expected_image) {
@@ -171,6 +189,22 @@ class ListItemAssert extends BasePatternAssert {
     }
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
+    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
+    self::assertContains($expected_image['src'], $image_div->attr('style'));
+  }
+
+  /**
+   * Asserts the image block of a highligh list item.
+   *
+   * @param array|null $expected_image
+   *   The expected image values.
+   * @param string $variant
+   *   The variant of the pattern being checked.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertHighlightImage($expected_image, string $variant, Crawler $crawler): void {
+    $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
     self::assertContains($expected_image['src'], $image_div->attr('style'));
   }
