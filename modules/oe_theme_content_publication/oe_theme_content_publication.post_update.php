@@ -41,7 +41,7 @@ function oe_theme_content_publication_post_update_00002(array &$sandbox): void {
  * Enable Extra field module.
  */
 function oe_theme_content_publication_post_update_00003(): void {
-  \Drupal::service('module_installer')->install(['extra_field']);
+  \Drupal::service('module_installer')->install(['extra_field', 'oe_theme_helper']);
 }
 
 /**
