@@ -194,7 +194,7 @@ class ListItemAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the image block of a highligh list item.
+   * Asserts the image block of a highlight list item.
    *
    * @param array|null $expected_image
    *   The expected image values.
