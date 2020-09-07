@@ -49,7 +49,6 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-language-list/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-link/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-media-container/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-menu-legacy/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-menu/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-message/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-page-banner/*.twig', to: path.resolve(outputFolder, 'components') },
