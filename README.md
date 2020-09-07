@@ -67,7 +67,7 @@ same between the two libraries.
 If you are using the oe_content module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
 existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by oe_content
 so if you want to keep any customization you have made to your site you will need to redo those modifications and
-override the teaser templates no your own custom theme.
+override the teaser templates on your own custom theme.
 
 ## Companion sub-modules
 
