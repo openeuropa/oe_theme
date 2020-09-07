@@ -18,7 +18,7 @@
   'ecl-select__container--m',
 ]) %}
 
-{% if attributes.hasAttribute('multiple') %}
+{% if attributes.multiple is not empty %}
   {% set attributes = attributes.setAttribute('data-ecl-auto-init', 'Select') %}
   {% set attributes = attributes.setAttribute('multiple', '') %}
   {% set attributes = attributes.setAttribute('data-ecl-select-multiple', 'true') %}
