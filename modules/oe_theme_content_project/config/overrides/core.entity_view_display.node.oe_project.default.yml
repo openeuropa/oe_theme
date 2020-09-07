@@ -6,13 +6,13 @@ dependencies:
     - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
+    - field.field.node.oe_project.oe_featured_media
     - field.field.node.oe_project.oe_project_budget
     - field.field.node.oe_project.oe_project_budget_eu
     - field.field.node.oe_project.oe_project_calls
     - field.field.node.oe_project.oe_project_contact
     - field.field.node.oe_project.oe_project_coordinators
     - field.field.node.oe_project.oe_project_dates
-    - field.field.node.oe_project.oe_project_featured_media
     - field.field.node.oe_project.oe_project_funding_programme
     - field.field.node.oe_project.oe_project_locations
     - field.field.node.oe_project.oe_project_participants
@@ -37,7 +37,7 @@ third_party_settings:
   field_group:
     group_top:
       children:
-        - oe_project_featured_media
+        - oe_featured_media
         - body
         - oe_documents
         - group_details
@@ -185,6 +185,14 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+  oe_featured_media:
+    type: oe_theme_helper_featured_media_formatter
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      image_style: oe_theme_medium_no_crop
+    third_party_settings: {  }
   oe_project_budget:
     type: number_decimal
     weight: 7
@@ -235,14 +243,6 @@ content:
       timezone_override: ''
       format_type: oe_project_date
       separator: '-'
-    third_party_settings: {  }
-  oe_project_featured_media:
-    type: oe_theme_helper_featured_media_formatter
-    weight: 0
-    region: content
-    label: hidden
-    settings:
-      image_style: oe_theme_medium_no_crop
     third_party_settings: {  }
   oe_project_funding_programme:
     type: skos_concept_entity_reference_label
