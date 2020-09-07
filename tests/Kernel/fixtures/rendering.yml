@@ -1754,7 +1754,7 @@
       "div.ecl-card__image": 0
       'h1.ecl-card__title': 1
       'div.ecl-card__description': 0
-      'footer.ecl-card__footer': 1
+      'footer.ecl-card__footer': 0
     equals:
       'h1.ecl-card__title': "Example title"
 - array:
