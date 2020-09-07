@@ -35,9 +35,8 @@ function oe_theme_patterns_render_test_preprocess_pattern_file_translation(&$var
 function oe_theme_patterns_render_test_preprocess_pattern_file_teaser(&$variables) {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  if ($variables['translations']) {
-    foreach ($variables['translations'] as $index => $translation) {
-      $variables['translations'][$index] = FileValueObject::fromArray($translation);
-    }
+  foreach ($variables['translations'] as $index => $translation) {
+    $translation['file'] = FileValueObject::fromArray($translation['file']);
+    $variables['translations'][$index] = $translation;
   }
 }

@@ -13,7 +13,6 @@ file:
       description: "A file value object."
       preview:
         title: "Example document"
-        teaser: ""
         mime: "application/pdf"
         url: "http://example.com/document.pdf"
         size: "150000"

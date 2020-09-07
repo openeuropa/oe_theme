@@ -9,17 +9,17 @@
 {% set _translations = [] %}
 {% for item in translations %}
   {% set _translations = _translations|merge([{
-    'title': item.title,
+    'title': item.file.title,
     'description': item.teaser,
-    'meta': '(' ~ item.size|format_size ~ ' - ' ~ item.extension|upper  ~ ')',
-    'lang': item.language_code,
+    'meta': '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')',
+    'lang': item.file.language_code,
     'download': {
       'link': {
         'label': button_label|default('Download'|t),
-        'path': item.url,
+        'path': item.file.url,
       }
     },
-    'lang_full': item.language_code|to_native_language
+    'lang_full': item.file.language_code|to_native_language
   }]) %}
 {% endfor %}
 {% set _detail_meta = [] %}
@@ -27,7 +27,7 @@
 
 {% include '@ecl-twig/file' with {
   'title': file.title,
-  'description': file.teaser,
+  'description': teaser,
   'image': {
     'src': thumbnail.src,
     'alt': thumbnail.alt,

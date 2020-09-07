@@ -137,7 +137,6 @@ Provides the following factory methods:
   - `mime`: file MIME type.
   - `size`: file size in bytes.
   - `title` (optional): file title, defaults to file `name` if empty.
-  - `teaser`: file teaser.
   - `language_code` (optional): two letter language code of the current file's language.
 
 - `FileValueObject::fromFileEntity(FileInterface $file_entity)`: accepts an object implementing the

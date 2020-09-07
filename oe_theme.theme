@@ -1082,7 +1082,8 @@ function oe_theme_preprocess_pattern_file_teaser__preview(array &$variables): vo
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
   foreach ($variables['translations'] as $index => $translation) {
-    $variables['translations'][$index] = FileValueObject::fromArray($translation);
+    $translation['file'] = FileValueObject::fromArray($translation['file']);
+    $variables['translations'][$index] = $translation;
   }
 }
 

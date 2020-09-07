@@ -21,7 +21,6 @@ class FileValueObjectTest extends AbstractUnitTestBase {
       'mime' => 'pdf',
       'name' => 'Test.pdf',
       'url' => 'http://example.com/test.pdf',
-      'teaser' => '',
     ];
 
     /** @var \Drupal\oe_theme\ValueObject\FileValueObject $file */
