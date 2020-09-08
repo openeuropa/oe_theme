@@ -725,7 +725,6 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
 
     $language = [
       'path' => $href,
-      'hreflang' => $language_code,
       'label' => $link['link']['#title'],
       'lang' => $language_internal,
     ];
@@ -733,7 +732,6 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
     if ($language_code === $current_language_id) {
       $variables['current_language'] = [
         'path' => $href,
-        'hreflang' => $language_code,
         'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
