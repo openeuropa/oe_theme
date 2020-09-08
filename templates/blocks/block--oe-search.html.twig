@@ -9,9 +9,9 @@
 <div class="ecl-site-header-core__search-container">
   <a
     class="ecl-link ecl-link--standalone ecl-site-header-core__search-toggle"
-    href="{{ _search_toggle.href }}"
+    href=""
     data-ecl-search-toggle="true"
-    aria-controls="search-form-id"
+    aria-controls="{{ content['#id'] }}"
     aria-expanded="false"
   >
     {%- include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
