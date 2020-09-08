@@ -8,3 +8,4 @@ dependencies:
   - drupal:responsive_image
   - smart_trim:smart_trim
   - oe_time_caching:oe_time_caching
+  - twig_field_value:twig_field_value

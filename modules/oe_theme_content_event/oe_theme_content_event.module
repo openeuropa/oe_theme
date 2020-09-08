@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\oe_theme\ValueObject\DateValueObject;
 
 /**
  * Implements hook_theme().
@@ -66,4 +67,14 @@ function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $
       }
     }
   }
+}
+
+/**
+ * Implements template_preprocess_node() for the Event node type.
+ */
+function oe_theme_content_event_preprocess_node__oe_event__teaser(array &$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $dates = $node->get('oe_event_dates')->first();
+  $variables['pattern_date'] = DateValueObject::fromDateRangeItem($dates);
 }

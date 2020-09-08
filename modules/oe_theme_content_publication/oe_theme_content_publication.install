@@ -13,17 +13,16 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
 /**
  * Implements hook_install().
  */
-function oe_theme_content_event_install() {
+function oe_theme_content_publication_install() {
   // If we are installing from config, we bail out.
   if (\Drupal::isConfigSyncing() === TRUE) {
     return;
   }
 
   // Override entity view displays.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/overrides');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/overrides');
   $displays = [
-    'core.entity_view_display.node.oe_event.default',
-    'core.entity_view_display.node.oe_event.teaser',
+    'core.entity_view_display.node.oe_publication.teaser',
   ];
 
   foreach ($displays as $display) {

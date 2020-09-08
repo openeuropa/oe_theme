@@ -9,6 +9,7 @@
         "php": ">=7.2",
         "drupal/core": "^8.7",
         "drupal/smart_trim": "^1.2",
+        "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "~2.0",
         "openeuropa/oe_time_caching": "~1.0.0"

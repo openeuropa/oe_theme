@@ -19,7 +19,7 @@ use Drupal\oe_content_event\EventNodeWrapper;
  *   visible = true
  * )
  */
-class SummaryExtraField extends RegistrationDateAwareExtraFieldBase {
+class SummaryExtraField extends DateAwareExtraFieldBase {
 
   /**
    * {@inheritdoc}
