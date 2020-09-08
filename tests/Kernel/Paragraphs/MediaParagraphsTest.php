@@ -330,7 +330,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -360,7 +360,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -379,8 +379,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -400,8 +400,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -420,7 +420,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -440,7 +440,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -460,8 +460,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -480,8 +480,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . file_create_url($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -501,7 +501,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -523,7 +523,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -543,8 +543,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -564,8 +564,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -585,7 +585,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -606,7 +606,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content h1.ecl-hero-banner__title')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
@@ -626,8 +626,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -648,8 +648,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image'));
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image'));
 
-    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title')->text()));
-    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__baseline')->text()));
+    $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
+    $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
@@ -678,7 +678,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     // Title classes should not be rendered if the field is empty.
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content h1.ecl-page-banner__title'));
+    $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title'));
     // Link classes should not be rendered if the field is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-page-banner__content a.ecl-link'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
