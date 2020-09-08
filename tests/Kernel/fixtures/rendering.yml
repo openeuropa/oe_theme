@@ -515,7 +515,7 @@
       thumbnail:
         src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
         alt: "thumbnail alt"
-      resource_type: "resource type"
+      resource_type: "RESOURCE TYPE"
       publication_date: "2020-31-08"
       translations:
         - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
@@ -560,7 +560,8 @@
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta': 'RESOURCE TYPE | 2020-31-08'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
