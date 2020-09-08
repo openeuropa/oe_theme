@@ -23,7 +23,6 @@
         },
         ...
       ]
-    - "_compliance_" (boolean) (default: false) Activates debug
 #}
 
 {# Internal properties #}
@@ -32,7 +31,6 @@
 {% set _code = code|default('') %}
 {% set _path = path|default('') %}
 {% set _icon_path = icon_path|default('') %}
-{% set _compliance = _compliance_|default(false) %}
 
 {% set _css_class = 'ecl-site-header__selector' %}
 {% set _extra_attributes = [] %}
@@ -64,9 +62,7 @@
         name: 'language',
         size: 's'
       },
-      extra_classes: 'ecl-site-header-core__icon',
-      _compliance_: _compliance,
-      _compliance_inner_check_: true
+      extra_classes: 'ecl-site-header-core__icon'
     } only %}
     <span class="ecl-site-header-core__language-code">{{ _code }}</span>
   </span>
@@ -82,8 +78,6 @@
     { name: 'aria-labelledby', value: 'ecl-language-list__title' },
     { name: 'role', value: 'dialog' },
     { name: 'hidden' }
-  ],
-  _compliance_: _compliance,
-  _compliance_inner_check_: true
+  ]
 } only %}
 {% endspaceless %}
