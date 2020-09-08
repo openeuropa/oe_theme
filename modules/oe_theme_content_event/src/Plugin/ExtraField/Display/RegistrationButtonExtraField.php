@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class RegistrationButtonExtraField extends RegistrationDateAwareExtraFieldBase {
+class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
 
   /**
    * Date formatter service.

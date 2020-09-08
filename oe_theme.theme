@@ -723,22 +723,22 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
       $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
     }
 
-    $variables['languages'][] = [
+    $language = [
       'path' => $href,
-      'hreflang' => $language_code,
       'label' => $link['link']['#title'],
       'lang' => $language_internal,
-      'active' => $language_code === $current_language_id,
     ];
 
     if ($language_code === $current_language_id) {
       $variables['current_language'] = [
         'path' => $href,
-        'hreflang' => $language_code,
         'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
+      $language['active'] = TRUE;
     }
+
+    $variables['languages'][] = $language;
   }
 }
 
@@ -1068,8 +1068,20 @@ function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_file_translation__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  foreach ((array) $variables['translations'] as $index => $translation) {
+  foreach ($variables['translations'] as $index => $translation) {
     $variables['translations'][$index] = FileValueObject::fromArray($translation);
+  }
+}
+
+/**
+ * Implements hook_preprocess_pattern_file_teaser__preview().
+ */
+function oe_theme_preprocess_pattern_file_teaser__preview(array &$variables): void {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
+
+  foreach ($variables['translations'] as $index => $translation) {
+    $translation['file'] = FileValueObject::fromArray($translation['file']);
+    $variables['translations'][$index] = $translation;
   }
 }
 

@@ -30,7 +30,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class DescriptionExtraField extends RegistrationDateAwareExtraFieldBase implements ContainerFactoryPluginInterface {
+class DescriptionExtraField extends DateAwareExtraFieldBase implements ContainerFactoryPluginInterface {
 
   /**
    * The entity repository.

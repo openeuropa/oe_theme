@@ -4,16 +4,19 @@
  * Field list default variant.
  */
 #}
-
 {% set _items = [] %}
 {% for _item in items %}
-  {% set _items = _items|merge([{
-    term: _item.label,
-    definition: _item.body|render
-  }]) %}
+  {% set body = _item.body|render %}
+  {% if body is not empty %}
+    {% set _items = _items|merge([{
+      term: _item.label,
+      definition: body
+    }]) %}
+  {% endif %}
 {% endfor %}
-
-{% include '@ecl-twig/description-list' with {
-  'variant': variant,
-  'items': _items,
-} %}
+{% if _items %}
+  {% include '@ecl-twig/description-list' with {
+    'variant': variant,
+    'items': _items,
+  } %}
+{% endif %}

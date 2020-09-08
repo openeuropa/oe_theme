@@ -258,11 +258,13 @@ class TwigExtension extends \Twig_Extension {
    *   The twig context.
    * @param string|null $icon
    *   The icon to be converted.
+   * @param string $size
+   *   The icon size.
    *
    * @return array
    *   Icon array for ECL components containing icon name, path and rotation.
    */
-  public function toEclIcon(array $context, $icon): array {
+  public function toEclIcon(array $context, $icon, string $size = ''): array {
     $path = $context['ecl_icon_path'];
 
     // ECL supported icons naming and rotation.
@@ -501,7 +503,19 @@ class TwigExtension extends \Twig_Extension {
 
     if (array_key_exists($icon, $icons)) {
       $icons[$icon]['path'] = $path;
+      if ($size) {
+        $icons[$icon]['size'] = $size;
+      }
+
       return $icons[$icon];
+    }
+
+    if ($size) {
+      return [
+        'name' => 'general--digital',
+        'path' => $path,
+        'size' => $size,
+      ];
     }
 
     return [
