@@ -12,9 +12,9 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Base class for fields that conditionally render on the registration period.
+ * Base class for fields that conditionally render on a date.
  */
-abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
+abstract class DateAwareExtraFieldBase extends EventExtraFieldBase {
 
   /**
    * Current request time, as a timestamp.
@@ -75,7 +75,7 @@ abstract class RegistrationDateAwareExtraFieldBase extends EventExtraFieldBase {
   }
 
   /**
-   * Apply max-age depending from the registration period time interval.
+   * Apply max-age depending from the given date period time interval.
    *
    * @param array $build
    *   Render array to apply the max-age to.

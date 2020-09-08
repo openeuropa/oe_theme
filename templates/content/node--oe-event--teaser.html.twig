@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle event in the teaser view mode.
+ */
+#}
+
+{% set status = content.extra_field_oe_theme_content_event_date_aware_status|field_value|render %}
+{% if status == 'past' or status == 'cancelled' or status == 'ongoing' %}
+  {% set variant = 'date_' ~ status %}
+{% endif %}
+{{ pattern('list_item', {
+  'variant': variant|default('date'),
+  'url': url,
+  'title': label,
+  'date': pattern_date,
+  'meta': content.extra_field_oe_theme_content_event_teaser_meta|field_value,
+  'detail': content.extra_field_oe_theme_content_event_teaser_details,
+}) }}

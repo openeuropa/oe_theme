@@ -30,6 +30,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     'breakpoint',
     'responsive_image',
     'image',
+    'twig_field_value',
   ];
 
   /**
