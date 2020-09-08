@@ -64,10 +64,22 @@ same between the two libraries.
 
 ### Updating to 2.9.0+
 
-If you are using the oe_content module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
-existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by oe_content
+#### Content type teasers
+
+If you are using the `oe_content` module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
+existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by `oe_content`
 so if you want to keep any customization you have made to your site you will need to redo those modifications and
 override the teaser templates on your own custom theme.
+
+#### ECL site header
+
+In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to move the language switcher block to the
+`site_header_secondary` theme region. This means that:
+
+- If your site does not use a sub-theme, then you have nothing to worry about, as we will move the block there for you
+  in a post-update hook (if we find one)
+- If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
+  `site_header_secondary` region yourself
 
 ## Companion sub-modules
 
