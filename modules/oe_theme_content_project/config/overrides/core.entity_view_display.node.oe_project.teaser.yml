@@ -1,0 +1,79 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oe_project.body
+    - field.field.node.oe_project.oe_author
+    - field.field.node.oe_project.oe_departments
+    - field.field.node.oe_project.oe_documents
+    - field.field.node.oe_project.oe_featured_media
+    - field.field.node.oe_project.oe_project_budget
+    - field.field.node.oe_project.oe_project_budget_eu
+    - field.field.node.oe_project.oe_project_calls
+    - field.field.node.oe_project.oe_project_contact
+    - field.field.node.oe_project.oe_project_coordinators
+    - field.field.node.oe_project.oe_project_dates
+    - field.field.node.oe_project.oe_project_funding_programme
+    - field.field.node.oe_project.oe_project_locations
+    - field.field.node.oe_project.oe_project_participants
+    - field.field.node.oe_project.oe_project_result_files
+    - field.field.node.oe_project.oe_project_results
+    - field.field.node.oe_project.oe_project_website
+    - field.field.node.oe_project.oe_reference_code
+    - field.field.node.oe_project.oe_subject
+    - field.field.node.oe_project.oe_summary
+    - field.field.node.oe_project.oe_teaser
+    - node.type.oe_project
+  module:
+    - oe_theme_helper
+    - text
+    - user
+id: node.oe_project.teaser
+targetEntityType: node
+bundle: oe_project
+mode: teaser
+content:
+  oe_project_locations:
+    type: oe_theme_helper_address_inline
+    weight: 1
+    region: content
+    label: above
+    settings:
+      delimiter: ', '
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 0
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  extra_field_oe_theme_content_project_percentage: true
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  links: true
+  oe_author: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_departments: true
+  oe_documents: true
+  oe_featured_media: true
+  oe_project_budget: true
+  oe_project_budget_eu: true
+  oe_project_calls: true
+  oe_project_contact: true
+  oe_project_coordinators: true
+  oe_project_dates: true
+  oe_project_funding_programme: true
+  oe_project_participants: true
+  oe_project_result_files: true
+  oe_project_results: true
+  oe_project_website: true
+  oe_reference_code: true
+  oe_subject: true
+  oe_summary: true

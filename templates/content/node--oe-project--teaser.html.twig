@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle project in the teaser view mode.
+ */
+#}
+{% if not node.oe_project_locations.isEmpty() %}
+  {% set field_list = [
+    {
+      'label': 'Project locations'|t,
+      'body': content.oe_project_locations|field_value
+    }
+  ] %}
+{% endif %}
+{{ pattern('list_item', {
+  'variant': 'thumbnail_primary',
+  'url': url,
+  'title': label,
+  'detail': content.oe_teaser|field_value,
+  'field_list': field_list|default([])
+}) }}
