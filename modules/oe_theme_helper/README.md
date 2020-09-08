@@ -67,13 +67,19 @@ Output: `Español`.
 
 **Social media field formatter**
 
-It provides a formatter for the social media links in order to configure horizontal or vertical variants of the pattern.
+Provides a formatter for the social media links in order to configure horizontal or vertical variants of the pattern.
 The social media field requires the [typed_link](https://www.drupal.org/project/typed_link) module.
 
-**Field group formatter**
+**Field list field group formatter**
 
-This formatter is used to format the fields organised under a field group, using the Field list pattern.
+Displays field group children using the Field list pattern.
 Additional formatters for other patterns can be implemented by extending the [PatternFormatterBase](modules/oe_theme_helper/src/Plugin/field_group/FieldGroupFormatter/PatternFormatterBase.php) class.
+
+**In-page navigation field group formatter**
+
+Display field group children using the in-page navigation ECL component. In order for this formatter to work, its children
+must be field groups of type "In-page navigation item". This formatter will use its children's labels to compile the
+sidebar in-page navigation list.
 
 **Inline address formatter**
 

@@ -179,4 +179,17 @@ class MinkContext extends DrupalExtensionMinkContext {
     return $this->assertSession()->elementExists('css', $selector);
   }
 
+  /**
+   * Hover over a link.
+   *
+   * @When I hover over the link :link
+   */
+  public function iHoverOverTheLink($link): void {
+    $link = $this->getSession()->getPage()->findLink($link);
+    if (!$link) {
+      throw new \InvalidArgumentException(sprintf('Could not not find link: "%s"', $link));
+    }
+    $link->mouseOver();
+  }
+
 }

@@ -1,0 +1,90 @@
+{% spaceless %}
+
+{#
+  /**
+   * @file
+   * Theme implementation for a ECL Content Item.
+   */
+  Parameters:
+    - "description" (string) (default: ''): Description of Content Item
+    - "meta" (array) (default: []): Meta information for the Content Item
+    - "title" (associative array) (default: {}): Predefined structure compatible with Link component. If Content Item type is a 'tile', only label property is required.
+    - "image" (string) (default: ''): Url/path to background image
+    - "image_position" (string) (Can be 'before' or 'after'. Is required only if Image is specified)
+    - "extra_classes" (string) (default: '')
+    - "extra_attributes" (array) (default: []): format: [
+        {
+          "name" (string) (default: ''),
+          "value" (string) (default: '')
+        },
+        ...
+      ]
+#}
+
+{# Internal properties #}
+
+{% set _css_class = 'ecl-content-item ecl-u-d-sm-flex ecl-u-pb-m' %}
+{% set _extra_attributes = '' %}
+{% set _type = type|default('default') %}
+{% set _description = description|default('') %}
+{% set _meta = meta|default([]) %}
+{% set _title = title|default({}) %}
+{% set _image = image|default('') %}
+{% set _image_position = image_position|default('before') %}
+{% set _links = links|default([]) %}
+
+{# Internal logic - Process properties #}
+
+{% if extra_classes is defined and extra_classes is not empty %}
+  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
+{% endif %}
+
+{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
+  {% for attr in extra_attributes %}
+    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
+  {% endfor %}
+{% endif %}
+
+{# Create macro #}
+
+{% macro image(src, alt, position) %}
+  <div role="img"
+       aria-label="{{ alt }}"
+       class="ecl-u-ratio-3-2
+          ecl-u-flex-shrink-0
+          ecl-u-d-lg-block
+          ecl-content-item__image__{{ position }}
+          ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-sm-l
+          ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-l
+          ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-sm-none"
+       style="background-image: url('{{ src }}');
+         background-size: cover;
+         height:8.75rem;
+         width:13.125rem"
+  ></div>
+{% endmacro %}
+
+<article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
+  {% if _image and _image_position == 'before' %}
+    {{ _self.image(_image.src, _image.alt, _image_position) }}
+  {% endif %}
+  <div class="ecl-u-flex-grow-1">
+    {% if _meta is not empty %}
+      <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75">{{ _meta|safe_join(" | ") }}</div>
+    {% endif %}
+    <div class="ecl-content-item__title ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-mt-xs">
+      {%- if _title.path %}
+        {% include '@ecl-twig/link' with {
+          link: _title|merge({type:'standalone'})
+        } only %}
+      {% else %}
+        {{- _title.label }}
+      {%- endif -%}
+    </div>
+    <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs">{{ _description }}</div>
+  </div>
+  {% if _image and _image_position == 'after' %}
+    {{ _self.image(_image.src, _image.alt, _image_position) }}
+  {% endif %}
+</article>
+{% endspaceless %}

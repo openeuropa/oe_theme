@@ -188,3 +188,11 @@ function oe_theme_helper_post_update_20009(array &$sandbox) {
 function oe_theme_helper_post_update_20010() {
   \Drupal::service('kernel')->invalidateContainer();
 }
+
+/**
+ * Enable Twig field value module.
+ */
+function oe_theme_helper_post_update_20011(): void {
+  \Drupal::service('module_installer')->install(['twig_field_value']);
+  \Drupal::service('kernel')->invalidateContainer();
+}
