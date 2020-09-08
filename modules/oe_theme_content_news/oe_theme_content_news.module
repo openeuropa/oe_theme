@@ -7,9 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\TypedData\TranslatableInterface;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\media\MediaInterface;
 
 /**
@@ -31,74 +28,4 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     $variables['content']['featured_image']['#weight'] = -100;
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-type-paragraph';
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for node--oe-news--teaser.html.twig.
- */
-function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['node'];
-
-  $cache = CacheableMetadata::createFromRenderArray($variables);
-
-  // Use the short title if present, with fallback to the title.
-  $variables['title'] = !$node->get('oe_content_short_title')->isEmpty() ? $node->get('oe_content_short_title')->value : $node->label();
-
-  $date_formatter = \Drupal::service('date.formatter');
-  $variables['meta'][] = $date_formatter->format($node->get('oe_publication_date')->date->getTimestamp(), 'oe_theme_news_date');
-
-  $media = $node->get('oe_news_featured_media')->entity;
-  if (!$media instanceof MediaInterface) {
-    return;
-  }
-
-  if ($media->get('thumbnail')->isEmpty()) {
-    // In case the thumbnail is missing from the media entity, we should apply
-    // the cache metadata of the media to the render array.
-    $cache->addCacheableDependency($media);
-    $cache->applyTo($variables);
-    return;
-  }
-
-  // Retrieve the correct translation to display.
-  // @see \Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase::getEntitiesToView()
-  if ($media instanceof TranslatableInterface) {
-    $media = \Drupal::service('entity.repository')->getTranslationFromContext($media);
-  }
-
-  // Check if the media can be displayed to the current user.
-  $access = $media->access('view', NULL, TRUE);
-
-  // Apply the cache metadata accumulated until now.
-  $cache->addCacheableDependency($media)
-    ->addCacheableDependency($access)
-    ->applyTo($variables);
-
-  // Don't render the image if the user has not enough permissions.
-  if (!$access->isAllowed()) {
-    return;
-  }
-
-  /** @var \Drupal\file\FileInterface $thumbnail_file */
-  $thumbnail_item = $media->get('thumbnail');
-  $thumbnail_file = $thumbnail_item->entity;
-
-  // According to current implementation of ECL 2,
-  // we don't use anymore <picture> tag and don't support retina version.
-  // For avoiding bad experience,
-  // we are preferring to use image style
-  // with bigger resolution ('oe_theme_list_item_2x').
-  $best_resolution_image_style = ImageStyle::load('oe_theme_list_item_2x');
-  $normal_image = file_url_transform_relative($best_resolution_image_style->buildUrl($thumbnail_file->getFileUri()));
-
-  $variables['image'] = [
-    'src' => $normal_image,
-    'alt' => $thumbnail_item->alt,
-  ];
-
-  $cache
-    ->addCacheableDependency($best_resolution_image_style)
-    ->addCacheableDependency($thumbnail_file)
-    ->applyTo($variables);
 }

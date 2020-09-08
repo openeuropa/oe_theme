@@ -23,14 +23,22 @@ function oe_theme_content_event_install() {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/overrides');
   $displays = [
     'core.entity_view_display.node.oe_event.default',
+    'core.entity_view_display.node.oe_event.teaser',
   ];
 
   foreach ($displays as $display) {
     $values = $storage->read($display);
     $config = EntityViewDisplay::load($values['id']);
+    if (!$config) {
+      $config = EntityViewDisplay::create($values);
+      $config->save();
+      continue;
+    }
+
     foreach ($values as $key => $value) {
       $config->set($key, $value);
     }
+
     $config->save();
   }
 }

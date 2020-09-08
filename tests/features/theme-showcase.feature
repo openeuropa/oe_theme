@@ -36,11 +36,12 @@ Feature: Theme showcase
     Then I should not visibly see the link "Commission at work"
     Then I should not visibly see the link "Democratic change"
 
-    When I click "About" in the "navigation"
+    When I hover over the link "About"
     Then I should see the link "Commission at work"
     But I should not visibly see the link "Democratic change"
 
     When I click "Priorities" in the "navigation"
+    When I hover over the link "Priorities"
     Then I should not visibly see the link "Commission at work"
     But I should see the link "Democratic change"
 
