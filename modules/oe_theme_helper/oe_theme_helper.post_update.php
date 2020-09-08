@@ -190,9 +190,17 @@ function oe_theme_helper_post_update_20010() {
 }
 
 /**
+ * Enable Twig field value module.
+ */
+function oe_theme_helper_post_update_20011(): void {
+  \Drupal::service('module_installer')->install(['twig_field_value']);
+  \Drupal::service('kernel')->invalidateContainer();
+}
+
+/**
  * Change the region of the language switcher block.
  */
-function oe_theme_helper_post_update_20011() {
+function oe_theme_helper_post_update_20012() {
   $block = Block::load('oe_theme_language_switcher');
 
   if (!$block) {

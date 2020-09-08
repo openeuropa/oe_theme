@@ -37,9 +37,11 @@ navigation_menu:
               label: 'Child 1.8'
         - href: "#"
           label: "EU law"
+          is_current: TRUE
           children:
             - href: '#'
               label: 'Eu Treaties'
+              is_current: TRUE
             - href: '#'
               label: 'Application of EU law'
             - href: '#'

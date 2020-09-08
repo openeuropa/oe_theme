@@ -21,7 +21,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
-              about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
+              about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
               breadcrumb: "nav.ecl-breadcrumb-core"
               dropdown content: ".ecl-unordered-list"
               language switcher: ".ecl-language-list"
@@ -32,7 +32,7 @@ default:
               logo: ".ecl-site-header-core__logo-image"
               media container: ".ecl-media-container"
               page header: ".ecl-page-header-core"
-              priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
+              priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
               search form: ".ecl-search-form"
             pages:
               content management: "/en/admin/content"
@@ -62,20 +62,20 @@ default:
           paths:
             - "%paths.base%/build/modules/contrib/datetime_testing"
       region_map:
-        about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
+        about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
         footer: "footer.ecl-footer"
         header: ".ecl-site-header-core"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-language-list"
         language page switcher: ".ecl-page-header-core .ecl-lang-select-page"
-        navigation: ".ecl-menu-legacy"
+        navigation: ".ecl-menu"
         page: "body"
         page header: ".ecl-page-header-core"
         page header site identity: "h2.ecl-u-type-heading-2"
         page header title: ".ecl-page-header-core .ecl-page-header-core__title"
         page header intro: ".ecl-page-header-core .ecl-page-header-core__description"
         page header meta: ".ecl-page-header-core .ecl-page-header-core__meta"
-        priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
+        priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
         selected language in the language page switcher: ".ecl-page-header-core .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
         unavailable languages in the language page switcher: ".ecl-page-header-core .ecl-lang-select-page .ecl-lang-select-page__unavailable"
         Social media links: "#oe-social-media-links-values"

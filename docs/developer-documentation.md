@@ -127,6 +127,7 @@ Used in the following patterns:
 
 - [`file`](../templates/patterns/file/file.ui_patterns.yml)
 - [`file_translation`](../templates/patterns/file_translation/file_translation.ui_patterns.yml)
+- [`file_teaser`](../templates/patterns/file_teaser/file_teaser.ui_patterns.yml)
 
 Provides the following factory methods:
 

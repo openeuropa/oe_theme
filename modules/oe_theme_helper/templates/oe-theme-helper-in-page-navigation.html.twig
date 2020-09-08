@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Default template for the 'oe_theme_helper_in_page_navigation' in-page navigation.
+ *
+ * Available variables:
+ * - element: Renderable elements.
+ * - entity: The rendering object.
+ * - title: Title of the navigation side.
+ * - items: In-page navigation items.
+ *
+ * @see template_preprocess_oe_theme_helper_in_page_navigation()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set _items = [] %}
+{% for item in items %}
+  {#
+     We need to pre-render each item content so to establish if to show its related navigation link.
+     This will only work if Twig debug is set to "false" since, otherwise, the element will contain
+     debug HTML comments, which make the element not empty.
+  #}
+  {% set content = item.content|render %}
+  {% if content|trim is not empty %}
+    {% set _items = _items|merge([{
+      id: item.id,
+      href: '#' ~ item.id,
+      label: item.label,
+      content: content
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+<div {{ attributes.addClass(['ecl-row', 'ecl-u-mt-l']) }}>
+  {% block navigation %}
+  <div class="ecl-col-12 ecl-col-lg-3">
+    {% include '@ecl-twig/inpage-navigation' with {
+      'title': title,
+      'links': _items,
+      'icon_path': ecl_icon_path
+    } %}
+  </div>
+  {% endblock %}
+  {% block content %}
+  <div class="ecl-col-lg-9">
+    {% for item in _items %}
+      <div{{ loop.first ? ' class=" ecl-u-mb-2xl"' }}>
+        <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
+        {{ item.content }}
+      </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
+</div>

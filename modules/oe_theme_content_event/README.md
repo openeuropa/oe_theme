@@ -5,7 +5,7 @@ It provides the logic needed to theme the Event content type.
 
 ## Installation
 
-Make sure you you have read the OpenEuropa Content Event module's [README.md](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event/README.md)
+Make sure you have read the OpenEuropa Content Event module's [README.md](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event/README.md)
 before enabling this module.
 
 After enabling this module make sure you assign the following permissions to the anonymous user role, so visitors can
@@ -22,6 +22,7 @@ This module requires the following contrib modules:
 
 * [Extra field](https://www.drupal.org/project/extra_field) (^1.1)
 * [Field group](https://www.drupal.org/project/field_group) (~3.0)
+* [Twig field value](https://www.drupal.org/project/twig_field_value) (~2.0)
 
 ## Shipped configuration
 
@@ -40,7 +41,7 @@ Installing this module will override the default event content type view mode, s
 [OpenEuropa Content Event](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_event)
 module. This is necessary in order to guarantee that fields and formatter settings are displayed correctly.
 
-If you want to customize how the event looks like create the `full` view mode and take over.  
+If you want to customize how the event looks like create the `full` view mode and take over.
 
 ## Extra fields
 
