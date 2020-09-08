@@ -33,7 +33,6 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl/eu-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-accordion2/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-blockquote/*.twig', to: path.resolve(outputFolder, 'components') },
-    { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-breadcrumb/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-breadcrumb-core/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-button/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-card/*.twig', to: path.resolve(outputFolder, 'components') },
