@@ -2434,3 +2434,26 @@
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__view-all': 0
+- array:
+    '#type': 'pattern'
+    '#id': 'active_search_filters'
+    '#fields':
+      name: 'Source'
+      items:
+        - label: 'DG Trad'
+          url: 'http://dg-trad.com'
+        - label: 'Health, well-being & Consumer protection'
+          url: 'http://health.com'
+  assertions:
+    count:
+      'span.ecl-u-ml-lg-m.ecl-u-mt-m.ecl-u-mt-lg-none': 1
+      'a.ecl-u-ml-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 1
+      'a.ecl-u-ml-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 1
+      'span.ecl-tag__icon': 2
+      'svg.ecl-icon.ecl-icon--xs.ecl-tag__icon-close': 2
+      'svg.ecl-icon.ecl-icon--xs.ecl-tag__icon-close-filled': 2
+    contains:
+      'a.ecl-u-ml-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 'DG Trad'
+      'a.ecl-u-ml-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 'Health, well-being &amp; Consumer protection'
+    equals:
+      'span.ecl-u-ml-lg-m.ecl-u-mt-m.ecl-u-mt-lg-none span': 'SOURCE'
