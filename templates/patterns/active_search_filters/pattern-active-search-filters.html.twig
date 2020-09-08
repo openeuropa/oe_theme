@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Active search filters pattern.
+ */
+#}
+
+<span class="ecl-u-ml-lg-m ecl-u-mt-m ecl-u-mt-lg-none">
+  <span>{{ name|upper }}</span>
+  {% for item in items %}
+    <a href="{{ item.url }}" class="ecl-u-ml-s ecl-tag ecl-tag--removable">
+      {{ item.label }}
+      <span type="button" aria-label="Dismiss" class="ecl-tag__icon">
+        {% include '@ecl-twig/icon' with {
+          icon: {
+            path: ecl_icon_path,
+            type: "ui",
+            name: "close",
+            size: "xs"
+          },
+          extra_classes: "ecl-tag__icon-close"
+        } only %}
+        {% include '@ecl-twig/icon' with {
+          icon: {
+            path: ecl_icon_path,
+            type: "ui",
+            name: "close-filled",
+            size: "xs"
+          },
+          extra_classes: "ecl-tag__icon-close-filled"
+        } only %}
+      </span>
+    </a>
+  {% endfor %}
+</span>
