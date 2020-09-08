@@ -34,6 +34,13 @@ targetEntityType: node
 bundle: oe_project
 mode: teaser
 content:
+  oe_featured_media:
+    type: oe_theme_helper_featured_media_thumbnail_url_formatter
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
   oe_project_locations:
     type: oe_theme_helper_address_inline
     weight: 1
@@ -62,7 +69,6 @@ hidden:
   oe_content_short_title: true
   oe_departments: true
   oe_documents: true
-  oe_featured_media: true
   oe_project_budget: true
   oe_project_budget_eu: true
   oe_project_calls: true
