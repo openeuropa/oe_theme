@@ -21,8 +21,8 @@ function oe_theme_content_tender_node_view_alter(array &$build, EntityInterface 
   }
 
   // Field labels are different in frontend and backend.
-  // Here we override them, in full view mode.
-  if ($build['#view_mode'] === 'full') {
+  // Here we override them, in full and teaser view mode.
+  if (in_array($build['#view_mode'], ['full', 'teaser'])) {
     $label_overrides = [
       'body' => t('Description'),
       'oe_departments' => t('Departments'),

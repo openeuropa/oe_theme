@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle news in the teaser view mode.
+ */
+#}
+{{ pattern('list_item', {
+  'variant': 'default',
+  'url': url,
+  'title': label,
+  'meta': [
+    content.extra_field_oe_tender_status|field_value
+  ],
+  'detail': content.group_details,
+}) }}
