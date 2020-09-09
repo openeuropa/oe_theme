@@ -162,8 +162,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -186,8 +186,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -208,8 +208,8 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': "Backwards compatibility test"
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': "Banner description"
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': "Backwards compatibility test"
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': "Banner description"
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -232,8 +232,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -257,8 +257,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -281,8 +281,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -306,8 +306,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -329,8 +329,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -354,8 +354,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -378,8 +378,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -403,8 +403,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -515,7 +515,7 @@
       thumbnail:
         src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
         alt: "thumbnail alt"
-      resource_type: "resource type"
+      resource_type: "RESOURCE TYPE"
       publication_date: "2020-31-08"
       translations:
         - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
@@ -560,7 +560,8 @@
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta': 'RESOURCE TYPE | 2020-31-08'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
