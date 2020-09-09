@@ -10,12 +10,19 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
- * Tests the media thumbnail url field formatter.
+ * Tests the featured media thumbnail url field formatter.
  */
-class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase {
+class FeaturedMediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase {
 
   /**
-   * Test media thumbnail url formatter.
+   * {@inheritdoc}
+   */
+  protected static $modules = [
+    'oe_content_featured_media_field',
+  ];
+
+  /**
+   * Test featured media thumbnail url formatter.
    */
   public function testFormatter() {
     $media = $this->createMediaImage(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
@@ -23,12 +30,9 @@ class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase 
     // Create an entity_reference field to test the widget.
     $field_storage = FieldStorageConfig::create([
       'field_name' => 'field_test',
-      'type' => 'entity_reference',
+      'type' => 'oe_featured_media',
       'entity_type' => 'entity_test',
       'cardinality' => FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED,
-      'settings' => [
-        'target_type' => 'media',
-      ],
     ]);
     $field_storage->save();
 
@@ -49,7 +53,7 @@ class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase 
 
     // Test formatter without an image style.
     $build = $view_builder->viewField($entity->get('field_test'), [
-      'type' => 'oe_theme_helper_media_thumbnail_url',
+      'type' => 'oe_theme_helper_featured_media_thumbnail_url_formatter',
       'label' => 'hidden',
     ]);
     $this->assertRendering($this->renderRoot($build), [
@@ -62,7 +66,7 @@ class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase 
 
     // Test formatter with the medium image style.
     $build = $view_builder->viewField($entity->get('field_test'), [
-      'type' => 'oe_theme_helper_media_thumbnail_url',
+      'type' => 'oe_theme_helper_featured_media_thumbnail_url_formatter',
       'label' => 'hidden',
       'settings' => [
         'image_style' => 'medium',
@@ -78,7 +82,7 @@ class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase 
 
     // Test formatter with the large image style.
     $build = $view_builder->viewField($entity->get('field_test'), [
-      'type' => 'oe_theme_helper_media_thumbnail_url',
+      'type' => 'oe_theme_helper_featured_media_thumbnail_url_formatter',
       'label' => 'hidden',
       'settings' => [
         'image_style' => 'large',
