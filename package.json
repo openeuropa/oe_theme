@@ -25,7 +25,7 @@
         "@ecl/ec-component-fact-figures": "2.32.0",
         "@ecl/ec-component-media-container": "2.32.0",
         "@ecl-twig/ec-components": "2.32.0",
-        "node-sass": "4.12.0",
+        "node-sass": "4.13.1",
         "chokidar-cli": "1.2.0",
         "npm-run-all": "4.0.2",
         "patch-package": "^5.1.1",
