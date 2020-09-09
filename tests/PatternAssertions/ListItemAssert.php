@@ -21,16 +21,16 @@ class ListItemAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        $base_selector . '__title.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-mt-xs',
+        $base_selector . '__title',
       ],
       'url' => [
         [$this, 'assertElementAttribute'],
-        $base_selector . '__title.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-mt-xs a.ecl-link.ecl-link--standalone',
+        $base_selector . '__title a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'meta' => [
         [$this, 'assertElementText'],
-        $base_selector . '__meta.ecl-u-type-s.ecl-u-type-color-grey-75',
+        $base_selector . '__meta',
       ],
       'date' => [
         [$this, 'assertDate'],
@@ -38,7 +38,7 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertDescription'],
-        $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs',
+        $base_selector . '__description',
       ],
       'image' => [
         [$this, 'assertImage'],
@@ -134,7 +134,7 @@ class ListItemAssert extends BasePatternAssert {
         $variant_class = 'ecl-date-block--canceled';
         break;
     }
-    $date_block_selector = 'div.ecl-content-item-date__date.ecl-u-flex-grow-0.ecl-u-mr-m time.' . $variant_class;
+    $date_block_selector = 'div.ecl-content-item-date__date time.' . $variant_class;
     if (!$expected_date) {
       $this->assertElementNotExists($date_block_selector, $crawler);
       return;
@@ -183,7 +183,7 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertDescription($expected, string $variant, Crawler $crawler): void {
     $base_selector = $this->getBaseItemClass($variant);
-    $description_selector = 'div' . $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
+    $description_selector = 'div' . $base_selector . '__description';
     $this->assertElementExists($description_selector, $crawler);
     $description_element = $crawler->filter($description_selector);
     if ($expected instanceof PatternAssertStateInterface) {
