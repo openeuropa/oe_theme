@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Field list default variant.
+ */
+#}
+
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    term: _item.label,
+    definition: _item.body|render
+  }]) %}
+{% endfor %}
+
+<h2 class=" ecl-u-pb-m ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mv-none">{{ label }}</h2>
+{% include '@ecl-twig/description-list' with {
+  'variant': 'horizontal',
+  'items': _items,
+} %}

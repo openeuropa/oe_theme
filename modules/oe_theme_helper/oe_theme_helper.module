@@ -92,7 +92,7 @@ function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$elemen
 function template_preprocess_oe_theme_helper_in_page_navigation(array &$variables) {
   $variables['title'] = $variables['element']['#title'];
   $variables['entity'] = $variables['element']['#entity'];
-  $variables['items'] = $variables['element']['#items'];
+  $variables['items'] = isset($variables['element']['#items'])? $variables['element']['#items'] : [];
 
   // Process in-page navigation items, assigning them a unique ID.
   foreach ($variables['items'] as $key => $item) {

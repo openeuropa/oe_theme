@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for the Responsible department field template of the Call for tenders content type.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  <span{{ item.attributes.addClass("ecl-u-type-color-blue-100") }}>{{ item.content }}</span>
+  {% if loop.last is same as(false) %} | {% endif %}
+{% endfor %}
