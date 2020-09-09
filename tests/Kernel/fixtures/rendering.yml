@@ -816,27 +816,16 @@
       meta:
         - "Meta 1"
         - "Meta 2"
-      field_list:
-        - label: "Countries"
-          body: "Spain, France, Italy"
-        - label: "Deadline dates"
-          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
-      'article > div .ecl-description-list .ecl-description-list__term': 2
-      'article > div .ecl-description-list .ecl-description-list__definition': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
 - array:
     '#type': pattern
     '#id': list_item
@@ -876,27 +865,16 @@
       meta:
         - "Meta 1"
         - "Meta 2"
-      field_list:
-        - label: "Countries"
-          body: "Spain, France, Italy"
-        - label: "Deadline dates"
-          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 1
       'article.ecl-content-item div.ecl-content-item__image__after': 0
-      'article > div .ecl-description-list .ecl-description-list__term': 2
-      'article > div .ecl-description-list .ecl-description-list__definition': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
 - array:
     '#type': pattern
     '#id': list_item
@@ -911,27 +889,16 @@
       meta:
         - "Meta 1"
         - "Meta 2"
-      field_list:
-        - label: "Countries"
-          body: "Spain, France, Italy"
-        - label: "Deadline dates"
-          body: "1 April 2017 / 1 July 2017"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 1
-      'article > div .ecl-description-list .ecl-description-list__term': 2
-      'article > div .ecl-description-list .ecl-description-list__definition': 2
     equals:
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(1)': "Countries"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Spain, France, Italy"
-      'article > div .ecl-description-list .ecl-description-list__term:nth-child(3)': "Deadline dates"
-      'article > div .ecl-description-list .ecl-description-list__definition:nth-child(4)': "1 April 2017 / 1 July 2017"
 - array:
     '#type': pattern
     '#id': list_item
