@@ -5,10 +5,10 @@
  */
 #}
 
-<span class="ecl-u-ml-lg-m ecl-u-mt-m ecl-u-mt-lg-none">
-  <span>{{ name|upper }}</span>
+<span class="ecl-u-ml-lg ecl-u-mt-s">
+  <span class="ecl-u-mr-xs ecl-u-text-uppercase">{{ name }}</span>
   {% for item in items %}
-    <a href="{{ item.url }}" class="ecl-u-ml-s ecl-tag ecl-tag--removable">
+    <a href="{{ item.url }}" class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mt-s">
       {{ item.label }}
       <span type="button" aria-label="Dismiss" class="ecl-tag__icon">
         {% include '@ecl-twig/icon' with {
