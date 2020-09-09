@@ -174,7 +174,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
 
     // Project teaser description should contain a field list pattern.
     $crawler = new Crawler($html);
-    $html = $crawler->filter('dl.ecl-description-list')->parents()->html();
+    $html = $crawler->filter('div.ecl-content-item__description')->parents()->html();
     $assert = new FieldListAssert();
     $expected_values = [
       'items' => [
