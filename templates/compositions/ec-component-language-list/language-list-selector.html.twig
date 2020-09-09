@@ -47,27 +47,37 @@
   {% endfor %}
 {% endif %}
 
-<div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-  <a class="ecl-link ecl-link--standalone ecl-site-header__selector-link" href="{{ _path }}" data-ecl-language-selector="true">
-    {{- _label -}}
-    <span class="ecl-site-header__language-icon">
-      {% include '@ecl-twig/icon' with {
-        icon: {
-          path: _icon_path,
-          type: 'general',
-          name: 'language'
-        }
-      } only %}
-      <span class="ecl-site-header__language-code">{{ _code }}</span>
-    </span>
-  </a>
-  {% include '@ecl-twig/language-list/language-list' with {
-    items: items,
-    icon_path: _icon_path,
-    overlay: true,
-    title: 'Select your language'|t,
-    close_label: 'Close'|t,
-    extra_attributes: [{ name: 'hidden'}]
-  } only %}
-</div>
+<a
+  class="ecl-link ecl-link--standalone ecl-site-header-core__language-selector"
+  href="{{ _path }}"
+  data-ecl-language-selector
+  aria-controls="language-list-overlay"
+  aria-expanded="false"
+>
+  <span class="ecl-site-header-core__language-icon">
+    {% include '@ecl-twig/icon' with {
+      icon: {
+        path: _icon_path,
+        type: 'general',
+        name: 'language',
+        size: 's'
+      },
+      extra_classes: 'ecl-site-header-core__icon'
+    } only %}
+    <span class="ecl-site-header-core__language-code">{{ _code }}</span>
+  </span>
+  {{- _label -}}
+ </a>
+{% include '@ecl-twig/language-list/language-list' with {
+  items: items,
+  icon_path: _icon_path,
+  overlay: true,
+  title: 'Select your language'|t,
+  close_label: 'Close'|t,
+  extra_attributes: [
+    { name: 'aria-labelledby', value: 'ecl-language-list__title' },
+    { name: 'role', value: 'dialog' },
+    { name: 'hidden' }
+  ]
+} only %}
 {% endspaceless %}

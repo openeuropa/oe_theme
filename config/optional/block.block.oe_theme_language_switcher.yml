@@ -7,8 +7,8 @@ dependencies:
     - oe_theme
 id: oe_theme_language_switcher
 theme: oe_theme
-region: site_header
-weight: 1
+region: site_header_secondary
+weight: -4
 provider: null
 plugin: 'language_block:language_interface'
 settings:

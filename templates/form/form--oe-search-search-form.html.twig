@@ -30,8 +30,8 @@
   label: 'Search'|t,
   extra_classes: 'ecl-search-form__button'
 } %}
-{% set extra_attributes = attributes|to_ecl_attributes %}
-{% set extra_classes = 'ecl-site-header__search' %}
+{% set extra_attributes = attributes|to_ecl_attributes|merge([{'name': 'data-ecl-search-form'}]) %}
+{% set extra_classes = 'ecl-site-header-core__search' %}
 {% extends '@ecl-twig/search-form' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}

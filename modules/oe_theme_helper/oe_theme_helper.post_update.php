@@ -196,3 +196,19 @@ function oe_theme_helper_post_update_20011(): void {
   \Drupal::service('module_installer')->install(['twig_field_value']);
   \Drupal::service('kernel')->invalidateContainer();
 }
+
+/**
+ * Change the region of the language switcher block.
+ */
+function oe_theme_helper_post_update_20012() {
+  $block = Block::load('oe_theme_language_switcher');
+
+  if (!$block) {
+    return t('The oe_theme_language_switcher block was not found.');
+  }
+
+  if ($block->getTheme() == 'oe_theme') {
+    $block->setRegion('site_header_secondary');
+    $block->save();
+  }
+}

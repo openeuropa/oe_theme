@@ -6,4 +6,26 @@
  * @see ./core/themes/stable/templates/block/block.html.twig
  */
 #}
-{% include '@oe_theme/blocks/block--bare.html.twig' %}
+<div class="ecl-site-header-core__search-container">
+  <a
+    class="ecl-link ecl-link--standalone ecl-site-header-core__search-toggle"
+    href=""
+    data-ecl-search-toggle="true"
+    aria-controls="{{ content['#id'] }}"
+    aria-expanded="false"
+  >
+    {%- include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
+      icon: {
+        name: 'search',
+        path: ecl_icon_path,
+        type: 'general',
+        size: 's',
+        extra_attributes: [
+          { name: 'aria-hidden', value: true }
+        ]
+      }
+    } only -%}
+    {{ 'Search'|t }}
+  </a>
+  {{ content }}
+</div>
