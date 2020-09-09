@@ -5,20 +5,13 @@
  */
 #}
 {% set image_url = content.oe_featured_media|field_value|render %}
-{% set image_alt = content.field_image|field_target_entity.alt.value %}
-{% if not node.oe_project_locations.isEmpty() %}
-  {% set field_list = [
-    {
-      'label': 'Project locations'|t,
-      'body': content.oe_project_locations
-    }
-  ] %}
-{% endif %}
 {{ pattern('list_item', {
   'variant': 'thumbnail_secondary',
   'url': url,
   'title': label,
-  'detail': content.oe_teaser|field_value,
-  'field_list': field_list|default([]),
-  'image': image_url ? { 'src': image_url, 'alt': image_alt }
+  'detail': [
+    content.oe_teaser|field_value,
+    content.group_details,
+  ],
+  'image': image_url ? { 'src': image_url }
 }) }}

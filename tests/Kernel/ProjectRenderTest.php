@@ -7,9 +7,11 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity_organisation\Entity\Organisation;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the project rendering.
@@ -166,17 +168,24 @@ class ProjectRenderTest extends ContentRenderTestBase {
         'alt' => '',
       ],
       'date' => NULL,
-      'field_list' => [
-        'items' => [
-          [
-            'label' => 'Project locations',
-            'body' => '1000 Brussels, Belgium',
-          ],
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('thumbnail_secondary', $html);
+
+    // Project teaser description should contain a field list pattern.
+    $crawler = new Crawler($html);
+    $html = $crawler->filter('dl.ecl-description-list')->parents()->html();
+    $assert = new FieldListAssert();
+    $expected_values = [
+      'items' => [
+        [
+          'label' => 'Project locations',
+          'body' => '1000 Brussels, Belgium',
         ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('thumbnail_secondary', $html);
+    $assert->assertVariant('horizontal', $html);
   }
 
 }

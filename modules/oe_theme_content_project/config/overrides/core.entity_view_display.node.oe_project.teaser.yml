@@ -24,11 +24,27 @@ dependencies:
     - field.field.node.oe_project.oe_subject
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
+    - image.style.oe_theme_list_item_2x
     - node.type.oe_project
   module:
+    - field_group
     - oe_theme_helper
     - text
     - user
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - oe_project_locations
+      parent_name: ''
+      weight: 3
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: Details
 id: node.oe_project.teaser
 targetEntityType: node
 bundle: oe_project
@@ -39,7 +55,8 @@ content:
     weight: 2
     region: content
     label: above
-    settings: {  }
+    settings:
+      image_style: oe_theme_list_item_2x
     third_party_settings: {  }
   oe_project_locations:
     type: oe_theme_helper_address_inline

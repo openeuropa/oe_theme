@@ -44,9 +44,6 @@ class ListItemAssert extends BasePatternAssert {
         [$this, 'assertImage'],
         $variant,
       ],
-      'field_list' => [
-        [$this, 'assertFieldList'],
-      ],
     ];
   }
 
@@ -194,26 +191,6 @@ class ListItemAssert extends BasePatternAssert {
       return;
     }
     self::assertEquals($expected, $description_element->filter('p')->html());
-  }
-
-  /**
-   * Asserts the field list of the list item.
-   *
-   * @param array|null $expected
-   *   The expected field list values.
-   * @param \Symfony\Component\DomCrawler\Crawler $crawler
-   *   The DomCrawler where to check the element.
-   */
-  protected function assertFieldList($expected, Crawler $crawler): void {
-    if (!$expected) {
-      $this->assertElementNotExists('dl.ecl-description-list', $crawler);
-      return;
-    }
-    $this->assertElementExists('dl.ecl-description-list', $crawler);
-    $field_list_assert = new FieldListAssert();
-    $field_list_html = $crawler->filter('dl.ecl-description-list')->parents()->html();
-    $field_list_assert->assertPattern($expected, $field_list_html);
-    $field_list_assert->assertVariant('horizontal', $field_list_html);
   }
 
   /**
