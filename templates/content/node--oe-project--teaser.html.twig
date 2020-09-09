@@ -5,6 +5,7 @@
  */
 #}
 {% set image_url = content.oe_featured_media|field_value|render %}
+{% set image_alt = content.field_image|field_target_entity.alt.value %}
 {% if not node.oe_project_locations.isEmpty() %}
   {% set field_list = [
     {
@@ -19,5 +20,5 @@
   'title': label,
   'detail': content.oe_teaser|field_value,
   'field_list': field_list|default([]),
-  'image': image_url ? { 'src': image_url }
+  'image': image_url ? { 'src': image_url, 'alt': image_alt }
 }) }}
