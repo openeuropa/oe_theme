@@ -726,12 +726,16 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
     $language = [
       'path' => $href,
       'label' => $link['link']['#title'],
+      // Pass original language code which can be useful for some other
+      // preprocessors.
+      'hreflang' => $language_code,
       'lang' => $language_internal,
     ];
 
     if ($language_code === $current_language_id) {
       $variables['current_language'] = [
         'path' => $href,
+        'hreflang' => $language_code,
         'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
