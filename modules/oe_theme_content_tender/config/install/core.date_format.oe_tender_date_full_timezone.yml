@@ -4,4 +4,4 @@ dependencies: {  }
 id: oe_tender_date_full_timezone
 label: 'Tender timezone date'
 locked: false
-pattern: 'd F Y, H (T)'
+pattern: 'd F Y, H:i (T)'
