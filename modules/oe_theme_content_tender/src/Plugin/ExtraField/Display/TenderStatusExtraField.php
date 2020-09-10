@@ -4,15 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_tender\Plugin\ExtraField\Display;
 
-use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
+use Drupal\oe_content_tender\TenderNodeWrapper;
+use Drupal\oe_content_tender\TenderNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -32,13 +31,6 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
   use StringTranslationTrait;
 
   /**
-   * Current request time, as a timestamp.
-   *
-   * @var int
-   */
-  protected $requestTime;
-
-  /**
    * Time based cache tag generator service.
    *
    * @var \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface
@@ -54,16 +46,11 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   Time service.
    * @param \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
    *   Time based cache tag generator service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TimeBasedCacheTagGeneratorInterface $cache_tag_generator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->requestTime = $time->getRequestTime();
     $this->cacheTagGenerator = $cache_tag_generator;
   }
 
@@ -75,8 +62,6 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('datetime.time'),
       $container->get('oe_time_caching.time_based_cache_tag_generator')
     );
   }
@@ -92,38 +77,18 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
+    $entity = TenderNodeWrapper::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
-    $now = DrupalDateTime::createFromTimestamp($this->requestTime);
-    $opening_date = FALSE;
-    /** @var \Drupal\Core\Datetime\DrupalDateTime $closing_date */
-    $closing_date = $entity->get('oe_tender_deadline')->date;
-
-    // Get opening date.
-    if (!$entity->get('oe_tender_opening_date')->isEmpty()) {
-      /** @var \Drupal\Core\Datetime\DrupalDateTime $opening_date */
-      $opening_date = $entity->get('oe_tender_opening_date')->date;
-      // Prevent upcoming status when now & opening dates are the same.
-      $opening_date->setTime(0, 0, 0);
+    $status = $entity->getTenderStatus();
+    // Set cache tags based on date.
+    if ($status === TenderNodeWrapperInterface::TENDER_STATUS_UPCOMING) {
+      $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-
-    if (empty($opening_date)) {
-      $status = $this->t('N/A');
+    if ($status === TenderNodeWrapperInterface::TENDER_STATUS_OPEN) {
+      $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
-    elseif ($now < $opening_date) {
-      $status = $this->t('upcoming');
-      // We invalidate the status when the opening date is reached.
-      $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($opening_date->getPhpDateTime()));
-    }
-    elseif ($opening_date < $now && $now < $closing_date) {
-      $status = $this->t('open');
-      // We invalidate the status when the closing date is reached.
-      $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($closing_date->getPhpDateTime()));
-    }
-    elseif ($now > $closing_date) {
-      $status = $this->t('closed');
-    }
-    $build['#markup'] = $status;
+    $build['#markup'] = $entity->getTenderStatusLabel();
     $cacheable->applyTo($build);
 
     return $build;
