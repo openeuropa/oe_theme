@@ -146,8 +146,8 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header .ecl-page-header__meta-list', 'Project');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header .ecl-page-header__description', 'Summary');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Project');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'Summary');
 
     // Assert top region - Project details.
     $project_details = $this->assertSession()->elementExists('css', 'div#project-details');

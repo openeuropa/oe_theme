@@ -8,14 +8,14 @@
 #}
 {% block content %}
   <a
-    class="ecl-link ecl-link--standalone"
+    class="ecl-link ecl-link--standalone ecl-site-header-core__logo-link"
     href="{{ site_logo_href }}"
     aria-label="{{ site_name }}"
   >
     <img
       alt="{{ site_logo_alt }}"
       title="{{ site_name }}"
-      class="ecl-site-header__logo-image"
+      class="ecl-site-header-core__logo-image ecl-site-header-core__logo-image-desktop"
       src="{{ ecl_logo_path ~ '/logo--' ~ current_language_id|to_internal_language_id ~ '.svg'}}"
     />
   </a>
