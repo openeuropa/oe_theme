@@ -18,7 +18,7 @@ class FileAssert extends BasePatternAssert {
     return [
       'button_label' => [
         [$this, 'assertElementText'],
-        'div.ecl-file div.ecl-file__container a.ecl-file__download',
+        'div.ecl-file div.ecl-file__container a.ecl-file__download span.ecl-link__label',
       ],
       'file' => [
         [$this, 'assertFile'],
@@ -51,8 +51,8 @@ class FileAssert extends BasePatternAssert {
     $this->assertElementAttribute($expected_file['url'], 'div.ecl-file div.ecl-file__container a.ecl-file__download', 'href', $crawler);
 
     // Assert icon.
-    $crawler->filter('div.ecl-file div.ecl-file__container svg.ecl-file__icon use');
-    self::assertContains($expected_file['icon'], $crawler->attr('xlink:href'));
+    $icon = $crawler->filter('div.ecl-file div.ecl-file__container svg.ecl-file__icon use');
+    self::assertContains($expected_file['icon'], $icon->attr('xlink:href'));
   }
 
 }

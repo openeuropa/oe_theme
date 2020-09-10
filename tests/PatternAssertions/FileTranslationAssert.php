@@ -31,12 +31,15 @@ class FileTranslationAssert extends FileAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertTranslations(array $expected_translations, Crawler $crawler): void {
+    if (!$expected_translations) {
+      $this->assertElementNotExists('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item', $crawler);
+      return;
+    }
     $translation_file_elements = $crawler->filter('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item');
     self::assertCount(count($expected_translations), $translation_file_elements);
     foreach ($expected_translations as $index => $expected_translation) {
       $this->assertTranslation($expected_translation, $translation_file_elements->eq($index));
     }
-
   }
 
   /**
