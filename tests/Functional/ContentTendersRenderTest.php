@@ -130,7 +130,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $values = $field_list[0]->findAll('css', 'dd.ecl-description-list__definition');
     $this->assertCount(6, $values);
     $values_data = [
-      'open',
+      'Open',
       'Call for tenders reference',
       '15 April 2020',
       '30 April 2020',
@@ -158,7 +158,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_tender_opening_date', ['value' => date('Y') + 1 . '-05-31']);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'upcoming');
+    $this->assertStatusValue($content, 'Upcoming');
     $this->assertOpeningDateValue($content, '31 May 2021');
     $this->assertDeadlineDateValue($content, '11 June 2021, 09:30 (AEST)');
 
@@ -167,7 +167,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_tender_deadline', ['value' => '2020-05-31T23:30:00']);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'closed');
+    $this->assertStatusValue($content, 'Closed');
     $this->assertOpeningDateValue($content, '31 May 2020');
     $this->assertDeadlineDateValue($content, '01 June 2020, 09:30 (AEST)', TRUE);
 
