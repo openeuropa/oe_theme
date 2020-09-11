@@ -5,6 +5,9 @@
     @include ecl-media-breakpoint-up('md') {
       width: 180px;
     }
+    @include ecl-media-breakpoint-up('lg') {
+      width: 220px;
+    }
   }
   &__meta {
     text-transform: uppercase;
@@ -12,6 +15,25 @@
   &__description {
     p {
       margin: 0;
+    }
+  }
+}
+
+.ecl-content-item {
+  &__image__before {
+    @include ecl-media-breakpoint-up('md') {
+      margin-right: $ecl-spacing-l;
+    }
+    @include ecl-media-breakpoint-up('lg') {
+      margin-right: $ecl-spacing-xl;
+    }
+  }
+  &__image__after {
+    @include ecl-media-breakpoint-up('md') {
+      margin-left: $ecl-spacing-l;
+    }
+    @include ecl-media-breakpoint-up('lg') {
+      margin-left: $ecl-spacing-xl;
     }
   }
 }
