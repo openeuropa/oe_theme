@@ -1,0 +1,17 @@
+.ecl-content-item-date,
+.ecl-content-item {
+  .ecl-media-container {
+    background-color: transparent;
+    @include ecl-media-breakpoint-up('md') {
+      width: 180px;
+    }
+  }
+  &__meta {
+    text-transform: uppercase;
+  }
+  &__description {
+    p {
+      margin: 0;
+    }
+  }
+}
