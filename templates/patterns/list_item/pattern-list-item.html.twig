@@ -14,29 +14,19 @@
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
 #}
 
-{# Create macro #}
-
-{% macro image(src, alt, position) %}
-<div role="img"
-     aria-label="{{ alt }}"
-     class="ecl-u-ratio-3-2
+<article class="ecl-content-item ecl-u-d-md-flex ecl-u-pb-m">
+  <figure class="ecl-media-container
+      ecl-u-bg-default
       ecl-u-flex-shrink-0
-      ecl-u-d-lg-block
-      ecl-content-item__image__{{ position }}
-      ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-sm-l
-      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-l
-      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-sm-none"
-     style="background-image: url('{{ src }}');
-       background-size: cover;
-       height:8.75rem;
-       width:13.125rem"
-></div>
-{% endmacro %}
-
-<article class="ecl-content-item ecl-u-d-sm-flex ecl-u-pb-m">
-  {% if image and image_position == 'before' %}
-    {{ _self.image(image.src, image.alt, image_position) }}
-  {% endif %}
+      ecl-u-order-first
+      ecl-u-order-md-{{ image_position == 'before' ? 'first' : 'last' }}
+      ecl-u-{{ image_position == 'before' ? 'mr' : 'ml' }}-md-l
+      ecl-content-item__image__{{ image_position }}
+      ecl-u-mb-m
+      ecl-u-mb-md-none"
+  >
+    <img class="ecl-media-container__media" src="{{ image.src }}" alt="{{ image.alt }}" />
+  </figure>
   <div class="ecl-u-flex-grow-1">
     {% if meta is not empty %}
       <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-s">{{ meta|safe_join(" | ") }}</div>
@@ -63,8 +53,5 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% if image and image_position == 'after' %}
-    {{ _self.image(image.src, image.alt, image_position) }}
-  {% endif %}
 </article>
 {% endspaceless %}
