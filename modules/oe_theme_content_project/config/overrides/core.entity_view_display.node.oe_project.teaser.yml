@@ -24,7 +24,7 @@ dependencies:
     - field.field.node.oe_project.oe_subject
     - field.field.node.oe_project.oe_summary
     - field.field.node.oe_project.oe_teaser
-    - image.style.oe_theme_list_item_2x
+    - image.style.oe_theme_ratio_3_2_medium
     - node.type.oe_project
   module:
     - field_group
@@ -51,12 +51,13 @@ bundle: oe_project
 mode: teaser
 content:
   oe_featured_media:
-    type: oe_theme_helper_featured_media_thumbnail_url_formatter
+    type: oe_theme_helper_featured_media_thumbnail_formatter
     weight: 2
     region: content
     label: above
     settings:
-      image_style: oe_theme_list_item_2x
+      image_style: oe_theme_ratio_3_2_medium
+      image_link: ''
     third_party_settings: {  }
   oe_project_locations:
     type: oe_theme_helper_address_inline

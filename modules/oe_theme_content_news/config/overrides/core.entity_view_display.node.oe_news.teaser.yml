@@ -12,11 +12,11 @@ dependencies:
     - field.field.node.oe_news.oe_subject
     - field.field.node.oe_news.oe_summary
     - field.field.node.oe_news.oe_teaser
-    - image.style.oe_theme_list_item_2x
+    - image.style.oe_theme_ratio_3_2_medium
     - node.type.oe_news
   module:
     - datetime
-    - oe_theme_helper
+    - media
     - text
     - user
 id: node.oe_news.teaser
@@ -30,12 +30,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   oe_news_featured_media:
-    type: oe_theme_helper_media_thumbnail_url
+    type: media_thumbnail
     weight: 2
     region: content
     label: hidden
     settings:
-      image_style: oe_theme_list_item_2x
+      image_style: oe_theme_ratio_3_2_medium
+      image_link: ''
     third_party_settings: {  }
   oe_publication_date:
     type: datetime_default
