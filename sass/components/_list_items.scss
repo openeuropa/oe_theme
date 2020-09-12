@@ -1,4 +1,3 @@
-.list-item-date,
 .list-item {
   margin-bottom: $ecl-spacing-l;
   &__title {
@@ -6,6 +5,21 @@
     margin-top: 0;
     margin-bottom: $ecl-spacing-xs;
   }
+  &__meta {
+    @extend .ecl-u-type-s;
+    @extend .ecl-u-type-color-grey-75;
+    margin-bottom: $ecl-spacing-xs;
+    text-transform: uppercase;
+  }
+  &__description {
+    @extend .ecl-u-type-color-grey-100;
+    font: $ecl-font-prolonged-m;
+    p {
+      margin: 0;
+    }
+  }
+}
+.list-item {
   &__image {
     @extend .ecl-media-container;
     margin-bottom: $ecl-spacing-m;
@@ -20,36 +34,30 @@
     @include ecl-media-breakpoint-up("lg") {
       width: 220px;
     }
-  }
-  &__meta {
-    @extend .ecl-u-type-s;
-    @extend .ecl-u-type-color-grey-75;
-    margin-bottom: $ecl-spacing-xs;
-    text-transform: uppercase;
-  }
-  &__description {
-    @extend .ecl-u-type-paragraph;
-    @extend .ecl-u-type-color-grey-100;
-    p {
-      margin: 0;
+    &__before {
+      @include ecl-media-breakpoint-up("md") {
+        margin-right: $ecl-spacing-l;
+      }
+      @include ecl-media-breakpoint-up("lg") {
+        margin-right: $ecl-spacing-l;
+      }
+    }
+    &__after {
+      @include ecl-media-breakpoint-up("md") {
+        margin-left: $ecl-spacing-l;
+      }
+      @include ecl-media-breakpoint-up("lg") {
+        margin-left: $ecl-spacing-l;
+      }
     }
   }
-}
-.list-item {
-  &__image__before {
+  &__date {
     @include ecl-media-breakpoint-up("md") {
       margin-right: $ecl-spacing-l;
     }
     @include ecl-media-breakpoint-up("lg") {
-      margin-right: $ecl-spacing-xl;
-    }
-  }
-  &__image__after {
-    @include ecl-media-breakpoint-up("md") {
-      margin-left: $ecl-spacing-l;
-    }
-    @include ecl-media-breakpoint-up("lg") {
-      margin-left: $ecl-spacing-xl;
+      margin-right: $ecl-spacing-l;
     }
   }
 }
+

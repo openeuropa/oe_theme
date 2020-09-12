@@ -12,8 +12,10 @@
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
 #}
 {% extends '@oe_theme/patterns/list_item/pattern-list-item.html.twig' %}
-{% block secondary %}
-  <div class="list-item-date__date ecl-u-flex-grow-0 ecl-u-mr-m">
+{# Main content block. #}
+{% block content %}
+<article class="list-item ecl-u-d-flex">
+  <div class="list-item__date ecl-u-flex-grow-0">
     {% include '@oe_theme/compositions/ec-component-date-block/date-block.html.twig' with {
       variant: variant|replace({'_':'-'})|to_date_status,
       week_day: date.week_day,
@@ -24,4 +26,9 @@
       year: date.year
     } only %}
   </div>
+  {# Primary block. #}
+  {% block primary %}
+    {{ parent() }}
+  {% endblock %}
+</article>
 {% endblock %}

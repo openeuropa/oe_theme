@@ -4,12 +4,30 @@
  * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
-{% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
-  title: title,
-  url: url,
-  detail: detail,
-  image: image,
-  image_position: 'before',
-  additional_information: additional_information,
-  meta: meta
-} only %}
+{% extends '@oe_theme/patterns/list_item/pattern-list-item.html.twig' %}
+{# In order to keep backward compatibility, we convert the deprecated input hash into an image tag. #}
+{% if image.src is not empty %}
+  {% set image %}
+    <img src="image.src"{{ img.alt ? ' alt="' + img.alt + '"' }}/>
+  {% endset %}
+{% endif %}
+
+{# Main content block. #}
+{% block content %}
+  <article class="list-item list-item__thumbnail_primary ecl-u-d-flex">
+    {# Seconday block. #}
+    {% block secondary %}
+      <div class="list-item__image list-item__image__before ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-first">
+        {% if url %}
+          <a href="{{ url }}"{{ url|is_external_url ? ' target="_blank"' }}>{{ image }}</a>
+        {% else %}
+          {{ image }}
+        {% endif %}
+      </div>
+    {% endblock %}
+    {# Primary block. #}
+    {% block primary %}
+      {{ parent() }}
+    {% endblock %}
+  </article>
+{% endblock %}

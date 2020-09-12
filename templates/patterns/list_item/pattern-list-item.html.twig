@@ -13,24 +13,10 @@
     - "length" (int) (default: 0): Max length of detail field.
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
 #}
-{# In order to keep the pattern's backward compatibility, we conver the deprecated input hash into an image tag. #}
-{% if image.src is not empty %}
-  {% set image %}
-  <img src="image.src"{{ img.alt ? ' alt="' + img.alt + '"' }}/>
-  {% endset %}
-{% endif %}
+{# Main content block. #}
+{% block content %}
 <article class="list-item ecl-u-d-md-flex">
-  {# Seconday information block. #}
-  {% block secondary %}
-    <div class="list-item__image list-item__image__{{ image_position }} ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-{{ image_position == 'before' ? 'first' : 'last' }}">
-      {% if url %}
-        <a href="{{ url }}"{{ url|is_external_url ? ' target="_blank"' }}>{{ image }}</a>
-      {% else %}
-        {{ image }}
-      {% endif %}
-    </div>
-  {% endblock %}
-  {# Primary information block. #}
+  {# Primary block. #}
   {% block primary %}
     <div class="ecl-u-flex-grow-1">
       {% if meta is not empty %}
@@ -54,4 +40,5 @@
     </div>
   {% endblock %}
 </article>
+{% endblock %}
 {% endspaceless %}
