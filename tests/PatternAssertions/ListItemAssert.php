@@ -94,11 +94,11 @@ class ListItemAssert extends BasePatternAssert {
     }
 
     // Check whether it is a primary or secondaty thumbnail.
-    $primary_thumbnail = $crawler->filter('div.ecl-content-item__image__before');
+    $primary_thumbnail = $crawler->filter('div.list-item__image__before');
     if ($primary_thumbnail->count()) {
       return 'thumbnail_primary';
     }
-    $primary_secondary = $crawler->filter('div.ecl-content-item__image__after');
+    $primary_secondary = $crawler->filter('div.list-item__image__after');
     if ($primary_secondary->count()) {
       return 'thumbnail_secondary';
     }
@@ -134,7 +134,7 @@ class ListItemAssert extends BasePatternAssert {
         $variant_class = 'ecl-date-block--canceled';
         break;
     }
-    $date_block_selector = 'div.ecl-content-item-date__date time.' . $variant_class;
+    $date_block_selector = 'div.list-item__date time.' . $variant_class;
     if (!$expected_date) {
       $this->assertElementNotExists($date_block_selector, $crawler);
       return;
@@ -159,7 +159,7 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertImage($expected_image, string $variant, Crawler $crawler): void {
-    $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
+    $variant_class = $variant === 'thumbnail_primary' ? 'list-item__image__before' : 'list-item__image__after';
     $image_div_selector = 'div.' . $variant_class;
     if (!$expected_image) {
       $this->assertElementNotExists($image_div_selector, $crawler);
@@ -203,10 +203,9 @@ class ListItemAssert extends BasePatternAssert {
    *   The base selector for the variant.
    */
   protected function getBaseItemClass(string $variant): string {
-    if (strpos($variant, 'date') !== FALSE) {
-      return '.ecl-content-item-date';
-    }
-    return '.ecl-content-item';
+    // This method will be expanded as soon as this assert class will cover
+    // other variants, such as 'block'.
+    return '.list-item';
   }
 
 }

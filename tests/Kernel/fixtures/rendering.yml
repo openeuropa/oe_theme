@@ -708,14 +708,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -728,14 +728,14 @@
         - "Meta 1"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item..."
+      'article.list-item div.list-item__meta': "Meta 1"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -754,19 +754,19 @@
                 body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
-      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
-      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
-      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
+      'div.list-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.list-item__additional_information .ecl-description-list__term': 2
+      'div.list-item__additional_information .ecl-description-list__definition': 2
     equals:
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -781,14 +781,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail. It...</div>"
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "<div>This is the detail. It...</div>"
 - array:
     '#type': pattern
     '#id': list_item
@@ -803,14 +803,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -825,14 +825,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '&lt;div&gt;This is the detail...'
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': '&lt;div&gt;This is the detail...'
 - array:
     '#type': pattern
     '#id': list_item
@@ -849,14 +849,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -873,15 +873,15 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
       'article > div .ecl-description-list': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -898,14 +898,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
-      'article.ecl-content-item div.ecl-content-item__image__before': 1
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div.list-item__image img[alt="Alternate text for primary image"]': 1
+      'article.list-item div.list-item__image__before': 1
+      'article.list-item div.list-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -922,33 +922,14 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 1
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div.list-item__image img[alt="Alternate text for secondary image"]': 1
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
-- array:
-    '#type': pattern
-    '#id': list_item
-    '#variant': "highlight"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      image:
-        src: "http://via.placeholder.com/300x300"
-        alt: "Alternate text for secondary image"
-  assertions:
-    count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
-      article.ecl-card div.ecl-card__body div.ecl-card__description: 0
-    equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      'article.list-item div.list-item__meta': "Meta 1 | Meta 2"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -984,16 +965,16 @@
         - "6 July 2015"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div.list-item__date': 1
+      'article.list-item div.list-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'article.list-item div.list-item__meta': "News article | 6 July 2015"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item text"
+      'article.list-item div.list-item__date span.ecl-date-block__day': '14'
+      'article.list-item div.list-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.list-item div.list-item__date span.ecl-date-block__year': '2021'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1023,23 +1004,23 @@
                 body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
-      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
-      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
-      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div.list-item__date': 1
+      'article.list-item div.list-item__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.list-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.list-item__additional_information .ecl-description-list__term': 2
+      'div.list-item__additional_information .ecl-description-list__definition': 2
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'article.list-item div.list-item__meta': "News article | 6 July 2015"
+      'article.list-item h3.list-item__title .ecl-link': "Item title"
+      'article.list-item div.list-item__description': "Item text"
+      'article.list-item div.list-item__date span.ecl-date-block__day': '14'
+      'article.list-item div.list-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.list-item div.list-item__date span.ecl-date-block__year': '2021'
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.list-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1084,23 +1065,6 @@
       'time.ecl-date-block.ecl-date-block--past': 1
 - array:
     '#type': pattern
-    '#id': list_item
-    '#variant': "navigation"
-    '#fields':
-      title: "Item title"
-      url: "http://example.com"
-      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-  assertions:
-    count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
-    equals:
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-- array:
-    '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
       title: "Block title"
@@ -1120,15 +1084,15 @@
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.list-item': 1
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': "View all"
 - array:
     '#type': pattern
@@ -1150,14 +1114,14 @@
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.list-item': 1
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': "View all"
 - array:
     '#type': pattern
@@ -1178,15 +1142,15 @@
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.list-item': 1
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
       'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1205,14 +1169,14 @@
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-12 article.list-item': 1
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_two_columns
@@ -1235,15 +1199,15 @@
       'div.ecl-content-item-block__item': 2
       'div.ecl-content-item-block__item.ecl-col-md-6': 2
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 2
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 2
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.list-item h3.list-item__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.list-item div.list-item__description': "Description for list item 2."
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -1271,17 +1235,17 @@
       'div.ecl-content-item-block__item': 3
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 3
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-md-6 article.list-item': 0
+      'div.ecl-content-item-block__item.ecl-col-md-4 article.list-item': 3
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__title': "List item 3"
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__description': "Description for list item 3."
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item h3.list-item__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.list-item div.list-item__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.list-item h3.list-item__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.list-item div.list-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(3) article.list-item h3.list-item__title': "List item 3"
+      'div.ecl-content-item-block__item:nth-child(3) article.list-item div.list-item__description': "Description for list item 3."
 - array:
     '#type': pattern
     '#id': list_item_block_four_columns
