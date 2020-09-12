@@ -152,6 +152,11 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
     $suggestions[] = 'field__' . $element['#entity_type'] . '__' . $element['#field_name'] . '__' . $element['#view_mode'];
     $suggestions[] = 'field__' . $element['#entity_type'] . '__' . $element['#field_name'] . '__' . $element['#bundle'] . '__' . $element['#view_mode'];
   }
+
+  // Generate formatter-specific suggestions.
+  foreach ($suggestions as $key => $suggestion) {
+    $suggestions[] = $suggestion . '__formatter__' . $element['#formatter'];
+  }
 }
 
 /**
