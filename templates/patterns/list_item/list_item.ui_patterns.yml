@@ -37,7 +37,7 @@ list_item:
       type: "Url"
       label: "URL"
       description: "List item link URL (A Drupal Url object)"
-      preview: "#"
+      preview: "http://example.com"
     title:
       type: "text"
       label: "Title"
@@ -84,9 +84,9 @@ list_item:
         end: 1546250400
         timezone: "Europe/Brussels"
     image:
-      type: "array"
+      type: "renderable"
       label: "Primary image"
-      description: "Attributes of the image to render"
+      description: "The image provided as the actual <img> tag. It accepts a Drupal renderable array or any other renderable markup. To keep backwards compatibility it also accepts an array with the following keys: 'src', 'alt'."
       preview:
-        src: "https://placeimg.com/1200/900/arch"
-        alt: "Alternative text for image"
+        '#theme': "image"
+        '#uri': "http://lorempixel.com/800/600/city/2"

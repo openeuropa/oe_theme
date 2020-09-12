@@ -1,14 +1,12 @@
-@import '@ecl/eu-theme-default/exports/all';
-@import '@ecl/eu-theme-default/exports/colors';
-@import '@ecl/eu-theme-default/exports/colors-bg';
-@import '@ecl/eu-theme-default/exports/spacing';
-@import '@ecl/eu-utility-border/eu-utility-border';
-@import '@ecl/ec-utility-background/ec-utility-background';
-@import '@ecl/eu-component-form-help-block/eu-component-form-help-block';
-// Facts and Figure component is missing from EU family so we add it here.
-// @todo remove this after the above will be fixed upstream.
-@import '@ecl/ec-component-fact-figures/ec-component-fact-figures';
-@import '@ecl/ec-component-media-container/ec-component-media-container';
+@import "@ecl/eu-theme-default/exports/all";
+@import "@ecl/eu-theme-default/exports/colors";
+@import "@ecl/eu-theme-default/exports/colors-bg";
+@import "@ecl/eu-theme-default/exports/spacing";
+@import "@ecl/eu-utility-border/eu-utility-border";
+@import "@ecl/eu-utility-background/eu-utility-background";
+@import "@ecl/eu-utility-typography/eu-utility-typography";
+@import "@ecl/eu-component-form-help-block/eu-component-form-help-block";
+@import "@ecl/eu-component-media-container/eu-component-media-container";
 @import "./components/form";
 @import "./components/toolbar";
 @import "./components/banner";
