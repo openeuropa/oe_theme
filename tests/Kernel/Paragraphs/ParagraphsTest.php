@@ -329,15 +329,16 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(1, $crawler->filter('article.list-item > div'));
+    $this->assertCount(2, $crawler->filter('article.list-item > div'));
 
     // No images should be rendered in this variant.
     $this->assertCount(0, $crawler->filter('article.list-item > div.list-item__image img'));
     $this->assertCount(0, $crawler->filter('article.list-item > div.list-item__image__before'));
     $this->assertCount(0, $crawler->filter('article.list-item > div.list-item__image__after'));
 
-    // Neither the metas.
-    $this->assertCount(0, $crawler->filter('article.list-item div.list-item__meta'));
+    // Metas should be shown.
+    $this->assertCount(1, $crawler->filter('article.list-item div.list-item__meta'));
+    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.list-item div.list-item__meta')->text()));
 
     // Change the variant to date.
     $paragraph->get('oe_paragraphs_variant')->setValue('date');
