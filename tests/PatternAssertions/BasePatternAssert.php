@@ -93,7 +93,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, $element->attr($attribute));
+    self::assertEquals($expected, $element->attr($attribute), "Attribute of element with selector '{$selector}' does match expected value.");
   }
 
   /**
@@ -113,7 +113,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, $element->text());
+    self::assertEquals($expected, $element->text(), "Text of element with selector '{$selector}' does match expected value.");
   }
 
   /**
@@ -133,7 +133,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, $element->html());
+    self::assertEquals($expected, $element->html(), "Element with selector '{$selector}' does match expected value.");
   }
 
   /**
@@ -146,7 +146,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(1, $element);
+    self::assertCount(1, $element, "Element with selector '{$selector}' does not exits.");
   }
 
   /**
@@ -159,7 +159,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementNotExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(0, $element);
+    self::assertCount(0, $element, "Element with selector '{$selector}' does exits but is should not.");
   }
 
 }

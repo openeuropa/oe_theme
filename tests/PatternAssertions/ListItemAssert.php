@@ -17,20 +17,20 @@ class ListItemAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getAssertions($variant): array {
-    $base_selector = 'div' . $this->getBaseItemClass($variant);
+    $base_selector = $this->getBaseItemClass($variant);
     return [
       'title' => [
         [$this, 'assertElementText'],
-        $base_selector . '__title',
+        'h3' . $base_selector . '__title',
       ],
       'url' => [
         [$this, 'assertElementAttribute'],
-        $base_selector . '__title a.ecl-link.ecl-link--standalone',
+        'h3' . $base_selector . '__title a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'meta' => [
         [$this, 'assertElementText'],
-        $base_selector . '__meta',
+        'div' . $base_selector . '__meta',
       ],
       'date' => [
         [$this, 'assertDate'],
@@ -38,7 +38,7 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertDescription'],
-        $base_selector . '__description',
+        'div' . $base_selector . '__description',
       ],
       'image' => [
         [$this, 'assertImage'],
