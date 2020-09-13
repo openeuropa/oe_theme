@@ -5,24 +5,5 @@
  */
 #}
 {% extends '@oe_theme/patterns/list_item/pattern-list-item--variant-thumbnail-primary.html.twig' %}
-{# Main content block. #}
-{% block content %}
-  <article class="list-item list-item__thumbnail_secondary ecl-u-d-flex">
-    {# Seconday block. #}
-    {% block secondary %}
-      {% if image %}
-        <div class="list-item__image list-item__image__after ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-last">
-          {% if url %}
-            <a href="{{ url }}">{{ image }}</a>
-          {% else %}
-            {{ image }}
-          {% endif %}
-        </div>
-      {% endif %}
-    {% endblock %}
-    {# Primary block. #}
-    {% block primary %}
-      {{ parent() }}
-    {% endblock %}
-  </article>
-{% endblock %}
+{% set list_item_classes = 'list-item__thumbnail_secondary' %}
+{% set image_classes = 'list-item__image__after ecl-u-order-md-last' %}

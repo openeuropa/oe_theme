@@ -160,15 +160,15 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertImage($expected_image, string $variant, Crawler $crawler): void {
     $variant_class = $variant === 'thumbnail_primary' ? 'list-item__image__before' : 'list-item__image__after';
-    $image_div_selector = 'div.' . $variant_class;
+    $image_selector = 'div.list-item__image.' . $variant_class . ' img';
     if (!$expected_image) {
-      $this->assertElementNotExists($image_div_selector, $crawler);
+      $this->assertElementNotExists($image_selector, $crawler);
       return;
     }
-    $this->assertElementExists($image_div_selector, $crawler);
-    $image_div = $crawler->filter($image_div_selector);
-    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($expected_image['src'], $image_div->attr('style'));
+    $this->assertElementExists($image_selector, $crawler);
+    $image = $crawler->filter($image_selector);
+    self::assertEquals($expected_image['alt'], $image->attr('alt'));
+    self::assertContains($expected_image['src'], $image->attr('src'));
   }
 
   /**
