@@ -18,6 +18,11 @@
       margin: 0;
     }
   }
+  &__navigation {
+    .list-item__title {
+      @extend .ecl-u-type-heading-5;
+    }
+  }
 }
 .list-item {
   &__image {

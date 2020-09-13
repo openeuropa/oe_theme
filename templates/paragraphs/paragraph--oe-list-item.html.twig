@@ -14,13 +14,6 @@
     'title': content.field_oe_title,
     'link': { 'href': url },
   }) }}
-{% elseif variant == 'navigation' %}
-  {# Use list_item pattern as the navigation variant has been deprecated in 2.9.0 #}
-  {{ pattern('list_item', {
-    'url': url,
-    'title': content.field_oe_title,
-    'detail': content.field_oe_text_long,
-  }) }}
 {% else %}
   {{ pattern('list_item', {
     'variant': variant,

@@ -10,6 +10,7 @@
   {% for item in items %}
     <li class="ecl-unordered-list__item ecl-u-pb-none ecl-u-mb-l">
       {{ pattern('list_item', {
+        variant: 'navigation',
         meta: [ label ],
         title: item.content
       }) }}

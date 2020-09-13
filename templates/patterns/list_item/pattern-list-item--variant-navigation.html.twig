@@ -4,4 +4,18 @@
  * Default implementation for the navigation list item component.
  */
 #}
-{# Deprecated pattern variant. Please use 'list_item' pattern, variant 'default'. #}
+<article class="list-item list-item__navigation">
+  {% if meta is not empty %}
+    <div class="list-item__meta">{{ meta|safe_join(" | ") }}</div>
+  {% endif %}
+  <h3 class="list-item__title{{ detail is not empty ? ' ecl-u-mb-s'}}">
+    {% if url %}
+      <a href="{{ url }}" class="ecl-link ecl-link--standalone">{{ title }}</a>
+    {% else %}
+      {{ title }}
+    {% endif %}
+  </h3>
+  {% if detail is not empty %}
+    <div class="list-item__description">{{ detail }}</div>
+  {% endif %}
+</article>

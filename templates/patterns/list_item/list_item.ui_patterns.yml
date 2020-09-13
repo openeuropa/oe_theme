@@ -12,8 +12,8 @@ list_item:
       label: "List item: highlight (deprecated)"
       description: "Deprecated pattern variant. Please use 'featured_item' pattern instead."
     navigation:
-      label: "List item: navigation (deprecated)"
-      description: "Deprecated pattern variant. Please use 'list_item' pattern, variant 'default'."
+      label: "List item: navigation"
+      description: "Navigation list item, contains a linked title, meta and description."
     thumbnail_primary:
       label: "List item: thumbnail "
       description: "Thumbnail list item, contains a primary image, metadata information and a linked title."

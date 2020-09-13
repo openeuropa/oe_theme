@@ -1065,6 +1065,23 @@
       'time.ecl-date-block.ecl-date-block--past': 1
 - array:
     '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+  assertions:
+    count:
+      'article.list-item h3.list-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.list-item div.list-item__image img': 0
+      'article.list-item div.list-item__image__before': 0
+      'article.list-item div.list-item__image__after': 0
+    equals:
+      'article.list-item h3.list-item__title a.ecl-link': "Item title"
+      'article.list-item div.list-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+- array:
+    '#type': pattern
     '#id': list_item_block_one_column
     '#fields':
       title: "Block title"
