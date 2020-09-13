@@ -6,13 +6,30 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{{ pattern('list_item', {
-  'variant': variant,
-  'url': url,
-  'title': content.field_oe_title,
-  'detail': content.field_oe_text_long,
-  'meta': meta,
-  'date': date,
-  'image': image,
-  'secondary_image': image
-}) }}
+{% if variant == 'highlight' %}
+  {# Use featured_item pattern as the highlight variant has been deprecated in 2.9.0 #}
+  {{ pattern('featured_item', {
+    'variant': 'default',
+    'image': image,
+    'title': content.field_oe_title,
+    'link': { 'href': url },
+  }) }}
+{% elseif variant == 'navigation' %}
+  {# Use list_item pattern as the navigation variant has been deprecated in 2.9.0 #}
+  {{ pattern('list_item', {
+    'url': url,
+    'title': content.field_oe_title,
+    'detail': content.field_oe_text_long,
+  }) }}
+{% else %}
+  {{ pattern('list_item', {
+    'variant': variant,
+    'url': url,
+    'title': content.field_oe_title,
+    'detail': content.field_oe_text_long,
+    'meta': meta,
+    'date': date,
+    'image': image,
+    'secondary_image': image
+  }) }}
+{% endif %}

@@ -8,7 +8,7 @@
 {# In order to keep backward compatibility, we convert the deprecated input hash into an image tag. #}
 {% if image.src is not empty %}
   {% set image %}
-    <img src="{{ image.src }}"{{ image.alt ? ' alt="' + image.alt + '"' }}/>
+    <img{{ create_attribute().setAttribute('src', image.src).setAttribute('alt', image.alt) }}/>
   {% endset %}
 {% endif %}
 
@@ -19,7 +19,7 @@
     {% block secondary %}
       <div class="list-item__image list-item__image__before ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-first">
         {% if url %}
-          <a href="{{ url }}"{{ url|is_external_url ? ' target="_blank"' }}>{{ image }}</a>
+          <a href="{{ url }}">{{ image }}</a>
         {% else %}
           {{ image }}
         {% endif %}

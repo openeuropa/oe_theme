@@ -12,7 +12,7 @@
     {% block secondary %}
       <div class="list-item__image list-item__image__after ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-last">
         {% if url %}
-          <a href="{{ url }}"{{ url|is_external_url ? ' target="_blank"' }}>{{ image }}</a>
+          <a href="{{ url }}">{{ image }}</a>
         {% else %}
           {{ image }}
         {% endif %}
