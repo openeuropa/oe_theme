@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -43,6 +44,9 @@ class ListItemAssert extends BasePatternAssert {
       'image' => [
         [$this, 'assertImage'],
         $variant,
+      ],
+      'additional_information' => [
+        [$this, 'assertAdditionalInformation'],
       ],
     ];
   }
@@ -191,6 +195,30 @@ class ListItemAssert extends BasePatternAssert {
       return;
     }
     self::assertEquals($expected, $description_element->filter('p')->html());
+  }
+
+  /**
+   * Asserts the additional information of the list item.
+   *
+   * @param array|null $expected
+   *   The expected additional information items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertAdditionalInformation($expected, Crawler $crawler): void {
+    $additional_information_item_selector = 'div.ecl-content-item__additional_information';
+    if (!$expected) {
+      $this->assertElementNotExists($additional_information_item_selector, $crawler);
+    }
+    $additional_information_items = $crawler->filter($additional_information_item_selector);
+    self::assertCount(count($expected), $additional_information_items);
+    foreach ($expected as $index => $expected_item) {
+      if (!$expected_item instanceof PatternAssertStateInterface) {
+        throw new Exception('All expected additional items must implement PatternAssertStateInterface');
+      }
+      $expected_item->assert($additional_information_items->eq($index)->html());
+
+    }
   }
 
   /**
