@@ -14,7 +14,7 @@
 
 {# Main content block. #}
 {% block content %}
-  <article class="list-item {{ list_item_classes|default('list-item__thumbnail_primary') }} ecl-u-d-flex">
+  <article class="list-item {{ list_item_classes|default('list-item__thumbnail_primary') }} ecl-u-d-md-flex">
     {% if image %}
       <div class="list-item__image {{ image_classes|default('list-item__image__before ecl-u-order-md-first') }} ecl-u-order-first ecl-u-flex-shrink-0">
         {% if url %}

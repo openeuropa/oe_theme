@@ -22,7 +22,7 @@
       {% if meta is not empty %}
         <div class="list-item__meta">{{ meta|safe_join(" | ") }}</div>
       {% endif %}
-      <h3 class="list-item__title">
+      <h3 class="list-item__title{{ detail is not empty ? ' ecl-u-mb-s'}}">
         {% if url %}
           <a href="{{ url }}" class="ecl-link ecl-link--standalone">{{ title }}</a>
         {% else %}

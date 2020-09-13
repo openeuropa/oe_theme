@@ -3,7 +3,7 @@
   &__title {
     @extend .ecl-u-type-heading-4;
     margin-top: 0;
-    margin-bottom: $ecl-spacing-xs;
+    margin-bottom: 0;
   }
   &__meta {
     @extend .ecl-u-type-s;
@@ -38,24 +38,16 @@
       @include ecl-media-breakpoint-up("md") {
         margin-right: $ecl-spacing-l;
       }
-      @include ecl-media-breakpoint-up("lg") {
-        margin-right: $ecl-spacing-l;
-      }
     }
     &__after {
       @include ecl-media-breakpoint-up("md") {
         margin-left: $ecl-spacing-l;
       }
-      @include ecl-media-breakpoint-up("lg") {
-        margin-left: $ecl-spacing-l;
-      }
     }
   }
   &__date {
+    margin-right: $ecl-spacing-m;
     @include ecl-media-breakpoint-up("md") {
-      margin-right: $ecl-spacing-l;
-    }
-    @include ecl-media-breakpoint-up("lg") {
       margin-right: $ecl-spacing-l;
     }
   }
