@@ -10,13 +10,15 @@
   <article class="list-item list-item__thumbnail_secondary ecl-u-d-flex">
     {# Seconday block. #}
     {% block secondary %}
-      <div class="list-item__image list-item__image__after ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-last">
-        {% if url %}
-          <a href="{{ url }}">{{ image }}</a>
-        {% else %}
-          {{ image }}
-        {% endif %}
-      </div>
+      {% if image %}
+        <div class="list-item__image list-item__image__after ecl-u-flex-shrink-0 ecl-u-order-first ecl-u-order-md-last">
+          {% if url %}
+            <a href="{{ url }}">{{ image }}</a>
+          {% else %}
+            {{ image }}
+          {% endif %}
+        </div>
+      {% endif %}
     {% endblock %}
     {# Primary block. #}
     {% block primary %}
