@@ -4,23 +4,12 @@
  * Media container pattern.
  */
 #}
-{% set video_ratio = media.ratio|replace({':': '-'}) %}
-{% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
-{% if video_ratio not in allowed_values %}
-  {% set video_ratio = '16-9' %}
-{% endif %}
-{% if media.image %}
-  {% include '@ecl-twig/media-container' with {
-    'image': media.image.src,
-    'alt': media.image.alt,
-    'description': description,
-  } %}
-{% elseif media.video %}
-  {% include '@ecl-twig/media-container' with {
-    'embedded_media': media.video,
-    'ratio': video_ratio,
-    'description': description,
-    'sources': media.sources,
-    'tracks': media.tracks
-  } %}
-{% endif %}
+{% include '@ecl-twig/media-container' with {
+  'image': media.image.src,
+  'alt': media.image.alt,
+  'embedded_media': media.video,
+  'ratio': media.ratio,
+  'description': description,
+  'sources': media.sources,
+  'tracks': media.tracks
+} %}

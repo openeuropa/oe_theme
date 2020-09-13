@@ -9,12 +9,12 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\MediaValueObject;
 
 /**
- * Test media content pattern rendering.
+ * Test text featured media pattern rendering.
  */
-class MediaContentPatternRenderingTest extends AbstractKernelTestBase {
+class TextMediaRenderingTest extends AbstractKernelTestBase {
 
   /**
-   * Test that media container pattern is correctly rendered.
+   * Test that text featured media pattern is correctly rendered.
    *
    * @param array $media
    *   Media data for the pattern.
@@ -28,10 +28,12 @@ class MediaContentPatternRenderingTest extends AbstractKernelTestBase {
   public function testMediaPattern(array $media, array $assertions) {
     $pattern = [
       '#type' => 'pattern',
-      '#id' => 'media_container',
+      '#id' => 'text_featured_media',
       '#fields' => [
-        'description' => $media['description'],
-        'media' => $media['media'],
+        'caption' => isset($media['caption']) ? $media['caption'] : '',
+        'media' => isset($media['media']) ? $media['media'] : [],
+        'title' => isset($media['title']) ? $media['title'] : '',
+        'text' => isset($media['text']) ? $media['text'] : '',
       ],
     ];
 
@@ -46,7 +48,7 @@ class MediaContentPatternRenderingTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertions.
    */
   public function dataProvider(): array {
-    $data = $this->getFixtureContent('patterns/media_content_pattern.yml');
+    $data = $this->getFixtureContent('patterns/text_featured_media.yml');
     foreach ($data as $key => $value) {
       $media = $data[$key]['media'];
       if (isset($media['media']['image'])) {

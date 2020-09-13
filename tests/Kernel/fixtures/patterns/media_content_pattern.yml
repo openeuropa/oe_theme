@@ -15,7 +15,7 @@
     description: "Caption"
     media:
       video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      ratio: "16-9"
+      ratio: "16:9"
   assertions:
     count:
       'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
@@ -38,13 +38,12 @@
 - media:
     description: "Caption"
     media:
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      ratio: "4-3"
+      video: "<iframe src=\"https://www.youtube.com/embed/UmFFTkjs-O0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
   assertions:
     count:
       'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
-      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe': 1
-      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'figure.ecl-media-container .ecl-media-container__media iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="https://www.youtube.com/embed/UmFFTkjs-O0"]': 1
     equals:
       'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
 

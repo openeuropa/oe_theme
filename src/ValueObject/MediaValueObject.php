@@ -30,14 +30,28 @@ class MediaValueObject extends ValueObjectBase {
   protected $ratio;
 
   /**
-   * Video aspect ratio.
+   * Video aspect ratio allowed values.
+   *
+   * @var array
+   */
+  protected static $allowedValues = ['16-9', '4-3', '3-2', '1-1'];
+
+  /**
+   * Video aspect default ratio.
+   *
+   * @var string
+   */
+  protected static $defaultRatio = '16-9';
+
+  /**
+   * Media resources.
    *
    * @var array
    */
   protected $sources;
 
   /**
-   * Video aspect ratio.
+   * Tracks for videos.
    *
    * @var array
    */
@@ -76,9 +90,9 @@ class MediaValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
+    $ratio = isset($values['ratio']) ? self::validateRatio($values['ratio']) : self::validateRatio('');
     $values += [
       'video' => '',
-      'ratio' => '',
       'sources' => [],
       'tracks' => [],
       'image' => NULL,
@@ -86,7 +100,7 @@ class MediaValueObject extends ValueObjectBase {
 
     return new static(
       $values['video'],
-      $values['ratio'],
+      $values['ratio'] = $ratio,
       $values['sources'],
       $values['tracks'],
       $values['image']
@@ -94,52 +108,52 @@ class MediaValueObject extends ValueObjectBase {
   }
 
   /**
-   * Getter.
+   * Get the video attribute value.
    *
    * @return string
-   *   Property value.
+   *   The video attribute value.
    */
   public function getVideo(): string {
     return $this->video;
   }
 
   /**
-   * Getter.
+   * Get the ratio attribute value.
    *
    * @return string
-   *   Property value.
+   *   Video ratio.
    */
   public function getRatio(): string {
     return $this->ratio;
   }
 
   /**
-   * Getter.
+   * Get the sources attribute value.
    *
    * @return array
-   *   Property value.
+   *   The video sources.
    */
   public function getSources(): array {
     return $this->sources;
   }
 
   /**
-   * Getter.
+   * Get the tracks attribute value.
    *
    * @return array
-   *   Property value.
+   *   Video tracks.
    */
   public function getTracks(): array {
     return $this->tracks;
   }
 
   /**
-   * Getter.
+   * Get the image attribute value.
    *
-   * @return ImageValueObject
-   *   Property value.
+   * @return ImageValueObject|null
+   *   The image object or null.
    */
-  public function getImage() {
+  public function getImage(): ?ImageValueObject {
     return $this->image;
   }
 
@@ -148,7 +162,7 @@ class MediaValueObject extends ValueObjectBase {
    */
   public function getArray(): array {
     return [
-      'embedded_media' => $this->getVideo(),
+      'video' => $this->getVideo(),
       'ratio' => $this->getRatio(),
       'sources' => $this->getSources(),
       'tracks' => $this->getTracks(),
@@ -169,50 +183,49 @@ class MediaValueObject extends ValueObjectBase {
    * @return static
    *   A media value object instance.
    */
-  public static function fromMediaObject(Media $media, string $image_style = '', string $view_mode = '') {
+  public static function fromMediaObject(Media $media, string $image_style = '', string $view_mode = ''): ValueObjectInterface {
     // Get the media source.
     $source = $media->getSource();
     $values = [
       'video' => '',
-      'ratio' => '16-9',
+      'ratio' => '',
       'sources' => [],
       'tracks' => [],
       'image' => NULL,
     ];
+
     if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
       $media_type = \Drupal::service('entity_type.manager')->getStorage('media_type')->load($media->bundle());
-
-      $source = $media->getSource();
       $source_field = $source->getSourceFieldDefinition($media_type);
       $display = EntityViewDisplay::collectRenderDisplay($media, $view_mode);
       $display_options = $display->getComponent($source_field->getName());
-      $oembed_type = $source->getMetadata($media, 'type');
-      // If it is an OEmbed resource, render it and pass it as embeddable data
-      // only if it is of type video or html.
-      if ($source instanceof OEmbed && in_array($oembed_type, ['video', 'html'])) {
-        $values['video'] = $media->{$source_field->getName()}->view($display_options);
-      }
-      else {
-        // If its an AvPortal video or an iframe video, render it.
-        $values['video'] = $media->{$source_field->getName()}->view($display_options);
+      $values['video'] = $media->{$source_field->getName()}->view($display_options);
 
-        // When dealing with iframe videos, also respect its given aspect ratio.
-        if ($media->bundle() === 'video_iframe') {
-          $ratio = $media->get('oe_media_iframe_ratio')->value;
-          $values['ratio'] = str_replace('_', '-', $ratio);
-        }
+      // When dealing with iframe videos, also respect its given aspect ratio.
+      if ($media->bundle() === 'video_iframe') {
+        $ratio = $media->get('oe_media_iframe_ratio')->value;
+        $values['ratio'] = str_replace('_', '-', $ratio);
       }
+      $values['ratio'] = isset($values['ratio']) ? self::validateRatio($values['ratio']) : self::validateRatio('');
       // Render the result.
       $values['video'] = \Drupal::service('renderer')->renderPlain($values['video'])->__toString();
+
+      return new static(
+        $values['video'],
+        $values['ratio'],
+        $values['sources'],
+        $values['tracks'],
+        $values['image']
+      );
+    }
+
+    if ($image_style === '') {
+      $values['image'] = ImageValueObject::fromImageItem($media->get('thumbnail')->first());
     }
     else {
-      if ($image_style === '') {
-        $values['image'] = ImageValueObject::fromImageItem($media->get('thumbnail')->first());
-      }
-      else {
-        $values['image'] = ImageValueObject::fromStyledImageItem($media->get('thumbnail')->first(), $image_style);
-      }
+      $values['image'] = ImageValueObject::fromStyledImageItem($media->get('thumbnail')->first(), $image_style);
     }
+
     return new static(
       $values['video'],
       $values['ratio'],
@@ -220,7 +233,24 @@ class MediaValueObject extends ValueObjectBase {
       $values['tracks'],
       $values['image']
     );
+  }
 
+  /**
+   * Validate and transform aspect ratio.
+   *
+   * @param string $ratio
+   *   The video ratio to validate.
+   *
+   * @return string
+   *   The transformed video ratio.
+   */
+  public static function validateRatio(string $ratio) {
+    $ratio = str_replace('_', '-', $ratio);
+    $ratio = str_replace(':', '-', $ratio);
+    if (!in_array($ratio, self::$allowedValues)) {
+      $ratio = self::$defaultRatio;
+    }
+    return $ratio;
   }
 
 }
