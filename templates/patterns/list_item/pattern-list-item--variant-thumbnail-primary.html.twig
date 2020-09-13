@@ -8,7 +8,7 @@
 {# In order to keep backward compatibility, we convert the deprecated input hash into an image tag. #}
 {% if image.src is not empty %}
   {% set image %}
-    <img src="image.src"{{ img.alt ? ' alt="' + img.alt + '"' }}/>
+    <img src="{{ image.src }}"{{ image.alt ? ' alt="' + image.alt + '"' }}/>
   {% endset %}
 {% endif %}
 

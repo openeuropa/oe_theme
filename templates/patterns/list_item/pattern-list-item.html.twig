@@ -24,7 +24,7 @@
       {% endif %}
       <h3 class="list-item__title">
         {% if url %}
-          <a href="{{ url }}" class="ecl-link"{{ url|is_external_url ? ' target="_blank"' }}>{{ title }}</a>
+          <a href="{{ url }}" class="ecl-link ecl-link--standalone">{{ title }}</a>
         {% else %}
           {{ title }}
         {% endif %}

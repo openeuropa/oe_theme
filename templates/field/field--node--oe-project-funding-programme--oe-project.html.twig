@@ -6,14 +6,11 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% set uppercase_label %}
-  <span class="ecl-u-type-uppercase">{{ label }}</span>
-{% endset %}
 <ul class="ecl-unordered-list ecl-unordered-list--divider">
   {% for item in items %}
     <li class="ecl-unordered-list__item ecl-u-pb-none ecl-u-mb-l">
       {{ pattern('list_item', {
-        meta: [ uppercase_label ],
+        meta: [ label ],
         title: item.content
       }) }}
     </li>
