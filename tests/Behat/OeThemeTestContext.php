@@ -363,4 +363,40 @@ class OeThemeTestContext extends RawDrupalContext {
     }
   }
 
+  /**
+   * Asserts that the mobile logo img tag is printed for eu component library.
+   *
+   * @Then the :language EU mobile logo should be available
+   */
+  public function assertEuMobileLogo(string $language): void {
+    $lang_code = [
+      'Bulgarian' => 'bg',
+      'Czech' => 'cs',
+      'Danish' => 'da',
+      'German' => 'de',
+      'Estonian' => 'et',
+      'Greek' => 'el',
+      'English' => 'en',
+      'Spanish' => 'es',
+      'French' => 'fr',
+      'Irish' => 'ga',
+      'Croatian' => 'hr',
+      'Italian' => 'it',
+      'Latvian' => 'lv',
+      'Lithuanian' => 'lt',
+      'Hungarian' => 'hu',
+      'Maltese' => 'mt',
+      'Dutch' => 'nl',
+      'Polish' => 'pl',
+      'Portuguese' => 'pt',
+      'Romanian' => 'ro',
+      'Slovak' => 'sk',
+      'Slovenian' => 'sl',
+      'Finnish' => 'fi',
+      'Swedish' => 'sv',
+    ];
+    $this->assertSession()->elementExists('css', 'img.ecl-site-header-core__logo-image-mobile');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-core__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
+  }
+
 }
