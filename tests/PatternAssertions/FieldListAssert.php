@@ -16,7 +16,7 @@ class FieldListAssert extends BasePatternAssert {
   /**
    * {@inheritdoc}
    */
-  protected function getAssertions($variant): array {
+  protected function getAssertions(string $variant): array {
     return [
       'items' => [
         [$this, 'assertItems'],
@@ -58,12 +58,10 @@ class FieldListAssert extends BasePatternAssert {
    *
    * @param array $expected_items
    *   The expected item values.
-   * @param string $variant
-   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertItems(array $expected_items, string $variant, Crawler $crawler): void {
+  protected function assertItems(array $expected_items, Crawler $crawler): void {
     // Assert all labels are correct.
     $expected_labels = array_column($expected_items, 'label');
     $label_items = $crawler->filter('dt.ecl-description-list__term');
@@ -79,7 +77,6 @@ class FieldListAssert extends BasePatternAssert {
     foreach ($expected_values as $index => $expected_value) {
       self::assertEquals($expected_value, trim($value_items->eq($index)->text()));
     }
-
   }
 
   /**
