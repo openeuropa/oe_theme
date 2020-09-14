@@ -219,7 +219,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $values[0]->hasLink('Example website');
 
     // Assert documents file.
-    $file_wrapper = $project_details->find('css', 'div.ecl-file');
+    $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
     $this->assertContains('Test document project_document', $file_title->getText());

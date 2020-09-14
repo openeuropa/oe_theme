@@ -64,6 +64,10 @@ field.formatter.settings.oe_theme_helper_featured_media_formatter:
       type: string
       label: 'Image style'
 
+field.formatter.settings.oe_theme_helper_featured_media_thumbnail_url_formatter:
+  type: field.formatter.settings.oe_theme_helper_featured_media_formatter
+  label: 'Featured media thumbnail URL settings'
+
 field.formatter.settings.oe_theme_helper_social_media_icons_list_formatter:
   type: field.formatter.settings.link
   label: 'Social media icons list formatter settings'

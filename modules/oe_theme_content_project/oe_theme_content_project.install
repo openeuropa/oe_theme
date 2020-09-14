@@ -21,12 +21,24 @@ function oe_theme_content_project_install() {
 
   // Override entity view display.
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/overrides');
-  $display = 'core.entity_view_display.node.oe_project.default';
-  $values = $storage->read($display);
-  $config = EntityViewDisplay::load($values['id']);
+  $displays = [
+    'core.entity_view_display.node.oe_project.default',
+    'core.entity_view_display.node.oe_project.teaser',
+  ];
 
-  foreach ($values as $key => $value) {
-    $config->set($key, $value);
+  foreach ($displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityViewDisplay::load($values['id']);
+    if (!$config) {
+      $config = EntityViewDisplay::create($values);
+      $config->save();
+      continue;
+    }
+
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
+    }
+
+    $config->save();
   }
-  $config->save();
 }
