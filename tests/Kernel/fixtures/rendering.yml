@@ -866,6 +866,45 @@
 - array:
     '#type': pattern
     '#id': list_item
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
     '#variant': "thumbnail_primary"
     '#fields':
       title: "Item title"
