@@ -78,7 +78,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Open');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core h1.ecl-page-header-core__title', 'Test Call for tenders node');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'Call for tenders introduction');
 
@@ -139,7 +139,6 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     foreach ($values_data as $index => $value) {
       $this->assertEquals($value, $values[$index]->getText());
     }
-
     $department_value = $values[5]->find('css', 'span.ecl-u-type-color-blue-100');
     $this->assertEquals('Audit Board of the European Communities', $department_value->getText());
 
@@ -154,6 +153,16 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[2], 'Documents', 'documents');
     $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_tenders_document');
 
+    // Assert Responsible department field label.
+    $node->set('oe_departments', [
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Departments', $labels[5]->getText());
+    $this->assertEquals('Audit Board of the European Communities | Associated African States and Madagascar', $values[5]->getText());
+
     // Assert status "Upcoming".
     $node->set('oe_tender_opening_date', ['value' => date('Y') + 1 . '-05-31']);
     $node->save();
@@ -161,6 +170,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertStatusValue($content, 'Upcoming');
     $this->assertOpeningDateValue($content, '31 May 2021');
     $this->assertDeadlineDateValue($content, '11 June 2021, 09:30 (AEST)');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Upcoming');
 
     // Assert status "Closed".
     $node->set('oe_tender_opening_date', ['value' => '2020-05-31']);
@@ -170,12 +180,14 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertStatusValue($content, 'Closed');
     $this->assertOpeningDateValue($content, '31 May 2020');
     $this->assertDeadlineDateValue($content, '01 June 2020, 09:30 (AEST)', TRUE);
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Closed');
 
     // Assert empty status.
     $node->set('oe_tender_opening_date', ['value' => '']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'N/A');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | N/A');
   }
 
   /**
