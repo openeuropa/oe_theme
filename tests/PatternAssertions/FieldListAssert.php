@@ -20,7 +20,6 @@ class FieldListAssert extends BasePatternAssert {
     return [
       'items' => [
         [$this, 'assertItems'],
-        $variant,
       ],
     ];
   }
