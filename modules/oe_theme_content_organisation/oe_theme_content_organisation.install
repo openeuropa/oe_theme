@@ -1,0 +1,37 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Config\FileStorage;
+
+/**
+ * Implements hook_install().
+ */
+function oe_theme_content_organisation_install() {
+  // If we are installing from config, we bail out.
+  if (\Drupal::isConfigSyncing() === TRUE) {
+    return;
+  }
+
+  // Override entity view displays.
+  $config_name = 'core.entity_view_display.node.oe_organisation.default';
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_organisation') . '/config/overrides');
+  $config_values = $storage->read($config_name);
+
+  // Load existing configuration.
+  $config_manager = \Drupal::service('config.manager');
+  $entity_type = $config_manager->getEntityTypeIdByName($config_name);
+  $config_entity_storage = $config_manager
+    ->getEntityTypeManager()
+    ->getStorage($entity_type);
+  $config_entity = $config_entity_storage->load($config_values['id']);
+
+  // Update configuration.
+  $updated_config_entity = $config_entity_storage->updateFromStorageRecord($config_entity, $config_values);
+  $updated_config_entity->save();
+}
