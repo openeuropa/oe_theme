@@ -39,7 +39,6 @@ third_party_settings:
       children:
         - oe_featured_media
         - body
-        - oe_documents
         - group_details
         - group_budget
         - group_resources
@@ -99,7 +98,7 @@ third_party_settings:
         - oe_project_results
         - oe_project_result_files
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: html_element
       region: content
       format_settings:
@@ -118,7 +117,7 @@ third_party_settings:
         - oe_project_coordinators
         - oe_project_participants
       parent_name: ''
-      weight: 3
+      weight: 4
       format_type: html_element
       region: content
       format_settings:
@@ -137,7 +136,7 @@ third_party_settings:
         - oe_project_funding_programme
         - oe_project_calls
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: html_element
       region: content
       format_settings:
@@ -178,7 +177,7 @@ content:
     third_party_settings: {  }
   oe_documents:
     type: entity_reference_entity_view
-    weight: 2
+    weight: 1
     region: content
     label: hidden
     settings:
@@ -218,7 +217,7 @@ content:
     third_party_settings: {  }
   oe_project_contact:
     type: entity_reference_revisions_entity_view
-    weight: 4
+    weight: 5
     region: content
     label: hidden
     settings:
@@ -306,6 +305,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
+  extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
   oe_author: true
