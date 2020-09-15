@@ -43,7 +43,7 @@ class FileAssert extends BasePatternAssert {
   protected function assertFile(array $expected_file, Crawler $crawler): void {
     // Assert information.
     $file_info_element = $crawler->filter('div.ecl-file div.ecl-file__container div.ecl-file__info');
-    $this->assertElementText($expected_file['title'], ' div.ecl-file__title', $file_info_element);
+    $this->assertElementText($expected_file['title'], 'div.ecl-file__title', $file_info_element);
     $this->assertElementText($expected_file['language'], 'div.ecl-file__language', $file_info_element);
     $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_info_element);
 
