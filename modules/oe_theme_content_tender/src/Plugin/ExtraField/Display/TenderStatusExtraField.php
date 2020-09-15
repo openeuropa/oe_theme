@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @ExtraFieldDisplay(
  *   id = "oe_tender_status",
- *   label = @Translation("Call for tender status"),
+ *   label = @Translation("Status"),
  *   bundles = {
  *     "node.oe_tender",
  *   },
@@ -88,7 +88,11 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
     if ($status === TenderNodeWrapperInterface::STATUS_OPEN) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
-    $build['#markup'] = $entity->getStatusLabel();
+    $build = [
+      '#theme' => 'oe_theme_content_tender_status',
+      '#label' => $entity->getStatusLabel(),
+      '#name' => $status,
+    ];
     $cacheable->applyTo($build);
 
     return $build;

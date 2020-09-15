@@ -41,7 +41,7 @@ targetEntityType: node
 bundle: oe_tender
 mode: teaser
 content:
-  extra_field_oe_tender_status:
+  extra_field_oe_tender_label_status:
     weight: 0
     region: content
     settings: {  }
@@ -90,6 +90,7 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
+  extra_field_oe_tender_status: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
