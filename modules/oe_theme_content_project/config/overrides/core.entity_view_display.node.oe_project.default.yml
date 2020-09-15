@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.node.oe_project.body
-    - field.field.node.oe_project.oe_author
     - field.field.node.oe_project.oe_departments
     - field.field.node.oe_project.oe_documents
     - field.field.node.oe_project.oe_featured_media
@@ -32,7 +31,6 @@ dependencies:
     - oe_theme_helper
     - rdf_skos
     - text
-    - user
 third_party_settings:
   field_group:
     group_top:

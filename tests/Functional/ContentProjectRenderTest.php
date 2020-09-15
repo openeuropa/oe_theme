@@ -127,7 +127,6 @@ class ContentProjectRenderTest extends BrowserTestBase {
         ],
       ],
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'oe_project_funding_programme' => 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020',
       'oe_project_coordinators' => [$coordinator_organisation],
