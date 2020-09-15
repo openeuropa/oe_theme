@@ -15,11 +15,11 @@ use Drupal\oe_content_tender\TenderNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display Call for tenders status.
+ * Display call for tender status.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_tender_status",
- *   label = @Translation("Call for tenders status"),
+ *   label = @Translation("Call for tender status"),
  *   bundles = {
  *     "node.oe_tender",
  *   },
@@ -80,15 +80,15 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
     $entity = TenderNodeWrapper::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
-    $status = $entity->getTenderStatus();
+    $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === TenderNodeWrapperInterface::TENDER_STATUS_UPCOMING) {
+    if ($status === TenderNodeWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === TenderNodeWrapperInterface::TENDER_STATUS_OPEN) {
+    if ($status === TenderNodeWrapperInterface::STATUS_OPEN) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
-    $build['#markup'] = $entity->getTenderStatusLabel();
+    $build['#markup'] = $entity->getStatusLabel();
     $cacheable->applyTo($build);
 
     return $build;

@@ -7,6 +7,6 @@
  */
 #}
 {% for item in items %}
-  <span{{ item.attributes.addClass("ecl-u-type-color-blue-100") }}>{{ item.content }}</span>
-  {% if loop.last is same as(false) %} | {% endif %}
+  {{ item.content }}
+  {% if not loop.last %} | {% endif %}
 {% endfor %}

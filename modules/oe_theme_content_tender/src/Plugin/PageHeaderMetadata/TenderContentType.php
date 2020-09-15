@@ -9,7 +9,7 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Drupal\oe_content_tender\TenderNodeWrapper;
 
 /**
- * Page header metadata for the OpenEuropa Project content entity.
+ * Page header metadata for the OpenEuropa Call for tender content type.
  *
  * @PageHeaderMetadata(
  *   id = "oe_tender_content_type",
@@ -54,9 +54,10 @@ class TenderContentType extends NodeViewRoutesBase {
       ];
     }
     $node = TenderNodeWrapper::getInstance($node);
-    $status = $node->getTenderStatusLabel();
+    $status = $node->getStatusLabel();
     $metadata['metas'] = [
-      sprintf('%s | %s', $this->t('Call for tenders'), $status),
+      $this->t('Call for tenders'),
+      $status,
     ];
     return $metadata;
   }

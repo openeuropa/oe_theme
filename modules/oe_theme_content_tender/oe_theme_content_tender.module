@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\oe_content_tender\TenderNodeWrapper;
+
 /**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
@@ -42,12 +43,10 @@ function oe_theme_content_tender_node_view_alter(array &$build, EntityInterface 
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_content_tender_preprocess_field(&$variables, $hook) {
-  if ($variables['field_name'] == 'oe_tender_deadline') {
-    $node = TenderNodeWrapper::getInstance($variables['element']['#object']);
-    if ($node->isClosed()) {
-      // Cross out closed tender.
-      $variables['attributes']['class'] = ['ecl-u-type-strike'];
-    }
+function oe_theme_content_tender_preprocess_field__node__oe_tender_deadline__full(&$variables, $hook) {
+  $node = TenderNodeWrapper::getInstance($variables['element']['#object']);
+  if ($node->isClosed()) {
+    // Cross out closed tender.
+    $variables['attributes']['class'] = ['ecl-u-type-strike'];
   }
 }

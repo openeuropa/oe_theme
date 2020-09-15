@@ -10,7 +10,7 @@ use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
 /**
- * Tests that our Call for tender (oe_tender) content type render.
+ * Tests that Call for tender content type renders correctly.
  */
 class ContentTendersRenderTest extends ContentRenderTestBase {
 
@@ -45,7 +45,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     // Create a document for Tender documents.
     $media_document = $this->createMediaDocument('call_for_tenders_document');
 
-    // Create a Call for tenders node.
+    // Create a Call for tender node.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
       'type' => 'oe_tender',
@@ -135,12 +135,11 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
       '15 April 2020',
       '30 April 2020',
       '11 June 2021, 09:30 (AEST)',
+      'Audit Board of the European Communities',
     ];
     foreach ($values_data as $index => $value) {
       $this->assertEquals($value, $values[$index]->getText());
     }
-    $department_value = $values[5]->find('css', 'span.ecl-u-type-color-blue-100');
-    $this->assertEquals('Audit Board of the European Communities', $department_value->getText());
 
     // Assert header of second field group.
     $this->assertContentHeader($content_items[1], 'Description', 'description');
