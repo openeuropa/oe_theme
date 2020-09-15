@@ -186,7 +186,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'N/A');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | N/A');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders');
   }
 
   /**

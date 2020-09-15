@@ -54,11 +54,11 @@ class TenderContentType extends NodeViewRoutesBase {
       ];
     }
     $node = TenderNodeWrapper::getInstance($node);
-    $status = $node->getStatusLabel();
-    $metadata['metas'] = [
-      $this->t('Call for tenders'),
-      $status,
-    ];
+    $metadata['metas'] = [$this->t('Call for tenders')];
+    if ($node->hasStatus()) {
+      $metadata['metas'][] = $node->getStatusLabel();
+    }
+
     return $metadata;
   }
 
