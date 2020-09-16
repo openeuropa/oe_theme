@@ -66,6 +66,11 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
 
     $metadata = [];
 
+    $introduction = $this->getIntroduction();
+    if ($introduction) {
+      $metadata['introduction'] = $introduction;
+    }
+
     $cacheability = new CacheableMetadata();
     $cacheability
       ->addCacheableDependency($entity)
@@ -87,6 +92,55 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
     $this->eventDispatcher->dispatch(PageHeaderMetadataEvents::NODE, $event);
 
     return $event->getNode();
+  }
+
+  /**
+   * Gets introduction data from the node.
+   *
+   * @param string $field_name
+   *   Node's field name where data is taken from.
+   *
+   * @return array|null
+   *   Inline template if data exists or NULL otherwise.
+   */
+  protected function getIntroduction($field_name = 'oe_summary'): ?array {
+    $node = $this->getNode();
+    if (!$node->hasField($field_name) || $node->get($field_name)->isEmpty()) {
+      return NULL;
+    }
+    $summary = $node->get($field_name)->first();
+
+    return $this->getInlineTemplate($summary->value, $summary->format, $summary->getLangcode());
+  }
+
+  /**
+   * Gets inline template to be used in page header.
+   *
+   * @param string $text
+   *   Text in the template.
+   * @param string $format
+   *   Text format.
+   * @param string $langcode
+   *   Language code.
+   *
+   * @return array
+   *   Template array.
+   */
+  protected function getInlineTemplate($text, $format, $langcode): array {
+    return [
+      // We strip the tags because the component expects only one paragraph of
+      // text and the field is using a text format which adds paragraph tags.
+      '#type' => 'inline_template',
+      '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
+      '#context' => [
+        'summary' => [
+          '#type' => 'processed_text',
+          '#text' => $text,
+          '#format' => $format,
+          '#langcode' => $langcode,
+        ],
+      ],
+    ];
   }
 
 }
