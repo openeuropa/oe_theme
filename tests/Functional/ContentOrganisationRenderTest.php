@@ -10,11 +10,14 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
+use Drupal\Tests\oe_media\Traits\MediaCreationTrait;
 
 /**
  * Tests organisation (oe_organisation) content type render.
  */
 class ContentOrganisationRenderTest extends BrowserTestBase {
+
+  use MediaCreationTrait;
 
   /**
    * {@inheritdoc}
@@ -59,21 +62,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
    * Tests that the Organisation page renders correctly.
    */
   public function testOrganisationRendering(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
-    $file->setPermanent();
-    $file->save();
-
-    $media = $this->getStorage('media')->create([
-      'bundle' => 'image',
-      'name' => 'test image',
-      'oe_media_image' => [
-        'target_id' => $file->id(),
-        'alt' => 'Alt',
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media->save();
+    $file = $this->createFile(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
+    $media = $this->createImage(['name' => 'test image', 'alt' => 'Alt'], (int) $file->id());
 
     $contact = $this->getStorage('oe_contact')->create([
       'bundle' => 'oe_general',
