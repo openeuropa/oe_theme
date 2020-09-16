@@ -648,6 +648,7 @@
             name: "document.xls"
             language_code: "fr"
       more_info: "Looking for another language which is not on the list? Find out why."
+      length: 10
   assertions:
     count:
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -662,7 +663,7 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
-      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
       'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
       'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
       'div.ecl-file__info div.ecl-file__language': "English"
@@ -670,7 +671,7 @@
       'a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
