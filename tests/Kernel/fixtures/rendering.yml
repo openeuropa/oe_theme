@@ -476,7 +476,7 @@
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
-      translation_toggle_label: "Available translations"
+      translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
   assertions:
     count:
@@ -492,7 +492,7 @@
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
@@ -579,7 +579,7 @@
             size: "170000"
             name: "document.pdf"
             language_code: "hu"
-      translation_toggle_label: "Available translations"
+      translation_toggle_label: "Other translations"
       more_info: "Looking for another language which is not on the list? Find out why."
   assertions:
     count:
@@ -603,7 +603,7 @@
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
