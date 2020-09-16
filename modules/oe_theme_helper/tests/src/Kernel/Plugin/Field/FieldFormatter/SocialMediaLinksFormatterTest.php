@@ -4,67 +4,16 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
-use Drupal\entity_test\Entity\EntityTest;
-use Drupal\field\Entity\FieldConfig;
-use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
-
 /**
  * Test social media link formatter.
  */
-class SocialMediaLinksFormatterTest extends AbstractKernelTestBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'field',
-    'link',
-    'typed_link',
-    'entity_test',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installEntitySchema('entity_test');
-  }
+class SocialMediaLinksFormatterTest extends SocialMediaLinksFormatterTestBase {
 
   /**
    * Test social media links formatting.
    */
   public function testFormatter() {
-    $field_storage = FieldStorageConfig::create([
-      'field_name' => 'field_test',
-      'entity_type' => 'entity_test',
-      'type' => 'typed_link',
-      'settings' => [
-        'allowed_values' => [
-          'facebook' => 'Facebook',
-          'twitter' => 'Twitter',
-        ],
-      ],
-    ]);
-    $field_storage->save();
-
-    $field = FieldConfig::create([
-      'field_storage' => $field_storage,
-      'bundle' => 'entity_test',
-      'label' => 'Test field',
-    ]);
-    $field->save();
-
-    $entity = EntityTest::create([
-      'field_test' => [
-        'link_type' => 'facebook',
-        'uri' => 'http://facebook.com',
-        'title' => 'Facebook',
-      ],
-    ]);
-    $entity->save();
-
+    $entity = $this->createEntityTest();
     $view_builder = \Drupal::entityTypeManager()->getViewBuilder('entity_test');
 
     // Test formatter with default settings.
@@ -73,11 +22,20 @@ class SocialMediaLinksFormatterTest extends AbstractKernelTestBase {
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-social-media-follow__link[href="http://facebook.com"]' => 1,
+        'a.ecl-social-media-follow__link[href="http://twitter.com"]' => 1,
       ],
       'equals' => [
         '.ecl-social-media-follow > p.ecl-social-media-follow__description' => 'Social media',
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-social-media-follow__link[href="http://facebook.com"] span' => "Facebook",
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] span' => "Twitter",
+      ],
+      'contains' => [
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
+        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
       ],
     ]);
 
@@ -91,11 +49,20 @@ class SocialMediaLinksFormatterTest extends AbstractKernelTestBase {
     ]);
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-social-media-follow__link[href="http://facebook.com"]' => 1,
+        'a.ecl-social-media-follow__link[href="http://twitter.com"]' => 1,
       ],
       'equals' => [
         '.ecl-social-media-follow--vertical > p.ecl-social-media-follow__description' => 'View European Commission on:',
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-social-media-follow__link[href="http://facebook.com"] span' => "Facebook",
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] span' => "Twitter",
+      ],
+      'contains' => [
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
+        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
       ],
     ]);
   }

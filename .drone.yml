@@ -13,6 +13,7 @@ services:
     image: mariadb
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=drupal
   sparql:
     image: openeuropa/triple-store-dev
     pull: true

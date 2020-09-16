@@ -1,5 +1,9 @@
 @import '@ecl/eu-theme-default/exports/all';
 @import '@ecl/eu-theme-default/exports/colors';
+@import '@ecl/eu-theme-default/exports/colors-bg';
+@import '@ecl/eu-theme-default/exports/spacing';
+@import '@ecl/eu-utility-border/eu-utility-border';
+@import '@ecl/ec-utility-background/ec-utility-background';
 @import '@ecl/eu-component-form-help-block/eu-component-form-help-block';
 // Facts and Figure component is missing from EU family so we add it here.
 // @todo remove this after the above will be fixed upstream.
@@ -9,4 +13,6 @@
 @import "./components/toolbar";
 @import "./components/banner";
 @import "./components/wysiwyg";
+@import "./components/content_project";
+@import "./components/description-list";
 @import "./components/global";

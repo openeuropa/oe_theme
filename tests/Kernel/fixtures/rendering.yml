@@ -820,7 +820,6 @@
       length: 6
       meta:
         - "Meta 1"
-        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -828,9 +827,40 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -921,6 +951,70 @@
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#type': 'processed_text'
+        '#text': '<div>This is the detail. It is long.</div>'
+        '#format': 'plain_text'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1033,6 +1127,52 @@
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+      meta:
+        - "News article"
+        - "6 July 2015"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
+      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item

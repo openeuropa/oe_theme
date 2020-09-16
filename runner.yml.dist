@@ -23,6 +23,7 @@ drupal:
     - "./vendor/bin/drush en oe_theme_content_policy -y"
     - "./vendor/bin/drush en oe_theme_content_publication -y"
     - "./vendor/bin/drush en oe_theme_content_event -y"
+    - "./vendor/bin/drush en oe_theme_content_project -y"
     - "./vendor/bin/drush en oe_theme_contact_forms -y"
     - "./vendor/bin/drush en field_ui -y"
     - "./vendor/bin/drush en config_devel -y"
