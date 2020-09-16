@@ -9,6 +9,8 @@ declare(strict_types = 1);
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
+use Drupal\file\FileInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media\Plugin\media\Source\Image;
@@ -47,11 +49,18 @@ function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_naviga
    return;
   }
 
-  $thumbnail = $media->get('thumbnail')->first();
-  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_ratio_3_2_medium');
-
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
   $cacheability->addCacheableDependency($media);
+  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+
+  if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_ratio_3_2_medium');
+
+  $cacheability->addCacheableDependency($thumbnail->entity);
   $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
   $cacheability->addCacheableDependency(EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_ratio_3_2_medium'));
   $cacheability->applyTo($variables);

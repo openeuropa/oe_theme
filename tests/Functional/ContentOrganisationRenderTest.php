@@ -5,12 +5,13 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_media\Traits\MediaCreationTrait;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 
 /**
  * Tests organisation (oe_organisation) content type render.
@@ -63,7 +64,11 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
    */
   public function testOrganisationRendering(): void {
     $file = $this->createFile(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
-    $media = $this->createImage(['name' => 'test image', 'alt' => 'Alt'], (int) $file->id());
+    $media = $this->createMediaImage([
+      'name' => 'test image',
+      'file_id' => $file->id(),
+      'alt' => 'Alt',
+    ]);
 
     $contact = $this->getStorage('oe_contact')->create([
       'bundle' => 'oe_general',
@@ -98,33 +103,33 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'My acronym');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core h1.ecl-page-header-core__title', 'My node title');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'My introduction');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $assert = new PatternPageHeaderAssert();
+    $expected_values = [
+      'title' => 'My node title',
+      'description' => "My introduction\n",
+      'meta' => 'My acronym',
+    ];
+    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert navigation part.
-    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation', $wrapper);
-    $navigation_title = $navigation->find('css', '.ecl-inpage-navigation__title');
-    $this->assertEquals('Page contents', $navigation_title->getText());
-    $navigation_list = $this->assertSession()->elementExists('css', '.ecl-inpage-navigation__list', $wrapper);
-    $navigation_list_items = $navigation_list->findAll('css', '.ecl-inpage-navigation__item');
-    $this->assertCount(2, $navigation_list_items);
-    $navigation_list_items_labels = [
-      'Description',
-      'Contact',
+    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
+    $assert = new InPageNavigationAssert();
+    $expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Description', 'href' => '#desciption'],
+        ['label' => 'Contact', 'href' => '#contact'],
+      ],
     ];
-    foreach ($navigation_list_items as $index => $item) {
-      $navigation_list_item_link = $item->find('css', 'a.ecl-inpage-navigation__link');
-      $this->assertEquals($navigation_list_items_labels[$index], $navigation_list_item_link->getText());
-      $anchor = strtolower(Html::cleanCssIdentifier($navigation_list_items_labels[$index]));
-      $this->assertEquals('#' . $anchor, $navigation_list_item_link->getAttribute('href'));
-    }
+    $assert->assertPattern($expected_values, $navigation->getOuterHtml());
+
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
     $this->assertContains('styles/oe_theme_ratio_3_2_medium/public/example_1.jpeg', $logo->getAttribute('src'));
     $this->assertEquals('Alt', $logo->getAttribute('alt'));
 
     // Assert content part.
+    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
     $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
     $content_items = $content->findAll('xpath', '/div');

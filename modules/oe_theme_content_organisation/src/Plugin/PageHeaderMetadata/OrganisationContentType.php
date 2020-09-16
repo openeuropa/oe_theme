@@ -36,23 +36,6 @@ class OrganisationContentType extends NodeViewRoutesBase {
     $metadata = parent::getMetadata();
     $node = $this->getNode();
 
-    if (!($node->get('oe_summary')->isEmpty())) {
-      $summary = $node->get('oe_summary')->first();
-      $metadata['introduction'] = [
-        // We strip the tags because the component expects only one paragraph of
-        // text and the field is using a text format which adds paragraph tags.
-        '#type' => 'inline_template',
-        '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
-        '#context' => [
-          'summary' => [
-            '#type' => 'processed_text',
-            '#text' => $summary->value,
-            '#format' => $summary->format,
-            '#langcode' => $summary->getLangcode(),
-          ],
-        ],
-      ];
-    }
     if (!$node->get('oe_organisation_acronym')->isEmpty()) {
       $metadata['metas'] = [
         $node->get('oe_organisation_acronym')->value,
