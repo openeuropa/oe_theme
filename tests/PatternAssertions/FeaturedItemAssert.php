@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme\PatternAssertions;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Assertions for the card pattern.
+ * Assertions for the featured item pattern.
  */
 class FeaturedItemAssert extends BasePatternAssert {
 

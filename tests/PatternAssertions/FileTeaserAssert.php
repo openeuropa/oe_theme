@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme\PatternAssertions;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Assertions for the file translations pattern.
+ * Assertions for the file teaser pattern.
  */
 class FileTeaserAssert extends FileTranslationAssert {
 

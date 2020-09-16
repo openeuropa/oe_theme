@@ -25,18 +25,22 @@ class FileTranslationAssert extends FileAssert {
   /**
    * Asserts the file translations on the pattern.
    *
-   * @param array $expected_translations
+   * @param array|null $expected_translations
    *   The expected translation values.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertTranslations(array $expected_translations, Crawler $crawler): void {
+  protected function assertTranslations($expected_translations, Crawler $crawler): void {
     if (is_null($expected_translations)) {
       $this->assertElementNotExists('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item', $crawler);
       return;
     }
-    $translation_file_elements = $crawler->filter('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item');
-    self::assertCount(count($expected_translations), $translation_file_elements);
+    $translation_file_elements = $crawler->filter('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item:not([class*="ecl-file__translation-description"])');
+    self::assertCount(count($expected_translations), $translation_file_elements, \sprintf(
+      'The amount of found translations (%s) does not match the amount of expected translations (%s).',
+      $translation_file_elements->count(),
+      count($expected_translations)
+    ));
     foreach ($expected_translations as $index => $expected_translation) {
       $this->assertTranslation($expected_translation, $translation_file_elements->eq($index));
     }
@@ -53,8 +57,8 @@ class FileTranslationAssert extends FileAssert {
   protected function assertTranslation(array $expected_file, Crawler $crawler): void {
     // Assert information.
     $file_info_element = $crawler->filter('div.ecl-file__translation-info');
-    $this->assertElementText($expected_file['title'], ' div.ecl-file__title', $file_info_element);
-    $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_info_element);
+    $this->assertElementText($expected_file['title'], 'div.ecl-file__translation-title', $file_info_element);
+    $this->assertElementText($expected_file['meta'], 'div.ecl-file__translation-meta', $file_info_element);
 
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__translation-download', 'href', $crawler);

@@ -146,7 +146,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(1, $element);
+    self::assertCount(1, $element, \sprintf(
+      'Element with selector "%s" not found in the provided html.',
+      $selector
+    ));
   }
 
   /**
@@ -159,7 +162,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementNotExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(0, $element);
+    self::assertCount(0, $element, \sprintf(
+      'Element with selector "%s" was found in the provided html.',
+      $selector
+    ));
   }
 
 }
