@@ -48,7 +48,7 @@
   },
   'translation': {
     'toggle': {
-      'label': "Available translations (@count)"|t({ '@count': translations|length}),
+      'label': translation_toggle_label|default("Available translations"|t) ~ " (" ~ translations|length ~ ")",
       'icon': {
         'path': ecl_icon_path,
         'type': 'ui',
