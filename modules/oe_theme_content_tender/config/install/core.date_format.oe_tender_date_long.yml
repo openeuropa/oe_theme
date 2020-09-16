@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_tender_date_long
+label: 'Tender long date'
+locked: false
+pattern: 'd F Y'
