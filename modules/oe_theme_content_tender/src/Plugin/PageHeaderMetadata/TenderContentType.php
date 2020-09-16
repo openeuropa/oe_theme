@@ -35,29 +35,33 @@ class TenderContentType extends NodeViewRoutesBase {
    */
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
+
     $node = $this->getNode();
-    if (!($node->get('oe_summary')->isEmpty())) {
-      $summary = $node->get('oe_summary')->first();
-      $metadata['introduction'] = [
-        // We strip the tags because the component expects only one paragraph of
-        // text and the field is using a text format which adds paragraph tags.
-        '#type' => 'inline_template',
-        '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
-        '#context' => [
-          'summary' => [
-            '#type' => 'processed_text',
-            '#text' => $summary->value,
-            '#format' => $summary->format,
-            '#langcode' => $summary->getLangcode(),
-          ],
-        ],
-      ];
-    }
-    $node = TenderNodeWrapper::getInstance($node);
+    $node_wrapper = TenderNodeWrapper::getInstance($node);
     $metadata['metas'] = [$this->t('Call for tenders')];
-    if ($node->hasStatus()) {
-      $metadata['metas'][] = $node->getStatusLabel();
+    if ($node_wrapper->hasStatus()) {
+      $metadata['metas'][] = $node_wrapper->getStatusLabel();
     }
+
+    if ($node->get('oe_summary')->isEmpty()) {
+      return $metadata;
+    }
+
+    $summary = $node->get('oe_summary')->first();
+    $metadata['introduction'] = [
+      // We strip the tags because the component expects only one paragraph of
+      // text and the field is using a text format which adds paragraph tags.
+      '#type' => 'inline_template',
+      '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
+      '#context' => [
+        'summary' => [
+          '#type' => 'processed_text',
+          '#text' => $summary->value,
+          '#format' => $summary->format,
+          '#langcode' => $summary->getLangcode(),
+        ],
+      ],
+    ];
 
     return $metadata;
   }
