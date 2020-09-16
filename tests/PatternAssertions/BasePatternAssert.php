@@ -87,7 +87,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementAttribute($expected, string $selector, string $attribute, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
@@ -107,7 +107,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementText($expected, string $selector, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
@@ -127,7 +127,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementHtml($expected, string $selector, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }

@@ -31,7 +31,7 @@ class FileTranslationAssert extends FileAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertTranslations(array $expected_translations, Crawler $crawler): void {
-    if (!$expected_translations) {
+    if (is_null($expected_translations)) {
       $this->assertElementNotExists('div.ecl-file div.ecl-file__translation-container ul.ecl-file__translation-list li.ecl-file__translation-item', $crawler);
       return;
     }

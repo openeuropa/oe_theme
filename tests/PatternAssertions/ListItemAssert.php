@@ -157,7 +157,7 @@ class ListItemAssert extends BasePatternAssert {
         break;
     }
     $date_block_selector = 'div.ecl-content-item-date__date time.' . $variant_class;
-    if (!$expected_date) {
+    if (is_null($expected_date)) {
       $this->assertElementNotExists($date_block_selector, $crawler);
       return;
     }
@@ -183,7 +183,7 @@ class ListItemAssert extends BasePatternAssert {
   protected function assertThumbnailImage($expected_image, string $variant, Crawler $crawler): void {
     $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
     $image_div_selector = 'div.' . $variant_class;
-    if (!$expected_image) {
+    if (is_null($expected_image)) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
     }

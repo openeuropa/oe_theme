@@ -9,7 +9,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Assertions for the card pattern.
  */
-class CardAssert extends BasePatternAssert {
+class FeaturedItemAssert extends BasePatternAssert {
 
   /**
    * {@inheritdoc}
