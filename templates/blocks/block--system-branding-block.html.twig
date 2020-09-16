@@ -12,6 +12,14 @@
     href="{{ site_logo_href }}"
     aria-label="{{ site_name }}"
   >
+    {% if ecl_component_library == 'eu' %}
+      <img
+        alt="{{ site_logo_alt }}"
+        title="{{ site_name }}"
+        class="ecl-site-header-core__logo-image-mobile"
+        src="{{ ecl_logo_path ~ '/condensed-version/positive/' ~ current_language_id|to_internal_language_id ~ '.svg'}}"
+      />
+    {% endif %}
     <img
       alt="{{ site_logo_alt }}"
       title="{{ site_name }}"
