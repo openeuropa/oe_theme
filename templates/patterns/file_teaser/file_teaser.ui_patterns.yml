@@ -69,6 +69,11 @@ file_teaser:
             size: "170000"
             name: "document.pdf"
             language_code: "hu"
+    translation_toggle_label:
+      type: "text"
+      label: "Translation toggle label"
+      description: "Toggle label used for collapsing or expanding the available translations."
+      preview: "Other languages"
     more_info:
       type: "text"
       label: "More information"
