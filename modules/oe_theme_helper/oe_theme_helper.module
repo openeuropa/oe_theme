@@ -65,6 +65,21 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'oe_theme_helper_in_page_navigation' => [
       'render element' => 'element',
     ],
+    'oe_theme_helper_featured_media' => [
+      'variables' => [
+        'params' => [],
+      ],
+    ],
+    'oe_theme_helper_social_media_icons_list' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+    'oe_theme_helper_social_media_links' => [
+      'variables' => [
+        'content' => [],
+      ],
+    ],
   ];
 }
 

@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Press contacts field in the Contact entity default view mode.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+<div class="ecl-u-border-top ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mt-s ecl-u-pt-l ecl-u-pb-l">
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: 'Press contacts'|t,
+      path: item.content['#url'],
+      icon_position: 'after'
+    },
+    icon: get_link_icon(item.content['#url'].toString())
+  } %}
+</div>
+{% endfor %}

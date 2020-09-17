@@ -726,12 +726,16 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
     $language = [
       'path' => $href,
       'label' => $link['link']['#title'],
+      // Pass original language code which can be useful for some other
+      // preprocessors.
+      'hreflang' => $language_code,
       'lang' => $language_internal,
     ];
 
     if ($language_code === $current_language_id) {
       $variables['current_language'] = [
         'path' => $href,
+        'hreflang' => $language_code,
         'lang' => $language_internal,
         'label' => $link['link']['#title'],
       ];
@@ -1570,6 +1574,13 @@ function oe_theme_preprocess_page(array &$variables): void {
     'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
     'id' => ['main-content'],
   ]);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
+  $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
 }
 
 /**

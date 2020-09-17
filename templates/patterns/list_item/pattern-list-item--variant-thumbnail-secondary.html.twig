@@ -4,13 +4,13 @@
  * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
-{% include '@oe_theme/compositions/ec-component-content-item/content-item.html.twig' with {
-  title: {
-    label: title,
-    path: url
-  },
-  description: detail|smart_trim(length),
+{% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
+  title: title,
+  url: url,
+  detail: detail,
+  length: length,
   image: image,
   image_position: 'after',
+  additional_information: additional_information,
   meta: meta
 } only %}

@@ -1,0 +1,100 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.oe_contact.oe_details
+    - field.field.oe_contact.oe_press.oe_address
+    - field.field.oe_contact.oe_press.oe_body
+    - field.field.oe_contact.oe_press.oe_email
+    - field.field.oe_contact.oe_press.oe_fax
+    - field.field.oe_contact.oe_press.oe_image
+    - field.field.oe_contact.oe_press.oe_mobile
+    - field.field.oe_contact.oe_press.oe_office
+    - field.field.oe_contact.oe_press.oe_organisation
+    - field.field.oe_contact.oe_press.oe_phone
+    - field.field.oe_contact.oe_press.oe_press_contact_url
+    - field.field.oe_contact.oe_press.oe_social_media
+    - field.field.oe_contact.oe_press.oe_website
+    - oe_content_entity_contact.oe_contact_type.oe_press
+  module:
+    - field_group
+    - oe_theme_helper
+third_party_settings:
+  field_group:
+    group_contact_information:
+      children:
+        - name
+        - oe_email
+        - oe_phone
+        - oe_address
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_field_list_pattern
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: 'Contact information'
+      region: content
+id: oe_contact.oe_press.oe_details
+targetEntityType: oe_contact
+bundle: oe_press
+mode: oe_details
+content:
+  name:
+    label: above
+    type: string
+    weight: 1
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_address:
+    weight: 4
+    label: above
+    settings:
+      delimiter: ', '
+    third_party_settings: {  }
+    type: oe_theme_helper_address_inline
+    region: content
+  oe_email:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  oe_phone:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_social_media:
+    type: oe_theme_helper_social_media_links_formatter
+    weight: 4
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      rel: nofollow
+      target: _blank
+      title: 'Social media'
+      variant: horizontal
+      url_only: false
+      url_plain: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  oe_body: true
+  oe_fax: true
+  oe_image: true
+  oe_mobile: true
+  oe_office: true
+  oe_organisation: true
+  oe_press_contact_url: true
+  oe_website: true
+  status: true
