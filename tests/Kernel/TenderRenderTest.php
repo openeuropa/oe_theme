@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\node\Entity\Node;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
@@ -75,31 +76,51 @@ class TenderRenderTest extends ContentRenderTestBase {
         'value' => date('Y') + 1 . '-06-10T23:30:00',
       ],
       'oe_reference_code' => 'Call for tenders reference',
-      'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
+      'oe_departments' => ['http://publications.europa.eu/resource/authority/corporate-body/ABEC', 'http://publications.europa.eu/resource/authority/corporate-body/ACM'],
       'uid' => 0,
       'status' => 1,
     ];
     $node = Node::create($values);
     $node->save();
 
-    $build = $this->container->get('entity_type.manager')->getViewBuilder('node')->view($node, 'teaser');
-    $html = $this->container->get('renderer')->renderRoot($build);
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
 
-    // Check Open status.
+    // Check Open status label and background.
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Test Call for tenders node',
       'meta' => 'Call status: Open',
       'image' => NULL,
+      'description' => new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => '30 April 2020',
+          ], [
+            'label' => 'Deadline date',
+            'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+          ], [
+            'label' => 'Departments',
+            'body' => "Audit Board of the European Communities\nArab Common Market",
+          ],
+        ],
+      ]),
     ];
-    $assert->assertPattern($expected_values, $html->__toString());
+    $assert->assertPattern($expected_values, $html);
 
-    $crawler = new Crawler($html->__toString());
+    $crawler = new Crawler($html);
     $actual = $crawler->filter('span.tender-status.ecl-label.ecl-u-text-uppercase.ecl-label--high');
     $this->assertCount(1, $actual);
 
-    $assert = new FieldListAssert();
-    $expected_values = [
+    // Check Department/s label for multiple department values.
+    $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
           'label' => 'Reference',
@@ -109,23 +130,22 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => '30 April 2020',
         ], [
           'label' => 'Deadline date',
-          'body' => '11 June 2021, 09:30 (AEST)',
+          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
         ], [
           'label' => 'Department',
           'body' => 'Audit Board of the European Communities',
         ],
       ],
-    ];
-    $assert->assertPattern($expected_values, $html->__toString());
-    $assert->assertVariant('horizontal', $html->__toString());
+    ]);
+    $assert->assertPattern($expected_values, $html);
 
-    // Check Deparment/s label for multiple deparments values.
-    $node->set('oe_departments', ['http://publications.europa.eu/resource/authority/corporate-body/ABEC', 'http://publications.europa.eu/resource/authority/corporate-body/ACM'])->save();
-    $build = $this->container->get('entity_type.manager')->getViewBuilder('node')->view($node, 'teaser');
-    $html = $this->container->get('renderer')->renderRoot($build);
-
-    $assert = new FieldListAssert();
-    $expected_values = [
+    // Check status Closed label and background.
+    $node->set('oe_tender_deadline', date('Y') - 1 . '-06-10T23:30:00')->save();
+    $node->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['meta'] = 'Call status: Closed';
+    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
           'label' => 'Reference',
@@ -135,49 +155,73 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => '30 April 2020',
         ], [
           'label' => 'Deadline date',
-          'body' => '11 June 2021, 09:30 (AEST)',
+          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') - 1),
         ], [
-          'label' => 'Departments',
-          'body' => 'Audit Board of the European CommunitiesArab Common Market',
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
       ],
-    ];
-    $assert->assertPattern($expected_values, $html->__toString());
-    $assert->assertVariant('horizontal', $html->__toString());
+    ]);
+    $assert->assertPattern($expected_values, $html);
 
-    // Check status Closed.
-    $node->set('oe_tender_deadline', date('Y') - 1 . '-06-10')->save();
-    $node->save();
-    $build = $this->container->get('entity_type.manager')->getViewBuilder('node')->view($node, 'teaser');
-    $html = $this->container->get('renderer')->renderRoot($build);
-
-    $assert = new ListItemAssert();
-    $expected_values = [
-      'title' => 'Test Call for tenders node',
-      'meta' => 'Call status: Closed',
-      'image' => NULL,
-    ];
-    $assert->assertPattern($expected_values, $html->__toString());
-    $crawler = new Crawler($html->__toString());
+    $crawler = new Crawler($html);
     $actual = $crawler->filter('span.tender-status.ecl-label.ecl-u-text-uppercase.ecl-label--highlight');
     $this->assertCount(1, $actual);
 
-    // Check status Upcoming.
-    $node->set('oe_tender_opening_date', date('Y') + 1 . '-06-10')->save();
-    $node->set('oe_tender_deadline', date('Y') + 2 . '-06-10')->save();
-    $build = $this->container->get('entity_type.manager')->getViewBuilder('node')->view($node, 'teaser');
-    $html = $this->container->get('renderer')->renderRoot($build);
+    // Check status Upcoming label and background.
+    $node->set('oe_tender_opening_date', date('Y') + 2 . '-06-10')->save();
+    $node->set('oe_tender_deadline', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['meta'] = 'Call status: Upcoming';
+    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => sprintf('10 June %s', date('Y') + 2),
+        ], [
+          'label' => 'Deadline date',
+          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
+        ],
+      ],
+    ]);
+    $assert->assertPattern($expected_values, $html);
 
-    $assert = new ListItemAssert();
-    $expected_values = [
-      'title' => 'Test Call for tenders node',
-      'meta' => 'Call status: Upcoming',
-      'image' => NULL,
-    ];
-    $assert->assertPattern($expected_values, $html->__toString());
-    $crawler = new Crawler($html->__toString());
+    $crawler = new Crawler($html);
     $actual = $crawler->filter('span.tender-status.ecl-label.ecl-u-text-uppercase.ecl-label--medium');
     $this->assertCount(1, $actual);
+
+    // Check status N/A.
+    $node->set('oe_publication_date', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $node->set('oe_tender_opening_date', '')->save();
+    $node->set('oe_tender_deadline', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $node->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+
+    $expected_values['meta'] = '';
+    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Deadline date',
+          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
+        ],
+      ],
+    ]);
+
+    $assert->assertPattern($expected_values, $html);
   }
 
 }
