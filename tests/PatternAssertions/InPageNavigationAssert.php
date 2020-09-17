@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme\PatternAssertions;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Assertions for the page header pattern.
+ * Assertions for in-page-navigation.
  */
 class InPageNavigationAssert extends BasePatternAssert {
 
@@ -37,7 +37,7 @@ class InPageNavigationAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the description of the list item.
+   * Asserts the in-page-navigation links list.
    *
    * @param array|null $expected
    *   The expected description values.
@@ -54,8 +54,8 @@ class InPageNavigationAssert extends BasePatternAssert {
 
     foreach ($expected as $index => $expected_value) {
       $item = $items->eq($index);
-      self::assertEquals($expected_value, $item->text());
-      self::assertEquals($expected_value, $item->attr('href'));
+      self::assertEquals($expected_value['label'], $item->text());
+      self::assertEquals($expected_value['href'], $item->attr('href'));
     }
   }
 

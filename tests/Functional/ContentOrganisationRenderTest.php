@@ -64,9 +64,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
    */
   public function testOrganisationRendering(): void {
     $file = $this->createFile(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
-    $media = $this->createMediaImage([
+    $media = $this->createMediaImage($file, [
       'name' => 'test image',
-      'file_id' => $file->id(),
       'alt' => 'Alt',
     ]);
 
@@ -107,7 +106,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'My node title',
-      'description' => "My introduction\n",
+      'description' => 'My introduction',
       'meta' => 'My acronym',
     ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
@@ -118,7 +117,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Description', 'href' => '#desciption'],
+        ['label' => 'Description', 'href' => '#description'],
         ['label' => 'Contact', 'href' => '#contact'],
       ],
     ];
@@ -152,9 +151,9 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $labels = $field_list[0]->findAll('css', '.ecl-description-list__term');
     $this->assertCount(3, $labels);
     $labels_data = [
-      'Phone number',
-      'Address',
       'Email',
+      'Phone number',
+      'Postal address',
     ];
     foreach ($labels as $index => $element) {
       $this->assertEquals($labels_data[$index], $element->getText());
@@ -162,9 +161,9 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $values = $field_list[0]->findAll('css', 'dd.ecl-description-list__definition');
     $this->assertCount(3, $values);
     $values_data = [
+      'example@test.com',
       '0123456789',
       'My address, 1001 Brussels, Belgium',
-      'example@test.com',
     ];
 
     foreach ($values_data as $index => $value) {

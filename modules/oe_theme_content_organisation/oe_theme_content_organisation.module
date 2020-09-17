@@ -40,8 +40,6 @@ function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_naviga
     return;
   }
 
-  // @TODO: Replace below with calling view() on the logo field
-  // once FeaturedMediaFormatter is avail.
   $source = $media->getSource();
 
   // If its an image media, render it and assign it to the image variable.
