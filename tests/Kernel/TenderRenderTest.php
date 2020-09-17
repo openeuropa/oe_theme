@@ -105,7 +105,7 @@ class TenderRenderTest extends ContentRenderTestBase {
             'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
           ], [
             'label' => 'Departments',
-            'body' => "Audit Board of the European Communities\nArab Common Market",
+            'body' => "Audit Board of the European Communities | Arab Common Market",
           ],
         ],
       ]),
@@ -166,6 +166,10 @@ class TenderRenderTest extends ContentRenderTestBase {
 
     $crawler = new Crawler($html);
     $actual = $crawler->filter('span.tender-status.ecl-label.ecl-u-text-uppercase.ecl-label--highlight');
+    $this->assertCount(1, $actual);
+
+    // Check Deadline date is striked when tender is close.
+    $actual = $crawler->filter('dd.ecl-description-list__definition > .ecl-u-type-strike');
     $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
