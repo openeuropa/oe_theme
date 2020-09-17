@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Install function for the module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ */
+function oe_theme_content_project_install() {
+  // If we are installing from config, we bail out.
+  if (\Drupal::isConfigSyncing() === TRUE) {
+    return;
+  }
+
+  // Override entity view display.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/overrides');
+  $displays = [
+    'core.entity_view_display.node.oe_project.default',
+    'core.entity_view_display.node.oe_project.teaser',
+  ];
+
+  foreach ($displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityViewDisplay::load($values['id']);
+    if (!$config) {
+      $config = EntityViewDisplay::create($values);
+      $config->save();
+      continue;
+    }
+
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
+    }
+
+    $config->save();
+  }
+}

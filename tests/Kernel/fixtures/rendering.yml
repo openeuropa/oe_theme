@@ -476,6 +476,7 @@
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+      translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
   assertions:
     count:
@@ -491,13 +492,49 @@
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
+      '.ecl-file__translation-description': "Custom information snippet."
+- array:
+    '#type': pattern
+    '#id': file_translation
+    '#fields':
+      button_label: "Download"
+      file:
+        variant: "translation"
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+      translations:
+        - mime: "application/vnd.ms-excel"
+          url: "http://example.com/document_fr.xls"
+          size: "150000"
+          name: "document.xls"
+          language_code: "fr"
+      more_info: "Custom information snippet."
+  assertions:
+    count:
+      'svg.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file__translation-container': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'div.ecl-file__language': "English"
+      'div.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-description': "Custom information snippet."
 - array:
     '#type': pattern
@@ -542,6 +579,7 @@
             size: "170000"
             name: "document.pdf"
             language_code: "hu"
+      translation_toggle_label: "Other translations"
       more_info: "Looking for another language which is not on the list? Find out why."
   assertions:
     count:
@@ -565,7 +603,7 @@
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
@@ -581,6 +619,61 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
+      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+- array:
+    '#type': pattern
+    '#id': file_teaser
+    '#fields':
+      button_label: "Download"
+      teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies."
+      file:
+        title: "Example document"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "140000"
+        language_code: "en"
+      thumbnail:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        alt: "thumbnail alt"
+      resource_type: "RESOURCE TYPE"
+      publication_date: "2020-31-08"
+      translations:
+        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+          file:
+            title: "French translation"
+            mime: "application/vnd.ms-excel"
+            url: "http://example.com/document_fr.xls"
+            size: "150000"
+            name: "document.xls"
+            language_code: "fr"
+      more_info: "Looking for another language which is not on the list? Find out why."
+  assertions:
+    count:
+      'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'img.ecl-file__image[alt="thumbnail alt"]': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info': 1
+      'div.ecl-file__container div.ecl-file__info': 1
+      'div.ecl-file__translation-container': 1
+      'ul.ecl-file__translation-list': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+    equals:
+      'div.ecl-file__detail-info div.ecl-file__title': "Example document"
+      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
+      'div.ecl-file__info div.ecl-file__language': "English"
+      'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
+      '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
 - array:
     '#type': pattern
@@ -727,7 +820,6 @@
       length: 6
       meta:
         - "Meta 1"
-        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -735,9 +827,40 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -828,6 +951,70 @@
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#type': 'processed_text'
+        '#text': '<div>This is the detail. It is long.</div>'
+        '#format': 'plain_text'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -940,6 +1127,52 @@
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+      meta:
+        - "News article"
+        - "6 July 2015"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
+      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item

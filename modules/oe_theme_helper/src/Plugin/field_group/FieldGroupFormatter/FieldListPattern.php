@@ -30,30 +30,20 @@ class FieldListPattern extends PatternFormatterBase {
   /**
    * {@inheritdoc}
    */
-  public function preRender(&$element, $rendering_object) {
-    // Instantiate the pattern render array.
-    $pattern = [
-      '#type' => 'pattern',
-      '#id' => $this->getPatternId(),
-      '#variant' => $this->getSetting('variant'),
-      '#fields' => [],
-    ];
+  protected function getFields(array &$element, $rendering_object): array {
+    $fields = [];
 
     foreach (Element::children($element) as $field_name) {
       // Assign field label and content to the pattern's fields.
-      $pattern['#fields']['items'][] = [
+      $fields['items'][] = [
         'label' => $element[$field_name]['#title'] ?? '',
         'body' => [
           '#label_display' => 'hidden',
         ] + $element[$field_name],
       ];
-
-      // Remove field render array from the field group element.
-      unset($element[$field_name]);
     }
 
-    // Pass along the pattern render array.
-    $element['pattern'] = $pattern;
+    return $fields;
   }
 
 }

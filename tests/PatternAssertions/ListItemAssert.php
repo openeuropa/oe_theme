@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -17,20 +18,38 @@ class ListItemAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getAssertions($variant): array {
+    if ($variant == 'highlight') {
+      return [
+        'title' => [
+          [$this, 'assertElementText'],
+          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+        ],
+        'url' => [
+          [$this, 'assertElementAttribute'],
+          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+          'href',
+        ],
+        'image' => [
+          [$this, 'assertHighlightImage'],
+          $variant,
+        ],
+      ];
+    }
+
     $base_selector = 'div' . $this->getBaseItemClass($variant);
     return [
       'title' => [
         [$this, 'assertElementText'],
-        $base_selector . '__title.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-mt-xs',
+        $base_selector . '__title',
       ],
       'url' => [
         [$this, 'assertElementAttribute'],
-        $base_selector . '__title.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-mt-xs a.ecl-link.ecl-link--standalone',
+        $base_selector . '__title a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'meta' => [
         [$this, 'assertElementText'],
-        $base_selector . '__meta.ecl-u-type-s.ecl-u-type-color-grey-75',
+        $base_selector . '__meta',
       ],
       'date' => [
         [$this, 'assertDate'],
@@ -38,11 +57,14 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertDescription'],
-        $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs',
+        $base_selector . '__description',
       ],
       'image' => [
-        [$this, 'assertImage'],
+        [$this, 'assertThumbnailImage'],
         $variant,
+      ],
+      'additional_information' => [
+        [$this, 'assertAdditionalInformation'],
       ],
     ];
   }
@@ -134,8 +156,8 @@ class ListItemAssert extends BasePatternAssert {
         $variant_class = 'ecl-date-block--canceled';
         break;
     }
-    $date_block_selector = 'div.ecl-content-item-date__date.ecl-u-flex-grow-0.ecl-u-mr-m time.' . $variant_class;
-    if (!$expected_date) {
+    $date_block_selector = 'div.ecl-content-item-date__date time.' . $variant_class;
+    if (is_null($expected_date)) {
       $this->assertElementNotExists($date_block_selector, $crawler);
       return;
     }
@@ -149,7 +171,7 @@ class ListItemAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the image block of a list item.
+   * Asserts the image block of a thumbnail list item.
    *
    * @param array|null $expected_image
    *   The expected image values.
@@ -158,17 +180,33 @@ class ListItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertImage($expected_image, string $variant, Crawler $crawler): void {
+  protected function assertThumbnailImage($expected_image, string $variant, Crawler $crawler): void {
     $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
     $image_div_selector = 'div.' . $variant_class;
-    if (!$expected_image) {
+    if (is_null($expected_image)) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
     }
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($expected_image['src'], $image_div->style('aria-label'));
+    self::assertContains($expected_image['src'], $image_div->attr('style'));
+  }
+
+  /**
+   * Asserts the image block of a highlight list item.
+   *
+   * @param array|null $expected_image
+   *   The expected image values.
+   * @param string $variant
+   *   The variant of the pattern being checked.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertHighlightImage($expected_image, string $variant, Crawler $crawler): void {
+    $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
+    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
+    self::assertContains($expected_image['src'], $image_div->attr('style'));
   }
 
   /**
@@ -183,7 +221,7 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertDescription($expected, string $variant, Crawler $crawler): void {
     $base_selector = $this->getBaseItemClass($variant);
-    $description_selector = 'div' . $base_selector . '__description.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs';
+    $description_selector = 'div' . $base_selector . '__description';
     $this->assertElementExists($description_selector, $crawler);
     $description_element = $crawler->filter($description_selector);
     if ($expected instanceof PatternAssertStateInterface) {
@@ -191,6 +229,30 @@ class ListItemAssert extends BasePatternAssert {
       return;
     }
     self::assertEquals($expected, $description_element->filter('p')->html());
+  }
+
+  /**
+   * Asserts the additional information of the list item.
+   *
+   * @param array|null $expected
+   *   The expected additional information items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertAdditionalInformation($expected, Crawler $crawler): void {
+    $additional_information_item_selector = 'div.ecl-content-item__additional_information';
+    if (!$expected) {
+      $this->assertElementNotExists($additional_information_item_selector, $crawler);
+    }
+    $additional_information_items = $crawler->filter($additional_information_item_selector);
+    self::assertCount(count($expected), $additional_information_items);
+    foreach ($expected as $index => $expected_item) {
+      if (!$expected_item instanceof PatternAssertStateInterface) {
+        throw new Exception('All expected additional items must implement PatternAssertStateInterface');
+      }
+      $expected_item->assert($additional_information_items->eq($index)->html());
+
+    }
   }
 
   /**

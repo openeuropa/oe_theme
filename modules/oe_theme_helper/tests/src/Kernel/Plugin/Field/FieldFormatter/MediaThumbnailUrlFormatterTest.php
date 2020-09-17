@@ -8,65 +8,17 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
-use Drupal\media\Entity\Media;
-use Drupal\Tests\media\Traits\MediaTypeCreationTrait;
-use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Tests the media thumbnail url field formatter.
  */
-class MediaThumbnailUrlFormatterTest extends AbstractKernelTestBase {
-
-  use MediaTypeCreationTrait;
-
-  /**
-   * {@inheritdoc}
-   */
-  protected static $modules = [
-    'field',
-    'entity_test',
-    'media',
-    'image',
-    'file',
-    'entity_reference',
-  ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-    $this->installEntitySchema('entity_test');
-    $this->installEntitySchema('media');
-    $this->installEntitySchema('file');
-    $this->installSchema('file', 'file_usage');
-
-    $this->installConfig([
-      'file',
-      'field',
-      'entity_reference',
-      'media',
-    ]);
-  }
+class MediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterTestBase {
 
   /**
    * Test media thumbnail url formatter.
    */
   public function testFormatter() {
-    $media_type = $this->createMediaType('image');
-
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
-    $file->setPermanent();
-    $file->save();
-
-    $media = Media::create([
-      'bundle' => $media_type->id(),
-      'name' => 'test image',
-      'field_media_file' => [
-        'target_id' => $file->id(),
-      ],
-    ]);
-    $media->save();
+    $media = $this->createMediaImage(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
 
     // Create an entity_reference field to test the widget.
     $field_storage = FieldStorageConfig::create([

@@ -56,6 +56,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_content_news',
     'oe_content_page',
     'oe_content_policy',
+    'oe_content_documents_field',
     'oe_content_publication',
     'oe_theme_content_news',
     'oe_theme_content_page',
@@ -95,6 +96,9 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
 
     // Importing of configs which related to media av_portal output.
     $this->container->get('config.installer')->installDefaultConfig('theme', 'oe_theme');
+
+    $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
+    oe_content_documents_field_install();
 
     $this->installConfig([
       'oe_content',
