@@ -23,7 +23,12 @@
   }]) %}
 {% endfor %}
 {% set _detail_meta = [] %}
-{% set _detail_meta = _detail_meta|merge([resource_type, publication_date]) %}
+{% if resource_type is not empty %}
+  {% set _detail_meta = _detail_meta|merge([resource_type]) %}
+{% endif %}
+{% if publication_date is not empty %}
+  {% set _detail_meta = _detail_meta|merge([publication_date]) %}
+{% endif %}
 
 {% include '@ecl-twig/file' with {
   'title': file.title,
