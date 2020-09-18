@@ -4,24 +4,25 @@
  * Active search filters pattern.
  */
 #}
-
-<div>
-  <span class="ecl-u-ml-lg ecl-u-mt-s">
-    <span class="ecl-u-mr-xs ecl-u-text-uppercase">{{ name }}</span>
+<div class="active-search-filters ecl-u-d-md-flex">
+  <div class="active-search-filters__name ecl-u-flex-shrink-0 ecl-u-mb-s ecl-u-mr-s">
+    <span class="ecl-u-text-uppercase">{{ name }}</span>
+  </div>
+  <div class="active-search-filters__items ecl-u-flex-grow-1">
     {% for item in items %}
       {% if item.url %}
-        <a href="{{ item.url }}" class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mt-s">
+        <a href="{{ item.url }}" class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mb-s">
           {{ item.label }}
           <span type="button" aria-label="Dismiss" class="ecl-tag__icon">
-            {% include '@ecl-twig/icon' with {
-              icon: {
-                path: ecl_icon_path,
-                type: "ui",
-                name: "close",
-                size: "xs"
-              },
-              extra_classes: "ecl-tag__icon-close"
-            } only %}
+          {% include '@ecl-twig/icon' with {
+            icon: {
+              path: ecl_icon_path,
+              type: "ui",
+              name: "close",
+              size: "xs"
+            },
+            extra_classes: "ecl-tag__icon-close"
+          } only %}
             {% include '@ecl-twig/icon' with {
               icon: {
                 path: ecl_icon_path,
@@ -31,13 +32,13 @@
               },
               extra_classes: "ecl-tag__icon-close-filled"
             } only %}
-          </span>
+        </span>
         </a>
       {% else %}
-          <div class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mt-s">
-            {{ item.label }}
-          </div>
+        <div class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mb-s">
+          {{ item.label }}
+        </div>
       {% endif %}
     {% endfor %}
-  </span>
+  </div>
 </div>
