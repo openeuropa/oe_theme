@@ -2679,6 +2679,8 @@
           url: 'http://dg-trad.com'
         - label: 'Health, well-being & Consumer protection'
           url: 'http://health.com'
+        - label: 'No link'
+          url: ''
   assertions:
     count:
       'span.ecl-u-ml-lg.ecl-u-mt-s': 1
@@ -2690,5 +2692,6 @@
     contains:
       'a.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 'DG Trad'
       'a.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 'Health, well-being &amp; Consumer protection'
+      'div.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable': 'No link'
     equals:
       'span.ecl-u-ml-lg.ecl-u-mt-s span': 'Source'

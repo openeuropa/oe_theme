@@ -17,4 +17,4 @@ active_search_filters:
         - label: "Second category"
           url: "http://second-category.com"
         - label: "Third category"
-          url: "http://third-category.com/"
+          url: ""
