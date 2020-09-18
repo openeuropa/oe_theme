@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_tender\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\oe_content_tender\TenderNodeWrapper;
 
 /**
  * Display call for tender status, formatter as a .
@@ -32,8 +33,10 @@ class TenderLabelStatusExtraField extends TenderStatusExtraField {
    */
   public function viewElements(ContentEntityInterface $entity) {
     $build = parent::viewElements($entity);
+    $entity = TenderNodeWrapper::getInstance($entity);
     $build['#theme'] = 'oe_theme_content_tender_label_status';
     $build['#label'] = $this->t('Call status: @label', ['@label' => $build['#label']]);
+    $build['#name'] = $entity->getStatus();
     return $build;
   }
 

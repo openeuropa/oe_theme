@@ -91,7 +91,6 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
     $build = [
       '#theme' => 'oe_theme_content_tender_status',
       '#label' => $entity->getStatusLabel(),
-      '#name' => $status,
     ];
     $cacheable->applyTo($build);
 
