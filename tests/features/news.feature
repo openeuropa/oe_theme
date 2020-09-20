@@ -7,14 +7,15 @@ Feature: News content type.
   Scenario: News information is shown in teasers.
     Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities" permission
     And "oe_news" content:
-      | title           | oe_summary    | oe_teaser   | body      | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                |
-      | Full news title | Short summary | News teaser | News body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |
+      | title           | oe_summary    | oe_teaser   | body      | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                | oe_news_types                                                            |
+      | Full news title | Short summary | News teaser | News body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/resource-type/PRESS_REL |
     And the following images:
       | name       | file           |
       | My Image 1 | example_1.jpeg |
 
     When I am on "the recent content page"
     Then I should see the link "Full news title"
+    And I should see the text "Press release"
     And I should see the text "News teaser"
     And I should see the text "2 April 2019"
     But I should not see the text "Short summary"

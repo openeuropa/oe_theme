@@ -4,9 +4,11 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_news\Plugin\PageHeaderMetadata;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\rdf_skos\Entity\ConceptInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -98,9 +100,16 @@ class NewsContentType extends NodeViewRoutesBase {
       ];
     }
 
+    $news_type = $node->get('oe_news_types')->entity;
+    if ($news_type instanceof ConceptInterface) {
+      $cacheability = new CacheableMetadata();
+      $cacheability->addCacheableDependency($news_type);
+      $news_type = \Drupal::service('entity.repository')->getTranslationFromContext($news_type);
+      $news_type_label = $news_type->label();
+    }
     $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
     $metadata['metas'] = [
-      $this->t('News'),
+      isset($news_type_label) ? $news_type_label : $this->t('News'),
       $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),
     ];
 
