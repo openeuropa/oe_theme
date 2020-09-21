@@ -11,6 +11,11 @@ navigation_menu:
       label: "Label"
       description: "Label for the menu, only visible on mobile."
       preview: "Navigation"
+    site_name:
+      type: "text"
+      label: "Site name"
+      description: "Name of the site."
+      preview: "Site name"
     items:
       type: "array"
       label: "Links"

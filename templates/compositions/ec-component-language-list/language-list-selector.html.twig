@@ -48,13 +48,13 @@
 {% endif %}
 
 <a
-  class="ecl-link ecl-link--standalone ecl-site-header-core__language-selector"
+  class="ecl-link ecl-link--standalone ecl-site-header-{{ ecl_template }}__language-selector"
   href="{{ _path }}"
   data-ecl-language-selector
   aria-controls="language-list-overlay"
   aria-expanded="false"
 >
-  <span class="ecl-site-header-core__language-icon">
+  <span class="ecl-site-header-{{ ecl_template }}__language-icon">
     {% include '@ecl-twig/icon' with {
       icon: {
         path: _icon_path,
@@ -62,9 +62,9 @@
         name: 'language',
         size: 's'
       },
-      extra_classes: 'ecl-site-header-core__icon'
+      extra_classes: 'ecl-site-header-' ~ ecl_template ~ '__icon'
     } only %}
-    <span class="ecl-site-header-core__language-code">{{ _code }}</span>
+    <span class="ecl-site-header-{{ ecl_template }}__language-code">{{ _code }}</span>
   </span>
   {{- _label -}}
  </a>
