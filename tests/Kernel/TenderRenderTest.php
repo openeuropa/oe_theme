@@ -15,7 +15,7 @@ use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests a call for tender rendering.
+ * Tests call for tender rendering.
  */
 class TenderRenderTest extends ContentRenderTestBase {
 
