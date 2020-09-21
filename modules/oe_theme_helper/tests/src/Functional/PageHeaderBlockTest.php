@@ -59,10 +59,10 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $assert_session = $this->assertSession();
 
     // Only one page header should be rendered.
-    $assert_session->elementsCount('css', '.ecl-page-header-core', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-core');
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised', 1);
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-standardised');
     // Test that the page title is rendered in the page header.
-    $this->assertEquals($entity->label(), trim($header->find('css', '.ecl-page-header-core__title')->getText()));
+    $this->assertEquals($entity->label(), trim($header->find('css', '.ecl-page-header-standardised__title')->getText()));
     // Site identity is not shown by default.
     $assert_session->elementsCount('css', '.ecl-page-header__identity', 0, $header);
     // Intro and meta items are empty.
@@ -71,10 +71,10 @@ class PageHeaderBlockTest extends BrowserTestBase {
 
     // Test another route.
     $this->drupalGet('/user/login');
-    $assert_session->elementsCount('css', '.ecl-page-header-core', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-core');
-    $this->assertEquals('Log in', trim($header->find('css', '.ecl-page-header-core__title')->getText()));
-    $assert_session->elementsCount('css', '.ecl-page-header-core__description', 0);
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised', 1);
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-standardised');
+    $this->assertEquals('Log in', trim($header->find('css', '.ecl-page-header-standardised__title')->getText()));
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised__description', 0);
     $assert_session->elementsCount('css', '.ecl-page-header__meta-list', 0);
     $assert_session->elementsCount('css', '.ecl-page-header__info-item', 0);
 
@@ -104,18 +104,18 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $this->drupalGet('/user/login');
     // The test plugin metadata is shown as it has higher priority than the
     // default one.
-    $assert_session->elementsCount('css', '.ecl-page-header-core', 1);
-    $assert_session->elementsCount('css', '.ecl-page-header-core__description', 1);
-    $assert_session->elementsCount('css', '.ecl-page-header-core__meta', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-core');
-    $this->assertEquals($test_data['title'], trim($header->find('css', '.ecl-page-header-core__title')->getText()));
-    $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header-core__description')->getText()));
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised__description', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header-standardised__meta', 1);
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-standardised');
+    $this->assertEquals($test_data['title'], trim($header->find('css', '.ecl-page-header-standardised__title')->getText()));
+    $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header-standardised__description')->getText()));
 
     $metas = '';
     foreach ($test_data['metas'] as $meta) {
       $metas .= ($metas != '' ? ' | ' : '') . $meta;
     }
-    $this->assertEquals($metas, trim($header->find('css', '.ecl-page-header-core__meta')->getText()));
+    $this->assertEquals($metas, trim($header->find('css', '.ecl-page-header-standardised__meta')->getText()));
   }
 
 }
