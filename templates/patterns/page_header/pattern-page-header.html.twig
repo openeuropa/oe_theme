@@ -61,7 +61,7 @@
   {% endset %}
 {% endif %}
 
-{% include '@ecl-twig/page-header-core' with {
+{% include '@ecl-twig/page-header-' ~ ecl_template with {
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,
