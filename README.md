@@ -65,7 +65,9 @@ page.
 **Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
-### Upgrade to 2.9.0
+Besides component libraries oe_theme support templates like "Core" and "Standardised". By default used "Standardised" templates.
+
+### Updating to 2.9.0+
 
 #### Content type teasers
 
