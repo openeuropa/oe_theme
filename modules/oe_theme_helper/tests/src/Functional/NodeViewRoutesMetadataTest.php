@@ -88,16 +88,16 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
     // Verify that the page header block is shown in the node canonical route
     // and contains the correct revision text.
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core__description', $published_revision_body);
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised__description', $published_revision_body);
 
     // Verify that the block is also shown in the latest version route with the
     // correct draft revision loaded.
     $this->drupalGet($node->toUrl('latest-version'));
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core__description', $draft_revision_body);
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised__description', $draft_revision_body);
 
     // Verify also for the node single revision route.
     $this->drupalGet($first_revision_url);
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core__description', $published_revision_body);
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised__description', $published_revision_body);
   }
 
 }

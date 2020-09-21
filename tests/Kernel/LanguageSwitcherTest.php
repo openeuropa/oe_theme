@@ -69,7 +69,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
     $this->assertContains($language_name, $actual);
 
-    $actual = $crawler->filter('a[data-ecl-language-selector] .ecl-site-header-core__language-code')->text();
+    $actual = $crawler->filter('a[data-ecl-language-selector] .ecl-site-header-standardised__language-code')->text();
     $this->assertEquals($lang_prefix, $actual);
 
     // Make sure that the actual language link is set as active.
