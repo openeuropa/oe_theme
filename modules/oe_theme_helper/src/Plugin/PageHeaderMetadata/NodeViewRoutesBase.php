@@ -63,13 +63,11 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
    */
   public function getMetadata(): array {
     $entity = $this->getNode();
-
     $metadata = [];
 
-    $introduction = $this->getPageHeaderIntroduction();
-    if ($introduction) {
-      $metadata['introduction'] = $introduction;
-    }
+    $metadata = [
+      'introduction' => $this->getIntroductionMetadata('oe_summary'),
+    ];
 
     $cacheability = new CacheableMetadata();
     $cacheability
@@ -103,7 +101,7 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
    * @return array
    *   Inline template if data exists or NULL otherwise.
    */
-  protected function getPageHeaderIntroduction(string $field_name = 'oe_summary'): array {
+  protected function getIntroductionMetadata(string $field_name): array {
     $node = $this->getNode();
     if (!$node->hasField($field_name) || $node->get($field_name)->isEmpty()) {
       return [];

@@ -6,12 +6,12 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Entity\EntityStorageInterface;
+use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
-use Drupal\Tests\oe_media\Traits\MediaCreationTrait;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 
@@ -19,8 +19,6 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
  * Tests organisation (oe_organisation) content type render.
  */
 class ContentOrganisationRenderTest extends BrowserTestBase {
-
-  use MediaCreationTrait;
 
   /**
    * {@inheritdoc}
@@ -66,11 +64,21 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
    * Tests that the Organisation page renders correctly.
    */
   public function testOrganisationRendering(): void {
-    $file = $this->createFile(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
-    $media = $this->createMediaImage($file, [
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'image',
       'name' => 'test image',
-      'alt' => 'Alt',
+      'oe_media_image' => [
+        'target_id' => $file->id(),
+        'alt' => 'Alt',
+      ],
+      'uid' => 0,
+      'status' => 1,
     ]);
+    $media->save();
 
     $general_contact = $this->createContactEntity('general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
@@ -173,11 +181,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
    *   Contact entity.
    */
   protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
-    $file = $this->createFile(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png');
-    $media = $this->createMediaImage($file, [
-      'name' => "Test image $name",
-      'alt' => "Alternative text $name",
-    ]);
+    // Create image for contact.
+    $media = $this->createMediaImage($name);
 
     $contact = $this->getStorage('oe_contact')->create([
       'bundle' => $bundle,
@@ -296,6 +301,36 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
   }
 
   /**
+   * Creates media image entity.
+   *
+   * @param string $name
+   *   Name of the image media.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media image instance.
+   */
+  protected function createMediaImage(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file->setPermanent();
+    $file->save();
+
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'image',
+      'name' => "Test image $name",
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => "Alternative text $name",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
+  }
+
+  /**
    * Asserts featured media field rendering.
    *
    * @param \Behat\Mink\Element\NodeElement $rendered_element
@@ -309,7 +344,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
 
     // Assert image tag.
     $image = $figures[0]->find('css', 'img');
-    $this->assertContains("placeholder.png", $image->getAttribute('src'));
+    $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
     $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
 
     // Assert caption.
