@@ -118,7 +118,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   public function checkBreadcrumbTrail(string $trail): void {
     $trail_elements = explode(', ', $trail);
-    $selector = 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__segment a';
+    $selector = 'ol.ecl-breadcrumb-standardised__container li.ecl-breadcrumb-standardised__segment a';
     $breadcrumb = $this->getBreadcrumb();
 
     $this->assertSession()->elementsCount('css', $selector, count($trail_elements), $breadcrumb);
@@ -128,7 +128,7 @@ class MinkContext extends DrupalExtensionMinkContext {
     foreach ($trail_elements as $key => $trail_element) {
       /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
       $breadcrumb_element = $breadcrumb_elements[$key];
-      $breadcrumb_element_link = $breadcrumb_element->find('css', '.ecl-breadcrumb-core__link');
+      $breadcrumb_element_link = $breadcrumb_element->find('css', '.ecl-breadcrumb-standardised__link');
       $actual[] = $breadcrumb_element_link->getText();
     }
     Assert::assertEquals($trail_elements, $actual);
@@ -146,7 +146,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @Then the breadcrumb active element should be :text
    */
   public function checkBreadcrumbActiveElement(string $active_element): void {
-    $selector = 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__current-page';
+    $selector = 'ol.ecl-breadcrumb-standardised__container li.ecl-breadcrumb-standardised__current-page';
     $breadcrumb = $this->getBreadcrumb();
     $active_breadcrumb = $breadcrumb->find('css', $selector);
     Assert::assertEquals($active_element, $active_breadcrumb->getText());
@@ -174,7 +174,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
   protected function getBreadcrumb(): NodeElement {
-    $selector = 'nav.ecl-page-header-core__breadcrumb';
+    $selector = 'nav.ecl-page-header-standardised__breadcrumb';
 
     return $this->assertSession()->elementExists('css', $selector);
   }
