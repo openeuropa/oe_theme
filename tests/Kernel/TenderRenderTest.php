@@ -158,7 +158,6 @@ class TenderRenderTest extends ContentRenderTestBase {
     // Check status Closed label and background.
     $deadline_date = (clone $static_time)->modify('- 2 days');
     $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
-    $node->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Call status: Closed';
@@ -229,7 +228,6 @@ class TenderRenderTest extends ContentRenderTestBase {
     $node->set('oe_publication_date', $publication_date->format('Y-m-d'))->save();
     $node->set('oe_tender_opening_date', '')->save();
     $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
-    $node->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
