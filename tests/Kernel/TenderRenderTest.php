@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -13,7 +15,7 @@ use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests the event rendering.
+ * Tests a call for tender rendering.
  */
 class TenderRenderTest extends ContentRenderTestBase {
 
@@ -30,6 +32,7 @@ class TenderRenderTest extends ContentRenderTestBase {
     'oe_content_departments_field',
     'oe_content_tender',
     'oe_theme_content_tender',
+    'datetime_testing',
   ];
 
   /**
@@ -58,22 +61,34 @@ class TenderRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Test an event being rendered as a teaser.
+   * Test a call for tender being rendered as a teaser.
    */
   public function testTenderTeaser(): void {
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+
+    $publication_date = (clone $static_time)->modify('- 5 days');
+    $opening_date = (clone $static_time)->modify('- 3 days');
+    $deadline_date = (clone $static_time)->modify('+ 3 days');
+
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = $this->container->get('datetime.time');
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
     // Create a Call for tender node.
     /** @var \Drupal\node\Entity\Node $node */
     $values = [
       'type' => 'oe_tender',
       'title' => 'Test Call for tenders node',
       'oe_publication_date' => [
-        'value' => '2020-04-15',
+        'value' => $publication_date->format('Y-m-d'),
       ],
       'oe_tender_opening_date' => [
-        'value' => '2020-04-30',
+        'value' => $opening_date->format('Y-m-d'),
       ],
       'oe_tender_deadline' => [
-        'value' => date('Y') + 1 . '-06-10T23:30:00',
+        'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
       'oe_reference_code' => 'Call for tenders reference',
       'oe_departments' => ['http://publications.europa.eu/resource/authority/corporate-body/ABEC', 'http://publications.europa.eu/resource/authority/corporate-body/ACM'],
@@ -88,6 +103,7 @@ class TenderRenderTest extends ContentRenderTestBase {
 
     // Check Open status label and background.
     $assert = new ListItemAssert();
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Call for tenders node',
       'meta' => 'Call status: Open',
@@ -99,13 +115,13 @@ class TenderRenderTest extends ContentRenderTestBase {
             'body' => 'Call for tenders reference',
           ], [
             'label' => 'Opening date',
-            'body' => '30 April 2020',
+            'body' => $opening_date->format('d F Y'),
           ], [
             'label' => 'Deadline date',
-            'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
           ], [
             'label' => 'Departments',
-            'body' => "Audit Board of the European Communities | Arab Common Market",
+            'body' => "Audit Board of the European Communities\n   |   Arab Common Market",
           ],
         ],
       ]),
@@ -127,10 +143,10 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => 'Call for tenders reference',
         ], [
           'label' => 'Opening date',
-          'body' => '30 April 2020',
+          'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
-          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
         ], [
           'label' => 'Department',
           'body' => 'Audit Board of the European Communities',
@@ -140,11 +156,13 @@ class TenderRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     // Check status Closed label and background.
-    $node->set('oe_tender_deadline', date('Y') - 1 . '-06-10T23:30:00')->save();
+    $deadline_date = (clone $static_time)->modify('- 2 days');
+    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $node->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Call status: Closed';
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
@@ -152,10 +170,10 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => 'Call for tenders reference',
         ], [
           'label' => 'Opening date',
-          'body' => '30 April 2020',
+          'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
-          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') - 1),
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
         ], [
           'label' => 'Department',
           'body' => 'Audit Board of the European Communities',
@@ -173,10 +191,13 @@ class TenderRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
-    $node->set('oe_tender_opening_date', date('Y') + 2 . '-06-10')->save();
-    $node->set('oe_tender_deadline', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $opening_date = (clone $static_time)->modify('+ 10 days');
+    $deadline_date = (clone $static_time)->modify('+ 5 days');
+    $node->set('oe_tender_opening_date', $opening_date->format('Y-m-d'))->save();
+    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['meta'] = 'Call status: Upcoming';
     $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
@@ -185,10 +206,10 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => 'Call for tenders reference',
         ], [
           'label' => 'Opening date',
-          'body' => sprintf('10 June %s', date('Y') + 2),
+          'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
-          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
         ], [
           'label' => 'Department',
           'body' => 'Audit Board of the European Communities',
@@ -202,13 +223,17 @@ class TenderRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $actual);
 
     // Check status N/A.
-    $node->set('oe_publication_date', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $publication_date = (clone $static_time)->modify('+ 5 days');
+    $deadline_date = (clone $static_time)->modify('+ 5 days');
+
+    $node->set('oe_publication_date', $publication_date->format('Y-m-d'))->save();
     $node->set('oe_tender_opening_date', '')->save();
-    $node->set('oe_tender_deadline', date('Y') + 1 . '-06-10T23:30:00')->save();
+    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $node->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['meta'] = '';
     $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
@@ -217,7 +242,7 @@ class TenderRenderTest extends ContentRenderTestBase {
           'body' => 'Call for tenders reference',
         ], [
           'label' => 'Deadline date',
-          'body' => sprintf('11 June %s, 09:30 (AEST)', date('Y') + 1),
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
         ], [
           'label' => 'Department',
           'body' => 'Audit Board of the European Communities',

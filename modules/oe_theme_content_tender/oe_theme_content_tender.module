@@ -64,36 +64,23 @@ function oe_theme_content_tender_node_view_alter(array &$build, EntityInterface 
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_content_tender_preprocess_field__node__oe_tender_deadline__full(&$variables, $hook) {
-  oe_theme_content_tender_strike_deadline($variables);
+  _oe_theme_content_tender_strike_deadline($variables);
 }
 
 /**
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_content_tender_preprocess_field__node__oe_tender_deadline__teaser(&$variables, $hook) {
-  oe_theme_content_tender_strike_deadline($variables);
+  _oe_theme_content_tender_strike_deadline($variables);
 }
 
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_content_tender_preprocess_field__node__oe_departments__teaser(&$variables, $hook) {
-  if (count($variables['items']) <= 1) {
-    return;
-  }
-  $departments = array_shift($variables['items']);
-  foreach ($variables['items'] as $value) {
-    $departments['content']['#plain_text'] .= " | " . $value['content']['#plain_text'];
-  }
-  $variables['items'] = [$departments];
-}
 /**
  * Add strike through to deadline date when tender is close.
  *
  * @param array $variables
  *   Element variables from preprocess.
  */
-function oe_theme_content_tender_strike_deadline(&$variables) {
+function _oe_theme_content_tender_strike_deadline(&$variables) {
   $node = TenderNodeWrapper::getInstance($variables['element']['#object']);
   if ($node->isClosed()) {
     // Cross out closed tender.
