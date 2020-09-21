@@ -395,8 +395,8 @@ class OeThemeTestContext extends RawDrupalContext {
       'Finnish' => 'fi',
       'Swedish' => 'sv',
     ];
-    $this->assertSession()->elementExists('css', 'img.ecl-site-header-core__logo-image-mobile');
-    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-core__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
+    $this->assertSession()->elementExists('css', 'img.ecl-site-header-standardised__logo-image-mobile');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-standardised__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
   }
 
 }
