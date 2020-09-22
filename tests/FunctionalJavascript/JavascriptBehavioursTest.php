@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use PHPUnit\Framework\Assert;
 
 /**
  * Tests the Javascript behaviours of the theme.
@@ -71,6 +72,40 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->getSession()->getPage()->pressButton('Dropdown 1');
     $this->assertSession()->pageTextContains('Child link 1');
     $this->assertSession()->pageTextNotContains('Child link 0');
+  }
+
+  /**
+   * Tests that ECL multi select is rendered properly.
+   */
+  public function testEclMultiSelect(): void {
+    $this->drupalGet('/oe_theme_js_test/multi_select');
+    // Assert the default input is present and shows a default placeholder.
+    $select_input = $this->getSession()->getPage()->find('css', 'input.ecl-select__multiple-toggle');
+    Assert::assertTrue($this->getSession()->getDriver()->isVisible($select_input->getXpath()));
+    Assert::assertEquals('Select', $select_input->getAttribute('placeholder'));
+
+    // Assert the select dropdown is hidden.
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    Assert::assertFalse($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
+
+    // Click the input and assert the dropdown is now visible.
+    $select_input->click();
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    Assert::assertTrue($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
+
+    // Assert all options are visible.
+    $options = [
+      'Select all',
+      'One',
+      'Two point one',
+      'Two point two',
+      'Three',
+    ];
+    $option_elements = $this->getSession()->getPage()->findAll('css', 'div.ecl-checkbox');
+    Assert::assertEquals(count($options), count($option_elements));
+    foreach ($options as $index => $option) {
+      Assert::assertEquals($option, $option_elements[$index]->getText());
+    }
   }
 
 }
