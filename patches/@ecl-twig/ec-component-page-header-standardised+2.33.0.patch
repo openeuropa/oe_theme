@@ -12,7 +12,7 @@ patch-package
      }) only %}
    {% endif %}
 +  {% if composition is defined and composition is not empty %}
-+    <div class="ecl-u-mb-xl ecl-u-border-bottom ecl-u-border-color-white">
++    <div class="ecl-u-mb-xl ecl-u-border-bottom ecl-u-border-color-white ecl-content-language-switcher--standardised">
 +      {{- composition|raw -}}
 +    </div>
 +  {% endif %}
