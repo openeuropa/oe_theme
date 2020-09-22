@@ -6,7 +6,4 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% for item in items %}
-  {{ item.content }}
-  {% if not loop.last %} | {% endif %}
-{% endfor %}
+{% for item in items %}{{item.content}}{% if not loop.last %} | {% endif %}{% endfor %}
