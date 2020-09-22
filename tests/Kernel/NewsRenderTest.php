@@ -157,7 +157,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
-    // Set news types.
+    // Set news type.
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PRESS_REL')->save();
     $this->nodeViewBuilder->resetCache();
 
@@ -168,7 +168,30 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'Test news node',
       'url' => '/node/1',
       'detail' => 'Teaser',
-      'meta' => 'Press release | 2 April 2019',
+      'meta' => "Press release\n | 2 April 2019",
+      'image' => [
+        'src' => 'example_1.jpeg',
+        'alt' => '',
+      ],
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('thumbnail_primary', $html);
+
+    // Set multiple news types.
+    $node->set('oe_news_types', [
+      'http://publications.europa.eu/resource/authority/resource-type/FACTSHEET',
+      'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN',
+    ]);
+    $this->nodeViewBuilder->resetCache();
+
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+
+    $expected_values = [
+      'title' => 'Test news node',
+      'url' => '/node/1',
+      'detail' => 'Teaser',
+      'meta' => "Factsheet, \nGeneral publications\n | 2 April 2019",
       'image' => [
         'src' => 'example_1.jpeg',
         'alt' => '',
