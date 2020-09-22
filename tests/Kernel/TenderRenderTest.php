@@ -185,7 +185,7 @@ class TenderRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.tender-status.ecl-label.ecl-u-text-uppercase.ecl-label--highlight');
     $this->assertCount(1, $actual);
 
-    // Check Deadline date is striked when tender is close.
+    // Check Deadline date is striked when tender is closed.
     $actual = $crawler->filter('dd.ecl-description-list__definition > .ecl-u-type-strike');
     $this->assertCount(1, $actual);
 
