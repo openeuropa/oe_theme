@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Implements hook_install().
@@ -19,19 +20,25 @@ function oe_theme_content_tender_install() {
   }
 
   // Override entity view displays.
-  $config_name = 'core.entity_view_display.node.oe_tender.default';
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_tender') . '/config/overrides');
-  $config_values = $storage->read($config_name);
+  $displays = [
+    'core.entity_view_display.node.oe_tender.default',
+    'core.entity_view_display.node.oe_tender.teaser',
+  ];
 
-  // Load existing configuration.
-  $config_manager = \Drupal::service('config.manager');
-  $entity_type = $config_manager->getEntityTypeIdByName($config_name);
-  $config_entity_storage = $config_manager
-    ->getEntityTypeManager()
-    ->getStorage($entity_type);
-  $config_entity = $config_entity_storage->load($config_values['id']);
+  foreach ($displays as $display) {
+    $values = $storage->read($display);
+    $config = EntityViewDisplay::load($values['id']);
+    if (!$config) {
+      $config = EntityViewDisplay::create($values);
+      $config->save();
+      continue;
+    }
 
-  // Update configuration.
-  $updated_config_entity = $config_entity_storage->updateFromStorageRecord($config_entity, $config_values);
-  $updated_config_entity->save();
+    foreach ($values as $key => $value) {
+      $config->set($key, $value);
+    }
+
+    $config->save();
+  }
 }

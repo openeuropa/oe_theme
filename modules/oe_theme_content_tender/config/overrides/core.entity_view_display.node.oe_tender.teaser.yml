@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
     - field.field.node.oe_tender.body
     - field.field.node.oe_tender.oe_departments
     - field.field.node.oe_tender.oe_documents
@@ -17,84 +18,30 @@ dependencies:
     - datetime
     - field_group
     - rdf_skos
-    - text
     - user
 third_party_settings:
   field_group:
-    group_in_page_navigation:
-      children:
-        - group_item_details
-        - group_item_description
-        - group_item_documents
-      parent_name: ''
-      weight: 0
-      format_type: oe_theme_helper_in_page_navigation
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-      label: 'Page contents'
     group_details:
       children:
-        - extra_field_oe_tender_status
         - oe_reference_code
-        - oe_publication_date
         - oe_tender_opening_date
         - oe_tender_deadline
         - oe_departments
-      parent_name: group_item_details
-      weight: 21
+      parent_name: ''
+      weight: 1
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
         variant: horizontal
-      label: ''
-    group_item_details:
-      children:
-        - group_details
-      parent_name: group_in_page_navigation
-      weight: 20
-      format_type: oe_theme_helper_in_page_navigation_item
-      region: content
-      format_settings:
-        id: ''
         classes: ''
+        id: ''
       label: Details
-    group_item_description:
-      children:
-        - body
-      parent_name: group_in_page_navigation
-      weight: 21
-      format_type: oe_theme_helper_in_page_navigation_item
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-      label: Description
-    group_item_documents:
-      children:
-        - oe_documents
-      parent_name: group_in_page_navigation
-      weight: 22
-      format_type: oe_theme_helper_in_page_navigation_item
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-      label: Documents
-id: node.oe_tender.default
+id: node.oe_tender.teaser
 targetEntityType: node
 bundle: oe_tender
-mode: default
+mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 22
-    settings: {  }
-    third_party_settings: {  }
-    region: content
-  extra_field_oe_tender_status:
+  extra_field_oe_tender_label_status:
     weight: 0
     region: content
     settings: {  }
@@ -107,24 +54,6 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-  oe_documents:
-    weight: 23
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: content
-  oe_publication_date:
-    weight: 2
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: oe_tender_date_long
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
   oe_reference:
     weight: 1
     label: above
@@ -135,39 +64,42 @@ content:
     region: content
   oe_reference_code:
     type: string
-    weight: 1
+    weight: 2
     region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   oe_tender_deadline:
+    type: datetime_default
     weight: 4
+    region: content
     label: above
     settings:
       timezone_override: ''
       format_type: oe_tender_date_full_timezone
     third_party_settings: {  }
-    type: datetime_default
-    region: content
   oe_tender_opening_date:
+    type: datetime_default
     weight: 3
+    region: content
     label: above
     settings:
       timezone_override: ''
       format_type: oe_tender_date_long
     third_party_settings: {  }
-    type: datetime_default
-    region: content
 hidden:
+  body: true
+  extra_field_oe_tender_status: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
-  extra_field_oe_tender_label_status: true
   langcode: true
   links: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
   oe_content_short_title: true
+  oe_documents: true
+  oe_publication_date: true
   oe_subject: true
   oe_summary: true
   oe_teaser: true

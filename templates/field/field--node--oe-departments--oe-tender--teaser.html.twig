@@ -1,0 +1,9 @@
+{#
+/**
+ * @file
+ * Theme override for the Responsible department field template of the Call for tender content type teaser display.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}{{item.content}}{% if not loop.last %} | {% endif %}{% endfor %}

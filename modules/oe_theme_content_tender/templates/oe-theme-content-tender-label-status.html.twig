@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for the status extra field on Call for tender content type.
+ *
+ * @see \Drupal\oe_theme_content_tender\Plugin\ExtraField\Display\TenderLabelStatusExtraField::viewElements()
+ */
+#}
+{% if name != 'not_available' %}
+  {% if name == 'upcoming' %}
+    {% set background_class = ' ecl-label--medium' %}
+  {% elseif name == 'open' %}
+    {% set background_class = ' ecl-label--high' %}
+  {% elseif name == 'closed' %}
+    {% set background_class = ' ecl-label--highlight' %}
+  {% endif %}
+  <span class="tender-status ecl-label ecl-u-text-uppercase{{ background_class }}">{{ label }}</span>
+{% endif %}

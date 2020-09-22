@@ -7,6 +7,8 @@
  * @see ./templates/field/field--bare.html.twig
  */
 #}
+{% for item in items %}
 <span class="ecl-u-text-uppercase">
-  {%- include 'field--bare.html.twig' -%}
+  {{ item.content }}
 </span>
+{% endfor %}
