@@ -63,8 +63,6 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
    */
   public function getMetadata(): array {
     $entity = $this->getNode();
-    $metadata = [];
-
     $metadata = [
       'introduction' => $this->getIntroductionMetadata('oe_summary'),
     ];
@@ -93,13 +91,13 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
   }
 
   /**
-   * Gets introduction data from the node.
+   * Get properly formatted introduction metadata.
    *
    * @param string $field_name
-   *   Node's field name where data is taken from.
+   *   Node field name where data is taken from.
    *
    * @return array
-   *   Inline template if data exists or NULL otherwise.
+   *   Render array, if field exists.
    */
   protected function getIntroductionMetadata(string $field_name): array {
     $node = $this->getNode();
