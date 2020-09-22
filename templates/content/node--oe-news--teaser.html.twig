@@ -6,19 +6,15 @@
 #}
 {# Default to "News" if type field is empty. #}
 {# This can happen since the field was introduced at a later stage. #}
-{% set meta = ['News'|t] %}
-{% if not node.oe_news_types.isEmpty() %}
-  {% set meta = content.oe_news_types|field_value %}
-{% endif %}
-{% set meta = meta|merge([
-  content.oe_publication_date|field_value
-]) %}
 {% set image_url = content.oe_news_featured_media|field_value|render %}
 {{ pattern('list_item', {
   'variant': 'thumbnail_primary',
   'url': url,
   'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
-  'meta': meta,
+  'meta': [
+    not node.oe_news_types.isEmpty() ? content.oe_news_types : 'News'|t,
+    content.oe_publication_date|field_value,
+  ],
   'detail': content.oe_teaser|field_value,
   'image': image_url ? { 'src': image_url }
 }) }}
