@@ -1615,7 +1615,7 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  */
 function oe_theme_preprocess_page(array &$variables): void {
   $variables['main_attributes'] = new Attribute([
-    'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
+    'class' => ['ecl-u-pb-2xl', 'ecl-u-pb-md-3xl'],
     'id' => ['main-content'],
   ]);
 }
