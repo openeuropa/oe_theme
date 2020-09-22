@@ -6,18 +6,11 @@
 #}
 
 {% set _meta = '' %}
-{% for item in metas %}
-  {% if item is iterable %}
-    {% if _meta is not empty %}
-      {% set _meta = _meta ~ ' | ' %}
-    {% endif %}
-    {% set _meta = _meta ~ item|join(', ') %}
-  {% else %}
-    {% if _meta is not empty %}
-      {% set _meta = _meta ~ ' | ' %}
-    {% endif %}
-    {% set _meta = _meta ~ item %}
+{% for meta in metas %}
+  {% if _meta != '' %}
+    {% set _meta = _meta ~ ' | ' %}
   {% endif %}
+  {% set _meta = _meta ~ meta %}
 {% endfor %}
 
 {% set _breadcrumb_links = {} %}

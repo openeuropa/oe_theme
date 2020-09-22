@@ -4,12 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_news\Plugin\PageHeaderMetadata;
 
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -123,37 +123,46 @@ class NewsContentType extends NodeViewRoutesBase {
       ];
     }
 
-    $cacheability = new CacheableMetadata();
+    $metadata['metas'] = [];
 
-    $news_types_labels = [];
-    $news_types = $node->get('oe_news_types')->getValue();
-    foreach ($news_types as $key => $news_type) {
-      $news_type = $this->entityTypeManager->getStorage('skos_concept')->load($news_type['target_id']);
-      $cacheability->addCacheableDependency($news_type);
-      $news_type = $this->entityRepository->getTranslationFromContext($news_type);
-      $news_types_labels[$key] = $news_type->label();
+    // Add news types to page metadata.
+    if (!$node->get('oe_news_types')->isEmpty()) {
+      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_news_types'));
     }
 
+    // Add publication date to page metadata.
     $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
+    $metadata['metas'][] = $this->dateFormatter->format($timestamp, 'oe_theme_news_date');
 
-    $location = $node->get('oe_news_location')->entity;
-    $cacheability->addCacheableDependency($location);
-
-    $authors = $node->get('oe_author')->getValue();
-    foreach ($authors as $key => $author) {
-      $author = $this->entityTypeManager->getStorage('skos_concept')->load($author['target_id']);
-      $cacheability->addCacheableDependency($author);
-      $author = $this->entityRepository->getTranslationFromContext($author);
-      $authors_labels[$key] = $author->label();
+    // Add news locations to page metadata.
+    if (!$node->get('oe_news_location')->isEmpty()) {
+      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_news_location'));
     }
-    $metadata['metas'] = [
-      isset($news_types_labels) ? $news_types_labels : $this->t('News'),
-      $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),
-      isset($location) ? $location->label() : '',
-      isset($authors_labels) ? $authors_labels : '',
-    ];
+
+    // Add news authors to page metadata.
+    if (!$node->get('oe_author')->isEmpty()) {
+      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_author'));
+    }
 
     return $metadata;
+  }
+
+  /**
+   * Format a list of SKOS references into a comma separated string.
+   *
+   * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
+   *   Field item list object.
+   *
+   * @return string
+   *   Comma separated string.
+   */
+  protected function getCommaSeparatedSkosMeta(SkosConceptReferenceFieldItemList $items): string {
+    $list = [];
+    foreach ($items as $item) {
+      $entity = $item->entity;
+      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    return implode(', ', $list);
   }
 
 }
