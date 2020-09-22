@@ -139,6 +139,55 @@ class ConfigurationTest extends BrowserTestBase {
   }
 
   /**
+   * Test that the correct layout is used after changing theme template setting.
+   */
+  public function testChangeEclTemplate(): void {
+    foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
+      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->set('theme.registry', NULL);
+
+      $page = $this->getSession()->getPage();
+      $assert_session = $this->assertSession();
+
+      // Create a user that does have permission to administer theme settings.
+      $user = $this->drupalCreateUser(['administer themes']);
+      $this->drupalLogin($user);
+
+      // Visit theme administration page.
+      $this->drupalGet('/admin/appearance/settings/' . $active_theme);
+
+      // Assert configuration select is properly rendered.
+      $assert_session->selectExists('Template');
+      $assert_session->optionExists('Template', 'Core');
+      $assert_session->optionExists('Template', 'Standardised');
+
+      $page->selectFieldOption('Template', 'Core');
+      $page->pressButton('Save configuration');
+
+      // Visit font page.
+      $this->drupalGet('<front>');
+
+      // Make sure that classes for Core template is present.
+      $this->assertSession()->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top');
+      $this->assertSession()->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top div.ecl-site-header-core__action');
+
+      // Visit theme administration page.
+      $this->drupalGet('/admin/appearance/settings/' . $active_theme);
+
+      // Select Standardised template and save configuration.
+      $page->selectFieldOption('Template', 'Standardised');
+      $page->pressButton('Save configuration');
+
+      // Visit font page.
+      $this->drupalGet('<front>');
+
+      // Make sure that classes for Standardised template is present.
+      $this->assertSession()->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top');
+      $this->assertSession()->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
+    }
+  }
+
+  /**
    * Assert that current response contians a link tag with given href.
    *
    * @param string $href
