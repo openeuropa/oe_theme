@@ -2,36 +2,33 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_news\Plugin\PageHeaderMetadata;
+namespace Drupal\oe_theme_content_organisation\Plugin\PageHeaderMetadata;
 
-use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Page header metadata for the OpenEuropa News content entity.
+ * Page header metadata for the OpenEuropa Organisation content entity.
  *
  * @PageHeaderMetadata(
- *   id = "news_content_type",
- *   label = @Translation("Metadata extractor for the OE Content News content type"),
+ *   id = "organisation_content_type",
+ *   label = @Translation("Metadata extractor for the OE Organisation Content content type"),
  *   weight = -1
  * )
  */
-class NewsContentType extends NodeViewRoutesBase {
-
-  use StringTranslationTrait;
+class OrganisationContentType extends NodeViewRoutesBase {
 
   /**
-   * The date formatter.
+   * The entity repository.
    *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
    */
-  protected $dateFormatter;
+  protected $entityRepository;
 
   /**
-   * Creates a new NewsContentType object.
+   * Creates a new NodeViewRouteBase object.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -41,12 +38,13 @@ class NewsContentType extends NodeViewRoutesBase {
    *   The plugin implementation definition.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
    */
-  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, DateFormatterInterface $date_formatter) {
+  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $event_dispatcher);
-    $this->dateFormatter = $date_formatter;
+
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -58,7 +56,7 @@ class NewsContentType extends NodeViewRoutesBase {
       $plugin_id,
       $plugin_definition,
       $container->get('event_dispatcher'),
-      $container->get('date.formatter')
+      $container->get('entity.repository')
     );
   }
 
@@ -68,7 +66,7 @@ class NewsContentType extends NodeViewRoutesBase {
   public function applies(): bool {
     $node = $this->getNode();
 
-    return $node && $node->bundle() === 'oe_news';
+    return $node && $node->bundle() === 'oe_organisation';
   }
 
   /**
@@ -76,13 +74,13 @@ class NewsContentType extends NodeViewRoutesBase {
    */
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
-
     $node = $this->getNode();
-    $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
-    $metadata['metas'] = [
-      $this->t('News'),
-      $this->dateFormatter->format($timestamp, 'oe_theme_news_date'),
-    ];
+
+    if (!$node->get('oe_organisation_acronym')->isEmpty()) {
+      $metadata['metas'] = [
+        $node->get('oe_organisation_acronym')->value,
+      ];
+    }
 
     return $metadata;
   }
