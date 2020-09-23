@@ -22,8 +22,8 @@ function oe_theme_content_tender_install() {
   // Override entity view displays.
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_tender') . '/config/overrides');
   $displays = [
-    'core.entity_view_display.node.oe_tender.default',
-    'core.entity_view_display.node.oe_tender.teaser',
+    'core.entity_view_display.node.oe_call_tenders.default',
+    'core.entity_view_display.node.oe_call_tenders.teaser',
   ];
 
   foreach ($displays as $display) {
