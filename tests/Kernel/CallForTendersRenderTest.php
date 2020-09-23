@@ -15,9 +15,9 @@ use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests call for tender rendering.
+ * Tests call for tenders rendering.
  */
-class TenderRenderTest extends ContentRenderTestBase {
+class CallForTendersRenderTest extends ContentRenderTestBase {
 
   use UserCreationTrait;
 
@@ -30,8 +30,8 @@ class TenderRenderTest extends ContentRenderTestBase {
     'oe_time_caching',
     'oe_content_reference_code_field',
     'oe_content_departments_field',
-    'oe_content_tender',
-    'oe_theme_content_tender',
+    'oe_content_call_tenders',
+    'oe_theme_content_call_tenders',
     'datetime_testing',
   ];
 
@@ -45,12 +45,12 @@ class TenderRenderTest extends ContentRenderTestBase {
       'composite_reference',
       'oe_content_departments_field',
       'oe_content_reference_code_field',
-      'oe_content_tender',
-      'oe_theme_content_tender',
+      'oe_content_call_tenders',
+      'oe_theme_content_call_tenders',
     ]);
 
-    module_load_include('install', 'oe_theme_content_tender');
-    oe_theme_content_tender_install();
+    module_load_include('install', 'oe_theme_content_call_tenders');
+    oe_theme_content_call_tenders_install();
 
     module_load_include('install', 'oe_content');
     oe_content_install();
@@ -61,9 +61,9 @@ class TenderRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Test a call for tender being rendered as a teaser.
+   * Test a call for tenders being rendered as a teaser.
    */
-  public function testTenderTeaser(): void {
+  public function testTeaser(): void {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
 
@@ -76,18 +76,18 @@ class TenderRenderTest extends ContentRenderTestBase {
     $time->freezeTime();
     $time->setTime($static_time->getTimestamp());
 
-    // Create a Call for tender node.
+    // Create a Call for tenders node.
     /** @var \Drupal\node\Entity\Node $node */
     $values = [
-      'type' => 'oe_tender',
+      'type' => 'oe_call_tenders',
       'title' => 'Test Call for tenders node',
       'oe_publication_date' => [
         'value' => $publication_date->format('Y-m-d'),
       ],
-      'oe_tender_opening_date' => [
+      'oe_call_tenders_opening_date' => [
         'value' => $opening_date->format('Y-m-d'),
       ],
-      'oe_tender_deadline' => [
+      'oe_call_tenders_deadline' => [
         'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
       'oe_reference_code' => 'Call for tenders reference',
@@ -157,7 +157,7 @@ class TenderRenderTest extends ContentRenderTestBase {
 
     // Check status Closed label and background.
     $deadline_date = (clone $static_time)->modify('- 2 days');
-    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
+    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Call status: Closed';
@@ -192,8 +192,8 @@ class TenderRenderTest extends ContentRenderTestBase {
     // Check status Upcoming label and background.
     $opening_date = (clone $static_time)->modify('+ 10 days');
     $deadline_date = (clone $static_time)->modify('+ 5 days');
-    $node->set('oe_tender_opening_date', $opening_date->format('Y-m-d'))->save();
-    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
+    $node->set('oe_call_tenders_opening_date', $opening_date->format('Y-m-d'))->save();
+    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
@@ -226,8 +226,8 @@ class TenderRenderTest extends ContentRenderTestBase {
     $deadline_date = (clone $static_time)->modify('+ 5 days');
 
     $node->set('oe_publication_date', $publication_date->format('Y-m-d'))->save();
-    $node->set('oe_tender_opening_date', '')->save();
-    $node->set('oe_tender_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
+    $node->set('oe_call_tenders_opening_date', '')->save();
+    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
