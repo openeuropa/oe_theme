@@ -34,6 +34,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
    */
   protected static $modules = [
     'field',
+    'field_group',
     'link',
     'file',
     'text',
@@ -58,6 +59,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_content_policy',
     'oe_content_documents_field',
     'oe_content_publication',
+    'oe_content_reference_code_field',
     'oe_theme_content_news',
     'oe_theme_content_page',
     'oe_theme_content_policy',
@@ -103,6 +105,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     $this->installConfig([
       'oe_content',
       'oe_content_timeline_field',
+      'oe_content_reference_code_field',
       'oe_content_news',
       'oe_content_page',
       'oe_content_policy',

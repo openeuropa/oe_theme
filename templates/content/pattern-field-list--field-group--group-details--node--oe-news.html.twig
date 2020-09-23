@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * News node details field group.
+ */
+#}
+{% extends '@oe_theme/patterns/field_list/pattern-field-list.html.twig' %}
+{% block content %}
+  <div id="news-details">
+    <h2 class="ecl-u-type-heading-2">{{ 'Details'|t }}</h2>
+    <div class="ecl-u-mb-s">
+      {{ parent() }}
+    </div>
+  </div>
+{% endblock %}

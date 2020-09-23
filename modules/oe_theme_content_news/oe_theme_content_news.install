@@ -23,6 +23,7 @@ function oe_theme_content_news_install() {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/overrides');
   $displays = [
     'core.entity_view_display.node.oe_news.teaser',
+    'core.entity_view_display.node.oe_news.default',
   ];
 
   foreach ($displays as $display) {

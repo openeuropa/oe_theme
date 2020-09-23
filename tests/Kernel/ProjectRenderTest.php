@@ -25,7 +25,6 @@ class ProjectRenderTest extends ContentRenderTestBase {
    */
   protected static $modules = [
     'address',
-    'field_group',
     'datetime_range',
     'entity_reference_revisions',
     'link',
