@@ -5,21 +5,21 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_tender\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\oe_content_tender\TenderNodeWrapper;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
 
 /**
  * Display call for tender status as a label.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_tender_label_status",
+ *   id = "oe_call_tenders_label_status",
  *   label = @Translation("Status as a label"),
  *   bundles = {
- *     "node.oe_tender",
+ *     "node.oe_call_tenders",
  *   },
  *   visible = true
  * )
  */
-class TenderLabelStatusExtraField extends TenderStatusExtraField {
+class CallForTendersLabelStatusExtraField extends CallForTendersStatusExtraField {
 
   /**
    * {@inheritdoc}
@@ -33,7 +33,7 @@ class TenderLabelStatusExtraField extends TenderStatusExtraField {
    */
   public function viewElements(ContentEntityInterface $entity) {
     $build = parent::viewElements($entity);
-    $entity = TenderNodeWrapper::getInstance($entity);
+    $entity = CallForTendersNodeWrapper::getInstance($entity);
     $build['#theme'] = 'oe_theme_content_tender_label_status';
     $build['#label'] = $this->t('Call status: @label', ['@label' => $build['#label']]);
     $build['#name'] = $entity->getStatus();

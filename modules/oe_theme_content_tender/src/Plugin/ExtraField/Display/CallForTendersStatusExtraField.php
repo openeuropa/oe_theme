@@ -10,23 +10,23 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
-use Drupal\oe_content_tender\TenderNodeWrapper;
-use Drupal\oe_content_tender\TenderNodeWrapperInterface;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Display call for tender status.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_tender_status",
+ *   id = "oe_call_tenders_status",
  *   label = @Translation("Status"),
  *   bundles = {
- *     "node.oe_tender",
+ *     "node.oe_call_tenders",
  *   },
  *   visible = true
  * )
  */
-class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
 
@@ -77,15 +77,15 @@ class TenderStatusExtraField extends ExtraFieldDisplayFormattedBase implements C
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $entity = TenderNodeWrapper::getInstance($entity);
+    $entity = CallForTendersNodeWrapper::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === TenderNodeWrapperInterface::STATUS_UPCOMING) {
+    if ($status === CallForTendersNodeWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === TenderNodeWrapperInterface::STATUS_OPEN) {
+    if ($status === CallForTendersNodeWrapperInterface::STATUS_OPEN) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [

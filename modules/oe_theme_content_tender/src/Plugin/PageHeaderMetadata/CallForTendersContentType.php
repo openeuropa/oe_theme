@@ -6,18 +6,18 @@ namespace Drupal\oe_theme_content_tender\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
-use Drupal\oe_content_tender\TenderNodeWrapper;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
 
 /**
- * Page header metadata for the OpenEuropa Call for tender content type.
+ * Page header metadata for the OpenEuropa "Call for tenders" content type.
  *
  * @PageHeaderMetadata(
- *   id = "oe_tender_content_type",
- *   label = @Translation("Metadata extractor for the OE Call for Tender content type"),
+ *   id = "oe_call_tenders_content_type",
+ *   label = @Translation("Metadata extractor for the OE Call for Tenders content type"),
  *   weight = -1
  * )
  */
-class TenderContentType extends NodeViewRoutesBase {
+class CallForTendersContentType extends NodeViewRoutesBase {
 
   use StringTranslationTrait;
 
@@ -27,7 +27,7 @@ class TenderContentType extends NodeViewRoutesBase {
   public function applies(): bool {
     $node = $this->getNode();
 
-    return $node && $node->bundle() === 'oe_tender';
+    return $node && $node->bundle() === 'oe_call_tenders';
   }
 
   /**
@@ -37,7 +37,7 @@ class TenderContentType extends NodeViewRoutesBase {
     $metadata = parent::getMetadata();
 
     $node = $this->getNode();
-    $node_wrapper = TenderNodeWrapper::getInstance($node);
+    $node_wrapper = CallForTendersNodeWrapper::getInstance($node);
     $metadata['metas'] = [$this->t('Call for tenders')];
     if ($node_wrapper->hasStatus()) {
       $metadata['metas'][] = $node_wrapper->getStatusLabel();
