@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_tender\Plugin\PageHeaderMetadata;
+namespace Drupal\oe_theme_content_call_tenders\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;

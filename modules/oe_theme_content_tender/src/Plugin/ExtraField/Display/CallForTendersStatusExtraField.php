@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_tender\Plugin\ExtraField\Display;
+namespace Drupal\oe_theme_content_call_tenders\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -89,7 +89,7 @@ class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase impl
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [
-      '#theme' => 'oe_theme_content_tender_status',
+      '#theme' => 'oe_theme_content_call_tenders_status',
       '#label' => $entity->getStatusLabel(),
     ];
     $cacheable->applyTo($build);
