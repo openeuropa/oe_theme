@@ -15,10 +15,11 @@
         ...
       ]
     - "icon_path" (string) (default: ''): path to ECL SVG icon assets.
+    - "ecl_template" (string) (default: ''): "core" or "standardised" template.
 #}
 
 <div class="ecl-lang-select-page">
-  <div class="ecl-u-d-flex {% if not ecl_template %}ecl-u-type-color-white {% endif %}ecl-u-align-items-start ecl-u-font-s">
+  <div class="ecl-u-d-flex {% if not ecl_template == 'core' %}ecl-u-type-color-white {% endif %}ecl-u-align-items-start ecl-u-font-s">
     <span class="ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
       {% include '@ecl-twig/icon' with {
         icon: {
@@ -29,7 +30,7 @@
         }
       } only %}
       {# Show the unavailable language with a striketrought. #}
-      <span class="ecl-u-ml-m ecl-u-type-m ecl-u-type-strike{% if ecl_template %} ecl-unavailable-language--standardised{% endif %}">
+      <span class="ecl-u-ml-m ecl-u-type-m ecl-u-type-strike">
         {{ unavailable }}
       </span>
     </span>
