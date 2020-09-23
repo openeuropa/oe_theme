@@ -2,17 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.oe_tender.body
-    - field.field.node.oe_tender.oe_departments
-    - field.field.node.oe_tender.oe_documents
-    - field.field.node.oe_tender.oe_publication_date
-    - field.field.node.oe_tender.oe_reference_code
-    - field.field.node.oe_tender.oe_subject
-    - field.field.node.oe_tender.oe_summary
-    - field.field.node.oe_tender.oe_teaser
-    - field.field.node.oe_tender.oe_tender_deadline
-    - field.field.node.oe_tender.oe_tender_opening_date
-    - node.type.oe_tender
+    - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_departments
+    - field.field.node.oe_call_tenders.oe_documents
+    - field.field.node.oe_call_tenders.oe_publication_date
+    - field.field.node.oe_call_tenders.oe_reference_code
+    - field.field.node.oe_call_tenders.oe_subject
+    - field.field.node.oe_call_tenders.oe_summary
+    - field.field.node.oe_call_tenders.oe_teaser
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
+    - node.type.oe_call_tenders
   module:
     - datetime
     - field_group
@@ -36,11 +36,11 @@ third_party_settings:
       label: 'Page contents'
     group_details:
       children:
-        - extra_field_oe_tender_status
+        - extra_field_oe_call_tenders_status
         - oe_reference_code
         - oe_publication_date
-        - oe_tender_opening_date
-        - oe_tender_deadline
+        - oe_call_tenders_opening_date
+        - oe_call_tenders_deadline
         - oe_departments
       parent_name: group_item_details
       weight: 21
@@ -82,9 +82,9 @@ third_party_settings:
         id: ''
         classes: ''
       label: Documents
-id: node.oe_tender.default
+id: node.oe_call_tenders.default
 targetEntityType: node
-bundle: oe_tender
+bundle: oe_call_tenders
 mode: default
 content:
   body:
@@ -94,7 +94,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  extra_field_oe_tender_status:
+  extra_field_oe_call_tenders_status:
     weight: 0
     region: content
     settings: {  }
@@ -121,7 +121,7 @@ content:
     label: above
     settings:
       timezone_override: ''
-      format_type: oe_tender_date_long
+      format_type: oe_call_tenders_date_long
     third_party_settings: {  }
     type: datetime_default
     region: content
@@ -141,27 +141,27 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  oe_tender_deadline:
+  oe_call_tenders_deadline:
     weight: 4
     label: above
     settings:
       timezone_override: ''
-      format_type: oe_tender_date_full_timezone
+      format_type: oe_call_tenders_date_full_timezone
     third_party_settings: {  }
     type: datetime_default
     region: content
-  oe_tender_opening_date:
+  oe_call_tenders_opening_date:
     weight: 3
     label: above
     settings:
       timezone_override: ''
-      format_type: oe_tender_date_long
+      format_type: oe_call_tenders_date_long
     third_party_settings: {  }
     type: datetime_default
     region: content
 hidden:
   extra_field_oe_theme_helper_short_title_with_fallback: true
-  extra_field_oe_tender_label_status: true
+  extra_field_oe_call_tenders_label_status: true
   langcode: true
   links: true
   oe_content_content_owner: true

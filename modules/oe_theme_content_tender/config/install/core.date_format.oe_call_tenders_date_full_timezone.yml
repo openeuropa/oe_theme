@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: oe_tender_date_full_timezone
-label: 'Tender timezone date'
+id: oe_call_tenders_date_full_timezone
+label: 'Call for tenders timezone date'
 locked: false
 pattern: 'd F Y, H:i (T)'
