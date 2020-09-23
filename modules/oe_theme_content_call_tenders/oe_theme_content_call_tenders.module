@@ -35,7 +35,7 @@ function oe_theme_content_call_tenders_theme() {
  * Implements hook_ENTITY_TYPE_view_alter().
  */
 function oe_theme_content_call_tenders_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
-  // Run only on tender content type.
+  // Run only for "Call for tenders" content type.
   if ($entity->bundle() !== 'oe_call_tenders') {
     return;
   }
@@ -75,7 +75,7 @@ function oe_theme_content_call_tenders_preprocess_field__node__oe_call_tenders_d
 }
 
 /**
- * Add strike through to deadline date when tender is close.
+ * Add strike through to deadline date when call for tenders is close.
  *
  * @param array $variables
  *   Element variables from preprocess.
