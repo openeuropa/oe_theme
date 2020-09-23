@@ -108,23 +108,25 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'title' => 'Test Call for tenders node',
       'meta' => 'Call status: Open',
       'image' => NULL,
-      'description' => new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for tenders reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
-          ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('d F Y, H:i (T)'),
-          ], [
-            'label' => 'Departments',
-            'body' => 'Audit Board of the European Communities | Arab Common Market',
+      'additional_information' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Reference',
+              'body' => 'Call for tenders reference',
+            ], [
+              'label' => 'Opening date',
+              'body' => $opening_date->format('d F Y'),
+            ], [
+              'label' => 'Deadline date',
+              'body' => $deadline_date->format('d F Y, H:i (T)'),
+            ], [
+              'label' => 'Departments',
+              'body' => 'Audit Board of the European Communities | Arab Common Market',
+            ],
           ],
-        ],
-      ]),
+        ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -136,23 +138,25 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
-      'items' => [
-        [
-          'label' => 'Reference',
-          'body' => 'Call for tenders reference',
-        ], [
-          'label' => 'Opening date',
-          'body' => $opening_date->format('d F Y'),
-        ], [
-          'label' => 'Deadline date',
-          'body' => $deadline_date->format('d F Y, H:i (T)'),
-        ], [
-          'label' => 'Department',
-          'body' => 'Audit Board of the European Communities',
+    $expected_values['additional_information'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
         ],
-      ],
-    ]);
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Check status Closed label and background.
@@ -162,23 +166,25 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Call status: Closed';
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
-      'items' => [
-        [
-          'label' => 'Reference',
-          'body' => 'Call for tenders reference',
-        ], [
-          'label' => 'Opening date',
-          'body' => $opening_date->format('d F Y'),
-        ], [
-          'label' => 'Deadline date',
-          'body' => $deadline_date->format('d F Y, H:i (T)'),
-        ], [
-          'label' => 'Department',
-          'body' => 'Audit Board of the European Communities',
+    $expected_values['additional_information'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
         ],
-      ],
-    ]);
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
@@ -198,23 +204,25 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['meta'] = 'Call status: Upcoming';
-    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
-      'items' => [
-        [
-          'label' => 'Reference',
-          'body' => 'Call for tenders reference',
-        ], [
-          'label' => 'Opening date',
-          'body' => $opening_date->format('d F Y'),
-        ], [
-          'label' => 'Deadline date',
-          'body' => $deadline_date->format('d F Y, H:i (T)'),
-        ], [
-          'label' => 'Department',
-          'body' => 'Audit Board of the European Communities',
+    $expected_values['additional_information'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
         ],
-      ],
-    ]);
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
@@ -233,20 +241,22 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
 
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['meta'] = '';
-    $expected_values['description'] = new PatternAssertState(new FieldListAssert(), [
-      'items' => [
-        [
-          'label' => 'Reference',
-          'body' => 'Call for tenders reference',
-        ], [
-          'label' => 'Deadline date',
-          'body' => $deadline_date->format('d F Y, H:i (T)'),
-        ], [
-          'label' => 'Department',
-          'body' => 'Audit Board of the European Communities',
+    $expected_values['additional_information'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
         ],
-      ],
-    ]);
+      ]),
+    ];
 
     $assert->assertPattern($expected_values, $html);
   }
