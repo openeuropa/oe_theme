@@ -1,7 +1,7 @@
 langcode: en
 status: true
 dependencies: {  }
-id: oe_tender_date_long
-label: 'Tender long date'
+id: oe_call_tenders_date_long
+label: 'Call for tenders long date'
 locked: false
 pattern: 'd F Y'
