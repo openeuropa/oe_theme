@@ -10,9 +10,9 @@ use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
 /**
- * Tests that Call for tender content type renders correctly.
+ * Tests that "Call for tenders" content type renders correctly.
  */
-class ContentTendersRenderTest extends ContentRenderTestBase {
+class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 
   /**
    * {@inheritdoc}
@@ -23,7 +23,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     'system',
     'path',
     'oe_theme_helper',
-    'oe_theme_content_tender',
+    'oe_theme_content_call_tenders',
   ];
 
   /**
@@ -48,7 +48,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     // Create a Call for tender node.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
-      'type' => 'oe_tender',
+      'type' => 'oe_call_tenders',
       'title' => 'Test Call for tenders node',
       'body' => 'Call for tenders body',
       'oe_documents' => [
@@ -60,10 +60,10 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
       'oe_publication_date' => [
         'value' => '2020-04-15',
       ],
-      'oe_tender_opening_date' => [
+      'oe_call_tenders_opening_date' => [
         'value' => '2020-04-30',
       ],
-      'oe_tender_deadline' => [
+      'oe_call_tenders_deadline' => [
         'value' => date('Y') + 1 . '-06-10T23:30:00',
       ],
       'oe_reference_code' => 'Call for tenders reference',
@@ -163,7 +163,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Audit Board of the European Communities | Associated African States and Madagascar', $values[5]->getText());
 
     // Assert status "Upcoming".
-    $node->set('oe_tender_opening_date', ['value' => date('Y') + 1 . '-05-31']);
+    $node->set('oe_call_tenders_opening_date', ['value' => date('Y') + 1 . '-05-31']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Upcoming');
@@ -172,8 +172,8 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Upcoming');
 
     // Assert status "Closed".
-    $node->set('oe_tender_opening_date', ['value' => '2020-05-31']);
-    $node->set('oe_tender_deadline', ['value' => '2020-05-31T23:30:00']);
+    $node->set('oe_call_tenders_opening_date', ['value' => '2020-05-31']);
+    $node->set('oe_call_tenders_deadline', ['value' => '2020-05-31T23:30:00']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Closed');
@@ -182,7 +182,7 @@ class ContentTendersRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Closed');
 
     // Assert empty status.
-    $node->set('oe_tender_opening_date', ['value' => '']);
+    $node->set('oe_call_tenders_opening_date', ['value' => '']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'N/A');
