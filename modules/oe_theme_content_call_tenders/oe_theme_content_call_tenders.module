@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Module file used for theming the Tender content type.
+ * Module file used for theming the Call for tenders content type.
  */
 
 declare(strict_types = 1);

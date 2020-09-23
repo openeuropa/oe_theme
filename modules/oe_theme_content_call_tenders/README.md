@@ -43,7 +43,7 @@ You can reuse these extra fields in your own view modes.
 
 List of Extra field definitions:
 
-* [Call for tender status](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersStatusExtraField.php):
+* [Call for tenders status](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersStatusExtraField.php):
   provides the call status, depending on the current time in relation with call's opening/closing dates.
-* [Call for tender status label](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersLabelStatusExtraField.php):
+* [Call for tenders status label](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersLabelStatusExtraField.php):
   same as above, only showed using ECL label component, and prefixed by "Call status:".
