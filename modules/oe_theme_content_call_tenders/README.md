@@ -1,11 +1,11 @@
-# OpenEuropa Content Call for Tenders companion module
+# OpenEuropa Content Call for tenders companion module
 
-This module is a theming companion module to the [OpenEuropa Content Call for Tenders](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_call_tenders) module.
-It provides the logic needed to theme the Call for Tenders content type.
+This module is a theming companion module to the [OpenEuropa Content Call for tenders](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_call_tenders) module.
+It provides the logic needed to theme the Call for tenders content type.
 
 ## Installation
 
-Make sure you have read the OpenEuropa Content Call for Tenders module's [README.md](https://github.com/openeuropa/oe_content/blob/master/modules/oe_content_call_tenders/README.md)
+Make sure you have read the OpenEuropa Content Call for tenders module's [README.md](https://github.com/openeuropa/oe_content/blob/master/modules/oe_content_call_tenders/README.md)
 before enabling this module.
 
 ## Required contrib modules
@@ -27,7 +27,7 @@ List of shipped date formats:
 ## Overridden configuration
 
 Installing this module will override the default "Call for tenders" content type view mode, shipped by the
-[OpenEuropa Content Call for Tenders](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_call_tenders)
+[OpenEuropa Content Call for tenders](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_call_tenders)
 module. This is necessary in order to guarantee that fields and formatter settings are displayed correctly.
 
 If you want to customize how the "Call for tenders" looks like create the `full` view mode and take over.

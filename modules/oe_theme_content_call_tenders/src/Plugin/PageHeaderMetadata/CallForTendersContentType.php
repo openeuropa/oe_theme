@@ -13,7 +13,7 @@ use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
  *
  * @PageHeaderMetadata(
  *   id = "oe_call_tenders_content_type",
- *   label = @Translation("Metadata extractor for the OE Call for Tenders content type"),
+ *   label = @Translation("Metadata extractor for the OE Call for tenders content type"),
  *   weight = -1
  * )
  */
