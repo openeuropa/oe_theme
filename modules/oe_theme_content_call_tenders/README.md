@@ -26,11 +26,11 @@ List of shipped date formats:
 
 ## Overridden configuration
 
-Installing this module will override the default project content type view mode, shipped by the
+Installing this module will override the default "Call for tenders" content type view mode, shipped by the
 [OpenEuropa Content Call for Tenders](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_call_tenders)
 module. This is necessary in order to guarantee that fields and formatter settings are displayed correctly.
 
-If you want to customize how the project looks like create the `full` view mode and take over.
+If you want to customize how the "Call for tenders" looks like create the `full` view mode and take over.
 
 This modules also ships with a `teaser` view mode.
 
@@ -43,10 +43,7 @@ You can reuse these extra fields in your own view modes.
 
 List of Extra field definitions:
 
-CallForTendersLabelStatusExtraField.php
-CallForTendersStatusExtraField.php
-
 * [Call for tender status](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersStatusExtraField.php):
   provides the call status, depending on the current time in relation with call's opening/closing dates.
-* [Call for tender status](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersLabelStatusExtraField.php):
+* [Call for tender status label](modules/oe_content_call_tenders/src/Plugin/ExtraField/Display/CallForTendersLabelStatusExtraField.php):
   same as above, only showed using ECL label component, and prefixed by "Call status:".

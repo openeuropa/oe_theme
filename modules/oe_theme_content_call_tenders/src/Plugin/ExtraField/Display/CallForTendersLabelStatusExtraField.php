@@ -8,7 +8,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
 
 /**
- * Display call for tender status as a label.
+ * Display call for tenders status as a label.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_call_tenders_label_status",

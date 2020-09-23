@@ -15,7 +15,7 @@ use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display call for tender status.
+ * Display call for tenders status.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_call_tenders_status",
@@ -38,7 +38,7 @@ class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase impl
   protected $cacheTagGenerator;
 
   /**
-   * TenderStatusExtraField constructor.
+   * CallForTendersStatusExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
