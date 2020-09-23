@@ -39,10 +39,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Tests that the Tender page renders correctly.
+   * Tests that the Call for tenders page renders correctly.
    */
   public function testTenderRendering(): void {
-    // Create a document for Tender documents.
+    // Create a document for Call for tenders.
     $media_document = $this->createMediaDocument('call_for_tenders_document');
 
     // Create a Call for tender node.
