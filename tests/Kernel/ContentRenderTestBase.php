@@ -33,6 +33,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'address',
     'field',
     'field_group',
     'link',
@@ -41,6 +42,9 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'typed_link',
     'maxlength',
     'entity_reference',
+    'entity_reference_revisions',
+    'composite_reference',
+    'inline_entity_form',
     'datetime',
     'node',
     'media',
@@ -60,6 +64,8 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_content_documents_field',
     'oe_content_publication',
     'oe_content_reference_code_field',
+    'oe_content_entity_contact',
+    'oe_content_featured_media_field',
     'oe_theme_content_news',
     'oe_theme_content_page',
     'oe_theme_content_policy',
@@ -86,6 +92,8 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
       'file',
       'field',
       'entity_reference',
+      'entity_reference_revisions',
+      'composite_reference',
       'node',
       'media',
       'filter',
@@ -94,6 +102,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
       'media_avportal',
       'oe_media_avportal',
       'typed_link',
+      'address',
     ]);
 
     // Importing of configs which related to media av_portal output.
@@ -104,8 +113,10 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
 
     $this->installConfig([
       'oe_content',
+      'oe_content_entity_contact',
       'oe_content_timeline_field',
       'oe_content_reference_code_field',
+      'oe_content_featured_media_field',
       'oe_content_news',
       'oe_content_page',
       'oe_content_policy',
