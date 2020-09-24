@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Provides a configurable 'Current ECL template' condition.
  *
- * This condition checks if the current component library is equal to a given
+ * This condition checks if the current ECL template is equal to a given
  * value.
  *
  * @Condition(
@@ -90,7 +90,7 @@ class CurrentEclTemplateCondition extends ConditionPluginBase implements Contain
     // settings, unless the user explicitly sets one.
     $form['ecl_template'] = [
       '#type' => 'select',
-      '#title' => $this->t('Component library'),
+      '#title' => $this->t('ECL template'),
       '#options' => [
         '' => $this->t('- Any -'),
         'core' => $this->t('Core'),
