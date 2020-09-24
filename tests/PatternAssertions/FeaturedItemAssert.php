@@ -36,8 +36,8 @@ class FeaturedItemAssert extends BasePatternAssert {
         [$this, 'assertElementText'],
         'article.ecl-card header.ecl-card__header div.ecl-card__meta',
       ],
-      'infos' => [
-        [$this, 'assertInfo'],
+      'footer_items' => [
+        [$this, 'assertFooterItems'],
       ],
     ];
   }
@@ -82,8 +82,8 @@ class FeaturedItemAssert extends BasePatternAssert {
 
     // If the variant is extended, assert that the button is correct.
     if ($variant == 'extended') {
-      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link', 'href', $crawler);;
-      $this->assertElementText($expected_link['label'], 'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link span.ecl-button__container span.ecl-button__label', $crawler);
+      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);;
+      $this->assertElementText($expected_link['label'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call span.ecl-button__container span.ecl-button__label', $crawler);
     }
   }
 
@@ -95,15 +95,29 @@ class FeaturedItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertInfo($expected_info_items, Crawler $crawler): void {
+  protected function assertFooterItems($expected_info_items, Crawler $crawler): void {
     $info_elements = $crawler->filter('article.ecl-card footer.ecl-card__footer ul.ecl-card__info-container li.ecl-card__info-item');
-    self::assertCount(count($expected_info_items), $info_elements);
+    self::assertCount(count($expected_info_items), $info_elements, 'The expected info items do not match the found info items.');
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
       $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
       $this::assertContains('#general--' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
-      $this->assertElementText($expected_info_item['icon'], 'span.ecl-card__info-label', $info_element);
+      $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   */
+  protected function getPatternVariant(string $html): string {
+    $crawler = new Crawler($html);
+    $extended_button = $crawler->filter('a.ecl-button--call');
+    if ($extended_button->count()) {
+      return 'extended';
+    }
+    return 'default';
   }
 
 }
