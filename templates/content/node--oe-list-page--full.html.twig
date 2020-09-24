@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Theme override to display a list page node.
+ */
+#}
+{% set display_submitted = false %}
+
+<article{{ attributes }}>
+
+  {{ title_prefix }}
+  {% if not page %}
+    <h2{{ title_attributes }}>
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {% if display_submitted %}
+    <footer>
+      {{ author_picture }}
+      <div{{ author_attributes }}>
+        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+        {{ metadata }}
+      </div>
+    </footer>
+  {% endif %}
+
+  <div{{ content_attributes }}>
+    {{ content['content_moderation_control'] }}
+
+    {% set filters = content['extra_field_oe_list_page_filters:node:oe_list_page']|render %}
+
+    <div class="ecl-row">
+      {% if filters %}
+        <div class="ecl-col-sm-12 ecl-col-md-4">
+          <h2 class="ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">{{ 'Filter by'|t }}</h2>
+          {{ filters }}
+        </div>
+      {% endif %}
+      <div class="ecl-col-sm-12 {% if filters %}ecl-col-md-8{% endif %}">
+        <h2 class="ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">
+          {{ label }}
+          <span> ({{ content['extra_field_oe_list_page_total_count:node:oe_list_page'] }})</span>
+        </h2>
+        <p class="ecl-u-type-paragraph-lead"><strong>{{ content['extra_field_oe_list_page_pager_info:node:oe_list_page'] }}</strong></p>
+        {{ content['extra_field_oe_list_page_selected_filters:node:oe_list_page'] }}
+        {{ content['extra_field_oe_list_page_results:node:oe_list_page'] }}
+      </div>
+    </div>
+
+    {{ content|without('extra_field_oe_list_page_filters:node:oe_list_page', 'extra_field_oe_list_page_results:node:oe_list_page', 'extra_field_oe_list_page_selected_filters:node:oe_list_page', 'extra_field_oe_list_page_total_count:node:oe_list_page', 'extra_field_oe_list_page_pager_info:node:oe_list_page', 'content_moderation_control') }}
+  </div>
+
+</article>
