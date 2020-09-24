@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * News contacts field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+<div id="news-contacts">
+  <h2 class="ecl-u-type-heading-2">
+    {{ label }}
+  </h2>
+  {% if multiple %}
+  <div>
+    {% endif %}
+    {% for item in items %}
+      <div{{ item.attributes }}>{{ item.content }}</div>
+    {% endfor %}
+    {% if multiple %}
+  </div>
+  {% endif %}
+</div>
