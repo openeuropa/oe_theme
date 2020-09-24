@@ -10,7 +10,7 @@
 {% for item in translations %}
   {% set _translations = _translations|merge([{
     'title': item.file.title,
-    'description': item.teaser,
+    'description': item.teaser|smart_trim(length),
     'meta': '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')',
     'lang': item.file.language_code,
     'download': {
@@ -23,11 +23,16 @@
   }]) %}
 {% endfor %}
 {% set _detail_meta = [] %}
-{% set _detail_meta = _detail_meta|merge([resource_type, publication_date]) %}
+{% if resource_type is not empty %}
+  {% set _detail_meta = _detail_meta|merge([resource_type]) %}
+{% endif %}
+{% if publication_date is not empty %}
+  {% set _detail_meta = _detail_meta|merge([publication_date]) %}
+{% endif %}
 
 {% include '@ecl-twig/file' with {
   'title': file.title,
-  'description': teaser,
+  'description': teaser|smart_trim(length),
   'image': {
     'src': thumbnail.src,
     'alt': thumbnail.alt,

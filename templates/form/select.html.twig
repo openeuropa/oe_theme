@@ -18,6 +18,15 @@
   'ecl-select__container--m',
 ]) %}
 
+{% if attributes.multiple is not empty %}
+  {% set attributes = attributes.setAttribute('data-ecl-auto-init', 'Select') %}
+  {% set attributes = attributes.setAttribute('multiple', '') %}
+  {% set attributes = attributes.setAttribute('data-ecl-select-multiple', 'true') %}
+  {% set attributes = attributes.setAttribute('data-ecl-select-default', 'Select'|t) %}
+  {% set attributes = attributes.setAttribute('data-ecl-select-search', 'Search'|t) %}
+  {% set attributes = attributes.setAttribute('data-ecl-select-all', 'Select all'|t) %}
+{% endif %}
+
 {% set wrapper_attributes = create_attribute({'class': wrapper_classes}) %}
 
 {% if disabled %}
