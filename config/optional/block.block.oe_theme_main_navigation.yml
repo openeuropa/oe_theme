@@ -18,4 +18,9 @@ settings:
   label: 'Main navigation'
   provider: oe_theme_helper
   label_display: '0'
-visibility: {  }
+visibility:
+  oe_theme_helper_current_ecl_template:
+    id: oe_theme_helper_current_ecl_template
+    ecl_template: standardised
+    negate: false
+    context_mapping: {  }
