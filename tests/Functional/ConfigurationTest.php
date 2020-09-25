@@ -142,12 +142,11 @@ class ConfigurationTest extends BrowserTestBase {
    * Test that the correct layout is used after changing theme template setting.
    */
   public function testChangeEclTemplate(): void {
+    $page = $this->getSession()->getPage();
+    $assert_session = $this->assertSession();
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
       $this->container->get('theme_handler')->setDefault($active_theme);
       $this->container->set('theme.registry', NULL);
-
-      $page = $this->getSession()->getPage();
-      $assert_session = $this->assertSession();
 
       // Create a user that does have permission to administer theme settings.
       $user = $this->drupalCreateUser(['administer themes']);
@@ -160,6 +159,7 @@ class ConfigurationTest extends BrowserTestBase {
       $assert_session->selectExists('Template');
       $assert_session->optionExists('Template', 'Core');
       $assert_session->optionExists('Template', 'Standardised');
+      $assert_session->fieldValueEquals('Template', 'standardised');
 
       $page->selectFieldOption('Template', 'Core');
       $page->pressButton('Save configuration');
@@ -168,8 +168,8 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Make sure that classes for Core template is present.
-      $this->assertSession()->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top');
-      $this->assertSession()->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top div.ecl-site-header-core__action');
+      $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top');
+      $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top div.ecl-site-header-core__action');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
@@ -182,8 +182,8 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Make sure that classes for Standardised template is present.
-      $this->assertSession()->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top');
-      $this->assertSession()->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
+      $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top');
+      $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
     }
   }
 
