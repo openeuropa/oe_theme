@@ -13,7 +13,7 @@ use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display contact information.
+ * Display organisation details.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_organisation_teaser_details",
@@ -87,6 +87,7 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
     $cache = CacheableMetadata::createFromRenderArray($build);
 
     $contact_access = $contact->access('view', NULL, TRUE);
+    $cache->addCacheableDependency($contact);
     $cache->addCacheableDependency($contact_access);
 
     if (!$contact_access->isAllowed()) {
@@ -94,7 +95,6 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       return $build;
     }
 
-    $cache->addCacheableDependency($contact);
     $items = [];
     $fields = [
       'oe_website' => [],
@@ -106,9 +106,8 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       ],
     ];
     foreach ($fields as $field_name => $display_options) {
-      $item = $this->getRenderableFieldListItem($contact, $field_name, $display_options);
-      if (!empty($item)) {
-        $items[] = $item;
+      if (!$contact->get($field_name)->isEmpty()) {
+        $items[] = $this->getRenderableFieldListItem($contact, $field_name, $display_options);
       }
     }
     $build['#fields']['items'] = $items;
@@ -118,7 +117,7 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
   }
 
   /**
-   * Gets renderable item for field list pattern.
+   * Get renderable item for field list pattern.
    *
    * @param \Drupal\Core\Entity\ContentEntityInterface $entity
    *   Content entity.
@@ -131,10 +130,6 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
    *   Renderable array.
    */
   protected function getRenderableFieldListItem(ContentEntityInterface $entity, string $field_name, array $display_options = []): array {
-    if ($entity->get($field_name)->isEmpty()) {
-      return [];
-    }
-
     $display_options += [
       'label' => 'hidden',
     ];
