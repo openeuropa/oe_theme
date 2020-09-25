@@ -1,0 +1,61 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_organisation_acronym
+    - field.field.node.oe_organisation.oe_organisation_contact
+    - field.field.node.oe_organisation.oe_organisation_logo
+    - field.field.node.oe_organisation.oe_summary
+    - field.field.node.oe_organisation.oe_teaser
+    - image.style.oe_theme_ratio_3_2_medium
+    - node.type.oe_organisation
+  module:
+    - oe_theme_helper
+    - text
+    - user
+id: node.oe_organisation.teaser
+targetEntityType: node
+bundle: oe_organisation
+mode: teaser
+content:
+  extra_field_oe_theme_content_organisation_teaser_details:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_organisation_acronym:
+    type: string
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_organisation_logo:
+    type: oe_theme_helper_media_thumbnail_url
+    weight: 3
+    region: content
+    label: above
+    settings:
+      image_style: oe_theme_ratio_3_2_medium
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  links: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_organisation_contact: true
+  oe_summary: true
