@@ -4,46 +4,44 @@
  * Default implementation for the navigation menu component.
  */
 #}
-{% if items %}
-  {# Process items as expected by ECL component. #}
-  {% set _items = [] %}
-  {% for item in items %}
 
-    {# Process children, if any. #}
-    {% set _children = [] %}
-    {% for child in item.children %}
-      {% set _child = {
-        path: child.href,
-        label: child.label,
-      } %}
-      {% if child.is_current is defined and child.is_current == true%}
-        {% set _child = _child|merge({
-          is_current: child.is_current,
-        }) %}
-      {% endif %}
-      {% set _children = _children|merge([_child]) %}
-    {% endfor %}
-
-    {# Process menu items. #}
-    {% set _item = {
-      path: item.href,
-      label: item.label,
-      children: _children,
+{# Process items as expected by ECL component. #}
+{% set _items = [] %}
+{% for item in items %}
+  {# Process children, if any. #}
+  {% set _children = [] %}
+  {% for child in item.children %}
+    {% set _child = {
+      path: child.href,
+      label: child.label,
     } %}
-    {% if item.is_current is defined and item.is_current == true %}
-      {% set _item = _item|merge({
-        is_current: item.is_current,
+    {% if child.is_current is defined and child.is_current == true%}
+      {% set _child = _child|merge({
+        is_current: child.is_current,
       }) %}
     {% endif %}
-    {% set _items = _items|merge([_item]) %}
+    {% set _children = _children|merge([_child]) %}
   {% endfor %}
 
-  {% include '@ecl-twig/menu' with {
-    title: label|default('Menu'|t),
-    close: 'Close'|t,
-    back: 'Back'|t,
-    site_name: site_name,
-    items: _items,
-    icon_path: ecl_icon_path
-  } only %}
-{% endif %}
+  {# Process menu items. #}
+  {% set _item = {
+    path: item.href,
+    label: item.label,
+    children: _children,
+  } %}
+  {% if item.is_current is defined and item.is_current == true %}
+    {% set _item = _item|merge({
+      is_current: item.is_current,
+    }) %}
+  {% endif %}
+  {% set _items = _items|merge([_item]) %}
+{% endfor %}
+
+{% include '@ecl-twig/menu' with {
+  title: label|default('Menu'|t),
+  close: 'Close'|t,
+  back: 'Back'|t,
+  site_name: site_name,
+  items: _items,
+  icon_path: ecl_icon_path
+} only %}

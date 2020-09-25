@@ -19,7 +19,7 @@
 #}
 
 <div class="ecl-lang-select-page">
-  <div class="ecl-u-d-flex {% if not ecl_template == 'core' %}ecl-u-type-color-white {% endif %}ecl-u-align-items-start ecl-u-font-s">
+  <div class="ecl-u-d-flex {{ not ecl_template == 'core' ? 'ecl-u-type-color-white '}}ecl-u-align-items-start ecl-u-font-s">
     <span class="ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
       {% include '@ecl-twig/icon' with {
         icon: {
