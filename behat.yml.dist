@@ -67,7 +67,7 @@ default:
       region_map:
         about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
         footer: "footer.ecl-footer"
-        header: ".ecl-site-header-core"
+        header: ".ecl-site-header-standardised, .ecl-site-header-core"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-language-list"
         language page switcher: ".ecl-page-header-core .ecl-lang-select-page"

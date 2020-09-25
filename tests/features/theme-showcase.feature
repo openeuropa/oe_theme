@@ -116,3 +116,21 @@ Feature: Theme showcase
     And I click "Components" in the "navigation" region
     Then I should be on "the ECL components overview page"
     And I should see the heading "Components" in the "page header"
+
+  Scenario: Changing the ECL template will display site header with Core or Standardised style.
+    Given I am an anonymous user
+    When the theme is configured to use the "Standardised" ECL template
+    When I am on "<page>"
+    Then I should see the "Standardised" site header
+    And I should see the "navigation menu" element in the "header"
+
+    When the theme is configured to use the "Core" ECL template
+    And I reload the page
+    Then I should see the "Core" site header
+    And I should not see the "navigation menu" element in the "header"
+
+    When the theme is configured to use the "Standardised" ECL template
+    And I reload the page
+    Then I should see the "Standardised" site header
+    And I should see the "navigation menu" element in the "header"
+
