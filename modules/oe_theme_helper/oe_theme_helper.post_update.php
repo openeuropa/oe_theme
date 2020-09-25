@@ -216,7 +216,7 @@ function oe_theme_helper_post_update_20012() {
 /**
  * Add default ECL template theme setting.
  */
-function oe_theme_helper_post_update_20013() {
+function oe_theme_helper_post_update_20013(): void {
   \Drupal::configFactory()->getEditable('oe_theme.settings')
     ->set('template', 'standardised')
     ->save();
