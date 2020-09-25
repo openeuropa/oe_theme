@@ -87,7 +87,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementAttribute($expected, string $selector, string $attribute, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
@@ -107,13 +107,13 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementText($expected, string $selector, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, $element->text());
+    self::assertEquals($expected, trim($element->text()));
   }
 
   /**
@@ -127,7 +127,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    *   The DomCrawler where to check the element.
    */
   protected function assertElementHtml($expected, string $selector, Crawler $crawler): void {
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
@@ -146,7 +146,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(1, $element);
+    self::assertCount(1, $element, \sprintf(
+      'Element with selector "%s" not found in the provided html.',
+      $selector
+    ));
   }
 
   /**
@@ -159,7 +162,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
    */
   protected function assertElementNotExists(string $selector, Crawler $crawler): void {
     $element = $crawler->filter($selector);
-    self::assertCount(0, $element);
+    self::assertCount(0, $element, \sprintf(
+      'Element with selector "%s" was found in the provided html.',
+      $selector
+    ));
   }
 
 }

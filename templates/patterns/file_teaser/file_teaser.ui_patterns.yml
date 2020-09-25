@@ -79,3 +79,9 @@ file_teaser:
       label: "More information"
       description: "Informative text about the available translations."
       preview: "Looking for another language which is not on the list? Find out why."
+    length:
+      type: numeric
+      label: "Max length"
+      description: "Used to trim the length of the 'Teaser' fields (optional)."
+      preview: 10
+      escape: false
