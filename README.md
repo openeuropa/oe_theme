@@ -65,7 +65,18 @@ page.
 **Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
-Besides component libraries oe_theme support templates like "Core" and "Standardised". By default used "Standardised" templates.
+Each component library can use one of the following ECL templates:
+
+- "Standardized": standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
+  to host DG-specific content (policy) and is closely aligned with the core site.
+- "Core": core websites host general information shared by different websites or departments and serve as hubs for
+  onward navigation to further thematic content and/or specific services. For example, the main European Commission
+  website (https://ec.europa.eu) uses ECL core templates.
+
+ECL templates change the way users interact with the sites by restricting access to certain components, for example:
+users can access to the main navigation menu only on sites using standardised ECL templates.
+
+To learn more about ECL templates and component library families visit the (ECL website)[https://ec.europa.eu/component-library].
 
 ### Updating to 2.9.0+
 
@@ -85,6 +96,11 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
   in a post-update hook (if we find one)
 - If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
   `site_header_secondary` region yourself
+
+#### ECL templates
+
+In 2.9.0 we introduced support for ECL templates (read above for more information). The OpenEuropa Theme will use the
+"Standardised" template, visit the theme configuration page if you need to change that and use the "Core" ECL template instead.
 
 ### Upgrade from 1.x to 2.x
 
