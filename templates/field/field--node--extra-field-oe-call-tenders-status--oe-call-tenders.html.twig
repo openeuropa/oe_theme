@@ -1,0 +1,14 @@
+
+{#
+/**
+ * @file
+ * Theme override for oe_call_tenders_status extra field.
+ *
+ * @see ./templates/field/field--bare.html.twig
+ */
+#}
+{% for item in items %}
+<span class="ecl-u-text-uppercase">
+  {{ item.content }}
+</span>
+{% endfor %}
