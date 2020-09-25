@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override to display a node of bundle organisation in the teaser view mode.
+ */
+#}
+{% set image_url = content.oe_organisation_logo|field_value|render %}
+{{ pattern('list_item', {
+  'variant': 'thumbnail_secondary',
+  'url': url,
+  'meta': [
+    content.oe_organisation_acronym|field_value,
+  ],
+  'title': label,
+  'detail': content.oe_teaser|field_value,
+  'additional_information': [
+    content.extra_field_oe_theme_content_organisation_teaser_details,
+  ],
+  'image': image_url ? { 'src': image_url }
+}) }}

@@ -23,6 +23,7 @@ function oe_theme_content_organisation_install() {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_organisation') . '/config/overrides');
   $displays = [
     'core.entity_view_display.node.oe_organisation.default',
+    'core.entity_view_display.node.oe_organisation.teaser',
   ];
 
   foreach ($displays as $display) {
