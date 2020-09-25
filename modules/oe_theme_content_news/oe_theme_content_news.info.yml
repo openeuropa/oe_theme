@@ -7,4 +7,4 @@ dependencies:
   - extra_field:extra_field
   - oe_content_news:oe_content_news
   - oe_theme:oe_theme_helper
-
+  - ui_patterns:ui_patterns_field_group

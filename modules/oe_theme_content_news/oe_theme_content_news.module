@@ -8,6 +8,8 @@
 declare(strict_types = 1);
 
 use Drupal\media\MediaInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
 /**
  * Implements template_preprocess_node() for the News node type.
@@ -27,5 +29,27 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     // Show the image always at the top.
     $variables['content']['featured_image']['#weight'] = -100;
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-type-paragraph';
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity->bundle() !== 'oe_news') {
+    return;
+  }
+
+  if ($build['#view_mode'] === 'full') {
+    // Rename field labels based on number of items.
+    $plural_label_overrides = [
+      'oe_author' => t('Authors'),
+    ];
+
+    foreach ($plural_label_overrides as $name => $label_override) {
+      if (!$entity->get($name)->isEmpty() && $entity->get($name)->count() > 1 && isset($build[$name]['#title'])) {
+        $build[$name]['#title'] = $label_override;
+      }
+    }
   }
 }
