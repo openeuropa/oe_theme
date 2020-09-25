@@ -104,4 +104,15 @@ trait UtilityTrait {
     return $is_visible && !$is_clipped;
   }
 
+  /**
+   * Returns ECL template of the active theme.
+   *
+   * @return string|null
+   *   The ECL template machine name.
+   */
+  protected function getEclTemplate(): ?string {
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    return \Drupal::config($theme_name . '.settings')->get('template');
+  }
+
 }
