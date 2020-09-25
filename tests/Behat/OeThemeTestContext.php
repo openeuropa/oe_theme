@@ -9,11 +9,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
+use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 
 /**
  * Behat step definitions related to the oe_theme_test module.
  */
 class OeThemeTestContext extends RawDrupalContext {
+
+  use UtilityTrait;
 
   /**
    * Creates a number of demo pages with the data provided in a table.
@@ -395,8 +398,8 @@ class OeThemeTestContext extends RawDrupalContext {
       'Finnish' => 'fi',
       'Swedish' => 'sv',
     ];
-    $this->assertSession()->elementExists('css', 'img.ecl-site-header-standardised__logo-image-mobile');
-    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-standardised__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
+    $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclTemplate() . '__logo-image-mobile');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclTemplate() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
   }
 
 }
