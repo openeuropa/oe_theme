@@ -134,7 +134,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The labels of the translations that should be rendered as links.
    */
   protected function assertTranslationLinks(Crawler $crawler, array $expected): void {
-    $elements = $crawler->filter('.ecl-lang-select-page .ecl-expandable__content .ecl-link');
+    $elements = $crawler->filter('.ecl-lang-select-page .ecl-expandable__content .ecl-button');
     $this->assertSameSize($expected, $elements);
 
     $actual = array_column(iterator_to_array($elements), 'nodeValue');
