@@ -63,8 +63,6 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $header = $this->getSession()->getPage()->find('css', '.ecl-page-header-standardised');
     // Test that the page title is rendered in the page header.
     $this->assertEquals($entity->label(), trim($header->find('css', '.ecl-page-header-standardised__title')->getText()));
-    // Site identity is not shown by default.
-    $assert_session->elementsCount('css', '.ecl-page-header__identity', 0, $header);
     // Intro and meta items are empty.
     $assert_session->elementsCount('css', '.ecl-page-header__intro', 0);
     $assert_session->elementsCount('css', '.ecl-meta--header .ecl-meta__item', 0);
@@ -76,21 +74,15 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $this->assertEquals('Log in', trim($header->find('css', '.ecl-page-header-standardised__title')->getText()));
     $assert_session->elementsCount('css', '.ecl-page-header-standardised__description', 0);
     $assert_session->elementsCount('css', '.ecl-page-header__meta-list', 0);
-    $assert_session->elementsCount('css', '.ecl-page-header__info-item', 0);
 
     // Enable the test plugin and add some metadata.
     $test_data = [
       'title' => 'Custom page title.',
-      'identity' => 'Custom site identity',
       'introduction' => 'Custom page introduction.',
       'metas' => [
         'Custom meta 1',
         'Custom meta 2',
         'Custom meta 3',
-      ],
-      'infos' => [
-        ['text' => 'Monday 8 February'],
-        ['text' => 'Munich, Germany'],
       ],
     ];
     $this->container->get('state')->set('page_header_test_plugin_applies', TRUE);

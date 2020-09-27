@@ -1,5 +1,5 @@
 page_header:
-  label: "Page header: default"
+  label: "Page header"
   description: "Default implementation of the page header, contains the page title, breadcrumbs and additional page details."
   fields:
     title:
