@@ -1524,7 +1524,6 @@
     '#type': pattern
     '#id': page_header
     '#fields':
-      identity: "Digital single market&"
       title: "Business, Economy, Euro<"
       introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
       metas:
@@ -1563,11 +1562,6 @@
         -
           href: "http://www.example.com/news/"
           label: "News"
-      infos:
-        - text: "Monday 8 February&"
-          icon: "calendar"
-        - text: "Munich, Germany<"
-          icon: "location"
   assertions:
     count:
       '.ecl-page-header-standardised': 1
@@ -1578,7 +1572,6 @@
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
     equals:
-      'h2.ecl-u-type-heading-2': "Digital single market&amp;"
       'h1.ecl-page-header-standardised__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-standardised__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
       '.ecl-page-header-standardised__meta span.ecl-u-type-uppercase': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
