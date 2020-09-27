@@ -125,20 +125,22 @@ class ContentNewsRenderTest extends BrowserTestBase {
           'body' => 'Office general_contact',
         ], [
           'label' => 'Social media',
-          'body' => 'Social media general_contact',
+          'body' => html_entity_decode('&nbsp;') . 'Social media general_contact',
         ],
       ],
     ];
     $field_list_assert->assertPattern($contact_expected_values, $contacts_html);
     $field_list_assert->assertVariant('horizontal', $contacts_html);
+
     // Assert Press contacts.
-    $press = $contacts->findAll('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $press_link = $press->findAll('a');
-    $this->assertEquals('http://www.example.com/press_contact_general_contact', $press_link->attr('href'));
-    $press_label = $press_link->findAll('.ecl-link__label');
+    $press = $contacts->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
+    $press_link = $press[0]->findAll('css', 'a');
+    $this->assertCount(1, $press_link);
+    $this->assertEquals('http://www.example.com/press_contact_general_contact', $press_link[0]->getAttribute('href'));
+    $press_label = $press_link[0]->findAll('css', '.ecl-link__label');
     $this->assertCount(1, $press_label);
-    $this->assertEquals('Press contacts', $press_label->attr('href'));
-    $press_icon = $press_link->findAll('ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $this->assertEquals('Press contacts', $press_label[0]->getText());
+    $press_icon = $press_link[0]->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
     $this->assertCount(1, $press_icon);
     // Assert contacts Image.
     $this->assertFeaturedMediaField($contacts, 'general_contact');
