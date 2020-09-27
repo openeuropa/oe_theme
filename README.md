@@ -359,6 +359,8 @@ npx patch-package @ecl-twig/[component-name]
 Or, when using Docker Compose:
 
 ```bash
+docker-compose exec -u node node git config --global user.email "name@example.com"
+docker-compose exec -u node node git config --global user.name "Name"
 docker-compose exec -u node node npx patch-package @ecl-twig/[component-name]
 ```
 
