@@ -1573,7 +1573,7 @@
       '.ecl-page-header-standardised': 1
       '.ecl-breadcrumb-standardised__segment': 7
       '.ecl-lang-select-page button.ecl-button': 1
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link': 2
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
       '.ecl-page-header-standardised__meta': 1
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
@@ -1584,8 +1584,8 @@
       '.ecl-page-header-standardised__meta span.ecl-u-type-uppercase': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="es"]': "Spanish"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="it"]': "Italian"
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
+      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="it"]': "Italian"
       '.ecl-breadcrumb-standardised__segment:nth-child(1)[data-ecl-breadcrumb-standardised-item="static"] a[href="http://www.example.com/"]': "European Commission"
       '.ecl-breadcrumb-standardised__segment:nth-child(2).ecl-breadcrumb-standardised__segment--ellipsis button': "…"
       '.ecl-breadcrumb-standardised__segment:nth-child(3)[data-ecl-breadcrumb-standardised-item="expandable"] a[href="http://www.example.com/announcements/"]': "Announcements"
