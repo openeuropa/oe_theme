@@ -9,9 +9,13 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 2.9.0+](#upgrade-to-290)
+  - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
+- [Corporate blocks](#corporate-blocks)
 - [Image styles](#image-styles)
-- [Upgrade from 1.x to 2.x](#upgrade-from-1.x-to-2.x)
+- [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
@@ -51,7 +55,7 @@ Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alt
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
 module.
 
-The OpenEuropa theme supports both the EC and EU component libraries:
+The OpenEuropa theme supports both the **EC** and **EU** component libraries:
 
 - Use the "European Commission" component library for European Commission websites hosted under the `ec.europa.eu` domain
 - Use the "European Union" component library for European Union websites hosted under the `europa.eu` domain
@@ -59,32 +63,32 @@ The OpenEuropa theme supports both the EC and EU component libraries:
 The theme uses the "European Commission" component library by default, you can change that by visiting the theme setting
 page.
 
-Note for developers: changing the component library will only load different CSS and JS assets, the actual HTML is the
+**Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
 Each component library can use one of the following ECL templates:
 
-- "Standardized": standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
+- **Standardized**: standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
   to host DG-specific content (policy) and is closely aligned with the core site.
-- "Core": core websites host general information shared by different websites or departments and serve as hubs for
+- **Core**: core websites host general information shared by different websites or departments and serve as hubs for
   onward navigation to further thematic content and/or specific services. For example, the main European Commission
   website (https://ec.europa.eu) uses ECL core templates.
 
 ECL templates change the way users interact with the sites by restricting access to certain components, for example:
 users can access to the main navigation menu only on sites using standardised ECL templates.
 
-To learn more about ECL templates and component library families visit the (ECL website)[https://ec.europa.eu/component-library].
+To learn more about ECL templates and component library families visit the [ECL website](https://ec.europa.eu/component-library).
 
-### Updating to 2.9.0+
+### Upgrade to 2.9.0+
 
-##### Content type teasers
+#### Content type teasers
 
 If you are using the `oe_content` module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
 existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by `oe_content`
 so if you want to keep any customization you have made to your site you will need to redo those modifications and
 override the teaser templates on your own custom theme.
 
-##### ECL site header
+#### ECL site header
 
 In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to move the language switcher block to the
 `site_header_secondary` theme region. This means that:
@@ -94,7 +98,7 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
 - If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
   `site_header_secondary` region yourself
 
-##### ECL page header
+#### ECL page header
 
 In 2.9.0 we dropped supporting the following elements in the ["Page header" pattern](./templates/patterns/page_header/page_header.ui_patterns.yml):
 
@@ -103,10 +107,20 @@ In 2.9.0 we dropped supporting the following elements in the ["Page header" patt
 
 As a result, if your `PageHeaderMetadata` plugins provide such data, it will no longer be displayed.
 
-##### ECL templates
+#### ECL templates
 
 In 2.9.0 we introduced support for ECL templates (read above for more information). The OpenEuropa Theme will use the
 "Standardised" template, visit the theme configuration page if you need to change that and use the "Core" ECL template instead.
+
+### Upgrade from 1.x to 2.x
+
+- The following patterns have been removed on 2.x:
+  - `dialog`
+  - `file_link`
+- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
+  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
+- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
+  you should use version 2.x instead.
 
 ## Companion sub-modules
 
@@ -141,16 +155,6 @@ The following is a list of all the vailable styles and their preferred usage:
 * Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
 * Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
-
-## Upgrade from 1.x to 2.x
-
-- The following patterns have been removed on 2.x:
-  - `dialog`
-  - `file_link`
-- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
-  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
-- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
-  you should use version 2.x instead.
 
 ## Development
 
