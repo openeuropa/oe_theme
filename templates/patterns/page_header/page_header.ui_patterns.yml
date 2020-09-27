@@ -2,11 +2,6 @@ page_header:
   label: "Page header: default"
   description: "Default implementation of the page header, contains the page title, breadcrumbs and additional page details."
   fields:
-    identity:
-      type: "text"
-      label: "Identity"
-      description: "Name of the site."
-      preview: "Digital single market"
     title:
       type: "text"
       label: "Title"
@@ -35,9 +30,17 @@ page_header:
         is_primary: true
         options:
           - href: "#"
+            hreflang: "it"
+            label: "Italian"
+            lang: "it"
+          - href: "#"
             hreflang: "es"
             label: "Spanish"
             lang: "es"
+          - href: "#"
+            hreflang: "de"
+            label: "German"
+            lang: "de"
     breadcrumb:
       type: "array"
       label: "Breadcrumb"
@@ -55,10 +58,15 @@ page_header:
           label: "How the Commission is organised"
         - href: "#"
           label: "News"
+    identity:
+      type: "text"
+      label: "Identity (deprecated)"
+      description: "The site name. Deprecated from ECL 2.30."
+      preview: "Digital single market"
     infos:
       type: "array"
       label: "Infos (deprecated)"
-      description: "A list of infos of the current page. This was deprecated from ECL 2.30."
+      description: "A list of infos of the current page. Deprecated from ECL 2.30."
       preview:
         - text: "Monday 8 February"
           icon: "calendar"
