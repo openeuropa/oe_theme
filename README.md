@@ -10,7 +10,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
-  - [Upgrade to 2.9.0](#upgrade-to-290)
+  - [Upgrade to 2.9.0+](#upgrade-to-290)
   - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
 - [Corporate blocks](#corporate-blocks)
@@ -67,27 +67,27 @@ same between the two libraries.
 
 Each component library can use one of the following ECL templates:
 
-- "Standardized": standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
+- **Standardized**: standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
   to host DG-specific content (policy) and is closely aligned with the core site.
-- "Core": core websites host general information shared by different websites or departments and serve as hubs for
+- **Core**: core websites host general information shared by different websites or departments and serve as hubs for
   onward navigation to further thematic content and/or specific services. For example, the main European Commission
   website (https://ec.europa.eu) uses ECL core templates.
 
 ECL templates change the way users interact with the sites by restricting access to certain components, for example:
 users can access to the main navigation menu only on sites using standardised ECL templates.
 
-To learn more about ECL templates and component library families visit the (ECL website)[https://ec.europa.eu/component-library].
+To learn more about ECL templates and component library families visit the [ECL website](https://ec.europa.eu/component-library).
 
-### Updating to 2.9.0+
+### Upgrade to 2.9.0+
 
-##### Content type teasers
+#### Content type teasers
 
 If you are using the `oe_content` module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
 existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by `oe_content`
 so if you want to keep any customization you have made to your site you will need to redo those modifications and
 override the teaser templates on your own custom theme.
 
-##### ECL site header
+#### ECL site header
 
 In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to move the language switcher block to the
 `site_header_secondary` theme region. This means that:
@@ -97,7 +97,7 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
 - If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
   `site_header_secondary` region yourself
 
-##### ECL page header
+#### ECL page header
 
 In 2.9.0 we dropped supporting the following elements in the ["Page header" pattern](./templates/patterns/page_header/page_header.ui_patterns.yml):
 
@@ -106,7 +106,7 @@ In 2.9.0 we dropped supporting the following elements in the ["Page header" patt
 
 As a result, if your `PageHeaderMetadata` plugins provide such data, it will no longer be displayed.
 
-##### ECL templates
+#### ECL templates
 
 In 2.9.0 we introduced support for ECL templates (read above for more information). The OpenEuropa Theme will use the
 "Standardised" template, visit the theme configuration page if you need to change that and use the "Core" ECL template instead.
