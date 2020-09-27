@@ -9,10 +9,12 @@
 // @todo remove this after the above will be fixed upstream.
 @import '@ecl/ec-component-fact-figures/ec-component-fact-figures';
 @import '@ecl/ec-component-media-container/ec-component-media-container';
+@import "./compositions/content_language_switcher";
 @import "./components/form";
 @import "./components/toolbar";
 @import "./components/banner";
 @import "./components/wysiwyg";
 @import "./components/content_project";
 @import "./components/description-list";
+@import "./components/page_header";
 @import "./components/global";

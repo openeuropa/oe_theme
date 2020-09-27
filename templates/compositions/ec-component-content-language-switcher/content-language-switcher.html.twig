@@ -19,8 +19,8 @@
 #}
 
 <div class="ecl-lang-select-page">
-  <div class="ecl-u-d-flex {{ not ecl_template == 'core' ? 'ecl-u-type-color-white '}}ecl-u-align-items-start ecl-u-font-s">
-    <span class="ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
+  <div class="ecl-u-d-flex ecl-u-align-items-start ecl-u-font-s">
+    <span class="ecl-lang-select-page__unavailable_language ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
       {% include '@ecl-twig/icon' with {
         icon: {
           path: icon_path,
@@ -40,7 +40,7 @@
         <ul class="ecl-u-d-flex ecl-u-flex-wrap ecl-unordered-list ecl-unordered-list--no-bullet">
           {% for language in options %}
             <li class="ecl-u-mt-none ecl-u-d-flex ecl-unordered-list__item">
-              <a href="{{ language.href }}" lang="{{ language.hreflang }}" class="ecl-u-type-color-white ecl-u-ph-s ecl-u-pv-m ecl-u-type-s ecl-link">{{ language.label }}</a>
+              <a href="{{ language.href }}" lang="{{ language.hreflang }}" class="ecl-button">{{ language.label }}</a>
             </li>
           {% endfor %}
         </ul>
