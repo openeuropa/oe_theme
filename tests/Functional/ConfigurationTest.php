@@ -159,10 +159,7 @@ class ConfigurationTest extends BrowserTestBase {
       $assert_session->selectExists('Template');
       $assert_session->optionExists('Template', 'Core');
       $assert_session->optionExists('Template', 'Standardised');
-      $assert_session->fieldValueEquals('Template', 'standardised');
-
-      $page->selectFieldOption('Template', 'Core');
-      $page->pressButton('Save configuration');
+      $assert_session->fieldValueEquals('Template', 'core');
 
       // Visit font page.
       $this->drupalGet('<front>');
