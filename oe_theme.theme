@@ -815,13 +815,6 @@ function oe_theme_preprocess_pattern_page_header(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_navigation_menu(array &$variables): void {
-  $variables['site_name'] = $variables['site_name'] ?? \Drupal::config('system.site')->get('name');
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
   foreach ($variables['items'] as &$item) {
     $item = GalleryItemValueObject::fromArray($item);
