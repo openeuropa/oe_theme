@@ -1,5 +1,8 @@
 .ecl-content-item-date,
 .ecl-content-item {
+  &__meta {
+    text-transform: uppercase;
+  }
   &__description {
     p {
       margin: 0;
