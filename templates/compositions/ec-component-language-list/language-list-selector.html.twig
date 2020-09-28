@@ -23,7 +23,7 @@
         },
         ...
       ]
-    - "ecl_template" (string) (default: 'standardised'): "core" or "standardised" template.
+    - "ecl_template" (string) (default: 'core'): "core" or "standardised" template.
 #}
 
 {# Internal properties #}
@@ -32,7 +32,7 @@
 {% set _code = code|default('') %}
 {% set _path = path|default('') %}
 {% set _icon_path = icon_path|default('') %}
-{% set _ecl_template = ecl_template|default('standardised') %}
+{% set _ecl_template = ecl_template|default('core') %}
 
 {% set _css_class = 'ecl-site-header__selector' %}
 {% set _extra_attributes = [] %}
