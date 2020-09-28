@@ -78,9 +78,9 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised .ecl-page-header-standardised__meta', 'Call for tenders | Open');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised h1.ecl-page-header-standardised__title', 'Test Call for tenders node');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised .ecl-page-header-standardised__description', 'Call for tenders introduction');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Open');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core h1.ecl-page-header-core__title', 'Test Call for tenders node');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'Call for tenders introduction');
 
     // Assert navigation part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
@@ -169,7 +169,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->assertStatusValue($content, 'Upcoming');
     $this->assertOpeningDateValue($content, '31 May 2021');
     $this->assertDeadlineDateValue($content, '11 June 2021, 09:30 (AEST)');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised .ecl-page-header-standardised__meta', 'Call for tenders | Upcoming');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Upcoming');
 
     // Assert status "Closed".
     $node->set('oe_call_tenders_opening_date', ['value' => '2020-05-31']);
@@ -179,14 +179,14 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->assertStatusValue($content, 'Closed');
     $this->assertOpeningDateValue($content, '31 May 2020');
     $this->assertDeadlineDateValue($content, '01 June 2020, 09:30 (AEST)', TRUE);
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised .ecl-page-header-standardised__meta', 'Call for tenders | Closed');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Closed');
 
     // Assert empty status.
     $node->set('oe_call_tenders_opening_date', ['value' => '']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'N/A');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-standardised .ecl-page-header-standardised__meta', 'Call for tenders');
+    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders');
   }
 
   /**
