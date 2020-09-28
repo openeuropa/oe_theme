@@ -7,14 +7,3 @@
   @extend .ecl-u-bg-blue-5;
   padding: $ecl-spacing-s;
 }
-
-// ECL sets the term width to 174px, so we have got no choice than setting it to 150px
-// or else it will break, given our padding above.
-// @todo Remove this when FRONT-1279 is fixed.
-.ecl-description-list--horizontal {
-  &.ecl-description-list--featured {
-    .ecl-description-list__term {
-      width: 150px;
-    }
-  }
-}
