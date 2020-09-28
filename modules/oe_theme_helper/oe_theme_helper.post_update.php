@@ -221,3 +221,27 @@ function oe_theme_helper_post_update_20013(): void {
     ->set('template', 'core')
     ->save();
 }
+
+/**
+ * Use navigation block plugin for main navigation.
+ */
+function oe_theme_helper_post_update_20014() {
+  if (!Block::load('oe_theme_main_navigation')) {
+    return 'The oe_theme_main_navigation block was not found.';
+  }
+
+  // Clear block definitions so the new block is discoverable.
+  \Drupal::service('plugin.manager.block')->clearCachedDefinitions();
+
+  // Use the new navigation block as main navigation.
+  $config = \Drupal::configFactory()->getEditable('block.block.oe_theme_main_navigation');
+  $label = $config->get('settings.label');
+  $config->set('plugin', 'oe_theme_helper_site_navigation:main');
+  $config->set('settings', [
+    'id' => 'oe_theme_helper_site_navigation:main',
+    'label' => $label,
+    'provider' => 'oe_theme_helper',
+    'label_display' => '0',
+  ]);
+  $config->save();
+}
