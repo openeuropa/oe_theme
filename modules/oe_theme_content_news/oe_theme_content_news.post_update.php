@@ -76,25 +76,3 @@ function oe_theme_content_news_post_update_00005(): void {
     }
   }
 }
-
-/**
- * Override news default view display.
- */
-function oe_theme_content_news_post_update_00006(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00006_override_view_displays');
-
-  // View displays configurations to update.
-  $displays = [
-    'core.entity_view_display.node.oe_news.default',
-  ];
-  foreach ($displays as $display) {
-    $display_values = $storage->read($display);
-    $view_display = EntityViewDisplay::load($display_values['id']);
-    if ($view_display) {
-      $updated_form_display = \Drupal::entityTypeManager()
-        ->getStorage($view_display->getEntityTypeId())
-        ->updateFromStorageRecord($view_display, $display_values);
-      $updated_form_display->save();
-    }
-  }
-}
