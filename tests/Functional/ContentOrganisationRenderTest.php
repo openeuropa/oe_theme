@@ -89,6 +89,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
       'oe_summary' => 'My introduction',
       'body' => 'My body text',
       'oe_organisation_acronym' => 'My acronym',
+      'oe_organisation_org_type' => 'eu',
+      'oe_organisation_eu_org' => 'http://publications.europa.eu/resource/authority/corporate-body/ACM',
       'oe_organisation_logo' => [
         'target_id' => $media->id(),
       ],
@@ -107,8 +109,17 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $expected_values = [
       'title' => 'My node title',
       'description' => 'My introduction',
-      'meta' => 'My acronym',
+      'meta' => 'International organisation | My acronym',
     ];
+    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
+
+    // Change organisation type to non eu.
+    $node->set('oe_organisation_org_type', 'non_eu');
+    $node->set('oe_organisation_non_eu_org_type', 'http://data.europa.eu/uxp/5432');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $expected_values['meta'] = 'embassy | My acronym';
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert navigation part.
