@@ -12,12 +12,10 @@ theme: oe_theme
 region: navigation
 weight: 0
 provider: null
-plugin: 'system_menu_block:main'
+plugin: 'oe_theme_helper_site_navigation:main'
 settings:
-  id: 'system_menu_block:main'
+  id: 'oe_theme_helper_site_navigation:main'
   label: 'Main navigation'
-  provider: system
+  provider: oe_theme_helper
   label_display: '0'
-  level: 1
-  depth: 0
 visibility: {  }
