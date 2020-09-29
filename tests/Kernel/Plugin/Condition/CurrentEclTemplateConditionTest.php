@@ -30,16 +30,16 @@ class CurrentEclTemplateConditionTest extends AbstractKernelTestBase {
     $this->assertEqual($condition_negated->summary(), new FormattableMarkup('The current ECL template is not @ecl_template', ['@ecl_template' => 'standardised']));
 
     // Assert condition values, by default the ECL template
-    // set to "Standardised".
-    $this->assertTrue($condition->execute(), 'Condition asserting that ECL template is "standardised" should be true.');
-    $this->assertTrue($condition_empty->execute(), 'Condition that has no ECL template value set should always be true.');
-    $this->assertFalse($condition_negated->execute(), 'Condition asserting that ECL template is not "standardised" should be false.');
-
-    // Change ECL template to "Core" and assert new condition execution.
-    $this->config('oe_theme.settings')->set('template', 'core')->save();
+    // set to "Core".
     $this->assertFalse($condition->execute(), 'Condition asserting that ECL template is "standardised" should be false.');
     $this->assertTrue($condition_empty->execute(), 'Condition that has no ECL template value set should always be true.');
     $this->assertTrue($condition_negated->execute(), 'Condition asserting that ECL template is not "standardised" should be true.');
+
+    // Change ECL template to "Core" and assert new condition execution.
+    $this->config('oe_theme.settings')->set('template', 'standardised')->save();
+    $this->assertTrue($condition->execute(), 'Condition asserting that ECL template is "standardised" should be false.');
+    $this->assertTrue($condition_empty->execute(), 'Condition that has no ECL template value set should always be true.');
+    $this->assertFalse($condition_negated->execute(), 'Condition asserting that ECL template is not "standardised" should be true.');
   }
 
 }
