@@ -18,13 +18,13 @@
   {% if logo is not empty %}
     <div role="img"
       aria-label="{{ logo.alt }}"
-      class="ecl-u-flex-shrink-0 ecl-u-mr-s ecl-u-media-a-s ecl-u-media-bg-size-contain ecl-u-media-bg-repeat-none ecl-u-d-lg-block ecl-u-media-bg-position-center"
+      class="ecl-u-flex-shrink-0 ecl-u-mr-l ecl-u-media-a-s ecl-u-media-bg-size-contain ecl-u-media-bg-repeat-none ecl-u-d-lg-block ecl-u-media-bg-position-center"
       style="background-image: url('{{ logo.src }}');"></div>
   {% endif %}
 
   <div class="ecl-u-flex-grow-1 ecl-u-type-color-grey">
     <h4 class="ecl-u-type-heading-4 ecl-u-mb-s ecl-u-mt-none">
-      {{ name }}{% if acronym is not empty %} | {{ acronym }}{% endif %}
+      {{ name }}{% if acronym is not empty %} ({{ acronym }}){% endif %}
     </h4>
 
     {% if organisation_details|length > 0 %}
