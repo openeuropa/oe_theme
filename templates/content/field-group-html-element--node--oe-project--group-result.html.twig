@@ -6,12 +6,12 @@
  * @see ./modules/contrib/field_group/templates/field-group-html-element.html.twig
  */
 #}
-<div id="project-results">
-  <div class="ecl-row">
+<div id="project-results" class="ecl-u-mt-3xl">
+  {% if title %}
+    <h2 class="ecl-u-type-heading-2">{{ title }}</h2>
+  {% endif %}
+  <div class="ecl-row ecl-u-mb-l">
     <div class="ecl-col-6">
-      {% if title %}
-        <h2 class="ecl-u-type-heading-2">{{ title }}</h2>
-      {% endif %}
       {{ element.oe_project_results }}
     </div>
   </div>
