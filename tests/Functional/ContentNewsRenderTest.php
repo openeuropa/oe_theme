@@ -80,7 +80,8 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $contacts = $this->assertSession()->elementExists('css', 'div#news-contacts');
 
     $contact_headers = $contacts->findAll('css', 'h2');
-    $this->assertEquals('Contacts', $contact_headers[0]->getText());
+    $contact_headers = reset($contact_headers);
+    $this->assertEquals('Contacts', $contact_headers->getText());
 
     $contact_name = $contacts->findAll('css', 'h3');
     $this->assertCount(1, $contact_name);
@@ -131,7 +132,8 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
 
     // Assert Press contacts.
     $press = $contacts->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $press_link = $press[0]->findAll('css', 'a');
+    $press = reset($press);
+    $press_link = $press->findAll('css', 'a');
     $this->assertCount(1, $press_link);
     $press_link = reset($press_link);
     $this->assertEquals('http://www.example.com/press_contact_general_contact', $press_link->getAttribute('href'));
