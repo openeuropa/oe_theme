@@ -2,15 +2,15 @@
 Feature: Theme showcase
   In order to be able to showcase the theme and its features
   As a developer
-  I want to make sure that I can setup a demo site.
+  I want to make sure that I can setup a demo site with enabled more featured standardised templates.
 
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
     Then I should see the "logo" element in the "header"
     And I should see the "search form" element in the "header"
     And I should see the "language switcher" element in the "header"
-    And I should not see the "navigation menu" element in the "header"
-    #And I should not see the "site name" element in the "navigation"
+    And I should see the "navigation menu" element in the "header"
+    And I should see the "site name" element in the "navigation"
 
   Scenario: The demo site navigation features placeholder menu links
     When I am on the homepage
