@@ -84,11 +84,13 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
 
     $contact_name = $contacts->findAll('css', 'h3');
     $this->assertCount(1, $contact_name);
-    $this->assertEquals('general_contact', $contact_name[0]->getText());
+    $contact_name = reset($contact_name);
+    $this->assertEquals('general_contact', $contact_name->getText());
 
     $contact_body = $contacts->findAll('css', '.ecl-editor');
     $this->assertCount(1, $contact_body);
-    $this->assertEquals('Body text general_contact', $contact_body[0]->getText());
+    $contact_body = reset($contact_body);
+    $this->assertEquals('Body text general_contact', $contact_body->getText());
 
     $contacts_html = $contacts->getHtml();
     $field_list_assert = new FieldListAssert();
@@ -131,15 +133,15 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $press = $contacts->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
     $press_link = $press[0]->findAll('css', 'a');
     $this->assertCount(1, $press_link);
-    reset($press_link);
-    $this->assertEquals('http://www.example.com/press_contact_general_contact', $press_link[0]->getAttribute('href'));
+    $press_link = reset($press_link);
+    $this->assertEquals('http://www.example.com/press_contact_general_contact', $press_link->getAttribute('href'));
 
-    $press_label = $press_link[0]->findAll('css', '.ecl-link__label');
+    $press_label = $press_link->findAll('css', '.ecl-link__label');
     $this->assertCount(1, $press_label);
-    reset($press_label);
-    $this->assertEquals('Press contacts', $press_label[0]->getText());
+    $press_label = reset($press_label);
+    $this->assertEquals('Press contacts', $press_label->getText());
 
-    $press_icon = $press_link[0]->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $press_icon = $press_link->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
     $this->assertCount(1, $press_icon);
 
     // Assert contacts Image.

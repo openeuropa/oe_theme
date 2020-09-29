@@ -139,15 +139,15 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
     $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
     $this->assertCount(1, $figures);
-    reset($figures);
+    $figures = reset($figures);
 
     // Assert image tag.
-    $image = $figures[0]->find('css', 'img');
+    $image = $figures->find('css', 'img');
     $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
     $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
 
     // Assert caption.
-    $caption = $figures[0]->find('css', 'figcaption');
+    $caption = $figures->find('css', 'figcaption');
     $this->assertEquals("Caption $name", $caption->getText());
   }
 
