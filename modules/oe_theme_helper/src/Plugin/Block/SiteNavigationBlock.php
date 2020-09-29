@@ -103,28 +103,35 @@ class SiteNavigationBlock extends SystemMenuBlock {
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
-    $build = $this->menuTree->build($tree);
-    $cacheable_metadata = CacheableMetadata::createFromRenderArray($build);
-
-    $site_name = $this->configFactory->get('system.site');
-    $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'navigation_menu',
-      '#variant' => 'vertical',
-      '#fields' => [
-        'site_name' => $site_name->get('name'),
-        'label' => $this->t('Menu'),
-      ],
-    ];
-
-    // Add menu items to pattern.
-    if (isset($build['#items'])) {
-      $pattern['#fields']['items'] = $this->getEclLinks($build['#items']);
+    $menu_build = $this->menuTree->build($tree);
+    $site_info = $this->configFactory->get('system.site');
+    $cacheable_metadata = CacheableMetadata::createFromRenderArray($menu_build);
+    $cacheable_metadata->addCacheableDependency($site_info);
+    if (isset($menu_build['#items'])) {
+      $build = [
+        '#type' => 'pattern',
+        '#id' => 'navigation_menu',
+        '#variant' => 'vertical',
+        '#fields' => [
+          'site_name' => $site_info->get('name'),
+          'label' => $this->t('Menu'),
+          'items' => $this->getEclLinks($menu_build['#items']),
+        ],
+      ];
+    }
+    // Expose site name in blue banner instead of the empty menu.
+    else {
+      $build = [
+        '#type' => 'inline_template',
+        '#template' => '<div class="ecl-site-header-standardised__banner"><div class="ecl-container">{{ site_name }}</div></div>',
+        '#context' => [
+          'site_name' => $site_info->get('name'),
+        ],
+      ];
     }
 
-    $cacheable_metadata->addCacheableDependency($site_name);
-    $cacheable_metadata->applyTo($pattern);
-    return $pattern;
+    $cacheable_metadata->applyTo($build);
+    return $build;
   }
 
   /**
