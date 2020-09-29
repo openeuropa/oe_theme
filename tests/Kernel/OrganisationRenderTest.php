@@ -31,6 +31,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'field_group',
     'entity_reference_revisions',
     'link',
+    'options',
     'image',
     'inline_entity_form',
     'oe_content_featured_media_field',
@@ -78,6 +79,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'oe_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
       'oe_teaser' => 'The teaser text',
       'oe_organisation_acronym' => 'Acronym',
+      'oe_organisation_org_type' => 'eu',
+      'oe_organisation_eu_org' => 'http://publications.europa.eu/resource/authority/corporate-body/ACM',
       'oe_organisation_logo' => [
         [
           'target_id' => $logo_media->id(),
@@ -101,7 +104,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'title' => 'Organisation name',
       'url' => '/node/1',
       'description' => 'The teaser text',
-      'meta' => 'Acronym',
+      'meta' => 'International organisation | Acronym',
       'image' => [
         'src' => 'placeholder_organisation_logo.png',
         'alt' => '',
@@ -130,6 +133,18 @@ class OrganisationRenderTest extends ContentRenderTestBase {
         ]),
       ],
     ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('thumbnail_secondary', $html);
+
+    // Change organisation type to non eu.
+    $node->set('oe_organisation_org_type', 'non_eu');
+    $node->set('oe_organisation_non_eu_org_type', 'http://data.europa.eu/uxp/5432');
+    $node->save();
+
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+
+    $expected_values['meta'] = 'embassy | Acronym';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
   }

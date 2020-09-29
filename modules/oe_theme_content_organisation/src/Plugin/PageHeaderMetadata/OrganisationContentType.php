@@ -75,11 +75,21 @@ class OrganisationContentType extends NodeViewRoutesBase {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
     $node = $this->getNode();
+    $metadata['metas'] = [];
 
+    // Get organisation type, it can be either EU or non-EU.
+    if (!$node->get('oe_organisation_eu_org_type')->isEmpty()) {
+      $entity = $node->get('oe_organisation_eu_org_type')->entity;
+      $metadata['metas'][] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    if (!$node->get('oe_organisation_non_eu_org_type')->isEmpty()) {
+      $entity = $node->get('oe_organisation_non_eu_org_type')->entity;
+      $metadata['metas'][] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+
+    // Add acronym, if any.
     if (!$node->get('oe_organisation_acronym')->isEmpty()) {
-      $metadata['metas'] = [
-        $node->get('oe_organisation_acronym')->value,
-      ];
+      $metadata['metas'][] = $node->get('oe_organisation_acronym')->value;
     }
 
     return $metadata;
