@@ -419,7 +419,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
    */
   protected function assertStakeholderOrganisationRendering(NodeElement $rendered_stakeholder_element, string $name): void {
     $headers = $rendered_stakeholder_element->findAll('css', 'article h4');
-    $this->assertEquals("$name | Acronym $name", $headers[0]->getText());
+    $this->assertEquals("$name (Acronym $name)", $headers[0]->getText());
 
     // Assert logo.
     $logos = $rendered_stakeholder_element->findAll('css', 'div[role=img]');

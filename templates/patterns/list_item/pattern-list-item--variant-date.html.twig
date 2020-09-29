@@ -26,9 +26,9 @@
   </div>
   <div class="ecl-u-flex-grow-1">
     {% if meta is not empty %}
-      <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-s">{{ meta|safe_join(" | ") }}</div>
+      <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ meta|safe_join(" | ") }}</div>
     {% endif %}
-    <div class="ecl-content-item-date__title ecl-u-type-heading-4 ecl-u-mb-s ecl-u-mt-none">
+    <div class="ecl-content-item-date__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
       {%- if url %}
         {% include '@ecl-twig/link' with {
           link: {
