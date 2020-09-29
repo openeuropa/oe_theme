@@ -33,6 +33,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'link',
     'options',
     'image',
+    'media_avportal',
     'inline_entity_form',
     'oe_content_featured_media_field',
     'oe_content_entity',
@@ -145,6 +146,33 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
 
     $expected_values['meta'] = 'embassy | Acronym';
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('thumbnail_secondary', $html);
+
+    // Change logo to use av portal image.
+    $media = Media::create([
+      'bundle' => 'av_portal_photo',
+      'oe_media_avportal_photo' => 'P-038924/00-15',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+    $file = $media->get('thumbnail')->entity;
+
+    $node->set('oe_organisation_logo', [
+      [
+        'target_id' => (int) $media->id(),
+      ],
+    ]);
+    $node->save();
+
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+
+    $expected_values['image'] = [
+      'src' => 'files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(),
+      'alt' => '',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
   }

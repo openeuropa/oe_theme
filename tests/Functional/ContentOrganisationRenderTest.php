@@ -14,6 +14,7 @@ use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\media\Entity\Media;
 
 /**
  * Tests organisation (oe_organisation) content type render.
@@ -30,6 +31,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     'node',
     'address',
     'oe_media',
+    'media_avportal',
+    'oe_media_avportal',
     'oe_theme_helper',
     'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
@@ -135,8 +138,30 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $assert->assertPattern($expected_values, $navigation->getOuterHtml());
 
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
-    $this->assertContains('styles/oe_theme_ratio_3_2_medium/public/example_1.jpeg', $logo->getAttribute('src'));
+    $this->assertContains('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
     $this->assertEquals('Alt', $logo->getAttribute('alt'));
+
+    // Change logo to use av portal image.
+    $media = Media::create([
+      'bundle' => 'av_portal_photo',
+      'oe_media_avportal_photo' => 'P-038924/00-15',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+    $file = $media->get('thumbnail')->entity;
+
+    $node->set('oe_organisation_logo', [
+      [
+        'target_id' => (int) $media->id(),
+      ],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
+    $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
+    $this->assertEquals($media->getName(), $logo->getAttribute('alt'));
 
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
