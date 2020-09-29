@@ -1,0 +1,9 @@
+/**
+ * @file
+ * Add a featured modifier to ECL description list style.
+ */
+.ecl-description-list--featured {
+  @extend .ecl-u-border-all, .ecl-u-border-width-2, .ecl-u-border-color-blue-25;
+  @extend .ecl-u-bg-blue-5;
+  padding: $ecl-spacing-s;
+}

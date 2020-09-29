@@ -8,8 +8,9 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\file\FileInterface;
 use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
@@ -30,12 +31,13 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
     $media_image = \Drupal::service('entity.repository')->getTranslationFromContext($media_image);
     $cacheability = CacheableMetadata::createFromRenderArray($variables);
     $cacheability->addCacheableDependency($media_image);
-    $image_item = $media_image->get('oe_media_image')->first();
-    $file = $image_item->get('entity')->getValue();
 
-    if ($file instanceof FileInterface) {
-      $variables['logo'] = ImageValueObject::fromImageItem($image_item);
-      $cacheability->addCacheableDependency($file);
+    // Get the media source.
+    $source = $media_image->getSource();
+    if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+      $thumbnail = $media_image->get('thumbnail')->first();
+      $variables['logo'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+      $cacheability->addCacheableDependency($thumbnail);
     }
     $cacheability->applyTo($variables);
   }
