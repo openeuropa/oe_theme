@@ -33,7 +33,6 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'link',
     'options',
     'image',
-    'media_avportal',
     'inline_entity_form',
     'oe_content_featured_media_field',
     'oe_content_entity',

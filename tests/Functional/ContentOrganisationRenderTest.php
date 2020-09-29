@@ -30,9 +30,6 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     'path',
     'node',
     'address',
-    'oe_media',
-    'media_avportal',
-    'oe_media_avportal',
     'oe_theme_helper',
     'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
@@ -161,7 +158,6 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
 
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
-    $this->assertEquals($media->getName(), $logo->getAttribute('alt'));
 
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');

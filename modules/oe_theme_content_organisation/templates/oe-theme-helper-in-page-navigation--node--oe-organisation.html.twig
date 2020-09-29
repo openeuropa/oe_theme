@@ -12,10 +12,11 @@
 {% block navigation %}
 <div class="ecl-col-12 ecl-col-lg-3">
   {% if image %}
-  <div class="ecl-u-mb-l figure-transparent">
+  <div class="ecl-u-mb-l">
     {% include '@ecl-twig/media-container' with {
       'image': image.src,
       'alt': image.alt,
+      'extra_classes': 'ecl-u-bg-white'
     } %}
   </div>
   {% endif %}
