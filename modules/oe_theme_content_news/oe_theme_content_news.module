@@ -29,6 +29,7 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     // Show the image always at the top.
     $variables['content']['featured_image']['#weight'] = -100;
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-type-paragraph';
+    $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-mb-l';
   }
 }
 
