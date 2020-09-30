@@ -108,4 +108,54 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     }
   }
 
+  /**
+   * Tests that ECL datepicker is rendered properly.
+   */
+  public function testEclDatePicker(): void {
+    date_default_timezone_set('UTC');
+    $this->drupalGet('/oe_theme_js_test/datepicker');
+
+    // Assert the default input is present and shows a default placeholder.
+    $input = $this->getSession()->getPage()->find('css', 'input.ecl-datepicker__field');
+    Assert::assertTrue($this->getSession()->getDriver()->isVisible($input->getXpath()));
+    Assert::assertEquals('DD-MM-YYYY', $input->getAttribute('placeholder'));
+
+    // Click the input and assert the datepicker is visible.
+    $input->click();
+    $datepicker = $this->getSession()->getPage()->find('css', 'div.ecl-datepicker-theme');
+    Assert::assertTrue($this->getSession()->getDriver()->isVisible($datepicker->getXpath()));
+
+    // Assert datepicker rendering.
+    $month_select = $datepicker->find('css', 'select.pika-select-month');
+    $current_moth = (int) date('n');
+    Assert::assertEquals($current_moth - 1, $month_select->getValue());
+    $year_select = $datepicker->find('css', 'select.pika-select-year');
+    Assert::assertEquals(date('Y'), $year_select->getValue());
+    $table = $datepicker->find('css', 'table.pika-table');
+    $rows = $table->findAll('css', 'tr');
+    // Assert days are present.
+    $headers = $rows['0']->findAll('css', 'th');
+    $expected = [
+      'Sun',
+      'Mon',
+      'Tue',
+      'Wed',
+      'Thu',
+      'Fri',
+      'Sat',
+    ];
+
+    foreach ($headers as $key => $column) {
+      Assert::assertEquals($expected[$key], $column->getText());
+    }
+
+    // Pick a date and assert it was set.
+    $day = $datepicker->find('css', 'button[data-pika-day=1]');
+    $day->click();
+    Assert::assertEquals('01-' . date('m-Y'), $input->getValue());
+    // Give the datepicker a chance to hide.
+    sleep(1);
+    Assert::assertFalse($this->getSession()->getDriver()->isVisible($datepicker->getXpath()));
+  }
+
 }
