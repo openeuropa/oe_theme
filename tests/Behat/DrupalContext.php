@@ -56,7 +56,7 @@ class DrupalContext extends RawDrupalContext {
     \Drupal::service('module_installer')->install(['oe_theme_demo']);
     $theme_name = \Drupal::theme()->getActiveTheme()->getName();
     \Drupal::configFactory()->getEditable($theme_name . '.settings')
-      ->set('template', 'standardised')->save();
+      ->set('branding', 'standardised')->save();
   }
 
   /**
@@ -71,7 +71,7 @@ class DrupalContext extends RawDrupalContext {
     \Drupal::service('module_installer')->uninstall(['oe_theme_demo']);
     $theme_name = \Drupal::theme()->getActiveTheme()->getName();
     \Drupal::configFactory()->getEditable($theme_name . '.settings')
-      ->set('template', 'core')->save();
+      ->set('branding', 'core')->save();
   }
 
   /**

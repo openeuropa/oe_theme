@@ -23,7 +23,7 @@
         },
         ...
       ]
-    - "ecl_template" (string) (default: 'core'): "core" or "standardised" template.
+    - "ecl_branding" (string) (default: 'core'): "core" or "standardised" template.
 #}
 
 {# Internal properties #}
@@ -32,7 +32,7 @@
 {% set _code = code|default('') %}
 {% set _path = path|default('') %}
 {% set _icon_path = icon_path|default('') %}
-{% set _ecl_template = ecl_template|default('core') %}
+{% set _ecl_branding = ecl_branding|default('core') %}
 
 {% set _css_class = 'ecl-site-header__selector' %}
 {% set _extra_attributes = [] %}
@@ -50,13 +50,13 @@
 {% endif %}
 
 <a
-  class="ecl-link ecl-link--standalone ecl-site-header-{{ _ecl_template }}__language-selector"
+  class="ecl-link ecl-link--standalone ecl-site-header-{{ _ecl_branding }}__language-selector"
   href="{{ _path }}"
   data-ecl-language-selector
   aria-controls="language-list-overlay"
   aria-expanded="false"
 >
-  <span class="ecl-site-header-{{ _ecl_template }}__language-icon">
+  <span class="ecl-site-header-{{ _ecl_branding }}__language-icon">
     {% include '@ecl-twig/icon' with {
       icon: {
         path: _icon_path,
@@ -64,9 +64,9 @@
         name: 'language',
         size: 's'
       },
-      extra_classes: 'ecl-site-header-' ~ _ecl_template ~ '__icon'
+      extra_classes: 'ecl-site-header-' ~ _ecl_branding ~ '__icon'
     } only %}
-    <span class="ecl-site-header-{{ _ecl_template }}__language-code">{{ _code }}</span>
+    <span class="ecl-site-header-{{ _ecl_branding }}__language-code">{{ _code }}</span>
   </span>
   {{- _label -}}
  </a>

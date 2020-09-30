@@ -105,14 +105,14 @@ trait UtilityTrait {
   }
 
   /**
-   * Returns ECL template of the active theme.
+   * Returns ECL branding of the active theme.
    *
    * @return string|null
-   *   The ECL template machine name.
+   *   The ECL branding machine name.
    */
-  protected function getEclTemplate(): ?string {
+  protected function getEclBranding(): ?string {
     $theme_name = \Drupal::theme()->getActiveTheme()->getName();
-    return \Drupal::config($theme_name . '.settings')->get('template') ?? 'core';
+    return \Drupal::config($theme_name . '.settings')->get('branding') ?? 'core';
   }
 
 }

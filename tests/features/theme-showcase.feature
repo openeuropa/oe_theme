@@ -2,7 +2,7 @@
 Feature: Theme showcase
   In order to be able to showcase the theme and its features
   As a developer
-  I want to make sure that I can setup a demo site with enabled more featured standardised templates.
+  I want to make sure that I can setup a demo site with enabled more featured standardised branding.
 
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
@@ -117,19 +117,19 @@ Feature: Theme showcase
     Then I should be on "the ECL components overview page"
     And I should see the heading "Components" in the "page header"
 
-  Scenario: Changing the ECL template will display site header with Core or Standardised style.
+  Scenario: Changing the ECL branding will display site header with Core or Standardised style.
     Given I am an anonymous user
-    When the theme is configured to use the "Standardised" ECL template
+    When the theme is configured to use the "Standardised" ECL branding
     When I am on "<page>"
     Then I should see the "Standardised" site header
     And I should see the "navigation menu" element in the "header"
 
-    When the theme is configured to use the "Core" ECL template
+    When the theme is configured to use the "Core" ECL branding
     And I reload the page
     Then I should see the "Core" site header
     And I should not see the "navigation menu" element in the "header"
 
-    When the theme is configured to use the "Standardised" ECL template
+    When the theme is configured to use the "Standardised" ECL branding
     And I reload the page
     Then I should see the "Standardised" site header
     And I should see the "navigation menu" element in the "header"

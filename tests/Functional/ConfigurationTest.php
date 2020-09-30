@@ -139,9 +139,9 @@ class ConfigurationTest extends BrowserTestBase {
   }
 
   /**
-   * Test that the correct layout is used after changing theme template setting.
+   * Test that the correct layout is used after changing theme branding setting.
    */
-  public function testChangeEclTemplate(): void {
+  public function testChangeEclBranding(): void {
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
@@ -156,10 +156,10 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 
       // Assert configuration select is properly rendered.
-      $assert_session->selectExists('Template');
-      $assert_session->optionExists('Template', 'Core');
-      $assert_session->optionExists('Template', 'Standardised');
-      $assert_session->fieldValueEquals('Template', 'core');
+      $assert_session->selectExists('Branding');
+      $assert_session->optionExists('Branding', 'Core');
+      $assert_session->optionExists('Branding', 'Standardised');
+      $assert_session->fieldValueEquals('Branding', 'core');
 
       // Visit font page.
       $this->drupalGet('<front>');
@@ -171,14 +171,14 @@ class ConfigurationTest extends BrowserTestBase {
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 
-      // Select Standardised template and save configuration.
-      $page->selectFieldOption('Template', 'Standardised');
+      // Select Standardised branding and save configuration.
+      $page->selectFieldOption('Branding', 'Standardised');
       $page->pressButton('Save configuration');
 
       // Visit font page.
       $this->drupalGet('<front>');
 
-      // Make sure that classes for Standardised template is present.
+      // Make sure that classes for Standardised branding is present.
       $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top');
       $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
     }
