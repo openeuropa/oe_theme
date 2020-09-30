@@ -13,7 +13,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 class CurrentEclBrandingConditionTest extends AbstractKernelTestBase {
 
   /**
-   * Tests the current ECL template condition.
+   * Tests the current ECL branding condition.
    */
   public function testCondition(): void {
     $manager = \Drupal::service('plugin.manager.condition');

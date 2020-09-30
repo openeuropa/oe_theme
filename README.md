@@ -65,18 +65,18 @@ page.
 **Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
-Each component library can use one of the following ECL templates:
+Each component library can use one of the following ECL brandings:
 
 - **Standardized**: standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
   to host DG-specific content (policy) and is closely aligned with the core site.
 - **Core**: core websites host general information shared by different websites or departments and serve as hubs for
   onward navigation to further thematic content and/or specific services. For example, the main European Commission
-  website (https://ec.europa.eu) uses ECL core templates.
+  website (https://ec.europa.eu) uses ECL core branding.
 
-ECL templates change the way users interact with the sites by restricting access to certain components, for example:
-users can access to the main navigation menu only on sites using standardised ECL templates.
+ECL branding change the way users interact with the sites by restricting access to certain components, for example:
+users can access to the main navigation menu only on sites using standardised ECL branding.
 
-To learn more about ECL templates and component library families visit the [ECL website](https://ec.europa.eu/component-library).
+To learn more about ECL brandings and component library families visit the [ECL website](https://ec.europa.eu/component-library).
 
 ### Upgrade to 2.9.0+
 
@@ -106,10 +106,10 @@ In 2.9.0 we dropped supporting the following elements in the ["Page header" patt
 
 As a result, if your `PageHeaderMetadata` plugins provide such data, it will no longer be displayed.
 
-#### ECL templates
+#### ECL branding
 
-In 2.9.0 we introduced support for ECL templates (read above for more information). The OpenEuropa Theme will use the
-"Standardised" template, visit the theme configuration page if you need to change that and use the "Core" ECL template instead.
+In 2.10.0 we introduced support for ECL branding (read above for more information). The OpenEuropa Theme will use the
+"Core" branding, visit the theme configuration page if you need to change that and use the "Standardised" branding instead.
 
 ### Upgrade from 1.x to 2.x
 
