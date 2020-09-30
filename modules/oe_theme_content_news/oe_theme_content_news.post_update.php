@@ -76,3 +76,10 @@ function oe_theme_content_news_post_update_00005(): void {
     }
   }
 }
+
+/**
+ * Enable oe_theme_content_entity_contact.
+ */
+function oe_theme_content_news_post_update_00006(): void {
+  \Drupal::service('module_installer')->install(['oe_theme_content_entity_contact']);
+}
