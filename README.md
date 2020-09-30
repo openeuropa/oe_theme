@@ -9,9 +9,12 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 2.9.0](#upgrade-to-290)
+  - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
+- [Corporate blocks](#corporate-blocks)
 - [Image styles](#image-styles)
-- [Upgrade from 1.x to 2.x](#upgrade-from-1.x-to-2.x)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
@@ -51,7 +54,7 @@ Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alt
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
 module.
 
-The OpenEuropa theme supports both the EC and EU component libraries:
+The OpenEuropa theme supports both the **EC** and **EU** component libraries:
 
 - Use the "European Commission" component library for European Commission websites hosted under the `ec.europa.eu` domain
 - Use the "European Union" component library for European Union websites hosted under the `europa.eu` domain
@@ -59,10 +62,10 @@ The OpenEuropa theme supports both the EC and EU component libraries:
 The theme uses the "European Commission" component library by default, you can change that by visiting the theme setting
 page.
 
-Note for developers: changing the component library will only load different CSS and JS assets, the actual HTML is the
+**Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
-### Updating to 2.9.0+
+### Upgrade to 2.9.0
 
 #### Content type teasers
 
@@ -81,12 +84,29 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
 - If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
   `site_header_secondary` region yourself
 
+### Upgrade from 1.x to 2.x
+
+- The following patterns have been removed on 2.x:
+  - `dialog`
+  - `file_link`
+- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
+  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
+- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
+  you should use version 2.x instead.
+
 ## Companion sub-modules
 
-* [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
-* [OpenEuropa Theme Page](/modules/oe_theme_content_page/README.md)
-* [OpenEuropa Theme Policy](/modules/oe_theme_content_policy/README.md)
-* [OpenEuropa Theme Publication](/modules/oe_theme_content_publication/README.md)
+* [OpenEuropa Theme Contact Forms](./modules/oe_theme_contact_forms/README.md)
+* [OpenEuropa Content Call for tenders companion module](./modules/oe_theme_content_call_tenders/README.md)
+* [OpenEuropa Content Corporate Entity Contact companion module](./modules/oe_theme_content_entity_contact/README.md)
+* [OpenEuropa Content Corporate Entity Organisation companion module](./modules/oe_theme_content_entity_organisation/README.md)
+* [OpenEuropa Content Corporate Entity Venue companion module](./modules/oe_theme_content_entity_venue/README.md)
+* [OpenEuropa Content Event companion module](./modules/oe_theme_content_event/README.md)
+* [OpenEuropa Content News companion module](./modules/oe_theme_content_news/README.md)
+* [OpenEuropa Content Page companion module](./modules/oe_theme_content_page/README.md)
+* [OpenEuropa Content Policy companion module](./modules/oe_theme_content_policy/README.md)
+* [OpenEuropa Content Project companion module](./modules/oe_theme_content_project/README.md)
+* [OpenEuropa Content Publication companion module](./modules/oe_theme_content_publication/README.md)
 
 ## Corporate blocks
 
@@ -107,16 +127,6 @@ The following is a list of all the vailable styles and their preferred usage:
 * Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
 * Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
 a content page.
-
-## Upgrade from 1.x to 2.x
-
-- The following patterns have been removed on 2.x:
-  - `dialog`
-  - `file_link`
-- The `variant` field on the `field` pattern has been removed. Instead, ui_patterns variants definition is used.
-  Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
-- [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
-  you should use version 2.x instead.
 
 ## Development
 
@@ -341,6 +351,8 @@ npx patch-package @ecl-twig/[component-name]
 Or, when using Docker Compose:
 
 ```bash
+docker-compose exec -u node node git config --global user.email "name@example.com"
+docker-compose exec -u node node git config --global user.name "Name"
 docker-compose exec -u node node npx patch-package @ecl-twig/[component-name]
 ```
 
