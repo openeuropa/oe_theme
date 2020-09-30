@@ -24,7 +24,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  * @param array $variables
  *   An array of variables.
  */
-function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation(array &$variables): void {
+function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation__node__oe_organisation(array &$variables): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['entity'];
 
@@ -56,10 +56,9 @@ function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_naviga
     return;
   }
 
-  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_ratio_3_2_medium');
+  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
 
   $cacheability->addCacheableDependency($thumbnail->entity);
   $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
-  $cacheability->addCacheableDependency(EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_ratio_3_2_medium'));
   $cacheability->applyTo($variables);
 }

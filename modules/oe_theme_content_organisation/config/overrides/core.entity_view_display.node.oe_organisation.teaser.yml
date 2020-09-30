@@ -13,7 +13,7 @@ dependencies:
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_summary
     - field.field.node.oe_organisation.oe_teaser
-    - image.style.oe_theme_ratio_3_2_medium
+    - image.style.oe_theme_medium_no_crop
     - node.type.oe_organisation
   module:
     - oe_theme_helper
@@ -52,7 +52,7 @@ content:
     region: content
     label: above
     settings:
-      image_style: oe_theme_ratio_3_2_medium
+      image_style: oe_theme_medium_no_crop
     third_party_settings: {  }
   oe_organisation_non_eu_org_type:
     type: skos_concept_entity_reference_label
