@@ -214,18 +214,9 @@ function oe_theme_helper_post_update_20012() {
 }
 
 /**
- * Add default ECL template theme setting.
- */
-function oe_theme_helper_post_update_20013(): void {
-  \Drupal::configFactory()->getEditable('oe_theme.settings')
-    ->set('template', 'core')
-    ->save();
-}
-
-/**
  * Use navigation block plugin for main navigation.
  */
-function oe_theme_helper_post_update_20014() {
+function oe_theme_helper_post_update_20013() {
   if (!Block::load('oe_theme_main_navigation')) {
     return 'The oe_theme_main_navigation block was not found.';
   }
@@ -249,7 +240,7 @@ function oe_theme_helper_post_update_20014() {
 /**
  * Add default ECL template theme setting.
  */
-function oe_theme_helper_post_update_20015() {
+function oe_theme_helper_post_update_20014() {
   /** @var \Drupal\block\Entity\Block $block */
   $block = Block::load('oe_theme_main_navigation');
 

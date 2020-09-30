@@ -112,7 +112,7 @@ trait UtilityTrait {
    */
   protected function getEclTemplate(): ?string {
     $theme_name = \Drupal::theme()->getActiveTheme()->getName();
-    return \Drupal::config($theme_name . '.settings')->get('template');
+    return \Drupal::config($theme_name . '.settings')->get('template') ?? 'core';
   }
 
 }
