@@ -15,7 +15,7 @@
       div[role="img"].ecl-u-d-lg-block: 1
       a.ecl-link[href="http://www.example.com/contact"]: 1
     equals:
-      h4.ecl-u-type-heading-4: "Organisation name | Acronym"
+      h4.ecl-u-type-heading-4: "Organisation name (Acronym)"
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
