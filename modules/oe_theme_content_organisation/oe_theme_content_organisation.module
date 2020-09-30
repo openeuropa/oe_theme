@@ -60,6 +60,5 @@ function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_naviga
 
   $cacheability->addCacheableDependency($thumbnail->entity);
   $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
-  $cacheability->addCacheableDependency(EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_medium_no_crop'));
   $cacheability->applyTo($variables);
 }
