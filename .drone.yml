@@ -64,11 +64,11 @@ pipeline:
     commands:
       - ./vendor/bin/grumphp run
 
-  phpunit:
-    group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
-    commands:
-      - ./vendor/bin/phpunit
+#  phpunit:
+#    group: test
+#    image: fpfis/httpd-php-ci:${PHP_VERSION}
+#    commands:
+#      - ./vendor/bin/phpunit
 
   behat:
     group: test
