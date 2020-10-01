@@ -74,6 +74,8 @@ pipeline:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
+      - sudo chmod -R 777 build
+      - ./vendor/bin/drush cr
       - ./vendor/bin/behat --strict
 
   before-release:
