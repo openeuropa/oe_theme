@@ -123,6 +123,7 @@ Feature: Event content type.
     # Assert practical information.
     And I should see the heading "Practical information" in the "event practical information"
     And I should see "When" in the "event practical information"
+    And print last response
     And I should see "Thursday 21 February 2019, 10:30 to Thursday 21 February 2019, 18:30" in the "event practical information"
     And I should see "Languages" in the "event practical information"
     And I should see "Valencian" in the "event practical information"
