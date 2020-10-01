@@ -64,17 +64,17 @@ pipeline:
     commands:
       - ./vendor/bin/grumphp run
 
-  phpunit:
-    group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
-    commands:
-      - ./vendor/bin/phpunit
+#  phpunit:
+#    group: test
+#    image: fpfis/httpd-php-ci:${PHP_VERSION}
+#    commands:
+#      - ./vendor/bin/phpunit
 
   behat:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
-      - ./vendor/bin/behat --strict
+      - ./vendor/bin/behat --strict --tags=run --format=pretty
 
   before-release:
     image: fpfis/httpd-php-dev:${PHP_VERSION}
@@ -95,7 +95,7 @@ pipeline:
 matrix:
   COMPOSER_BOUNDARY:
     - lowest
-    - highest
+#    - highest
   PHP_VERSION:
     - 7.2
-    - 7.3
+#    - 7.3
