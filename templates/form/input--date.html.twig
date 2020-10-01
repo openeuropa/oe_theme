@@ -13,9 +13,10 @@
  */
 #}
 {% include '@ecl-twig/ec-component-datepicker/ecl-datepicker.html.twig' with {
+  autoinit: true,
   id: attributes.id,
   name: attributes.name,
-  value: attributes.value,
+  default_value: attributes.value
   required: element['#required'],
   invalid: element['#errors'] is not empty,
   disabled: attributes.disabled is defined,
