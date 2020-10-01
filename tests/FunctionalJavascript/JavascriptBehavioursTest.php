@@ -123,7 +123,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Assert the first date picker.
     $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_one"]');
-    $this->assertEquals('DD-MM-YYYY', $input->getAttribute('placeholder'));
+    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
     $this->assertNull($input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertTrue($input->hasAttribute('required'));
@@ -169,7 +169,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Assert some small differences on the second date input element.
     $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_two"]');
-    $this->assertEquals('DD-MM-YYYY', $input->getAttribute('placeholder'));
+    $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
     $this->assertContains('2020-05-10', $input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertFalse($input->hasAttribute('required'));
