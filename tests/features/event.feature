@@ -1,4 +1,3 @@
-@run
 @api @event @datetime_testing
 Feature: Event content type.
   As a user

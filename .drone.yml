@@ -74,7 +74,7 @@ pipeline:
     group: test
     image: fpfis/httpd-php-ci:${PHP_VERSION}
     commands:
-      - ./vendor/bin/behat --strict --tags=run --format=pretty
+      - ./vendor/bin/behat --strict --format=pretty
 
   before-release:
     image: fpfis/httpd-php-dev:${PHP_VERSION}
