@@ -439,6 +439,22 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_input__date().
+ */
+function oe_theme_preprocess_input__date(array &$variables): void {
+  $php_date_format = $variables['#attributes']['data-drupal-date-format'] ?? 'Y-m-d';
+  $format_map = [
+    // @todo find a cleverer way of mapping PHP date formats to the expected
+    // ECL ones.
+    'Y-m-d' => 'YYYY-MM-DD',
+  ];
+  $ecl_format = $format_map[$php_date_format] ?? 'YYYY-MM-DD';
+  $variables['#attached']['library'][] = 'oe_theme/ecl_datepicker';
+  $variables['#attached']['drupalSettings']['oe_theme']['ecl_datepicker_format'] = $ecl_format;
+}
+
+
+/**
  * Helper function to additionally preprocess checkbox and radio elements.
  *
  * Moves the label element to the input template and creates some helper
