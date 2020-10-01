@@ -144,7 +144,7 @@ content:
     settings:
       timezone_override: ''
       format_type: oe_event_long_date_hour
-      separator: to
+      separator: 'to'
     third_party_settings: {  }
     type: daterange_default
     region: content
