@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.2",
-        "drupal/core": "^8.7",
+        "drupal/core": "^8.8",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
@@ -53,7 +53,7 @@
         "openeuropa/oe_contact_forms": "~0.1",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4"
+        "symfony/dom-crawler": "~3.4.40"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
