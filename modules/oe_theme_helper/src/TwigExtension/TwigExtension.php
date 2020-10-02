@@ -68,6 +68,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
       new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
       new \Twig_SimpleFilter('is_external_url', [UrlHelper::class, 'isExternal']),
+      new \Twig_SimpleFilter('filter_empty', [$this, 'filterEmpty']),
     ];
   }
 
@@ -564,6 +565,21 @@ class TwigExtension extends \Twig_Extension {
 
     // Just return input if we didn't fall in any of the cases above.
     return $input;
+  }
+
+  /**
+   * Filter out empty, false and null values.
+   *
+   * @param array $entry
+   *   Array to be filtered.
+   *
+   * @return array
+   *   The filtered output.
+   */
+  public function filterEmpty(array $entry): array {
+    return array_filter($entry, function ($var) {
+      return $var !== '' && $var !== FALSE && $var !== NULL;
+    });
   }
 
   /**
