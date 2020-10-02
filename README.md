@@ -11,7 +11,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
   - [Upgrade to 2.10.0](#upgrade-to-2100)
-  - [Upgrade to 2.9.0+](#upgrade-to-290)
+  - [Upgrade to 2.9.0](#upgrade-to-290)
   - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
 - [Corporate blocks](#corporate-blocks)
@@ -82,6 +82,7 @@ To learn more about EC/EU families and ECL branding visit the [ECL website](http
 ### Upgrade to 2.10.0
 
 #### ECL page header
+
 In 2.10.0 we dropped supporting the following elements in the ["Page header" pattern](./templates/patterns/page_header/page_header.ui_patterns.yml):
 
 - `identity`: used to show site-identifying information (such as the site name).
@@ -94,8 +95,9 @@ As a result, if your `PageHeaderMetadata` plugins provide such data, it will no 
 In 2.10.0 we introduced support for ECL branding (read above for more information). The OpenEuropa Theme will use the
 "Core" branding, visit the theme configuration page if you need to change that and use the "Standardised" branding instead.
 
+To know which branding your site is supposed to use check the [ECL website](https://ec.europa.eu/component-library).
 
-### Upgrade to 2.9.0+
+### Upgrade to 2.9.0
 
 #### Content type teasers
 
