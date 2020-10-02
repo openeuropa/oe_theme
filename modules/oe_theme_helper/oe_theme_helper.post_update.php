@@ -233,7 +233,7 @@ function oe_theme_helper_post_update_20013() {
     'label' => $label,
     'provider' => 'oe_theme_helper',
     'label_display' => '0',
-    'level' => '1',
+    'level' => 1,
   ]);
   $config->save();
 }
