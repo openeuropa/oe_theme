@@ -12,3 +12,10 @@ oe_theme_js_test.multi_select_test_form:
     _title: 'Multi select test form'
   requirements:
     _access: 'TRUE'
+oe_theme_js_test.datepicker_test_form:
+  path: '/oe_theme_js_test/datepicker'
+  defaults:
+    _form: 'Drupal\oe_theme_js_test\Form\DatePickerTestForm'
+    _title: 'DatePicker test form'
+  requirements:
+    _access: 'TRUE'
