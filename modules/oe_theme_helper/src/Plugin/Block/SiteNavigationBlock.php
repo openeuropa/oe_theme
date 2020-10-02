@@ -70,13 +70,27 @@ class SiteNavigationBlock extends SystemMenuBlock {
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return [];
+    return [
+      'level' => 1,
+    ];
   }
 
   /**
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
+    $config = $this->configuration;
+    $options = range(0, $this->menuTree->maxDepth());
+    unset($options[0]);
+
+    $form['level'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Initial visibility level'),
+      '#default_value' => $config['level'],
+      '#options' => $options,
+      '#description' => $this->t('The menu is only visible if the menu item for the current page is at this level or below it. Use level 1 to always display this menu.'),
+      '#required' => TRUE,
+    ];
     return $form;
   }
 
@@ -84,6 +98,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
+    $this->configuration['level'] = $form_state->getValue('level');
   }
 
   /**
@@ -94,8 +109,9 @@ class SiteNavigationBlock extends SystemMenuBlock {
     $parameters = $this->menuTree->getCurrentRouteMenuTreeParameters($menu_name);
 
     // Adjust the menu tree parameters based on the block's configuration.
-    $parameters->setMinDepth(1);
-    $parameters->setMaxDepth(min(2, $this->menuTree->maxDepth()));
+    $level = $this->configuration['level'];
+    $parameters->setMinDepth($level);
+    $parameters->setMaxDepth(min($level + 1, $this->menuTree->maxDepth()));
 
     $site_info = $this->configFactory->get('system.site');
     $build = [
