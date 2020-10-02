@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_event\Plugin\PageHeaderMetadata;
+namespace Drupal\oe_theme_content_organisation\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
@@ -10,15 +10,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Page header metadata for the OpenEuropa Event content entity.
+ * Page header metadata for the OpenEuropa Organisation content entity.
  *
  * @PageHeaderMetadata(
- *   id = "event_content_type",
- *   label = @Translation("Metadata extractor for the OE Content Event content type"),
+ *   id = "organisation_content_type",
+ *   label = @Translation("Metadata extractor for the OE Organisation Content content type"),
  *   weight = -1
  * )
  */
-class EventContentType extends NodeViewRoutesBase {
+class OrganisationContentType extends NodeViewRoutesBase {
 
   /**
    * The entity repository.
@@ -66,7 +66,7 @@ class EventContentType extends NodeViewRoutesBase {
   public function applies(): bool {
     $node = $this->getNode();
 
-    return $node && $node->bundle() === 'oe_event';
+    return $node && $node->bundle() === 'oe_organisation';
   }
 
   /**
@@ -74,12 +74,23 @@ class EventContentType extends NodeViewRoutesBase {
    */
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
-
     $node = $this->getNode();
-    $translated_value = $this->entityRepository->getTranslationFromContext($node->get('oe_event_type')->entity);
-    $metadata['metas'] = [
-      $translated_value->label(),
-    ];
+    $metadata['metas'] = [];
+
+    // Get organisation type, it can be either EU or non-EU.
+    if (!$node->get('oe_organisation_eu_org_type')->isEmpty()) {
+      $entity = $node->get('oe_organisation_eu_org_type')->entity;
+      $metadata['metas'][] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    if (!$node->get('oe_organisation_non_eu_org_type')->isEmpty()) {
+      $entity = $node->get('oe_organisation_non_eu_org_type')->entity;
+      $metadata['metas'][] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+
+    // Add acronym, if any.
+    if (!$node->get('oe_organisation_acronym')->isEmpty()) {
+      $metadata['metas'][] = $node->get('oe_organisation_acronym')->value;
+    }
 
     return $metadata;
   }

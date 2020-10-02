@@ -118,6 +118,19 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
 /**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
+ * Adds a template suggestion for type time input fields.
+ */
+function oe_theme_theme_suggestions_input_alter(array &$suggestions, array $variables): void {
+  $element = $variables['element'];
+
+  if ($element['#type'] === 'date' && $element['#attributes']['type'] === 'time') {
+    $suggestions[] = 'input__time';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
  * Adds a bare, markup-free template suggestion to all paragraph fields.
  */
 function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $variables): void {
@@ -424,6 +437,23 @@ function oe_theme_preprocess_input__radio(array &$variables): void {
 function oe_theme_preprocess_input__checkbox(array &$variables): void {
   _oe_theme_preprocess_input_label_wrapper($variables);
 }
+
+/**
+ * Implements template_preprocess_input__date().
+ */
+function oe_theme_preprocess_input__date(array &$variables): void {
+  $php_date_format = !empty($variables['attributes']['data-drupal-date-format'] && is_array($variables['attributes']['data-drupal-date-format'])) ? reset($variables['attributes']['data-drupal-date-format']) : 'Y-m-d';
+  $format_map = [
+    // @todo find a cleverer way of mapping PHP date formats to the expected
+    // ECL ones.
+    'Y-m-d' => 'YYYY-MM-DD',
+  ];
+  $ecl_format = $format_map[$php_date_format] ?? 'YYYY-MM-DD';
+  $variables['#attached']['library'][] = 'oe_theme/ecl_datepicker';
+  $variables['#attached']['drupalSettings']['oe_theme']['ecl_datepicker_format'] = $ecl_format;
+  $variables['placeholder'] = $ecl_format;
+}
+
 
 /**
  * Helper function to additionally preprocess checkbox and radio elements.
