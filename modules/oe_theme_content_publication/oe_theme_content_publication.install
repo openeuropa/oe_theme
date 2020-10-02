@@ -24,20 +24,20 @@ function oe_theme_content_publication_install() {
   $displays = [
     'core.entity_view_display.node.oe_publication.teaser',
   ];
+  $view_display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
   foreach ($displays as $display) {
-    $values = $storage->read($display);
-    $config = EntityViewDisplay::load($values['id']);
-    if (!$config) {
-      $config = EntityViewDisplay::create($values);
-      $config->save();
+    $display_values = $storage->read($display);
+
+    // Take over view display, regardless if it already exists or not.
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $display = $view_display_storage->updateFromStorageRecord($view_display, $display_values);
+      $display->save();
       continue;
     }
 
-    foreach ($values as $key => $value) {
-      $config->set($key, $value);
-    }
-
-    $config->save();
+    $display = $view_display_storage->createFromStorageRecord($display_values);
+    $display->save();
   }
 }
