@@ -58,7 +58,6 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'oe_content_project',
       'oe_content_entity_organisation',
       'oe_theme_content_project',
-      'address',
     ]);
 
     module_load_include('install', 'oe_theme_content_project');
@@ -144,7 +143,6 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'oe_featured_media' => [
         [
           'target_id' => $media->id(),
-          'target_revision_id' => $media->getRevisionId(),
         ],
       ],
       'status' => 1,
