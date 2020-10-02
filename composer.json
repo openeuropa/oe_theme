@@ -53,7 +53,7 @@
         "openeuropa/oe_contact_forms": "~0.1",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4.40"
+        "symfony/dom-crawler": "~3.4"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",

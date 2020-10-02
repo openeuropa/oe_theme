@@ -97,41 +97,51 @@ class SiteNavigationBlock extends SystemMenuBlock {
     $parameters->setMinDepth(1);
     $parameters->setMaxDepth(min(2, $this->menuTree->maxDepth()));
 
+    $site_info = $this->configFactory->get('system.site');
+    $build = [
+      '#type' => 'pattern',
+      '#id' => 'navigation_menu',
+      '#variant' => 'vertical',
+      '#fields' => [
+        'site_name' => $site_info->get('name'),
+        'label' => $this->t('Menu'),
+      ],
+    ];
+    $cacheable_metadata = CacheableMetadata::createFromRenderArray($build);
+    $cacheable_metadata->addCacheableDependency($site_info);
+
+    // If menu is empty we only print out the site name.
     $tree = $this->menuTree->load($menu_name, $parameters);
+    if (empty($tree)) {
+      return $build;
+    }
+
+    // Build site tree and process its links.
+    $menu_build = $this->buildRenderableMenu($tree);
+    $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($menu_build));
+    $build['#fields']['items'] = $this->getEclLinks($menu_build['#items']);
+    $cacheable_metadata->applyTo($build);
+
+    return $build;
+  }
+
+  /**
+   * Build menu renderable array.
+   *
+   * @param \Drupal\Core\Menu\MenuLinkTreeElement[] $tree
+   *   The menu tree, as returned from MenuLinkTreeInterface::load().
+   *
+   * @return array
+   *   A renderable array.
+   */
+  protected function buildRenderableMenu(array $tree): array {
     $manipulators = [
       ['callable' => 'menu.default_tree_manipulators:checkAccess'],
       ['callable' => 'menu.default_tree_manipulators:generateIndexAndSort'],
     ];
     $tree = $this->menuTree->transform($tree, $manipulators);
-    $menu_build = $this->menuTree->build($tree);
-    $site_info = $this->configFactory->get('system.site');
-    $cacheable_metadata = CacheableMetadata::createFromRenderArray($menu_build);
-    $cacheable_metadata->addCacheableDependency($site_info);
-    if (isset($menu_build['#items'])) {
-      $build = [
-        '#type' => 'pattern',
-        '#id' => 'navigation_menu',
-        '#variant' => 'vertical',
-        '#fields' => [
-          'site_name' => $site_info->get('name'),
-          'label' => $this->t('Menu'),
-          'items' => $this->getEclLinks($menu_build['#items']),
-        ],
-      ];
-    }
-    // Expose site name in blue banner instead of the empty menu.
-    else {
-      $build = [
-        '#type' => 'inline_template',
-        '#template' => '<div class="ecl-site-header-standardised__banner"><div class="ecl-container">{{ site_name }}</div></div>',
-        '#context' => [
-          'site_name' => $site_info->get('name'),
-        ],
-      ];
-    }
 
-    $cacheable_metadata->applyTo($build);
-    return $build;
+    return $this->menuTree->build($tree);
   }
 
   /**
