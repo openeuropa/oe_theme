@@ -5,7 +5,7 @@ Feature: News content type.
   So I can find the information I'm looking for.
 
   Scenario: News information is shown in teasers.
-    Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities" permission
+    Given I am logged in as a user with the "create oe_news content, access content, edit any oe_news content, view published skos concept entities, view the administration theme" permission
     And "oe_news" content:
       | title           | oe_summary    | oe_teaser   | body      | oe_publication_date | oe_subject                     | oe_author                                                               | oe_content_content_owner                                                |
       | Full news title | Short summary | News teaser | News body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH |

@@ -13,7 +13,7 @@
     "prepare": "patch-package"
   },
   "dependencies": {
-    "@ecl-twig/ec-components": "2.33.0",
+    "@ecl-twig/ec-components": "2.33.2",
     "@ecl/builder": "2.33.1",
     "@ecl/ec-component-fact-figures": "2.33.1",
     "@ecl/ec-component-form-help-block": "2.33.1",
