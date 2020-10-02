@@ -12,7 +12,7 @@
   {% elseif name == 'open' %}
     {% set background_class = ' ecl-label--high' %}
   {% elseif name == 'closed' %}
-    {% set background_class = ' ecl-label--highlight' %}
+    {% set background_class = ' ecl-label--low' %}
   {% endif %}
   <span class="call-tenders-status ecl-label ecl-u-text-uppercase{{ background_class }}">{{ label }}</span>
 {% endif %}

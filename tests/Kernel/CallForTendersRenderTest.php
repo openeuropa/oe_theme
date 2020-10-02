@@ -188,7 +188,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-tenders-status.ecl-label.ecl-u-text-uppercase.ecl-label--highlight');
+    $actual = $crawler->filter('span.call-tenders-status.ecl-label.ecl-u-text-uppercase.ecl-label--low');
     $this->assertCount(1, $actual);
 
     // Check Deadline date is striked when Call for tenders is closed.
