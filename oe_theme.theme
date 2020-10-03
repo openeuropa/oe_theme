@@ -1612,12 +1612,8 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function oe_theme_preprocess_page(array &$variables): void {
-  $classes = ['ecl-u-pv-xl'];
-  if ($variables['ecl_branding'] === 'standardised') {
-    $classes = ['ecl-u-pb-xl'];
-  }
   $variables['main_attributes'] = new Attribute([
-    'class' => $classes,
+    'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],
   ]);
 }
