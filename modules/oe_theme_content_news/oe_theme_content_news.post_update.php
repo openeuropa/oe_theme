@@ -46,3 +46,40 @@ function oe_theme_content_news_post_update_00003(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Enable UI Patterns field group module.
+ */
+function oe_theme_content_news_post_update_00004(): void {
+  \Drupal::service('module_installer')->install(['ui_patterns_field_group']);
+}
+
+/**
+ * Override news view displays.
+ */
+function oe_theme_content_news_post_update_00005(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00005_override_view_displays');
+
+  // View displays configurations to update.
+  $displays = [
+    'core.entity_view_display.node.oe_news.teaser',
+    'core.entity_view_display.node.oe_news.default',
+  ];
+  foreach ($displays as $display) {
+    $display_values = $storage->read($display);
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $updated_form_display = \Drupal::entityTypeManager()
+        ->getStorage($view_display->getEntityTypeId())
+        ->updateFromStorageRecord($view_display, $display_values);
+      $updated_form_display->save();
+    }
+  }
+}
+
+/**
+ * Enable oe_theme_content_entity_contact.
+ */
+function oe_theme_content_news_post_update_00006(): void {
+  \Drupal::service('module_installer')->install(['oe_theme_content_entity_contact']);
+}
