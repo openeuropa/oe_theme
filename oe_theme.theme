@@ -519,7 +519,7 @@ function oe_theme_preprocess_radios(array &$variables): void {
  * Implements hook_preprocess_fieldset().
  */
 function oe_theme_preprocess_fieldset(array &$variables): void {
-  if ($variables['element']['#type'] == 'radios') {
+  if (isset($variables['element']['#type']) && $variables['element']['#type'] == 'radios') {
     $variables['legend_display'] = FALSE;
   }
 }

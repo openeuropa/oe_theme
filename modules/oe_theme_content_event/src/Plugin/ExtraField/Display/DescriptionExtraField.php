@@ -10,6 +10,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\Element;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
@@ -99,6 +100,13 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     ];
 
     $this->addFeaturedMediaThumbnail($build, $entity);
+
+    if (empty(Element::children($build['#fields']['text'])) && !isset($build['#fields']['image'])) {
+      // If we don't have any text or image, we return empty removing the
+      // title.
+      unset($build['#fields']['title']);
+      return $build;
+    }
 
     return $build;
   }
