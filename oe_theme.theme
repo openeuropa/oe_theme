@@ -49,6 +49,17 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
     '#default_value' => theme_get_setting('component_library'),
     '#description' => t('Choose "European Commission" for websites hosted under the ec.europa.eu domain and "European Union" for websites hosted under the europa.eu domain.'),
   ];
+
+  $form['branding'] = [
+    '#type' => 'select',
+    '#title' => t('Branding'),
+    '#options' => [
+      'core' => t('Core'),
+      'standardised' => t('Standardised'),
+    ],
+    '#default_value' => theme_get_setting('branding') ?? 'core',
+    '#description' => t('Choose the ECL branding for your website. Use "Core" for cross-institutional sites and "Standardised" for DG/Agency specific sites.'),
+  ];
 }
 
 /**
@@ -56,6 +67,7 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
  */
 function oe_theme_preprocess(&$variables) {
   $variables['ecl_component_library'] = theme_get_setting('component_library');
+  $variables['ecl_branding'] = theme_get_setting('branding') ?? 'core';
   $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
@@ -1601,7 +1613,7 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  */
 function oe_theme_preprocess_page(array &$variables): void {
   $variables['main_attributes'] = new Attribute([
-    'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
+    'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],
   ]);
 }

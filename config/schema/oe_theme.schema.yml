@@ -5,3 +5,6 @@ oe_theme.settings:
     component_library:
       type: string
       label: 'ECL component library, either EC or EU'
+    branding:
+      type: string
+      label: 'ECL branding, either Core or Standardised'

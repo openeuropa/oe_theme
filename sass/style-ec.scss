@@ -6,9 +6,10 @@
 @import '@ecl/ec-utility-background/ec-utility-background';
 @import '@ecl/ec-component-form-help-block/ec-component-form-help-block';
 @import "./compositions/content_item";
+@import "./compositions/content_language_switcher";
 @import "./components/form";
 @import "./components/toolbar";
 @import "./components/banner";
 @import "./components/wysiwyg";
-@import "./components/description_list";
+@import "./components/page_header";
 @import "./components/global";

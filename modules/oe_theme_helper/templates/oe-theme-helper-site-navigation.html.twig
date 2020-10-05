@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Default template for the site navigation banner.
+ *
+ * Available variables:
+ *   - site_name: the site name.
+ *   - menu_items: menu items, must be compatible with "navigation_menu" pattern's "items" array.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if menu_items %}
+  {{ pattern('navigation_menu', {
+    label: 'Menu'|t,
+    items: menu_items,
+    site_name: site_name,
+  }, 'vertical') }}
+{% else %}
+  <div class="ecl-site-header-{{ ecl_branding }}__banner">
+    <div class="ecl-container">{{ site_name }}</div>
+  </div>
+{% endif %}

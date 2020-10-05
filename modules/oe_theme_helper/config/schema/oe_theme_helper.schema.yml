@@ -71,3 +71,17 @@ field.formatter.settings.oe_theme_helper_featured_media_thumbnail_url_formatter:
 field.formatter.settings.oe_theme_helper_social_media_icons_list_formatter:
   type: field.formatter.settings.link
   label: 'Social media icons list formatter settings'
+
+condition.plugin.oe_theme_helper_current_branding:
+  type: condition.plugin
+  mapping:
+    branding:
+      type: string
+
+block.settings.oe_theme_helper_site_navigation:main:
+  type: block_settings
+  label: 'Site navigation block'
+  mapping:
+    level:
+      type: integer
+      label: 'Starting level'

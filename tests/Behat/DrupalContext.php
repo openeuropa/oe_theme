@@ -54,6 +54,9 @@ class DrupalContext extends RawDrupalContext {
    */
   public function setupDemo(BeforeScenarioScope $scope): void {
     \Drupal::service('module_installer')->install(['oe_theme_demo']);
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    \Drupal::configFactory()->getEditable($theme_name . '.settings')
+      ->set('branding', 'standardised')->save();
   }
 
   /**
@@ -66,6 +69,9 @@ class DrupalContext extends RawDrupalContext {
    */
   public function revertDemoSetup(AfterScenarioScope $scope): void {
     \Drupal::service('module_installer')->uninstall(['oe_theme_demo']);
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    \Drupal::configFactory()->getEditable($theme_name . '.settings')
+      ->set('branding', 'core')->save();
   }
 
   /**

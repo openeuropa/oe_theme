@@ -8,19 +8,22 @@
 #}
 {% block site_header %}
 <header
-  class="ecl-site-header-core"
+  class="ecl-site-header-{{ ecl_branding }}"
   data-ecl-site-header="true"
-  data-ecl-auto-init="SiteHeaderCore"
+  data-ecl-auto-init="SiteHeader{{ ecl_branding|capitalize }}"
 >
   {{ page.site_top_bar }}
-  <div class="ecl-site-header-core__container ecl-container">
-    <div class="ecl-site-header-core__top">
+  <div class="ecl-site-header-{{ ecl_branding }}__container ecl-container">
+    <div class="ecl-site-header-{{ ecl_branding }}__top">
       {{ page.site_header }}
-      <div class="ecl-site-header-core__action">
+      <div class="ecl-site-header-{{ ecl_branding }}__action">
         {{ page.site_header_secondary }}
       </div>
     </div>
   </div>
+  {% block navigation %}
+    {{ page.navigation }}
+  {% endblock %}
 </header>
 {% endblock %}
 
@@ -28,10 +31,6 @@
   {% if page.page_header %}
     {{ page.page_header }}
   {% endif %}
-{% endblock %}
-
-{% block navigation %}
-  {{ page.navigation }}
 {% endblock %}
 
 {% block content %}

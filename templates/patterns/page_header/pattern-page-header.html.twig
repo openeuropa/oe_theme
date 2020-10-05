@@ -28,27 +28,6 @@
   'icon_file_path' : ecl_icon_path
 } %}
 
-{% set _infos = {} %}
-{% for infos_item in infos %}
-  {% set _info = {
-    'text' : infos_item.text,
-    'icon' : {
-      'type' : 'general',
-      'name' : infos_item.icon,
-      'path' : ecl_icon_path
-    }
-  } %}
-  {% set _infos = _infos|merge([_info]) %}
-{% endfor %}
-
-{% if identity is not empty %}
-  <div class="ecl-u-bg-blue ecl-u-pv-2xs">
-    <div class="ecl-container ">
-      <h2 class="ecl-u-type-color-white ecl-u-type-heading-2">{{ identity }}</h2>
-    </div>
-  </div>
-{% endif %}
-
 {% if language_switcher %}
   {% set _language_switcher %}
     {% include '@oe_theme/compositions/ec-component-content-language-switcher/content-language-switcher.html.twig' with {
@@ -57,15 +36,17 @@
       'current': language_switcher.current,
       'options': language_switcher.options,
       'icon_path': ecl_icon_path,
+      'ecl_branding': ecl_branding,
     } only %}
   {% endset %}
 {% endif %}
 
-{% include '@ecl-twig/page-header-core' with {
+{% include '@ecl-twig/page-header-' ~ ecl_branding with {
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,
   'meta': _meta,
   'infos': _infos,
-  'composition': _language_switcher
+  'composition': _language_switcher,
+  'extra_classes': ecl_branding == 'core' ? 'ecl-u-mb-xl',
 } %}

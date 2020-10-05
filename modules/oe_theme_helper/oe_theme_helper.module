@@ -80,6 +80,12 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'content' => [],
       ],
     ],
+    'oe_theme_helper_site_navigation' => [
+      'variables' => [
+        'site_name' => '',
+        'menu_items' => [],
+      ],
+    ],
   ];
 }
 

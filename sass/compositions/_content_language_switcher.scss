@@ -1,0 +1,19 @@
+.ecl-page-header-core {
+  .ecl-lang-select-page {
+    &__unavailable_language {
+      color: $ecl-color-white;
+    }
+    .ecl-expandable__content {
+      .ecl-button {
+        color: $ecl-color-white;
+      }
+    }
+  }
+}
+.ecl-page-header-standardised {
+  .ecl-lang-select-page {
+    &__unavailable_language {
+      color: $ecl-color-blue;
+    }
+  }
+}
