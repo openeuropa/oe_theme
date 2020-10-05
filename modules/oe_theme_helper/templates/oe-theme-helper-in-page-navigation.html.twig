@@ -45,7 +45,7 @@
   {% block content %}
   <div class="ecl-col-lg-9">
     {% for item in _items %}
-      <div{{ loop.first ? ' class=" ecl-u-mb-2xl"' }}>
+      <div{{ not loop.last ? ' class=" ecl-u-mb-2xl"' }}>
         <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
         {{ item.content }}
       </div>
