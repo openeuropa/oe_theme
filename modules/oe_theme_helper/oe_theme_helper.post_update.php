@@ -239,7 +239,7 @@ function oe_theme_helper_post_update_20013() {
 }
 
 /**
- * Add default ECL branding theme setting.
+ * Set default visibility condition of main navigation block.
  */
 function oe_theme_helper_post_update_20014() {
   /** @var \Drupal\block\Entity\Block $block */

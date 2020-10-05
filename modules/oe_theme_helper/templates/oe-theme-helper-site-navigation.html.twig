@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default template for the standardised site navigation banner.
+ * Default template for the site navigation banner.
  *
  * Available variables:
  *   - site_name: the site name.
@@ -17,7 +17,7 @@
     site_name: site_name,
   }, 'vertical') }}
 {% else %}
-  <div class="ecl-site-header-standardised__banner">
+  <div class="ecl-site-header-{{ ecl_branding }}__banner">
     <div class="ecl-container">{{ site_name }}</div>
   </div>
 {% endif %}

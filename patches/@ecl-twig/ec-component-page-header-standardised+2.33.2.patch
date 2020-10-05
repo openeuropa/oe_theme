@@ -6,7 +6,7 @@ patch-package
      }) only %}
    {% endif %}
 +  {% if composition is not empty %}
-+    <div class="ecl-page-header-core__composition">
++    <div class="ecl-page-header-standardised__composition">
 +      {{- composition|raw -}}
 +    </div>
 +  {% endif %}
