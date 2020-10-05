@@ -115,13 +115,9 @@ class SiteNavigationBlock extends SystemMenuBlock {
 
     $site_info = $this->configFactory->get('system.site');
     $build = [
-      '#type' => 'pattern',
-      '#id' => 'navigation_menu',
-      '#variant' => 'vertical',
-      '#fields' => [
-        'site_name' => $site_info->get('name'),
-        'label' => $this->t('Menu'),
-      ],
+      '#theme' => 'oe_theme_helper_site_navigation',
+      '#site_name' => $site_info->get('name'),
+      '#menu_items' => [],
     ];
     $cacheable_metadata = CacheableMetadata::createFromRenderArray($build);
     $cacheable_metadata->addCacheableDependency($site_info);
@@ -135,7 +131,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
     // Build site tree and process its links.
     $menu_build = $this->buildRenderableMenu($tree);
     $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($menu_build));
-    $build['#fields']['items'] = $this->getEclLinks($menu_build['#items']);
+    $build['#menu_items'] = $this->getEclLinks($menu_build['#items']);
     $cacheable_metadata->applyTo($build);
 
     return $build;
