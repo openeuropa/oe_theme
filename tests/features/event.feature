@@ -101,8 +101,6 @@ Feature: Event content type.
       | Title               | Event demo page          |
       | Type                | Exhibitions              |
       | Introduction        | Event introduction text  |
-      | Description summary | Description summary text |
-      | Description         | Event description        |
       | Start date          | 2019-02-21 10:30:00      |
       | End date            | 2019-02-21 18:30:00      |
       | Status              | as_planned               |
@@ -115,6 +113,15 @@ Feature: Event content type.
     And I should see "Exhibitions" in the "page header meta"
     And I should see "Event introduction text" in the "page header intro"
 
+    # There is no description or image.
+    And I should not see "Description"
+
+    # Add a description to the event.
+    And the Event Content "Event demo page" is updated as follows:
+      | Description summary | Description summary text |
+      | Description         | Event description        |
+
+    When I am visiting the "Event demo page" content
     # Assert event details.
     And I should see the text "Description summary text" in the "event details"
     And I should see the text "Financing" in the "event details"
