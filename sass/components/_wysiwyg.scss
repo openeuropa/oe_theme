@@ -1,8 +1,7 @@
 .ecl-editor {
-  .ecl-file + .ecl-file {
+  article,
+  .ecl-file {
     margin-top: $ecl-spacing-2-xs;
-  }
-  .ecl-file + article {
-    margin-top: $ecl-spacing-2-xs;
+    margin-bottom: $ecl-spacing-2-xs;
   }
 }
