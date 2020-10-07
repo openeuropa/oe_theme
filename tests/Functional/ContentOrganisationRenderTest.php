@@ -87,14 +87,12 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
       'type' => 'oe_organisation',
       'title' => 'My node title',
       'oe_summary' => 'My introduction',
-      'body' => 'My body text',
       'oe_organisation_acronym' => 'My acronym',
       'oe_organisation_org_type' => 'eu',
       'oe_organisation_eu_org' => 'http://publications.europa.eu/resource/authority/corporate-body/ACM',
       'oe_organisation_logo' => [
         'target_id' => $media->id(),
       ],
-      'oe_organisation_contact' => [$general_contact],
       'oe_teaser' => 'The teaser text',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
@@ -122,6 +120,16 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $expected_values['meta'] = 'embassy | My acronym';
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
+    $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
+    $this->assertContains('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
+    $this->assertEquals('Alt', $logo->getAttribute('alt'));
+
+    // Add body text and contact values.
+    $node->set('body', 'My body text');
+    $node->set('oe_organisation_contact', [$general_contact]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
     // Assert navigation part.
     $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
     $assert = new InPageNavigationAssert();
@@ -133,10 +141,6 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
       ],
     ];
     $assert->assertPattern($expected_values, $navigation->getOuterHtml());
-
-    $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
-    $this->assertContains('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
-    $this->assertEquals('Alt', $logo->getAttribute('alt'));
 
     // Change logo to use av portal image.
     $media = Media::create([
