@@ -2322,8 +2322,8 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
+      'h2.ecl-u-type-heading-2': 0
+    equals: {}
 - array:
     '#type': pattern
     '#id': text_featured_media
