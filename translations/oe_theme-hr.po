@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tip organizacije"
+
+msgid "Show @numb more items"
+msgstr "Prikaži @numb više"
+
+msgid "Hide @numb items"
+msgstr "Prikaži manje"
+
+msgid "When"
+msgstr "Vrijeme"
+
+msgid "Where"
+msgstr "Mjesto"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Website"
+msgstr "Internetska stranica"
+
+msgid "Social media"
+msgstr "Društvene mreže"
+
+msgid "Number of seats"
+msgstr "Broj mjesta"
+
+msgid "Entrance fee"
+msgstr "Kotizacija"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervirajte svoje mjesto. Preostalo je još @time_left za registraciju. Registracija je moguća do @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registracija počinje za @time_left. Možete se registrirati od @start_date do @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Razdoblje registracije završilo je @end_date."
+
+msgid "Postal address"
+msgstr "Poštanska adresa"
+
+msgid "Authors"
+msgstr "Autori"
+
+msgid "Department"
+msgstr "Služba"
+
+msgid "Project duration"
+msgstr "Trajanje projekta"
+
+msgid "Project website"
+msgstr "Internetske stranice projekta"
+
+msgid "Department"
+msgstr "Služba"
+
+msgid "Contact organisation"
+msgstr "Obratite se organizaciji"
+
+msgid "Call status: @label"
+msgstr "Status poziva: @label"
+
+msgid "Press contacts"
+msgstr "Kontakti za medije"
+
+msgid "Call for tenders"
+msgstr "Poziv na podnošenje ponuda"
+
+msgid "Related links"
+msgstr "Povezane poveznice"

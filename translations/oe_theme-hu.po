@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "A szervezet típusa"
+
+msgid "Show @numb more items"
+msgstr "Még @numb elem megjelenítése"
+
+msgid "Hide @numb items"
+msgstr "Tartalom elrejtése"
+
+msgid "When"
+msgstr "Időpont"
+
+msgid "Where"
+msgstr "Helyszín"
+
+msgid "Organiser"
+msgstr "Szervező"
+
+msgid "Website"
+msgstr "Honlap"
+
+msgid "Social media"
+msgstr "Közösségi média"
+
+msgid "Number of seats"
+msgstr "Ülések száma"
+
+msgid "Entrance fee"
+msgstr "Belépődíj"
+
+msgid "Organiser"
+msgstr "Szervező"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs időszak végéig, a regisztrációs időszak záró dátuma: @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "A regisztrációs időszak kezdetéig hátra van még @time_left. Regisztrálni ettől az időponttól: @start_date eddig az időpontig: @end_date lehet."
+
+msgid "Registration period ended on @end_date."
+msgstr "A regisztrációs időszak vége: @end_date."
+
+msgid "Postal address"
+msgstr "Postai cím"
+
+msgid "Authors"
+msgstr "Szerzők"
+
+msgid "Department"
+msgstr "Szervezeti egység"
+
+msgid "Project duration"
+msgstr "A projekt időtartama"
+
+msgid "Project website"
+msgstr "A projekt honlapja"
+
+msgid "Department"
+msgstr "Szervezeti egység"
+
+msgid "Contact organisation"
+msgstr "Kapcsolattartó szervezet"
+
+msgid "Call status: @label"
+msgstr "A felhívás státusza: @label"
+
+msgid "Press contacts"
+msgstr "Sajtókapcsolatok"
+
+msgid "Call for tenders"
+msgstr "Ajánlati felhívás"
+
+msgid "Related links"
+msgstr "Kapcsolódó linkek"

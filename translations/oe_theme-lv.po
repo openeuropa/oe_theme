@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organizācijas veids"
+
+msgid "Show @numb more items"
+msgstr "Parādīt vēl @numb elementu(-s)"
+
+msgid "Hide @numb items"
+msgstr "Paslēpt vienumus"
+
+msgid "When"
+msgstr "Kad"
+
+msgid "Where"
+msgstr "Kur"
+
+msgid "Organiser"
+msgstr "Organizators"
+
+msgid "Website"
+msgstr "Tīmekļvietne"
+
+msgid "Social media"
+msgstr "Sociālie plašsaziņas līdzekļi"
+
+msgid "Number of seats"
+msgstr "Sēdvietu skaits"
+
+msgid "Entrance fee"
+msgstr "Ieejas maksa"
+
+msgid "Organiser"
+msgstr "Organizators"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervējiet sev sēdvietu, reģistrācijai atlikušais laiks: @time_left, reģistrācija beigsies @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Reģistrācija sāksies @time_left. Varat reģistrēties no @start_date līdz @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Reģistrācijas periods beidzies @end_date."
+
+msgid "Postal address"
+msgstr "Pasta adrese"
+
+msgid "Authors"
+msgstr "Autori"
+
+msgid "Department"
+msgstr "Struktūrvienība"
+
+msgid "Project duration"
+msgstr "Projekta ilgums"
+
+msgid "Project website"
+msgstr "Projekta tīmekļvietne"
+
+msgid "Department"
+msgstr "Struktūrvienība"
+
+msgid "Contact organisation"
+msgstr "Sazināties ar organizāciju"
+
+msgid "Call status: @label"
+msgstr "Uzaicinājuma statuss: @label"
+
+msgid "Press contacts"
+msgstr "Kontaktpersonas presei"
+
+msgid "Call for tenders"
+msgstr "Uzaicinājums iesniegt piedāvājumus"
+
+msgid "Related links"
+msgstr "Līdzīgas saites"

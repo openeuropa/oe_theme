@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisaation tyyppi"
+
+msgid "Show @numb more items"
+msgstr "Näytä vielä @numb kohtaa"
+
+msgid "Hide @numb items"
+msgstr "Piilota kohdat"
+
+msgid "When"
+msgstr "Milloin"
+
+msgid "Where"
+msgstr "Missä"
+
+msgid "Organiser"
+msgstr "Järjestäjä"
+
+msgid "Website"
+msgstr "Verkkosivusto"
+
+msgid "Social media"
+msgstr "Sosiaalinen media"
+
+msgid "Number of seats"
+msgstr "Paikkoja"
+
+msgid "Entrance fee"
+msgstr "Pääsymaksu"
+
+msgid "Organiser"
+msgstr "Järjestäjä"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Varaa paikkasi, ilmoittautumisaikaa on jäljellä @time_left, ilmoittautuminen päättyy @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Ilmoittautuminen alkaa @time_left. Voit ilmoittautua @start_date – @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Ilmoittautuminen päättyi @end_date."
+
+msgid "Postal address"
+msgstr "Postiosoite"
+
+msgid "Authors"
+msgstr "Laatijat"
+
+msgid "Department"
+msgstr "Osasto"
+
+msgid "Project duration"
+msgstr "Hankkeen kesto"
+
+msgid "Project website"
+msgstr "Hankkeen verkkosivusto"
+
+msgid "Department"
+msgstr "Osasto"
+
+msgid "Contact organisation"
+msgstr "Ota yhteyttä organisaatioon"
+
+msgid "Call status: @label"
+msgstr "Pyynnön tila: @label"
+
+msgid "Press contacts"
+msgstr "Median yhteydenotot"
+
+msgid "Call for tenders"
+msgstr "Tarjouspyyntö"
+
+msgid "Related links"
+msgstr "Aiheeseen liittyvää"

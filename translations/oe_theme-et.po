@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisatsiooni liik"
+
+msgid "Show @numb more items"
+msgstr "Näita veel @numb kannet"
+
+msgid "Hide @numb items"
+msgstr "Peida kanded"
+
+msgid "When"
+msgstr "Millal?"
+
+msgid "Where"
+msgstr "Kus?"
+
+msgid "Organiser"
+msgstr "Korraldaja"
+
+msgid "Website"
+msgstr "Veebisait"
+
+msgid "Social media"
+msgstr "Sotsiaalmeedia"
+
+msgid "Number of seats"
+msgstr "Kohtade arv"
+
+msgid "Entrance fee"
+msgstr "Osalustasu"
+
+msgid "Organiser"
+msgstr "Korraldaja"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimine lõppeb: @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registreerimise alguskuupäev: @time_left. Registreerimine kestab: @start_date kuni @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registreerimisperioodi lõppkuupäev: @end_date."
+
+msgid "Postal address"
+msgstr "Postiaadress"
+
+msgid "Authors"
+msgstr "Autorid"
+
+msgid "Department"
+msgstr "Osakond"
+
+msgid "Project duration"
+msgstr "Projekti kestus"
+
+msgid "Project website"
+msgstr "Projekti veebisait"
+
+msgid "Department"
+msgstr "Osakond"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisatsioon"
+
+msgid "Call status: @label"
+msgstr "Olek: @label"
+
+msgid "Press contacts"
+msgstr "Pressikontaktid"
+
+msgid "Call for tenders"
+msgstr "Pakkumismenetlus"
+
+msgid "Related links"
+msgstr "Seotud lingid"

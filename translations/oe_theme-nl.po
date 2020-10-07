@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Soort organisatie"
+
+msgid "Show @numb more items"
+msgstr "@numb items meer"
+
+msgid "Hide @numb items"
+msgstr "Items verbergen"
+
+msgid "When"
+msgstr "Wanneer"
+
+msgid "Where"
+msgstr "Waar"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Social media"
+msgstr "Sociale media"
+
+msgid "Number of seats"
+msgstr "Aantal plaatsen"
+
+msgid "Entrance fee"
+msgstr "Inschrijvingsgeld"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Boek uw plaats. U heeft nog @time_left, inschrijven kan nog tot @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registreren kan over @time_left. Registreren kan van @start_date tot @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registratietermijn verstreken op @end_date."
+
+msgid "Postal address"
+msgstr "Postadres"
+
+msgid "Authors"
+msgstr "Auteurs"
+
+msgid "Department"
+msgstr "Departement"
+
+msgid "Project duration"
+msgstr "Looptijd project"
+
+msgid "Project website"
+msgstr "Projectwebsite"
+
+msgid "Department"
+msgstr "Departement"
+
+msgid "Contact organisation"
+msgstr "Contact"
+
+msgid "Call status: @label"
+msgstr "Status: @label"
+
+msgid "Press contacts"
+msgstr "Perscontacten"
+
+msgid "Call for tenders"
+msgstr "Aanbesteding"
+
+msgid "Related links"
+msgstr "Links"

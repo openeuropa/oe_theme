@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Type d’organisation"
+
+msgid "Show @numb more items"
+msgstr "Afficher @numb éléments supplémentaires"
+
+msgid "Hide @numb items"
+msgstr "Masquer les éléments"
+
+msgid "When"
+msgstr "Quand"
+
+msgid "Where"
+msgstr "Où"
+
+msgid "Organiser"
+msgstr "Organisateur"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Social media"
+msgstr "Réseaux sociaux"
+
+msgid "Number of seats"
+msgstr "Nombre de sièges"
+
+msgid "Entrance fee"
+msgstr "Droit d’entrée"
+
+msgid "Organiser"
+msgstr "Organisateur"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Réservez votre siège; vous avez encore @time_left pour vous inscrire — les inscriptions sont ouvertes jusqu’au @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Ouverture des inscriptions dans @time_left. Vous pouvez vous inscrire du @start_date au @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Période d’inscription close le @end_date."
+
+msgid "Postal address"
+msgstr "Adresse postale"
+
+msgid "Authors"
+msgstr "Auteurs"
+
+msgid "Department"
+msgstr "Service"
+
+msgid "Project duration"
+msgstr "Durée du projet"
+
+msgid "Project website"
+msgstr "Site web du projet"
+
+msgid "Department"
+msgstr "Service"
+
+msgid "Contact organisation"
+msgstr "Organisation à contacter"
+
+msgid "Call status: @label"
+msgstr "Statut de l’appel: @label"
+
+msgid "Press contacts"
+msgstr "Contacts presse"
+
+msgid "Call for tenders"
+msgstr "Appel d’offres"
+
+msgid "Related links"
+msgstr "Autres liens"

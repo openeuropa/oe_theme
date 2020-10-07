@@ -151,3 +151,10 @@ function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(ar
 
   return $suggestions;
 }
+
+/**
+ * Implements hook_locale_translation_projects_alter().
+ */
+function oe_theme_helper_locale_translation_projects_alter(&$projects) {
+  $projects['oe_theme']['info']['interface translation server pattern'] = drupal_get_path('theme', 'oe_theme') . '/translations/%project-%language.po';
+}

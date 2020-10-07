@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organizacijos rūšis"
+
+msgid "Show @numb more items"
+msgstr "Parodyti @numb daugiau elementų"
+
+msgid "Hide @numb items"
+msgstr "Slėpti elementus"
+
+msgid "When"
+msgstr "Kada"
+
+msgid "Where"
+msgstr "Kur"
+
+msgid "Organiser"
+msgstr "Organizatorius"
+
+msgid "Website"
+msgstr "Interneto svetainė"
+
+msgid "Social media"
+msgstr "Socialiniai tinklai"
+
+msgid "Number of seats"
+msgstr "Vietų skaičius"
+
+msgid "Entrance fee"
+msgstr "Įėjimo mokestis"
+
+msgid "Organiser"
+msgstr "Organizatorius"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervuokitės vietą, @time_left iki registracijos pabaigos, registracija baigsis @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Iki registracijos pradžios liko@time_left. Registruotis galima nuo @start_date iki @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registracijos laikotarpis baigėsi @end_date."
+
+msgid "Postal address"
+msgstr "Pašto adresas"
+
+msgid "Authors"
+msgstr "Autoriai"
+
+msgid "Department"
+msgstr "Padalinys"
+
+msgid "Project duration"
+msgstr "Projekto terminas"
+
+msgid "Project website"
+msgstr "Projekto interneto svetainė"
+
+msgid "Department"
+msgstr "Padalinys"
+
+msgid "Contact organisation"
+msgstr "Organizacija ryšiams"
+
+msgid "Call status: @label"
+msgstr "Kvietimo būsena @label"
+
+msgid "Press contacts"
+msgstr "Kontaktiniai asmenys žiniasklaidai"
+
+msgid "Call for tenders"
+msgstr "Konkurso paskelbimas"
+
+msgid "Related links"
+msgstr "Susijusios nuorodos"

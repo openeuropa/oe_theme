@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisationstype"
+
+msgid "Show @numb more items"
+msgstr "Vis @numb flere poster"
+
+msgid "Hide @numb items"
+msgstr "Skjul poster"
+
+msgid "When"
+msgstr "Hvornår"
+
+msgid "Where"
+msgstr "Hvor"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Website"
+msgstr "Websted"
+
+msgid "Social media"
+msgstr "Sociale medier"
+
+msgid "Number of seats"
+msgstr "Antal pladser"
+
+msgid "Entrance fee"
+msgstr "Entré"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Book din plads, @time_left til at registrere, registrering slutter den@end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registrering starter om @time_left. Du kan registrere dig fra @start_date og frem til @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registreringsperiode udløb den @end_date."
+
+msgid "Postal address"
+msgstr "Postadresse"
+
+msgid "Authors"
+msgstr "Forfattere"
+
+msgid "Department"
+msgstr "Afdeling"
+
+msgid "Project duration"
+msgstr "Projektets varighed"
+
+msgid "Project website"
+msgstr "Projektwebsted"
+
+msgid "Department"
+msgstr "Afdeling"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisation"
+
+msgid "Call status: @label"
+msgstr "Status for indkaldelse: @label"
+
+msgid "Press contacts"
+msgstr "Pressehenvendelser"
+
+msgid "Call for tenders"
+msgstr "Indkaldelse af tilbud"
+
+msgid "Related links"
+msgstr "Relaterede links"

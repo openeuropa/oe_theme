@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Vrsta organizacije"
+
+msgid "Show @numb more items"
+msgstr "Prikaži @numb več"
+
+msgid "Hide @numb items"
+msgstr "Skrij elemente"
+
+msgid "When"
+msgstr "Kdaj"
+
+msgid "Where"
+msgstr "Kje"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Website"
+msgstr "Spletna stran"
+
+msgid "Social media"
+msgstr "Družbeni mediji"
+
+msgid "Number of seats"
+msgstr "Število mest"
+
+msgid "Entrance fee"
+msgstr "Vstopnina"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervirajte svoje mesto. Za prijavo preostane še @time_left. Prijava je mogoča do @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registracija se začne v @time_left. Registrirate se lahko od @start_date do @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registracija se je končala  @end_date."
+
+msgid "Postal address"
+msgstr "Poštni naslov"
+
+msgid "Authors"
+msgstr "Avtorji"
+
+msgid "Department"
+msgstr "Služba"
+
+msgid "Project duration"
+msgstr "Trajanje projekta"
+
+msgid "Project website"
+msgstr "Spletišče projekta"
+
+msgid "Department"
+msgstr "Služba"
+
+msgid "Contact organisation"
+msgstr "Kontaktna organizacija"
+
+msgid "Call status: @label"
+msgstr "Status razpisa: @label"
+
+msgid "Press contacts"
+msgstr "Kontakti za medije"
+
+msgid "Call for tenders"
+msgstr "Javni razpis"
+
+msgid "Related links"
+msgstr "Sorodne povezave"

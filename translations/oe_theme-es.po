@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisation type"
+
+msgid "Show @numb more items"
+msgstr "Show @numb more items"
+
+msgid "Hide @numb items"
+msgstr "Hide items"
+
+msgid "When"
+msgstr "When"
+
+msgid "Where"
+msgstr "Where"
+
+msgid "Organiser"
+msgstr "Organiser"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Social media"
+msgstr "Social media"
+
+msgid "Number of seats"
+msgstr "Number of seats"
+
+msgid "Entrance fee"
+msgstr "Entrance fee"
+
+msgid "Organiser"
+msgstr "Organiser"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Book your seat, @time_left left to register, registration will end on @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registration will open in @time_left. You can register from @start_date , until @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registration period ended on @end_date."
+
+msgid "Postal address"
+msgstr "Postal address"
+
+msgid "Authors"
+msgstr "Authors"
+
+msgid "Department"
+msgstr "Department"
+
+msgid "Project duration"
+msgstr "Project duration"
+
+msgid "Project website"
+msgstr "Project website"
+
+msgid "Department"
+msgstr "Department"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Call status: @label"
+msgstr "Call status: @label"
+
+msgid "Press contacts"
+msgstr "Press contacts"
+
+msgid "Call for tenders"
+msgstr "Call for tenders"
+
+msgid "Related links"
+msgstr "Related links"

@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tip ta’ organizzazzjoni"
+
+msgid "Show @numb more items"
+msgstr "Uri @numb aktar oġġetti"
+
+msgid "Hide @numb items"
+msgstr "Aħbi l-oġġetti"
+
+msgid "When"
+msgstr "Meta"
+
+msgid "Where"
+msgstr "Fejn"
+
+msgid "Organiser"
+msgstr "Organizzatur"
+
+msgid "Website"
+msgstr "Sit web"
+
+msgid "Social media"
+msgstr "Media soċjali"
+
+msgid "Number of seats"
+msgstr "Numru ta’ postijiet"
+
+msgid "Entrance fee"
+msgstr "Miżata tad-dħul"
+
+msgid "Organiser"
+msgstr "Organizzatur"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Ibbukkja l-post tiegħek, @time_left baqa’ biex tirreġistra, ir-reġistrazzjoni tintemm fi@end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Ir-reġistrazzjoni se tiftaħ fi @time_left. Tista’ tirreġistra minn@start_date , sa@end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Il-perjodu tar-reġistrazzjoni spiċċa fi @end_date."
+
+msgid "Postal address"
+msgstr "Indirizz postali"
+
+msgid "Authors"
+msgstr "Awturi"
+
+msgid "Department"
+msgstr "Dipartiment"
+
+msgid "Project duration"
+msgstr "Tul ta’ żmien tal-proġett"
+
+msgid "Project website"
+msgstr "Sit web tal-proġett"
+
+msgid "Department"
+msgstr "Dipartiment"
+
+msgid "Contact organisation"
+msgstr "Organizzazzjoni ta’ kuntatt"
+
+msgid "Call status: @label"
+msgstr "Status tas-sejħa: @label"
+
+msgid "Press contacts"
+msgstr "Kuntatti għall-istampa"
+
+msgid "Call for tenders"
+msgstr "Sejħa għall-offerti"
+
+msgid "Related links"
+msgstr "Links relatati"

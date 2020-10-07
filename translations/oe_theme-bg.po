@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Вид на организацията"
+
+msgid "Show @numb more items"
+msgstr "Показване на повече елементи"
+
+msgid "Hide @numb items"
+msgstr "Скриване на елементите"
+
+msgid "When"
+msgstr "Кога"
+
+msgid "Where"
+msgstr "Къде"
+
+msgid "Organiser"
+msgstr "Организатор"
+
+msgid "Website"
+msgstr "Уебсайт"
+
+msgid "Social media"
+msgstr "Социални медии"
+
+msgid "Number of seats"
+msgstr "Брой на седалките"
+
+msgid "Entrance fee"
+msgstr "Входна такса"
+
+msgid "Organiser"
+msgstr "Организатор"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Резервирайте мястото си, @time_left до края на регистрацията, регистрацията ще приключи на @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Периодът на регистрация приключи на @end_date."
+
+msgid "Postal address"
+msgstr "Пощенски адрес"
+
+msgid "Authors"
+msgstr "Автори"
+
+msgid "Department"
+msgstr "Отдел"
+
+msgid "Project duration"
+msgstr "Продължителност на проекта"
+
+msgid "Project website"
+msgstr "Уебсайт на проекта"
+
+msgid "Department"
+msgstr "Отдел"
+
+msgid "Contact organisation"
+msgstr "Връзка с организацията"
+
+msgid "Call status: @label"
+msgstr "Статус на поканата: @label"
+
+msgid "Press contacts"
+msgstr "Лица за контакти с медиите"
+
+msgid "Call for tenders"
+msgstr "Покана за подаване на оферти"
+
+msgid "Related links"
+msgstr "Връзки по темата"

@@ -1,0 +1,78 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Typ organizácie"
+
+msgid "Show @numb more items"
+msgstr "Zobraziť @numb ďalších položiek"
+
+msgid "Hide @numb items"
+msgstr "Skryť položky"
+
+msgid "When"
+msgstr "Kedy"
+
+msgid "Where"
+msgstr "Kde"
+
+msgid "Organiser"
+msgstr "Organizátor/organizátorka"
+
+msgid "Website"
+msgstr "Webové sídlo"
+
+msgid "Social media"
+msgstr "Sociálne médiá"
+
+msgid "Number of seats"
+msgstr "Počet sedadiel"
+
+msgid "Entrance fee"
+msgstr "Vstupný poplatok"
+
+msgid "Organiser"
+msgstr "Organizátor/organizátorka"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervujte si miesto, počet dní do uzatvorenia registrácie: @time_left, registrácia sa uzatvorí @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Registrácia sa otvorí @time_left. Registrovať sa môžete od @start_date do @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "Registračné obdobie uzavreté @end_date."
+
+msgid "Postal address"
+msgstr "Poštová adresa"
+
+msgid "Authors"
+msgstr "Autori/autorky"
+
+msgid "Department"
+msgstr "Odbor"
+
+msgid "Project duration"
+msgstr "Trvanie projektu"
+
+msgid "Project website"
+msgstr "Webové sídlo projektu"
+
+msgid "Department"
+msgstr "Odbor"
+
+msgid "Contact organisation"
+msgstr "Kontaktná organizácia"
+
+msgid "Call status: @label"
+msgstr "Stav výzvy: @label"
+
+msgid "Press contacts"
+msgstr "Kontakty pre tlač"
+
+msgid "Call for tenders"
+msgstr "Výzva na predkladanie ponúk"
+
+msgid "Related links"
+msgstr "Súvisiace odkazy"

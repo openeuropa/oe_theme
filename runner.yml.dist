@@ -36,6 +36,7 @@ drupal:
     - "./vendor/bin/drush config-set system.theme admin seven -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
     - "./vendor/bin/drush cr"
+    - "./vendor/bin/drush oe-multilingual:import-local-translations"
   settings:
     settings:
       file_scan_ignore_directories:
