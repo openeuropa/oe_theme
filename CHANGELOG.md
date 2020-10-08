@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.10.0](https://github.com/openeuropa/oe_theme/tree/2.10.0) (2020-10-08)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.9.0...2.10.0)
+
+**Merged pull requests:**
+
+- EWPP-368: Upgrade ECL version to 2.34.0. [\#619](https://github.com/openeuropa/oe_theme/pull/619) ([sergepavle](https://github.com/sergepavle))
+- EWPP-335: Still show logo, even if no other fields are available. [\#617](https://github.com/openeuropa/oe_theme/pull/617) ([ademarco](https://github.com/ademarco))
+- EWPP-337: Update pattern list item image background styles. [\#616](https://github.com/openeuropa/oe_theme/pull/616) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-358: Fixing spacing and render issues [\#615](https://github.com/openeuropa/oe_theme/pull/615) ([upchuk](https://github.com/upchuk))
+- EWPP-366: Add spacing between embedded media and embedded document in wysiwyg. [\#614](https://github.com/openeuropa/oe_theme/pull/614) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-273: Epic news. [\#613](https://github.com/openeuropa/oe_theme/pull/613) ([nagyad](https://github.com/nagyad))
+- EWPP-339: Change closed status class. [\#611](https://github.com/openeuropa/oe_theme/pull/611) ([enriquelacoma](https://github.com/enriquelacoma))
+- EWPP-349: Use view display storage to override node displays. [\#608](https://github.com/openeuropa/oe_theme/pull/608) ([ademarco](https://github.com/ademarco))
+- EWPP-203: Epic organisation [\#607](https://github.com/openeuropa/oe_theme/pull/607) ([nagyad](https://github.com/nagyad))
+- EWPP-328: Theme date and datepicker using ecl. [\#606](https://github.com/openeuropa/oe_theme/pull/606) ([drishu](https://github.com/drishu))
+- EWPP-284: Make sure theme can choose "core" and "standardised" ECL branding. [\#586](https://github.com/openeuropa/oe_theme/pull/586) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.9.0](https://github.com/openeuropa/oe_theme/tree/2.9.0) (2020-09-29)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.8.0...2.9.0)
 
