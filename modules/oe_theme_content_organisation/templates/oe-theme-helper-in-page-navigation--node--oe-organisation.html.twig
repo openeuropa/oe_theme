@@ -20,10 +20,12 @@
     } %}
   </div>
   {% endif %}
-  {% include '@ecl-twig/inpage-navigation' with {
-    'title': title,
-    'links': _items,
-    'icon_path': ecl_icon_path
-  } %}
+  {% if _items %}
+    {% include '@ecl-twig/inpage-navigation' with {
+      'title': title,
+      'links': _items,
+      'icon_path': ecl_icon_path
+    } %}
+  {% endif %}
 </div>
 {% endblock %}
