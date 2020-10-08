@@ -12,7 +12,7 @@
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "~2.0",
-        "openeuropa/oe_time_caching": "~1.0.0"
+        "openeuropa/oe_time_caching": "~1.0"
     },
     "require-dev": {
         "composer/installers": "~1.5",
@@ -42,10 +42,10 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "dev-EPIC-News",
+        "openeuropa/oe_content": "~1.11",
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
-        "openeuropa/oe_media": "dev-master as 1.8.0",
+        "openeuropa/oe_media": "~1.9",
         "openeuropa/oe_multilingual": "~1.0",
         "openeuropa/oe_paragraphs": "~1.6",
         "openeuropa/oe_search": "~1.0",
