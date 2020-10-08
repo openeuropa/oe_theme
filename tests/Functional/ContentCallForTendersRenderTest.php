@@ -185,7 +185,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_tenders_opening_date', ['value' => '']);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'N/A');
+    $this->assertStatusValue($content, 'Closed');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders');
   }
 
@@ -214,7 +214,9 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    *   Expected value.
    */
   protected function assertStatusValue(NodeElement $element, string $expected): void {
-    $this->assertEquals($expected, $element->find('xpath', '//*[text() = "Status"]/following-sibling::dd[1]/span[@class="ecl-u-text-uppercase"]')->getText());
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/span[@class="ecl-u-text-uppercase"]';
+    $this->assertSession()->elementExists('xpath', $selector);
+    $this->assertEquals($expected, $element->find('xpath', $selector)->getText());
   }
 
   /**

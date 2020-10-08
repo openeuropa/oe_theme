@@ -25,6 +25,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'node',
     'media',
     'file',
+    'filter',
     'image',
     'views',
     'entity_browser',
