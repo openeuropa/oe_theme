@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.10.1](https://github.com/openeuropa/oe_theme/tree/2.10.1) (2020-10-09)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.0...2.10.1)
+
+**Merged pull requests:**
+
+- EWPP-394: Project content type has wrong styling [\#623](https://github.com/openeuropa/oe_theme/pull/623) ([enriquelacoma](https://github.com/enriquelacoma))
+- EWPP-392: Use storage to override view displays for organisations. [\#622](https://github.com/openeuropa/oe_theme/pull/622) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [2.10.0](https://github.com/openeuropa/oe_theme/tree/2.10.0) (2020-10-08)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.9.0...2.10.0)
 
