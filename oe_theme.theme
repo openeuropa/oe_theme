@@ -1234,16 +1234,20 @@ function oe_theme_preprocess_responsive_image_formatter(&$variables) {
 }
 
 /**
- * Implements template_preprocess_preprocess_block().
- *
- * For preprocessing default mode of document media type.
+ * Implements template_preprocess_block().
  */
 function oe_theme_preprocess_block(&$variables) {
+  // Style block titles using ECL.
   $variables['title_attributes'] = array_merge_recursive($variables['title_attributes'], [
     'class' => [
       'ecl-u-type-heading-2',
     ],
   ]);
+  // If the block is in the content region add a margin on top.
+  $block = \Drupal::entityTypeManager()->getStorage('block')->load($variables['elements']['#id']);
+  if ($block->getRegion() == 'content') {
+    $variables['attributes']['class'][] = 'ecl-u-mt-s';
+  }
 }
 
 /**
