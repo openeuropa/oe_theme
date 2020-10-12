@@ -8,6 +8,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -84,7 +85,7 @@ class TeaserDetailsExtraField extends EventExtraFieldBase {
     ];
 
     $cache = CacheableMetadata::createFromRenderArray($build);
-    if (!$entity->get('oe_event_venue')->isEmpty()) {
+    if (!$entity->get('oe_event_venue')->isEmpty() && $entity->get('oe_event_venue')->entity instanceof VenueInterface) {
       /** @var \Drupal\oe_content_entity_venue\Entity\VenueInterface $venue */
       $venue = $this->entityRepository->getTranslationFromContext($entity->get('oe_event_venue')->entity);
       $venue_access = $venue->access('view', NULL, TRUE);
