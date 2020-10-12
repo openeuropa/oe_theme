@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for blocks in the content region.
+ *
+ * @see ./core/modules/system/templates/block.html.twig
+ */
+#}
+<div{{ attributes.addClass('ecl-u-mb-l') }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>
