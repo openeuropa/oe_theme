@@ -3,76 +3,70 @@ msgid ""
 msgstr ""
 
 msgid "Organisation type"
-msgstr "Organisation type"
+msgstr "Tipo de organización"
 
 msgid "Show @numb more items"
-msgstr "Show @numb more items"
-
-msgid "Hide @numb items"
-msgstr "Hide items"
+msgstr "Mostrar @numb elementos más"
 
 msgid "When"
-msgstr "When"
+msgstr "Cuándo"
 
 msgid "Where"
-msgstr "Where"
+msgstr "Dónde"
 
 msgid "Organiser"
-msgstr "Organiser"
+msgstr "Organizador"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Página web"
 
 msgid "Social media"
-msgstr "Social media"
+msgstr "Redes sociales"
 
 msgid "Number of seats"
-msgstr "Number of seats"
+msgstr "Número de localidades"
 
 msgid "Entrance fee"
-msgstr "Entrance fee"
-
-msgid "Organiser"
-msgstr "Organiser"
+msgstr "Cuota de entrada"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
-msgstr "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Reserve su localidad. Quedan @time_left para inscribirse. El plazo finaliza el @end_date."
 
 msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "El plazo de inscripción empieza el @time_left. Puede inscribirse del @start_date al @end_date."
 
 msgid "Registration period ended on @end_date."
-msgstr "Registration period ended on @end_date."
+msgstr "El plazo de inscripción finalizó el @end_date."
 
 msgid "Postal address"
-msgstr "Postal address"
+msgstr "Dirección postal"
 
 msgid "Authors"
-msgstr "Authors"
+msgstr "Autores"
 
 msgid "Department"
-msgstr "Department"
+msgstr "Departamento"
 
 msgid "Project duration"
-msgstr "Project duration"
+msgstr "Duración del proyecto"
 
 msgid "Project website"
-msgstr "Project website"
-
-msgid "Department"
-msgstr "Department"
+msgstr "Web del proyecto"
 
 msgid "Contact organisation"
-msgstr "Contact organisation"
+msgstr "Contactar organización"
 
 msgid "Call status: @label"
-msgstr "Call status: @label"
+msgstr "Convocatoria de licitación: @label"
 
 msgid "Press contacts"
-msgstr "Press contacts"
+msgstr "Contactos con la prensa"
 
 msgid "Call for tenders"
-msgstr "Call for tenders"
+msgstr "Licitación"
 
 msgid "Related links"
-msgstr "Related links"
+msgstr "Enlaces relacionados"
+
+msgid "Practical information"
+msgstr "Información práctica"

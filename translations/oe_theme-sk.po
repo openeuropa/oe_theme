@@ -8,9 +8,6 @@ msgstr "Typ organizácie"
 msgid "Show @numb more items"
 msgstr "Zobraziť @numb ďalších položiek"
 
-msgid "Hide @numb items"
-msgstr "Skryť položky"
-
 msgid "When"
 msgstr "Kedy"
 
@@ -31,9 +28,6 @@ msgstr "Počet sedadiel"
 
 msgid "Entrance fee"
 msgstr "Vstupný poplatok"
-
-msgid "Organiser"
-msgstr "Organizátor/organizátorka"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Rezervujte si miesto, počet dní do uzatvorenia registrácie: @time_left, registrácia sa uzatvorí @end_date."
@@ -59,9 +53,6 @@ msgstr "Trvanie projektu"
 msgid "Project website"
 msgstr "Webové sídlo projektu"
 
-msgid "Department"
-msgstr "Odbor"
-
 msgid "Contact organisation"
 msgstr "Kontaktná organizácia"
 
@@ -76,3 +67,6 @@ msgstr "Výzva na predkladanie ponúk"
 
 msgid "Related links"
 msgstr "Súvisiace odkazy"
+
+msgid "Practical information"
+msgstr "Praktické informácie"

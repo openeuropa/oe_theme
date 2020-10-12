@@ -8,9 +8,6 @@ msgstr "Вид на организацията"
 msgid "Show @numb more items"
 msgstr "Показване на повече елементи"
 
-msgid "Hide @numb items"
-msgstr "Скриване на елементите"
-
 msgid "When"
 msgstr "Кога"
 
@@ -31,9 +28,6 @@ msgstr "Брой на седалките"
 
 msgid "Entrance fee"
 msgstr "Входна такса"
-
-msgid "Organiser"
-msgstr "Организатор"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Резервирайте мястото си, @time_left до края на регистрацията, регистрацията ще приключи на @end_date."
@@ -59,9 +53,6 @@ msgstr "Продължителност на проекта"
 msgid "Project website"
 msgstr "Уебсайт на проекта"
 
-msgid "Department"
-msgstr "Отдел"
-
 msgid "Contact organisation"
 msgstr "Връзка с организацията"
 
@@ -76,3 +67,6 @@ msgstr "Покана за подаване на оферти"
 
 msgid "Related links"
 msgstr "Връзки по темата"
+
+msgid "Practical information"
+msgstr "Практическа информация"

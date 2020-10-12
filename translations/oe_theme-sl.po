@@ -8,9 +8,6 @@ msgstr "Vrsta organizacije"
 msgid "Show @numb more items"
 msgstr "Prikaži @numb več"
 
-msgid "Hide @numb items"
-msgstr "Skrij elemente"
-
 msgid "When"
 msgstr "Kdaj"
 
@@ -32,14 +29,11 @@ msgstr "Število mest"
 msgid "Entrance fee"
 msgstr "Vstopnina"
 
-msgid "Organiser"
-msgstr "Organizator"
-
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Rezervirajte svoje mesto. Za prijavo preostane še @time_left. Prijava je mogoča do @end_date."
 
 msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Registracija se začne v @time_left. Registrirate se lahko od @start_date do @end_date."
+msgstr "Registracija se začne v @time_left. Registrirate se lahko od @start_date  do @end_date."
 
 msgid "Registration period ended on @end_date."
 msgstr "Registracija se je končala  @end_date."
@@ -59,9 +53,6 @@ msgstr "Trajanje projekta"
 msgid "Project website"
 msgstr "Spletišče projekta"
 
-msgid "Department"
-msgstr "Služba"
-
 msgid "Contact organisation"
 msgstr "Kontaktna organizacija"
 
@@ -76,3 +67,6 @@ msgstr "Javni razpis"
 
 msgid "Related links"
 msgstr "Sorodne povezave"
+
+msgid "Practical information"
+msgstr "Praktične informacije"

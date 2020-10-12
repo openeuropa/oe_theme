@@ -8,9 +8,6 @@ msgstr "Organisatsiooni liik"
 msgid "Show @numb more items"
 msgstr "Näita veel @numb kannet"
 
-msgid "Hide @numb items"
-msgstr "Peida kanded"
-
 msgid "When"
 msgstr "Millal?"
 
@@ -31,9 +28,6 @@ msgstr "Kohtade arv"
 
 msgid "Entrance fee"
 msgstr "Osalustasu"
-
-msgid "Organiser"
-msgstr "Korraldaja"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimine lõppeb: @end_date."
@@ -59,9 +53,6 @@ msgstr "Projekti kestus"
 msgid "Project website"
 msgstr "Projekti veebisait"
 
-msgid "Department"
-msgstr "Osakond"
-
 msgid "Contact organisation"
 msgstr "Kontaktorganisatsioon"
 
@@ -76,3 +67,6 @@ msgstr "Pakkumismenetlus"
 
 msgid "Related links"
 msgstr "Seotud lingid"
+
+msgid "Practical information"
+msgstr "Praktiline teave"

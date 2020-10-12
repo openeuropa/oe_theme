@@ -3,76 +3,70 @@ msgid ""
 msgstr ""
 
 msgid "Organisation type"
-msgstr "Organisation type"
+msgstr "Tip de organizație"
 
 msgid "Show @numb more items"
-msgstr "Show @numb more items"
-
-msgid "Hide @numb items"
-msgstr "Hide items"
+msgstr "Afișați încă @numb elemente"
 
 msgid "When"
-msgstr "When"
+msgstr "Când"
 
 msgid "Where"
-msgstr "Where"
+msgstr "Unde"
 
 msgid "Organiser"
-msgstr "Organiser"
+msgstr "Organizator"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Site"
 
 msgid "Social media"
-msgstr "Social media"
+msgstr "Rețele sociale"
 
 msgid "Number of seats"
-msgstr "Number of seats"
+msgstr "Număr de locuri"
 
 msgid "Entrance fee"
-msgstr "Entrance fee"
-
-msgid "Organiser"
-msgstr "Organiser"
+msgstr "Taxă de intrare"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
-msgstr "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Rezervați-vă un loc! Mai aveți la dispoziție @time_left  pentru a vă înregistra. Perioada de înregistrare se încheie la @end_date."
 
 msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Perioada de înregistrare începe în @time_left. Vă puteți înscrie de pe @start_date  până pe @end_date."
 
 msgid "Registration period ended on @end_date."
-msgstr "Registration period ended on @end_date."
+msgstr "Perioada de înregistrare s-a încheiat pe  @end_date."
 
 msgid "Postal address"
-msgstr "Postal address"
+msgstr "Adresă poștală"
 
 msgid "Authors"
-msgstr "Authors"
+msgstr "Autori"
 
 msgid "Department"
-msgstr "Department"
+msgstr "Departament"
 
 msgid "Project duration"
-msgstr "Project duration"
+msgstr "Durata proiectului"
 
 msgid "Project website"
-msgstr "Project website"
-
-msgid "Department"
-msgstr "Department"
+msgstr "Site-ul proiectului"
 
 msgid "Contact organisation"
-msgstr "Contact organisation"
+msgstr "Contactați organizația"
 
 msgid "Call status: @label"
-msgstr "Call status: @label"
+msgstr "Statutul cererii: @label"
 
 msgid "Press contacts"
-msgstr "Press contacts"
+msgstr "Puncte de contact pentru presă"
 
 msgid "Call for tenders"
-msgstr "Call for tenders"
+msgstr "Cerere de oferte"
 
 msgid "Related links"
-msgstr "Related links"
+msgstr "Linkuri către pagini conexe"
+
+msgid "Practical information"
+msgstr "Informații practice"

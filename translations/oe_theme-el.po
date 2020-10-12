@@ -3,76 +3,61 @@ msgid ""
 msgstr ""
 
 msgid "Organisation type"
-msgstr "Organisation type"
+msgstr "Είδος οργανισμού"
 
 msgid "Show @numb more items"
-msgstr "Show @numb more items"
-
-msgid "Hide @numb items"
-msgstr "Hide items"
+msgstr "Εμφάνιση @numb περισσότερων στοιχείων"
 
 msgid "When"
-msgstr "When"
+msgstr "Πότε"
 
 msgid "Where"
-msgstr "Where"
-
-msgid "Organiser"
-msgstr "Organiser"
+msgstr "Πού"
 
 msgid "Website"
-msgstr "Website"
+msgstr "Ιστότοπος"
 
 msgid "Social media"
-msgstr "Social media"
+msgstr "Μέσα κοινωνικής δικτύωσης"
 
 msgid "Number of seats"
-msgstr "Number of seats"
+msgstr "Αριθμός θέσεων"
 
 msgid "Entrance fee"
-msgstr "Entrance fee"
-
-msgid "Organiser"
-msgstr "Organiser"
+msgstr "Εισιτήριο"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
-msgstr "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Κάντε κράτηση για τη θέση σας, απομένουν ακόμη @time_left για την εγγραφή, η προθεσμία εγγραφής λήγει την/στις @end_date."
 
 msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "Η εγγραφή θα είναι δυνατή από την/τις @time_left. Μπορείτε να εγγραφείτε από την/τις @start_date , έως την/τις @end_date."
 
 msgid "Registration period ended on @end_date."
-msgstr "Registration period ended on @end_date."
+msgstr "Η περίοδος εγγραφής έληξε την/στις @end_date."
 
 msgid "Postal address"
-msgstr "Postal address"
-
-msgid "Authors"
-msgstr "Authors"
+msgstr "Ταχυδρομική διεύθυνση"
 
 msgid "Department"
-msgstr "Department"
+msgstr "Υπηρεσία"
 
 msgid "Project duration"
-msgstr "Project duration"
+msgstr "Διάρκεια έργου"
 
 msgid "Project website"
-msgstr "Project website"
-
-msgid "Department"
-msgstr "Department"
+msgstr "Ιστότοπος έργου"
 
 msgid "Contact organisation"
-msgstr "Contact organisation"
+msgstr "Επικοινωνία με τον φορέα"
 
 msgid "Call status: @label"
-msgstr "Call status: @label"
-
-msgid "Press contacts"
-msgstr "Press contacts"
+msgstr "Κατάσταση της πρόσκλησης: @label"
 
 msgid "Call for tenders"
-msgstr "Call for tenders"
+msgstr "Πρόσκληση υποβολής προσφορών"
 
 msgid "Related links"
-msgstr "Related links"
+msgstr "Σχετικοί σύνδεσμοι"
+
+msgid "Practical information"
+msgstr "Πρακτικές πληροφορίες"

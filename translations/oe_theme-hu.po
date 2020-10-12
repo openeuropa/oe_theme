@@ -8,9 +8,6 @@ msgstr "A szervezet típusa"
 msgid "Show @numb more items"
 msgstr "Még @numb elem megjelenítése"
 
-msgid "Hide @numb items"
-msgstr "Tartalom elrejtése"
-
 msgid "When"
 msgstr "Időpont"
 
@@ -31,9 +28,6 @@ msgstr "Ülések száma"
 
 msgid "Entrance fee"
 msgstr "Belépődíj"
-
-msgid "Organiser"
-msgstr "Szervező"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs időszak végéig, a regisztrációs időszak záró dátuma: @end_date."
@@ -59,9 +53,6 @@ msgstr "A projekt időtartama"
 msgid "Project website"
 msgstr "A projekt honlapja"
 
-msgid "Department"
-msgstr "Szervezeti egység"
-
 msgid "Contact organisation"
 msgstr "Kapcsolattartó szervezet"
 
@@ -76,3 +67,6 @@ msgstr "Ajánlati felhívás"
 
 msgid "Related links"
 msgstr "Kapcsolódó linkek"
+
+msgid "Practical information"
+msgstr "Gyakorlati tudnivalók"

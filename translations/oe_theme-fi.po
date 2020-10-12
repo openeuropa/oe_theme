@@ -8,9 +8,6 @@ msgstr "Organisaation tyyppi"
 msgid "Show @numb more items"
 msgstr "Näytä vielä @numb kohtaa"
 
-msgid "Hide @numb items"
-msgstr "Piilota kohdat"
-
 msgid "When"
 msgstr "Milloin"
 
@@ -31,9 +28,6 @@ msgstr "Paikkoja"
 
 msgid "Entrance fee"
 msgstr "Pääsymaksu"
-
-msgid "Organiser"
-msgstr "Järjestäjä"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Varaa paikkasi, ilmoittautumisaikaa on jäljellä @time_left, ilmoittautuminen päättyy @end_date."
@@ -59,9 +53,6 @@ msgstr "Hankkeen kesto"
 msgid "Project website"
 msgstr "Hankkeen verkkosivusto"
 
-msgid "Department"
-msgstr "Osasto"
-
 msgid "Contact organisation"
 msgstr "Ota yhteyttä organisaatioon"
 
@@ -76,3 +67,6 @@ msgstr "Tarjouspyyntö"
 
 msgid "Related links"
 msgstr "Aiheeseen liittyvää"
+
+msgid "Practical information"
+msgstr "Käytännön tietoa"

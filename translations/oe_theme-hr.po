@@ -8,9 +8,6 @@ msgstr "Tip organizacije"
 msgid "Show @numb more items"
 msgstr "Prikaži @numb više"
 
-msgid "Hide @numb items"
-msgstr "Prikaži manje"
-
 msgid "When"
 msgstr "Vrijeme"
 
@@ -31,9 +28,6 @@ msgstr "Broj mjesta"
 
 msgid "Entrance fee"
 msgstr "Kotizacija"
-
-msgid "Organiser"
-msgstr "Organizator"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Rezervirajte svoje mjesto. Preostalo je još @time_left za registraciju. Registracija je moguća do @end_date."
@@ -59,9 +53,6 @@ msgstr "Trajanje projekta"
 msgid "Project website"
 msgstr "Internetske stranice projekta"
 
-msgid "Department"
-msgstr "Služba"
-
 msgid "Contact organisation"
 msgstr "Obratite se organizaciji"
 
@@ -76,3 +67,6 @@ msgstr "Poziv na podnošenje ponuda"
 
 msgid "Related links"
 msgstr "Povezane poveznice"
+
+msgid "Practical information"
+msgstr "Praktične informacije"

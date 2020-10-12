@@ -8,9 +8,6 @@ msgstr "Rodzaj organizacji"
 msgid "Show @numb more items"
 msgstr "Pokaż kolejne pozycje @numb"
 
-msgid "Hide @numb items"
-msgstr "Ukryj pozycje"
-
 msgid "When"
 msgstr "Kiedy"
 
@@ -31,9 +28,6 @@ msgstr "Liczba miejsc"
 
 msgid "Entrance fee"
 msgstr "Koszt udziału"
-
-msgid "Organiser"
-msgstr "Organizator"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Zarezerwuj miejsce, zostało jeszcze @time_left, zapisy kończą się w dniu @end_date."
@@ -59,9 +53,6 @@ msgstr "Czas trwania projektu"
 msgid "Project website"
 msgstr "Strona projektu"
 
-msgid "Department"
-msgstr "Departament"
-
 msgid "Contact organisation"
 msgstr "Skontaktuj się z organizacją"
 
@@ -76,3 +67,6 @@ msgstr "Zaproszenie do składania ofert"
 
 msgid "Related links"
 msgstr "Podobne strony"
+
+msgid "Practical information"
+msgstr "Informacje praktyczne"

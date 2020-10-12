@@ -8,9 +8,6 @@ msgstr "Tip ta’ organizzazzjoni"
 msgid "Show @numb more items"
 msgstr "Uri @numb aktar oġġetti"
 
-msgid "Hide @numb items"
-msgstr "Aħbi l-oġġetti"
-
 msgid "When"
 msgstr "Meta"
 
@@ -31,9 +28,6 @@ msgstr "Numru ta’ postijiet"
 
 msgid "Entrance fee"
 msgstr "Miżata tad-dħul"
-
-msgid "Organiser"
-msgstr "Organizzatur"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Ibbukkja l-post tiegħek, @time_left baqa’ biex tirreġistra, ir-reġistrazzjoni tintemm fi@end_date."
@@ -59,9 +53,6 @@ msgstr "Tul ta’ żmien tal-proġett"
 msgid "Project website"
 msgstr "Sit web tal-proġett"
 
-msgid "Department"
-msgstr "Dipartiment"
-
 msgid "Contact organisation"
 msgstr "Organizzazzjoni ta’ kuntatt"
 
@@ -76,3 +67,6 @@ msgstr "Sejħa għall-offerti"
 
 msgid "Related links"
 msgstr "Links relatati"
+
+msgid "Practical information"
+msgstr "Informazzjoni prattika"

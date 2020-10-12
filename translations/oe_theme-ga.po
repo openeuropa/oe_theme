@@ -8,9 +8,6 @@ msgstr "An cineál eagraíochta"
 msgid "Show @numb more items"
 msgstr "Taispeáin @numb de ní eile"
 
-msgid "Hide @numb items"
-msgstr "Cuir nithe i bhfolach"
-
 msgid "When"
 msgstr "Cathain"
 
@@ -31,9 +28,6 @@ msgstr "An líon suíochán"
 
 msgid "Entrance fee"
 msgstr "Táille iontrála"
-
-msgid "Organiser"
-msgstr "Eagraí"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Cuir do shuíochán in áirithe, @time_left fágtha le clárú, cuirfear deireadh leis an bpróiseas clárúcháin an @end_date."
@@ -59,9 +53,6 @@ msgstr "Fad an tionscadail"
 msgid "Project website"
 msgstr "Suíomh gréasáin an tionscadail"
 
-msgid "Department"
-msgstr "Roinn"
-
 msgid "Contact organisation"
 msgstr "Eagraíocht teagmhála"
 
@@ -76,3 +67,6 @@ msgstr "Glaonna ar thairiscintí"
 
 msgid "Related links"
 msgstr "Naisc ghaolmhara"
+
+msgid "Practical information"
+msgstr "Eolas praiticiúil"

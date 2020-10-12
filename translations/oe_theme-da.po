@@ -8,9 +8,6 @@ msgstr "Organisationstype"
 msgid "Show @numb more items"
 msgstr "Vis @numb flere poster"
 
-msgid "Hide @numb items"
-msgstr "Skjul poster"
-
 msgid "When"
 msgstr "Hvornår"
 
@@ -31,9 +28,6 @@ msgstr "Antal pladser"
 
 msgid "Entrance fee"
 msgstr "Entré"
-
-msgid "Organiser"
-msgstr "Organisator"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date."
 msgstr "Book din plads, @time_left til at registrere, registrering slutter den@end_date."
@@ -59,9 +53,6 @@ msgstr "Projektets varighed"
 msgid "Project website"
 msgstr "Projektwebsted"
 
-msgid "Department"
-msgstr "Afdeling"
-
 msgid "Contact organisation"
 msgstr "Kontaktorganisation"
 
@@ -76,3 +67,6 @@ msgstr "Indkaldelse af tilbud"
 
 msgid "Related links"
 msgstr "Relaterede links"
+
+msgid "Practical information"
+msgstr "Praktiske oplysninger"
