@@ -9,3 +9,7 @@ dependencies:
   - smart_trim:smart_trim
   - oe_time_caching:oe_time_caching
   - twig_field_value:twig_field_value
+
+'interface translation project': oe_theme_helper
+# The path to the actual translations is defined in
+# oe_theme_helper_locale_translation_projects_alter().
