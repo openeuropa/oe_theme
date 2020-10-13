@@ -14,6 +14,9 @@ msgstr "Πότε"
 msgid "Where"
 msgstr "Πού"
 
+msgid "Organiser"
+msgstr "Διοργανωτής"
+
 msgid "Website"
 msgstr "Ιστότοπος"
 
@@ -38,6 +41,9 @@ msgstr "Η περίοδος εγγραφής έληξε την/στις @end_dat
 msgid "Postal address"
 msgstr "Ταχυδρομική διεύθυνση"
 
+msgid "Authors"
+msgstr "Συντάκτες"
+
 msgid "Department"
 msgstr "Υπηρεσία"
 
@@ -52,6 +58,9 @@ msgstr "Επικοινωνία με τον φορέα"
 
 msgid "Call status: @label"
 msgstr "Κατάσταση της πρόσκλησης: @label"
+
+msgid "Press contacts"
+msgstr "Υπεύθυνοι επικοινωνίας με τα ΜΜΕ"
 
 msgid "Call for tenders"
 msgstr "Πρόσκληση υποβολής προσφορών"
