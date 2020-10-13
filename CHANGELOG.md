@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.10.2](https://github.com/openeuropa/oe_theme/tree/2.10.2) (2020-10-12)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.1...2.10.2)
+
+**Merged pull requests:**
+
+- EWPP-404: Make sure venue entity is present, even if field is empty. [\#626](https://github.com/openeuropa/oe_theme/pull/626) ([ademarco](https://github.com/ademarco))
+
 ## [2.10.1](https://github.com/openeuropa/oe_theme/tree/2.10.1) (2020-10-09)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.0...2.10.1)
 
