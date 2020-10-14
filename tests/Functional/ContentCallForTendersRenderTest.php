@@ -5,7 +5,11 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\Component\Utility\Html;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -24,6 +28,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     'path',
     'oe_theme_helper',
     'oe_theme_content_call_tenders',
+    'datetime_testing',
   ];
 
   /**
@@ -42,33 +47,29 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    * Tests that the Call for tenders page renders correctly.
    */
   public function testTenderRendering(): void {
-    // Create a document for Call for tenders.
-    $media_document = $this->createMediaDocument('call_for_tenders_document');
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
 
-    // Create a Call for tender node.
+    $publication_date = (clone $static_time)->modify('- 5 days');
+    $opening_date = (clone $static_time)->modify('- 3 days');
+    $deadline_date = (clone $static_time)->modify('+ 3 days');
+
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
+    // Create a Call for tender node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
       'type' => 'oe_call_tenders',
       'title' => 'Test Call for tenders node',
-      'body' => 'Call for tenders body',
-      'oe_documents' => [
-        [
-          'target_id' => (int) $media_document->id(),
-        ],
-      ],
-      'oe_summary' => 'Call for tenders introduction',
       'oe_publication_date' => [
-        'value' => '2020-04-15',
-      ],
-      'oe_call_tenders_opening_date' => [
-        'value' => '2020-04-30',
+        'value' => $publication_date->format('Y-m-d'),
       ],
       'oe_call_tenders_deadline' => [
-        'value' => date('Y') + 1 . '-06-10T23:30:00',
+        'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
-      'oe_reference_code' => 'Call for tenders reference',
-      'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
-      'oe_teaser' => '',
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
@@ -78,129 +79,224 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Open');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core h1.ecl-page-header-core__title', 'Test Call for tenders node');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'Call for tenders introduction');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $page_header_assert = new PatternPageHeaderAssert();
+    $page_header_expected_values = [
+      'title' => 'Test Call for tenders node',
+      'meta' => 'Call for tenders',
+    ];
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert navigation part.
-    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation', $wrapper);
-    $navigation_title = $navigation->find('css', '.ecl-inpage-navigation__title');
-    $this->assertEquals('Page contents', $navigation_title->getText());
-    $navigation_list = $this->assertSession()->elementExists('css', '.ecl-inpage-navigation__list', $wrapper);
-    $navigation_list_items = $navigation_list->findAll('css', '.ecl-inpage-navigation__item');
-    $this->assertCount(3, $navigation_list_items);
-    $navigation_list_items_labels = [
-      'Details',
-      'Description',
-      'Documents',
+    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+      ],
     ];
-    foreach ($navigation_list_items as $index => $item) {
-      $navigation_list_item_link = $item->find('css', 'a.ecl-inpage-navigation__link');
-      $this->assertEquals($navigation_list_items_labels[$index], $navigation_list_item_link->getText());
-      $anchor = strtolower(Html::cleanCssIdentifier($navigation_list_items_labels[$index]));
-      $this->assertEquals('#' . $anchor, $navigation_list_item_link->getAttribute('href'));
-    }
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
+    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
     $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(3, $content_items);
-
-    // Assert header of first field group.
+    $this->assertCount(1, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');
 
-    // Assert labels and values in first field group.
-    $field_list = $content_items[0]->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
-    $this->assertCount(1, $field_list);
-    $labels = $field_list[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(6, $labels);
-    $labels_data = [
-      'Status',
-      'Reference',
-      'Publication date',
-      'Opening date',
-      'Deadline date',
-      'Department',
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
+    $field_list_assert = new FieldListAssert();
+    $details_expected_values = [];
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'N/A',
+      ], [
+        'label' => 'Publication date',
+        'body' => $publication_date->format('d F Y'),
+      ], [
+        'label' => 'Deadline date',
+        'body' => $deadline_date->format('d F Y, H:i (T)'),
+      ],
     ];
-    foreach ($labels as $index => $element) {
-      $this->assertEquals($labels_data[$index], $element->getText());
-    }
-    $values = $field_list[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(6, $values);
-    $values_data = [
-      'Open',
-      'Call for tenders reference',
-      '15 April 2020',
-      '30 April 2020',
-      '11 June 2021, 09:30 (AEST)',
-      'Audit Board of the European Communities',
+    $details_html = $content_items[0]->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+    $field_list_assert->assertVariant('horizontal', $details_html);
+    $this->assertDeadlineDateStrike($content);
+
+    // Assert Introduction field.
+    $node->set('oe_summary', 'Call for tenders introduction')->save();
+    $this->drupalGet($node->toUrl());
+    $page_header_expected_values = [
+      'title' => 'Test Call for tenders node',
+      'description' => 'Call for tenders introduction',
+      'meta' => 'Call for tenders',
     ];
-    foreach ($values_data as $index => $value) {
-      $this->assertEquals($value, $values[$index]->getText());
-    }
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    // Assert header of second field group.
-    $this->assertContentHeader($content_items[1], 'Description', 'description');
+    // Assert "Open" status.
+    $node->set('oe_call_tenders_opening_date', ['value' => $opening_date->format('Y-m-d')])->save();
+    $this->drupalGet($node->toUrl());
 
-    // Assert content of second field group.
-    $content_second_group = $content_items[1]->find('css', '.ecl-editor p');
-    $this->assertEquals('Call for tenders body', $content_second_group->getText());
+    $page_header_expected_values['meta'] = 'Call for tenders | Open';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    // Assert header of third field group.
-    $this->assertContentHeader($content_items[2], 'Documents', 'documents');
-    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_tenders_document');
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Open',
+      ], [
+        'label' => 'Publication date',
+        'body' => $publication_date->format('d F Y'),
+      ], [
+        'label' => 'Opening date',
+        'body' => $opening_date->format('d F Y'),
+      ], [
+        'label' => 'Deadline date',
+        'body' => $deadline_date->format('d F Y, H:i (T)'),
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+    $this->assertDeadlineDateStrike($content);
 
-    // Assert Responsible department field label.
+    // Assert "Upcoming" status.
+    $opening_date = (clone $static_time)->modify('+ 2 days');
+    $node->set('oe_call_tenders_opening_date', ['value' => $opening_date->format('Y-m-d')])->save();
+    $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = 'Call for tenders | Upcoming';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Upcoming',
+      ], [
+        'label' => 'Publication date',
+        'body' => $publication_date->format('d F Y'),
+      ], [
+        'label' => 'Opening date',
+        'body' => $opening_date->format('d F Y'),
+      ], [
+        'label' => 'Deadline date',
+        'body' => $deadline_date->format('d F Y, H:i (T)'),
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+    $this->assertDeadlineDateStrike($content);
+
+    // Assert "Closed" status.
+    $deadline_date = (clone $static_time)->modify('- 2 days');
+    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
+    $this->drupalGet($node->toUrl());
+    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
+
+    $page_header_expected_values['meta'] = 'Call for tenders | Closed';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Closed',
+      ], [
+        'label' => 'Publication date',
+        'body' => $publication_date->format('d F Y'),
+      ], [
+        'label' => 'Opening date',
+        'body' => $opening_date->format('d F Y'),
+      ], [
+        'label' => 'Deadline date',
+        'body' => $deadline_date->format('d F Y, H:i (T)'),
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+    $this->assertDeadlineDateStrike($content, TRUE);
+
+    // Assert Reference field.
+    $node->set('oe_reference_code', 'Call for tenders reference');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Closed',
+      ], [
+        'label' => 'Reference',
+        'body' => 'Call for tenders reference',
+      ], [
+        'label' => 'Publication date',
+        'body' => $publication_date->format('d F Y'),
+      ], [
+        'label' => 'Opening date',
+        'body' => $opening_date->format('d F Y'),
+      ], [
+        'label' => 'Deadline date',
+        'body' => $deadline_date->format('d F Y, H:i (T)'),
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert Responsible department field.
+    $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'][5] = [
+      'label' => 'Department',
+      'body' => 'Audit Board of the European Communities',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert multiple Responsible department field.
     $node->set('oe_departments', [
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Departments', $labels[5]->getText());
-    $this->assertEquals('Audit Board of the European Communities | Associated African States and Madagascar', $values[5]->getText());
 
-    // Assert status "Upcoming".
-    $node->set('oe_call_tenders_opening_date', ['value' => date('Y') + 1 . '-05-31']);
+    $details_expected_values['items'][5] = [
+      'label' => 'Departments',
+      'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert Body text field.
+    $node->set('body', 'Call for tenders body');
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'Upcoming');
-    $this->assertOpeningDateValue($content, '31 May 2021');
-    $this->assertDeadlineDateValue($content, '11 June 2021, 09:30 (AEST)');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Upcoming');
+    $inpage_nav_expected_values['list'] = [
+      ['label' => 'Details', 'href' => '#details'],
+      ['label' => 'Description', 'href' => '#description'],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    // Assert status "Closed".
-    $node->set('oe_call_tenders_opening_date', ['value' => '2020-05-31']);
-    $node->set('oe_call_tenders_deadline', ['value' => '2020-05-31T23:30:00']);
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(2, $content_items);
+    $this->assertContentHeader($content_items[1], 'Description', 'description');
+    $content_second_group = $content_items[1]->find('css', '.ecl-editor p');
+    $this->assertEquals('Call for tenders body', $content_second_group->getText());
+
+    // Assert Documents field.
+    $media_document = $this->createMediaDocument('call_for_tenders_document');
+    $node->set('oe_documents', [
+      ['target_id' => (int) $media_document->id()],
+    ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'Closed');
-    $this->assertOpeningDateValue($content, '31 May 2020');
-    $this->assertDeadlineDateValue($content, '01 June 2020, 09:30 (AEST)', TRUE);
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Closed');
 
-    // Assert empty status.
-    $node->set('oe_call_tenders_opening_date', ['value' => '']);
-    $node->save();
-    $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'Closed');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders');
-  }
+    $inpage_nav_expected_values['list'] = [
+      ['label' => 'Details', 'href' => '#details'],
+      ['label' => 'Description', 'href' => '#description'],
+      ['label' => 'Documents', 'href' => '#documents'],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-  /**
-   * Asserts status field value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertStatusValue(NodeElement $element, string $expected): void {
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/span[@class="ecl-u-text-uppercase"]';
-    $this->assertSession()->elementExists('xpath', $selector);
-    $this->assertEquals($expected, $element->find('xpath', $selector)->getText());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
+    $this->assertContentHeader($content_items[2], 'Documents', 'documents');
+    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_tenders_document');
   }
 
   /**
@@ -208,12 +304,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    *
    * @param \Behat\Mink\Element\NodeElement $element
    *   Rendered element.
-   * @param string $expected
-   *   Expected value.
    * @param bool $is_strike
    *   Whether value should be strike or not.
    */
-  protected function assertDeadlineDateValue(NodeElement $element, string $expected, bool $is_strike = FALSE): void {
+  protected function assertDeadlineDateStrike(NodeElement $element, bool $is_strike = FALSE): void {
     $value_wrapper_element = $element->find('xpath', '//*[text() = "Deadline date"]/following-sibling::dd/div');
     if ($is_strike) {
       $this->assertTrue($value_wrapper_element->hasClass('ecl-u-type-strike'));
@@ -221,20 +315,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     else {
       $this->assertFalse($value_wrapper_element->hasClass('ecl-u-type-strike'));
     }
-    $this->assertEquals($expected, $element->find('xpath', '//*[text() = "Deadline date"]/following-sibling::dd/div/time')->getText());
-  }
-
-  /**
-   * Asserts opening date value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertOpeningDateValue(NodeElement $element, string $expected): void {
-    $value_element = $element->find('xpath', '//*[text() = "Opening date"]/following-sibling::dd/div/time');
-    $this->assertEquals($expected, $value_element->getText());
   }
 
 }
