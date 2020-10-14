@@ -31,7 +31,7 @@ class NodeViewRoutesTestPlugin extends NodeViewRoutesBase {
   public function getMetadata(): array {
     $metadata = parent::getMetadata();
 
-    $metadata['introduction'] = $this->getNode()->get('body')->value;
+    $metadata['introduction'] = $this->getIntroductionMetadata('body');
 
     return $metadata;
   }

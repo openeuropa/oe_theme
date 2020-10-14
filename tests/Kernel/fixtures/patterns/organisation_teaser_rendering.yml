@@ -1,0 +1,56 @@
+- fields:
+    logo:
+      src: "https://placeimg.com/100/100"
+      alt: "Alternative text for logo"
+    name: "Organisation name"
+    acronym: "Acronym"
+    organisation_details:
+      - label: "Address"
+        body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      - label: "Website"
+        body: '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>'
+    contact_page_url: "http://www.example.com/contact"
+  assertions:
+    count:
+      div[role="img"].ecl-u-d-lg-block: 1
+      a.ecl-link[href="http://www.example.com/contact"]: 1
+    equals:
+      h4.ecl-u-type-heading-4: "Organisation name (Acronym)"
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>'
+      a.ecl-link .ecl-link__label: "Contact organisation"
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+- fields:
+    name: "Organisation name"
+  assertions:
+    count:
+      div[role="img"].ecl-u-d-lg-block: 0
+      dl.ecl-description-list: 0
+      a.ecl-link: 0
+    equals:
+      h4.ecl-u-type-heading-4: "Organisation name"
+- fields:
+    organisation_details:
+      - label: "Address"
+        body: "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+    contact_page_url: "/internal_link"
+  assertions:
+    count:
+      h4.ecl-u-type-heading-4: 1
+      a.ecl-link[href="/internal_link"]: 1
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): 0
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): 0
+    equals:
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
+      a.ecl-link .ecl-link__label: "Contact organisation"
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--corner-arrow"></use>'
+- fields:
+    contact_page_url: "mailto:me@example.com"
+  assertions:
+    count:
+      a.ecl-link[href="mailto:me@example.com"]: 1
+    equals:
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'

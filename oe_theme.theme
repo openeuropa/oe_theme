@@ -49,6 +49,17 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
     '#default_value' => theme_get_setting('component_library'),
     '#description' => t('Choose "European Commission" for websites hosted under the ec.europa.eu domain and "European Union" for websites hosted under the europa.eu domain.'),
   ];
+
+  $form['branding'] = [
+    '#type' => 'select',
+    '#title' => t('Branding'),
+    '#options' => [
+      'core' => t('Core'),
+      'standardised' => t('Standardised'),
+    ],
+    '#default_value' => theme_get_setting('branding') ?? 'core',
+    '#description' => t('Choose the ECL branding for your website. Use "Core" for cross-institutional sites and "Standardised" for DG/Agency specific sites.'),
+  ];
 }
 
 /**
@@ -56,6 +67,7 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
  */
 function oe_theme_preprocess(&$variables) {
   $variables['ecl_component_library'] = theme_get_setting('component_library');
+  $variables['ecl_branding'] = theme_get_setting('branding') ?? 'core';
   $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
@@ -112,6 +124,19 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
         'is_current' => $item['in_active_trail'],
       ];
     }, $variables['items'][$name]['below']);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Adds a template suggestion for type time input fields.
+ */
+function oe_theme_theme_suggestions_input_alter(array &$suggestions, array $variables): void {
+  $element = $variables['element'];
+
+  if ($element['#type'] === 'date' && $element['#attributes']['type'] === 'time') {
+    $suggestions[] = 'input__time';
   }
 }
 
@@ -478,6 +503,23 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_input__date().
+ */
+function oe_theme_preprocess_input__date(array &$variables): void {
+  $php_date_format = !empty($variables['attributes']['data-drupal-date-format'] && is_array($variables['attributes']['data-drupal-date-format'])) ? reset($variables['attributes']['data-drupal-date-format']) : 'Y-m-d';
+  $format_map = [
+    // @todo find a cleverer way of mapping PHP date formats to the expected
+    // ECL ones.
+    'Y-m-d' => 'YYYY-MM-DD',
+  ];
+  $ecl_format = $format_map[$php_date_format] ?? 'YYYY-MM-DD';
+  $variables['#attached']['library'][] = 'oe_theme/ecl_datepicker';
+  $variables['#attached']['drupalSettings']['oe_theme']['ecl_datepicker_format'] = $ecl_format;
+  $variables['placeholder'] = $ecl_format;
+}
+
+
+/**
  * Helper function to additionally preprocess checkbox and radio elements.
  *
  * Moves the label element to the input template and creates some helper
@@ -529,7 +571,7 @@ function oe_theme_preprocess_radios(array &$variables): void {
  * Implements hook_preprocess_fieldset().
  */
 function oe_theme_preprocess_fieldset(array &$variables): void {
-  if ($variables['element']['#type'] == 'radios') {
+  if (isset($variables['element']['#type']) && $variables['element']['#type'] == 'radios') {
     $variables['legend_display'] = FALSE;
   }
 }
@@ -777,8 +819,10 @@ function oe_theme_preprocess_links__language_block(array &$variables): void {
 
     $language = [
       'path' => $href,
-      'hreflang' => $language_code,
       'label' => $link['link']['#title'],
+      // Pass original language code which can be useful for some other
+      // preprocessors.
+      'hreflang' => $language_code,
       'lang' => $language_internal,
     ];
 
@@ -1122,8 +1166,20 @@ function oe_theme_preprocess_pattern_file__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_file_translation__preview(array &$variables): void {
   $variables['file'] = FileValueObject::fromArray($variables['file']);
 
-  foreach ((array) $variables['translations'] as $index => $translation) {
+  foreach ($variables['translations'] as $index => $translation) {
     $variables['translations'][$index] = FileValueObject::fromArray($translation);
+  }
+}
+
+/**
+ * Implements hook_preprocess_pattern_file_teaser__preview().
+ */
+function oe_theme_preprocess_pattern_file_teaser__preview(array &$variables): void {
+  $variables['file'] = FileValueObject::fromArray($variables['file']);
+
+  foreach ($variables['translations'] as $index => $translation) {
+    $translation['file'] = FileValueObject::fromArray($translation['file']);
+    $variables['translations'][$index] = $translation;
   }
 }
 
@@ -1230,11 +1286,10 @@ function oe_theme_preprocess_responsive_image_formatter(&$variables) {
 }
 
 /**
- * Implements template_preprocess_preprocess_block().
- *
- * For preprocessing default mode of document media type.
+ * Implements template_preprocess_block().
  */
 function oe_theme_preprocess_block(&$variables) {
+  // Style block titles using ECL.
   $variables['title_attributes'] = array_merge_recursive($variables['title_attributes'], [
     'class' => [
       'ecl-u-type-heading-2',
@@ -1609,9 +1664,16 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  */
 function oe_theme_preprocess_page(array &$variables): void {
   $variables['main_attributes'] = new Attribute([
-    'class' => ['ecl-u-pv-2xl', 'ecl-u-pv-md-3xl'],
+    'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],
   ]);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_organisation_teaser__preview(array &$variables): void {
+  $variables['logo'] = ImageValueObject::fromArray($variables['logo']);
 }
 
 /**
@@ -1620,4 +1682,15 @@ function oe_theme_preprocess_page(array &$variables): void {
 function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_theme_main_content(array &$variables): void {
   // Set video aspect ratio when rendering "oe_theme_main_content" display mode.
   $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Add block region as a suggestion.
+ */
+function oe_theme_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  /** @var \Drupal\block\Entity\Block $block */
+  $block = \Drupal::entityTypeManager()->getStorage('block')->load($variables['elements']['#id']);
+  $suggestions[] = 'block__region_' . $block->getRegion();
 }

@@ -11,6 +11,11 @@ navigation_menu:
       label: "Label"
       description: "Label for the menu, only visible on mobile."
       preview: "Navigation"
+    site_name:
+      type: "text"
+      label: "Site name"
+      description: "Name of the site."
+      preview: "Site name"
     items:
       type: "array"
       label: "Links"
@@ -37,9 +42,11 @@ navigation_menu:
               label: 'Child 1.8'
         - href: "#"
           label: "EU law"
+          is_current: TRUE
           children:
             - href: '#'
               label: 'Eu Treaties'
+              is_current: TRUE
             - href: '#'
               label: 'Application of EU law'
             - href: '#'

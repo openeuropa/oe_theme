@@ -16,24 +16,27 @@ default:
         - Drupal\Tests\oe_theme\Behat\PreserveAnonymousPermissionsContext
         - Drupal\Tests\oe_content\Behat\Content\CorporateContentContext
         - Drupal\Tests\oe_content\Behat\Content\Node\EventContentContext
+        - Drupal\Tests\oe_content\Behat\Content\Node\ProjectContentContext
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
-              about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
-              breadcrumb: "nav.ecl-breadcrumb"
+              about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
+              breadcrumb: "nav.ecl-breadcrumb-core"
               dropdown content: ".ecl-unordered-list"
               language switcher: ".ecl-language-list"
-              language switcher link: ".ecl-site-header__selector"
+              language switcher link: ".ecl-site-header-core__language-selector, .ecl-site-header-standardised__language-selector"
               language switcher links: ".ecl-language-list--overlay"
               list item: ".ecl-content-item"
               list item image: ".ecl-content-item__image__before"
-              logo: ".ecl-site-header__logo-image"
+              logo: "a.ecl-site-header-core__logo-link .ecl-site-header-core__logo-image, a.ecl-site-header-standardised__logo-link .ecl-site-header-standardised__logo-image"
               media container: ".ecl-media-container"
-              page header: ".ecl-page-header"
-              priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
+              page header: ".ecl-page-header-core"
+              priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
               search form: ".ecl-search-form"
+              navigation menu: ".ecl-menu"
+              site name: ".ecl-menu__site-name"
             pages:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"
@@ -62,22 +65,22 @@ default:
           paths:
             - "%paths.base%/build/modules/contrib/datetime_testing"
       region_map:
-        about dropdown menu: ".ecl-menu-legacy__item:nth-child(2) .ecl-menu-legacy__mega"
+        about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
         footer: "footer.ecl-footer"
-        header: ".ecl-site-header"
+        header: ".ecl-site-header-core, .ecl-site-header-standardised"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-language-list"
-        language page switcher: ".ecl-page-header .ecl-lang-select-page"
-        navigation: ".ecl-menu-legacy"
+        language page switcher: ".ecl-page-header-core .ecl-lang-select-page"
+        navigation: ".ecl-menu"
         page: "body"
-        page header: ".ecl-page-header"
+        page header: ".ecl-page-header-core, .ecl-page-header-standardised"
         page header site identity: "h2.ecl-u-type-heading-2"
-        page header title: ".ecl-page-header .ecl-page-header__title"
-        page header intro: ".ecl-page-header .ecl-page-header__description"
-        page header meta: ".ecl-page-header .ecl-page-header__meta-list"
-        priorities dropdown menu: ".ecl-menu-legacy__item:nth-child(3) .ecl-menu-legacy__mega"
-        selected language in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
-        unavailable languages in the language page switcher: ".ecl-page-header .ecl-lang-select-page .ecl-lang-select-page__unavailable"
+        page header title: ".ecl-page-header-core .ecl-page-header-core__title"
+        page header intro: ".ecl-page-header-core .ecl-page-header-core__description"
+        page header meta: ".ecl-page-header-core .ecl-page-header-core__meta"
+        priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
+        selected language in the language page switcher: ".ecl-page-header-core .ecl-lang-select-page .ecl-lang-select-page__option--is-selected"
+        unavailable languages in the language page switcher: ".ecl-page-header-core .ecl-lang-select-page .ecl-lang-select-page__unavailable"
         Social media links: "#oe-social-media-links-values"
         Social media follow: ".ecl-social-media-follow"
         event contacts: "#event-contacts"
@@ -86,6 +89,7 @@ default:
         event registration: "#event-registration-block"
         event details: "#event-details"
         event practical information: "#event-practical-information"
+        project funding header: "#project-funding .ecl-u-type-heading-2"
     FriendsOfBehat\ServiceContainerExtension:
       imports:
         - 'build/modules/contrib/oe_content/tests/Behat/config/services.yml'

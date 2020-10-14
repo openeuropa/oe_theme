@@ -104,4 +104,15 @@ trait UtilityTrait {
     return $is_visible && !$is_clipped;
   }
 
+  /**
+   * Returns ECL branding of the active theme.
+   *
+   * @return string|null
+   *   The ECL branding machine name.
+   */
+  protected function getEclBranding(): ?string {
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    return \Drupal::config($theme_name . '.settings')->get('branding') ?? 'core';
+  }
+
 }

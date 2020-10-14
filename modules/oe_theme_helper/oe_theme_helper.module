@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
@@ -61,6 +62,30 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'address_delimiter' => NULL,
       ],
     ],
+    'oe_theme_helper_in_page_navigation' => [
+      'render element' => 'element',
+    ],
+    'oe_theme_helper_featured_media' => [
+      'variables' => [
+        'params' => [],
+      ],
+    ],
+    'oe_theme_helper_social_media_icons_list' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+    'oe_theme_helper_social_media_links' => [
+      'variables' => [
+        'content' => [],
+      ],
+    ],
+    'oe_theme_helper_site_navigation' => [
+      'variables' => [
+        'site_name' => '',
+        'menu_items' => [],
+      ],
+    ],
   ];
 }
 
@@ -75,4 +100,54 @@ function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$elemen
   if (isset($element['subform']['field_oe_icon'])) {
     $element['subform']['field_oe_icon']['#access'] = FALSE;
   }
+}
+
+/**
+ * Prepares variables for in-page navigation.
+ *
+ * Default template: oe-theme-helper-in-page-navigation.html.twig.
+ *
+ * @param array $variables
+ *   An array of variables.
+ */
+function template_preprocess_oe_theme_helper_in_page_navigation(array &$variables) {
+  $variables['title'] = $variables['element']['#title'];
+  $variables['entity'] = $variables['element']['#entity'];
+  $variables['items'] = isset($variables['element']['#items']) ? $variables['element']['#items'] : [];
+
+  // Process in-page navigation items, assigning them a unique ID.
+  foreach ($variables['items'] as $key => $item) {
+    $variables['items'][$key]['id'] = strtolower(Html::cleanCssIdentifier($variables['items'][$key]['label']));
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(array $variables) {
+  $suggestions = [];
+  $element = $variables['element'];
+  $hook = 'oe_theme_helper_in_page_navigation';
+
+  $name = !empty($element['#group_name']) ? $element['#group_name'] : NULL;
+  $entity_type = !empty($element['#entity_type']) ? $element['#entity_type'] : NULL;
+  $bundle = !empty($element['#bundle']) ? $element['#bundle'] : NULL;
+
+  if (!empty($name)) {
+    $suggestions[] = $hook . '__' . $name;
+
+    if (!empty($entity_type)) {
+      $suggestions[] = $hook . '__' . $entity_type . '__' . $name;
+    }
+  }
+
+  if (!empty($entity_type) && !empty($bundle)) {
+    $suggestions[] = $hook . '__' . $entity_type . '__' . $bundle;
+
+    if (!empty($name)) {
+      $suggestions[] = $hook . '__' . $entity_type . '__' . $bundle . '__' . $name;
+    }
+  }
+
+  return $suggestions;
 }

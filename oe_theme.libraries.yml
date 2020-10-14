@@ -29,3 +29,9 @@ external_svg:
   js:
     dist/js/svg4everybody.min.js: { minified: true }
     js/external_svg.js: {}
+
+ecl_datepicker:
+  js:
+    js/ecl_datepicker.js: {}
+  dependencies:
+    - core/drupal

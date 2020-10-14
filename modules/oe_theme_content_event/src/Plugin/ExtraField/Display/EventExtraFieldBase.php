@@ -20,7 +20,7 @@ abstract class EventExtraFieldBase extends ExtraFieldDisplayFormattedBase implem
   /**
    * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
   protected $entityTypeManager;
 

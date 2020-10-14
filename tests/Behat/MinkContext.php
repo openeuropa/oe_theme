@@ -118,7 +118,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   public function checkBreadcrumbTrail(string $trail): void {
     $trail_elements = explode(', ', $trail);
-    $selector = 'ol.ecl-breadcrumb__container li.ecl-breadcrumb__segment a';
+    $selector = 'ol.ecl-breadcrumb-' . $this->getEclBranding() . '__container li.ecl-breadcrumb-' . $this->getEclBranding() . '__segment a';
     $breadcrumb = $this->getBreadcrumb();
 
     $this->assertSession()->elementsCount('css', $selector, count($trail_elements), $breadcrumb);
@@ -128,7 +128,7 @@ class MinkContext extends DrupalExtensionMinkContext {
     foreach ($trail_elements as $key => $trail_element) {
       /** @var \Behat\Mink\Element\NodeElement $breadcrumb_element */
       $breadcrumb_element = $breadcrumb_elements[$key];
-      $breadcrumb_element_link = $breadcrumb_element->find('css', '.ecl-breadcrumb__link');
+      $breadcrumb_element_link = $breadcrumb_element->find('css', '.ecl-breadcrumb-' . $this->getEclBranding() . '__link');
       $actual[] = $breadcrumb_element_link->getText();
     }
     Assert::assertEquals($trail_elements, $actual);
@@ -146,7 +146,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @Then the breadcrumb active element should be :text
    */
   public function checkBreadcrumbActiveElement(string $active_element): void {
-    $selector = 'ol.ecl-breadcrumb__container li.ecl-breadcrumb__current-page';
+    $selector = 'ol.ecl-breadcrumb-' . $this->getEclBranding() . '__container li.ecl-breadcrumb-' . $this->getEclBranding() . '__current-page';
     $breadcrumb = $this->getBreadcrumb();
     $active_breadcrumb = $breadcrumb->find('css', $selector);
     Assert::assertEquals($active_element, $active_breadcrumb->getText());
@@ -174,9 +174,22 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
   protected function getBreadcrumb(): NodeElement {
-    $selector = 'nav.ecl-page-header__breadcrumb';
+    $selector = 'nav.ecl-page-header-' . $this->getEclBranding() . '__breadcrumb';
 
     return $this->assertSession()->elementExists('css', $selector);
+  }
+
+  /**
+   * Hover over a link.
+   *
+   * @When I hover over the link :link
+   */
+  public function iHoverOverTheLink($link): void {
+    $link = $this->getSession()->getPage()->findLink($link);
+    if (!$link) {
+      throw new \InvalidArgumentException(sprintf('Could not not find link: "%s"', $link));
+    }
+    $link->mouseOver();
   }
 
 }

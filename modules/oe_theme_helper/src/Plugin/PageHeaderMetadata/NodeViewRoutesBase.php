@@ -63,8 +63,9 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
    */
   public function getMetadata(): array {
     $entity = $this->getNode();
-
-    $metadata = [];
+    $metadata = [
+      'introduction' => $this->getIntroductionMetadata('oe_summary'),
+    ];
 
     $cacheability = new CacheableMetadata();
     $cacheability
@@ -87,6 +88,38 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
     $this->eventDispatcher->dispatch(PageHeaderMetadataEvents::NODE, $event);
 
     return $event->getNode();
+  }
+
+  /**
+   * Get properly formatted introduction metadata.
+   *
+   * @param string $field_name
+   *   Node field name where data is taken from.
+   *
+   * @return array
+   *   Render array, if field exists.
+   */
+  protected function getIntroductionMetadata(string $field_name): array {
+    $node = $this->getNode();
+    if (!$node->hasField($field_name) || $node->get($field_name)->isEmpty()) {
+      return [];
+    }
+    $summary = $node->get($field_name)->first();
+
+    return [
+      // We strip the tags because the component expects only one paragraph of
+      // text and the field is using a text format which adds paragraph tags.
+      '#type' => 'inline_template',
+      '#template' => '{{ summary|render|striptags("<strong><a><em>")|raw }}',
+      '#context' => [
+        'summary' => [
+          '#type' => 'processed_text',
+          '#text' => $summary->value,
+          '#format' => $summary->format,
+          '#langcode' => $summary->getLangcode(),
+        ],
+      ],
+    ];
   }
 
 }

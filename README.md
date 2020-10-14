@@ -9,15 +9,19 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 2.10.0](#upgrade-to-2100)
+  - [Upgrade to 2.9.0](#upgrade-to-290)
+  - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
+- [Corporate blocks](#corporate-blocks)
 - [Image styles](#image-styles)
-- [Upgrade from 1.x to 2.x](#upgrade-from-1.x-to-2.x)
 - [Development](#development)
   - [Project setup](#project-setup)
   - [Using Docker Compose](#using-docker-compose)
   - [Disable Drupal 8 caching](#disable-drupal-8-caching)
   - [Working with ECL components](#working-with-ecl-components)
-- [Contributing](#contributing)  
+- [Contributing](#contributing)
 - [Versioning](#versioning)
 
 ## Requirements
@@ -51,7 +55,7 @@ Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alt
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
 module.
 
-The OpenEuropa theme supports both the EC and EU component libraries:
+The OpenEuropa theme supports both the **EC** and **EU** component libraries:
 
 - Use the "European Commission" component library for European Commission websites hosted under the `ec.europa.eu` domain
 - Use the "European Union" component library for European Union websites hosted under the `europa.eu` domain
@@ -59,37 +63,60 @@ The OpenEuropa theme supports both the EC and EU component libraries:
 The theme uses the "European Commission" component library by default, you can change that by visiting the theme setting
 page.
 
-Note for developers: changing the component library will only load different CSS and JS assets, the actual HTML is the
+**Note for developers**: changing the component library will only load different CSS and JS assets, the actual HTML is the
 same between the two libraries.
 
-## Companion sub-modules
+Each component library can use one of the following ECL brandings:
 
-* [OpenEuropa Theme News](/modules/oe_theme_content_news/README.md)
-* [OpenEuropa Theme Page](/modules/oe_theme_content_page/README.md)
-* [OpenEuropa Theme Policy](/modules/oe_theme_content_policy/README.md)
-* [OpenEuropa Theme Publication](/modules/oe_theme_content_publication/README.md)
+- **Standardized**: standardised websites host thematic content owned by a specific DG/Agency. This is the default solution
+  to host DG-specific content (policy) and is closely aligned with the core site.
+- **Core**: core websites host general information shared by different websites or departments and serve as hubs for
+  onward navigation to further thematic content and/or specific services. For example, the main European Commission
+  website (https://ec.europa.eu) uses ECL core branding.
 
-## Corporate blocks
+ECL branding changes the way users interact with the sites by restricting access to certain components, for example:
+users can access to the main navigation menu only on sites using standardised ECL branding.
 
-When using the theme in conjunction with the [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks)
-component changing the component library will show a different footer block, namely:
+To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
-- The European Commission footer, shipping with a set of links and references that must be present on all European Commission sites. 
-- The European Union footer, shipping with a set of links and references that must be present on all European Union sites. 
+### Upgrade to 2.10.0
 
-## Image styles
+#### ECL page header
 
-OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
-The following is a list of all the vailable styles and their preferred usage: 
+In 2.10.0 we dropped supporting the following elements in the ["Page header" pattern](./templates/patterns/page_header/page_header.ui_patterns.yml):
 
-* List item (`oe_theme_list_item`): To be used on content lists with small thumbnails.
-* Featured list item (`oe_theme_list_item_featured`): To be used on highlights and content lists with big thumbnails.
-* Medium (`oe_theme_medium_no_crop`): Medium sized image, part of the Main content responsive image style.
-* Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
-* Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
-a content page.
+- `identity`: used to show site-identifying information (such as the site name).
+- `infos`: used to show secondary meta information, below the page header introduction text.
 
-## Upgrade from 1.x to 2.x
+As a result, if your `PageHeaderMetadata` plugins provide such data, it will no longer be displayed.
+
+#### ECL branding
+
+In 2.10.0 we introduced support for ECL branding (read above for more information). The OpenEuropa Theme will use the
+"Core" branding, visit the theme configuration page if you need to change that and use the "Standardised" branding instead.
+
+To know which branding your site is supposed to use check the [ECL website](https://ec.europa.eu/component-library).
+
+### Upgrade to 2.9.0
+
+#### Content type teasers
+
+If you are using the `oe_content` module together with the OpenEuropa theme then updating to 2.9.0 or later will affect your
+existing teaser displays. The 2.9.0 version updates the teaser display of most content types provided by `oe_content`
+so if you want to keep any customization you have made to your site you will need to redo those modifications and
+override the teaser templates on your own custom theme.
+
+#### ECL site header
+
+In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to move the language switcher block to the
+`site_header_secondary` theme region. This means that:
+
+- If your site does not use a sub-theme, then you have nothing to worry about, as we will move the block there for you
+  in a post-update hook (if we find one)
+- If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
+  `site_header_secondary` region yourself
+
+### Upgrade from 1.x to 2.x
 
 - The following patterns have been removed on 2.x:
   - `dialog`
@@ -98,6 +125,40 @@ a content page.
   Read ui_patterns [pattern definition documentation](https://ui-patterns.readthedocs.io/en/8.x-1.x/content/patterns-definition.html#pattern-definitions) for how it works.
 - [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks) 1.x is not supported anymore,
   you should use version 2.x instead.
+
+## Companion sub-modules
+
+* [OpenEuropa Theme Contact Forms](./modules/oe_theme_contact_forms/README.md)
+* [OpenEuropa Content Call for tenders companion module](./modules/oe_theme_content_call_tenders/README.md)
+* [OpenEuropa Content Corporate Entity Contact companion module](./modules/oe_theme_content_entity_contact/README.md)
+* [OpenEuropa Content Corporate Entity Organisation companion module](./modules/oe_theme_content_entity_organisation/README.md)
+* [OpenEuropa Content Corporate Entity Venue companion module](./modules/oe_theme_content_entity_venue/README.md)
+* [OpenEuropa Content Event companion module](./modules/oe_theme_content_event/README.md)
+* [OpenEuropa Content News companion module](./modules/oe_theme_content_news/README.md)
+* [OpenEuropa Content Page companion module](./modules/oe_theme_content_page/README.md)
+* [OpenEuropa Content Policy companion module](./modules/oe_theme_content_policy/README.md)
+* [OpenEuropa Content Project companion module](./modules/oe_theme_content_project/README.md)
+* [OpenEuropa Content Publication companion module](./modules/oe_theme_content_publication/README.md)
+
+## Corporate blocks
+
+When using the theme in conjunction with the [OpenEuropa Corporate Blocks](https://github.com/openeuropa/oe_corporate_blocks)
+component changing the component library will show a different footer block, namely:
+
+- The European Commission footer, shipping with a set of links and references that must be present on all European Commission sites.
+- The European Union footer, shipping with a set of links and references that must be present on all European Union sites.
+
+## Image styles
+
+OpenEuropa Theme ships with a number of image styles that should help users follow the guidelines set by the ECL.
+The following is a list of all the vailable styles and their preferred usage:
+
+* List item (`oe_theme_list_item`): To be used on content lists with small thumbnails.
+* Featured list item (`oe_theme_list_item_featured`): To be used on highlights and content lists with big thumbnails.
+* Medium (`oe_theme_medium_no_crop`): Medium sized image, part of the Main content responsive image style.
+* Small (`oe_theme_small_no_crop`): Small sized image, part of the Main content responsive image style.
+* Main content (`oe_theme_main_content`): Responsive image style, to be used on any image that is rendered inside
+a content page.
 
 ## Development
 
@@ -115,7 +176,7 @@ in your projects.
 
 ### Project setup
 
-Developing the theme requires a local copy of ECL assets, including Twig templates, SASS and JavaScript source files. 
+Developing the theme requires a local copy of ECL assets, including Twig templates, SASS and JavaScript source files.
 
 In order to fetch the required code you'll need to have [Node.js (>= 8)](https://nodejs.org/en) installed locally.
 
@@ -171,10 +232,10 @@ This will:
 
 ### Using Docker Compose
 
-Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and 
+Alternatively, you can build a development site using [Docker](https://www.docker.com/get-docker) and
 [Docker Compose](https://docs.docker.com/compose/) with the provided configuration.
 
-Docker provides the necessary services and tools such as a web server and a database server to get the site running, 
+Docker provides the necessary services and tools such as a web server and a database server to get the site running,
 regardless of your local host configuration.
 
 #### Requirements:
@@ -186,7 +247,7 @@ regardless of your local host configuration.
 
 By default, Docker Compose reads two files, a `docker-compose.yml` and an optional `docker-compose.override.yml` file.
 By convention, the `docker-compose.yml` contains your base configuration and it's provided by default.
-The override file, as its name implies, can contain configuration overrides for existing services or entirely new 
+The override file, as its name implies, can contain configuration overrides for existing services or entirely new
 services.
 If a service is defined in both files, Docker Compose merges the configurations.
 
@@ -322,6 +383,8 @@ npx patch-package @ecl-twig/[component-name]
 Or, when using Docker Compose:
 
 ```bash
+docker-compose exec -u node node git config --global user.email "name@example.com"
+docker-compose exec -u node node git config --global user.name "Name"
 docker-compose exec -u node node npx patch-package @ecl-twig/[component-name]
 ```
 

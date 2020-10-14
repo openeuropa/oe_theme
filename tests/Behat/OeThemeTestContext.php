@@ -9,11 +9,14 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
+use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 
 /**
  * Behat step definitions related to the oe_theme_test module.
  */
 class OeThemeTestContext extends RawDrupalContext {
+
+  use UtilityTrait;
 
   /**
    * Creates a number of demo pages with the data provided in a table.
@@ -361,6 +364,107 @@ class OeThemeTestContext extends RawDrupalContext {
       $expectation = $presence ? 'present' : 'absent';
       throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
     }
+  }
+
+  /**
+   * Asserts that the mobile logo img tag is printed for eu component library.
+   *
+   * @Then the :language EU mobile logo should be available
+   */
+  public function assertEuMobileLogo(string $language): void {
+    $lang_code = [
+      'Bulgarian' => 'bg',
+      'Czech' => 'cs',
+      'Danish' => 'da',
+      'German' => 'de',
+      'Estonian' => 'et',
+      'Greek' => 'el',
+      'English' => 'en',
+      'Spanish' => 'es',
+      'French' => 'fr',
+      'Irish' => 'ga',
+      'Croatian' => 'hr',
+      'Italian' => 'it',
+      'Latvian' => 'lv',
+      'Lithuanian' => 'lt',
+      'Hungarian' => 'hu',
+      'Maltese' => 'mt',
+      'Dutch' => 'nl',
+      'Polish' => 'pl',
+      'Portuguese' => 'pt',
+      'Romanian' => 'ro',
+      'Slovak' => 'sk',
+      'Slovenian' => 'sl',
+      'Finnish' => 'fi',
+      'Swedish' => 'sv',
+    ];
+    $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
+  }
+
+  /**
+   * Assert that the site header correlated to ECL branding theme setting.
+   *
+   * @param string $ecl_branding
+   *   The ECL branding setting of active theme.
+   *
+   * @Then I should see the :ecl_branding site header
+   */
+  public function iShouldSeeTheSiteHeader(string $ecl_branding): void {
+    $brandings = [
+      'Core' => 'core',
+      'Standardised' => 'standardised',
+    ];
+
+    if (empty($brandings[$ecl_branding])) {
+      throw new \Exception("Theme do not support '$ecl_branding' ECL branding.");
+    }
+
+    $ecl_branding_code = $brandings[$ecl_branding];
+
+    $this->assertSession()->elementExists('css', 'a.ecl-site-header-' . $ecl_branding_code . '__logo-link .ecl-site-header-' . $ecl_branding_code . '__logo-image');
+    $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__language-selector');
+    $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__search-container');
+  }
+
+  /**
+   * Set theme's ECL branding setting.
+   *
+   * @param string $ecl_branding
+   *   The ECL branding setting of active theme.
+   *
+   * @Given the theme is configured to use the :ecl_branding ECL branding
+   */
+  public function setEclBranding(string $ecl_branding): void {
+    $brandings = [
+      'Core' => 'core',
+      'Standardised' => 'standardised',
+    ];
+
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+
+    \Drupal::configFactory()->getEditable($theme_name . '.settings')
+      ->set('branding', $brandings[$ecl_branding])->save();
+
+    // Clears the static cache of DatabaseCacheTagsChecksum.
+    // Static caches are typically cleared at the end of the request since a
+    // typical web request is short lived and the process disappears when the
+    // page is delivered. But if a Behat test is using DrupalContext then Drupal
+    // will be bootstrapped early on (in the BeforeSuiteScope step). This starts
+    // a request which is not short lived, but can live for several minutes
+    // while the tests run. During the lifetime of this request there will be
+    // steps executed that do requests of their own, changing the state of the
+    // Drupal site. This does not however update any of the statically cached
+    // data of the parent request, so this is totally unaware of the changes.
+    // This causes unexpected behaviour like the failure to invalidate some
+    // caches because DatabaseCacheTagsChecksum::invalidateTags() keeps a local
+    // storage of which cache tags were invalidated, and this is not reset in
+    // time.
+    //
+    // We have a step in EWCMS that does the same thing, ideally we would need
+    // to port this in our traits and remove it from here.
+    // @todo: reuse reset check sums once available as a trait.
+    \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
 }

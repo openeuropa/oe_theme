@@ -162,8 +162,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -186,8 +186,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -208,8 +208,8 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': "Backwards compatibility test"
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': "Banner description"
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': "Backwards compatibility test"
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': "Banner description"
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
 - array:
     '#type': pattern
@@ -232,8 +232,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -257,8 +257,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -281,8 +281,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -306,8 +306,8 @@
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content h1.ecl-hero-banner__title': Banner title
-      'div.ecl-container.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
+      'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -329,8 +329,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -354,8 +354,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       'div.ecl-page-banner--full-width': 1
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -378,8 +378,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -403,8 +403,8 @@
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       'div.ecl-page-banner--full-width': 0
     equals:
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content h1.ecl-page-banner__title': Banner title
-      'div.ecl-container.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__baseline': Banner description
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
+      'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
 - array:
     '#type': pattern
@@ -476,6 +476,7 @@
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+      translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
   assertions:
     count:
@@ -491,7 +492,7 @@
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
@@ -499,6 +500,182 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-description': "Custom information snippet."
+- array:
+    '#type': pattern
+    '#id': file_translation
+    '#fields':
+      button_label: "Download"
+      file:
+        variant: "translation"
+        title: "File title example"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "10000"
+        language_code: "en"
+      translations:
+        - mime: "application/vnd.ms-excel"
+          url: "http://example.com/document_fr.xls"
+          size: "150000"
+          name: "document.xls"
+          language_code: "fr"
+      more_info: "Custom information snippet."
+  assertions:
+    count:
+      'svg.ecl-file__icon': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file__translation-container': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+    equals:
+      'div.ecl-file__title': "File title example"
+      'div.ecl-file__language': "English"
+      'div.ecl-file__meta': "(9.77 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
+      '.ecl-file__translation-description': "Custom information snippet."
+- array:
+    '#type': pattern
+    '#id': file_teaser
+    '#fields':
+      button_label: "Download"
+      teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies."
+      file:
+        title: "Example document"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "140000"
+        language_code: "en"
+      thumbnail:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        alt: "thumbnail alt"
+      resource_type: "RESOURCE TYPE"
+      publication_date: "2020-31-08"
+      translations:
+        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+          file:
+            title: "French translation"
+            mime: "application/vnd.ms-excel"
+            url: "http://example.com/document_fr.xls"
+            size: "150000"
+            name: "document.xls"
+            language_code: "fr"
+        - teaser: "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
+          file:
+            title: "Italian translation"
+            mime: "application/vnd.ms-powerpoint"
+            url: "http://example.com/document_it.ppt"
+            size: "160000"
+            name: "document.ppt"
+            language_code: "it"
+        - teaser: "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
+          file:
+            title: "Hungarian translation"
+            mime: "application/pdf"
+            url: "http://example.com/document_hu.pdf"
+            size: "170000"
+            name: "document.pdf"
+            language_code: "hu"
+      translation_toggle_label: "Other translations"
+      more_info: "Looking for another language which is not on the list? Find out why."
+  assertions:
+    count:
+      'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'img.ecl-file__image[alt="thumbnail alt"]': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info': 1
+      'div.ecl-file__container div.ecl-file__info': 1
+      'div.ecl-file__translation-container': 1
+      'ul.ecl-file__translation-list': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 3
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+    equals:
+      'div.ecl-file__detail-info div.ecl-file__title': "Example document"
+      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
+      'div.ecl-file__info div.ecl-file__language': "English"
+      'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
+      '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "Italian translation"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-description': "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-language': "italiano"
+      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
+      '.ecl-file__translation-item:nth-child(2) .ecl-link__label': "Download"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "Hungarian translation"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-description': "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
+      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
+      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+- array:
+    '#type': pattern
+    '#id': file_teaser
+    '#fields':
+      button_label: "Download"
+      teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies."
+      file:
+        title: "Example document"
+        name: "document.pdf"
+        url: "http://example.com"
+        mime: "application/pdf"
+        size: "140000"
+        language_code: "en"
+      thumbnail:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        alt: "thumbnail alt"
+      resource_type: "RESOURCE TYPE"
+      publication_date: "2020-31-08"
+      translations:
+        - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+          file:
+            title: "French translation"
+            mime: "application/vnd.ms-excel"
+            url: "http://example.com/document_fr.xls"
+            size: "150000"
+            name: "document.xls"
+            language_code: "fr"
+      more_info: "Looking for another language which is not on the list? Find out why."
+      length: 10
+  assertions:
+    count:
+      'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
+      'img.ecl-file__image[alt="thumbnail alt"]': 1
+      'a.ecl-file__download[href="http://example.com"]': 1
+      'div.ecl-file.ecl-file--thumbnail': 1
+      'div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info': 1
+      'div.ecl-file__container div.ecl-file__info': 1
+      'div.ecl-file__translation-container': 1
+      'ul.ecl-file__translation-list': 1
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+    equals:
+      'div.ecl-file__detail-info div.ecl-file__title': "Example document"
+      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
+      'div.ecl-file__info div.ecl-file__language': "English"
+      'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
+      'a.ecl-file__download .ecl-link__label': "Download"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
+      '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
+      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
 - array:
     '#type': pattern
     '#id': file_image
@@ -644,7 +821,6 @@
       length: 6
       meta:
         - "Meta 1"
-        - "Meta 2"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -652,9 +828,40 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -745,6 +952,70 @@
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      url: "http://example.com"
+      title: "Item title"
+      detail:
+        '#type': 'processed_text'
+        '#text': '<div>This is the detail. It is long.</div>'
+        '#format': 'plain_text'
+      length: 24
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+  assertions:
+    count:
+      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div.ecl-content-item__image__before': 0
+      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article > div .ecl-description-list': 0
+    equals:
+      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_primary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "thumbnail_secondary"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "navigation"
+    '#fields':
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    equals:
+      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -857,6 +1128,52 @@
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "date"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      detail: "Item text"
+      date:
+        day: '14'
+        month_fullname: 'July'
+        month_name: 'Jul'
+        month: '7'
+        year: '2021'
+      meta:
+        - "News article"
+        - "6 July 2015"
+      additional_information:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+  assertions:
+    count:
+      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
+      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
+      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+    equals:
+      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
+      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1203,64 +1520,6 @@
       li.ecl-unordered-list__item: 3
       'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 0
       div.ecl-u-border-top: 0
-- array:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      identity: "Digital single market"
-      title: "Business, Economy, Euro"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
-      metas:
-        - "News article"
-        - "6 July 2015"
-        - "Brussels"
-      language_switcher:
-        current: "French"
-        unavailable: "English"
-        is_primary: true
-        options:
-          - href: "#"
-            hreflang: "es"
-            label: "Spanish"
-            lang: "es"
-          - href: "#"
-            hreflang: "it"
-            label: "Italian"
-            lang: "it"
-      breadcrumb:
-        0:
-          href: "http://www.example.com/"
-          label: "European Commission"
-        1:
-          href: "http://www.example.com/announcements/"
-          label: "Announcements"
-      infos:
-        - text: "Monday 8 February"
-          icon: "calendar"
-        - text: "Munich, Germany"
-          icon: "location"
-  assertions:
-    count:
-      '.ecl-page-header': 1
-      '.ecl-breadcrumb__segment': 2
-      '.ecl-lang-select-page button.ecl-button': 1
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link': 2
-      '.ecl-page-header__meta-list': 1
-      '.ecl-page-header__info-list': 1
-      '.ecl-page-header__info-item': 2
-    equals:
-      'h2.ecl-u-type-heading-2': "Digital single market"
-      'h1.ecl-page-header__title': "Business, Economy, Euro"
-      '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules."
-      '.ecl-page-header__meta-list': "News article | 6 July 2015 | Brussels"
-      '.ecl-lang-select-page .ecl-u-type-strike': "English"
-      '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="es"]': "Spanish"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-link[lang="it"]': "Italian"
-      '.ecl-breadcrumb__segment:nth-child(1) a[href="http://www.example.com/"]': "European Commission"
-      '.ecl-breadcrumb__segment:nth-child(2)': "Announcements"
-      '.ecl-page-header__info-item:nth-child(1)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>Monday 8 February'
-      '.ecl-page-header__info-item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-page-header__info-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Munich, Germany'
 - array:
     '#type': pattern
     '#id': accordion
@@ -2063,8 +2322,8 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
+      'h2.ecl-u-type-heading-2': 0
+    equals: {}
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2176,12 +2435,14 @@
     '#variant': "vertical"
     '#fields':
       label: "Menu"
+      site_name: "Site name"
       items:
         - href: "#"
           label: 'Parent 1'
           children:
             - href: '#'
               label: 'Child 1.1'
+              is_current: true
             - href: '#'
               label: 'Child 1.2'
             - href: '#'
@@ -2201,25 +2462,27 @@
           label: "Link"
   assertions:
     contains:
-      '.ecl-menu-legacy__hamburger': "Menu"
+      '.ecl-menu__open': "Menu"
+      '.ecl-menu__site-name': "Site name"
+      '.ecl-menu__inner-header button.ecl-menu__close .ecl-button__label': "Close"
+      '.ecl-menu__inner-header button.ecl-menu__back .ecl-button__label': "Back"
+      'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
+      'li.ecl-menu__item:nth-child(2) a.ecl-menu__link': "Parent 2"
     equals:
-      # If we have less than 4 links they will be simply distributed horizontally.
-      'li.ecl-menu-legacy__item:nth-child(1) a.ecl-link span.ecl-link__label': "Parent 1"
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.1'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.2'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.3'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(4) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.4'
-      'li.ecl-menu-legacy__item:nth-child(2) a.ecl-link span.ecl-link__label': "Parent 2"
-      'li.ecl-menu-legacy__item:nth-child(2) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 2.1'
-      'li.ecl-menu-legacy__item:nth-child(2) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 2.2'
-      'li.ecl-menu-legacy__item:nth-child(2) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 2.3'
-      'li.ecl-menu-legacy__item:nth-child(3) a.ecl-link': "Link"
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 1.2'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(4) a.ecl-menu__sublink': 'Child 1.4'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(1) a.ecl-menu__sublink': 'Child 2.1'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 2.2'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 2.3'
+      'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
     '#variant': "vertical"
     '#fields':
-      label: "Menu"
+      label: "Custom Menu"
       items:
         - href: "#"
           label: 'Parent 1'
@@ -2242,61 +2505,19 @@
               label: 'Child 1.8'
   assertions:
     contains:
-      '.ecl-menu-legacy__hamburger': "Menu"
+      '.ecl-menu__open': "Custom Menu"
+      '.ecl-menu__inner-header button.ecl-menu__close .ecl-button__label': "Close"
+      '.ecl-menu__inner-header button.ecl-menu__back .ecl-button__label': "Back"
+      'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
     equals:
-      # 8 links will be arranged in 4 columns.
-      'li.ecl-menu-legacy__item:nth-child(1) a.ecl-link span.ecl-link__label': "Parent 1"
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.1'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.2'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.3'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.4'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.5'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.6'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(4) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.7'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(4) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.8'
-- array:
-    '#type': "pattern"
-    '#id': "navigation_menu"
-    '#variant': "vertical"
-    '#fields':
-      label: "Menu"
-      items:
-        - href: "#"
-          label: 'Parent 1'
-          children:
-            - href: '#'
-              label: 'Child 1.1'
-            - href: '#'
-              label: 'Child 1.2'
-            - href: '#'
-              label: 'Child 1.3'
-            - href: '#'
-              label: 'Child 1.4'
-            - href: '#'
-              label: 'Child 1.5'
-            - href: '#'
-              label: 'Child 1.6'
-            - href: '#'
-              label: 'Child 1.7'
-            - href: '#'
-              label: 'Child 1.8'
-            - href: '#'
-              label: 'Child 1.9'
-  assertions:
-    contains:
-      '.ecl-menu-legacy__hamburger': "Menu"
-    equals:
-      # 9 links will be arranged in 3 columns.
-      'li.ecl-menu-legacy__item:nth-child(1) a.ecl-link span.ecl-link__label': "Parent 1"
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.1'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.2'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(1) li.ecl-menu-legacy__subitem:nth-child(3) a.ecl-link': 'Child 1.3'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.4'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.5'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(2) li.ecl-menu-legacy__subitem:nth-child(3) a.ecl-link': 'Child 1.6'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(1) a.ecl-link': 'Child 1.7'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(2) a.ecl-link': 'Child 1.8'
-      'li.ecl-menu-legacy__item:nth-child(1) div.ecl-menu-legacy__column:nth-child(3) li.ecl-menu-legacy__subitem:nth-child(3) a.ecl-link': 'Child 1.9'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(1) a.ecl-menu__sublink': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 1.2'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(4) a.ecl-menu__sublink': 'Child 1.4'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(5) a.ecl-menu__sublink': 'Child 1.5'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(6) a.ecl-menu__sublink': 'Child 1.6'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(7) a.ecl-menu__sublink': 'Child 1.7'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(8) a.ecl-menu__sublink': 'Child 1.8'
 - array:
     '#type': 'pattern'
     '#id': 'link'
@@ -2377,3 +2598,29 @@
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__view-all': 0
+- array:
+    '#type': 'pattern'
+    '#id': 'active_search_filters'
+    '#fields':
+      name: 'Source'
+      items:
+        - label: 'DG Trad'
+          url: 'http://dg-trad.com'
+        - label: 'Health, well-being & Consumer protection'
+          url: 'http://health.com'
+        - label: 'No link'
+          url: ''
+  assertions:
+    count:
+      'div.active-search-filters.ecl-u-d-md-flex': 1
+      'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 1
+      'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 1
+      'span.ecl-tag__icon': 2
+      'svg.ecl-icon.ecl-icon--xs.ecl-tag__icon-close': 2
+      'svg.ecl-icon.ecl-icon--xs.ecl-tag__icon-close-filled': 2
+    contains:
+      'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 'DG Trad'
+      'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 'Health, well-being &amp; Consumer protection'
+      'div.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable': 'No link'
+    equals:
+      'div.active-search-filters__name span': 'Source'

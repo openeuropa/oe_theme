@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Project content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function oe_theme_content_project_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  // Run only on project content type.
+  if ($entity->bundle() !== 'oe_project') {
+    return;
+  }
+
+  // Field labels are different in frontend and backend.
+  // Here we override them, per view mode.
+  if ($build['#view_mode'] === 'full') {
+    $label_overrides = [
+      'oe_project_dates' => t('Project duration'),
+      'oe_project_website' => t('Project website'),
+    ];
+
+    // If there is only a start date, set "Start date" as label.
+    $dates = $entity->get('oe_project_dates')->getValue();
+    if (!empty($dates[0]) && (empty($dates[0]['end_value']) || $dates[0]['value'] === $dates[0]['end_value'])) {
+      $label_overrides['oe_project_dates'] = t('Start date');
+    }
+
+    foreach ($label_overrides as $name => $label_override) {
+      if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
+        $build[$name]['#title'] = $label_override;
+      }
+    }
+  }
+}

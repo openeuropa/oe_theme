@@ -46,14 +46,28 @@ list_item:
     detail:
       type: "text"
       label: "Detail"
-      description: "Standfirst for the link item."
+      description: "Description text accompanying the link item."
       preview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ratio quidem vestra sic cogit. Respondeat totidem verbis. Praeclarae mortes sunt imperatoriae; Sed erat aequius Triarium aliquid de dissensione nostra iudicare. Quae similitudo in genere etiam humano apparet."
     length:
       type: numeric
       label: "Max length"
-      description: "Used to trim the length of the Detail field (optional)."
+      description: "Used to trim the length of the 'Detail' field (optional)."
       preview: 250
       escape: false
+    additional_information:
+      type: array
+      label: "Additional information"
+      description: "Additional information to be displayed right below the 'Detail' field. Make sure you pass an array of renderable items. This field is not displayed on the following variants: 'navigation', 'block' and 'highlight'."
+      preview:
+        - '#type': pattern
+          '#id': field_list
+          '#variant': horizontal
+          '#fields':
+            items:
+              - label: "When"
+                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - label: "Where"
+                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
     meta:
       type: "array"
       label: "Metadata"

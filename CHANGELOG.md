@@ -1,5 +1,67 @@
 # Changelog
 
+## [2.10.2](https://github.com/openeuropa/oe_theme/tree/2.10.2) (2020-10-12)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.1...2.10.2)
+
+**Merged pull requests:**
+
+- EWPP-404: Make sure venue entity is present, even if field is empty. [\#626](https://github.com/openeuropa/oe_theme/pull/626) ([ademarco](https://github.com/ademarco))
+
+## [2.10.1](https://github.com/openeuropa/oe_theme/tree/2.10.1) (2020-10-09)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.0...2.10.1)
+
+**Merged pull requests:**
+
+- EWPP-394: Project content type has wrong styling [\#623](https://github.com/openeuropa/oe_theme/pull/623) ([enriquelacoma](https://github.com/enriquelacoma))
+- EWPP-392: Use storage to override view displays for organisations. [\#622](https://github.com/openeuropa/oe_theme/pull/622) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
+## [2.10.0](https://github.com/openeuropa/oe_theme/tree/2.10.0) (2020-10-08)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.9.0...2.10.0)
+
+**Merged pull requests:**
+
+- EWPP-368: Upgrade ECL version to 2.34.0. [\#619](https://github.com/openeuropa/oe_theme/pull/619) ([sergepavle](https://github.com/sergepavle))
+- EWPP-335: Still show logo, even if no other fields are available. [\#617](https://github.com/openeuropa/oe_theme/pull/617) ([ademarco](https://github.com/ademarco))
+- EWPP-337: Update pattern list item image background styles. [\#616](https://github.com/openeuropa/oe_theme/pull/616) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-358: Fixing spacing and render issues [\#615](https://github.com/openeuropa/oe_theme/pull/615) ([upchuk](https://github.com/upchuk))
+- EWPP-366: Add spacing between embedded media and embedded document in wysiwyg. [\#614](https://github.com/openeuropa/oe_theme/pull/614) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-273: Epic news. [\#613](https://github.com/openeuropa/oe_theme/pull/613) ([nagyad](https://github.com/nagyad))
+- EWPP-339: Change closed status class. [\#611](https://github.com/openeuropa/oe_theme/pull/611) ([enriquelacoma](https://github.com/enriquelacoma))
+- EWPP-349: Use view display storage to override node displays. [\#608](https://github.com/openeuropa/oe_theme/pull/608) ([ademarco](https://github.com/ademarco))
+- EWPP-203: Epic organisation [\#607](https://github.com/openeuropa/oe_theme/pull/607) ([nagyad](https://github.com/nagyad))
+- EWPP-328: Theme date and datepicker using ecl. [\#606](https://github.com/openeuropa/oe_theme/pull/606) ([drishu](https://github.com/drishu))
+- EWPP-284: Make sure theme can choose "core" and "standardised" ECL branding. [\#586](https://github.com/openeuropa/oe_theme/pull/586) ([sergepavle](https://github.com/sergepavle))
+
+## [2.9.0](https://github.com/openeuropa/oe_theme/tree/2.9.0) (2020-09-29)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.8.0...2.9.0)
+
+**Merged pull requests:**
+
+- EWPP-309: Fix project styling issues. [\#596](https://github.com/openeuropa/oe_theme/pull/596) ([22Alexandra](https://github.com/22Alexandra))
+- EPIC-Call for tenders [\#591](https://github.com/openeuropa/oe_theme/pull/591) ([nagyad](https://github.com/nagyad))
+- EWPP-221: Make label in active filters have the same top margin as the tags. [\#585](https://github.com/openeuropa/oe_theme/pull/585) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-221: Update active filters pattern to allow for tags without link. [\#582](https://github.com/openeuropa/oe_theme/pull/582) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-278: Update ECL components to 2.33. [\#581](https://github.com/openeuropa/oe_theme/pull/581) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-217: Fix featured item assertion. [\#580](https://github.com/openeuropa/oe_theme/pull/580) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-193: Update teaser assertion for 2.32. [\#579](https://github.com/openeuropa/oe_theme/pull/579) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-191: Add optional field for trimming teaser in file teaser pattern. [\#576](https://github.com/openeuropa/oe_theme/pull/576) ([22Alexandra](https://github.com/22Alexandra))
+- Merge Project content type epic into 2.x [\#575](https://github.com/openeuropa/oe_theme/pull/575) ([ademarco](https://github.com/ademarco))
+- EWPP-192: Add translation toggle label variable to file patterns. [\#568](https://github.com/openeuropa/oe_theme/pull/568) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-240: Render the EU logo on mobile screen size. [\#567](https://github.com/openeuropa/oe_theme/pull/567) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-134: Restore passing original language code in preprocessor. [\#564](https://github.com/openeuropa/oe_theme/pull/564) ([sergepavle](https://github.com/sergepavle))
+- EWPP-225: Active search filters pattern. [\#562](https://github.com/openeuropa/oe_theme/pull/562) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-227: Update ECL to 2.32.0. [\#559](https://github.com/openeuropa/oe_theme/pull/559) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-217: Add featured field and file assertions [\#557](https://github.com/openeuropa/oe_theme/pull/557) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-43: Implement teasers using extra fields. [\#555](https://github.com/openeuropa/oe_theme/pull/555) ([ademarco](https://github.com/ademarco))
+- EWPP-208: Integrate new ECL multiple select widget [\#554](https://github.com/openeuropa/oe_theme/pull/554) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-191: File teaser pattern. [\#551](https://github.com/openeuropa/oe_theme/pull/551) ([22Alexandra](https://github.com/22Alexandra))
+- OPENEUROPA-0000: Text in the page header should be escaped [\#546](https://github.com/openeuropa/oe_theme/pull/546) ([brummbar](https://github.com/brummbar))
+- EWPP-55: Create in-page navigation field group formatter. [\#544](https://github.com/openeuropa/oe_theme/pull/544) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-134: Drop usage of legacy site and page header. [\#543](https://github.com/openeuropa/oe_theme/pull/543) ([sergepavle](https://github.com/sergepavle))
+- EWPP-133: Use menu component on navigation-menu pattern. [\#542](https://github.com/openeuropa/oe_theme/pull/542) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- FPFISSUPP-8617: Temporarily switch MySQL image to MariaDB. [\#535](https://github.com/openeuropa/oe_theme/pull/535) ([ademarco](https://github.com/ademarco))
+- EWPP-113: Update ECL to version 2.31.0. [\#531](https://github.com/openeuropa/oe_theme/pull/531) ([nagyad](https://github.com/nagyad))
+
 ## [2.8.0](https://github.com/openeuropa/oe_theme/tree/2.8.0) (2020-08-06)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.7.0...2.8.0)

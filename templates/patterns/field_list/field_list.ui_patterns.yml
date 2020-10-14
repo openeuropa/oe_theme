@@ -8,6 +8,9 @@ field_list:
     horizontal:
       label: "Horizontal"
       description: "It will align the field items horizontally."
+    featured_horizontal:
+      label: "Featured horizontal"
+      description: "Like the horizontal variant, only with a more prominent look."
   fields:
     items:
       type: "array"

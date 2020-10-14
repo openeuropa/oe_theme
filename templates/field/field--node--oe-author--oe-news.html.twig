@@ -1,0 +1,9 @@
+{#
+/**
+ * @file
+ * News author field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}{{ item.content }}{{ not loop.last ? ' | ' }}{% endfor %}

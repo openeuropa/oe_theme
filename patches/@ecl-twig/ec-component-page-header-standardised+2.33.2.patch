@@ -1,0 +1,24 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-page-header-standardised/ecl-page-header-standardised.html.twig
++++ b/node_modules/@ecl-twig/ec-component-page-header-standardised/ecl-page-header-standardised.html.twig
+@@ -49,6 +49,11 @@
+       _compliance_inner_check_: true
+     }) only %}
+   {% endif %}
++  {% if composition is not empty %}
++    <div class="ecl-page-header-standardised__composition">
++      {{- composition|raw -}}
++    </div>
++  {% endif %}
+   {% if _meta is not empty %}
+     <div class="ecl-page-header-standardised__meta">
+       <span class="ecl-u-type-uppercase">
+@@ -58,7 +63,7 @@
+   {% endif %}
+     <h1 class="ecl-page-header-standardised__title">{{ _title }}</h1>
+   {% if _description is not empty %}
+-    <p class="ecl-page-header-standardised__description">{{ _description|raw }}</p>
++    <p class="ecl-page-header-standardised__description">{{ _description }}</p>
+   {% endif %}
+   </div>
+ </div>

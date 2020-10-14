@@ -1,0 +1,8 @@
+.ecl-page-header {
+  &-core,
+  &-standardised {
+    &__composition {
+      margin-bottom: $ecl-spacing-xl;
+    }
+  }
+}

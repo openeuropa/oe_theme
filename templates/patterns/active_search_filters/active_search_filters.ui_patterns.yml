@@ -1,0 +1,28 @@
+active_search_filters:
+  label: "Active search filters"
+  description: "Display a list of active search filters along with the filter name."
+  fields:
+    name:
+      type: "text"
+      label: "Filter name"
+      description: "Name of the filter."
+      preview: "Categories"
+    items:
+      type: "array"
+      label: "Active filters"
+      description: "List of active filter links."
+      preview:
+        - label: "First category"
+          url: "http://first-category.com/"
+        - label: "Second category"
+          url: "http://second-category.com"
+        - label: "Third category"
+          url: ""
+        - label: "Forth category"
+          url: ""
+        - label: "Fifth category"
+          url: ""
+        - label: "Sixth category"
+          url: ""
+        - label: "Seven category with a very very long name"
+          url: ""

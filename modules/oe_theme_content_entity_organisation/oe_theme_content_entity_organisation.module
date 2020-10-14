@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Module file is used for theming the Organisation entity.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$variables): void {
+  $entity = $variables['entity'];
+  $fields_values = ['name' => 'name', 'oe_acronym' => 'acronym'];
+  foreach ($fields_values as $entity_field => $pattern_field) {
+    if (!$entity->get($entity_field)->isEmpty()) {
+      $variables[$pattern_field] = $entity->get($entity_field)->value;
+    }
+  }
+
+  // Extract the image if Media and File entities exist.
+  $media_image = $entity->get('oe_logo')->entity;
+  if ($media_image instanceof MediaInterface) {
+    $media_image = \Drupal::service('entity.repository')->getTranslationFromContext($media_image);
+    $cacheability = CacheableMetadata::createFromRenderArray($variables);
+    $cacheability->addCacheableDependency($media_image);
+
+    // Get the media source.
+    $source = $media_image->getSource();
+    if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+      $thumbnail = $media_image->get('thumbnail')->first();
+      $variables['logo'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+      $cacheability->addCacheableDependency($thumbnail);
+    }
+    $cacheability->applyTo($variables);
+  }
+
+  // Set contact page url.
+  $variables['contact_page_url'] = '';
+  if (!$entity->get('oe_contact_url')->isEmpty()) {
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
+    $link = $entity->get('oe_contact_url')->first();
+    $variables['contact_page_url'] = $link->getUrl()->toString();
+  }
+
+  // Process organisation contact details.
+  $variables['organisation_details'] = [];
+  $contact_fields = ['oe_address', 'oe_website'];
+  foreach ($contact_fields as $field) {
+    if ($entity->get($field)->isEmpty()) {
+      continue;
+    }
+    $variables['organisation_details'][] = [
+      'label' => $variables['content'][$field]['#title'],
+      'body' => [
+        '#label_display' => 'hidden',
+      ] + $variables['content'][$field],
+    ];
+  }
+}

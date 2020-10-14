@@ -4,11 +4,47 @@ Feature: Site branding
   As a product owner
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.
 
-  Scenario: The European Commission logo is available throughout the site.
-    When I am on the homepage
+  @javascript
+  Scenario Outline: The European Commission logo is available throughout the site.
+    Given I am on the homepage
+    When the theme is configured to use the "European Union" style
+    And I reload the page
+    Then I should see the "logo" element in the "header"
+    And the "English" EU mobile logo should be available
+    When I open the language switcher dialog
+    And I click "<language_selector>"
+    Then the "<language>" EU mobile logo should be available
+    When the theme is configured to use the "European Commission" style
+    And I reload the page
     Then I should see the "logo" element in the "header"
     When I am on "the user registration page"
     Then I should see the "logo" element in the "header"
+
+    Examples:
+      | language_selector       | language   |
+      | български               | Bulgarian  |
+      | čeština                 | Czech      |
+      | dansk                   | Danish     |
+      | Deutsch                 | German     |
+      | eesti                   | Estonian   |
+      | ελληνικά                | Greek      |
+      | español                 | Spanish    |
+      | français                | French     |
+      | Gaeilge                 | Irish      |
+      | hrvatski                | Croatian   |
+      | italiano                | Italian    |
+      | latviešu                | Latvian    |
+      | lietuvių                | Lithuanian |
+      | magyar                  | Hungarian  |
+      | Malti                   | Maltese    |
+      | Nederlands              | Dutch      |
+      | polski                  | Polish     |
+      | português               | Portuguese |
+      | română                  | Romanian   |
+      | slovenčina              | Slovak     |
+      | slovenščina             | Slovenian  |
+      | suomi                   | Finnish    |
+      | svenska                 | Swedish    |
 
   Scenario: The breadcrumb is visible everywhere.
     When I am on the homepage
