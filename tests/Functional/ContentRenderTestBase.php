@@ -5,10 +5,13 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\node\NodeInterface;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 
 /**
  * Base class for testing content types.
@@ -139,70 +142,229 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
     $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
     $this->assertCount(1, $figures);
-    $figures = reset($figures);
+    $figure = reset($figures);
 
     // Assert image tag.
-    $image = $figures->find('css', 'img');
+    $image = $figure->find('css', 'img');
     $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
     $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
 
     // Assert caption.
-    $caption = $figures->find('css', 'figcaption');
+    $caption = $figure->find('css', 'figcaption');
     $this->assertEquals("Caption $name", $caption->getText());
   }
 
   /**
-   * Creates Contact entity.
+   * Asserts rendering of Contact entity using default display view.
    *
-   * @param string $name
-   *   Entity name. Is used as a parameter for test data.
-   * @param string $bundle
-   *   Entity bundle.
-   * @param int $status
-   *   Entity status.
+   * @param \Drupal\node\NodeInterface $node
+   *   Node entity.
+   * @param string $contact_field_name
+   *   Field name, reference to Contact entity.
+   */
+  protected function assertContactEntityDefaultDisplay(NodeInterface $node, string $contact_field_name):void {
+    // Create Contact entity with required values only.
+    $contact = $this->createContactEntity();
+    $name = $contact->getName();
+    $node->set($contact_field_name, [$contact]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $rendered_element = $this->assertSession()->elementExists('css', '.oe_contact__default');
+
+    // Assert that empty values don't exist.
+    $this->assertSession()->elementNotExists('css', '.ecl-editor', $rendered_element);
+    $this->assertSession()->elementNotExists('css', '.ecl-description-list', $rendered_element);
+    $this->assertSession()->elementNotExists('css', 'figure.ecl-media-container', $rendered_element);
+    $this->assertSession()->elementNotExists('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l', $rendered_element);
+
+    // Assert Contact title.
+    $contact_sub_headers = $rendered_element->findAll('css', 'h3');
+    $this->assertCount(1, $contact_sub_headers);
+    $this->assertEquals($contact_sub_headers[0]->getText(), $name);
+
+    // Add and assert body field.
+    $contact->set('oe_body', 'Body text ' . $name);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $body = $rendered_element->findAll('css', '.ecl-editor');
+    $this->assertCount(1, $body);
+    $this->assertEquals("Body text $name", $body[0]->getText());
+
+    // Add and assert Organisation field.
+    $contact->set('oe_organisation', "Organisation $name");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $field_list_assert = new FieldListAssert();
+    $contact_expected_values = [];
+    $contact_expected_values['items'][] = [
+      'label' => 'Organisation',
+      'body' => "Organisation $name",
+    ];
+    $contact_html = $rendered_element->getHtml();
+    $field_list_assert->assertPattern($contact_expected_values, $contact_html);
+    $field_list_assert->assertVariant('horizontal', $contact_html);
+
+    // Add and assert Website field.
+    $contact->set('oe_website', ['uri' => "http://www.example.com/website_$name"]);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Website',
+      'body' => "http://www.example.com/website_$name",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Email field.
+    $contact->set('oe_email', "$name@example.com");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Email',
+      'body' => "$name@example.com",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Phone number field.
+    $contact->set('oe_phone', "Phone number $name");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Phone number',
+      'body' => "Phone number $name",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Mobile number field.
+    $contact->set('oe_mobile', "Mobile number $name");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Mobile number',
+      'body' => "Mobile number $name",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Fax number field.
+    $contact->set('oe_fax', "Fax number $name");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Fax number',
+      'body' => "Fax number $name",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Address field.
+    $contact->set('oe_address', [
+      'country_code' => 'BE',
+      'locality' => 'Brussels',
+      'address_line1' => "Address $name",
+      'postal_code' => '1001',
+    ]);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Postal address',
+      'body' => "Address $name, 1001 Brussels, Belgium",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Office field.
+    $contact->set('oe_office', "Office $name");
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Office',
+      'body' => "Office $name",
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $rendered_element->getHtml());
+
+    // Add and assert Social media links field.
+    $contact->set('oe_social_media', [
+      [
+        'uri' => "http://www.example.com/social_media_$name",
+        'title' => "Social media $name",
+        'link_type' => 'facebook',
+      ],
+    ]);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $contact_expected_values['items'][] = [
+      'label' => 'Social media',
+      'body' => html_entity_decode('&nbsp;') . "Social media $name",
+    ];
+
+    // Add and assert Image field.
+    $media = $this->createMediaImage($name);
+    $contact->set('oe_image', [
+      [
+        'target_id' => (int) $media->id(),
+        'caption' => "Caption $name",
+      ],
+    ]);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertFeaturedMediaField($rendered_element, $name);
+
+    // Add and assert Press contacts field.
+    $contact->set('oe_press_contact_url', ['uri' => "http://www.example.com/press_contact_$name"]);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+    $press = $rendered_element->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
+    $press = reset($press);
+    $press_link = $press->findAll('css', 'a');
+    $this->assertCount(1, $press_link);
+    $press_link = reset($press_link);
+    $this->assertEquals("http://www.example.com/press_contact_$name", $press_link->getAttribute('href'));
+
+    $press_label = $press_link->findAll('css', '.ecl-link__label');
+    $this->assertCount(1, $press_label);
+    $press_label = reset($press_label);
+    $this->assertEquals('Press contacts', $press_label->getText());
+
+    $press_icon = $press_link->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $this->assertCount(1, $press_icon);
+  }
+
+  /**
+   * Creates Contact entity based on provided settings.
+   *
+   * @param array $settings
+   *   Entity configuration.
    *
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
-   *   Contact entity.
+   *   Contact entity instance.
    */
-  protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
-    // Create image for contact.
-    $media = $this->createMediaImage($name);
-
-    $contact = $this->getStorage('oe_contact')->create([
-      'bundle' => $bundle,
-      'name' => $name,
-      'oe_address' => [
-        'country_code' => 'BE',
-        'locality' => 'Brussels',
-        'address_line1' => "Address $name",
-        'postal_code' => '1001',
-      ],
-      'oe_body' => "Body text $name",
-      'oe_email' => "$name@example.com",
-      'oe_fax' => "Fax number $name",
-      'oe_mobile' => "Mobile number $name",
-      'oe_office' => "Office $name",
-      'oe_organisation' => "Organisation $name",
-      'oe_phone' => "Phone number $name",
-      'oe_press_contact_url' => ['uri' => "http://www.example.com/press_contact_$name"],
-      'oe_social_media' => [
-        [
-          'uri' => "http://www.example.com/social_media_$name",
-          'title' => "Social media $name",
-          'link_type' => 'facebook',
-        ],
-      ],
-      'oe_website' => ['uri' => "http://www.example.com/website_$name"],
-      'oe_image' => [
-        [
-          'target_id' => (int) $media->id(),
-          'caption' => "Caption $name",
-        ],
-      ],
-      'status' => $status,
-    ]);
+  protected function createContactEntity(array $settings = []): ContactInterface {
+    // Define default values.
+    $default_settings = [
+      'bundle' => 'oe_general',
+      'name' => $this->randomMachineName(),
+      'status' => CorporateEntityInterface::PUBLISHED,
+      'uid' => 0,
+    ];
+    $settings += $default_settings;
+    $contact = $this->getStorage('oe_contact')->create($settings);
 
     return $contact;
+  }
+
+  /**
+   * Asserts field group header.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Field group content.
+   * @param string $title
+   *   Expected title.
+   * @param string $id
+   *   Expected id.
+   */
+  protected function assertContentHeader(NodeElement $element, string $title, string $id = ''): void {
+    $header = $element->find('css', 'h2.ecl-u-type-heading-2');
+    $this->assertEquals($title, $header->getText());
+    if (!empty($id)) {
+      $this->assertEquals($id, $header->getAttribute('id'));
+    }
   }
 
 }
