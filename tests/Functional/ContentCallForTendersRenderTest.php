@@ -10,8 +10,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
-use Drupal\user\Entity\Role;
-use Drupal\user\RoleInterface;
 
 /**
  * Tests that "Call for tenders" content type renders correctly.
@@ -30,18 +28,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     'oe_theme_content_call_tenders',
     'datetime_testing',
   ];
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function setUp(): void {
-    parent::setUp();
-
-    // Give anonymous users permission to view entities.
-    Role::load(RoleInterface::ANONYMOUS_ID)
-      ->grantPermission('view published skos concept entities')
-      ->save();
-  }
 
   /**
    * Tests that the Call for tenders page renders correctly.

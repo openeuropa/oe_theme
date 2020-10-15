@@ -38,7 +38,6 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
-      ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
       ->save();
   }

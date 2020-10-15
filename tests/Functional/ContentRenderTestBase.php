@@ -12,6 +12,8 @@ use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * Base class for testing content types.
@@ -34,6 +36,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
     \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
+
+    // Give anonymous users permission to view entities.
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published skos concept entities')
+      ->save();
   }
 
   /**

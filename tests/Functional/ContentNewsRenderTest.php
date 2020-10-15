@@ -34,7 +34,6 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     parent::setUp();
 
     Role::load(RoleInterface::ANONYMOUS_ID)
-      ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
       ->save();
   }
