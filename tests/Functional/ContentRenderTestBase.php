@@ -8,10 +8,12 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
+use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\BrowserTestBase;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * Base class for testing content types.
@@ -34,6 +36,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
     \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
+
+    // Give anonymous users permission to view entities.
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published skos concept entities')
+      ->save();
   }
 
   /**
@@ -347,6 +354,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $settings += $default_settings;
     $contact = $this->getStorage('oe_contact')->create($settings);
 
+    return $contact;
   }
 
   /**
@@ -365,120 +373,6 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     if (!empty($id)) {
       $this->assertEquals($id, $header->getAttribute('id'));
     }
-  }
-
-  /**
-   * Asserts Contact entity field rendering.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $name
-   *   Name of the Contact entity.
-   */
-  protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name): void {
-    $contact_name = $element->findAll('css', 'h3');
-    $this->assertCount(1, $contact_name);
-    $this->assertEquals($name, $contact_name[0]->getText());
-
-    $contact_body = $element->findAll('css', '.ecl-editor');
-    $this->assertCount(1, $contact_body);
-    $this->assertEquals("Body text $name", $contact_body[0]->getText());
-
-    $contacts_html = $element->getHtml();
-    $field_list_assert = new FieldListAssert();
-    $contact_expected_values = [
-      'items' => [
-        [
-          'label' => 'Organisation',
-          'body' => "Organisation $name",
-        ], [
-          'label' => 'Website',
-          'body' => "http://www.example.com/website_$name",
-        ], [
-          'label' => 'Email',
-          'body' => "$name@example.com",
-        ], [
-          'label' => 'Phone number',
-          'body' => "Phone number $name",
-        ], [
-          'label' => 'Mobile number',
-          'body' => "Mobile number $name",
-        ], [
-          'label' => 'Fax number',
-          'body' => "Fax number $name",
-        ], [
-          'label' => 'Postal address',
-          'body' => "Address $name, 1001 Brussels, Belgium",
-        ], [
-          'label' => 'Office',
-          'body' => "Office $name",
-        ], [
-          'label' => 'Social media',
-          'body' => html_entity_decode('&nbsp;') . 'Social media ' . $name,
-        ],
-      ],
-    ];
-    $field_list_assert->assertPattern($contact_expected_values, $contacts_html);
-    $field_list_assert->assertVariant('horizontal', $contacts_html);
-
-    // Assert Press contacts.
-    $press = $element->find('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $this->assertLinkIcon($press, 'Press contacts', "http://www.example.com/press_contact_$name");
-
-    // Assert contacts Image.
-    $this->assertFeaturedMediaField($element, $name);
-  }
-
-  /**
-   * Asserts field group header.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Field group content.
-   * @param string $title
-   *   Expected title.
-   * @param string $id
-   *   Expected id.
-   */
-  protected function assertContentHeader(NodeElement $element, string $title, string $id = ''): void {
-    $header = $element->find('css', 'h2.ecl-u-type-heading-2');
-    $this->assertEquals($title, $header->getText());
-    if (!empty($id)) {
-      $this->assertEquals($id, $header->getAttribute('id'));
-    }
-  }
-
-  /**
-   * Asserts standalone link template with icon.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $title
-   *   Link title.
-   * @param string $href
-   *   Link URL.
-   * @param bool $is_external
-   *   Defines whether it is extrernal link or internal.
-   */
-  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
-    $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
-    $this->assertCount(1, $link);
-    $this->assertEquals($href, $link[0]->getAttribute('href'));
-
-    $label = $link[0]->findAll('css', '.ecl-link__label');
-    $this->assertCount(1, $label);
-    $this->assertEquals($title, $label[0]->getText());
-
-    $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon';
-    $icon_type = 'ui--external';
-    if (!$is_external) {
-      $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
-      $icon_type = 'ui--corner-arrow';
-    }
-    $svg = $link[0]->findAll('css', $svg_locator);
-    $this->assertCount(1, $svg);
-    $icon = $svg[0]->findAll('css', 'use');
-    $this->assertCount(1, $icon);
-    $this->assertContains($icon_type, $icon[0]->getAttribute('xlink:href'));
   }
 
 }
