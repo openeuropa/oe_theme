@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
-use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 
@@ -16,14 +16,14 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
   /**
    * Start date.
    *
-   * @var \Drupal\Component\Datetime\DateTimePlus
+   * @var \Drupal\Core\Datetime\DrupalDateTime
    */
   protected $start;
 
   /**
    * End date.
    *
-   * @var \Drupal\Component\Datetime\DateTimePlus
+   * @var \Drupal\Core\Datetime\DrupalDateTime
    */
   protected $end;
 
@@ -38,10 +38,10 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
    *   Timezone string, e.g. "Europe/Brussels".
    */
   private function __construct(int $start, int $end = NULL, string $timezone = NULL) {
-    $this->start = DateTimePlus::createFromTimestamp($start, $timezone);
+    $this->start = DrupalDateTime::createFromTimestamp($start, $timezone);
 
     if ($end !== NULL) {
-      $this->end = DateTimePlus::createFromTimestamp($end, $timezone);
+      $this->end = DrupalDateTime::createFromTimestamp($end, $timezone);
     }
   }
 
@@ -157,7 +157,7 @@ class DateValueObject extends ValueObjectBase implements DateValueObjectInterfac
         $this->start->format($format) !== $this->end->format($format)
         || $this->start->format($extra) !== $this->end->format($extra)
       )
-      ) {
+    ) {
       $date_interval .= '-' . $this->end->format($format);
     }
 
