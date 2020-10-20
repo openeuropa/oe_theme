@@ -283,7 +283,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => $venue_entity->getName() . "\n  Event venue address, 1001 Brussels, Belgium",
+          'body' => $venue_name . "\n  Event venue address, 1001 Brussels, Belgium",
         ], [
           'label' => 'When',
           'body' => $start_date->format('l j F Y, H:i') . "\n to " . $end_date->format('l j F Y, H:i'),
