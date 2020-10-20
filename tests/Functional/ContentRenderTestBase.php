@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
+use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
@@ -168,10 +169,12 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Node entity.
    * @param string $contact_field_name
    *   Field name, reference to Contact entity.
+   * @param array $settings
+   *   Contact entity properties.
    */
-  protected function assertContactEntityDefaultDisplay(NodeInterface $node, string $contact_field_name):void {
+  protected function assertContactEntityDefaultDisplay(NodeInterface $node, string $contact_field_name, array $settings = []):void {
     // Create Contact entity with required values only.
-    $contact = $this->createContactEntity();
+    $contact = $this->createContactEntity($settings);
     $name = $contact->getName();
     $node->set($contact_field_name, [$contact]);
     $node->save();
@@ -354,6 +357,29 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $contact = $this->getStorage('oe_contact')->create($settings);
 
     return $contact;
+  }
+
+  /**
+   * Creates Venue entity based on provided settings.
+   *
+   * @param array $settings
+   *   Entity settings.
+   *
+   * @return \Drupal\oe_content_entity_venue\Entity\VenueInterface
+   *   Venue entity instance.
+   */
+  protected function createVenueEntity(array $settings = []): VenueInterface {
+    // Define default values.
+    $default_settings = [
+      'bundle' => 'oe_default',
+      'name' => $this->randomMachineName(),
+      'status' => CorporateEntityInterface::PUBLISHED,
+      'uid' => 0,
+    ];
+    $settings += $default_settings;
+    $venue = $this->getStorage('oe_venue')->create($settings);
+
+    return $venue;
   }
 
   /**

@@ -101,6 +101,9 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       $datetime_start = $event->getRegistrationStartDate();
       $datetime_end = $event->getRegistrationEndDate();
       $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
+      // Field value is stored in UTC timezone. So set proper timezone for the
+      // request date.
+      $request_datetime->setTimezone(new \DateTimeZone('UTC'));
 
       // If the request time is on the same day as the start day we need to
       // show different message.
@@ -132,6 +135,9 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
     if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
       $datetime_end = $event->getRegistrationEndDate();
       $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
+      // Field value is stored in UTC timezone. So set proper timezone for the
+      // request date.
+      $request_datetime->setTimezone(new \DateTimeZone('UTC'));
 
       // If the request time is on the same day as the end day we need to
       // show different message.
