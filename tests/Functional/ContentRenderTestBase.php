@@ -355,6 +355,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ];
     $settings += $default_settings;
     $contact = $this->getStorage('oe_contact')->create($settings);
+    $contact->save();
 
     return $contact;
   }
@@ -378,6 +379,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ];
     $settings += $default_settings;
     $venue = $this->getStorage('oe_venue')->create($settings);
+    $venue->save();
 
     return $venue;
   }
