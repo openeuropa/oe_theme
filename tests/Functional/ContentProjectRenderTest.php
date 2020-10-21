@@ -7,6 +7,8 @@ namespace Drupal\Tests\oe_theme\Functional;
 use Behat\Mink\Element\NodeElement;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -36,7 +38,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    // Give anonymous users permission to view organisation entities.
+    // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published oe_organisation')
       ->grantPermission('view published oe_contact')
@@ -127,7 +129,6 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
       'status' => 1,
     ]);
     $node->save();
-
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
@@ -148,35 +149,44 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertFeaturedMediaField($project_details, 'project_featured_media');
 
     // Assert the description blocks inside the Project details.
-    $description_lists = $project_details->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured');
+    $description_lists = $project_details->findAll('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none .ecl-u-mb-s');
     $this->assertCount(3, $description_lists);
 
     // Assert the first description list block's labels and values.
-    $labels = $description_lists[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(3, $labels);
-    $this->assertEquals('Reference', $labels[0]->getText());
-    $this->assertEquals('Project duration', $labels[1]->getText());
-    $this->assertEquals('Project locations', $labels[2]->getText());
-    $values = $description_lists[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(3, $values);
-    $this->assertEquals('Project reference', $values[0]->getText());
-    $this->assertEquals('10.05.2020 - 15.05.2025', $values[1]->getText());
-    $this->assertContains('09199 Ages Burgos, Spain', $values[2]->getText());
-    $this->assertContains('Munich, Germany', $values[2]->getText());
+    $field_list_assert = new FieldListAssert();
+    $first_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Project reference',
+        ], [
+          'label' => 'Project duration',
+          'body' => "10.05.2020\n - 15.05.2025",
+        ], [
+          'label' => 'Project locations',
+          'body' => "09199 Ages Burgos, Spain\n\n  Munich, Germany",
+        ],
+      ],
+    ];
+    $field_list_html = $description_lists[0]->getHtml();
+    $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Assert the second description list block's labels and values.
-    $labels = $description_lists[1]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(2, $labels);
-    $this->assertEquals('Overall budget', $labels[0]->getText());
-    $this->assertEquals('EU contribution', $labels[1]->getText());
-
-    // Assert definition content.
-    $values = $description_lists[1]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertEquals('<div content="100">€100</div>', trim($values[0]->getHtml()));
-    $definition_element = $values[1];
-    $values = $definition_element->findAll('css', 'div');
-    $this->assertEquals('<div>€100</div>', trim($values[0]->getOuterHtml()));
-    $this->assertEquals('<div class="ecl-u-mt-m">100% of the overall budget</div>', trim($values[1]->getOuterHtml()));
+    $second_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Overall budget',
+          'body' => '€100',
+        ], [
+          'label' => 'EU contribution',
+          'body' => "€100100% of the overall budget",
+        ],
+      ],
+    ];
+    $field_list_html = $description_lists[1]->getHtml();
+    $field_list_assert->assertPattern($second_field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Change EU contribution and assert percentage field change.
     $node->set('oe_project_budget_eu', 50);
@@ -187,40 +197,34 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $description_lists = $project_details->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured');
+
     // Assert the first description list block's labels and values.
-    $labels = $description_lists[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertEquals('Start date', $labels[1]->getText());
-    $values = $description_lists[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertEquals('10.05.2020', $values[1]->getText());
+    $first_field_list_expected_values['items'][1] = [
+      'label' => 'Start date',
+      'body' => '10.05.2020',
+    ];
+    $field_list_assert->assertPattern($first_field_list_expected_values, $description_lists[0]->getHtml());
 
     // Assert the second description list block's labels and values.
-    $values = $description_lists[1]->findAll('css', 'dd.ecl-description-list__definition');
-    $definition_element = $values[1];
-    $values = $definition_element->findAll('css', 'div');
-    $this->assertEquals('<div>€50</div>', trim($values[0]->getOuterHtml()));
-    $this->assertEquals('<div class="ecl-u-mt-m">50% of the overall budget</div>', trim($values[1]->getOuterHtml()));
+    $second_field_list_expected_values['items'][1]['body'] = "€5050% of the overall budget";
+    $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.
-    $labels = $description_lists[2]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(1, $labels);
-    $this->assertEquals('Project website', $labels[0]->getText());
-    $values = $description_lists[2]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(1, $values);
-    $values[0]->hasLink('Example website');
+    $third_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Project website',
+          'body' => 'Example website',
+        ],
+      ],
+    ];
+    $field_list_html = $description_lists[2]->getHtml();
+    $field_list_assert->assertPattern($third_field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Assert documents file.
     $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
-    $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
-    $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document project_document', $file_title->getText());
-    $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->getText());
-    $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
-    $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/sample_project_document.pdf', $file_download_link->getAttribute('href'));
-    $this->assertContains('Download', $file_download_link->getText());
+    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_document');
 
     // Assert top region - Project results.
     $project_results = $this->assertSession()->elementExists('css', 'div#project-results');
@@ -230,47 +234,29 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert result file.
     $file_wrapper = $project_results->find('css', 'div.ecl-file');
-    $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
-    $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains('Test document project_result', $file_title->getText());
-    $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->getText());
-    $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('KB - PDF)', $file_info_properties->getText());
-    $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains('/sample_project_result.pdf', $file_download_link->getAttribute('href'));
-    $this->assertContains('Download', $file_download_link->getText());
+    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_result');
 
     // Assert funding programme.
     $project_funding = $this->assertSession()->elementExists('css', 'div#project-funding');
-    $title = $project_funding->find('css', '.ecl-u-type-heading-2');
-    $this->assertContains('Funding', $title->getText());
-    $item = $project_funding->findAll('css', '.ecl-unordered-list__item');
-    $this->assertCount(3, $item);
-    $meta = $item[0]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
-    $this->assertEquals('Funding programme', $meta->getText());
-    $title = $item[0]->find('css', '.ecl-content-item__title');
-    $this->assertContains('Anti Fraud Information System (AFIS)', $title->getText());
-    $meta = $item[1]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
-    $this->assertEquals('Call for proposals', $meta->getText());
-    $link = $item[1]->find('css', '.ecl-link');
-    $this->assertContains('Test call for proposal', $link->getText());
-    $this->assertContains('http://proposal-call.com', $link->getAttribute('href'));
-    $meta = $item[2]->find('css', '.ecl-content-item__meta span.ecl-u-type-uppercase');
-    $this->assertEquals('Call for proposals', $meta->getText());
-    $link = $item[2]->find('css', '.ecl-link');
-    $this->assertContains('http://proposal-call-no-title.com', $link->getText());
-    $this->assertContains('http://proposal-call-no-title.com', $link->getAttribute('href'));
+    $this->assertContentHeader($project_funding, 'Funding');
+    $unordered_list_items = $project_funding->findAll('css', 'ul.ecl-unordered-list.ecl-unordered-list--divider');
+    $this->assertCount(2, $unordered_list_items);
+
+    $funding_items = $unordered_list_items[0]->findAll('css', '.ecl-unordered-list__item');
+    $this->assertCount(1, $funding_items);
+    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', 'Funding programme');
+
+    $proposal_items = $unordered_list_items[1]->findAll('css', '.ecl-unordered-list__item');
+    $this->assertCount(2, $proposal_items);
+    $this->assertListItem($proposal_items[0], 'Test call for proposal', 'Call for proposals', 'http://proposal-call.com');
+    $this->assertListItem($proposal_items[1], 'http://proposal-call-no-title.com', 'Call for proposals', 'http://proposal-call-no-title.com');
 
     // Assert bottom region - Stakeholders.
     $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
-
-    // Assert header.
-    $stakeholder_headers = $project_stakeholders->findAll('css', 'h2');
-    $this->assertEquals($stakeholder_headers[0]->getText(), 'Stakeholders');
+    $this->assertContentHeader($project_stakeholders, 'Stakeholders');
 
     // Assert Coordinators field.
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
@@ -280,13 +266,10 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $coordinator_organisation->save();
     $participant_organisation->set('status', CorporateEntityInterface::PUBLISHED);
     $participant_organisation->save();
-
-    // Reload the page.
     $this->drupalGet($node->toUrl());
 
     // Assert Participants field.
-    $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
@@ -365,16 +348,22 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertContains("placeholder_$name.png", $logos[0]->getAttribute('style'));
 
     // Assert the Organisation contacts list block's labels and values.
-    $description_lists = $rendered_stakeholder_element->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
-    $this->assertCount(1, $description_lists);
-    $labels = $description_lists[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(2, $labels);
-    $this->assertEquals('Address', $labels[0]->getText());
-    $this->assertEquals('Website', $labels[1]->getText());
-    $values = $description_lists[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(2, $values);
-    $this->assertEquals("Address $name, 1001 Brussels, Belgium", $values[0]->getText());
-    $values[1]->hasLink("http://www.example.com/website_$name");
+    $field_list_assert = new FieldListAssert();
+    $first_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Address',
+          'body' => "Address $name, 1001 Brussels, Belgium",
+        ], [
+          'label' => 'Website',
+          'body' => "http://www.example.com/website_$name",
+        ],
+      ],
+    ];
+    $field_list_wrapper = $rendered_stakeholder_element->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-grey');
+    $field_list_html = $field_list_wrapper->getHtml();
+    $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('horizontal', $field_list_html);
 
     // Assert contact link.
     $contact_links = $rendered_stakeholder_element->findAll('css', '.ecl-link');
@@ -383,6 +372,40 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $contact_link_labels = $rendered_stakeholder_element->findAll('css', '.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
+  }
+
+  /**
+   * Asserts list items.
+   *
+   * @param \Behat\Mink\Element\NodeElement $rendered_element
+   *   Rendered element.
+   * @param string $title
+   *   Title of the list item.
+   * @param string $meta
+   *   Meta value of the list item.
+   * @param string $link
+   *   Link that is used.
+   *
+   * @throws \Behat\Mink\Exception\ElementNotFoundException
+   */
+  protected function assertListItem(NodeElement $rendered_element, string $title, string $meta, $link = ''): void {
+    $list_item_assert = new ListItemAssert();
+    $expected_values = [
+      'meta' => $meta,
+      'title' => $title,
+    ];
+    $html = $rendered_element->getHtml();
+    $list_item_assert->assertPattern($expected_values, $html);
+    $list_item_assert->assertVariant('default', $html);
+
+    // Assert css class for meta.
+    $field_meta = $this->assertSession()->elementExists('css', 'span.ecl-u-type-uppercase', $rendered_element);
+    $this->assertEquals($meta, $field_meta->getText());
+
+    if (!empty($link)) {
+      $link_tag = $rendered_element->find('css', '.ecl-link');
+      $this->assertEquals($link, $link_tag->getAttribute('href'));
+    }
   }
 
 }
