@@ -113,7 +113,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, trim($element->text()));
+    self::assertEquals($expected, $element->text(NULL, TRUE));
   }
 
   /**

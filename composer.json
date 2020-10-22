@@ -102,6 +102,9 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-06-02/address_content_language-3144823-3.patch"
+            },
+            "symfony/dom-crawler": {
+                "Fix from version 4.4 https://github.com/symfony/symfony/pull/32440/files": "./patches/symfony/dom-crawler/trim_new_line_characters.patch"
             }
         }
     },
