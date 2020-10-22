@@ -240,7 +240,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => $start_date->format('d F Y, H:i') . "\n to " . $end_date->format('d F Y, H:i'),
+          'text' => $start_date->format('d F Y, H:i') . " to " . $end_date->format('d F Y, H:i'),
         ],
       ],
     ];
@@ -250,7 +250,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => $start_date->format('l j F Y, H:i') . "\n to " . $end_date->format('l j F Y, H:i'),
+          'body' => $start_date->format('l j F Y, H:i') . " to " . $end_date->format('l j F Y, H:i'),
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -284,10 +284,10 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => "$venue_name\n\n  Event venue address, 1001 Brussels, Belgium",
+          'body' => "$venue_name Event venue address, 1001 Brussels, Belgium",
         ], [
           'label' => 'When',
-          'body' => $start_date->format('l j F Y, H:i') . "\n to " . $end_date->format('l j F Y, H:i'),
+          'body' => $start_date->format('l j F Y, H:i') . " to " . $end_date->format('l j F Y, H:i'),
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -353,7 +353,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $online_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $field_list_expected_values['items'][6] = [
       'label' => 'Online time',
-      'body' => $online_start_date->format('j F Y, H:i T') . "\n to " . $online_end_date->format('j F Y, H:i T'),
+      'body' => $online_start_date->format('j F Y, H:i T') . " to " . $online_end_date->format('j F Y, H:i T'),
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 

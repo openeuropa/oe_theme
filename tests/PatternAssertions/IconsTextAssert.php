@@ -46,7 +46,7 @@ class IconsTextAssert extends BasePatternAssert {
     self::assertCount(count($expected_items), $list_elements);
     foreach ($expected_items as $index => $expected_item) {
       $list_element = $list_elements->eq($index);
-      self::assertEquals($expected_item['text'], trim($list_element->text()));
+      self::assertEquals($expected_item['text'], $list_element->text(NULL, TRUE));
       $icon_element = $list_element->filter('svg.ecl-icon.ecl-icon--m.ecl-u-mr-s use');
       $this::assertContains('#general--' . $expected_item['icon'], $icon_element->attr('xlink:href'));
     }

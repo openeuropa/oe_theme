@@ -66,7 +66,7 @@ class FieldListAssert extends BasePatternAssert {
     $label_items = $crawler->filter('dt.ecl-description-list__term');
     self::assertCount(count($expected_labels), $label_items);
     foreach ($expected_labels as $index => $expected_label) {
-      self::assertEquals($expected_label, trim($label_items->eq($index)->text()));
+      self::assertEquals($expected_label, $label_items->eq($index)->text(NULL, TRUE));
     }
 
     // Assert all values are correct.
@@ -74,7 +74,7 @@ class FieldListAssert extends BasePatternAssert {
     $value_items = $crawler->filter('dd.ecl-description-list__definition');
     self::assertCount(count($expected_labels), $value_items);
     foreach ($expected_values as $index => $expected_value) {
-      self::assertEquals($expected_value, trim($value_items->eq($index)->text()));
+      self::assertEquals($expected_value, $value_items->eq($index)->text(NULL, TRUE));
     }
   }
 
