@@ -180,7 +180,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => '€100',
         ], [
           'label' => 'EU contribution',
-          'body' => "€100 100% of the overall budget",
+          'body' => "€100100% of the overall budget",
         ],
       ],
     ];
@@ -206,7 +206,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($first_field_list_expected_values, $description_lists[0]->getHtml());
 
     // Assert the second description list block's labels and values.
-    $second_field_list_expected_values['items'][1]['body'] = "€50 50% of the overall budget";
+    $second_field_list_expected_values['items'][1]['body'] = "€5050% of the overall budget";
     $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.
