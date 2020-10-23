@@ -16,7 +16,7 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 function oe_theme_content_entity_contact_oe_contact_view_alter(array &$build, ContactInterface $entity, EntityViewDisplayInterface $display) {
   // Field labels are different in frontend and backend.
   // Here we override them, per view mode.
-  if ($build['#view_mode'] === 'default') {
+  if ($build['#view_mode'] === 'full') {
     $label_overrides = [
       'oe_address' => t('Postal address'),
       'oe_social_media' => t('Social media'),

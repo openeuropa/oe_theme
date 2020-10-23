@@ -1,0 +1,88 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.oe_organisation.oe_stakeholder.oe_acronym
+    - field.field.oe_organisation.oe_stakeholder.oe_address
+    - field.field.oe_organisation.oe_stakeholder.oe_contact_url
+    - field.field.oe_organisation.oe_stakeholder.oe_logo
+    - field.field.oe_organisation.oe_stakeholder.oe_website
+    - oe_content_entity_organisation.oe_organisation_type.oe_stakeholder
+  module:
+    - link
+    - oe_theme_helper
+id: oe_organisation.oe_stakeholder.full
+targetEntityType: oe_organisation
+bundle: oe_stakeholder
+mode: full
+content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  name:
+    label: hidden
+    type: string
+    weight: -5
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_acronym:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_address:
+    weight: 3
+    label: above
+    settings:
+      delimiter: ', '
+    third_party_settings: {  }
+    type: oe_theme_helper_address_inline
+    region: content
+  oe_contact_url:
+    weight: 5
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_logo:
+    type: entity_reference_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  oe_website:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden:
+  langcode: true
+  status: true

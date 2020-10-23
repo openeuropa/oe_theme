@@ -15,6 +15,8 @@ drupal:
     name: "OpenEuropa"
   post_install:
     - "./vendor/bin/drush en oe_theme_helper -y"
+    - "./vendor/bin/drush theme:enable oe_theme -y"
+    - "./vendor/bin/drush theme:enable seven -y"
     - "./vendor/bin/drush en oe_multilingual -y"
     - "./vendor/bin/drush en oe_search -y"
     - "./vendor/bin/drush en oe_corporate_blocks -y"
@@ -30,8 +32,6 @@ drupal:
     - "./vendor/bin/drush en field_ui -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"
-    - "./vendor/bin/drush theme:enable oe_theme -y"
-    - "./vendor/bin/drush theme:enable seven -y"
     - "./vendor/bin/drush config-set system.theme default oe_theme -y"
     - "./vendor/bin/drush config-set system.theme admin seven -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"

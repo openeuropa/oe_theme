@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_theme_content_entity_organisation
+id: oe_organisation.full
+label: Full
+targetEntityType: oe_organisation
+cache: true
