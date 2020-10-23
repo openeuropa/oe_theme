@@ -179,7 +179,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => '€100',
         ], [
           'label' => 'EU contribution',
-          'body' => "€100100% of the overall budget",
+          'body' => '€100100% of the overall budget',
         ],
       ],
     ];
