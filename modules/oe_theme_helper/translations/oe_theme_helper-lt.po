@@ -70,3 +70,129 @@ msgstr "Susijusios nuorodos"
 
 msgid "Practical information"
 msgstr "Praktinė informacija"
+
+msgid "Phone number"
+msgstr "Telefono numeris"
+
+msgid "Opening date"
+msgstr "Pradžios data"
+
+msgid "Deadline date"
+msgstr "Terminas"
+
+msgid "Publication date"
+msgstr "Paskelbimo data"
+
+msgid "Author"
+msgstr "Autorius"
+
+msgid "Location"
+msgstr "Vieta"
+
+msgid "News type"
+msgstr "Naujienų rūšis"
+
+msgid "Project locations"
+msgstr "Projekto įgyvendinimo vietos"
+
+msgid "Overall budget"
+msgstr "Bendras biudžetas"
+
+msgid "EU contribution"
+msgstr "ES įnašas"
+
+msgid "Departments"
+msgstr "Padaliniai"
+
+msgid "Results"
+msgstr "Rezultatai"
+
+msgid "Stakeholders"
+msgstr "Suinteresuotosios šalys"
+
+msgid "Coordinators"
+msgstr "Koordinatoriai"
+
+msgid "Participants"
+msgstr "Dalyviai"
+
+msgid "Country"
+msgstr "Šalis"
+
+msgid "EU Organisation"
+msgstr "ES organizacija"
+
+msgid "Non-EU organisation"
+msgstr "Ne ES organizacija"
+
+msgid "Reference"
+msgstr "Nuoroda"
+
+msgid "Upcoming"
+msgstr "Netrukus"
+
+msgid "Open"
+msgstr "Vyksta"
+
+msgid "Closed"
+msgstr "Uždaryta"
+
+msgid "Details"
+msgstr "Išsamūs duomenys"
+
+msgid "Status"
+msgstr "Būsena"
+
+msgid "Contact organisation"
+msgstr "Organizacija ryšiams"
+
+msgid "Publication"
+msgstr "Leidinys"
+
+msgid "Publication date"
+msgstr "Paskelbimo data"
+
+msgid "Description"
+msgstr "Aprašymas"
+
+msgid "Email"
+msgstr "E. paštas"
+
+msgid "Contact"
+msgstr "Kontaktiniai duomenys"
+
+msgid "Contacts"
+msgstr "Asmenys ryšiams"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Fakso numeris"
+
+msgid "Mobile number"
+msgstr "Mobiliojo telefono numeris"
+
+msgid "Office"
+msgstr "Biuras"
+
+msgid "Documents"
+msgstr "Dokumentai"
+
+msgid "Funding"
+msgstr "Finansavimas"
+
+msgid "As planned"
+msgstr "Pagal planą"
+
+msgid "Cancelled"
+msgstr "Atšaukta"
+
+msgid "Rescheduled"
+msgstr "Pakeistas laikas"
+
+msgid "Postponed"
+msgstr "Atidėta"
+
+msgid "Address"
+msgstr "Adresas"

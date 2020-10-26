@@ -70,3 +70,129 @@ msgstr "Σχετικοί σύνδεσμοι"
 
 msgid "Practical information"
 msgstr "Πρακτικές πληροφορίες"
+
+msgid "Phone number"
+msgstr "Αριθμός τηλεφώνου"
+
+msgid "Opening date"
+msgstr "Ημερομηνία έναρξης"
+
+msgid "Deadline date"
+msgstr "Ημερομηνία προθεσμίας"
+
+msgid "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Author"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Location"
+msgstr "Τόπος"
+
+msgid "News type"
+msgstr "Είδος ειδήσεων"
+
+msgid "Project locations"
+msgstr "Τόποι έργων"
+
+msgid "Overall budget"
+msgstr "Συνολικός προϋπολογισμός"
+
+msgid "EU contribution"
+msgstr "Συνεισφορά ΕΕ"
+
+msgid "Departments"
+msgstr "Τμήματα"
+
+msgid "Results"
+msgstr "Αποτελέσματα"
+
+msgid "Stakeholders"
+msgstr "Ενδιαφερόμενα μέρη"
+
+msgid "Coordinators"
+msgstr "Ενδιαφερόμενα μέρη"
+
+msgid "Participants"
+msgstr "Teilnehmer"
+
+msgid "Country"
+msgstr "Χώρα"
+
+msgid "EU Organisation"
+msgstr "Οργανισμός της ΕΕ"
+
+msgid "Non-EU organisation"
+msgstr "Οργανισμός εκτός ΕΕ"
+
+msgid "Reference"
+msgstr "Στοιχεία αναφοράς"
+
+msgid "Upcoming"
+msgstr "Προσεχώς"
+
+msgid "Open"
+msgstr "Ανοικτό"
+
+msgid "Closed"
+msgstr "Έχει κλείσει"
+
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+msgid "Status"
+msgstr "Καθεστώς"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Δημοσίευση"
+
+msgid "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Description"
+msgstr "Περιγραφή"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Επικοινωνία"
+
+msgid "Contacts"
+msgstr "Επικοινωνία"
+
+msgid "Organisation"
+msgstr "Οργανισμός"
+
+msgid "Fax number"
+msgstr "Αριθμός φαξ"
+
+msgid "Mobile number"
+msgstr "Αριθμός κινητού τηλεφώνου"
+
+msgid "Office"
+msgstr "Γραφείο"
+
+msgid "Documents"
+msgstr "Έγγραφα"
+
+msgid "Funding"
+msgstr "Χρηματοδότηση"
+
+msgid "As planned"
+msgstr "Όπως έχει προβλεφθεί"
+
+msgid "Cancelled"
+msgstr "Ακυρώθηκε"
+
+msgid "Rescheduled"
+msgstr "Αναπρογραμματίστηκε"
+
+msgid "Postponed"
+msgstr "Έχει αναβληθεί"
+
+msgid "Address"
+msgstr "Διεύθυνση"

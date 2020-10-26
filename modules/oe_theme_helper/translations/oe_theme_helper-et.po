@@ -70,3 +70,129 @@ msgstr "Seotud lingid"
 
 msgid "Practical information"
 msgstr "Praktiline teave"
+
+msgid "Phone number"
+msgstr "Telefoninumber"
+
+msgid "Opening date"
+msgstr "Alguskuupäev"
+
+msgid "Deadline date"
+msgstr "Tähtpäev"
+
+msgid "Publication date"
+msgstr "Avaldamiskuupäev"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Asukoht"
+
+msgid "News type"
+msgstr "Uudise liik"
+
+msgid "Project locations"
+msgstr "Projekti asukohad"
+
+msgid "Overall budget"
+msgstr "Üldeelarve"
+
+msgid "EU contribution"
+msgstr "ELi rahaline panus"
+
+msgid "Departments"
+msgstr "Osakonnad"
+
+msgid "Results"
+msgstr "Tulemused"
+
+msgid "Stakeholders"
+msgstr "Sidusrühmad"
+
+msgid "Coordinators"
+msgstr "Koordinaatorid"
+
+msgid "Participants"
+msgstr "Osalejad"
+
+msgid "Country"
+msgstr "Riik"
+
+msgid "EU Organisation"
+msgstr "ELi organisatsioon"
+
+msgid "Non-EU organisation"
+msgstr "ELi-väline organisatsioon"
+
+msgid "Reference"
+msgstr "Viide"
+
+msgid "Upcoming"
+msgstr "Tulemas"
+
+msgid "Open"
+msgstr "Kestab"
+
+msgid "Closed"
+msgstr "Lõppenud"
+
+msgid "Details"
+msgstr "Üksikasjad"
+
+msgid "Status"
+msgstr "Olek"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisatsioon"
+
+msgid "Publication"
+msgstr "Väljaanne"
+
+msgid "Publication date"
+msgstr "Avaldamiskuupäev"
+
+msgid "Description"
+msgstr "Kirjeldus"
+
+msgid "Email"
+msgstr "E-post"
+
+msgid "Contact"
+msgstr "Kontaktandmed"
+
+msgid "Contacts"
+msgstr "Kontaktisikud"
+
+msgid "Organisation"
+msgstr "Organisatsioon"
+
+msgid "Fax number"
+msgstr "Faksinumber"
+
+msgid "Mobile number"
+msgstr "Mobiiltelefoni number"
+
+msgid "Office"
+msgstr "Amet"
+
+msgid "Documents"
+msgstr "Dokumendid"
+
+msgid "Funding"
+msgstr "Rahastamine"
+
+msgid "As planned"
+msgstr "Vastavalt kavandatule"
+
+msgid "Cancelled"
+msgstr "Tühistatud"
+
+msgid "Rescheduled"
+msgstr "Toimumisaeg muutunud"
+
+msgid "Postponed"
+msgstr "Edasi lükatud"
+
+msgid "Address"
+msgstr "Aadress"

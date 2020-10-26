@@ -70,3 +70,129 @@ msgstr "Aiheeseen liittyvää"
 
 msgid "Practical information"
 msgstr "Käytännön tietoa"
+
+msgid "Phone number"
+msgstr "Puhelinnumero"
+
+msgid "Opening date"
+msgstr "Alkamispäivä"
+
+msgid "Deadline date"
+msgstr "Määräpäivä"
+
+msgid "Publication date"
+msgstr "Julkaisupäivä"
+
+msgid "Author"
+msgstr "Laatija"
+
+msgid "Location"
+msgstr "Paikka"
+
+msgid "News type"
+msgstr "Uutistyyppi"
+
+msgid "Project locations"
+msgstr "Hankkeen toteutuspaikat"
+
+msgid "Overall budget"
+msgstr "Kokonaisbudjetti"
+
+msgid "EU contribution"
+msgstr "EU:n osuus"
+
+msgid "Departments"
+msgstr "Osastot"
+
+msgid "Results"
+msgstr "Tulokset"
+
+msgid "Stakeholders"
+msgstr "Sidosryhmät"
+
+msgid "Coordinators"
+msgstr "Koordinaattorit"
+
+msgid "Participants"
+msgstr "Osallistujat"
+
+msgid "Country"
+msgstr "Maa"
+
+msgid "EU Organisation"
+msgstr "EU:n organisaatio"
+
+msgid "Non-EU organisation"
+msgstr "Ei EU:n organisaatio"
+
+msgid "Reference"
+msgstr "Viite"
+
+msgid "Upcoming"
+msgstr "Tulossa"
+
+msgid "Open"
+msgstr "Meneillään"
+
+msgid "Closed"
+msgstr "Päättynyt"
+
+msgid "Details"
+msgstr "Tiedot"
+
+msgid "Status"
+msgstr "Tila"
+
+msgid "Contact organisation"
+msgstr "Ota yhteyttä organisaatioon"
+
+msgid "Publication"
+msgstr "Julkaisu"
+
+msgid "Publication date"
+msgstr "Julkaisupäivä"
+
+msgid "Description"
+msgstr "Kuvaus"
+
+msgid "Email"
+msgstr "Sähköposti"
+
+msgid "Contact"
+msgstr "Yhteydenotot"
+
+msgid "Contacts"
+msgstr "Yhteydenotot"
+
+msgid "Organisation"
+msgstr "Organisaatio"
+
+msgid "Fax number"
+msgstr "Faksinumero"
+
+msgid "Mobile number"
+msgstr "Matkapuhelinnumero"
+
+msgid "Office"
+msgstr "Toimisto"
+
+msgid "Documents"
+msgstr "Asiakirjat"
+
+msgid "Funding"
+msgstr "Rahoitus"
+
+msgid "As planned"
+msgstr "Suunnitellusti"
+
+msgid "Cancelled"
+msgstr "Peruutettu"
+
+msgid "Rescheduled"
+msgstr "Siirretty"
+
+msgid "Postponed"
+msgstr "Peruttu toistaiseksi"
+
+msgid "Address"
+msgstr "Osoite"

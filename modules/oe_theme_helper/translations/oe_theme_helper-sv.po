@@ -70,3 +70,129 @@ msgstr "Fler länkar"
 
 msgid "Practical information"
 msgstr "Praktisk information"
+
+msgid "Phone number"
+msgstr "Telefon"
+
+msgid "Opening date"
+msgstr "Startdatum"
+
+msgid "Deadline date"
+msgstr "Slutdatum"
+
+msgid "Publication date"
+msgstr "Publiceringsdatum"
+
+msgid "Author"
+msgstr "Upphovsman"
+
+msgid "Location"
+msgstr "Plats"
+
+msgid "News type"
+msgstr "Typ av nyhet"
+
+msgid "Project locations"
+msgstr "Projektplatser"
+
+msgid "Overall budget"
+msgstr "Sammanlagd budget"
+
+msgid "EU contribution"
+msgstr "EU-bidrag"
+
+msgid "Departments"
+msgstr "Avdelningar"
+
+msgid "Results"
+msgstr "Resultat"
+
+msgid "Stakeholders"
+msgstr "Berörda parter"
+
+msgid "Coordinators"
+msgstr "Samordnare"
+
+msgid "Participants"
+msgstr "Deltagare"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "EU Organisation"
+msgstr "EU-organisation"
+
+msgid "Non-EU organisation"
+msgstr "Icke-EU-organisation"
+
+msgid "Reference"
+msgstr "Referens"
+
+msgid "Upcoming"
+msgstr "Kommande"
+
+msgid "Open"
+msgstr "Aktuell"
+
+msgid "Closed"
+msgstr "Avslutad"
+
+msgid "Details"
+msgstr "Översikt"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisation"
+
+msgid "Publication"
+msgstr "Publikation"
+
+msgid "Publication date"
+msgstr "Publiceringsdatum"
+
+msgid "Description"
+msgstr "Beskrivning"
+
+msgid "Email"
+msgstr "E-post"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakter"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobil"
+
+msgid "Office"
+msgstr "Kontor"
+
+msgid "Documents"
+msgstr "Dokument"
+
+msgid "Funding"
+msgstr "Finansiering"
+
+msgid "As planned"
+msgstr "Planenligt"
+
+msgid "Cancelled"
+msgstr "Inställt"
+
+msgid "Rescheduled"
+msgstr "Flyttat"
+
+msgid "Postponed"
+msgstr "Uppskjutet"
+
+msgid "Address"
+msgstr "Adress"

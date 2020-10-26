@@ -70,3 +70,129 @@ msgstr "Sorodne povezave"
 
 msgid "Practical information"
 msgstr "Praktične informacije"
+
+msgid "Phone number"
+msgstr "Telefonska številka"
+
+msgid "Opening date"
+msgstr "Datum začetka"
+
+msgid "Deadline date"
+msgstr "Datumski rok"
+
+msgid "Publication date"
+msgstr "Datum objave"
+
+msgid "Author"
+msgstr "Avtor"
+
+msgid "Location"
+msgstr "Lokacija"
+
+msgid "News type"
+msgstr "Vrsta novice"
+
+msgid "Project locations"
+msgstr "Lokacije projekta"
+
+msgid "Overall budget"
+msgstr "Skupni proračun"
+
+msgid "EU contribution"
+msgstr "Prispevek EU"
+
+msgid "Departments"
+msgstr "Službe"
+
+msgid "Results"
+msgstr "Rezultati"
+
+msgid "Stakeholders"
+msgstr "Deležniki"
+
+msgid "Coordinators"
+msgstr "Koordinatorji"
+
+msgid "Participants"
+msgstr "Udeleženci"
+
+msgid "Country"
+msgstr "Država"
+
+msgid "EU Organisation"
+msgstr "Organizacija EU"
+
+msgid "Non-EU organisation"
+msgstr "Organizacija zunaj EU"
+
+msgid "Reference"
+msgstr "Sklic"
+
+msgid "Upcoming"
+msgstr "Prihodnje"
+
+msgid "Open"
+msgstr "Odprto"
+
+msgid "Closed"
+msgstr "Končano"
+
+msgid "Details"
+msgstr "Več informacij"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Contact organisation"
+msgstr "Kontaktna organizacija"
+
+msgid "Publication"
+msgstr "Objava"
+
+msgid "Publication date"
+msgstr "Datum objave"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Email"
+msgstr "E-pošta"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakti"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Številko telefaksa"
+
+msgid "Mobile number"
+msgstr "Številka mobilnika"
+
+msgid "Office"
+msgstr "Urad"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Financiranje"
+
+msgid "As planned"
+msgstr "Po načrtu"
+
+msgid "Cancelled"
+msgstr "Odpovedano"
+
+msgid "Rescheduled"
+msgstr "Prestavljeno"
+
+msgid "Postponed"
+msgstr "Odloženo"
+
+msgid "Address"
+msgstr "Naslov"

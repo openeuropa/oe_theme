@@ -70,3 +70,132 @@ msgstr "Link correlati"
 
 msgid "Practical information"
 msgstr "Informazioni pratiche"
+
+msgid "Phone number"
+msgstr "Telefono"
+
+msgid "Opening date"
+msgstr "Data di apertura"
+
+msgid "Deadline date"
+msgstr "Data di scadenza"
+
+msgid "Publication date"
+msgstr "Data di pubblicazione"
+
+msgid "Author"
+msgstr "Autore"
+
+msgid "Location"
+msgstr "Sede"
+
+msgid "News type"
+msgstr "Tipo di notizie"
+
+msgid "Project locations"
+msgstr "Ubicazione del progetto"
+
+msgid "Overall budget"
+msgstr "Bilancio complessivo"
+
+msgid "EU contribution"
+msgstr "Contributo dell'UE"
+
+msgid "Departments"
+msgstr "Servizi"
+
+msgid "Results"
+msgstr "Esito"
+
+msgid "Stakeholders"
+msgstr "Parti interessate"
+
+msgid "Coordinators"
+msgstr "Coordinatori"
+
+msgid "Participants"
+msgstr "Partecipanti"
+
+msgid "Country"
+msgstr "Paese"
+
+msgid "EU Organisation"
+msgstr "Organizzazione dell'UE"
+
+msgid "Non-EU organisation"
+msgstr "Organizzazione extra UE"
+
+msgid "Reference"
+msgstr "Riferimento"
+
+msgid "Upcoming"
+msgstr "In programma"
+
+msgid "Open"
+msgstr "Aperto"
+
+msgid "Closed"
+msgstr "Chiuso"
+
+msgid "Details"
+msgstr "Dettagli"
+
+msgid "Status"
+msgstr "Stato"
+
+msgid "Details"
+msgstr "Dettagli"
+
+msgid "Contact organisation"
+msgstr "Organizzazione da contattare"
+
+msgid "Publication"
+msgstr "Pubblicazione"
+
+msgid "Publication date"
+msgstr "Data di pubblicazione"
+
+msgid "Description"
+msgstr "Descrizione"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Contatti"
+
+msgid "Contacts"
+msgstr "Contatti"
+
+msgid "Organisation"
+msgstr "Organizzazione"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Cellulare"
+
+msgid "Office"
+msgstr "Ufficio"
+
+msgid "Documents"
+msgstr "Documenti"
+
+msgid "Funding"
+msgstr "Finanziamenti"
+
+msgid "As planned"
+msgstr "Come previsto"
+
+msgid "Cancelled"
+msgstr "Annullato"
+
+msgid "Rescheduled"
+msgstr "Riprogrammato / Riprogrammata"
+
+msgid "Postponed"
+msgstr "Rinviato / Rinviata"
+
+msgid "Address"
+msgstr "Indirizzo"

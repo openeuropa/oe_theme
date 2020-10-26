@@ -70,3 +70,129 @@ msgstr "Enlaces relacionados"
 
 msgid "Practical information"
 msgstr "Información práctica"
+
+msgid "Phone number"
+msgstr "Número de teléfono"
+
+msgid "Opening date"
+msgstr "Fecha de apertura"
+
+msgid "Deadline date"
+msgstr "Fecha límite"
+
+msgid "Publication date"
+msgstr "Fecha de publicación"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Lugar"
+
+msgid "News type"
+msgstr "Tipo de noticia"
+
+msgid "Project locations"
+msgstr "Lugares del proyecto"
+
+msgid "Overall budget"
+msgstr "Presupuesto total"
+
+msgid "EU contribution"
+msgstr "Contribución de la UE"
+
+msgid "Departments"
+msgstr "Departamentos"
+
+msgid "Results"
+msgstr "Resultados"
+
+msgid "Stakeholders"
+msgstr "Partes interesadas"
+
+msgid "Coordinators"
+msgstr "Coordinadores"
+
+msgid "Participants"
+msgstr "Participantes"
+
+msgid "Country"
+msgstr "País"
+
+msgid "EU Organisation"
+msgstr "Organización de la UE"
+
+msgid "Non-EU organisation"
+msgstr "Organización no perteneciente a la UE"
+
+msgid "Reference"
+msgstr "Referencia"
+
+msgid "Upcoming"
+msgstr "Próximamente"
+
+msgid "Open"
+msgstr "Abierto"
+
+msgid "Closed"
+msgstr "Cerrado"
+
+msgid "Details"
+msgstr "Detalles"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Publicación"
+
+msgid "Publication date"
+msgstr "Fecha de publicación"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Email"
+msgstr "Correo electrónico"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Contacts"
+msgstr "Contactos"
+
+msgid "Organisation"
+msgstr "Organización"
+
+msgid "Fax number"
+msgstr "Número de fax"
+
+msgid "Mobile number"
+msgstr "Número de móvil"
+
+msgid "Office"
+msgstr "Oficina"
+
+msgid "Documents"
+msgstr "Documentos"
+
+msgid "Funding"
+msgstr "Financiación"
+
+msgid "As planned"
+msgstr "Según lo previsto"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Rescheduled"
+msgstr "Reprogramado"
+
+msgid "Postponed"
+msgstr "Aplazado"
+
+msgid "Address"
+msgstr "Dirección"

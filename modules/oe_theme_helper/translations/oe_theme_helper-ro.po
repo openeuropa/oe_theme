@@ -70,3 +70,129 @@ msgstr "Linkuri către pagini conexe"
 
 msgid "Practical information"
 msgstr "Informații practice"
+
+msgid "Phone number"
+msgstr "Număr de telefon"
+
+msgid "Opening date"
+msgstr "Data de deschidere"
+
+msgid "Deadline date"
+msgstr "Data-limită"
+
+msgid "Publication date"
+msgstr "Data publicării"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Locație"
+
+msgid "News type"
+msgstr "Tip de noutăți"
+
+msgid "Project locations"
+msgstr "Locațiile proiectului"
+
+msgid "Overall budget"
+msgstr "Buget total"
+
+msgid "EU contribution"
+msgstr "Contribuția UE"
+
+msgid "Departments"
+msgstr "Departamente"
+
+msgid "Results"
+msgstr "Rezultate"
+
+msgid "Stakeholders"
+msgstr "Părți interesate"
+
+msgid "Coordinators"
+msgstr "Coordonatori"
+
+msgid "Participants"
+msgstr "Participanți"
+
+msgid "Country"
+msgstr "Țara"
+
+msgid "EU Organisation"
+msgstr "Organizație UE"
+
+msgid "Non-EU organisation"
+msgstr "Organizație non-UE"
+
+msgid "Reference"
+msgstr "Referință"
+
+msgid "Upcoming"
+msgstr "În curând"
+
+msgid "Open"
+msgstr "Deschis(ă)"
+
+msgid "Closed"
+msgstr "Încheiat(ă)"
+
+msgid "Details"
+msgstr "Detalii"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Publicație"
+
+msgid "Publication date"
+msgstr "Data publicării"
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Date de contact"
+
+msgid "Organisation"
+msgstr "Organizație"
+
+msgid "Fax number"
+msgstr "Număr de fax"
+
+msgid "Mobile number"
+msgstr "Telefon mobil"
+
+msgid "Office"
+msgstr "Birou"
+
+msgid "Documents"
+msgstr "Documente"
+
+msgid "Funding"
+msgstr "Finanțare"
+
+msgid "As planned"
+msgstr "Conform planului"
+
+msgid "Cancelled"
+msgstr "Anulat(ă)"
+
+msgid "Rescheduled"
+msgstr "Reprogramat"
+
+msgid "Postponed"
+msgstr "Amânat"
+
+msgid "Address"
+msgstr "Adresă"

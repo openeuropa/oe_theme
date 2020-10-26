@@ -70,3 +70,132 @@ msgstr "Podobne strony"
 
 msgid "Practical information"
 msgstr "Informacje praktyczne"
+
+msgid "Phone number"
+msgstr "Tel."
+
+msgid "Opening date"
+msgstr "Data początkowa"
+
+msgid "Deadline date"
+msgstr "Termin"
+
+msgid "Publication date"
+msgstr "Data publikacji"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Miejsce"
+
+msgid "News type"
+msgstr "Rodzaj aktualności"
+
+msgid "Project locations"
+msgstr "Miejsca realizacji projektu"
+
+msgid "Overall budget"
+msgstr "Budżet całkowity"
+
+msgid "EU contribution"
+msgstr "Wkład UE"
+
+msgid "Departments"
+msgstr "Departamenty"
+
+msgid "Results"
+msgstr "Wyniki"
+
+msgid "Stakeholders"
+msgstr "Zainteresowane strony"
+
+msgid "Coordinators"
+msgstr "Koordynatorzy"
+
+msgid "Participants"
+msgstr "Uczestnicy"
+
+msgid "Country"
+msgstr "Kraj"
+
+msgid "EU Organisation"
+msgstr "Organizacja z UE"
+
+msgid "Non-EU organisation"
+msgstr "Organizacja spoza UE"
+
+msgid "Reference"
+msgstr "Numer"
+
+msgid "Upcoming"
+msgstr "Zaplanowano"
+
+msgid "Open"
+msgstr "W toku"
+
+msgid "Closed"
+msgstr "Zakończono"
+
+msgid "Details"
+msgstr "Informacje szczegółowe"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Informacje szczegółowe"
+
+msgid "Contact organisation"
+msgstr "Skontaktuj się z organizacją"
+
+msgid "Publication"
+msgstr "Publikacja"
+
+msgid "Publication date"
+msgstr "Data publikacji"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakt"
+
+msgid "Organisation"
+msgstr "Organizacja"
+
+msgid "Fax number"
+msgstr "Faks"
+
+msgid "Mobile number"
+msgstr "Tel. kom.:"
+
+msgid "Office"
+msgstr "Biuro"
+
+msgid "Documents"
+msgstr "Dokumenty"
+
+msgid "Funding"
+msgstr "Finansowanie"
+
+msgid "As planned"
+msgstr "Zgodnie z planem"
+
+msgid "Cancelled"
+msgstr "Anulowano"
+
+msgid "Rescheduled"
+msgstr "Przełożono"
+
+msgid "Postponed"
+msgstr "Odroczono"
+
+msgid "Address"
+msgstr "Adres"

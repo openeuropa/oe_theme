@@ -70,3 +70,129 @@ msgstr "Līdzīgas saites"
 
 msgid "Practical information"
 msgstr "Praktiska informācija"
+
+msgid "Phone number"
+msgstr "Tālruņa numurs"
+
+msgid "Opening date"
+msgstr "Sākuma datums"
+
+msgid "Deadline date"
+msgstr "Termiņa datums"
+
+msgid "Publication date"
+msgstr "Publikācijas datums"
+
+msgid "Author"
+msgstr "Autors"
+
+msgid "Location"
+msgstr "Vieta"
+
+msgid "News type"
+msgstr "Jaunumu veids"
+
+msgid "Project locations"
+msgstr "Projekta īstenošanas vietas"
+
+msgid "Overall budget"
+msgstr "Kopējais budžets"
+
+msgid "EU contribution"
+msgstr "ES ieguldījums"
+
+msgid "Departments"
+msgstr "Struktūrvienības"
+
+msgid "Results"
+msgstr "Rezultāti"
+
+msgid "Stakeholders"
+msgstr "Ieinteresētās personas"
+
+msgid "Coordinators"
+msgstr "Koordinatori"
+
+msgid "Participants"
+msgstr "Dalībnieki"
+
+msgid "Country"
+msgstr "Valsts"
+
+msgid "EU Organisation"
+msgstr "ES organizācija"
+
+msgid "Non-EU organisation"
+msgstr "Organizācija no valsts ārpus ES"
+
+msgid "Reference"
+msgstr "Atsauce"
+
+msgid "Upcoming"
+msgstr "Gaidāms"
+
+msgid "Open"
+msgstr "Sācies"
+
+msgid "Closed"
+msgstr "Beidzies"
+
+msgid "Details"
+msgstr "Sīkāka informācija"
+
+msgid "Status"
+msgstr "Statuss"
+
+msgid "Contact organisation"
+msgstr "Sazināties ar organizāciju"
+
+msgid "Publication"
+msgstr "Publikācija"
+
+msgid "Publication date"
+msgstr "Publikācijas datums"
+
+msgid "Description"
+msgstr "Apraksts"
+
+msgid "Email"
+msgstr "E-pasts"
+
+msgid "Contact"
+msgstr "Kontaktinformācija"
+
+msgid "Contacts"
+msgstr "Kontaktinformācija"
+
+msgid "Organisation"
+msgstr "Organizācija"
+
+msgid "Fax number"
+msgstr "Faksa numurs"
+
+msgid "Mobile number"
+msgstr "Mobilā tālruņa numurs"
+
+msgid "Office"
+msgstr "Birojs"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Finansējums"
+
+msgid "As planned"
+msgstr "Kā plānots"
+
+msgid "Cancelled"
+msgstr "Atcelts"
+
+msgid "Rescheduled"
+msgstr "Pārcelts"
+
+msgid "Postponed"
+msgstr "Atlikts"
+
+msgid "Address"
+msgstr "Adrese"

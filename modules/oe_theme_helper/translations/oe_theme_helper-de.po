@@ -70,3 +70,129 @@ msgstr "Links zum Thema"
 
 msgid "Practical information"
 msgstr "Praktische Informationen"
+
+msgid "Phone number"
+msgstr "Telefon"
+
+msgid "Opening date"
+msgstr "Beginnt am"
+
+msgid "Deadline date"
+msgstr "Stichtag"
+
+msgid "Publication date"
+msgstr "Veröffentlicht am"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Ort"
+
+msgid "News type"
+msgstr "Art der Nachricht"
+
+msgid "Project locations"
+msgstr "Standorte"
+
+msgid "Overall budget"
+msgstr "Gesamtbudget"
+
+msgid "EU contribution"
+msgstr "Beitrag der EU"
+
+msgid "Departments"
+msgstr "Dienststellen"
+
+msgid "Results"
+msgstr "Ergebnisse"
+
+msgid "Stakeholders"
+msgstr "Interessenträger"
+
+msgid "Coordinators"
+msgstr "Koordinatoren"
+
+msgid "Participants"
+msgstr "Teilnehmer"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "EU Organisation"
+msgstr "EU-Organisation"
+
+msgid "Non-EU organisation"
+msgstr "Keine EU-Organisation"
+
+msgid "Reference"
+msgstr "Referenz"
+
+msgid "Upcoming"
+msgstr "Geplant"
+
+msgid "Open"
+msgstr "Offen"
+
+msgid "Closed"
+msgstr "Beendet"
+
+msgid "Details"
+msgstr "Einzelheiten"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Contact organisation"
+msgstr "Organisation kontaktieren"
+
+msgid "Publication"
+msgstr "Veröffentlichung"
+
+msgid "Publication date"
+msgstr "Veröffentlicht am"
+
+msgid "Description"
+msgstr "Beschreibung"
+
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakte"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobiltelefon"
+
+msgid "Office"
+msgstr "Büro"
+
+msgid "Documents"
+msgstr "Dokumente"
+
+msgid "Funding"
+msgstr "Finanzierung"
+
+msgid "As planned"
+msgstr "Wie geplant"
+
+msgid "Cancelled"
+msgstr "Abgesagt"
+
+msgid "Rescheduled"
+msgstr "Verlegt"
+
+msgid "Postponed"
+msgstr "Verschoben"
+
+msgid "Address"
+msgstr "Anschrift"

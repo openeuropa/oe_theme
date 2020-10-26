@@ -70,3 +70,129 @@ msgstr "Ligações conexas"
 
 msgid "Practical information"
 msgstr "Informação prática"
+
+msgid "Phone number"
+msgstr "Número de telefone"
+
+msgid "Opening date"
+msgstr "Data de abertura"
+
+msgid "Deadline date"
+msgstr "Data-limite"
+
+msgid "Publication date"
+msgstr "Data de publicação"
+
+msgid "Author"
+msgstr "Autor/Autora"
+
+msgid "Location"
+msgstr "Local"
+
+msgid "News type"
+msgstr "Tipo de notícias"
+
+msgid "Project locations"
+msgstr "Locais do projeto"
+
+msgid "Overall budget"
+msgstr "Orçamento global"
+
+msgid "EU contribution"
+msgstr "Contribuição da UE"
+
+msgid "Departments"
+msgstr "Departamentos"
+
+msgid "Results"
+msgstr "Resultados"
+
+msgid "Stakeholders"
+msgstr "Partes interessadas"
+
+msgid "Coordinators"
+msgstr "Coordenadores/Coordenadoras"
+
+msgid "Participants"
+msgstr "Participantes"
+
+msgid "Country"
+msgstr "País"
+
+msgid "EU Organisation"
+msgstr "Organização da UE"
+
+msgid "Non-EU organisation"
+msgstr "Entidade não UE"
+
+msgid "Reference"
+msgstr "Referência"
+
+msgid "Upcoming"
+msgstr "Brevemente"
+
+msgid "Open"
+msgstr "Aberto"
+
+msgid "Closed"
+msgstr "Encerrado"
+
+msgid "Details"
+msgstr "Informação detalhada"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Contact organisation"
+msgstr "Organização de contacto"
+
+msgid "Publication"
+msgstr "Publicação"
+
+msgid "Publication date"
+msgstr "Data de publicação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Email"
+msgstr "Correio eletrónico"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Contacts"
+msgstr "Contactos"
+
+msgid "Organisation"
+msgstr "Organização"
+
+msgid "Fax number"
+msgstr "N.º de fax"
+
+msgid "Mobile number"
+msgstr "N.º de telemóvel"
+
+msgid "Office"
+msgstr "Gabinete"
+
+msgid "Documents"
+msgstr "Documentos"
+
+msgid "Funding"
+msgstr "Financiamento"
+
+msgid "As planned"
+msgstr "Conforme previsto"
+
+msgid "Cancelled"
+msgstr "Cancelado"
+
+msgid "Rescheduled"
+msgstr "Reprogramado"
+
+msgid "Postponed"
+msgstr "Adiado"
+
+msgid "Address"
+msgstr "Endereço"

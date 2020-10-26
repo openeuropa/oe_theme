@@ -70,3 +70,129 @@ msgstr "Kapcsolódó linkek"
 
 msgid "Practical information"
 msgstr "Gyakorlati tudnivalók"
+
+msgid "Phone number"
+msgstr "Telefonszám"
+
+msgid "Opening date"
+msgstr "Indítás dátuma:"
+
+msgid "Deadline date"
+msgstr "Határidő"
+
+msgid "Publication date"
+msgstr "Közzététel dátuma"
+
+msgid "Author"
+msgstr "Szerző"
+
+msgid "Location"
+msgstr "Helyszín"
+
+msgid "News type"
+msgstr "Hír típusa"
+
+msgid "Project locations"
+msgstr "A projekt helyszínei"
+
+msgid "Overall budget"
+msgstr "Teljes költségvetés"
+
+msgid "EU contribution"
+msgstr "Uniós hozzájárulás"
+
+msgid "Departments"
+msgstr "Szervezeti egységek"
+
+msgid "Results"
+msgstr "Eredmények"
+
+msgid "Stakeholders"
+msgstr "Érdekelt felek"
+
+msgid "Coordinators"
+msgstr "Koordinátorok"
+
+msgid "Participants"
+msgstr "Résztvevők"
+
+msgid "Country"
+msgstr "Ország"
+
+msgid "EU Organisation"
+msgstr "EU-szervezet"
+
+msgid "Non-EU organisation"
+msgstr "Nem uniós szervezet"
+
+msgid "Reference"
+msgstr "Hivatkozás"
+
+msgid "Upcoming"
+msgstr "Nemsokára"
+
+msgid "Open"
+msgstr "Folyamatban"
+
+msgid "Closed"
+msgstr "Lezárva"
+
+msgid "Details"
+msgstr "Leírás"
+
+msgid "Status"
+msgstr "Státusz"
+
+msgid "Contact organisation"
+msgstr "Kapcsolattartó szervezet"
+
+msgid "Publication"
+msgstr "Kiadvány"
+
+msgid "Publication date"
+msgstr "Közzététel dátuma"
+
+msgid "Description"
+msgstr "Leírás"
+
+msgid "Email"
+msgstr "E-mail-cím"
+
+msgid "Contact"
+msgstr "Kapcsolat"
+
+msgid "Contacts"
+msgstr "Kapcsolatok"
+
+msgid "Organisation"
+msgstr "Szervezet"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobiltelefonszám"
+
+msgid "Office"
+msgstr "Iroda"
+
+msgid "Documents"
+msgstr "Dokumentumok"
+
+msgid "Funding"
+msgstr "Finanszírozás"
+
+msgid "As planned"
+msgstr "Terv szerint"
+
+msgid "Cancelled"
+msgstr "Törölve"
+
+msgid "Rescheduled"
+msgstr "Más időpontra áttéve"
+
+msgid "Postponed"
+msgstr "Elhalasztva"
+
+msgid "Address"
+msgstr "Cím"

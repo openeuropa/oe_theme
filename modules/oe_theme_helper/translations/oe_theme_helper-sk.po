@@ -70,3 +70,129 @@ msgstr "Súvisiace odkazy"
 
 msgid "Practical information"
 msgstr "Praktické informácie"
+
+msgid "Phone number"
+msgstr "Telefónne číslo"
+
+msgid "Opening date"
+msgstr "Deň otvorenia"
+
+msgid "Deadline date"
+msgstr "Lehota (dátum)"
+
+msgid "Publication date"
+msgstr "Dátum publikácie"
+
+msgid "Author"
+msgstr "Autor/autorka"
+
+msgid "Location"
+msgstr "Miesto"
+
+msgid "News type"
+msgstr "Typ aktualít"
+
+msgid "Project locations"
+msgstr "Miesta realizácie projektu"
+
+msgid "Overall budget"
+msgstr "Celkový rozpočet"
+
+msgid "EU contribution"
+msgstr "Príspevok EÚ"
+
+msgid "Departments"
+msgstr "Odbory"
+
+msgid "Results"
+msgstr "Výsledky"
+
+msgid "Stakeholders"
+msgstr "Zainteresované strany"
+
+msgid "Coordinators"
+msgstr "Koordinátori/koordinátorky"
+
+msgid "Participants"
+msgstr "Účastníci/účastníčky"
+
+msgid "Country"
+msgstr "Krajina"
+
+msgid "EU Organisation"
+msgstr "Organizácia EÚ"
+
+msgid "Non-EU organisation"
+msgstr "Organizácia mimo EÚ"
+
+msgid "Reference"
+msgstr "Referencia"
+
+msgid "Upcoming"
+msgstr "Nadchádzajúce"
+
+msgid "Open"
+msgstr "Otvorené"
+
+msgid "Closed"
+msgstr "Uzavreté"
+
+msgid "Details"
+msgstr "Podrobnosti"
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Contact organisation"
+msgstr "Kontaktná organizácia"
+
+msgid "Publication"
+msgstr "Publikácia"
+
+msgid "Publication date"
+msgstr "Dátum publikácie"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Email"
+msgstr "E-mailová adresa"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakty"
+
+msgid "Organisation"
+msgstr "Organizácia"
+
+msgid "Fax number"
+msgstr "Faxové číslo"
+
+msgid "Mobile number"
+msgstr "Mobilné číslo"
+
+msgid "Office"
+msgstr "Úrad"
+
+msgid "Documents"
+msgstr "Dokumenty"
+
+msgid "Funding"
+msgstr "Financovanie"
+
+msgid "As planned"
+msgstr "Plánované"
+
+msgid "Cancelled"
+msgstr "Zrušené"
+
+msgid "Rescheduled"
+msgstr "Presunuté"
+
+msgid "Postponed"
+msgstr "Odložené"
+
+msgid "Address"
+msgstr "Adresa"

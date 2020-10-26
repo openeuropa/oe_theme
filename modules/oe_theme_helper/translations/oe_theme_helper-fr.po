@@ -70,3 +70,129 @@ msgstr "Autres liens"
 
 msgid "Practical information"
 msgstr "Informations pratiques"
+
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+msgid "Opening date"
+msgstr "Date de début"
+
+msgid "Deadline date"
+msgstr "Date limite"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Location"
+msgstr "Lieu"
+
+msgid "News type"
+msgstr "Type d’actualité"
+
+msgid "Project locations"
+msgstr "Lieux du projet"
+
+msgid "Overall budget"
+msgstr "Budget global"
+
+msgid "EU contribution"
+msgstr "Contribution de l’UE"
+
+msgid "Departments"
+msgstr "Services"
+
+msgid "Results"
+msgstr "Résultats"
+
+msgid "Stakeholders"
+msgstr "Parties concernées"
+
+msgid "Coordinators"
+msgstr "Coordinateurs"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "EU Organisation"
+msgstr "Organisation de l’UE"
+
+msgid "Non-EU organisation"
+msgstr "Organisation hors UE"
+
+msgid "Reference"
+msgstr "Référence"
+
+msgid "Upcoming"
+msgstr "À venir"
+
+msgid "Open"
+msgstr "En cours"
+
+msgid "Closed"
+msgstr "Clos"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Contact organisation"
+msgstr "Organisation à contacter"
+
+msgid "Publication"
+msgstr "Publication"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Email"
+msgstr "Adresse électronique"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Personnes de contact"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Numéro de télécopieur"
+
+msgid "Mobile number"
+msgstr "Numéro de portable"
+
+msgid "Office"
+msgstr "Bureau"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Funding"
+msgstr "Financement"
+
+msgid "As planned"
+msgstr "Comme prévu"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Rescheduled"
+msgstr "Reprogrammé"
+
+msgid "Postponed"
+msgstr "Reporté"
+
+msgid "Address"
+msgstr "Adresse"

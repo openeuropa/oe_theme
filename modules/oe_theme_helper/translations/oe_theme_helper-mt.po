@@ -70,3 +70,132 @@ msgstr "Links relatati"
 
 msgid "Practical information"
 msgstr "Informazzjoni prattika"
+
+msgid "Phone number"
+msgstr "Numru tat-telefown"
+
+msgid "Opening date"
+msgstr "Data tal-ftuħ"
+
+msgid "Deadline date"
+msgstr "Data ta' skadenza"
+
+msgid "Publication date"
+msgstr "Data tal-pubblikazzjoni"
+
+msgid "Author"
+msgstr "Awtur"
+
+msgid "Location"
+msgstr "Post"
+
+msgid "News type"
+msgstr "Tip ta’ aħbarijiet"
+
+msgid "Project locations"
+msgstr "Postijiet tal-proġett"
+
+msgid "Overall budget"
+msgstr "Baġit totali"
+
+msgid "EU contribution"
+msgstr "Kontribuzzjoni tal-UE"
+
+msgid "Departments"
+msgstr "Dipartimenti"
+
+msgid "Results"
+msgstr "Riżultati"
+
+msgid "Stakeholders"
+msgstr "Partijiet ikkonċernati"
+
+msgid "Coordinators"
+msgstr "Koordinaturi"
+
+msgid "Participants"
+msgstr "Parteċipanti"
+
+msgid "Country"
+msgstr "Pajjiż"
+
+msgid "EU Organisation"
+msgstr "Organizzazzjoni tal-UE"
+
+msgid "Non-EU organisation"
+msgstr "Organizzazzjoni tal-UE"
+
+msgid "Reference"
+msgstr "Referenza"
+
+msgid "Upcoming"
+msgstr "Li jmiss"
+
+msgid "Open"
+msgstr "Miftuħ"
+
+msgid "Closed"
+msgstr "Magħluq"
+
+msgid "Details"
+msgstr "Dettalji"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Dettalji"
+
+msgid "Contact organisation"
+msgstr "Organizzazzjoni ta’ kuntatt"
+
+msgid "Publication"
+msgstr "Pubblikazzjoni"
+
+msgid "Publication date"
+msgstr "Data tal-pubblikazzjoni"
+
+msgid "Description"
+msgstr "Deskrizzjoni"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Contact"
+msgstr "Kuntatt"
+
+msgid "Contacts"
+msgstr "Kuntatti"
+
+msgid "Organisation"
+msgstr "Organizzazzjoni"
+
+msgid "Fax number"
+msgstr "Numru tal-faks"
+
+msgid "Mobile number"
+msgstr "Numru tal-mowbajl"
+
+msgid "Office"
+msgstr "Uffiċċju"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Finanzjament"
+
+msgid "As planned"
+msgstr "Kif ippjanat"
+
+msgid "Cancelled"
+msgstr "Ikkanċellat"
+
+msgid "Rescheduled"
+msgstr "Riskedat"
+
+msgid "Postponed"
+msgstr "Pospost"
+
+msgid "Address"
+msgstr "Indirizz"
