@@ -29,13 +29,13 @@ msgstr "Paikkoja"
 msgid "Entrance fee"
 msgstr "Pääsymaksu"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Varaa paikkasi, ilmoittautumisaikaa on jäljellä @time_left, ilmoittautuminen päättyy @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Ilmoittautuminen alkaa @time_left. Voit ilmoittautua @start_date – @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Ilmoittautuminen päättyi @end_date."
 
 msgid "Postal address"

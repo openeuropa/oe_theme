@@ -29,13 +29,13 @@ msgstr "Počet míst k sezení"
 msgid "Entrance fee"
 msgstr "Vstupní poplatek"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Zarezervujte si místo. Do konce registrace zbývá: @time_left. Konec registrace: @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrace bude zahájena za @time_left dní. Můžete se zaregistrovat od @start_date do @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Registrace skončila @end_date."
 
 msgid "Postal address"

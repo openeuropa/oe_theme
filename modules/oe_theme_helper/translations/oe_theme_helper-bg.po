@@ -29,13 +29,13 @@ msgstr "Брой на седалките"
 msgid "Entrance fee"
 msgstr "Входна такса"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Резервирайте мястото си, @time_left до края на регистрацията, регистрацията ще приключи на @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Периодът на регистрация приключи на @end_date."
 
 msgid "Postal address"

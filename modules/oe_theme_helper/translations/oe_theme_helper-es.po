@@ -29,13 +29,13 @@ msgstr "Número de localidades"
 msgid "Entrance fee"
 msgstr "Cuota de entrada"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Reserve su localidad. Quedan @time_left para inscribirse. El plazo finaliza el @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "El plazo de inscripción empieza el @time_left. Puede inscribirse del @start_date al @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "El plazo de inscripción finalizó el @end_date."
 
 msgid "Postal address"

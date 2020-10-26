@@ -29,13 +29,13 @@ msgstr "Nombre de sièges"
 msgid "Entrance fee"
 msgstr "Droit d’entrée"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Réservez votre siège; vous avez encore @time_left pour vous inscrire — les inscriptions sont ouvertes jusqu’au @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Ouverture des inscriptions dans @time_left. Vous pouvez vous inscrire du @start_date au @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Période d’inscription close le @end_date."
 
 msgid "Postal address"

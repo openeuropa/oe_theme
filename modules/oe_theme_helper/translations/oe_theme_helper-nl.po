@@ -29,13 +29,13 @@ msgstr "Aantal plaatsen"
 msgid "Entrance fee"
 msgstr "Inschrijvingsgeld"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Boek uw plaats. U heeft nog @time_left, inschrijven kan nog tot @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreren kan over @time_left. Registreren kan van @start_date  tot @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Registratietermijn verstreken op @end_date."
 
 msgid "Postal address"

@@ -29,13 +29,13 @@ msgstr "Kohtade arv"
 msgid "Entrance fee"
 msgstr "Osalustasu"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimine lõppeb: @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreerimise alguskuupäev: @time_left. Registreerimine kestab: @start_date kuni @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Registreerimisperioodi lõppkuupäev: @end_date."
 
 msgid "Postal address"

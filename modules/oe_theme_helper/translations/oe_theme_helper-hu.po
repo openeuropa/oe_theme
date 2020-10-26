@@ -29,13 +29,13 @@ msgstr "Ülések száma"
 msgid "Entrance fee"
 msgstr "Belépődíj"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs időszak végéig, a regisztrációs időszak záró dátuma: @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "A regisztrációs időszak kezdetéig hátra van még @time_left. Regisztrálni ettől az időponttól: @start_date eddig az időpontig: @end_date lehet."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "A regisztrációs időszak vége: @end_date."
 
 msgid "Postal address"

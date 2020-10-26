@@ -29,13 +29,13 @@ msgstr "Αριθμός θέσεων"
 msgid "Entrance fee"
 msgstr "Εισιτήριο"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Κάντε κράτηση για τη θέση σας, απομένουν ακόμη @time_left για την εγγραφή, η προθεσμία εγγραφής λήγει την/στις @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Η εγγραφή θα είναι δυνατή από την/τις @time_left. Μπορείτε να εγγραφείτε από την/τις @start_date , έως την/τις @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Η εγγραφή θα είναι δυνατή από την/τις @time_left. Μπορείτε να εγγραφείτε από την/τις @start_date, έως την/τις @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Η περίοδος εγγραφής έληξε την/στις @end_date."
 
 msgid "Postal address"

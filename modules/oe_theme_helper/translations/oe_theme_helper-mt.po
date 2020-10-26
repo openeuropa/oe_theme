@@ -29,13 +29,13 @@ msgstr "Numru ta’ postijiet"
 msgid "Entrance fee"
 msgstr "Miżata tad-dħul"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Ibbukkja l-post tiegħek, @time_left baqa’ biex tirreġistra, ir-reġistrazzjoni tintemm fi@end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Ir-reġistrazzjoni se tiftaħ fi @time_left. Tista’ tirreġistra minn@start_date , sa@end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Ir-reġistrazzjoni se tiftaħ fi @time_left. Tista’ tirreġistra minn@start_date, sa@end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Il-perjodu tar-reġistrazzjoni spiċċa fi @end_date."
 
 msgid "Postal address"

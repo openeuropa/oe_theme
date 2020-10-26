@@ -29,13 +29,13 @@ msgstr "An líon suíochán"
 msgid "Entrance fee"
 msgstr "Táille iontrála"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
 msgstr "Cuir do shuíochán in áirithe, @time_left fágtha le clárú, cuirfear deireadh leis an bpróiseas clárúcháin an @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "Beidh an tréimhse chlárúcháin ar oscailt idir an @time_left. Beidh tú in ann clárú ón @start_date , go dtí an @end_date."
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Beidh an tréimhse chlárúcháin ar oscailt idir an @time_left. Beidh tú in ann clárú ón @start_date, go dtí an @end_date."
 
-msgid "Registration period ended on @end_date."
+msgid "Registration period ended on @date."
 msgstr "Tháinig deireadh leis an tréimhse chlárúcháin an @end_date."
 
 msgid "Postal address"
