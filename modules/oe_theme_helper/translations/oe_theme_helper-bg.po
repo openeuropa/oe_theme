@@ -196,3 +196,15 @@ msgstr "Отложен"
 
 msgid "Address"
 msgstr "Адрес"
+
+msgid "Live stream"
+msgstr "На живо"
+
+msgid "Live streaming available"
+msgstr "Излъчване на живо"
+
+msgid "Project"
+msgstr "Проект"
+
+msgid "Publication type"
+msgstr "Вид публикация"

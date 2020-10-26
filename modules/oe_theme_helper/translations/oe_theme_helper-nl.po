@@ -199,3 +199,16 @@ msgstr "Uitgesteld"
 
 msgid "Address"
 msgstr "Adres"
+
+msgid "Live stream"
+msgstr "Livestream"
+
+msgid "Live streaming available"
+msgstr "Livestream beschikbaar"
+
+msgid "Project"
+msgstr "Project"
+
+msgid "Publication type"
+msgstr "Soort publicatie"
+

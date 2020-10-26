@@ -199,3 +199,15 @@ msgstr "Rinviato / Rinviata"
 
 msgid "Address"
 msgstr "Indirizzo"
+
+msgid "Live stream"
+msgstr "Diretta streaming"
+
+msgid "Live streaming available"
+msgstr "Diretta streaming disponibile"
+
+msgid "Project"
+msgstr "Progetto"
+
+msgid "Publication type"
+msgstr "Tipo di pubblicazione"

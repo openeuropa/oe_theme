@@ -196,3 +196,15 @@ msgstr "Verschoben"
 
 msgid "Address"
 msgstr "Anschrift"
+
+msgid "Live stream"
+msgstr "Livestream"
+
+msgid "Live streaming available"
+msgstr "Livestream verfügbar"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Art der Veröffentlichung"

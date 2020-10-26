@@ -196,3 +196,15 @@ msgstr "Atidėta"
 
 msgid "Address"
 msgstr "Adresas"
+
+msgid "Live stream"
+msgstr "Tiesioginė transliacija"
+
+msgid "Live streaming available"
+msgstr "Yra tiesioginė transliacija"
+
+msgid "Project"
+msgstr "Projektas"
+
+msgid "Publication type"
+msgstr "Leidinio rūšis"

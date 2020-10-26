@@ -196,3 +196,15 @@ msgstr "Uppskjutet"
 
 msgid "Address"
 msgstr "Adress"
+
+msgid "Live stream"
+msgstr "Webbsändning"
+
+msgid "Live streaming available"
+msgstr "Direktsänds"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Typ av publikation"

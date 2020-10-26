@@ -196,3 +196,15 @@ msgstr "Adiado"
 
 msgid "Address"
 msgstr "Endereço"
+
+msgid "Live stream"
+msgstr "Transmissão em direto via Internet"
+
+msgid "Live streaming available"
+msgstr "Transmissão em direto via Internet disponível"
+
+msgid "Project"
+msgstr "Projeto"
+
+msgid "Publication type"
+msgstr "Tipo de publicação"

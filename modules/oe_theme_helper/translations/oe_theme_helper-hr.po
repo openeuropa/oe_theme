@@ -196,3 +196,15 @@ msgstr "Odgođeno"
 
 msgid "Address"
 msgstr "Adresa"
+
+msgid "Live stream"
+msgstr "Prijenos uživo na internetu"
+
+msgid "Live streaming available"
+msgstr "Dostupan je prijenos uživo na internetu"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Tip publikacije"

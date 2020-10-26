@@ -199,3 +199,15 @@ msgstr "Odroczono"
 
 msgid "Address"
 msgstr "Adres"
+
+msgid "Live stream"
+msgstr "Transmisja na żywo"
+
+msgid "Live streaming available"
+msgstr "Dostępna transmisja na żywo"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Rodzaj publikacji"

@@ -196,3 +196,15 @@ msgstr "Peruttu toistaiseksi"
 
 msgid "Address"
 msgstr "Osoite"
+
+msgid "Live stream"
+msgstr "Suoratoisto"
+
+msgid "Live streaming available"
+msgstr "Katsottavissa suoratoistona"
+
+msgid "Project"
+msgstr "Hanke"
+
+msgid "Publication type"
+msgstr "Julkaisun tyyppi"

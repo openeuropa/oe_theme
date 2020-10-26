@@ -196,3 +196,15 @@ msgstr "Edasi lükatud"
 
 msgid "Address"
 msgstr "Aadress"
+
+msgid "Live stream"
+msgstr "Otseülekanne"
+
+msgid "Live streaming available"
+msgstr "Otseülekanne on vaadatav"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Väljaande liik"

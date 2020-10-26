@@ -196,3 +196,15 @@ msgstr "Odložené"
 
 msgid "Address"
 msgstr "Adresa"
+
+msgid "Live stream"
+msgstr "Živé vysielanie"
+
+msgid "Live streaming available"
+msgstr "Dostupné živé vysielanie"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Typ publikácií"

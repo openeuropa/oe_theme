@@ -196,3 +196,15 @@ msgstr "Amânat"
 
 msgid "Address"
 msgstr "Adresă"
+
+msgid "Live stream"
+msgstr "Transmisiune în direct online"
+
+msgid "Live streaming available"
+msgstr "Transmisiune în direct disponibilă online"
+
+msgid "Project"
+msgstr "Proiect"
+
+msgid "Publication type"
+msgstr "Tip de publicație"

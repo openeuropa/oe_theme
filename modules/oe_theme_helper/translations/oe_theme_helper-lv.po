@@ -196,3 +196,15 @@ msgstr "Atlikts"
 
 msgid "Address"
 msgstr "Adrese"
+
+msgid "Live stream"
+msgstr "Straumējums"
+
+msgid "Live streaming available"
+msgstr "Pieejams tiešraides straumējums"
+
+msgid "Project"
+msgstr "Projekts"
+
+msgid "Publication type"
+msgstr "Publikācijas veids"

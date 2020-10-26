@@ -196,3 +196,15 @@ msgstr "Aplazado"
 
 msgid "Address"
 msgstr "Dirección"
+
+msgid "Live stream"
+msgstr "Streaming en vivo"
+
+msgid "Live streaming available"
+msgstr "Streaming en vivo disponible"
+
+msgid "Project"
+msgstr "Proyecto"
+
+msgid "Publication type"
+msgstr "Tipo de publicación"

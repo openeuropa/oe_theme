@@ -196,3 +196,15 @@ msgstr "Reporté"
 
 msgid "Address"
 msgstr "Adresse"
+
+msgid "Live stream"
+msgstr "Retransmission en direct"
+
+msgid "Live streaming available"
+msgstr "Retransmission en direct disponible"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Publication type"
+msgstr "Type de publication"

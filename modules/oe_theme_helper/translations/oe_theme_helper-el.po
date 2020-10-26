@@ -196,3 +196,15 @@ msgstr "Έχει αναβληθεί"
 
 msgid "Address"
 msgstr "Διεύθυνση"
+
+msgid "Live stream"
+msgstr "Ζωντανή μετάδοση"
+
+msgid "Live streaming available"
+msgstr "Διαθέσιμη ζωντανή μετάδοση"
+
+msgid "Project"
+msgstr "Έργο"
+
+msgid "Publication type"
+msgstr "Είδος δημοσίευσης"

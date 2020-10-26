@@ -196,3 +196,15 @@ msgstr "Udsat"
 
 msgid "Address"
 msgstr "Adresse"
+
+msgid "Live stream"
+msgstr "Livestreaming"
+
+msgid "Live streaming available"
+msgstr "Livestreaming tilgængelig"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Publikationstype"

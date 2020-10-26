@@ -196,3 +196,15 @@ msgstr "Curtha ar athló"
 
 msgid "Address"
 msgstr "Seoladh"
+
+msgid "Live stream"
+msgstr "Beosruthú"
+
+msgid "Live streaming available"
+msgstr "Beosruthú ar fáil"
+
+msgid "Project"
+msgstr "Tionscadal"
+
+msgid "Publication type"
+msgstr "An cineál foilseacháin"

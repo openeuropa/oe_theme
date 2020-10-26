@@ -199,3 +199,15 @@ msgstr "Pospost"
 
 msgid "Address"
 msgstr "Indirizz"
+
+msgid "Live stream"
+msgstr "Xandira diretta fuq l-internet"
+
+msgid "Live streaming available"
+msgstr "Xandira diretta fuq l-internet disponibbli"
+
+msgid "Project"
+msgstr "Proġett"
+
+msgid "Publication type"
+msgstr "Tip tal-pubblikazzjoni"

@@ -196,3 +196,15 @@ msgstr "Elhalasztva"
 
 msgid "Address"
 msgstr "Cím"
+
+msgid "Live stream"
+msgstr "Online közvetítés"
+
+msgid "Live streaming available"
+msgstr "Élőben követhető"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Kiadvány típusa"
