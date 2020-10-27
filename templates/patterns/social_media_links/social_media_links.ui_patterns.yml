@@ -1,6 +1,13 @@
-social_media_links_vertical:
-  label: "Social media links: vertical (Deprecated)"
+social_media_links:
+  label: "Social media links"
   description: "Social network icon with link of label."
+  variants:
+    horizontal:
+      label: "Horizontal"
+      description: "It will align the field items horizontally."
+    vertical:
+      label: "Vertical"
+      description: "It will align the field items vertically."
   fields:
     title:
       type: "text"
@@ -21,6 +28,3 @@ social_media_links_vertical:
         - service: "instagram"
           label: "Instagram"
           url: "#"
-  additional:
-    style: "max-width: 400px"
-    hidden: true

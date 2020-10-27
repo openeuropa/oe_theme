@@ -1531,3 +1531,16 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
   ]);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_patterns_overview_page(&$variables) {
+  // Remove patterns from the list on the "/components" page if they are marked
+  // as hidden.
+  foreach ($variables['patterns'] as $key => $pattern) {
+    if (!empty($pattern['additional']['hidden'])) {
+      unset($variables['patterns'][$key]);
+    }
+  }
+}
