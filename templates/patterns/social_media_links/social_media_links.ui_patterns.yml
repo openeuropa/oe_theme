@@ -28,3 +28,5 @@ social_media_links:
         - service: "instagram"
           label: "Instagram"
           url: "#"
+        - label: "See more"
+          url: "#"
