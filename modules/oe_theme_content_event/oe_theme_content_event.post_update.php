@@ -34,7 +34,7 @@ function oe_theme_content_event_post_update_00001(): void {
 /**
  * Create the 'full' entity view display on the event CT.
  */
-function oe_theme_content_event_post_update_00002(): void {
+function oe_theme_content_event_post_update_00002() {
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/00002_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
@@ -46,6 +46,11 @@ function oe_theme_content_event_post_update_00002(): void {
   $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
   /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
   $entity_storage = $entity_type_manager->getStorage('entity_view_display');
+  $existing = EntityViewDisplay::load('node.oe_event.full');
+  if ($existing) {
+    return t('Full entity view display already exists, skipping.');
+  }
+
   $entity = $entity_storage->createFromStorageRecord($config);
   $entity->save();
 }
