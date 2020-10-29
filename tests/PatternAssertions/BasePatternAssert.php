@@ -168,4 +168,23 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     ));
   }
 
+  /**
+   * Asserts the image of the pattern.
+   *
+   * @param array|null $expected_image
+   *   The expected image.
+   * @param string $selector
+   *   The CSS selector to find the element.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertImage(?array $expected_image, string $selector, Crawler $crawler): void {
+    if (is_null($expected_image)) {
+      $this->assertElementNotExists($selector, $crawler);
+      return;
+    }
+    $this->assertElementAttribute($expected_image['src'], $selector, 'src', $crawler);
+    $this->assertElementAttribute($expected_image['alt'], $selector, 'alt', $crawler);
+  }
+
 }
