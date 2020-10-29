@@ -8,7 +8,7 @@ use Symfony\Component\DomCrawler\Crawler;
 use PHPUnit\Framework\Exception;
 
 /**
- * Assertions for the field list pattern.
+ * Assertions for the social media link pattern.
  *
  * @package Drupal\Tests\oe_theme\PatternAssertions
  */
@@ -39,7 +39,7 @@ class SocialMediaLinksAssert extends BasePatternAssert {
   }
 
   /**
-   * Returns the base CSS selector for a field item depending on the variant.
+   * Returns the base CSS selector of a pattern depending on the variant.
    *
    * @param string $variant
    *   The variant being checked.
@@ -93,11 +93,10 @@ class SocialMediaLinksAssert extends BasePatternAssert {
         // Service icon exists.
         $link_element = $li_item->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before.ecl-social-media-follow__link');
         $label_element = $link_element->filter('span.ecl-link__label');
-        $icon_social_file = 'icons-social.svg#';
         $svg = $link_element->filter('svg.ecl-icon.ecl-icon--xl.ecl-link__icon.ecl-social-media-follow__icon use');
-        self::assertContains($icon_social_file . $expected_item['service'], $svg->attr('xlink:href'));
+        self::assertContains('icons-social.svg#' . $expected_item['service'], $svg->attr('xlink:href'));
         $svg_hover = $link_element->filter('svg.ecl-icon.ecl-icon--xl.ecl-link__icon.ecl-social-media-follow__icon-hover use');
-        self::assertContains($icon_social_file . $expected_item['service'] . '_hover', $svg_hover->attr('xlink:href'));
+        self::assertContains('icons-social.svg#' . $expected_item['service'] . '_hover', $svg_hover->attr('xlink:href'));
       }
 
       self::assertEquals($expected_item['label'], trim($label_element->text()));
