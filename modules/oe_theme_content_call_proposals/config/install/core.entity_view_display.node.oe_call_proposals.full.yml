@@ -1,0 +1,230 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.oe_call_proposals.body
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_departments
+    - field.field.node.oe_call_proposals.oe_documents
+    - field.field.node.oe_call_proposals.oe_publication_date
+    - field.field.node.oe_call_proposals.oe_reference_code
+    - node.type.oe_call_proposals
+  module:
+    - datetime
+    - entity_reference_revisions
+    - field_group
+    - link
+    - options
+    - rdf_skos
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_in_page_navigation:
+      children:
+        - group_item_details
+        - group_item_description
+        - group_item_documents
+        - group_item_contacts
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_in_page_navigation
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Page contents'
+    group_item_details:
+      children:
+        - group_details
+        - group_results
+        - group_info
+      parent_name: group_in_page_navigation
+      weight: 20
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Details
+    group_item_description:
+      children:
+        - body
+      parent_name: group_in_page_navigation
+      weight: 21
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Description
+    group_item_documents:
+      children:
+        - oe_documents
+      parent_name: group_in_page_navigation
+      weight: 22
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Documents
+    group_item_contacts:
+      children:
+        - oe_call_proposals_contact
+      parent_name: group_in_page_navigation
+      weight: 23
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Contact
+    group_details:
+      children:
+        - oe_reference_code
+        - oe_call_proposals_opening_date
+        - oe_call_proposals_model
+        - oe_call_proposals_deadline
+      parent_name: group_item_details
+      weight: 20
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: ''
+    group_results:
+      children:
+        - oe_call_proposals_grants_link
+      parent_name: group_item_details
+      weight: 21
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: Results
+    group_info:
+      children:
+        - oe_call_proposals_funding
+        - oe_departments
+      parent_name: group_item_details
+      weight: 22
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: Info
+id: node.oe_call_proposals.full
+targetEntityType: node
+bundle: oe_call_proposals
+mode: full
+content:
+  body:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  oe_call_proposals_contact:
+    weight: 12
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_call_proposals_deadline:
+    weight: 6
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_proposals_date_full_timezone
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_call_proposals_funding:
+    weight: 9
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_call_proposals_grants_link:
+    weight: 22
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  oe_call_proposals_model:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_call_proposals_opening_date:
+    weight: 4
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_proposals_date_long
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_departments:
+    weight: 10
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    type: skos_concept_entity_reference_label
+    region: content
+  oe_documents:
+    weight: 11
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  oe_reference_code:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  links: true
+  oe_call_proposals_journal: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_publication_date: true
