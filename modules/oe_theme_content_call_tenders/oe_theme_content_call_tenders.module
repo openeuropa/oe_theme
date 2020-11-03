@@ -16,12 +16,6 @@ use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
  */
 function oe_theme_content_call_tenders_theme() {
   return [
-    'oe_theme_content_call_tenders_status' => [
-      'variables' => [
-        'label' => '',
-        'name' => '',
-      ],
-    ],
     'oe_theme_content_call_tenders_label_status' => [
       'variables' => [
         'label' => '',

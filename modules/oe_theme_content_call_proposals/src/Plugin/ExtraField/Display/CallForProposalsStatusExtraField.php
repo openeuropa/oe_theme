@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_call_tenders\Plugin\ExtraField\Display;
+namespace Drupal\oe_theme_content_call_proposals\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -10,23 +10,22 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
-use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
-use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display call for tenders status.
+ * Display Call for proposals status.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_call_tenders_status",
+ *   id = "oe_call_proposals_status",
  *   label = @Translation("Status"),
  *   bundles = {
- *     "node.oe_call_tenders",
+ *     "node.oe_call_proposals",
  *   },
  *   visible = true
  * )
  */
-class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
 
@@ -77,21 +76,21 @@ class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase impl
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $entity = CallForTendersNodeWrapper::getInstance($entity);
+    $entity = CallForProposalsNodeWrapper::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === CallForTendersNodeWrapperInterface::STATUS_UPCOMING) {
+    if ($status === CallForProposalsNodeWrapper::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallForTendersNodeWrapperInterface::STATUS_OPEN) {
+    if ($status === CallForProposalsNodeWrapper::STATUS_OPEN) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [
       '#theme' => 'oe_theme_helper_call_status',
       '#label' => $entity->getStatusLabel(),
-      '#name' => 'call-tenders-status',
+      '#name' => 'call-proposals-status',
     ];
     $cacheable->applyTo($build);
 
