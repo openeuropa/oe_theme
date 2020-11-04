@@ -4,10 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_call_proposals\Plugin\ExtraField\Display;
 
+use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\Core\Url;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -35,6 +38,13 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
   protected $entityTypeManager;
 
   /**
+   * The date formatter service.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * EventExtraFieldBase constructor.
    *
    * @param array $configuration
@@ -45,10 +55,13 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
+   *   The date formatter service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, DateFormatterInterface $date_formatter) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
+    $this->dateFormatter = $date_formatter;
   }
 
   /**
@@ -59,7 +72,8 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('date.formatter')
     );
   }
 
@@ -74,15 +88,20 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $date = $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_publication_date'), [
-      'label' => 'hidden',
-      'type' => 'datetime_default',
-      'settings' => [
-        'format_type' => 'oe_call_proposals_date_long',
-      ],
-    ]);
+    $date = new DrupalDateTime($entity->get('oe_publication_date')->value);
 
-    return $date;
+    $link = [];
+    if (!$entity->get('oe_call_proposals_journal')->isEmpty()) {
+      $link_value = $entity->get('oe_call_proposals_journal')->getValue();
+      $link['url'] = Url::fromUri($link_value[0]['uri'])->toString();
+      $link['title'] = empty($link_value[0]['title']) ? $link['url'] : $link_value[0]['title'];
+    }
+
+    return [
+      '#theme' => 'oe_theme_content_call_proposals_publication_details',
+      '#date' => $this->dateFormatter->format($date->getTimestamp(), 'oe_call_proposals_date_long'),
+      '#link' => $link,
+    ];
   }
 
 }

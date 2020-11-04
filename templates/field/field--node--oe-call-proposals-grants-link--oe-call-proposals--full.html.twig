@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Grants awarded link field in the Call for proposal node full view mode.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: 'Grands awarded'|t,
+      path: item.content['#url'],
+      icon_position: 'after'
+    },
+    icon: get_link_icon(item.content['#url'].toString())
+  } %}
+{% endfor %}

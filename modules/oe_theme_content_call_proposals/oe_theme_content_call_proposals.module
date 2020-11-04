@@ -12,6 +12,20 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 
 /**
+ * Implements hook_theme().
+ */
+function oe_theme_content_call_proposals_theme() {
+  return [
+    'oe_theme_content_call_proposals_publication_details' => [
+      'variables' => [
+        'date' => '',
+        'link' => [],
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
 function oe_theme_content_call_proposals_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
@@ -29,8 +43,6 @@ function oe_theme_content_call_proposals_node_view_alter(array &$build, EntityIn
   }
 
   if ($build['#view_mode'] === 'full') {
-    $build['oe_call_proposals_grants_link'][0]['#title'] = t('Grands awarded');
-
     $label_overrides += [
       'oe_departments' => t('Departments'),
       'oe_call_proposals_grants_link' => t('Results'),
