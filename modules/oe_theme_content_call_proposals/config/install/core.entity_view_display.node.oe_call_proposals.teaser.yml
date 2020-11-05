@@ -1,0 +1,103 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oe_call_proposals.body
+    - field.field.node.oe_call_proposals.oe_call_proposals_contact
+    - field.field.node.oe_call_proposals.oe_call_proposals_deadline
+    - field.field.node.oe_call_proposals.oe_call_proposals_funding
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.field.node.oe_call_proposals.oe_call_proposals_journal
+    - field.field.node.oe_call_proposals.oe_call_proposals_model
+    - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
+    - field.field.node.oe_call_proposals.oe_departments
+    - field.field.node.oe_call_proposals.oe_documents
+    - field.field.node.oe_call_proposals.oe_publication_date
+    - field.field.node.oe_call_proposals.oe_reference_code
+    - node.type.oe_call_proposals
+  module:
+    - datetime
+    - field_group
+    - options
+    - rdf_skos
+    - user
+third_party_settings:
+  field_group:
+    group_details:
+      children:
+        - oe_reference_code
+        - oe_call_proposals_opening_date
+        - oe_call_proposals_model
+        - oe_call_proposals_deadline
+        - oe_call_proposals_funding
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: Details
+id: node.oe_call_proposals.teaser
+targetEntityType: node
+bundle: oe_call_proposals
+mode: teaser
+content:
+  oe_call_proposals_deadline:
+    weight: 4
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_proposals_teaser_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_call_proposals_funding:
+    type: skos_concept_entity_reference_label
+    weight: 5
+    region: content
+    label: above
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_call_proposals_model:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  oe_call_proposals_opening_date:
+    weight: 2
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_proposals_teaser_date
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  oe_reference_code:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden:
+  body: true
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  links: true
+  oe_call_proposals_contact: true
+  oe_call_proposals_grants_link: true
+  oe_call_proposals_journal: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_departments: true
+  oe_documents: true
+  oe_publication_date: true

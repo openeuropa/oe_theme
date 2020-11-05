@@ -92,6 +92,12 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'name' => '',
       ],
     ],
+    'oe_theme_helper_call_label_status' => [
+      'variables' => [
+        'label' => '',
+        'name' => '',
+      ],
+    ],
   ];
 }
 

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for the status extra field as label.
+ *
+ * @see template_preprocess_oe_theme_helper_in_page_navigation()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if name != 'not_available' %}
+  {% if name == 'upcoming' %}
+    {% set background_class = ' ecl-label--medium' %}
+  {% elseif name == 'open' %}
+    {% set background_class = ' ecl-label--high' %}
+  {% elseif name == 'closed' %}
+    {% set background_class = ' ecl-label--low' %}
+  {% endif %}
+  <span class="call-proposals-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black{{ background_class }}">{{ label }}</span>
+{% endif %}

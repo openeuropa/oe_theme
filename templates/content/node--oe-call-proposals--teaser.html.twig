@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Teaser template implementtion for "Call for proposals" content type.
+ */
+#}
+{{ pattern('list_item', {
+  'variant': 'default',
+  'url': url,
+  'title': label,
+  'meta': [
+    content.extra_field_oe_call_proposals_label_status|field_value,
+  ],
+  'additional_information': [
+    content.group_details,
+  ],
+}) }}
