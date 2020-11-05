@@ -128,7 +128,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-tenders-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check Department/s label for multiple department values.
@@ -185,7 +185,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-tenders-status.ecl-label.ecl-u-text-uppercase.ecl-label--low.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--low.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check Deadline date is striked when Call for tenders is closed.
@@ -223,7 +223,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-tenders-status.ecl-label.ecl-u-text-uppercase.ecl-label--medium.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--medium.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status N/A.

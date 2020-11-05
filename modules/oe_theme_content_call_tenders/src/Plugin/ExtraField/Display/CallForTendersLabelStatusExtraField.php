@@ -34,7 +34,7 @@ class CallForTendersLabelStatusExtraField extends CallForTendersStatusExtraField
   public function viewElements(ContentEntityInterface $entity) {
     $build = parent::viewElements($entity);
     $entity = CallForTendersNodeWrapper::getInstance($entity);
-    $build['#theme'] = 'oe_theme_content_call_tenders_label_status';
+    $build['#theme'] = 'oe_theme_helper_call_label_status';
     $build['#label'] = $this->t('Call status: @label', ['@label' => $build['#label']]);
     $build['#name'] = $entity->getStatus();
     return $build;
