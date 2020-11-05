@@ -1,10 +1,28 @@
 # Changelog
 
+## [2.11.0](https://github.com/openeuropa/oe_theme/tree/2.11.0) (2020-11-05)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.2...2.11.0)
+
+**Closed issues:**
+
+- Is oe\_content module now obligatory to use along with oe\_theme module? [\#631](https://github.com/openeuropa/oe_theme/issues/631)
+
+**Merged pull requests:**
+
+- EWPP-497: Update address module patch. [\#635](https://github.com/openeuropa/oe_theme/pull/635) ([nagyad](https://github.com/nagyad))
+- EWPP-371: Add checks when adding region suggestions for blocks. [\#630](https://github.com/openeuropa/oe_theme/pull/630) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Merge release 2.10.2 on 2.x [\#628](https://github.com/openeuropa/oe_theme/pull/628) ([ademarco](https://github.com/ademarco))
+- EWPP-371: Use DrupalDateTime dates inside DateValueObject objects to translate the dates if needed. [\#625](https://github.com/openeuropa/oe_theme/pull/625) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-384: Add margin to blocks if they are part of the content region. [\#621](https://github.com/openeuropa/oe_theme/pull/621) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [2.10.2](https://github.com/openeuropa/oe_theme/tree/2.10.2) (2020-10-12)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.1...2.10.2)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.10.2. [\#627](https://github.com/openeuropa/oe_theme/pull/627) ([ademarco](https://github.com/ademarco))
 - EWPP-404: Make sure venue entity is present, even if field is empty. [\#626](https://github.com/openeuropa/oe_theme/pull/626) ([ademarco](https://github.com/ademarco))
 
 ## [2.10.1](https://github.com/openeuropa/oe_theme/tree/2.10.1) (2020-10-09)
