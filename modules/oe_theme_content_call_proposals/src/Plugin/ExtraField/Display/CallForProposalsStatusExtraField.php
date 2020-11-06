@@ -9,8 +9,8 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
-use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -37,7 +37,7 @@ class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase im
   protected $cacheTagGenerator;
 
   /**
-   * CallForTendersStatusExtraField constructor.
+   * CallForProposalsStatusExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -76,15 +76,16 @@ class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase im
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $entity = CallForProposalsNodeWrapper::getInstance($entity);
+    $entity = CallForProposalsNodeWrapperInterface::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === CallForProposalsNodeWrapper::STATUS_UPCOMING) {
+    if ($status === CallForProposalsNodeWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallForProposalsNodeWrapper::STATUS_OPEN) {
+    if ($status === CallForProposalsNodeWrapperInterface::STATUS_OPEN
+      && !empty($entity->getDeadlineDate())) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [

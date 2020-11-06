@@ -9,6 +9,7 @@ use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 
 /**
  * Base class for testing content types.
@@ -203,6 +204,82 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ]);
 
     return $contact;
+  }
+
+  /**
+   * Asserts Contact entity field rendering.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the Contact entity.
+   */
+  protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name):void {
+    $contact_name = $element->findAll('css', 'h3');
+    $this->assertCount(1, $contact_name);
+    $contact_name = reset($contact_name);
+    $this->assertEquals($name, $contact_name->getText());
+
+    $contact_body = $element->findAll('css', '.ecl-editor');
+    $this->assertCount(1, $contact_body);
+    $contact_body = reset($contact_body);
+    $this->assertEquals('Body text general_contact', $contact_body->getText());
+
+    $contacts_html = $element->getHtml();
+    $field_list_assert = new FieldListAssert();
+    $contact_expected_values = [
+      'items' => [
+        [
+          'label' => 'Organisation',
+          'body' => "Organisation $name",
+        ], [
+          'label' => 'Website',
+          'body' => "http://www.example.com/website_$name",
+        ], [
+          'label' => 'Email',
+          'body' => "$name@example.com",
+        ], [
+          'label' => 'Phone number',
+          'body' => "Phone number $name",
+        ], [
+          'label' => 'Mobile number',
+          'body' => "Mobile number $name",
+        ], [
+          'label' => 'Fax number',
+          'body' => "Fax number $name",
+        ], [
+          'label' => 'Postal address',
+          'body' => "Address $name, 1001 Brussels, Belgium",
+        ], [
+          'label' => 'Office',
+          'body' => "Office $name",
+        ], [
+          'label' => 'Social media',
+          'body' => html_entity_decode('&nbsp;') . 'Social media ' . $name,
+        ],
+      ],
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $contacts_html);
+    $field_list_assert->assertVariant('horizontal', $contacts_html);
+
+    // Assert Press contacts.
+    $press = $element->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
+    $press = reset($press);
+    $press_link = $press->findAll('css', 'a');
+    $this->assertCount(1, $press_link);
+    $press_link = reset($press_link);
+    $this->assertEquals("http://www.example.com/press_contact_$name", $press_link->getAttribute('href'));
+
+    $press_label = $press_link->findAll('css', '.ecl-link__label');
+    $this->assertCount(1, $press_label);
+    $press_label = reset($press_label);
+    $this->assertEquals('Press contacts', $press_label->getText());
+
+    $press_icon = $press_link->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $this->assertCount(1, $press_icon);
+
+    // Assert contacts Image.
+    $this->assertFeaturedMediaField($element, $name);
   }
 
   /**
