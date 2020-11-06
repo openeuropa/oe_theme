@@ -208,3 +208,9 @@ msgstr "Έργο"
 
 msgid "Publication type"
 msgstr "Είδος δημοσίευσης"
+
+msgid "Call for proposals"
+msgstr "Πρόσκληση υποβολής προτάσεων"
+
+msgid "Funding programme"
+msgstr "Πρόγραμμα χρηματοδότησης"

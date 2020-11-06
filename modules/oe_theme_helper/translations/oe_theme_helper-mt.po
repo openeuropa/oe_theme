@@ -211,3 +211,9 @@ msgstr "Proġett"
 
 msgid "Publication type"
 msgstr "Tip tal-pubblikazzjoni"
+
+msgid "Call for proposals"
+msgstr "Sejħa għal proposti"
+
+msgid "Funding programme"
+msgstr "Programm ta' finanzjament"

@@ -208,3 +208,9 @@ msgstr "Tionscadal"
 
 msgid "Publication type"
 msgstr "An cineál foilseacháin"
+
+msgid "Call for proposals"
+msgstr "Glao ar thograí"
+
+msgid "Funding programme"
+msgstr "Clár maoiniúcháin"

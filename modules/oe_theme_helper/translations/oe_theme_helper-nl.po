@@ -212,3 +212,8 @@ msgstr "Project"
 msgid "Publication type"
 msgstr "Soort publicatie"
 
+msgid "Call for proposals"
+msgstr "Oproep tot het indienen van voorstellen"
+
+msgid "Funding programme"
+msgstr "Financieringsprogramma"

@@ -211,3 +211,9 @@ msgstr "Progetto"
 
 msgid "Publication type"
 msgstr "Tipo di pubblicazione"
+
+msgid "Call for proposals"
+msgstr "Invito a presentare proposte"
+
+msgid "Funding programme"
+msgstr "Programma di finanziamento"

@@ -208,3 +208,9 @@ msgstr "Projekt"
 
 msgid "Publication type"
 msgstr "Typ publikácií"
+
+msgid "Call for proposals"
+msgstr "Výzva na predkladanie návrhov"
+
+msgid "Funding programme"
+msgstr "Program financovania"

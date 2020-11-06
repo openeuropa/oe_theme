@@ -208,3 +208,9 @@ msgstr "Hanke"
 
 msgid "Publication type"
 msgstr "Julkaisun tyyppi"
+
+msgid "Call for proposals"
+msgstr "Ehdotuspyyntö"
+
+msgid "Funding programme"
+msgstr "Rahoitusohjelma"

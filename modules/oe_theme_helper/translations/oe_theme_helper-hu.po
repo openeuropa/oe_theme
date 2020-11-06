@@ -208,3 +208,9 @@ msgstr "Projekt"
 
 msgid "Publication type"
 msgstr "Kiadvány típusa"
+
+msgid "Call for proposals"
+msgstr "Pályázati felhívás"
+
+msgid "Funding programme"
+msgstr "Finanszírozási program"

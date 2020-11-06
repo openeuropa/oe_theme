@@ -208,3 +208,9 @@ msgstr "Projekt"
 
 msgid "Publication type"
 msgstr "Typ av publikation"
+
+msgid "Call for proposals"
+msgstr "Ansökningsomgång"
+
+msgid "Funding programme"
+msgstr "Finansieringsprogram"

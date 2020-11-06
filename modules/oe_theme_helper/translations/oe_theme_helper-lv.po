@@ -208,3 +208,9 @@ msgstr "Projekts"
 
 msgid "Publication type"
 msgstr "Publikācijas veids"
+
+msgid "Call for proposals"
+msgstr "Uzaicinājums iesniegt priekšlikumus"
+
+msgid "Funding programme"
+msgstr "Finansējuma programma"
