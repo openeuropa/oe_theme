@@ -16,6 +16,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\file\FileInterface;
+use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -1270,28 +1271,57 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
  * Prepares the default view mode for the document media type.
  */
 function oe_theme_preprocess_media__document__default(&$variables) {
-  if ($variables['media']->get('oe_media_file')->isEmpty()) {
-    return;
-  }
-  // Generate the file information for the current language.
   /** @var \Drupal\media\Entity\Media $media */
   $media = $variables['media'];
-  $file_object = $media->get('oe_media_file')->first()->entity;
-  $variables['file'] = FileValueObject::fromFileEntity($file_object)
-    ->setTitle($media->getName())
-    ->setLanguageCode($media->language()->getId());
-  // Generate the file information for all available translations.
-  foreach ($media->getTranslationLanguages() as $langcode => $language) {
-    // We don't want to include the information of the current language again.
-    if ($media->language()->getId() === $langcode) {
-      continue;
+  $file_type = $media->get('oe_media_file_type')->first()->value;
+  if ($file_type === 'remote' && $media->get('oe_media_remote_file')->isEmpty()) {
+    return;
+  }
+  if ($file_type === 'local' && $media->get('oe_media_file')->isEmpty()) {
+    return;
+  }
+
+  if ($file_type === 'remote') {
+    // Generate the file information for the current language.
+    $file_link = $media->get('oe_media_remote_file')->first();
+    $variables['file'] = FileValueObject::fromFileLink($file_link)
+      ->setTitle($media->getName())
+      ->setLanguageCode($media->language()->getId());
+    // Generate the file information for all available translations.
+    foreach ($media->getTranslationLanguages() as $langcode => $language) {
+      // We don't want to include the information of the current language again.
+      if ($media->language()->getId() === $langcode) {
+        continue;
+      }
+      $translation = $media->getTranslation($langcode);
+      $file_link = $translation->get('oe_media_remote_file')->first();
+      if ($file_link instanceof FileLinkItem) {
+        $variables['translations'][] = FileValueObject::fromFileLink($file_link)
+          ->setTitle($translation->getName())
+          ->setLanguageCode($translation->language()->getId());
+      }
     }
-    $translation = $media->getTranslation($langcode);
-    $file_object = $translation->get('oe_media_file')->first()->entity;
-    if ($file_object instanceof FileInterface) {
-      $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
-        ->setTitle($translation->getName())
-        ->setLanguageCode($translation->language()->getId());
+  }
+
+  if ($file_type === 'local') {
+    // Generate the file information for the current language.
+    $file_object = $media->get('oe_media_file')->first()->entity;
+    $variables['file'] = FileValueObject::fromFileEntity($file_object)
+      ->setTitle($media->getName())
+      ->setLanguageCode($media->language()->getId());
+    // Generate the file information for all available translations.
+    foreach ($media->getTranslationLanguages() as $langcode => $language) {
+      // We don't want to include the information of the current language again.
+      if ($media->language()->getId() === $langcode) {
+        continue;
+      }
+      $translation = $media->getTranslation($langcode);
+      $file_object = $translation->get('oe_media_file')->first()->entity;
+      if ($file_object instanceof FileInterface) {
+        $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
+          ->setTitle($translation->getName())
+          ->setLanguageCode($translation->language()->getId());
+      }
     }
   }
 }
