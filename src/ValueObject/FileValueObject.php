@@ -223,7 +223,10 @@ class FileValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getExtension(): string {
-    return self::MIME_TYPES_MAPPING[$this->mime] ? self::MIME_TYPES_MAPPING[$this->mime] : pathinfo($this->name, PATHINFO_EXTENSION);
+    if (isset(self::MIME_TYPES_MAPPING[$this->mime])) {
+      return self::MIME_TYPES_MAPPING[$this->mime];
+    }
+    return pathinfo($this->name, PATHINFO_EXTENSION);
   }
 
   /**
