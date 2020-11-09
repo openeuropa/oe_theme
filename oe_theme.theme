@@ -1281,47 +1281,40 @@ function oe_theme_preprocess_media__document__default(&$variables) {
     return;
   }
 
-  if ($file_type === 'remote') {
-    // Generate the file information for the current language.
-    $file_link = $media->get('oe_media_remote_file')->first();
-    $variables['file'] = FileValueObject::fromFileLink($file_link)
-      ->setTitle($media->getName())
-      ->setLanguageCode($media->language()->getId());
-    // Generate the file information for all available translations.
-    foreach ($media->getTranslationLanguages() as $langcode => $language) {
-      // We don't want to include the information of the current language again.
-      if ($media->language()->getId() === $langcode) {
-        continue;
-      }
-      $translation = $media->getTranslation($langcode);
-      $file_link = $translation->get('oe_media_remote_file')->first();
-      if ($file_link instanceof FileLinkItem) {
-        $variables['translations'][] = FileValueObject::fromFileLink($file_link)
-          ->setTitle($translation->getName())
-          ->setLanguageCode($translation->language()->getId());
-      }
-    }
-  }
-
+  // Generate the file information for the current language.
   if ($file_type === 'local') {
-    // Generate the file information for the current language.
     $file_object = $media->get('oe_media_file')->first()->entity;
     $variables['file'] = FileValueObject::fromFileEntity($file_object)
       ->setTitle($media->getName())
       ->setLanguageCode($media->language()->getId());
-    // Generate the file information for all available translations.
-    foreach ($media->getTranslationLanguages() as $langcode => $language) {
-      // We don't want to include the information of the current language again.
-      if ($media->language()->getId() === $langcode) {
-        continue;
-      }
-      $translation = $media->getTranslation($langcode);
+  }
+  else {
+    $file_link = $media->get('oe_media_remote_file')->first();
+    $variables['file'] = FileValueObject::fromFileLink($file_link)
+      ->setTitle($media->getName())
+      ->setLanguageCode($media->language()->getId());
+  }
+
+  // Generate the file information for all available translations.
+  foreach ($media->getTranslationLanguages() as $langcode => $language) {
+    // We don't want to include the information of the current language again.
+    if ($media->language()->getId() === $langcode) {
+      continue;
+    }
+    $translation = $media->getTranslation($langcode);
+    if ($translation->get('oe_media_file_type')->first()->value === 'local') {
       $file_object = $translation->get('oe_media_file')->first()->entity;
       if ($file_object instanceof FileInterface) {
         $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
           ->setTitle($translation->getName())
           ->setLanguageCode($translation->language()->getId());
       }
+    }
+    else {
+      $file_link = $translation->get('oe_media_remote_file')->first();
+      $variables['translations'][] = FileValueObject::fromFileLink($file_link)
+        ->setTitle($translation->getName())
+        ->setLanguageCode($translation->language()->getId());
     }
   }
 }
