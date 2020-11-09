@@ -51,6 +51,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $media = $this->getStorage('media')->create([
       'bundle' => 'document',
       'name' => "Test document $name",
+      'oe_media_file_type' => 'local',
       'oe_media_file' => [
         'target_id' => (int) $file->id(),
       ],

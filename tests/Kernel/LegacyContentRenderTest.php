@@ -92,6 +92,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
       ->getStorage('media')->create([
         'bundle' => 'document',
         'name' => 'test document',
+        'oe_media_file_type' => 'local',
         'oe_media_file' => [
           'target_id' => (int) $file->id(),
         ],

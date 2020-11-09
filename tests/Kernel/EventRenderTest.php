@@ -43,6 +43,8 @@ class EventRenderTest extends ContentRenderTestBase {
     'options',
     'oe_time_caching',
     'datetime_testing',
+    'file_link',
+    'options',
   ];
 
   /**

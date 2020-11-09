@@ -30,6 +30,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     'oe_theme_content_entity_contact',
     'oe_theme_content_project',
     'block',
+    'options',
   ];
 
   /**
@@ -574,6 +575,7 @@ class ContentProjectRenderTest extends BrowserTestBase {
     $media = $this->getStorage('media')->create([
       'bundle' => 'document',
       'name' => "Test document $name",
+      'oe_media_file_type' => 'local',
       'oe_media_file' => [
         'target_id' => (int) $file->id(),
       ],

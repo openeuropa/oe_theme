@@ -72,6 +72,8 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_theme_content_publication',
     'rdf_entity',
     'rdf_skos',
+    'file_link',
+    'options',
   ];
 
   /**

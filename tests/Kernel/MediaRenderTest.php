@@ -36,6 +36,9 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     'file',
     'media',
     'oe_media',
+    'file_link',
+    'link',
+    'options',
   ];
 
   /**
@@ -84,6 +87,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $media = $this->mediaStorage->create([
       'bundle' => 'document',
       'name' => 'test document EN',
+      'oe_media_file_type' => 'local',
       'oe_media_file' => [
         'target_id' => $english_file->id(),
       ],
