@@ -9,7 +9,7 @@ use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 
 /**
- * Page header metadata for the OpenEuropa "Call for tenders" content type.
+ * Page header metadata for the OpenEuropa "Call for proposals" content type.
  *
  * @PageHeaderMetadata(
  *   id = "oe_call_proposals_content_type",

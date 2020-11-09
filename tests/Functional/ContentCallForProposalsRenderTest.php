@@ -45,7 +45,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Tests that the Call for proposals page renders correctly.
+   * Tests full page of Call for proposals.
    */
   public function testProposalRendering(): void {
     // Freeze the time at a specific point.
@@ -247,7 +247,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $details_expected_values['items'][5] = [
       'label' => 'Deadline dates',
-      'body' => $deadline_date1->format('d F Y, H:i (T)') . "\n" . $deadline_date2->format('d F Y, H:i (T)'),
+      'body' => $deadline_date1->format('d F Y, H:i (T)') . $deadline_date2->format('d F Y, H:i (T)'),
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 

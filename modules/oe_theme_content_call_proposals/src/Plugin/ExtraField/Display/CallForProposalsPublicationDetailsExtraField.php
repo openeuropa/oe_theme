@@ -45,7 +45,7 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
   protected $dateFormatter;
 
   /**
-   * EventExtraFieldBase constructor.
+   * CallForProposalsPublicationDetailsExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
