@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_call_proposals_contact
     - field.field.node.oe_call_proposals.oe_call_proposals_deadline
     - field.field.node.oe_call_proposals.oe_call_proposals_funding
-    - field.field.node.oe_call_proposals.oe_call_proposals_grants_link
+    - field.field.node.oe_call_proposals.oe_call_proposals_grants
     - field.field.node.oe_call_proposals.oe_call_proposals_journal
     - field.field.node.oe_call_proposals.oe_call_proposals_model
     - field.field.node.oe_call_proposals.oe_call_proposals_opening_date
@@ -104,7 +104,7 @@ third_party_settings:
       label: ''
     group_results:
       children:
-        - oe_call_proposals_grants_link
+        - oe_call_proposals_grants
       parent_name: group_item_details
       weight: 21
       format_type: oe_theme_helper_field_list_pattern
@@ -175,7 +175,7 @@ content:
     third_party_settings: {  }
     type: skos_concept_entity_reference_label
     region: content
-  oe_call_proposals_grants_link:
+  oe_call_proposals_grants:
     weight: 22
     label: above
     settings:

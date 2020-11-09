@@ -45,7 +45,7 @@ function oe_theme_content_call_proposals_node_view_alter(array &$build, EntityIn
   if ($build['#view_mode'] === 'full') {
     $label_overrides += [
       'oe_departments' => t('Departments'),
-      'oe_call_proposals_grants_link' => t('Results'),
+      'oe_call_proposals_grants' => t('Results'),
     ];
 
     if ($entity->get('oe_departments')->count() === 1) {

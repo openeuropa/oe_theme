@@ -254,7 +254,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementNotExists('xpath', $deadline_selector);
 
     // Assert external Grants awarded link field.
-    $node->set('oe_call_proposals_grants_link', ['uri' => 'http://example.com/results']);
+    $node->set('oe_call_proposals_grants', ['uri' => 'http://example.com/results']);
     $node->save();
     $this->drupalGet($node->toUrl());
 
@@ -271,7 +271,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->assertLinkIcon($results_field_group, 'Grands awarded', 'http://example.com/results');
 
     // Assert internal Grants awarded link field.
-    $node->set('oe_call_proposals_grants_link', ['uri' => 'internal:/']);
+    $node->set('oe_call_proposals_grants', ['uri' => 'internal:/']);
     $node->save();
     $this->drupalGet($node->toUrl());
 
