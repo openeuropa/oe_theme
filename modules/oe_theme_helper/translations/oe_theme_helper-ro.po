@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tip de organizație"
+
+msgid "Show @numb more items"
+msgstr "Afișați încă @numb elemente"
+
+msgid "When"
+msgstr "Când"
+
+msgid "Where"
+msgstr "Unde"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Website"
+msgstr "Site"
+
+msgid "Social media"
+msgstr "Rețele sociale"
+
+msgid "Number of seats"
+msgstr "Număr de locuri"
+
+msgid "Entrance fee"
+msgstr "Taxă de intrare"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Rezervați-vă un loc! Mai aveți la dispoziție @time_left  pentru a vă înregistra. Perioada de înregistrare se încheie la @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Perioada de înregistrare începe în @time_left. Vă puteți înscrie de pe @start_date  până pe @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Perioada de înregistrare s-a încheiat pe  @end_date."
+
+msgid "Postal address"
+msgstr "Adresă poștală"
+
+msgid "Authors"
+msgstr "Autori"
+
+msgid "Department"
+msgstr "Departament"
+
+msgid "Project duration"
+msgstr "Durata proiectului"
+
+msgid "Project website"
+msgstr "Site-ul proiectului"
+
+msgid "Contact organisation"
+msgstr "Contactați organizația"
+
+msgid "Call status: @label"
+msgstr "Statutul cererii: @label"
+
+msgid "Press contacts"
+msgstr "Puncte de contact pentru presă"
+
+msgid "Call for tenders"
+msgstr "Cerere de oferte"
+
+msgid "Related links"
+msgstr "Linkuri către pagini conexe"
+
+msgid "Practical information"
+msgstr "Informații practice"
+
+msgid "Phone number"
+msgstr "Număr de telefon"
+
+msgid "Opening date"
+msgstr "Data de deschidere"
+
+msgid "Deadline date"
+msgstr "Data-limită"
+
+msgid "Publication date"
+msgstr "Data publicării"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Locație"
+
+msgid "News type"
+msgstr "Tip de noutăți"
+
+msgid "Project locations"
+msgstr "Locațiile proiectului"
+
+msgid "Overall budget"
+msgstr "Buget total"
+
+msgid "EU contribution"
+msgstr "Contribuția UE"
+
+msgid "Departments"
+msgstr "Departamente"
+
+msgid "Results"
+msgstr "Rezultate"
+
+msgid "Stakeholders"
+msgstr "Părți interesate"
+
+msgid "Coordinators"
+msgstr "Coordonatori"
+
+msgid "Participants"
+msgstr "Participanți"
+
+msgid "Country"
+msgstr "Țara"
+
+msgid "EU Organisation"
+msgstr "Organizație UE"
+
+msgid "Non-EU organisation"
+msgstr "Organizație non-UE"
+
+msgid "Reference"
+msgstr "Referință"
+
+msgid "Upcoming"
+msgstr "În curând"
+
+msgid "Open"
+msgstr "Deschis(ă)"
+
+msgid "Closed"
+msgstr "Încheiat(ă)"
+
+msgid "Details"
+msgstr "Detalii"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Publicație"
+
+msgid "Publication date"
+msgstr "Data publicării"
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Date de contact"
+
+msgid "Organisation"
+msgstr "Organizație"
+
+msgid "Fax number"
+msgstr "Număr de fax"
+
+msgid "Mobile number"
+msgstr "Telefon mobil"
+
+msgid "Office"
+msgstr "Birou"
+
+msgid "Documents"
+msgstr "Documente"
+
+msgid "Funding"
+msgstr "Finanțare"
+
+msgid "As planned"
+msgstr "Conform planului"
+
+msgid "Cancelled"
+msgstr "Anulat(ă)"
+
+msgid "Rescheduled"
+msgstr "Reprogramat"
+
+msgid "Postponed"
+msgstr "Amânat"
+
+msgid "Address"
+msgstr "Adresă"
+
+msgid "Live stream"
+msgstr "Transmisiune în direct online"
+
+msgid "Live streaming available"
+msgstr "Transmisiune în direct disponibilă online"
+
+msgid "Project"
+msgstr "Proiect"
+
+msgid "Publication type"
+msgstr "Tip de publicație"
+
+msgid "Call for proposals"
+msgstr "Cerere de propuneri"
+
+msgid "Funding programme"
+msgstr "Program de finanțare"

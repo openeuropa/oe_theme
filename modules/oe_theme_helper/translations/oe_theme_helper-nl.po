@@ -1,0 +1,219 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Soort organisatie"
+
+msgid "Show @numb more items"
+msgstr "@numb items meer"
+
+msgid "When"
+msgstr "Wanneer"
+
+msgid "Where"
+msgstr "Waar"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Social media"
+msgstr "Sociale media"
+
+msgid "Number of seats"
+msgstr "Aantal plaatsen"
+
+msgid "Entrance fee"
+msgstr "Inschrijvingsgeld"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Boek uw plaats. U heeft nog @time_left, inschrijven kan nog tot @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Registreren kan over @time_left. Registreren kan van @start_date  tot @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Registratietermijn verstreken op @end_date."
+
+msgid "Postal address"
+msgstr "Postadres"
+
+msgid "Authors"
+msgstr "Auteurs"
+
+msgid "Department"
+msgstr "Departement"
+
+msgid "Project duration"
+msgstr "Looptijd project"
+
+msgid "Project website"
+msgstr "Projectwebsite"
+
+msgid "Contact organisation"
+msgstr "Contact"
+
+msgid "Call status: @label"
+msgstr "Status: @label"
+
+msgid "Press contacts"
+msgstr "Perscontacten"
+
+msgid "Call for tenders"
+msgstr "Aanbesteding"
+
+msgid "Related links"
+msgstr "Links"
+
+msgid "Practical information"
+msgstr "Praktische informatie"
+
+msgid "Phone number"
+msgstr "Telefoonnummer"
+
+msgid "Opening date"
+msgstr "Begindatum"
+
+msgid "Deadline date"
+msgstr "Deadline"
+
+msgid "Publication date"
+msgstr "Publicatiedatum"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "News type"
+msgstr "Soort nieuws"
+
+msgid "Project locations"
+msgstr "Projectlocaties"
+
+msgid "Overall budget"
+msgstr "Totaalbudget"
+
+msgid "EU contribution"
+msgstr "EU-bijdrage"
+
+msgid "Departments"
+msgstr "Departementen"
+
+msgid "Results"
+msgstr "Resultaten"
+
+msgid "Stakeholders"
+msgstr "Stakeholders"
+
+msgid "Coordinators"
+msgstr "Coördinatoren"
+
+msgid "Participants"
+msgstr "Deelnemers"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "EU Organisation"
+msgstr "EU-organisatie"
+
+msgid "Non-EU organisation"
+msgstr "Niet-EU-organisatie"
+
+msgid "Reference"
+msgstr "Referentie"
+
+msgid "Upcoming"
+msgstr "Binnenkort"
+
+msgid "Open"
+msgstr "Open"
+
+msgid "Closed"
+msgstr "Gesloten"
+
+msgid "Details"
+msgstr "Bijzonderheden"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Details"
+msgstr "Bijzonderheden"
+
+msgid "Contact organisation"
+msgstr "Contact"
+
+msgid "Publication"
+msgstr "Publicatie"
+
+msgid "Publication date"
+msgstr "Publicatiedatum"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Contact"
+
+msgid "Organisation"
+msgstr "Organisatie"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Telefoon (mobiel)"
+
+msgid "Office"
+msgstr "Bureau"
+
+msgid "Documents"
+msgstr "Documenten"
+
+msgid "Funding"
+msgstr "Financiering"
+
+msgid "As planned"
+msgstr "Als gepland"
+
+msgid "Cancelled"
+msgstr "Geannuleerd"
+
+msgid "Rescheduled"
+msgstr "Nieuwe datum"
+
+msgid "Postponed"
+msgstr "Uitgesteld"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Live stream"
+msgstr "Livestream"
+
+msgid "Live streaming available"
+msgstr "Livestream beschikbaar"
+
+msgid "Project"
+msgstr "Project"
+
+msgid "Publication type"
+msgstr "Soort publicatie"
+
+msgid "Call for proposals"
+msgstr "Oproep tot het indienen van voorstellen"
+
+msgid "Funding programme"
+msgstr "Financieringsprogramma"

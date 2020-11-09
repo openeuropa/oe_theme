@@ -1,0 +1,49 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_page.body
+    - field.field.node.oe_page.oe_related_links
+    - field.field.node.oe_page.oe_author
+    - field.field.node.oe_page.oe_subject
+    - field.field.node.oe_page.oe_summary
+    - field.field.node.oe_page.oe_teaser
+    - node.type.oe_page
+  module:
+    - link
+    - text
+    - user
+id: node.oe_page.full
+targetEntityType: node
+bundle: oe_page
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  oe_related_links:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
+hidden:
+  links: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_author: true
+  oe_subject: true
+  oe_summary: true
+  oe_teaser: true

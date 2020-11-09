@@ -23,9 +23,6 @@ class NewsRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    module_load_include('install', 'oe_theme_content_news');
-    oe_theme_content_news_install();
-
     module_load_include('install', 'oe_content');
     oe_content_install();
 

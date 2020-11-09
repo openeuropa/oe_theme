@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Είδος οργανισμού"
+
+msgid "Show @numb more items"
+msgstr "Εμφάνιση @numb περισσότερων στοιχείων"
+
+msgid "When"
+msgstr "Πότε"
+
+msgid "Where"
+msgstr "Πού"
+
+msgid "Organiser"
+msgstr "Διοργανωτής"
+
+msgid "Website"
+msgstr "Ιστότοπος"
+
+msgid "Social media"
+msgstr "Μέσα κοινωνικής δικτύωσης"
+
+msgid "Number of seats"
+msgstr "Αριθμός θέσεων"
+
+msgid "Entrance fee"
+msgstr "Εισιτήριο"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Κάντε κράτηση για τη θέση σας, απομένουν ακόμη @time_left για την εγγραφή, η προθεσμία εγγραφής λήγει την/στις @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Η εγγραφή θα είναι δυνατή από την/τις @time_left. Μπορείτε να εγγραφείτε από την/τις @start_date, έως την/τις @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Η περίοδος εγγραφής έληξε την/στις @end_date."
+
+msgid "Postal address"
+msgstr "Ταχυδρομική διεύθυνση"
+
+msgid "Authors"
+msgstr "Συντάκτες"
+
+msgid "Department"
+msgstr "Υπηρεσία"
+
+msgid "Project duration"
+msgstr "Διάρκεια έργου"
+
+msgid "Project website"
+msgstr "Ιστότοπος έργου"
+
+msgid "Contact organisation"
+msgstr "Επικοινωνία με τον φορέα"
+
+msgid "Call status: @label"
+msgstr "Κατάσταση της πρόσκλησης: @label"
+
+msgid "Press contacts"
+msgstr "Υπεύθυνοι επικοινωνίας με τα ΜΜΕ"
+
+msgid "Call for tenders"
+msgstr "Πρόσκληση υποβολής προσφορών"
+
+msgid "Related links"
+msgstr "Σχετικοί σύνδεσμοι"
+
+msgid "Practical information"
+msgstr "Πρακτικές πληροφορίες"
+
+msgid "Phone number"
+msgstr "Αριθμός τηλεφώνου"
+
+msgid "Opening date"
+msgstr "Ημερομηνία έναρξης"
+
+msgid "Deadline date"
+msgstr "Ημερομηνία προθεσμίας"
+
+msgid "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Author"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Location"
+msgstr "Τόπος"
+
+msgid "News type"
+msgstr "Είδος ειδήσεων"
+
+msgid "Project locations"
+msgstr "Τόποι έργων"
+
+msgid "Overall budget"
+msgstr "Συνολικός προϋπολογισμός"
+
+msgid "EU contribution"
+msgstr "Συνεισφορά ΕΕ"
+
+msgid "Departments"
+msgstr "Τμήματα"
+
+msgid "Results"
+msgstr "Αποτελέσματα"
+
+msgid "Stakeholders"
+msgstr "Ενδιαφερόμενα μέρη"
+
+msgid "Coordinators"
+msgstr "Ενδιαφερόμενα μέρη"
+
+msgid "Participants"
+msgstr "Teilnehmer"
+
+msgid "Country"
+msgstr "Χώρα"
+
+msgid "EU Organisation"
+msgstr "Οργανισμός της ΕΕ"
+
+msgid "Non-EU organisation"
+msgstr "Οργανισμός εκτός ΕΕ"
+
+msgid "Reference"
+msgstr "Στοιχεία αναφοράς"
+
+msgid "Upcoming"
+msgstr "Προσεχώς"
+
+msgid "Open"
+msgstr "Ανοικτό"
+
+msgid "Closed"
+msgstr "Έχει κλείσει"
+
+msgid "Details"
+msgstr "Λεπτομέρειες"
+
+msgid "Status"
+msgstr "Καθεστώς"
+
+msgid "Contact organisation"
+msgstr "Contact organisation"
+
+msgid "Publication"
+msgstr "Δημοσίευση"
+
+msgid "Publication date"
+msgstr "Ημερομηνία δημοσίευσης"
+
+msgid "Description"
+msgstr "Περιγραφή"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Επικοινωνία"
+
+msgid "Contacts"
+msgstr "Επικοινωνία"
+
+msgid "Organisation"
+msgstr "Οργανισμός"
+
+msgid "Fax number"
+msgstr "Αριθμός φαξ"
+
+msgid "Mobile number"
+msgstr "Αριθμός κινητού τηλεφώνου"
+
+msgid "Office"
+msgstr "Γραφείο"
+
+msgid "Documents"
+msgstr "Έγγραφα"
+
+msgid "Funding"
+msgstr "Χρηματοδότηση"
+
+msgid "As planned"
+msgstr "Όπως έχει προβλεφθεί"
+
+msgid "Cancelled"
+msgstr "Ακυρώθηκε"
+
+msgid "Rescheduled"
+msgstr "Αναπρογραμματίστηκε"
+
+msgid "Postponed"
+msgstr "Έχει αναβληθεί"
+
+msgid "Address"
+msgstr "Διεύθυνση"
+
+msgid "Live stream"
+msgstr "Ζωντανή μετάδοση"
+
+msgid "Live streaming available"
+msgstr "Διαθέσιμη ζωντανή μετάδοση"
+
+msgid "Project"
+msgstr "Έργο"
+
+msgid "Publication type"
+msgstr "Είδος δημοσίευσης"
+
+msgid "Call for proposals"
+msgstr "Πρόσκληση υποβολής προτάσεων"
+
+msgid "Funding programme"
+msgstr "Πρόγραμμα χρηματοδότησης"

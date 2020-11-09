@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "An cineál eagraíochta"
+
+msgid "Show @numb more items"
+msgstr "Taispeáin @numb de ní eile"
+
+msgid "When"
+msgstr "Cathain"
+
+msgid "Where"
+msgstr "Cén áit"
+
+msgid "Organiser"
+msgstr "Eagraí"
+
+msgid "Website"
+msgstr "Suíomh gréasáin"
+
+msgid "Social media"
+msgstr "Na meáin shóisialta"
+
+msgid "Number of seats"
+msgstr "An líon suíochán"
+
+msgid "Entrance fee"
+msgstr "Táille iontrála"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Cuir do shuíochán in áirithe, @time_left fágtha le clárú, cuirfear deireadh leis an bpróiseas clárúcháin an @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Beidh an tréimhse chlárúcháin ar oscailt idir an @time_left. Beidh tú in ann clárú ón @start_date, go dtí an @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Tháinig deireadh leis an tréimhse chlárúcháin an @end_date."
+
+msgid "Postal address"
+msgstr "Seoladh poist"
+
+msgid "Authors"
+msgstr "Údair"
+
+msgid "Department"
+msgstr "Roinn"
+
+msgid "Project duration"
+msgstr "Fad an tionscadail"
+
+msgid "Project website"
+msgstr "Suíomh gréasáin an tionscadail"
+
+msgid "Contact organisation"
+msgstr "Eagraíocht teagmhála"
+
+msgid "Call status: @label"
+msgstr "Stádas an ghlao: @label"
+
+msgid "Press contacts"
+msgstr "Teagmhálaithe do lucht an phreasa"
+
+msgid "Call for tenders"
+msgstr "Glaonna ar thairiscintí"
+
+msgid "Related links"
+msgstr "Naisc ghaolmhara"
+
+msgid "Practical information"
+msgstr "Eolas praiticiúil"
+
+msgid "Phone number"
+msgstr "Uimhir ghutháin"
+
+msgid "Opening date"
+msgstr "Dáta oscailte"
+
+msgid "Deadline date"
+msgstr "Spriocdháta"
+
+msgid "Publication date"
+msgstr "Dáta foilsithe"
+
+msgid "Author"
+msgstr "Údar"
+
+msgid "Location"
+msgstr "Áit"
+
+msgid "News type"
+msgstr "An cineál nuachta"
+
+msgid "Project locations"
+msgstr "Áiteanna an tionscadail"
+
+msgid "Overall budget"
+msgstr "Buiséad foriomlán"
+
+msgid "EU contribution"
+msgstr "Ranníocaíocht an Aontais"
+
+msgid "Departments"
+msgstr "Ranna"
+
+msgid "Results"
+msgstr "Torthaí"
+
+msgid "Stakeholders"
+msgstr "Páirtithe leasmhara"
+
+msgid "Coordinators"
+msgstr "Comhordaitheoirí"
+
+msgid "Participants"
+msgstr "Rannpháirtithe"
+
+msgid "Country"
+msgstr "Tír"
+
+msgid "EU Organisation"
+msgstr "Eagraíocht de chuid an Aontais"
+
+msgid "Non-EU organisation"
+msgstr "Eagraíocht nach Eagraíocht de chuid an Aontais í"
+
+msgid "Reference"
+msgstr "Tagairt"
+
+msgid "Upcoming"
+msgstr "Le teacht"
+
+msgid "Open"
+msgstr "Ar oscailt"
+
+msgid "Closed"
+msgstr "Dúnta"
+
+msgid "Details"
+msgstr "Sonraí"
+
+msgid "Status"
+msgstr "Stádas"
+
+msgid "Contact organisation"
+msgstr "Eagraíocht teagmhála"
+
+msgid "Publication"
+msgstr "Foilseachán"
+
+msgid "Publication date"
+msgstr "Dáta foilsithe"
+
+msgid "Description"
+msgstr "Cur síos"
+
+msgid "Email"
+msgstr "Seoladh ríomhphoist"
+
+msgid "Contact"
+msgstr "Teagmháil"
+
+msgid "Contacts"
+msgstr "Teagmhálacha"
+
+msgid "Organisation"
+msgstr "Eagraíocht"
+
+msgid "Fax number"
+msgstr "Uimhir facs"
+
+msgid "Mobile number"
+msgstr "Uimhir ghutháin póca"
+
+msgid "Office"
+msgstr "Oifig"
+
+msgid "Documents"
+msgstr "Doiciméid"
+
+msgid "Funding"
+msgstr "Maoiniú"
+
+msgid "As planned"
+msgstr "Mar a beartaíodh"
+
+msgid "Cancelled"
+msgstr "Curtha ar ceal"
+
+msgid "Rescheduled"
+msgstr "Athsceidealaithe"
+
+msgid "Postponed"
+msgstr "Curtha ar athló"
+
+msgid "Address"
+msgstr "Seoladh"
+
+msgid "Live stream"
+msgstr "Beosruthú"
+
+msgid "Live streaming available"
+msgstr "Beosruthú ar fáil"
+
+msgid "Project"
+msgstr "Tionscadal"
+
+msgid "Publication type"
+msgstr "An cineál foilseacháin"
+
+msgid "Call for proposals"
+msgstr "Glao ar thograí"
+
+msgid "Funding programme"
+msgstr "Clár maoiniúcháin"

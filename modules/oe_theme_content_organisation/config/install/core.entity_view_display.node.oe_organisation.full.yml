@@ -1,0 +1,106 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_organisation_acronym
+    - field.field.node.oe_organisation.oe_organisation_contact
+    - field.field.node.oe_organisation.oe_organisation_eu_org
+    - field.field.node.oe_organisation.oe_organisation_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_logo
+    - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_org_type
+    - field.field.node.oe_organisation.oe_summary
+    - field.field.node.oe_organisation.oe_teaser
+    - node.type.oe_organisation
+  module:
+    - entity_reference_revisions
+    - field_group
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_in_page_navigation:
+      children:
+        - oe_organisation_logo
+        - group_description
+        - group_contact
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_in_page_navigation
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Page contents'
+    group_description:
+      children:
+        - body
+      parent_name: group_in_page_navigation
+      weight: 1
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Description
+    group_contact:
+      children:
+        - oe_organisation_contact
+      parent_name: group_in_page_navigation
+      weight: 2
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Contact
+id: node.oe_organisation.full
+targetEntityType: node
+bundle: oe_organisation
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_organisation_contact:
+    weight: 6
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_organisation_logo:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+hidden:
+  extra_field_oe_theme_content_organisation_teaser_details: true
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_organisation_acronym: true
+  oe_organisation_eu_org: true
+  oe_organisation_eu_org_type: true
+  oe_organisation_non_eu_org_type: true
+  oe_organisation_org_type: true
+  oe_summary: true
+  oe_teaser: true

@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "A szervezet típusa"
+
+msgid "Show @numb more items"
+msgstr "Még @numb elem megjelenítése"
+
+msgid "When"
+msgstr "Időpont"
+
+msgid "Where"
+msgstr "Helyszín"
+
+msgid "Organiser"
+msgstr "Szervező"
+
+msgid "Website"
+msgstr "Honlap"
+
+msgid "Social media"
+msgstr "Közösségi média"
+
+msgid "Number of seats"
+msgstr "Ülések száma"
+
+msgid "Entrance fee"
+msgstr "Belépődíj"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs időszak végéig, a regisztrációs időszak záró dátuma: @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "A regisztrációs időszak kezdetéig hátra van még @time_left. Regisztrálni ettől az időponttól: @start_date eddig az időpontig: @end_date lehet."
+
+msgid "Registration period ended on @date."
+msgstr "A regisztrációs időszak vége: @end_date."
+
+msgid "Postal address"
+msgstr "Postai cím"
+
+msgid "Authors"
+msgstr "Szerzők"
+
+msgid "Department"
+msgstr "Szervezeti egység"
+
+msgid "Project duration"
+msgstr "A projekt időtartama"
+
+msgid "Project website"
+msgstr "A projekt honlapja"
+
+msgid "Contact organisation"
+msgstr "Kapcsolattartó szervezet"
+
+msgid "Call status: @label"
+msgstr "A felhívás státusza: @label"
+
+msgid "Press contacts"
+msgstr "Sajtókapcsolatok"
+
+msgid "Call for tenders"
+msgstr "Ajánlati felhívás"
+
+msgid "Related links"
+msgstr "Kapcsolódó linkek"
+
+msgid "Practical information"
+msgstr "Gyakorlati tudnivalók"
+
+msgid "Phone number"
+msgstr "Telefonszám"
+
+msgid "Opening date"
+msgstr "Indítás dátuma:"
+
+msgid "Deadline date"
+msgstr "Határidő"
+
+msgid "Publication date"
+msgstr "Közzététel dátuma"
+
+msgid "Author"
+msgstr "Szerző"
+
+msgid "Location"
+msgstr "Helyszín"
+
+msgid "News type"
+msgstr "Hír típusa"
+
+msgid "Project locations"
+msgstr "A projekt helyszínei"
+
+msgid "Overall budget"
+msgstr "Teljes költségvetés"
+
+msgid "EU contribution"
+msgstr "Uniós hozzájárulás"
+
+msgid "Departments"
+msgstr "Szervezeti egységek"
+
+msgid "Results"
+msgstr "Eredmények"
+
+msgid "Stakeholders"
+msgstr "Érdekelt felek"
+
+msgid "Coordinators"
+msgstr "Koordinátorok"
+
+msgid "Participants"
+msgstr "Résztvevők"
+
+msgid "Country"
+msgstr "Ország"
+
+msgid "EU Organisation"
+msgstr "EU-szervezet"
+
+msgid "Non-EU organisation"
+msgstr "Nem uniós szervezet"
+
+msgid "Reference"
+msgstr "Hivatkozás"
+
+msgid "Upcoming"
+msgstr "Nemsokára"
+
+msgid "Open"
+msgstr "Folyamatban"
+
+msgid "Closed"
+msgstr "Lezárva"
+
+msgid "Details"
+msgstr "Leírás"
+
+msgid "Status"
+msgstr "Státusz"
+
+msgid "Contact organisation"
+msgstr "Kapcsolattartó szervezet"
+
+msgid "Publication"
+msgstr "Kiadvány"
+
+msgid "Publication date"
+msgstr "Közzététel dátuma"
+
+msgid "Description"
+msgstr "Leírás"
+
+msgid "Email"
+msgstr "E-mail-cím"
+
+msgid "Contact"
+msgstr "Kapcsolat"
+
+msgid "Contacts"
+msgstr "Kapcsolatok"
+
+msgid "Organisation"
+msgstr "Szervezet"
+
+msgid "Fax number"
+msgstr "Fax"
+
+msgid "Mobile number"
+msgstr "Mobiltelefonszám"
+
+msgid "Office"
+msgstr "Iroda"
+
+msgid "Documents"
+msgstr "Dokumentumok"
+
+msgid "Funding"
+msgstr "Finanszírozás"
+
+msgid "As planned"
+msgstr "Terv szerint"
+
+msgid "Cancelled"
+msgstr "Törölve"
+
+msgid "Rescheduled"
+msgstr "Más időpontra áttéve"
+
+msgid "Postponed"
+msgstr "Elhalasztva"
+
+msgid "Address"
+msgstr "Cím"
+
+msgid "Live stream"
+msgstr "Online közvetítés"
+
+msgid "Live streaming available"
+msgstr "Élőben követhető"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Kiadvány típusa"
+
+msgid "Call for proposals"
+msgstr "Pályázati felhívás"
+
+msgid "Funding programme"
+msgstr "Finanszírozási program"

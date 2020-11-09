@@ -1,0 +1,38 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.oe_venue.full
+    - field.field.oe_venue.oe_default.oe_address
+    - field.field.oe_venue.oe_default.oe_capacity
+    - field.field.oe_venue.oe_default.oe_room
+    - oe_content_entity_venue.oe_venue_type.oe_default
+  module:
+    - address
+id: oe_venue.oe_default.full
+targetEntityType: oe_venue
+bundle: oe_default
+mode: full
+content:
+  name:
+    type: string
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_address:
+    weight: 1
+    label: hidden
+    settings:
+      delimiter: ', '
+    third_party_settings: {  }
+    type: oe_theme_helper_address_inline
+    region: content
+hidden:
+  created: true
+  langcode: true
+  oe_capacity: true
+  oe_room: true
+  status: true

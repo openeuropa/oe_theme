@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisatsiooni liik"
+
+msgid "Show @numb more items"
+msgstr "Näita veel @numb kannet"
+
+msgid "When"
+msgstr "Millal?"
+
+msgid "Where"
+msgstr "Kus?"
+
+msgid "Organiser"
+msgstr "Korraldaja"
+
+msgid "Website"
+msgstr "Veebisait"
+
+msgid "Social media"
+msgstr "Sotsiaalmeedia"
+
+msgid "Number of seats"
+msgstr "Kohtade arv"
+
+msgid "Entrance fee"
+msgstr "Osalustasu"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimine lõppeb: @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Registreerimise alguskuupäev: @time_left. Registreerimine kestab: @start_date kuni @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Registreerimisperioodi lõppkuupäev: @end_date."
+
+msgid "Postal address"
+msgstr "Postiaadress"
+
+msgid "Authors"
+msgstr "Autorid"
+
+msgid "Department"
+msgstr "Osakond"
+
+msgid "Project duration"
+msgstr "Projekti kestus"
+
+msgid "Project website"
+msgstr "Projekti veebisait"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisatsioon"
+
+msgid "Call status: @label"
+msgstr "Olek: @label"
+
+msgid "Press contacts"
+msgstr "Pressikontaktid"
+
+msgid "Call for tenders"
+msgstr "Pakkumismenetlus"
+
+msgid "Related links"
+msgstr "Seotud lingid"
+
+msgid "Practical information"
+msgstr "Praktiline teave"
+
+msgid "Phone number"
+msgstr "Telefoninumber"
+
+msgid "Opening date"
+msgstr "Alguskuupäev"
+
+msgid "Deadline date"
+msgstr "Tähtpäev"
+
+msgid "Publication date"
+msgstr "Avaldamiskuupäev"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Asukoht"
+
+msgid "News type"
+msgstr "Uudise liik"
+
+msgid "Project locations"
+msgstr "Projekti asukohad"
+
+msgid "Overall budget"
+msgstr "Üldeelarve"
+
+msgid "EU contribution"
+msgstr "ELi rahaline panus"
+
+msgid "Departments"
+msgstr "Osakonnad"
+
+msgid "Results"
+msgstr "Tulemused"
+
+msgid "Stakeholders"
+msgstr "Sidusrühmad"
+
+msgid "Coordinators"
+msgstr "Koordinaatorid"
+
+msgid "Participants"
+msgstr "Osalejad"
+
+msgid "Country"
+msgstr "Riik"
+
+msgid "EU Organisation"
+msgstr "ELi organisatsioon"
+
+msgid "Non-EU organisation"
+msgstr "ELi-väline organisatsioon"
+
+msgid "Reference"
+msgstr "Viide"
+
+msgid "Upcoming"
+msgstr "Tulemas"
+
+msgid "Open"
+msgstr "Kestab"
+
+msgid "Closed"
+msgstr "Lõppenud"
+
+msgid "Details"
+msgstr "Üksikasjad"
+
+msgid "Status"
+msgstr "Olek"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisatsioon"
+
+msgid "Publication"
+msgstr "Väljaanne"
+
+msgid "Publication date"
+msgstr "Avaldamiskuupäev"
+
+msgid "Description"
+msgstr "Kirjeldus"
+
+msgid "Email"
+msgstr "E-post"
+
+msgid "Contact"
+msgstr "Kontaktandmed"
+
+msgid "Contacts"
+msgstr "Kontaktisikud"
+
+msgid "Organisation"
+msgstr "Organisatsioon"
+
+msgid "Fax number"
+msgstr "Faksinumber"
+
+msgid "Mobile number"
+msgstr "Mobiiltelefoni number"
+
+msgid "Office"
+msgstr "Amet"
+
+msgid "Documents"
+msgstr "Dokumendid"
+
+msgid "Funding"
+msgstr "Rahastamine"
+
+msgid "As planned"
+msgstr "Vastavalt kavandatule"
+
+msgid "Cancelled"
+msgstr "Tühistatud"
+
+msgid "Rescheduled"
+msgstr "Toimumisaeg muutunud"
+
+msgid "Postponed"
+msgstr "Edasi lükatud"
+
+msgid "Address"
+msgstr "Aadress"
+
+msgid "Live stream"
+msgstr "Otseülekanne"
+
+msgid "Live streaming available"
+msgstr "Otseülekanne on vaadatav"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Väljaande liik"
+
+msgid "Call for proposals"
+msgstr "Projektikonkurss"
+
+msgid "Funding programme"
+msgstr "Rahastamisprogramm"
