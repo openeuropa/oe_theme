@@ -178,6 +178,19 @@ function oe_theme_helper_theme_suggestions_oe_theme_helper_call_status(array $va
 }
 
 /**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function oe_theme_helper_theme_suggestions_oe_theme_helper_call_label_status(array $variables) {
+  $suggestions = [];
+
+  if (!empty($variables['name'])) {
+    $suggestions[] = 'oe_theme_helper_call_label_status' . '__' . $variables['name'];
+  }
+
+  return $suggestions;
+}
+
+/**
  * Prepares variables for call status.
  *
  * Default template: oe-theme-helper-call-status.html.twig.
