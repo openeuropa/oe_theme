@@ -245,9 +245,13 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'label' => 'Deadline model',
       'body' => 'Two-stage',
     ];
+    $expected_deadline_dates = $deadline_date1->format('d F Y, H:i (T)') . $deadline_date2->format('d F Y, H:i (T)');
+    if (version_compare(PHP_VERSION, '7.3') < 0) {
+      $expected_deadline_dates = $deadline_date1->format('d F Y, H:i (T)') . "\n" . $deadline_date2->format('d F Y, H:i (T)');
+    }
     $details_expected_values['items'][5] = [
       'label' => 'Deadline dates',
-      'body' => $deadline_date1->format('d F Y, H:i (T)') . $deadline_date2->format('d F Y, H:i (T)'),
+      'body' => $expected_deadline_dates,
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
