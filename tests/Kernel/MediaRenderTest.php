@@ -67,20 +67,22 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
   public function testDocumentMedia(): void {
     // Make document media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'document', TRUE);
-    // Make file field translatable.
-    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.document.oe_media_file');
-    $field_config->set('translatable', TRUE)->save();
+    // Make fields translatable.
+    $field_ids = [
+      'media.document.oe_media_file_type',
+      'media.document.oe_media_remote_file',
+      'media.document.oe_media_file',
+    ];
+    foreach ($field_ids as $field_id) {
+      $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load($field_id);
+      $field_config->set('translatable', TRUE)->save();
+    }
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
     $english_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
     $english_file->setPermanent();
     $english_file->save();
-
-    // Create Spanish file.
-    $spanish_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_es.pdf');
-    $spanish_file->setPermanent();
-    $spanish_file->save();
 
     // Create a document media.
     /** @var \Drupal\media\MediaInterface $media */
@@ -113,8 +115,10 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     // Translate the media to Spanish.
     $media_spanish = $media->addTranslation('es', [
       'name' => 'test document ES',
-      'oe_media_file' => [
-        'target_id' => $spanish_file->id(),
+      'oe_media_file_type' => 'remote',
+      'oe_media_remote_file' => [
+        'title' => 'dummy file',
+        'uri' => 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
       ],
     ]);
     $media_spanish->save();
@@ -152,7 +156,12 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         $this->assertContains('KB - PDF)', $file_translation_info_properties->text());
 
         $translation_file_download_link = $translation_list->filter('.ecl-file__translation-download');
-        $this->assertContains('/test_' . $translation_language->getId() . '.pdf', $translation_file_download_link->attr('href'));
+        if ($translation_language->getId() === 'es') {
+          $this->assertContains('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', $translation_file_download_link->attr('href'));
+        }
+        else {
+          $this->assertContains('/test_en.pdf', $translation_file_download_link->attr('href'));
+        }
         $this->assertContains('Download', $translation_file_download_link->text());
       }
     }
@@ -184,7 +193,12 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $this->assertContains('KB - PDF)', $file_info_properties->text());
 
     $file_download_link = $file_row->filter('.ecl-file__download');
-    $this->assertContains('/test_' . $language->getId() . '.pdf', $file_download_link->attr('href'));
+    if ($language->getId() === 'es') {
+      $this->assertContains('https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf', $file_download_link->attr('href'));
+    }
+    else {
+      $this->assertContains('/test_en.pdf', $file_download_link->attr('href'));
+    }
     $this->assertContains('Download', $file_download_link->text());
   }
 
