@@ -11,7 +11,7 @@ use Drupal\user\RoleInterface;
 /**
  * Base class for testing the content being rendered.
  */
-abstract class ContentRenderTestBase extends AbstractKernelTestBase {
+abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase {
 
   use RdfDatabaseConnectionTrait;
 
@@ -32,7 +32,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'address',
     'field',
     'field_group',

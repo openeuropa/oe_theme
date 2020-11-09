@@ -95,9 +95,9 @@ class NewsRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $related_links);
     $link_one = $related_links->first();
 
-    $this->assertContains('/node', trim($link_one->extract(['href'])[0]));
+    $this->assertContains('/en/node', trim($link_one->extract(['href'])[0]));
     $link_two = $related_links->first();
-    $this->assertEquals('/node', trim($link_two->extract(['href'])[0]));
+    $this->assertEquals('/en/node', trim($link_two->extract(['href'])[0]));
   }
 
   /**
@@ -143,7 +143,7 @@ class NewsRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Test news node',
-      'url' => '/node/1',
+      'url' => '/en/node/1',
       'detail' => 'Teaser',
       'meta' => 'News article | 2 April 2019',
       'image' => [
