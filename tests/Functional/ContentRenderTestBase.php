@@ -217,13 +217,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name):void {
     $contact_name = $element->findAll('css', 'h3');
     $this->assertCount(1, $contact_name);
-    $contact_name = reset($contact_name);
-    $this->assertEquals($name, $contact_name->getText());
+    $this->assertEquals($name, $contact_name[0]->getText());
 
     $contact_body = $element->findAll('css', '.ecl-editor');
     $this->assertCount(1, $contact_body);
-    $contact_body = reset($contact_body);
-    $this->assertEquals('Body text general_contact', $contact_body->getText());
+    $this->assertEquals("Body text $name", $contact_body[0]->getText());
 
     $contacts_html = $element->getHtml();
     $field_list_assert = new FieldListAssert();
@@ -263,20 +261,8 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $field_list_assert->assertVariant('horizontal', $contacts_html);
 
     // Assert Press contacts.
-    $press = $element->findAll('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $press = reset($press);
-    $press_link = $press->findAll('css', 'a');
-    $this->assertCount(1, $press_link);
-    $press_link = reset($press_link);
-    $this->assertEquals("http://www.example.com/press_contact_$name", $press_link->getAttribute('href'));
-
-    $press_label = $press_link->findAll('css', '.ecl-link__label');
-    $this->assertCount(1, $press_label);
-    $press_label = reset($press_label);
-    $this->assertEquals('Press contacts', $press_label->getText());
-
-    $press_icon = $press_link->findAll('css', '.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
-    $this->assertCount(1, $press_icon);
+    $press = $element->find('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
+    $this->assertLinkIcon($press, 'Press contacts', "http://www.example.com/press_contact_$name");
 
     // Assert contacts Image.
     $this->assertFeaturedMediaField($element, $name);
@@ -298,6 +284,40 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     if (!empty($id)) {
       $this->assertEquals($id, $header->getAttribute('id'));
     }
+  }
+
+  /**
+   * Asserts standalone link template with icon.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $title
+   *   Link title.
+   * @param string $href
+   *   Link URL.
+   * @param bool $is_external
+   *   Defines whether it is extrernal link or internal.
+   */
+  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
+    $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $this->assertCount(1, $link);
+    $this->assertEquals($href, $link[0]->getAttribute('href'));
+
+    $label = $link[0]->findAll('css', '.ecl-link__label');
+    $this->assertCount(1, $label);
+    $this->assertEquals($title, $label[0]->getText());
+
+    $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon';
+    $icon_type = 'ui--external';
+    if (!$is_external) {
+      $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
+      $icon_type = 'ui--corner-arrow';
+    }
+    $svg = $link[0]->findAll('css', $svg_locator);
+    $this->assertCount(1, $svg);
+    $icon = $svg[0]->findAll('css', 'use');
+    $this->assertCount(1, $icon);
+    $this->assertContains($icon_type, $icon[0]->getAttribute('xlink:href'));
   }
 
 }

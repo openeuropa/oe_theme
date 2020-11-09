@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -120,7 +119,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $details_html = $content_items[0]->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
-    $this->assertStatusValue($content_items[0], 'N/A');
+
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-text-uppercase"]';
+    $this->assertSession()->elementExists('xpath', $selector);
+    $this->assertEquals('N/A', $content_items[0]->find('xpath', $selector)->getText());
 
     // Assert Introduction field.
     $node->set('oe_summary', 'Call for proposals introduction')->save();
@@ -162,7 +164,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'][2]['body'] = $publication_date->format('d F Y') . "\n  in\n  Official Journal Reference" . chr(194) . chr(160);
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    // @todo: check icon of a link.
+    $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';
+    $publication_details = $this->assertSession()->elementExists('xpath', $journal_link_selector);
+    $this->assertLinkIcon($publication_details, 'Official Journal Reference', 'http://example.com/journal');
+
     // Assert Opening date field.
     $opening_date = (clone $static_time)->modify('- 3 days');
     $node->set('oe_call_proposals_opening_date', ['value' => $opening_date->format('Y-m-d')]);
@@ -216,7 +221,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    // @todo: deadline is crossed.
+    $deadline_selector = '//*[text() = "Deadline date"]/following-sibling::dd[1]/div[@class="ecl-u-type-strike"]';
+    $this->assertSession()->elementExists('xpath', $deadline_selector);
+    $this->assertEquals($deadline_date1->format('d F Y, H:i (T)'), $content_items[0]->find('xpath', $deadline_selector)->getText());
+
     // Assert Deadline model and multiple Deadline date fields.
     $deadline_date1 = (clone $static_time)->modify('- 3 days');
     $deadline_date2 = (clone $static_time)->modify('+ 5 days');
@@ -243,7 +251,9 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    // Assert Grants awarded link field.
+    $this->assertSession()->elementNotExists('xpath', $deadline_selector);
+
+    // Assert external Grants awarded link field.
     $node->set('oe_call_proposals_grants_link', ['uri' => 'http://example.com/results']);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -258,6 +268,15 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       ],
     ];
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
+    $this->assertLinkIcon($results_field_group, 'Grands awarded', 'http://example.com/results');
+
+    // Assert internal Grants awarded link field.
+    $node->set('oe_call_proposals_grants_link', ['uri' => 'internal:/']);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
+    $this->assertLinkIcon($results_field_group, 'Grands awarded', '/build/', FALSE);
 
     // Assert Funding programme field.
     $node->set('oe_call_proposals_funding', 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020');
@@ -351,20 +370,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->assertCount(4, $content_items);
     $this->assertContentHeader($content_items[3], 'Contact', 'contact');
     $this->assertContactEntityDefaultDisplay($content_items[3], 'call_proposal_contact');
-  }
-
-  /**
-   * Asserts status field value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertStatusValue(NodeElement $element, string $expected): void {
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-text-uppercase"]';
-    $this->assertSession()->elementExists('xpath', $selector);
-    $this->assertEquals($expected, $element->find('xpath', $selector)->getText());
   }
 
 }

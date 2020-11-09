@@ -9,6 +9,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -76,7 +77,7 @@ class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase im
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $entity = CallForProposalsNodeWrapperInterface::getInstance($entity);
+    $entity = CallForProposalsNodeWrapper::getInstance($entity);
     $cacheable = CacheableMetadata::createFromRenderArray(['#cache' => ['contexts' => ['timezone']]]);
 
     $status = $entity->getStatus();
