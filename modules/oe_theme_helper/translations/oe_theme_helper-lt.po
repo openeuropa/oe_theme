@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Pradžios data"
 msgid "Deadline date"
 msgstr "Terminas"
 
+msgid "Deadline dates"
+msgstr "Terminai"
+
 msgid "Publication date"
 msgstr "Paskelbimo data"
 
@@ -143,14 +145,8 @@ msgstr "Išsamūs duomenys"
 msgid "Status"
 msgstr "Būsena"
 
-msgid "Contact organisation"
-msgstr "Organizacija ryšiams"
-
 msgid "Publication"
 msgstr "Leidinys"
-
-msgid "Publication date"
-msgstr "Paskelbimo data"
 
 msgid "Description"
 msgstr "Aprašymas"
@@ -214,3 +210,18 @@ msgstr "Kvietimas teikti pasiūlymus"
 
 msgid "Funding programme"
 msgstr "Finansavimo programa"
+
+msgid "Deadline model"
+msgstr "Termino pobūdis"
+
+msgid "Single-stage"
+msgstr "Vieno etapo"
+
+msgid "Two-stage"
+msgstr "Dviejų etapų"
+
+msgid "Multiple cut-off"
+msgstr "Keli terminai"
+
+msgid "Permanent"
+msgstr "Nuolatinis"

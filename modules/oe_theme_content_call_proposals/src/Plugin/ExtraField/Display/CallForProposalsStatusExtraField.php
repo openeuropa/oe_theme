@@ -9,8 +9,8 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\oe_content\CallEntityWrapperInterface;
 use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
-use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapperInterface;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -82,10 +82,10 @@ class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase im
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === CallForProposalsNodeWrapperInterface::STATUS_UPCOMING) {
+    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallForProposalsNodeWrapperInterface::STATUS_OPEN
+    if ($status === CallEntityWrapperInterface::STATUS_OPEN
       && !empty($entity->getDeadlineDate())) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }

@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Dáta oscailte"
 msgid "Deadline date"
 msgstr "Spriocdháta"
 
+msgid "Deadline dates"
+msgstr "Spriocdhátaí"
+
 msgid "Publication date"
 msgstr "Dáta foilsithe"
 
@@ -143,14 +145,8 @@ msgstr "Sonraí"
 msgid "Status"
 msgstr "Stádas"
 
-msgid "Contact organisation"
-msgstr "Eagraíocht teagmhála"
-
 msgid "Publication"
 msgstr "Foilseachán"
-
-msgid "Publication date"
-msgstr "Dáta foilsithe"
 
 msgid "Description"
 msgstr "Cur síos"
@@ -214,3 +210,18 @@ msgstr "Glao ar thograí"
 
 msgid "Funding programme"
 msgstr "Clár maoiniúcháin"
+
+msgid "Deadline model"
+msgstr "Samhail spriocdháta"
+
+msgid "Single-stage"
+msgstr "Aonchéim"
+
+msgid "Two-stage"
+msgstr "Dhá chéim"
+
+msgid "Multiple cut-off"
+msgstr "Scoitheadh ilchéimneach"
+
+msgid "Permanent"
+msgstr "Buan"

@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Fecha de apertura"
 msgid "Deadline date"
 msgstr "Fecha límite"
 
+msgid "Deadline dates"
+msgstr "Fechas límite"
+
 msgid "Publication date"
 msgstr "Fecha de publicación"
 
@@ -143,14 +145,8 @@ msgstr "Detalles"
 msgid "Status"
 msgstr "Estado"
 
-msgid "Contact organisation"
-msgstr "Contact organisation"
-
 msgid "Publication"
 msgstr "Publicación"
-
-msgid "Publication date"
-msgstr "Fecha de publicación"
 
 msgid "Description"
 msgstr "Descripción"
@@ -214,3 +210,21 @@ msgstr "Convocatoria de propuestas"
 
 msgid "Funding programme"
 msgstr "Programa de financiación"
+
+msgid "Deadline model"
+msgstr "Modelo de plazo"
+
+msgid "Single-stage"
+msgstr "De una fase"
+
+msgid "Two-stage"
+msgstr "De dos fases"
+
+msgid "Multiple cut-off"
+msgstr "Múltiples fechas límite"
+
+msgid "Permanent"
+msgstr "Permanente"
+
+msgid "in"
+msgstr ""

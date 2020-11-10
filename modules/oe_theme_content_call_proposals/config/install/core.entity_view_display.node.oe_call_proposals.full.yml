@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.oe_call_proposals.oe_documents
     - field.field.node.oe_call_proposals.oe_publication_date
     - field.field.node.oe_call_proposals.oe_reference_code
+    - field.field.node.oe_call_proposals.oe_summary
     - node.type.oe_call_proposals
   module:
     - datetime
@@ -153,7 +154,7 @@ content:
     weight: 12
     label: hidden
     settings:
-      view_mode: default
+      view_mode: full
       link: ''
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
@@ -238,3 +239,4 @@ hidden:
   oe_content_navigation_title: true
   oe_content_short_title: true
   oe_publication_date: true
+  oe_summary: true

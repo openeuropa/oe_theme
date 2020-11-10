@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Ημερομηνία έναρξης"
 msgid "Deadline date"
 msgstr "Ημερομηνία προθεσμίας"
 
+msgid "Deadline dates"
+msgstr "Ημερομηνίες προθεσμίας"
+
 msgid "Publication date"
 msgstr "Ημερομηνία δημοσίευσης"
 
@@ -143,14 +145,8 @@ msgstr "Λεπτομέρειες"
 msgid "Status"
 msgstr "Καθεστώς"
 
-msgid "Contact organisation"
-msgstr "Contact organisation"
-
 msgid "Publication"
 msgstr "Δημοσίευση"
-
-msgid "Publication date"
-msgstr "Ημερομηνία δημοσίευσης"
 
 msgid "Description"
 msgstr "Περιγραφή"
@@ -214,3 +210,21 @@ msgstr "Πρόσκληση υποβολής προτάσεων"
 
 msgid "Funding programme"
 msgstr "Πρόγραμμα χρηματοδότησης"
+
+msgid "Deadline model"
+msgstr "Υπόδειγμα προθεσμίας"
+
+msgid "Single-stage"
+msgstr "Ενός σταδίου"
+
+msgid "Two-stage"
+msgstr "Σε δύο στάδια"
+
+msgid "Multiple cut-off"
+msgstr "Πολλές ημερομηνίες λήξης"
+
+msgid "Permanent"
+msgstr "Μόνιμος"
+
+msgid "in"
+msgstr ""

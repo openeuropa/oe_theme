@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Alkamispäivä"
 msgid "Deadline date"
 msgstr "Määräpäivä"
 
+msgid "Deadline dates"
+msgstr "Määräpäivät"
+
 msgid "Publication date"
 msgstr "Julkaisupäivä"
 
@@ -143,14 +145,8 @@ msgstr "Tiedot"
 msgid "Status"
 msgstr "Tila"
 
-msgid "Contact organisation"
-msgstr "Ota yhteyttä organisaatioon"
-
 msgid "Publication"
 msgstr "Julkaisu"
-
-msgid "Publication date"
-msgstr "Julkaisupäivä"
 
 msgid "Description"
 msgstr "Kuvaus"
@@ -214,3 +210,21 @@ msgstr "Ehdotuspyyntö"
 
 msgid "Funding programme"
 msgstr "Rahoitusohjelma"
+
+msgid "Deadline model"
+msgstr "Määräajan tyyppi"
+
+msgid "Single-stage"
+msgstr "Yksivaiheinen"
+
+msgid "Two-stage"
+msgstr "Kaksivaiheinen"
+
+msgid "Multiple cut-off"
+msgstr "Monivaiheinen"
+
+msgid "Permanent"
+msgstr "Jatkuva"
+
+msgid "in"
+msgstr ""
