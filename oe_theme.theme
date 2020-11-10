@@ -23,6 +23,7 @@ use Drupal\media\Plugin\media\Source\OEmbed;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
+use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -1273,27 +1274,12 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
 function oe_theme_preprocess_media__document__default(&$variables) {
   /** @var \Drupal\media\Entity\Media $media */
   $media = $variables['media'];
-  $file_type = $media->get('oe_media_file_type')->first()->value;
-  if ($file_type === 'remote' && $media->get('oe_media_remote_file')->isEmpty()) {
-    return;
-  }
-  if ($file_type === 'local' && $media->get('oe_media_file')->isEmpty()) {
+  $file_value = DocumentMediaValueExtractor::getFileValue($media);
+  if (!$file_value) {
     return;
   }
 
-  // Generate the file information for the current language.
-  if ($file_type === 'local') {
-    $file_object = $media->get('oe_media_file')->first()->entity;
-    $variables['file'] = FileValueObject::fromFileEntity($file_object)
-      ->setTitle($media->getName())
-      ->setLanguageCode($media->language()->getId());
-  }
-  else {
-    $file_link = $media->get('oe_media_remote_file')->first();
-    $variables['file'] = FileValueObject::fromFileLink($file_link)
-      ->setTitle($media->getName())
-      ->setLanguageCode($media->language()->getId());
-  }
+  $variables['file'] = $file_value;
 
   // Generate the file information for all available translations.
   foreach ($media->getTranslationLanguages() as $langcode => $language) {
@@ -1301,20 +1287,11 @@ function oe_theme_preprocess_media__document__default(&$variables) {
     if ($media->language()->getId() === $langcode) {
       continue;
     }
+
     $translation = $media->getTranslation($langcode);
-    if ($translation->get('oe_media_file_type')->first()->value === 'local') {
-      $file_object = $translation->get('oe_media_file')->first()->entity;
-      if ($file_object instanceof FileInterface) {
-        $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
-          ->setTitle($translation->getName())
-          ->setLanguageCode($translation->language()->getId());
-      }
-    }
-    else {
-      $file_link = $translation->get('oe_media_remote_file')->first();
-      $variables['translations'][] = FileValueObject::fromFileLink($file_link)
-        ->setTitle($translation->getName())
-        ->setLanguageCode($translation->language()->getId());
+    $translation_file_value = DocumentMediaValueExtractor::getFileValue($translation);
+    if ($translation_file_value) {
+      $variables['translations'][] = $translation_file_value;
     }
   }
 }
