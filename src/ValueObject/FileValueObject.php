@@ -135,7 +135,7 @@ class FileValueObject extends ValueObjectBase {
    */
   public static function fromFileLink(FileLinkItem $link): ValueObjectInterface {
     $file = new static(
-      $link->get('title')->getValue(),
+      $link->get('title')->getValue() ?? '',
       $link->get('uri')->getValue(),
       $link->getFormat(),
       (string) $link->getSize()
