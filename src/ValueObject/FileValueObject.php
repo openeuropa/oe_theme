@@ -6,6 +6,7 @@ namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\file\FileInterface;
 use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
+use Mimey\MimeTypes;
 
 /**
  * Handle information about a file, such as its mime type, size, language, etc.
@@ -60,17 +61,6 @@ class FileValueObject extends ValueObjectBase {
    * @var string
    */
   protected $languageCode = '';
-
-  /**
-   * File mime types mapping.
-   *
-   * @var string[]
-   */
-  const MIME_TYPES_MAPPING = [
-    'application/msword' => 'doc',
-    'application/pdf' => 'pdf',
-    'text/plain' => 'txt',
-  ];
 
   /**
    * FileType constructor.
@@ -223,10 +213,9 @@ class FileValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getExtension(): string {
-    if (isset(self::MIME_TYPES_MAPPING[$this->mime])) {
-      return self::MIME_TYPES_MAPPING[$this->mime];
-    }
-    return pathinfo($this->name, PATHINFO_EXTENSION);
+    $mime_types = new MimeTypes();
+    $extension = $mime_types->getExtension($this->getMime());
+    return $extension ?? pathinfo($this->name, PATHINFO_EXTENSION);
   }
 
   /**

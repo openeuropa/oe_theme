@@ -12,7 +12,8 @@
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "~2.0",
-        "openeuropa/oe_time_caching": "~1.0"
+        "openeuropa/oe_time_caching": "~1.0",
+        "ralouphie/mimey": "^2.1"
     },
     "require-dev": {
         "composer/installers": "~1.5",
