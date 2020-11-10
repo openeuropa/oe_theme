@@ -71,7 +71,7 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
    * @param string $langcode
    *   The target language code.
    */
-  protected function translateLocaleString(string $string, string $translation, string $langcode) {
+  protected function translateLocaleString(string $string, string $translation, string $langcode): void {
     /** @var \Drupal\locale\StringDatabaseStorage $locale_storage */
     $locale_storage = $this->container->get('locale.storage');
     // Find the target string.
