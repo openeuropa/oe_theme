@@ -221,8 +221,9 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
       'path' => $site_name['href'],
     ],
   ];
+
   $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
-  $variables['processed']['site_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>', [], ['absolute' => TRUE]);
+  $variables['processed']['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
   $variables['processed']['site_name_link'] = $site_name_link;
   $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
@@ -288,7 +289,6 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variab
     [
       'title' => $variables['processed']['site_name_link'],
       'description' => $variables['processed']['site_owner'],
-      'list_class_name' => 'ecl-footer-core__section1',
     ],
     [
       'content_before' => t('More information on:'),
@@ -298,11 +298,9 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variab
     ],
     [
       'links' => $variables['processed']['service_navigation'],
-      'list_class_name' => 'ecl-footer-core__section3',
     ],
     [
       'links' => $variables['processed']['legal_navigation'],
-      'list_class_name' => 'ecl-footer-core__section4',
     ],
   ];
 }
@@ -325,15 +323,13 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
         ]
       ],
       'description' => $variables['processed']['site_owner'],
-      'section_id' => '1',
+      'section_id' => 1,
       'type' => 'site_name',
-      'list_class_name' => 'ecl-footer-core__section1',
     ],
     [
       [
         'section_id' => 2,
         'type' => 'dg_services_navigation',
-        'demo_id' => 'contact_us',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
@@ -367,12 +363,12 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
     ],
     [
       'links' => $variables['processed']['service_navigation'],
-      'section_id' => '8',
+      'section_id' => 8,
       'type' => 'service_navigation',
     ],
     [
       'links' => $variables['processed']['legal_navigation'],
-      'section_id' => '9',
+      'section_id' => 9,
       'type' => 'legal_navigation',
     ],
   ];
@@ -384,9 +380,8 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
   $variables['processed'] = [];
   $corporate_footer = $variables['corporate_footer'];
-  // $site_name = $corporate_footer['site_name'];
   $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
-  $variables['processed']['site_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>', [], ['absolute' => TRUE]);
+  $variables['processed']['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
   $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
   $path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
@@ -462,7 +457,6 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__core(array &$variab
     [
       'logo' => $variables['processed']['logo'],
       'description' => $variables['processed']['site_owner'],
-      'list_class_name' => 'ecl-footer-core__section1',
     ],
     [
       [
@@ -481,7 +475,6 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__core(array &$variab
     [
       'title' => $variables['corporate_footer']['institution_links_title'],
       'links' => $variables['processed']['institution_links'],
-      'list_class_name' => 'ecl-footer-core__section4',
     ],
   ];
 }
@@ -528,7 +521,7 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
     ],
     [
       'logo' => $variables['processed']['logo'],
-      'description' => t('Discover more on <a href=\'/:path\' class=\'ecl-link ecl-link--standalone\'>@label</a>', [
+      'description' => t('Discover more on <a href=\':path\' class=\'ecl-link ecl-link--standalone\'>@label</a>', [
         ':path' => 'https://europa.eu',
         '@label' => 'europa.eu',
       ]),
