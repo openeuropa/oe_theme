@@ -49,9 +49,6 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'oe_theme_content_call_tenders',
     ]);
 
-    module_load_include('install', 'oe_theme_content_call_tenders');
-    oe_theme_content_call_tenders_install();
-
     module_load_include('install', 'oe_content');
     oe_content_install();
 

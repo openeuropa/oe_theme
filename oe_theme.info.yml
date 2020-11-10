@@ -20,16 +20,6 @@ regions:
   footer: "Footer"
 
 config_devel:
-  install:
-    - image.style.oe_theme_list_item
-    - image.style.oe_theme_list_item_featured
-    - image.style.oe_theme_list_item_2x
-    - image.style.oe_theme_list_item_featured_2x
-    - image.style.oe_theme_medium_2x_no_crop
-    - image.style.oe_theme_medium_no_crop
-    - image.style.oe_theme_small_2x_no_crop
-    - image.style.oe_theme_small_no_crop
-    - responsive_image.styles.oe_theme_main_content
   optional:
     - block.block.oe_theme_ec_corporate_footer
     - block.block.oe_theme_eu_corporate_footer

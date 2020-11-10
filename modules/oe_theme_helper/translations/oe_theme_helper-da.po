@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organisationstype"
+
+msgid "Show @numb more items"
+msgstr "Vis @numb flere poster"
+
+msgid "When"
+msgstr "Hvornår"
+
+msgid "Where"
+msgstr "Hvor"
+
+msgid "Organiser"
+msgstr "Organisator"
+
+msgid "Website"
+msgstr "Websted"
+
+msgid "Social media"
+msgstr "Sociale medier"
+
+msgid "Number of seats"
+msgstr "Antal pladser"
+
+msgid "Entrance fee"
+msgstr "Entré"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Book din plads, @time_left til at registrere, registrering slutter den@end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Registrering starter om @time_left. Du kan registrere dig fra @start_date og frem til @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Registreringsperiode udløb den @end_date."
+
+msgid "Postal address"
+msgstr "Postadresse"
+
+msgid "Authors"
+msgstr "Forfattere"
+
+msgid "Department"
+msgstr "Afdeling"
+
+msgid "Project duration"
+msgstr "Projektets varighed"
+
+msgid "Project website"
+msgstr "Projektwebsted"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisation"
+
+msgid "Call status: @label"
+msgstr "Status for indkaldelse: @label"
+
+msgid "Press contacts"
+msgstr "Pressehenvendelser"
+
+msgid "Call for tenders"
+msgstr "Indkaldelse af tilbud"
+
+msgid "Related links"
+msgstr "Relaterede links"
+
+msgid "Practical information"
+msgstr "Praktiske oplysninger"
+
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+msgid "Opening date"
+msgstr "Startdato"
+
+msgid "Deadline date"
+msgstr "Tidsfrist (dato)"
+
+msgid "Publication date"
+msgstr "Dato for offentliggørelse"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Location"
+msgstr "Placering"
+
+msgid "News type"
+msgstr "Nyhedstype"
+
+msgid "Project locations"
+msgstr "Projektets lokaliteter"
+
+msgid "Overall budget"
+msgstr "Samlet budget"
+
+msgid "EU contribution"
+msgstr "EU-bidrag"
+
+msgid "Departments"
+msgstr "Afdelinger"
+
+msgid "Results"
+msgstr "Resultater"
+
+msgid "Stakeholders"
+msgstr "Interessenter"
+
+msgid "Coordinators"
+msgstr "Koordinatorer"
+
+msgid "Participants"
+msgstr "Deltagere"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "EU Organisation"
+msgstr "EU-organisation"
+
+msgid "Non-EU organisation"
+msgstr "Ikke-EU-organisation"
+
+msgid "Reference"
+msgstr "Reference"
+
+msgid "Upcoming"
+msgstr "Kommende"
+
+msgid "Open"
+msgstr "Åben"
+
+msgid "Closed"
+msgstr "Lukket"
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisation"
+
+msgid "Publication"
+msgstr "Offentliggørelse"
+
+msgid "Publication date"
+msgstr "Dato for offentliggørelse"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakt"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Faxnummer"
+
+msgid "Mobile number"
+msgstr "Mobilnummer"
+
+msgid "Office"
+msgstr "Kontor"
+
+msgid "Documents"
+msgstr "Dokumenter"
+
+msgid "Funding"
+msgstr "Finansiering"
+
+msgid "As planned"
+msgstr "Som planlagt"
+
+msgid "Cancelled"
+msgstr "Annulleret"
+
+msgid "Rescheduled"
+msgstr "Flyttet"
+
+msgid "Postponed"
+msgstr "Udsat"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Live stream"
+msgstr "Livestreaming"
+
+msgid "Live streaming available"
+msgstr "Livestreaming tilgængelig"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Publikationstype"
+
+msgid "Call for proposals"
+msgstr "Indkaldelse af forslag"
+
+msgid "Funding programme"
+msgstr "Finansieringsprogram"

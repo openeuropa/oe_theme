@@ -60,9 +60,6 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'oe_theme_content_project',
     ]);
 
-    module_load_include('install', 'oe_theme_content_project');
-    oe_theme_content_project_install();
-
     module_load_include('install', 'oe_content');
     oe_content_install();
 

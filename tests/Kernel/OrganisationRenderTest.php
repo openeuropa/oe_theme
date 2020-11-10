@@ -53,10 +53,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'oe_content_featured_media_field',
       'oe_content_entity_contact',
       'oe_content_organisation',
+      'oe_theme_content_organisation',
     ]);
-
-    module_load_include('install', 'oe_theme_content_organisation');
-    oe_theme_content_organisation_install();
 
     module_load_include('install', 'oe_content');
     oe_content_install();

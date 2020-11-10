@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Вид на организацията"
+
+msgid "Show @numb more items"
+msgstr "Показване на повече елементи"
+
+msgid "When"
+msgstr "Кога"
+
+msgid "Where"
+msgstr "Къде"
+
+msgid "Organiser"
+msgstr "Организатор"
+
+msgid "Website"
+msgstr "Уебсайт"
+
+msgid "Social media"
+msgstr "Социални медии"
+
+msgid "Number of seats"
+msgstr "Брой на седалките"
+
+msgid "Entrance fee"
+msgstr "Входна такса"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Резервирайте мястото си, @time_left до края на регистрацията, регистрацията ще приключи на @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Периодът на регистрация приключи на @end_date."
+
+msgid "Postal address"
+msgstr "Пощенски адрес"
+
+msgid "Authors"
+msgstr "Автори"
+
+msgid "Department"
+msgstr "Отдел"
+
+msgid "Project duration"
+msgstr "Продължителност на проекта"
+
+msgid "Project website"
+msgstr "Уебсайт на проекта"
+
+msgid "Contact organisation"
+msgstr "Връзка с организацията"
+
+msgid "Call status: @label"
+msgstr "Статус на поканата: @label"
+
+msgid "Press contacts"
+msgstr "Лица за контакти с медиите"
+
+msgid "Call for tenders"
+msgstr "Покана за подаване на оферти"
+
+msgid "Related links"
+msgstr "Връзки по темата"
+
+msgid "Practical information"
+msgstr "Практическа информация"
+
+msgid "Phone number"
+msgstr "Телефонен номер"
+
+msgid "Opening date"
+msgstr "Начална дата"
+
+msgid "Deadline date"
+msgstr "Краен срок"
+
+msgid "Publication date"
+msgstr "Дата на публикуване"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "News type"
+msgstr "Вид новини"
+
+msgid "Project locations"
+msgstr "Местоположения на проекта"
+
+msgid "Overall budget"
+msgstr "Общ бюджет"
+
+msgid "EU contribution"
+msgstr "Участие на ЕС"
+
+msgid "Departments"
+msgstr "Отдели"
+
+msgid "Results"
+msgstr "Резултати"
+
+msgid "Stakeholders"
+msgstr "Заинтересовани страни"
+
+msgid "Coordinators"
+msgstr "Координатори"
+
+msgid "Participants"
+msgstr "Участници"
+
+msgid "Country"
+msgstr "Държава"
+
+msgid "EU Organisation"
+msgstr "Организация на ЕС"
+
+msgid "Non-EU organisation"
+msgstr "Организация извън ЕС"
+
+msgid "Reference"
+msgstr "Референция"
+
+msgid "Upcoming"
+msgstr "Предстоящ"
+
+msgid "Open"
+msgstr "Отворено"
+
+msgid "Closed"
+msgstr "приключило"
+
+msgid "Details"
+msgstr "Данни"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Contact organisation"
+msgstr "Връзка с организацията"
+
+msgid "Publication"
+msgstr "Публикация"
+
+msgid "Publication date"
+msgstr "Дата на публикуване"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Email"
+msgstr "Електронен адрес"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Contacts"
+msgstr "Контакти"
+
+msgid "Organisation"
+msgstr "Организация"
+
+msgid "Fax number"
+msgstr "Факс"
+
+msgid "Mobile number"
+msgstr "Мобилен телефон"
+
+msgid "Office"
+msgstr "Офис"
+
+msgid "Documents"
+msgstr "Документи"
+
+msgid "Funding"
+msgstr "Финансиране"
+
+msgid "As planned"
+msgstr "Както е планирано"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Rescheduled"
+msgstr "Променена дата/час"
+
+msgid "Postponed"
+msgstr "Отложен"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Live stream"
+msgstr "На живо"
+
+msgid "Live streaming available"
+msgstr "Излъчване на живо"
+
+msgid "Project"
+msgstr "Проект"
+
+msgid "Publication type"
+msgstr "Вид публикация"
+
+msgid "Call for proposals"
+msgstr "Покана за представяне на предложения"
+
+msgid "Funding programme"
+msgstr "Програма за финансиране"

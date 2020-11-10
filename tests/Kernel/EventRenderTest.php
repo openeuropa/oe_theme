@@ -62,9 +62,6 @@ class EventRenderTest extends ContentRenderTestBase {
       'address',
     ]);
 
-    module_load_include('install', 'oe_theme_content_event');
-    oe_theme_content_event_install();
-
     module_load_include('install', 'oe_content');
     oe_content_install();
 

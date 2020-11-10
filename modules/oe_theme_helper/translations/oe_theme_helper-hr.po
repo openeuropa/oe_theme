@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tip organizacije"
+
+msgid "Show @numb more items"
+msgstr "Prikaži @numb više"
+
+msgid "When"
+msgstr "Vrijeme"
+
+msgid "Where"
+msgstr "Mjesto"
+
+msgid "Organiser"
+msgstr "Organizator"
+
+msgid "Website"
+msgstr "Internetska stranica"
+
+msgid "Social media"
+msgstr "Društvene mreže"
+
+msgid "Number of seats"
+msgstr "Broj mjesta"
+
+msgid "Entrance fee"
+msgstr "Kotizacija"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Rezervirajte svoje mjesto. Preostalo je još @time_left za registraciju. Registracija je moguća do @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Registracija počinje za @time_left. Možete se registrirati od @start_date do @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Razdoblje registracije završilo je @end_date."
+
+msgid "Postal address"
+msgstr "Poštanska adresa"
+
+msgid "Authors"
+msgstr "Autori"
+
+msgid "Department"
+msgstr "Služba"
+
+msgid "Project duration"
+msgstr "Trajanje projekta"
+
+msgid "Project website"
+msgstr "Internetske stranice projekta"
+
+msgid "Contact organisation"
+msgstr "Obratite se organizaciji"
+
+msgid "Call status: @label"
+msgstr "Status poziva: @label"
+
+msgid "Press contacts"
+msgstr "Kontakti za medije"
+
+msgid "Call for tenders"
+msgstr "Poziv na podnošenje ponuda"
+
+msgid "Related links"
+msgstr "Povezane poveznice"
+
+msgid "Practical information"
+msgstr "Praktične informacije"
+
+msgid "Phone number"
+msgstr "Broj telefona"
+
+msgid "Opening date"
+msgstr "Datum otvaranja"
+
+msgid "Deadline date"
+msgstr "Rok"
+
+msgid "Publication date"
+msgstr "Datum publikacije"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Lokacija"
+
+msgid "News type"
+msgstr "Vrsta novosti"
+
+msgid "Project locations"
+msgstr "Lokacije projekta"
+
+msgid "Overall budget"
+msgstr "Ukupni proračun"
+
+msgid "EU contribution"
+msgstr "Doprinos EU-a"
+
+msgid "Departments"
+msgstr "Službe"
+
+msgid "Results"
+msgstr "Rezultati"
+
+msgid "Stakeholders"
+msgstr "Dionici"
+
+msgid "Coordinators"
+msgstr "Koordinatori"
+
+msgid "Participants"
+msgstr "Sudionici"
+
+msgid "Country"
+msgstr "Zemlja"
+
+msgid "EU Organisation"
+msgstr "Organizacija EU-a"
+
+msgid "Non-EU organisation"
+msgstr "Organizacija izvan EU-a"
+
+msgid "Reference"
+msgstr "Referencija"
+
+msgid "Upcoming"
+msgstr "Uskoro"
+
+msgid "Open"
+msgstr "Otvoreno"
+
+msgid "Closed"
+msgstr "Zatvoreno"
+
+msgid "Details"
+msgstr "Pojedinosti"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Contact organisation"
+msgstr "Obratite se organizaciji"
+
+msgid "Publication"
+msgstr "Publikacija"
+
+msgid "Publication date"
+msgstr "Datum publikacije"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Email"
+msgstr "E-adresa"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakti"
+
+msgid "Organisation"
+msgstr "Organizacija"
+
+msgid "Fax number"
+msgstr "Broj telefaksa"
+
+msgid "Mobile number"
+msgstr "Broj mobilnog telefona"
+
+msgid "Office"
+msgstr "Ured"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Financiranje"
+
+msgid "As planned"
+msgstr "Prema planu"
+
+msgid "Cancelled"
+msgstr "Otkazano"
+
+msgid "Rescheduled"
+msgstr "Odgođeno za drugi datum"
+
+msgid "Postponed"
+msgstr "Odgođeno"
+
+msgid "Address"
+msgstr "Adresa"
+
+msgid "Live stream"
+msgstr "Prijenos uživo na internetu"
+
+msgid "Live streaming available"
+msgstr "Dostupan je prijenos uživo na internetu"
+
+msgid "Project"
+msgstr "Projekt"
+
+msgid "Publication type"
+msgstr "Tip publikacije"
+
+msgid "Call for proposals"
+msgstr "Poziv na podnošenje prijedloga"
+
+msgid "Funding programme"
+msgstr "Program financiranja"

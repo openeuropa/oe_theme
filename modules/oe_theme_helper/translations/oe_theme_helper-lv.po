@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organizācijas veids"
+
+msgid "Show @numb more items"
+msgstr "Parādīt vēl @numb elementu(-s)"
+
+msgid "When"
+msgstr "Kad"
+
+msgid "Where"
+msgstr "Kur"
+
+msgid "Organiser"
+msgstr "Organizators"
+
+msgid "Website"
+msgstr "Tīmekļvietne"
+
+msgid "Social media"
+msgstr "Sociālie plašsaziņas līdzekļi"
+
+msgid "Number of seats"
+msgstr "Sēdvietu skaits"
+
+msgid "Entrance fee"
+msgstr "Ieejas maksa"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Rezervējiet sev sēdvietu, reģistrācijai atlikušais laiks: @time_left, reģistrācija beigsies @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Reģistrācija sāksies @time_left. Varat reģistrēties no @start_date līdz @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Reģistrācijas periods beidzies @end_date."
+
+msgid "Postal address"
+msgstr "Pasta adrese"
+
+msgid "Authors"
+msgstr "Autori"
+
+msgid "Department"
+msgstr "Struktūrvienība"
+
+msgid "Project duration"
+msgstr "Projekta ilgums"
+
+msgid "Project website"
+msgstr "Projekta tīmekļvietne"
+
+msgid "Contact organisation"
+msgstr "Sazināties ar organizāciju"
+
+msgid "Call status: @label"
+msgstr "Uzaicinājuma statuss: @label"
+
+msgid "Press contacts"
+msgstr "Kontaktpersonas presei"
+
+msgid "Call for tenders"
+msgstr "Uzaicinājums iesniegt piedāvājumus"
+
+msgid "Related links"
+msgstr "Līdzīgas saites"
+
+msgid "Practical information"
+msgstr "Praktiska informācija"
+
+msgid "Phone number"
+msgstr "Tālruņa numurs"
+
+msgid "Opening date"
+msgstr "Sākuma datums"
+
+msgid "Deadline date"
+msgstr "Termiņa datums"
+
+msgid "Publication date"
+msgstr "Publikācijas datums"
+
+msgid "Author"
+msgstr "Autors"
+
+msgid "Location"
+msgstr "Vieta"
+
+msgid "News type"
+msgstr "Jaunumu veids"
+
+msgid "Project locations"
+msgstr "Projekta īstenošanas vietas"
+
+msgid "Overall budget"
+msgstr "Kopējais budžets"
+
+msgid "EU contribution"
+msgstr "ES ieguldījums"
+
+msgid "Departments"
+msgstr "Struktūrvienības"
+
+msgid "Results"
+msgstr "Rezultāti"
+
+msgid "Stakeholders"
+msgstr "Ieinteresētās personas"
+
+msgid "Coordinators"
+msgstr "Koordinatori"
+
+msgid "Participants"
+msgstr "Dalībnieki"
+
+msgid "Country"
+msgstr "Valsts"
+
+msgid "EU Organisation"
+msgstr "ES organizācija"
+
+msgid "Non-EU organisation"
+msgstr "Organizācija no valsts ārpus ES"
+
+msgid "Reference"
+msgstr "Atsauce"
+
+msgid "Upcoming"
+msgstr "Gaidāms"
+
+msgid "Open"
+msgstr "Sācies"
+
+msgid "Closed"
+msgstr "Beidzies"
+
+msgid "Details"
+msgstr "Sīkāka informācija"
+
+msgid "Status"
+msgstr "Statuss"
+
+msgid "Contact organisation"
+msgstr "Sazināties ar organizāciju"
+
+msgid "Publication"
+msgstr "Publikācija"
+
+msgid "Publication date"
+msgstr "Publikācijas datums"
+
+msgid "Description"
+msgstr "Apraksts"
+
+msgid "Email"
+msgstr "E-pasts"
+
+msgid "Contact"
+msgstr "Kontaktinformācija"
+
+msgid "Contacts"
+msgstr "Kontaktinformācija"
+
+msgid "Organisation"
+msgstr "Organizācija"
+
+msgid "Fax number"
+msgstr "Faksa numurs"
+
+msgid "Mobile number"
+msgstr "Mobilā tālruņa numurs"
+
+msgid "Office"
+msgstr "Birojs"
+
+msgid "Documents"
+msgstr "Dokumenti"
+
+msgid "Funding"
+msgstr "Finansējums"
+
+msgid "As planned"
+msgstr "Kā plānots"
+
+msgid "Cancelled"
+msgstr "Atcelts"
+
+msgid "Rescheduled"
+msgstr "Pārcelts"
+
+msgid "Postponed"
+msgstr "Atlikts"
+
+msgid "Address"
+msgstr "Adrese"
+
+msgid "Live stream"
+msgstr "Straumējums"
+
+msgid "Live streaming available"
+msgstr "Pieejams tiešraides straumējums"
+
+msgid "Project"
+msgstr "Projekts"
+
+msgid "Publication type"
+msgstr "Publikācijas veids"
+
+msgid "Call for proposals"
+msgstr "Uzaicinājums iesniegt priekšlikumus"
+
+msgid "Funding programme"
+msgstr "Finansējuma programma"

@@ -47,7 +47,7 @@
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "~1.9",
-        "openeuropa/oe_multilingual": "~1.0",
+        "openeuropa/oe_multilingual": "~1.5",
         "openeuropa/oe_paragraphs": "~1.6",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "~1.8",

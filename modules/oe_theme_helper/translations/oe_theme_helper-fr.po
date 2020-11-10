@@ -1,0 +1,216 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Type d’organisation"
+
+msgid "Show @numb more items"
+msgstr "Afficher @numb éléments supplémentaires"
+
+msgid "When"
+msgstr "Quand"
+
+msgid "Where"
+msgstr "Où"
+
+msgid "Organiser"
+msgstr "Organisateur"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Social media"
+msgstr "Réseaux sociaux"
+
+msgid "Number of seats"
+msgstr "Nombre de sièges"
+
+msgid "Entrance fee"
+msgstr "Droit d’entrée"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Réservez votre siège; vous avez encore @time_left pour vous inscrire — les inscriptions sont ouvertes jusqu’au @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Ouverture des inscriptions dans @time_left. Vous pouvez vous inscrire du @start_date au @end_date."
+
+msgid "Registration period ended on @date."
+msgstr "Période d’inscription close le @end_date."
+
+msgid "Postal address"
+msgstr "Adresse postale"
+
+msgid "Authors"
+msgstr "Auteurs"
+
+msgid "Department"
+msgstr "Service"
+
+msgid "Project duration"
+msgstr "Durée du projet"
+
+msgid "Project website"
+msgstr "Site web du projet"
+
+msgid "Contact organisation"
+msgstr "Organisation à contacter"
+
+msgid "Call status: @label"
+msgstr "Statut de l’appel: @label"
+
+msgid "Press contacts"
+msgstr "Contacts presse"
+
+msgid "Call for tenders"
+msgstr "Appel d’offres"
+
+msgid "Related links"
+msgstr "Autres liens"
+
+msgid "Practical information"
+msgstr "Informations pratiques"
+
+msgid "Phone number"
+msgstr "Numéro de téléphone"
+
+msgid "Opening date"
+msgstr "Date de début"
+
+msgid "Deadline date"
+msgstr "Date limite"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Location"
+msgstr "Lieu"
+
+msgid "News type"
+msgstr "Type d’actualité"
+
+msgid "Project locations"
+msgstr "Lieux du projet"
+
+msgid "Overall budget"
+msgstr "Budget global"
+
+msgid "EU contribution"
+msgstr "Contribution de l’UE"
+
+msgid "Departments"
+msgstr "Services"
+
+msgid "Results"
+msgstr "Résultats"
+
+msgid "Stakeholders"
+msgstr "Parties concernées"
+
+msgid "Coordinators"
+msgstr "Coordinateurs"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Country"
+msgstr "Pays"
+
+msgid "EU Organisation"
+msgstr "Organisation de l’UE"
+
+msgid "Non-EU organisation"
+msgstr "Organisation hors UE"
+
+msgid "Reference"
+msgstr "Référence"
+
+msgid "Upcoming"
+msgstr "À venir"
+
+msgid "Open"
+msgstr "En cours"
+
+msgid "Closed"
+msgstr "Clos"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Contact organisation"
+msgstr "Organisation à contacter"
+
+msgid "Publication"
+msgstr "Publication"
+
+msgid "Publication date"
+msgstr "Date de publication"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Email"
+msgstr "Adresse électronique"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contacts"
+msgstr "Personnes de contact"
+
+msgid "Organisation"
+msgstr "Organisation"
+
+msgid "Fax number"
+msgstr "Numéro de télécopieur"
+
+msgid "Mobile number"
+msgstr "Numéro de portable"
+
+msgid "Office"
+msgstr "Bureau"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Funding"
+msgstr "Financement"
+
+msgid "As planned"
+msgstr "Comme prévu"
+
+msgid "Cancelled"
+msgstr "Annulé"
+
+msgid "Rescheduled"
+msgstr "Reprogrammé"
+
+msgid "Postponed"
+msgstr "Reporté"
+
+msgid "Address"
+msgstr "Adresse"
+
+msgid "Live stream"
+msgstr "Retransmission en direct"
+
+msgid "Live streaming available"
+msgstr "Retransmission en direct disponible"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Publication type"
+msgstr "Type de publication"
+
+msgid "Call for proposals"
+msgstr "Appel à propositions"
+
+msgid "Funding programme"
+msgstr "Programme de financement"
