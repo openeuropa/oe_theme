@@ -23,7 +23,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'address',
     'datetime_range',
     'entity_reference_revisions',
@@ -154,7 +154,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Project 1',
-      'url' => '/node/1',
+      'url' => '/en/node/1',
       'description' => 'The teaser text',
       'meta' => NULL,
       'image' => [

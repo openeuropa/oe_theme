@@ -25,7 +25,7 @@ class EventRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'address',
     'datetime_range',
     'entity_reference_revisions',
@@ -129,6 +129,15 @@ class EventRenderTest extends ContentRenderTestBase {
     $node = Node::create($values);
     $node->save();
 
+    // Translate the event into bulgarian.
+    $values['title'] = "заглавието на моя възел";
+    $values['oe_teaser'] = "Текстът на тийзъра";
+    $node->addTranslation('bg', $values);
+    $node->save();
+
+    // Translate the date strings into bulgarian.
+    $this->translateLocaleString('Jan', 'Ян.', 'bg');
+
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
@@ -142,7 +151,7 @@ class EventRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'My node title',
-      'url' => '/node/1',
+      'url' => '/en/node/1',
       'description' => new PatternAssertState(new IconsTextAssert(), [
         'items' => [
           [
@@ -207,6 +216,31 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Competitions and award ceremonies | Cancelled';
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('date_cancelled', $html);
+
+    // Assert bulgarian translation.
+    $config_factory = \Drupal::configFactory();
+    $config_factory->getEditable('system.site')->set('default_langcode', 'bg')->save();
+    \Drupal::languageManager()->reset();
+    $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'заглавието на моя възел';
+    $expected_values['meta'] = 'Конкурси и церемонии по награждаване | Cancelled';
+    $expected_values['url'] = '/bg/node/1';
+    $expected_values['date']['month_name'] = 'Ян.';
+    $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
+      'items' => [
+        [
+          'icon' => 'location',
+          'text' => 'Brussels, Белгия',
+        ],
+        [
+          'icon' => 'livestreaming',
+          'text' => t('Live streaming available'),
+        ],
+      ],
+    ]);
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_cancelled', $html);
   }

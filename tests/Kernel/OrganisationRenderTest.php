@@ -26,7 +26,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'address',
     'field_group',
     'entity_reference_revisions',
@@ -100,7 +100,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Organisation name',
-      'url' => '/node/1',
+      'url' => '/en/node/1',
       'description' => 'The teaser text',
       'meta' => 'International organisation | Acronym',
       'image' => [
