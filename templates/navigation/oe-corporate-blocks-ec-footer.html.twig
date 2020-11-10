@@ -5,28 +5,12 @@
  *
  * Available variables:
  * - corporate_footer: renderable array for corporate footer links
- * - custom_footer: renderable array for custom footer links
  * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-ec-footer.html.twig
  */
 #}
-{% set _back_to_top = {
-  link: {
-    'label': 'Go to top'|t,
-    'path': '#top',
-  },
-  'icon': {
-    'path': ecl_icon_path,
-    'size': 'fluid',
-  },
-} %}
 
-{% set _identity = custom_footer %}
 {% set _sections = corporate_footer.sections %}
-{% set _common = corporate_footer.common %}
 
-{% include '@ecl-twig/footer' with {
-  'back_to_top': _back_to_top,
-  'identity': _identity,
+{% include '@ecl-twig/footer-' ~ ecl_branding with {
   'sections': _sections,
-  'common': _common,
 } %}

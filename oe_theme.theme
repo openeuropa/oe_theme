@@ -212,54 +212,42 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
  * Implements hook_preprocess_oe_corporate_blocks_ec_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): void {
+  $variables['processed'] = [];
   $corporate_footer = $variables['corporate_footer'];
-
-  // Create the section for 'About EC'.
-  $about_ec = $corporate_footer['about_ec'];
-  $sections_about_ec = [
-    'title' => $about_ec['title'],
-    'links' => [],
+  $site_name = $corporate_footer['site_name'];
+  $site_name_link = [
+    'link' => [
+      'label' => $site_name['label'],
+      'path' => $site_name['href'],
+    ],
   ];
+  $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['processed']['site_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>', [], ['absolute' => TRUE]);
+  $variables['processed']['site_name_link'] = $site_name_link;
+  $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
-  foreach ($about_ec['items'] as $item) {
-    $sections_about_ec['links'][] = [
+  $class_navigation = [];
+  foreach ($corporate_footer['class_navigation'] as $link) {
+    $class_navigation[] = [
       'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
-        'icon_position' => 'after',
+        'label' => $link['label'],
+        'path' => $link['href'],
       ],
     ];
   }
+  $variables['processed']['class_navigation'] = $class_navigation;
 
-  // Create the section for 'Social media'.
-  $social_media = $corporate_footer['social_media'];
-  $sections_social_media = [
-    'title' => $social_media['title'],
-    'links' => [],
-  ];
-
-  foreach ($social_media['items'] as $item) {
-    if ($item['type'] == 'social-network') {
-      $sections_social_media['links'][] = [
-        'link' => [
-          'label' => $item['link']['label'],
-          'path' => $item['link']['href'],
-          'icon_position' => 'before',
-        ],
-        'icon' => [
-          'path' => $variables['ecl_icon_path'],
-          'type' => 'branded',
-          'name' => $item['icon'],
-        ],
-      ];
-    }
-    else {
-      $sections_social_media['links'][] = [
-        'link' => [
-          'label' => $item['link']['label'],
-          'path' => $item['link']['href'],
-          'icon_position' => 'after',
-        ],
+  $service_navigation = [];
+  foreach ($corporate_footer['service_navigation'] as $link) {
+    $service_navigation_link = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+        'icon_position' => 'after',
+      ],
+    ];
+    if (!empty($link['external']) && $link['external'] === TRUE) {
+      $service_navigation_link += [
         'icon' => [
           'path' => $variables['ecl_icon_path'],
           'type' => 'ui',
@@ -267,98 +255,316 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
         ],
       ];
     }
+    $service_navigation[] = $service_navigation_link;
   }
+  $variables['processed']['service_navigation'] = $service_navigation;
 
-  // Create the section for 'About EU'.
-  $about_eu = $corporate_footer['about_eu'];
-  $sections_about_eu = [
-    'title' => $about_eu['title'],
-    'links' => [],
-  ];
-
-  foreach ($about_eu['items'] as $item) {
-    $sections_about_eu['links'][] = [
+  $legal_navigation = [];
+  foreach ($corporate_footer['legal_navigation'] as $link) {
+    $legal_navigation[] = [
       'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
-        'icon_position' => 'after',
-      ],
-      'icon' => [
-        'path' => $variables['ecl_icon_path'],
-        'type' => 'ui',
-        'name' => 'external',
+        'label' => $link['label'],
+        'path' => $link['href'],
       ],
     ];
   }
+  $variables['processed']['legal_navigation'] = $legal_navigation;
 
+  $ecl_branding = theme_get_setting('branding') ?? 'core';
+  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_ec_footer__' . $ecl_branding;
+  $preprocess($variables);
+}
+
+/**
+ * Process corporate_footer data to match ecl component expected format.
+ *
+ * @param array $variables
+ *   Set of available variables.
+ *
+ * @see hook_preprocess_oe_corporate_blocks_ec_footer().
+ */
+function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variables): void {
   $variables['corporate_footer']['sections'] = [
-    $sections_about_ec,
-    $sections_social_media,
-    $sections_about_eu,
+    [
+      'title' => $variables['processed']['site_name_link'],
+      'description' => $variables['processed']['site_owner'],
+      'list_class_name' => 'ecl-footer-core__section1',
+    ],
+    [
+      'content_before' => t('More information on:'),
+      'links' => $variables['processed']['class_navigation'],
+      'list_class_name' => 'ecl-footer-core__section2 ecl-footer-core__list--columns',
+      'section_class_name' => 'ecl-footer-core__section--separator',
+    ],
+    [
+      'links' => $variables['processed']['service_navigation'],
+      'list_class_name' => 'ecl-footer-core__section3',
+    ],
+    [
+      'links' => $variables['processed']['legal_navigation'],
+      'list_class_name' => 'ecl-footer-core__section4',
+    ],
   ];
+}
 
-  // Create the list of bottom link.
-  foreach ($corporate_footer['bottom_links'] as $item) {
-    $variables['corporate_footer']['common'][] = [
-      'link' => [
-        'label' => $item['label'],
-        'path' => $item['href'],
+/**
+ * Process corporate_footer data to match ecl component expected format.
+ *
+ * @param array $variables
+ *   Set of available variables.
+ *
+ * @see hook_preprocess_oe_corporate_blocks_ec_footer().
+ */
+function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array &$variables): void {
+  $variables['corporate_footer']['sections'] = [
+    [
+      'title' => [
+        'link' => [
+          'label' => $variables['processed']['site_name'],
+          'path' => $variables['processed']['site_path'],
+        ]
       ],
-    ];
-  }
-
-  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+      'description' => $variables['processed']['site_owner'],
+      'section_id' => '1',
+      'type' => 'site_name',
+      'list_class_name' => 'ecl-footer-core__section1',
+    ],
+    [
+      [
+        'section_id' => 2,
+        'type' => 'dg_services_navigation',
+        'demo_id' => 'contact_us',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+      [
+        'section_id' => 2,
+        'type' => 'dg_services_navigation',
+        'list_class_name' => 'ecl-footer-standardised__list--inline',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+    ],
+    [
+      [
+        'section_id' => 3,
+        'type' => 'dg_related_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+      [
+        'section_id' => 3,
+        'type' => 'dg_related_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+    ],
+    [
+      'section_id' => 6,
+      'type' => 'class_names',
+      'list_class_name' => 'ecl-footer-standardised__list--condensed',
+    ],
+    [
+      'title' => $variables['processed']['site_name_link'],
+      'section_id' => 7,
+      'type' => 'corporate_name',
+    ],
+    [
+      'links' => $variables['processed']['service_navigation'],
+      'section_id' => '8',
+      'type' => 'service_navigation',
+    ],
+    [
+      'links' => $variables['processed']['legal_navigation'],
+      'section_id' => '9',
+      'type' => 'legal_navigation',
+    ],
+  ];
 }
 
 /**
  * Implements hook_preprocess_oe_corporate_blocks_eu_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
-  $variables['custom_footer'] = _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer($variables);
+  $variables['processed'] = [];
+  $corporate_footer = $variables['corporate_footer'];
+  // $site_name = $corporate_footer['site_name'];
+  $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['processed']['site_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>', [], ['absolute' => TRUE]);
+  $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
+
+  $path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+  $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  $logo = $variables['ecl_logo_path'] . '/logo--' . EuropeanUnionLanguages::getInternalLanguageCode($langcode) . '.svg';
+
+  $logo = [
+    'path' => $path,
+    'language' => $langcode,
+    'src_mobile' => $logo,
+    'src_desktop' => $logo,
+  ];
+  $variables['processed']['logo'] = $logo;
+
+  $contacts = [];
+  foreach ($corporate_footer['contact'] as $link) {
+    $contacts[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  $variables['processed']['contacts'] = $contacts;
+
+  $social_media = [];
+  foreach ($corporate_footer['social_media'] as $link) {
+    $social_media[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  $variables['processed']['social_media'] = $social_media;
+
+  $institution_links = [];
+  foreach ($corporate_footer['institution_links'] as $link) {
+    $institution_links[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  $variables['processed']['institution_links'] = $institution_links;
+
+  $legal_links = [];
+  foreach ($corporate_footer['legal_links'] as $link) {
+    $legal_links[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  $variables['processed']['legal_links'] = $legal_links;
+  $ecl_branding = theme_get_setting('branding') ?? 'core';
+  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_eu_footer__' . $ecl_branding;
+  $preprocess($variables);
 }
 
 /**
- * Prepare data for site specific footer preprocess.
+ * Process corporate_footer data to match ecl component expected format.
+ *
+ * @param array $variables
+ *   Set of available variables.
+ *
+ * @see hook_preprocess_oe_corporate_blocks_eu_footer().
  */
-function _oe_theme_preprocess_oe_corporate_blocks_site_specific_footer(array $variables): array {
-  // Site specific footer.
-  $site_specific_footer = $variables['site_specific_footer'];
-  if (empty($site_specific_footer)) {
-    return [];
-  }
-  if (!empty($site_specific_footer['site_identity'])) {
-    $identity['title'] = $site_specific_footer['site_identity'];
-  }
-  if (!empty($site_specific_footer['social_links'])) {
-    $identity['follow'] = ['label' => t('Follow us:')];
-    foreach ($site_specific_footer['social_links'] as $item) {
-      $identity['follow']['links'][] = [
-        'link' => [
-          'label' => $item['label'],
-          'path' => $item['href'],
-          'icon_position' => !empty($item['social_network']) ? 'before' : 'after',
-        ],
-        'icon' => [
-          'path' => $variables['ecl_icon_path'],
-          'type' => !empty($item['social_network']) ? 'branded' : 'ui',
-          'name' => !empty($item['social_network']) ? $item['social_network'] : 'external',
-        ],
-      ];
-    }
-  }
+function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__core(array &$variables): void {
+  $variables['corporate_footer']['sections'] = [
+    [
+      'logo' => $variables['processed']['logo'],
+      'description' => $variables['processed']['site_owner'],
+      'list_class_name' => 'ecl-footer-core__section1',
+    ],
+    [
+      [
+        'title' => $variables['corporate_footer']['contact_title'],
+        'links' => $variables['processed']['contacts'],
+      ],
+      [
+        'title' => $variables['corporate_footer']['social_media_title'],
+        'links' => $variables['processed']['social_media'],
+      ],
+      [
+        'title' => $variables['corporate_footer']['legal_links_title'],
+        'links' => $variables['processed']['legal_links'],
+      ],
+    ],
+    [
+      'title' => $variables['corporate_footer']['institution_links_title'],
+      'links' => $variables['processed']['institution_links'],
+      'list_class_name' => 'ecl-footer-core__section4',
+    ],
+  ];
+}
 
-  if (!empty($site_specific_footer['other_links'])) {
-    foreach ($site_specific_footer['other_links'] as $item) {
-      $identity['info'][] = [
+/**
+ * Process corporate_footer data to match ecl component expected format.
+ *
+ * @param array $variables
+ *   Set of available variables.
+ *
+ * @see hook_preprocess_oe_corporate_blocks_eu_footer().
+ */
+function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array &$variables): void {
+  $variables['corporate_footer']['sections'] = [
+    [
+      'title' => [
         'link' => [
-          'label' => $item['label'],
-          'path' => $item['href'],
-        ],
-      ];
-    }
-  }
-
-  return $identity ?? [];
+          'label' => $variables['processed']['site_name'],
+          'path' => $variables['processed']['site_path'],
+        ]
+      ],
+      'description' => $variables['processed']['site_owner'],
+      'section_id' => 1,
+      'type' => 'site_name',
+    ],
+    [
+      [
+        'section_id' => 2,
+        'type' => 'dg_services_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+      [
+        'section_id' => 2,
+        'type' => 'dg_services_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ]
+    ],
+    [
+      'section_id' => 3,
+      'title_class_name' => 'ecl-footer-standardised__title--separator',
+    ],
+    [
+      'section_id' => 6,
+    ],
+    [
+      'logo' => $variables['processed']['logo'],
+      'description' => t('Discover more on <a href=\'/:path\' class=\'ecl-link ecl-link--standalone\'>@label</a>', [
+        ':path' => 'https://europa.eu',
+        '@label' => 'europa.eu',
+      ]),
+      'section_id' => 7,
+    ],
+    [
+      [
+        'title' => $variables['corporate_footer']['contact_title'],
+        'links' => $variables['processed']['contacts'],
+        'section_id' => 8,
+        'type' => 'service_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+      [
+        'title' => $variables['corporate_footer']['social_media_title'],
+        'links' => $variables['processed']['social_media'],
+        'section_id' => 8,
+        'type' => 'service_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ],
+      [
+        'title' => $variables['corporate_footer']['legal_links_title'],
+        'links' => $variables['processed']['legal_links'],
+        'section_id' => 8,
+        'type' => 'service_navigation',
+        'title_class_name' => 'ecl-footer-standardised__title--separator',
+      ]
+    ],
+    [
+      'title' => $variables['corporate_footer']['institution_links_title'],
+      'links' => $variables['processed']['institution_links'],
+      'section_id' => 9,
+      'type' => 'legal_navigation',
+      'title_class_name' => 'ecl-footer-standardised__title--separator',
+    ]
+  ];
 }
 
 /**
