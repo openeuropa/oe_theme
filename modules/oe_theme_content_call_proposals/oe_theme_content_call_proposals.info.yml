@@ -10,4 +10,4 @@ dependencies:
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - oe_time_caching:oe_time_caching
-  - ui_patterns_field_group
+  - ui_patterns:ui_patterns_field_group

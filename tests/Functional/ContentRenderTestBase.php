@@ -214,7 +214,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @param string $name
    *   Name of the Contact entity.
    */
-  protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name):void {
+  protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name): void {
     $contact_name = $element->findAll('css', 'h3');
     $this->assertCount(1, $contact_name);
     $this->assertEquals($name, $contact_name[0]->getText());

@@ -36,5 +36,5 @@ List of extra field definitions:
 
 * [Status](modules/oe_content_call_proposals/src/Plugin/ExtraField/Display/CallForProposalsStatusExtraField):
   provides the call status, depending on the current time in relation with call's opening/closing dates.
-* [Publication details](modules/oe_content_call_proposals/src/Plugin/ExtraField/Display/CallForProposalsPublicationDetailsExtraField.php):
+* [Publication information](modules/oe_content_call_proposals/src/Plugin/ExtraField/Display/CallForProposalsPublicationInfoExtraField.php):
   provides a field to show Publication date and Publication in the official journal values on one line.

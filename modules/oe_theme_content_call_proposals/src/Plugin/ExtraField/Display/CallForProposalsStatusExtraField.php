@@ -85,8 +85,7 @@ class CallForProposalsStatusExtraField extends ExtraFieldDisplayFormattedBase im
     if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallEntityWrapperInterface::STATUS_OPEN
-      && !empty($entity->getDeadlineDate())) {
+    if ($status === CallEntityWrapperInterface::STATUS_OPEN && !empty($entity->getDeadlineDate())) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [

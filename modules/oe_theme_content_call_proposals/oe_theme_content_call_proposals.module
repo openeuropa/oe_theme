@@ -16,7 +16,7 @@ use Drupal\oe_content_call_proposals\CallForProposalsNodeWrapper;
  */
 function oe_theme_content_call_proposals_theme() {
   return [
-    'oe_theme_content_call_proposals_publication_details' => [
+    'oe_theme_content_call_proposals_publication_info' => [
       'variables' => [
         'date' => '',
         'link' => [],
@@ -73,7 +73,7 @@ function oe_theme_content_call_proposals_preprocess_field__node__oe_call_proposa
  * @param array $variables
  *   Element variables from preprocess.
  */
-function _oe_theme_content_call_proposals_strike_deadline(&$variables): void {
+function _oe_theme_content_call_proposals_strike_deadline(array &$variables): void {
   $node = CallForProposalsNodeWrapper::getInstance($variables['element']['#object']);
   if ($node->isClosed()) {
     // Cross out closed proposal.

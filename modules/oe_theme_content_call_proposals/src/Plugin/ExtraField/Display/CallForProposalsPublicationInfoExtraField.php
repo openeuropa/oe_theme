@@ -18,15 +18,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Display Call for proposals publication date with link.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_call_proposals_publication_details",
- *   label = @Translation("Publication details"),
+ *   id = "oe_call_proposals_publication_info",
+ *   label = @Translation("Publication information"),
  *   bundles = {
  *     "node.oe_call_proposals",
  *   },
  *   visible = true
  * )
  */
-class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class CallForProposalsPublicationInfoExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
 
@@ -45,7 +45,7 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
   protected $dateFormatter;
 
   /**
-   * CallForProposalsPublicationDetailsExtraField constructor.
+   * CallForProposalsPublicationInfoExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -98,7 +98,7 @@ class CallForProposalsPublicationDetailsExtraField extends ExtraFieldDisplayForm
     }
 
     return [
-      '#theme' => 'oe_theme_content_call_proposals_publication_details',
+      '#theme' => 'oe_theme_content_call_proposals_publication_info',
       '#date' => $this->dateFormatter->format($date->getTimestamp(), 'oe_call_proposals_date_long'),
       '#link' => $link,
     ];

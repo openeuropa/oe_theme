@@ -92,7 +92,7 @@ third_party_settings:
       children:
         - extra_field_oe_call_proposals_status
         - oe_reference_code
-        - extra_field_oe_call_proposals_publication_details
+        - extra_field_oe_call_proposals_publication_info
         - oe_call_proposals_opening_date
         - oe_call_proposals_model
         - oe_call_proposals_deadline
@@ -140,7 +140,7 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  extra_field_oe_call_proposals_publication_details:
+  extra_field_oe_call_proposals_publication_info:
     weight: 2
     region: content
     settings: {  }
