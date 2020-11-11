@@ -215,7 +215,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
   $variables['processed'] = [];
   $corporate_footer = $variables['corporate_footer'];
   $site_name = $corporate_footer['site_name'];
-  $site_name_link = [
+  $ec_site_link = [
     'link' => [
       'label' => $site_name['label'],
       'path' => $site_name['href'],
@@ -224,7 +224,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
 
   $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['processed']['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
-  $variables['processed']['site_name_link'] = $site_name_link;
+  $variables['processed']['ec_site_link'] = $ec_site_link;
   $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
   $class_navigation = [];
@@ -287,7 +287,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
 function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variables): void {
   $variables['corporate_footer']['sections'] = [
     [
-      'title' => $variables['processed']['site_name_link'],
+      'title' => $variables['processed']['ec_site_link'],
       'description' => $variables['processed']['site_owner'],
     ],
     [
@@ -324,17 +324,14 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
       ],
       'description' => $variables['processed']['site_owner'],
       'section_id' => 1,
-      'type' => 'site_name',
     ],
     [
       [
         'section_id' => 2,
-        'type' => 'dg_services_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'section_id' => 2,
-        'type' => 'dg_services_navigation',
         'list_class_name' => 'ecl-footer-standardised__list--inline',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
@@ -342,34 +339,28 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
     [
       [
         'section_id' => 3,
-        'type' => 'dg_related_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'section_id' => 3,
-        'type' => 'dg_related_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
     ],
     [
       'section_id' => 6,
-      'type' => 'class_names',
       'list_class_name' => 'ecl-footer-standardised__list--condensed',
     ],
     [
-      'title' => $variables['processed']['site_name_link'],
+      'title' => $variables['processed']['ec_site_link'],
       'section_id' => 7,
-      'type' => 'corporate_name',
     ],
     [
       'links' => $variables['processed']['service_navigation'],
       'section_id' => 8,
-      'type' => 'service_navigation',
     ],
     [
       'links' => $variables['processed']['legal_navigation'],
       'section_id' => 9,
-      'type' => 'legal_navigation',
     ],
   ];
 }
@@ -498,17 +489,14 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
       ],
       'description' => $variables['processed']['site_owner'],
       'section_id' => 1,
-      'type' => 'site_name',
     ],
     [
       [
         'section_id' => 2,
-        'type' => 'dg_services_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'section_id' => 2,
-        'type' => 'dg_services_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ]
     ],
@@ -532,21 +520,18 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
         'title' => $variables['corporate_footer']['contact_title'],
         'links' => $variables['processed']['contacts'],
         'section_id' => 8,
-        'type' => 'service_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'title' => $variables['corporate_footer']['social_media_title'],
         'links' => $variables['processed']['social_media'],
         'section_id' => 8,
-        'type' => 'service_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'title' => $variables['corporate_footer']['legal_links_title'],
         'links' => $variables['processed']['legal_links'],
         'section_id' => 8,
-        'type' => 'service_navigation',
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ]
     ],
@@ -554,7 +539,6 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
       'title' => $variables['corporate_footer']['institution_links_title'],
       'links' => $variables['processed']['institution_links'],
       'section_id' => 9,
-      'type' => 'legal_navigation',
       'title_class_name' => 'ecl-footer-standardised__title--separator',
     ]
   ];

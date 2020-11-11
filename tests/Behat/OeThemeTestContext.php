@@ -358,9 +358,9 @@ class OeThemeTestContext extends RawDrupalContext {
     $logo = $page->findAll('css', 'footer.ecl-footer-core img.ecl-footer-core__logo-image-desktop');
 
     // Assert presence or absence of given footer block.
-    $title_found = count($logo) === $expected[$component_library];
+    $logo_found = count($logo) === $expected[$component_library];
 
-    if ($title_found !== $presence) {
+    if ($logo_found !== $presence) {
       $expectation = $presence ? 'present' : 'absent';
       throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
     }

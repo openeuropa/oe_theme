@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel\CorporateBlocks;
 
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Base class for corporate block Kernel tests.
@@ -81,7 +82,7 @@ abstract class CorporateBlocksTestBase extends AbstractKernelTestBase {
    * @return string
    *   The rendered HTML.
    */
-  protected function renderCorporateBlocksFooter(string $type, array &$test_data) {
+  protected function renderCorporateBlocksFooter(string $type, array &$test_data): string {
     // Override corporate block footer config with test data.
     $config_name = "oe_corporate_blocks.{$type}_data.footer";
     $fixture_name = "{$type}_footer.yml";
@@ -103,6 +104,58 @@ abstract class CorporateBlocksTestBase extends AbstractKernelTestBase {
     $build = $this->buildBlock($block_id, $config);
 
     return $this->renderRoot($build);
+  }
+
+  /**
+   * We assigned each section two links, assert that content and order.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $section
+   *   The footer section.
+   * @param array $expected
+   *   The expected data.
+   */
+  protected function assertLinkList(Crawler $section, array $expected): void {
+    $actual = $section->filter('ul li:nth-child(1) > a');
+    $this->assertEquals($expected['0']['href'], $actual->attr('href'));
+    $this->assertEquals($expected['0']['label'], $actual->text());
+
+    $actual = $section->filter('ul li:nth-child(2) > a');
+    $this->assertEquals($expected['1']['href'], $actual->attr('href'));
+    $this->assertEquals($expected['1']['label'], $actual->text());
+  }
+
+  /**
+   * Assert footer block is present and has correct number of sections.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   Crawler containing the DOM nodes.
+   * @param string $branding
+   *   Ecl branding, core/standardised.
+   * @param int $expected_section_count
+   *   The number of expected sections.
+   */
+  protected function assertFooterPresence(Crawler $crawler, string $branding, int $expected_section_count): void {
+    $actual = $crawler->filter("footer.ecl-footer-{$branding}");
+    $this->assertCount(1, $actual);
+
+    // Assert correct number of sections.
+    $actual = $crawler->filter("footer.ecl-footer-{$branding} .ecl-footer-{$branding}__container .ecl-footer-{$branding}__section");
+    $this->assertCount($expected_section_count, $actual);
+  }
+
+  /**
+   * Assert presence of ecl logo in footer.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $section
+   *   The footer section.
+   * @param string $branding
+   *   Ecl branding, core/standardised.
+   */
+  protected function assertEclLogoPresence(Crawler $section, string $branding): void {
+    $actual = $section->filter("a img.ecl-footer-{$branding}__logo-image-mobile");
+    $this->assertCount(1, $actual);
+    $actual = $section->filter("a img.ecl-footer-{$branding}__logo-image-desktop");
+    $this->assertCount(1, $actual);
   }
 
 }
