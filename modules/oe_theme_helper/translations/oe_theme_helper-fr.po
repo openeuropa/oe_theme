@@ -225,3 +225,6 @@ msgstr "Dates limites multiples"
 
 msgid "Permanent"
 msgstr "Permanent"
+
+msgid "in"
+msgstr "au"

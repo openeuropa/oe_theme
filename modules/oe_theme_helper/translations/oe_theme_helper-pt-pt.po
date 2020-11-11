@@ -225,3 +225,6 @@ msgstr "Prazos múltiplos"
 
 msgid "Permanent"
 msgstr "Permanente"
+
+msgid "in"
+msgstr "em"

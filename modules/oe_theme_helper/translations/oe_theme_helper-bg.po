@@ -227,4 +227,4 @@ msgid "Permanent"
 msgstr "Постоянен"
 
 msgid "in"
-msgstr ""
+msgstr "в"

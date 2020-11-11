@@ -225,3 +225,6 @@ msgstr "Więcej dat zakończenia"
 
 msgid "Permanent"
 msgstr "Stały"
+
+msgid "in"
+msgstr "w"

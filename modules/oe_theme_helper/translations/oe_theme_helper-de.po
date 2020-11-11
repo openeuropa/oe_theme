@@ -227,4 +227,4 @@ msgid "Permanent"
 msgstr "Unbefristet"
 
 msgid "in"
-msgstr ""
+msgstr "im"

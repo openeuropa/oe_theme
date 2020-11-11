@@ -225,3 +225,6 @@ msgstr "Više rokova"
 
 msgid "Permanent"
 msgstr "Stalno"
+
+msgid "in"
+msgstr "u"

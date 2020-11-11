@@ -225,3 +225,6 @@ msgstr "Vairāki termiņi"
 
 msgid "Permanent"
 msgstr "Pastāvīgs"
+
+msgid "in"
+msgstr "oficiālajā laikrakstā"

@@ -227,4 +227,4 @@ msgid "Permanent"
 msgstr "Μόνιμος"
 
 msgid "in"
-msgstr ""
+msgstr "στην"

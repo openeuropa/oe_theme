@@ -225,3 +225,6 @@ msgstr "In più fasiIn più fasi"
 
 msgid "Permanent"
 msgstr "Permanente"
+
+msgid "in"
+msgstr "in"

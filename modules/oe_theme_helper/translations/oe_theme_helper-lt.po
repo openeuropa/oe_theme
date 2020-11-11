@@ -225,3 +225,6 @@ msgstr "Keli terminai"
 
 msgid "Permanent"
 msgstr "Nuolatinis"
+
+msgid "in"
+msgstr ""

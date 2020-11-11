@@ -225,3 +225,6 @@ msgstr "Többkörös"
 
 msgid "Permanent"
 msgstr "Állandó"
+
+msgid "in"
+msgstr "itt"

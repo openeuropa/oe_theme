@@ -225,3 +225,6 @@ msgstr "Cu mai multe etape"
 
 msgid "Permanent"
 msgstr "Permanent(ă)"
+
+msgid "in"
+msgstr "în"

@@ -227,4 +227,4 @@ msgid "Permanent"
 msgstr "Permanent"
 
 msgid "in"
-msgstr ""
+msgstr "i"

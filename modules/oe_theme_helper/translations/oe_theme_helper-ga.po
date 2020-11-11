@@ -225,3 +225,6 @@ msgstr "Scoitheadh ilchéimneach"
 
 msgid "Permanent"
 msgstr "Buan"
+
+msgid "in"
+msgstr "in"

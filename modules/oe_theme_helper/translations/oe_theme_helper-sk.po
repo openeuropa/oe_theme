@@ -225,3 +225,6 @@ msgstr "Viacfázový"
 
 msgid "Permanent"
 msgstr "Stály"
+
+msgid "in"
+msgstr "v"
