@@ -16,12 +16,14 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\file\FileInterface;
+use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
+use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -1270,28 +1272,26 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
  * Prepares the default view mode for the document media type.
  */
 function oe_theme_preprocess_media__document__default(&$variables) {
-  if ($variables['media']->get('oe_media_file')->isEmpty()) {
-    return;
-  }
-  // Generate the file information for the current language.
   /** @var \Drupal\media\Entity\Media $media */
   $media = $variables['media'];
-  $file_object = $media->get('oe_media_file')->first()->entity;
-  $variables['file'] = FileValueObject::fromFileEntity($file_object)
-    ->setTitle($media->getName())
-    ->setLanguageCode($media->language()->getId());
+  $file_value = DocumentMediaValueExtractor::getFileValue($media);
+  if (!$file_value) {
+    return;
+  }
+
+  $variables['file'] = $file_value;
+
   // Generate the file information for all available translations.
   foreach ($media->getTranslationLanguages() as $langcode => $language) {
     // We don't want to include the information of the current language again.
     if ($media->language()->getId() === $langcode) {
       continue;
     }
+
     $translation = $media->getTranslation($langcode);
-    $file_object = $translation->get('oe_media_file')->first()->entity;
-    if ($file_object instanceof FileInterface) {
-      $variables['translations'][] = FileValueObject::fromFileEntity($file_object)
-        ->setTitle($translation->getName())
-        ->setLanguageCode($translation->language()->getId());
+    $translation_file_value = DocumentMediaValueExtractor::getFileValue($translation);
+    if ($translation_file_value) {
+      $variables['translations'][] = $translation_file_value;
     }
   }
 }

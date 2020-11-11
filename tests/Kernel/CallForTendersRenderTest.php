@@ -33,6 +33,8 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     'oe_content_call_tenders',
     'oe_theme_content_call_tenders',
     'datetime_testing',
+    'file_link',
+    'options',
   ];
 
   /**

@@ -41,6 +41,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
     'oe_theme_content_project',
     'options',
     'oe_time_caching',
+    'file_link',
   ];
 
   /**
