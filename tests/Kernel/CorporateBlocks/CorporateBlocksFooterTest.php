@@ -34,13 +34,13 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals($expected, $actual->text());
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section2');
-    $this->assertLinkList($section, $test_data['class_navigation']);
+    $this->assertLinkList($section, 'core', $test_data['class_navigation']);
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section3');
-    $this->assertLinkList($section, $test_data['service_navigation']);
+    $this->assertLinkList($section, 'core', $test_data['service_navigation']);
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section4');
-    $this->assertLinkList($section, $test_data['legal_navigation']);
+    $this->assertLinkList($section, 'core', $test_data['legal_navigation']);
   }
 
   /**
@@ -73,10 +73,10 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $this->assertEquals($test_data['site_name']['href'], $actual->attr('href'));
 
     $section = $crawler->filter('footer.ecl-footer-standardised section.ecl-footer-standardised__section8');
-    $this->assertLinkList($section, $test_data['service_navigation']);
+    $this->assertLinkList($section, 'standardised', $test_data['service_navigation']);
 
     $section = $crawler->filter('footer.ecl-footer-standardised section.ecl-footer-standardised__section9');
-    $this->assertLinkList($section, $test_data['legal_navigation']);
+    $this->assertLinkList($section, 'standardised', $test_data['legal_navigation']);
   }
 
   /**
@@ -104,28 +104,28 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $actual = $section->filter('.ecl-footer-core__title');
     $this->assertEquals('Contact title', $actual->html());
 
-    $this->assertLinkList($section, $test_data['contact']);
+    $this->assertLinkList($section, 'core', $test_data['contact']);
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section3 .ecl-footer-core__section:nth-child(2)');
 
     $actual = $section->filter('.ecl-footer-core__title');
     $this->assertEquals('Social media title', $actual->last()->text());
 
-    $this->assertLinkList($section, $test_data['social_media']);
+    $this->assertLinkList($section, 'core', $test_data['social_media']);
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section3 .ecl-footer-core__section:nth-child(3)');
 
     $actual = $section->filter('.ecl-footer-core__title');
     $this->assertEquals('Legal links title', $actual->text());
 
-    $this->assertLinkList($section, $test_data['legal_links']);
+    $this->assertLinkList($section, 'core', $test_data['legal_links']);
 
     $section = $crawler->filter('footer.ecl-footer-core section.ecl-footer-core__section4');
 
     $actual = $section->filter('.ecl-footer-core__title');
     $this->assertEquals('Institution links title', $actual->text());
 
-    $this->assertLinkList($section, $test_data['institution_links']);
+    $this->assertLinkList($section, 'core', $test_data['institution_links']);
   }
 
   /**
@@ -161,26 +161,26 @@ class CorporateBlocksFooterTest extends CorporateBlocksTestBase {
     $actual = $section->filter('.ecl-footer-standardised__title');
     $this->assertEquals('Contact title', $actual->html());
 
-    $this->assertLinkList($section, $test_data['contact']);
+    $this->assertLinkList($section, 'standardised', $test_data['contact']);
 
     $section = $crawler->filter('footer.ecl-footer-standardised section.ecl-footer-standardised__section8 .ecl-footer-standardised__section:nth-child(2)');
     $actual = $section->filter('.ecl-footer-standardised__title');
     $this->assertEquals('Social media title', $actual->last()->text());
 
-    $this->assertLinkList($section, $test_data['social_media']);
+    $this->assertLinkList($section, 'standardised', $test_data['social_media']);
 
     $section = $crawler->filter('footer.ecl-footer-standardised section.ecl-footer-standardised__section8 .ecl-footer-standardised__section:nth-child(3)');
     $actual = $section->filter('.ecl-footer-standardised__title');
     $this->assertEquals('Legal links title', $actual->text());
 
-    $this->assertLinkList($section, $test_data['legal_links']);
+    $this->assertLinkList($section, 'standardised', $test_data['legal_links']);
 
     $section = $crawler->filter('footer.ecl-footer-standardised section.ecl-footer-standardised__section9');
 
     $actual = $section->filter('.ecl-footer-standardised__title');
     $this->assertEquals('Institution links title', $actual->text());
 
-    $this->assertLinkList($section, $test_data['institution_links']);
+    $this->assertLinkList($section, 'standardised', $test_data['institution_links']);
   }
 
 }

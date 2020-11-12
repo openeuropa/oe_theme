@@ -111,17 +111,21 @@ abstract class CorporateBlocksTestBase extends AbstractKernelTestBase {
    *
    * @param \Symfony\Component\DomCrawler\Crawler $section
    *   The footer section.
+   * @param string $branding
+   *   Ecl branding, core/standardised.
    * @param array $expected
    *   The expected data.
    */
-  protected function assertLinkList(Crawler $section, array $expected): void {
+  protected function assertLinkList(Crawler $section, string $branding, array $expected): void {
     $actual = $section->filter('ul li:nth-child(1) > a');
     $this->assertEquals($expected['0']['href'], $actual->attr('href'));
     $this->assertEquals($expected['0']['label'], $actual->text());
+    $this->assertEquals("ecl-link ecl-link--standalone ecl-footer-{$branding}__link", $actual->attr('class'));
 
     $actual = $section->filter('ul li:nth-child(2) > a');
     $this->assertEquals($expected['1']['href'], $actual->attr('href'));
     $this->assertEquals($expected['1']['label'], $actual->text());
+    $this->assertEquals("ecl-link ecl-link--standalone ecl-footer-{$branding}__link", $actual->attr('class'));
   }
 
   /**
