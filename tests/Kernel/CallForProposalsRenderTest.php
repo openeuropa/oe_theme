@@ -271,9 +271,6 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'label' => 'Deadline model',
             'body' => 'Permanent',
           ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('j F Y'),
-          ], [
             'label' => 'Funding programme',
             'body' => 'Arab Common Market',
           ],

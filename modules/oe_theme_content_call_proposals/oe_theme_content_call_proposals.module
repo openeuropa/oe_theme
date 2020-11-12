@@ -20,7 +20,7 @@ function oe_theme_content_call_proposals_theme() {
       'variables' => [
         'date' => '',
         'link' => [],
-        ],
+      ],
     ],
   ];
 }
