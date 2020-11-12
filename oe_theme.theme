@@ -227,16 +227,8 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
   $variables['processed']['ec_site_link'] = $ec_site_link;
   $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
-  $class_navigation = [];
-  foreach ($corporate_footer['class_navigation'] as $link) {
-    $class_navigation[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['class_navigation'] = $class_navigation;
+  $variables['processed']['class_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['class_navigation']);
+  $variables['processed']['legal_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_navigation']);
 
   $service_navigation = [];
   foreach ($corporate_footer['service_navigation'] as $link) {
@@ -260,24 +252,13 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
   }
   $variables['processed']['service_navigation'] = $service_navigation;
 
-  $legal_navigation = [];
-  foreach ($corporate_footer['legal_navigation'] as $link) {
-    $legal_navigation[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['legal_navigation'] = $legal_navigation;
-
   $ecl_branding = theme_get_setting('branding') ?? 'core';
   $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_ec_footer__' . $ecl_branding;
   $preprocess($variables);
 }
 
 /**
- * Process corporate_footer data to match ecl component expected format.
+ * Process EC footer data to match the expected ECL Core format.
  *
  * @param array $variables
  *   Set of available variables.
@@ -306,7 +287,7 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variab
 }
 
 /**
- * Process corporate_footer data to match ecl component expected format.
+ * Process EC footer data to match the expected ECL Standardised format.
  *
  * @param array $variables
  *   Set of available variables.
@@ -378,7 +359,6 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): v
   $path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
   $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
   $logo = $variables['ecl_logo_path'] . '/logo--' . EuropeanUnionLanguages::getInternalLanguageCode($langcode) . '.svg';
-
   $logo = [
     'path' => $path,
     'language' => $langcode,
@@ -387,56 +367,18 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): v
   ];
   $variables['processed']['logo'] = $logo;
 
-  $contacts = [];
-  foreach ($corporate_footer['contact'] as $link) {
-    $contacts[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['contacts'] = $contacts;
+  $variables['processed']['contacts'] = _oe_theme_preprocess_footer_links($corporate_footer['contact']);
+  $variables['processed']['social_media'] = _oe_theme_preprocess_footer_links($corporate_footer['social_media']);
+  $variables['processed']['institution_links'] = _oe_theme_preprocess_footer_links($corporate_footer['institution_links']);
+  $variables['processed']['legal_links'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_links']);
 
-  $social_media = [];
-  foreach ($corporate_footer['social_media'] as $link) {
-    $social_media[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['social_media'] = $social_media;
-
-  $institution_links = [];
-  foreach ($corporate_footer['institution_links'] as $link) {
-    $institution_links[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['institution_links'] = $institution_links;
-
-  $legal_links = [];
-  foreach ($corporate_footer['legal_links'] as $link) {
-    $legal_links[] = [
-      'link' => [
-        'label' => $link['label'],
-        'path' => $link['href'],
-      ],
-    ];
-  }
-  $variables['processed']['legal_links'] = $legal_links;
   $ecl_branding = theme_get_setting('branding') ?? 'core';
   $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_eu_footer__' . $ecl_branding;
   $preprocess($variables);
 }
 
 /**
- * Process corporate_footer data to match ecl component expected format.
+ * Process EU footer data to match the expected ECL Core format.
  *
  * @param array $variables
  *   Set of available variables.
@@ -471,7 +413,7 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__core(array &$variab
 }
 
 /**
- * Process corporate_footer data to match ecl component expected format.
+ * Process EU footer data to match the expected ECL Standardised format.
  *
  * @param array $variables
  *   Set of available variables.
@@ -542,6 +484,28 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
       'title_class_name' => 'ecl-footer-standardised__title--separator',
     ]
   ];
+}
+
+/**
+ * Processes a series of footer links to make it compatible with ECL formatting.
+ *
+ * @param array $links
+ *   Set of links to be processed.
+ *
+ * @return array
+ *  Set of processed links.
+ */
+function _oe_theme_preprocess_footer_links(array $links): array {
+  $ecl_links = [];
+  foreach ($links as $link) {
+    $ecl_links[] = [
+      'link' => [
+        'label' => $link['label'],
+        'path' => $link['href'],
+      ],
+    ];
+  }
+  return $ecl_links;
 }
 
 /**
