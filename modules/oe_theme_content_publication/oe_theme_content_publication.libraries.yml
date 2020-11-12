@@ -1,5 +1,0 @@
-oe_publication:
-  version: VERSION
-  css:
-    theme:
-      css/publication.css: {}
