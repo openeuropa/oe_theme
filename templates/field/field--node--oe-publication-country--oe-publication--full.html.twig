@@ -1,0 +1,9 @@
+{#
+/**
+ * @file
+ * Country field template in the Publication node full view.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}{{ item.content }}{% if not loop.last %}, {% endif %}{% endfor %}

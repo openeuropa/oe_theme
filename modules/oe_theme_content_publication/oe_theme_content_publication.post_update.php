@@ -88,3 +88,25 @@ function oe_theme_content_publication_post_update_00005() {
   $entity = $entity_storage->createFromStorageRecord($config);
   $entity->save();
 }
+
+/**
+ * Override full and teaser display views for Publication content type.
+ */
+function oe_theme_content_publication_post_update_00006() {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00006_override_view_displays');
+
+  // View displays configurations to update.
+  $displays = [
+    'core.entity_view_display.node.oe_publication.full',
+  ];
+  foreach ($displays as $display) {
+    $display_values = $storage->read($display);
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $updated_form_display = \Drupal::entityTypeManager()
+        ->getStorage($view_display->getEntityTypeId())
+        ->updateFromStorageRecord($view_display, $display_values);
+      $updated_form_display->save();
+    }
+  }
+}

@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_publication\Plugin\PageHeaderMetadata;
 
-use Drupal\Core\Datetime\DateFormatterInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -24,11 +24,11 @@ class PublicationContentType extends NodeViewRoutesBase {
   use StringTranslationTrait;
 
   /**
-   * The date formatter.
+   * The entity repository.
    *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
    */
-  protected $dateFormatter;
+  protected $entityRepository;
 
   /**
    * Creates a new PublicationContentType object.
@@ -41,12 +41,12 @@ class PublicationContentType extends NodeViewRoutesBase {
    *   The plugin implementation definition.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
    */
-  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, DateFormatterInterface $date_formatter) {
+  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $event_dispatcher);
-    $this->dateFormatter = $date_formatter;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -58,7 +58,7 @@ class PublicationContentType extends NodeViewRoutesBase {
       $plugin_id,
       $plugin_definition,
       $container->get('event_dispatcher'),
-      $container->get('date.formatter')
+      $container->get('entity.repository')
     );
   }
 
@@ -78,10 +78,13 @@ class PublicationContentType extends NodeViewRoutesBase {
     $metadata = parent::getMetadata();
 
     $node = $this->getNode();
-    $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
-    $metadata['metas'] = [
-      $this->dateFormatter->format($timestamp, 'oe_theme_publication_date'),
-    ];
+
+    if (!$node->get('oe_publication_type')->isEmpty()) {
+      $entity = $node->get('oe_publication_type')->entity;
+      $metadata['metas'] = [
+        $this->entityRepository->getTranslationFromContext($entity)->label(),
+      ];
+    }
 
     return $metadata;
   }
