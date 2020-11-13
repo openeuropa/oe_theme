@@ -4,7 +4,7 @@ workspace:
 
 services:
   web:
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     environment:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
@@ -21,7 +21,7 @@ services:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: selenium/standalone-chrome:3.11
+    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.141.59-oxygen
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
@@ -36,7 +36,7 @@ pipeline:
 
   composer-install:
     group: prepare
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     volumes:
       - /cache:/cache
     commands:
@@ -44,7 +44,7 @@ pipeline:
 
   composer-update-lowest:
     group: post-prepare
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     volumes:
       - /cache:/cache
     commands:
@@ -54,25 +54,25 @@ pipeline:
         COMPOSER_BOUNDARY: lowest
 
   site-install:
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     commands:
       - ./vendor/bin/run drupal:site-install
 
   grumphp:
     group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     commands:
       - ./vendor/bin/grumphp run
 
   phpunit:
     group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     commands:
       - ./vendor/bin/phpunit
 
   behat:
     group: test
-    image: fpfis/httpd-php-ci:${PHP_VERSION}
+    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}
     commands:
       - ./vendor/bin/behat --strict
 
@@ -97,5 +97,5 @@ matrix:
     - lowest
     - highest
   PHP_VERSION:
-    - 7.2
-    - 7.3
+    - 7.2-ci
+    - 7.3-ci
