@@ -89,7 +89,7 @@ class FileValueObject extends ValueObjectBase {
    *
    * @return $this
    */
-  public static function fromFileEntity(FileInterface $file_entity): FileValueObject {
+  public static function fromFileEntity(FileInterface $file_entity): ValueObjectInterface {
     $file = new static(
       $file_entity->getFilename(),
       file_create_url($file_entity->getFileUri()),
@@ -98,6 +98,7 @@ class FileValueObject extends ValueObjectBase {
     );
 
     $file->setLanguageCode($file_entity->language()->getId());
+    $file->addCacheableDependency($file_entity);
 
     return $file;
   }
@@ -130,8 +131,7 @@ class FileValueObject extends ValueObjectBase {
    * @param \Drupal\file_link\Plugin\Field\FieldType\FileLinkItem $link
    *   The file link item.
    *
-   * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
-   *   The file object.
+   * @return $this
    */
   public static function fromFileLink(FileLinkItem $link): ValueObjectInterface {
     $file = new static(

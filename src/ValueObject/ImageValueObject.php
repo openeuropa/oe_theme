@@ -137,11 +137,15 @@ class ImageValueObject extends ValueObjectBase {
   public static function fromImageItem(ImageItem $image_item): ValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
 
-    return new static(
+    $image_object = new static(
       file_create_url($image_file->get('uri')->getString()),
       $image_item->get('alt')->getString(),
       $image_item->get('title')->getString()
     );
+
+    $image_object->addCacheableDependency($image_file);
+
+    return $image_object;
   }
 
   /**
@@ -166,11 +170,16 @@ class ImageValueObject extends ValueObjectBase {
       throw new \InvalidArgumentException(sprintf('Could not load image style with name "%s".', $style_name));
     }
 
-    return new static(
+    $image_object = new static(
       $style->buildUrl($image_file->get('uri')->getString()),
       $image_item->get('alt')->getString(),
       $image_item->get('title')->getString()
     );
+
+    $image_object->addCacheableDependency($image_file);
+    $image_object->addCacheableDependency($style);
+
+    return $image_object;
   }
 
 }
