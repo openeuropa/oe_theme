@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_publication_thumbnail
+label: 'Publication thumbnail'
+effects:
+  9bf5b462-e79a-4f00-8387-708f73a0f2be:
+    uuid: 9bf5b462-e79a-4f00-8387-708f73a0f2be
+    id: image_scale
+    weight: 1
+    data:
+      width: 192
+      height: 192
+      upscale: false

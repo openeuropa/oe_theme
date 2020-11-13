@@ -7,6 +7,7 @@ namespace Drupal\oe_theme_content_publication\Plugin\PageHeaderMetadata;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -75,18 +76,30 @@ class PublicationContentType extends NodeViewRoutesBase {
    * {@inheritdoc}
    */
   public function getMetadata(): array {
-    $metadata = parent::getMetadata();
-
     $node = $this->getNode();
 
-    if (!$node->get('oe_publication_type')->isEmpty()) {
-      $entity = $node->get('oe_publication_type')->entity;
-      $metadata['metas'] = [
-        $this->entityRepository->getTranslationFromContext($entity)->label(),
-      ];
-    }
+    $metadata = parent::getMetadata();
+    $metadata['metas'][] = $this->getSeparatedSkosMeta($node->get('oe_publication_type'));
 
     return $metadata;
+  }
+
+  /**
+   * Format a list of SKOS references into a comma separated string.
+   *
+   * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
+   *   Field item list object.
+   *
+   * @return string
+   *   Comma separated string.
+   */
+  protected function getSeparatedSkosMeta(SkosConceptReferenceFieldItemList $items): string {
+    $list = [];
+    foreach ($items as $item) {
+      $entity = $item->entity;
+      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    return implode(' | ', $list);
   }
 
 }
