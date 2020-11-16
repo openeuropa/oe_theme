@@ -1,9 +1,0 @@
-{#
-/**
- * @file
- * Field is used for multiple values field to set slash separator between rows.
- *
- * @see ./core/themes/stable/templates/field/field.html.twig
- */
-#}
-<div{{ attributes }}>{% for item in items %}{{ item.content }}{% if not loop.last %} / {% endif %}{% endfor %}</div>

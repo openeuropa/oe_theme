@@ -160,7 +160,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Two-stage',
           ], [
             'label' => 'Deadline dates',
-            'body' => $deadline_date->format('j F Y') . "\n / " . $deadline_date2->format('j F Y'),
+            'body' => $deadline_date->format('j F Y') . "\n | " . $deadline_date2->format('j F Y'),
           ], [
             'label' => 'Funding programme',
             'body' => 'Arab Common Market',
