@@ -11,3 +11,9 @@ dependencies:
   - oe_theme:oe_theme_content_entity_contact
   - oe_time_caching:oe_time_caching
   - ui_patterns:ui_patterns_field_group
+
+config_devel:
+  install:
+    - core.date_format.oe_call_proposals_date_full_timezone
+    - core.date_format.oe_call_proposals_date_long
+    - core.entity_view_display.node.oe_call_proposals.full
