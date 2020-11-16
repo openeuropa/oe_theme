@@ -207,10 +207,6 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--low.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
-    // Check Deadline date is striked when Call for proposals is closed.
-    $actual = $crawler->filter('dd.ecl-description-list__definition > .ecl-u-type-strike');
-    $this->assertCount(1, $actual);
-
     // Check status Upcoming label and background.
     $opening_date->modify('+ 10 days');
     $deadline_date->modify('+ 4 days');
