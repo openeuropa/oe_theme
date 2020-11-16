@@ -115,7 +115,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
               'body' => 'Call for proposals reference',
             ], [
               'label' => 'Opening date',
-              'body' => $opening_date->format('d F Y'),
+              'body' => $opening_date->format('j F Y'),
             ], [
               'label' => 'Deadline model',
               'body' => 'Single-stage',
@@ -154,7 +154,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
+            'body' => $opening_date->format('j F Y'),
           ], [
             'label' => 'Deadline model',
             'body' => 'Two-stage',
@@ -187,7 +187,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
+            'body' => $opening_date->format('j F Y'),
           ], [
             'label' => 'Deadline model',
             'body' => 'Multiple cut-off',
@@ -226,7 +226,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
+            'body' => $opening_date->format('j F Y'),
           ], [
             'label' => 'Deadline model',
             'body' => 'Single-stage',
