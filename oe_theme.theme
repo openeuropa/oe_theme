@@ -212,23 +212,20 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
  * Implements hook_preprocess_oe_corporate_blocks_ec_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): void {
-  $variables['processed'] = [];
   $corporate_footer = $variables['corporate_footer'];
-  $site_name = $corporate_footer['site_name'];
-  $ec_site_link = [
+
+  $corporate_footer['instance_name'] = \Drupal::config('system.site')->get('name');
+  $corporate_footer['instance_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+  $corporate_footer['ec_site_link'] = [
     'link' => [
-      'label' => $site_name['label'],
-      'path' => $site_name['href'],
+      'label' => $corporate_footer['site_name']['label'],
+      'path' => $corporate_footer['site_name']['href'],
     ],
   ];
+  $corporate_footer['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
-  $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
-  $variables['processed']['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
-  $variables['processed']['ec_site_link'] = $ec_site_link;
-  $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
-
-  $variables['processed']['class_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['class_navigation']);
-  $variables['processed']['legal_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_navigation']);
+  $corporate_footer['class_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['class_navigation']);
+  $corporate_footer['legal_navigation'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_navigation']);
 
   $service_navigation = [];
   foreach ($corporate_footer['service_navigation'] as $link) {
@@ -250,15 +247,15 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
     }
     $service_navigation[] = $service_navigation_link;
   }
-  $variables['processed']['service_navigation'] = $service_navigation;
+  $corporate_footer['service_navigation'] = $service_navigation;
 
-  $ecl_branding = theme_get_setting('branding') ?? 'core';
-  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_ec_footer__' . $ecl_branding;
+  $variables['corporate_footer'] = $corporate_footer;
+  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_ec_footer__' . $variables['ecl_branding'];
   $preprocess($variables);
 }
 
 /**
- * Process EC footer data to match the expected ECL Core format.
+ * Process EC footer data to match the expected ECL core branding.
  *
  * @param array $variables
  *   Set of available variables.
@@ -268,20 +265,20 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables): v
 function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__core(array &$variables): void {
   $variables['corporate_footer']['sections'] = [
     [
-      'title' => $variables['processed']['ec_site_link'],
-      'description' => $variables['processed']['site_owner'],
+      'title' => $variables['corporate_footer']['ec_site_link'],
+      'description' => $variables['corporate_footer']['site_owner'],
     ],
     [
       'content_before' => t('More information on:'),
-      'links' => $variables['processed']['class_navigation'],
+      'links' => $variables['corporate_footer']['class_navigation'],
       'list_class_name' => 'ecl-footer-core__section2 ecl-footer-core__list--columns',
       'section_class_name' => 'ecl-footer-core__section--separator',
     ],
     [
-      'links' => $variables['processed']['service_navigation'],
+      'links' => $variables['corporate_footer']['service_navigation'],
     ],
     [
-      'links' => $variables['processed']['legal_navigation'],
+      'links' => $variables['corporate_footer']['legal_navigation'],
     ],
   ];
 }
@@ -299,11 +296,11 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
     [
       'title' => [
         'link' => [
-          'label' => $variables['processed']['site_name'],
-          'path' => $variables['processed']['site_path'],
+          'label' => $variables['corporate_footer']['instance_name'],
+          'path' => $variables['corporate_footer']['instance_path'],
         ]
       ],
-      'description' => $variables['processed']['site_owner'],
+      'description' => $variables['corporate_footer']['site_owner'],
       'section_id' => 1,
     ],
     [
@@ -332,15 +329,15 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
       'list_class_name' => 'ecl-footer-standardised__list--condensed',
     ],
     [
-      'title' => $variables['processed']['ec_site_link'],
+      'title' => $variables['corporate_footer']['ec_site_link'],
       'section_id' => 7,
     ],
     [
-      'links' => $variables['processed']['service_navigation'],
+      'links' => $variables['corporate_footer']['service_navigation'],
       'section_id' => 8,
     ],
     [
-      'links' => $variables['processed']['legal_navigation'],
+      'links' => $variables['corporate_footer']['legal_navigation'],
       'section_id' => 9,
     ],
   ];
@@ -350,11 +347,10 @@ function _oe_theme_preprocess_oe_corporate_blocks_ec_footer__standardised(array 
  * Implements hook_preprocess_oe_corporate_blocks_eu_footer().
  */
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): void {
-  $variables['processed'] = [];
   $corporate_footer = $variables['corporate_footer'];
-  $variables['processed']['site_name'] = \Drupal::config('system.site')->get('name');
-  $variables['processed']['site_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
-  $variables['processed']['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
+  $corporate_footer['instance_name'] = \Drupal::config('system.site')->get('name');
+  $corporate_footer['instance_path'] = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
+  $corporate_footer['site_owner'] = t('This site is managed by the @name', ['@name' => $variables['site_owner']]);
 
   $path = Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString();
   $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -365,20 +361,20 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): v
     'src_mobile' => $logo,
     'src_desktop' => $logo,
   ];
-  $variables['processed']['logo'] = $logo;
+  $corporate_footer['logo'] = $logo;
 
-  $variables['processed']['contacts'] = _oe_theme_preprocess_footer_links($corporate_footer['contact']);
-  $variables['processed']['social_media'] = _oe_theme_preprocess_footer_links($corporate_footer['social_media']);
-  $variables['processed']['institution_links'] = _oe_theme_preprocess_footer_links($corporate_footer['institution_links']);
-  $variables['processed']['legal_links'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_links']);
+  $corporate_footer['contacts'] = _oe_theme_preprocess_footer_links($corporate_footer['contact']);
+  $corporate_footer['social_media'] = _oe_theme_preprocess_footer_links($corporate_footer['social_media']);
+  $corporate_footer['institution_links'] = _oe_theme_preprocess_footer_links($corporate_footer['institution_links']);
+  $corporate_footer['legal_links'] = _oe_theme_preprocess_footer_links($corporate_footer['legal_links']);
 
-  $ecl_branding = theme_get_setting('branding') ?? 'core';
-  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_eu_footer__' . $ecl_branding;
+  $variables['corporate_footer'] = $corporate_footer;
+  $preprocess = '_oe_theme_preprocess_oe_corporate_blocks_eu_footer__' . $variables['ecl_branding'];
   $preprocess($variables);
 }
 
 /**
- * Process EU footer data to match the expected ECL Core format.
+ * Process EU footer data to match the expected ECL core branding.
  *
  * @param array $variables
  *   Set of available variables.
@@ -388,32 +384,32 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables): v
 function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__core(array &$variables): void {
   $variables['corporate_footer']['sections'] = [
     [
-      'logo' => $variables['processed']['logo'],
-      'description' => $variables['processed']['site_owner'],
+      'logo' => $variables['corporate_footer']['logo'],
+      'description' => $variables['corporate_footer']['site_owner'],
     ],
     [
       [
         'title' => $variables['corporate_footer']['contact_title'],
-        'links' => $variables['processed']['contacts'],
+        'links' => $variables['corporate_footer']['contacts'],
       ],
       [
         'title' => $variables['corporate_footer']['social_media_title'],
-        'links' => $variables['processed']['social_media'],
+        'links' => $variables['corporate_footer']['social_media'],
       ],
       [
         'title' => $variables['corporate_footer']['legal_links_title'],
-        'links' => $variables['processed']['legal_links'],
+        'links' => $variables['corporate_footer']['legal_links'],
       ],
     ],
     [
       'title' => $variables['corporate_footer']['institution_links_title'],
-      'links' => $variables['processed']['institution_links'],
+      'links' => $variables['corporate_footer']['institution_links'],
     ],
   ];
 }
 
 /**
- * Process EU footer data to match the expected ECL Standardised format.
+ * Process EU footer data to match the expected ECL Standardised branding.
  *
  * @param array $variables
  *   Set of available variables.
@@ -425,11 +421,11 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
     [
       'title' => [
         'link' => [
-          'label' => $variables['processed']['site_name'],
-          'path' => $variables['processed']['site_path'],
+          'label' => $variables['corporate_footer']['instance_name'],
+          'path' => $variables['corporate_footer']['instance_path'],
         ]
       ],
-      'description' => $variables['processed']['site_owner'],
+      'description' => $variables['corporate_footer']['site_owner'],
       'section_id' => 1,
     ],
     [
@@ -450,7 +446,7 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
       'section_id' => 6,
     ],
     [
-      'logo' => $variables['processed']['logo'],
+      'logo' => $variables['corporate_footer']['logo'],
       'description' => t('Discover more on <a href=\':path\' class=\'ecl-link ecl-link--standalone\'>@label</a>', [
         ':path' => 'https://europa.eu',
         '@label' => 'europa.eu',
@@ -460,26 +456,26 @@ function _oe_theme_preprocess_oe_corporate_blocks_eu_footer__standardised(array 
     [
       [
         'title' => $variables['corporate_footer']['contact_title'],
-        'links' => $variables['processed']['contacts'],
+        'links' => $variables['corporate_footer']['contacts'],
         'section_id' => 8,
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'title' => $variables['corporate_footer']['social_media_title'],
-        'links' => $variables['processed']['social_media'],
+        'links' => $variables['corporate_footer']['social_media'],
         'section_id' => 8,
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ],
       [
         'title' => $variables['corporate_footer']['legal_links_title'],
-        'links' => $variables['processed']['legal_links'],
+        'links' => $variables['corporate_footer']['legal_links'],
         'section_id' => 8,
         'title_class_name' => 'ecl-footer-standardised__title--separator',
       ]
     ],
     [
       'title' => $variables['corporate_footer']['institution_links_title'],
-      'links' => $variables['processed']['institution_links'],
+      'links' => $variables['corporate_footer']['institution_links'],
       'section_id' => 9,
       'title_class_name' => 'ecl-footer-standardised__title--separator',
     ]
