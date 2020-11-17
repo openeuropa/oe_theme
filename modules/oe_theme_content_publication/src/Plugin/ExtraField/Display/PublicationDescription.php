@@ -4,14 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_publication\Plugin\ExtraField\Display;
 
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\media\Plugin\media\Source\Image;
-use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
-use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,9 +27,9 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
   /**
    * The entity type manager.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */
-  protected $entityTypeManager;
+  protected $viewBuilder;
 
   /**
    * PublicationDescription constructor.
@@ -49,7 +45,7 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->entityTypeManager = $entity_type_manager;
+    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
   }
 
   /**
@@ -68,30 +64,28 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $body = $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('body'), [
-      'label' => 'hidden',
-    ]);
+    if ($entity->get('body')->isEmpty() && $entity->get('oe_publication_thumbnail')->isEmpty()) {
+      return [];
+    }
 
     $build = [
       '#theme' => 'oe_theme_content_publication_description',
-      '#body' => $body,
     ];
 
-    // Extract the image.
-    $media_image = $entity->get('oe_publication_thumbnail')->entity;
-    if ($media_image instanceof MediaInterface) {
-      $media_image = \Drupal::service('entity.repository')->getTranslationFromContext($media_image);
-      $cacheability = CacheableMetadata::createFromRenderArray([]);
-      $cacheability->addCacheableDependency($media_image);
+    if (!$entity->get('body')->isEmpty()) {
+      $build['#body'] = $this->viewBuilder->viewField($entity->get('body'), [
+        'label' => 'hidden',
+      ]);
+    }
 
-      // Get the media source.
-      $source = $media_image->getSource();
-      if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
-        $thumbnail = $media_image->get('thumbnail')->first();
-        $build['#image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_publication_thumbnail');
-        $cacheability->addCacheableDependency($thumbnail);
-      }
-      $cacheability->applyTo($buld);
+    if (!$entity->get('oe_publication_thumbnail')->isEmpty()) {
+      $build['#image'] = $this->viewBuilder->viewField($entity->get('oe_publication_thumbnail'), [
+        'label' => 'hidden',
+        'type' => 'media_thumbnail',
+        'settings' => [
+          'image_style' => 'oe_theme_publication_thumbnail',
+        ],
+      ]);
     }
 
     return $build;

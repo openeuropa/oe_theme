@@ -90,10 +90,42 @@ function oe_theme_content_publication_post_update_00005() {
 }
 
 /**
- * Override full and teaser display views for Publication content type.
+ * Add Publication thumbnail image style.
  */
 function oe_theme_content_publication_post_update_00006() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00006_override_view_displays');
+  // If the image style already exists, we bail out.
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_publication_thumbnail');
+  if ($style) {
+    return 'The image style was previously created.';
+  }
+
+  // Create image style.
+  $image_style = ImageStyle::create([
+    'name' => 'oe_theme_publication_thumbnail',
+    'label' => 'Publication thumbnail',
+  ]);
+
+  // Create effect.
+  $effect = [
+    'id' => 'image_scale',
+    'weight' => 1,
+    'data' => [
+      'width' => 192,
+      'height' => NULL,
+      'upscale' => FALSE,
+    ],
+  ];
+
+  // Add effect to the image style and save.
+  $image_style->addImageEffect($effect);
+  $image_style->save();
+}
+
+/**
+ * Override full and teaser display views for Publication content type.
+ */
+function oe_theme_content_publication_post_update_00007() {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00007_override_view_displays');
 
   // View displays configurations to update.
   $displays = [

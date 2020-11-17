@@ -9,3 +9,10 @@ dependencies:
   - oe_content:oe_content_publication
   - oe_theme:oe_theme_content_entity_contact
   - oe_theme:oe_theme_helper
+
+config_devel:
+  install:
+    - core.date_format.oe_theme_publication_date
+    - core.entity_view_display.node.oe_publication.full
+    - core.entity_view_display.node.oe_publication.teaser
+    - image.style.oe_theme_publication_thumbnail

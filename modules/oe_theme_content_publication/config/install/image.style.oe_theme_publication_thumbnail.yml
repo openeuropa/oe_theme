@@ -4,8 +4,8 @@ dependencies: {  }
 name: oe_theme_publication_thumbnail
 label: 'Publication thumbnail'
 effects:
-  9bf5b462-e79a-4f00-8387-708f73a0f2be:
-    uuid: 9bf5b462-e79a-4f00-8387-708f73a0f2be
+  44898002-78b0-4133-acb6-c08d5c208e01:
+    uuid: 44898002-78b0-4133-acb6-c08d5c208e01
     id: image_scale
     weight: 1
     data:
