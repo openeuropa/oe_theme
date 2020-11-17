@@ -22,7 +22,6 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - rdf_skos
-    - text
     - user
 third_party_settings:
   field_group:
@@ -53,7 +52,7 @@ third_party_settings:
       label: Details
     group_item_description:
       children:
-        - body
+        - group_description
       parent_name: group_in_page_navigation
       weight: 23
       format_type: oe_theme_helper_in_page_navigation_item
@@ -99,22 +98,36 @@ third_party_settings:
         classes: ''
         id: ''
       label: ''
-_core:
-  default_config_hash: SFARsCLjvosdf4Ifigh7FpJxrt_7lWW9DO3Tnnlk1eE
+    group_description:
+      children:
+        - extra_field_oe_theme_content_publication_description
+      parent_name: group_item_description
+      weight: 20
+      format_type: html_element
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+        element: div
+        show_label: false
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+      label: Description
 id: node.oe_publication.full
 targetEntityType: node
 bundle: oe_publication
 mode: full
 content:
-  body:
-    type: text_default
-    weight: 0
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   extra_field_oe_theme_content_publication_dates:
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_publication_description:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -161,6 +174,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
+  body: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
