@@ -16,6 +16,7 @@ services:
       # For Linux users: sudo ip addr add 10.254.254.254/32 dev lo label lo:1
   mysql:
     image: registry.fpfis.eu/fpfis/sql:percona-5.7
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 #    ports:

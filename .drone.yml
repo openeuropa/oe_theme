@@ -8,9 +8,8 @@ services:
     environment:
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
-  # @todo: change this back to percona as soon as FPFISSUPP-8617 is resolved.
-  # image: percona/percona-server:5.6
-    image: mariadb
+    image: registry.fpfis.eu/fpfis/sql:percona-5.7
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=drupal
