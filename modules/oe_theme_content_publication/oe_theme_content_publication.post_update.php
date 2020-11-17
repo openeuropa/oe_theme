@@ -132,8 +132,8 @@ function oe_theme_content_publication_post_update_00007() {
 /**
  * Override publication teaser view display.
  */
-function oe_theme_content_publication_post_update_00007(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00007_override_teaser_view_display');
+function oe_theme_content_publication_post_update_00008(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00008_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
