@@ -11,7 +11,6 @@ use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
-use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -53,9 +52,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     module_load_include('install', 'oe_content');
     oe_content_install();
 
-    // Set current user to UID 1, so that by default we can access everything.
-    $account = User::load(1);
-    $this->setCurrentUser($account);
+    $this->setUpCurrentUser([], [], TRUE);
   }
 
   /**
@@ -115,13 +112,13 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
               'body' => 'Call for proposals reference',
             ], [
               'label' => 'Opening date',
-              'body' => $opening_date->format('j F Y'),
+              'body' => '14 February 2020',
             ], [
               'label' => 'Deadline model',
               'body' => 'Single-stage',
             ], [
               'label' => 'Deadline date',
-              'body' => $deadline_date->format('j F Y'),
+              'body' => '21 February 2020',
             ], [
               'label' => 'Funding programme',
               'body' => 'Arab Common Market',
@@ -154,13 +151,13 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('j F Y'),
+            'body' => '14 February 2020',
           ], [
             'label' => 'Deadline model',
             'body' => 'Two-stage',
           ], [
             'label' => 'Deadline dates',
-            'body' => $deadline_date->format('j F Y') . "\n | " . $deadline_date2->format('j F Y'),
+            'body' => "21 February 2020\n | 22 February 2020",
           ], [
             'label' => 'Funding programme',
             'body' => 'Arab Common Market',
@@ -187,13 +184,13 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('j F Y'),
+            'body' => '14 February 2020',
           ], [
             'label' => 'Deadline model',
             'body' => 'Multiple cut-off',
           ], [
             'label' => 'Deadline date',
-            'body' => $deadline_date->format('j F Y'),
+            'body' => '17 February 2020',
           ], [
             'label' => 'Funding programme',
             'body' => 'Arab Common Market',
@@ -226,13 +223,13 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Call for proposals reference',
           ], [
             'label' => 'Opening date',
-            'body' => $opening_date->format('j F Y'),
+            'body' => '24 February 2020',
           ], [
             'label' => 'Deadline model',
             'body' => 'Single-stage',
           ], [
             'label' => 'Deadline date',
-            'body' => $deadline_date->format('j F Y'),
+            'body' => '21 February 2020',
           ], [
             'label' => 'Funding programme',
             'body' => 'Arab Common Market',
