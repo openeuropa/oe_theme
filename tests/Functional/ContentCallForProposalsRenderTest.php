@@ -107,7 +107,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'N/A',
         ], [
           'label' => 'Publication date',
-          'body' => $publication_date->format('d F Y'),
+          'body' => '12 February 2020',
         ], [
           'label' => 'Deadline model',
           'body' => 'Permanent',
@@ -143,7 +143,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Reference code',
         ], [
           'label' => 'Publication date',
-          'body' => $publication_date->format('d F Y'),
+          'body' => '12 February 2020',
         ], [
           'label' => 'Deadline model',
           'body' => 'Permanent',
@@ -159,7 +159,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $details_expected_values['items'][2]['body'] = $publication_date->format('d F Y') . "\n  in\n  Official Journal Reference" . chr(194) . chr(160);
+    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference" . chr(194) . chr(160);
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';
@@ -185,10 +185,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Reference code',
         ], [
           'label' => 'Publication date',
-          'body' => $publication_date->format('d F Y'),
+          'body' => '12 February 2020',
         ], [
           'label' => 'Opening date',
-          'body' => $opening_date->format('d F Y'),
+          'body' => '14 February 2020',
         ], [
           'label' => 'Deadline model',
           'body' => 'Permanent',
@@ -204,7 +204,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $deadline_date1->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $details_expected_values['items'][0] = [
       'label' => 'Status',
       'body' => 'Closed',
@@ -215,13 +214,13 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $details_expected_values['items'][5] = [
       'label' => 'Deadline date',
-      'body' => $deadline_date1->format('d F Y, H:i (T)'),
+      'body' => '15 February 2020, 01:00 (AEDT)',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $deadline_selector = '//*[text() = "Deadline date"]/following-sibling::dd[1]/div[@class="ecl-u-type-strike"]';
     $this->assertSession()->elementExists('xpath', $deadline_selector);
-    $this->assertEquals($deadline_date1->format('d F Y, H:i (T)'), $content_items[0]->find('xpath', $deadline_selector)->getText());
+    $this->assertEquals('15 February 2020, 01:00 (AEDT)', $content_items[0]->find('xpath', $deadline_selector)->getText());
 
     // Assert Deadline model and multiple Deadline date fields.
     $deadline_date1 = (clone $static_time)->modify('- 3 days');
@@ -233,8 +232,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $deadline_date1->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $deadline_date2->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $details_expected_values['items'][0] = [
       'label' => 'Status',
       'body' => 'Open',
@@ -243,9 +240,9 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'label' => 'Deadline model',
       'body' => 'Two-stage',
     ];
-    $expected_deadline_dates = $deadline_date1->format('d F Y, H:i (T)') . $deadline_date2->format('d F Y, H:i (T)');
+    $expected_deadline_dates = '15 February 2020, 01:00 (AEDT)23 February 2020, 01:00 (AEDT)';
     if (version_compare(PHP_VERSION, '7.3') < 0) {
-      $expected_deadline_dates = $deadline_date1->format('d F Y, H:i (T)') . "\n" . $deadline_date2->format('d F Y, H:i (T)');
+      $expected_deadline_dates = "15 February 2020, 01:00 (AEDT)\n23 February 2020, 01:00 (AEDT)";
     }
     $details_expected_values['items'][5] = [
       'label' => 'Deadline dates',
