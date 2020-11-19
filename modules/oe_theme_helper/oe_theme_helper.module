@@ -86,6 +86,12 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'menu_items' => [],
       ],
     ],
+    'oe_theme_helper_call_status' => [
+      'variables' => [
+        'label' => '',
+        'name' => '',
+      ],
+    ],
   ];
 }
 
@@ -150,6 +156,33 @@ function oe_theme_helper_theme_suggestions_oe_theme_helper_in_page_navigation(ar
   }
 
   return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function oe_theme_helper_theme_suggestions_oe_theme_helper_call_status(array $variables) {
+  $suggestions = [];
+
+  if (!empty($variables['name'])) {
+    $suggestions[] = 'oe_theme_helper_call_status' . '__' . $variables['name'];
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Prepares variables for call status.
+ *
+ * Default template: oe-theme-helper-call-status.html.twig.
+ *
+ * @param array $variables
+ *   An array of variables.
+ */
+function template_preprocess_oe_theme_helper_call_status(array &$variables) {
+  if (!empty($variables['name'])) {
+    $variables['attributes']['class'] = $variables['name'];
+  }
 }
 
 /**

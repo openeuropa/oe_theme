@@ -6,8 +6,4 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% for item in items %}
-  <div{{ not loop.last ? ' class="ecl-u-mb-m"' }}>
-    {{ item.content }}
-  </div>
-{% endfor %}
+{% for item in items %}<div{{ not loop.last ? ' class="ecl-u-mb-m"' }}>{{ item.content }}</div>{% endfor %}

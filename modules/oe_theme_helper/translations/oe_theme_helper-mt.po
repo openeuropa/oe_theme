@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Data tal-ftuħ"
 msgid "Deadline date"
 msgstr "Data ta' skadenza"
 
+msgid "Deadline dates"
+msgstr "Dati ta’ skadenza"
+
 msgid "Publication date"
 msgstr "Data tal-pubblikazzjoni"
 
@@ -143,17 +145,8 @@ msgstr "Dettalji"
 msgid "Status"
 msgstr "Status"
 
-msgid "Details"
-msgstr "Dettalji"
-
-msgid "Contact organisation"
-msgstr "Organizzazzjoni ta’ kuntatt"
-
 msgid "Publication"
 msgstr "Pubblikazzjoni"
-
-msgid "Publication date"
-msgstr "Data tal-pubblikazzjoni"
 
 msgid "Description"
 msgstr "Deskrizzjoni"
@@ -217,3 +210,21 @@ msgstr "Sejħa għal proposti"
 
 msgid "Funding programme"
 msgstr "Programm ta' finanzjament"
+
+msgid "Deadline model"
+msgstr "Mudell tal-iskadenza"
+
+msgid "Single-stage"
+msgstr "Stadju wieħed"
+
+msgid "Two-stage"
+msgstr "F’żewġ stadji"
+
+msgid "Multiple cut-off"
+msgstr "Fi stadji multipli"
+
+msgid "Permanent"
+msgstr "Permanenti"
+
+msgid "in"
+msgstr "fi"
