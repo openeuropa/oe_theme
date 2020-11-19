@@ -59,17 +59,3 @@ function oe_theme_content_call_proposals_node_view_alter(array &$build, EntityIn
     }
   }
 }
-
-/**
- * Add strike through to deadline date when call for proposals is close.
- *
- * @param array $variables
- *   Element variables from preprocess.
- */
-function _oe_theme_content_call_proposals_strike_deadline(array &$variables): void {
-  $node = CallForProposalsNodeWrapper::getInstance($variables['element']['#object']);
-  if ($node->isClosed()) {
-    // Cross out closed proposal.
-    $variables['attributes']['class'][] = 'ecl-u-type-strike';
-  }
-}
