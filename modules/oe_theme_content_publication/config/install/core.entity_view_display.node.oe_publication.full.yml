@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
-    - field.field.node.oe_publication.oe_publication_contact
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
@@ -52,7 +52,7 @@ third_party_settings:
       label: Details
     group_item_description:
       children:
-        - group_description
+        - extra_field_oe_theme_content_publication_description
       parent_name: group_in_page_navigation
       weight: 23
       format_type: oe_theme_helper_in_page_navigation_item
@@ -74,7 +74,7 @@ third_party_settings:
       label: Files
     group_item_contacts:
       children:
-        - oe_publication_contact
+        - oe_publication_contacts
       parent_name: group_in_page_navigation
       weight: 25
       format_type: oe_theme_helper_in_page_navigation_item
@@ -98,24 +98,6 @@ third_party_settings:
         classes: ''
         id: ''
       label: ''
-    group_description:
-      children:
-        - extra_field_oe_theme_content_publication_description
-      parent_name: group_item_description
-      weight: 20
-      format_type: html_element
-      region: content
-      format_settings:
-        id: ''
-        classes: ''
-        element: div
-        show_label: false
-        label_element: h3
-        label_element_classes: ''
-        attributes: ''
-        effect: none
-        speed: fast
-      label: Description
 id: node.oe_publication.full
 targetEntityType: node
 bundle: oe_publication
@@ -148,7 +130,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  oe_publication_contact:
+  oe_publication_contacts:
     type: entity_reference_revisions_entity_view
     weight: 0
     region: content

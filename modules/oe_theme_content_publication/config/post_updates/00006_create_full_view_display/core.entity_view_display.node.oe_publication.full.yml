@@ -7,7 +7,7 @@ dependencies:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
-    - field.field.node.oe_publication.oe_publication_contact
+    - field.field.node.oe_publication.oe_publication_contacts
     - field.field.node.oe_publication.oe_publication_country
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
@@ -22,7 +22,6 @@ dependencies:
     - entity_reference_revisions
     - field_group
     - rdf_skos
-    - text
     - user
 third_party_settings:
   field_group:
@@ -53,7 +52,7 @@ third_party_settings:
       label: Details
     group_item_description:
       children:
-        - body
+        - extra_field_oe_theme_content_publication_description
       parent_name: group_in_page_navigation
       weight: 23
       format_type: oe_theme_helper_in_page_navigation_item
@@ -75,7 +74,7 @@ third_party_settings:
       label: Files
     group_item_contacts:
       children:
-        - oe_publication_contact
+        - oe_publication_contacts
       parent_name: group_in_page_navigation
       weight: 25
       format_type: oe_theme_helper_in_page_navigation_item
@@ -99,22 +98,18 @@ third_party_settings:
         classes: ''
         id: ''
       label: ''
-_core:
-  default_config_hash: SFARsCLjvosdf4Ifigh7FpJxrt_7lWW9DO3Tnnlk1eE
 id: node.oe_publication.full
 targetEntityType: node
 bundle: oe_publication
 mode: full
 content:
-  body:
-    type: text_default
-    weight: 0
-    region: content
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
   extra_field_oe_theme_content_publication_dates:
     weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_publication_description:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -135,7 +130,7 @@ content:
       link: false
     third_party_settings: {  }
     region: content
-  oe_publication_contact:
+  oe_publication_contacts:
     type: entity_reference_revisions_entity_view
     weight: 0
     region: content
@@ -161,6 +156,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
 hidden:
+  body: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true

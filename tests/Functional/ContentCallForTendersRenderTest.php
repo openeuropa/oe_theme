@@ -190,22 +190,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Asserts field group header.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Field group content.
-   * @param string $title
-   *   Expected title.
-   * @param string $id
-   *   Expected id.
-   */
-  protected function assertContentHeader(NodeElement $element, string $title, string $id): void {
-    $header = $element->find('css', 'h2.ecl-u-type-heading-2');
-    $this->assertEquals($title, $header->getText());
-    $this->assertEquals($id, $header->getAttribute('id'));
-  }
-
-  /**
    * Asserts status field value.
    *
    * @param \Behat\Mink\Element\NodeElement $element
