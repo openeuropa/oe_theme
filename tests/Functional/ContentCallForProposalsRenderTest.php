@@ -218,10 +218,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    $deadline_selector = '//*[text() = "Deadline date"]/following-sibling::dd[1]/div[@class="ecl-u-type-strike"]';
-    $this->assertSession()->elementExists('xpath', $deadline_selector);
-    $this->assertEquals('15 February 2020, 01:00 (AEDT)', $content_items[0]->find('xpath', $deadline_selector)->getText());
-
     // Assert Deadline model and multiple Deadline date fields.
     $deadline_date1 = (clone $static_time)->modify('- 3 days');
     $deadline_date2 = (clone $static_time)->modify('+ 5 days');
@@ -249,8 +245,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'body' => $expected_deadline_dates,
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
-
-    $this->assertSession()->elementNotExists('xpath', $deadline_selector);
 
     // Assert external Grants awarded link field.
     $node->set('oe_call_proposals_grants', ['uri' => 'http://example.com/results']);
