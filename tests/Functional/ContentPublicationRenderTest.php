@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Behat\Mink\Element\NodeElement;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -37,6 +37,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
+      ->grantPermission('view published oe_contact')
       ->save();
   }
 
@@ -53,11 +54,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'type' => 'oe_publication',
       'title' => 'Test Publication node',
       'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
-      'oe_documents' => [
-        [
-          'target_id' => (int) $media_document->id(),
-        ],
-      ],
+      'oe_documents' => [$media_document],
       'oe_publication_date' => [
         'value' => '2020-04-15',
       ],
@@ -81,7 +78,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert navigation part.
     $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
-    $assert = new InPageNavigationAssert();
+    $inpage_nav_assert = new InPageNavigationAssert();
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
@@ -89,7 +86,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
         ['label' => 'Files', 'href' => '#files'],
       ],
     ];
-    $assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
@@ -114,8 +111,8 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('horizontal', $details_html);
 
     // Assert header of second field group.
-    $this->assertContentHeader($content_items[0], 'Files', 'files');
-    $this->assertMediaDocumentDefaultRender($content_items[0], 'publication_document');
+    $this->assertContentHeader($content_items[1], 'Files', 'files');
+    $this->assertMediaDocumentDefaultRender($content_items[1], 'publication_document');
 
     // Assert Introduction and multiple Resource type fields.
     $node->set('oe_summary', 'Publication introduction');
@@ -208,30 +205,60 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       ['target_id' => 'http://publications.europa.eu/resource/authority/country/GBR'],
       ['target_id' => 'http://publications.europa.eu/resource/authority/country/FRA'],
     ])->save();
+    $this->drupalGet($node->toUrl());
 
     $details_expected_values['items'][3] = [
       'label' => 'Countries',
       'body' => 'United Kingdom, France',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
-  }
 
-  /**
-   * Asserts field group header.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Field group content.
-   * @param string $title
-   *   Expected title.
-   * @param string $id
-   *   Expected id.
-   */
-  protected function assertContentHeader(NodeElement $element, string $title, string $id = ''): void {
-    $header = $element->find('css', 'h2.ecl-u-type-heading-2');
-    $this->assertEquals($title, $header->getText());
-    if (!empty($id)) {
-      $this->assertEquals($id, $header->getAttribute('id'));
-    }
+    // Assert Body text field.
+    $node->set('body', 'Publication body text')->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'] = [
+      ['label' => 'Details', 'href' => '#details'],
+      ['label' => 'Description', 'href' => '#description'],
+      ['label' => 'Files', 'href' => '#files'],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
+    $this->assertContentHeader($content_items[0], 'Details', 'details');
+    $this->assertContentHeader($content_items[1], 'Description', 'description');
+    $this->assertContentHeader($content_items[2], 'Files', 'files');
+
+    $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-md-8 .ecl-editor');
+    $this->assertCount(1, $body);
+    $this->assertEquals('Publication body text', $body[0]->getText());
+    $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-md-3';
+    $this->assertSession()->elementNotExists('css', $thumbnail_wrapper_selector);
+
+    // Assert Thumbnail field.
+    $media_image = $this->createMediaImage('publication_image');
+    $node->set('oe_publication_thumbnail', [$media_image])->save();
+    $this->drupalGet($node->toUrl());
+
+    $thumbnail_wrapper = $this->assertSession()->elementExists('css', $thumbnail_wrapper_selector);
+    $image_element = $this->assertSession()->elementExists('css', 'img', $thumbnail_wrapper);
+    $this->assertContains("placeholder_publication_image.png", $image_element->getAttribute('src'));
+    $this->assertContains("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
+    $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
+
+    // Assert Contact field.
+    $contact = $this->createContactEntity('publication_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $node->set('oe_publication_contacts', [$contact])->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
+    $this->assertContentHeader($content_items[3], 'Contact', 'contact');
+    $this->assertContactEntityDefaultDisplay($content_items[3], 'publication_contact');
   }
 
 }
