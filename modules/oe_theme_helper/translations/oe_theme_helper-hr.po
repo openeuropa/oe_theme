@@ -119,6 +119,9 @@ msgstr "Sudionici"
 msgid "Country"
 msgstr "Zemlja"
 
+msgid "Countries"
+msgstr "Zemlje"
+
 msgid "EU Organisation"
 msgstr "Organizacija EU-a"
 
@@ -214,3 +217,24 @@ msgstr "Poziv na podnošenje prijedloga"
 
 msgid "Funding programme"
 msgstr "Program financiranja"
+
+msgid "Last updated on: @date"
+msgstr "Posljednji put ažurirano: @date"
+
+msgid "File"
+msgstr "Datoteka"
+
+msgid "Files"
+msgstr "Datoteke"
+
+msgid "Identification"
+msgstr "Identifikacijski podaci"
+
+msgid "Identifications"
+msgstr "Identifikacijski podaci"
+
+msgid "Related department"
+msgstr "Povezana služba"
+
+msgid "Related departments"
+msgstr "Povezane službe"

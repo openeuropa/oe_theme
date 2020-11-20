@@ -119,6 +119,9 @@ msgstr "Parteċipanti"
 msgid "Country"
 msgstr "Pajjiż"
 
+msgid "Countries"
+msgstr "Pajjiżi"
+
 msgid "EU Organisation"
 msgstr "Organizzazzjoni tal-UE"
 
@@ -217,3 +220,24 @@ msgstr "Sejħa għal proposti"
 
 msgid "Funding programme"
 msgstr "Programm ta' finanzjament"
+
+msgid "Last updated on: @date"
+msgstr "L-aħħar aġġornament: @date"
+
+msgid "File"
+msgstr "File"
+
+msgid "Files"
+msgstr "Files"
+
+msgid "Identification"
+msgstr "Identifikazzjoni"
+
+msgid "Identifications"
+msgstr "Identifikazzjonijiet"
+
+msgid "Related department"
+msgstr "Dipartiment relatat"
+
+msgid "Related departments"
+msgstr "Dipartimenti relatati"

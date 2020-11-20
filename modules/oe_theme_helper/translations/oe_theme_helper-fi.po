@@ -119,6 +119,9 @@ msgstr "Osallistujat"
 msgid "Country"
 msgstr "Maa"
 
+msgid "Countries"
+msgstr "Maat"
+
 msgid "EU Organisation"
 msgstr "EU:n organisaatio"
 
@@ -214,3 +217,24 @@ msgstr "Ehdotuspyyntö"
 
 msgid "Funding programme"
 msgstr "Rahoitusohjelma"
+
+msgid "Last updated on: @date"
+msgstr "Päivitetty viimeksi: @date"
+
+msgid "File"
+msgstr "Tiedosto"
+
+msgid "Files"
+msgstr "Tiedostot"
+
+msgid "Identification"
+msgstr "Tunniste"
+
+msgid "Identifications"
+msgstr "Tunnisteet"
+
+msgid "Related department"
+msgstr "Vastaava osasto"
+
+msgid "Related departments"
+msgstr "Vastaavat osastot"

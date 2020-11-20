@@ -119,6 +119,9 @@ msgstr "Osalejad"
 msgid "Country"
 msgstr "Riik"
 
+msgid "Countries"
+msgstr "Riigid"
+
 msgid "EU Organisation"
 msgstr "ELi organisatsioon"
 
@@ -214,3 +217,24 @@ msgstr "Projektikonkurss"
 
 msgid "Funding programme"
 msgstr "Rahastamisprogramm"
+
+msgid "Last updated on: @date"
+msgstr "Viimati ajakohastatud: @date"
+
+msgid "File"
+msgstr "Fail"
+
+msgid "Files"
+msgstr "Failid"
+
+msgid "Identification"
+msgstr "Identifitseerimine"
+
+msgid "Identifications"
+msgstr "Identifitseerimisandmed"
+
+msgid "Related department"
+msgstr "Seotud osakond"
+
+msgid "Related departments"
+msgstr "Seotud osakonnad"

@@ -119,6 +119,9 @@ msgstr "Résztvevők"
 msgid "Country"
 msgstr "Ország"
 
+msgid "Countries"
+msgstr "Országok"
+
 msgid "EU Organisation"
 msgstr "EU-szervezet"
 
@@ -214,3 +217,24 @@ msgstr "Pályázati felhívás"
 
 msgid "Funding programme"
 msgstr "Finanszírozási program"
+
+msgid "Last updated on: @date"
+msgstr "Legutóbbi frissítés: @date"
+
+msgid "File"
+msgstr "Fájl"
+
+msgid "Files"
+msgstr "Fájlok"
+
+msgid "Identification"
+msgstr "Azonosítószám"
+
+msgid "Identifications"
+msgstr "Azonosítószámok"
+
+msgid "Related department"
+msgstr "Kapcsolódó szervezeti egység"
+
+msgid "Related departments"
+msgstr "Kapcsolódó szervezeti egységek"

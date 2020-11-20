@@ -119,6 +119,9 @@ msgstr "Dalyviai"
 msgid "Country"
 msgstr "Šalis"
 
+msgid "Countries"
+msgstr "Šalys"
+
 msgid "EU Organisation"
 msgstr "ES organizacija"
 
@@ -214,3 +217,24 @@ msgstr "Kvietimas teikti pasiūlymus"
 
 msgid "Funding programme"
 msgstr "Finansavimo programa"
+
+msgid "Last updated on: @date"
+msgstr "Paskutinį kartą atnaujinta: @date"
+
+msgid "File"
+msgstr "Rinkmena"
+
+msgid "Files"
+msgstr "Rinkmenos"
+
+msgid "Identification"
+msgstr "Identifikatorius"
+
+msgid "Identifications"
+msgstr "Identifikavimo duomenys"
+
+msgid "Related department"
+msgstr "Susijęs padalinys"
+
+msgid "Related departments"
+msgstr "Susiję padaliniai"
