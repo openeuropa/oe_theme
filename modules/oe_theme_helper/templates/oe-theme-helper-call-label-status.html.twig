@@ -1,9 +1,9 @@
 {#
 /**
  * @file
- * Theme override for the status extra field on Call for tenders content type.
+ * Theme override for the status extra field as call status.
  *
- * @see \Drupal\oe_theme_content_call_tenders\Plugin\ExtraField\Display\CallForTendersLabelStatusExtraField::viewElements()
+ * @ingroup themeable
  */
 #}
 {% if name != 'not_available' %}
@@ -14,5 +14,5 @@
   {% elseif name == 'closed' %}
     {% set background_class = ' ecl-label--low' %}
   {% endif %}
-  <span class="call-tenders-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black{{ background_class }}">{{ label }}</span>
+  <span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black{{ background_class }}">{{ label }}</span>
 {% endif %}

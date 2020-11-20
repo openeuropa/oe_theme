@@ -107,7 +107,7 @@ third_party_settings:
       children:
         - oe_call_proposals_grants
       parent_name: group_item_details
-      weight: 21
+      weight: 22
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -120,7 +120,7 @@ third_party_settings:
         - oe_call_proposals_funding
         - oe_departments
       parent_name: group_item_details
-      weight: 22
+      weight: 23
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -230,6 +230,7 @@ content:
     type: string
     region: content
 hidden:
+  extra_field_oe_call_proposals_label_status: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true

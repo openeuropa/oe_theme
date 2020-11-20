@@ -92,6 +92,12 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'name' => '',
       ],
     ],
+    'oe_theme_helper_call_label_status' => [
+      'variables' => [
+        'label' => '',
+        'name' => '',
+      ],
+    ],
   ];
 }
 
@@ -166,6 +172,19 @@ function oe_theme_helper_theme_suggestions_oe_theme_helper_call_status(array $va
 
   if (!empty($variables['name'])) {
     $suggestions[] = 'oe_theme_helper_call_status' . '__' . $variables['name'];
+  }
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function oe_theme_helper_theme_suggestions_oe_theme_helper_call_label_status(array $variables) {
+  $suggestions = [];
+
+  if (!empty($variables['name'])) {
+    $suggestions[] = 'oe_theme_helper_call_label_status' . '__' . $variables['name'];
   }
 
   return $suggestions;
