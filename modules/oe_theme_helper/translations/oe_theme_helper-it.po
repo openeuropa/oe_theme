@@ -119,6 +119,9 @@ msgstr "Partecipanti"
 msgid "Country"
 msgstr "Paese"
 
+msgid "Countries"
+msgstr "Paesi"
+
 msgid "EU Organisation"
 msgstr "Organizzazione dell'UE"
 
@@ -217,3 +220,24 @@ msgstr "Invito a presentare proposte"
 
 msgid "Funding programme"
 msgstr "Programma di finanziamento"
+
+msgid "Last updated on: @date"
+msgstr "Ultimo aggiornamento: @date"
+
+msgid "File"
+msgstr "File"
+
+msgid "Files"
+msgstr "File"
+
+msgid "Identification"
+msgstr "Identificazione"
+
+msgid "Identifications"
+msgstr "Identificazioni"
+
+msgid "Related department"
+msgstr "Servizio correlato"
+
+msgid "Related departments"
+msgstr "Servizi collegati"

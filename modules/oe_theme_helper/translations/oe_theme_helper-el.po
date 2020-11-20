@@ -119,6 +119,9 @@ msgstr "Teilnehmer"
 msgid "Country"
 msgstr "Χώρα"
 
+msgid "Countries"
+msgstr "Χώρες"
+
 msgid "EU Organisation"
 msgstr "Οργανισμός της ΕΕ"
 
@@ -214,3 +217,24 @@ msgstr "Πρόσκληση υποβολής προτάσεων"
 
 msgid "Funding programme"
 msgstr "Πρόγραμμα χρηματοδότησης"
+
+msgid "Last updated on: @date"
+msgstr "Τελευταία επικαιροποίηση την/στις: @date"
+
+msgid "File"
+msgstr "Αρχείο"
+
+msgid "Files"
+msgstr "Αρχεία"
+
+msgid "Identification"
+msgstr "Ταυτοποίηση"
+
+msgid "Identifications"
+msgstr "Ταυτοποιήσεις"
+
+msgid "Related department"
+msgstr "Σχετικό τμήμα"
+
+msgid "Related departments"
+msgstr "Σχετικά τμήματα"

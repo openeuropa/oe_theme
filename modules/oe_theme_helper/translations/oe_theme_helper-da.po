@@ -119,6 +119,9 @@ msgstr "Deltagere"
 msgid "Country"
 msgstr "Land"
 
+msgid "Countries"
+msgstr "Lande"
+
 msgid "EU Organisation"
 msgstr "EU-organisation"
 
@@ -214,3 +217,24 @@ msgstr "Indkaldelse af forslag"
 
 msgid "Funding programme"
 msgstr "Finansieringsprogram"
+
+msgid "Last updated on: @date"
+msgstr "Senest opdateret den: @date"
+
+msgid "File"
+msgstr "Fil"
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Identification"
+msgstr "Identifikation"
+
+msgid "Identifications"
+msgstr "Identifikationer"
+
+msgid "Related department"
+msgstr "Tilknyttet afdeling"
+
+msgid "Related departments"
+msgstr "Tilknyttede afdelinger"
