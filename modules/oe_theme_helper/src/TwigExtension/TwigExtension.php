@@ -79,6 +79,7 @@ class TwigExtension extends \Twig_Extension {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
       new \Twig_SimpleFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
+      new \Twig_SimpleFunction('ecl_footer_link', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -640,6 +641,45 @@ class TwigExtension extends \Twig_Extension {
     }
 
     return $icon;
+  }
+
+  /**
+   * Processes footer links to make them compatible with ECL formatting.
+   *
+   * @param array $context
+   *   The twig context.
+   * @param array $links
+   *   Set of links to be processed.
+   *
+   * @return array
+   *   Set of processed links.
+   */
+  public function eclFooterLinks(array $context, array $links): array {
+    $ecl_links = [];
+
+    foreach ($links as $link) {
+      $ecl_link = [
+        'link' => [
+          'label' => $link['label'],
+          'path' => $link['href'],
+          'icon_position' => 'after',
+        ],
+      ];
+
+      if (!empty($link['external']) && $link['external'] === TRUE) {
+        $ecl_link += [
+          'icon' => [
+            'path' => $context['ecl_icon_path'],
+            'type' => 'ui',
+            'name' => 'external',
+          ],
+        ];
+      }
+
+      $ecl_links[] = $ecl_link;
+    }
+
+    return $ecl_links;
   }
 
 }
