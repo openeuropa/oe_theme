@@ -36,7 +36,7 @@ function oe_theme_content_publication_node_view_alter(array &$build, EntityInter
   // Field labels are different in frontend and backend.
   if ($build['#view_mode'] === 'full') {
     $label_overrides = [
-      'oe_reference_code' => t('Identification'),
+      'oe_reference_codes' => t('Identification'),
     ];
 
     if ($entity->get('oe_departments')->count() > 1) {

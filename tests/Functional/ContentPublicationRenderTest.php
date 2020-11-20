@@ -131,15 +131,32 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    // Assert Identifier code field.
-    $node->set('oe_reference_code', 'Publication identifier code')->save();
+    // Assert single Identifier code field.
+    $node->set('oe_reference_codes', 'ID 1')->save();
     $this->drupalGet($node->toUrl());
 
     $details_expected_values = [
       'items' => [
         [
           'label' => 'Identification',
-          'body' => 'Publication identifier code',
+          'body' => 'ID 1',
+        ], [
+          'label' => 'Publication date',
+          'body' => '15 April 2020',
+        ],
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert multiple Identifier code field.
+    $node->set('oe_reference_codes', ['ID 1', 'ID 2'])->save();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values = [
+      'items' => [
+        [
+          'label' => 'Identification',
+          'body' => 'ID 1, ID 2',
         ], [
           'label' => 'Publication date',
           'body' => '15 April 2020',
@@ -156,7 +173,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Identification',
-          'body' => 'Publication identifier code',
+          'body' => 'ID 1, ID 2',
         ], [
           'label' => 'Publication date',
           'body' => '15 April 2020 (Last updated on: 17 June 2020)',

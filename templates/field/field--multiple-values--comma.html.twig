@@ -1,0 +1,9 @@
+{#
+/**
+ * @file
+ * Field is used for multiple values field to set comma separator between rows.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}{{ item.content }}{% if not loop.last %}, {% endif %}{% endfor %}
