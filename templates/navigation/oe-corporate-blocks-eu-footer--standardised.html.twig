@@ -4,6 +4,8 @@
  * Theme override for the corporate European Union footer block.
  *
  * Available variables:
+ * - site_owner: Site's owner.
+ * - site_specific_footer: renderable array for site specific footer links
  * - corporate_footer: renderable array for corporate footer links
  * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-eu-footer.html.twig
  */
@@ -15,7 +17,7 @@
   {
     'title': {
       'link': {
-        'label': site_name,
+        'label': site_specific_footer.site_identity,
         'path': url('<front>'),
       }
     },

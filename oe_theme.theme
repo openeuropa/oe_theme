@@ -76,7 +76,6 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
   $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
-  $variables['site_name'] = \Drupal::config('system.site')->get('name');
 }
 
 /**
