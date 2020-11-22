@@ -171,7 +171,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * Test European Union footer core block rendering.
    */
   public function testEuFooterCoreBlockRendering(): void {
-    $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'core')->save();
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
 
     $data = $this->getFixtureContent('eu_footer.yml');
