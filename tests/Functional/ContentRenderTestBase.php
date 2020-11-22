@@ -203,7 +203,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       ],
       'status' => $status,
     ]);
-
+    $contact->save();
     return $contact;
   }
 
