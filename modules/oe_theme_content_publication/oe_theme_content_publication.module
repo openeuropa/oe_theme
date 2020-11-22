@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 
@@ -69,16 +70,30 @@ function oe_theme_content_publication_preprocess_field__node__oe_publication_con
   foreach ($variables['items'] as &$item) {
     /** @var \Drupal\Core\Entity\ContentEntityInterface $contact */
     $contact = $item['content']['#oe_contact'];
+    $cacheable_metadata  = CacheableMetadata::createFromRenderArray($item['content']);
     // If the contact is not an organisation we don't care.
     if ($contact->bundle() !== 'oe_organisation_reference') {
       continue;
     }
     $organisation = $contact->oe_node_reference->entity;
+    if (!$organisation) {
+      // If by some chance an organisation is not linked we do not render
+      // the contact.
+      $item['content']['#access'] = FALSE;
+      continue;
+    }
+    $cacheable_metadata->addCacheableDependency($organisation);
+
     $organisation_contact = $organisation->oe_organisation_contact->entity;
     if (!$organisation_contact) {
       // Do not render the contact if the organisation does not have contact
       // details of its own.
       $item['content']['#access'] = FALSE;
+      $cacheable_metadata->applyTo($item);
+      continue;
     }
+    $cacheable_metadata->addCacheableDependency($organisation_contact);
+    $cacheable_metadata->applyTo($item);
+
   }
 }
