@@ -264,7 +264,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContains("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
     $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
 
-    // Assert Contact field.
+    // Assert General Contact.
     $contact = $this->createContactEntity('publication_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $node->set('oe_publication_contacts', $contact)->save();
     $this->drupalGet($node->toUrl());
@@ -272,10 +272,95 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(4, $content_items);
-    $this->assertContentHeader($content_items[3], 'Contact', 'contact');
-    $this->assertContactEntityDefaultDisplay($content_items[3], 'publication_contact');
+    $contacts_element = $content->find('css', '#publication-contacts');
+    $this->assertContentHeader($contacts_element, 'Contact', 'contact');
+    $this->assertContactEntityDefaultDisplay($contacts_element, 'publication_contact');
+
+    // Assert Organisation Contact.
+    $document = $this->createMediaDocument('Publication document');
+    $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', 1);
+
+    // Create an organisation without a contact.
+    /** @var \Drupal\node\NodeInterface $node */
+    $organisation = $this->getStorage('node')->create([
+      'type' => 'oe_organisation',
+      'title' => 'Test organisation',
+      'oe_summary' => 'My introduction',
+      'oe_organisation_acronym' => 'My acronym',
+      'oe_organisation_org_type' => 'eu',
+      'oe_organisation_eu_org' => 'http://publications.europa.eu/resource/authority/corporate-body/ACM',
+      'oe_teaser' => 'The teaser text',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $organisation->save();
+
+    // Create an empty organisation reference contact.
+    /** @var \Drupal\oe_content_entity_contact\Entity\ContactInterface $publication_contact */
+    $publication_contact = $this->getStorage('oe_contact')->create([
+      'bundle' => 'oe_organisation_reference',
+      'name' => 'Publication contact',
+    ]);
+    $publication_contact->save();
+
+    /** @var \Drupal\node\NodeInterface $node */
+    $publication = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Test Publication node',
+      'oe_documents' => [
+        [
+          'target_id' => (int) $document->id(),
+        ],
+      ],
+      'oe_publication_contacts' => [
+        [
+          'target_id' => (int) $publication_contact->id(),
+          'target_revision_id' => (int) $publication_contact->getRevisionId(),
+        ],
+      ],
+      'oe_summary' => 'Summary',
+      'oe_publication_date' => '2019-04-05',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $publication->save();
+    $this->drupalGet($publication->toUrl());
+
+    // Assert that the contact is not being rendered since no organisation is
+    // being referenced.
+    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
+    $this->assertEmpty($contacts_element->getText());
+
+    // Add an organisation to the publication contact and assert it still
+    // nothing gets rendered since the organisation does not have a
+    // contact itself.
+    $publication_contact->set('oe_node_reference', [
+      'target_id' => $organisation->id(),
+      'target_revision_id' => $organisation->getRevisionId(),
+    ]);
+    $publication_contact->save();
+    $this->drupalGet($publication->toUrl());
+    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
+    $this->assertEmpty($contacts_element->getText());
+
+    // Add a contact to the organisation and assert it gets rendered
+    // in the publication page.
+    $organisation->set('oe_organisation_contact', [
+      'target_id' => $organisation_contact->id(),
+      'target_revision_id' => $organisation_contact->getRevisionId(),
+    ]);
+    $organisation->save();
+    $this->drupalGet($publication->toUrl());
+    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
+    $this->assertContactEntityDefaultDisplay($contacts_element, 'organisation_contact');
+
+    // Delete organisation contact and assert we do not render the
+    // publication contact anymore.
+    $organisation_contact->delete();
+    $this->drupalGet($publication->toUrl());
+    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
+    $this->assertEmpty($contacts_element->getText());
   }
 
 }
