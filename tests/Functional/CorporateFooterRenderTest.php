@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 use Symfony\Component\Yaml\Yaml;
-use Drupal\Component\Render\FormattableMarkup;
 use Behat\Mink\Element\NodeElement;
 
 /**
@@ -105,8 +104,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
-    $this->assertEquals($expected, $actual->getText());
+    $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
 
     // Test European Commission footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
@@ -126,8 +124,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
-    $this->assertEquals($expected, $actual->getText());
+    $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section7');
     $actual = $section->find('css', 'a.ecl-footer-standardised__title');
@@ -163,8 +160,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'DG XI – Internal Market']);
-    $this->assertEquals($expected, $actual->getText());
+    $this->assertEquals('This site is managed by the DG XI – Internal Market', $actual->getText());
 
     // Test European Union footer core block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
@@ -182,8 +178,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-footer-core section.ecl-footer-core__section1');
 
     $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'DG XI – Internal Market']);
-    $this->assertEquals($expected, $actual->getText());
+    $this->assertEquals('This site is managed by the DG XI – Internal Market', $actual->getText());
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'core');
@@ -245,8 +240,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'Directorate-General for Budget']);
-    $this->assertEquals($expected, $actual->getText());
+    $this->assertEquals('This site is managed by the Directorate-General for Budget', $actual->getText());
 
     // Test European Union footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
@@ -266,11 +260,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('EU Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'Directorate-General for Budget']);
-    $this->assertEquals($expected, $actual->getText());
+    $actual = $assert->elementExists('css', 'div.ecl-footer-standardised__description');
+    $this->assertEquals('This site is managed by the Directorate-General for Budget', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section7');
+
+    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $this->assertEquals('Discover more on europa.eu', $actual->getText());
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'standardised');
