@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Config\FileStorage;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Add a date format for the Publication page header metadata.
