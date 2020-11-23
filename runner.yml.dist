@@ -63,10 +63,14 @@ commands:
     - { task: "symlink", from: "${drupal.root}/core/.stylelintrc.json", to: ".stylelintrc.json" }
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }
-    # Generate settings.testing.php, it will be used when running functional tests.
-    - { task: "process-php", type: "write", config: "drupal.settings", source: "${drupal.root}/sites/default/default.settings.php", destination: "${drupal.root}/sites/default/settings.testing.php", override: true }
     - { task: "run", command: "setup:phpunit" }
     - { task: "run", command: "setup:behat" }
+    - task: "append"
+      file: "build/sites/default/settings.override.php"
+      text: |
+        $settings["oe_theme.branding"] = getenv('OE_THEME_BRANDING');
+    # Generate settings.testing.php, it will be used when running functional tests.
+    - { task: "process-php", type: "write", config: "drupal.settings", source: "${drupal.root}/sites/default/default.settings.php", destination: "${drupal.root}/sites/default/settings.testing.php", override: true }
   setup:phpunit:
     - { task: "process", source: "phpunit.xml.dist", destination: "phpunit.xml" }
   setup:behat:
