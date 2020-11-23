@@ -79,7 +79,7 @@ class TwigExtension extends \Twig_Extension {
     return [
       new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
       new \Twig_SimpleFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
-      new \Twig_SimpleFunction('ecl_footer_link', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
+      new \Twig_SimpleFunction('ecl_footer_links', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
     ];
   }
 

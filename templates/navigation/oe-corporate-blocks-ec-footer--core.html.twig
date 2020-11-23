@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override for the corporate European Commission footer block.
+ * Theme override for the corporate European Commission Core footer block.
  *
  * Available variables:
  * - site_owner: Site's owner.
@@ -23,15 +23,15 @@
   },
   {
     'content_before': 'More information on:'|t,
-    'links': ecl_footer_link(corporate_footer.class_navigation),
+    'links': ecl_footer_links(corporate_footer.class_navigation),
     'list_class_name': 'ecl-footer-core__section2 ecl-footer-core__list--columns',
     'section_class_name': 'ecl-footer-core__section--separator',
   },
   {
-    'links': ecl_footer_link(corporate_footer.service_navigation),
+    'links': ecl_footer_links(corporate_footer.service_navigation),
   },
   {
-    'links': ecl_footer_link(corporate_footer.legal_navigation),
+    'links': ecl_footer_links(corporate_footer.legal_navigation),
   },
 ] %}
 

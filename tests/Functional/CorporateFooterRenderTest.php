@@ -26,7 +26,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    */
   public static $modules = [
     'block',
-    'page_header_metadata_test',
     'oe_theme_helper',
     'oe_corporate_blocks',
   ];
@@ -49,13 +48,17 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   }
 
   /**
-   * Test European Commission footer core block rendering.
+   * Test corporate footer block rendering.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  public function testEcFooterCoreBlockRendering(): void {
+  public function testCorporateFooterRendering(): void {
+    // First test European Commission footer core block rendering.
     $data = $this->getFixtureContent('ec_footer.yml');
-    $this->renderCorporateBlocksFooter('ec', $data);
+    $this->overrideCorporateBlocksFooter('ec', $data);
 
-    $this->getSession()->reload();
+    $this->drupalGet('<front>');
     $assert = $this->assertSession();
 
     // Make sure that footer block is present.
@@ -98,23 +101,19 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings();
-    $this->getSession()->reload();
+    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA', 'EC Site Name');
+    $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
     $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
     $this->assertEquals($expected, $actual->getText());
-  }
 
-  /**
-   * Test European Commission footer standardised block rendering.
-   */
-  public function testEcFooterStandardisedBlockRendering(): void {
+    // Test European Commission footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
     $data = $this->getFixtureContent('ec_footer.yml');
-    $this->renderCorporateBlocksFooter('ec', $data);
+    $this->overrideCorporateBlocksFooter('ec', $data);
 
-    $this->getSession()->reload();
+    $this->drupalGet('<front>');
     $assert = $this->assertSession();
 
     // Make sure that footer block is present.
@@ -123,11 +122,12 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section1');
 
     $actual = $section->find('css', 'a.ecl-footer-standardised__title');
-    $this->assertEquals('Drupal', $actual->getText());
+    $this->assertEquals('EC Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    // Site owner is not set yet, lets make sure we don't have a description.
-    $assert->elementNotExists('css', 'div.ecl-footer-standardised__description');
+    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
+    $this->assertEquals($expected, $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section7');
     $actual = $section->find('css', 'a.ecl-footer-standardised__title');
@@ -153,30 +153,27 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings();
-    $this->getSession()->reload();
+    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/DG11', 'EC Standardised Site Name');
+    $this->drupalGet('<front>');
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section1');
 
     $actual = $section->find('css', 'a.ecl-footer-standardised__title');
-    $this->assertEquals('OpenEuropa', $actual->getText());
+    $this->assertEquals('EC Standardised Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
+    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'DG XI – Internal Market']);
     $this->assertEquals($expected, $actual->getText());
-  }
 
-  /**
-   * Test European Union footer core block rendering.
-   */
-  public function testEuFooterCoreBlockRendering(): void {
+    // Test European Union footer core block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
+    $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'core')->save();
 
     $data = $this->getFixtureContent('eu_footer.yml');
-    $this->renderCorporateBlocksFooter('eu', $data);
+    $this->overrideCorporateBlocksFooter('eu', $data);
 
-    $this->getSession()->reload();
+    $this->drupalGet('<front>');
     $assert = $this->assertSession();
 
     // Make sure that footer block is present.
@@ -184,8 +181,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-core section.ecl-footer-core__section1');
 
-    // Site owner is not set yet, lets make sure we don't have a description.
-    $assert->elementNotExists('css', 'div.ecl-footer-core__description');
+    $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
+    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'DG XI – Internal Market']);
+    $this->assertEquals($expected, $actual->getText());
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'core');
@@ -243,25 +241,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     // Update settings, assert footer changed.
-    $this->updateSiteSettings();
-    $this->getSession()->reload();
+    $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/BUDG', 'EU Site Name');
+    $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
+    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'Directorate-General for Budget']);
     $this->assertEquals($expected, $actual->getText());
-  }
 
-  /**
-   * Test European Union footer standardised block rendering.
-   */
-  public function testEuFooterStandardisedBlockRendering(): void {
+    // Test European Union footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
-    $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
 
     $data = $this->getFixtureContent('eu_footer.yml');
-    $this->renderCorporateBlocksFooter('eu', $data);
+    $this->overrideCorporateBlocksFooter('eu', $data);
 
-    $this->getSession()->reload();
+    $this->drupalGet('<front>');
     $assert = $this->assertSession();
 
     // Make sure that footer block is present.
@@ -270,12 +263,12 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section1');
 
     $actual = $section->find('css', 'a.ecl-footer-standardised__title');
-    $this->assertEquals('Drupal', $actual->getText());
+    $this->assertEquals('EU Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    // Site owner is not set yet, lets make sure we don't have a description.
-    $actual = $assert->elementExists('css', 'div.ecl-footer-standardised__description');
-    $this->assertEquals('Discover more on europa.eu', $actual->getText());
+    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'Directorate-General for Budget']);
+    $this->assertEquals($expected, $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section7');
 
@@ -333,20 +326,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $actual = $section->find('css', "ul li:nth-child({$index}) > a");
       $this->assertListLink($actual, 'standardised', $expected);
     }
-
-    // Update settings, assert footer changed.
-    $this->updateSiteSettings();
-    $this->getSession()->reload();
-
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section1');
-
-    $actual = $section->find('css', 'a.ecl-footer-standardised__title');
-    $this->assertEquals('OpenEuropa', $actual->getText());
-    $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
-
-    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $expected = new FormattableMarkup('This site is managed by the @name', ['@name' => 'ACP–EU Joint Assembly']);
-    $this->assertEquals($expected, $actual->getText());
   }
 
   /**
@@ -370,7 +349,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * @param array $test_data
    *   The test data for config and assertion.
    */
-  protected function renderCorporateBlocksFooter(string $type, array $test_data): void {
+  protected function overrideCorporateBlocksFooter(string $type, array $test_data): void {
     /* @var $config_obj \Drupal\Core\Config\Config */
     $config_obj = $this->configFactory->getEditable("oe_corporate_blocks.{$type}_data.footer");
     $config_obj->setData($test_data);
@@ -421,14 +400,19 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
   /**
    * Update the config needed from the site settings form.
+   *
+   * @param string $site_owner
+   *   The site owner.
+   * @param string $site_name
+   *   The name of the site.
    */
-  protected function updateSiteSettings(): void {
+  protected function updateSiteSettings(string $site_owner, string $site_name): void {
     $config = $this->configFactory->getEditable('oe_corporate_site_info.settings');
-    $config->set('site_owner', 'http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA');
+    $config->set('site_owner', $site_owner);
     $config->save();
 
     $config = $this->configFactory->getEditable('system.site');
-    $config->set('name', 'OpenEuropa');
+    $config->set('name', $site_name);
     $config->save();
   }
 
