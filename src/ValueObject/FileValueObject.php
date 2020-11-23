@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme\ValueObject;
 
 use Drupal\file\FileInterface;
+use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
+use Mimey\MimeTypes;
 
 /**
  * Handle information about a file, such as its mime type, size, language, etc.
@@ -87,7 +89,7 @@ class FileValueObject extends ValueObjectBase {
    *
    * @return $this
    */
-  public static function fromFileEntity(FileInterface $file_entity): FileValueObject {
+  public static function fromFileEntity(FileInterface $file_entity): ValueObjectInterface {
     $file = new static(
       $file_entity->getFilename(),
       file_create_url($file_entity->getFileUri()),
@@ -96,6 +98,7 @@ class FileValueObject extends ValueObjectBase {
     );
 
     $file->setLanguageCode($file_entity->language()->getId());
+    $file->addCacheableDependency($file_entity);
 
     return $file;
   }
@@ -118,6 +121,27 @@ class FileValueObject extends ValueObjectBase {
     if (isset($values['language_code'])) {
       $file->setLanguageCode($values['language_code']);
     }
+
+    return $file;
+  }
+
+  /**
+   * Constructs an object from file link.
+   *
+   * @param \Drupal\file_link\Plugin\Field\FieldType\FileLinkItem $link
+   *   The file link item.
+   *
+   * @return $this
+   */
+  public static function fromFileLink(FileLinkItem $link): ValueObjectInterface {
+    $file = new static(
+      $link->get('title')->getValue() ?? '',
+      $link->get('uri')->getValue(),
+      $link->getFormat(),
+      (string) $link->getSize()
+    );
+
+    $file->setLanguageCode($link->getEntity()->language()->getId());
 
     return $file;
   }
@@ -189,7 +213,9 @@ class FileValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getExtension(): string {
-    return pathinfo($this->name, PATHINFO_EXTENSION);
+    $mime_types = new MimeTypes();
+    $extension = $mime_types->getExtension($this->getMime());
+    return $extension ?? pathinfo($this->name, PATHINFO_EXTENSION);
   }
 
   /**

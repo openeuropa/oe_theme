@@ -4,10 +4,12 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
+use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
+
 /**
  * Interface implemented by all field type value objects.
  */
-interface ValueObjectInterface extends \ArrayAccess {
+interface ValueObjectInterface extends \ArrayAccess, RefinableCacheableDependencyInterface {
 
   /**
    * Get value object as an array.

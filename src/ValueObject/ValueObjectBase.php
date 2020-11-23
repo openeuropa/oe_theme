@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
+use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
+
 /**
  * Value object base class.
  *
@@ -11,6 +13,8 @@ namespace Drupal\oe_theme\ValueObject;
  * extended by all value object implementations.
  */
 abstract class ValueObjectBase implements ValueObjectInterface {
+
+  use RefinableCacheableDependencyTrait;
 
   /**
    * {@inheritdoc}

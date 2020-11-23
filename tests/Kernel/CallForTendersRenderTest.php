@@ -24,7 +24,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'field_group',
     'composite_reference',
     'oe_time_caching',
@@ -33,6 +33,8 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     'oe_content_call_tenders',
     'oe_theme_content_call_tenders',
     'datetime_testing',
+    'file_link',
+    'options',
   ];
 
   /**
