@@ -23,7 +23,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected static $modules = [
+  public static $modules = [
     'options',
     'field_group',
     'composite_reference',
