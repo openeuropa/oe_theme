@@ -14,7 +14,7 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=drupal
   sparql:
-    image: openeuropa/triple-store-dev
+    image: registry.fpfis.eu/openeuropa/triple-store-dev
     pull: true
     environment:
       - SPARQL_UPDATE=true
