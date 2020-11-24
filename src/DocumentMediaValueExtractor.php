@@ -77,7 +77,7 @@ class DocumentMediaValueExtractor {
     }
 
     $file_link = $media->get('oe_media_remote_file')->first();
-    if ($media->get('oe_media_remote_file')->first()->getSize() == 0) {
+    if (!$file_link->getSize()) {
       return NULL;
     }
 

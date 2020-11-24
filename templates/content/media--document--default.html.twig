@@ -6,10 +6,10 @@
  * @see ./core/themes/stable/templates/content/media.html.twig
  */
 #}
-{% if file is not empty %}
+{% if file %}
   {{ pattern('file_translation', {
     'button_label': 'Download'|t,
-    'file': file|default([]),
+    'file': file,
     'translations': translations|default([]),
   }) }}
 {% endif %}
