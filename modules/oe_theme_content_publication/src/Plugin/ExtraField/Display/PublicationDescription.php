@@ -11,7 +11,7 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display EU contribution and its percentage of the total budget.
+ * Displays publication body and thumbnail fields.
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_publication_description",
@@ -25,7 +25,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PublicationDescription extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The entity type manager.
+   * The entity view builder.
    *
    * @var \Drupal\Core\Entity\EntityViewBuilderInterface
    */

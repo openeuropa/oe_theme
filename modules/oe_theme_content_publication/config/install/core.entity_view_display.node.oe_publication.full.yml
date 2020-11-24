@@ -8,7 +8,7 @@ dependencies:
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
     - field.field.node.oe_publication.oe_publication_contacts
-    - field.field.node.oe_publication.oe_publication_country
+    - field.field.node.oe_publication.oe_publication_countries
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
     - field.field.node.oe_publication.oe_publication_thumbnail
@@ -86,9 +86,9 @@ third_party_settings:
     group_details:
       children:
         - oe_reference_codes
-        - extra_field_oe_theme_content_publication_dates
+        - extra_field_oe_theme_content_publication_date
         - oe_departments
-        - oe_publication_country
+        - oe_publication_countries
       parent_name: group_item_details
       weight: 20
       format_type: oe_theme_helper_field_list_pattern
@@ -103,7 +103,7 @@ targetEntityType: node
 bundle: oe_publication
 mode: full
 content:
-  extra_field_oe_theme_content_publication_dates:
+  extra_field_oe_theme_content_publication_date:
     weight: 1
     region: content
     settings: {  }
@@ -139,7 +139,7 @@ content:
       view_mode: full
       link: ''
     third_party_settings: {  }
-  oe_publication_country:
+  oe_publication_countries:
     type: skos_concept_entity_reference_label
     weight: 3
     region: content
