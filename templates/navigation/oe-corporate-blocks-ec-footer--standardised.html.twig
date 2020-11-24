@@ -11,6 +11,54 @@
  */
 #}
 
+{# Section 2 will contain first general link and the social links. #}
+
+{% set _section_2 = [] %}
+
+{% set section = site_specific_footer.other_links|first %}
+
+{% set _section_2 = _section_2|merge([{
+  'title': section.links ? section.label,
+  'links': section.links ? ecl_footer_links(section.links),
+  'section_id': 2,
+  'title_class_name': 'ecl-footer-standardised__title--separator',
+}]) %}
+
+{% set _section_2 = _section_2|merge([{
+  'title': site_specific_footer.social_links ? 'Follow us on'|t,
+  'links': site_specific_footer.social_links ? ecl_footer_links(site_specific_footer.social_links),
+  'section_id': 2,
+  'list_class_name': 'ecl-footer-standardised__list--inline',
+  'title_class_name': 'ecl-footer-standardised__title--separator',
+}]) %}
+
+{# Section 3 will contain the remaining general links. #}
+
+{% set _section_3 = [] %}
+
+{% for section in site_specific_footer.other_links|slice(1) %}
+
+  {% set _section_3 = _section_3|merge([{
+    'title': section.links ? section.label,
+    'links': section.links ? ecl_footer_links(section.links),
+    'section_id': 3,
+    'title_class_name': 'ecl-footer-standardised__title--separator',
+  }]) %}
+
+{% endfor %}
+
+{# Section 2 and 3 needs minimum 2 items to display. #}
+
+{% set _section_3 = _section_3|merge([{
+  'section_id': 3,
+  'title_class_name': 'ecl-footer-standardised__title--separator',
+}]) %}
+
+{% set _section_2 = _section_2|merge([{
+  'section_id': 2,
+  'title_class_name': 'ecl-footer-standardised__title--separator',
+}]) %}
+
 {% set _sections = [
   {
     'title': {
@@ -22,27 +70,8 @@
     'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
     'section_id': 1,
   },
-  [
-    {
-      'section_id': 2,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
-    },
-    {
-      'section_id': 2,
-      'list_class_name': 'ecl-footer-standardised__list--inline',
-      'title_class_name': 'ecl-footer-standardised__title--separator',
-    },
-  ],
-  [
-    {
-      'section_id': 3,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
-    },
-    {
-      'section_id': 3,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
-    },
-  ],
+  _section_2,
+  _section_3,
   {
     'section_id': 6,
     'list_class_name': 'ecl-footer-standardised__list--condensed',

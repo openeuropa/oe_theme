@@ -676,6 +676,17 @@ class TwigExtension extends \Twig_Extension {
         ];
       }
 
+      if (!empty($link['social_network'])) {
+        $ecl_link['link']['icon_position'] = 'before';
+        $ecl_link += [
+          'icon' => [
+            'path' => $context['ecl_icon_path'],
+            'type' => 'branded',
+            'name' => $link['social_network'],
+          ],
+        ];
+      }
+
       $ecl_links[] = $ecl_link;
     }
 
