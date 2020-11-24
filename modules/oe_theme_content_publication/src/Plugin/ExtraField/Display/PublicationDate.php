@@ -28,7 +28,7 @@ class PublicationDate extends ExtraFieldDisplayFormattedBase implements Containe
   use StringTranslationTrait;
 
   /**
-   * PublicationDates constructor.
+   * PublicationDate constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

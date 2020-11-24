@@ -10,6 +10,7 @@ use Drupal\node\NodeInterface;
 use Drupal\oe_theme_helper\Event\NodeMetadataEvent;
 use Drupal\oe_theme_helper\PageHeaderMetadataEvents;
 use Drupal\oe_theme_helper\PageHeaderMetadataPluginBase;
+use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -120,6 +121,26 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
         ],
       ],
     ];
+  }
+
+  /**
+   * Format a list of SKOS references into a separated string.
+   *
+   * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
+   *   Field item list object.
+   * @param string $separator
+   *   String separator.
+   *
+   * @return string
+   *   Separated string.
+   */
+  protected function getSeparatedSkosMeta(SkosConceptReferenceFieldItemList $items, string $separator = ', '): string {
+    $list = [];
+    foreach ($items as $item) {
+      $entity = $item->entity;
+      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    return implode($separator, $list);
   }
 
 }
