@@ -34,7 +34,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    // Give anonymous users permission to view entities.
+    // Give anonymous users permission to view published entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
@@ -42,7 +42,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Tests that the Call for tenders page renders correctly.
+   * Tests that the Publication page renders correctly.
    */
   public function testPublicationRendering(): void {
     // Create a document for Publication.
@@ -207,7 +207,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert single Country field.
-    $node->set('oe_publication_country', 'http://publications.europa.eu/resource/authority/country/GBR');
+    $node->set('oe_publication_countries', 'http://publications.europa.eu/resource/authority/country/GBR');
     $node->save();
     $this->drupalGet($node->toUrl());
 
@@ -218,7 +218,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert multiple Country field.
-    $node->set('oe_publication_country', [
+    $node->set('oe_publication_countries', [
       ['target_id' => 'http://publications.europa.eu/resource/authority/country/GBR'],
       ['target_id' => 'http://publications.europa.eu/resource/authority/country/FRA'],
     ])->save();
@@ -255,7 +255,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert Thumbnail field.
     $media_image = $this->createMediaImage('publication_image');
-    $node->set('oe_publication_thumbnail', [$media_image])->save();
+    $node->set('oe_publication_thumbnail', $media_image)->save();
     $this->drupalGet($node->toUrl());
 
     $thumbnail_wrapper = $this->assertSession()->elementExists('css', $thumbnail_wrapper_selector);
@@ -266,7 +266,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert Contact field.
     $contact = $this->createContactEntity('publication_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
-    $node->set('oe_publication_contacts', [$contact])->save();
+    $node->set('oe_publication_contacts', $contact)->save();
     $this->drupalGet($node->toUrl());
 
     $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
