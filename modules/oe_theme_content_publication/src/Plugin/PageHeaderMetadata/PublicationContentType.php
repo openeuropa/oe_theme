@@ -78,7 +78,7 @@ class PublicationContentType extends NodeViewRoutesBase {
     $node = $this->getNode();
 
     $metadata = parent::getMetadata();
-    $metadata['metas'][] = $this->getSeparatedSkosMeta($node->get('oe_publication_type', ' | '));
+    $metadata['metas'][] = $this->getSeparatedSkosMeta($node->get('oe_publication_type'), ' | ');
 
     return $metadata;
   }
