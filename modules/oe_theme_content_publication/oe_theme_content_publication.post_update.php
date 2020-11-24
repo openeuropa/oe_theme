@@ -95,7 +95,7 @@ function oe_theme_content_publication_post_update_00006() {
     'weight' => 1,
     'data' => [
       'width' => 192,
-      'height' => NULL,
+      'height' => 192,
       'upscale' => FALSE,
     ],
   ];
