@@ -15,4 +15,4 @@ config_devel:
     - core.entity_view_display.node.oe_organisation.full
     - core.entity_view_display.node.oe_organisation.oe_contact
     - core.entity_view_display.node.oe_organisation.teaser
-    - core.entity_view_display.oe_contact.oe_organisation_reference.oe_details
+    - core.entity_view_display.oe_contact.oe_organisation_reference.full
