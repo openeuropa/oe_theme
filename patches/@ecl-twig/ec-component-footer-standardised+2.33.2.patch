@@ -1,0 +1,11 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-footer-standardised/ecl-footer-standardised.html.twig
++++ b/node_modules/@ecl-twig/ec-component-footer-standardised/ecl-footer-standardised.html.twig
+@@ -135,6 +135,7 @@
+           <li class="ecl-footer-standardised__list-item">
+              {% include '@ecl-twig/ec-component-link/ecl-link.html.twig' with _item|merge({
+                 link: _item.link|default({})|merge({ type: 'standalone' }),
++                icon: _item.icon|default({})|merge({ size: 'xs' }),
+                 extra_classes: 'ecl-footer-standardised__link',
+                 _compliance_: _compliance,
+                 _compliance_inner_check_: true

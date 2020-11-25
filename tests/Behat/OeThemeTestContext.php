@@ -343,24 +343,24 @@ class OeThemeTestContext extends RawDrupalContext {
    *   Wheres presence (TRUE) or absence (FALSE) should be asserted.
    */
   public function assertFooter(string $component_library, bool $presence): void {
-    // Map component library with the expected first footer title.
+    // Map component library with the expected logo count from markup.
     // This is necessary as the ECL gives us no other ways of determining
     // which footer is which.
-    $expected_title = [
-      'European Commission' => 'European Commission',
-      'European Union' => 'Contact the EU',
+    $expected = [
+      'European Commission' => 0,
+      'European Union' => 1,
     ];
 
-    // Make sure a corporate footer is present on the mapge.
-    $this->assertSession()->elementExists('css', 'h1.ecl-footer__section-title');
+    // Make sure a corporate footer is present on the page.
+    $this->assertSession()->elementExists('css', 'footer.ecl-footer-core');
 
-    // Get the actual first footer title.
     $page = $this->getSession()->getPage();
-    $actual_title = trim($page->find('css', 'h1.ecl-footer__section-title')->getText());
+    $logo = $page->findAll('css', 'footer.ecl-footer-core img.ecl-footer-core__logo-image-desktop');
 
     // Assert presence or absence of given footer block.
-    $title_found = $actual_title === $expected_title[$component_library];
-    if ($title_found !== $presence) {
+    $logo_found = count($logo) === $expected[$component_library];
+
+    if ($logo_found !== $presence) {
       $expectation = $presence ? 'present' : 'absent';
       throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
     }
