@@ -1,4 +1,4 @@
-langcode: en
+angcode: en
 status: true
 dependencies:
   config:
@@ -7,17 +7,17 @@ dependencies:
     - field.field.node.oe_publication.oe_author
     - field.field.node.oe_publication.oe_departments
     - field.field.node.oe_publication.oe_documents
-    - field.field.node.oe_publication.oe_publication_contact
-    - field.field.node.oe_publication.oe_publication_country
+    - field.field.node.oe_publication.oe_publication_contacts
+    - field.field.node.oe_publication.oe_publication_countries
     - field.field.node.oe_publication.oe_publication_date
     - field.field.node.oe_publication.oe_publication_last_updated
     - field.field.node.oe_publication.oe_publication_thumbnail
     - field.field.node.oe_publication.oe_publication_type
-    - field.field.node.oe_publication.oe_reference_code
+    - field.field.node.oe_publication.oe_reference_codes
     - field.field.node.oe_publication.oe_subject
     - field.field.node.oe_publication.oe_summary
     - field.field.node.oe_publication.oe_teaser
-    - image.style.oe_theme_list_item_2x
+    - image.style.oe_theme_publication_thumbnail
     - node.type.oe_publication
   module:
     - datetime
@@ -25,6 +25,8 @@ dependencies:
     - rdf_skos
     - text
     - user
+_core:
+  default_config_hash: HgHXP3Fy_a0OFBXmQeeJ1cLwNUCL9UZljeXx9hZaspc
 id: node.oe_publication.teaser
 targetEntityType: node
 bundle: oe_publication
@@ -58,7 +60,7 @@ content:
     region: content
     label: hidden
     settings:
-      image_style: oe_theme_list_item_2x
+      image_style: oe_theme_publication_thumbnail
     third_party_settings: {  }
   oe_publication_type:
     type: skos_concept_entity_reference_label
@@ -77,7 +79,8 @@ content:
     third_party_settings: {  }
 hidden:
   body: true
-  extra_field_oe_theme_content_publication_dates: true
+  extra_field_oe_theme_content_publication_date: true
+  extra_field_oe_theme_content_publication_description: true
   langcode: true
   links: true
   oe_content_content_owner: true
@@ -86,9 +89,9 @@ hidden:
   oe_content_short_title: true
   oe_departments: true
   oe_documents: true
-  oe_publication_contact: true
-  oe_publication_country: true
+  oe_publication_contacts: true
+  oe_publication_countries: true
   oe_publication_last_updated: true
-  oe_reference_code: true
+  oe_reference_codes: true
   oe_subject: true
   oe_summary: true
