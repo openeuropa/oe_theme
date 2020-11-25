@@ -64,7 +64,7 @@ function oe_theme_content_publication_node_view_alter(array &$build, EntityInter
  * if that organisation has any contact details and prevent it from rendering
  * if it does not.
  */
-function oe_theme_content_publication_preprocess_field__node__oe_publication_contacts(&$variables) {
+function oe_theme_content_publication_preprocess_field__node__oe_publication_contacts(array &$variables): void {
   if (empty($variables['items'])) {
     return;
   }
