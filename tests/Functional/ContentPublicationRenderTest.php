@@ -21,9 +21,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
    */
   public static $modules = [
     'config',
-    'block',
     'system',
-    'path',
     'oe_theme_helper',
     'oe_theme_content_publication',
   ];
@@ -279,6 +277,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     // Assert Organisation Contact.
     $document = $this->createMediaDocument('Publication document');
     $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', 1);
+    $organisation_contact->save();
 
     // Create an organisation without a contact.
     /** @var \Drupal\node\NodeInterface $node */
