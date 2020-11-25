@@ -28,6 +28,13 @@ class PublicationDate extends ExtraFieldDisplayFormattedBase implements Containe
   use StringTranslationTrait;
 
   /**
+   * Date formatter service instance.
+   *
+   * @var \Drupal\Core\Datetime\DateFormatterInterface
+   */
+  protected $dateFormatter;
+
+  /**
    * PublicationDate constructor.
    *
    * @param array $configuration

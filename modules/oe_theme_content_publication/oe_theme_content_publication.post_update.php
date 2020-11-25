@@ -67,7 +67,7 @@ function oe_theme_content_publication_post_update_00004(): void {
 }
 
 /**
- * Enable Field Group and OpenEuropa Theme Content Entity Contact modules.
+ * Enable OpenEuropa Theme Content Entity Contact module.
  */
 function oe_theme_content_publication_post_update_00005(): void {
   \Drupal::service('module_installer')->install(['oe_theme_content_entity_contact']);
@@ -109,7 +109,7 @@ function oe_theme_content_publication_post_update_00006() {
  * Create the 'full' entity view display on the publication CT.
  */
 function oe_theme_content_publication_post_update_00007() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00005_create_full_view_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00007_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_publication.full');
