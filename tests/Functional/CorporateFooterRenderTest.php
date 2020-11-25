@@ -266,7 +266,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section7');
 
     $actual = $section->find('css', 'div.ecl-footer-standardised__description');
-    $this->assertEquals('Discover more on <a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', $actual->getHtml());
+    $this->assertEquals('Discover more on <a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', trim($actual->getHtml()));
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'standardised');
