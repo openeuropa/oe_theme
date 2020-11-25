@@ -133,8 +133,12 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
 
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('bypass node access')
+      ->grantPermission('view published skos concept entities')
       ->grantPermission('view media')
       ->save();
+
+    module_load_include('install', 'oe_content');
+    oe_content_install();
 
     $this->installEntitySchema('rdf_entity');
     $this->installEntitySchema('skos_concept');
