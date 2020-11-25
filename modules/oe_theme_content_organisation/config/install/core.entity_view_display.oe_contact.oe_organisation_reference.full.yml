@@ -7,10 +7,10 @@ dependencies:
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   module:
     - entity_reference_revisions
-id: oe_contact.oe_organisation_reference.oe_details
+id: oe_contact.oe_organisation_reference.full
 targetEntityType: oe_contact
 bundle: oe_organisation_reference
-mode: oe_details
+mode: full
 content:
   oe_node_reference:
     type: entity_reference_revisions_entity_view
