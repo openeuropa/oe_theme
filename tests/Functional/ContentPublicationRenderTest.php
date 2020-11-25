@@ -21,7 +21,9 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
    */
   public static $modules = [
     'config',
+    'block',
     'system',
+    'path',
     'oe_theme_helper',
     'oe_theme_content_publication',
   ];
@@ -262,7 +264,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContains("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
     $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
 
-    // Assert General Contact.
+    // Assert Contact field.
     $contact = $this->createContactEntity('publication_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $node->set('oe_publication_contacts', $contact)->save();
     $this->drupalGet($node->toUrl());
@@ -270,12 +272,12 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    $contacts_element = $content->find('css', '#publication-contacts');
-    $this->assertContentHeader($contacts_element, 'Contact', 'contact');
-    $this->assertContactEntityDefaultDisplay($contacts_element, 'publication_contact');
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
+    $this->assertContentHeader($content_items[3], 'Contact', 'contact');
+    $this->assertContactEntityDefaultDisplay($content_items[3], 'publication_contact');
 
     // Assert Organisation Contact.
-    $document = $this->createMediaDocument('Publication document');
     $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', 1);
     $organisation_contact->save();
 
@@ -303,33 +305,14 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     ]);
     $publication_contact->save();
 
-    /** @var \Drupal\node\NodeInterface $node */
-    $publication = $this->getStorage('node')->create([
-      'type' => 'oe_publication',
-      'title' => 'Test Publication node',
-      'oe_documents' => [
-        [
-          'target_id' => (int) $document->id(),
-        ],
-      ],
-      'oe_publication_contacts' => [
-        [
-          'target_id' => (int) $publication_contact->id(),
-          'target_revision_id' => (int) $publication_contact->getRevisionId(),
-        ],
-      ],
-      'oe_summary' => 'Summary',
-      'oe_publication_date' => '2019-04-05',
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $publication->save();
-    $this->drupalGet($publication->toUrl());
+    $node->set('oe_publication_contacts', $publication_contact)->save();
+    $this->drupalGet($node->toUrl());
 
     // Assert that the contact is not being rendered since no organisation is
     // being referenced.
-    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
-    $this->assertEmpty($contacts_element->getText());
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
 
     // Add an organisation to the publication contact and assert it still
     // nothing gets rendered since the organisation does not have a
@@ -339,9 +322,10 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'target_revision_id' => $organisation->getRevisionId(),
     ]);
     $publication_contact->save();
-    $this->drupalGet($publication->toUrl());
-    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
-    $this->assertEmpty($contacts_element->getText());
+    $this->drupalGet($node->toUrl());
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
 
     // Add a contact to the organisation and assert it gets rendered
     // in the publication page.
@@ -350,16 +334,19 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'target_revision_id' => $organisation_contact->getRevisionId(),
     ]);
     $organisation->save();
-    $this->drupalGet($publication->toUrl());
-    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
-    $this->assertContactEntityDefaultDisplay($contacts_element, 'organisation_contact');
+    $this->drupalGet($node->toUrl());
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
+    $this->assertContactEntityDefaultDisplay($content_items[3], 'organisation_contact');
 
     // Delete organisation contact and assert we do not render the
     // publication contact anymore.
     $organisation_contact->delete();
-    $this->drupalGet($publication->toUrl());
-    $contacts_element = $this->getSession()->getPage()->find('css', '#publication-contacts');
-    $this->assertEmpty($contacts_element->getText());
+    $this->drupalGet($node->toUrl());
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
   }
 
 }
