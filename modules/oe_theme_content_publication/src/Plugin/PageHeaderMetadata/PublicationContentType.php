@@ -7,6 +7,7 @@ namespace Drupal\oe_theme_content_publication\Plugin\PageHeaderMetadata;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -78,9 +79,27 @@ class PublicationContentType extends NodeViewRoutesBase {
     $node = $this->getNode();
 
     $metadata = parent::getMetadata();
-    $metadata['metas'][] = $this->getSeparatedSkosMeta($node->get('oe_publication_type'), ' | ');
+    $metadata['metas'] = $this->getSkosMeta($node->get('oe_publication_type'));
 
     return $metadata;
+  }
+
+  /**
+   * Format a list of SKOS references into a separated string.
+   *
+   * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
+   *   Field item list object.
+   *
+   * @return array
+   *   List of items.
+   */
+  protected function getSkosMeta(SkosConceptReferenceFieldItemList $items): array {
+    $list = [];
+    foreach ($items as $item) {
+      $entity = $item->entity;
+      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    return $list;
   }
 
 }
