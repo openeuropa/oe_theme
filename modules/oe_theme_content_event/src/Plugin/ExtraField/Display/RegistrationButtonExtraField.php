@@ -9,6 +9,7 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -103,7 +104,7 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
       // Field value is stored in UTC timezone. So set proper timezone for the
       // request date.
-      $request_datetime->setTimezone(new \DateTimeZone('UTC'));
+      $request_datetime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
 
       // If the request time is on the same day as the start day we need to
       // show different message.
@@ -137,7 +138,7 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
       // Field value is stored in UTC timezone. So set proper timezone for the
       // request date.
-      $request_datetime->setTimezone(new \DateTimeZone('UTC'));
+      $request_datetime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
 
       // If the request time is on the same day as the end day we need to
       // show different message.

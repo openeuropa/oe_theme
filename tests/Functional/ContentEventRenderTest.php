@@ -141,12 +141,12 @@ class ContentEventRenderTest extends BrowserTestBase {
   public function testEventRegistrationDateDescription(): void {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-01 16:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $start_date = (clone $static_time)->modify('+ 15 days');
-    $end_date = (clone $static_time)->modify('+ 20 days');
+    $start_date = (clone $static_time)->modify('+15 days');
+    $end_date = (clone $static_time)->modify('+20 days');
 
     // Registration will be started today.
-    $registration_start_date = (clone $static_time)->modify('+ 5 hours');
-    $registration_end_date = (clone $static_time)->modify('+ 10 days');
+    $registration_start_date = (clone $static_time)->modify('+5 hours');
+    $registration_end_date = (clone $static_time)->modify('+10 days');
 
     $time = \Drupal::time();
     $time->freezeTime();
@@ -188,8 +188,8 @@ class ContentEventRenderTest extends BrowserTestBase {
     $this->assertEquals('Registration will open today, 2 February 2020, 08:00.', $registration_info_content->getText());
 
     // Assert registration date description when registration will end today.
-    $registration_start_date = (clone $static_time)->modify('- 10 days');
-    $registration_end_date = (clone $static_time)->modify('+ 1 hours');
+    $registration_start_date = (clone $static_time)->modify('-10 days');
+    $registration_end_date = (clone $static_time)->modify('+1 hours');
     $node->set('oe_event_registration_dates', [
       'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
