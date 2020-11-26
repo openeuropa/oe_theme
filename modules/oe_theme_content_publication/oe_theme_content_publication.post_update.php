@@ -143,7 +143,7 @@ function oe_theme_content_publication_post_update_00008(): void {
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
   // Take over teaser view display, regardless if it already exists or not.
-  $view_display = EntityViewDisplay::load($display_values['id']);
+  $view_display = $storage->load($display_values['id']);
   if ($view_display) {
     $display = $storage->updateFromStorageRecord($view_display, $display_values);
     $display->save();
