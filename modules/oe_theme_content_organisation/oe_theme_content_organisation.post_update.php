@@ -62,7 +62,7 @@ function oe_theme_content_organisation_post_update_00002() {
  * Create the oe_contact 'details' view mode for organisation contacts.
  */
 function oe_theme_content_organisation_post_update_00003() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/post_updates/00003_add_organisation_reference_contact_display');
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_organisation') . '/config/post_updates/00003_add_organisation_reference_contact_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.oe_contact.oe_organisation_reference.full');
