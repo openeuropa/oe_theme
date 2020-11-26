@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.oe_contact.full
     - field.field.oe_contact.oe_organisation_reference.oe_node_reference
     - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
   module:
