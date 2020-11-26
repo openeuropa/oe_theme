@@ -139,7 +139,6 @@ class ContentEventRenderTest extends BrowserTestBase {
    * Test registration button description.
    */
   public function testEventRegistrationDateDescription(): void {
-    // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-01 16:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $start_date = (clone $static_time)->modify('+15 days');
     $end_date = (clone $static_time)->modify('+20 days');
@@ -148,6 +147,7 @@ class ContentEventRenderTest extends BrowserTestBase {
     $registration_start_date = (clone $static_time)->modify('+5 hours');
     $registration_end_date = (clone $static_time)->modify('+10 days');
 
+    // Freeze the time at a specific point.
     $time = \Drupal::time();
     $time->freezeTime();
     $time->setTime($static_time->getTimestamp());
@@ -187,6 +187,11 @@ class ContentEventRenderTest extends BrowserTestBase {
     $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
     $this->assertEquals('Registration will open today, 2 February 2020, 08:00.', $registration_info_content->getText());
 
+    $this->setTimezone('America/New_York');
+    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Registration will open today, 1 February 2020, 16:00.', $registration_info_content->getText());
+
     // Assert registration date description when registration will end today.
     $registration_start_date = (clone $static_time)->modify('-10 days');
     $registration_end_date = (clone $static_time)->modify('+1 hours');
@@ -194,8 +199,26 @@ class ContentEventRenderTest extends BrowserTestBase {
       'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ])->save();
+    $this->setTimezone('Australia/Sydney');
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Book your seat, the registration will end today, 2 February 2020, 04:00', $registration_info_content->getText());
+
+    $this->setTimezone('America/New_York');
+    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Book your seat, the registration will end today, 1 February 2020, 12:00', $registration_info_content->getText());
+  }
+
+  /**
+   * Sets site's timezone.
+   *
+   * @param string $timezone
+   *   Timezone.
+   */
+  protected function setTimezone(string $timezone): void {
+    \Drupal::configFactory()->getEditable('system.date')
+      ->set('timezone.default', $timezone)
+      ->save();
   }
 
 }
