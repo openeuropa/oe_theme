@@ -4,10 +4,17 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_publication\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\file\FileInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -27,9 +34,9 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
   /**
    * The entity view builder.
    *
-   * @var \Drupal\Core\Entity\EntityViewBuilderInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $viewBuilder;
+  protected $entityTypeManager;
 
   /**
    * PublicationDescription constructor.
@@ -45,7 +52,7 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->viewBuilder = $entity_type_manager->getViewBuilder('node');
+    $this->entityTypeManager = $entity_type_manager;
   }
 
   /**
@@ -73,22 +80,63 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
     ];
 
     if (!$entity->get('body')->isEmpty()) {
-      $build['#body'] = $this->viewBuilder->viewField($entity->get('body'), [
+      $build['#body'] = $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('body'), [
         'label' => 'hidden',
       ]);
     }
 
-    if (!$entity->get('oe_publication_thumbnail')->isEmpty()) {
-      $build['#image'] = $this->viewBuilder->viewField($entity->get('oe_publication_thumbnail'), [
-        'label' => 'hidden',
-        'type' => 'media_thumbnail',
-        'settings' => [
-          'image_style' => 'oe_theme_publication_thumbnail',
-        ],
-      ]);
+    $media = $this->getThumbnailFieldMedia($entity);
+    if (!$media) {
+      return $build;
     }
+
+    $cacheability = CacheableMetadata::createFromRenderArray($build);
+    $cacheability->addCacheableDependency($media);
+    $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+
+    if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
+      $cacheability->applyTo($build);
+      return $build;
+    }
+
+    $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_publication_thumbnail');
+    $build['#image'] = $image;
+
+    $cacheability->addCacheableDependency($image);
+    $cacheability->addCacheableDependency($thumbnail->entity);
+    $cacheability->addCacheableDependency($this->entityTypeManager->getStorage('media_type')->load($media->bundle()));
+    $cacheability->applyTo($build);
 
     return $build;
+  }
+
+  /**
+   * Get media from the Thumbnail field.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Publication node instance.
+   *
+   * @return \Drupal\media\MediaInterface|null
+   *   Media entity or NULL.
+   */
+  protected function getThumbnailFieldMedia(ContentEntityInterface $entity): ?MediaInterface {
+    if ($entity->get('oe_publication_thumbnail')->isEmpty()) {
+      return NULL;
+    }
+
+    $media = $entity->get('oe_publication_thumbnail')->entity;
+    if (!$media instanceof MediaInterface) {
+      // The media entity is not available anymore, bail out.
+      return NULL;
+    }
+
+    // Ensure that media has correct content.
+    $source = $media->getSource();
+    if (!$source instanceof MediaAvPortalPhotoSource && !$source instanceof Image) {
+      return NULL;
+    }
+
+    return $media;
   }
 
 }

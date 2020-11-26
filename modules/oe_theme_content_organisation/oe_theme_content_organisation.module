@@ -8,7 +8,6 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
@@ -56,8 +55,10 @@ function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_naviga
     return;
   }
 
-  $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+  $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+  $variables['image'] = $image;
 
+  $cacheability->addCacheableDependency($image);
   $cacheability->addCacheableDependency($thumbnail->entity);
   $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
   $cacheability->applyTo($variables);

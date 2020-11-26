@@ -250,7 +250,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-md-9 .ecl-editor');
     $this->assertCount(1, $body);
     $this->assertEquals('Publication body text', $body[0]->getText());
-    $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-md-3';
+    $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-md-3 figure';
     $this->assertSession()->elementNotExists('css', $thumbnail_wrapper_selector);
 
     // Assert Thumbnail field.
