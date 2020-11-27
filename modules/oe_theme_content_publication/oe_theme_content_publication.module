@@ -11,6 +11,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 
 /**
  * Implements hook_theme().
@@ -86,7 +87,7 @@ function oe_theme_content_publication_preprocess_field__node__oe_publication_con
     $cacheable_metadata->addCacheableDependency($organisation);
 
     $organisation_contact = $organisation->oe_organisation_contact->entity;
-    if (!$organisation_contact instanceof ContentEntityInterface) {
+    if (!$organisation_contact instanceof ContactInterface) {
       // Do not render the contact if the organisation does not have contact
       // details of its own.
       $item['content']['#access'] = FALSE;
