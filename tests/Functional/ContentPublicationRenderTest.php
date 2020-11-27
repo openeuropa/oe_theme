@@ -278,7 +278,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContactEntityDefaultDisplay($content_items[3], 'publication_contact');
 
     // Assert Organisation Contact.
-    $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', 1);
+    $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $organisation_contact->save();
 
     // Create an organisation without a contact.
@@ -317,10 +317,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     // Add an organisation to the publication contact and assert it still
     // nothing gets rendered since the organisation does not have a
     // contact itself.
-    $publication_contact->set('oe_node_reference', [
-      'target_id' => $organisation->id(),
-      'target_revision_id' => $organisation->getRevisionId(),
-    ]);
+    $publication_contact->set('oe_node_reference', $organisation);
     $publication_contact->save();
     $this->drupalGet($node->toUrl());
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
@@ -329,10 +326,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Add a contact to the organisation and assert it gets rendered
     // in the publication page.
-    $organisation->set('oe_organisation_contact', [
-      'target_id' => $organisation_contact->id(),
-      'target_revision_id' => $organisation_contact->getRevisionId(),
-    ]);
+    $organisation->set('oe_organisation_contact', $organisation_contact);
     $organisation->save();
     $this->drupalGet($node->toUrl());
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
