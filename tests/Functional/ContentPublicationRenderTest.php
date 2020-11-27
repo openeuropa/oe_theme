@@ -279,7 +279,6 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert Organisation Contact.
     $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
-    $organisation_contact->save();
 
     // Create an organisation without a contact.
     /** @var \Drupal\node\NodeInterface $node */
