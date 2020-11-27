@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Config\FileStorage;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Add a date format for the Publication page header metadata.
@@ -66,10 +67,49 @@ function oe_theme_content_publication_post_update_00004(): void {
 }
 
 /**
+ * Enable OpenEuropa Theme Content Entity Contact module.
+ */
+function oe_theme_content_publication_post_update_00005(): void {
+  \Drupal::service('module_installer')->install(['oe_theme_content_entity_contact']);
+}
+
+/**
+ * Add Publication thumbnail image style.
+ */
+function oe_theme_content_publication_post_update_00006() {
+  // If the image style already exists, we bail out.
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_publication_thumbnail');
+  if ($style) {
+    return 'The image style was previously created.';
+  }
+
+  // Create image style.
+  $image_style = ImageStyle::create([
+    'name' => 'oe_theme_publication_thumbnail',
+    'label' => 'Publication thumbnail',
+  ]);
+
+  // Create effect.
+  $effect = [
+    'id' => 'image_scale',
+    'weight' => 1,
+    'data' => [
+      'width' => 192,
+      'height' => 192,
+      'upscale' => FALSE,
+    ],
+  ];
+
+  // Add effect to the image style and save.
+  $image_style->addImageEffect($effect);
+  $image_style->save();
+}
+
+/**
  * Create the 'full' entity view display on the publication CT.
  */
-function oe_theme_content_publication_post_update_00005() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00005_create_full_view_display');
+function oe_theme_content_publication_post_update_00007() {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00007_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_publication.full');

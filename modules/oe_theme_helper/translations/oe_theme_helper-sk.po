@@ -119,6 +119,9 @@ msgstr "Účastníci/účastníčky"
 msgid "Country"
 msgstr "Krajina"
 
+msgid "Countries"
+msgstr "Krajiny"
+
 msgid "EU Organisation"
 msgstr "Organizácia EÚ"
 
@@ -214,3 +217,24 @@ msgstr "Výzva na predkladanie návrhov"
 
 msgid "Funding programme"
 msgstr "Program financovania"
+
+msgid "Last updated on: @date"
+msgstr "Naposledy aktualizované: @date"
+
+msgid "File"
+msgstr "Súbor"
+
+msgid "Files"
+msgstr "Súbory"
+
+msgid "Identification"
+msgstr "Identifikácia"
+
+msgid "Identifications"
+msgstr "Identifikácie"
+
+msgid "Related department"
+msgstr "Súvisiaci odbor"
+
+msgid "Related departments"
+msgstr "Súvisiace odbory"

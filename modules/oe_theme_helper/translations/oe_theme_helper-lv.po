@@ -119,6 +119,9 @@ msgstr "Dalībnieki"
 msgid "Country"
 msgstr "Valsts"
 
+msgid "Countries"
+msgstr "Valstis"
+
 msgid "EU Organisation"
 msgstr "ES organizācija"
 
@@ -214,3 +217,24 @@ msgstr "Uzaicinājums iesniegt priekšlikumus"
 
 msgid "Funding programme"
 msgstr "Finansējuma programma"
+
+msgid "Last updated on: @date"
+msgstr "Pēdējoreiz atjaunināts: @date"
+
+msgid "File"
+msgstr "Fails"
+
+msgid "Files"
+msgstr "Faili"
+
+msgid "Identification"
+msgstr "Identifikācija"
+
+msgid "Identifications"
+msgstr "Identifikācija"
+
+msgid "Related department"
+msgstr "Saistītā struktūrvienība"
+
+msgid "Related departments"
+msgstr "Saistītās struktūrvienības"
