@@ -23,7 +23,7 @@ function oe_theme_content_entity_contact_oe_contact_view_alter(array &$build, Co
     ];
 
     foreach ($label_overrides as $name => $label_override) {
-      if ($entity->hasField($name) &&!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
+      if ($entity->hasField($name) && !$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
         $build[$name]['#title'] = $label_override;
       }
     }
