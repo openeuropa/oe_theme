@@ -77,7 +77,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = "Abstract | State aid | 15 April 2020\n | Arab Common Market | ACP–EU Joint Parliamentary Assembly";
+    $expected_values['meta'] = "Abstract, State aid | 15 April 2020\n | Arab Common Market, ACP–EU Joint Parliamentary Assembly";
     $assert->assertPattern($expected_values, $html);
   }
 
