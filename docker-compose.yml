@@ -15,13 +15,12 @@ services:
       # For Mac users: sudo ifconfig en0 alias 10.254.254.254 255.255.255.0
       # For Linux users: sudo ip addr add 10.254.254.254/32 dev lo label lo:1
   mysql:
-    # @todo: change this back to percona as soon as FPFISSUPP-8617 is resolved.
-    # image: percona/percona-server:5.6
-    image: mariadb
+    image: percona/percona-server:5.7
+    command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-#    ports:
-#      - 3306:3306
+  #    ports:
+  #      - 3306:3306
   # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
     image: selenium/standalone-chrome-debug:3.11
@@ -43,12 +42,12 @@ services:
       - ./:/home/node/app
     command: "sleep infinity"
   sparql:
-      image: openeuropa/triple-store-dev:1.5.0
-      environment:
+    image: openeuropa/triple-store-dev
+    environment:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
-      ports:
-        - "8890:8890"
+    ports:
+      - "8890:8890"
 
 #### Mac users: uncomment the "volumes" key to enable the NFS file sharing. You can find more information about Docker for Mac here: https://github.com/openeuropa/openeuropa/blob/master/docs/starting/tooling.md#using-docker-on-macos
 
