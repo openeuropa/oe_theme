@@ -27,7 +27,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
       'title' => 'Test Publication node',
       'oe_teaser' => 'Test teaser text.',
       'oe_publication_type' => [
-        'http://publications.europa.eu/resource/authority/resource-type/ACT_DEL',
+        'http://publications.europa.eu/resource/authority/resource-type/DIR_DEL',
       ],
       'oe_publication_date' => [
         'value' => '2020-04-15',
@@ -46,7 +46,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Test Publication node',
-      'meta' => "Delegated act | 15 April 2020\n | Arab Common Market",
+      'meta' => "Delegated directive | 15 April 2020\n | Arab Common Market",
       'description' => 'Test teaser text.',
     ];
     $assert->assertPattern($expected_values, $html);
@@ -68,12 +68,18 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $node->set('oe_publication_type', [
       'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
       'http://publications.europa.eu/resource/authority/resource-type/AID_STATE',
-    ])->save();
+    ]);
+    // Add a second responsible department.
+    $node->set('oe_author', [
+      'http://publications.europa.eu/resource/authority/corporate-body/ACM',
+      'http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JPA',
+    ]);
+    $node->save();
 
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = "Abstract, State aid | 15 April 2020\n | Arab Common Market";
+    $expected_values['meta'] = "Abstract | State aid | 15 April 2020\n | Arab Common Market | ACP–EU Joint Parliamentary Assembly";
     $assert->assertPattern($expected_values, $html);
   }
 
