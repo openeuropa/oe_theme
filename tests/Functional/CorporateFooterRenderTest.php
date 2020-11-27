@@ -507,6 +507,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
 
@@ -609,6 +610,50 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = ['label' => 'Custom related 1', 'href' => 'http://example.com/custom-related-1'];
     $this->assertListLink($actual, 'standardised', $expected);
+
+    // Assert deleting links removes the section.
+    $this->deleteEntity('footer_link_general', 'custom-about-1');
+    $this->drupalGet('<front>');
+
+    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section2');
+
+    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $section);
+
+    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $this->assertEquals('Contact us', $actual->getText());
+
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $this->assertListLink($actual, 'standardised', $expected);
+
+    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
+
+    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $this->assertNotEquals('About us', $actual->getText());
+    $this->assertEquals('Follow us on', $actual->getText());
+
+    $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $this->assertNotEquals('Custom about 1', $social_link->getText());
+    $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
+    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
+    $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
+    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $this->assertSocialLink($social_label, $social_link, $expected);
+
+    // Assert deleting sections in backend is reflected in the footer.
+    $this->deleteEntity('footer_link_section', 'about_us');
+    $this->deleteEntity('footer_link_section', 'contact_us');
+    $this->deleteEntity('footer_link_section', 'related_sites');
+    $this->deleteEntity('footer_link_section', 'section_1');
+    $this->deleteEntity('footer_link_social', 'social-1');
+    $this->deleteEntity('footer_link_social', 'social-2');
+    $this->drupalGet('<front>');
+
+    $section = $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section2');
+    $section = $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
   }
 
   /**
@@ -803,6 +848,19 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     }
 
     $section->save();
+  }
+
+  /**
+   * Delete a entity given its type and id.
+   *
+   * @param string $type
+   *   The entity type.
+   * @param string $id
+   *   The section id.
+   */
+  protected function deleteEntity(string $type, string $id): void {
+    $entity = \Drupal::entityTypeManager()->getStorage($type)->load($id);
+    $entity->delete();
   }
 
 }
