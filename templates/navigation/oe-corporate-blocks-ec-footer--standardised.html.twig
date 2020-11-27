@@ -76,42 +76,44 @@
   }]) %}
 {% endif %}
 
-{% set _sections = [
-  {
-    'title': {
+{% block content %}
+  {% set _sections = [
+    {
+      'title': {
       'link': {
         'label': site_specific_footer.site_identity,
         'path': url('<front>'),
       }
     },
-    'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
-    'section_id': 1,
-  },
-  _section_2,
-  _section_3,
-  {
-    'section_id': 6,
-    'list_class_name': 'ecl-footer-standardised__list--condensed',
-  },
-  {
-    'title': {
+      'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+      'section_id': 1,
+    },
+    _section_2,
+    _section_3,
+    {
+      'section_id': 6,
+      'list_class_name': 'ecl-footer-standardised__list--condensed',
+    },
+    {
+      'title': {
       'link': {
         'label': corporate_footer.corporate_site_link.label,
         'path': corporate_footer.corporate_site_link.href,
       },
     },
-    'section_id': 7,
-  },
-  {
-    'links': ecl_footer_links(corporate_footer.service_navigation),
-    'section_id': 8,
-  },
-  {
-    'links': ecl_footer_links(corporate_footer.legal_navigation),
-    'section_id': 9,
-  },
-] %}
+      'section_id': 7,
+    },
+    {
+      'links': ecl_footer_links(corporate_footer.service_navigation),
+      'section_id': 8,
+    },
+    {
+      'links': ecl_footer_links(corporate_footer.legal_navigation),
+      'section_id': 9,
+    },
+  ] %}
 
-{% include '@ecl-twig/footer-standardised' with {
-  'sections': _sections,
-} %}
+  {% include '@ecl-twig/footer-standardised' with {
+    'sections': _sections,
+  } %}
+{% endblock %}
