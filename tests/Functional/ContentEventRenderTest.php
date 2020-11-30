@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\BrowserTestBase;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 
 /**
  * Tests that our Event content type render.
@@ -31,6 +33,7 @@ class ContentEventRenderTest extends BrowserTestBase {
     'oe_theme_content_event',
     'content_translation',
     'oe_multilingual',
+    'datetime_testing',
   ];
 
   /**
@@ -130,6 +133,92 @@ class ContentEventRenderTest extends BrowserTestBase {
       $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
+  }
+
+  /**
+   * Test registration button description.
+   */
+  public function testEventRegistrationDateDescription(): void {
+    $static_time = new DrupalDateTime('2020-02-01 16:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $start_date = (clone $static_time)->modify('+15 days');
+    $end_date = (clone $static_time)->modify('+20 days');
+
+    // Registration will be started today.
+    $registration_start_date = (clone $static_time)->modify('+5 hours');
+    $registration_end_date = (clone $static_time)->modify('+10 days');
+
+    // Freeze the time at a specific point.
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
+    // Create a Event node.
+    $node = $this->nodeStorage->create([
+      'type' => 'oe_event',
+      'title' => 'Test event node',
+      'oe_event_type' => 'http://publications.europa.eu/resource/authority/public-event-type/COMPETITION_AWARD_CEREMONY',
+      'oe_teaser' => 'Event teaser',
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_event_status' => 'as_planned',
+      'oe_event_dates' => [
+        'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      ],
+      'oe_event_languages' => [
+        ['target_id' => 'http://publications.europa.eu/resource/authority/language/EST'],
+        ['target_id' => 'http://publications.europa.eu/resource/authority/language/FRA'],
+      ],
+      'oe_event_registration_dates' => [
+        'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      ],
+      'oe_event_entrance_fee' => 'fee',
+      'oe_event_registration_capacity' => 'capacity',
+      'oe_event_registration_url' => 'http://www.example.com/registation',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert registration date description when registration will start today.
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
+    $this->assertEquals('Registration will open today, 2 February 2020, 08:00.', $registration_info_content->getText());
+
+    $this->setTimezone('America/New_York');
+    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Registration will open today, 1 February 2020, 16:00.', $registration_info_content->getText());
+
+    // Assert registration date description when registration will end today.
+    $registration_start_date = (clone $static_time)->modify('-10 days');
+    $registration_end_date = (clone $static_time)->modify('+1 hours');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->setTimezone('Australia/Sydney');
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Book your seat, the registration will end today, 2 February 2020, 04:00', $registration_info_content->getText());
+
+    $this->setTimezone('America/New_York');
+    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Book your seat, the registration will end today, 1 February 2020, 12:00', $registration_info_content->getText());
+  }
+
+  /**
+   * Sets site's timezone.
+   *
+   * @param string $timezone
+   *   Timezone.
+   */
+  protected function setTimezone(string $timezone): void {
+    \Drupal::configFactory()->getEditable('system.date')
+      ->set('timezone.default', $timezone)
+      ->save();
   }
 
 }
