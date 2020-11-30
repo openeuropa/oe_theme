@@ -135,12 +135,14 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertTrue($datepickers[0]->isVisible());
     $this->assertFalse($datepickers[1]->isVisible());
 
+    $now = new \DateTime('now', new \DateTimeZone('Europe/Brussels'));
+
     // Assert datepicker rendering.
     $month_select = $datepickers[0]->find('css', 'select.pika-select-month');
-    $current_moth = (int) date('n');
-    $this->assertEquals($current_moth - 1, $month_select->getValue());
+    $current_month = $now->format('n');
+    $this->assertEquals($current_month - 1, $month_select->getValue());
     $year_select = $datepickers[0]->find('css', 'select.pika-select-year');
-    $this->assertEquals(date('Y'), $year_select->getValue());
+    $this->assertEquals($now->format('Y'), $year_select->getValue());
     $table = $datepickers[0]->find('css', 'table.pika-table');
     $rows = $table->findAll('css', 'tr');
     // Assert days are present.
@@ -162,7 +164,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Pick a date and assert it was set.
     $day = $datepickers[0]->find('css', 'button[data-pika-day=1]');
     $day->click();
-    $this->assertEquals(date('Y-m') . '-01', $input->getValue());
+    $this->assertEquals($now->format('Y-m') . '-01', $input->getValue());
     // Give the datepicker a chance to hide.
     sleep(1);
     $this->assertFalse($datepickers[0]->isVisible());
@@ -176,7 +178,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Submit the form.
     $this->getSession()->getPage()->pressButton('Submit');
-    $this->assertSession()->pageTextContains('Date 0 is 1 ' . date('F Y'));
+    $this->assertSession()->pageTextContains('Date 0 is 1 ' . $now->format('F Y'));
     $this->assertSession()->pageTextContains('Date 1 is 10 May 2020');
   }
 
