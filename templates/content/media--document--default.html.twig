@@ -6,8 +6,10 @@
  * @see ./core/themes/stable/templates/content/media.html.twig
  */
 #}
-{{ pattern('file_translation', {
-  'button_label': 'Download'|t,
-  'file': file|default([]),
-  'translations': translations|default([]),
-}) }}
+{% if file %}
+  {{ pattern('file_translation', {
+    'button_label': 'Download'|t,
+    'file': file,
+    'translations': translations|default([]),
+  }) }}
+{% endif %}

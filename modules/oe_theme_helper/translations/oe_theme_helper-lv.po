@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Sākuma datums"
 msgid "Deadline date"
 msgstr "Termiņa datums"
 
+msgid "Deadline dates"
+msgstr "Termiņa datumi"
+
 msgid "Publication date"
 msgstr "Publikācijas datums"
 
@@ -146,14 +148,8 @@ msgstr "Sīkāka informācija"
 msgid "Status"
 msgstr "Statuss"
 
-msgid "Contact organisation"
-msgstr "Sazināties ar organizāciju"
-
 msgid "Publication"
 msgstr "Publikācija"
-
-msgid "Publication date"
-msgstr "Publikācijas datums"
 
 msgid "Description"
 msgstr "Apraksts"
@@ -217,6 +213,24 @@ msgstr "Uzaicinājums iesniegt priekšlikumus"
 
 msgid "Funding programme"
 msgstr "Finansējuma programma"
+
+msgid "Deadline model"
+msgstr "Termiņa veids"
+
+msgid "Single-stage"
+msgstr "Viens posms"
+
+msgid "Two-stage"
+msgstr "Divos posmos"
+
+msgid "Multiple cut-off"
+msgstr "Vairāki termiņi"
+
+msgid "Permanent"
+msgstr "Pastāvīgs"
+
+msgid "in"
+msgstr "oficiālajā laikrakstā"
 
 msgid "Last updated on: @date"
 msgstr "Pēdējoreiz atjaunināts: @date"

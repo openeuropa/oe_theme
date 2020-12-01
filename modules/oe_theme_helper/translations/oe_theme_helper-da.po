@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Startdato"
 msgid "Deadline date"
 msgstr "Tidsfrist (dato)"
 
+msgid "Deadline dates"
+msgstr "Tidsfrist (datoer)"
+
 msgid "Publication date"
 msgstr "Dato for offentliggørelse"
 
@@ -146,14 +148,8 @@ msgstr "Detaljer"
 msgid "Status"
 msgstr "Status"
 
-msgid "Contact organisation"
-msgstr "Kontaktorganisation"
-
 msgid "Publication"
 msgstr "Offentliggørelse"
-
-msgid "Publication date"
-msgstr "Dato for offentliggørelse"
 
 msgid "Description"
 msgstr "Beskrivelse"
@@ -217,6 +213,24 @@ msgstr "Indkaldelse af forslag"
 
 msgid "Funding programme"
 msgstr "Finansieringsprogram"
+
+msgid "Deadline model"
+msgstr "Tidsfristmodel"
+
+msgid "Single-stage"
+msgstr "Et-trins"
+
+msgid "Two-stage"
+msgstr "To-trins"
+
+msgid "Multiple cut-off"
+msgstr "Flere faser"
+
+msgid "Permanent"
+msgstr "Permanent"
+
+msgid "in"
+msgstr "i"
 
 msgid "Last updated on: @date"
 msgstr "Senest opdateret den: @date"

@@ -198,7 +198,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    *   Expected value.
    */
   protected function assertStatusValue(NodeElement $element, string $expected): void {
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/span[@class="ecl-u-text-uppercase"]';
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-tenders-status ecl-u-text-uppercase"]';
     $this->assertSession()->elementExists('xpath', $selector);
     $this->assertEquals($expected, $element->find('xpath', $selector)->getText());
   }
