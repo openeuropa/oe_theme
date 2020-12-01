@@ -352,10 +352,10 @@ class OeThemeTestContext extends RawDrupalContext {
     ];
 
     // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-footer-core');
+    $this->assertSession()->elementExists('css', 'footer.ecl-footer-' . $this->getEclBranding());
 
     $page = $this->getSession()->getPage();
-    $logo = $page->findAll('css', 'footer.ecl-footer-core img.ecl-footer-core__logo-image-desktop');
+    $logo = $page->findAll('css', 'footer.ecl-footer-' . $this->getEclBranding() . ' img.ecl-footer-' . $this->getEclBranding() . '__logo-image-desktop');
 
     // Assert presence or absence of given footer block.
     $logo_found = count($logo) === $expected[$component_library];
