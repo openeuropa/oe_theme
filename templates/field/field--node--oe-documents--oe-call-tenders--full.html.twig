@@ -6,6 +6,4 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% for item in items %}
-  <div{{ item.attributes.addClass('ecl-u-mt-m') }}>{{ item.content }}</div>
-{% endfor %}
+{%- include 'field--multiple-values.html.twig' -%}

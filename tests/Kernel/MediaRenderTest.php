@@ -224,6 +224,30 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         $assert->assertPattern($expected, $output);
       }
     }
+
+    // Create a document media with non-existing remote file.
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = $this->mediaStorage->create([
+      'bundle' => 'document',
+      'name' => 'test document en',
+      'oe_media_file_type' => 'remote',
+      'oe_media_remote_file' => [
+        'uri' => 'https://www.google.com/nofile.pdf',
+      ],
+    ]);
+
+    $media->save();
+
+    // Assert that the media is not rendered if there is no file available.
+    foreach ($view_modes as $view_mode) {
+      $build = $this->mediaViewBuilder->view($media, $view_mode);
+      $output = $this->renderRoot($build);
+
+      $expected = [];
+
+      $assert = new FileTranslationAssert();
+      $assert->assertPattern($expected, $output);
+    }
   }
 
 }

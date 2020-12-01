@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Начална дата"
 msgid "Deadline date"
 msgstr "Краен срок"
 
+msgid "Deadline dates"
+msgstr "Крайни срокове"
+
 msgid "Publication date"
 msgstr "Дата на публикуване"
 
@@ -146,14 +148,8 @@ msgstr "Данни"
 msgid "Status"
 msgstr "Статус"
 
-msgid "Contact organisation"
-msgstr "Връзка с организацията"
-
 msgid "Publication"
 msgstr "Публикация"
-
-msgid "Publication date"
-msgstr "Дата на публикуване"
 
 msgid "Description"
 msgstr "Описание"
@@ -217,6 +213,24 @@ msgstr "Покана за представяне на предложения"
 
 msgid "Funding programme"
 msgstr "Програма за финансиране"
+
+msgid "Deadline model"
+msgstr "Модел на крайния срок"
+
+msgid "Single-stage"
+msgstr "На един етап"
+
+msgid "Two-stage"
+msgstr "На два етапа"
+
+msgid "Multiple cut-off"
+msgstr "Няколко крайни срока"
+
+msgid "Permanent"
+msgstr "Постоянен"
+
+msgid "in"
+msgstr "в"
 
 msgid "Last updated on: @date"
 msgstr "Последна актуализация на: @date"

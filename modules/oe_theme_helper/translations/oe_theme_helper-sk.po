@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Deň otvorenia"
 msgid "Deadline date"
 msgstr "Lehota (dátum)"
 
+msgid "Deadline dates"
+msgstr "Lehoty (dátumy)"
+
 msgid "Publication date"
 msgstr "Dátum publikácie"
 
@@ -146,14 +148,8 @@ msgstr "Podrobnosti"
 msgid "Status"
 msgstr "Stav"
 
-msgid "Contact organisation"
-msgstr "Kontaktná organizácia"
-
 msgid "Publication"
 msgstr "Publikácia"
-
-msgid "Publication date"
-msgstr "Dátum publikácie"
 
 msgid "Description"
 msgstr "Opis"
@@ -217,6 +213,24 @@ msgstr "Výzva na predkladanie návrhov"
 
 msgid "Funding programme"
 msgstr "Program financovania"
+
+msgid "Deadline model"
+msgstr "Druh termínu"
+
+msgid "Single-stage"
+msgstr "Jednofázový"
+
+msgid "Two-stage"
+msgstr "Dvojfázový"
+
+msgid "Multiple cut-off"
+msgstr "Viacfázový"
+
+msgid "Permanent"
+msgstr "Stály"
+
+msgid "in"
+msgstr "v"
 
 msgid "Last updated on: @date"
 msgstr "Naposledy aktualizované: @date"
