@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Datum začetka"
 msgid "Deadline date"
 msgstr "Datumski rok"
 
+msgid "Deadline dates"
+msgstr "Datumski roki"
+
 msgid "Publication date"
 msgstr "Datum objave"
 
@@ -143,14 +145,8 @@ msgstr "Več informacij"
 msgid "Status"
 msgstr "Status"
 
-msgid "Contact organisation"
-msgstr "Kontaktna organizacija"
-
 msgid "Publication"
 msgstr "Objava"
-
-msgid "Publication date"
-msgstr "Datum objave"
 
 msgid "Description"
 msgstr "Opis"
@@ -214,3 +210,21 @@ msgstr "Razpis za zbiranje predlogov"
 
 msgid "Funding programme"
 msgstr "Program financiranja"
+
+msgid "Deadline model"
+msgstr "Vrsta roka"
+
+msgid "Single-stage"
+msgstr "Enostopenjski"
+
+msgid "Two-stage"
+msgstr "Dvostopenjski"
+
+msgid "Multiple cut-off"
+msgstr "Več končnih datumov"
+
+msgid "Permanent"
+msgstr "Stalno"
+
+msgid "in"
+msgstr "v"

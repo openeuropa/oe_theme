@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Begindatum"
 msgid "Deadline date"
 msgstr "Deadline"
 
+msgid "Deadline dates"
+msgstr "Deadlines"
+
 msgid "Publication date"
 msgstr "Publicatiedatum"
 
@@ -143,17 +145,8 @@ msgstr "Bijzonderheden"
 msgid "Status"
 msgstr "Status"
 
-msgid "Details"
-msgstr "Bijzonderheden"
-
-msgid "Contact organisation"
-msgstr "Contact"
-
 msgid "Publication"
 msgstr "Publicatie"
-
-msgid "Publication date"
-msgstr "Publicatiedatum"
 
 msgid "Description"
 msgstr "Beschrijving"
@@ -217,3 +210,21 @@ msgstr "Oproep tot het indienen van voorstellen"
 
 msgid "Funding programme"
 msgstr "Financieringsprogramma"
+
+msgid "Deadline model"
+msgstr "Aantal deadlines"
+
+msgid "Single-stage"
+msgstr "Eén deadline"
+
+msgid "Two-stage"
+msgstr "Twee deadlines"
+
+msgid "Multiple cut-off"
+msgstr "Meerdere deadlines"
+
+msgid "Permanent"
+msgstr "Permanent"
+
+msgid "in"
+msgstr ""

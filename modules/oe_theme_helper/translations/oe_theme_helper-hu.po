@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Indítás dátuma:"
 msgid "Deadline date"
 msgstr "Határidő"
 
+msgid "Deadline dates"
+msgstr "Határidők"
+
 msgid "Publication date"
 msgstr "Közzététel dátuma"
 
@@ -143,14 +145,8 @@ msgstr "Leírás"
 msgid "Status"
 msgstr "Státusz"
 
-msgid "Contact organisation"
-msgstr "Kapcsolattartó szervezet"
-
 msgid "Publication"
 msgstr "Kiadvány"
-
-msgid "Publication date"
-msgstr "Közzététel dátuma"
 
 msgid "Description"
 msgstr "Leírás"
@@ -214,3 +210,21 @@ msgstr "Pályázati felhívás"
 
 msgid "Funding programme"
 msgstr "Finanszírozási program"
+
+msgid "Deadline model"
+msgstr "Pályázat típusa"
+
+msgid "Single-stage"
+msgstr "Egyszakaszos"
+
+msgid "Two-stage"
+msgstr "Kétkörös"
+
+msgid "Multiple cut-off"
+msgstr "Többkörös"
+
+msgid "Permanent"
+msgstr "Állandó"
+
+msgid "in"
+msgstr "itt"

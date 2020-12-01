@@ -1,4 +1,3 @@
-
 msgid ""
 msgstr ""
 
@@ -80,6 +79,9 @@ msgstr "Alguskuupäev"
 msgid "Deadline date"
 msgstr "Tähtpäev"
 
+msgid "Deadline dates"
+msgstr "Tähtpäevad"
+
 msgid "Publication date"
 msgstr "Avaldamiskuupäev"
 
@@ -143,14 +145,8 @@ msgstr "Üksikasjad"
 msgid "Status"
 msgstr "Olek"
 
-msgid "Contact organisation"
-msgstr "Kontaktorganisatsioon"
-
 msgid "Publication"
 msgstr "Väljaanne"
-
-msgid "Publication date"
-msgstr "Avaldamiskuupäev"
 
 msgid "Description"
 msgstr "Kirjeldus"
@@ -214,3 +210,21 @@ msgstr "Projektikonkurss"
 
 msgid "Funding programme"
 msgstr "Rahastamisprogramm"
+
+msgid "Deadline model"
+msgstr "Tähtaja mudel"
+
+msgid "Single-stage"
+msgstr "Üheetapiline"
+
+msgid "Two-stage"
+msgstr "Kaheetapiline"
+
+msgid "Multiple cut-off"
+msgstr "Mitme tähtajaga"
+
+msgid "Permanent"
+msgstr "Alaline"
+
+msgid "in"
+msgstr "väljaandes"
