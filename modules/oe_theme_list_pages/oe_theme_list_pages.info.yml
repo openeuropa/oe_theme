@@ -1,0 +1,9 @@
+name: OpenEuropa Theme List Pages
+type: module
+description: Companion module for the OE List Pages module
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - extra_field:extra_field
+  - oe_list_pages:oe_list_page_content_type
+  - oe_theme:oe_theme_helper
