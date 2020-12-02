@@ -1,0 +1,32 @@
+contact_title: 'Contact title'
+contact:
+  -
+    label: 'Contact link 1'
+    href: 'https://europa.eu/contact1'
+  -
+    label: 'Contact link 2'
+    href: 'https://europa.eu/contact2'
+social_media_title: 'Social media title'
+social_media:
+  -
+    label: 'Social media link 1'
+    href: 'https://europa.eu/social_media1'
+  -
+    label: 'Social media link 2'
+    href: 'https://europa.eu/social_media2'
+institution_links_title: 'Institution links title'
+institution_links:
+  -
+    label: 'Institution link 1'
+    href: 'https://europa.eu/institution_links1'
+  -
+    label: 'Institution link 2'
+    href: 'https://europa.eu/institution_links2'
+legal_links_title: 'Legal links title'
+legal_links:
+  -
+    label: 'Legal link 1'
+    href: 'https://europa.eu/legal_links1'
+  -
+    label: 'Legal link 2'
+    href: 'https://europa.eu/legal_links2'
