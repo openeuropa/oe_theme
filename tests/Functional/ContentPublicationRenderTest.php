@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\field\Entity\FieldConfig;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -26,6 +27,8 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     'path',
     'oe_theme_helper',
     'oe_theme_content_publication',
+    'oe_theme_content_organisation',
+    'oe_content_organisation_reference',
   ];
 
   /**
@@ -39,6 +42,13 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
       ->save();
+
+    // Allow "oe_publication_contacts" to reference organisations.
+    $field = FieldConfig::load('node.oe_publication.oe_publication_contacts');
+    $settings = $field->getSetting('handler_settings');
+    $settings['target_bundles']['oe_organisation_reference'] = 'oe_organisation_reference';
+    $field->setSetting('handler_settings', $settings);
+    $field->save();
   }
 
   /**

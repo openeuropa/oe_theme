@@ -44,7 +44,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.7",
-        "openeuropa/oe_content": "dev-EWPP-483",
+        "openeuropa/oe_content": "dev-EWPP-483-no-deps",
         "openeuropa/oe_corporate_blocks": "~2.2",
         "openeuropa/oe_corporate_countries": "~1.0.0-beta1",
         "openeuropa/oe_media": "dev-master as 1.9",

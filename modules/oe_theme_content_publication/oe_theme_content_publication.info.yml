@@ -8,7 +8,6 @@ dependencies:
   - oe_content:oe_content_publication
   - oe_theme:oe_theme_content_entity_contact
   - oe_theme:oe_theme_helper
-  - oe_theme:oe_theme_content_organisation
 
 config_devel:
   install:
