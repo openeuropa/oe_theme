@@ -1249,7 +1249,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
@@ -1260,7 +1260,7 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': "View all"
@@ -1279,7 +1279,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
@@ -1307,7 +1307,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 1
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
@@ -1318,7 +1318,7 @@
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': "Block title"
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
@@ -1334,7 +1334,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
@@ -1365,7 +1365,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 2
       'div.ecl-content-item-block__item.ecl-col-md-6': 2
       'div.ecl-content-item-block__item.ecl-col-md-4': 0
@@ -1401,7 +1401,7 @@
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
-      'div.ecl-content-item-block__title h3.ecl-u-type-heading-3': 0
+      'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 3
       'div.ecl-content-item-block__item.ecl-col-md-6': 0
       'div.ecl-content-item-block__item.ecl-col-md-4': 3

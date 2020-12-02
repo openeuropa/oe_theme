@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Theme override for the corporate European Commission Standardised footer block.
+ *
+ * Available variables:
+ * - site_owner: Site's owner.
+ * - site_specific_footer: renderable array for site specific footer links
+ * - corporate_footer: renderable array for corporate footer links
+ * @see ./module/contrib/oe_corporate_blocks/templates/oe-corporate-blocks-ec-footer.html.twig
+ */
+#}
+
+{% set _section_2 = [] %}
+{% set _section_3 = [] %}
+
+{# First we parse the other_links, we make a simple grid. #}
+{% for section in site_specific_footer.other_links %}
+  {% if loop.index is odd %}
+    {% set _section_2 = _section_2|merge([{
+      'title': section.label,
+      'links': ecl_footer_links(section.links),
+      'section_id': 2,
+      'title_class_name': 'ecl-footer-standardised__title--separator',
+    }]) %}
+  {% else %}
+    {% set _section_3 = _section_3|merge([{
+      'title': section.label,
+      'links': ecl_footer_links(section.links),
+      'section_id': 3,
+      'title_class_name': 'ecl-footer-standardised__title--separator',
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+{# When follow section is present. #}
+{% if site_specific_footer.social_links is not empty %}
+  {# If section numbers are odd, then we flip the last row so to have the follow as first. #}
+  {% if _section_2|length > _section_3|length %}
+    {% set _last_in_section_2 = _section_2|last %}
+
+    {# Compensate for bug in twig where _section_2[1:] returns empty if _section_2|length is 1. #}
+    {% if _last_in_section_2 is empty %}
+      {% set _last_in_section_2 = _section_2[0] %}
+      {% set _section_2 = [] %}
+    {% endif %}
+
+    {% set _section_2 = _section_2[:_section_2|length - 1] %}
+    {% set _last_in_section_2 = _last_in_section_2|merge({'section_id': 3}) %}
+    {% set _section_3 = _section_3|merge([_last_in_section_2]) %}
+
+  {% endif %}
+
+  {# Follow section must always be the last on the left. #}
+  {% set _section_2 = _section_2|merge([{
+    'title': 'Follow us on'|t,
+    'links': ecl_footer_links(site_specific_footer.social_links),
+    'section_id': 2,
+    'list_class_name': 'ecl-footer-standardised__list--inline',
+    'title_class_name': 'ecl-footer-standardised__title--separator',
+  }]) %}
+{% endif %}
+
+{# Section 2 and 3 needs minimum 2 items to display. #}
+{% if _section_2|length == 1 %}
+  {% set _section_2 = _section_2|merge([{
+    'section_id': 2,
+    'title_class_name': 'ecl-footer-standardised__title--separator',
+  }]) %}
+{% endif %}
+
+{% if _section_3|length == 1 %}
+  {% set _section_3 = _section_3|merge([{
+    'section_id': 3,
+    'title_class_name': 'ecl-footer-standardised__title--separator',
+  }]) %}
+{% endif %}
+
+{% block content %}
+  {% set _sections = [
+    {
+      'title': {
+      'link': {
+        'label': site_specific_footer.site_identity,
+        'path': url('<front>'),
+      }
+    },
+      'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+      'section_id': 1,
+    },
+    _section_2,
+    _section_3,
+    {
+      'section_id': 6,
+      'list_class_name': 'ecl-footer-standardised__list--condensed',
+    },
+    {
+      'title': {
+      'link': {
+        'label': corporate_footer.corporate_site_link.label,
+        'path': corporate_footer.corporate_site_link.href,
+      },
+    },
+      'section_id': 7,
+    },
+    {
+      'links': ecl_footer_links(corporate_footer.service_navigation),
+      'section_id': 8,
+    },
+    {
+      'links': ecl_footer_links(corporate_footer.legal_navigation),
+      'section_id': 9,
+    },
+  ] %}
+
+  {% include '@ecl-twig/footer-standardised' with {
+    'sections': _sections,
+  } %}
+{% endblock %}

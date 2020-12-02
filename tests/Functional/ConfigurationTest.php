@@ -42,6 +42,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we load the EC component library by default.
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
@@ -49,6 +50,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
@@ -90,6 +92,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we load the EU component library.
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
@@ -100,6 +103,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we do not load the EC component library.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
@@ -119,6 +123,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we load the EC component library by default.
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-legacy-website-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-legacy-website.js');
@@ -129,6 +134,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-legacy-website-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-legacy-website.js');
