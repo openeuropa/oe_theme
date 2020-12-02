@@ -425,7 +425,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
 
     $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
-    $this->assertEquals('Follow us on', $actual->getText());
+    $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
@@ -487,7 +487,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $section);
 
     $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
-    $this->assertEquals('Follow us on', $actual->getText());
+    $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
@@ -580,7 +580,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $section);
 
     $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
-    $this->assertEquals('Follow us on', $actual->getText());
+    $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
@@ -630,7 +630,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
     $this->assertNotEquals('About us', $actual->getText());
-    $this->assertEquals('Follow us on', $actual->getText());
+    $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $this->assertNotEquals('Custom about 1', $social_link->getText());

@@ -228,3 +228,24 @@ msgstr "Pastāvīgs"
 
 msgid "in"
 msgstr "oficiālajā laikrakstā"
+
+msgid "Contact us"
+msgstr "Sazinieties ar mums"
+
+msgid "Follow us"
+msgstr "Sekojiet mums"
+
+msgid "About us"
+msgstr "Par mums"
+
+msgid "Related sites"
+msgstr "Saistītās vietnes"
+
+msgid "More information on:"
+msgstr "Plašāka informācija:"
+
+msgid "Discover more on @link"
+msgstr "Plašāka informācija @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Šo vietni pārvalda Eiropas Komisija, @name"

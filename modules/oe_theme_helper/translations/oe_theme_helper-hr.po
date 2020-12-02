@@ -228,3 +228,24 @@ msgstr "Stalno"
 
 msgid "in"
 msgstr "u"
+
+msgid "Contact us"
+msgstr "Kontakt"
+
+msgid "Follow us"
+msgstr "Pratite nas"
+
+msgid "About us"
+msgstr "O nama"
+
+msgid "Related sites"
+msgstr "Povezane stranice"
+
+msgid "More information on:"
+msgstr "Dodatne informacije:"
+
+msgid "Discover more on @link"
+msgstr "Otkrijte više na stranici @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Ovim internetskim stranicama upravlja Europska komisija, @name"

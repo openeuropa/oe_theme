@@ -228,3 +228,24 @@ msgstr "Permanent"
 
 msgid "in"
 msgstr "au"
+
+msgid "Contact us"
+msgstr "Nous contacter"
+
+msgid "Follow us"
+msgstr "Nous suivre"
+
+msgid "About us"
+msgstr "Qui nous sommes"
+
+msgid "Related sites"
+msgstr "Autres sites"
+
+msgid "More information on:"
+msgstr "En savoir plus sur:"
+
+msgid "Discover more on @link"
+msgstr "En savoir plus @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Ce site est géré par Commission européenne, @name"

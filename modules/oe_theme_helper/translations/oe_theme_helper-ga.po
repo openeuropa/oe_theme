@@ -228,3 +228,24 @@ msgstr "Buan"
 
 msgid "in"
 msgstr "in"
+
+msgid "Contact us"
+msgstr "Sonraí teagmhála"
+
+msgid "Follow us"
+msgstr "Lean sinn"
+
+msgid "About us"
+msgstr "Eolas fúinn"
+
+msgid "Related sites"
+msgstr "Suíomhanna gaolmhara"
+
+msgid "More information on:"
+msgstr "Tuilleadh Eolais:"
+
+msgid "Discover more on @link"
+msgstr "Tuilleadh eolais @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Tá an suíomh seo á bhainistiú ag An Coimisiún Eorpach, @name"

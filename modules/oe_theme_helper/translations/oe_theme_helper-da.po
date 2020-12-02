@@ -228,3 +228,24 @@ msgstr "Permanent"
 
 msgid "in"
 msgstr "i"
+
+msgid "Contact us"
+msgstr "Kontakt os"
+
+msgid "Follow us"
+msgstr "Følg os"
+
+msgid "About us"
+msgstr "Om os"
+
+msgid "Related sites"
+msgstr "Relaterede websites"
+
+msgid "More information on:"
+msgstr "Du kan læse mere på:"
+
+msgid "Discover more on @link"
+msgstr "Læs mere på @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Dette website administreres af Europa-Kommissionen, der ejer websitet], @name"
