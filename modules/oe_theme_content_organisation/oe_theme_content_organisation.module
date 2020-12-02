@@ -14,8 +14,6 @@ use Drupal\media\MediaInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 
 /**
  * Prepares variables for in-page navigation.
