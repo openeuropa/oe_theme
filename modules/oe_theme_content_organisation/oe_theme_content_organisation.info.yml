@@ -5,7 +5,6 @@ package: OpenEuropa
 core: 8.x
 dependencies:
   - oe_content:oe_content_organisation
-  - oe_content:oe_content_organisation_reference
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - rdf_skos:rdf_skos
@@ -13,6 +12,4 @@ dependencies:
 config_devel:
   install:
     - core.entity_view_display.node.oe_organisation.full
-    - core.entity_view_display.node.oe_organisation.oe_contact
     - core.entity_view_display.node.oe_organisation.teaser
-    - core.entity_view_display.oe_contact.oe_organisation_reference.full

@@ -29,6 +29,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     'oe_theme_content_publication',
     'oe_theme_content_organisation',
     'oe_content_organisation_reference',
+    'oe_theme_content_organisation_reference',
   ];
 
   /**
