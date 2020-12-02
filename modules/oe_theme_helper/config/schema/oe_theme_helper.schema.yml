@@ -85,3 +85,9 @@ block.settings.oe_theme_helper_site_navigation:main:
     level:
       type: integer
       label: 'Starting level'
+
+condition.plugin.oe_theme_helper_current_component_library:
+  type: condition.plugin
+  mapping:
+    component_library:
+      type: string

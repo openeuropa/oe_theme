@@ -401,7 +401,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $crawler = new Crawler($this->renderParagraph($paragraph));
-    $this->assertEquals('List block title', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
+    $this->assertEquals('List block title', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
 
     // Verify that the referenced paragraphs are being rendered.
     $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item'));
@@ -456,7 +456,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
+    $this->assertEquals('Paragraph heading.', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
   }
 
   /**
@@ -603,7 +603,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
 
-    $this->assertEquals('Facts and figures', trim($crawler->filter('h3.ecl-u-type-heading-3')->text()));
+    $this->assertEquals('Facts and figures', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
     $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
     $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#notifications--success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
     $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
@@ -630,7 +630,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $this->assertCount(0, $crawler->filter('h3.ecl-u-type-heading-3'));
+    $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
     $this->assertCount(0, $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link'));
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
   }
