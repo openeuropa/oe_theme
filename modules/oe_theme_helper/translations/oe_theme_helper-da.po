@@ -248,4 +248,4 @@ msgid "Discover more on @link"
 msgstr "Læs mere på @link"
 
 msgid "This site is managed by the European Commission, @name"
-msgstr "Dette website administreres af Europa-Kommissionen, der ejer websitet], @name"
+msgstr "Dette website administreres af Europa-Kommissionen, der ejer websitet, @name"
