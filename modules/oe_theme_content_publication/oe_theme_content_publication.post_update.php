@@ -120,7 +120,7 @@ function oe_theme_content_publication_post_update_00007() {
   $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
   /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
   $entity_storage = $entity_type_manager->getStorage('entity_view_display');
-  $existing = EntityViewDisplay::load('node.oe_publication.full');
+  $existing = $entity_storage->load('node.oe_publication.full');
   if ($existing) {
     return t('Full entity view display already exists, skipping.');
   }

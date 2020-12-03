@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
-use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Create the 'full' entity view display on the organisation CT.
@@ -26,7 +25,7 @@ function oe_theme_content_organisation_post_update_00001() {
   $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
   /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
   $entity_storage = $entity_type_manager->getStorage('entity_view_display');
-  $existing = EntityViewDisplay::load('node.oe_organisation.full');
+  $existing = $entity_storage->load('node.oe_organisation.full');
   if ($existing) {
     return t('Full entity view display already exists, skipping.');
   }

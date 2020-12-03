@@ -37,7 +37,9 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'oe_content_entity',
     'oe_content_entity_contact',
     'oe_content_organisation',
+    'oe_content_organisation_reference',
     'composite_reference',
+    'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
   ];
 
@@ -52,6 +54,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'oe_content_featured_media_field',
       'oe_content_entity_contact',
       'oe_content_organisation',
+      'oe_content_organisation_reference',
+      'oe_theme_content_entity_contact',
       'oe_theme_content_organisation',
     ]);
 
