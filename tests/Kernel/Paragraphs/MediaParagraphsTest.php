@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
-use Drupal\Core\Url;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -182,6 +181,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $title = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(0, $title);
 
+    // TODO: Restore the test on EWPP-586.
+    // @codingStandardsIgnoreStart
+    /**
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
       'bundle' => 'remote_video',
@@ -203,6 +205,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ],
     ])->toString();
     $this->assertContains($partial_iframe_url, $video_iframe->attr('src'));
+     */
+    // @codingStandardsIgnoreEnd
 
     // Create an avportal video and add it to the paragraph.
     $media = $media_storage->create([
