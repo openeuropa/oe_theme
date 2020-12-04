@@ -121,6 +121,9 @@ msgstr "Sudionici"
 msgid "Country"
 msgstr "Zemlja"
 
+msgid "Countries"
+msgstr "Zemlje"
+
 msgid "EU Organisation"
 msgstr "Organizacija EU-a"
 
@@ -249,3 +252,24 @@ msgstr "Otkrijte više na stranici @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Ovim internetskim stranicama upravlja Europska komisija, @name"
+
+msgid "Last updated on: @date"
+msgstr "Posljednji put ažurirano: @date"
+
+msgid "File"
+msgstr "Datoteka"
+
+msgid "Files"
+msgstr "Datoteke"
+
+msgid "Identification"
+msgstr "Identifikacijski podaci"
+
+msgid "Identifications"
+msgstr "Identifikacijski podaci"
+
+msgid "Related department"
+msgstr "Povezana služba"
+
+msgid "Related departments"
+msgstr "Povezane službe"

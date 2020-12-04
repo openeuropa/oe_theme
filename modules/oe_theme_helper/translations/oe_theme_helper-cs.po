@@ -121,6 +121,9 @@ msgstr "Účastníci"
 msgid "Country"
 msgstr "Země"
 
+msgid "Countries"
+msgstr "Země"
+
 msgid "EU Organisation"
 msgstr "Organizace EU"
 
@@ -249,3 +252,24 @@ msgstr "Další informace @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tento web spravuje Evropská komise, @name"
+
+msgid "Last updated on: @date"
+msgstr "Poslední aktualizace: @date"
+
+msgid "File"
+msgstr "Soubor"
+
+msgid "Files"
+msgstr "Soubory"
+
+msgid "Identification"
+msgstr "Identifikace"
+
+msgid "Identifications"
+msgstr "Identifikace"
+
+msgid "Related department"
+msgstr "Zapojený útvar"
+
+msgid "Related departments"
+msgstr "Zapojené útvary"

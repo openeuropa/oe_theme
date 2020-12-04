@@ -121,6 +121,9 @@ msgstr "Rannpháirtithe"
 msgid "Country"
 msgstr "Tír"
 
+msgid "Countries"
+msgstr "Tíortha"
+
 msgid "EU Organisation"
 msgstr "Eagraíocht de chuid an Aontais"
 
@@ -249,3 +252,24 @@ msgstr "Tuilleadh eolais @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tá an suíomh seo á bhainistiú ag An Coimisiún Eorpach, @name"
+
+msgid "Last updated on: @date"
+msgstr "An uair dheiridh a nuashonraíodh: @date"
+
+msgid "File"
+msgstr "Comhad"
+
+msgid "Files"
+msgstr "Comhaid"
+
+msgid "Identification"
+msgstr "Aitheantas"
+
+msgid "Identifications"
+msgstr "Aitheantais"
+
+msgid "Related department"
+msgstr "Roinn ghaolmhar"
+
+msgid "Related departments"
+msgstr "Ranna gaolmhara"

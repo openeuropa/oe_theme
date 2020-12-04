@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\media\Entity\Media;
+use Drupal\media\MediaInterface;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -61,6 +63,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     'oe_content_news',
     'oe_content_page',
     'oe_content_policy',
+    'oe_content_departments_field',
     'oe_content_documents_field',
     'oe_content_publication',
     'oe_content_reference_code_field',
@@ -117,6 +120,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
       'oe_content',
       'oe_content_entity_contact',
       'oe_content_timeline_field',
+      'oe_content_departments_field',
       'oe_content_reference_code_field',
       'oe_content_featured_media_field',
       'oe_content_news',
@@ -131,8 +135,12 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
 
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('bypass node access')
+      ->grantPermission('view published skos concept entities')
       ->grantPermission('view media')
       ->save();
+
+    module_load_include('install', 'oe_content');
+    oe_content_install();
 
     $this->installEntitySchema('rdf_entity');
     $this->installEntitySchema('skos_concept');
@@ -140,6 +148,36 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
 
     $this->nodeStorage = $this->container->get('entity_type.manager')->getStorage('node');
     $this->nodeViewBuilder = $this->container->get('entity_type.manager')->getViewBuilder('node');
+  }
+
+  /**
+   * Creates media image entity.
+   *
+   * @param string $name
+   *   Name of the image media.
+   *
+   * @return \Drupal\media\MediaInterface
+   *   Media image instance.
+   */
+  protected function createMediaImage(string $name): MediaInterface {
+    // Create file instance.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file->setPermanent();
+    $file->save();
+
+    $media = Media::create([
+      'bundle' => 'image',
+      'name' => "Test image $name",
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => "Alternative text $name",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    return $media;
   }
 
 }

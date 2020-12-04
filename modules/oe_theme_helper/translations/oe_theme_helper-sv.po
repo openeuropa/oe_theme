@@ -121,6 +121,9 @@ msgstr "Deltagare"
 msgid "Country"
 msgstr "Land"
 
+msgid "Countries"
+msgstr "Länder"
+
 msgid "EU Organisation"
 msgstr "EU-organisation"
 
@@ -249,3 +252,24 @@ msgstr "Upptäck mer på @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Den här webbplatsen sköts av Europeiska kommissionen, @name"
+
+msgid "Last updated on: @date"
+msgstr "Senaste uppdatering: @date"
+
+msgid "File"
+msgstr "Fil"
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Identification"
+msgstr "Beteckning"
+
+msgid "Identifications"
+msgstr "Beteckningar"
+
+msgid "Related department"
+msgstr "Berörd avdelning"
+
+msgid "Related departments"
+msgstr "Berörda avdelningar"

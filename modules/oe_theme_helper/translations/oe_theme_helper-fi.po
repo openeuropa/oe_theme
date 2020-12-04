@@ -121,6 +121,9 @@ msgstr "Osallistujat"
 msgid "Country"
 msgstr "Maa"
 
+msgid "Countries"
+msgstr "Maat"
+
 msgid "EU Organisation"
 msgstr "EU:n organisaatio"
 
@@ -249,3 +252,24 @@ msgstr "Lisää EU-aiheita: @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tätä sivustoa hallinnoi Euroopan komissio, @name"
+
+msgid "Last updated on: @date"
+msgstr "Päivitetty viimeksi: @date"
+
+msgid "File"
+msgstr "Tiedosto"
+
+msgid "Files"
+msgstr "Tiedostot"
+
+msgid "Identification"
+msgstr "Tunniste"
+
+msgid "Identifications"
+msgstr "Tunnisteet"
+
+msgid "Related department"
+msgstr "Vastaava osasto"
+
+msgid "Related departments"
+msgstr "Vastaavat osastot"

@@ -6,9 +6,9 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
-use Drupal\Tests\BrowserTestBase;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
+use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 
 /**
@@ -203,7 +203,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       ],
       'status' => $status,
     ]);
-
+    $contact->save();
     return $contact;
   }
 

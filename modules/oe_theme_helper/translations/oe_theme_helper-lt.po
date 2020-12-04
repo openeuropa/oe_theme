@@ -121,6 +121,9 @@ msgstr "Dalyviai"
 msgid "Country"
 msgstr "Šalis"
 
+msgid "Countries"
+msgstr "Šalys"
+
 msgid "EU Organisation"
 msgstr "ES organizacija"
 
@@ -249,3 +252,24 @@ msgstr "Daugiau informacijos @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Šią svetainę tvarko Europos Komisija, @name"
+
+msgid "Last updated on: @date"
+msgstr "Paskutinį kartą atnaujinta: @date"
+
+msgid "File"
+msgstr "Rinkmena"
+
+msgid "Files"
+msgstr "Rinkmenos"
+
+msgid "Identification"
+msgstr "Identifikatorius"
+
+msgid "Identifications"
+msgstr "Identifikavimo duomenys"
+
+msgid "Related department"
+msgstr "Susijęs padalinys"
+
+msgid "Related departments"
+msgstr "Susiję padaliniai"

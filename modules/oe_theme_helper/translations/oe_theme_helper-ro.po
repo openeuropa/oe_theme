@@ -121,6 +121,9 @@ msgstr "Participanți"
 msgid "Country"
 msgstr "Țara"
 
+msgid "Countries"
+msgstr "Țări"
+
 msgid "EU Organisation"
 msgstr "Organizație UE"
 
@@ -249,3 +252,24 @@ msgstr "Aflați mai multe @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Acest site este administrat de Comisia Europeană, @name"
+
+msgid "Last updated on: @date"
+msgstr "Ultima actualizare: @date"
+
+msgid "File"
+msgstr "Fișier"
+
+msgid "Files"
+msgstr "Fișiere"
+
+msgid "Identification"
+msgstr "Identificare"
+
+msgid "Identifications"
+msgstr "Identificări"
+
+msgid "Related department"
+msgstr "Departament implicat"
+
+msgid "Related departments"
+msgstr "Departamente implicate"

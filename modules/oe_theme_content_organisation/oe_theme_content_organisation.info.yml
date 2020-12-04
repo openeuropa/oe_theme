@@ -8,3 +8,8 @@ dependencies:
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - rdf_skos:rdf_skos
+
+config_devel:
+  install:
+    - core.entity_view_display.node.oe_organisation.full
+    - core.entity_view_display.node.oe_organisation.teaser

@@ -121,6 +121,9 @@ msgstr "Deltagere"
 msgid "Country"
 msgstr "Land"
 
+msgid "Countries"
+msgstr "Lande"
+
 msgid "EU Organisation"
 msgstr "EU-organisation"
 
@@ -249,3 +252,24 @@ msgstr "Læs mere på @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Dette website administreres af Europa-Kommissionen, der ejer websitet, @name"
+
+msgid "Last updated on: @date"
+msgstr "Senest opdateret den: @date"
+
+msgid "File"
+msgstr "Fil"
+
+msgid "Files"
+msgstr "Filer"
+
+msgid "Identification"
+msgstr "Identifikation"
+
+msgid "Identifications"
+msgstr "Identifikationer"
+
+msgid "Related department"
+msgstr "Tilknyttet afdeling"
+
+msgid "Related departments"
+msgstr "Tilknyttede afdelinger"

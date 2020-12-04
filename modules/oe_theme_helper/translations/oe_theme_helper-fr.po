@@ -121,6 +121,9 @@ msgstr "Participants"
 msgid "Country"
 msgstr "Pays"
 
+msgid "Countries"
+msgstr "Pays"
+
 msgid "EU Organisation"
 msgstr "Organisation de l’UE"
 
@@ -249,3 +252,24 @@ msgstr "En savoir plus @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Ce site est géré par Commission européenne, @name"
+
+msgid "Last updated on: @date"
+msgstr "Dernière mise à jour: @date"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Files"
+msgstr "Fichiers"
+
+msgid "Identification"
+msgstr "Identification"
+
+msgid "Identifications"
+msgstr "Identifications"
+
+msgid "Related department"
+msgstr "Service lié"
+
+msgid "Related departments"
+msgstr "Services liés"

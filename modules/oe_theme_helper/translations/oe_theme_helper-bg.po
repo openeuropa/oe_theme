@@ -121,6 +121,9 @@ msgstr "Участници"
 msgid "Country"
 msgstr "Държава"
 
+msgid "Countries"
+msgstr "Държави"
+
 msgid "EU Organisation"
 msgstr "Организация на ЕС"
 
@@ -249,3 +252,24 @@ msgstr "Научете повече на @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Този уебсайт се поддържа от Европейска комисия, @name"
+
+msgid "Last updated on: @date"
+msgstr "Последна актуализация на: @date"
+
+msgid "File"
+msgstr "Досие"
+
+msgid "Files"
+msgstr "Файлове"
+
+msgid "Identification"
+msgstr "Идентификация"
+
+msgid "Identifications"
+msgstr "Идентификации"
+
+msgid "Related department"
+msgstr "Свързано ведомство"
+
+msgid "Related departments"
+msgstr "Свързани ведомства"

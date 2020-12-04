@@ -121,6 +121,9 @@ msgstr "Teilnehmer"
 msgid "Country"
 msgstr "Χώρα"
 
+msgid "Countries"
+msgstr "Χώρες"
+
 msgid "EU Organisation"
 msgstr "Οργανισμός της ΕΕ"
 
@@ -249,3 +252,24 @@ msgstr "Μάθετε περισσότερα: @link"
 
 msgid "This site is managed by the European Commission, @name"
 msgstr "Διαχειριστής του ιστότοπου: Ευρωπαϊκή Επιτροπή, @name"
+
+msgid "Last updated on: @date"
+msgstr "Τελευταία επικαιροποίηση την/στις: @date"
+
+msgid "File"
+msgstr "Αρχείο"
+
+msgid "Files"
+msgstr "Αρχεία"
+
+msgid "Identification"
+msgstr "Ταυτοποίηση"
+
+msgid "Identifications"
+msgstr "Ταυτοποιήσεις"
+
+msgid "Related department"
+msgstr "Σχετικό τμήμα"
+
+msgid "Related departments"
+msgstr "Σχετικά τμήματα"

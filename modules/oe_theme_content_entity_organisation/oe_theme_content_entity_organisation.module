@@ -37,7 +37,7 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
     if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
       $thumbnail = $media_image->get('thumbnail')->first();
       $variables['logo'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-      $cacheability->addCacheableDependency($thumbnail);
+      $cacheability->addCacheableDependency($thumbnail->entity);
     }
     $cacheability->applyTo($variables);
   }

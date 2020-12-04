@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
-use Drupal\media\MediaInterface;
 use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\Contact;
@@ -38,7 +37,9 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'oe_content_entity',
     'oe_content_entity_contact',
     'oe_content_organisation',
+    'oe_content_organisation_reference',
     'composite_reference',
+    'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
   ];
 
@@ -53,6 +54,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'oe_content_featured_media_field',
       'oe_content_entity_contact',
       'oe_content_organisation',
+      'oe_content_organisation_reference',
+      'oe_theme_content_entity_contact',
       'oe_theme_content_organisation',
     ]);
 
@@ -227,36 +230,6 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $contact->save();
 
     return $contact;
-  }
-
-  /**
-   * Creates media image entity.
-   *
-   * @param string $name
-   *   Name of the image media.
-   *
-   * @return \Drupal\media\MediaInterface
-   *   Media image instance.
-   */
-  protected function createMediaImage(string $name): MediaInterface {
-    // Create file instance.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
-    $file->setPermanent();
-    $file->save();
-
-    $media = Media::create([
-      'bundle' => 'image',
-      'name' => "Test image $name",
-      'oe_media_image' => [
-        'target_id' => (int) $file->id(),
-        'alt' => "Alternative text $name",
-      ],
-      'uid' => 0,
-      'status' => 1,
-    ]);
-    $media->save();
-
-    return $media;
   }
 
 }
