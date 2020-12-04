@@ -232,6 +232,27 @@ msgstr "Permanent(ă)"
 msgid "in"
 msgstr "în"
 
+msgid "Contact us"
+msgstr "Contactați-ne"
+
+msgid "Follow us"
+msgstr "Urmăriți-ne"
+
+msgid "About us"
+msgstr "Despre noi"
+
+msgid "Related sites"
+msgstr "Site-uri conexe"
+
+msgid "More information on:"
+msgstr "Pentru detalii:"
+
+msgid "Discover more on @link"
+msgstr "Aflați mai multe @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Acest site este administrat de Comisia Europeană, @name"
+
 msgid "Last updated on: @date"
 msgstr "Ultima actualizare: @date"
 

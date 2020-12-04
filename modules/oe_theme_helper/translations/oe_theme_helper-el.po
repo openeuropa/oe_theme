@@ -232,6 +232,27 @@ msgstr "Μόνιμος"
 msgid "in"
 msgstr "στην"
 
+msgid "Contact us"
+msgstr "Επικοινωνήστε μαζί μας"
+
+msgid "Follow us"
+msgstr "Ακολουθήστε μας"
+
+msgid "About us"
+msgstr "Ποιοι είμαστε"
+
+msgid "Related sites"
+msgstr "Σχετικοί ιστότοποι"
+
+msgid "More information on:"
+msgstr "Περισσότερες πληροφορίες για:"
+
+msgid "Discover more on @link"
+msgstr "Μάθετε περισσότερα: @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Διαχειριστής του ιστότοπου: Ευρωπαϊκή Επιτροπή, @name"
+
 msgid "Last updated on: @date"
 msgstr "Τελευταία επικαιροποίηση την/στις: @date"
 

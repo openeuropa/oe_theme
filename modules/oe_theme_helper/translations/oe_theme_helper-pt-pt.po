@@ -232,6 +232,27 @@ msgstr "Permanente"
 msgid "in"
 msgstr "em"
 
+msgid "Contact us"
+msgstr "Contacte-nos"
+
+msgid "Follow us"
+msgstr "Siga-nos"
+
+msgid "About us"
+msgstr "Quem somos"
+
+msgid "Related sites"
+msgstr "Sítios conexos"
+
+msgid "More information on:"
+msgstr "Mais informações:"
+
+msgid "Discover more on @link"
+msgstr "Para saber mais @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Este sítio é gerido por Comissão Europeia, @name"
+
 msgid "Last updated on: @date"
 msgstr "Última atualização em: @date"
 

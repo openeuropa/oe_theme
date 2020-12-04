@@ -232,6 +232,27 @@ msgstr "Unbefristet"
 msgid "in"
 msgstr "im"
 
+msgid "Contact us"
+msgstr "Kontakt"
+
+msgid "Follow us"
+msgstr "Folgen Sie uns"
+
+msgid "About us"
+msgstr "Über uns"
+
+msgid "Related sites"
+msgstr "Themenverwandte Websites"
+
+msgid "More information on:"
+msgstr "Weitere Informationen:"
+
+msgid "Discover more on @link"
+msgstr "Weitere Informationen @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Betreiber der Website: Europäische Kommission, @name"
+
 msgid "Last updated on: @date"
 msgstr "Letzte Aktualisierung: @date"
 

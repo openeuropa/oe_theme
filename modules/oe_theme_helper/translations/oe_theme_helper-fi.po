@@ -232,6 +232,27 @@ msgstr "Jatkuva"
 msgid "in"
 msgstr "julkaisussa"
 
+msgid "Contact us"
+msgstr "Yhteydenotot"
+
+msgid "Follow us"
+msgstr "Seuraa toimintaamme"
+
+msgid "About us"
+msgstr "Tietoa organisaatiosta"
+
+msgid "Related sites"
+msgstr "Aiheeseen liittyvää"
+
+msgid "More information on:"
+msgstr "Lisätietoa:"
+
+msgid "Discover more on @link"
+msgstr "Lisää EU-aiheita: @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Tätä sivustoa hallinnoi Euroopan komissio, @name"
+
 msgid "Last updated on: @date"
 msgstr "Päivitetty viimeksi: @date"
 

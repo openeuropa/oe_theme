@@ -232,6 +232,27 @@ msgstr "Alaline"
 msgid "in"
 msgstr "väljaandes"
 
+msgid "Contact us"
+msgstr "Võtke meiega ühendust"
+
+msgid "Follow us"
+msgstr "Jälgige meid"
+
+msgid "About us"
+msgstr "Meist"
+
+msgid "Related sites"
+msgstr "Seotud veebisaidid"
+
+msgid "More information on:"
+msgstr "Lisateave:"
+
+msgid "Discover more on @link"
+msgstr "Lisateavet leiate aadressil @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Seda veebisaiti haldab Euroopa Komisjon, @name"
+
 msgid "Last updated on: @date"
 msgstr "Viimati ajakohastatud: @date"
 

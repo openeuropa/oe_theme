@@ -232,6 +232,27 @@ msgstr "Állandó"
 msgid "in"
 msgstr "itt"
 
+msgid "Contact us"
+msgstr "Kapcsolatfelvétel"
+
+msgid "Follow us"
+msgstr "Közösségi média"
+
+msgid "About us"
+msgstr "Bemutatkozás"
+
+msgid "Related sites"
+msgstr "Kapcsolódó oldalak"
+
+msgid "More information on:"
+msgstr "További információk:"
+
+msgid "Discover more on @link"
+msgstr "Bővebb tudnivalók: @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "A webhely üzemeltetője: Európai Bizottság, @name"
+
 msgid "Last updated on: @date"
 msgstr "Legutóbbi frissítés: @date"
 

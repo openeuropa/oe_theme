@@ -232,6 +232,27 @@ msgstr "Nuolatinis"
 msgid "in"
 msgstr ""
 
+msgid "Contact us"
+msgstr "Susisiekite su mumis"
+
+msgid "Follow us"
+msgstr "Sekite mus"
+
+msgid "About us"
+msgstr "Apie mus"
+
+msgid "Related sites"
+msgstr "Susijusios svetainės"
+
+msgid "More information on:"
+msgstr "Daugiau informacijos apie:"
+
+msgid "Discover more on @link"
+msgstr "Daugiau informacijos @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Šią svetainę tvarko Europos Komisija, @name"
+
 msgid "Last updated on: @date"
 msgstr "Paskutinį kartą atnaujinta: @date"
 

@@ -232,6 +232,27 @@ msgstr "Permanenti"
 msgid "in"
 msgstr "fi"
 
+msgid "Contact us"
+msgstr "Ikkuntattjana"
+
+msgid "Follow us"
+msgstr "Segwina"
+
+msgid "About us"
+msgstr "Dwarna"
+
+msgid "Related sites"
+msgstr "Siti relatati"
+
+msgid "More information on:"
+msgstr "Aktar informazzjoni:"
+
+msgid "Discover more on @link"
+msgstr "Skopri aktar @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Dan is-sit hu mmaniġġjat minn Il-Kummissjoni Ewropea, @name"
+
 msgid "Last updated on: @date"
 msgstr "L-aħħar aġġornament: @date"
 

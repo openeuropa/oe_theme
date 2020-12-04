@@ -232,6 +232,27 @@ msgstr "Stálý"
 msgid "in"
 msgstr "v"
 
+msgid "Contact us"
+msgstr "Kontakt"
+
+msgid "Follow us"
+msgstr "Sledujte nás"
+
+msgid "About us"
+msgstr "O nás"
+
+msgid "Related sites"
+msgstr "Související stránky"
+
+msgid "More information on:"
+msgstr "Více informací na:"
+
+msgid "Discover more on @link"
+msgstr "Další informace @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Tento web spravuje Evropská komise, @name"
+
 msgid "Last updated on: @date"
 msgstr "Poslední aktualizace: @date"
 
