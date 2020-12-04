@@ -228,3 +228,24 @@ msgstr "Ständigt pågående"
 
 msgid "in"
 msgstr "i"
+
+msgid "Contact us"
+msgstr "Kontakta oss"
+
+msgid "Follow us"
+msgstr "Följ oss"
+
+msgid "About us"
+msgstr "Om oss"
+
+msgid "Related sites"
+msgstr "Andra webbplatser"
+
+msgid "More information on:"
+msgstr "Läs mer på:"
+
+msgid "Discover more on @link"
+msgstr "Upptäck mer på @link"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Den här webbplatsen sköts av Europeiska kommissionen, @name"
