@@ -1,5 +1,47 @@
 # Changelog
 
+## [2.12.0](https://github.com/openeuropa/oe_theme/tree/2.12.0) (2020-12-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.11.0...2.12.0)
+
+**Merged pull requests:**
+
+- EWPP-442: Epic publication v2. [\#671](https://github.com/openeuropa/oe_theme/pull/671) ([nagyad](https://github.com/nagyad))
+- Marge latest 2.x on EPIC-Publication [\#670](https://github.com/openeuropa/oe_theme/pull/670) ([ademarco](https://github.com/ademarco))
+- EWPP-229: Merge new footers epic into 2.x [\#669](https://github.com/openeuropa/oe_theme/pull/669) ([ademarco](https://github.com/ademarco))
+- EWPP-548: New footer string translations [\#668](https://github.com/openeuropa/oe_theme/pull/668) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-442: Update publication epic. [\#666](https://github.com/openeuropa/oe_theme/pull/666) ([nagyad](https://github.com/nagyad))
+- Update footer 01122020 [\#665](https://github.com/openeuropa/oe_theme/pull/665) ([drishu](https://github.com/drishu))
+- EWPP-446: Updating oe\_content dependency. [\#664](https://github.com/openeuropa/oe_theme/pull/664) ([upchuk](https://github.com/upchuk))
+- Calls for proposals epic [\#663](https://github.com/openeuropa/oe_theme/pull/663) ([upchuk](https://github.com/upchuk))
+- Update "Call for proposals" epic branch with latest 2.x [\#662](https://github.com/openeuropa/oe_theme/pull/662) ([ademarco](https://github.com/ademarco))
+- Update publication epic with 2.x [\#661](https://github.com/openeuropa/oe_theme/pull/661) ([nagyad](https://github.com/nagyad))
+- EWPP-445: Re-exporting the view displays. [\#660](https://github.com/openeuropa/oe_theme/pull/660) ([upchuk](https://github.com/upchuk))
+- EWPP-554: Change paragraph titles tag. [\#659](https://github.com/openeuropa/oe_theme/pull/659) ([georgebaev](https://github.com/georgebaev))
+- Update footer 27112020 [\#658](https://github.com/openeuropa/oe_theme/pull/658) ([drishu](https://github.com/drishu))
+- EWPP-485: Adjust selectors for behat tests. [\#657](https://github.com/openeuropa/oe_theme/pull/657) ([sergepavle](https://github.com/sergepavle))
+- EWPP-435: Update publication teaser view display. [\#656](https://github.com/openeuropa/oe_theme/pull/656) ([ademarco](https://github.com/ademarco))
+- Merge 2.x into EPIC-Publication 2020-11-25 [\#655](https://github.com/openeuropa/oe_theme/pull/655) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-542: Include ECL's print CSS. [\#654](https://github.com/openeuropa/oe_theme/pull/654) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-468: Add site-specific other links to corporate footers. [\#653](https://github.com/openeuropa/oe_theme/pull/653) ([drishu](https://github.com/drishu))
+- EWPP-509: Wrong description below registration button depends on timezone on the Event [\#652](https://github.com/openeuropa/oe_theme/pull/652) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-544: Render file patterns only when file is set. [\#650](https://github.com/openeuropa/oe_theme/pull/650) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-483: Theme organisation type contacts on publications. [\#649](https://github.com/openeuropa/oe_theme/pull/649) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Update EPIC-Proposals with 2.x. [\#647](https://github.com/openeuropa/oe_theme/pull/647) ([nagyad](https://github.com/nagyad))
+- EWPP-516: Update docker images. [\#645](https://github.com/openeuropa/oe_theme/pull/645) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-474: Cache metadata on value objects. [\#644](https://github.com/openeuropa/oe_theme/pull/644) ([upchuk](https://github.com/upchuk))
+- EWPP-434: Theme full view for "Publication" content type. [\#643](https://github.com/openeuropa/oe_theme/pull/643) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-131: Theme EC and EU footers with latest ECL Twig components [\#642](https://github.com/openeuropa/oe_theme/pull/642) ([drishu](https://github.com/drishu))
+- EWPP-371: Add translation test for event teasers. [\#641](https://github.com/openeuropa/oe_theme/pull/641) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Merge 2.x to EPIC-Proposals 09.11.2020 [\#640](https://github.com/openeuropa/oe_theme/pull/640) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-473: Adjust document media theming. [\#639](https://github.com/openeuropa/oe_theme/pull/639) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-438: Add teaser view display [\#638](https://github.com/openeuropa/oe_theme/pull/638) ([drishu](https://github.com/drishu))
+- Merge 2.x to EPIC-Proposals 05.11.2020 [\#637](https://github.com/openeuropa/oe_theme/pull/637) ([yenyasinn](https://github.com/yenyasinn))
+- Update CHANGELOG.md for release 2.11.0. [\#636](https://github.com/openeuropa/oe_theme/pull/636) ([sergepavle](https://github.com/sergepavle))
+- EWPP-437: Theme full view for "Call for proposals" content type [\#634](https://github.com/openeuropa/oe_theme/pull/634) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-354: Add interface translation. [\#618](https://github.com/openeuropa/oe_theme/pull/618) ([sergepavle](https://github.com/sergepavle))
+- EWPP-49: Theming the list pages. [\#590](https://github.com/openeuropa/oe_theme/pull/590) ([upchuk](https://github.com/upchuk))
+
 ## [2.11.0](https://github.com/openeuropa/oe_theme/tree/2.11.0) (2020-11-05)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.2...2.11.0)
@@ -26,10 +68,12 @@
 - EWPP-404: Make sure venue entity is present, even if field is empty. [\#626](https://github.com/openeuropa/oe_theme/pull/626) ([ademarco](https://github.com/ademarco))
 
 ## [2.10.1](https://github.com/openeuropa/oe_theme/tree/2.10.1) (2020-10-09)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.0...2.10.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md with release 2.10.1. [\#624](https://github.com/openeuropa/oe_theme/pull/624) ([ademarco](https://github.com/ademarco))
 - EWPP-394: Project content type has wrong styling [\#623](https://github.com/openeuropa/oe_theme/pull/623) ([enriquelacoma](https://github.com/enriquelacoma))
 - EWPP-392: Use storage to override view displays for organisations. [\#622](https://github.com/openeuropa/oe_theme/pull/622) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
