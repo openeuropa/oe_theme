@@ -250,6 +250,9 @@ msgstr "Více informací na:"
 msgid "Discover more on @link"
 msgstr "Další informace @link"
 
+msgid "This site is managed by the @name"
+msgstr "Tento web spravuje @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tento web spravuje Evropská komise, @name"
 

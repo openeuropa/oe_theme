@@ -250,6 +250,9 @@ msgstr "Περισσότερες πληροφορίες για:"
 msgid "Discover more on @link"
 msgstr "Μάθετε περισσότερα: @link"
 
+msgid "This site is managed by the @name"
+msgstr "Διαχειριστής του ιστότοπου @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Διαχειριστής του ιστότοπου: Ευρωπαϊκή Επιτροπή, @name"
 
