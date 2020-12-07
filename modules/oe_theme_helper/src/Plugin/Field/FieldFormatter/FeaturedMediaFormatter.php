@@ -175,41 +175,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
     $source = $media->getSource();
 
     if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-      // Default video aspect ratio is set to 16:9.
-      $params['ratio'] = '16-9';
-
-      // Load information about the media and the display.
-      $media_type = $this->entityTypeManager->getStorage('media_type')->load($media->bundle());
-      $cacheability->addCacheableDependency($media_type);
-      $source_field = $source->getSourceFieldDefinition($media_type);
-      $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
-      $cacheability->addCacheableDependency($display);
-      $display_options = $display->getComponent($source_field->getName());
-      $oembed_type = $source->getMetadata($media, 'type');
-
-      // If it is an OEmbed resource, render it and pass it as embeddable data
-      // only if it is of type video or html.
-      if ($source instanceof OEmbed && in_array($oembed_type, ['video', 'html'])) {
-        $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
-        $build['#params'] = $params;
-        $cacheability->applyTo($build);
-
-        return $build;
-      }
-
-      // If its an AvPortal video or an iframe video, render it.
-      $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
-
-      // When dealing with iframe videos, also respect its given aspect ratio.
-      if ($media->bundle() === 'video_iframe') {
-        $ratio = $media->get('oe_media_iframe_ratio')->value;
-        $params['ratio'] = str_replace('_', '-', $ratio);
-      }
-
-      $build['#params'] = $params;
-      $cacheability->applyTo($build);
-
-      return $build;
+      return $this->viewEmbededMedia($media, $build, $params, $cacheability);
     }
 
     // If its an image media, render it and assign it to the image variable.
@@ -232,6 +198,61 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
 
     $params['alt'] = $thumbnail->get('alt')->getString();
     $params['image'] = $image_url;
+    $build['#params'] = $params;
+    $cacheability->applyTo($build);
+
+    return $build;
+  }
+
+  /**
+   * Prepares AvPortal, OEmbed, Iframe based media for rendering.
+   *
+   * @param \Drupal\media\MediaInterface $media
+   *   Media entity.
+   * @param array $build
+   *   Rendering array.
+   * @param array $params
+   *   Rendering parameters.
+   * @param \Drupal\Core\Cache\CacheableDependencyInterface $cacheability
+   *   Cache metadata is used in the template.
+   *
+   * @return array
+   *   Rendering array.
+   */
+  protected function viewEmbededMedia(MediaInterface $media, array $build, array $params, CacheableDependencyInterface $cacheability) {
+    $source = $media->getSource();
+
+    // Default video aspect ratio is set to 16:9.
+    $params['ratio'] = '16-9';
+
+    // Load information about the media and the display.
+    $media_type = $this->entityTypeManager->getStorage('media_type')->load($media->bundle());
+    $cacheability->addCacheableDependency($media_type);
+    $source_field = $source->getSourceFieldDefinition($media_type);
+    $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
+    $cacheability->addCacheableDependency($display);
+    $display_options = $display->getComponent($source_field->getName());
+    $oembed_type = $source->getMetadata($media, 'type');
+
+    // If it is an OEmbed resource, render it and pass it as embeddable data
+    // only if it is of type video or html.
+    if ($source instanceof OEmbed && in_array($oembed_type, ['video', 'html'])) {
+      $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
+      $build['#params'] = $params;
+      $cacheability->applyTo($build);
+
+      return $build;
+    }
+
+    // If its an AvPortal video, Iframe or an iframe video, render it.
+    $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
+
+    // When dealing with iframe videos, also respect its given aspect ratio.
+    if (in_array($media->bundle(), ['video_iframe', 'iframe']) && !$media->get('oe_media_iframe_ratio')->isEmpty()) {
+      $ratio = $media->get('oe_media_iframe_ratio')->value;
+      $params['ratio'] = str_replace('_', '-', $ratio);
+    }
+
     $build['#params'] = $params;
     $cacheability->applyTo($build);
 

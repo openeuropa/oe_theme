@@ -86,6 +86,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
           'target_bundles' => [
             'av_portal_photo' => 'av_portal_photo',
             'av_portal_video' => 'av_portal_video',
+            'iframe' => 'iframe',
             'image' => 'image',
             'remote_video' => 'remote_video',
             'video_iframe' => 'video_iframe',
@@ -336,6 +337,15 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
         'iframe.media-avportal-content' => 'example.com',
       ],
     ]);
+
+    // Assert Iframe media.
+    $media = $this->container->get('entity_type.manager')
+      ->getStorage('media')->create([
+        'bundle' => 'iframe',
+        'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+        'status' => 1,
+      ]);
+    $media->save();
   }
 
 }
