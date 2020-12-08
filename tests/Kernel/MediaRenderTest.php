@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Tests\oe_theme\PatternAssertions\FileTranslationAssert;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our media types render with correct markup.
@@ -36,6 +37,10 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     'file_link',
     'link',
     'options',
+    'oe_webtools',
+    'oe_webtools_media',
+    'json_field',
+    'oe_media_webtools',
   ];
 
   /**
@@ -52,6 +57,9 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'file',
       'media',
       'oe_media',
+      'oe_media_webtools',
+      'oe_webtools_media',
+      'json_field',
     ]);
 
     $this->mediaStorage = $this->container->get('entity_type.manager')->getStorage('media');
@@ -248,6 +256,27 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       $assert = new FileTranslationAssert();
       $assert->assertPattern($expected, $output);
     }
+  }
+
+  /**
+   * Tests Webtools OP Publication List media rendering.
+   */
+  public function testWebtoolsOpPublicationList(): void {
+    // Create a OP Publication list media.
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = $this->mediaStorage->create([
+      'bundle' => 'webtools_op_publication_list',
+      'name' => 'Publication list',
+      'oe_media_webtools' => '6313',
+    ]);
+    $media->save();
+
+    $build = $this->mediaViewBuilder->view($media, 'default');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $figure = $crawler->filter('figure.ecl-media-container');
+    $this->assertCount(1, $figure);
+    $this->assertCount(1, $crawler->filter('div.ecl-media-container__media.ecl-media-container__media--ratio-16-9'));
   }
 
 }
