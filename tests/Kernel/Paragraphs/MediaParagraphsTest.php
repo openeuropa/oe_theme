@@ -218,10 +218,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert remote video is rendered properly.
-    $video_iframe = $crawler->filter('div.ecl-media-container__media--ratio-16-9 iframe');
-    $this->assertContains('I-163162', $video_iframe->attr('src'));
+    $this->assertRenderedIframe($html, 'I-163162', '16-9');
 
     // Create iframe video with aspect ration 16:9 and add it to the paragraph.
     $media = $media_storage->create([
@@ -234,12 +231,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert that iframe video is rendered properly.
-    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-16-9');
-    $this->assertCount(1, $media_container);
-    $video_iframe = $media_container->filter('iframe');
-    $this->assertContains('http://example.com', $video_iframe->attr('src'));
+    $this->assertRenderedIframe($html, 'http://example.com', '16-9');
 
     // Create iframe video with aspect ration 1:1 and add it to the paragraph.
     $media = $media_storage->create([
@@ -252,12 +244,50 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
+    $this->assertRenderedIframe($html, 'http://example.com', '1-1');
+
+    // Create iframe with absent aspect ratio and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com/iframe"></iframe>',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $this->assertRenderedIframe($html, 'http://example.com/iframe', '16-9');
+
+    // Create iframe with aspect ratio 3:2 and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com/iframe"></iframe>',
+      'oe_media_iframe_ratio' => '3_2',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $this->assertRenderedIframe($html, 'http://example.com/iframe', '3-2');
+  }
+
+  /**
+   * Assert that iframe is rendered properly in the media container.
+   *
+   * @param string $html
+   *   Rendered html.
+   * @param string $expected_src
+   *   Expected iframe source.
+   * @param string $expected_ratio
+   *   Expected aspect ratio.
+   */
+  protected function assertRenderedIframe(string $html, string $expected_src, string $expected_ratio): void {
     $crawler = new Crawler($html);
-    // Assert that iframe video is rendered properly.
-    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-1-1');
+    $media_container = $crawler->filter("div.ecl-media-container__media--ratio-$expected_ratio");
     $this->assertCount(1, $media_container);
-    $video_iframe = $media_container->filter('iframe');
-    $this->assertContains('http://example.com', $video_iframe->attr('src'));
+    $iframe = $media_container->filter('iframe');
+    $this->assertContains($expected_src, $iframe->attr('src'));
   }
 
   /**

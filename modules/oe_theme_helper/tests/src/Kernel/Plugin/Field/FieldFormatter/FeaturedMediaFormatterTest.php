@@ -342,10 +342,45 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     $media = $this->container->get('entity_type.manager')
       ->getStorage('media')->create([
         'bundle' => 'iframe',
-        'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+        'oe_media_iframe' => '<iframe src="http://example.com/iframe_media"></iframe>',
+        'oe_media_iframe_ratio' => '3_2',
         'status' => 1,
       ]);
     $media->save();
+
+    $values = [
+      'type' => 'test_ct',
+      'title' => 'My iframe node',
+      'featured_media_field' => [
+        [
+          'target_id' => $media->id(),
+          'caption' => 'Iframe caption text',
+        ],
+      ],
+    ];
+
+    $node = Node::create($values);
+    $node->save();
+
+    $node_storage->resetCache();
+    $node = $node_storage->load($node->id());
+
+    $build = $view_builder->viewField($node->get('featured_media_field'), [
+      'type' => 'oe_theme_helper_featured_media_formatter',
+    ]);
+
+    $this->assertRendering($this->renderRoot($build), [
+      'count' => [
+        '.ecl-media-container .ecl-media-container__media--ratio-3-2' => 1,
+        '.ecl-media-container .ecl-media-container__caption' => 1,
+      ],
+      'equals' => [
+        '.ecl-media-container__caption' => 'Iframe caption text',
+      ],
+      'contains' => [
+        'iframe' => 'http://example.com/iframe_media',
+      ],
+    ]);
   }
 
 }

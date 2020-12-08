@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemInterface;
