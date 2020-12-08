@@ -1,6 +1,13 @@
 page_header:
   label: "Page header"
   description: "Default implementation of the page header, contains the page title, breadcrumbs and additional page details."
+  variants:
+    default:
+      label: "Page header: default"
+      description: "Default page header contains the page title, breadcrumbs and additional page details."
+    background_image:
+      label: "Page header: with background image"
+      description: "Page header contains the page title, breadcrumbs and additional page detail with background image."
   fields:
     title:
       type: "text"
@@ -58,6 +65,12 @@ page_header:
           label: "How the Commission is organised"
         - href: "#"
           label: "News"
+    background_image:
+      type: "array"
+      label: "Background image"
+      description: "Attributes of the image to render"
+      preview:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
     identity:
       type: "text"
       label: "Identity (deprecated)"

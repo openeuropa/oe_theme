@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Background image variant for the page header component.
+ *
+ * Have difference only for "core" ecl branding.
+ */
+#}
+
+{% include '@oe_theme/patterns/page_header/pattern-page-header.html.twig' with {
+  'title': title,
+  'introduction': introduction,
+  'metas': metas,
+  'background_image': ecl_branding == 'core' and background_image.src is not empty ? true : false,
+  'background_image_url': background_image.src|default(null),
+  'language_switcher': language_switcher,
+  'breadcrumb': breadcrumb,
+  'identity': identity,
+  'ecl_branding': ecl_branding
+} only %}
