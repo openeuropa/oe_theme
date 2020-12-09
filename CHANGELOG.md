@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.12.1](https://github.com/openeuropa/oe_theme/tree/2.12.1) (2020-12-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.0...2.12.1)
+
+**Merged pull requests:**
+
+- EWPP-604: Footer translation fixes [\#674](https://github.com/openeuropa/oe_theme/pull/674) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [2.12.0](https://github.com/openeuropa/oe_theme/tree/2.12.0) (2020-12-04)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.11.0...2.12.0)
