@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.12.2](https://github.com/openeuropa/oe_theme/tree/2.12.2) (2020-12-09)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.1...2.12.2)
+
+**Merged pull requests:**
+
+- GH-679: Bump oe\_corporate\_blocks conflict version. [\#681](https://github.com/openeuropa/oe_theme/pull/681) ([ademarco](https://github.com/ademarco))
+
 ## [2.12.1](https://github.com/openeuropa/oe_theme/tree/2.12.1) (2020-12-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.0...2.12.1)
