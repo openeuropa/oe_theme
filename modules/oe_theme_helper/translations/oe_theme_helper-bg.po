@@ -250,6 +250,9 @@ msgstr "Повече информация на:"
 msgid "Discover more on @link"
 msgstr "Научете повече на @link"
 
+msgid "This site is managed by the @name"
+msgstr "Този уебсайт се поддържа от @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Този уебсайт се поддържа от Европейска комисия, @name"
 

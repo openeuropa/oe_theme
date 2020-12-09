@@ -250,6 +250,9 @@ msgstr "Aktar informazzjoni:"
 msgid "Discover more on @link"
 msgstr "Skopri aktar @link"
 
+msgid "This site is managed by the @name"
+msgstr "Dan is-sit huwa mmaniġġjat minn @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Dan is-sit hu mmaniġġjat minn Il-Kummissjoni Ewropea, @name"
 

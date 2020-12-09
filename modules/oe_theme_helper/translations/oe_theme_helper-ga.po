@@ -250,6 +250,9 @@ msgstr "Tuilleadh Eolais:"
 msgid "Discover more on @link"
 msgstr "Tuilleadh eolais @link"
 
+msgid "This site is managed by the @name"
+msgstr "Tá an suíomh seo á bhainistiú ag @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tá an suíomh seo á bhainistiú ag An Coimisiún Eorpach, @name"
 

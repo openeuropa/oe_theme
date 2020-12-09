@@ -250,6 +250,9 @@ msgstr "További információk:"
 msgid "Discover more on @link"
 msgstr "Bővebb tudnivalók: @link"
 
+msgid "This site is managed by the @name"
+msgstr "A webhely üzemeltetője: @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "A webhely üzemeltetője: Európai Bizottság, @name"
 
