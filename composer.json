@@ -63,7 +63,7 @@
         "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
     ],
     "conflict": {
-        "openeuropa/oe_corporate_blocks": "<2.1.0"
+        "openeuropa/oe_corporate_blocks": "<3.0.0"
     },
     "scripts": {
         "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
