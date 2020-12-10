@@ -2149,7 +2149,8 @@
         -
           label: "13 September 2017"
           title: "Item 1"
-          body: '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+          body:
+            '#markup': '<a href="/example">Economic and Monetary Union package of proposals</a>'
         -
           label: "28-29 September 2017"
           title: "Item 2"
@@ -2181,12 +2182,12 @@
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
       '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show all timelines"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<div class="ecl-editor"><a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a></div>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': '<div class="ecl-editor">Lorem Ipsum 2</div>'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': '<div class="ecl-editor">Lorem Ipsum 3</div>'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': '<div class="ecl-editor">Lorem Ipsum 4</div>'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': '<div class="ecl-editor">Lorem Ipsum 5</div>'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': '<div class="ecl-editor">Lorem Ipsum 6</div>'
+      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
+      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
+      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
+      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
+      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
