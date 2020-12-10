@@ -24,6 +24,14 @@
       a.ecl-link .ecl-link__label: "Contact organisation"
       a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
 - fields:
+    organisation_details:
+      - label: "Address"
+        body: "<b>61 Lorem Ipsum Street, Brussels, Belgium, 1000</b>"
+  assertions:
+    equals:
+      dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
+      dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "&lt;b&gt;61 Lorem Ipsum Street, Brussels, Belgium, 1000&lt;/b&gt;"
+- fields:
     name: "Organisation name"
   assertions:
     count:
