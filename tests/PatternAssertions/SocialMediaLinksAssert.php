@@ -68,11 +68,11 @@ class SocialMediaLinksAssert extends BasePatternAssert {
     if (in_array('ecl-social-media-follow--vertical', $existing_classes)) {
       return 'vertical';
     }
-    throw new Exception('Variant of social media links pattern is not identified.');
+    throw new Exception('Variant of social media links pattern could not be identified.');
   }
 
   /**
-   * Asserts the links of the pattern.
+   * Asserts the links of social media follow.
    *
    * @param array $expected_items
    *   The expected item values.
