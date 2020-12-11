@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.12.3](https://github.com/openeuropa/oe_theme/tree/2.12.3) (2020-12-11)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.2...2.12.3)
+
+**Closed issues:**
+
+- Exception in eclFooterLinks [\#679](https://github.com/openeuropa/oe_theme/issues/679)
+
+**Merged pull requests:**
+
+- EWPP-627: Make sure that internal URIs are translated into URLs on Timeline paragraph [\#684](https://github.com/openeuropa/oe_theme/pull/684) ([ademarco](https://github.com/ademarco))
+
 ## [2.12.2](https://github.com/openeuropa/oe_theme/tree/2.12.2) (2020-12-09)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.1...2.12.2)
 
