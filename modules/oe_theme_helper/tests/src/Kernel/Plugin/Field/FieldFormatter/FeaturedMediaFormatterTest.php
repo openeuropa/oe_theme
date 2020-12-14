@@ -36,6 +36,8 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'oe_media_iframe',
     'oe_content_featured_media_field',
     'system',
+    'file_link',
+    'link',
   ];
 
   /**
