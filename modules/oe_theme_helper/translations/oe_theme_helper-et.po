@@ -250,6 +250,9 @@ msgstr "Lisateave:"
 msgid "Discover more on @link"
 msgstr "Lisateavet leiate aadressil @link"
 
+msgid "This site is managed by the @name"
+msgstr "Seda veebisaiti haldab @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Seda veebisaiti haldab Euroopa Komisjon, @name"
 

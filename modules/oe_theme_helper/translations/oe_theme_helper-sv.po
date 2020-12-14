@@ -250,6 +250,9 @@ msgstr "Läs mer på:"
 msgid "Discover more on @link"
 msgstr "Upptäck mer på @link"
 
+msgid "This site is managed by the @name"
+msgstr "Den här webbplatsen sköts av @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Den här webbplatsen sköts av Europeiska kommissionen, @name"
 

@@ -250,6 +250,9 @@ msgstr "Daugiau informacijos apie:"
 msgid "Discover more on @link"
 msgstr "Daugiau informacijos @link"
 
+msgid "This site is managed by the @name"
+msgstr "Šią svetainę tvarko @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Šią svetainę tvarko Europos Komisija, @name"
 

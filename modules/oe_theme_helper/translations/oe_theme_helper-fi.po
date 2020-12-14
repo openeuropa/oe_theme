@@ -250,6 +250,9 @@ msgstr "Lisätietoa:"
 msgid "Discover more on @link"
 msgstr "Lisää EU-aiheita: @link"
 
+msgid "This site is managed by the @name"
+msgstr "Tätä sivustoa hallinnoi @name"
+
 msgid "This site is managed by the European Commission, @name"
 msgstr "Tätä sivustoa hallinnoi Euroopan komissio, @name"
 
