@@ -85,8 +85,8 @@ class NewsRenderTest extends ContentRenderTestBase {
     $this->assertContains('Body', $body_wrapper->text());
 
     // Featured media.
-    $image_wrapper = $crawler->filter('article.ecl-u-type-paragraph picture img.ecl-u-width-100.ecl-u-height-auto');
-    $this->assertCount(1, $image_wrapper);
+    $image = $crawler->filter('article.ecl-u-type-paragraph picture img.ecl-u-width-100.ecl-u-height-auto');
+    $this->assertContains('P-038924', $image->attr('src'));
 
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
