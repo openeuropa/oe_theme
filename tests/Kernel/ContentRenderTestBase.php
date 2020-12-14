@@ -61,6 +61,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_content_news',
     'oe_content_page',
     'oe_content_policy',
+    'oe_content_departments_field',
     'oe_content_documents_field',
     'oe_content_publication',
     'oe_content_reference_code_field',
@@ -72,6 +73,8 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
     'oe_theme_content_publication',
     'rdf_entity',
     'rdf_skos',
+    'file_link',
+    'options',
   ];
 
   /**
@@ -115,6 +118,7 @@ abstract class ContentRenderTestBase extends AbstractKernelTestBase {
       'oe_content',
       'oe_content_entity_contact',
       'oe_content_timeline_field',
+      'oe_content_departments_field',
       'oe_content_reference_code_field',
       'oe_content_featured_media_field',
       'oe_content_news',

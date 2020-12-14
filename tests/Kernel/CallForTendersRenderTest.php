@@ -29,7 +29,6 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     'composite_reference',
     'oe_time_caching',
     'oe_content_reference_code_field',
-    'oe_content_departments_field',
     'oe_content_call_tenders',
     'oe_theme_content_call_tenders',
     'datetime_testing',
@@ -42,9 +41,6 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     parent::setUp();
 
     $this->installConfig([
-      'composite_reference',
-      'oe_content_departments_field',
-      'oe_content_reference_code_field',
       'oe_content_call_tenders',
       'oe_theme_content_call_tenders',
     ]);
