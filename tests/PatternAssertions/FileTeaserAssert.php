@@ -18,6 +18,7 @@ class FileTeaserAssert extends FileTranslationAssert {
     $assertions = parent::getAssertions($variant);
     $assertions['thumbnail'] = [
       [$this, 'assertImage'],
+      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image',
     ];
     $assertions['teaser'] = [
       [$this, 'assertElementText'],
@@ -27,23 +28,6 @@ class FileTeaserAssert extends FileTranslationAssert {
       [$this, 'assertMeta'],
     ];
     return $assertions;
-  }
-
-  /**
-   * Asserts the image of the pattern.
-   *
-   * @param array|null $expected_image
-   *   The expected image.
-   * @param \Symfony\Component\DomCrawler\Crawler $crawler
-   *   The DomCrawler where to check the element.
-   */
-  protected function assertImage($expected_image, Crawler $crawler): void {
-    if (is_null($expected_image)) {
-      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__image img', $crawler);
-      return;
-    }
-    $this->assertElementAttribute($expected_image['src'], 'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image', 'src', $crawler);
-    $this->assertElementAttribute($expected_image['alt'], 'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image', 'alt', $crawler);
   }
 
   /**

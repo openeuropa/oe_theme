@@ -113,7 +113,11 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, trim($element->text()));
+    $actual = trim($element->text());
+    self::assertEquals($expected, $actual, \sprintf(
+      'Expected value "%s" is not equal actual value "%s" in the selector "%s".',
+      $expected, $actual, $selector
+    ));
   }
 
   /**
@@ -166,6 +170,25 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
       'Element with selector "%s" was found in the provided html.',
       $selector
     ));
+  }
+
+  /**
+   * Asserts the image of the pattern.
+   *
+   * @param array|null $expected_image
+   *   The expected image.
+   * @param string $selector
+   *   The CSS selector to find the element.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertImage(?array $expected_image, string $selector, Crawler $crawler): void {
+    if (is_null($expected_image)) {
+      $this->assertElementNotExists($selector, $crawler);
+      return;
+    }
+    $this->assertElementAttribute($expected_image['src'], $selector, 'src', $crawler);
+    $this->assertElementAttribute($expected_image['alt'], $selector, 'alt', $crawler);
   }
 
 }
