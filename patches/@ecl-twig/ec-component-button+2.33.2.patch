@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-button/ecl-button.html.twig
++++ b/node_modules/@ecl-twig/ec-component-button/ecl-button.html.twig
+@@ -73,7 +73,7 @@
+           _compliance_inner_check_: true
+         } only %}
+       {% endif %}
+-      <span class="ecl-button__label" data-ecl-label="true">{% block label _label|raw %}</span>
++      <span class="ecl-button__label" data-ecl-label="true">{% block label _label %}</span>
+       {% if _icon_position == 'after' %}
+         {% include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
+           icon: _icon,
