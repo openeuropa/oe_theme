@@ -11,7 +11,7 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
-use Drupal\oe_content\CallEntityWrapperInterface;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapperInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -82,16 +82,15 @@ class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase impl
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
+    if ($status === CallForTendersNodeWrapperInterface::STATUS_UPCOMING) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallEntityWrapperInterface::STATUS_OPEN) {
+    if ($status === CallForTendersNodeWrapperInterface::STATUS_OPEN) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [
-      '#theme' => 'oe_theme_helper_call_status',
+      '#theme' => 'oe_theme_content_call_tenders_status',
       '#label' => $entity->getStatusLabel(),
-      '#name' => 'call-tenders-status',
     ];
     $cacheable->applyTo($build);
 
