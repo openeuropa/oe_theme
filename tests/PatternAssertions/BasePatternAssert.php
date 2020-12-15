@@ -187,8 +187,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
       $this->assertElementNotExists($selector, $crawler);
       return;
     }
-    $this->assertElementAttribute($expected_image['src'], $selector, 'src', $crawler);
-    $this->assertElementAttribute($expected_image['alt'], $selector, 'alt', $crawler);
+    $this->assertElementExists($selector, $crawler);
+    $element = $crawler->filter($selector);
+    self::assertEquals($expected_image['alt'], $element->attr('alt'));
+    self::assertContains($expected_image['src'], $element->attr('src'));
   }
 
 }

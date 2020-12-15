@@ -37,7 +37,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       ],
       'text' => [
         [$this, 'assertElementText'],
-        'div.ecl-row div.ecl-col-md-6.ecl-editor',
+        'div.ecl-row > div.ecl-editor',
       ],
       'video_ratio' => [
         [$this, 'assertVideoRatio'],
