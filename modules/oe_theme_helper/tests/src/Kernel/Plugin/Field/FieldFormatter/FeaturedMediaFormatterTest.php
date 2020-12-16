@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\file\Entity\File;
@@ -33,6 +34,8 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'oe_media',
     'oe_media_avportal',
     'oe_media_iframe',
+    'oe_media_oembed_mock',
+    'media_avportal_mock',
     'oe_content_featured_media_field',
     'system',
     'file_link',
@@ -187,9 +190,6 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'type' => 'oe_theme_helper_featured_media_formatter',
     ]);
 
-    // TODO: Restore the test on EWPP-586.
-    // @codingStandardsIgnoreStart
-    /**
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
         '.ecl-media-container .ecl-media-container__media' => 1,
@@ -200,8 +200,6 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
         '.ecl-media-container__caption' => 'Video caption text',
       ],
     ]);
-    */
-    // @codingStandardsIgnoreEnd
 
     $media = $this->container->get('entity_type.manager')
       ->getStorage('media')->create([

@@ -34,6 +34,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
     'page_header_metadata_test',
+    'media_avportal_mock',
   ];
 
   /**
