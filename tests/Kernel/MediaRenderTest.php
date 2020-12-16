@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Tests\oe_theme\PatternAssertions\FileTranslationAssert;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our media types render with correct markup.
@@ -36,6 +37,10 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     'file_link',
     'link',
     'options',
+    'oe_webtools',
+    'oe_webtools_media',
+    'json_field',
+    'oe_media_webtools',
   ];
 
   /**
@@ -52,6 +57,9 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'file',
       'media',
       'oe_media',
+      'oe_media_webtools',
+      'oe_webtools_media',
+      'json_field',
     ]);
 
     $this->mediaStorage = $this->container->get('entity_type.manager')->getStorage('media');
@@ -247,6 +255,34 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
 
       $assert = new FileTranslationAssert();
       $assert->assertPattern($expected, $output);
+    }
+  }
+
+  /**
+   * Tests Webtools OP Publication List media rendering.
+   */
+  public function testWebtoolsOpPublicationList(): void {
+    // Create a OP Publication list media.
+    /** @var \Drupal\media\MediaInterface $media */
+    $media = $this->mediaStorage->create([
+      'bundle' => 'webtools_op_publication_list',
+      'name' => 'Publication list',
+      'oe_media_webtools' => '{"service":"opwidget","widgetId":"6313"}',
+    ]);
+    $media->save();
+
+    // View modes to test.
+    $view_modes = ['default', 'oe_theme_main_content'];
+    foreach ($view_modes as $view_mode) {
+      $build = $this->mediaViewBuilder->view($media, $view_mode);
+      $html = $this->renderRoot($build);
+      $crawler = new Crawler($html);
+      $figure = $crawler->filter('figure.ecl-media-container');
+      $this->assertCount(1, $figure);
+      $media_container = $crawler->filter('div.ecl-media-container__media.ecl-media-container__media--ratio-16-9');
+      $this->assertCount(1, $media_container);
+      // Make sure that the op publication list json is present.
+      $this->assertEquals('{"service":"opwidget","widgetId":"6313"}', $media_container->filter('script')->text());
     }
   }
 
