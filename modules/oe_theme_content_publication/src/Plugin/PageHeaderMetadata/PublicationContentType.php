@@ -79,27 +79,27 @@ class PublicationContentType extends NodeViewRoutesBase {
     $node = $this->getNode();
 
     $metadata = parent::getMetadata();
-    $metadata['metas'] = $this->getSkosMeta($node->get('oe_publication_type'));
+    $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_publication_type'));
 
     return $metadata;
   }
 
   /**
-   * Format a list of SKOS references into a separated string.
+   * Format a list of SKOS references into a comma separated string.
    *
    * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
    *   Field item list object.
    *
-   * @return array
-   *   List of items.
+   * @return string
+   *   Comma separated string.
    */
-  protected function getSkosMeta(SkosConceptReferenceFieldItemList $items): array {
+  protected function getCommaSeparatedSkosMeta(SkosConceptReferenceFieldItemList $items): string {
     $list = [];
     foreach ($items as $item) {
       $entity = $item->entity;
       $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
     }
-    return $list;
+    return implode(', ', $list);
   }
 
 }
