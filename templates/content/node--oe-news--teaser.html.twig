@@ -13,8 +13,10 @@
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'meta': [
-      content.oe_news_types|field_value|safe_join(', '),
-      content.oe_publication_date|field_value,
+      metas.types,
+      metas.date,
+      metas.location,
+      metas.authors
     ],
     'detail': content.oe_teaser|field_value,
     'image': image_url ? { 'src': image_url }

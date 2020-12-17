@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\media\MediaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 
 /**
  * Implements template_preprocess_node() for the News node type.
@@ -34,6 +35,33 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_node() for the News node type.
+ */
+function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  // Add news types to page metadata.
+  if (!$node->get('oe_news_types')->isEmpty()) {
+    $variables['metas']['types'] = _get_comma_separated_skos_meta($node->get('oe_news_types'));
+  }
+
+  // Add publication date to page metadata.
+  $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
+  $variables['metas']['date'] = \Drupal::service('date.formatter')->format($timestamp, 'oe_theme_news_date');
+
+  // Add news locations to page metadata.
+  if (!$node->get('oe_news_location')->isEmpty()) {
+    $variables['metas']['location'] = _get_comma_separated_skos_meta($node->get('oe_news_location'));
+  }
+
+  // Add news authors to page metadata.
+  if (!$node->get('oe_author')->isEmpty()) {
+    $variables['metas']['authors'] = _get_comma_separated_skos_meta($node->get('oe_author'));
+  }
+}
+
+/**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
 function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
@@ -53,4 +81,22 @@ function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $e
       }
     }
   }
+}
+
+/**
+ * Format a list of SKOS references into a comma separated string.
+ *
+ * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
+ *   Field item list object.
+ *
+ * @return string
+ *   Comma separated string.
+ */
+function _get_comma_separated_skos_meta(SkosConceptReferenceFieldItemList $items): string {
+  $list = [];
+  foreach ($items as $item) {
+    $entity = $item->entity;
+    $list[] = \Drupal::service('entity.repository')->getTranslationFromContext($entity)->label();
+  }
+  return implode(', ', $list);
 }
