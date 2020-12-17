@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Theme override for iframe fields on media items.
+ */
+#}
+{% for item in items %}
+  {% if ratio is empty %}
+    <div class="media-iframe-wrapper">{{ item.content }}</div>
+  {% else %}
+    {% include '@ecl-twig/media-container' with {
+      'embedded_media': item.content,
+      'ratio': ratio|replace({'_': '-'}),
+    } %}
+  {% endif %}
+{% endfor %}
