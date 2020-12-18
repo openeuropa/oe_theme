@@ -1,0 +1,27 @@
+patch-package
+--- a/node_modules/@ecl-twig/ec-component-description-list/ecl-description-list.html.twig
++++ b/node_modules/@ecl-twig/ec-component-description-list/ecl-description-list.html.twig
+@@ -56,19 +56,19 @@
+       {% if _item.term is not empty %}
+         {% if _item.term is iterable %}
+           {% for _term in _item.term %}
+-            <dt class="ecl-description-list__term">{{ _term|raw }}</dt>
++            <dt class="ecl-description-list__term">{{ _term }}</dt>
+           {% endfor %}
+         {% else %}
+-          <dt class="ecl-description-list__term">{{ _item.term|raw }}</dt>
++          <dt class="ecl-description-list__term">{{ _item.term }}</dt>
+         {% endif %}
+       {% endif %}
+       {% if _item.definition is not empty %}
+         {% if _item.definition is iterable %}
+           {% for _definition in _item.definition %}
+-            <dd class="ecl-description-list__definition">{{ _definition|raw }}</dd>
++            <dd class="ecl-description-list__definition">{{ _definition }}</dd>
+           {% endfor %}
+         {% else %}
+-          <dd class="ecl-description-list__definition">{{ _item.definition|raw }}</dd>
++          <dd class="ecl-description-list__definition">{{ _item.definition }}</dd>
+         {% endif %}
+       {% endif %}
+     {% endfor %}

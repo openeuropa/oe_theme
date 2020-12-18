@@ -36,6 +36,9 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     'file',
     'media',
     'oe_media',
+    'file_link',
+    'link',
+    'options',
   ];
 
   /**
