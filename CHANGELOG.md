@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.11.1](https://github.com/openeuropa/oe_theme/tree/2.11.1) (2020-12-18)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.11.0...2.11.1)
+
+**Merged pull requests:**
+
+- EWPP-635: Port security fixes to 2.11.x [\#688](https://github.com/openeuropa/oe_theme/pull/688) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [2.11.0](https://github.com/openeuropa/oe_theme/tree/2.11.0) (2020-11-05)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.10.2...2.11.0)
