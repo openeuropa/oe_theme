@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\block\Entity\Block;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Component\Utility\Crypt;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -255,5 +256,25 @@ function oe_theme_helper_post_update_20014() {
       'branding' => 'standardised',
     ]);
     $block->save();
+  }
+}
+
+/**
+ * Create oe_theme_main_content view mode for Iframe media.
+ */
+function oe_theme_helper_post_update_20015() {
+  if (!\Drupal::moduleHandler()->moduleExists('oe_media_iframe')) {
+    // Since core.entity_view_display.media.iframe.oe_theme_main_content is
+    // optional config we have to ensure that module is enabled.
+    return t('Module oe_media_iframe is not enabled.');
+  }
+
+  $file_storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/optional');
+  $view_display_values = $file_storage->read('core.entity_view_display.media.iframe.oe_theme_main_content');
+  $entity_view_display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  $view_display = $entity_view_display_storage->load($view_display_values['id']);
+  if (!$view_display) {
+    $view_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_display_values));
+    $entity_view_display_storage->create($view_display_values)->save();
   }
 }
