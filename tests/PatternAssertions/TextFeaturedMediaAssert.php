@@ -55,7 +55,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    * Asserts the video ratio of the pattern.
    *
    * @param string $expected_ratio
-   *   The expected class with the video ratio.
+   *   The video ratio.
    * @param string $selector
    *   The CSS selector to find the element.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
@@ -70,7 +70,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
 
     $expected_ratio = str_replace(':', '-', $expected_ratio);
     if (!in_array('ecl-media-container__media--ratio-' . $expected_ratio, $existing_classes)) {
-      throw new Exception(sprintf('Element with selector %s does not use ratio %s.', $selector, $expected_ratio));
+      throw new Exception(sprintf('The element with the selector %s does not use the ratio %s.', $selector, $expected_ratio));
     }
   }
 

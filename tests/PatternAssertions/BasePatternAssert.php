@@ -115,7 +115,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     $element = $crawler->filter($selector);
     $actual = trim($element->text());
     self::assertEquals($expected, $actual, \sprintf(
-      'Expected value "%s" is not equal actual value "%s" in the selector "%s".',
+      'Expected text value "%s" is not equal to the actual value "%s" found in the selector "%s".',
       $expected, $actual, $selector
     ));
   }
