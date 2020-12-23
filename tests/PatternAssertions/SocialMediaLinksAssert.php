@@ -72,7 +72,7 @@ class SocialMediaLinksAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the links of social media follow.
+   * Asserts the links of the social media links pattern.
    *
    * @param array $expected_items
    *   The expected item values.

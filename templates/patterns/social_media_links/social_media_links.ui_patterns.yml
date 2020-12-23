@@ -1,13 +1,13 @@
 social_media_links:
   label: "Social media links"
-  description: "Social network icon with link of label."
+  description: "Showcases a list of social media links with their respective icons."
   variants:
     horizontal:
       label: "Horizontal"
-      description: "It will align the field items horizontally."
+      description: "Social media links will be arranged horizontally."
     vertical:
       label: "Vertical"
-      description: "It will align the field items vertically."
+      description: "Social media links will be arranged vertically."
   fields:
     title:
       type: "text"
