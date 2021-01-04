@@ -46,6 +46,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $media_document = $this->createMediaDocument('call_for_tenders_document');
 
     // Create a Call for tender node.
+    $next_year = date('Y') + 1;
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
       'type' => 'oe_call_tenders',
@@ -64,7 +65,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'value' => '2020-04-30',
       ],
       'oe_call_tenders_deadline' => [
-        'value' => date('Y') + 1 . '-06-10T23:30:00',
+        'value' => $next_year . '-06-10T23:30:00',
       ],
       'oe_reference_code' => 'Call for tenders reference',
       'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
@@ -134,7 +135,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
       'Call for tenders reference',
       '15 April 2020',
       '30 April 2020',
-      '11 June 2021, 09:30 (AEST)',
+      "11 June $next_year, 09:30 (AEST)",
       'Audit Board of the European Communities',
     ];
     foreach ($values_data as $index => $value) {
@@ -163,12 +164,12 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Audit Board of the European Communities | Associated African States and Madagascar', $values[5]->getText());
 
     // Assert status "Upcoming".
-    $node->set('oe_call_tenders_opening_date', ['value' => date('Y') + 1 . '-05-31']);
+    $node->set('oe_call_tenders_opening_date', ['value' => $next_year . '-05-31']);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Upcoming');
-    $this->assertOpeningDateValue($content, '31 May 2021');
-    $this->assertDeadlineDateValue($content, '11 June 2021, 09:30 (AEST)');
+    $this->assertOpeningDateValue($content, "31 May $next_year");
+    $this->assertDeadlineDateValue($content, "11 June $next_year, 09:30 (AEST)");
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Call for tenders | Upcoming');
 
     // Assert status "Closed".

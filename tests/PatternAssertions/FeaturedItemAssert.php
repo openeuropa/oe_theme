@@ -29,7 +29,7 @@ class FeaturedItemAssert extends BasePatternAssert {
         $variant == 'extended' ? 'article.ecl-card div.ecl-card__body div.ecl-card__description p.ecl-paragraph' : 'article.ecl-card div.ecl-card__body div.ecl-card__description',
       ],
       'image' => [
-        [$this, 'assertImage'],
+        [$this, 'assertFeaturedItemImage'],
         $variant,
       ],
       'meta' => [
@@ -60,7 +60,7 @@ class FeaturedItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertImage($expected_image, Crawler $crawler): void {
+  protected function assertFeaturedItemImage($expected_image, Crawler $crawler): void {
     $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
     self::assertContains($expected_image['src'], $image_div->attr('style'));
