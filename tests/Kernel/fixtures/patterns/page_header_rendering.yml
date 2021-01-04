@@ -70,7 +70,6 @@
   pattern:
     '#type': pattern
     '#id': page_header
-    '#variant': 'background_image'
     '#fields':
       title: "Business, Economy, Euro<"
       introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
@@ -110,77 +109,7 @@
         -
           href: "http://www.example.com/news/"
           label: "News"
-  assertions:
-    count:
-      '.ecl-page-header-core': 1
-      '.ecl-breadcrumb-core__segment': 7
-      '.ecl-page-header-core--image': 0
-      '.ecl-lang-select-page button.ecl-button': 1
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
-      '.ecl-page-header-core__meta': 1
-      '.ecl-page-header-core__info-list': 0
-      '.ecl-page-header-core__info-item': 0
-    equals:
-      'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-core__meta': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
-      '.ecl-lang-select-page .ecl-u-type-strike': "English"
-      '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
-      '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="it"]': "Italian"
-      '.ecl-breadcrumb-core__segment:nth-child(1)[data-ecl-breadcrumb-core-item="static"] a[href="http://www.example.com/"]': "European Commission"
-      '.ecl-breadcrumb-core__segment:nth-child(2).ecl-breadcrumb-core__segment--ellipsis button': "…"
-      '.ecl-breadcrumb-core__segment:nth-child(3)[data-ecl-breadcrumb-core-item="expandable"] a[href="http://www.example.com/announcements/"]': "Announcements"
-      '.ecl-breadcrumb-core__segment:nth-child(4)[data-ecl-breadcrumb-core-item="expandable"] a[href="http://www.example.com/about-european-commission/"]': "About the European Commission"
-      '.ecl-breadcrumb-core__segment:nth-child(5)[data-ecl-breadcrumb-core-item="expandable"] a[href="http://www.example.com/organisation-structure/"]': "Organisational structure"
-      '.ecl-breadcrumb-core__segment:nth-child(6)[data-ecl-breadcrumb-core-item="static"] a[href="http://www.example.com/how-commission-organized/"]': "How the Commission is organised"
-      '.ecl-breadcrumb-core__segment:nth-child(7)': "News"
-- branding: core
-  pattern:
-    '#type': pattern
-    '#id': page_header
-    '#variant': 'background_image'
-    '#fields':
-      title: "Business, Economy, Euro<"
-      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
-      metas:
-        - "News article>"
-        - "6 July 2015&"
-        - "Brussels<"
-      language_switcher:
-        current: "French"
-        unavailable: "English"
-        is_primary: true
-        options:
-          - href: "#"
-            hreflang: "es"
-            label: "Spanish"
-            lang: "es"
-          - href: "#"
-            hreflang: "it"
-            label: "Italian"
-            lang: "it"
-      breadcrumb:
-        -
-          href: "http://www.example.com/"
-          label: "European Commission"
-        -
-          href: "http://www.example.com/announcements/"
-          label: "Announcements"
-        -
-          href: "http://www.example.com/about-european-commission/"
-          label: "About the European Commission"
-        -
-          href: "http://www.example.com/organisation-structure/"
-          label: "Organisational structure"
-        -
-          href: "http://www.example.com/how-commission-organized/"
-          label: "How the Commission is organised"
-        -
-          href: "http://www.example.com/news/"
-          label: "News"
-      background_image:
-        src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
   assertions:
     count:
       '.ecl-page-header-core': 1
@@ -278,7 +207,6 @@
   pattern:
     '#type': pattern
     '#id': page_header
-    '#variant': 'background_image'
     '#fields':
       title: "Business, Economy, Euro<"
       introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
@@ -318,8 +246,7 @@
         -
           href: "http://www.example.com/news/"
           label: "News"
-      background_image:
-        src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
   assertions:
     count:
       '.ecl-page-header-standardised': 1
