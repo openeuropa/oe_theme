@@ -8,8 +8,8 @@ use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\oe_theme_helper\ContentUtility;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
-use Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -107,7 +107,7 @@ class NewsContentType extends NodeViewRoutesBase {
 
     // Add news types to page metadata.
     if (!$node->get('oe_news_types')->isEmpty()) {
-      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_news_types'));
+      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_types'));
     }
 
     // Add publication date to page metadata.
@@ -116,33 +116,15 @@ class NewsContentType extends NodeViewRoutesBase {
 
     // Add news locations to page metadata.
     if (!$node->get('oe_news_location')->isEmpty()) {
-      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_news_location'));
+      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_location'));
     }
 
     // Add news authors to page metadata.
     if (!$node->get('oe_author')->isEmpty()) {
-      $metadata['metas'][] = $this->getCommaSeparatedSkosMeta($node->get('oe_author'));
+      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_author'));
     }
 
     return $metadata;
-  }
-
-  /**
-   * Format a list of SKOS references into a comma separated string.
-   *
-   * @param \Drupal\rdf_skos\Plugin\Field\SkosConceptReferenceFieldItemList $items
-   *   Field item list object.
-   *
-   * @return string
-   *   Comma separated string.
-   */
-  protected function getCommaSeparatedSkosMeta(SkosConceptReferenceFieldItemList $items): string {
-    $list = [];
-    foreach ($items as $item) {
-      $entity = $item->entity;
-      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
-    }
-    return implode(', ', $list);
   }
 
 }
