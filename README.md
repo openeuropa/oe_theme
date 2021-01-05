@@ -83,13 +83,13 @@ To learn more about EC/EU families and ECL branding visit the [ECL website](http
 
 #### Social media links pattern
 
-In 2.13.0 we introduced new pattern ["Social media links"](./templates/patterns/social_media_links) with two variants:
+In 2.13.0 we introduced a new pattern ["Social media links"](./templates/patterns/social_media_links) with two variants:
 
 - `horizontal`: social media links will be arranged horizontally.
 - `vertical`: social media links will be arranged vertically.
 
-Therefore patterns "Social media links: horizontal" and "Social media links: vertical" are deprecated. Use "Social media
-links" pattern with appropriate variant instead.
+Therefore patterns "Social media links: horizontal" and "Social media links: vertical" are now deprecated. Use the "Social media
+links" pattern with an appropriate variant instead.
 
 ### Upgrade to 2.10.0
 
