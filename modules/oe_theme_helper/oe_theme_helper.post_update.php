@@ -269,7 +269,7 @@ function oe_theme_helper_post_update_20015() {
     return t('Module oe_media_iframe is not enabled.');
   }
 
-  $file_storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/optional');
+  $file_storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/post_updates/20015_create_view_display_media_iframe');
   $view_display_values = $file_storage->read('core.entity_view_display.media.iframe.oe_theme_main_content');
   $entity_view_display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $view_display = $entity_view_display_storage->load($view_display_values['id']);
