@@ -1,9 +1,9 @@
 component_library_ec:
   css:
     theme:
-      dist/ec/styles/ecl-ec-preset-legacy-website.css: {}
+      dist/ec/styles/ecl-ec-preset-legacy-website.css: { media: screen }
       dist/ec/styles/ecl-ec-preset-legacy-website-print.css: { media: print }
-      css/style-ec.css: {}
+      css/style-ec.css: { media: screen }
   js:
     dist/ec/scripts/ecl-ec-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
@@ -13,9 +13,9 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/eu/styles/ecl-eu-preset-legacy-website.css: {}
+      dist/eu/styles/ecl-eu-preset-legacy-website.css: { media: screen }
       dist/eu/styles/ecl-eu-preset-legacy-website-print.css: { media: print }
-      css/style-eu.css: {}
+      css/style-eu.css: { media: screen }
   js:
     dist/eu/scripts/ecl-eu-preset-legacy-website.js: {}
     js/ecl_auto_init.js: {}
@@ -25,7 +25,7 @@ component_library_eu:
 editor:
   css:
     theme:
-      dist/styles/ecl-ec-preset-editor.css: {}
+      dist/styles/ecl-ec-preset-editor.css: { media: screen }
 
 external_svg:
   js:
