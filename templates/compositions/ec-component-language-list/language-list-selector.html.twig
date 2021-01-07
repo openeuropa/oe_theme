@@ -3,10 +3,17 @@
 {#
   /**
    * @file
-   * Theme implementation for a ECL Language List Button.
+   * Theme implementation for a ECL Language List Selector.
    */
   Parameters:
+    - "eu_category" (string) (default: '');
+    - "non_eu_category" (string) (default: '')
     - "items" (array) (default: [])
+      - "lang" (string) (default: '')
+      - "label" (string) (default: '')
+      - "path" (string) (default: '')
+      - "active (boolean) (default: false)
+    - non_eu_items (array) (default: [])
       - "lang" (string) (default: '')
       - "label" (string) (default: '')
       - "path" (string) (default: '')
@@ -38,6 +45,12 @@
 {% set _extra_attributes = [] %}
 
 {# Internal logic - Process properties #}
+
+{% if eu_languages is not empty and eu_languages is iterable%}
+  {% set items = eu_languages %}
+  {% set eu_category = 'EU official languages'|t %}
+  {% set non_eu_category = 'Non-EU languages'|t %}
+{% endif %}
 
 {% if extra_classes is defined and extra_classes is not empty %}
   {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
@@ -71,11 +84,13 @@
   {{- _label -}}
  </a>
 {% include '@ecl-twig/language-list/language-list' with {
+  eu_category: eu_category,
+  non_eu_category: non_eu_category,
   items: items,
+  non_eu_items: non_eu_languages,
   icon_path: _icon_path,
   overlay: true,
   title: 'Select your language'|t,
-  close_label: 'Close'|t,
   extra_attributes: [
     { name: 'aria-labelledby', value: 'ecl-language-list__title' },
     { name: 'role', value: 'dialog' },
