@@ -305,9 +305,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $build = $this->mediaViewBuilder->view($media, 'oe_theme_main_content');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $element = $crawler->filter('.ecl-media-container');
-    self::assertCount(0, $element);
-    $iframe = $crawler->filter('.media-iframe-wrapper iframe');
+    $iframe = $crawler->filter('.ecl-media-container .ecl-media-container__media--ratio-custom iframe');
     $this->assertEquals('http://example.com/iframe_media', $iframe->attr('src'));
 
     // Assert iframe media with aspect ratio 3:2.
@@ -315,8 +313,6 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $build = $this->mediaViewBuilder->view($media, 'oe_theme_main_content');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $element = $crawler->filter('.media-iframe-wrapper');
-    self::assertCount(0, $element);
     $iframe = $crawler->filter('.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe');
     $this->assertEquals('http://example.com/iframe_media', $iframe->attr('src'));
   }
