@@ -3,5 +3,20 @@
  * Media Iframe specific styles.
  */
 .media-iframe-wrapper {
-  display: flex;
+  display: inline-block;
+  margin: 0;
+  background-color: #ebebeb;
+
+  .ecl-media-container__media {
+    display: flex;
+  }
+
+  .ecl-media-container__caption {
+    display: flex;
+
+    > div {
+      flex-grow: 1;
+      width: 0;
+    }
+  }
 }

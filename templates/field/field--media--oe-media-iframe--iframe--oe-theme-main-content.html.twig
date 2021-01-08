@@ -6,7 +6,9 @@
 #}
 {% for item in items %}
   {% if ratio is empty %}
-    <div class="media-iframe-wrapper">{{ item.content }}</div>
+    <div class="media-iframe-wrapper">
+      <div class="ecl-media-container__media">{{ item.content }}</div>
+    </div>
   {% else %}
     {% include '@ecl-twig/media-container' with {
       'embedded_media': item.content,
