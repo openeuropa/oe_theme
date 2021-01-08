@@ -26,6 +26,13 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__title')->text();
     $this->assertEquals('Select your language', trim($actual));
 
+    // Check for EU languages category.
+    $actual = $crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text();
+    $this->assertEquals('EU official languages', trim($actual));
+
+    // Check that non-EU category is not visible by default.
+    $this->assertEmpty($crawler->filter('.ecl-language-list__non-eu'));
+
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
     $lang_config = $this->container->get('config.factory')->get('language.negotiation');
@@ -42,6 +49,41 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
         preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
       );
     }
+
+    // Set Hungarian as non-EU language to test the non-EU category.
+    $hungarian = $this->container->get('entity_type.manager')->getStorage('configurable_language')->load('hu');
+    $hungarian->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $hungarian->save();
+    // Load the language object.
+    $hungarian = $this->container->get('language_manager')->getLanguage('hu');
+    $lang_id = $hungarian->getId();
+    $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
+
+    // Build the language block.
+    $crawler = $this->renderLanguageBlock();
+
+    // Make sure that language switcher overlay is present.
+    $actual = $crawler->filter('.ecl-language-list--overlay');
+    $this->assertCount(1, $actual);
+
+    // Assert there is no Hungarian language in the EU category.
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__eu a.ecl-language-list__link[lang={$lang_prefix}]");
+    $this->assertCount(0, $actual);
+
+    // Check for non-EU languages category.
+    $actual = $crawler->filter('.ecl-language-list__non-eu .ecl-language-list__category')->text();
+    $this->assertEquals('Non-EU languages', trim($actual));
+
+    // Assert there is only one link in the non-EU category.
+    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__non-eu a');
+    $this->assertCount(1, $actual);
+
+    // Assert the Hungarian language link.
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+    $this->assertEquals(
+      $languages[$lang_id]->getName(),
+      preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
+    );
   }
 
   /**
@@ -54,7 +96,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *
    * @dataProvider renderingDataProvider
    */
-  public function testLanguageSwitcherRendering($langcode, $lang_prefix): void {
+  public function testLanguageSwitcherRendering(string $langcode, string $lang_prefix): void {
     // Set the site default language.
     $this->config('system.site')->set('default_langcode', $langcode)->save();
 
