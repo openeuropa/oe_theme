@@ -20,7 +20,7 @@
         "consolidation/annotated-command": "^2.8.2",
         "consolidation/robo": "~1.4",
         "cweagans/composer-patches": "~1.6.7",
-        "drupal-composer/drupal-scaffold": "^2.5.2",
+        "drupal/core-composer-scaffold": "^8.8",
         "drupal/address": "~1.9",
         "drupal/composite_reference": "~1.0-alpha1",
         "drupal/config_devel": "~1.2",
@@ -66,7 +66,6 @@
         "openeuropa/oe_corporate_blocks": "<3.0.0"
     },
     "scripts": {
-        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
         "post-update-cmd": "./vendor/bin/run drupal:site-setup"
     },
@@ -106,6 +105,11 @@
             },
             "openeuropa/oe_media": {
                 "latest-master": "https://github.com/openeuropa/oe_media/compare/1.10.1..master.diff"
+            }
+        },
+        "drupal-scaffold": {
+            "locations": {
+                "web-root": "./build"
             }
         }
     },
