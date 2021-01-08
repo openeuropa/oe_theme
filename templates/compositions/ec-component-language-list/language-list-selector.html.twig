@@ -46,7 +46,7 @@
 
 {# Internal logic - Process properties #}
 
-{% if eu_languages is not empty and eu_languages is iterable%}
+{% if eu_languages is not empty and eu_languages is iterable %}
   {% set items = eu_languages %}
   {% set eu_category = 'EU official languages'|t %}
   {% set non_eu_category = 'Non-EU languages'|t %}
@@ -91,6 +91,7 @@
   icon_path: _icon_path,
   overlay: true,
   title: 'Select your language'|t,
+  close_label: 'Close'|t,
   extra_attributes: [
     { name: 'aria-labelledby', value: 'ecl-language-list__title' },
     { name: 'role', value: 'dialog' },
