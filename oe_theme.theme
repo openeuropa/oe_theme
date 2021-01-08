@@ -1476,7 +1476,7 @@ function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_the
  */
 function oe_theme_preprocess_field__media__oe_media_iframe__iframe__oe_theme_main_content(array &$variables): void {
   // Set iframe aspect ratio when rendering "oe_theme_main_content" display mode.
-  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value;
+  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value ?? 'custom';
 }
 
 /**

@@ -2,12 +2,10 @@
  * @file
  * Media Iframe specific styles.
  */
-.media-iframe-wrapper {
+.ecl-media-container--custom-ratio {
   display: inline-block;
-  margin: 0;
-  background-color: #ebebeb;
 
-  .ecl-media-container__media {
+  .ecl-media-container__media--ratio-custom {
     display: flex;
   }
 
