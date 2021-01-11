@@ -1152,6 +1152,13 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
 
   $route_options = ['absolute' => TRUE];
   $variables['site_logo_href'] = Url::fromRoute('<front>', [], $route_options)->toString();
+
+  // Ensure the site logo falls back to english version if the language is
+  // not EU language.
+  $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
+    $variables['current_language_id'] = 'en';
+  }
 }
 
 /**
