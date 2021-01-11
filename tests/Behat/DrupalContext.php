@@ -11,6 +11,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
@@ -124,6 +125,32 @@ class DrupalContext extends RawDrupalContext {
    */
   public static function disableDatetimeTesting(AfterFeatureScope $scope): void {
     \Drupal::service('module_installer')->uninstall(['datetime_testing']);
+  }
+
+  /**
+   * Enables a non-EU language for the given scenario.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The scope.
+   *
+   * @BeforeScenario @enable-non-eu-language
+   */
+  public static function enableNonEuLanguage(BeforeScenarioScope $scope): void {
+    $language = ConfigurableLanguage::createFromLangcode('is');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
+  }
+
+  /**
+   * Disables a non-EU language for the given scenario.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
+   *   The scope.
+   *
+   * @AfterScenario @enable-non-eu-language
+   */
+  public static function disableNonEuLanguage(AfterScenarioScope $scope): void {
+    ConfigurableLanguage::load('is')->delete();
   }
 
 }
