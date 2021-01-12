@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
+use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
 use Drupal\Core\Url;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -69,22 +70,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ]);
     $paragraph->save();
 
+    // Assert the paragraph is rendered properly without image.
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-
-    // Assert the title is rendered properly.
-    $title = $crawler->filter('h2.ecl-u-type-heading-2');
-    $this->assertCount(1, $title);
-    $this->assertContains('Title', $title->text());
-
-    // Assert there is no image.
-    $figure = $crawler->filter('figure.ecl-media-container');
-    $this->assertCount(0, $figure);
-
-    // Assert text is rendered properly.
-    $text = $crawler->filter('.ecl-col-12.ecl-editor');
-    $this->assertCount(1, $text);
-    $this->assertContains('Full text', $text->text());
+    $assert = new TextFeaturedMediaAssert();
+    $expected_values = [
+      'title' => 'Title',
+      'caption' => NULL,
+      'text' => 'Full text',
+      'image' => NULL,
+    ];
+    $assert->assertPattern($expected_values, $html);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -132,56 +127,54 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->addTranslation('bg', ['field_oe_title' => 'Title bg'])->save();
 
     // Test the translated media is rendered with the translated paragraph.
-    foreach ($paragraph->getTranslationLanguages() as $paragraph_langcode => $paragraph_language) {
-      // Render paragraph.
-      $html = $this->renderParagraph($paragraph, $paragraph_langcode);
-      $crawler = new Crawler($html);
+    $expected_values = [
+      'title' => 'Title',
+      'caption' => 'Caption',
+      'text' => 'Full text',
+      'image' => [
+        'src' => 'example_1_en.jpeg',
+        'alt' => 'Alt en',
+      ],
+    ];
+    $html = $this->renderParagraph($paragraph, 'en');
+    $assert->assertPattern($expected_values, $html);
 
-      // Assert the title is rendered properly.
-      $title = $crawler->filter('h2.ecl-u-type-heading-2');
-      $this->assertCount(1, $title);
-      $expected_title = $paragraph_langcode === 'bg' ? 'Title bg' : 'Title';
-      $this->assertContains($expected_title, $title->text());
-
-      // Assert the image is rendered properly.
-      $figure = $crawler->filter('figure.ecl-media-container');
-      $this->assertCount(1, $figure);
-
-      // The image in the figure element has the source and alt defined in the
-      // referenced media.
-      $image = $figure->filter('.ecl-media-container__media');
-      // Translated media should be rendered.
-      $this->assertContains('example_1_' . $paragraph_langcode . '.jpeg', $image->attr('src'));
-      $this->assertContains('Alt ' . $paragraph_langcode, $image->attr('alt'));
-    }
-
-    $caption = $figure->filter('.ecl-media-container__caption');
-    $this->assertContains('Caption', $caption->text());
-
-    // Assert text is rendered properly.
-    $text = $crawler->filter('.ecl-col-md-6.ecl-editor');
-    $this->assertCount(1, $text);
-    $this->assertContains('Full text', $text->text());
+    $expected_values = [
+      'title' => 'Title bg',
+      'caption' => NULL,
+      'text' => NULL,
+      'image' => [
+        'src' => 'example_1_bg.jpeg',
+        'alt' => 'Alt bg',
+      ],
+    ];
+    $html = $this->renderParagraph($paragraph, 'bg');
+    $assert->assertPattern($expected_values, $html);
 
     // Remove the text and assert the element is no longer rendered.
     $paragraph->set('field_oe_text_long', '');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert text is no longer rendered.
-    $text = $crawler->filter('.ecl-editor');
-    $this->assertCount(0, $text);
+    $expected_values = [
+      'title' => 'Title',
+      'caption' => 'Caption',
+      'text' => NULL,
+      'image' => [
+        'src' => 'example_1_en.jpeg',
+        'alt' => 'Alt en',
+      ],
+    ];
+    $assert->assertPattern($expected_values, $html);
 
     // Remove the title and assert the element is no longer rendered.
     $paragraph->set('field_oe_title', '');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert title is no longer rendered.
-    $title = $crawler->filter('h2.ecl-u-type-heading-2');
-    $this->assertCount(0, $title);
+    $expected_values['title'] = NULL;
+    $assert->assertPattern($expected_values, $html);
+
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
       'bundle' => 'remote_video',
@@ -213,11 +206,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
     $paragraph->save();
 
-    $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
     // Assert remote video is rendered properly.
-    $video_iframe = $crawler->filter('div.ecl-media-container__media--ratio-16-9 iframe');
-    $this->assertContains('I-163162', $video_iframe->attr('src'));
+    $html = $this->renderParagraph($paragraph);
+    $expected_values = [
+      'title' => NULL,
+      'caption' => 'Caption',
+      'text' => NULL,
+      'video' => '<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="640" height="390" class="media-avportal-content"></iframe>',
+      'video_ratio' => '16:9',
+    ];
+    $assert->assertPattern($expected_values, $html);
 
     // Create iframe video with aspect ration 16:9 and add it to the paragraph.
     $media = $media_storage->create([
@@ -230,12 +228,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert that iframe video is rendered properly.
-    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-16-9');
-    $this->assertCount(1, $media_container);
-    $video_iframe = $media_container->filter('iframe');
-    $this->assertContains('http://example.com', $video_iframe->attr('src'));
+    $expected_values = [
+      'title' => NULL,
+      'caption' => 'Caption',
+      'text' => NULL,
+      'video' => '<iframe src="http://example.com"></iframe>',
+      'video_ratio' => '16:9',
+    ];
+    $assert->assertPattern($expected_values, $html);
 
     // Create iframe video with aspect ration 1:1 and add it to the paragraph.
     $media = $media_storage->create([
@@ -248,12 +248,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
-    $crawler = new Crawler($html);
-    // Assert that iframe video is rendered properly.
-    $media_container = $crawler->filter('div.ecl-media-container__media--ratio-1-1');
-    $this->assertCount(1, $media_container);
-    $video_iframe = $media_container->filter('iframe');
-    $this->assertContains('http://example.com', $video_iframe->attr('src'));
+    $expected_values['video_ratio'] = '1:1';
+    $assert->assertPattern($expected_values, $html);
   }
 
   /**
