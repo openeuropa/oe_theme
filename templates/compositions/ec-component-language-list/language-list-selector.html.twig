@@ -48,8 +48,11 @@
 
 {% if eu_languages is not empty and eu_languages is iterable %}
   {% set items = eu_languages %}
-  {% set eu_category = 'EU official languages'|t %}
-  {% set non_eu_category = 'Non-EU languages'|t %}
+  {# Use category titles only if both category of languages are present. #}
+  {% if non_eu_languages is not empty and non_eu_languages is iterable %}
+    {% set eu_category = 'EU official languages'|t %}
+    {% set non_eu_category = 'Non-EU languages'|t %}
+  {% endif %}
 {% endif %}
 
 {% if extra_classes is defined and extra_classes is not empty %}

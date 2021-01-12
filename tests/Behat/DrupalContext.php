@@ -128,28 +128,28 @@ class DrupalContext extends RawDrupalContext {
   }
 
   /**
-   * Enables a non-EU language for the given scenario.
+   * Creates a non-EU language for the given scenario.
    *
    * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
    *   The scope.
    *
    * @BeforeScenario @enable-non-eu-language
    */
-  public static function enableNonEuLanguage(BeforeScenarioScope $scope): void {
+  public static function createNonEuLanguage(BeforeScenarioScope $scope): void {
     $language = ConfigurableLanguage::createFromLangcode('is');
     $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
     $language->save();
   }
 
   /**
-   * Disables a non-EU language for the given scenario.
+   * Deletes a non-EU language for the given scenario.
    *
    * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
    *   The scope.
    *
    * @AfterScenario @enable-non-eu-language
    */
-  public static function disableNonEuLanguage(AfterScenarioScope $scope): void {
+  public static function deleteNonEuLanguage(AfterScenarioScope $scope): void {
     ConfigurableLanguage::load('is')->delete();
   }
 

@@ -48,6 +48,16 @@ Feature: Site branding
       # Non-EU language.
       | Icelandic               | English    |
 
+  @javascript @enable-non-eu-language
+  Scenario: The European Union logo is available in the footer when non-EU language is selected.
+    Given I am on the homepage
+    When the theme is configured to use the "European Union" style
+    And I reload the page
+    Then I should see the "footer logo" element in the "footer"
+    When I open the language switcher dialog
+    And I click "Icelandic"
+    Then I should see the "footer logo" element in the "footer"
+
   Scenario: The breadcrumb is visible everywhere.
     When I am on the homepage
     Then I should see the "breadcrumb" element in the "page"
