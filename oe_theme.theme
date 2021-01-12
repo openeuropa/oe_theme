@@ -621,7 +621,6 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
  */
 function _oe_theme_preprocess_languages(array $link_items, string $current_language_id = ''): array {
   $variables = [];
-  $oe_multilingual = \Drupal::moduleHandler()->moduleExists('oe_multilingual');
   $language_config_storage = \Drupal::entityTypeManager()->getStorage('configurable_language');
   foreach ($link_items as $language_code => $link) {
     // Handle both cases (block, page) when the link array structure differ.
@@ -663,23 +662,20 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
       $language['active'] = TRUE;
     }
 
-    // Take language categories and order languages if oe_multilingual module
-    // is enabled. By default we use the "languages" key in the variable.
-    if ($oe_multilingual) {
-      $language_config = $language_config_storage->load($language_code);
-      $category = $language_config->getThirdPartySetting('oe_multilingual', 'category');
-      switch ($category) {
-        case 'eu':
-          $variables['eu_languages'][] = $language;
-          break;
+    // Take language categories and order languages accordingly.
+    $language_config = $language_config_storage->load($language_code);
+    $category = $language_config->getThirdPartySetting('oe_multilingual', 'category', 'no_category');
+    switch ($category) {
+      case 'eu':
+        $variables['eu_languages'][] = $language;
+        break;
 
-        case 'non_eu':
-          $variables['non_eu_languages'][] = $language;
-          break;
-      }
-    }
-    else {
-      $variables['languages'][] = $language;
+      case 'non_eu':
+        $variables['non_eu_languages'][] = $language;
+        break;
+
+      case 'no_category':
+        $variables['languages'][] = $language;
     }
   }
 
@@ -1574,6 +1570,13 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
   ]);
+
+  // Ensure the site logo falls back to english version if the language is
+  // not EU language.
+  $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
+    $variables['current_language_id'] = 'en';
+  }
 }
 
 /**

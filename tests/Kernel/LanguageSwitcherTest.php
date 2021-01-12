@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\language\Entity\ConfigurableLanguage;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -15,6 +16,65 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * Test language switcher link list rendering.
    */
   public function testLanguageSwitcherLinkListRendering(): void {
+    $this->assertDefaultLanguageBlock();
+
+    $lang_config = $this->container->get('config.factory')->get('language.negotiation');
+
+    // Create the Icelandic language.
+    $language = ConfigurableLanguage::createFromLangcode('is');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
+    // Load the language object.
+    $icelandic = $this->container->get('language_manager')->getLanguage('is');
+    $lang_id = $icelandic->getId();
+    $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
+
+    // Build the language block.
+    $crawler = $this->renderLanguageBlock();
+
+    // Make sure that language switcher overlay is present.
+    $actual = $crawler->filter('.ecl-language-list--overlay');
+    $this->assertCount(1, $actual);
+
+    // Assert there is no Icelandic language in the EU category.
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__eu a.ecl-language-list__link[lang={$lang_prefix}]");
+    $this->assertCount(0, $actual);
+
+    // Check for EU languages category.
+    $actual = $crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text();
+    $this->assertEquals('EU official languages', trim($actual));
+
+    // Check for non-EU languages category.
+    $actual = $crawler->filter('.ecl-language-list__non-eu .ecl-language-list__category')->text();
+    $this->assertEquals('Non-EU languages', trim($actual));
+
+    // Assert there is only one link in the non-EU category.
+    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__non-eu a');
+    $this->assertCount(1, $actual);
+
+    // Assert the Icelandic language link.
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+    $this->assertEquals(
+      $icelandic->getName(),
+      preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
+    );
+
+    // Test backwards-compatibility by removing categories from the existing
+    // languages.
+    foreach ($this->container->get('language_manager')->getLanguages() as $language) {
+      $configurable_language = ConfigurableLanguage::load($language->getId());
+      $configurable_language->unsetThirdPartySetting('oe_multilingual', 'category');
+      $configurable_language->save();
+    }
+
+    // Assert that the block renders as default without language categories.
+    $this->assertDefaultLanguageBlock();
+  }
+
+  /**
+   * Assert language block is rendered as default without language categories.
+   */
+  protected function assertDefaultLanguageBlock() {
     // Build the language block.
     $crawler = $this->renderLanguageBlock();
 
@@ -26,9 +86,9 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__title')->text();
     $this->assertEquals('Select your language', trim($actual));
 
-    // Check for EU languages category.
-    $actual = $crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text();
-    $this->assertEquals('EU official languages', trim($actual));
+    // Check for EU languages category title is not present if there are no
+    // non-EU languages.
+    $this->assertEmpty($crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text());
 
     // Check that non-EU category is not visible by default.
     $this->assertEmpty($crawler->filter('.ecl-language-list__non-eu'));
@@ -49,41 +109,6 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
         preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
       );
     }
-
-    // Set Hungarian as non-EU language to test the non-EU category.
-    $hungarian = $this->container->get('entity_type.manager')->getStorage('configurable_language')->load('hu');
-    $hungarian->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
-    $hungarian->save();
-    // Load the language object.
-    $hungarian = $this->container->get('language_manager')->getLanguage('hu');
-    $lang_id = $hungarian->getId();
-    $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
-
-    // Build the language block.
-    $crawler = $this->renderLanguageBlock();
-
-    // Make sure that language switcher overlay is present.
-    $actual = $crawler->filter('.ecl-language-list--overlay');
-    $this->assertCount(1, $actual);
-
-    // Assert there is no Hungarian language in the EU category.
-    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__eu a.ecl-language-list__link[lang={$lang_prefix}]");
-    $this->assertCount(0, $actual);
-
-    // Check for non-EU languages category.
-    $actual = $crawler->filter('.ecl-language-list__non-eu .ecl-language-list__category')->text();
-    $this->assertEquals('Non-EU languages', trim($actual));
-
-    // Assert there is only one link in the non-EU category.
-    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__non-eu a');
-    $this->assertCount(1, $actual);
-
-    // Assert the Hungarian language link.
-    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang={$lang_prefix}]")->text();
-    $this->assertEquals(
-      $languages[$lang_id]->getName(),
-      preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
-    );
   }
 
   /**
