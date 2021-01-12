@@ -74,7 +74,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
   /**
    * Assert language block is rendered as default without language categories.
    */
-  protected function assertDefaultLanguageBlock() {
+  protected function assertDefaultLanguageBlock(): void {
     // Build the language block.
     $crawler = $this->renderLanguageBlock();
 
