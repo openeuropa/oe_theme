@@ -22,12 +22,38 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Create the Icelandic language.
     $language = ConfigurableLanguage::createFromLangcode('is');
-    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
     $language->save();
     // Load the language object.
     $icelandic = $this->container->get('language_manager')->getLanguage('is');
     $lang_id = $icelandic->getId();
     $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
+
+    // Assert that Icelandic language without category won't show up by default
+    // and no category titles are printed.
+    $crawler = $this->renderLanguageBlock();
+
+    // Make sure that language switcher overlay is present.
+    $actual = $crawler->filter('.ecl-language-list--overlay');
+    $this->assertCount(1, $actual);
+
+    // Make sure that language switcher overlay title is set.
+    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__title')->text();
+    $this->assertEquals('Select your language', trim($actual));
+
+    // Check for EU languages category title is not present if there are no
+    // non-EU languages.
+    $this->assertEmpty($crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text());
+
+    // Check that non-EU category is not visible by default.
+    $this->assertEmpty($crawler->filter('.ecl-language-list__non-eu'));
+
+    // The Icelandic link is not rendered.
+    $this->assertEmpty($crawler->filter('.ecl-language-list--overlay a.ecl-language-list__link[lang=is]'));
+
+    // Set the category for Icelandic language.
+    $language = ConfigurableLanguage::load('is');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
 
     // Build the language block.
     $crawler = $this->renderLanguageBlock();
@@ -56,15 +82,15 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang={$lang_prefix}]")->text();
     $this->assertEquals(
       $icelandic->getName(),
+      // Remove any non-printable characters from actual.
       preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
     );
 
     // Test backwards-compatibility by removing categories from the existing
     // languages.
-    foreach ($this->container->get('language_manager')->getLanguages() as $language) {
-      $configurable_language = ConfigurableLanguage::load($language->getId());
-      $configurable_language->unsetThirdPartySetting('oe_multilingual', 'category');
-      $configurable_language->save();
+    foreach (ConfigurableLanguage::loadMultiple() as $language) {
+      $language->unsetThirdPartySetting('oe_multilingual', 'category');
+      $language->save();
     }
 
     // Assert that the block renders as default without language categories.

@@ -664,7 +664,7 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
 
     // Take language categories and order languages accordingly.
     $language_config = $language_config_storage->load($language_code);
-    $category = $language_config->getThirdPartySetting('oe_multilingual', 'category', 'no_category');
+    $category = $language_config->getThirdPartySetting('oe_multilingual', 'category');
     switch ($category) {
       case 'eu':
         $variables['eu_languages'][] = $language;
@@ -674,7 +674,7 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
         $variables['non_eu_languages'][] = $language;
         break;
 
-      case 'no_category':
+      default:
         $variables['languages'][] = $language;
     }
   }
