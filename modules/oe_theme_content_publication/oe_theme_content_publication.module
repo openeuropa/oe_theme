@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\oe_theme_helper\ContentUtility;
 
 /**
  * Implements hook_theme().
@@ -22,6 +23,28 @@ function oe_theme_content_publication_theme() {
       ],
     ],
   ];
+}
+
+/**
+ * Implements template_preprocess_node() for the Publication node type.
+ */
+function oe_theme_content_publication_preprocess_node__oe_publication__teaser(&$variables) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  // Add publication types to teaser metadata.
+  if (!$node->get('oe_publication_type')->isEmpty()) {
+    $variables['metas']['types'] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_publication_type'));
+  }
+
+  // Add publication date to teaser metadata.
+  $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
+  $variables['metas']['date'] = \Drupal::service('date.formatter')->format($timestamp, 'oe_theme_publication_date');
+
+  // Add authors to teaser metadata.
+  if (!$node->get('oe_author')->isEmpty()) {
+    $variables['metas']['authors'] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_author'));
+  }
 }
 
 /**

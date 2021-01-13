@@ -7,7 +7,7 @@ namespace Drupal\oe_theme_helper;
 use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 
 /**
- * Utility class for content data.
+ * Provides content field value related conversions and operations.
  */
 class ContentUtility {
 

@@ -129,7 +129,6 @@ class NewsRenderTest extends ContentRenderTestBase {
           'target_id' => (int) $media->id(),
         ],
       ],
-      'oe_news_location' => 'http://publications.europa.eu/resource/authority/place/ARE_AUH',
       'oe_publication_date' => '2019-04-02',
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
@@ -146,7 +145,7 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'Test news node',
       'url' => '/en/node/1',
       'detail' => 'Teaser',
-      'meta' => 'News article | 2 April 2019 | Abu Dhabi | Directorate-General for Communication',
+      'meta' => 'News article | 2 April 2019',
       'image' => [
         'src' => 'example_1.jpeg',
         'alt' => '',
@@ -162,7 +161,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Press release | 2 April 2019 | Abu Dhabi | Directorate-General for Communication';
+    $expected_values['meta'] = 'Press release | 2 April 2019';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
@@ -171,17 +170,12 @@ class NewsRenderTest extends ContentRenderTestBase {
       'http://publications.europa.eu/resource/authority/resource-type/FACTSHEET',
       'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN',
     ]);
-    // Set multiple authors.
-    $node->set('oe_author', [
-      'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
-      'http://publications.europa.eu/resource/authority/corporate-body/ACP_CDE',
-    ]);
     $this->nodeViewBuilder->resetCache();
 
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Factsheet, General publications | 2 April 2019 | Abu Dhabi | African Court of Justice and Human Rights, Centre for the Development of Enterprise';
+    $expected_values['meta'] = 'Factsheet, General publications | 2 April 2019';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
   }

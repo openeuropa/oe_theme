@@ -41,24 +41,14 @@ function oe_theme_content_news_preprocess_node__oe_news__teaser(&$variables) {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['node'];
 
-  // Add news types to page metadata.
+  // Add news types to teaser metadata.
   if (!$node->get('oe_news_types')->isEmpty()) {
     $variables['metas']['types'] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_types'));
   }
 
-  // Add publication date to page metadata.
+  // Add publication date to teaser metadata.
   $timestamp = $node->get('oe_publication_date')->date->getTimestamp();
   $variables['metas']['date'] = \Drupal::service('date.formatter')->format($timestamp, 'oe_theme_news_date');
-
-  // Add news locations to page metadata.
-  if (!$node->get('oe_news_location')->isEmpty()) {
-    $variables['metas']['location'] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_location'));
-  }
-
-  // Add news authors to page metadata.
-  if (!$node->get('oe_author')->isEmpty()) {
-    $variables['metas']['authors'] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_author'));
-  }
 }
 
 /**
