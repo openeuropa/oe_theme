@@ -18,15 +18,9 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
   public function testLanguageSwitcherLinkListRendering(): void {
     $this->assertDefaultLanguageBlock();
 
-    $lang_config = $this->container->get('config.factory')->get('language.negotiation');
-
     // Create the Icelandic language.
     $language = ConfigurableLanguage::createFromLangcode('is');
     $language->save();
-    // Load the language object.
-    $icelandic = $this->container->get('language_manager')->getLanguage('is');
-    $lang_id = $icelandic->getId();
-    $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
 
     // Assert that Icelandic language without category won't show up by default
     // and no category titles are printed.
@@ -63,7 +57,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Assert there is no Icelandic language in the EU category.
-    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__eu a.ecl-language-list__link[lang={$lang_prefix}]");
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__eu a.ecl-language-list__link[lang=is]");
     $this->assertCount(0, $actual);
 
     // Check for EU languages category.
@@ -79,9 +73,9 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Assert the Icelandic language link.
-    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__non-eu a.ecl-language-list__link[lang=is]")->text();
     $this->assertEquals(
-      $icelandic->getName(),
+      'Icelandic',
       // Remove any non-printable characters from actual.
       preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
     );
