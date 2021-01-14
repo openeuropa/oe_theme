@@ -7,7 +7,6 @@ namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 use CommerceGuys\Addressing\Locale;
 use Drupal\address\AddressInterface;
 use Drupal\address\Plugin\Field\FieldFormatter\AddressDefaultFormatter;
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageInterface;
@@ -90,9 +89,10 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
     $address_format = $this->addressFormatRepository->get($country_code);
     $values = $this->getValues($address, $address_format);
 
-    $address_elements['%country'] = Html::escape($countries[$country_code]);
+    $address_elements['%country'] = $countries[$country_code];
     foreach ($address_format->getUsedFields() as $field) {
-      $address_elements['%' . $field] = Html::escape($values[$field]);
+      drupal_set_message($field);
+      $address_elements['%' . $field] = $values[$field];
     }
 
     if (Locale::matchCandidates($address_format->getLocale(), $address->getLocale())) {
@@ -118,7 +118,7 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
   }
 
   /**
-   * Extract address items from a format string and replaces placeholders.
+   * Extract address items from a format string and replace placeholders.
    *
    * @param string $string
    *   The address format string, containing placeholders.
