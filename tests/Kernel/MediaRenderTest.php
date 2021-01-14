@@ -277,12 +277,8 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       $build = $this->mediaViewBuilder->view($media, $view_mode);
       $html = $this->renderRoot($build);
       $crawler = new Crawler($html);
-      $figure = $crawler->filter('figure.ecl-media-container');
-      $this->assertCount(1, $figure);
-      $media_container = $crawler->filter('div.ecl-media-container__media.ecl-media-container__media--ratio-16-9');
-      $this->assertCount(1, $media_container);
       // Make sure that the op publication list json is present.
-      $this->assertEquals('{"service":"opwidget","widgetId":"6313"}', $media_container->filter('script')->text());
+      $this->assertEquals('{"service":"opwidget","widgetId":"6313"}', $crawler->filter('script')->text());
     }
   }
 
