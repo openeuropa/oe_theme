@@ -9,7 +9,7 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 /**
  * Handle information about an image, such as source, alt, name and responsive.
  */
-class ImageValueObject extends ValueObjectBase {
+class ImageValueObject extends ValueObjectBase implements ImageValueObjectInterface {
 
   /**
    * Image Source.
@@ -73,40 +73,28 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getSource(): string {
     return $this->src;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getName(): string {
     return $this->name;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getAlt(): string {
     return $this->alt;
   }
 
   /**
-   * Getter.
-   *
-   * @return bool
-   *   Property value.
+   * {@inheritdoc}
    */
   public function isResponsive(): bool {
     return $this->responsive;
@@ -125,16 +113,9 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Construct object from a Drupal image field.
-   *
-   * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
-   *   Field holding the image.
-   *
-   * @throws \Drupal\Core\TypedData\Exception\MissingDataException
-   *
-   * @return $this
+   * {@inheritdoc}
    */
-  public static function fromImageItem(ImageItem $image_item): ValueObjectInterface {
+  public static function fromImageItem(ImageItem $image_item): ImageValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
 
     $image_object = new static(
@@ -149,20 +130,9 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Construct object from a Drupal image field and image style.
-   *
-   * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $image_item
-   *   The field image item instance.
-   * @param string $style_name
-   *   The image style name.
-   *
-   * @return $this
-   *   A image value object instance.
-   *
-   * @throws \InvalidArgumentException
-   *   Thrown when the image style is not found.
+   * {@inheritdoc}
    */
-  public static function fromStyledImageItem(ImageItem $image_item, string $style_name): ValueObjectInterface {
+  public static function fromStyledImageItem(ImageItem $image_item, string $style_name): ImageValueObjectInterface {
     $image_file = $image_item->get('entity')->getTarget();
 
     $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style_name);
