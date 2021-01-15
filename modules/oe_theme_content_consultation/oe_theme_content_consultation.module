@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Module file used for theming the Consultation content type.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\oe_content\CallEntityWrapperInterface;
+use Drupal\oe_content_consultation\ConsultationNodeWrapper;
+
+/**
+ * Implements hook_ENTITY_TYPE_view_alter().
+ */
+function oe_theme_content_consultation_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  if ($entity->bundle() !== 'oe_consultation') {
+    return;
+  }
+
+  if ($build['#view_mode'] === 'full') {
+    // Override field labels.
+    if ($entity->get('oe_departments')->count() === 1) {
+      $build['oe_departments']['#title'] = t('Department');
+    }
+    $build['oe_consultation_deadline']['#title'] = t('Deadline');
+
+    // Show respond to the consultation information based on open status.
+    $consultation_node_wrapper = ConsultationNodeWrapper::getInstance($entity);
+    $status = $consultation_node_wrapper->getStatus();
+    if ($status === CallEntityWrapperInterface::STATUS_OPEN) {
+      unset($build['oe_consultation_closed_text']);
+      if ($entity->get('oe_consultation_response_button')->isEmpty()) {
+        unset($build['oe_consultation_response_button']);
+      }
+    }
+    else {
+      unset($build['oe_consultation_guidelines']);
+      unset($build['oe_consultation_response_button']);
+    }
+  }
+}

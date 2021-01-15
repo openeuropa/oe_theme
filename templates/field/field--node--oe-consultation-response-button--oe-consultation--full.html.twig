@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Respond button link field in the Consultation content full view mode.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% set label = 'Respond to the questionnaire'|t %}
+{% if items.0.content['#url'].uri != items.0.content['#title'] %}
+  {% set label = items.0.content['#title'] %}
+{% endif %}
+{% include '@ecl-twig/link' with {
+  link: {
+    type: 'cta',
+    label: label,
+    path: items.0.content['#url'],
+  }
+} %}
