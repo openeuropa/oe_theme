@@ -1,0 +1,17 @@
+media_container:
+  label: "Media container"
+  description: "Media container pattern."
+  fields:
+    description:
+      type: "text"
+      label: "Caption"
+      description: "Description text."
+      preview: "My description text"
+    media:
+      type: "MediaValueObject"
+      label: "Media"
+      description: "Media element."
+      preview:
+        image:
+          src: "https://placeimg.com/100/100"
+          alt: "Alternative text"

@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Media container pattern.
+ */
+#}
+{% include '@ecl-twig/media-container' with {
+  'image': media.image.src,
+  'alt': media.image.alt,
+  'embedded_media': media.video,
+  'ratio': media.ratio,
+  'description': description,
+  'sources': media.sources,
+  'tracks': media.tracks
+} %}

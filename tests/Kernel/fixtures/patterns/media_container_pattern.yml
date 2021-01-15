@@ -1,0 +1,94 @@
+- fields:
+    description: "Caption"
+    media:
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Alt text"
+  assertions:
+    count:
+      'figure.ecl-media-container img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media[alt="Alt text"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    media:
+      image:
+        src: "http://via.placeholder.com/150x150"
+        alt: "Image with no caption"
+  assertions:
+    count:
+      'figure.ecl-media-container img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 0
+      'figure.ecl-media-container .ecl-media-container__media[alt="Image with no caption"]': 1
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      ratio: "16:9"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      '.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      ratio: "4-3"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      ratio: "3_2"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      ratio: "1:1"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-1-1 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      ratio: "20:15"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      '.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- fields:
+    description: "Caption"
+    media:
+      video: "<iframe src=\"https://www.youtube.com/embed/UmFFTkjs-O0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="https://www.youtube.com/embed/UmFFTkjs-O0"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption

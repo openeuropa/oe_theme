@@ -75,27 +75,6 @@ class MediaValueObject extends ValueObjectBase implements MediaValueObjectInterf
   /**
    * {@inheritdoc}
    */
-  public static function fromArray(array $values = []): ValueObjectInterface {
-    $ratio = isset($values['ratio']) ? self::validateRatio($values['ratio']) : self::validateRatio('');
-    $values += [
-      'video' => '',
-      'sources' => [],
-      'tracks' => [],
-      'image' => NULL,
-    ];
-
-    return new static(
-      $values['video'],
-      $values['ratio'] = $ratio,
-      $values['sources'],
-      $values['tracks'],
-      $values['image']
-    );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function getVideo(): string {
     return $this->video;
   }
@@ -139,6 +118,29 @@ class MediaValueObject extends ValueObjectBase implements MediaValueObjectInterf
       'tracks' => $this->getTracks(),
       'image' => $this->getImage(),
     ];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function fromArray(array $values = []): ValueObjectInterface {
+    $values += [
+      'video' => '',
+      'ratio' => '',
+      'sources' => [],
+      'tracks' => [],
+      'image' => NULL,
+    ];
+
+    $values['ratio'] = self::validateRatio($values['ratio']);
+
+    return new static(
+      $values['video'],
+      $values['ratio'],
+      $values['sources'],
+      $values['tracks'],
+      $values['image']
+    );
   }
 
   /**
