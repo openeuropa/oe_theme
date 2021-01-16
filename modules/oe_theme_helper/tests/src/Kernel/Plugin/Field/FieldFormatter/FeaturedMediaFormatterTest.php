@@ -25,7 +25,9 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'node',
     'media',
     'file',
+    'file_link',
     'filter',
+    'link',
     'image',
     'views',
     'entity_browser',
@@ -34,13 +36,8 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     'oe_media',
     'oe_media_avportal',
     'oe_media_iframe',
-    'oe_media_oembed_mock',
-    'media_avportal_mock',
     'oe_content_featured_media_field',
     'system',
-    'file_link',
-    'link',
-    'options',
   ];
 
   /**
@@ -64,7 +61,14 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'oe_media_avportal',
       'oe_media_iframe',
       'oe_content_featured_media_field',
+      'oe_theme_helper',
     ]);
+    // Enable and set OpenEuropa Theme as default.
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    // Rebuild the ui_pattern definitions to collect the ones provided by
+    // oe_theme itself.
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
     // Create a content type.
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
@@ -106,7 +110,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
   /**
    * Test the featured media formatter.
    */
-  public function testFormatter(): void {
+  public function testFeaturedMediaFormatter(): void {
     $this->container->get('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create(['uri' => 'public://example.jpg']);
     $image->save();

@@ -63,6 +63,9 @@ field.formatter.settings.oe_theme_helper_featured_media_formatter:
     image_style:
       type: string
       label: 'Image style'
+    view_mode:
+      type: string
+      label: 'Media view mode'
 
 field.formatter.settings.oe_theme_helper_featured_media_thumbnail_url_formatter:
   type: field.formatter.settings.oe_theme_helper_featured_media_formatter
