@@ -200,7 +200,10 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     }
 
     $cache->addCacheableDependency($thumbnail->entity);
-    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+    $media = [
+      'image' => ImageValueObject::fromImageItem($thumbnail),
+    ];
+    $build['#fields']['media'] = MediaValueObject::fromArray($media);
 
     // Only display a caption if we have an image to be captioned by.
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */

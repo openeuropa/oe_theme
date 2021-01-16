@@ -11,12 +11,9 @@
   Unfortunately even when the field is empty the variable content.* still contains information (such as the weight)
   so we can't pass it to the pattern directly.
  #}
-
 {{ pattern('text_featured_media', {
   'title': not paragraph.field_oe_title.isEmpty ? content.field_oe_title,
-  'image': image,
-  'video': video,
-  'video_ratio': ratio,
+  'media': media,
   'caption': not paragraph.field_oe_plain_text_long.isEmpty ? content.field_oe_plain_text_long,
   'text': not paragraph.field_oe_text_long.isEmpty ? content.field_oe_text_long,
 }) }}

@@ -9,12 +9,12 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme\ValueObject\MediaValueObject;
 
 /**
- * Test media container pattern rendering.
+ * Test text featured media pattern rendering.
  */
-class MediaContainerPatternRenderingTest extends AbstractKernelTestBase {
+class TextFeaturedMediaPatternTest extends AbstractKernelTestBase {
 
   /**
-   * Test that media container pattern is correctly rendered.
+   * Test that text featured media pattern is correctly rendered.
    *
    * @param array $fields
    *   Media data for the pattern.
@@ -25,10 +25,10 @@ class MediaContainerPatternRenderingTest extends AbstractKernelTestBase {
    *
    * @dataProvider dataProvider
    */
-  public function testMediaContainerPattern(array $fields, array $assertions) {
+  public function testTextFeaturedMediaPattern(array $fields, array $assertions) {
     $pattern = [
       '#type' => 'pattern',
-      '#id' => 'media_container',
+      '#id' => 'text_featured_media',
       '#fields' => $fields,
     ];
 
@@ -37,13 +37,13 @@ class MediaContainerPatternRenderingTest extends AbstractKernelTestBase {
   }
 
   /**
-   * Data provider for testMediaContainerPattern.
+   * Data provider for testMediaPattern.
    *
    * @return array
    *   Test data and assertions.
    */
   public function dataProvider(): array {
-    $data = $this->getFixtureContent('patterns/media_container_pattern.yml');
+    $data = $this->getFixtureContent('patterns/text_featured_media.yml');
 
     foreach ($data as $key => $value) {
       if (!isset($value['fields']['media'])) {
