@@ -4,10 +4,12 @@
  * Text with featured media.
  */
 #}
-{% if title %}
-  <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
-{% endif %}
+{% set text = text|render %}
+
 {% if media.image or media.video or text %}
+  {% if title %}
+    <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
+  {% endif %}
   <div class="ecl-row">
     {% if media.image or media.video %}
       <div class="ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-m ecl-u-mb-md-none">
