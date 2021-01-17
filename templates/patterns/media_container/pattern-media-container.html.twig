@@ -4,11 +4,13 @@
  * Media container pattern.
  */
 #}
+{% set _ratio = media.ratio|default('16-9') %}
+
 {% include '@ecl-twig/media-container' with {
   'image': media.image.src,
   'alt': media.image.alt,
   'embedded_media': media.video,
-  'ratio': media.ratio,
+  'ratio': _ratio|validate_ratio,
   'description': description,
   'sources': media.sources,
   'tracks': media.tracks
