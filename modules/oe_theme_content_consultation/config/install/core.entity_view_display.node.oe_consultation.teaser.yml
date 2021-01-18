@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.oe_consultation.oe_author
     - field.field.node.oe_consultation.oe_consultation_additional_info
     - field.field.node.oe_consultation.oe_consultation_aim
     - field.field.node.oe_consultation.oe_consultation_closed_text
@@ -71,7 +70,6 @@ hidden:
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
-  oe_author: true
   oe_consultation_additional_info: true
   oe_consultation_aim: true
   oe_consultation_closed_text: true
