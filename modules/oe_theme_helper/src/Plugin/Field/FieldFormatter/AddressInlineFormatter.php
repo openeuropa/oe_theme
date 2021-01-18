@@ -91,7 +91,6 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
 
     $address_elements['%country'] = $countries[$country_code];
     foreach ($address_format->getUsedFields() as $field) {
-      drupal_set_message($field);
       $address_elements['%' . $field] = $values[$field];
     }
 

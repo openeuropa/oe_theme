@@ -37,10 +37,11 @@ class AddressInlineFormatterTest extends FormatterTestBase {
       'locality' => 'Brussels',
       'postal_code' => '1000',
       'address_line1' => 'Rue de la Loi, 56 <123>',
+      'address_line2' => 'or \'Wetstraat\' (Dutch), meaning "Law Street"',
     ];
 
     $this->renderEntityFields($entity, $this->display);
-    $expected = 'Rue de la Loi, 56 &lt;123&gt;, 1000 Brussels, Belgium';
+    $expected = 'Rue de la Loi, 56 &lt;123&gt;, or &#039;Wetstraat&#039; (Dutch), meaning &quot;Law Street&quot;, 1000 Brussels, Belgium';
     $this->assertRaw($expected);
   }
 
