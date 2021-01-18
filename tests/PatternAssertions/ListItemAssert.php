@@ -240,11 +240,11 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertAdditionalInformation($expected, Crawler $crawler): void {
-    $additional_information_item_selector = 'div.ecl-content-item__additional_information';
-    if (!$expected) {
-      $this->assertElementNotExists($additional_information_item_selector, $crawler);
+    $additional_information_items = $crawler->filter('div.ecl-content-item__additional_information');
+    if (is_null($expected)) {
+      self::assertEquals('', $additional_information_items->html());
+      return;
     }
-    $additional_information_items = $crawler->filter($additional_information_item_selector);
     self::assertCount(count($expected), $additional_information_items);
     foreach ($expected as $index => $expected_item) {
       if (!$expected_item instanceof PatternAssertStateInterface) {
