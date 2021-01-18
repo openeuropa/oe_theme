@@ -22,22 +22,15 @@ function oe_theme_content_call_tenders_node_view_alter(array &$build, EntityInte
 
   // Field labels are different in frontend and backend.
   // Here we override them, in full and teaser view mode.
-  if (in_array($build['#view_mode'], ['full', 'teaser'])) {
-    $label_overrides = [
-      'body' => t('Description'),
-      'oe_departments' => t('Departments'),
-    ];
+  $label_overrides = [
+    'body' => t('Description'),
+    'oe_departments' => t('Departments'),
+  ];
 
-    if ($entity->get('oe_departments')->count() === 1) {
-      $label_overrides['oe_departments'] = t('Department');
-    }
-
-    foreach ($label_overrides as $name => $label_override) {
-      if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
-        $build[$name]['#title'] = $label_override;
-      }
-    }
+  if ($entity->get('oe_departments')->count() === 1) {
+    $label_overrides['oe_departments'] = t('Department');
   }
+  _oe_theme_helper_field_view_label_override($build, $entity, $label_overrides, ['full', 'teaser']);
 }
 
 /**
