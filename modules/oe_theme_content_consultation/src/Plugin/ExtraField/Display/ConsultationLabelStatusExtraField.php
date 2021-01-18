@@ -35,7 +35,7 @@ class ConsultationLabelStatusExtraField extends ConsultationStatusExtraField {
     $build = parent::viewElements($entity);
     $entity = ConsultationNodeWrapper::getInstance($entity);
     $build['#theme'] = 'oe_theme_helper_call_label_status';
-    $build['#label'] = $this->t('Call status: @label', ['@label' => $build['#label']]);
+    $build['#label'] = $this->t('Status: @label', ['@label' => $build['#label']]);
     $build['#name'] = $entity->getStatus();
 
     return $build;
