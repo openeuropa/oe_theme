@@ -266,7 +266,7 @@ function oe_theme_helper_post_update_20015() {
   if (!\Drupal::moduleHandler()->moduleExists('oe_media_iframe')) {
     // Since core.entity_view_display.media.iframe.oe_theme_main_content is
     // optional config we have to ensure that module is enabled.
-    return t('Module oe_media_iframe is not enabled.');
+    return t('Skipping since the oe_media_iframe module is not enabled.');
   }
 
   $file_storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/post_updates/20015_create_view_display_media_iframe');
