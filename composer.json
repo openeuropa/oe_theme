@@ -56,11 +56,13 @@
         "openeuropa/rdf_skos": "~0.11",
         "openeuropa/task-runner": "^1.0.0-beta5",
         "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4"
+        "symfony/dom-crawler": "~3.4",
+        "openeuropa/oe_corporate_site_info": "0.2.0 as 0.1.0"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
+        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully.",
+        "We require openeuropa/oe_corporate_site_info 0.2.0 by aliasing it to 0.1.0 until the next version of oe_content is released. Remove this once that is done."
     ],
     "conflict": {
         "openeuropa/oe_corporate_blocks": "<3.0.0"
