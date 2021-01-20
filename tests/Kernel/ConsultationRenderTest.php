@@ -60,7 +60,6 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
 
-    $publication_date = (clone $static_time)->modify('- 5 days');
     $opening_date = (clone $static_time)->modify('- 3 days');
     $deadline_date = (clone $static_time)->modify('+ 3 days');
 
@@ -75,7 +74,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'type' => 'oe_consultation',
       'title' => 'Test Consultation node',
       'oe_consultation_opening_date' => [
-        'value' => $opening_date->format('Y-m-d'),
+        'value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
       ],
       'oe_consultation_deadline' => [
         'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -150,7 +149,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $node->set('oe_consultation_deadline', [
       $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
-    $node->set('oe_consultation_opening_date', $opening_date->format('Y-m-d'))->save();
+    $node->set('oe_consultation_opening_date', $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['meta'] = 'Status: Upcoming';
@@ -174,9 +173,6 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $actual);
 
     // Check status N/A.
-    $publication_date->modify('+ 5 days');
-    $deadline_date->modify('+ 5 days');
-
     $node->set('oe_consultation_opening_date', NULL);
     $node->set('oe_consultation_deadline', NULL);
     $node->save();
