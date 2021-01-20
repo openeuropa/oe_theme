@@ -61,8 +61,8 @@ page_header:
     background_image_url:
       type: "array"
       label: "Background image URL"
-      description: "Background URL for 'core' ECL branding."
-      preview: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"
+      description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
+      preview: "example-image8.jpeg"
     identity:
       type: "text"
       label: "Identity (deprecated)"
