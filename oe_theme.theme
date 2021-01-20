@@ -1285,7 +1285,7 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_page_header__preview(array &$variables): void {
   // We are going to accept only local images for the background image of the preview.
-  $variables['background_image_url'] = base_path() . drupal_get_path('module', 'oe_theme_helper')  . '/images/' . (string) $variables['background_image_url'];
+  $variables['background_image_url'] = base_path() . drupal_get_path('module', 'oe_theme_helper')  . '/images/' . $variables['background_image_url'];
 }
 
 /**

@@ -62,7 +62,7 @@ page_header:
       type: "array"
       label: "Background image URL"
       description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
-      preview: "example-image8.jpeg"
+      preview: "page-header-pattern-background-preview.jpeg"
     identity:
       type: "text"
       label: "Identity (deprecated)"
