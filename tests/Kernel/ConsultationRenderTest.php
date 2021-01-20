@@ -104,7 +104,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
               'body' => '14 February 2020',
             ],
             [
-              'label' => 'Deadline date',
+              'label' => 'Deadline',
               'body' => '21 February 2020, 01:00 (AEDT)',
             ],
           ],
@@ -132,7 +132,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
             'label' => 'Opening date',
             'body' => '14 February 2020',
           ], [
-            'label' => 'Deadline date',
+            'label' => 'Deadline',
             'body' => '17 February 2020, 12:00 (AEDT)',
           ],
         ],
@@ -161,7 +161,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
             'label' => 'Opening date',
             'body' => '24 February 2020',
           ], [
-            'label' => 'Deadline date',
+            'label' => 'Deadline',
             'body' => '21 February 2020, 12:00 (AEDT)',
           ],
         ],
