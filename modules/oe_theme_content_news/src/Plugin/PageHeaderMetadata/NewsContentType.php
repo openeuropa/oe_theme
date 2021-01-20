@@ -7,8 +7,8 @@ namespace Drupal\oe_theme_content_news\Plugin\PageHeaderMetadata;
 use Drupal\Core\Datetime\DateFormatterInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_theme_helper\ContentUtility;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -107,7 +107,7 @@ class NewsContentType extends NodeViewRoutesBase {
 
     // Add news types to page metadata.
     if (!$node->get('oe_news_types')->isEmpty()) {
-      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_types'));
+      $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($node->get('oe_news_types'));
     }
 
     // Add publication date to page metadata.
@@ -116,15 +116,33 @@ class NewsContentType extends NodeViewRoutesBase {
 
     // Add news locations to page metadata.
     if (!$node->get('oe_news_location')->isEmpty()) {
-      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_news_location'));
+      $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($node->get('oe_news_location'));
     }
 
     // Add news authors to page metadata.
     if (!$node->get('oe_author')->isEmpty()) {
-      $metadata['metas'][] = ContentUtility::getCommaSeparatedReferencedEntityLabels($node->get('oe_author'));
+      $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($node->get('oe_author'));
     }
 
     return $metadata;
+  }
+
+  /**
+   * Format a list of entity references into a comma separated string.
+   *
+   * @param \Drupal\Core\Field\EntityReferenceFieldItemListInterface $items
+   *   Field item list object.
+   *
+   * @return string
+   *   Comma separated string.
+   */
+  protected function getCommaSeparatedReferencedEntityLabels(EntityReferenceFieldItemListInterface $items): string {
+    $list = [];
+    $entities = $items->referencedEntities();
+    foreach ($entities as $entity) {
+      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
+    }
+    return implode(', ', $list);
   }
 
 }

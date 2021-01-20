@@ -10,9 +10,9 @@
   'url': url,
   'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
   'meta': [
-    metas.types,
-    metas.date,
-    metas.authors
+    content.oe_publication_type,
+    content.oe_publication_date|field_value,
+    content.oe_author
   ],
   'detail': content.oe_teaser|field_value,
   'image': image_url ? { 'src': image_url }
