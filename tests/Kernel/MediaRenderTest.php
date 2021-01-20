@@ -32,8 +32,10 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
   public static $modules = [
     'field',
     'file',
+    'filter',
     'media',
     'oe_media',
+    'oe_media_iframe',
     'file_link',
     'link',
     'options',
@@ -57,6 +59,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'file',
       'media',
       'oe_media',
+      'oe_media_iframe',
       'oe_media_webtools',
       'oe_webtools_media',
       'json_field',
@@ -284,6 +287,34 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       // Make sure that the op publication list json is present.
       $this->assertEquals('{"service":"opwidget","widgetId":"6313"}', $media_container->filter('script')->text());
     }
+  }
+
+  /**
+   * Tests that Iframe media is rendered inside media container ECL component.
+   */
+  public function testIframeMedia(): void {
+    // Create a Iframe media without defined aspect ratio.
+    $media = $this->mediaStorage->create([
+      'bundle' => 'iframe',
+      'name' => 'test iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com/iframe_media"></iframe>',
+    ]);
+    $media->save();
+
+    // Assert iframe media when ratio is undefined.
+    $build = $this->mediaViewBuilder->view($media, 'oe_theme_main_content');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $iframe = $crawler->filter('.ecl-media-container .ecl-media-container__media--ratio-custom iframe');
+    $this->assertEquals('http://example.com/iframe_media', $iframe->attr('src'));
+
+    // Assert iframe media with aspect ratio 3:2.
+    $media->set('oe_media_iframe_ratio', '3_2')->save();
+    $build = $this->mediaViewBuilder->view($media, 'oe_theme_main_content');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $iframe = $crawler->filter('.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe');
+    $this->assertEquals('http://example.com/iframe_media', $iframe->attr('src'));
   }
 
 }

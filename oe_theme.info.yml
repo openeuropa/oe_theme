@@ -33,6 +33,7 @@ config_devel:
     - core.entity_view_display.media.av_portal_photo.oe_theme_main_content
     - core.entity_view_display.media.av_portal_video.oe_theme_main_content
     - core.entity_view_display.media.document.oe_theme_main_content
+    - core.entity_view_display.media.iframe.oe_theme_main_content
     - core.entity_view_display.media.image.oe_theme_main_content
     - core.entity_view_display.media.remote_video.oe_theme_main_content
     - core.entity_view_display.media.video_iframe.oe_theme_main_content
