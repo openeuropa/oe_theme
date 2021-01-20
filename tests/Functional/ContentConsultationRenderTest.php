@@ -5,8 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
-use Drupal\Component\Utility\Html;
+use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -20,6 +24,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
    */
   protected static $modules = [
     'config',
+    'datetime_testing',
     'block',
     'system',
     'path',
@@ -50,33 +55,28 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     // Create general contact.
     $contact = $this->createContactEntity('consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
-    // Create a Consultation node.
-    $next_year = date('Y') + 1;
+    // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $opening_date = (clone $static_time)->modify('- 5 days');
+    $deadline_date = (clone $static_time)->modify('+ 10 days');
+
+    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
+
+    // Create a Consultation node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
       'type' => 'oe_consultation',
       'title' => 'Test Consultation node',
-      'oe_consultation_additional_info' => 'Additional information text',
-      'oe_consultation_outcome' => 'Consultation outcome text',
-      'oe_consultation_outcome_files' => [
-        [
-          'target_id' => (int) $document->id(),
-        ],
-      ],
-      'oe_consultation_contacts' => $contact,
-      'oe_summary' => 'Consultation introduction',
       'oe_consultation_opening_date' => [
-        'value' => '2020-04-15',
+        'value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT),
       ],
       'oe_consultation_deadline' => [
-        'value' => $next_year . '-06-10T23:30:00',
+        'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
-      'oe_consultation_guidelines' => 'Consultation guidelines text',
-      'oe_consultation_closed_text' => 'Consultation closed status text',
-      'oe_consultation_legal_info' => 'Legal info text',
       'oe_consultation_target_audience' => 'Target audience text',
-      'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
-      'oe_consultation_aim' => 'Consultation aim text',
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'status' => 1,
@@ -85,89 +85,148 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Open');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core h1.ecl-page-header-core__title', 'Test Consultation node');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'Consultation introduction');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $assert = new PatternPageHeaderAssert();
+    $expected_values = [
+      'title' => 'Test Consultation node',
+      'meta' => 'Consultation | Open',
+    ];
+    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
+    // Add summary and assert header is updated.
+    $node->set('oe_summary', 'Consultation introduction');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $expected_values = [
+      'title' => 'Test Consultation node',
+      'description' => 'Consultation introduction',
+      'meta' => 'Consultation | Open',
+    ];
+    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert navigation part.
-    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation', $wrapper);
-    $navigation_title = $navigation->find('css', '.ecl-inpage-navigation__title');
-    $this->assertEquals('Page contents', $navigation_title->getText());
-    $navigation_list = $this->assertSession()->elementExists('css', '.ecl-inpage-navigation__list', $wrapper);
-    $navigation_list_items = $navigation_list->findAll('css', '.ecl-inpage-navigation__item');
-    $this->assertCount(8, $navigation_list_items);
-    $navigation_list_items_labels = [
-      'Details',
-      'Target audience',
-      'Why we are consulting',
-      'Responding to the consultation',
-      'Consultation outcome',
-      'Additional information',
-      'Legal notice',
-      'Contact',
+    $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+      ],
     ];
-    foreach ($navigation_list_items as $index => $item) {
-      $navigation_list_item_link = $item->find('css', 'a.ecl-inpage-navigation__link');
-      $this->assertEquals($navigation_list_items_labels[$index], $navigation_list_item_link->getText());
-      $anchor = strtolower(Html::cleanCssIdentifier($navigation_list_items_labels[$index]));
-      $this->assertEquals('#' . $anchor, $navigation_list_item_link->getAttribute('href'));
-    }
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
+    $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
     $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(8, $content_items);
+    $this->assertCount(2, $content_items);
+    $this->assertContentHeader($content_items[0], 'Details', 'details');
 
     // Assert 1st inpage navigation item content.
-    $this->assertContentHeader($content_items[0], 'Details', 'details');
-    $field_list = $content_items[0]->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
-    $this->assertCount(1, $field_list);
-    $labels = $field_list[0]->findAll('css', 'dt.ecl-description-list__term');
-    $this->assertCount(4, $labels);
-    $labels_data = [
-      'Status',
-      'Opening date',
-      'Deadline',
-      'Department',
+    $field_list_assert = new FieldListAssert();
+    $details_expected_values = [];
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Open',
+      ], [
+        'label' => 'Opening date',
+        'body' => '12 February 2020',
+      ], [
+        'label' => 'Deadline',
+        'body' => '28 February 2020, 01:00 (AEDT)',
+      ],
     ];
-    foreach ($labels as $index => $element) {
-      $this->assertEquals($labels_data[$index], $element->getText());
-    }
-    $values = $field_list[0]->findAll('css', 'dd.ecl-description-list__definition');
-    $this->assertCount(4, $values);
-    $values_data = [
-      'Open',
-      '15 April 2020',
-      "11 June $next_year, 09:30 (AEST)",
-      'Audit Board of the European Communities',
+    $details_html = $content_items[0]->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+    $field_list_assert->assertVariant('horizontal', $details_html);
+    // Set one department value and assert details section is updated.
+    $node->set('oe_departments', [
+      'target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Open',
+      ], [
+        'label' => 'Opening date',
+        'body' => '12 February 2020',
+      ], [
+        'label' => 'Deadline',
+        'body' => '28 February 2020, 01:00 (AEDT)',
+      ], [
+        'label' => 'Department',
+        'body' => 'Audit Board of the European Communities',
+      ],
     ];
-    foreach ($values_data as $index => $value) {
-      $this->assertEquals($value, $values[$index]->getText());
-    }
-    // Set multiple values for Departments and assert the label is updated.
+    $details_html = $content_items[0]->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+    // Set multiple department values and assert details section is updated.
     $node->set('oe_departments', [
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Departments', $labels[3]->getText());
-    $this->assertEquals('Audit Board of the European Communities | Associated African States and Madagascar', $values[3]->getText());
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Open',
+      ], [
+        'label' => 'Opening date',
+        'body' => '12 February 2020',
+      ], [
+        'label' => 'Deadline',
+        'body' => '28 February 2020, 01:00 (AEDT)',
+      ], [
+        'label' => 'Departments',
+        'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+      ],
+    ];
+    $details_html = $content_items[0]->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
 
     // Assert 2nd inpage navigation item content.
-    $this->assertContentHeader($content_items[1], 'Target audience', 'target-audience');
     $content_second_group = $content_items[1]->find('css', '.ecl-editor p');
     $this->assertEquals('Target audience text', $content_second_group->getText());
 
-    // Assert 3rd inpage navigation item content.
-    $this->assertContentHeader($content_items[2], 'Why we are consulting', 'why-we-are-consulting');
+    // Set Consultation aim and assert navigation and content is updated.
+    $node->set('oe_consultation_aim', 'Consultation aim text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
     $content_second_group = $content_items[2]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation aim text', $content_second_group->getText());
 
-    // Assert 4th inpage navigation item content.
-    $this->assertContentHeader($content_items[3], 'Responding to the consultation', 'responding-to-the-consultation');
+    // Set Consultation guidelines and assert navigation and content is updated.
+    $node->set('oe_consultation_guidelines', 'Consultation guidelines text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
     $content_second_group = $content_items[3]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
     $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
@@ -188,43 +247,117 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
     $this->assertEquals('Link text', $respond_button->getText());
 
-    // Assert 5th inpage navigation item content.
-    $this->assertContentHeader($content_items[4], 'Consultation outcome', 'consultation-outcome');
+    // Set consultation outcome and outcome files and assert content is updated.
+    $node->set('oe_consultation_outcome', 'Consultation outcome text');
+    $node->set('oe_consultation_outcome_files', [
+      ['target_id' => (int) $document->id()],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(5, $content_items);
     $content_second_group = $content_items[4]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation outcome text', $content_second_group->getText());
     $this->assertMediaDocumentDefaultRender($content_items['4'], 'consultation_document');
 
-    // Assert 6th inpage navigation item content.
-    $this->assertContentHeader($content_items[5], 'Additional information', 'additional-information');
+    // Set additional information and assert content is updated.
+    $node->set('oe_consultation_additional_info', 'Additional information text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Additional information', 'href' => '#additional-information'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(6, $content_items);
     $content_second_group = $content_items[5]->find('css', '.ecl-editor p');
     $this->assertEquals('Additional information text', $content_second_group->getText());
 
-    // Assert 7th inpage navigation item content.
-    $this->assertContentHeader($content_items[6], 'Legal notice', 'legal-notice');
+    // Set legal notice and assert content is updated.
+    $node->set('oe_consultation_legal_info', 'Legal info text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Additional information', 'href' => '#additional-information'],
+        ['label' => 'Legal notice', 'href' => '#legal-notice'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(7, $content_items);
     $content_second_group = $content_items[6]->find('css', '.ecl-editor p');
     $this->assertEquals('Legal info text', $content_second_group->getText());
 
-    // Assert 8th inpage navigation item content.
+    // Set contact and assert content is updated.
+    $node->set('oe_consultation_contacts', $contact);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Additional information', 'href' => '#additional-information'],
+        ['label' => 'Legal notice', 'href' => '#legal-notice'],
+        ['label' => 'Contact', 'href' => '#contact'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(8, $content_items);
     $this->assertContactEntityDefaultDisplay($content_items[7], 'consultation_contact');
 
     // Update date values and assert status and respond to the consultation is
     // updated.
-    $node->set('oe_consultation_opening_date', ['value' => $next_year . '-05-31']);
+    $opening_date = (clone $static_time)->modify('+ 3 days');
+    $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Upcoming');
-    $this->assertOpeningDateValue($content, "31 May $next_year");
-    $this->assertDeadlineDateValue($content, "11 June $next_year, 09:30 (AEST)");
+    $this->assertOpeningDateValue($content, '20 February 2020');
+    $this->assertDeadlineDateValue($content, '28 February 2020, 01:00 (AEDT)');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Upcoming');
 
     // Assert status "Closed".
-    $node->set('oe_consultation_opening_date', ['value' => '2020-05-31']);
-    $node->set('oe_consultation_deadline', ['value' => '2020-05-31T23:30:00']);
+    $opening_date = (clone $static_time)->modify('- 5 days');
+    $deadline_date = (clone $static_time)->modify('- 1 days');
+    $node->set('oe_consultation_closed_text', 'Consultation closed status text');
+    $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
+    $node->set('oe_consultation_deadline', ['value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT)]);
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Closed');
-    $this->assertOpeningDateValue($content, '31 May 2020');
-    $this->assertDeadlineDateValue($content, '01 June 2020, 09:30 (AEST)');
+    $this->assertOpeningDateValue($content, '12 February 2020');
+    $this->assertDeadlineDateValue($content, '17 February 2020, 01:00 (AEDT)');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Closed');
     // Assert 4th inpage navigation item content updated.
     $this->assertContentHeader($content_items[3], 'Responding to the consultation', 'responding-to-the-consultation');
