@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_publication\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\Entity\EntityRepositoryInterface;
-use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\oe_theme_helper\Traits\EntityLabelUtilityTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -23,6 +23,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class PublicationContentType extends NodeViewRoutesBase {
 
   use StringTranslationTrait;
+  use EntityLabelUtilityTrait;
 
   /**
    * The entity repository.
@@ -79,27 +80,9 @@ class PublicationContentType extends NodeViewRoutesBase {
     $node = $this->getNode();
 
     $metadata = parent::getMetadata();
-    $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($node->get('oe_publication_type'));
+    $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($this->entityRepository, $node->get('oe_publication_type'));
 
     return $metadata;
-  }
-
-  /**
-   * Format a list of entity references into a comma separated string.
-   *
-   * @param \Drupal\Core\Field\EntityReferenceFieldItemListInterface $items
-   *   Field item list object.
-   *
-   * @return string
-   *   Comma separated string.
-   */
-  protected function getCommaSeparatedReferencedEntityLabels(EntityReferenceFieldItemListInterface $items): string {
-    $list = [];
-    $entities = $items->referencedEntities();
-    foreach ($entities as $entity) {
-      $list[] = $this->entityRepository->getTranslationFromContext($entity)->label();
-    }
-    return implode(', ', $list);
   }
 
 }
