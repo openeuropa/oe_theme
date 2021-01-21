@@ -74,15 +74,14 @@ class ConsultationClosedTextExtraField extends ExtraFieldDisplayFormattedBase im
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $closed_text_field = '';
+    $elements['#markup'] = 'The response period for this consultation has ended. Thank you for your input.';
     if (!$entity->get('oe_consultation_closed_text')->isEmpty()) {
-      $closed_text_field = $entity->get('oe_consultation_closed_text')->first()->getValue();
+      return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_consultation_closed_text'), [
+        'label' => 'hidden',
+      ]);
     }
 
-    return [
-      '#theme' => 'oe_theme_content_consultation_closed_text',
-      '#text' => $closed_text_field ? $closed_text_field['value'] : $this->t('The response period for this consultation has ended. Thank you for your input.'),
-    ];
+    return $elements;
   }
 
 }
