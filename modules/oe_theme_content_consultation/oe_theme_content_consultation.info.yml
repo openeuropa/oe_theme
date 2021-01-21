@@ -20,3 +20,4 @@ config_devel:
     - core.date_format.oe_consultation_date
     - core.date_format.oe_consultation_date_with_time_and_timezone
     - core.entity_view_display.node.oe_consultation.full
+    - core.entity_view_display.node.oe_consultation.teaser
