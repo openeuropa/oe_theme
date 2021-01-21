@@ -68,8 +68,11 @@ function oe_theme_content_consultation_node_view_alter(array &$build, EntityInte
  */
 function oe_theme_content_consultation_preprocess_oe_theme_helper_in_page_navigation__node__oe_consultation(array &$variables): void {
   if (count($variables['entity']->get('oe_consultation_contacts')) > 1) {
-    $index = count($variables['items']);
-    $variables['items'][$index - 1]['label'] = 'Contacts';
+    foreach ($variables['items'] as $index => $item) {
+      if ($item['label'] === (string) t('Contact')) {
+        $variables['items'][$index]['label'] = t('Contacts');
+      }
+    }
   }
 }
 
