@@ -42,18 +42,15 @@ function oe_theme_content_consultation_node_view_alter(array &$build, EntityInte
     // Show respond to the consultation information based status.
     $consultation_node_wrapper = ConsultationNodeWrapper::getInstance($entity);
     $status = $consultation_node_wrapper->getStatus();
+    $build['oe_consultation_response_button']['#access'] = FALSE;
     if ($status === CallEntityWrapperInterface::STATUS_OPEN) {
       $build['extra_field_oe_consultation_closed_status_text']['#access'] = FALSE;
-      if ($entity->get('oe_consultation_response_button')->isEmpty()) {
-        $build['oe_consultation_response_button']['#access'] = FALSE;
+      if (!$entity->get('oe_consultation_response_button')->isEmpty()) {
+        $build['oe_consultation_response_button']['#access'] = TRUE;
       }
     }
     if ($status === CallEntityWrapperInterface::STATUS_CLOSED) {
       $build['oe_consultation_guidelines']['#access'] = FALSE;
-      $build['oe_consultation_response_button']['#access'] = FALSE;
-    }
-    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
-      $build['oe_consultation_response_button']['#access'] = FALSE;
     }
   }
 }
