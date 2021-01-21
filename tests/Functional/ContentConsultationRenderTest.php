@@ -53,7 +53,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     // Create document and image media.
     $document = $this->createMediaDocument('consultation_document');
     // Create general contact.
-    $contact = $this->createContactEntity('consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $first_contact = $this->createContactEntity('first_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $second_contact = $this->createContactEntity('second_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -315,7 +316,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Legal info text', $content_second_group->getText());
 
     // Set contact and assert content is updated.
-    $node->set('oe_consultation_contacts', $contact);
+    $node->set('oe_consultation_contacts', $first_contact);
     $node->save();
     $this->drupalGet($node->toUrl());
     $inpage_nav_expected_values = [
@@ -334,7 +335,25 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
-    $this->assertContactEntityDefaultDisplay($content_items[7], 'consultation_contact');
+    $this->assertContactEntityDefaultDisplay($content_items[7], 'first_consultation_contact');
+    // Set two contacts and assert label is updated.
+    $node->set('oe_consultation_contacts', [$first_contact, $second_contact]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Additional information', 'href' => '#additional-information'],
+        ['label' => 'Legal notice', 'href' => '#legal-notice'],
+        ['label' => 'Contacts', 'href' => '#contact'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Update date values and assert status and respond to the consultation is
     // updated.
@@ -350,7 +369,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     // Assert status "Closed".
     $opening_date = (clone $static_time)->modify('- 5 days');
     $deadline_date = (clone $static_time)->modify('- 1 days');
-    $node->set('oe_consultation_closed_text', 'Consultation closed status text');
     $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
     $node->set('oe_consultation_deadline', ['value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT)]);
     $node->save();
@@ -361,9 +379,15 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Closed');
     // Assert 4th inpage navigation item content updated.
     $this->assertContentHeader($content_items[3], 'Responding to the consultation', 'responding-to-the-consultation');
-    $content_second_group = $content_items[3]->find('css', '.ecl-editor p');
-    $this->assertEquals('Consultation closed status text', $content_second_group->getText());
+    $content_second_group = $content_items[3]->find('css', '.ecl-editor');
+    // Assert default value for closed status text.
+    $this->assertEquals('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
     $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
+    // Set a value and assert the content is updated.
+    $node->set('oe_consultation_closed_text', 'Consultation closed status text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Consultation closed status text', $content_second_group->getText());
   }
 
   /**
