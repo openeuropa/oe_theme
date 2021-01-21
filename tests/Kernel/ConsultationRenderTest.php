@@ -171,17 +171,6 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $crawler = new Crawler($html);
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--medium.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
-
-    // Check status N/A.
-    $node->set('oe_consultation_opening_date', NULL);
-    $node->set('oe_consultation_deadline', NULL);
-    $node->save();
-    $build = $this->nodeViewBuilder->view($node, 'teaser');
-    $html = $this->renderRoot($build);
-    $expected_values['meta'] = '';
-    $expected_values['additional_information'] = NULL;
-
-    $assert->assertPattern($expected_values, $html);
   }
 
 }
