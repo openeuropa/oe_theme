@@ -10,10 +10,12 @@
 {% if items.0.content['#url'].uri != items.0.content['#title'] %}
   {% set label = items.0.content['#title'] %}
 {% endif %}
-{% include '@ecl-twig/link' with {
-  link: {
-    type: 'cta',
-    label: label,
-    path: items.0.content['#url'],
-  }
-} %}
+<div class="ecl-u-mt-m">
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'cta',
+      label: label,
+      path: items.0.content['#url'],
+    }
+  } %}
+</div>
