@@ -4,4 +4,4 @@ dependencies: {  }
 id: oe_consultation_date
 label: 'Consultation date'
 locked: false
-pattern: 'j F Y'
+pattern: 'd F Y'
