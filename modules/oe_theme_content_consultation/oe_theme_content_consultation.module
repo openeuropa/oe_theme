@@ -13,6 +13,19 @@ use Drupal\oe_content\CallEntityWrapperInterface;
 use Drupal\oe_content_consultation\ConsultationNodeWrapper;
 
 /**
+ * Implements hook_theme().
+ */
+function oe_theme_content_consultation_theme() {
+  return [
+    'oe_theme_content_consultation_closed_text' => [
+      'variables' => [
+        'text' => '',
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
 function oe_theme_content_consultation_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
@@ -26,19 +39,37 @@ function oe_theme_content_consultation_node_view_alter(array &$build, EntityInte
       $build['oe_departments']['#title'] = t('Department');
     }
 
-    // Show respond to the consultation information based on open status.
+    // Show respond to the consultation information based status.
     $consultation_node_wrapper = ConsultationNodeWrapper::getInstance($entity);
     $status = $consultation_node_wrapper->getStatus();
     if ($status === CallEntityWrapperInterface::STATUS_OPEN) {
-      unset($build['oe_consultation_closed_text']);
+      $build['extra_field_oe_consultation_closed_status_text']['#access'] = FALSE;
       if ($entity->get('oe_consultation_response_button')->isEmpty()) {
-        unset($build['oe_consultation_response_button']);
+        $build['oe_consultation_response_button']['#access'] = FALSE;
       }
     }
-    else {
-      unset($build['oe_consultation_guidelines']);
-      unset($build['oe_consultation_response_button']);
+    if ($status === CallEntityWrapperInterface::STATUS_CLOSED) {
+      $build['oe_consultation_guidelines']['#access'] = FALSE;
+      $build['oe_consultation_response_button']['#access'] = FALSE;
     }
+    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
+      $build['oe_consultation_response_button']['#access'] = FALSE;
+    }
+  }
+}
+
+/**
+ * Prepares variables for in-page navigation.
+ *
+ * Default template: oe-theme-helper-in-page-navigation.html.twig.
+ *
+ * @param array $variables
+ *   An array of variables.
+ */
+function oe_theme_content_consultation_preprocess_oe_theme_helper_in_page_navigation__node__oe_consultation(array &$variables): void {
+  if (count($variables['entity']->get('oe_consultation_contacts')) > 1) {
+    $index = count($variables['items']);
+    $variables['items'][$index - 1]['label'] = 'Contacts';
   }
 }
 
@@ -53,7 +84,6 @@ function oe_theme_content_consultation_preprocess_field(&$variables, $hook): voi
     'oe_consultation_outcome',
     'oe_consultation_legal_info',
     'oe_consultation_guidelines',
-    'oe_consultation_closed_text',
     'oe_consultation_target_audience',
     'oe_consultation_aim',
   ];

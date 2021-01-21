@@ -98,7 +98,7 @@ third_party_settings:
     group_responding_to_the_consultation:
       children:
         - oe_consultation_guidelines
-        - oe_consultation_closed_text
+        - extra_field_oe_consultation_closed_status_text
         - oe_consultation_response_button
       parent_name: group_page_contents
       weight: 23
@@ -158,6 +158,11 @@ targetEntityType: node
 bundle: oe_consultation
 mode: full
 content:
+  extra_field_oe_consultation_closed_status_text:
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   extra_field_oe_consultation_status:
     weight: 0
     region: content
@@ -171,13 +176,6 @@ content:
     type: text_default
     region: content
   oe_consultation_aim:
-    weight: 3
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
-    region: content
-  oe_consultation_closed_text:
     weight: 3
     label: hidden
     settings: {  }
@@ -242,7 +240,7 @@ content:
     third_party_settings: {  }
     region: content
   oe_consultation_response_button:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -273,6 +271,7 @@ hidden:
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
+  oe_consultation_closed_text: true
   oe_content_content_owner: true
   oe_content_legacy_link: true
   oe_content_navigation_title: true
