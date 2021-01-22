@@ -79,7 +79,7 @@ class ConsultationClosedTextExtraField extends ExtraFieldDisplayFormattedBase im
         'label' => 'hidden',
       ]);
     }
-    return ['#markup' => t('The response period for this consultation has ended. Thank you for your input.')];
+    return ['#markup' => $this->t('The response period for this consultation has ended. Thank you for your input.')];
   }
 
 }

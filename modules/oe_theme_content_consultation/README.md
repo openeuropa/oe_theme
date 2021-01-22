@@ -1,3 +1,4 @@
+
 # OpenEuropa Content Consultation companion module
 
 This module is a theming companion module to the [OpenEuropa Content Consultation](https://github.com/openeuropa/oe_content/tree/master/modules/oe_content_consultation) module.
@@ -44,4 +45,6 @@ List of Extra field definitions:
   provides the consultation status, depending on the current time in relation with consultation's opening/closing dates.
 * [Consultation status label](modules/oe_theme_content_consultation/src/Plugin/ExtraField/Display/ConsultationLabelStatusExtraField.php):
   same as above, only showed using ECL label component, and prefixed by "Status:".
+* [Closed status text](modules/oe_theme_content_consultation/src/Plugin/ExtraField/Display/ConsultationClosedTextExtraField.php):
+  provides the consultation closed status text with default value when there is no text available.
 

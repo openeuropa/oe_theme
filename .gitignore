@@ -24,4 +24,3 @@ docker-compose.*.yml
 
 /images/*
 !/images/required.svg
-/.gitattributes

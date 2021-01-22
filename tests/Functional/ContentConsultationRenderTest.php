@@ -49,7 +49,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
   /**
    * Tests Consultation full view mode rendering.
    */
-  public function testTenderRendering(): void {
+  public function testConsultationRendering(): void {
     // Create document and image media.
     $document = $this->createMediaDocument('consultation_document');
     // Create general contact.
