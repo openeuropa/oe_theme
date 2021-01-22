@@ -68,6 +68,7 @@ content:
 hidden:
   extra_field_oe_consultation_status: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
+  extra_field_oe_consultation_closed_status_text: true
   langcode: true
   links: true
   oe_consultation_additional_info: true
