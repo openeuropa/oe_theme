@@ -6,7 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
-use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -15,7 +15,7 @@ use Drupal\user\RoleInterface;
  */
 abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase {
 
-  use RdfDatabaseConnectionTrait;
+  use SparqlConnectionTrait;
 
   /**
    * The node storage.
@@ -73,7 +73,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     'oe_theme_content_page',
     'oe_theme_content_policy',
     'oe_theme_content_publication',
-    'rdf_entity',
+    'sparql_entity_storage',
     'rdf_skos',
     'file_link',
     'options',
@@ -102,7 +102,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
       'node',
       'media',
       'filter',
-      'rdf_entity',
       'oe_media',
       'media_avportal',
       'oe_media_avportal',
@@ -142,7 +141,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     module_load_include('install', 'oe_content');
     oe_content_install();
 
-    $this->installEntitySchema('rdf_entity');
     $this->installEntitySchema('skos_concept');
     $this->installEntitySchema('skos_concept_scheme');
 

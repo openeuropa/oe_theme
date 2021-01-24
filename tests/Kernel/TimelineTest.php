@@ -10,7 +10,7 @@ use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\filter\Entity\FilterFormat;
 use Drupal\node\Entity\Node;
 use Drupal\node\Entity\NodeType;
-use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
+use Drupal\Tests\sparql_entity_storage\Traits\SparqlConnectionTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -18,7 +18,7 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class TimelineTest extends AbstractKernelTestBase {
 
-  use RdfDatabaseConnectionTrait;
+  use SparqlConnectionTrait;
 
   /**
    * The node storage.
@@ -59,7 +59,7 @@ class TimelineTest extends AbstractKernelTestBase {
     'filter',
     'oe_content',
     'oe_content_timeline_field',
-    'rdf_entity',
+    'sparql_entity_storage',
     'rdf_skos',
   ];
 
@@ -75,11 +75,9 @@ class TimelineTest extends AbstractKernelTestBase {
       'field',
       'node',
       'filter',
-      'rdf_entity',
     ]);
     $this->installSchema('user', 'users_data');
 
-    $this->installEntitySchema('rdf_entity');
     $this->installEntitySchema('skos_concept');
     $this->installEntitySchema('skos_concept_scheme');
 
