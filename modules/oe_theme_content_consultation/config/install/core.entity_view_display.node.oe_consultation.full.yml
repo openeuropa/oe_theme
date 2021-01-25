@@ -34,7 +34,7 @@ third_party_settings:
         - group_details
         - group_target_audience
         - group_why_we_are_consulting
-        - group_responding_to_the_consultation
+        - group_respond_to_the_consultation
         - group_consultation_outcome
         - group_additional_information
         - group_legal_notice
@@ -95,7 +95,7 @@ third_party_settings:
         id: ''
         classes: ''
       label: 'Why we are consulting'
-    group_responding_to_the_consultation:
+    group_respond_to_the_consultation:
       children:
         - oe_consultation_guidelines
         - extra_field_oe_consultation_closed_status_text
@@ -107,7 +107,7 @@ third_party_settings:
       format_settings:
         id: ''
         classes: ''
-      label: 'Responding to the consultation'
+      label: 'Respond to the consultation'
     group_consultation_outcome:
       children:
         - oe_consultation_outcome

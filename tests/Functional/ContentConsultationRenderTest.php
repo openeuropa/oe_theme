@@ -222,7 +222,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -261,7 +261,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
       ],
     ];
@@ -282,7 +282,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
       ],
@@ -303,7 +303,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
@@ -325,7 +325,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
@@ -346,7 +346,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Details', 'href' => '#details'],
         ['label' => 'Target audience', 'href' => '#target-audience'],
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Responding to the consultation', 'href' => '#responding-to-the-consultation'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
@@ -378,7 +378,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertDeadlineDateValue($content, '17 February 2020, 01:00 (AEDT)');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Closed');
     // Assert 4th inpage navigation item content updated.
-    $this->assertContentHeader($content_items[3], 'Responding to the consultation', 'responding-to-the-consultation');
+    $this->assertContentHeader($content_items[3], 'Respond to the consultation', 'respond-to-the-consultation');
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     // Assert default value for closed status text.
     $this->assertEquals('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
