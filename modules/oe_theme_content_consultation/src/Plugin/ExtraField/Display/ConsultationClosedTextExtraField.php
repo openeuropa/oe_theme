@@ -35,7 +35,7 @@ class ConsultationClosedTextExtraField extends ExtraFieldDisplayFormattedBase im
   protected $entityTypeManager;
 
   /**
-   * EventExtraFieldBase constructor.
+   * ConsultationClosedTextExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

@@ -18,9 +18,7 @@ This module requires the following contributed modules:
 
 ## Shipped configuration
 
-The modules ships with the following configuration date formats:
-
-List of shipped date formats:
+The module ships the following date formats:
 
 * Consultation date, e.g. `25 July 2020`
 * Consultation date with time and timezone, e.g. `07 August 2021, 09:15 (CEST)`
