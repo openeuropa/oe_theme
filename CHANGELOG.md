@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.14.0](https://github.com/openeuropa/oe_theme/tree/2.14.0) (2021-01-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.13.0...2.14.0)
+
+**Merged pull requests:**
+
+- Epic media iframe [\#711](https://github.com/openeuropa/oe_theme/pull/711) ([nagyad](https://github.com/nagyad))
+
 ## [2.13.0](https://github.com/openeuropa/oe_theme/tree/2.13.0) (2021-01-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.3...2.13.0)
 
