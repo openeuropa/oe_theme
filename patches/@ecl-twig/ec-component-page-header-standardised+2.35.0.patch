@@ -12,8 +12,8 @@ patch-package
 +  {% endif %}
    {% if _meta is not empty %}
      <div class="ecl-page-header-standardised__meta">
-       <span class="ecl-u-type-uppercase">
-@@ -58,7 +63,7 @@
+       {{- _meta -}}
+@@ -56,7 +61,7 @@
    {% endif %}
      <h1 class="ecl-page-header-standardised__title">{{ _title }}</h1>
    {% if _description is not empty %}
