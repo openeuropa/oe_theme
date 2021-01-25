@@ -276,3 +276,36 @@ msgstr "Tilknyttet afdeling"
 
 msgid "Related departments"
 msgstr "Tilknyttede afdelinger"
+
+msgid "Consultation"
+msgstr "Høring"
+
+msgid "Deadline"
+msgstr "Frist"
+
+msgid "Respond to the questionnaire"
+msgstr "Besvar spørgeskemaet"
+
+msgid "Respond to the consultation"
+msgstr "Deltag i høringen"
+
+msgid "Target audience"
+msgstr "Målgruppe"
+
+msgid "Why we are consulting"
+msgstr "Derfor ønsker vi at afholde en høring"
+
+msgid "Consultation outcome"
+msgstr "Resultat af høringen"
+
+msgid "Additional information"
+msgstr "Yderligere oplysninger"
+
+msgid "Reference documents"
+msgstr "Referencedokumenter"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Fristen for at deltage i denne høring er udløbet. Tak for dit bidrag."
+
+msgid "Status: @label"
+msgstr "Status: @label"

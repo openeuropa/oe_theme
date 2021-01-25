@@ -276,3 +276,36 @@ msgstr "Saistītā struktūrvienība"
 
 msgid "Related departments"
 msgstr "Saistītās struktūrvienības"
+
+msgid "Consultation"
+msgstr "Apspriešana"
+
+msgid "Deadline"
+msgstr "Termiņš"
+
+msgid "Respond to the questionnaire"
+msgstr "Aizpildīt anketu"
+
+msgid "Respond to the consultation"
+msgstr "Piedalīties apspriešanā"
+
+msgid "Target audience"
+msgstr "Mērķauditorija"
+
+msgid "Why we are consulting"
+msgstr "Kāpēc tiek rīkota apspriešana"
+
+msgid "Consultation outcome"
+msgstr "Apspriešanas rezultāts"
+
+msgid "Additional information"
+msgstr "Papildu informācija"
+
+msgid "Reference documents"
+msgstr "Atsauces dokumenti"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Atbilžu iesniegšanas termiņš šai aptaujai ir beidzies. Pateicamies par sniegto ieguldījumu."
+
+msgid "Status: @label"
+msgstr "Statuss: @label"

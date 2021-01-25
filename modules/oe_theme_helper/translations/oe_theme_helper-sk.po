@@ -276,3 +276,36 @@ msgstr "Súvisiaci odbor"
 
 msgid "Related departments"
 msgstr "Súvisiace odbory"
+
+msgid "Consultation"
+msgstr "Konzultácia"
+
+msgid "Deadline"
+msgstr "Lehota"
+
+msgid "Respond to the questionnaire"
+msgstr "Vyplniť dotazník"
+
+msgid "Respond to the consultation"
+msgstr "Reagovať na konzultáciu"
+
+msgid "Target audience"
+msgstr "Cieľová skupina"
+
+msgid "Why we are consulting"
+msgstr "Prečo uskutočňujeme konzultácie"
+
+msgid "Consultation outcome"
+msgstr "Výsledok konzultácie"
+
+msgid "Additional information"
+msgstr "Ďalšie informácie"
+
+msgid "Reference documents"
+msgstr "Referenčné dokumenty"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Lehota na reakciu v rámci tejto konzultácie už uplynula. Ďakujeme za váš príspevok."
+
+msgid "Status: @label"
+msgstr "Stav: @label"

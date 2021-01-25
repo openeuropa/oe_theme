@@ -276,3 +276,36 @@ msgstr "Service lié"
 
 msgid "Related departments"
 msgstr "Services liés"
+
+msgid "Consultation"
+msgstr "Consultation"
+
+msgid "Deadline"
+msgstr "Date limite"
+
+msgid "Respond to the questionnaire"
+msgstr "Répondre au questionnaire"
+
+msgid "Respond to the consultation"
+msgstr "Participer à la consultation"
+
+msgid "Target audience"
+msgstr "Public cible"
+
+msgid "Why we are consulting"
+msgstr "Objectif de la consultation"
+
+msgid "Consultation outcome"
+msgstr "Résultat de la consultation"
+
+msgid "Additional information"
+msgstr "Informations supplémentaires"
+
+msgid "Reference documents"
+msgstr "Documents de référence"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "La période de participation à cette consultation est terminée. Merci pour votre participation."
+
+msgid "Status: @label"
+msgstr "Statut: @label"
