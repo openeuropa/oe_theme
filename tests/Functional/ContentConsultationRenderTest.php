@@ -124,7 +124,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');
 
-    // Assert 1st inpage navigation item content.
+    // Assert the fields of the details section.
     $field_list_assert = new FieldListAssert();
     $details_expected_values = [];
     $details_expected_values['items'] = [
@@ -241,7 +241,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Respond to the questionnaire', $respond_button->getText());
     // Add a link to respond button and assert default label.
     $node->set('oe_consultation_response_button', [
-      'uri' => 'http://example.com',
+      'uri' => 'internal:/node/add',
       'title' => 'Link text',
     ])->save();
     $this->drupalGet($node->toUrl());
@@ -377,7 +377,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertOpeningDateValue($content, '12 February 2020');
     $this->assertDeadlineDateValue($content, '17 February 2020, 01:00 (AEDT)');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Closed');
-    // Assert 4th inpage navigation item content updated.
+    $this->assertFalse($content_items[3]->hasLink('Link text'));
+    // Assert 4th inpage navigation item content is updated.
     $this->assertContentHeader($content_items[3], 'Respond to the consultation', 'respond-to-the-consultation');
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     // Assert default value for closed status text.
