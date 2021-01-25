@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for iframe fields on media items.
+ */
+#}
+{% for item in items %}
+  {% include '@ecl-twig/media-container' with {
+    'embedded_media': item.content,
+    'ratio': ratio|replace({'_': '-'}),
+    'extra_classes': (ratio == 'custom') ? 'ecl-media-container--custom-ratio' : '',
+  } %}
+{% endfor %}

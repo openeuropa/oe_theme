@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.oe_theme_main_content
+    - field.field.media.iframe.oe_media_iframe
+    - field.field.media.iframe.oe_media_iframe_ratio
+    - field.field.media.iframe.oe_media_iframe_thumbnail
+    - media.type.iframe
+  module:
+    - oe_media_iframe
+id: media.iframe.oe_theme_main_content
+targetEntityType: media
+bundle: iframe
+mode: oe_theme_main_content
+content:
+  oe_media_iframe:
+    label: hidden
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: oe_media_iframe
+    region: content
+hidden:
+  created: true
+  langcode: true
+  name: true
+  oe_media_iframe_ratio: true
+  oe_media_iframe_thumbnail: true
+  thumbnail: true
+  uid: true
