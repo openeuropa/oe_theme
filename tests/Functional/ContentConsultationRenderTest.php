@@ -184,7 +184,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         'body' => '28 February 2020, 01:00 (AEDT)',
       ], [
         'label' => 'Departments',
-        'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+        'body' => 'Audit Board of the European Communities, Associated African States and Madagascar',
       ],
     ];
     $details_html = $content_items[0]->getHtml();
