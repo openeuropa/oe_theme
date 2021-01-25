@@ -276,3 +276,36 @@ msgstr "Susijęs padalinys"
 
 msgid "Related departments"
 msgstr "Susiję padaliniai"
+
+msgid "Consultation"
+msgstr "Konsultacijos"
+
+msgid "Deadline"
+msgstr "Terminas"
+
+msgid "Respond to the questionnaire"
+msgstr "Pildyti klausimyną"
+
+msgid "Respond to the consultation"
+msgstr "Dalyvaukite konsultacijose"
+
+msgid "Target audience"
+msgstr "Tikslinė auditorija"
+
+msgid "Why we are consulting"
+msgstr "Kodėl rengiame konsultacijas?"
+
+msgid "Consultation outcome"
+msgstr "Konsultacijų rezultatai"
+
+msgid "Additional information"
+msgstr "Papildoma informacija"
+
+msgid "Reference documents"
+msgstr "Susiję dokumentai"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Šių konsultacijų nuomonių teikimo laikotarpis baigėsi. Dėkojame, kad dalyvaujate mūsų apklausoje."
+
+msgid "Status: @label"
+msgstr "Būsena: @label"

@@ -276,3 +276,37 @@ msgstr "Seotud osakond"
 
 msgid "Related departments"
 msgstr "Seotud osakonnad"
+
+msgid "Consultation"
+msgstr "Konsultatsioon"
+
+msgid "Deadline"
+msgstr "Tähtaeg"
+
+msgid "Respond to the questionnaire"
+msgstr "Vastake küsimustikule"
+
+msgid "Respond to the consultation"
+msgstr "Vastake konsultatsiooni küsimustele"
+
+msgid "Target audience"
+msgstr "Sihtrühm"
+
+msgid "Why we are consulting"
+msgstr "Miks me konsulteerime?"
+
+msgid "Consultation outcome"
+msgstr "Konsultatsiooni tulemused"
+
+msgid "Additional information"
+msgstr "Lisateave"
+
+msgid "Reference documents"
+msgstr "Viitedokumendid"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Konsultatsioonile vastamise tähtaeg on lõppenud. Täname Teid panuse eest!"
+
+msgid "Status: @label"
+msgstr "Olek: @label"
+
