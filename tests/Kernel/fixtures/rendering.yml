@@ -2433,6 +2433,45 @@
       'a.ecl-tag[href="http://example.com"]': 1
 - array:
     '#type': "pattern"
+    '#id': "tag"
+    '#variant': "default"
+    '#fields':
+      tag_type: "removable"
+      url: "http://example.com"
+      label: "Tag label"
+  assertions:
+    contains:
+      '.ecl-tag': "Tag label"
+    count:
+      '.ecl-tag--removable': 1
+- array:
+    '#type': "pattern"
+    '#id': "tag"
+    '#variant': "default"
+    '#fields':
+      tag_type: "display"
+      url: "http://example.com"
+      label: "Tag label"
+  assertions:
+    contains:
+      '.ecl-tag': "Tag label"
+    count:
+      '.ecl-tag--display': 1
+- array:
+    '#type': "pattern"
+    '#id': "tag"
+    '#variant': "default"
+    '#fields':
+      tag_type: "button"
+      url: "http://example.com"
+      label: "Tag label"
+  assertions:
+    equals:
+      'button.ecl-tag': "Tag label"
+    count:
+      'button.ecl-tag': 1
+- array:
+    '#type': "pattern"
     '#id': "navigation_menu"
     '#variant': "vertical"
     '#fields':

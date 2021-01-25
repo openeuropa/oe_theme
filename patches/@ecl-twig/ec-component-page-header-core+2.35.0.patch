@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-page-header-core/ecl-page-header-core.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-page-header-core/ecl-page-header-core.html.twig
-@@ -49,6 +49,11 @@
+@@ -62,6 +62,11 @@
        _compliance_inner_check_: true
      }) only %}
    {% endif %}
@@ -12,8 +12,8 @@ patch-package
 +  {% endif %}
    {% if _meta is not empty %}
      <div class="ecl-page-header-core__meta">
-       <span class="ecl-u-type-uppercase">
-@@ -58,7 +63,7 @@
+       {{- _meta -}}
+@@ -69,7 +74,7 @@
    {% endif %}
      <h1 class="ecl-page-header-core__title">{{ _title }}</h1>
    {% if _description is not empty %}

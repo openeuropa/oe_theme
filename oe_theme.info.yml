@@ -9,6 +9,7 @@ base theme: stable
 libraries:
   - oe_theme/editor
   - oe_theme/external_svg
+  - oe_theme/print
 
 regions:
   site_top_bar: "Site top bar"

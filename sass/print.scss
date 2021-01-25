@@ -1,0 +1,6 @@
+// Style adjustment for print version.
+
+// Workaround which should be removed after the release of Webtools with https://citnet.tech.ec.europa.eu/CITnet/jira/browse/WEBTOOLS-12842.
+#globan, #cookie-consent-banner {
+  display: none;
+}

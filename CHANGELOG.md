@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.13.0](https://github.com/openeuropa/oe_theme/tree/2.13.0) (2021-01-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.3...2.13.0)
+
+**Merged pull requests:**
+
+- EWPP-683: Fix theme dependencies after new modules releases. [\#709](https://github.com/openeuropa/oe_theme/pull/709) ([ademarco](https://github.com/ademarco))
+- EWPP-615: Fix OpenEuropa corporate site info version until a new version of the oe\_content module is released. [\#703](https://github.com/openeuropa/oe_theme/pull/703) ([ademarco](https://github.com/ademarco))
+- EWPP-675: Remove media container from op publication list rendering. [\#698](https://github.com/openeuropa/oe_theme/pull/698) ([sergepavle](https://github.com/sergepavle))
+- EWPP-626: Print adjustments for webtool widgets and ecl-editor elements. [\#697](https://github.com/openeuropa/oe_theme/pull/697) ([sergepavle](https://github.com/sergepavle))
+- EWPP-529: Replace scaffold library. [\#696](https://github.com/openeuropa/oe_theme/pull/696) ([sergepavle](https://github.com/sergepavle))
+- EWPP-626: Change media for all css files to screen if not for print. [\#691](https://github.com/openeuropa/oe_theme/pull/691) ([sergepavle](https://github.com/sergepavle))
+- EWPP-441: Create assertion for Text with Featured media pattern. [\#686](https://github.com/openeuropa/oe_theme/pull/686) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-565: Update to ECL 2.35 to support optional page header background image [\#677](https://github.com/openeuropa/oe_theme/pull/677) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.12.3](https://github.com/openeuropa/oe_theme/tree/2.12.3) (2020-12-11)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.2...2.12.3)
