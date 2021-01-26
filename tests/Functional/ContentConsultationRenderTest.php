@@ -29,8 +29,11 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     'system',
     'path',
     'field_group',
+    'oe_content_entity',
+    'oe_content_entity_document_reference',
     'oe_theme_helper',
     'oe_theme_content_consultation',
+    'oe_theme_content_publication',
   ];
 
   /**
@@ -43,6 +46,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
+      ->grantPermission('view published oe_document_reference')
       ->save();
   }
 
@@ -50,11 +54,29 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testConsultationRendering(): void {
-    // Create document and image media.
+    // Create documents.
     $document = $this->createMediaDocument('consultation_document');
-    // Create general contact.
+    $reference_document = $this->createMediaDocument('reference_document');
+    // Create general contacts.
     $first_contact = $this->createContactEntity('first_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $second_contact = $this->createContactEntity('second_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    // Create Publication.
+    /** @var \Drupal\node\Entity\Node $publication */
+    $publication = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Publication node',
+      'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_documents' => $document,
+      'oe_publication_date' => [
+        'value' => '2020-04-15',
+      ],
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $publication->save();
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -271,6 +293,29 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_second_group = $content_items[4]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation outcome text', $content_second_group->getText());
     $this->assertMediaDocumentDefaultRender($content_items['4'], 'consultation_document');
+
+    // Reference documents and publication node and assert content is updated.
+    $node->set('oe_consultation_documents', [
+      ['target_id' => $publication->id()],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    file_put_contents('test.html', $this->getSession()->getPage()->getOuterHtml());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(6, $content_items);
+    $this->assertMediaDocumentDefaultRender($content_items['5'], 'reference_document');
 
     // Set additional information and assert content is updated.
     $node->set('oe_consultation_additional_info', 'Additional information text');
