@@ -153,3 +153,23 @@ function oe_theme_content_publication_post_update_00008(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Set labels in teaser view mode to be hidden.
+ */
+function oe_theme_content_publication_post_update_00009() {
+  $display = EntityViewDisplay::load('node.oe_publication.teaser');
+  $fields = [
+    'oe_author',
+    'oe_publication_date',
+    'oe_publication_thumbnail',
+    'oe_publication_type',
+    'oe_teaser',
+  ];
+  foreach ($fields as $field) {
+    $component = $display->getComponent($field);
+    $component['label'] = 'hidden';
+    $display->setComponent($field, $component);
+  }
+  $display->save();
+}
