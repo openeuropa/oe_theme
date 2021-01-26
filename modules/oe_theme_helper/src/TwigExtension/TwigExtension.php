@@ -18,6 +18,7 @@ use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Drupal\oe_theme\ValueObject\MediaValueObject;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -69,6 +70,7 @@ class TwigExtension extends \Twig_Extension {
       new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
       new \Twig_SimpleFilter('is_external_url', [UrlHelper::class, 'isExternal']),
       new \Twig_SimpleFilter('filter_empty', [$this, 'filterEmpty']),
+      new \Twig_SimpleFilter('validate_ratio', [MediaValueObject::class, 'validateRatio']),
     ];
   }
 

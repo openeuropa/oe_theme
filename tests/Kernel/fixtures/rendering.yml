@@ -2238,131 +2238,6 @@
       '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      title: "Heading"
-      image:
-        src: "http://via.placeholder.com/150x150"
-      caption: "Some caption text for the image"
-      text: "Some more text"
-  assertions:
-    count:
-      'div.ecl-row': 1
-      'figure.ecl-media-container': 1
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
-      'figcaption.ecl-media-container__caption': 1
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
-      'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      image:
-        src: "http://via.placeholder.com/150x150"
-      caption: "Some caption text for the image"
-      text: "Some more text"
-  assertions:
-    count:
-      'h2.ecl-u-type-heading-2': 0
-      'div.ecl-row': 1
-      'figure.ecl-media-container': 1
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
-      'figcaption.ecl-media-container__caption': 1
-    equals:
-      'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      title: "Heading"
-      caption: "Some caption text for the image"
-      text: "Some more text"
-  assertions:
-    count:
-      'div.ecl-row': 1
-      'figure.ecl-media-container': 0
-      'div.ecl-col-md-6.ecl-editor': 0
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
-      'figcaption.ecl-media-container__caption': 0
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-12.ecl-editor': "Some more text"
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      title: "Heading"
-      image:
-        src: "http://via.placeholder.com/150x150"
-      text: "Some more text"
-  assertions:
-    count:
-      'div.ecl-row': 1
-      'figure.ecl-media-container': 1
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
-      'figcaption.ecl-media-container__caption': 0
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      title: "Heading"
-      caption: "Some caption"
-  assertions:
-    count:
-      'div.ecl-row': 0
-      'figure.ecl-media-container': 0
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
-      'figcaption.ecl-media-container__caption': 0
-      'h2.ecl-u-type-heading-2': 0
-    equals: {}
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      title: "Heading"
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      text: "Some more text"
-  assertions:
-    count:
-      'div.ecl-row': 1
-      'figure.ecl-media-container': 1
-      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-      'figcaption.ecl-media-container__caption': 0
-    equals:
-      'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      video_ratio: "invalid"
-  assertions:
-    count:
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-- array:
-    '#type': pattern
-    '#id': text_featured_media
-    '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
-      video_ratio: "1:1"
-  assertions:
-    count:
-      'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-- array:
-    '#type': pattern
     '#id': icons_with_text
     '#fields':
       items:
@@ -2665,3 +2540,262 @@
       'div.ecl-u-mr-xs.ecl-u-mt-s.ecl-tag.ecl-tag--removable': 'No link'
     equals:
       'div.active-search-filters__name span': 'Source'
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "1:1"
+  assertions:
+    count:
+      'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "4:3"
+  assertions:
+    count:
+      'div.ecl-media-container__media--ratio-4-3 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
+      caption: "Some caption text for the image"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 1
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'figcaption.ecl-media-container__caption': "Some caption text for the image"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
+      caption: "Some caption text for the image"
+      text: "Some more text"
+  assertions:
+    count:
+      'h2.ecl-u-type-heading-2': 0
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 1
+    equals:
+      'figcaption.ecl-media-container__caption': "Some caption text for the image"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      caption: "Some caption text for the image"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 0
+      'div.ecl-col-md-6.ecl-editor': 0
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-col-12.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      caption: "Some caption"
+  assertions:
+    count:
+      'div.ecl-row': 0
+      'figure.ecl-media-container': 0
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 0
+      'h2.ecl-u-type-heading-2': 0
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      title: "Heading"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      text: "Some more text"
+  assertions:
+    count:
+      'div.ecl-row': 1
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'figcaption.ecl-media-container__caption': 0
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-col-md-6.ecl-editor': "Some more text"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#fields':
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "invalid"
+  assertions:
+    count:
+      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
+          alt: "Alt text"
+  assertions:
+    count:
+      'figure.ecl-media-container img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media[alt="Alt text"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      media:
+        image:
+          src: "http://via.placeholder.com/150x150"
+          alt: "Image with no caption"
+  assertions:
+    count:
+      'figure.ecl-media-container img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 0
+      'figure.ecl-media-container .ecl-media-container__media[alt="Image with no caption"]': 1
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "16:9"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      '.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "4-3"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-4-3 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "3_2"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-3-2 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "1:1"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-1-1 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+        ratio: "20:15"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+    equals:
+      '.ecl-media-container figcaption.ecl-media-container__caption': Caption
+- array:
+    '#type': pattern
+    '#id': media_container
+    '#fields':
+      description: "Caption"
+      media:
+        video: "<iframe src=\"https://www.youtube.com/embed/UmFFTkjs-O0\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>"
+  assertions:
+    count:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': 1
+      'figure.ecl-media-container .ecl-media-container__media iframe': 1
+      'figure.ecl-media-container .ecl-media-container__media--ratio-16-9 iframe[src="https://www.youtube.com/embed/UmFFTkjs-O0"]': 1
+    equals:
+      'figure.ecl-media-container figcaption.ecl-media-container__caption': Caption
+
