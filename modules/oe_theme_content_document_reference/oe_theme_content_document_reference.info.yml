@@ -1,0 +1,13 @@
+name: OpenEuropa Theme Document reference
+type: module
+description: Companion module for the OE Content Entity Document reference module
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - oe_content:oe_content_entity_document_reference
+
+config_devel:
+  install:
+    - core.entity_view_display.oe_document_reference.oe_document.full
+    - core.entity_view_display.oe_document_reference.oe_publication.full
+    - core.entity_view_mode.oe_document_reference.full
