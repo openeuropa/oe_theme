@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -62,12 +63,19 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       'oe_teaser' => 'News teaser',
       'oe_summary' => 'News summary',
       'body' => 'Body',
+      'oe_news_types' => [
+        'http://publications.europa.eu/resource/authority/resource-type/FACTSHEET',
+        'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN',
+      ],
       'oe_reference_code' => 'News reference',
       'oe_publication_date' => [
         'value' => '2020-09-18',
       ],
       'oe_news_contacts' => $general_contact,
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
+      'oe_author' => [
+        'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
+        'http://publications.europa.eu/resource/authority/corporate-body/ACM',
+      ],
       'oe_news_location' => 'http://publications.europa.eu/resource/authority/place/ARE_AUH',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
@@ -152,6 +160,13 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     // Assert page header - metadata.
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__title', 'Test news node');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__description', 'News summary');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $assert = new PatternPageHeaderAssert();
+    $page_header_expected_values = [
+      'title' => 'Test news node',
+      'meta' => 'Factsheet, General publications | 18 September 2020 | Abu Dhabi | African Court of Justice and Human Rights, Arab Common Market',
+    ];
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert news details.
     $details = $this->assertSession()->elementExists('css', 'div#news-details');
@@ -167,8 +182,8 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
           'body' => '18 September 2020',
         ],
         [
-          'label' => 'Author',
-          'body' => 'African Court of Justice and Human Rights',
+          'label' => 'Authors',
+          'body' => 'African Court of Justice and Human Rights | Arab Common Market',
         ],
         [
           'label' => 'Location',

@@ -13,7 +13,7 @@
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'meta': [
-      content.oe_news_types|field_value|safe_join(', '),
+      content.oe_news_types,
       content.oe_publication_date|field_value,
     ],
     'detail': content.oe_teaser|field_value,
