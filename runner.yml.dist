@@ -30,6 +30,7 @@ drupal:
     - "./vendor/bin/drush en oe_theme_content_call_proposals -y"
     - "./vendor/bin/drush en oe_theme_content_consultation -y"
     - "./vendor/bin/drush en oe_theme_content_organisation -y"
+    - "./vendor/bin/drush en oe_theme_content_document_reference -y"
     - "./vendor/bin/drush en oe_theme_content_organisation_reference -y"
     - "./vendor/bin/drush en oe_theme_contact_forms -y"
     - "./vendor/bin/drush en field_ui -y"
