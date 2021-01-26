@@ -79,6 +79,18 @@ users can access to the main navigation menu only on sites using standardised EC
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
+### Upgrade to 2.15.0
+
+#### Social media links pattern
+
+In 2.15.0 we introduced a new pattern ["Social media links"](./templates/patterns/social_media_links) with two variants:
+
+- `horizontal`: social media links will be arranged horizontally.
+- `vertical`: social media links will be arranged vertically.
+
+Therefore patterns "Social media links: horizontal" and "Social media links: vertical" are now deprecated. Use the "Social media
+links" pattern with an appropriate variant instead.
+
 ### Upgrade to 2.10.0
 
 #### ECL page header

@@ -1,5 +1,5 @@
 social_media_links_horizontal:
-  label: "Social media links: horizontal"
+  label: "Social media links: horizontal (Deprecated)"
   description: "Social network icon with link of label, displayed horizontally."
   fields:
     title:
@@ -21,3 +21,5 @@ social_media_links_horizontal:
         - service: "instagram"
           label: "Instagram"
           url: "#"
+  additional:
+    hidden: true
