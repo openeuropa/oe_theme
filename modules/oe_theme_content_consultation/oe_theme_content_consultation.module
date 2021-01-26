@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Url;
 use Drupal\oe_content\CallEntityWrapperInterface;
 use Drupal\oe_content_consultation\ConsultationNodeWrapper;
 
@@ -89,5 +90,17 @@ function oe_theme_content_consultation_preprocess_field(&$variables, $hook): voi
   ];
   if (in_array($variables['field_name'], $text_formatted_fields)) {
     $variables['attributes']['class'][] = 'ecl-editor';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_consultation_preprocess_field__node__oe_consultation_response_button__oe_consultation__full(&$variables) {
+  $uri = $variables['element'][0]['#url']->toUriString();
+  $variables['path'] = Url::fromUri($uri);
+  $variables['label'] = t('Respond to the questionnaire');
+  if (!empty($variables['element']['#items']->first()->get('title')->getValue())) {
+    $variables['label'] = $variables['element']['#items']->first()->get('title')->getValue();
   }
 }

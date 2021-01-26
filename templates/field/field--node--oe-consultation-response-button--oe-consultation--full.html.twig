@@ -6,18 +6,6 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% set label = 'Respond to the questionnaire'|t %}
-{% if items.0.content['#url'].external %}
-  {% set path = items.0.content['#url'].uri %}
-  {% if items.0.content['#url'].uri != items.0.content['#title'] %}
-    {% set label = items.0.content['#title'] %}
-  {% endif %}
-{% else %}
-  {% set path = path(items.0.content['#url'].routeName, items.0.content['#url'].routeParameters) %}
-  {% if items.0.content['#url'].routeName != items.0.content['#title'] %}
-    {% set label = items.0.content['#title'] %}
-  {% endif %}
-{% endif %}
 <div class="ecl-u-mt-m">
   {% include '@ecl-twig/link' with {
     link: {

@@ -234,14 +234,14 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
 
     // Add a link to respond button and assert default label.
     $node->set('oe_consultation_response_button', [
-      'uri' => 'http://example.com',
+      'uri' => 'internal:/node/add',
     ])->save();
     $this->drupalGet($node->toUrl());
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
     $this->assertEquals('Respond to the questionnaire', $respond_button->getText());
     // Add a link to respond button and assert default label.
     $node->set('oe_consultation_response_button', [
-      'uri' => 'internal:/node/add',
+      'uri' => 'https://example.com',
       'title' => 'Link text',
     ])->save();
     $this->drupalGet($node->toUrl());
