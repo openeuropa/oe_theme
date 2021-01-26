@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.oe_consultation.oe_consultation_closed_text
     - field.field.node.oe_consultation.oe_consultation_contacts
     - field.field.node.oe_consultation.oe_consultation_deadline
+    - field.field.node.oe_consultation.oe_consultation_documents
     - field.field.node.oe_consultation.oe_consultation_guidelines
     - field.field.node.oe_consultation.oe_consultation_legal_info
     - field.field.node.oe_consultation.oe_consultation_opening_date
@@ -22,6 +23,7 @@ dependencies:
     - node.type.oe_consultation
   module:
     - datetime
+    - entity_reference_revisions
     - field_group
     - link
     - rdf_skos
@@ -36,6 +38,7 @@ third_party_settings:
         - group_why_we_are_consulting
         - group_respond_to_the_consultation
         - group_consultation_outcome
+        - group_reference_documents
         - group_additional_information
         - group_legal_notice
         - group_contacts
@@ -124,7 +127,7 @@ third_party_settings:
       children:
         - oe_consultation_additional_info
       parent_name: group_page_contents
-      weight: 25
+      weight: 26
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -135,7 +138,7 @@ third_party_settings:
       children:
         - oe_consultation_legal_info
       parent_name: group_page_contents
-      weight: 26
+      weight: 27
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -146,13 +149,24 @@ third_party_settings:
       children:
         - oe_consultation_contacts
       parent_name: group_page_contents
-      weight: 27
+      weight: 28
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
         id: ''
         classes: ''
       label: Contact
+    group_reference_documents:
+      children:
+        - oe_consultation_documents
+      parent_name: group_page_contents
+      weight: 25
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Reference documents'
 id: node.oe_consultation.full
 targetEntityType: node
 bundle: oe_consultation
@@ -200,6 +214,15 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  oe_consultation_documents:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_consultation_guidelines:
     weight: 2
     label: hidden
