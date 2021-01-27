@@ -53,7 +53,7 @@ drupal:
           prefix: ""
           host: ${drupal.sparql.host}
           port: ${drupal.sparql.port}
-          namespace: 'Drupal\Driver\Database\sparql'
+          namespace: 'Drupal\sparql_entity_storage\Driver\Database\sparql'
           driver: 'sparql'
 selenium:
   host: "http://selenium"
