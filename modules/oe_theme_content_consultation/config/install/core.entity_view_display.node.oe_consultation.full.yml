@@ -249,7 +249,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
+    type: link_separate
     region: content
   oe_consultation_target_audience:
     weight: 2
