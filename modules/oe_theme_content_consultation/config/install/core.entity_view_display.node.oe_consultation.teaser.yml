@@ -49,7 +49,7 @@ content:
     third_party_settings: {  }
   oe_consultation_deadline:
     weight: 5
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: oe_consultation_date_with_time_and_timezone
@@ -58,7 +58,7 @@ content:
     region: content
   oe_consultation_opening_date:
     weight: 4
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: oe_consultation_date
