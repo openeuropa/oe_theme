@@ -3,6 +3,8 @@
 
 body {
   font-family: $ecl-font-family;
+  // Have been added as a workaround for solving the problem of Page banner with full width on page with other full-width elements.
+  overflow-x: hidden;
 }
 
 a {
