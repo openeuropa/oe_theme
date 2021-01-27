@@ -1281,6 +1281,14 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_page_header__preview(array &$variables): void {
+  // We are going to accept only local images for the background image of the preview.
+  $variables['background_image_url'] = base_path() . drupal_get_path('module', 'oe_theme_helper')  . '/images/' . $variables['background_image_url'];
+}
+
+/**
  * Implements hook_preprocess_paragraph().
  */
 function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): void {
@@ -1472,6 +1480,14 @@ function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_the
 }
 
 /**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_field__media__oe_media_iframe__iframe__oe_theme_main_content(array &$variables): void {
+  // Set iframe aspect ratio when rendering "oe_theme_main_content" display mode.
+  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value ?? 'custom';
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter().
  *
  * Add block region as a suggestion.
@@ -1514,4 +1530,17 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
   ]);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_patterns_overview_page(&$variables) {
+  // Remove patterns from the list on the "/components" page if they are marked
+  // as hidden.
+  foreach ($variables['patterns'] as $key => $pattern) {
+    if (!empty($pattern['additional']['hidden'])) {
+      unset($variables['patterns'][$key]);
+    }
+  }
 }

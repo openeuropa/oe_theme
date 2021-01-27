@@ -58,6 +58,11 @@ page_header:
           label: "How the Commission is organised"
         - href: "#"
           label: "News"
+    background_image_url:
+      type: "array"
+      label: "Background image URL"
+      description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
+      preview: "page-header-pattern-background-preview.jpeg"
     identity:
       type: "text"
       label: "Identity (deprecated)"

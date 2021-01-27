@@ -4,8 +4,4 @@
  * Theme override for the webtools op publication list fields on media items.
  */
 #}
-{% for item in items %}
-  {% include '@ecl-twig/media-container' with {
-    'embedded_media': item.content,
-  } %}
-{% endfor %}
+{%- include 'field--bare.html.twig' -%}

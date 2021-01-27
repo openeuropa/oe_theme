@@ -26,6 +26,11 @@ module.exports = {
       dest: path.resolve(outputFolder, 'css/style-eu.css'),
       options: style_options,
     },
+    {
+      entry: path.resolve(__dirname, 'sass/print.scss'),
+      dest: path.resolve(outputFolder, 'css/print.css'),
+      options: style_options,
+    },
   ],
   copy: [
     { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },

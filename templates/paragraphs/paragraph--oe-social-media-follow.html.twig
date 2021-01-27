@@ -6,14 +6,8 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{% if variant == 'horizontal' %}
-  {{ pattern('social_media_links_horizontal', {
-    'title': label,
-    'links': links,
-  }) }}
-{% else %}
-  {{ pattern('social_media_links_vertical', {
-    'title': label,
-    'links': links,
-  }) }}
-{% endif %}
+{{ pattern('social_media_links', {
+  'variant': variant,
+  'title': label,
+  'links': links,
+}) }}
