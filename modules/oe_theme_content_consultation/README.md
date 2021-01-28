@@ -15,6 +15,7 @@ This module requires the following contributed modules:
 
 * [Extra field](https://www.drupal.org/project/extra_field) (^1.1)
 * [Field group](https://www.drupal.org/project/field_group) (~3.0)
+* [Rdf skos](https://github.com/openeuropa/rdf_skos) (~0.11)
 
 ## Shipped configuration
 
@@ -32,8 +33,8 @@ If you want to customize how the "Consultation" looks like override the `full` v
 
 ## Extra fields
 
-This module ships with a [extra field](https://www.drupal.org/project/extra_field) plugin definition which is
-used to display complex rendering business logic. All this logic is encapsulated in this extra field.
+This module ships with [extra fields](https://www.drupal.org/project/extra_field) plugin definition which are
+used to display complex rendering business logic. All this logic is encapsulated in these extra field.
 
 You can reuse these extra fields in your own view modes.
 
