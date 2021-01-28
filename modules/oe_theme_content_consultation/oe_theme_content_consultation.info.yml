@@ -1,0 +1,22 @@
+name: OpenEuropa Theme Consultation Content
+type: module
+description: Companion module for the OE Content Consultation module
+package: OpenEuropa
+core: 8.x
+
+dependencies:
+  - drupal:datetime
+  - drupal:link
+  - drupal:text
+  - extra_field:extra_field
+  - field_group:field_group
+  - oe_content:oe_content_consultation
+  - oe_theme:oe_theme_helper
+  - oe_theme:oe_theme_content_entity_contact
+  - rdf_skos:rdf_skos
+
+config_devel:
+  install:
+    - core.date_format.oe_consultation_date
+    - core.date_format.oe_consultation_date_with_time_and_timezone
+    - core.entity_view_display.node.oe_consultation.full
