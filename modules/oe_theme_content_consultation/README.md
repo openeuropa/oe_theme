@@ -31,6 +31,8 @@ and formatter settings are displayed correctly.
 
 If you want to customize how the "Consultation" looks like override the `full` view mode.
 
+This modules also ships with a `teaser` view mode.
+
 ## Extra fields
 
 This module ships with [extra fields](https://www.drupal.org/project/extra_field) plugin definition which are
