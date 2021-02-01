@@ -4,7 +4,7 @@ dependencies:
   config:
     - core.entity_view_mode.oe_document_reference.full
     - field.field.oe_document_reference.oe_publication.oe_publication
-    - oe_content_entity_document_reference.oe_document_reference_type.oe_publication
+    - oe_content_sub_entity_document_reference.oe_document_reference_type.oe_publication
 id: oe_document_reference.oe_publication.full
 targetEntityType: oe_document_reference
 bundle: oe_publication
