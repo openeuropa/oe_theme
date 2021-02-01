@@ -8,7 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
-use Drupal\oe_content_entity_document_reference\Entity\DocumentReference;
+use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 
@@ -323,57 +323,65 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   }
 
   /**
-   * Creates Document reference entity.
+   * Creates Publication Document reference entity.
    *
    * @param string $name
    *   Entity name. Is used as a parameter for test data.
-   * @param string $bundle
-   *   Entity bundle.
    * @param int $status
    *   Entity status.
    *
-   * @return \Drupal\oe_content_entity_document_reference\Entity\DocumentReference
-   *   Document reference entity.
+   * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
+   *   Document reference publication entity.
    */
-  protected function createDocumentReferenceEntity(string $name, string $bundle, int $status): DocumentReference {
-    if ($bundle === 'oe_document') {
-      $document = $this->createMediaDocument($name);
-      $document_reference = $this->getStorage('oe_document_reference')->create([
-        'bundle' => $bundle,
-        'name' => $name,
-        'oe_document' => $document,
-        'status' => $status,
-      ]);
-      $document_reference->save();
-      return $document_reference;
-    }
-    else {
-      $document = $this->createMediaDocument('document');
-      /** @var \Drupal\node\Entity\Node $publication */
-      $publication = $this->getStorage('node')->create([
-        'type' => 'oe_publication',
-        'title' => 'Publication node',
-        'oe_teaser' => 'Teaser text',
-        'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
-        'oe_documents' => $document,
-        'oe_publication_date' => [
-          'value' => '2020-04-15',
-        ],
-        'oe_subject' => 'http://data.europa.eu/uxp/1000',
-        'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
-        'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-        'status' => 1,
-      ]);
-      $publication->save();
-      $publication_reference = $this->getStorage('oe_document_reference')->create([
-        'bundle' => $bundle,
-        'name' => $name,
-        'oe_publication' => $publication,
-        'status' => $status,
-      ]);
-      $publication_reference->save();
-      return $publication_reference;
-    }
+  protected function createPublicationDocumentReferenceEntity(string $name, int $status): DocumentReference {
+    $document = $this->createMediaDocument('document');
+    /** @var \Drupal\node\Entity\Node $publication */
+    $publication = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Publication node',
+      'oe_teaser' => 'Teaser text',
+      'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_documents' => $document,
+      'oe_publication_date' => [
+        'value' => '2020-04-15',
+      ],
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'status' => 1,
+    ]);
+    $publication->save();
+    $publication_reference = $this->getStorage('oe_document_reference')->create([
+      'type' => 'oe_publication',
+      'name' => $name,
+      'oe_publication' => $publication,
+      'status' => $status,
+    ]);
+    $publication_reference->save();
+    return $publication_reference;
+  }
+
+  /**
+   * Creates Document Document reference entity.
+   *
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param int $status
+   *   Entity status.
+   *
+   * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
+   *   Document reference document entity.
+   */
+  protected function createDocumentDocumentReferenceEntity(string $name, int $status): DocumentReference {
+    $document = $this->createMediaDocument($name);
+    $document_reference = $this->getStorage('oe_document_reference')->create([
+      'type' => 'oe_document',
+      'name' => $name,
+      'oe_document' => $document,
+      'status' => $status,
+    ]);
+    $document_reference->save();
+    return $document_reference;
   }
 
 }

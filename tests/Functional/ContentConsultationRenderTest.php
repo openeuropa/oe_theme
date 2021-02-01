@@ -31,7 +31,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     'path',
     'field_group',
     'oe_content_entity',
-    'oe_content_entity_document_reference',
+    'oe_content_sub_entity_document_reference',
     'oe_theme_helper',
     'oe_theme_content_consultation',
     'oe_theme_content_publication',
@@ -62,8 +62,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $first_contact = $this->createContactEntity('first_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $second_contact = $this->createContactEntity('second_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     // Create Document reference entities.
-    $document_reference = $this->createDocumentReferenceEntity('document_reference', 'oe_document', CorporateEntityInterface::PUBLISHED);
-    $publication_reference = $this->createDocumentReferenceEntity('publication_reference', 'oe_publication', CorporateEntityInterface::PUBLISHED);
+    $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference', CorporateEntityInterface::PUBLISHED);
+    $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference', CorporateEntityInterface::PUBLISHED);
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
