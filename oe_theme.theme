@@ -401,17 +401,7 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
-  $text_formatted_fields = [
-    'body',
-    'oe_consultation_additional_info',
-    'oe_consultation_outcome',
-    'oe_consultation_legal_info',
-    'oe_consultation_guidelines',
-    'oe_consultation_closed_text',
-    'oe_consultation_target_audience',
-    'oe_consultation_aim',
-  ];
-  if (in_array($variables['field_name'], $text_formatted_fields)) {
+  if ($variables['field_name'] === 'body') {
     $variables['attributes']['class'][] = 'ecl-editor';
   }
 

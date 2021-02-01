@@ -73,14 +73,3 @@ function oe_theme_content_consultation_preprocess_oe_theme_helper_in_page_naviga
     }
   }
 }
-
-/**
- * Implements hook_preprocess_HOOK().
- *
- * Renders Publication teaser view mode inside Document reference entity.
- */
-function oe_theme_content_consultation_preprocess_field__oe_document_reference__oe_publication(&$variables): void {
-  $publication = $variables['element'][0]['#options']['entity'];
-  $build = \Drupal::entityTypeManager()->getViewBuilder('node')->view($publication, 'teaser');
-  $variables['publication'] = \Drupal::service('renderer')->render($build);
-}
