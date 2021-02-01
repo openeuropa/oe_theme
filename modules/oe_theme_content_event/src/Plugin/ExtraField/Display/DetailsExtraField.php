@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
@@ -184,8 +183,11 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
     $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
     $build['#fields']['items'][] = [
       'icon' => 'location',
-      // We receive double encoded strings so we need to decode.
-      'text' => Html::decodeEntities($renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value']),
+      'text' => [
+        '#type' => 'html_tag',
+        '#tag' => 'span',
+        '#value' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
+      ],
     ];
   }
 
