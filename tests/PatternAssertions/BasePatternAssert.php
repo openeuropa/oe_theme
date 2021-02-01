@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
 use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -58,7 +59,10 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     $assertion_map = $this->getAssertions($variant);
     $crawler = new Crawler($html);
     foreach ($expected as $name => $expected_value) {
-      if (isset($assertion_map[$name]) && is_array($assertion_map[$name]) && is_callable($assertion_map[$name][0])) {
+      if (!array_key_exists($name, $assertion_map)) {
+        throw new Exception(sprintf('The expected key %s does not correspond to any of the pattern expected keys.', $name));
+      }
+      if (is_array($assertion_map[$name]) && is_callable($assertion_map[$name][0])) {
         $callback = array_shift($assertion_map[$name]);
         array_unshift($assertion_map[$name], $expected_value);
         $assertion_map[$name][] = $crawler;
