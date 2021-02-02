@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\Tests\rdf_entity\Traits\RdfDatabaseConnectionTrait;
 use Drupal\user\Entity\Role;
@@ -165,7 +164,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     $file->setPermanent();
     $file->save();
 
-    $media = Media::create([
+    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
       'bundle' => 'image',
       'name' => "Test image $name",
       'oe_media_image' => [
