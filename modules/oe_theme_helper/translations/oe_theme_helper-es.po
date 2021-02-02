@@ -276,3 +276,36 @@ msgstr "Departamento relacionado"
 
 msgid "Related departments"
 msgstr "Departamentos relacionados"
+
+msgid "Consultation"
+msgstr "Consulta"
+
+msgid "Deadline"
+msgstr "Plazo"
+
+msgid "Respond to the questionnaire"
+msgstr "Responder al cuestionario"
+
+msgid "Respond to the consultation"
+msgstr "Responder a la consulta"
+
+msgid "Target audience"
+msgstr "Destinatarios"
+
+msgid "Why we are consulting"
+msgstr "Por qué realizamos esta consulta"
+
+msgid "Consultation outcome"
+msgstr "Resultado de la consulta"
+
+msgid "Additional information"
+msgstr "Información adicional"
+
+msgid "Reference documents"
+msgstr "Documentos de referencia"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "El plazo para responder a esta consulta ha finalizado. Gracias por su contribución."
+
+msgid "Status: @label"
+msgstr "Estado: @label"

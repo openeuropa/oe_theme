@@ -276,3 +276,37 @@ msgstr "Σχετικό τμήμα"
 
 msgid "Related departments"
 msgstr "Σχετικά τμήματα"
+
+msgid "Consultation"
+msgstr "Διαβούλευση"
+
+msgid "Deadline"
+msgstr "Προθεσμία"
+
+msgid "Respond to the questionnaire"
+msgstr "Απαντήστε στο ερωτηματολόγιο"
+
+msgid "Respond to the consultation"
+msgstr "Πάρτε μέρος στη διαβούλευση"
+
+msgid "Target audience"
+msgstr "Στοχευόμενο κοινό"
+
+msgid "Why we are consulting"
+msgstr "Γιατί διεξάγουμε τη δημόσια διαβούλευση"
+
+msgid "Consultation outcome"
+msgstr "Αποτελέσματα της διαβούλευσης"
+
+msgid "Additional information"
+msgstr "Πρόσθετες πληροφορίες"
+
+msgid "Reference documents"
+msgstr "Έγγραφα αναφοράς"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Η περίοδος συμμετοχής στην εν λόγω διαβούλευση έχει λήξει. Ευχαριστούμε για το μήνυμά σας."
+
+msgid "Status: @label"
+msgstr "Καθεστώς: @label"
+
