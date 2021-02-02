@@ -8,6 +8,7 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
@@ -30,12 +31,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     'system',
     'path',
     'field_group',
-    'oe_content_entity',
-    'oe_content_sub_entity_document_reference',
     'oe_theme_helper',
     'oe_theme_content_consultation',
-    'oe_theme_content_publication',
-    'oe_theme_content_document_reference',
   ];
 
   /**
@@ -48,7 +45,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->grantPermission('view published oe_contact')
-      ->grantPermission('view published oe_document_reference')
       ->save();
   }
 
@@ -62,8 +58,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $first_contact = $this->createContactEntity('first_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $second_contact = $this->createContactEntity('second_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     // Create Document reference entities.
-    $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference', CorporateEntityInterface::PUBLISHED);
-    $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference', CorporateEntityInterface::PUBLISHED);
+    $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference', SubEntityInterface::PUBLISHED);
+    $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference', SubEntityInterface::PUBLISHED);
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);

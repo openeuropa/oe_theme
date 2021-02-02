@@ -5,7 +5,7 @@ package: OpenEuropa
 core: 8.x
 dependencies:
   - oe_content:oe_content_sub_entity_document_reference
-  - oe_theme:oe_theme_content_consultation
+  - oe_theme:oe_theme_content_publication
 
 config_devel:
   install:
