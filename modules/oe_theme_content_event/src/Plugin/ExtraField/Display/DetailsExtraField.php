@@ -184,9 +184,7 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
     $build['#fields']['items'][] = [
       'icon' => 'location',
       'text' => [
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#value' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
+        '#markup' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
       ],
     ];
   }
