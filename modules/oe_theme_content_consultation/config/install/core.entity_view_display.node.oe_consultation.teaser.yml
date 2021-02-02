@@ -8,6 +8,7 @@ dependencies:
     - field.field.node.oe_consultation.oe_consultation_closed_text
     - field.field.node.oe_consultation.oe_consultation_contacts
     - field.field.node.oe_consultation.oe_consultation_deadline
+    - field.field.node.oe_consultation.oe_consultation_documents
     - field.field.node.oe_consultation.oe_consultation_guidelines
     - field.field.node.oe_consultation.oe_consultation_legal_info
     - field.field.node.oe_consultation.oe_consultation_opening_date
@@ -75,6 +76,7 @@ hidden:
   oe_consultation_aim: true
   oe_consultation_closed_text: true
   oe_consultation_contacts: true
+  oe_consultation_documents: true
   oe_consultation_guidelines: true
   oe_consultation_legal_info: true
   oe_consultation_outcome: true
