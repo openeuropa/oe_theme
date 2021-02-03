@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for the text with summary fields used in nodes.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{%
+  set title_classes = [
+  label_display == 'visually_hidden' ? 'visually-hidden',
+]
+%}
+{% if label_hidden %}
+  <div class="ecl-editor">
+    {%- include 'field--bare.html.twig' -%}
+  </div>
+{% else %}
+  <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+  <div class="ecl-editor">
+    {%- include 'field--bare.html.twig' -%}
+  </div>
+{% endif %}

@@ -159,6 +159,15 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
     array_unshift($suggestions, 'field__bare');
   }
 
+  if (!in_array($element['#field_type'], ['extra_field'])) {
+    /** @var \Drupal\field\Entity\FieldConfig $field_definition */
+    $field_definition = $element['#items']->getFieldDefinition();
+    // Add suggestions based on the parent entity and bundle types.
+    $suggestions[] = 'field__' . $element['#field_type'];
+    $suggestions[] = 'field__' . $element['#field_type'] . '__' . $element['#entity_type'];
+    $suggestions[] = 'field__' . $element['#field_type'] . '__' . $element['#entity_type'] . '__' . $element['#bundle'] . '__' . $field_definition->getName();
+  }
+
   // Add suggestions for all 'Entity reference revisions' for each target type.
   if ($element['#field_type'] === 'entity_reference_revisions') {
     /** @var \Drupal\field\Entity\FieldConfig $field_definition */
@@ -400,10 +409,6 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
-  if ($variables['field_name'] === 'body') {
-    $variables['attributes']['class'][] = 'ecl-editor';
-  }
-
   // Add the ECL image class to the image fields.
   $field_name = $variables['field_name'];
   if (in_array($field_name, ['oe_media_avportal_photo'])) {
