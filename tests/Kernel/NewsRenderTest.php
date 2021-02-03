@@ -144,7 +144,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $expected_values = [
       'title' => 'Test news node',
       'url' => '/en/node/1',
-      'detail' => 'Teaser',
+      'description' => 'Teaser',
       'meta' => 'News article | 2 April 2019',
       'image' => [
         'src' => 'example_1.jpeg',
