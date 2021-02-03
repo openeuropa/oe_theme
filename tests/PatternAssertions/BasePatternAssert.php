@@ -60,7 +60,8 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     $crawler = new Crawler($html);
     foreach ($expected as $name => $expected_value) {
       if (!array_key_exists($name, $assertion_map)) {
-        throw new Exception(sprintf('The expected key %s does not correspond to any of the pattern expected keys.', $name));
+        $reflection = new \ReflectionClass($this);
+        throw new Exception(sprintf('"%s" does not provide any assertion for "%s".', $reflection->getName(), $name));
       }
       if (is_array($assertion_map[$name]) && is_callable($assertion_map[$name][0])) {
         $callback = array_shift($assertion_map[$name]);
