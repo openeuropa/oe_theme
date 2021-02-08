@@ -49,9 +49,6 @@ class ContactRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
 
-    $contact_wrapper = $crawler->filter('.oe_contact__default');
-    $this->assertCount(1, $contact_wrapper);
-
     // Assert that empty values don't exist.
     $this->assertEmpty($crawler->filter('.ecl-editor'));
     $this->assertEmpty($crawler->filter('.ecl-description-list'));

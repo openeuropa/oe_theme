@@ -92,7 +92,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');
 
-    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $field_list_assert = new FieldListAssert();
     $details_expected_values = [];
     $details_expected_values['items'] = [
@@ -101,10 +100,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'N/A',
       ], [
         'label' => 'Publication date',
-        'body' => $publication_date->format('d F Y'),
+        'body' => '12 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => $deadline_date->format('d F Y, H:i (T)'),
+        'body' => '21 February 2020, 01:00 (AEDT)',
       ],
     ];
     $details_html = $content_items[0]->getHtml();
@@ -135,13 +134,13 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Open',
       ], [
         'label' => 'Publication date',
-        'body' => $publication_date->format('d F Y'),
+        'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => $opening_date->format('d F Y'),
+        'body' => '14 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => $deadline_date->format('d F Y, H:i (T)'),
+        'body' => '21 February 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
@@ -161,13 +160,13 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Upcoming',
       ], [
         'label' => 'Publication date',
-        'body' => $publication_date->format('d F Y'),
+        'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => $opening_date->format('d F Y'),
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => $deadline_date->format('d F Y, H:i (T)'),
+        'body' => '21 February 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
@@ -177,7 +176,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $deadline_date = (clone $static_time)->modify('- 2 days');
     $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $this->drupalGet($node->toUrl());
-    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
 
     $page_header_expected_values['meta'] = 'Call for tenders | Closed';
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
@@ -188,22 +186,22 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Closed',
       ], [
         'label' => 'Publication date',
-        'body' => $publication_date->format('d F Y'),
+        'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => $opening_date->format('d F Y'),
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => $deadline_date->format('d F Y, H:i (T)'),
+        'body' => '16 February 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
     $this->assertDeadlineDateStrike($content, TRUE);
 
     // Assert Reference field.
-    $node->set('oe_reference_code', 'Call for tenders reference');
-    $node->save();
+    $node->set('oe_reference_code', 'Call for tenders reference')->save();
     $this->drupalGet($node->toUrl());
+
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
@@ -213,21 +211,21 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Call for tenders reference',
       ], [
         'label' => 'Publication date',
-        'body' => $publication_date->format('d F Y'),
+        'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => $opening_date->format('d F Y'),
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => $deadline_date->format('d F Y, H:i (T)'),
+        'body' => '16 February 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert Responsible department field.
-    $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC');
-    $node->save();
+    $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
     $this->drupalGet($node->toUrl());
+
     $details_expected_values['items'][5] = [
       'label' => 'Department',
       'body' => 'Audit Board of the European Communities',
