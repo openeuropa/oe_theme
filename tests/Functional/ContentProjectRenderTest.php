@@ -161,10 +161,10 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => 'Project reference',
         ], [
           'label' => 'Project duration',
-          'body' => '10.05.2020 - 15.05.2025',
+          'body' => "10.05.2020\n - 15.05.2025",
         ], [
           'label' => 'Project locations',
-          'body' => '09199 Ages Burgos, Spain Munich, Germany',
+          'body' => "09199 Ages Burgos, Spain\n\n  Munich, Germany",
         ],
       ],
     ];
@@ -275,19 +275,20 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
 
     // Assert Project's contacts.
-    $this->assertContactEntityDefaultDisplay($node, 'oe_project_contact');
-    $project_contacts = $this->assertSession()->elementExists('css', 'div#project-contacts');
-    $this->assertContentHeader($project_contacts, 'Contact');
-
-    // Unpublish Contact entity to test its visibility.
-    $general_contact = $node->get('oe_project_contact')->entity;
-    $general_contact->set('status', CorporateEntityInterface::NOT_PUBLISHED);
-    $general_contact->save();
-
-    // Reload the page.
+    $contact = $this->createContactEntity('project_contact');
+    $node->set('oe_project_contact', [$contact])->save();
     $this->drupalGet($node->toUrl());
 
-    // Asset Contact entity visibility.
+    $project_contacts = $this->assertSession()->elementExists('css', 'div#project-contacts');
+    $this->assertContentHeader($project_contacts, 'Contact');
+    $this->assertContactDefaultRender($project_contacts, 'project_contact');
+
+    // Unpublish Contact entity to test its visibility.
+    $contact = $node->get('oe_project_contact')->entity;
+    $contact->set('status', CorporateEntityInterface::NOT_PUBLISHED);
+    $contact->save();
+    $this->drupalGet($node->toUrl());
+
     $this->assertSession()->elementNotExists('css', 'div#project-contacts');
   }
 

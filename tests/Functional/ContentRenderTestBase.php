@@ -338,48 +338,149 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   }
 
   /**
-   * Creates Contact entity based on provided settings.
+   * Creates Contact entity.
    *
-   * @param array $settings
-   *   Entity configuration.
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param int $status
+   *   Entity status.
    *
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
-   *   Contact entity instance.
+   *   Contact entity.
    */
-  protected function createContactEntity(array $settings = []): ContactInterface {
-    // Define default values.
-    $default_settings = [
-      'bundle' => 'oe_general',
-      'name' => $this->randomMachineName(),
-      'status' => CorporateEntityInterface::PUBLISHED,
-      'uid' => 0,
-    ];
-    $settings += $default_settings;
-    $contact = $this->getStorage('oe_contact')->create($settings);
-    $contact->save();
+  protected function createContactEntity(string $name, string $bundle = 'oe_general', int $status = CorporateEntityInterface::PUBLISHED): ContactInterface {
+    // Create image for contact.
+    $media = $this->createMediaImage($name);
+
+    $contact = $this->getStorage('oe_contact')->create([
+      'bundle' => $bundle,
+      'name' => $name,
+      'oe_address' => [
+        'country_code' => 'BE',
+        'locality' => 'Brussels',
+        'address_line1' => "Address $name",
+        'postal_code' => '1001',
+      ],
+      'oe_body' => "Body text $name",
+      'oe_email' => "$name@example.com",
+      'oe_fax' => "Fax number $name",
+      'oe_mobile' => "Mobile number $name",
+      'oe_office' => "Office $name",
+      'oe_organisation' => "Organisation $name",
+      'oe_phone' => "Phone number $name",
+      'oe_press_contact_url' => ['uri' => "http://www.example.com/press_contact_$name"],
+      'oe_social_media' => [
+        [
+          'uri' => "http://www.example.com/social_media_$name",
+          'title' => "Social media $name",
+          'link_type' => 'facebook',
+        ],
+      ],
+      'oe_website' => ['uri' => "http://www.example.com/website_$name"],
+      'oe_image' => [
+        [
+          'target_id' => (int) $media->id(),
+          'caption' => "Caption $name",
+        ],
+      ],
+      'status' => $status,
+    ]);
 
     return $contact;
   }
 
   /**
+   * Asserts rendering of Contact entity.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the entity.
+   */
+  protected function assertContactDefaultRender(NodeElement $element, string $name): void {
+    $contact_name = $element->findAll('css', 'h3');
+    $this->assertCount(1, $contact_name);
+    $this->assertEquals($name, $contact_name[0]->getText());
+
+    $contact_body = $element->findAll('css', '.ecl-editor');
+    $this->assertCount(1, $contact_body);
+    $this->assertEquals("Body text $name", $contact_body[0]->getText());
+
+    $contacts_html = $element->getHtml();
+    $field_list_assert = new FieldListAssert();
+    $contact_expected_values = [
+      'items' => [
+        [
+          'label' => 'Organisation',
+          'body' => "Organisation $name",
+        ], [
+          'label' => 'Website',
+          'body' => "http://www.example.com/website_$name",
+        ], [
+          'label' => 'Email',
+          'body' => "$name@example.com",
+        ], [
+          'label' => 'Phone number',
+          'body' => "Phone number $name",
+        ], [
+          'label' => 'Mobile number',
+          'body' => "Mobile number $name",
+        ], [
+          'label' => 'Fax number',
+          'body' => "Fax number $name",
+        ], [
+          'label' => 'Postal address',
+          'body' => "Address $name, 1001 Brussels, Belgium",
+        ], [
+          'label' => 'Office',
+          'body' => "Office $name",
+        ], [
+          'label' => 'Social media',
+          'body' => html_entity_decode('&nbsp;') . 'Social media ' . $name,
+        ],
+      ],
+    ];
+    $field_list_assert->assertPattern($contact_expected_values, $contacts_html);
+    $field_list_assert->assertVariant('horizontal', $contacts_html);
+
+    // Assert Press contacts.
+    $press = $element->find('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
+    $this->assertLinkIcon($press, 'Press contacts', "http://www.example.com/press_contact_$name");
+
+    // Assert contacts Image.
+    $this->assertFeaturedMediaField($element, $name);
+  }
+
+  /**
    * Creates Venue entity based on provided settings.
    *
-   * @param array $settings
-   *   Entity settings.
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param int $status
+   *   Entity status.
    *
    * @return \Drupal\oe_content_entity_venue\Entity\VenueInterface
    *   Venue entity instance.
    */
-  protected function createVenueEntity(array $settings = []): VenueInterface {
-    // Define default values.
-    $default_settings = [
+  protected function createVenueEntity(string $name, string $bundle = 'oe_default', int $status = CorporateEntityInterface::PUBLISHED): VenueInterface {
+    $venue = $this->getStorage('oe_venue')->create([
       'bundle' => 'oe_default',
-      'name' => $this->randomMachineName(),
-      'status' => CorporateEntityInterface::PUBLISHED,
+      'name' => $name,
+      'oe_address' => [
+        'country_code' => 'BE',
+        'locality' => 'Brussels',
+        'address_line1' => "Address $name",
+        'postal_code' => '1001',
+      ],
+      'oe_capacity' => "Capacity $name",
+      'oe_room' => "Room $name",
+      'status' => $status,
       'uid' => 0,
-    ];
-    $settings += $default_settings;
-    $venue = $this->getStorage('oe_venue')->create($settings);
+    ]);
     $venue->save();
 
     return $venue;
@@ -401,6 +502,40 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     if (!empty($id)) {
       $this->assertEquals($id, $header->getAttribute('id'));
     }
+  }
+
+  /**
+   * Asserts standalone link template with icon.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $title
+   *   Link title.
+   * @param string $href
+   *   Link URL.
+   * @param bool $is_external
+   *   Defines whether it is extrernal link or internal.
+   */
+  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
+    $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $this->assertCount(1, $link);
+    $this->assertEquals($href, $link[0]->getAttribute('href'));
+
+    $label = $link[0]->findAll('css', '.ecl-link__label');
+    $this->assertCount(1, $label);
+    $this->assertEquals($title, $label[0]->getText());
+
+    $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon';
+    $icon_type = 'ui--external';
+    if (!$is_external) {
+      $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
+      $icon_type = 'ui--corner-arrow';
+    }
+    $svg = $link[0]->findAll('css', $svg_locator);
+    $this->assertCount(1, $svg);
+    $icon = $svg[0]->findAll('css', 'use');
+    $this->assertCount(1, $icon);
+    $this->assertContains($icon_type, $icon[0]->getAttribute('xlink:href'));
   }
 
 }

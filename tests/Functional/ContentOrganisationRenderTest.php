@@ -158,16 +158,17 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertEquals('My body text', $body[0]->getText());
 
     // Assert Organisation's contacts.
-    $this->assertContactEntityDefaultDisplay($node, 'oe_organisation_contact');
+    $contact = $this->createContactEntity('organisation_contact');
+    $node->set('oe_organisation_contact', [$contact])->save();
+    $this->drupalGet($node->toUrl());
 
-    // Assert navigation part.
-    $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
-    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
-
-    // Assert header of the second field group.
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[1], 'Contact', 'contact');
+    $this->assertContactDefaultRender($content_items[1], 'organisation_contact');
+
+    $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
   }
 
 }

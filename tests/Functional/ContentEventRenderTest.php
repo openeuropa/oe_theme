@@ -7,10 +7,11 @@ namespace Drupal\Tests\oe_theme\Functional;
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -43,7 +44,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    // Give anonymous users permission to view Venue entities.
+    // Give anonymous users permission to view corporate entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published oe_venue')
       ->grantPermission('view published oe_contact')
@@ -186,7 +187,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $details_content = $this->assertSession()->elementExists('css', '#event-details');
     $this->assertSession()->elementNotExists('css', '.ecl-body', $details_content);
     $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
-    $start_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $icons_text_assert = new IconsTextAssert();
     $icons_text_expected_values = [
       'items' => [
@@ -195,7 +195,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => $start_date->format('d F Y, H:i'),
+          'text' => '19 February 2020, 01:00',
         ],
       ],
     ];
@@ -211,7 +211,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => $start_date->format('l j F Y, H:i'),
+          'body' => 'Wednesday 19 February 2020, 01:00',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -231,8 +231,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $start_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $icons_text_expected_values = [
       'items' => [
         [
@@ -240,7 +238,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => $start_date->format('d F Y, H:i') . " to " . $end_date->format('d F Y, H:i'),
+          'text' => "19 February 2020, 01:00\n to 28 February 2020, 01:00",
         ],
       ],
     ];
@@ -250,7 +248,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => $start_date->format('l j F Y, H:i') . " to " . $end_date->format('l j F Y, H:i'),
+          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -266,28 +264,18 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert "Venue" field.
-    $venue_entity = $this->createVenueEntity([
-      'oe_address' => [
-        'country_code' => 'BE',
-        'locality' => 'Brussels',
-        'address_line1' => "Event venue address",
-        'postal_code' => '1001',
-      ],
-      'oe_capacity' => 'Venue capacity',
-      'oe_room' => 'Venue room',
-    ]);
+    $venue_entity = $this->createVenueEntity('event_venue');
     $node->set('oe_event_venue', [$venue_entity])->save();
     $this->drupalGet($node->toUrl());
 
-    $venue_name = $venue_entity->getName();
     $field_list_expected_values = [
       'items' => [
         [
           'label' => 'Where',
-          'body' => "$venue_name Event venue address, 1001 Brussels, Belgium",
+          'body' => "event_venue\n  Address event_venue, 1001 Brussels, Belgium",
         ], [
           'label' => 'When',
-          'body' => $start_date->format('l j F Y, H:i') . " to " . $end_date->format('l j F Y, H:i'),
+          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -349,11 +337,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'label' => 'Online link',
       'body' => 'Link to online event',
     ];
-    $online_start_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $online_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $field_list_expected_values['items'][6] = [
       'label' => 'Online time',
-      'body' => $online_start_date->format('j F Y, H:i T') . " to " . $online_end_date->format('j F Y, H:i T'),
+      'body' => "18 March 2020, 01:00 AEDT\n to 18 April 2020, 00:00 AEST",
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
@@ -425,8 +411,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
     $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
-    $registration_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $this->assertEquals('Registration period ended on ' . $registration_end_date->format('l j F Y, H:i'), $registration_info_content->getText());
+    $this->assertEquals('Registration period ended on Saturday 18 January 2020, 01:00', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration is in progress.
     $registration_start_date = (clone $static_time)->modify('- 10 days');
@@ -438,8 +423,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegisterButtonEnabled($registration_content);
-    $registration_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $this->assertEquals('Book your seat, 1 week left to register, registration will end on ' . $registration_end_date->format('j F Y, H:i'), $registration_info_content->getText());
+    $this->assertEquals('Book your seat, 1 week left to register, registration will end on 28 February 2020, 01:00', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will finish today.
     $registration_start_date = (clone $static_time)->modify('- 10 days');
@@ -451,8 +435,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegisterButtonEnabled($registration_content);
-    $registration_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $this->assertEquals('Book your seat, the registration will end today, ' . $registration_end_date->format('j F Y, H:i'), $registration_info_content->getText());
+    $this->assertEquals('Book your seat, the registration will end today, 18 February 2020, 02:00', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start today.
     $registration_start_date = (clone $static_time)->modify('+ 1 hour');
@@ -464,8 +447,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegisterButtonDisabled($registration_content);
-    $registration_start_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $this->assertEquals('Registration will open today, ' . $registration_start_date->format('j F Y, H:i') . '.', $registration_info_content->getText());
+    $this->assertEquals('Registration will open today, 18 February 2020, 02:00.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start in future.
     $registration_start_date = (clone $static_time)->modify('+ 1 day');
@@ -477,9 +459,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegisterButtonDisabled($registration_content);
-    $registration_start_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $registration_end_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $this->assertEquals('Registration will open in 1 day. You can register from ' . $registration_start_date->format('j F Y, H:i') . ', until ' . $registration_end_date->format('j F Y, H:i') . '.', $registration_info_content->getText());
+    $this->assertEquals('Registration will open in 1 day. You can register from 19 February 2020, 01:00, until 28 February 2020, 01:00.', $registration_info_content->getText());
 
     // Assert "Description summary", "Full text", "Featured media",
     // "Featured media legend" fields (these fields have to be filled all
@@ -493,9 +473,19 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    // @todo: text featured media pattern is used here -
-    // templates/patterns/text_featured_media. TextFeaturedMediaAssert
-    // should be implemented.
+    $description_content = $this->assertSession()->elementExists('css', 'article div div:nth-of-type(3)');
+    $text_featured = new TextFeaturedMediaAssert();
+    $text_featured_expected_values = [
+      'title' => 'Description',
+      'caption' => 'Event featured media legend',
+      'text' => 'Event full text',
+      'image' => [
+        'alt' => 'Alternative text event_featured_media',
+        'src' => 'event_featured_media.png',
+      ],
+    ];
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
     // Assert "Report text" and "Summary for report" fields when event finished.
     $start_date = (clone $static_time)->modify('- 20 days');
     $end_date = (clone $static_time)->modify('- 10 days');
@@ -509,11 +499,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $description_summary = $this->assertSession()->elementExists('css', '.ecl-editor', $details_content);
     $this->assertEquals('Event report summary', $description_summary->getText());
-    // @todo: Field oe_event_report_text is shown inside text featured media
-    // pattern. TextFeaturedMediaAssert should be implemented.
+
+    $text_featured_expected_values['title'] = 'Report';
+    $text_featured_expected_values['text'] = 'Event report text';
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
     // Assert "Event contact" field.
-    $contact_entity_general = $this->createContactEntity(['bundle' => 'oe_general']);
-    $contact_entity_press = $this->createContactEntity(['bundle' => 'oe_press']);
+    $contact_entity_general = $this->createContactEntity('general_contact');
+    $contact_entity_press = $this->createContactEntity('press_contact', 'oe_press');
     $node->set('oe_event_contact', [$contact_entity_general, $contact_entity_press])->save();
     $this->drupalGet($node->toUrl());
 
@@ -521,50 +514,78 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mt-md-3xl.ecl-u-mb-l', $event_contacts_content);
     $this->assertEquals('Contacts', $event_contacts_header->getText());
 
-    $general_contacts_content = $this->assertSession()->elementExists('css', '.ecl-row #event-contacts-general', $event_contacts_content);
+    $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
     $this->assertContactHeader($general_contacts_content, 'General contact');
-    $this->assertContactEntityDetailsDisplay($general_contacts_content, $contact_entity_general->getName());
+    $this->assertContactDetailsRender($general_contacts_content, 'general_contact');
 
-    $press_contacts_content = $this->assertSession()->elementExists('css', '.ecl-row #event-contacts-press', $event_contacts_content);
+    $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
     $this->assertContactHeader($press_contacts_content, 'Press contact');
-    $this->assertContactEntityDetailsDisplay($press_contacts_content, $contact_entity_press->getName());
+    $this->assertContactDetailsRender($press_contacts_content, 'press_contact');
 
     // Assert "Social media links" links.
-    // @todo: Social media links pattern is used -
-    // templates/patterns/social_media_links. SocialMediaLinksAssert should be
-    // implemented.
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function createContactEntity(array $settings = []): ContactInterface {
-    $name = $this->randomMachineName();
-
-    $settings += [
-      'name' => $name,
-      'oe_email' => "$name@example.com",
-      'oe_phone' => "$name phone",
-      'oe_address' => [
-        'country_code' => 'BE',
-        'locality' => 'Brussels',
-        'address_line1' => "$name contact address",
-        'postal_code' => '1003',
+    $node->set('oe_social_media_links', [
+      [
+        'uri' => 'http://www.example.com/event_facebook',
+        'title' => 'Event facebook link',
+        'link_type' => 'facebook',
+      ], [
+        'uri' => 'http://www.example.com/event_instagram',
+        'title' => 'Event instagram link',
+        'link_type' => 'instagram',
       ],
-      'oe_social_media' => [
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Social media',
+      'links' => [
         [
-          'uri' => "http://www.example.com/facebook_$name",
-          'title' => "$name facebook",
-          'link_type' => 'facebook',
+          'service' => 'facebook',
+          'label' => 'Event facebook link',
+          'url' => 'http://www.example.com/event_facebook',
         ], [
-          'uri' => "http://www.example.com/linkedin_$name",
-          'title' => "$name linkedin",
-          'link_type' => 'linkedin',
+          'service' => 'instagram',
+          'label' => 'Event instagram link',
+          'url' => 'http://www.example.com/event_instagram',
         ],
       ],
     ];
+    $social_links_content = $this->assertSession()->elementExists('css', '#event-practical-information .ecl-social-media-follow');
+    $social_links_html = $social_links_content->getOuterHtml();
+    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
+    $social_links_assert->assertVariant('horizontal', $social_links_html);
 
-    return parent::createContactEntity($settings);
+    // Unpublished Venues and Contacts are not visible for the visitors.
+    $contact_entity_general->setUnpublished()->save();
+    $contact_entity_press->setUnpublished()->save();
+    $venue_entity->setUnpublished()->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', '#event-contacts');
+
+    $field_list_expected_values['items'][1] = [
+      'label' => 'When',
+      'body' => "Wednesday 29 January 2020, 01:00\n to Saturday 8 February 2020, 01:00",
+    ];
+    unset($field_list_expected_values['items'][0]);
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values = [
+      'items' => [
+        [
+          'icon' => 'file',
+          'text' => 'Financing',
+        ], [
+          'icon' => 'calendar',
+          'text' => "29 January 2020, 01:00\n to 8 February 2020, 01:00",
+        ], [
+          'icon' => 'livestreaming',
+          'text' => 'Live streaming available',
+        ],
+      ],
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
   }
 
   /**
@@ -607,12 +628,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   /**
    * Asserts rendering of Contact entity using Details view mode.
    *
-   * @param \Behat\Mink\Element\NodeElement $rendered_elemenet
+   * @param \Behat\Mink\Element\NodeElement $element
    *   Rendered element.
    * @param string $name
    *   Name of the Contact entity.
    */
-  protected function assertContactEntityDetailsDisplay(NodeElement $rendered_elemenet, string $name): void {
+  protected function assertContactDetailsRender(NodeElement $element, string $name): void {
     $field_list_assert = new FieldListAssert();
     $field_list_expected_values = [
       'items' => [
@@ -624,22 +645,34 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => "$name@example.com",
         ], [
           'label' => 'Phone number',
-          'body' => "$name phone",
+          'body' => "Phone number $name",
         ], [
           'label' => 'Address',
-          'body' => "$name contact address, 1003 Brussels, Belgium",
+          'body' => "Address $name, 1001 Brussels, Belgium",
         ],
       ],
     ];
-    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $rendered_elemenet);
+    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
     $field_list_html = $content->getOuterHtml();
     $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);
 
     // Assert "Social media links" links.
-    // @todo: Social media links pattern is used -
-    // templates/patterns/social_media_links. SocialMediaLinksAssert should be
-    // implemented.
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Social media',
+      'links' => [
+        [
+          'service' => 'facebook',
+          'label' => "Social media $name",
+          'url' => "http://www.example.com/social_media_$name",
+        ],
+      ],
+    ];
+    $social_links_content = $this->assertSession()->elementExists('css', '.ecl-u-mt-l', $element);
+    $social_links_html = $social_links_content->getHtml();
+    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
+    $social_links_assert->assertVariant('horizontal', $social_links_html);
   }
 
 }

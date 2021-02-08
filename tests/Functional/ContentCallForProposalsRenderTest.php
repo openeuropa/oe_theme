@@ -6,7 +6,6 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
@@ -348,7 +347,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_proposals_document');
 
     // Assert Contact field.
-    $contact = $this->createContactEntity('call_proposal_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $contact = $this->createContactEntity('call_proposal_contact');
     $node->set('oe_call_proposals_contact', [$contact]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -362,7 +361,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(4, $content_items);
     $this->assertContentHeader($content_items[3], 'Contact', 'contact');
-    $this->assertContactEntityDefaultDisplay($content_items[3], 'call_proposal_contact');
+    $this->assertContactDefaultRender($content_items[3], 'call_proposal_contact');
   }
 
 }

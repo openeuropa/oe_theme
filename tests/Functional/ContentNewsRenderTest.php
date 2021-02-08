@@ -49,7 +49,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       'title' => 'Test news node',
       'oe_news_types' => 'http://publications.europa.eu/resource/authority/resource-type/ARTICLE_NEWS',
       'oe_teaser' => 'News teaser',
-      'oe_summary' => 'News summary',
+      'oe_summary' => 'http://www.example.org is a web page',
       'body' => 'News body',
       'oe_reference_code' => 'News reference',
       'oe_publication_date' => [
@@ -68,10 +68,15 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'Test news node',
-      'description' => 'News summary',
+      'description' => 'http://www.example.org is a web page',
       'meta' => 'News article | 18 September 2020 | African Court of Justice and Human Rights',
     ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
+
+    // The default text format should be applied, converting URLs into links.
+    $header_link = $this->assertSession()->elementExists('css', '.ecl-page-header-core__description a');
+    $this->assertEquals('http://www.example.org', $header_link->getAttribute('href'));
+    $this->assertEquals('http://www.example.org', $header_link->getText());
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');
@@ -124,18 +129,19 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->assertEquals('News body', $body->getText());
 
     // Assert news contacts.
-    $this->assertContactEntityDefaultDisplay($node, 'oe_news_contacts');
+    $contact = $this->createContactEntity('news_contact');
+    $node->set('oe_news_contacts', [$contact])->save();
+    $this->drupalGet($node->toUrl());
 
-    // Assert news contacts header.
-    $contacts = $this->assertSession()->elementExists('css', 'div#news-contacts');
-    $this->assertContentHeader($contacts, 'Contacts');
+    $contacts_content = $this->assertSession()->elementExists('css', 'div#news-contacts');
+    $this->assertContentHeader($contacts_content, 'Contacts');
+    $this->assertContactDefaultRender($contacts_content, 'news_contact');
 
-    // Assert Feaured media field.
+    // Assert Featured media field.
     $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l');
 
     $media = $this->createMediaImage('news_featured_media');
-    $node->set('oe_news_featured_media', ['target_id' => (int) $media->id()]);
-    $node->save();
+    $node->set('oe_news_featured_media', [$media])->save();
     $this->drupalGet($node->toUrl());
 
     $picture = $this->assertSession()->elementExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');

@@ -56,17 +56,6 @@ Feature: Page header block component.
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
 
-  Scenario: News content type has custom metadata shown in the page header.
-    Given "oe_news" content:
-      | title        | oe_summary                           | oe_teaser | body    | oe_publication_date | oe_subject                     | oe_author                                                           | oe_content_content_owner                                                | oe_news_types                                                            | oe_news_location                                               |
-      | My news item | http://www.example.org is a web page | My teaser | My body | 2019-04-02          | http://data.europa.eu/uxp/1000 | http://publications.europa.eu/resource/authority/corporate-body/ACM | http://publications.europa.eu/resource/authority/corporate-body/EP_PECH | http://publications.europa.eu/resource/authority/resource-type/PRESS_REL | http://publications.europa.eu/resource/authority/place/AUT_VIE |
-    And I am an anonymous user
-    When I go to the "My news item" page
-    Then I should see the text "http://www.example.org is a web page" in the "page header intro"
-    # The default text format should be applied, converting URLs into links.
-    And I should see the link "http://www.example.org" in the "page header intro"
-    And I should see "Press release | 2 April 2019 | Vienna | Arab Common Market" in the "page header meta"
-
   Scenario: Policy content type has custom metadata shown in the page header.
     Given "oe_policy" content:
       | title     | oe_summary                           | oe_content_content_owner                                                |
