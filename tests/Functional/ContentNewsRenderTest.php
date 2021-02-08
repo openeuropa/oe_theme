@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -148,6 +149,37 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $image = $this->assertSession()->elementExists('css', 'img.ecl-u-width-100.ecl-u-height-auto', $picture);
     $this->assertContains('placeholder_news_featured_media.png', $image->getAttribute('src'));
     $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
+
+    // Assert related links.
+    $node->set('oe_related_links', [
+      [
+        'uri' => 'internal:/node',
+        'title' => 'Node listing',
+      ], [
+        'uri' => 'https://example.com',
+        'title' => 'External link',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $related_links_header = $this->assertSession()->elementExists('css', 'article[role=article] > div > h2');
+    $this->assertContentHeader($related_links_header, 'Related links');
+    $related_links_content = $this->assertSession()->elementExists('css', 'article[role=article] > div > div.ecl-list article.ecl-content-item:nth-child(1)');
+    $link_assert = new ListItemAssert();
+    $link_expected_values = [
+      'url' => '/build/node',
+      'title' => 'Node listing',
+    ];
+    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
+    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
+
+    $related_links_content = $this->assertSession()->elementExists('css', 'article[role=article] > div > div.ecl-list article.ecl-content-item:nth-child(2)');
+    $link_expected_values = [
+      'url' => 'https://example.com',
+      'title' => 'External link',
+    ];
+    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
+    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
   }
 
 }
