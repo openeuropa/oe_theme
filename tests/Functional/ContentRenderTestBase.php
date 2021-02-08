@@ -325,15 +325,13 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   /**
    * Creates Publication Document reference entity.
    *
-   * @param string $name
-   *   Entity name. Is used as a parameter for test data.
    * @param int $status
    *   Entity status.
    *
    * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
    *   Document reference publication entity.
    */
-  protected function createPublicationDocumentReferenceEntity(string $name, int $status): DocumentReference {
+  protected function createPublicationDocumentReferenceEntity(int $status): DocumentReference {
     $document = $this->createMediaDocument('document');
     /** @var \Drupal\node\Entity\Node $publication */
     $publication = $this->getStorage('node')->create([
@@ -353,7 +351,6 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $publication->save();
     $publication_reference = $this->getStorage('oe_document_reference')->create([
       'type' => 'oe_publication',
-      'name' => $name,
       'oe_publication' => $publication,
       'status' => $status,
     ]);
@@ -376,7 +373,6 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $document = $this->createMediaDocument($name);
     $document_reference = $this->getStorage('oe_document_reference')->create([
       'type' => 'oe_document',
-      'name' => $name,
       'oe_document' => $document,
       'status' => $status,
     ]);
