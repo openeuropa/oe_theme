@@ -104,7 +104,7 @@
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
             },
             "openeuropa/oe_multilingual": {
-                "latest-master": "https://github.com/openeuropa/oe_multilingual/compare/1.5.0..EWPP-607.diff"
+                "latest-master": "https://github.com/openeuropa/oe_multilingual/compare/1.5.0..master.diff"
             }
         },
         "drupal-scaffold": {
