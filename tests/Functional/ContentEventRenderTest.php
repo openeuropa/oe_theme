@@ -33,7 +33,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     'oe_theme_content_event',
     'oe_multilingual',
     'path',
-    'datetime_testing',
   ];
 
   /**
@@ -280,6 +279,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
+    if (version_compare(PHP_VERSION, '7.3') < 0) {
+      $field_list_expected_values['items'][0]['body'] = "event_venue\n\n  Address event_venue, 1001 Brussels, Belgium";
+    }
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values['items'][2] = [
@@ -466,9 +468,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('body', 'Event full text');
     $node->set('oe_event_featured_media_legend', 'Event featured media legend');
     $media_image = $this->createMediaImage('event_featured_media');
-    $node->set('oe_event_featured_media', [
-      'target_id' => (int) $media_image->id(),
-    ])->save();
+    $node->set('oe_event_featured_media', [$media_image])->save();
     $this->drupalGet($node->toUrl());
 
     $description_content = $this->assertSession()->elementExists('css', 'article div div:nth-of-type(3)');

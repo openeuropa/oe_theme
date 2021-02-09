@@ -168,6 +168,9 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
+    if (version_compare(PHP_VERSION, '7.3') < 0) {
+      $first_field_list_expected_values['items'][2]['body'] = "09199 Ages Burgos, Spain\n\n\n  Munich, Germany";
+    }
     $field_list_html = $description_lists[0]->getHtml();
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
