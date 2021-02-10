@@ -8,5 +8,5 @@ patch-package
 -        {% for cell in row %}
 +        {% for cell in row.cells %}
            {% set _cell_css_class = 'ecl-table__cell' %}
-           {% set _cell_attribute = cell['data-ecl-table-header'] is not empty ? 'data-ecl-table-header="' ~ cell['data-ecl-table-header'] ~ '"' : '' %}
+           {% set _cell_attribute = cell['data-ecl-table-header'] is not empty ? 'data-ecl-table-header="' ~ cell['data-ecl-table-header']|e('html_attr') ~ '"' : '' %}
            {% if cell.group %}
