@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Datetime\Entity\DateFormat;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Config\FileStorage;
 use Drupal\image\Entity\ImageStyle;
@@ -151,5 +152,34 @@ function oe_theme_content_publication_post_update_00008(): void {
   }
 
   $display = $storage->createFromStorageRecord($display_values);
+  $display->save();
+}
+
+/**
+ * Set labels in teaser view mode to be hidden.
+ */
+function oe_theme_content_publication_post_update_00009() {
+  $display = EntityViewDisplay::load('node.oe_publication.teaser');
+
+  if (!$display instanceof EntityViewDisplayInterface) {
+    return t('No publication teaser view mode found, skipping.');
+  }
+
+  $fields = [
+    'oe_author',
+    'oe_publication_date',
+    'oe_publication_thumbnail',
+    'oe_publication_type',
+    'oe_teaser',
+  ];
+  foreach ($fields as $field) {
+    $component = $display->getComponent($field);
+    if ($component === NULL) {
+      continue;
+    }
+
+    $component['label'] = 'hidden';
+    $display->setComponent($field, $component);
+  }
   $display->save();
 }

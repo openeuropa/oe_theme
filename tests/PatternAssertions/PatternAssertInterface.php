@@ -15,7 +15,7 @@ interface PatternAssertInterface {
    * @param array $expected
    *   An array of expected values, keyed by field name.
    * @param string $html
-   *   THe rendered pattern.
+   *   The rendered pattern.
    */
   public function assertPattern(array $expected, string $html): void;
 

@@ -34,7 +34,7 @@ Feature: Theme showcase
   @javascript
   Scenario: The demo site navigation menu features dropdown menus
     When I am on the homepage
-    # We can't check the visibility of the submenues
+    # We can't check the visibility of the submenus
     # because their position is absolute which gives us false positives.
     Then I should not visibly see the link "Commission at work"
     Then I should not visibly see the link "Democratic change"
@@ -63,6 +63,9 @@ Feature: Theme showcase
 
     When I open the language switcher dialog
     Then the overlay "language switcher links" is visible
+
+    And I should not see "EU official languages" in the "language switcher"
+    And I should not see "Non-EU languages" in the "language switcher"
 
     And I should see the following links in the "language switcher":
       | български   |

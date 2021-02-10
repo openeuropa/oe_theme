@@ -44,7 +44,7 @@ content:
     type: skos_concept_entity_reference_label
     weight: 6
     region: content
-    label: above
+    label: hidden
     settings:
       link: false
     third_party_settings: {  }
@@ -52,7 +52,7 @@ content:
     type: datetime_default
     weight: 1
     region: content
-    label: above
+    label: hidden
     settings:
       timezone_override: ''
       format_type: oe_theme_publication_date
@@ -61,7 +61,7 @@ content:
     type: oe_theme_helper_media_thumbnail_url
     weight: 4
     region: content
-    label: above
+    label: hidden
     settings:
       image_style: oe_theme_publication_thumbnail
     third_party_settings: {  }
@@ -69,7 +69,7 @@ content:
     type: skos_concept_entity_reference_label
     weight: 5
     region: content
-    label: above
+    label: hidden
     settings:
       link: false
     third_party_settings: {  }
@@ -77,7 +77,7 @@ content:
     type: text_default
     weight: 2
     region: content
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
 hidden:
