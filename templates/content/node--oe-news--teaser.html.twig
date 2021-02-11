@@ -6,17 +6,22 @@
 #}
 {# Default to "News" if type field is empty. #}
 {# This can happen since the field was introduced at a later stage. #}
-{% spaceless %}
-  {% set image_url = content.oe_news_featured_media|field_value|render %}
-  {{ pattern('list_item', {
-    'variant': 'thumbnail_primary',
-    'url': url,
-    'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
-    'meta': [
-      content.oe_news_types,
-      content.oe_publication_date|field_value,
-    ],
-    'detail': content.oe_teaser|field_value,
-    'image': image_url ? { 'src': image_url }
-  }) }}
-{% endspaceless %}
+{% set image_url = content.oe_news_featured_media|field_value|render %}
+{% set label = content.extra_field_oe_theme_helper_short_title_with_fallback|field_value %}
+{% set meta = [
+  content.oe_news_types,
+  content.oe_publication_date|field_value,
+] %}
+{% set detail = content.oe_teaser|field_value %}
+{% block content %}
+  {% spaceless %}
+    {{ pattern('list_item', {
+      'variant': 'thumbnail_primary',
+      'url': url,
+      'title': label,
+      'meta': meta,
+      'detail': detail,
+      'image': image_url ? { 'src': image_url }
+    }) }}
+  {% endspaceless %}
+{% endblock %}
