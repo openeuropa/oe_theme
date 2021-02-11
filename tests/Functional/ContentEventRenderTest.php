@@ -279,6 +279,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
+    // @todo: should be removed when PHP 7.2 support will be finished.
     if (version_compare(PHP_VERSION, '7.3') < 0) {
       $field_list_expected_values['items'][0]['body'] = "event_venue\n\n  Address event_venue, 1001 Brussels, Belgium";
     }

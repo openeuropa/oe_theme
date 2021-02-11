@@ -236,6 +236,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'body' => 'Two-stage',
     ];
     $expected_deadline_dates = '15 February 2020, 01:00 (AEDT)23 February 2020, 01:00 (AEDT)';
+    // @todo: should be removed when PHP 7.2 support will be finished.
     if (version_compare(PHP_VERSION, '7.3') < 0) {
       $expected_deadline_dates = "15 February 2020, 01:00 (AEDT)\n23 February 2020, 01:00 (AEDT)";
     }

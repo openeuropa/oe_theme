@@ -168,6 +168,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
+    // @todo: should be removed when PHP 7.2 support will be finished.
     if (version_compare(PHP_VERSION, '7.3') < 0) {
       $first_field_list_expected_values['items'][2]['body'] = "09199 Ages Burgos, Spain\n\n\n  Munich, Germany";
     }
