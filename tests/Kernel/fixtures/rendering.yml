@@ -2331,7 +2331,8 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      video:
+        '#markup': "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
       text: "Some more text"
   assertions:
     count:
@@ -2347,7 +2348,8 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      video:
+        '#markup': "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
       video_ratio: "invalid"
   assertions:
     count:
@@ -2356,7 +2358,8 @@
     '#type': pattern
     '#id': text_featured_media
     '#fields':
-      video: "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
+      video:
+        '#markup': "<iframe id=\"videoplayerI-181645\" src=\"//ec.europa.eu/avservices/play.cfm?ref=I-181645\"></iframe>"
       video_ratio: "1:1"
   assertions:
     count:
