@@ -8,8 +8,10 @@ use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -50,11 +52,14 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testConsultationRendering(): void {
-    // Create document and image media.
+    // Create documents.
     $document = $this->createMediaDocument('consultation_document');
-    // Create general contact.
+    // Create general contacts.
     $first_contact = $this->createContactEntity('first_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
     $second_contact = $this->createContactEntity('second_consultation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    // Create Document reference entities.
+    $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference', SubEntityInterface::PUBLISHED);
+    $publication_reference = $this->createPublicationDocumentReferenceEntity('Publication node', SubEntityInterface::PUBLISHED);
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -184,7 +189,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         'body' => '28 February 2020, 01:00 (AEDT)',
       ], [
         'label' => 'Departments',
-        'body' => 'Audit Board of the European Communities, Associated African States and Madagascar',
+        'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
       ],
     ];
     $details_html = $content_items[0]->getHtml();
@@ -270,7 +275,35 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertCount(5, $content_items);
     $content_second_group = $content_items[4]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation outcome text', $content_second_group->getText());
-    $this->assertMediaDocumentDefaultRender($content_items['4'], 'consultation_document');
+    $this->assertMediaDocumentDefaultRender($content_items[4], 'consultation_document');
+
+    // Reference documents and publication node and assert content is updated.
+    $node->set('oe_consultation_documents', [$document_reference, $publication_reference]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Details', 'href' => '#details'],
+        ['label' => 'Target audience', 'href' => '#target-audience'],
+        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
+        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
+        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(6, $content_items);
+    $this->assertMediaDocumentDefaultRender($content_items[5], 'document_reference');
+    $publication_teaser = $content_items[5]->find('css', '.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $assert = new ListItemAssert();
+    $expected_values = [
+      'title' => 'Publication node',
+      'meta' => "Abstract | 15 April 2020\n | Associated African States and Madagascar",
+      'description' => 'Teaser text',
+    ];
+    $assert->assertPattern($expected_values, $publication_teaser->getOuterHtml());
 
     // Set additional information and assert content is updated.
     $node->set('oe_consultation_additional_info', 'Additional information text');
@@ -284,13 +317,14 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
         ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(6, $content_items);
-    $content_second_group = $content_items[5]->find('css', '.ecl-editor p');
+    $this->assertCount(7, $content_items);
+    $content_second_group = $content_items[6]->find('css', '.ecl-editor p');
     $this->assertEquals('Additional information text', $content_second_group->getText());
 
     // Set legal notice and assert content is updated.
@@ -305,14 +339,15 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
         ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(7, $content_items);
-    $content_second_group = $content_items[6]->find('css', '.ecl-editor p');
+    $this->assertCount(8, $content_items);
+    $content_second_group = $content_items[7]->find('css', '.ecl-editor p');
     $this->assertEquals('Legal info text', $content_second_group->getText());
 
     // Set contact and assert content is updated.
@@ -327,6 +362,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
         ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
         ['label' => 'Contact', 'href' => '#contact'],
@@ -334,8 +370,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(8, $content_items);
-    $this->assertContactEntityDefaultDisplay($content_items[7], 'first_consultation_contact');
+    $this->assertCount(9, $content_items);
+    $this->assertContactEntityDefaultDisplay($content_items[8], 'first_consultation_contact');
     // Set two contacts and assert label is updated.
     $node->set('oe_consultation_contacts', [$first_contact, $second_contact]);
     $node->save();
@@ -348,6 +384,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
         ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
         ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
         ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        ['label' => 'Reference documents', 'href' => '#reference-documents'],
         ['label' => 'Additional information', 'href' => '#additional-information'],
         ['label' => 'Legal notice', 'href' => '#legal-notice'],
         ['label' => 'Contacts', 'href' => '#contact'],
