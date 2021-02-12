@@ -325,18 +325,20 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   /**
    * Creates Publication Document reference entity.
    *
+   * @param string $title
+   *   Publication title.
    * @param int $status
    *   Entity status.
    *
    * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
    *   Document reference publication entity.
    */
-  protected function createPublicationDocumentReferenceEntity(int $status): DocumentReference {
+  protected function createPublicationDocumentReferenceEntity(string $title, int $status): DocumentReference {
     $document = $this->createMediaDocument('document');
     /** @var \Drupal\node\Entity\Node $publication */
     $publication = $this->getStorage('node')->create([
       'type' => 'oe_publication',
-      'title' => 'Publication node',
+      'title' => $title,
       'oe_teaser' => 'Teaser text',
       'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
       'oe_documents' => $document,
