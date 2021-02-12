@@ -13,6 +13,7 @@ use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
 use Drupal\media\MediaInterface;
@@ -1286,6 +1287,17 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
       'label' => $other_link['title'],
       'url' => Url::fromUri($other_link['uri']),
     ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_text_featured_media(array &$variables): void {
+  // We have to transform string to markup object
+  // for avoiding twig's autoescaping.
+  if (!empty($variables['video']['#markup'])) {
+    $variables['video'] = Markup::create($variables['video']['#markup']);
   }
 }
 
