@@ -11,6 +11,7 @@
 {% endif %}
 {% set meta = content.extra_field_oe_theme_content_event_teaser_meta|field_value %}
 {% set detail = content.extra_field_oe_theme_content_event_teaser_details %}
+{% set additional_information = [] %}
 {% block content %}
   {{ pattern('list_item', {
     'variant': variant|default('date'),
@@ -19,5 +20,6 @@
     'date': pattern_date,
     'meta': meta,
     'detail': detail,
+    'additional_information': additional_information,
   }) }}
 {% endblock %}
