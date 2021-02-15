@@ -13,6 +13,7 @@
   content.oe_publication_date|field_value,
 ] %}
 {% set detail = content.oe_teaser|field_value %}
+{% set additional_information = [] %}
 {% block content %}
   {% spaceless %}
     {{ pattern('list_item', {
@@ -21,7 +22,8 @@
       'title': label,
       'meta': meta,
       'detail': detail,
-      'image': image_url ? { 'src': image_url }
+      'image': image_url ? { 'src': image_url },
+      'additional_information': additional_information,
     }) }}
   {% endspaceless %}
 {% endblock %}
