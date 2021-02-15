@@ -31,6 +31,7 @@ default:
               list item: ".ecl-content-item"
               list item image: ".ecl-content-item__image__before"
               logo: "a.ecl-site-header-core__logo-link .ecl-site-header-core__logo-image, a.ecl-site-header-standardised__logo-link .ecl-site-header-standardised__logo-image"
+              footer logo: "a.ecl-footer-core__logo-link .ecl-footer-core__logo-image-desktop, a.ecl-footer-standardised__logo-link .ecl-footer-standardised__logo-image-desktop"
               media container: ".ecl-media-container"
               page header: ".ecl-page-header-core"
               priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
@@ -66,7 +67,7 @@ default:
             - "%paths.base%/build/modules/contrib/datetime_testing"
       region_map:
         about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
-        footer: "footer.ecl-footer"
+        footer: "footer.ecl-footer-core, footer.ecl-footer-standardised"
         header: ".ecl-site-header-core, .ecl-site-header-standardised"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-language-list"
