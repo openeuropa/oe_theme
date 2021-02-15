@@ -34,13 +34,14 @@ class AddressInlineFormatterTest extends FormatterTestBase {
     $entity = EntityTestMul::create([]);
     $entity->{$this->fieldName} = [
       'country_code' => 'BE',
-      'locality' => 'Brussels',
+      'locality' => 'Brussels <Bruxelles>',
       'postal_code' => '1000',
-      'address_line1' => 'Rue de la Loi, 56',
+      'address_line1' => 'Rue de la Loi, 56 <123>',
+      'address_line2' => 'or \'Wetstraat\' (Dutch), meaning "Law Street"',
     ];
 
     $this->renderEntityFields($entity, $this->display);
-    $expected = 'Rue de la Loi, 56, 1000 Brussels, Belgium';
+    $expected = 'Rue de la Loi, 56 &lt;123&gt;, or &#039;Wetstraat&#039; (Dutch), meaning &quot;Law Street&quot;, 1000 Brussels &lt;Bruxelles&gt;, Belgium';
     $this->assertRaw($expected);
   }
 
