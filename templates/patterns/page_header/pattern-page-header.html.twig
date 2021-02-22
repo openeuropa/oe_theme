@@ -21,12 +21,22 @@
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
-{% set _breadcrumb = {
-  'links' : _breadcrumb_links,
-  'navigation_text' : '',
-  'ellipsis_label': '',
-  'icon_file_path' : ecl_icon_path
-} %}
+
+{% if _breadcrumb_links %}
+  {% set _breadcrumb = {
+    'links' : _breadcrumb_links,
+    'navigation_text' : '',
+    'ellipsis_label': '',
+    'icon_file_path' : ecl_icon_path
+  } %}
+{% endif %}
+
+{%
+  set _extra_classes = [
+  ecl_branding == 'core' ? 'ecl-u-mb-xl',
+  not _breadcrumb_links and background_image_url is empty ? 'ecl-u-pt-m'
+]
+%}
 
 {% if language_switcher %}
   {% set _language_switcher %}
@@ -50,5 +60,5 @@
   'background_image': ecl_branding == 'core' and background_image_url is not empty,
   'background_image_url': background_image_url,
   'composition': _language_switcher,
-  'extra_classes': ecl_branding == 'core' ? 'ecl-u-mb-xl',
+  'extra_classes': _extra_classes|join(' '),
 } %}
