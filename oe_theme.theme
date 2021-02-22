@@ -1591,3 +1591,17 @@ function oe_theme_preprocess_patterns_overview_page(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for oe_description_list paragraph.
+ */
+function oe_theme_preprocess_paragraph__oe_description_list(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  $variables['title'] = $paragraph->get('field_oe_title')->value;
+  foreach ($variables['content']['field_oe_description_list_items']['#items'] as $key => $item) {
+    $variables['items'][$key]['label'] = $item['term'];
+    $variables['items'][$key]['body'] = $item['description'];
+  }
+}

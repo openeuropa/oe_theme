@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Description list' type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{% if title is not empty %}
+  <h2 class="ecl-u-type-heading-2">
+    {{ title }}
+  </h2>
+{% endif %}
+{% if items %}
+  {{ pattern('field_list', {
+    variant: 'featured_horizontal',
+    items: items,
+  }) }}
+{% endif %}

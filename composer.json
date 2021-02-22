@@ -49,7 +49,8 @@
         "openeuropa/oe_corporate_countries": "~1.0.0-beta4",
         "openeuropa/oe_media": "~1.11",
         "openeuropa/oe_multilingual": "~1.6",
-        "openeuropa/oe_paragraphs": "~1.6",
+        "openeuropa/oe_paragraphs": "dev-EWPP-750",
+        "openeuropa/description_list_field": "dev-EWPP-768",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "~1.10",
         "openeuropa/oe_contact_forms": "~0.5",
@@ -85,6 +86,10 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "description_list_field": {
+            "type": "vcs",
+            "url":  "git@github.com:openeuropa/description_list_field.git"
         }
     },
     "extra": {
