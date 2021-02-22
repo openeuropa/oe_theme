@@ -397,11 +397,14 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $opening_date = (clone $static_time)->modify('+ 3 days');
     $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
     $node->save();
+    $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     $this->drupalGet($node->toUrl());
     $this->assertStatusValue($content, 'Upcoming');
     $this->assertOpeningDateValue($content, '20 February 2020');
     $this->assertDeadlineDateValue($content, '28 February 2020, 01:00 (AEDT)');
     $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Upcoming');
+    $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
+    $this->assertNotContains('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
 
     // Assert status "Closed".
     $opening_date = (clone $static_time)->modify('- 5 days');

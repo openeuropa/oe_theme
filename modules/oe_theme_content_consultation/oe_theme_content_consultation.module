@@ -50,6 +50,9 @@ function oe_theme_content_consultation_node_view_alter(array &$build, EntityInte
         $build['oe_consultation_response_button']['#access'] = TRUE;
       }
     }
+    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
+      $build['extra_field_oe_consultation_closed_status_text']['#access'] = FALSE;
+    }
     if ($status === CallEntityWrapperInterface::STATUS_CLOSED) {
       $build['oe_consultation_guidelines']['#access'] = FALSE;
     }
