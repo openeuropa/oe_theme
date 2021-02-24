@@ -1,0 +1,15 @@
+/**
+ * @file
+ * Apply styling of 'dropdown-legacy' component to 'expandable'.
+ */
+.ecl-expandable-dropdown__content {
+  background-color: $ecl-color-grey-5;
+  border: 1px solid $ecl-color-grey-25;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  position: absolute;
+  padding: $ecl-spacing-s $ecl-spacing-m;
+}
+
+.no-js .ecl-expandable-dropdown__content {
+  display: block;
+}
