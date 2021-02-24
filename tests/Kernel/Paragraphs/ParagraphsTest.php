@@ -702,7 +702,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(1, ($crawler->filter('h2.ecl-u-type-heading-2')));
     $this->assertEquals('Overview', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
-    $this->assertCount(1, $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured'));
+    $this->assertCount(1, $crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal'));
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
     $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));
