@@ -12,8 +12,20 @@
   {% set _links = _links|merge([_link]) %}
 {% endfor %}
 
-{% include '@ecl-twig/dropdown-legacy' with {
-  'id': id,
+{% set content %}
+  <ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
+    {% for item in _links %}
+      <li class="ecl-unordered-list__item">
+        {{- item.label|raw -}}
+      </li>
+    {% endfor %}
+  </ul>
+{% endset %}
+
+{% include '@ecl-twig/expandable' with {
+  'id': id ~ 'new',
+  'label_expanded': button_label,
+  'label_collapsed': button_label,
   'button': {
     'label': button_label,
     'variant': 'secondary',
@@ -25,7 +37,5 @@
       'size': 'fluid',
     },
   },
-  'list': {
-    'items': _links,
-  },
+  'extra_dropdown_classes': 'ecl-expandable-dropdown__content',
 } %}
