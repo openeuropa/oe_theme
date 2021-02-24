@@ -1,0 +1,20 @@
+name: OpenEuropa Theme Person Content
+type: module
+description: Companion module for the OE Content Person module
+package: OpenEuropa
+core: 8.x
+
+dependencies:
+  - drupal:datetime
+  - extra_field:extra_field
+  - oe_content:oe_content_person
+  - oe_theme:oe_theme_helper
+  - oe_theme:oe_theme_content_entity_contact
+  - oe_theme:oe_theme_content_sub_entity_document_reference
+
+config_devel:
+  install:
+    - core.entity_view_display.node.oe_person.full
+    - core.entity_view_display.node.oe_person.teaser
+    - core.entity_view_display.oe_person_job.default.full
+    - core.entity_view_mode.oe_person_job.full

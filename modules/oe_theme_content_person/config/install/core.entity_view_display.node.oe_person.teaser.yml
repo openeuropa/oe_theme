@@ -1,0 +1,286 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oe_person.oe_departments
+    - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_biography_timeline
+    - field.field.node.oe_person.oe_person_contacts
+    - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_displayed_name
+    - field.field.node.oe_person.oe_person_documents
+    - field.field.node.oe_person.oe_person_first_name
+    - field.field.node.oe_person.oe_person_gender
+    - field.field.node.oe_person.oe_person_interests_file
+    - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_jobs
+    - field.field.node.oe_person.oe_person_last_name
+    - field.field.node.oe_person.oe_person_media
+    - field.field.node.oe_person.oe_person_organisation
+    - field.field.node.oe_person.oe_person_photo
+    - field.field.node.oe_person.oe_person_transparency_intro
+    - field.field.node.oe_person.oe_person_transparency_links
+    - field.field.node.oe_person.oe_person_type
+    - field.field.node.oe_person.oe_social_media_links
+    - field.field.node.oe_person.oe_subject
+    - field.field.node.oe_person.oe_summary
+    - field.field.node.oe_person.oe_teaser
+    - node.type.oe_person
+  module:
+    - entity_reference_revisions
+    - link
+    - oe_content_timeline_field
+    - options
+    - rdf_skos
+    - text
+    - typed_link
+    - user
+id: node.oe_person.teaser
+targetEntityType: node
+bundle: oe_person
+mode: teaser
+content:
+  langcode:
+    type: language
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+      native_language: false
+    third_party_settings: {  }
+  links:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_content_content_owner:
+    type: skos_concept_entity_reference_label
+    weight: 25
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_content_legacy_link:
+    type: link
+    weight: 24
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  oe_content_navigation_title:
+    type: string
+    weight: 26
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_content_short_title:
+    type: string
+    weight: 14
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_departments:
+    type: skos_concept_entity_reference_label
+    weight: 23
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_biography_intro:
+    type: text_default
+    weight: 22
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_biography_timeline:
+    weight: 21
+    label: above
+    settings:
+      limit: '0'
+      show_more: 'Show full timeline'
+    third_party_settings: {  }
+    type: timeline_formatter
+    region: content
+  oe_person_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 19
+    region: content
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+  oe_person_cv:
+    type: entity_reference_label
+    weight: 18
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_displayed_name:
+    type: string
+    weight: 16
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_person_documents:
+    weight: 28
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_person_first_name:
+    type: string
+    weight: 15
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_person_gender:
+    type: skos_concept_entity_reference_label
+    weight: 17
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_interests_file:
+    type: entity_reference_label
+    weight: 13
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_interests_intro:
+    type: text_default
+    weight: 2
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_jobs:
+    weight: 28
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+  oe_person_last_name:
+    type: string
+    weight: 12
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_person_media:
+    type: entity_reference_label
+    weight: 11
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_organisation:
+    type: entity_reference_revisions_entity_view
+    weight: 10
+    region: content
+    label: above
+    settings:
+      link: ''
+      view_mode: default
+    third_party_settings: {  }
+  oe_person_photo:
+    type: entity_reference_label
+    weight: 9
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_person_transparency_intro:
+    type: text_default
+    weight: 8
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_transparency_links:
+    type: link
+    weight: 7
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  oe_person_type:
+    type: list_default
+    weight: 6
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_social_media_links:
+    type: typed_link
+    weight: 5
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  oe_subject:
+    type: skos_concept_entity_reference_label
+    weight: 4
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+  oe_summary:
+    type: text_default
+    weight: 3
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 27
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  extra_field_oe_theme_helper_short_title_with_fallback: true

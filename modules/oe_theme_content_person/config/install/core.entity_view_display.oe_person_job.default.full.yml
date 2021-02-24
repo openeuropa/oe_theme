@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.oe_person_job.full
+    - field.field.oe_person_job.default.oe_acting
+    - field.field.oe_person_job.default.oe_description
+    - field.field.oe_person_job.default.oe_role_name
+    - field.field.oe_person_job.default.oe_role_reference
+    - oe_content_person.oe_person_job_type.default
+  module:
+    - text
+id: oe_person_job.default.full
+targetEntityType: oe_person_job
+bundle: default
+mode: full
+content:
+  extra_field_oe_theme_content_person_job_role:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  oe_acting: true
+  oe_role_name: true
+  oe_role_reference: true

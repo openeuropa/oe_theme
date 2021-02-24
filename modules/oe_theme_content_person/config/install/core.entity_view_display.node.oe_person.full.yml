@@ -1,0 +1,279 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.oe_person.oe_departments
+    - field.field.node.oe_person.oe_person_biography_intro
+    - field.field.node.oe_person.oe_person_biography_timeline
+    - field.field.node.oe_person.oe_person_contacts
+    - field.field.node.oe_person.oe_person_cv
+    - field.field.node.oe_person.oe_person_displayed_name
+    - field.field.node.oe_person.oe_person_documents
+    - field.field.node.oe_person.oe_person_first_name
+    - field.field.node.oe_person.oe_person_gender
+    - field.field.node.oe_person.oe_person_interests_file
+    - field.field.node.oe_person.oe_person_interests_intro
+    - field.field.node.oe_person.oe_person_jobs
+    - field.field.node.oe_person.oe_person_last_name
+    - field.field.node.oe_person.oe_person_media
+    - field.field.node.oe_person.oe_person_organisation
+    - field.field.node.oe_person.oe_person_photo
+    - field.field.node.oe_person.oe_person_transparency_intro
+    - field.field.node.oe_person.oe_person_transparency_links
+    - field.field.node.oe_person.oe_person_type
+    - field.field.node.oe_person.oe_social_media_links
+    - field.field.node.oe_person.oe_subject
+    - field.field.node.oe_person.oe_summary
+    - field.field.node.oe_person.oe_teaser
+    - node.type.oe_person
+  module:
+    - entity_reference_revisions
+    - field_group
+    - link
+    - oe_content_timeline_field
+    - oe_theme_helper
+    - rdf_skos
+    - text
+    - user
+third_party_settings:
+  field_group:
+    group_in_page_navigation:
+      children:
+        - oe_departments
+        - group_contact
+        - group_responsibilities
+        - group_media
+        - group_transparency
+        - group_biography
+        - group_presentations
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_in_page_navigation
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Page contents'
+    group_contact:
+      children:
+        - oe_person_contacts
+      parent_name: group_in_page_navigation
+      weight: 8
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Contact
+    group_responsibilities:
+      children:
+        - oe_person_jobs
+      parent_name: group_in_page_navigation
+      weight: 10
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Responsibilities
+    group_transparency:
+      children:
+        - oe_person_transparency_intro
+        - oe_person_transparency_links
+      parent_name: group_in_page_navigation
+      weight: 12
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Transparency
+    group_biography:
+      children:
+        - oe_person_biography_intro
+        - oe_person_biography_timeline
+        - oe_person_cv
+        - group_declaration
+      parent_name: group_in_page_navigation
+      weight: 13
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Biography
+    group_presentations:
+      children:
+        - oe_person_documents
+      parent_name: group_in_page_navigation
+      weight: 14
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Articles and presentations'
+    group_media:
+      children:
+        - oe_social_media_links
+      parent_name: group_in_page_navigation
+      weight: 11
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: Media
+    group_declaration:
+      children:
+        - oe_person_interests_intro
+        - oe_person_interests_file
+      parent_name: group_biography
+      weight: 3
+      format_type: html_element
+      region: content
+      format_settings:
+        element: div
+        show_label: true
+        label_element: h3
+        label_element_classes: ''
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: ''
+      label: 'Declaration of interests'
+id: node.oe_person.full
+targetEntityType: node
+bundle: oe_person
+mode: full
+content:
+  oe_departments:
+    type: skos_concept_entity_reference_label
+    weight: 7
+    region: content
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+  oe_person_biography_intro:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_biography_timeline:
+    type: timeline_formatter
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      limit: '0'
+      show_more: 'Show full timeline'
+    third_party_settings: {  }
+  oe_person_contacts:
+    type: entity_reference_revisions_entity_view
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+  oe_person_cv:
+    type: entity_reference_entity_view
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  oe_person_documents:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+  oe_person_interests_file:
+    type: entity_reference_entity_view
+    weight: 5
+    region: content
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+  oe_person_interests_intro:
+    type: text_default
+    weight: 4
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_jobs:
+    type: entity_reference_revisions_entity_view
+    weight: 16
+    region: content
+    label: hidden
+    settings:
+      view_mode: full
+      link: ''
+    third_party_settings: {  }
+  oe_person_transparency_intro:
+    type: text_default
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  oe_person_transparency_links:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  oe_social_media_links:
+    type: oe_theme_helper_social_media_links_formatter
+    weight: 8
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      title: 'Follow the latest progress and learn more about getting involved.'
+      variant: horizontal
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+hidden:
+  extra_field_oe_theme_helper_short_title_with_fallback: true
+  langcode: true
+  links: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_person_displayed_name: true
+  oe_person_first_name: true
+  oe_person_gender: true
+  oe_person_last_name: true
+  oe_person_media: true
+  oe_person_organisation: true
+  oe_person_photo: true
+  oe_person_type: true
+  oe_subject: true
+  oe_summary: true
+  oe_teaser: true
