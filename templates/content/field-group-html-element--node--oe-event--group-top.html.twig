@@ -21,7 +21,8 @@
     {{ element.extra_field_oe_theme_content_event_registration_button }}
   </div>
   <div class="ecl-col-12 ecl-col-md-6 ecl-u-mt-l ecl-u-mt-md-none">
-    {{ element.extra_field_oe_theme_content_event_details }}
-    {% block oe_event_extra_details %}{% endblock %}
+    {% block secondary_details %}
+      {{ element.extra_field_oe_theme_content_event_details }}
+    {% endblock %}
   </div>
 </div>
