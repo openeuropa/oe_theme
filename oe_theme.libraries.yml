@@ -38,6 +38,12 @@ ecl_datepicker:
   dependencies:
     - core/drupal
 
+ecl_expandable:
+  js:
+    js/ecl_expandable.js: {}
+  dependencies:
+    - core/drupal
+
 print:
   css:
     theme:

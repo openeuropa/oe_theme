@@ -757,6 +757,9 @@ function oe_theme_preprocess_pattern_accordion(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_dropdown(array &$variables): void {
   $variables['id'] = Html::getUniqueId('ecl-button-dropdown');
+  // Add additional javascript for reproducing the behavior of
+  // dropdown legacy ECL component.
+  $variables['#attached']['library'][] = 'oe_theme/ecl_expandable';
 }
 
 /**
