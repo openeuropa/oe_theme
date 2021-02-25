@@ -36,6 +36,8 @@ module.exports = {
     { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },
     { from: path.resolve(nodeModules, '@ecl/ec-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
     { from: path.resolve(nodeModules, '@ecl/eu-preset-legacy-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
+    { from: path.resolve(nodeModules, '@ecl/ec-preset-website/dist'), to: path.resolve(outputFolder, 'dist/ec') },
+    { from: path.resolve(nodeModules, '@ecl/eu-preset-website/dist'), to: path.resolve(outputFolder, 'dist/eu') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-accordion2/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-blockquote/*.twig', to: path.resolve(outputFolder, 'components') },
     { from: path.resolve(nodeModules, '@ecl-twig'), patterns: 'ec-component-breadcrumb-core/*.twig', to: path.resolve(outputFolder, 'components') },
