@@ -128,6 +128,16 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
 - If your site does use a sub-them which displays the language switcher block, then you'll need to move it to the
   `site_header_secondary` region yourself
 
+### Upgrade to 2.15.0
+
+#### Dropdown UI pattern
+
+In 2.15.0 we dropped support for the `Dropdown` ui pattern which will be removed in the next major version. Few options
+which can help to mitigate the impact:
+
+- Move introduced in 2.15.0 rework of `Dropdown` implementation UI pattern in your custom component or subtheme.
+- Use ECL Expandable (as an alternative to previously used `legacy-dropdown` ECL component) component directly.
+
 ### Upgrade from 1.x to 2.x
 
 - The following patterns have been removed on 2.x:

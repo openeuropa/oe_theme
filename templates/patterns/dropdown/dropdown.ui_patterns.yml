@@ -1,6 +1,7 @@
 dropdown:
   label: "Dropdown"
   description: "Dropdown components contain elements that, when clicked, reveal additional content."
+  hidden: true
   fields:
     button_label:
       type: "string"
