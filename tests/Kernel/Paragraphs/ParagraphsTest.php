@@ -640,14 +640,6 @@ class ParagraphsTest extends ParagraphsTestBase {
    * Test 'Description List' paragraph rendering.
    */
   public function testDescriptionList(): void {
-    // Remove the auto-paragraph and url-to-link filters from the plain text.
-    /** @var \Drupal\filter\Entity\FilterFormat $format */
-    $format = FilterFormat::load('plain_text');
-    $format->filters();
-    $format->removeFilter('filter_url');
-    $format->removeFilter('filter_autop');
-    $format->save();
-
     FilterFormat::create([
       'format' => 'filtered_html',
       'name' => 'Filtered HTML',
@@ -706,15 +698,36 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
     $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));
-    $this->assertEquals('<div class="ecl-editor">Description 1</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(2)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>Description 1</p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(2)')->html()));
     $this->assertEquals('Term 2', trim($crawler->filter('dt.ecl-description-list__term:nth-child(3)')->html()));
-    $this->assertEquals('<div class="ecl-editor">&lt;p&gt;Description 2&lt;/p&gt;</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(4)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>&lt;p&gt;Description 2&lt;/p&gt;</p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(4)')->html()));
     $this->assertEquals('Term 3', trim($crawler->filter('dt.ecl-description-list__term:nth-child(5)')->html()));
-    $this->assertEquals('<div class="ecl-editor">&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(6)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;</p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(6)')->html()));
     $this->assertEquals('Term 4', trim($crawler->filter('dt.ecl-description-list__term:nth-child(7)')->html()));
-    $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
+    // @todo Remove when php 7.2 is not supported anymore.
+    if (version_compare(PHP_VERSION, '7.3') < 0) {
+      $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong>' . "\n" . '</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
+    }
+    else {
+      $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
+    }
     $this->assertEquals('Term 5', trim($crawler->filter('dt.ecl-description-list__term:nth-child(9)')->html()));
     $this->assertEquals('<div class="ecl-editor"><p>Description <strong>5</strong></p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(10)')->html()));
+
+    // Move the last item on the first position.
+    $items = $paragraph->get('field_oe_description_list_items')->getValue();
+    $fifth_item = $items[4];
+    $items[4] = $items[0];
+    $items[0] = $fifth_item;
+    $paragraph->set('field_oe_description_list_items', $items);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert the order was updated.
+    $this->assertEquals('Term 5', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>Description <strong>5</strong></p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(2)')->html()));
+    $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(9)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>Description 1</p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(10)')->html()));
   }
 
 }
