@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for the description list field template of the description list paragraph type.
+ *
+ * @see ./modules/contrib/description_list_field/templates/description-list.html.twig
+ */
+#}
+{% set _items = [] %}
+{% if items %}
+  {% for _item in items %}
+    {% set _description %}
+      <div class="ecl-editor">{{ _item.description }}</div>
+    {% endset %}
+    {% set _items = _items|merge([{
+      term: _item.term,
+      definition: _description,
+    }]) %}
+  {% endfor %}
+{% endif %}
+{% if _items %}
+  {% block content %}
+    {% include '@ecl-twig/description-list' with {
+      'variant': 'horizontal',
+      'items': _items,
+    } %}
+  {% endblock %}
+{% endif %}

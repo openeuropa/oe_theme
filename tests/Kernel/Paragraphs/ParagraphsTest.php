@@ -706,15 +706,15 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(5, $crawler->filter('dt.ecl-description-list__term'));
     $this->assertCount(5, $crawler->filter('dd.ecl-description-list__definition'));
     $this->assertEquals('Term 1', trim($crawler->filter('dt.ecl-description-list__term:nth-child(1)')->html()));
-    $this->assertEquals('Description 1', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(2)')->html()));
+    $this->assertEquals('<div class="ecl-editor">Description 1</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(2)')->html()));
     $this->assertEquals('Term 2', trim($crawler->filter('dt.ecl-description-list__term:nth-child(3)')->html()));
-    $this->assertEquals('&lt;p&gt;Description 2&lt;/p&gt;', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(4)')->html()));
+    $this->assertEquals('<div class="ecl-editor">&lt;p&gt;Description 2&lt;/p&gt;</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(4)')->html()));
     $this->assertEquals('Term 3', trim($crawler->filter('dt.ecl-description-list__term:nth-child(5)')->html()));
-    $this->assertEquals('&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(6)')->html()));
+    $this->assertEquals('<div class="ecl-editor">&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(6)')->html()));
     $this->assertEquals('Term 4', trim($crawler->filter('dt.ecl-description-list__term:nth-child(7)')->html()));
-    $this->assertEquals('Description <strong>4</strong>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
+    $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
     $this->assertEquals('Term 5', trim($crawler->filter('dt.ecl-description-list__term:nth-child(9)')->html()));
-    $this->assertEquals('<p>Description <strong>5</strong></p>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(10)')->html()));
+    $this->assertEquals('<div class="ecl-editor"><p>Description <strong>5</strong></p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(10)')->html()));
   }
 
 }
