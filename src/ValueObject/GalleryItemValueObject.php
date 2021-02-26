@@ -10,18 +10,14 @@ namespace Drupal\oe_theme\ValueObject;
 class GalleryItemValueObject extends ValueObjectBase {
 
   /**
-   * The caption of the gallery item.
-   *
-   * @var string
+   * IMage gallery item type.
    */
-  protected $caption;
+  const TYPE_IMAGE = 'image';
 
   /**
-   * Extra classes of the gallery item.
-   *
-   * @var string
+   * Video gallery item type.
    */
-  protected $classes;
+  const TYPE_VIDEO = 'video';
 
   /**
    * Thumbnail of the gallery item.
@@ -29,20 +25,6 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @var \Drupal\oe_theme\ValueObject\ImageValueObject
    */
   protected $thumbnail;
-
-  /**
-   * Icon of the gallery item.
-   *
-   * @var string
-   */
-  protected $icon;
-
-  /**
-   * Meta information, such as copyright, author, etc.
-   *
-   * @var string
-   */
-  protected $meta;
 
   /**
    * Media source, i.e. the canonical URL to the actual media item.
@@ -59,28 +41,36 @@ class GalleryItemValueObject extends ValueObjectBase {
   protected $type;
 
   /**
+   * The caption of the gallery item.
+   *
+   * @var string
+   */
+  protected $caption;
+
+  /**
+   * Meta information, such as copyright, author, etc.
+   *
+   * @var string
+   */
+  protected $meta;
+
+  /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail
+   * @param \Drupal\oe_theme\ValueObject\ValueObjectInterface $thumbnail
    *   Thumbnail to be rendered on the gallery item.
-   * @param string|null $caption
-   *   Caption for the gallery item.
-   * @param string|null $classes
-   *   Extra classes for the gallery item.
-   * @param string|null $icon
-   *   Icon for the gallery item.
-   * @param string|null $meta
-   *   Meta information, such as copyright, author, etc.
-   * @param string|null $source
+   * @param string $source
    *   Media source, i.e. the canonical URL to the actual media item.
    * @param string $type
-   *   Media type, either "video" or "image", defaults to "image".
+   *   Media item type, either 'image' or 'video'.
+   * @param string $caption
+   *   Caption for the gallery item.
+   * @param string $meta
+   *   Caption for the gallery item.
    */
-  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL, string $meta = NULL, string $source = NULL, string $type = 'image') {
+  private function __construct(ValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '') {
     $this->caption = $caption;
-    $this->classes = $classes;
     $this->thumbnail = $thumbnail;
-    $this->icon = $icon;
     $this->meta = $meta;
     $this->source = $source;
     $this->type = $type;
@@ -91,22 +81,19 @@ class GalleryItemValueObject extends ValueObjectBase {
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
     $values += [
-      'type' => NULL,
-      'source' => NULL,
-      'caption' => NULL,
-      'classes' => NULL,
-      'icon' => NULL,
-      'meta' => NULL,
+      'thumbnail' => [],
+      'source' => '',
+      'type' => GalleryItemValueObject::TYPE_IMAGE,
+      'caption' => '',
+      'meta' => '',
     ];
 
     return new static(
       ImageValueObject::fromArray($values['thumbnail']),
-      $values['caption'],
-      $values['classes'],
-      $values['icon'],
-      $values['meta'],
       $values['source'],
-      $values['type']
+      $values['type'],
+      $values['caption'],
+      $values['meta']
     );
   }
 
@@ -116,18 +103,8 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getCaption(): ?string {
+  public function getCaption(): string {
     return $this->caption;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getClasses(): ?string {
-    return $this->classes;
   }
 
   /**
@@ -146,17 +123,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getIcon(): ?string {
-    return $this->icon;
-  }
-
-  /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
-   */
-  public function getMeta(): ?string {
+  public function getMeta(): string {
     return $this->meta;
   }
 
@@ -166,7 +133,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getType(): ?string {
+  public function getType(): string {
     return $this->type;
   }
 
@@ -176,7 +143,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @return string
    *   Property value.
    */
-  public function getSource(): ?string {
+  public function getSource(): string {
     return $this->source;
   }
 
@@ -184,17 +151,15 @@ class GalleryItemValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public function getArray(): array {
-    /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail */
-    $thumbnail = $this->getThumbnail();
     $values = [
-      'image' => $thumbnail->getArray(),
+      'image' => $this->getThumbnail()->getArray(),
       'description' => $this->getCaption(),
       'meta' => $this->getMeta(),
-      'icon' => 'image',
+      'icon' => '',
     ];
 
     // If video, then set the required source URL format and icon.
-    if ($this->getType() === 'video') {
+    if ($this->getType() === GalleryItemValueObject::TYPE_VIDEO) {
       $values['icon'] = 'video';
       $values['embedded_video'] = [
         'src' => $this->getSource(),
