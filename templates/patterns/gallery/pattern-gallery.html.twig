@@ -8,18 +8,14 @@
 
 {% set _items = [] %}
 {% for item in items %}
-  {% set _item = {
+  {% set _item = item|merge({
     'icon': {
       'path': ecl_icon_path,
       'type': 'general',
       'name': item.icon,
       'size': 's'
     },
-    'path': item.thumbnail.src,
-    'alt': item.thumbnail.alt,
-    'description': item.caption,
-    'meta': item.meta,
-  } %}
+  }) %}
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
