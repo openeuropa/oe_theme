@@ -17,13 +17,15 @@
     },
     'path': item.thumbnail.src,
     'alt': item.thumbnail.alt,
-    'description': item.caption
+    'description': item.caption,
+    'meta': item.meta,
   } %}
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
 {% include '@ecl-twig/gallery' with {
   'overlay': {
+    'counter_separator': ' / ',
     'close': {
       'variant': 'ghost',
       'label': 'Close'|t,
@@ -58,8 +60,11 @@
       },
     },
     'download': {
-      'label': 'Download'|t,
-      'link': {},
+      'link': {
+        'label': 'Download'|t,
+        'path': '',
+        'aria_label': '',
+      },
       'icon': {
         'path': ecl_icon_path,
         'type': 'ui',
@@ -68,8 +73,11 @@
       },
     },
     'share': {
-      'label': 'Share'|t,
-      'link': {},
+      'link': {
+        'label': 'Share'|t,
+        'path': '',
+        'aria_label': ''
+      },
       'icon': {
         'path': ecl_icon_path,
         'type': 'general',
@@ -78,5 +86,7 @@
       },
     },
   },
+  'view_all_label': "Open gallery"|t,
+  'counter_label': "media items"|t,
   'items': _items
 } %}

@@ -38,6 +38,13 @@ class GalleryItemValueObject extends ValueObjectBase {
   protected $icon;
 
   /**
+   * Meta information, such as copyright, author, etc.
+   *
+   * @var string
+   */
+  protected $meta;
+
+  /**
    * GalleryItemValueObject constructor.
    *
    * @param \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail
@@ -48,25 +55,34 @@ class GalleryItemValueObject extends ValueObjectBase {
    *   Extra classes for the gallery item.
    * @param string|null $icon
    *   Icon for the gallery item.
+   * @param string|null $meta
+   *   Meta information, such as copyright, author, etc.
    */
-  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL) {
+  private function __construct(ImageValueObject $thumbnail, string $caption = NULL, string $classes = NULL, string $icon = NULL, string $meta = NULL) {
     $this->caption = $caption;
     $this->classes = $classes;
     $this->thumbnail = $thumbnail;
     $this->icon = $icon;
+    $this->meta = $meta;
   }
 
   /**
    * {@inheritdoc}
    */
   public static function fromArray(array $values = []): ValueObjectInterface {
-    $values += ['caption' => NULL, 'classes' => NULL, 'icon' => NULL];
+    $values += [
+      'caption' => NULL,
+      'classes' => NULL,
+      'icon' => NULL,
+      'meta' => NULL,
+    ];
 
     return new static(
       ImageValueObject::fromArray($values['thumbnail']),
       $values['caption'],
       $values['classes'],
-      $values['icon']
+      $values['icon'],
+      $values['meta']
     );
   }
 
@@ -111,6 +127,16 @@ class GalleryItemValueObject extends ValueObjectBase {
   }
 
   /**
+   * Getter.
+   *
+   * @return string
+   *   Property value.
+   */
+  public function getMeta(): ?string {
+    return $this->meta;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getArray(): array {
@@ -122,6 +148,7 @@ class GalleryItemValueObject extends ValueObjectBase {
       'caption' => $this->getCaption(),
       'classes' => $this->getClasses(),
       'icon' => $this->getIcon(),
+      'meta' => $this->getMeta(),
     ];
   }
 
