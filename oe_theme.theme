@@ -1293,17 +1293,6 @@ function oe_theme_preprocess_paragraph__oe_social_media_follow(array &$variables
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_pattern_text_featured_media(array &$variables): void {
-  // We have to transform string to markup object
-  // for avoiding twig's autoescaping.
-  if (!empty($variables['video']['#markup'])) {
-    $variables['video'] = Markup::create($variables['video']['#markup']);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function oe_theme_preprocess_pattern_link(array &$variables): void {
   // Set default variant to 'standalone', if none given.
   $variables['variant'] = $variables['variant'] ?: 'standalone';
