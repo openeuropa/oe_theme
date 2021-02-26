@@ -15,7 +15,7 @@ targetEntityType: oe_person_job
 bundle: default
 mode: full
 content:
-  extra_field_oe_theme_content_person_job_role:
+  extra_field_oe_theme_content_person_job_label:
     weight: 0
     region: content
     settings: {  }

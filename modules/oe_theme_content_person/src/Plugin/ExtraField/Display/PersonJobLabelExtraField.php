@@ -9,18 +9,18 @@ use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 
 /**
- * Display Job's role.
+ * Display Person job label.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_theme_content_person_job_role",
- *   label = @Translation("Job role"),
+ *   id = "oe_theme_content_person_job_label",
+ *   label = @Translation("Persob job label"),
  *   bundles = {
  *     "oe_person_job.default",
  *   },
  *   visible = true
  * )
  */
-class JobRoleExtraField extends ExtraFieldDisplayFormattedBase {
+class PersonJobLabelExtraField extends ExtraFieldDisplayFormattedBase {
 
   use StringTranslationTrait;
 
@@ -28,20 +28,14 @@ class JobRoleExtraField extends ExtraFieldDisplayFormattedBase {
    * {@inheritdoc}
    */
   public function getLabel() {
-    return $this->t('Job role');
+    return $this->t('Person job label');
   }
 
   /**
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    $role_name = $entity->label();
-
-    if ($entity->get('oe_acting')->value) {
-      $role_name = $this->t('(Acting) @role', ['@role' => $role_name]);
-    }
-
-    return ['#markup' => $role_name];
+    return ['#markup' => $entity->label()];
   }
 
 }

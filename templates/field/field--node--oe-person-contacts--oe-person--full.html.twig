@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Person contacts field template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% set contacts %}{% for item in items %}{{ item.content }}{% endfor %}{% endset %}
+
+{% include '@ecl-twig/expandable' with {
+  'label_expanded': 'Hide contact details'|t,
+  'label_collapsed': 'Show contact details'|t,
+  'button': {
+    'icon': {
+      'path': ecl_icon_path,
+    },
+  },
+  content: contacts
+} only %}
