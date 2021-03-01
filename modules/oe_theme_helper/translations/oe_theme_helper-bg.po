@@ -276,3 +276,36 @@ msgstr "Свързано ведомство"
 
 msgid "Related departments"
 msgstr "Свързани ведомства"
+
+msgid "Consultation"
+msgstr "Консултация"
+
+msgid "Deadline"
+msgstr "Краен срок"
+
+msgid "Respond to the questionnaire"
+msgstr "Попълване на въпросника"
+
+msgid "Respond to the consultation"
+msgstr "Участвайте в консултацията"
+
+msgid "Target audience"
+msgstr "Целева аудитория"
+
+msgid "Why we are consulting"
+msgstr "Защо провеждаме настоящата консултация"
+
+msgid "Consultation outcome"
+msgstr "Резултати от консултацията"
+
+msgid "Additional information"
+msgstr "Допълнителна информация"
+
+msgid "Reference documents"
+msgstr "Референтни документи"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Срокът за участие в тази консултация изтече. Благодарим Ви за участието!"
+
+msgid "Status: @label"
+msgstr "Статус: @label"

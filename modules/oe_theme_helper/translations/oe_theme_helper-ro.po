@@ -276,3 +276,36 @@ msgstr "Departament implicat"
 
 msgid "Related departments"
 msgstr "Departamente implicate"
+
+msgid "Consultation"
+msgstr "Consultare"
+
+msgid "Deadline"
+msgstr "Termen-limită"
+
+msgid "Respond to the questionnaire"
+msgstr "Completați chestionarul"
+
+msgid "Respond to the consultation"
+msgstr "Participați la consultare"
+
+msgid "Target audience"
+msgstr "Public-țintă"
+
+msgid "Why we are consulting"
+msgstr "De ce organizăm consultarea"
+
+msgid "Consultation outcome"
+msgstr "Rezultatul consultării"
+
+msgid "Additional information"
+msgstr "Informații suplimentare"
+
+msgid "Reference documents"
+msgstr "Documente de referință"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Perioada de desfășurare a acestei consultări s-a încheiat. Vă mulțumim pentru contribuție!"
+
+msgid "Status: @label"
+msgstr "Statut: @label"

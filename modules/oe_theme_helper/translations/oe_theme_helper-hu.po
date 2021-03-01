@@ -276,3 +276,36 @@ msgstr "Kapcsolódó szervezeti egység"
 
 msgid "Related departments"
 msgstr "Kapcsolódó szervezeti egységek"
+
+msgid "Consultation"
+msgstr "Konzultáció"
+
+msgid "Deadline"
+msgstr "Határidő"
+
+msgid "Respond to the questionnaire"
+msgstr "Részvétel a konzultációban"
+
+msgid "Respond to the consultation"
+msgstr "Részvétel a konzultációban"
+
+msgid "Target audience"
+msgstr "Célközönség"
+
+msgid "Why we are consulting"
+msgstr "Miért indítottuk ezt a konzultációt?"
+
+msgid "Consultation outcome"
+msgstr "A konzultáció eredménye"
+
+msgid "Additional information"
+msgstr "További információk"
+
+msgid "Reference documents"
+msgstr "Referenciadokumentumok"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "A konzultációs időszak lezárult Köszönjük, hogy részt vesz felmérésünkben!"
+
+msgid "Status: @label"
+msgstr "Státusz: @label"
