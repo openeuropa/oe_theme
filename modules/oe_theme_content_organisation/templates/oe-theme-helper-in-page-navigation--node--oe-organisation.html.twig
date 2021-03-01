@@ -19,10 +19,10 @@
     } %}
   </div>
   {% endif %}
-  {% if _items %}
+  {% if _links %}
     {% include '@ecl-twig/inpage-navigation' with {
       'title': title,
-      'links': _items,
+      'links': _links,
       'icon_path': ecl_icon_path
     } %}
   {% endif %}
