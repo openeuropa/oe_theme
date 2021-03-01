@@ -13,7 +13,7 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
  *
  * @ExtraFieldDisplay(
  *   id = "oe_theme_content_person_job_label",
- *   label = @Translation("Persob job label"),
+ *   label = @Translation("Person job label"),
  *   bundles = {
  *     "oe_person_job.default",
  *   },

@@ -14,42 +14,49 @@
  * @ingroup themeable
  */
 #}
-{% set _items = [] %}
-{% for item in items %}
+{% set items_length = items|length %}
+{% set _links = [] %}
+{% for link in links %}
   {#
      We need to pre-render each item content so to establish if to show its related navigation link.
      This will only work if Twig debug is set to "false" since, otherwise, the element will contain
      debug HTML comments, which make the element not empty.
   #}
-  {% set content = item.content|render %}
-  {% if content|trim is not empty %}
-    {% set _items = _items|merge([{
-      id: item.id,
-      href: '#' ~ item.id,
-      label: item.label,
-      content: content
+   {% set content = link.content|render %}
+   {% if content|trim is not empty %}
+    {% set _links = _links|merge([{
+      href: '#' ~ link.id,
+      label: link.label,
     }]) %}
-  {% endif %}
+   {% endif %}
 {% endfor %}
 
 <div {{ attributes.addClass(['ecl-row', 'ecl-u-mt-l']) }}>
+  {% block navigation %}
   <div class="ecl-col-12 ecl-col-lg-3">
-    {% block navigation %}
-      {% include '@ecl-twig/inpage-navigation' with {
-        'title': title,
-        'links': _items,
-        'icon_path': ecl_icon_path
-      } %}
-    {% endblock %}
+    {% include '@ecl-twig/inpage-navigation' with {
+      'title': title,
+      'links': _links,
+      'icon_path': ecl_icon_path
+    } %}
   </div>
+  {% endblock %}
+  {% block content %}
   <div class="ecl-col-lg-9">
-    {% block content %}
-      {% for item in _items %}
-        <div{{ not loop.last ? ' class="ecl-u-mb-2xl"' }}>
-          <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
-          {{ item.content }}
-        </div>
-      {% endfor %}
-    {% endblock %}
+    {% set counter = 0 %}
+    {% for key, item in items %}
+      <div{{ counter + 1 != items_length ? ' class="ecl-u-mb-2xl"' }}>
+        {% set counter = counter + 1 %}
+        {% if key in links|keys %}
+          {# Print label of in-page navigation item field group. #}
+          <h2 id="{{ links[key].id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ links[key].label }}</h2>
+        {% endif %}
+        {{ item }}
+      </div>
+    {% endfor %}
   </div>
+  {% endblock %}
 </div>
+
+
+
