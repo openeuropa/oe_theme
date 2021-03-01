@@ -44,7 +44,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Test Publication node',
-      'meta' => "Delegated directive | 15 April 2020\n | Arab Common Market",
+      'meta' => 'Delegated directive | <time datetime="2020-04-15T12:00:00Z">15 April 2020</time>\n | Arab Common Market',
       'description' => 'Test teaser text.',
     ];
     $assert->assertPattern($expected_values, $html);
@@ -77,7 +77,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = "Abstract, State aid | 15 April 2020\n | Arab Common Market, ACP–EU Joint Parliamentary Assembly";
+    $expected_values['meta'] = 'Abstract, State aid | <time datetime="2020-04-15T12:00:00Z">15 April 2020</time>\n | Arab Common Market, ACP–EU Joint Parliamentary Assembly';
     $assert->assertPattern($expected_values, $html);
   }
 

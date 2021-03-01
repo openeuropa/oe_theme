@@ -102,7 +102,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Call for proposals node',
-      'meta' => 'Call status: Open',
+      'meta' => '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--high">Call status: Open</span>',
       'image' => NULL,
       'additional_information' => [
         new PatternAssertState(new FieldListAssert(), [
@@ -175,7 +175,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_model', 'multiple_cut_off')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Closed';
+    $expected_values['meta'] = '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--low">Call status: Closed</span>';
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
@@ -214,7 +214,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_opening_date', $opening_date->format('Y-m-d'))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Upcoming';
+    $expected_values['meta'] = '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--medium">Call status: Upcoming</span>';
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [

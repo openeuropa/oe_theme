@@ -145,7 +145,7 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'Test news node',
       'url' => '/en/node/1',
       'description' => 'Teaser',
-      'meta' => 'News article | 2 April 2019',
+      'meta' => 'News article | <time datetime="2019-04-02T12:00:00Z">2 April 2019</time>',
       'image' => [
         'src' => 'example_1.jpeg',
         'alt' => '',
@@ -161,7 +161,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Press release | 2 April 2019';
+    $expected_values['meta'] = 'Press release | <time datetime="2019-04-02T12:00:00Z">2 April 2019</time>';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
@@ -175,7 +175,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Factsheet, General publications | 2 April 2019';
+    $expected_values['meta'] = 'Factsheet, General publications | <time datetime="2019-04-02T12:00:00Z">2 April 2019</time>';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
   }

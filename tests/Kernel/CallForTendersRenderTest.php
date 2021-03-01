@@ -105,7 +105,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Call for tenders node',
-      'meta' => 'Call status: Open',
+      'meta' => '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--high">Call status: Open</span>',
       'image' => NULL,
       'additional_information' => [
         new PatternAssertState(new FieldListAssert(), [
@@ -163,7 +163,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Closed';
+    $expected_values['meta'] = '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--low">Call status: Closed</span>';
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
@@ -202,7 +202,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $expected_values['meta'] = 'Call status: Upcoming';
+    $expected_values['meta'] = '<span class="call-status ecl-label ecl-u-text-uppercase ecl-u-type-color-black ecl-label--medium">Call status: Upcoming</span>';
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
