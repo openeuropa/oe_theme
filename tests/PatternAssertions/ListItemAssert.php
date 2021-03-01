@@ -48,7 +48,7 @@ class ListItemAssert extends BasePatternAssert {
         'href',
       ],
       'meta' => [
-        [$this, 'assertElementText'],
+        [$this, 'assertElementHtml'],
         $base_selector . '__meta',
       ],
       'date' => [

@@ -142,7 +142,9 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     }
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
-    self::assertEquals($expected, $element->html());
+    // We have to remove HTML comments, if present.
+    $cleaned_html = preg_replace('~<!--(?!<!)[^\[>].*?-->~s', '', $element->html());
+    self::assertEquals($expected, $cleaned_html);
   }
 
   /**
