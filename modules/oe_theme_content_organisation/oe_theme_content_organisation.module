@@ -7,14 +7,6 @@
 
 declare(strict_types = 1);
 
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\file\FileInterface;
-use Drupal\image\Plugin\Field\FieldType\ImageItem;
-use Drupal\media\MediaInterface;
-use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
-use Drupal\media\Plugin\media\Source\Image;
-use Drupal\oe_theme\ValueObject\ImageValueObject;
-
 /**
  * Prepares variables for in-page navigation.
  *
@@ -24,42 +16,5 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  *   An array of variables.
  */
 function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation__node__oe_organisation(array &$variables): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['entity'];
-
-  if ($node->get('oe_organisation_logo')->isEmpty()) {
-    return;
-  }
-
-  /** @var \Drupal\media\Entity\Media $media */
-  $media = $node->get('oe_organisation_logo')->entity;
-
-  if (!$media instanceof MediaInterface) {
-    // The media entity is not available anymore, bail out.
-    return;
-  }
-
-  $source = $media->getSource();
-
-  // If its an image media, render it and assign it to the image variable.
-  if (!$source instanceof MediaAvPortalPhotoSource && !$source instanceof Image) {
-   return;
-  }
-
-  $cacheability = CacheableMetadata::createFromRenderArray($variables);
-  $cacheability->addCacheableDependency($media);
-  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
-
-  if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
-    $cacheability->applyTo($variables);
-    return;
-  }
-
-  $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-  $variables['image'] = $image;
-
-  $cacheability->addCacheableDependency($image);
-  $cacheability->addCacheableDependency($thumbnail->entity);
-  $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
-  $cacheability->applyTo($variables);
+  _oe_theme_content_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_organisation_logo');
 }

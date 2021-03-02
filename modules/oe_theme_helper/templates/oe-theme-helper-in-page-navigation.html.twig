@@ -45,14 +45,20 @@
   <div class="ecl-col-lg-9">
     {% set counter = 0 %}
     {% for key, item in items %}
-      <div{{ counter + 1 != items_length ? ' class="ecl-u-mb-2xl"' }}>
-        {% set counter = counter + 1 %}
-        {% if key in links|keys %}
-          {# Print label of in-page navigation item field group. #}
-          <h2 id="{{ links[key].id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ links[key].label }}</h2>
-        {% endif %}
-        {{ item }}
-      </div>
+      {# Pre-render items to get rid of empty field groups. #}
+      {% set item_content = item|render %}
+      {% if item_content|trim is not empty %}
+        <div{{ counter + 1 != items_length ? ' class="ecl-u-mb-2xl"' }}>
+          {% set counter = counter + 1 %}
+          {% if key in links|keys %}
+            {# Print label of in-page navigation item field group. #}
+            <h2 id="{{ links[key].id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ links[key].label }}</h2>
+          {% endif %}
+          {{ item_content }}
+        </div>
+      {% else %}
+        {% set items_length = items_length - 1 %}
+      {% endif %}
     {% endfor %}
   </div>
   {% endblock %}
