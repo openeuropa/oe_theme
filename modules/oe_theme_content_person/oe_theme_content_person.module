@@ -18,7 +18,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  *   An array of variables.
  */
 function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
-  _oe_theme_content_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_person_photo');
+  _oe_theme_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_person_photo');
 
   if (empty($variables['image'])) {
     // Set default image.

@@ -9,7 +9,6 @@ use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 
 /**
  * Test In-page navigation field group.
@@ -53,10 +52,6 @@ class InPageNavigationTest extends BrowserTestBase {
     \Drupal::service('theme_installer')->install(['oe_theme']);
     \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
 
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
     // Create content type.
     $this->type = 'first_node_type';
     $this->drupalCreateContentType(['name' => 'Test type', 'type' => $this->type]);
@@ -69,8 +64,8 @@ class InPageNavigationTest extends BrowserTestBase {
     // Create a node.
     $node_values = ['type' => $this->type];
 
-    // Create 6 test fields.
-    for ($i = 0; $i <= 5; $i++) {
+    // Create 4 test fields.
+    for ($i = 0; $i < 4; $i++) {
       $field_name = "field_test_$i";
       $this->createTestField($field_name);
 
@@ -82,6 +77,9 @@ class InPageNavigationTest extends BrowserTestBase {
         'label' => 'above',
         'type' => 'field_test_default',
         'weight' => $i,
+        'settings' => [
+          'test_formatter_setting' => $this->randomMachineName(),
+        ],
       ];
       $display->setComponent($field_name, $display_options);
     }
@@ -103,13 +101,10 @@ class InPageNavigationTest extends BrowserTestBase {
    * -- Multiple items extra field
    * - Field group "In-page navigation item"
    * -- Field group "Html elements"
-   * --- Field 2
-   * --- Field 3
+   * --- Test field 2
+   * --- Test field 3
    * - Field group "In-page navigation item"
    * -- Formatted extra field without content.
-   * - Field group "Field list pattern"
-   * -- Field 4
-   * - Field 5
    */
   public function testOutput(): void {
     // Create "Html element" field group.
@@ -117,19 +112,23 @@ class InPageNavigationTest extends BrowserTestBase {
       'field_test_2',
       'field_test_3',
     ];
-    $group_html_element = $this->createFieldGroup('html_element', 'html_element', $children_group_html_element, 0, ['show_label' => TRUE]);
+    $group_html_element = $this->createFieldGroup('html_element', 'html_element', $children_group_html_element, 10, ['show_label' => TRUE]);
 
     // Create "In-page navigation items" field groups.
     $children_group_inpage_nav_items = [
       [
         'field_test_0',
         'field_test_1',
-      ], [
+      ],
+      [
         'extra_field_single_text_test',
         'extra_field_multiple_text_test',
-      ], [
+      ],
+      [
         $group_html_element->group_name,
-      ], [
+      ],
+      // It is empty extra field, so field group shouldn't be rendered.
+      [
         'extra_field_empty_formatted_test',
       ],
     ];
@@ -140,16 +139,6 @@ class InPageNavigationTest extends BrowserTestBase {
       $groups_inpage_nav_item[] = $group;
       $children_group_inpage_nav[] = $group->group_name;
     }
-
-    // Add "Field list pattern" field group directly to "In-page navigation".
-    $children_group_field_list = [
-      'field_test_4',
-    ];
-    $group_field_list = $this->createFieldGroup('inpage_nav_item_50', 'oe_theme_helper_field_list_pattern', $children_group_field_list, 4, ['variant' => 'horizontal']);
-    $children_group_inpage_nav[] = $group_field_list->group_name;
-
-    // Add sixth field directly to "In-page navigation".
-    $children_group_inpage_nav[] = 'field_test_5';
 
     // Create In-page navigation group.
     $this->createFieldGroup('main', 'oe_theme_helper_in_page_navigation', $children_group_inpage_nav);
@@ -171,24 +160,19 @@ class InPageNavigationTest extends BrowserTestBase {
 
     // Assert content part.
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
-    $content_items_with_margin = $content->findAll('xpath', '/div[@class="ecl-u-mb-2xl"]');
-    $this->assertCount(4, $content_items_with_margin);
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(5, $content_items);
-
-    // Assert headers of in-page navigation field groups.
-    $headers = $content->findAll('css', 'h2.ecl-u-type-heading-2');
-    $this->assertCount(3, $headers);
-    for ($index = 0; $index <= 2; $index++) {
-      $this->assertContentHeader($content_items[$index], $index);
+    $this->assertCount(3, $content_items);
+    // Assert headers of field groups.
+    foreach ($content_items as $index => $item) {
+      $this->assertContentHeader($item, $index);
     }
 
     // Assert first field group.
     $content_first_group = $content_items[0]->getText();
     $this->assertContains('Field label field_test_0', $content_first_group);
-    $this->assertContains('dummy test string|100', $content_first_group);
+    $this->assertContains('100', $content_first_group);
     $this->assertContains('Field label field_test_1', $content_first_group);
-    $this->assertContains('dummy test string|200', $content_first_group);
+    $this->assertContains('200', $content_first_group);
 
     // Assert second field group.
     $content_second_group = $content_items[1]->getText();
@@ -201,31 +185,12 @@ class InPageNavigationTest extends BrowserTestBase {
     $content_third_group = $content_items[2]->getText();
     $this->assertContains('Field group html_element', $content_third_group);
     $this->assertContains('Field label field_test_2', $content_third_group);
-    $this->assertContains('dummy test string|300', $content_third_group);
+    $this->assertContains('300', $content_third_group);
     $this->assertContains('Field label field_test_3', $content_third_group);
-    $this->assertContains('dummy test string|400', $content_third_group);
+    $this->assertContains('400', $content_third_group);
 
     // Assert fourth field group - it mustn't exist.
     $this->assertSession()->elementTextNotContains('css', 'body', 'Field group inpage_nav_item_3');
-
-    // Assert Field list pattern group.
-    $field_list_assert = new FieldListAssert();
-    $field_list_expected_values = [
-      'items' => [
-        [
-          'label' => 'Field label field_test_4',
-          'body' => 'dummy test string|500',
-        ],
-      ],
-    ];
-    $field_list_html = $content_items[3]->getHtml();
-    $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
-    $field_list_assert->assertVariant('horizontal', $field_list_html);
-
-    // Assert field without field group.
-    $content_third_group = $content_items[4]->getText();
-    $this->assertContains('Field label field_test_5', $content_third_group);
-    $this->assertContains('dummy test string|600', $content_third_group);
   }
 
   /**

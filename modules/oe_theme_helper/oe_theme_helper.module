@@ -133,17 +133,11 @@ function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$elemen
 function template_preprocess_oe_theme_helper_in_page_navigation(array &$variables) {
   $variables['title'] = $variables['element']['#title'];
   $variables['entity'] = $variables['element']['#entity'];
-  $variables['links'] = isset($variables['element']['#links']) ? $variables['element']['#links'] : [];
+  $variables['items'] = isset($variables['element']['#items']) ? $variables['element']['#items'] : [];
 
   // Process in-page navigation items, assigning them a unique ID.
-  foreach ($variables['links'] as $key => $item) {
-    $variables['links'][$key]['id'] = strtolower(Html::cleanCssIdentifier($variables['links'][$key]['label']));
-  }
-
-  foreach (Element::children($variables['element']) as $key) {
-    if (!empty($variables['element'][$key])) {
-      $variables['items'][$key] = $variables['element'][$key];
-    }
+  foreach ($variables['items'] as $key => $item) {
+    $variables['items'][$key]['id'] = strtolower(Html::cleanCssIdentifier($variables['items'][$key]['label']));
   }
 }
 
@@ -233,7 +227,7 @@ function oe_theme_helper_locale_translation_projects_alter(&$projects) {
  * @param array $variables
  *   An array of variables.
  */
-function _oe_theme_content_helper_prepare_oe_theme_helper_in_page_navigation_with_image(array &$variables, $field_name): void {
+function _oe_theme_helper_prepare_oe_theme_helper_in_page_navigation_with_image(array &$variables, $field_name): void {
   /** @var \Drupal\node\NodeInterface $node */
   $node = $variables['entity'];
 

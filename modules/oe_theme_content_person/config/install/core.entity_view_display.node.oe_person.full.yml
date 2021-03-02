@@ -40,7 +40,7 @@ third_party_settings:
   field_group:
     group_in_page_navigation:
       children:
-        - group_details
+        - group_organisation
         - group_contact
         - group_responsibilities
         - group_media
@@ -59,7 +59,7 @@ third_party_settings:
       children:
         - oe_person_contacts
       parent_name: group_in_page_navigation
-      weight: 23
+      weight: 22
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -70,7 +70,7 @@ third_party_settings:
       children:
         - oe_person_jobs
       parent_name: group_in_page_navigation
-      weight: 24
+      weight: 23
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -82,7 +82,7 @@ third_party_settings:
         - oe_person_transparency_intro
         - oe_person_transparency_links
       parent_name: group_in_page_navigation
-      weight: 26
+      weight: 25
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -96,7 +96,7 @@ third_party_settings:
         - oe_person_cv
         - group_declaration
       parent_name: group_in_page_navigation
-      weight: 27
+      weight: 26
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -107,7 +107,7 @@ third_party_settings:
       children:
         - oe_person_documents
       parent_name: group_in_page_navigation
-      weight: 28
+      weight: 27
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -118,7 +118,7 @@ third_party_settings:
       children:
         - oe_social_media_links
       parent_name: group_in_page_navigation
-      weight: 25
+      weight: 24
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -147,12 +147,25 @@ third_party_settings:
     group_details:
       children:
         - oe_departments
-      parent_name: group_in_page_navigation
-      weight: 22
+      parent_name: group_organisation
+      weight: 21
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
         variant: horizontal
+        classes: ''
+        id: ''
+      label: ''
+    group_organisation:
+      children:
+        - group_details
+      parent_name: group_in_page_navigation
+      weight: 20
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
       label: ''
 id: node.oe_person.full
 targetEntityType: node

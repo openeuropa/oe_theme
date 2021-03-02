@@ -23,6 +23,15 @@ class InPageNavigation extends InPageNavigationBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsForm() {
+    $form = parent::settingsForm();
+    $form['label']['#required'] = TRUE;
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preRender(&$element, $rendering_object) {
     parent::preRender($element, $rendering_object);
 
@@ -44,9 +53,9 @@ class InPageNavigation extends InPageNavigationBase {
         continue;
       }
 
-      // Choose children In-page navigation item field groups to build list of
-      // links.
-      $element['#links'][$group_name] = [
+      // Choose children In-page navigation item field groups to process
+      // in the render element.
+      $element['#items'][$group_name] = [
         'label' => $group_object->label,
         'content' => $element[$group_name],
       ];
