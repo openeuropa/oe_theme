@@ -26,3 +26,15 @@ function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__
     $variables['image'] = ImageValueObject::fromArray(['src' => $image_path]);
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_person_preprocess_field__node__oe_person_organisation__oe_person__full(&$variables) {
+  foreach ($variables['items'] as $key => $item) {
+    $node = $variables['items'][$key]['content']['#node'];
+    $variables['items'][$key]['content'] = [
+      '#markup' => $node->label(),
+    ];
+  }
+}

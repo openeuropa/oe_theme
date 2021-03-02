@@ -147,6 +147,7 @@ third_party_settings:
     group_details:
       children:
         - oe_departments
+        - oe_person_organisation
       parent_name: group_organisation
       weight: 21
       format_type: oe_theme_helper_field_list_pattern
@@ -248,6 +249,15 @@ content:
       view_mode: full
       link: ''
     third_party_settings: {  }
+  oe_person_organisation:
+    type: entity_reference_revisions_entity_view
+    weight: 22
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
   oe_person_transparency_intro:
     type: text_default
     weight: 0
@@ -294,7 +304,6 @@ hidden:
   oe_person_gender: true
   oe_person_last_name: true
   oe_person_media: true
-  oe_person_organisation: true
   oe_person_photo: true
   oe_person_type: true
   oe_subject: true
