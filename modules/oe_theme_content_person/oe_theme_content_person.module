@@ -7,6 +7,8 @@
 
 declare(strict_types = 1);
 
+use Drupal\oe_theme\ValueObject\ImageValueObject;
+
 /**
  * Prepares variables for in-page navigation.
  *
@@ -17,4 +19,10 @@ declare(strict_types = 1);
  */
 function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
   _oe_theme_content_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_person_photo');
+
+  if (empty($variables['image'])) {
+    // Set default image.
+    $image_path = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    $variables['image'] = ImageValueObject::fromArray(['src' => $image_path]);
+  }
 }
