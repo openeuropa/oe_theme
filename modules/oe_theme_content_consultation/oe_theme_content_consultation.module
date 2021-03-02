@@ -71,7 +71,7 @@ function oe_theme_content_consultation_preprocess_oe_theme_helper_in_page_naviga
   if ($variables['entity']->get('oe_consultation_contacts')->count() > 1) {
     foreach ($variables['items'] as $index => $item) {
       if ($item['label'] === (string) t('Contact')) {
-        $variables['links'][$index]['label'] = t('Contacts');
+        $variables['items'][$index]['label'] = t('Contacts');
       }
     }
   }
