@@ -2,7 +2,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.full
     - field.field.node.oe_organisation.body
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
@@ -23,6 +22,7 @@ third_party_settings:
   field_group:
     group_in_page_navigation:
       children:
+        - oe_organisation_logo
         - group_description
         - group_contact
       parent_name: ''
@@ -81,6 +81,14 @@ content:
     third_party_settings: {  }
     type: entity_reference_revisions_entity_view
     region: content
+  oe_organisation_logo:
+    type: entity_reference_label
+    weight: 0
+    region: content
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
 hidden:
   extra_field_oe_theme_content_organisation_teaser_details: true
   extra_field_oe_theme_helper_short_title_with_fallback: true
@@ -92,7 +100,6 @@ hidden:
   oe_organisation_acronym: true
   oe_organisation_eu_org: true
   oe_organisation_eu_org_type: true
-  oe_organisation_logo: true
   oe_organisation_non_eu_org_type: true
   oe_organisation_org_type: true
   oe_summary: true

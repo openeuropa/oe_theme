@@ -11,7 +11,6 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\Core\Render\Element;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
@@ -226,17 +225,19 @@ function oe_theme_helper_locale_translation_projects_alter(&$projects) {
  *
  * @param array $variables
  *   An array of variables.
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Entity to be used to get media.
+ * @param string $field_name
+ *   Field name.
+ *
  */
-function _oe_theme_helper_prepare_oe_theme_helper_in_page_navigation_with_image(array &$variables, $field_name): void {
-  /** @var \Drupal\node\NodeInterface $node */
-  $node = $variables['entity'];
-
-  if ($node->get($field_name)->isEmpty()) {
+function _oe_theme_helper_prepare_image_from_media_field(array &$variables, EntityInterface $entity, string $field_name): void {
+  if ($entity->get($field_name)->isEmpty()) {
     return;
   }
 
   /** @var \Drupal\media\Entity\Media $media */
-  $media = $node->get($field_name)->entity;
+  $media = $entity->get($field_name)->entity;
 
   if (!$media instanceof MediaInterface) {
     // The media entity is not available anymore, bail out.

@@ -7,3 +7,9 @@
   @extend .ecl-u-bg-blue-5;
   padding: $ecl-spacing-s;
 }
+
+.ecl-description-list--horizontal {
+  p {
+    margin: 0;
+  }
+}

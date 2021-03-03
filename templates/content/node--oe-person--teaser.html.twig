@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme to display a Person node in the teaser view mode.
+ */
+#}
+{#
+{% set image_url = content.oe_organisation_logo|field_value|render %}
+#}
+{{ pattern('list_item', {
+  'variant': 'thumbnail_secondary',
+  'url': url,
+  'meta': meta,
+  'title': label,
+  'detail': content.oe_teaser|field_value,
+  'additional_information': [
+    content.group_organisation,
+    content.oe_person_contacts,
+    content.oe_person_jobs,
+  ],
+  'image': image.src ? { 'src': image.src }
+}) }}

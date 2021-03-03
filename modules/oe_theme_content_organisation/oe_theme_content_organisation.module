@@ -16,5 +16,5 @@ declare(strict_types = 1);
  *   An array of variables.
  */
 function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation__node__oe_organisation(array &$variables): void {
-  _oe_theme_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_organisation_logo');
+  _oe_theme_helper_prepare_image_from_media_field($variables, $variables['entity'], 'oe_organisation_logo');
 }

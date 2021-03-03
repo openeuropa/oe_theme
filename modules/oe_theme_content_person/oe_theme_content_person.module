@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
  * Prepares variables for in-page navigation.
@@ -20,7 +21,14 @@ use Drupal\oe_theme\ValueObject\ImageValueObject;
  *   An array of variables.
  */
 function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
-  _oe_theme_helper_prepare_oe_theme_helper_in_page_navigation_with_image($variables, 'oe_person_photo');
+  _oe_theme_content_person_prepare_image($variables, $variables['entity']);
+}
+
+/**
+ * Prepares portrait image for the person.
+ */
+function _oe_theme_content_person_prepare_image(&$variables, $entity): void {
+  _oe_theme_helper_prepare_image_from_media_field($variables, $entity, 'oe_person_photo');
 
   if (empty($variables['image'])) {
     // Set default image.
@@ -32,11 +40,34 @@ function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_content_person_preprocess_field__node__oe_person_organisation__oe_person__full(&$variables) {
+function oe_theme_content_person_preprocess_field__node__oe_person_organisation__oe_person(&$variables) {
   foreach ($variables['items'] as $key => $item) {
     $node = $variables['items'][$key]['content']['#node'];
     $variables['items'][$key]['content'] = [
       '#markup' => $node->label(),
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_person_preprocess_field__node__oe_person_jobs__oe_person__teaser(&$variables) {
+  // Prepare person jobs to be shown in the field list pattern.
+  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('oe_person_job');
+  foreach ($variables['items'] as $key => $item) {
+    $person_job = $variables['items'][$key]['content']['#oe_person_job'];
+    // Body has to be filled with at least empty space. Otherwise whole line
+    // will be hidden.
+    $body = ' ';
+    if (!$person_job->get('oe_description')->isEmpty()) {
+      $body = $view_builder->viewField($person_job->get('oe_description'), [
+        'label' => 'hidden',
+      ]);
+    }
+    $variables['items'][$key] = [
+      'label' => $person_job->label(),
+      'body' => $body,
     ];
   }
 }
@@ -49,10 +80,21 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
     return;
   }
 
-  if ($build['#view_mode'] === 'full') {
+  if (in_array($build['#view_mode'], ['full', 'teaser'])) {
     // Override field labels.
     if ($entity->get('oe_departments')->count() === 1) {
       $build['oe_departments']['#title'] = t('Department');
     }
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_person_preprocess_node__oe_person__teaser(&$variables) {
+  $node = $variables['elements']['#node'];
+  $node_wrapper = PersonNodeWrapper::getInstance($node);
+  $variables['meta'] = $node_wrapper->getPersonJobLabels();
+
+  _oe_theme_content_person_prepare_image($variables, $node);
 }

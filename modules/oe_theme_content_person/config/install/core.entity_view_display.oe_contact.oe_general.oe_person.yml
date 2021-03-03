@@ -1,0 +1,115 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.oe_contact.oe_person
+    - field.field.oe_contact.oe_general.oe_address
+    - field.field.oe_contact.oe_general.oe_body
+    - field.field.oe_contact.oe_general.oe_email
+    - field.field.oe_contact.oe_general.oe_fax
+    - field.field.oe_contact.oe_general.oe_image
+    - field.field.oe_contact.oe_general.oe_mobile
+    - field.field.oe_contact.oe_general.oe_office
+    - field.field.oe_contact.oe_general.oe_organisation
+    - field.field.oe_contact.oe_general.oe_phone
+    - field.field.oe_contact.oe_general.oe_press_contact_url
+    - field.field.oe_contact.oe_general.oe_social_media
+    - field.field.oe_contact.oe_general.oe_website
+    - oe_content_entity_contact.oe_contact_type.oe_general
+  module:
+    - address
+    - field_group
+    - oe_theme_helper
+third_party_settings:
+  field_group:
+    group_contact_information:
+      children:
+        - oe_email
+        - oe_phone
+        - oe_mobile
+        - oe_fax
+        - oe_address
+        - oe_office
+        - oe_social_media
+      parent_name: ''
+      weight: 0
+      format_type: oe_theme_helper_field_list_pattern
+      region: content
+      format_settings:
+        variant: horizontal
+        classes: ''
+        id: ''
+      label: 'Contact information'
+id: oe_contact.oe_general.oe_person
+targetEntityType: oe_contact
+bundle: oe_general
+mode: oe_person
+content:
+  oe_address:
+    weight: 8
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+    region: content
+  oe_email:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: email_mailto
+    region: content
+  oe_fax:
+    type: string
+    weight: 7
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_mobile:
+    type: string
+    weight: 6
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_office:
+    type: string
+    weight: 9
+    region: content
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  oe_phone:
+    weight: 5
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  oe_social_media:
+    type: oe_theme_helper_social_media_icons_list_formatter
+    weight: 10
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  name: true
+  oe_body: true
+  oe_image: true
+  oe_organisation: true
+  oe_press_contact_url: true
+  oe_website: true
+  status: true

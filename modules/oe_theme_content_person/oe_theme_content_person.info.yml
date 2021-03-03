@@ -16,5 +16,10 @@ config_devel:
   install:
     - core.entity_view_display.node.oe_person.full
     - core.entity_view_display.node.oe_person.teaser
+    - core.entity_view_display.node.oe_organisation.oe_person_oe_contact
+    - core.entity_view_display.oe_contact.oe_general.oe_person
+    - core.entity_view_display.oe_contact.oe_organisation_reference.oe_person
     - core.entity_view_display.oe_person_job.default.full
+    - core.entity_view_mode.node.oe_person_oe_contact
+    - core.entity_view_mode.oe_contact.oe_person
     - core.entity_view_mode.oe_person_job.full
