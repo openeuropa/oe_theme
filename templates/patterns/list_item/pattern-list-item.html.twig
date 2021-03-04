@@ -68,7 +68,10 @@
     {% block additional_information %}
       {% if additional_information is not empty %}
         {% for item in additional_information %}
-          <div class="ecl-content-item__additional_information ecl-u-mb-s">{{ item }}</div>
+          {% set item = item|render %}
+          {% if item|trim is not empty %}
+            <div class="ecl-content-item__additional_information ecl-u-mb-s">{{ item }}</div>
+          {% endif %}
         {% endfor %}
       {% endif %}
     {% endblock %}

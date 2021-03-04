@@ -241,8 +241,9 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertAdditionalInformation($expected, Crawler $crawler): void {
     $additional_information_item_selector = 'div.ecl-content-item__additional_information';
-    if (!$expected) {
+    if (is_null($expected)) {
       $this->assertElementNotExists($additional_information_item_selector, $crawler);
+      return;
     }
     $additional_information_items = $crawler->filter($additional_information_item_selector);
     self::assertCount(count($expected), $additional_information_items);
