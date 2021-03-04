@@ -66,7 +66,7 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @param string $caption
    *   Caption for the gallery item.
    * @param string $meta
-   *   Caption for the gallery item.
+   *   Meta for the gallery item, such as a copyright note.
    */
   private function __construct(ValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '') {
     $this->caption = $caption;
@@ -151,6 +151,11 @@ class GalleryItemValueObject extends ValueObjectBase {
    * {@inheritdoc}
    */
   public function getArray(): array {
+    // Image media items are displayed using the image passed as thumbnail.
+    // This is due to the fact that the ECL gallery component does not yet
+    // support having a low and high resolution version of the same image.
+    // This makes it so that, for images, the source property is effectively
+    // ignored, while it is used for videos.
     $values = [
       'image' => $this->getThumbnail()->getArray(),
       'description' => $this->getCaption(),
