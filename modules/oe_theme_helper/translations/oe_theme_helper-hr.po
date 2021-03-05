@@ -276,3 +276,36 @@ msgstr "Povezana služba"
 
 msgid "Related departments"
 msgstr "Povezane službe"
+
+msgid "Consultation"
+msgstr "Savjetovanje"
+
+msgid "Deadline"
+msgstr "Rok"
+
+msgid "Respond to the questionnaire"
+msgstr "Odgovorite na upitnik"
+
+msgid "Respond to the consultation"
+msgstr "Sudjelujte u savjetovanju"
+
+msgid "Target audience"
+msgstr "Ciljna publika"
+
+msgid "Why we are consulting"
+msgstr "Zašto provodimo savjetovanje?"
+
+msgid "Consultation outcome"
+msgstr "Rezultati savjetovanja"
+
+msgid "Additional information"
+msgstr "Dodatne informacije"
+
+msgid "Reference documents"
+msgstr "Referentni dokumenti"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Isteklo je razdoblje za sudjelovanje u ovom savjetovanju. Hvala vam na doprinosu."
+
+msgid "Status: @label"
+msgstr "Status: @label"

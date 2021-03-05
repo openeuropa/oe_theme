@@ -276,3 +276,36 @@ msgstr "Beteiligte dienststelle"
 
 msgid "Related departments"
 msgstr "Beteiligte Dienststellen"
+
+msgid "Consultation"
+msgstr "Konsultation"
+
+msgid "Deadline"
+msgstr "Endet am"
+
+msgid "Respond to the questionnaire"
+msgstr "Fragebogen beantworten"
+
+msgid "Respond to the consultation"
+msgstr "An Konsultation teilnehmen"
+
+msgid "Target audience"
+msgstr "Zielgruppe"
+
+msgid "Why we are consulting"
+msgstr "Zweck der Konsultation"
+
+msgid "Consultation outcome"
+msgstr "Konsultationsergebnis"
+
+msgid "Additional information"
+msgstr "Zusätzliche Informationen"
+
+msgid "Reference documents"
+msgstr "Referenzdokumente"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Die Teilnahmefrist für diese Konsultation ist abgelaufen. Danke für Ihren Beitrag."
+
+msgid "Status: @label"
+msgstr "Status: @label"

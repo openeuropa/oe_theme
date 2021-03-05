@@ -276,3 +276,36 @@ msgstr "Dipartiment relatat"
 
 msgid "Related departments"
 msgstr "Dipartimenti relatati"
+
+msgid "Consultation"
+msgstr "Konsultazzjoni"
+
+msgid "Deadline"
+msgstr "Skadenza"
+
+msgid "Respond to the questionnaire"
+msgstr "Wieġeb il-kwestjonarju"
+
+msgid "Respond to the consultation"
+msgstr "Wieġeb il-konsultazzjoni"
+
+msgid "Target audience"
+msgstr "Udjenza fil-mira"
+
+msgid "Why we are consulting"
+msgstr "Għaliex qed nagħmlu din il-konsultazzjoni"
+
+msgid "Consultation outcome"
+msgstr "Eżitu tal-konsultazzjoni"
+
+msgid "Additional information"
+msgstr "Tagħrif addizzjonali"
+
+msgid "Reference documents"
+msgstr "Dokumenti ta’ referenza"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Il-perjodu biex tirrispondi għal din il-konsultazzjoni ntemm. Nirringrazzjawk tal-kontribut tiegħek."
+
+msgid "Status: @label"
+msgstr "Status: @label"

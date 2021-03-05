@@ -276,3 +276,36 @@ msgstr "Povezani oddelek"
 
 msgid "Related departments"
 msgstr "Povezani oddelki"
+
+msgid "Consultation"
+msgstr "Posvetovanje"
+
+msgid "Deadline"
+msgstr "Rok"
+
+msgid "Respond to the questionnaire"
+msgstr "Odgovorite na vprašalnik"
+
+msgid "Respond to the consultation"
+msgstr "Sodelujte v posvetovanju"
+
+msgid "Target audience"
+msgstr "Ciljna skupina"
+
+msgid "Why we are consulting"
+msgstr "Namen posvetovanja"
+
+msgid "Consultation outcome"
+msgstr "Rezultati posvetovanja"
+
+msgid "Additional information"
+msgstr "Dodatne informacije"
+
+msgid "Reference documents"
+msgstr "Referenčni dokumenti"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Posvetovanje je končano. Zahvaljujemo se vam za sodelovanje."
+
+msgid "Status: @label"
+msgstr "Status: @label"
