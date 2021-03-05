@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Teaser template implementation for "Consultation" content type.
+ */
+#}
+{{ pattern('list_item', {
+  'variant': 'default',
+  'url': url,
+  'title': label,
+  'meta': [
+    content.extra_field_oe_consultation_label_status|field_value,
+  ],
+  'additional_information': [
+    content.group_details,
+  ],
+}) }}

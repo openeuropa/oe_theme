@@ -276,3 +276,36 @@ msgstr "Betrokken departement"
 
 msgid "Related departments"
 msgstr "Betrokken departementen"
+
+msgid "Consultation"
+msgstr "Raadpleging"
+
+msgid "Deadline"
+msgstr "Deadline"
+
+msgid "Respond to the questionnaire"
+msgstr "Vragenlijst beantwoorden"
+
+msgid "Respond to the consultation"
+msgstr "Meedoen aan raadpleging"
+
+msgid "Target audience"
+msgstr "Doelgroep"
+
+msgid "Why we are consulting"
+msgstr "Waarom deze raadpleging?"
+
+msgid "Consultation outcome"
+msgstr "Resultaten raadpleging"
+
+msgid "Additional information"
+msgstr "Aanvullende informatie"
+
+msgid "Reference documents"
+msgstr "Referentiedocumenten"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "De termijn om deel te nemen aan deze raadpleging is verstreken. Hartelijk dank voor uw bijdrage."
+
+msgid "Status: @label"
+msgstr "Status: @label"

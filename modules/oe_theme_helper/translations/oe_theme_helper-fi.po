@@ -276,3 +276,36 @@ msgstr "Vastaava osasto"
 
 msgid "Related departments"
 msgstr "Vastaavat osastot"
+
+msgid "Consultation"
+msgstr "Kuuleminen"
+
+msgid "Deadline"
+msgstr "Määräaika"
+
+msgid "Respond to the questionnaire"
+msgstr "Vastaa kuulemiskyselyyn"
+
+msgid "Respond to the consultation"
+msgstr "Vastaa kuulemiseen"
+
+msgid "Target audience"
+msgstr "Kohderyhmä"
+
+msgid "Why we are consulting"
+msgstr "Kuulemisen tarkoitus"
+
+msgid "Consultation outcome"
+msgstr "Kuulemisen tulokset"
+
+msgid "Additional information"
+msgstr "Lisätietoja"
+
+msgid "Reference documents"
+msgstr "Viiteasiakirjat"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Tämän kuulemisen vastausaika on päättynyt. Kiitos palautteesta."
+
+msgid "Status: @label"
+msgstr "Tila: @label"

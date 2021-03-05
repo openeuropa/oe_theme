@@ -276,3 +276,36 @@ msgstr "Zapojený útvar"
 
 msgid "Related departments"
 msgstr "Zapojené útvary"
+
+msgid "Consultation"
+msgstr "Konzultace"
+
+msgid "Deadline"
+msgstr "Lhůta"
+
+msgid "Respond to the questionnaire"
+msgstr "Zúčastnit se konzultace"
+
+msgid "Respond to the consultation"
+msgstr "Zúčastnit se konzultace"
+
+msgid "Target audience"
+msgstr "Cílová skupina"
+
+msgid "Why we are consulting"
+msgstr "Proč se konzultace koná"
+
+msgid "Consultation outcome"
+msgstr "Výsledek konzultace"
+
+msgid "Additional information"
+msgstr "Další informace"
+
+msgid "Reference documents"
+msgstr "Referenční dokumenty"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Lhůta pro zasílání odpovědí na tuto konzultaci skončila. Děkujeme vám za vyplnění dotazníku."
+
+msgid "Status: @label"
+msgstr "Status: @label"

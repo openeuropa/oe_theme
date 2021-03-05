@@ -276,3 +276,36 @@ msgstr "Roinn ghaolmhar"
 
 msgid "Related departments"
 msgstr "Ranna gaolmhara"
+
+msgid "Consultation"
+msgstr "Comhairliúchán"
+
+msgid "Deadline"
+msgstr "Sprioc-am"
+
+msgid "Respond to the questionnaire"
+msgstr "Tabhair freagra ar an gceistneoir"
+
+msgid "Respond to the consultation"
+msgstr "Tabhair freagra ar an gcomhairliúchán"
+
+msgid "Target audience"
+msgstr "Spriocphobal"
+
+msgid "Why we are consulting"
+msgstr "An fáth a bhfuil comhairliúchán ar bun againn"
+
+msgid "Consultation outcome"
+msgstr "Toradh an chomhairliúcháin"
+
+msgid "Additional information"
+msgstr "Eolas breise"
+
+msgid "Reference documents"
+msgstr "Doiciméid tagartha"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Tá an tréimhse istigh chun an comhairliúchán seo a fhreagairt. Go raibh maith agat as d'ionchur."
+
+msgid "Status: @label"
+msgstr "Stádas: @label"
