@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
@@ -167,7 +168,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
    *   Contact entity.
    */
-  protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
+  protected function createContactEntity(string $name, string $bundle, int $status = CorporateEntityInterface::PUBLISHED): ContactInterface {
     // Create image for contact.
     $media = $this->createMediaImage($name);
 

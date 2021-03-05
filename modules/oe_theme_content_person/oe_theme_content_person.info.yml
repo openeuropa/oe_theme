@@ -10,6 +10,7 @@ dependencies:
   - oe_content:oe_content_person
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
+  - oe_theme:oe_theme_content_organisation_reference
   - oe_theme:oe_theme_content_sub_entity_document_reference
 
 config_devel:
