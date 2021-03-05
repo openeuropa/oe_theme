@@ -17,7 +17,6 @@ dependencies:
     - field.field.oe_contact.oe_general.oe_website
     - oe_content_entity_contact.oe_contact_type.oe_general
   module:
-    - address
     - field_group
     - oe_theme_helper
 third_party_settings:
@@ -48,9 +47,10 @@ content:
   oe_address:
     weight: 8
     label: hidden
-    settings: {  }
+    settings:
+      delimiter: ', '
     third_party_settings: {  }
-    type: address_default
+    type: oe_theme_helper_address_inline
     region: content
   oe_email:
     weight: 4

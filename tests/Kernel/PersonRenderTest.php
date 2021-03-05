@@ -169,7 +169,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Fax number direct_contact',
         ], [
           'label' => 'Address',
-          'body' => 'Address direct_contact1001BrusselsBelgium',
+          'body' => 'Address direct_contact, 1001 Brussels, Belgium',
         ], [
           'label' => 'Office',
           'body' => 'Office direct_contact',
@@ -210,7 +210,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Fax number organisation_reference_contact',
         ], [
           'label' => 'Address',
-          'body' => 'Address organisation_reference_contact1001BrusselsBelgium',
+          'body' => 'Address organisation_reference_contact, 1001 Brussels, Belgium',
         ], [
           'label' => 'Office',
           'body' => 'Office organisation_reference_contact',
@@ -300,7 +300,7 @@ class PersonRenderTest extends ContentRenderTestBase {
               'body' => 'Fax number direct_contact',
             ], [
               'label' => 'Address',
-              'body' => 'Address direct_contact1001BrusselsBelgium',
+              'body' => 'Address direct_contact, 1001 Brussels, Belgium',
             ], [
               'label' => 'Office',
               'body' => 'Office direct_contact',
