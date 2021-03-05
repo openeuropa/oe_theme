@@ -5,15 +5,18 @@
  */
 #}
 {% set image_url = content.oe_publication_thumbnail|field_value|render %}
-{{ pattern('list_item', {
-  'variant': 'thumbnail_secondary',
-  'url': url,
-  'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
-  'meta': [
-    content.oe_publication_type,
-    content.oe_publication_date|field_value,
-    content.oe_author
-  ],
-  'detail': content.oe_teaser|field_value,
-  'image': image_url ? { 'src': image_url }
-}) }}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'thumbnail_secondary',
+    'url': url,
+    'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
+    'meta': [
+      content.oe_publication_type,
+      content.oe_publication_date|field_value,
+      content.oe_author
+    ],
+    'detail': content.oe_teaser|field_value,
+    'image': image_url ? { 'src': image_url },
+    'additional_information': additional_information
+  }) }}
+{% endblock %}

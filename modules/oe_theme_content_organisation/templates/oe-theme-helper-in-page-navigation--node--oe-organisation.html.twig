@@ -10,7 +10,6 @@
 
 {# Replace block navigation #}
 {% block navigation %}
-<div class="ecl-col-12 ecl-col-lg-3">
   {% if image %}
   <div class="ecl-u-mb-l">
     {% include '@ecl-twig/media-container' with {
@@ -27,5 +26,4 @@
       'icon_path': ecl_icon_path
     } %}
   {% endif %}
-</div>
 {% endblock %}
