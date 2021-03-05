@@ -28,7 +28,7 @@ content:
     region: content
     label: hidden
     settings:
-      view_mode: person
+      view_mode: oe_person
       link: ''
     third_party_settings: {  }
 hidden:
