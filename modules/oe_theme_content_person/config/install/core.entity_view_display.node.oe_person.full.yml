@@ -59,7 +59,7 @@ third_party_settings:
       children:
         - oe_person_contacts
       parent_name: group_in_page_navigation
-      weight: 22
+      weight: 2
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -70,7 +70,7 @@ third_party_settings:
       children:
         - oe_person_jobs
       parent_name: group_in_page_navigation
-      weight: 23
+      weight: 3
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -82,7 +82,7 @@ third_party_settings:
         - oe_person_transparency_intro
         - oe_person_transparency_links
       parent_name: group_in_page_navigation
-      weight: 25
+      weight: 5
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -96,7 +96,7 @@ third_party_settings:
         - oe_person_cv
         - group_declaration
       parent_name: group_in_page_navigation
-      weight: 26
+      weight: 6
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -107,7 +107,7 @@ third_party_settings:
       children:
         - oe_person_documents
       parent_name: group_in_page_navigation
-      weight: 27
+      weight: 7
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -118,7 +118,7 @@ third_party_settings:
       children:
         - oe_social_media_links
       parent_name: group_in_page_navigation
-      weight: 24
+      weight: 4
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -137,7 +137,7 @@ third_party_settings:
         element: div
         show_label: true
         label_element: h3
-        label_element_classes: ''
+        label_element_classes: ecl-u-type-heading-3
         attributes: ''
         effect: none
         speed: fast
@@ -161,7 +161,7 @@ third_party_settings:
       children:
         - group_details
       parent_name: group_in_page_navigation
-      weight: 20
+      weight: 1
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:

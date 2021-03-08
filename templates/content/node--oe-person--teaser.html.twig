@@ -18,5 +18,5 @@
     content.oe_person_contacts,
     content.oe_person_jobs,
   ],
-  'image': image.src ? { 'src': image.src }
+  'image': content.portrait_image ? { 'src': content.portrait_image|render }
 }) }}

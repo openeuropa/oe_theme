@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Behat\Mink\Element\NodeElement;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -14,6 +15,7 @@ use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -144,15 +146,16 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $general_contact = $this->createContactEntity('direct_contact', 'oe_general');
     $node->set('oe_person_contacts', $general_contact)->save();
     $this->drupalGet($node->toUrl());
+
     $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
-    $assert = new InPageNavigationAssert();
-    $expected_values = [
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
         ['label' => 'Contact', 'href' => '#contact'],
       ],
     ];
-    $assert->assertPattern($expected_values, $navigation->getOuterHtml());
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
@@ -170,6 +173,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       $organisation_reference_contact,
     ])->save();
     $this->drupalGet($node->toUrl());
+
     $content_items = $content->findAll('xpath', '/div');
     $contacts_content = $content_items[1]->findAll('xpath', '//div[@class="ecl-expandable__content"]/div');
     $this->assertEquals(2, count($contacts_content));
@@ -177,6 +181,191 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertContactEntityDefaultDisplay($contacts_content[0], 'direct_contact');
     $this->assertEmpty($contacts_content[1]->getAttribute('class'));
     $this->assertContactEntityDefaultDisplay($contacts_content[1], 'organisation_reference_contact');
+
+    // Assert Jobs field.
+    $job_1 = $this->createPersonJobEntity('job_1', [
+      'oe_acting' => TRUE,
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/MEMBER',
+    ]);
+    $node->set('oe_person_jobs', $job_1)->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Responsibilities',
+      'href' => '#responsibilities',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(3, $content_items);
+    $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
+    $job_role_content = $content_items[2]->find('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertEquals('(Acting) Member', $job_role_content->getText());
+    $job_description_content = $content_items[2]->find('css', 'div.ecl-u-mb-l.ecl-editor');
+    $this->assertEquals('Description job_1', $job_description_content->getText());
+
+    // Assert Jobs field with multiple values.
+    $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/ADVOC']);
+    $node->set('oe_person_jobs', [$job_1, $job_2])->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertEquals('Advocate', $job_role_items[1]->getText());
+    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl-editor');
+    $this->assertEquals('Description job_2', $job_description_items[1]->getText());
+
+    // Assert Social media links field.
+    $node->set('oe_social_media_links', [
+      [
+        'uri' => 'https://fb.com/person',
+        'title' => 'Person Facebook',
+        'link_type' => 'facebook',
+      ], [
+        'uri' => 'https://linkedin.com/person',
+        'title' => 'Person LinkedIn',
+        'link_type' => 'linkedin',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Media',
+      'href' => '#media',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
+    $this->assertContentHeader($content_items[3], 'Media', 'media');
+
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Follow the latest progress and learn more about getting involved.',
+      'links' => [
+        [
+          'service' => 'facebook',
+          'label' => 'Person Facebook',
+          'url' => 'https://fb.com/person',
+        ], [
+          'service' => 'linkedin',
+          'label' => 'Person LinkedIn',
+          'url' => 'https://linkedin.com/person',
+        ],
+      ],
+    ];
+    $social_media_content = $content_items[3]->find('css', '.ecl-social-media-follow');
+    $social_links_assert->assertPattern($social_links_expected_values, $social_media_content->getOuterHtml());
+    $social_links_assert->assertVariant('horizontal', $social_media_content->getOuterHtml());
+
+    // Assert Transparency introduction field.
+    $node->set('oe_person_transparency_intro', 'Transparency introduction text')->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Transparency',
+      'href' => '#transparency',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(5, $content_items);
+    $this->assertContentHeader($content_items[4], 'Transparency', 'transparency');
+    $transparancy_intro_content = $content_items[4]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $this->assertEquals('Transparency introduction text', $transparancy_intro_content->getText());
+
+    // Assert Transparency links field.
+    $node->set('oe_person_transparency_links', [
+      [
+        'uri' => 'http://example.com/link_1',
+        'title' => 'Person link 1',
+      ], [
+        'uri' => 'http://example.com/link_2',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $transparency_links_items = $content_items[4]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-grey-15 a');
+    $this->assertCount(2, $transparency_links_items);
+    $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
+    $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
+    $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getAttribute('href'));
+    $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getText());
+
+    // Assert Biography introduction field.
+    $node->set('oe_person_biography_intro', 'Biography introduction text')->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Biography',
+      'href' => '#biography',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(6, $content_items);
+    $this->assertContentHeader($content_items[5], 'Biography', 'biography');
+    $biography_content = $content_items[5]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $this->assertEquals('Biography introduction text', $biography_content->getText());
+
+    // Assert Biography field.
+    $node->set('oe_person_biography_timeline', [
+      [
+        'label' => 'Timeline label 1',
+        'title' => 'Timeline title 1',
+        'body' => 'Timeline body 1',
+      ], [
+        'label' => 'Timeline label 2',
+        'title' => 'Timeline title 2',
+      ], [
+        'label' => 'Timeline label 3',
+        'body' => 'Timeline body 3',
+      ], [
+        'title' => 'Timeline title 4',
+        'body' => 'Timeline body 4',
+      ], [
+        'title' => 'Timeline title 5',
+      ], [
+        'body' => 'Timeline body 6',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $biography_items = $content_items[5]->findAll('css', 'ol.ecl-timeline2 li.ecl-timeline2__item');
+    $this->assertCount(6, $biography_items);
+    $this->assertTimelineItem($biography_items[0], 'Timeline label 1', 'Timeline title 1', 'Timeline body 1');
+    $this->assertTimelineItem($biography_items[1], 'Timeline label 2', 'Timeline title 2', '');
+    $this->assertTimelineItem($biography_items[2], 'Timeline label 3', '', 'Timeline body 3');
+    $this->assertTimelineItem($biography_items[3], '', 'Timeline title 4', 'Timeline body 4');
+    $this->assertTimelineItem($biography_items[4], '', 'Timeline title 5', '');
+    $this->assertTimelineItem($biography_items[5], '', '', 'Timeline body 6');
+
+    // Assert CV upload field.
+    $cv_media_document = $this->createMediaDocument('cv_upload');
+    $node->set('oe_person_cv', $cv_media_document)->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertMediaDocumentDefaultRender($content_items[5], 'cv_upload');
+
+    // Assert Declaration of interests introduction field.
+    $node->set('oe_person_interests_intro', 'Declaration of interests introduction text')->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertEquals('Declaration of interests', $content_items[5]->find('css', 'h3.ecl-u-type-heading-3')->getText());
+    $this->assertEquals('Declaration of interests introduction text', $content_items[5]->find('css', 'div.ecl-u-mb-l.ecl-editor')->getText());
+
+    // Assert Declaration of interests file field.
+    $cv_media_document = $this->createMediaDocument('declaration');
+    $node->set('oe_person_interests_file', $cv_media_document)->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $declaration_items = $content_items[5]->findAll('xpath', '/div');
+    $this->assertMediaDocumentDefaultRender($declaration_items[2], 'declaration');
   }
 
   /**
@@ -248,6 +437,24 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->save();
 
     return $node;
+  }
+
+  /**
+   * Asserts rendering of timeline item.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $label
+   *   Expected label.
+   * @param string $title
+   *   Expected title.
+   * @param string $body
+   *   Expected body.
+   */
+  protected function assertTimelineItem(NodeElement $element, string $label, string $title, string $body):void {
+    $this->assertEquals($label, $element->find('css', '.ecl-timeline2__label')->getText());
+    $this->assertEquals($title, $element->find('css', '.ecl-timeline2__title')->getText());
+    $this->assertEquals($body, $element->find('css', '.ecl-timeline2__content')->getText());
   }
 
 }

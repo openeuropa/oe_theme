@@ -26,10 +26,12 @@ dependencies:
     - field.field.node.oe_person.oe_subject
     - field.field.node.oe_person.oe_summary
     - field.field.node.oe_person.oe_teaser
+    - image.style.oe_theme_medium_no_crop
     - node.type.oe_person
   module:
     - entity_reference_revisions
     - field_group
+    - oe_theme_helper
     - rdf_skos
     - user
 third_party_settings:
@@ -87,6 +89,14 @@ content:
       view_mode: default
       link: ''
     third_party_settings: {  }
+  oe_person_photo:
+    type: oe_theme_helper_media_thumbnail_url
+    weight: 3
+    region: content
+    label: hidden
+    settings:
+      image_style: oe_theme_medium_no_crop
+    third_party_settings: {  }
 hidden:
   extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
@@ -106,7 +116,6 @@ hidden:
   oe_person_interests_intro: true
   oe_person_last_name: true
   oe_person_media: true
-  oe_person_photo: true
   oe_person_transparency_intro: true
   oe_person_transparency_links: true
   oe_person_type: true

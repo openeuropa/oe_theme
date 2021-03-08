@@ -21,14 +21,7 @@ use Drupal\oe_content_person\PersonNodeWrapper;
  *   An array of variables.
  */
 function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
-  _oe_theme_content_person_prepare_image($variables, $variables['entity']);
-}
-
-/**
- * Prepares portrait image for the person.
- */
-function _oe_theme_content_person_prepare_image(&$variables, $entity): void {
-  _oe_theme_helper_prepare_image_from_media_field($variables, $entity, 'oe_person_photo');
+  _oe_theme_helper_prepare_image_from_media_field($variables, $variables['entity'], 'oe_person_photo');
 
   if (empty($variables['image'])) {
     // Set default image.
@@ -86,6 +79,14 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
       $build['oe_departments']['#title'] = t('Department');
     }
   }
+
+  if ($build['#view_mode'] === 'teaser') {
+    // Set default image for Portrait.
+    $build['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    if (!empty($build['oe_person_photo'][0]['#markup'])) {
+      $build['portrait_image'] = $build['oe_person_photo'][0];
+    }
+  }
 }
 
 /**
@@ -95,6 +96,4 @@ function oe_theme_content_person_preprocess_node__oe_person__teaser(&$variables)
   $node = $variables['elements']['#node'];
   $node_wrapper = PersonNodeWrapper::getInstance($node);
   $variables['meta'] = $node_wrapper->getPersonJobLabels();
-
-  _oe_theme_content_person_prepare_image($variables, $node);
 }
