@@ -17,7 +17,7 @@ text_featured_media:
     video:
       type: "text"
       label: "Video"
-      description: "Featured video. Needs to be provided as a ready to be rendered string. Either this or the image need to be provided. If both are provided the image will take preference."
+      description: "Embedded video as a renderable iframe (for example by using the 'html_tag' render element). Either this or the image need to be provided. If both are provided the image will take preference."
       preview: ""
     caption:
       type: "text"
