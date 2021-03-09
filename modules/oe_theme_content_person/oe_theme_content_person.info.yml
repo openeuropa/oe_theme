@@ -5,7 +5,6 @@ package: OpenEuropa
 core: 8.x
 
 dependencies:
-  - drupal:datetime
   - extra_field:extra_field
   - oe_content:oe_content_person
   - oe_theme:oe_theme_helper

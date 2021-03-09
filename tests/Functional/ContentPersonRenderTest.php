@@ -14,6 +14,7 @@ use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\user\Entity\Role;
@@ -366,6 +367,75 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $declaration_items = $content_items[5]->findAll('xpath', '/div');
     $this->assertMediaDocumentDefaultRender($declaration_items[2], 'declaration');
+
+    // Assert Articles and publications field.
+    $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference');
+    $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference');
+    $node->set('oe_person_documents', [$document_reference, $publication_reference])->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Articles and presentations',
+      'href' => '#articles-and-presentations',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(7, $content_items);
+    $this->assertMediaDocumentDefaultRender($content_items[6], 'document_reference');
+    $publication_teaser_content = $content_items[6]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $publication_teaser_assert = new ListItemAssert();
+    $publication_teaser_expected_values = [
+      'title' => 'publication_reference',
+      'meta' => "Abstract | 15 April 2020\n | Associated African States and Madagascar",
+      'description' => 'Teaser text',
+    ];
+    $publication_teaser_assert->assertPattern($publication_teaser_expected_values, $publication_teaser_content->getOuterHtml());
+
+    // Assert non-eu person.
+    $job_1->set('oe_role_name', 'Singer');
+    $job_1->set('oe_role_reference', NULL);
+    $job_1->set('oe_acting', NULL)->save();
+    $job_2->set('oe_role_reference', NULL);
+    $job_2->set('oe_role_name', 'Dancer')->save();
+    $node->set('oe_person_type', 'non_eu');
+    $organisation_node = $this->createOrganisationNode('non_eu');
+    $node->set('oe_person_organisation', $organisation_node)->save();
+    $this->drupalGet($node->toUrl());
+
+    $inpage_nav_expected_values['list'] = [
+      ['label' => 'Contact', 'href' => '#contact'],
+      ['label' => 'Responsibilities', 'href' => '#responsibilities'],
+      ['label' => 'Articles and presentations', 'href' => '#articles-and-presentations'],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(4, $content_items);
+    $this->assertContentHeader($content_items[1], 'Contact', 'contact');
+    $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
+    $this->assertContentHeader($content_items[3], 'Articles and presentations', 'articles-and-presentations');
+
+    $organisation_content = $content_items[0]->find('css', '.ecl-description-list');
+    $organisation_content_html = $organisation_content->getOuterHtml();
+    $field_list_assert = new FieldListAssert();
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Organisation',
+          'body' => 'Organisation node non_eu',
+        ],
+      ],
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $organisation_content_html);
+    $field_list_assert->assertVariant('horizontal', $organisation_content_html);
+
+    $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertEquals('Singer', $job_role_items[0]->getText());
+    $this->assertEquals('Dancer', $job_role_items[1]->getText());
+    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl-editor');
+    $this->assertEquals('Description job_1', $job_description_items[0]->getText());
+    $this->assertEquals('Description job_2', $job_description_items[1]->getText());
   }
 
   /**

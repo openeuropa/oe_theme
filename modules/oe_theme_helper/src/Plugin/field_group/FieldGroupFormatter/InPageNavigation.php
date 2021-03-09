@@ -55,7 +55,7 @@ class InPageNavigation extends InPageNavigationBase {
 
       // Choose children In-page navigation item field groups to process
       // in the render element.
-      $element['#items'][$group_name] = [
+      $element['#items'][] = [
         'label' => $group_object->label,
         'content' => $element[$group_name],
       ];

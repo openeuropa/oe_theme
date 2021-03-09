@@ -36,6 +36,8 @@ function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__
 function oe_theme_content_person_preprocess_field__node__oe_person_organisation__oe_person(&$variables) {
   foreach ($variables['items'] as $key => $item) {
     $node = $variables['items'][$key]['content']['#node'];
+    // Since Entity reference revision module doesn't provide formatter to show
+    // label of the referenced entity, we will prepare it here.
     $variables['items'][$key]['content'] = [
       '#markup' => $node->label(),
     ];

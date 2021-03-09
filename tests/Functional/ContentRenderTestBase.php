@@ -9,6 +9,7 @@ use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
+use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -334,7 +335,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
    *   Document reference publication entity.
    */
-  protected function createPublicationDocumentReferenceEntity(string $title, int $status): DocumentReference {
+  protected function createPublicationDocumentReferenceEntity(string $title, int $status = SubEntityInterface::PUBLISHED): DocumentReference {
     $document = $this->createMediaDocument('document');
     /** @var \Drupal\node\Entity\Node $publication */
     $publication = $this->getStorage('node')->create([
@@ -372,7 +373,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @return \Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference
    *   Document reference document entity.
    */
-  protected function createDocumentDocumentReferenceEntity(string $name, int $status): DocumentReference {
+  protected function createDocumentDocumentReferenceEntity(string $name, int $status = SubEntityInterface::PUBLISHED): DocumentReference {
     $document = $this->createMediaDocument($name);
     $document_reference = $this->getStorage('oe_document_reference')->create([
       'type' => 'oe_document',
