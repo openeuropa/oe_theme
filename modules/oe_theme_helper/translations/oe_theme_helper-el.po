@@ -310,3 +310,29 @@ msgstr "Η περίοδος συμμετοχής στην εν λόγω διαβ
 msgid "Status: @label"
 msgstr "Καθεστώς: @label"
 
+msgid "Responsibilities"
+msgstr "Αρμοδιότητες"
+
+msgid "Media"
+msgstr "Μέσα ενημέρωσης"
+
+msgid "Latest"
+msgstr "Επικαιρότητα"
+
+msgid "Transparency"
+msgstr "Διαφάνεια"
+
+msgid "Articles and presentations"
+msgstr "Άρθρα και παρουσιάσεις"
+
+msgid "Biography"
+msgstr "Βιογραφικό"
+
+msgid "Declaration of interests"
+msgstr "Δήλωση συμφερόντων"
+
+msgid "Show contact details"
+msgstr "Εμφάνιση στοιχείων επικοινωνίας"
+
+msgid "Hide contact details"
+msgstr "Απόκρυψη στοιχείων επικοινωνίας"

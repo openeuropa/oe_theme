@@ -310,3 +310,29 @@ msgstr "Konsultatsioonile vastamise tähtaeg on lõppenud. Täname Teid panuse e
 msgid "Status: @label"
 msgstr "Olek: @label"
 
+msgid "Responsibilities"
+msgstr "Vastutusalad"
+
+msgid "Media"
+msgstr "Meedia"
+
+msgid "Latest"
+msgstr "Kõige hiljutisemad"
+
+msgid "Transparency"
+msgstr "Läbipaistvus"
+
+msgid "Articles and presentations"
+msgstr "Artiklid ja esitlused"
+
+msgid "Biography"
+msgstr "Elulugu"
+
+msgid "Declaration of interests"
+msgstr "Huvide deklaratsioon"
+
+msgid "Show contact details"
+msgstr "Näita kontaktandmeid"
+
+msgid "Hide contact details"
+msgstr "Peida kontaktandmed"

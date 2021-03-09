@@ -309,3 +309,30 @@ msgstr "Срокът за участие в тази консултация из
 
 msgid "Status: @label"
 msgstr "Статус: @label"
+
+msgid "Responsibilities"
+msgstr "Отговорности"
+
+msgid "Media"
+msgstr "Медия"
+
+msgid "Latest"
+msgstr "Последни"
+
+msgid "Transparency"
+msgstr "Прозрачност"
+
+msgid "Articles and presentations"
+msgstr "Членове и презентации"
+
+msgid "Biography"
+msgstr "Биография"
+
+msgid "Declaration of interests"
+msgstr "Декларация за интереси"
+
+msgid "Show contact details"
+msgstr "Показване на координати за връзка"
+
+msgid "Hide contact details"
+msgstr "Скриване на координатите за връзка"

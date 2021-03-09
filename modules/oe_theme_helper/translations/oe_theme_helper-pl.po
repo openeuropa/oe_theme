@@ -309,3 +309,30 @@ msgstr "Zakończył się okres udzielania odpowiedzi. Dziękujemy za wypełnieni
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Zakres obowiązków"
+
+msgid "Media"
+msgstr "Multimedia"
+
+msgid "Latest"
+msgstr "Aktualności"
+
+msgid "Transparency"
+msgstr "Przejrzystość"
+
+msgid "Articles and presentations"
+msgstr "Artykuły i prezentacje"
+
+msgid "Biography"
+msgstr "Życiorys"
+
+msgid "Declaration of interests"
+msgstr "Deklaracja interesów"
+
+msgid "Show contact details"
+msgstr "Pokaż dane kontaktowe"
+
+msgid "Hide contact details"
+msgstr "Ukryj dane kontaktowe"

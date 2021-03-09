@@ -309,3 +309,30 @@ msgstr "Il periodo per rispondere alla consultazione è terminato. Grazie della 
 
 msgid "Status: @label"
 msgstr "Stato: @label"
+
+msgid "Responsibilities"
+msgstr "Competenze"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Latest"
+msgstr "Ultimi aggiornamenti"
+
+msgid "Transparency"
+msgstr "Trasparenza"
+
+msgid "Articles and presentations"
+msgstr "Articoli e presentazioni"
+
+msgid "Biography"
+msgstr "Biografia"
+
+msgid "Declaration of interests"
+msgstr "Dichiarazione di interessi"
+
+msgid "Show contact details"
+msgstr "Mostra contatti"
+
+msgid "Hide contact details"
+msgstr "Nascondi i contatti"

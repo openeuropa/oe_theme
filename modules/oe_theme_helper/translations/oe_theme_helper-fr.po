@@ -309,3 +309,30 @@ msgstr "La période de participation à cette consultation est terminée. Merci 
 
 msgid "Status: @label"
 msgstr "Statut: @label"
+
+msgid "Responsibilities"
+msgstr "Responsabilités"
+
+msgid "Media"
+msgstr "Médias"
+
+msgid "Latest"
+msgstr "Actualité"
+
+msgid "Transparency"
+msgstr "Transparence"
+
+msgid "Articles and presentations"
+msgstr "Articles et exposés"
+
+msgid "Biography"
+msgstr "Biographie"
+
+msgid "Declaration of interests"
+msgstr "Déclaration d’intérêts"
+
+msgid "Show contact details"
+msgstr "Afficher les coordonnées"
+
+msgid "Hide contact details"
+msgstr "Masquer les coordonnées"
