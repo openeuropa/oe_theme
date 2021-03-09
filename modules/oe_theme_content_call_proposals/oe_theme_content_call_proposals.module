@@ -37,25 +37,20 @@ function oe_theme_content_call_proposals_node_view_alter(array &$build, EntityIn
   // Field labels are different in frontend and backend.
   // Here we override them, in full and teaser view mode.
   $label_overrides = [];
-  if (in_array($build['#view_mode'], ['full', 'teaser'])
-    && ($entity->get('oe_call_proposals_deadline')->count() > 1)) {
+  if ($entity->get('oe_call_proposals_deadline')->count() > 1) {
     $label_overrides['oe_call_proposals_deadline'] = t('Deadline dates');
   }
 
-  if ($build['#view_mode'] === 'full') {
-    $label_overrides += [
-      'oe_departments' => t('Departments'),
-      'oe_call_proposals_grants' => t('Results'),
-    ];
+  _oe_theme_helper_field_view_label_override($build, $entity, $label_overrides, ['full', 'teaser']);
 
-    if ($entity->get('oe_departments')->count() === 1) {
-      $label_overrides['oe_departments'] = t('Department');
-    }
+  $label_overrides += [
+    'oe_departments' => t('Departments'),
+    'oe_call_proposals_grants' => t('Results'),
+  ];
+
+  if ($entity->get('oe_departments')->count() === 1) {
+    $label_overrides['oe_departments'] = t('Department');
   }
 
-  foreach ($label_overrides as $name => $label_override) {
-    if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
-      $build[$name]['#title'] = $label_override;
-    }
-  }
+  _oe_theme_helper_field_view_label_override($build, $entity, $label_overrides, ['full']);
 }

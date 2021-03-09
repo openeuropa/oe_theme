@@ -41,16 +41,9 @@ function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $e
     return;
   }
 
-  if ($build['#view_mode'] === 'full') {
-    // Rename field labels based on number of items.
-    $plural_label_overrides = [
-      'oe_author' => t('Authors'),
-    ];
-
-    foreach ($plural_label_overrides as $name => $label_override) {
-      if (!$entity->get($name)->isEmpty() && $entity->get($name)->count() > 1 && isset($build[$name]['#title'])) {
-        $build[$name]['#title'] = $label_override;
-      }
-    }
+  $label_overrides = [];
+  if ($entity->get('oe_author')->count() > 1) {
+    $label_overrides['oe_author'] = t('Authors');
   }
+  _oe_theme_helper_field_view_label_override($build, $entity, $label_overrides, ['full']);
 }

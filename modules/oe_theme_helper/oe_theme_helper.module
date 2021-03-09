@@ -210,3 +210,25 @@ function template_preprocess_oe_theme_helper_call_status(array &$variables) {
 function oe_theme_helper_locale_translation_projects_alter(&$projects) {
   $projects['oe_theme_helper']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_theme_helper') . '/translations/%project-%language.po';
 }
+
+/**
+ * Helper function for overriding field labels before rendering.
+ *
+ * @param $build
+ *   The renderable array.
+ * @param EntityInterface $entity
+ *   The entity.
+ * @param $label_overrides
+ *   Array with overridden labels keyed by field name.
+ * @param $display_modes
+ *   Array with display modes.
+ */
+function _oe_theme_helper_field_view_label_override(&$build, EntityInterface $entity, $label_overrides, $display_modes): void {
+  if (in_array($build['#view_mode'], $display_modes)) {
+    foreach ($label_overrides as $name => $label_override) {
+      if ($entity->hasField($name) && !$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
+        $build[$name]['#title'] = $label_override;
+      }
+    }
+  }
+}
