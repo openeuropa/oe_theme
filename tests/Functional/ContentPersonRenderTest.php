@@ -143,9 +143,24 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $department_content->getOuterHtml());
 
+    // Assert Contact field with Organisation reference Contact entity with
+    // Organisation without Contact.
+    $organisation_reference_empty_contact = $this->createContactOrganisationReferenceEntity('organisation_reference', FALSE);
+    $node->set('oe_person_contacts', [
+      $organisation_reference_empty_contact,
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertEquals(1, count($content_items));
+    $this->assertSession()->pageTextNotContains('Page contents');
+
     // Assert Contact field with General Contact entity.
     $general_contact = $this->createContactEntity('direct_contact', 'oe_general');
-    $node->set('oe_person_contacts', $general_contact)->save();
+    $node->set('oe_person_contacts', [
+      $organisation_reference_empty_contact,
+      $general_contact,
+    ])->save();
     $this->drupalGet($node->toUrl());
 
     $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
@@ -170,6 +185,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     // Assert Contact field with Organisation reference Contact entity.
     $organisation_reference_contact = $this->createContactOrganisationReferenceEntity('organisation_reference');
     $node->set('oe_person_contacts', [
+      $organisation_reference_empty_contact,
       $general_contact,
       $organisation_reference_contact,
     ])->save();
@@ -465,12 +481,14 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    *
    * @param string $name
    *   Name of the entity.
+   * @param bool $create_organisation_contact
+   *   TRUE if create Organisation node with optional Contact entity.
    *
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
    *   Contact entity.
    */
-  protected function createContactOrganisationReferenceEntity(string $name): ContactInterface {
-    $organisation_node = $this->createOrganisationNode($name);
+  protected function createContactOrganisationReferenceEntity(string $name, bool $create_organisation_contact = TRUE): ContactInterface {
+    $organisation_node = $this->createOrganisationNode($name, $create_organisation_contact);
 
     $contact = Contact::create([
       'bundle' => 'oe_organisation_reference',
@@ -488,22 +506,27 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    *
    * @param string $name
    *   Name of the entity.
+   * @param bool $create_organisation_contact
+   *   TRUE if create Organisation node with optional Contact entity.
    *
    * @return \Drupal\node\NodeInterface
    *   Node entity.
    */
-  protected function createOrganisationNode(string $name): NodeInterface {
-    $contact = $this->createContactEntity($name . '_contact', 'oe_general');
-
+  protected function createOrganisationNode(string $name, bool $create_organisation_contact = TRUE): NodeInterface {
     $node = Node::create([
       'type' => 'oe_organisation',
       'title' => "Organisation node $name",
       'oe_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
       'oe_organisation_org_type' => 'eu',
       'oe_organisation_eu_org' => 'http://publications.europa.eu/resource/authority/corporate-body/ACM',
-      'oe_organisation_contact' => $contact,
       'status' => 1,
     ]);
+
+    if ($create_organisation_contact) {
+      $contact = $this->createContactEntity($name . '_contact', 'oe_general');
+      $node->set('oe_organisation_contact', $contact);
+    }
+
     $node->save();
 
     return $node;

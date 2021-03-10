@@ -6,6 +6,19 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
+
+{#
+  Since some contact items can be disabled we should render them in advance.
+  See oe_theme_content_person_preprocess_field__node__oe_person_contacts__oe_person__teaser().
+#}
+{% set rendered_items = [] %}
 {% for item in items %}
-  <div{{ not loop.last ? ' class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mb-m ecl-u-pb-m"'}}>{{ item.content }}</div>
+  {% set rendered_content = item.content|render %}
+  {% if rendered_content is not empty %}
+    {% set rendered_items = rendered_items|merge([rendered_content]) %}
+  {% endif %}
+{% endfor %}
+
+{% for rendered_item in rendered_items %}
+  <div{{ not loop.last ? ' class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mb-m ecl-u-pb-m"'}}>{{ rendered_item }}</div>
 {% endfor %}

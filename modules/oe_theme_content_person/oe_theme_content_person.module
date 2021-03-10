@@ -99,3 +99,10 @@ function oe_theme_content_person_preprocess_node__oe_person__teaser(&$variables)
   $node_wrapper = PersonNodeWrapper::getInstance($node);
   $variables['meta'] = $node_wrapper->getPersonJobLabels();
 }
+
+/**
+ * Implements template_preprocess_field().
+ */
+function oe_theme_content_person_preprocess_field__node__oe_person_contacts(array &$variables): void {
+  _oe_theme_content_organisation_reference_display_organisation_contact($variables);
+}
