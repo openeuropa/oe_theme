@@ -21,7 +21,7 @@ use Drupal\oe_content_person\PersonNodeWrapper;
  *   An array of variables.
  */
 function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
-  _oe_theme_helper_prepare_image_from_media_field($variables, $variables['entity'], 'oe_person_photo');
+  _oe_theme_content_organisation_inpage_nav_prepare_image($variables, $variables['entity'], 'oe_person_photo');
 
   if (empty($variables['image'])) {
     // Set default image.

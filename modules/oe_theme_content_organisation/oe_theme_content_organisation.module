@@ -7,14 +7,67 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\file\FileInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\MediaInterface;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
+
 /**
- * Prepares variables for in-page navigation.
- *
- * Default template: oe-theme-helper-in-page-navigation.html.twig.
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation__node__oe_organisation(array &$variables): void {
+  _oe_theme_content_organisation_inpage_nav_prepare_image($variables, $variables['entity'], 'oe_organisation_logo');
+}
+
+/**
+ * Prepares "image" variable from Media Image to be used in In-page navigation.
  *
  * @param array $variables
  *   An array of variables.
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Entity to be used to get media.
+ * @param string $field_name
+ *   Field name.
+ *
  */
-function oe_theme_content_organisation_preprocess_oe_theme_helper_in_page_navigation__node__oe_organisation(array &$variables): void {
-  _oe_theme_helper_prepare_image_from_media_field($variables, $variables['entity'], 'oe_organisation_logo');
+function _oe_theme_content_organisation_inpage_nav_prepare_image(array &$variables, EntityInterface $entity, string $field_name): void {
+  if ($entity->get($field_name)->isEmpty()) {
+    return;
+  }
+
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $entity->get($field_name)->entity;
+
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+
+  $source = $media->getSource();
+
+  // If its an image media, render it and assign it to the image variable.
+  if (!$source instanceof MediaAvPortalPhotoSource && !$source instanceof Image) {
+    return;
+  }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheableDependency($media);
+  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+
+  if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+  $variables['image'] = $image;
+
+  $cacheability->addCacheableDependency($image);
+  $cacheability->addCacheableDependency($thumbnail->entity);
+  $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
+  $cacheability->applyTo($variables);
 }
