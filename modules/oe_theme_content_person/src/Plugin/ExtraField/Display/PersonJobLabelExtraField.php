@@ -15,7 +15,7 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
  *   id = "oe_theme_content_person_job_label",
  *   label = @Translation("Person job label"),
  *   bundles = {
- *     "oe_person_job.default",
+ *     "oe_person_job.oe_default",
  *   },
  *   visible = true
  * )

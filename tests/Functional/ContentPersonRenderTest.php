@@ -467,7 +467,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    */
   protected function createPersonJobEntity(string $name, array $values): PersonJobInterface {
     $values = [
-      'type' => 'default',
+      'type' => 'oe_default',
       'oe_description' => "Description $name",
     ] + $values;
     $person_job = PersonJob::create($values);
