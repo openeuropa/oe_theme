@@ -40,30 +40,38 @@
     {{ _self.image(image.src, image.alt, image_position) }}
   {% endif %}
   <div class="ecl-u-flex-grow-1">
-    {% if meta is not empty %}
-      <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ meta|filter_empty|safe_join(" | ") }}</div>
-    {% endif %}
-    <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
-      {%- if url %}
-        {% include '@ecl-twig/link' with {
-          link: {
-            type: 'standalone',
-            label: title,
-            path: url
-          }
-        } only %}
-      {% else %}
-        {{ title }}
-      {%- endif -%}
-    </div>
-    {% if detail is not empty %}
-      <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mb-s">{{ detail|smart_trim(length) }}</div>
-    {% endif %}
-    {% if additional_information is not empty %}
-      {% for item in additional_information %}
-        <div class="ecl-content-item__additional_information ecl-u-mb-s">{{ item }}</div>
-      {% endfor %}
-    {% endif %}
+    {% block meta %}
+      {% if meta is not empty %}
+        <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ meta|filter_empty|safe_join(" | ") }}</div>
+      {% endif %}
+    {% endblock %}
+    {% block title %}
+      <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
+        {%- if url %}
+          {% include '@ecl-twig/link' with {
+            link: {
+              type: 'standalone',
+              label: title,
+              path: url
+            }
+          } only %}
+        {% else %}
+          {{ title }}
+        {%- endif -%}
+      </div>
+    {% endblock %}
+    {% block detail %}
+      {% if detail is not empty %}
+        <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mb-s">{{ detail|smart_trim(length) }}</div>
+      {% endif %}
+    {% endblock %}
+    {% block additional_information %}
+      {% if additional_information is not empty %}
+        {% for item in additional_information %}
+          <div class="ecl-content-item__additional_information ecl-u-mb-s">{{ item }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endblock %}
   </div>
   {% if image and image_position == 'after' %}
     {{ _self.image(image.src, image.alt, image_position) }}

@@ -5,17 +5,20 @@
  */
 #}
 {% set image_url = content.oe_organisation_logo|field_value|render %}
-{{ pattern('list_item', {
-  'variant': 'thumbnail_secondary',
-  'url': url,
-  'meta': [
-    not node.oe_organisation_eu_org_type.isEmpty() ? content.oe_organisation_eu_org_type|field_value : content.oe_organisation_non_eu_org_type|field_value,
-    not node.oe_organisation_acronym.isEmpty() ? content.oe_organisation_acronym|field_value,
-  ],
-  'title': label,
-  'detail': content.oe_teaser|field_value,
-  'additional_information': [
-    content.extra_field_oe_theme_content_organisation_teaser_details,
-  ],
-  'image': image_url ? { 'src': image_url }
-}) }}
+{% set additional_information = [
+  content.extra_field_oe_theme_content_organisation_teaser_details,
+] %}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'thumbnail_secondary',
+    'url': url,
+    'meta': [
+      not node.oe_organisation_eu_org_type.isEmpty() ? content.oe_organisation_eu_org_type|field_value : content.oe_organisation_non_eu_org_type|field_value,
+      not node.oe_organisation_acronym.isEmpty() ? content.oe_organisation_acronym|field_value,
+    ],
+    'title': label,
+    'detail': content.oe_teaser|field_value,
+    'additional_information': additional_information,
+    'image': image_url ? { 'src': image_url }
+  }) }}
+{% endblock %}
