@@ -1,11 +1,20 @@
 # Changelog
 
+## [2.15.1](https://github.com/openeuropa/oe_theme/tree/2.15.1) (2021-03-12)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.15.0...2.15.1)
+
+**Merged pull requests:**
+
+- EWPP-000: Fix oe\_multilingual minimum version. [\#753](https://github.com/openeuropa/oe_theme/pull/753) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.15.0](https://github.com/openeuropa/oe_theme/tree/2.15.0) (2021-03-12)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.14.0...2.15.0)
 
 **Merged pull requests:**
 
+- Release 2.15.0 [\#752](https://github.com/openeuropa/oe_theme/pull/752) ([nagyad](https://github.com/nagyad))
 - Epic EWPP-257: taxonomy type formatting [\#751](https://github.com/openeuropa/oe_theme/pull/751) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-797: Update consultation teaser template. [\#749](https://github.com/openeuropa/oe_theme/pull/749) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-257: Update taxonomy epic. [\#748](https://github.com/openeuropa/oe_theme/pull/748) ([nagyad](https://github.com/nagyad))
