@@ -2192,6 +2192,7 @@
     '#type': pattern
     '#id': timeline
     '#fields':
+      title: "Timeline heading"
       limit: 2
       items:
         -
@@ -2215,6 +2216,7 @@
           body: "Lorem Ipsum 6"
   assertions:
     count:
+      'h2.ecl-u-type-heading-2': 1
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
       '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
@@ -2223,6 +2225,7 @@
       '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
       '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
     equals:
+      'h2.ecl-u-type-heading-2': "Timeline heading"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
       '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
       '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
