@@ -40,25 +40,25 @@
 {% endfor %}
 
 <div {{ attributes.addClass(['ecl-row', 'ecl-u-mt-l']) }}>
-  {% block navigation %}
   <div class="ecl-col-12 ecl-col-lg-3">
-    {% include '@ecl-twig/inpage-navigation' with {
-      'title': title,
-      'links': _links,
-      'icon_path': ecl_icon_path
-    } %}
+    {% block navigation %}
+      {% include '@ecl-twig/inpage-navigation' with {
+        'title': title,
+        'links': _links,
+        'icon_path': ecl_icon_path
+      } %}
+    {% endblock %}
   </div>
-  {% endblock %}
-  {% block content %}
   <div class="ecl-col-lg-9">
-    {% for item in _items %}
-      <div{{ not loop.last ? ' class="ecl-u-mb-2xl"' }}>
-        {% if item.label is not empty %}
-          <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
-        {% endif %}
-        {{ item.content }}
-      </div>
-    {% endfor %}
+    {% block content %}
+      {% for item in _items %}
+        <div{{ not loop.last ? ' class="ecl-u-mb-2xl"' }}>
+          {% if item.label is not empty %}
+            <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
+          {% endif %}
+          {{ item.content }}
+        </div>
+      {% endfor %}
+    {% endblock %}
   </div>
-  {% endblock %}
 </div>
