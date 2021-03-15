@@ -1,12 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-card/ecl-card.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-card/ecl-card.html.twig
-@@ -87,11 +87,11 @@
- <article class="{{ _css_class }}"{{ _extra_attributes|raw }}>
-   <header class="ecl-card__header">
-     {% if _card.image.src is defined and _card.image.src is not empty %}
--      {% set _card_img_aria_label = _card.image.alt is defined and _card.image.alt is not empty ? 'aria-label="' ~ _card.image.alt ~ '"' : '' %}
-+      {% set _card_img_aria_label = _card.image.alt is defined and _card.image.alt is not empty ? 'aria-label="' ~ _card.image.alt|escape('html_attr') ~ '"' : '' %}
+@@ -91,7 +91,7 @@
        <div class="ecl-card__image" {{ _card_img_aria_label|raw }} role="img" style="background-image:url('{{ _card.image.src }}')"></div>
      {% endif %}
      {% if _card.meta is not empty %}

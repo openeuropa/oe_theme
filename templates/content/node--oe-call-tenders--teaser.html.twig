@@ -4,14 +4,18 @@
  * Teaser template implementtion for "Call for tenders" content type.
  */
 #}
-{{ pattern('list_item', {
-  'variant': 'default',
-  'url': url,
-  'title': label,
-  'meta': [
-    content.extra_field_oe_call_tenders_label_status|field_value,
-  ],
-  'additional_information': [
-    content.group_details,
-  ],
-}) }}
+{% set meta = [
+  content.extra_field_oe_call_tenders_label_status|field_value,
+] %}
+{% set additional_information = [
+  content.group_details,
+] %}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'default',
+    'url': url,
+    'title': label,
+    'meta': meta,
+    'additional_information': additional_information,
+  }) }}
+{% endblock %}

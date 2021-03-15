@@ -1,11 +1,59 @@
 # Changelog
 
+## [2.15.1](https://github.com/openeuropa/oe_theme/tree/2.15.1) (2021-03-12)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.15.0...2.15.1)
+
+**Merged pull requests:**
+
+- EWPP-000: Fix oe\_multilingual minimum version. [\#753](https://github.com/openeuropa/oe_theme/pull/753) ([sergepavle](https://github.com/sergepavle))
+
+## [2.15.0](https://github.com/openeuropa/oe_theme/tree/2.15.0) (2021-03-12)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.14.0...2.15.0)
+
+**Merged pull requests:**
+
+- Release 2.15.0 [\#752](https://github.com/openeuropa/oe_theme/pull/752) ([nagyad](https://github.com/nagyad))
+- Epic EWPP-257: taxonomy type formatting [\#751](https://github.com/openeuropa/oe_theme/pull/751) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-797: Update consultation teaser template. [\#749](https://github.com/openeuropa/oe_theme/pull/749) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-257: Update taxonomy epic. [\#748](https://github.com/openeuropa/oe_theme/pull/748) ([nagyad](https://github.com/nagyad))
+- EWPP-657: Consultation content type [\#741](https://github.com/openeuropa/oe_theme/pull/741) ([nagyad](https://github.com/nagyad))
+- Update taxonomy epic [\#736](https://github.com/openeuropa/oe_theme/pull/736) ([nagyad](https://github.com/nagyad))
+- EWPP-716: Contact body should take full width when no image is present. [\#735](https://github.com/openeuropa/oe_theme/pull/735) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-751: Change teaser tempalte for project. [\#734](https://github.com/openeuropa/oe_theme/pull/734) ([nagyad](https://github.com/nagyad))
+- EWPP-665: Do not show closed status text on upcoming status. [\#732](https://github.com/openeuropa/oe_theme/pull/732) ([22Alexandra](https://github.com/22Alexandra))
+- Update consultation epic [\#731](https://github.com/openeuropa/oe_theme/pull/731) ([nagyad](https://github.com/nagyad))
+- EWPP-748: Theme vocabularies field on Organisation, Policy, Publication content types. [\#730](https://github.com/openeuropa/oe_theme/pull/730) ([sergepavle](https://github.com/sergepavle))
+- Update EPIC-EWPP-257-Taxonomy [\#729](https://github.com/openeuropa/oe_theme/pull/729) ([brummbar](https://github.com/brummbar))
+- EWPP-421: Do not print additional information item wrapper if the item itself is empty. [\#728](https://github.com/openeuropa/oe_theme/pull/728) ([brummbar](https://github.com/brummbar))
+- EWPP-747: Theme vocabularies field on CFP, Events, News content types. [\#726](https://github.com/openeuropa/oe_theme/pull/726) ([sergepavle](https://github.com/sergepavle))
+- EWPP-657: Update consultation epic. [\#725](https://github.com/openeuropa/oe_theme/pull/725) ([nagyad](https://github.com/nagyad))
+- EWPP-605: Multilingual EPIC [\#724](https://github.com/openeuropa/oe_theme/pull/724) ([upchuk](https://github.com/upchuk))
+- EWPP-745: Add margin top to page header when breadcrumb is missing. [\#723](https://github.com/openeuropa/oe_theme/pull/723) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-717: Throw exception if wrong key is expected in pattern assertions. [\#719](https://github.com/openeuropa/oe_theme/pull/719) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-625: Change CFT teaser template to be able to override variables. [\#717](https://github.com/openeuropa/oe_theme/pull/717) ([nagyad](https://github.com/nagyad))
+- EPIC-Consultation-update: Update Epic branch. [\#716](https://github.com/openeuropa/oe_theme/pull/716) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-614: Set labels in teaser view mode to be hidden. [\#715](https://github.com/openeuropa/oe_theme/pull/715) ([nagyad](https://github.com/nagyad))
+- EWPP-668: Theme reference documents field. [\#713](https://github.com/openeuropa/oe_theme/pull/713) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-707: Translations for Consultation CT. [\#708](https://github.com/openeuropa/oe_theme/pull/708) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-640: Update to last version of ECL \(2.35.2 version\) with security fixes. [\#705](https://github.com/openeuropa/oe_theme/pull/705) ([sergepavle](https://github.com/sergepavle))
+- EWPP-664: Theme consultation content type teaser view mode. [\#704](https://github.com/openeuropa/oe_theme/pull/704) ([sergepavle](https://github.com/sergepavle))
+- EWPP-662: Theme Consultation content type full view mode. [\#702](https://github.com/openeuropa/oe_theme/pull/702) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-631: Fix double encoding of html entities. [\#699](https://github.com/openeuropa/oe_theme/pull/699) ([drishu](https://github.com/drishu))
+- EWPP-614: Make sure that multiple values of the same field are always separated by a comma when displayed as meta. [\#689](https://github.com/openeuropa/oe_theme/pull/689) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-440: Create assertion for Social media links pattern. [\#633](https://github.com/openeuropa/oe_theme/pull/633) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [2.14.0](https://github.com/openeuropa/oe_theme/tree/2.14.0) (2021-01-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.13.0...2.14.0)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.14.0. [\#712](https://github.com/openeuropa/oe_theme/pull/712) ([ademarco](https://github.com/ademarco))
 - Epic media iframe [\#711](https://github.com/openeuropa/oe_theme/pull/711) ([nagyad](https://github.com/nagyad))
+- Merge 2.x into EPIC-Media-iframe [\#700](https://github.com/openeuropa/oe_theme/pull/700) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-583: Iframe media with oe\_theme\_main\_content view mode. [\#690](https://github.com/openeuropa/oe_theme/pull/690) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [2.13.0](https://github.com/openeuropa/oe_theme/tree/2.13.0) (2021-01-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.12.3...2.13.0)
