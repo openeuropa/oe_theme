@@ -759,11 +759,10 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image-container': 2
       '.ecl-gallery__image-container .ecl-gallery__image[src="http://img_1.jpg"]': 1
       '.ecl-gallery__image-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
-      '.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
-      '.ecl-gallery__image-container .ecl-gallery__description-icon': 2
+      '.ecl-gallery__item figure.ecl-gallery__image-container': 2
     equals:
-      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
-      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg>'
+      '.ecl-gallery__item:nth-child(1) figure.ecl-gallery__image-container': '<img src="http://img_1.jpg" alt="" class="ecl-gallery__image"><svg class="ecl-icon ecl-icon--l ecl-gallery__image-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
+      '.ecl-gallery__item:nth-child(2) figure.ecl-gallery__image-container': '<img src="http://img_2.jpg" alt="" class="ecl-gallery__image"><svg class="ecl-icon ecl-icon--l ecl-gallery__image-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg>'
 - array:
     '#type': pattern
     '#id': gallery
