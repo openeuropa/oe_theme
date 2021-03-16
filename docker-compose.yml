@@ -32,7 +32,7 @@ services:
     expose:
       - '4444'
   node:
-    image: node:9.5.0
+    image: node:12.21.0
     user: "node"
     working_dir: /home/node/app
     environment:

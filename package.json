@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ecl-twig/ec-components": "2.37.0",
-    "@ecl/builder": "2.36.0",
+    "@ecl/builder": "2.37.0",
     "@ecl/ec-component-fact-figures": "2.37.0",
     "@ecl/ec-component-form-help-block": "2.37.0",
     "@ecl/ec-component-media-container": "2.37.0",
