@@ -2076,6 +2076,7 @@
           body: "Lorem Ipsum 6"
   assertions:
     count:
+      'h2.ecl-u-type-heading-2': 0
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
       '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
@@ -2122,6 +2123,7 @@
           body: "Lorem Ipsum 6"
   assertions:
     count:
+      'h2.ecl-u-type-heading-2': 0
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 6
       '.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
@@ -2167,6 +2169,7 @@
           body: "Lorem Ipsum 6"
   assertions:
     count:
+      'h2.ecl-u-type-heading-2': 0
       'ol.ecl-timeline2': 1
       'li.ecl-timeline2__item': 7
       '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
