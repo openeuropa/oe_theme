@@ -140,7 +140,9 @@ class ParagraphsTest extends ParagraphsTestBase {
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testListItem(): void {
-    file_unmanaged_copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    /** @var \Drupal\Core\File\FileSystemInterface $file_system */
+    $file_system = \Drupal::service('file_system');
+    $file_system->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create([
       'uri' => 'public://example.jpg',
     ]);
