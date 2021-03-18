@@ -103,7 +103,8 @@ pipeline:
 
 matrix:
   COMPOSER_BOUNDARY:
-    - lowest
+#  @todo: Temporarily commenting until EWPP-883 is fixed.
+#    - lowest
     - highest
   PHP_VERSION:
     - 7.2
