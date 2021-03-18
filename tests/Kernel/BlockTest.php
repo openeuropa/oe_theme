@@ -81,7 +81,7 @@ class BlockTest extends EntityKernelTestBase {
     ]);
     $block_content->save();
     $block = $this->placeBlock('block_content:' . $block_content->uuid());
-    $build = $this->container->get('entity.manager')->getViewBuilder('block')->view($block, 'block');
+    $build = $this->container->get('entity_type.manager')->getViewBuilder('block')->view($block, 'block');
 
     $crawler = new Crawler($this->renderRoot($build));
 
