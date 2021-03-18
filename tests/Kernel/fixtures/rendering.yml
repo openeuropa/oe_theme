@@ -1077,6 +1077,27 @@
 - array:
     '#type': pattern
     '#id': list_item
+    '#variant': "highlight"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/300x300"
+        alt: "Alternate text for secondary image"
+      detail: "Item description"
+  assertions:
+    count:
+      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body div.ecl-card__description: 1
+    equals:
+      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body div.ecl-card__description: "Item description"
+- array:
+    '#type': pattern
+    '#id': list_item
     '#variant': "block"
     '#fields':
       title: "Item title"
