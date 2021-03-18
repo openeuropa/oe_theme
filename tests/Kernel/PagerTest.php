@@ -48,10 +48,13 @@ class PagerTest extends AbstractKernelTestBase {
       '#element' => 2,
     ];
 
+    /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+    $pager_manager = \Drupal::service('pager.manager');
+
     // Initialize pagers with some fake data.
-    pager_default_initialize(100, 7, 0);
-    pager_default_initialize(100, 7, 1);
-    pager_default_initialize(100, 7, 2);
+    $pager_manager->createPager(100, 7, 0)->getCurrentPage();
+    $pager_manager->createPager(100, 7, 1)->getCurrentPage();
+    $pager_manager->createPager(100, 7, 2)->getCurrentPage();
 
     // Set up the current page numbers for pagers.
     global $pager_page_array;
@@ -128,7 +131,9 @@ class PagerTest extends AbstractKernelTestBase {
       '#route_name' => $route_name,
     ];
 
-    pager_default_initialize($total_pages * 10, 10);
+    /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+    $pager_manager = \Drupal::service('pager.manager');
+    $pager_manager->createPager($total_pages * 10, 10)->getCurrentPage();
 
     global $pager_page_array;
     // Normalise the current page array to 0-based.
@@ -283,8 +288,11 @@ class PagerTest extends AbstractKernelTestBase {
    *   A string URL.
    */
   protected function generatePagerUrl(string $route_name, int $page, int $element = 0): string {
+    /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+    $pager_manager = \Drupal::service('pager.manager');
+
     $options = [
-      'query' => pager_query_add_page([], $element, $page - 1),
+      'query' => $pager_manager->getUpdatedParameters([], $element, $page - 1),
     ];
 
     return Url::fromRoute($route_name, [], $options)->toString();
