@@ -1084,7 +1084,8 @@
       image:
         src: "http://via.placeholder.com/300x300"
         alt: "Alternate text for secondary image"
-      detail: "Item description"
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
   assertions:
     count:
       article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
@@ -1094,7 +1095,7 @@
       article.ecl-card div.ecl-card__body div.ecl-card__description: 1
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
-      article.ecl-card div.ecl-card__body div.ecl-card__description: "Item description"
+      article.ecl-card div.ecl-card__body div.ecl-card__description: "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
