@@ -105,13 +105,6 @@
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
             }
         },
-        "patches-ignore": {
-            "drupal/file_link": {
-                "drupal/core": {
-                    "https://www.drupal.org/project/drupal/issues/2943172": "https://www.drupal.org/files/issues/2018-07-05/2943172-kernel-test-base-3.patch"
-                }
-            }
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "./build"
