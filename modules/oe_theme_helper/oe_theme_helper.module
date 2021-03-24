@@ -234,35 +234,16 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     return;
   }
 
-  /** @var \Drupal\media\Entity\Media $media */
-  $media = $entity->get($field_name)->entity;
+  $renderable = \Drupal::service('entity_type.manager')->getViewBuilder('node')->viewField($entity->get($field_name), [
+    'type' => 'oe_theme_helper_media_thumbnail_url',
+    'settings' => [
+      'image_style' => 'oe_theme_medium_no_crop',
+    ],
+  ]);
 
-  if (!$media instanceof MediaInterface) {
-    // The media entity is not available anymore, bail out.
-    return;
-  }
+  CacheableMetadata::createFromRenderArray($variables)
+    ->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
+    ->applyTo($variables);
 
-  $source = $media->getSource();
-
-  // If its an image media, render it and assign it to the image variable.
-  if (!$source instanceof MediaAvPortalPhotoSource && !$source instanceof Image) {
-    return;
-  }
-
-  $cacheability = CacheableMetadata::createFromRenderArray($variables);
-  $cacheability->addCacheableDependency($media);
-  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
-
-  if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
-    $cacheability->applyTo($variables);
-    return;
-  }
-
-  $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-  $variables['image'] = $image;
-
-  $cacheability->addCacheableDependency($image);
-  $cacheability->addCacheableDependency($thumbnail->entity);
-  $cacheability->addCacheableDependency(\Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle()));
-  $cacheability->applyTo($variables);
+  $variables['image'] = ImageValueObject::fromArray(['src' => $renderable[0]['#markup']]);
 }
