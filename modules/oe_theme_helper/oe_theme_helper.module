@@ -234,6 +234,18 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     return;
   }
 
+  $media = $entity->get($field_name)->entity;
+
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+  $alt = '';
+  if ($thumbnail instanceof ImageItem) {
+    $alt = $thumbnail->get('alt')->getString();
+  }
+
   $renderable = \Drupal::service('entity_type.manager')->getViewBuilder('node')->viewField($entity->get($field_name), [
     'type' => 'oe_theme_helper_media_thumbnail_url',
     'settings' => [
@@ -245,5 +257,8 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     ->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
     ->applyTo($variables);
 
-  $variables['image'] = ImageValueObject::fromArray(['src' => $renderable[0]['#markup']]);
+  $variables['image'] = ImageValueObject::fromArray([
+    'src' => $renderable[0]['#markup'],
+    'alt' => $alt,
+  ]);
 }
