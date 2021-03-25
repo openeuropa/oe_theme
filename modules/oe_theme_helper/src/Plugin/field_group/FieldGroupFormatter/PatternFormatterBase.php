@@ -132,8 +132,8 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
       ],
     ];
 
-    // Pass along the pattern render array but keep info about group to have
-    // sorting feature and support of another modules.
+    // Remove all renderable elements, while keeping render metadata as that can
+    // be used to further manipulate the render array.
     foreach (Element::children($element) as $key) {
       unset($element[$key]);
     }
