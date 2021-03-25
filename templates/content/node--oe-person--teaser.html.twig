@@ -4,16 +4,19 @@
  * Theme to display a Person node in the teaser view mode.
  */
 #}
-{{ pattern('list_item', {
-  'variant': 'thumbnail_secondary',
-  'url': url,
-  'meta': meta,
-  'title': label,
-  'detail': content.oe_teaser|field_value,
-  'additional_information': [
-    content.group_organisation,
-    content.oe_person_contacts,
-    content.oe_person_jobs,
-  ],
-  'image': content.portrait_image ? { 'src': content.portrait_image|render }
-}) }}
+{% set additional_information = [
+  content.group_organisation,
+  content.oe_person_contacts,
+  content.oe_person_jobs,
+] %}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'thumbnail_secondary',
+    'url': url,
+    'meta': meta,
+    'title': label,
+    'detail': content.oe_teaser|field_value,
+    'additional_information': additional_information,
+    'image': content.portrait_image ? { 'src': content.portrait_image|render }
+  }) }}
+{% endblock %}
