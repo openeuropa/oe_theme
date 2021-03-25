@@ -6,7 +6,7 @@
     <env name="SIMPLETEST_IGNORE_DIRECTORIES" value="vendor,node_modules,${drupal.root}"/>
     <env name="SIMPLETEST_BASE_URL" value="${drupal.base_url}"/>
     <env name="SIMPLETEST_DB" value="mysql://${drupal.database.user}:${drupal.database.password}@${drupal.database.host}:${drupal.database.port}/${drupal.database.name}"/>
-    <env name="SIMPLETEST_SPARQL_DB" value="sparql://${drupal.sparql.host}:${drupal.sparql.port}/"/>
+    <env name="SIMPLETEST_SPARQL_DB" value="sparql://${drupal.sparql.host}:${drupal.sparql.port}/?module=sparql_entity_storage"/>
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", null, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
   <testsuites>

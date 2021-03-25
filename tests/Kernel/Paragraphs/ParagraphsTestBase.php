@@ -33,6 +33,9 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'locale',
     'oe_multilingual',
     'oe_multilingual_demo',
+    'node',
+    'description_list_field',
+    'oe_paragraphs_description_list',
   ];
 
   /**
@@ -56,6 +59,9 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
       'language',
       'content_translation',
       'oe_multilingual',
+      'node',
+      'oe_paragraphs_description_list',
+      'description_list_field',
     ]);
   }
 

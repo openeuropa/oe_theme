@@ -1,11 +1,22 @@
 # Changelog
 
+## [2.16.0](https://github.com/openeuropa/oe_theme/tree/2.16.0) (2021-03-24)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.15.1...2.16.0)
+
+**Merged pull requests:**
+
+- EWPP-883: Comment out temporarily composer update lowest versions. [\#758](https://github.com/openeuropa/oe_theme/pull/758) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-752: Theme Description List paragraph. [\#733](https://github.com/openeuropa/oe_theme/pull/733) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-109: Update modules to use sparql storage. [\#706](https://github.com/openeuropa/oe_theme/pull/706) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [2.15.1](https://github.com/openeuropa/oe_theme/tree/2.15.1) (2021-03-12)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.15.0...2.15.1)
 
 **Merged pull requests:**
 
+- Release-2.15.1: Update changelog. [\#754](https://github.com/openeuropa/oe_theme/pull/754) ([nagyad](https://github.com/nagyad))
 - EWPP-000: Fix oe\_multilingual minimum version. [\#753](https://github.com/openeuropa/oe_theme/pull/753) ([sergepavle](https://github.com/sergepavle))
 
 ## [2.15.0](https://github.com/openeuropa/oe_theme/tree/2.15.0) (2021-03-12)
