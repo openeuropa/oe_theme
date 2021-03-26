@@ -250,13 +250,12 @@ content:
       link: ''
     third_party_settings: {  }
   oe_person_organisation:
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_revisions_label
     weight: 22
     region: content
     label: hidden
     settings:
-      view_mode: default
-      link: ''
+      link: false
     third_party_settings: {  }
   oe_person_transparency_intro:
     type: text_default
