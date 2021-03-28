@@ -16,6 +16,8 @@ interface MediaDataExtractorPluginManagerInterface {
    *
    * @param string $bundle
    *   The bundle ID.
+   * @param array $configuration
+   *   The plugin configuration.
    *
    * @return \Drupal\oe_theme_helper\MediaDataExtractorInterface
    *   The media data extractor plugin instance.
@@ -23,6 +25,6 @@ interface MediaDataExtractorPluginManagerInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    *   Thrown when no plugin is specified for the bundle.
    */
-  public function createInstanceByMediaBundle(string $bundle): MediaDataExtractorInterface;
+  public function createInstanceByMediaBundle(string $bundle, array $configuration = []): MediaDataExtractorInterface;
 
 }

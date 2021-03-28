@@ -57,14 +57,14 @@ class MediaDataExtractorPluginManager extends DefaultPluginManager implements Me
   /**
    * {@inheritdoc}
    */
-  public function createInstanceByMediaBundle(string $bundle): MediaDataExtractorInterface {
+  public function createInstanceByMediaBundle(string $bundle, array $configuration = []): MediaDataExtractorInterface {
     $bundle_info = $this->entityTypeBundleInfo->getBundleInfo('media');
 
     if (!isset($bundle_info[$bundle]['media_data_extractor'])) {
       throw new PluginException(sprintf('Media data extractor plugin not declared for "%s" bundle.', $bundle));
     }
 
-    return $this->createInstance($bundle_info[$bundle]['media_data_extractor']);
+    return $this->createInstance($bundle_info[$bundle]['media_data_extractor'], $configuration);
   }
 
 }

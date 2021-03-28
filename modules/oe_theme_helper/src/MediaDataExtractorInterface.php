@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper;
 
+use Drupal\Component\Plugin\ConfigurableInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObjectInterface;
 
@@ -12,7 +13,7 @@ use Drupal\oe_theme\ValueObject\ImageValueObjectInterface;
  *
  * @internal
  */
-interface MediaDataExtractorInterface {
+interface MediaDataExtractorInterface extends ConfigurableInterface {
 
   /**
    * Returns the type of media to use in the media gallery.

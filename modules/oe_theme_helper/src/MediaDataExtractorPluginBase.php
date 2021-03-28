@@ -19,6 +19,27 @@ abstract class MediaDataExtractorPluginBase extends PluginBase implements MediaD
   /**
    * {@inheritdoc}
    */
+  public function getConfiguration() {
+    return $this->configuration;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setConfiguration(array $configuration) {
+    $this->configuration = $configuration;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration() {
+    return [];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getThumbnail(MediaInterface $media): ?ImageValueObjectInterface {
     $source = $media->getSource();
     $uri = $source->getMetadata($media, 'thumbnail_uri');
