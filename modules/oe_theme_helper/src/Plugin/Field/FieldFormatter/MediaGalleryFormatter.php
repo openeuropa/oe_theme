@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityFieldManagerInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeBundleInfoInterface;
@@ -11,6 +12,9 @@ use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\media\MediaInterface;
+use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
+use Drupal\oe_theme_helper\MediaDataExtractorPluginManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -44,6 +48,13 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
   protected $entityTypeBundleInfo;
 
   /**
+   * The media data extractor plugin manager.
+   *
+   * @var \Drupal\oe_theme_helper\MediaDataExtractorPluginManagerInterface
+   */
+  protected $mediaDataExtractorManager;
+
+  /**
    * Constructs a MediaGalleryFormatter object.
    *
    * @param string $plugin_id
@@ -68,14 +79,17 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
    *   The entity field manager.
    * @param \Drupal\Core\Entity\EntityTypeBundleInfoInterface $entityTypeBundleInfo
    *   The entity type bundle info.
+   * @param \Drupal\oe_theme_helper\MediaDataExtractorPluginManagerInterface $mediaDataExtractorManager
+   *   The media data extractor plugin manager.
    *
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityStorageInterface $image_style_storage, EntityFieldManagerInterface $entityFieldManager, EntityTypeBundleInfoInterface $entityTypeBundleInfo) {
+  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityStorageInterface $image_style_storage, EntityFieldManagerInterface $entityFieldManager, EntityTypeBundleInfoInterface $entityTypeBundleInfo, MediaDataExtractorPluginManagerInterface $mediaDataExtractorManager) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings, $current_user, $image_style_storage);
 
     $this->entityFieldManager = $entityFieldManager;
     $this->entityTypeBundleInfo = $entityTypeBundleInfo;
+    $this->mediaDataExtractorManager = $mediaDataExtractorManager;
   }
 
   /**
@@ -93,7 +107,8 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
       $container->get('current_user'),
       $container->get('entity_type.manager')->getStorage('image_style'),
       $container->get('entity_field.manager'),
-      $container->get('entity_type.bundle.info')
+      $container->get('entity_type.bundle.info'),
+      $container->get('plugin.manager.oe_theme.media_data_extractor')
     );
   }
 
@@ -143,6 +158,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
       $element['bundle_settings'][$bundle_id]['caption'] = [
         '#type' => 'select',
         '#title' => $this->t('Caption'),
+        '#required' => TRUE,
         '#description' => $this->t('Select the field that will be used as source for the caption text.'),
         '#options' => $candidate_fields,
         '#empty_value' => '',
@@ -186,7 +202,89 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = parent::viewElements($items, $langcode);
 
+    // Recollect the entities to view. If none are found, the elements array
+    // already contains all the cache information and we can safely return it.
+    $entities = $this->getEntitiesToView($items, $langcode);
+    if (empty($entities)) {
+      return $elements;
+    }
+
+    $cacheable_metadata = CacheableMetadata::createFromRenderArray($elements);
+    // Loop through the generated thumbnail URLs by the parent formatter.
+    // Only the available thumbnails are present, and they are keyed by delta
+    // so we can retrieve the originating media.
+    $items = [];
+    foreach (array_keys($elements) as $delta) {
+      /** @var \Drupal\media\MediaInterface $media */
+      $media = $entities[$delta];
+
+      $extractor = $this->mediaDataExtractorManager->createInstanceByMediaBundle($media->bundle(), [
+        'thumbnail_image_style' => $this->getSetting('image_style'),
+      ]);
+      $thumbnail = $extractor->getThumbnail($media);
+      $cacheable_metadata->addCacheableDependency($thumbnail);
+
+      $values = [
+        'thumbnail' => $thumbnail->getArray(),
+        'source' => $extractor->getSource($media) ?? '',
+        'type' => $extractor->getGalleryMediaType(),
+        // Provide a default caption value. It will be overridden later if
+        // a field has been provided in the formatter configuration.
+        'caption' => $media->label(),
+      ];
+
+      // Collect the attributes from the fields specified in the configuration.
+      $values += $this->extractAttributes($media);
+
+      $items[$delta] = GalleryItemValueObject::fromArray($values);
+      // Collect the cache information from the render array generated by the
+      // parent formatter.
+      $cacheable_metadata->addCacheableDependency(CacheableMetadata::createFromRenderArray($elements[$delta]));
+    }
+
+    $elements = [
+      '#type' => 'pattern',
+      '#id' => 'gallery',
+      '#items' => $items,
+    ];
+    $cacheable_metadata->applyTo($elements);
+
     return $elements;
+  }
+
+  /**
+   * Extract gallery item attributes based on the formatter configuration.
+   *
+   * @param \Drupal\media\MediaInterface $media
+   *   The media where to extract the data from.
+   *
+   * @return array
+   *   An array of attributes to be used in gallery items.
+   */
+  protected function extractAttributes(MediaInterface $media): array {
+    // Map configuration strings to pattern property names.
+    $attribute_mapping = [
+      'caption' => 'caption',
+      'copyright' => 'meta',
+    ];
+
+    $bundle_settings = $this->getSetting('bundle_settings');
+    $values = [];
+    foreach ($attribute_mapping as $attribute => $key) {
+      if (!isset($bundle_settings[$media->bundle()][$attribute])) {
+        continue;
+      }
+
+      $field = $bundle_settings[$media->bundle()][$attribute];
+      $values[$key] = $media->hasField($field) && !$media->get($field)
+        ->isEmpty()
+        ? $media->get($field)->first()->getString()
+        // Due to limitations in the current ECL gallery implementation, all
+        // the attributes need to be specified, so we pass an empty string.
+        : ' ';
+    }
+
+    return $values;
   }
 
 }
