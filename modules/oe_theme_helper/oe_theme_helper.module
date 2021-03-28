@@ -262,3 +262,20 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     'alt' => $alt,
   ]);
 }
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function oe_theme_helper_entity_bundle_info_alter(&$bundles) {
+  $iframe_bundles = [
+    'av_portal_video',
+    'remote_video',
+    'video_iframe',
+  ];
+
+  foreach ($bundles['media'] as $bundle_id => &$data) {
+    $data['media_data_extractor'] = in_array($bundle_id, $iframe_bundles)
+      ? 'iframe'
+      : 'thumbnail';
+  }
+}
