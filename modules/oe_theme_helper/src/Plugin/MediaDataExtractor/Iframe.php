@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\Plugin\MediaDataExtractor;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
@@ -20,14 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *
  * @internal
  */
-class Iframe extends Thumbnail implements ContainerFactoryPluginInterface {
-
-  /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
+class Iframe extends Thumbnail {
 
   /**
    * The renderer service.
@@ -51,9 +43,8 @@ class Iframe extends Thumbnail implements ContainerFactoryPluginInterface {
    *   The renderer service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entityTypeManager, RendererInterface $renderer) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entityTypeManager);
 
-    $this->entityTypeManager = $entityTypeManager;
     $this->renderer = $renderer;
   }
 
