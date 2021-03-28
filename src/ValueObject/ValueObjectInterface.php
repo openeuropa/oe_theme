@@ -26,7 +26,7 @@ interface ValueObjectInterface extends \ArrayAccess, \IteratorAggregate, Refinab
    *   List of values.
    *
    * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
-   *   A new ValueObject object.
+   *   A new ValueObjectInterface object.
    */
   public static function fromArray(array $values = []): ValueObjectInterface;
 
