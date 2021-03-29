@@ -14,7 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Media data extractor for iframe medias.
  *
  * @MediaDataExtractor(
- *   id = "iframe",
+ *   id = "iframe"
  * )
  *
  * @internal
@@ -73,7 +73,8 @@ class Iframe extends Thumbnail {
    */
   public function getSource(MediaInterface $media): ?string {
     $source_field = $media->getSource()->getSourceFieldDefinition($media->bundle->entity)->getName();
-    $build = $this->entityTypeManager->getViewBuilder('media')->viewField($media->get($source_field), 'oe_theme_main_content');
+    $build = $this->entityTypeManager->getViewBuilder('media')
+      ->viewField($media->get($source_field), 'oe_theme_main_content');
 
     // Bubble the cacheability information in the current render context.
     $this->renderer->renderPlain($build);

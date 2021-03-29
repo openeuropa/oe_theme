@@ -118,6 +118,8 @@ class Thumbnail extends MediaDataExtractorPluginBase implements ContainerFactory
    * {@inheritdoc}
    */
   public function getSource(MediaInterface $media): ?string {
+    // @todo Covers the media gallery scenario, but should return the original
+    //   file URL.
     return $this->getThumbnail($media)->getSource();
   }
 
