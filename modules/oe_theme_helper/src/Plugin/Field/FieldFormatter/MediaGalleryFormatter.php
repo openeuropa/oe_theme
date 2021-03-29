@@ -228,13 +228,15 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
         'thumbnail' => $thumbnail,
         'source' => $extractor->getSource($media) ?? '',
         'type' => $extractor->getGalleryMediaType(),
-        // Provide a default caption value. It will be overridden later if
-        // a field has been provided in the formatter configuration.
-        'caption' => $media->label(),
       ];
 
       // Collect the attributes from the fields specified in the configuration.
       $values += $this->extractAttributes($media);
+
+      // Provide a default caption value, if none is present.
+      if (empty($values['caption'])) {
+        $values['caption'] = $media->label();
+      }
 
       $items[$delta] = GalleryItemValueObject::fromArray($values);
       // Add the cacheability information of the gallery item itself.
@@ -278,8 +280,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
       }
 
       $field = $bundle_settings[$media->bundle()][$attribute];
-      $values[$key] = $media->hasField($field) && !$media->get($field)
-        ->isEmpty()
+      $values[$key] = $media->hasField($field) && !$media->get($field)->isEmpty()
         ? $media->get($field)->first()->getString()
         // Due to limitations in the current ECL gallery implementation, all
         // the attributes need to be specified, so we pass an empty string.
