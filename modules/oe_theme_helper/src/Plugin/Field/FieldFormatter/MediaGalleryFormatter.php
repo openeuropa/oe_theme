@@ -200,6 +200,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
+    // @todo refactor to not use the parent method.
     $elements = parent::viewElements($items, $langcode);
 
     // Recollect the entities to view. If none are found, the elements array
