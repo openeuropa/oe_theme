@@ -73,6 +73,7 @@ class Iframe extends Thumbnail {
    */
   public function getSource(MediaInterface $media): ?string {
     $source_field = $media->getSource()->getSourceFieldDefinition($media->bundle->entity)->getName();
+    // @todo Make the view mode configurable.
     $build = $this->entityTypeManager->getViewBuilder('media')
       ->viewField($media->get($source_field), 'oe_theme_main_content');
 
