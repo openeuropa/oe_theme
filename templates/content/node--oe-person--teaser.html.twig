@@ -4,10 +4,13 @@
  * Theme to display a Person node in the teaser view mode.
  */
 #}
+{% set meta = [
+  content.oe_person_jobs,
+] %}
 {% set additional_information = [
   content.group_organisation,
   content.oe_person_contacts,
-  content.oe_person_jobs,
+  content.extra_field_oe_theme_content_person_job_list,
 ] %}
 {% block content %}
   {{ pattern('list_item', {

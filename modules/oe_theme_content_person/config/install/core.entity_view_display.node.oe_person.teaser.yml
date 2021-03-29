@@ -41,7 +41,7 @@ third_party_settings:
         - oe_departments
         - oe_person_organisation
       parent_name: ''
-      weight: 0
+      weight: 1
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -54,6 +54,11 @@ targetEntityType: node
 bundle: oe_person
 mode: teaser
 content:
+  extra_field_oe_theme_content_person_job_list:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   oe_departments:
     type: skos_concept_entity_reference_label
     weight: 27
@@ -64,21 +69,20 @@ content:
     third_party_settings: {  }
   oe_person_contacts:
     type: entity_reference_revisions_entity_view
-    weight: 1
+    weight: 3
     region: content
-    label: hidden
+    label: above
     settings:
       view_mode: oe_person
       link: ''
     third_party_settings: {  }
   oe_person_jobs:
-    type: entity_reference_revisions_entity_view
-    weight: 2
+    type: entity_reference_revisions_label
+    weight: 0
     region: content
-    label: hidden
+    label: above
     settings:
-      view_mode: default
-      link: ''
+      link: false
     third_party_settings: {  }
   oe_person_organisation:
     type: entity_reference_revisions_label
@@ -90,7 +94,7 @@ content:
     third_party_settings: {  }
   oe_person_photo:
     type: oe_theme_helper_media_thumbnail_url
-    weight: 3
+    weight: 4
     region: content
     label: hidden
     settings:

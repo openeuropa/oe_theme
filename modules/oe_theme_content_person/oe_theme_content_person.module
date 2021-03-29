@@ -30,29 +30,6 @@ function oe_theme_content_person_preprocess_oe_theme_helper_in_page_navigation__
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_content_person_preprocess_field__node__oe_person_jobs__oe_person__teaser(&$variables) {
-  // Prepare person jobs to be shown in the field list pattern.
-  $view_builder = \Drupal::entityTypeManager()->getViewBuilder('oe_person_job');
-  foreach ($variables['items'] as $key => $item) {
-    $person_job = $variables['items'][$key]['content']['#oe_person_job'];
-    // Body has to be filled with at least empty space. Otherwise whole line
-    // will be hidden.
-    $body = ' ';
-    if (!$person_job->get('oe_description')->isEmpty()) {
-      $body = $view_builder->viewField($person_job->get('oe_description'), [
-        'label' => 'hidden',
-      ]);
-    }
-    $variables['items'][$key] = [
-      'label' => $person_job->label(),
-      'body' => $body,
-    ];
-  }
-}
-
-/**
  * Implements hook_ENTITY_TYPE_view_alter().
  */
 function oe_theme_content_person_node_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
@@ -73,22 +50,6 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
     if (!empty($build['oe_person_photo'][0]['#markup'])) {
       $build['portrait_image'] = $build['oe_person_photo'][0];
     }
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_content_person_preprocess_node__oe_person__teaser(&$variables) {
-  $node = $variables['elements']['#node'];
-  if (!$node->get('oe_person_jobs')->isEmpty()) {
-    $meta = \Drupal::entityTypeManager()
-      ->getViewBuilder('node')
-      ->viewField($node->get('oe_person_jobs'), [
-        'label' => 'hidden',
-        'type' => 'entity_reference_revisions_label',
-      ]);
-    $variables['meta'] = [$meta];
   }
 }
 

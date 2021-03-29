@@ -4,8 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_person\Plugin\PageHeaderMetadata;
 
-use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
+use Drupal\oe_theme_helper\Traits\EntityLabelUtilityTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -20,12 +21,14 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
  */
 class PersonContentType extends NodeViewRoutesBase {
 
+  use EntityLabelUtilityTrait;
+
   /**
-   * The entity type manager service.
+   * The entity repository.
    *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
    */
-  protected $entityTypeManager;
+  protected $entityRepository;
 
   /**
    * Creates a new PersonContentType object.
@@ -38,12 +41,12 @@ class PersonContentType extends NodeViewRoutesBase {
    *   The plugin implementation definition.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager service.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
    */
-  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, string $plugin_id, $plugin_definition, EventDispatcherInterface $event_dispatcher, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $event_dispatcher);
-    $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -55,7 +58,7 @@ class PersonContentType extends NodeViewRoutesBase {
       $plugin_id,
       $plugin_definition,
       $container->get('event_dispatcher'),
-      $container->get('entity_type.manager')
+      $container->get('entity.repository')
     );
   }
 
@@ -76,13 +79,7 @@ class PersonContentType extends NodeViewRoutesBase {
     $metadata = parent::getMetadata();
 
     if (!$node->get('oe_person_jobs')->isEmpty()) {
-      $meta = $this->entityTypeManager
-        ->getViewBuilder('node')
-        ->viewField($node->get('oe_person_jobs'), [
-          'label' => 'hidden',
-          'type' => 'entity_reference_revisions_label',
-        ]);
-      $metadata['metas'] = [$meta];
+      $metadata['metas'][] = $this->getCommaSeparatedReferencedEntityLabels($this->entityRepository, $node->get('oe_person_jobs'));
     }
 
     return $metadata;
