@@ -81,13 +81,12 @@ content:
       link: ''
     third_party_settings: {  }
   oe_person_organisation:
-    type: entity_reference_revisions_entity_view
+    type: entity_reference_revisions_label
     weight: 28
     region: content
     label: hidden
     settings:
-      view_mode: default
-      link: ''
+      link: false
     third_party_settings: {  }
   oe_person_photo:
     type: oe_theme_helper_media_thumbnail_url
