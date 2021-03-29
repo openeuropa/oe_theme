@@ -257,7 +257,7 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/ADVOC']);
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
-    $expected_values['meta'] = '(Acting) Member | Advocate';
+    $expected_values['meta'] = '(Acting) Member, Advocate';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
@@ -284,7 +284,7 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Jagger Mick',
-      'meta' => 'Singer | Dancer',
+      'meta' => 'Singer, Dancer',
       'image' => [
         'src' => 'person_portrait.png',
         'alt' => '',

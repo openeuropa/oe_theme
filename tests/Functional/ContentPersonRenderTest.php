@@ -76,6 +76,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
+      'meta' => NULL,
       'title' => 'Mick Jagger',
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
@@ -207,6 +208,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', $job_1)->save();
     $this->drupalGet($node->toUrl());
 
+    $page_header_expected_values['meta'] = '(Acting) Member';
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
     $inpage_nav_expected_values['list'][] = [
       'label' => 'Responsibilities',
       'href' => '#responsibilities',
@@ -225,6 +229,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/ADVOC']);
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
     $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = '(Acting) Member, Advocate';
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
     $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');

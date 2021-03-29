@@ -10,7 +10,6 @@ declare(strict_types = 1);
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
-use Drupal\oe_content_person\PersonNodeWrapper;
 
 /**
  * Prepares variables for in-page navigation.
@@ -82,8 +81,15 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
  */
 function oe_theme_content_person_preprocess_node__oe_person__teaser(&$variables) {
   $node = $variables['elements']['#node'];
-  $node_wrapper = PersonNodeWrapper::getInstance($node);
-  $variables['meta'] = $node_wrapper->getPersonJobLabels();
+  if (!$node->get('oe_person_jobs')->isEmpty()) {
+    $meta = \Drupal::entityTypeManager()
+      ->getViewBuilder('node')
+      ->viewField($node->get('oe_person_jobs'), [
+        'label' => 'hidden',
+        'type' => 'entity_reference_revisions_label',
+      ]);
+    $variables['meta'] = [$meta];
+  }
 }
 
 /**
