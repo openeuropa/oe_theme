@@ -6,6 +6,8 @@ namespace Drupal\oe_theme\ValueObject;
 
 /**
  * Handle information about a gallery item.
+ *
+ * @internal
  */
 class GalleryItemValueObject extends ValueObjectBase {
 
@@ -57,7 +59,7 @@ class GalleryItemValueObject extends ValueObjectBase {
   /**
    * GalleryItemValueObject constructor.
    *
-   * @param \Drupal\oe_theme\ValueObject\ValueObjectInterface $thumbnail
+   * @param \Drupal\oe_theme\ValueObject\ImageValueObjectInterface $thumbnail
    *   Thumbnail to be rendered on the gallery item.
    * @param string $source
    *   Media source, i.e. the canonical URL to the actual media item.
@@ -68,12 +70,14 @@ class GalleryItemValueObject extends ValueObjectBase {
    * @param string $meta
    *   Meta for the gallery item, such as a copyright note.
    */
-  private function __construct(ValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '') {
+  private function __construct(ImageValueObjectInterface $thumbnail, string $source, string $type, string $caption = '', string $meta = '') {
     $this->caption = $caption;
     $this->thumbnail = $thumbnail;
     $this->meta = $meta;
     $this->source = $source;
     $this->type = $type;
+
+    $this->addCacheableDependency($thumbnail);
   }
 
   /**
@@ -88,8 +92,14 @@ class GalleryItemValueObject extends ValueObjectBase {
       'meta' => '',
     ];
 
+    // @todo Maybe expect always a thumbnail object instead of also an array,
+    //   so that cacheability information can be propagated.
+    if (is_array($values['thumbnail'])) {
+      $values['thumbnail'] = ImageValueObject::fromArray($values['thumbnail']);
+    }
+
     return new static(
-      ImageValueObject::fromArray($values['thumbnail']),
+      $values['thumbnail'],
       $values['source'],
       $values['type'],
       $values['caption'],

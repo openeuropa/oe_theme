@@ -15,6 +15,7 @@ use Drupal\Core\Plugin\DefaultPluginManager;
  *
  * Note: the service is marked as internal as it will be revisited in the next
  * releases to adapt more code to use it. Its API will most likely change.
+ * The same applies to all the related plugins.
  *
  * @internal
  */
