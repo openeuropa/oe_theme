@@ -250,7 +250,7 @@ content:
       link: ''
     third_party_settings: {  }
   oe_person_organisation:
-    type: entity_reference_revisions_label
+    type: entity_reference_label
     weight: 22
     region: content
     label: hidden

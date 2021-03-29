@@ -85,7 +85,7 @@ content:
       link: false
     third_party_settings: {  }
   oe_person_organisation:
-    type: entity_reference_revisions_label
+    type: entity_reference_label
     weight: 28
     region: content
     label: hidden
