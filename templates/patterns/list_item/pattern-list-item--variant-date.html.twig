@@ -28,7 +28,7 @@
   {% endblock %}
   <div class="ecl-u-flex-grow-1">
     {% block meta %}
-      {% if meta|filter_empty is not empty %}
+      {% if meta is not empty %}
         <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ meta|filter_empty|safe_join(" | ") }}</div>
       {% endif %}
     {% endblock %}
