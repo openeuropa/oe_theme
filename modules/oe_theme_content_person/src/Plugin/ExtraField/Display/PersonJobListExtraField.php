@@ -86,8 +86,6 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
       '#fields' => [
         'items' => [],
       ],
-      '#prefix' => '<div class="ecl-u-border-top ecl-u-border-color-grey-15 ecl-u-pt-m">',
-      '#suffix' => '</div>',
     ];
 
     $cacheable_metadata = CacheableMetadata::createFromRenderArray($pattern);
