@@ -8,17 +8,17 @@
 #}
 
 {#
-  Since some contact items can be disabled we should render them in advance.
-  See oe_theme_content_person_preprocess_field__node__oe_person_contacts__oe_person__teaser().
+  Access to contant items can be prevented by setting '"#access" => FALSE' in the preprocess funciton below.
+  This make is necessary to filter out non-accessible items by pre-rendering them.
+  @see oe_theme_content_person_preprocess_field__node__oe_person_contacts().
 #}
-{% set rendered_items = [] %}
+{% set accessible_items = [] %}
 {% for item in items %}
-  {% set rendered_content = item.content|render %}
-  {% if rendered_content is not empty %}
-    {% set rendered_items = rendered_items|merge([rendered_content]) %}
+  {% if item.content|render|striptags|trim is not empty %}
+    {% set accessible_items = accessible_items|merge([item.content]) %}
   {% endif %}
 {% endfor %}
 
-{% for rendered_item in rendered_items %}
-  <div{{ not loop.last ? ' class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mb-m ecl-u-pb-m"'}}>{{ rendered_item }}</div>
+{% for item in accessible_items %}
+  <div{{ not loop.last ? ' class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-mb-m ecl-u-pb-m"'}}>{{ item }}</div>
 {% endfor %}
