@@ -1556,14 +1556,14 @@
           url: 'http://example.com/3'
   assertions:
     count:
-      '.ecl-dropdown-legacy__content a[href="http://example.com/1"]': 1
-      '.ecl-dropdown-legacy__content a[href="http://example.com/2"]': 1
-      '.ecl-dropdown-legacy__content a[href="http://example.com/3"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/1"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/2"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/3"]': 1
     equals:
-      'button.ecl-dropdown-legacy__toggle span.ecl-button__label': "Dropdown"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
+      'button.ecl-expandable__toggle span.ecl-button__label': "Dropdown"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
 - array:
     '#type': pattern
     '#id': field

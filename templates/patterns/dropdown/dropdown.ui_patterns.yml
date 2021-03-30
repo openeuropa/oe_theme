@@ -1,6 +1,7 @@
 dropdown:
   label: "Dropdown"
   description: "Dropdown components contain elements that, when clicked, reveal additional content."
+  hidden: true
   fields:
     button_label:
       type: "string"
@@ -18,3 +19,9 @@ dropdown:
           url: 'http://example.com'
         - label: 'Jobs, Growth and Investment'
           url: 'http://example.com'
+  libraries:
+    - ecl_expandable:
+        js:
+          js/ecl_expandable.js: { }
+        dependencies:
+          - core/drupal
