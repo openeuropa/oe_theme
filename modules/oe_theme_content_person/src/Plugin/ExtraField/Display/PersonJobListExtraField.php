@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_content_person\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -36,6 +37,13 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
   protected $entityTypeManager;
 
   /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
    * PersonJobListExtraField constructor.
    *
    * @param array $configuration
@@ -46,10 +54,13 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -60,7 +71,8 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('entity.repository')
     );
   }
 
@@ -94,6 +106,9 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
     // Prepare person jobs to be shown in the field list pattern.
     $view_builder = $this->entityTypeManager->getViewBuilder('oe_person_job');
     foreach ($entity->get('oe_person_jobs')->referencedEntities() as $person_job) {
+      // Retrieve the translation of the person job entity.
+      $person_job = $this->entityRepository->getTranslationFromContext($person_job);
+
       // Body has to be filled with at least empty space. Otherwise whole line
       // will be hidden.
       $body = ' ';
