@@ -10,16 +10,17 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\emr\Entity\EntityMetaInterface;
 use Drupal\emr\Plugin\EntityMetaRelationContentFormPluginBase;
+use Drupal\oe_theme_inpage_navigation\InPageNavigationHelper;
 
 /**
  * Provides an entity meta plugin to store if a node with inpage navigation.
  *
  * @EntityMetaRelation(
  *   id = "inpage_navigation",
- *   label = @Translation("Inpage Navigation"),
+ *   label = @Translation("In-page Navigation"),
  *   entity_meta_bundle = "oe_theme_inpage_navigation",
  *   content_form = TRUE,
- *   description = @Translation("Allows to configure a node with inpage navigation."),
+ *   description = @Translation("Allows to configure a node with in-page navigation."),
  *   entity_meta_wrapper_class = "\Drupal\oe_theme_inpage_navigation\InPageNavigationWrapper",
  * )
  */
@@ -44,11 +45,22 @@ class InPageNavigation extends EntityMetaRelationContentFormPluginBase {
     /** @var \Drupal\oe_theme_inpage_navigation\InPageNavigationWrapper $entity_meta_wrapper */
     $entity_meta_wrapper = $entity_meta->getWrapper();
 
+    $form[$key]['override_inpage_navigation'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Override default settings'),
+      '#description' => InPageNavigationHelper::getDefaultInPageNavigationSettings($entity) ? $this->t('Enabled by default.') : $this->t('Disabled by default.'),
+      '#default_value' => !$entity_meta->isNew(),
+    ];
+
     $form[$key]['inpage_navigation'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Enable Inpage navigation'),
-      '#description' => $this->t('Show this content with vertical menu containing (anchored) links to H2-headings on long content pages.'),
-      '#default_value' => $entity_meta_wrapper->isInPageNavigation(),
+      '#title' => $this->t('Enable in-page navigation on this page'),
+      '#default_value' => $entity_meta_wrapper->isInPageNavigationEnabled(),
+      '#states' => [
+        'visible' => [
+          ':input[name="override_inpage_navigation"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
 
     // Set the entity meta so we use it in the submit handler.
@@ -70,22 +82,19 @@ class InPageNavigation extends EntityMetaRelationContentFormPluginBase {
     /** @var \Drupal\oe_theme_inpage_navigation\InPageNavigationWrapper $entity_meta_wrapper */
     $entity_meta_wrapper = $entity_meta->getWrapper();
 
+    $override_inpage_navigation = (bool) $form_state->getValue('override_inpage_navigation');
     $inpage_navigation = (bool) $form_state->getValue('inpage_navigation');
-    // If the entity meta is new, it means we only want to set and save the
-    // meta if the form was checked.
-    if ($entity_meta->isNew() && $inpage_navigation) {
-      $entity_meta_wrapper->setInPageNavigation(TRUE);
+    // Set the value in case the override checkbox has been checked.
+    if ($override_inpage_navigation) {
+      $entity_meta_wrapper->setInPageNavigation($inpage_navigation);
       // Attach it to the host entity since the checkbox was checked for the
       // first time.
       $host_entity->get('emr_entity_metas')->attach($entity_meta);
       return;
     }
-
-    // If the entity meta is not new, we set the value regardless of checkbox
-    // choice.
-    if (!$entity_meta->isNew()) {
-      $entity_meta_wrapper->setInPageNavigation($inpage_navigation);
-      $host_entity->get('emr_entity_metas')->attach($entity_meta);
+    elseif (!$entity_meta->isNew() && !$override_inpage_navigation) {
+      $host_entity->get('emr_entity_metas')->detach($entity_meta);
+      return;
     }
   }
 

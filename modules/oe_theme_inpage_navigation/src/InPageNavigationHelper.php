@@ -12,7 +12,17 @@ use Drupal\node\NodeInterface;
 class InPageNavigationHelper {
 
   /**
-   * Returns if a given node with inpage navigation.
+   * Returns default setting for inpage nav for the node bundle.
+   *
+   * @param \Drupal\node\NodeInterface $node
+   *   The node.
+   */
+  public static function getDefaultInPageNavigationSettings(NodeInterface $node): bool {
+    return $node->type->entity->getThirdPartySetting('oe_theme_inpage_navigation', 'enabled', FALSE);
+  }
+
+  /**
+   * Returns whether a given node has in-page navigation enabled.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
@@ -20,7 +30,7 @@ class InPageNavigationHelper {
    * @return bool
    *   Whether it's content with inpage navigation.
    */
-  public static function isInPageNavigation(NodeInterface $node): bool {
+  public static function isInPageNavigationEnabled(NodeInterface $node): bool {
     /** @var \Drupal\emr\Field\EntityMetaItemListInterface $entity_meta_list */
     $entity_meta_list = $node->get('emr_entity_metas');
 
@@ -29,11 +39,17 @@ class InPageNavigationHelper {
 
     /** @var \Drupal\oe_theme_inpage_navigation\InPageNavigationWrapper $entity_meta_wrapper */
     $entity_meta_wrapper = $entity_meta->getWrapper();
-    return $entity_meta_wrapper->isInPageNavigation();
+
+    if ($entity_meta->isNew()) {
+      return self::getDefaultInPageNavigationSettings($entity_meta->getHostEntity());
+    }
+    else {
+      return $entity_meta_wrapper->isInPageNavigationEnabled();
+    }
   }
 
   /**
-   * Sets a node with inpage navigation.
+   * Enables in-page navigation on a given node.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
