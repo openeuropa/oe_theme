@@ -309,3 +309,30 @@ msgstr "Tidsfristen för samrådet har gått ut. Tack för din medverkan."
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Ansvarsområden"
+
+msgid "Media"
+msgstr "Medier"
+
+msgid "Latest"
+msgstr "Aktuellt"
+
+msgid "Transparency"
+msgstr "Öppenhet"
+
+msgid "Articles and presentations"
+msgstr "Artiklar och presentationer"
+
+msgid "Biography"
+msgstr "Biografi"
+
+msgid "Declaration of interests"
+msgstr "Intresseförklaring"
+
+msgid "Show contact details"
+msgstr "Visa kontaktuppgifter"
+
+msgid "Hide contact details"
+msgstr "Dölj kontaktuppgifter"

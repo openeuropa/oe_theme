@@ -309,3 +309,30 @@ msgstr "Lehota na reakciu v rámci tejto konzultácie už uplynula. Ďakujeme za
 
 msgid "Status: @label"
 msgstr "Stav: @label"
+
+msgid "Responsibilities"
+msgstr "Zodpovednosti"
+
+msgid "Media"
+msgstr "Médiá"
+
+msgid "Latest"
+msgstr "Najnovšie"
+
+msgid "Transparency"
+msgstr "Transparentnosť"
+
+msgid "Articles and presentations"
+msgstr "Články a prezentácie"
+
+msgid "Biography"
+msgstr "Životopis"
+
+msgid "Declaration of interests"
+msgstr "Vyhlásenie o záujmoch"
+
+msgid "Show contact details"
+msgstr "Zobraziť kontaktné informácie"
+
+msgid "Hide contact details"
+msgstr "Skryť kontaktné informácie"

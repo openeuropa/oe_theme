@@ -6,9 +6,6 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
-use Drupal\oe_content_entity_contact\Entity\Contact;
-use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
@@ -72,7 +69,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
    */
   public function testOrganisationTeaser(): void {
     $logo_media = $this->createMediaImage('organisation_logo');
-    $contact = $this->createContactEntity('organisation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $contact = $this->createContactEntity('organisation_contact', 'oe_general');
 
     $node = Node::create([
       'type' => 'oe_organisation',
@@ -175,61 +172,6 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
-  }
-
-  /**
-   * Creates Contact entity.
-   *
-   * @param string $name
-   *   Entity name. Is used as a parameter for test data.
-   * @param string $bundle
-   *   Entity bundle.
-   * @param int $status
-   *   Entity status.
-   *
-   * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
-   *   Contact entity.
-   */
-  protected function createContactEntity(string $name, string $bundle, int $status): ContactInterface {
-    // Create image for contact.
-    $media = $this->createMediaImage($name);
-
-    $contact = Contact::create([
-      'bundle' => $bundle,
-      'name' => $name,
-      'oe_address' => [
-        'country_code' => 'BE',
-        'locality' => 'Brussels',
-        'address_line1' => "Address $name",
-        'postal_code' => '1001',
-      ],
-      'oe_body' => "Body text $name",
-      'oe_email' => "$name@example.com",
-      'oe_fax' => "Fax number $name",
-      'oe_mobile' => "Mobile number $name",
-      'oe_office' => "Office $name",
-      'oe_organisation' => "Organisation $name",
-      'oe_phone' => "Phone number $name",
-      'oe_press_contact_url' => ['uri' => "http://www.example.com/press_contact_$name"],
-      'oe_social_media' => [
-        [
-          'uri' => "http://www.example.com/social_media_$name",
-          'title' => "Social media $name",
-          'link_type' => 'facebook',
-        ],
-      ],
-      'oe_website' => ['uri' => "http://www.example.com/website_$name"],
-      'oe_image' => [
-        [
-          'target_id' => (int) $media->id(),
-          'caption' => "Caption $name",
-        ],
-      ],
-      'status' => $status,
-    ]);
-    $contact->save();
-
-    return $contact;
   }
 
 }

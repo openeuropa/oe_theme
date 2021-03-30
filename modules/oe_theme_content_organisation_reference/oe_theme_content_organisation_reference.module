@@ -14,17 +14,27 @@ use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 /**
  * Implements template_preprocess_field().
  */
-function oe_theme_content_organisation_preprocess_field__node__oe_publication_contacts(array &$variables): void {
+function oe_theme_content_organisation_reference_preprocess_field__node__oe_publication_contacts(array &$variables): void {
+  _oe_theme_content_organisation_reference_display_organisation_contact($variables);
+}
+
+/**
+ * Displays an organisation node as contact.
+ *
+ * This only works if the "oe_content_organisation_reference" is enabled and
+ * correctly configured, check its README.md for more information.
+ * If any of the referenced contacts is an organisation we need to first check
+ * if that organisation has any contact details and prevent it from rendering
+ * if it does not.
+ *
+ * @param array $variables
+ *   Render array.
+ */
+function _oe_theme_content_organisation_reference_display_organisation_contact(array &$variables): void {
   if (empty($variables['items'])) {
     return;
   }
 
-  // Display an organisation node as contact.
-  // This only works if the "oe_content_organisation_reference" is enabled and
-  // correctly configured, check its README.md for more information.
-  // If any of the referenced contacts is an organisation we need to first check
-  // if that organisation has any contact details and prevent it from rendering
-  // if it does not.
   foreach ($variables['items'] as &$item) {
     /** @var \Drupal\Core\Entity\ContentEntityInterface $contact */
     $contact = $item['content']['#oe_contact'];

@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Articles and publications field template of the OE Person CT.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  <div class="ecl-u-mb-l">
+    {{ item.content }}
+  </div>
+{% endfor %}

@@ -4,14 +4,12 @@
  * Default implementation for the page header component.
  */
 #}
-
 {% set _meta = '' %}
-{% for meta in metas %}
-  {% if _meta != '' %}
-    {% set _meta = _meta ~ ' | ' %}
-  {% endif %}
-  {% set _meta = _meta ~ meta %}
-{% endfor %}
+{% if metas is not empty %}
+  {% set _meta %}
+    {{ metas|filter_empty|safe_join(" | ") }}
+  {% endset %}
+{% endif %}
 
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}

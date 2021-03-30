@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.oe_person_oe_contact
+label: 'Person contact'
+targetEntityType: node
+cache: true
