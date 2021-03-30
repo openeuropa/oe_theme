@@ -12,6 +12,8 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
+ * Implements hook_preprocess_HOOK().
+ *
  * Prepares variables for in-page navigation.
  *
  * Default template: oe-theme-helper-in-page-navigation.html.twig.
@@ -54,7 +56,7 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
 }
 
 /**
- * Implements template_preprocess_field().
+ * Implements hook_preprocess_HOOK().
  */
 function oe_theme_content_person_preprocess_field__node__oe_person_contacts(array &$variables): void {
   _oe_theme_content_organisation_reference_display_organisation_contact($variables);
