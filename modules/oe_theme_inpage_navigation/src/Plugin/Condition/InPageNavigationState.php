@@ -75,7 +75,12 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
    */
   public function evaluate() {
     $node = $this->getContextValue('node');
-    if ($this->configuration['inpage_navigation_state'] === NULL || !$node instanceof NodeInterface) {
+
+    if (!$node instanceof NodeInterface) {
+      return $this->isNegated();
+    }
+
+    if ($this->configuration['inpage_navigation_state'] === NULL) {
       return TRUE;
     }
 

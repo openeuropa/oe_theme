@@ -6,9 +6,9 @@ namespace Drupal\Tests\oe_theme_inpage_navigation\Kernel\Plugin\Condition;
 
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Plugin\Context\EntityContext;
-use Drupal\node\Entity\Node;
-use Drupal\node\Entity\NodeType;
 use Drupal\oe_theme_inpage_navigation\InPageNavigationHelper;
+use Drupal\Tests\node\Traits\ContentTypeCreationTrait;
+use Drupal\Tests\node\Traits\NodeCreationTrait;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
@@ -16,10 +16,15 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
  */
 class InPageNavigationStateTest extends AbstractKernelTestBase {
 
+  use ContentTypeCreationTrait;
+  use NodeCreationTrait;
+
   /**
    * {@inheritdoc}
    */
   public static $modules = [
+    'filter',
+    'text',
     'emr',
     'emr_node',
     'node',
@@ -39,10 +44,14 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
     $this->installSchema('node', ['node_access']);
 
     $this->installConfig([
+      'node',
+      'filter',
       'emr',
       'emr_node',
       'oe_theme_inpage_navigation',
     ]);
+    $this->createContentType(['type' => 'example', 'name' => 'Example']);
+    $this->container->get('emr.installer')->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['example']);
   }
 
   /**
@@ -60,23 +69,19 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
    * @dataProvider providerTestCondition
    */
   public function testCondition(?bool $inpage_navigation_condition, ?bool $inpage_navigation_condition_negate, ?array $inpage_navigation_node_state, array $expected): void {
-    $manager = \Drupal::service('plugin.manager.condition');
-    $condition = $manager->createInstance('oe_theme_inpage_navigation_state');
+    $condition = $this->container->get('plugin.manager.condition')->createInstance('oe_theme_inpage_navigation_state');
     $condition->setConfiguration(['inpage_navigation_state' => $inpage_navigation_condition, 'negate' => $inpage_navigation_condition_negate]);
 
     if ($inpage_navigation_node_state) {
       $condition->setContextMapping([
         'node' => 'node',
       ]);
-      NodeType::create(['type' => 'example', 'name' => 'Example'])->save();
-      \Drupal::service('emr.installer')->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['example']);
-      $node = Node::create(['type' => 'example', 'title' => 'some title']);
-      $node->save();
+      $node = $this->createNode(['type' => 'example', 'title' => 'some title']);
       if ($inpage_navigation_node_state['inpage_navigation']) {
         InPageNavigationHelper::setInPageNavigation($node);
       }
       $contexts['node'] = EntityContext::fromEntity($node);
-      \Drupal::service('context.handler')->applyContextMapping($condition, $contexts);
+      $this->container->get('context.handler')->applyContextMapping($condition, $contexts);
     }
 
     $this->assertEqual($condition->summary(), new FormattableMarkup($expected['summary'][0], $expected['summary'][1] ?? []));
@@ -141,7 +146,7 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
         'node' => NULL,
         'expected' => [
           'summary' => ['Any inpage navigation state'],
-          'result' => TRUE,
+          'result' => FALSE,
         ],
       ],
       'empty condition, negative, no node' => [
@@ -203,7 +208,7 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
         'node' => NULL,
         'expected' => [
           'summary' => ['The inpage navigation should be enabled'],
-          'result' => TRUE,
+          'result' => FALSE,
         ],
       ],
       'enabled inpage navigation, negative, no node' => [
@@ -265,7 +270,7 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
         'node' => NULL,
         'expected' => [
           'summary' => ['The inpage navigation should be disabled'],
-          'result' => TRUE,
+          'result' => FALSE,
         ],
       ],
       'disabled inpage navigation, negative, no node' => [
