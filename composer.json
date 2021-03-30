@@ -41,6 +41,7 @@
         "easyrdf/easyrdf": "1.0.0 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
         "guzzlehttp/guzzle": "~6.3",
+        "instaclick/php-webdriver": "^1.4.7",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
