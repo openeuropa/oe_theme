@@ -1,6 +1,6 @@
-name: 'OpenEuropa Theme Inpage Navigation'
+name: 'OpenEuropa Theme In-page Navigation'
 type: module
-description: 'Module for inpage navigation functionality'
+description: 'Module for in-page navigation functionality'
 package: OpenEuropa
 core: 8.x
 dependencies:

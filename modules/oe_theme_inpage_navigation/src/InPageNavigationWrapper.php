@@ -15,17 +15,17 @@ class InPageNavigationWrapper extends EntityMetaWrapper {
    * Checks whether the content is configured to be with inpage navigation.
    *
    * @return bool
-   *   Whether it shows the children.
+   *   Whether it has in-page navigation enabled.
    */
-  public function isInPageNavigation(): bool {
+  public function isInPageNavigationEnabled(): bool {
     return (bool) $this->entityMeta->get('oe_theme_inpage_navigation')->value;
   }
 
   /**
-   * Sets whether the content with inpage navigation or not.
+   * Sets in-page navigation setting for the node.
    *
    * @param bool $value
-   *   Whether it is content with inpage navigation or not.
+   *   Whether it has in-page navigation enabled.
    */
   public function setInPageNavigation(bool $value): void {
     $this->entityMeta->set('oe_theme_inpage_navigation', $value);
