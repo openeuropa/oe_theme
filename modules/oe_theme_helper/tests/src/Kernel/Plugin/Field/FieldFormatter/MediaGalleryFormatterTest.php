@@ -179,7 +179,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertStringEndsWith('/example_1.jpeg', $image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
     $this->assertContains('Extra image title', $caption->html());
-    $this->assertEmpty($caption->filter('.ecl-gallery__meta'));
+    $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
@@ -187,11 +187,11 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals('Energy, let\'s save it!', $image_node->attr('alt'));
+    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
     $this->assertStringEndsWith('/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg', $image_node->attr('src'));
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
     $this->assertContains($video_media->label(), $caption->html());
-    $this->assertEmpty($caption->filter('.ecl-gallery__meta'));
+    $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test that all the cache tags have present and bubbled up.
     $this->assertEquals([
@@ -276,7 +276,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     );
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
     $this->assertContains($video_media->label(), $caption->html());
-    $this->assertEmpty($caption->filter('.ecl-gallery__meta'));
+    $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
   }
 
 }

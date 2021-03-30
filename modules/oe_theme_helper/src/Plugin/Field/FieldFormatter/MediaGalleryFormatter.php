@@ -234,7 +234,7 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
       $values += $this->extractAttributes($media);
 
       // Provide a default caption value, if none is present.
-      if (empty($values['caption'])) {
+      if ($values['caption'] === ' ') {
         $values['caption'] = $media->label();
       }
 
@@ -275,15 +275,13 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
     $bundle_settings = $this->getSetting('bundle_settings');
     $values = [];
     foreach ($attribute_mapping as $attribute => $key) {
-      if (!isset($bundle_settings[$media->bundle()][$attribute])) {
-        continue;
-      }
-
-      $field = $bundle_settings[$media->bundle()][$attribute];
-      $values[$key] = $media->hasField($field) && !$media->get($field)->isEmpty()
+      $field = $bundle_settings[$media->bundle()][$attribute] ?? '';
+      $values[$key] = $field !== '' && $media->hasField($field) && !$media->get($field)->isEmpty()
         ? $media->get($field)->first()->getString()
         // Due to limitations in the current ECL gallery implementation, all
         // the attributes need to be specified, so we pass an empty string.
+        // If attributes are missing, the javascript modal won't show the
+        // correct caption and copyrights when looping through medias.
         : ' ';
     }
 
