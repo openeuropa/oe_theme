@@ -84,7 +84,7 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
       return TRUE;
     }
 
-    return InPageNavigationHelper::isInPageNavigation($node) === $this->configuration['inpage_navigation_state'];
+    return InPageNavigationHelper::isInPageNavigationEnabled($node) === $this->configuration['inpage_navigation_state'];
   }
 
   /**
