@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\MediaDataExtractor;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\media\MediaInterface;
@@ -78,9 +79,17 @@ class Iframe extends Thumbnail {
       ->viewField($media->get($source_field), 'oe_theme_main_content');
 
     // Bubble the cacheability information in the current render context.
-    $this->renderer->renderPlain($build);
+    $markup = $this->renderer->renderPlain($build);
 
-    return $build[0]['#attributes']['src'] ?? NULL;
+    // If the source is rendered as iframe tag, use the src attribute.
+    if (isset($build[0]['#type']) && $build[0]['#type'] === 'html_tag' && $build[0]['#tag'] === 'iframe') {
+      return $build[0]['#attributes']['src'] ?? NULL;
+    }
+
+    // Fallback to the rendered markup and extract the src.
+    preg_match('/<iframe.*src=["\']+([^"\']*)["\']+[^<>]*><\/iframe>/', (string) $markup, $matches);
+
+    return isset($matches[1]) ? Html::decodeEntities($matches[1]) : NULL;
   }
 
 }
