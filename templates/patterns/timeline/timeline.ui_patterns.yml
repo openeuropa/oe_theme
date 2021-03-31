@@ -2,6 +2,11 @@ timeline:
   label: "Timeline"
   description: "A timeline is a way of displaying a list of events in chronological order."
   fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Timeline title."
+      preview: "Timeline heading"
     limit:
       type: "numeric"
       label: "Timeline index for starting hiding"

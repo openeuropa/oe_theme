@@ -21,6 +21,11 @@
 {% set _toggle_collapsed = button_label|default('Show @numb more items'|trans({'@numb': hidden_num})) %}
 {% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
 
+{% if title %}
+  <h2 class="ecl-u-type-heading-2">
+    {{ title }}
+  </h2>
+{% endif %}
 {% include '@ecl-twig/timeline' with {
   'toggle_collapsed': _toggle_collapsed,
   'toggle_expanded': _toggle_expanded,

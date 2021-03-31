@@ -1361,6 +1361,9 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
  */
 function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
   $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_oe_title') && !$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['heading'] = $paragraph->get('field_oe_title')->value;
+  }
   $variables['limit'] = $paragraph->get('field_oe_timeline_expand')->value;
   $variables['items'] = $variables['content']['field_oe_timeline']['#items'];
 }
