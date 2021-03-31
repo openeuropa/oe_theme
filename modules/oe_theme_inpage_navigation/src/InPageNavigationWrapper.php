@@ -7,7 +7,7 @@ namespace Drupal\oe_theme_inpage_navigation;
 use Drupal\emr\EntityMetaWrapper;
 
 /**
- * Wrapper for the inpage navigation plugins.
+ * Wrapper for the in-page navigation plugin.
  */
 class InPageNavigationWrapper extends EntityMetaWrapper {
 
@@ -25,7 +25,7 @@ class InPageNavigationWrapper extends EntityMetaWrapper {
    * Sets in-page navigation setting for the node.
    *
    * @param bool $value
-   *   Whether it has in-page navigation enabled.
+   *   Whether to have in-page navigation enabled.
    */
   public function setInPageNavigation(bool $value): void {
     $this->entityMeta->set('oe_theme_inpage_navigation', $value);

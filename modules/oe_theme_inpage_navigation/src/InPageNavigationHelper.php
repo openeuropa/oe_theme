@@ -7,18 +7,21 @@ namespace Drupal\oe_theme_inpage_navigation;
 use Drupal\node\NodeInterface;
 
 /**
- * Helper class for the inpage navigation functionality.
+ * Helper class for the in-page navigation functionality.
  */
 class InPageNavigationHelper {
 
   /**
-   * Returns default setting for inpage nav for the node bundle.
+   * Returns default setting for in-page nav for the node bundle.
    *
    * @param \Drupal\node\NodeInterface $node
    *   The node.
+   *
+   * @return bool
+   *   Whether the in-page nav is enabled in a node by default.
    */
-  public static function getDefaultInPageNavigationSettings(NodeInterface $node): bool {
-    return $node->type->entity->getThirdPartySetting('oe_theme_inpage_navigation', 'enabled', FALSE);
+  public static function isInPageNavigationEnabledByDefault(NodeInterface $node): bool {
+    return $node->get('type')->entity->getThirdPartySetting('oe_theme_inpage_navigation', 'enabled', FALSE);
   }
 
   /**
@@ -28,7 +31,7 @@ class InPageNavigationHelper {
    *   The node.
    *
    * @return bool
-   *   Whether it's content with inpage navigation.
+   *   Whether in-page navigation is enabled or not.
    */
   public static function isInPageNavigationEnabled(NodeInterface $node): bool {
     /** @var \Drupal\emr\Field\EntityMetaItemListInterface $entity_meta_list */
@@ -41,11 +44,10 @@ class InPageNavigationHelper {
     $entity_meta_wrapper = $entity_meta->getWrapper();
 
     if ($entity_meta->isNew()) {
-      return self::getDefaultInPageNavigationSettings($entity_meta->getHostEntity());
+      return self::isInPageNavigationEnabledByDefault($entity_meta->getHostEntity());
     }
-    else {
-      return $entity_meta_wrapper->isInPageNavigationEnabled();
-    }
+
+    return $entity_meta_wrapper->isInPageNavigationEnabled();
   }
 
   /**
@@ -54,7 +56,7 @@ class InPageNavigationHelper {
    * @param \Drupal\node\NodeInterface $node
    *   The node.
    */
-  public static function setInPageNavigation(NodeInterface $node): void {
+  public static function enableInPageNavigation(NodeInterface $node): void {
     /** @var \Drupal\emr\Field\EntityMetaItemListInterface $entity_meta_list */
     $entity_meta_list = $node->get('emr_entity_metas');
 

@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme_inpage_navigation\FunctionalJavascript\Plugin\EntityMetaRelation;
+namespace Drupal\Tests\oe_theme_inpage_navigation\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\oe_theme_inpage_navigation\InPageNavigationHelper;
@@ -16,14 +16,14 @@ class InPageNavigationTest extends WebDriverTestBase {
   use NodeCreationTrait;
 
   /**
-   * The node type id for ct with in-page nav.
+   * The node type id for a CT with in-page nav set by default.
    *
    * @var string
    */
   protected $typeWithInpageNav;
 
   /**
-   * The node type id for ct without in-page nav.
+   * The node type id for a CT without in-page nav.
    *
    * @var string
    */
@@ -58,7 +58,7 @@ class InPageNavigationTest extends WebDriverTestBase {
   }
 
   /**
-   * Test form of inpage navigation entity meta relation plugin.
+   * Test in-page entity meta relation plugin.
    */
   public function testInPageNavigationForm(): void {
     $entity_meta_storage = \Drupal::entityTypeManager()->getStorage('entity_meta');
@@ -67,7 +67,8 @@ class InPageNavigationTest extends WebDriverTestBase {
     // Assert we have no entity metas with the inpage navigation plugin.
     $this->assertCount(0, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
 
-    $this->drupalLogin($this->rootUser);
+    $user = $this->createUser([], '', TRUE);
+    $this->drupalLogin($user);
     $this->drupalGet('/node/add/' . $this->typeWithoutInpageNav);
     $this->assertElementPresent('.form-item-inpage-navigation input#edit-inpage-navigation');
     $this->clickLink('In-page Navigation');
@@ -81,24 +82,24 @@ class InPageNavigationTest extends WebDriverTestBase {
     $this->getSession()->getPage()->pressButton('Save');
     $this->assertSession()->pageTextContainsOnce('Test node type The title of the page has been created.');
 
-    $node = $this->getNodeByTitle('The title of the page');
+    $node_one = $this->getNodeByTitle('The title of the page');
 
     // Assert we still have no entity metas with the inpage_navigation plugin.
     $this->assertCount(0, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
-    $this->assertFalse(InPageNavigationHelper::isInPageNavigationEnabled($node));
+    $this->assertFalse(InPageNavigationHelper::isInPageNavigationEnabled($node_one));
 
-    $this->drupalGet($node->toUrl('edit-form'));
+    $this->drupalGet($node_one->toUrl('edit-form'));
     $this->clickLink('In-page Navigation');
     $this->getSession()->getPage()->checkField('Override default settings');
     $this->getSession()->getPage()->checkField('Enable in-page navigation on this page');
     $this->getSession()->getPage()->pressButton('Save');
 
-    // Assert we now have one entity metas with the inpage_navigation plugin.
-    $node = $this->getNodeByTitle('The title of the page', TRUE);
+    // Assert we now have one entity meta with the inpage_navigation plugin.
+    $node_one = $this->getNodeByTitle('The title of the page', TRUE);
     $this->assertCount(1, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
-    $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node));
+    $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node_one));
 
-    $this->drupalGet($node->toUrl('edit-form'));
+    $this->drupalGet($node_one->toUrl('edit-form'));
     $this->clickLink('In-page Navigation');
     $this->assertTrue($this->getSession()->getPage()->findField('Enable in-page navigation on this page')->isVisible());
     $this->getSession()->getPage()->uncheckField('Enable in-page navigation on this page');
@@ -106,9 +107,9 @@ class InPageNavigationTest extends WebDriverTestBase {
 
     // We still have one entity meta with the inpage_navigation plugin, as a new
     // revision got created.
-    $node = $this->getNodeByTitle('The title of the page', TRUE);
+    $node_one = $this->getNodeByTitle('The title of the page', TRUE);
     $this->assertCount(1, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
-    $this->assertFalse(InPageNavigationHelper::isInPageNavigationEnabled($node));
+    $this->assertFalse(InPageNavigationHelper::isInPageNavigationEnabled($node_one));
 
     // Test the other content type.
     $this->drupalGet('/node/add/' . $this->typeWithInpageNav);
@@ -123,43 +124,43 @@ class InPageNavigationTest extends WebDriverTestBase {
     $this->getSession()->getPage()->pressButton('Save');
     $this->assertSession()->pageTextContainsOnce('Test node type The title of the page with in-page navigation has been created.');
 
-    $node_with_navbar = $this->getNodeByTitle('The title of the page with in-page navigation');
+    $node_two = $this->getNodeByTitle('The title of the page with in-page navigation');
 
-    // Assert we keep having same number of entity metas, none was created.
+    // Assert we have the same number of entity metas, none was created.
     $this->assertCount(1, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
-    $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node_with_navbar));
+    $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node_two));
 
-    $this->drupalGet($node_with_navbar->toUrl('edit-form'));
+    $this->drupalGet($node_two->toUrl('edit-form'));
     $this->clickLink('In-page Navigation');
     $this->getSession()->getPage()->checkField('Override default settings');
-    $this->getSession()->getPage()->uncheckField('Enable in-page navigation on this page');
+    // The checkbox is not checked so it should save with inpage nav disabled.
     $this->getSession()->getPage()->pressButton('Save');
 
-    $node_storage->resetCache([$node_with_navbar->id()]);
+    $node_storage->resetCache([$node_two->id()]);
     $node_without_navbar = $this->getNodeByTitle('The title of the page with in-page navigation');
     $this->assertCount(2, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
     $this->assertFalse(InPageNavigationHelper::isInPageNavigationEnabled($node_without_navbar));
 
     // Edit again and enable in-page navigation.
-    $this->drupalGet($node_with_navbar->toUrl('edit-form'));
+    $this->drupalGet($node_two->toUrl('edit-form'));
     $this->clickLink('In-page Navigation');
     $this->getSession()->getPage()->checkField('Override default settings');
     $this->getSession()->getPage()->checkField('Enable in-page navigation on this page');
     $this->getSession()->getPage()->pressButton('Save');
 
-    $node_storage->resetCache([$node_with_navbar->id()]);
+    $node_storage->resetCache([$node_two->id()]);
     $node_without_navbar = $this->getNodeByTitle('The title of the page with in-page navigation');
     $this->assertCount(2, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
     $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node_without_navbar));
 
     // Edit again and disable override, should be still visible.
-    $this->drupalGet($node_with_navbar->toUrl('edit-form'));
+    $this->drupalGet($node_two->toUrl('edit-form'));
     $this->clickLink('In-page Navigation');
     $this->getSession()->getPage()->uncheckField('Override default settings');
     $this->assertFalse($this->getSession()->getPage()->findField('Enable in-page navigation on this page')->isVisible());
     $this->getSession()->getPage()->pressButton('Save');
 
-    $node_storage->resetCache([$node_with_navbar->id()]);
+    $node_storage->resetCache([$node_two->id()]);
     $node_without_navbar = $this->getNodeByTitle('The title of the page with in-page navigation');
     $this->assertCount(2, $entity_meta_storage->loadByProperties(['bundle' => 'oe_theme_inpage_navigation']));
     $this->assertTrue(InPageNavigationHelper::isInPageNavigationEnabled($node_without_navbar));
