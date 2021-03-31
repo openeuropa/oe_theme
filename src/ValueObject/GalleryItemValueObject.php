@@ -12,7 +12,7 @@ namespace Drupal\oe_theme\ValueObject;
 class GalleryItemValueObject extends ValueObjectBase {
 
   /**
-   * IMage gallery item type.
+   * Image gallery item type.
    */
   const TYPE_IMAGE = 'image';
 
