@@ -78,7 +78,8 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
       ]);
       $node = $this->createNode(['type' => 'example', 'title' => 'some title']);
       if ($inpage_navigation_node_state['inpage_navigation']) {
-        InPageNavigationHelper::setInPageNavigation($node);
+        InPageNavigationHelper::enableInPageNavigation($node);
+        $node->save();
       }
       $contexts['node'] = EntityContext::fromEntity($node);
       $this->container->get('context.handler')->applyContextMapping($condition, $contexts);
