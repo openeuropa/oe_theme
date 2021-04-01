@@ -1,0 +1,8 @@
+node.type.*.third_party.oe_theme_inpage_navigation:
+  type: mapping
+  label: 'Navigation block settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Whether to enable in-page navigation for this content type.'
+
