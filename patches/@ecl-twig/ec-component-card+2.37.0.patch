@@ -1,7 +1,7 @@
 patch-package
 --- a/node_modules/@ecl-twig/ec-component-card/ecl-card.html.twig
 +++ b/node_modules/@ecl-twig/ec-component-card/ecl-card.html.twig
-@@ -91,7 +91,7 @@
+@@ -102,7 +102,7 @@
        <div class="ecl-card__image" {{ _card_img_aria_label|raw }} role="img" style="background-image:url('{{ _card.image.src }}')"></div>
      {% endif %}
      {% if _card.meta is not empty %}
@@ -10,7 +10,7 @@ patch-package
      {% endif %}
      <h1 class="ecl-card__title">
        {%- if _card.title.path %}
-@@ -131,45 +131,47 @@
+@@ -142,18 +142,19 @@
    {% if _card.description is not empty or _card.links is not empty %}
    </div>
    {% endif %}
@@ -38,15 +38,13 @@ patch-package
 +              {% endif %}
              {% endif %}
 -          {% endif %}
--          <li class="ecl-card__info-item">
--            {% include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
--              icon: _icon|default({}),
--              _compliance_: _compliance,
--              _compliance_inner_check_: true
--            } only %}
--            <span class="ecl-card__info-label">{{ info.label }}</span>
--          </li>
--        {% endfor %}
+           <li class="ecl-card__info-item">
+             {% include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
+               icon: _icon|default({}),
+@@ -163,29 +164,30 @@
+             <span class="ecl-card__info-label">{{ info.label }}</span>
+           </li>
+         {% endfor %}
 -      </ul>
 -    {% endif %}
 -    {% if _card.tags is defined and _card.tags is not empty and _card.tags is iterable %}
@@ -61,19 +59,6 @@ patch-package
 -              icon_path: _icon_path
 -            } only %}
 -          </li>
--        {% endfor %}
--      </ul>
--    {% endif %}
--  </footer>
-+            <li class="ecl-card__info-item">
-+              {% include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
-+                icon: _icon|default({}),
-+                _compliance_: _compliance,
-+                _compliance_inner_check_: true
-+              } only %}
-+              <span class="ecl-card__info-label">{{ info.label }}</span>
-+            </li>
-+          {% endfor %}
 +        </ul>
 +      {% endif %}
 +      {% if _card.tags is defined and _card.tags is not empty and _card.tags is iterable %}
@@ -90,6 +75,19 @@ patch-package
 +            </li>
 +          {% endfor %}
 +        </ul>
++      {% endif %}
++      {% if _card.lists is defined and _card.lists is not empty and _card.lists is iterable %}
++        {% for _list in _card.lists %}
++          {% include '@ecl-twig/ec-component-description-list/ecl-description-list.html.twig' with _list|merge({ extra_classes: 'ecl-card__list'}) only %}
+         {% endfor %}
+-      </ul>
+-    {% endif %}
+-    {% if _card.lists is defined and _card.lists is not empty and _card.lists is iterable %}
+-      {% for _list in _card.lists %}
+-        {% include '@ecl-twig/ec-component-description-list/ecl-description-list.html.twig' with _list|merge({ extra_classes: 'ecl-card__list'}) only %}
+-      {% endfor %}
+-    {% endif %}
+-  </footer>
 +      {% endif %}
 +    </footer>
 +  {% endif %}
