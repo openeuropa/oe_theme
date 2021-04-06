@@ -30,10 +30,12 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     'entity_test',
     'field',
     'file',
+    'filter',
     'file_link',
     'link',
     'media',
     'oe_media',
+    'oe_media_iframe',
     'oe_media_oembed_mock',
     'options',
   ];
@@ -53,9 +55,10 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       'field',
       'media',
       'oe_media',
+      'oe_media_iframe',
     ]);
 
-    // Add a copyright field to the media bundles used in the test. Use
+    // Add a copyright field to some of the media bundles used in the test. Use
     // different names to make sure that the correct settings are used in the
     // formatter.
     $field_storage = FieldStorageConfig::create([
@@ -143,11 +146,30 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     ]);
     $video_media->save();
 
-    // Create a test entity and reference the two medias.
+    // Create a video iframe media. Video iframes render the markup as string
+    // and not as html tag, so with this test we fully cover the iframe plugin.
+    $filepath = drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png';
+    $thumbnail = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $thumbnail->setPermanent();
+    $thumbnail->save();
+    $iframe_media = Media::create([
+      'bundle' => 'video_iframe',
+      'name' => 'Test video iframe title',
+      'oe_media_iframe' => '<iframe src="http://example.com" width="800" height="600" allowFullScreen="true"></iframe>',
+      'oe_media_iframe_thumbnail' => [
+        'target_id' => $thumbnail->id(),
+        // @todo Randomise to catch escaping vulnerabilities.
+        'alt' => 'Alt text for test video iframe.',
+      ],
+    ]);
+    $iframe_media->save();
+
+    // Create a test entity and reference the three medias.
     $entity = EntityTest::create([
       'field_test' => [
         $image_media->id(),
         $video_media->id(),
+        $iframe_media->id(),
       ],
     ]);
     $entity->save();
@@ -164,6 +186,9 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
           'remote_video' => [
             'caption' => 'name',
           ],
+          'video_iframe' => [
+            'caption' => 'name',
+          ],
         ],
       ],
     ]);
@@ -171,7 +196,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $gallery = $crawler->filter('section.ecl-gallery');
     $this->assertCount(1, $gallery);
     $items = $gallery->filter('li.ecl-gallery__item');
-    $this->assertCount(2, $items);
+    $this->assertCount(3, $items);
 
     // Test the contents of the first item.
     $image_node = $items->first()->filter('img');
@@ -193,12 +218,26 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertContains($video_media->label(), $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
+    // Test the third item.
+    $this->assertEquals(
+      'http://example.com',
+      $items->eq(2)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
+    );
+    $image_node = $items->eq(2)->filter('img');
+    $this->assertEquals('Alt text for test video iframe.', $image_node->attr('alt'));
+    $this->assertStringEndsWith('/placeholder.png', $image_node->attr('src'));
+    $caption = $items->eq(2)->filter('.ecl-gallery__description');
+    $this->assertContains('Test video iframe title', $caption->html());
+    $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
+
     // Test that all the cache tags have present and bubbled up.
     $this->assertEquals([
       'file:1',
       'file:2',
+      'file:3',
       'media:1',
       'media:2',
+      'media:3',
     ], $build['#cache']['tags']);
 
     // Assert rendering when also the copyright mapping is configured.
@@ -221,7 +260,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $crawler = new Crawler($this->renderRoot($build));
     $gallery = $crawler->filter('section.ecl-gallery');
     $items = $gallery->filter('li.ecl-gallery__item');
-    $this->assertCount(2, $items);
+    $this->assertCount(3, $items);
 
     // Test the contents of the first item.
     $caption = $items->first()->filter('.ecl-gallery__description');
@@ -254,7 +293,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $crawler = new Crawler($this->renderRoot($build));
     $gallery = $crawler->filter('section.ecl-gallery');
     $items = $gallery->filter('li.ecl-gallery__item');
-    $this->assertCount(2, $items);
+    $this->assertCount(3, $items);
 
     // Test the contents of the first item.
     $image_node = $items->first()->filter('img');
@@ -269,7 +308,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals('Energy, let\'s save it!', $image_node->attr('alt'));
+    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
     $this->assertContains(
       '/files/styles/medium/public/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg?itok=',
       $image_node->attr('src')
