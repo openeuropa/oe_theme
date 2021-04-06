@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function oe_theme_inpage_navigation_theme($existing, $type, $theme, $path): array {
+  return [
+    'oe_theme_inpage_navigation_block' => [
+      'variables' => [
+        'title' => NULL,
+      ],
+    ],
+  ];
+}
