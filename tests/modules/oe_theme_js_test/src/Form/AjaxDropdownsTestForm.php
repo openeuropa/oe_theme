@@ -37,13 +37,18 @@ class AjaxDropdownsTestForm implements FormInterface {
       '#type' => 'container',
       '#attributes' => [
         'id' => 'dropdown-container',
-        // We need to space the patterns from the submit button.
-        'class' => ['ecl-u-clearfix', 'ecl-u-pv-4xl'],
       ],
     ];
 
     for ($i = 0; $i <= $max_delta; $i++) {
       $form['dropdowns'][$i] = [
+        '#type' => 'container',
+        '#attributes' => [
+          // We need to space between the patterns and the submit button.
+          'class' => ['ecl-u-pb-4xl'],
+        ],
+      ];
+      $form['dropdowns'][$i]['pattern'] = [
         '#type' => 'pattern',
         '#id' => 'dropdown',
         '#fields' => [
