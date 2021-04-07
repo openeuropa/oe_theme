@@ -415,6 +415,28 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     ];
     $publication_teaser_assert->assertPattern($publication_teaser_expected_values, $publication_teaser_content->getOuterHtml());
 
+    // Create some medias to reference in the media field.
+    $node->set('oe_person_media', [
+      $this->createMediaImage('first_media')->id(),
+      $this->createMediaImage('second_media')->id(),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert the rendering of the media field as gallery.
+    // @todo Implement the gallery pattern assertion class.
+    $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
+    $items = $gallery->findAll('css', 'li.ecl-gallery__item');
+    $this->assertCount(2, $items);
+
+    // Test the contents of the first item. The second item would have a similar
+    // structure so no need to test.
+    $first_item = $items[0]->find('css', 'img');
+    $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
+    $this->assertContains('/styles/large/public/placeholder_first_media.png?itok=', $first_item->getAttribute('src'));
+    $caption = $items[0]->find('css', '.ecl-gallery__description');
+    $this->assertContains('Test image first_media', $caption->getOuterHtml());
+    $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
+
     // Assert non-eu person.
     $job_1->set('oe_role_name', 'Singer');
     $job_1->set('oe_role_reference', NULL);
@@ -459,6 +481,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl-editor');
     $this->assertEquals('Description job_1', $job_description_items[0]->getText());
     $this->assertEquals('Description job_2', $job_description_items[1]->getText());
+
+    // The gallery is not rendered on non_eu persons.
+    $this->assertSession()->elementNotExists('css', 'section.ecl-gallery');
   }
 
   /**

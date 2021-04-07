@@ -26,6 +26,7 @@ dependencies:
     - field.field.node.oe_person.oe_subject
     - field.field.node.oe_person.oe_summary
     - field.field.node.oe_person.oe_teaser
+    - image.style.large
     - node.type.oe_person
   module:
     - entity_reference_revisions
@@ -116,6 +117,7 @@ third_party_settings:
       label: 'Articles and presentations'
     group_media:
       children:
+        - oe_person_media
         - oe_social_media_links
       parent_name: group_in_page_navigation
       weight: 4
@@ -249,6 +251,24 @@ content:
       view_mode: full
       link: ''
     third_party_settings: {  }
+  oe_person_media:
+    type: oe_theme_helper_media_gallery
+    weight: 0
+    region: content
+    label: above
+    settings:
+      image_style: large
+      bundle_settings:
+        av_portal_photo:
+          caption: name
+          copyright: ''
+        av_portal_video:
+          caption: name
+          copyright: ''
+        image:
+          caption: name
+          copyright: ''
+    third_party_settings: {  }
   oe_person_organisation:
     type: entity_reference_label
     weight: 22
@@ -278,7 +298,7 @@ content:
     third_party_settings: {  }
   oe_social_media_links:
     type: oe_theme_helper_social_media_links_formatter
-    weight: 8
+    weight: 1
     region: content
     label: hidden
     settings:
@@ -303,7 +323,6 @@ hidden:
   oe_person_first_name: true
   oe_person_gender: true
   oe_person_last_name: true
-  oe_person_media: true
   oe_person_photo: true
   oe_person_type: true
   oe_subject: true

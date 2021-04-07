@@ -22,15 +22,15 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
+    'breakpoint',
+    'image',
+    'oe_theme_helper',
+    'responsive_image',
     'system',
-    'user',
+    'twig_field_value',
     'ui_patterns',
     'ui_patterns_library',
-    'oe_theme_helper',
-    'breakpoint',
-    'responsive_image',
-    'image',
-    'twig_field_value',
+    'user',
   ];
 
   /**

@@ -7,6 +7,8 @@ core: 8.x
 dependencies:
   - extra_field:extra_field
   - oe_content:oe_content_person
+  - oe_media:oe_media
+  - oe_media:oe_media_avportal
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - oe_theme:oe_theme_content_organisation_reference

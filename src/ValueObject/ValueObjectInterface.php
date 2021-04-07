@@ -9,7 +9,7 @@ use Drupal\Core\Cache\RefinableCacheableDependencyInterface;
 /**
  * Interface implemented by all field type value objects.
  */
-interface ValueObjectInterface extends \ArrayAccess, RefinableCacheableDependencyInterface {
+interface ValueObjectInterface extends \ArrayAccess, \IteratorAggregate, RefinableCacheableDependencyInterface {
 
   /**
    * Get value object as an array.
@@ -26,7 +26,7 @@ interface ValueObjectInterface extends \ArrayAccess, RefinableCacheableDependenc
    *   List of values.
    *
    * @return \Drupal\oe_theme\ValueObject\ValueObjectInterface
-   *   A new ValueObject object.
+   *   A new ValueObjectInterface object.
    */
   public static function fromArray(array $values = []): ValueObjectInterface;
 
