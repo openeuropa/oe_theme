@@ -12,13 +12,13 @@ use Drupal\oe_theme_inpage_navigation\InPageNavigationHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides a configurable 'Inpage Navigation State' condition.
+ * Provides a configurable 'In-page Navigation State' condition.
  *
- * This condition checks if the inpage navigation for node is enabled.
+ * This condition checks if the in-page navigation is enabled for the node.
  *
  * @Condition(
  *   id = "oe_theme_inpage_navigation_state",
- *   label = @Translation("Inpage navigation"),
+ *   label = @Translation("In-page navigation"),
  *   context_definitions = {
  *     "node" = @ContextDefinition("entity:node", required = FALSE)
  *   }
@@ -42,7 +42,7 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
    */
   public function defaultConfiguration() {
     return [
-      'inpage_navigation_state' => NULL,
+      'inpage_navigation_state' => FALSE,
     ] + parent::defaultConfiguration();
   }
 
@@ -80,10 +80,6 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
       return $this->isNegated();
     }
 
-    if ($this->configuration['inpage_navigation_state'] === NULL) {
-      return TRUE;
-    }
-
     return InPageNavigationHelper::isInPageNavigationEnabled($node) === $this->configuration['inpage_navigation_state'];
   }
 
@@ -91,16 +87,12 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
    * {@inheritdoc}
    */
   public function summary() {
-    if (is_null($this->configuration['inpage_navigation_state'])) {
-      return $this->t('Any inpage navigation state');
-    }
-
     $state = $this->configuration['inpage_navigation_state'] ? $this->t('enabled') : $this->t('disabled');
     if ($this->isNegated()) {
-      return $this->t('The inpage navigation should not be @state', ['@state' => $state]);
+      return $this->t('The in-page navigation should not be @state', ['@state' => $state]);
     }
 
-    return $this->t('The inpage navigation should be @state', ['@state' => $state]);
+    return $this->t('The in-page navigation should be @state', ['@state' => $state]);
   }
 
 }

@@ -97,189 +97,127 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
    */
   public function providerTestCondition(): array {
     return [
-      'empty condition, node w/ active inpage navigation' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => NULL,
-        'node' => [
-          'inpage_navigation' => TRUE,
-        ],
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => TRUE,
-        ],
-      ],
-      'empty condition, negative, node w/ active inpage navigation' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => TRUE,
-        'node' => [
-          'inpage_navigation' => TRUE,
-        ],
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => FALSE,
-        ],
-      ],
-      'empty condition, node w/o active inpage navigation' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => NULL,
-        'node' => [
-          'inpage_navigation' => FALSE,
-        ],
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => TRUE,
-        ],
-      ],
-      'empty condition, negative, node w/o active inpage navigation' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => TRUE,
-        'node' => [
-          'inpage_navigation' => FALSE,
-        ],
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => FALSE,
-        ],
-      ],
-      'empty condition, no node' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => NULL,
-        'node' => NULL,
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => FALSE,
-        ],
-      ],
-      'empty condition, negative, no node' => [
-        'inpage_navigation_condition' => NULL,
-        'inpage_navigation_condition_negate' => TRUE,
-        'node' => NULL,
-        'expected' => [
-          'summary' => ['Any inpage navigation state'],
-          'result' => FALSE,
-        ],
-      ],
-      'enabled inpage navigation, node w/ active inpage navigation' => [
+      'enabled in-page navigation, node w/ active inpage navigation' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => [
           'inpage_navigation' => TRUE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should be @state', ['@state' => 'enabled']],
+          'summary' => ['The in-page navigation should be @state', ['@state' => 'enabled']],
           'result' => TRUE,
         ],
       ],
-      'enabled inpage navigation, negative, node w/ active inpage navigation' => [
+      'enabled in-page navigation, negative, node w/ active inpage navigation' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => [
           'inpage_navigation' => TRUE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should not be @state', ['@state' => 'enabled']],
+          'summary' => ['The in-page navigation should not be @state', ['@state' => 'enabled']],
           'result' => FALSE,
         ],
       ],
-      'enabled inpage navigation, node w/o active inpage navigation' => [
+      'enabled in-page navigation, node w/o active inpage navigation' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => [
           'inpage_navigation' => FALSE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should be @state', ['@state' => 'enabled']],
+          'summary' => ['The in-page navigation should be @state', ['@state' => 'enabled']],
           'result' => FALSE,
         ],
       ],
-      'enabled inpage navigation, negative, node w/o active inpage navigation' => [
+      'enabled in-page navigation, negative, node w/o active inpage navigation' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => [
           'inpage_navigation' => FALSE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should not be @state', ['@state' => 'enabled']],
+          'summary' => ['The in-page navigation should not be @state', ['@state' => 'enabled']],
           'result' => TRUE,
         ],
       ],
-      'enabled inpage navigation, no node' => [
+      'enabled in-page navigation, no node' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => NULL,
         'expected' => [
-          'summary' => ['The inpage navigation should be enabled'],
+          'summary' => ['The in-page navigation should be enabled'],
           'result' => FALSE,
         ],
       ],
-      'enabled inpage navigation, negative, no node' => [
+      'enabled in-page navigation, negative, no node' => [
         'inpage_navigation_condition' => TRUE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => NULL,
         'expected' => [
-          'summary' => ['The inpage navigation should not be enabled'],
+          'summary' => ['The in-page navigation should not be enabled'],
           'result' => FALSE,
         ],
       ],
-      'disabled inpage navigation, node w/ active inpage navigation' => [
+      'disabled in-page navigation, node w/ active inpage navigation' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => [
           'inpage_navigation' => TRUE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should be disabled'],
+          'summary' => ['The in-page navigation should be disabled'],
           'result' => FALSE,
         ],
       ],
-      'disabled inpage navigation, negative, node w/ active inpage navigation' => [
+      'disabled in-page navigation, negative, node w/ active inpage navigation' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => [
           'inpage_navigation' => TRUE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should not be disabled'],
+          'summary' => ['The in-page navigation should not be disabled'],
           'result' => TRUE,
         ],
       ],
-      'disabled inpage navigation, node w/o active inpage navigation' => [
+      'disabled in-page navigation, node w/o active inpage navigation' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => [
           'inpage_navigation' => FALSE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should be disabled'],
+          'summary' => ['The in-page navigation should be disabled'],
           'result' => TRUE,
         ],
       ],
-      'disabled inpage navigation, negative, node w/o active inpage navigation' => [
+      'disabled in-page navigation, negative, node w/o active inpage navigation' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => [
           'inpage_navigation' => FALSE,
         ],
         'expected' => [
-          'summary' => ['The inpage navigation should not be disabled'],
+          'summary' => ['The in-page navigation should not be disabled'],
           'result' => FALSE,
         ],
       ],
-      'disabled inpage navigation, no node' => [
+      'disabled in-page navigation, no node' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => NULL,
         'node' => NULL,
         'expected' => [
-          'summary' => ['The inpage navigation should be disabled'],
+          'summary' => ['The in-page navigation should be disabled'],
           'result' => FALSE,
         ],
       ],
-      'disabled inpage navigation, negative, no node' => [
+      'disabled in-page navigation, negative, no node' => [
         'inpage_navigation_condition' => FALSE,
         'inpage_navigation_condition_negate' => TRUE,
         'node' => NULL,
         'expected' => [
-          'summary' => ['The inpage navigation should not be disabled'],
+          'summary' => ['The in-page navigation should not be disabled'],
           'result' => FALSE,
         ],
       ],
