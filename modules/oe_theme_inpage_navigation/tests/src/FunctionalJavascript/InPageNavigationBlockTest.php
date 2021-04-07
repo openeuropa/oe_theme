@@ -45,8 +45,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     // oe_theme itself.
     \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
-    \Drupal::service('emr.installer')
-      ->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['oe_publication']);
+    \Drupal::service('emr.installer')->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['oe_publication']);
 
     // Enable inpage_navigation for Publication content.
     $ct_with = NodeType::load('oe_publication');
