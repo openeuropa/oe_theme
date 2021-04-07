@@ -38,7 +38,18 @@
   <div class="ecl-container">
     <div class="ecl-row">
       <div class="ecl-col-sm-12">
-        {{ page.content }}
+        {% if page.left_sidebar %}
+          <div {{ attributes.addClass(['ecl-row', 'ecl-u-mt-l']) }}>
+            <div class="oe-theme-left-sidebar ecl-col-12 ecl-col-lg-3">
+              {{ page.left_sidebar }}
+            </div>
+            <div class="oe-theme-content-region ecl-col-lg-9">
+              {{ page.content }}
+            </div>
+          </div>
+        {% else %}
+          {{ page.content }}
+        {% endif %}
       </div>
     </div>
   </div>
