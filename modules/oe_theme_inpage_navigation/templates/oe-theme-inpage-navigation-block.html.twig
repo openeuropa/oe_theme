@@ -1,10 +1,13 @@
 {#
 /**
  * @file
- * Theme override to display in-page navigation for organisation nodes.
- *
- * @see ./modules/oe_theme_helper/templates/oe-theme-helper-in-page-navigation.html.twig
+ * Theme override to display in-page navigation for nodes.
  */
 #}
 {{ attach_library('oe_theme_inpage_navigation/inpage_navigation') }}
-{% include "oe-theme-helper-in-page-navigation.html.twig" %}
+{% block navigation %}
+  {% include '@ecl-twig/inpage-navigation' with {
+    'title': title,
+    'icon_path': ecl_icon_path,
+  } %}
+{% endblock %}
