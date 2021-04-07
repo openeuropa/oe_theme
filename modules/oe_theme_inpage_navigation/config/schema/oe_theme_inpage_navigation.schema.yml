@@ -6,3 +6,8 @@ node.type.*.third_party.oe_theme_inpage_navigation:
       type: boolean
       label: 'Whether to enable in-page navigation for this content type.'
 
+condition.plugin.oe_theme_inpage_navigation_state:
+  type: condition.plugin
+  mapping:
+    inpage_navigation_state:
+      type: string
