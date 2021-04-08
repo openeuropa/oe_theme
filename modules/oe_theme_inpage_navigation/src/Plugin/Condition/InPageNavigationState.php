@@ -54,7 +54,10 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
       '#type' => 'radios',
       '#title' => $this->t('Inpage navigation'),
       '#default_value' => $this->configuration['inpage_navigation_state'],
-      '#options' => [$this->t('Disabled'), $this->t('Enabled')],
+      '#options' => [
+        $this->t('Disabled'),
+        $this->t('Enabled'),
+      ],
       '#description' => $this->t('Choose with which inpage navigation state this condition should be met.'),
     ];
     return parent::buildConfigurationForm($form, $form_state);
@@ -76,11 +79,13 @@ class InPageNavigationState extends ConditionPluginBase implements ContainerFact
   public function evaluate() {
     $node = $this->getContextValue('node');
 
+    // If we don't have a node, we return FALSE, unless the plugin is configured
+    // to be negated, in which case, it's the opposite.
     if (!$node instanceof NodeInterface) {
       return $this->isNegated();
     }
 
-    return InPageNavigationHelper::isInPageNavigationEnabled($node) === $this->configuration['inpage_navigation_state'];
+    return InPageNavigationHelper::isInPageNavigationEnabled($node) === (bool) $this->configuration['inpage_navigation_state'];
   }
 
   /**
