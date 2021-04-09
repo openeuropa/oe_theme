@@ -1,11 +1,32 @@
 # Changelog
 
+## [2.17.0](https://github.com/openeuropa/oe_theme/tree/2.17.0) (2021-04-09)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.16.0...2.17.0)
+
+**Merged pull requests:**
+
+- EWPP-649: Person epic. [\#774](https://github.com/openeuropa/oe_theme/pull/774) ([nagyad](https://github.com/nagyad))
+- Update person content type epic with latest 2.x [\#771](https://github.com/openeuropa/oe_theme/pull/771) ([ademarco](https://github.com/ademarco))
+- EWPP-945: Drop legacy ECL presets and update version [\#770](https://github.com/openeuropa/oe_theme/pull/770) ([ademarco](https://github.com/ademarco))
+- EWPP-649: Update epic with 2.x. [\#768](https://github.com/openeuropa/oe_theme/pull/768) ([nagyad](https://github.com/nagyad))
+- EWPP-798: ECL 2.37.0 upgrade. [\#767](https://github.com/openeuropa/oe_theme/pull/767) ([sergepavle](https://github.com/sergepavle))
+- EWPP-883: Composer lowest drone fails on multiple components [\#765](https://github.com/openeuropa/oe_theme/pull/765) ([yenyasinn](https://github.com/yenyasinn))
+- Rebase person epic [\#764](https://github.com/openeuropa/oe_theme/pull/764) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Merge 2.x into Epic Person [\#759](https://github.com/openeuropa/oe_theme/pull/759) ([yenyasinn](https://github.com/yenyasinn))
+- Merge 2.x into EPIC Person [\#756](https://github.com/openeuropa/oe_theme/pull/756) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-812: Add heading to timeline pattern. [\#755](https://github.com/openeuropa/oe_theme/pull/755) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-696: Person CT theming [\#742](https://github.com/openeuropa/oe_theme/pull/742) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-805: Create ECL Gallery field formatter for media fields [\#739](https://github.com/openeuropa/oe_theme/pull/739) ([ademarco](https://github.com/ademarco))
+- EWPP-834: Drop support of dropdown legacy. [\#738](https://github.com/openeuropa/oe_theme/pull/738) ([sergepavle](https://github.com/sergepavle))
+
 ## [2.16.0](https://github.com/openeuropa/oe_theme/tree/2.16.0) (2021-03-24)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.15.1...2.16.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.16.0. [\#762](https://github.com/openeuropa/oe_theme/pull/762) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-883: Comment out temporarily composer update lowest versions. [\#758](https://github.com/openeuropa/oe_theme/pull/758) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-752: Theme Description List paragraph. [\#733](https://github.com/openeuropa/oe_theme/pull/733) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-109: Update modules to use sparql storage. [\#706](https://github.com/openeuropa/oe_theme/pull/706) ([imanoleguskiza](https://github.com/imanoleguskiza))
