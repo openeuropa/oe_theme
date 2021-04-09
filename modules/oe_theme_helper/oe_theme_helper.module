@@ -10,6 +10,13 @@ declare(strict_types = 1);
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\file\FileInterface;
+use Drupal\image\Plugin\Field\FieldType\ImageItem;
+use Drupal\media\MediaInterface;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
+use Drupal\media\Plugin\media\Source\Image;
+use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
  * Implements hook_page_attachments().
@@ -209,4 +216,70 @@ function template_preprocess_oe_theme_helper_call_status(array &$variables) {
  */
 function oe_theme_helper_locale_translation_projects_alter(&$projects) {
   $projects['oe_theme_helper']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_theme_helper') . '/translations/%project-%language.po';
+}
+
+/**
+ * Prepares "image" variable from Media Image to be used in In-page navigation.
+ *
+ * @param array $variables
+ *   An array of variables.
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ *   Entity to be used to get media.
+ * @param string $field_name
+ *   Field name.
+ *
+ */
+function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInterface $entity, string $field_name): void {
+  if ($entity->get($field_name)->isEmpty()) {
+    return;
+  }
+
+  $media = $entity->get($field_name)->entity;
+
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+  $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
+  $alt = '';
+  if ($thumbnail instanceof ImageItem) {
+    $alt = $thumbnail->get('alt')->getString();
+  }
+
+  $renderable = \Drupal::service('entity_type.manager')->getViewBuilder('node')->viewField($entity->get($field_name), [
+    'type' => 'oe_theme_helper_media_thumbnail_url',
+    'settings' => [
+      'image_style' => 'oe_theme_medium_no_crop',
+    ],
+  ]);
+
+  CacheableMetadata::createFromRenderArray($variables)
+    ->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
+    ->applyTo($variables);
+
+  $variables['image'] = ImageValueObject::fromArray([
+    'src' => $renderable[0]['#markup'],
+    'alt' => $alt,
+  ]);
+}
+
+/**
+ * Implements hook_entity_bundle_info_alter().
+ */
+function oe_theme_helper_entity_bundle_info_alter(&$bundles) {
+  if (!isset($bundles['media'])) {
+    return;
+  }
+
+  $iframe_bundles = [
+    'av_portal_video',
+    'remote_video',
+    'video_iframe',
+  ];
+
+  foreach ($bundles['media'] as $bundle_id => &$data) {
+    $data['media_data_extractor'] = in_array($bundle_id, $iframe_bundles)
+      ? 'iframe'
+      : 'thumbnail';
+  }
 }

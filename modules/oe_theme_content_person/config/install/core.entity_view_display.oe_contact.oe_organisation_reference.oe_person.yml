@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.oe_contact.oe_person
+    - field.field.oe_contact.oe_organisation_reference.oe_node_reference
+    - oe_content_entity_contact.oe_contact_type.oe_organisation_reference
+id: oe_contact.oe_organisation_reference.oe_person
+targetEntityType: oe_contact
+bundle: oe_organisation_reference
+mode: oe_person
+content:
+  oe_node_reference:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: oe_person_oe_contact
+      link: false
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  name: true
+  status: true

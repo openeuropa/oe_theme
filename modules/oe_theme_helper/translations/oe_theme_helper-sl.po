@@ -309,3 +309,30 @@ msgstr "Posvetovanje je končano. Zahvaljujemo se vam za sodelovanje."
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Pristojnosti"
+
+msgid "Media"
+msgstr "Mediji"
+
+msgid "Latest"
+msgstr "Najnovejše"
+
+msgid "Transparency"
+msgstr "Transparentnost"
+
+msgid "Articles and presentations"
+msgstr "Objave in predstavitve"
+
+msgid "Biography"
+msgstr "Življenjepis"
+
+msgid "Declaration of interests"
+msgstr "Izjava o interesih"
+
+msgid "Show contact details"
+msgstr "Prikaži kontaktne podatke"
+
+msgid "Hide contact details"
+msgstr "Skrij kontaktne podatke"

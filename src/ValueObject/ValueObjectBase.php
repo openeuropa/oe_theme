@@ -26,6 +26,13 @@ abstract class ValueObjectBase implements ValueObjectInterface {
   /**
    * {@inheritdoc}
    */
+  public function getIterator() {
+    return new \ArrayIterator($this->getArray());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function offsetGet($offset) {
     return $this->getArray()[$offset];
   }

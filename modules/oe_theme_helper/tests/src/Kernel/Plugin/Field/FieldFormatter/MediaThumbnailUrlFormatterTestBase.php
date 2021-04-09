@@ -19,12 +19,11 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'field',
-    'entity_test',
-    'media',
-    'image',
-    'file',
     'entity_reference',
+    'entity_test',
+    'field',
+    'file',
+    'media',
   ];
 
   /**

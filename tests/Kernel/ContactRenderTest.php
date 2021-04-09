@@ -42,7 +42,7 @@ class ContactRenderTest extends ContentRenderTestBase {
    */
   public function testFullView(): void {
     // Create Contact entity with required values only.
-    $contact = $this->createContactEntity();
+    $contact = $this->createContact();
     $name = $contact->getName();
 
     $build = $this->contactViewBuilder->view($contact, 'full');
@@ -212,7 +212,7 @@ class ContactRenderTest extends ContentRenderTestBase {
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
    *   Contact entity instance.
    */
-  protected function createContactEntity(array $settings = []): ContactInterface {
+  protected function createContact(array $settings = []): ContactInterface {
     // Define default values.
     $default_settings = [
       'bundle' => 'oe_general',

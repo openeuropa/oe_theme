@@ -25,7 +25,7 @@
         "drupal/composite_reference": "~1.0-alpha1",
         "drupal/config_devel": "~1.2",
         "drupal/datetime_testing": "1.x-dev",
-        "drupal/description_list_field": "~1.0.x-dev",
+        "drupal/description_list_field": "1.0.x-dev",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
         "drupal/entity_reference_revisions": "~1.3",
@@ -46,7 +46,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.9.13",
-        "openeuropa/oe_content": "~2.0",
+        "openeuropa/oe_content": "dev-EPIC-Person",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.11",
@@ -104,6 +104,9 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
+            },
+            "drupal/entity_reference_revisions": {
+                "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
             }
         },
         "drupal-scaffold": {

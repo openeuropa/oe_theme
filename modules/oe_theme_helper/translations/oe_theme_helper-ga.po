@@ -309,3 +309,30 @@ msgstr "Tá an tréimhse istigh chun an comhairliúchán seo a fhreagairt. Go ra
 
 msgid "Status: @label"
 msgstr "Stádas: @label"
+
+msgid "Responsibilities"
+msgstr "Freagrachtaí"
+
+msgid "Media"
+msgstr "Na meáin"
+
+msgid "Latest"
+msgstr "An scéala is déanaí"
+
+msgid "Transparency"
+msgstr "Trédhearcacht"
+
+msgid "Articles and presentations"
+msgstr "Ailt agus cuir i láthair"
+
+msgid "Biography"
+msgstr "Beathaisnéis"
+
+msgid "Declaration of interests"
+msgstr "Dearbhú leasanna"
+
+msgid "Show contact details"
+msgstr "Taispeáin de shonraí teagmhála"
+
+msgid "Hide contact details"
+msgstr "Cuir na sonraí teagmhála i bhfolach"

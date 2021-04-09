@@ -738,6 +738,8 @@ function oe_theme_preprocess_pattern_page_header(array &$variables): void {
  */
 function oe_theme_preprocess_pattern_gallery__preview(array &$variables): void {
   foreach ($variables['items'] as &$item) {
+    // Being 'type' an UI Patterns reserved word, we need to use 'media_type'.
+    $item['type'] = $item['media_type'];
     $item = GalleryItemValueObject::fromArray($item);
   }
 }

@@ -309,3 +309,30 @@ msgstr "Lhůta pro zasílání odpovědí na tuto konzultaci skončila. Děkujem
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Povinnosti"
+
+msgid "Media"
+msgstr "Média"
+
+msgid "Latest"
+msgstr "Novinky"
+
+msgid "Transparency"
+msgstr "Transparentnost"
+
+msgid "Articles and presentations"
+msgstr "Články a prezentace"
+
+msgid "Biography"
+msgstr "Osobní profil"
+
+msgid "Declaration of interests"
+msgstr "Prohlášení o zájmech"
+
+msgid "Show contact details"
+msgstr "Zobrazit kontaktní údaje"
+
+msgid "Hide contact details"
+msgstr "Skrýt kontaktní údaje"
