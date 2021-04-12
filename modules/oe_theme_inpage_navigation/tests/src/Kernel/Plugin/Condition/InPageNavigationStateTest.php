@@ -59,36 +59,36 @@ class InPageNavigationStateTest extends AbstractKernelTestBase {
    */
   public function testCondition(): void {
     /** @var $condition \Drupal\Core\Condition\ConditionPluginBase */
-    $condition = $this->container->get('plugin.manager.condition')->createInstance('oe_theme_inpage_navigation_state');
-    $node = $this->createNode(['type' => 'example', 'title' => 'some title']);
-    foreach ($this->providerTestCondition() as $test_case_name => $test_case) {
-      $condition_instance = clone $condition;
-      $node_instance = clone $node;
-      $condition_instance->setConfiguration(['inpage_navigation_state' => $test_case['inpage_navigation_condition'], 'negate' => $test_case['inpage_navigation_condition_negate']]);
+    foreach ($this->getTestScenarios() as $test_case_name => $test_case) {
+      $condition = $this->container->get('plugin.manager.condition')->createInstance('oe_theme_inpage_navigation_state');
+      $node = $this->createNode(['type' => 'example', 'title' => 'some title']);
+      $condition->setConfiguration(['inpage_navigation_state' => $test_case['inpage_navigation_condition'], 'negate' => $test_case['inpage_navigation_condition_negate']]);
       if ($test_case['node']) {
-        $condition_instance->setContextMapping([
+        $condition->setContextMapping([
           'node' => 'node',
         ]);
         if ($test_case['node']['inpage_navigation']) {
-          InPageNavigationHelper::enableInPageNavigation($node_instance);
-          $node_instance->save();
+          InPageNavigationHelper::enableInPageNavigation($node);
+          $node->save();
         }
-        $contexts['node'] = EntityContext::fromEntity($node_instance);
-        $this->container->get('context.handler')->applyContextMapping($condition_instance, $contexts);
+        $contexts['node'] = EntityContext::fromEntity($node);
+        $this->container->get('context.handler')->applyContextMapping($condition, $contexts);
       }
-      $this->assertEqual($condition_instance->summary(), new FormattableMarkup($test_case['expected']['summary'][0], $test_case['expected']['summary'][1] ?? []), $test_case_name);
-      $this->assertEqual($condition_instance->execute(), $test_case['expected']['result'], $test_case_name);
-      $node_instance->get('emr_entity_metas')->delete();
+      $this->assertEqual($condition->summary(), new FormattableMarkup($test_case['expected']['summary'][0], $test_case['expected']['summary'][1] ?? []), $test_case_name);
+      $this->assertEqual($condition->execute(), $test_case['expected']['result'], $test_case_name);
+      $node->delete();
     }
   }
 
   /**
-   * Data provider for testCondition().
+   * Returns a test data for the 'In-page navigation' condition plugin.
    *
    * @return array[]
    *   The test data.
+   *
+   * @see self::testCondition()
    */
-  public function providerTestCondition(): array {
+  public function getTestScenarios(): array {
     return [
       'enabled in-page navigation, node w/ active inpage navigation' => [
         'inpage_navigation_condition' => TRUE,
