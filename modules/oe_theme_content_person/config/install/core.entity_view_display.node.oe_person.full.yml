@@ -45,6 +45,7 @@ third_party_settings:
         - group_contact
         - group_responsibilities
         - group_media
+        - group_social_media_links
         - group_transparency
         - group_biography
         - group_presentations
@@ -83,7 +84,7 @@ third_party_settings:
         - oe_person_transparency_intro
         - oe_person_transparency_links
       parent_name: group_in_page_navigation
-      weight: 5
+      weight: 7
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -97,7 +98,7 @@ third_party_settings:
         - oe_person_cv
         - group_declaration
       parent_name: group_in_page_navigation
-      weight: 6
+      weight: 8
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -108,7 +109,7 @@ third_party_settings:
       children:
         - oe_person_documents
       parent_name: group_in_page_navigation
-      weight: 7
+      weight: 9
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -118,7 +119,6 @@ third_party_settings:
     group_media:
       children:
         - oe_person_media
-        - oe_social_media_links
       parent_name: group_in_page_navigation
       weight: 4
       format_type: oe_theme_helper_in_page_navigation_item
@@ -164,6 +164,17 @@ third_party_settings:
         - group_details
       parent_name: group_in_page_navigation
       weight: 1
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: ''
+    group_social_media_links:
+      children:
+        - oe_social_media_links
+      parent_name: group_in_page_navigation
+      weight: 5
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -228,7 +239,7 @@ content:
     third_party_settings: {  }
   oe_person_interests_file:
     type: entity_reference_entity_view
-    weight: 5
+    weight: 6
     region: content
     label: hidden
     settings:
@@ -298,7 +309,7 @@ content:
     third_party_settings: {  }
   oe_social_media_links:
     type: oe_theme_helper_social_media_links_formatter
-    weight: 1
+    weight: 6
     region: content
     label: hidden
     settings:

@@ -253,16 +253,6 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $inpage_nav_expected_values['list'][] = [
-      'label' => 'Media',
-      'href' => '#media',
-    ];
-    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
-
-    $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(4, $content_items);
-    $this->assertContentHeader($content_items[3], 'Media', 'media');
-
     $social_links_assert = new SocialMediaLinksAssert();
     $social_links_expected_values = [
       'title' => 'Follow the latest progress and learn more about getting involved.',
@@ -278,9 +268,25 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $social_media_content = $content_items[3]->find('css', '.ecl-social-media-follow');
+    $social_media_content = $content->find('css', '.ecl-social-media-follow');
     $social_links_assert->assertPattern($social_links_expected_values, $social_media_content->getOuterHtml());
     $social_links_assert->assertVariant('horizontal', $social_media_content->getOuterHtml());
+
+    // Create some medias to reference in the media field.
+    $node->set('oe_person_media', [
+      $this->createMediaImage('first_media')->id(),
+      $this->createMediaImage('second_media')->id(),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Media',
+      'href' => '#media',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(5, $content_items);
+    $this->assertContentHeader($content_items[3], 'Media', 'media');
 
     // Assert Transparency introduction field.
     $node->set('oe_person_transparency_intro', 'Transparency introduction text')->save();
@@ -293,9 +299,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(5, $content_items);
-    $this->assertContentHeader($content_items[4], 'Transparency', 'transparency');
-    $transparancy_intro_content = $content_items[4]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $this->assertCount(6, $content_items);
+    $this->assertContentHeader($content_items[5], 'Transparency', 'transparency');
+    $transparancy_intro_content = $content_items[5]->find('css', 'div.ecl-editor.ecl-u-mb-m');
     $this->assertEquals('Transparency introduction text', $transparancy_intro_content->getText());
 
     // Assert Transparency links field.
@@ -310,7 +316,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $transparency_links_items = $content_items[4]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-grey-15 a');
+    $transparency_links_items = $content_items[5]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-grey-15 a');
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
@@ -328,9 +334,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(6, $content_items);
-    $this->assertContentHeader($content_items[5], 'Biography', 'biography');
-    $biography_content = $content_items[5]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $this->assertCount(7, $content_items);
+    $this->assertContentHeader($content_items[6], 'Biography', 'biography');
+    $biography_content = $content_items[6]->find('css', 'div.ecl-editor.ecl-u-mb-m');
     $this->assertEquals('Biography introduction text', $biography_content->getText());
 
     // Assert Biography field.
@@ -357,7 +363,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $biography_items = $content_items[5]->findAll('css', 'ol.ecl-timeline2 li.ecl-timeline2__item');
+    $biography_items = $content_items[6]->findAll('css', 'ol.ecl-timeline2 li.ecl-timeline2__item');
     $this->assertCount(6, $biography_items);
     $this->assertTimelineItem($biography_items[0], 'Timeline label 1', 'Timeline title 1', 'Timeline body 1');
     $this->assertTimelineItem($biography_items[1], 'Timeline label 2', 'Timeline title 2', '');
@@ -372,15 +378,15 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertMediaDocumentDefaultRender($content_items[5], 'cv_upload');
+    $this->assertMediaDocumentDefaultRender($content_items[6], 'cv_upload');
 
     // Assert Declaration of interests introduction field.
     $node->set('oe_person_interests_intro', 'Declaration of interests introduction text')->save();
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertEquals('Declaration of interests', $content_items[5]->find('css', 'h3.ecl-u-type-heading-3')->getText());
-    $this->assertEquals('Declaration of interests introduction text', $content_items[5]->find('css', 'div.ecl-u-mb-l.ecl-editor')->getText());
+    $this->assertEquals('Declaration of interests', $content_items[6]->find('css', 'h3.ecl-u-type-heading-3')->getText());
+    $this->assertEquals('Declaration of interests introduction text', $content_items[6]->find('css', 'div.ecl-u-mb-l.ecl-editor')->getText());
 
     // Assert Declaration of interests file field.
     $cv_media_document = $this->createMediaDocument('declaration');
@@ -388,7 +394,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $declaration_items = $content_items[5]->findAll('xpath', '/div');
+    $declaration_items = $content_items[6]->findAll('xpath', '/div');
     $this->assertMediaDocumentDefaultRender($declaration_items[2], 'declaration');
 
     // Assert Articles and publications field.
@@ -404,9 +410,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(7, $content_items);
-    $this->assertMediaDocumentDefaultRender($content_items[6], 'document_reference');
-    $publication_teaser_content = $content_items[6]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $this->assertCount(8, $content_items);
+    $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference');
+    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
       'title' => 'publication_reference',
@@ -414,13 +420,6 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       'description' => 'Teaser text',
     ];
     $publication_teaser_assert->assertPattern($publication_teaser_expected_values, $publication_teaser_content->getOuterHtml());
-
-    // Create some medias to reference in the media field.
-    $node->set('oe_person_media', [
-      $this->createMediaImage('first_media')->id(),
-      $this->createMediaImage('second_media')->id(),
-    ])->save();
-    $this->drupalGet($node->toUrl());
 
     // Assert the rendering of the media field as gallery.
     // @todo Implement the gallery pattern assertion class.
