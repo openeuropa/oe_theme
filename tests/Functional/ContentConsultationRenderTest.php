@@ -371,7 +371,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(9, $content_items);
-    $this->assertContactEntityDefaultDisplay($content_items[8], 'first_consultation_contact');
+    $this->assertContactDefaultRender($content_items[8], 'first_consultation_contact');
     // Set two contacts and assert label is updated.
     $node->set('oe_consultation_contacts', [$first_contact, $second_contact]);
     $node->save();
