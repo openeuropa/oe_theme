@@ -4,53 +4,48 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\Tests\BrowserTestBase;
+use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * Tests that our Event content type render.
- *
- * @todo: Extend this test with ecl/markup rendering tests.
  */
-class ContentEventRenderTest extends BrowserTestBase {
-
-  /**
-   * The node storage.
-   *
-   * @var \Drupal\node\NodeStorageInterface
-   */
-  protected $nodeStorage;
+class ContentEventRenderTest extends ContentRenderTestBase {
 
   /**
    * {@inheritdoc}
    */
   public static $modules = [
     'config',
+    'content_translation',
+    'datetime_testing',
+    'block',
     'system',
     'oe_theme_helper',
-    'path',
     'oe_theme_content_event',
-    'content_translation',
     'oe_multilingual',
-    'datetime_testing',
+    'path',
   ];
 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
-    // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
-
-    // Rebuild the ui_pattern definitions to collect the ones provided by
-    // oe_theme itself.
-    $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
-
-    $this->nodeStorage = $this->container->get('entity_type.manager')->getStorage('node');
+    // Give anonymous users permission to view corporate entities.
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published oe_venue')
+      ->grantPermission('view published oe_contact')
+      ->save();
   }
 
   /**
@@ -58,12 +53,12 @@ class ContentEventRenderTest extends BrowserTestBase {
    */
   public function testEventFeaturedMediaTranslation(): void {
     // Make event node and image media translatable.
-    $this->container->get('content_translation.manager')->setEnabled('node', 'oe_event', TRUE);
-    $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_event', TRUE);
+    \Drupal::service('content_translation.manager')->setEnabled('media', 'image', TRUE);
     // Make the image field translatable.
-    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config = $this->getStorage('field_config')->load('media.image.oe_media_image');
     $field_config->set('translatable', TRUE)->save();
-    $this->container->get('router.builder')->rebuild();
+    \Drupal::service('router.builder')->rebuild();
 
     // Create image media that we will use for the English translation.
     $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
@@ -77,7 +72,7 @@ class ContentEventRenderTest extends BrowserTestBase {
 
     // Create a media entity of image media type.
     /** @var \Drupal\media\Entity\Media $media */
-    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
+    $media = $this->getStorage('media')->create([
       'bundle' => 'image',
       'name' => 'Test image',
       'oe_media_image' => [
@@ -100,9 +95,10 @@ class ContentEventRenderTest extends BrowserTestBase {
     $media->save();
 
     // Create an Event node in English translation.
-    $node = $this->nodeStorage->create([
+    $node = $this->getStorage('node')->create([
       'type' => 'oe_event',
       'title' => 'Test event node',
+      'oe_event_type' => 'http://publications.europa.eu/resource/authority/public-event-type/COMPETITION_AWARD_CEREMONY',
       'oe_teaser' => 'Teaser',
       'oe_summary' => 'Summary',
       'body' => 'Body',
@@ -129,31 +125,26 @@ class ContentEventRenderTest extends BrowserTestBase {
     ];
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
-      $node = $this->container->get('entity.repository')->getTranslationFromContext($node, $node_langcode);
+      $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, $node_langcode);
       $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
   }
 
   /**
-   * Test registration button description.
+   * Tests that the Event page renders correctly.
    */
-  public function testEventRegistrationDateDescription(): void {
-    $static_time = new DrupalDateTime('2020-02-01 16:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $start_date = (clone $static_time)->modify('+15 days');
-    $end_date = (clone $static_time)->modify('+20 days');
-
-    // Registration will be started today.
-    $registration_start_date = (clone $static_time)->modify('+5 hours');
-    $registration_end_date = (clone $static_time)->modify('+10 days');
-
+  public function testEventRendering(): void {
     // Freeze the time at a specific point.
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $start_date = (clone $static_time)->modify('+ 1 days');
+
     $time = \Drupal::time();
     $time->freezeTime();
     $time->setTime($static_time->getTimestamp());
 
-    // Create a Event node.
-    $node = $this->nodeStorage->create([
+    // Create a Event node with required fields only.
+    $node = $this->getStorage('node')->create([
       'type' => 'oe_event',
       'title' => 'Test event node',
       'oe_event_type' => 'http://publications.europa.eu/resource/authority/public-event-type/COMPETITION_AWARD_CEREMONY',
@@ -162,19 +153,12 @@ class ContentEventRenderTest extends BrowserTestBase {
       'oe_event_status' => 'as_planned',
       'oe_event_dates' => [
         'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-        'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
       'oe_event_languages' => [
         ['target_id' => 'http://publications.europa.eu/resource/authority/language/EST'],
         ['target_id' => 'http://publications.europa.eu/resource/authority/language/FRA'],
       ],
-      'oe_event_registration_dates' => [
-        'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-        'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      ],
-      'oe_event_entrance_fee' => 'fee',
-      'oe_event_registration_capacity' => 'capacity',
-      'oe_event_registration_url' => 'http://www.example.com/registation',
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
@@ -183,42 +167,511 @@ class ContentEventRenderTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    // Assert registration date description when registration will start today.
-    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
-    $this->assertEquals('Registration will open today, 2 February 2020, 08:00.', $registration_info_content->getText());
+    // Assert page header - metadata.
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $page_header_assert = new PatternPageHeaderAssert();
+    $page_header_expected_values = [
+      'title' => 'Test event node',
+      'meta' => 'Competitions and award ceremonies',
+    ];
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    $this->setTimezone('America/New_York');
-    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    // Check that we don't have blocks if fields are empty.
+    $this->assertSession()->elementNotExists('css', '#event-registration-block');
+    $this->assertSession()->elementNotExists('css', '#event-contacts');
+
+    // Assert details.
+    $details_content = $this->assertSession()->elementExists('css', '#event-details');
+    $this->assertSession()->elementNotExists('css', '.ecl-body', $details_content);
+    $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
+    $icons_text_assert = new IconsTextAssert();
+    $icons_text_expected_values = [
+      'items' => [
+        [
+          'icon' => 'file',
+          'text' => 'Financing',
+        ], [
+          'icon' => 'calendar',
+          'text' => '19 February 2020, 01:00',
+        ],
+      ],
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Assert practical information.
+    $practical_content = $this->assertSession()->elementExists('css', '#event-practical-information');
+    $this->assertContentHeader($practical_content, 'Practical information');
+
+    $practical_list_content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $practical_content);
+    $field_list_assert = new FieldListAssert();
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'When',
+          'body' => 'Wednesday 19 February 2020, 01:00',
+        ], [
+          'label' => 'Languages',
+          'body' => 'Estonian, French',
+        ],
+      ],
+    ];
+    $field_list_html = $practical_list_content->getOuterHtml();
+    $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('horizontal', $field_list_html);
+
+    // Check case when start and end dates are different.
+    $start_date = (clone $static_time)->modify('+ 1 days');
+    $end_date = (clone $static_time)->modify('+ 10 days');
+    $node->set('oe_event_dates', [
+      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Registration will open today, 1 February 2020, 16:00.', $registration_info_content->getText());
 
-    // Assert registration date description when registration will end today.
-    $registration_start_date = (clone $static_time)->modify('-10 days');
-    $registration_end_date = (clone $static_time)->modify('+1 hours');
+    $icons_text_expected_values = [
+      'items' => [
+        [
+          'icon' => 'file',
+          'text' => 'Financing',
+        ], [
+          'icon' => 'calendar',
+          'text' => "19 February 2020, 01:00\n to 28 February 2020, 01:00",
+        ],
+      ],
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'When',
+          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
+        ], [
+          'label' => 'Languages',
+          'body' => 'Estonian, French',
+        ],
+      ],
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert Introduction field.
+    $node->set('oe_summary', 'Event introduction')->save();
+    $this->drupalGet($node->toUrl());
+    $page_header_expected_values['description'] = 'Event introduction';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    // Assert "Venue" field.
+    $venue_entity = $this->createVenueEntity('event_venue');
+    $node->set('oe_event_venue', [$venue_entity])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Where',
+          'body' => "event_venue\n  Address event_venue, 1001 Brussels, Belgium",
+        ], [
+          'label' => 'When',
+          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
+        ], [
+          'label' => 'Languages',
+          'body' => 'Estonian, French',
+        ],
+      ],
+    ];
+    // @todo: should be removed when PHP 7.2 support will be finished.
+    if (version_compare(PHP_VERSION, '7.3') < 0) {
+      $field_list_expected_values['items'][0]['body'] = "event_venue\n\n  Address event_venue, 1001 Brussels, Belgium";
+    }
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values['items'][2] = [
+      'icon' => 'location',
+      'text' => 'Brussels, Belgium',
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Assert "Internal organiser" field.
+    $node->set('oe_event_organiser_is_internal', TRUE);
+    $node->set('oe_event_organiser_internal', 'http://publications.europa.eu/resource/authority/corporate-body/AASM');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][3] = [
+      'label' => 'Organiser',
+      'body' => 'Associated African States and Madagascar',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Organiser name" field.
+    $node->set('oe_event_organiser_is_internal', FALSE);
+    $node->set('oe_event_organiser_name', 'External organiser')->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][3] = [
+      'label' => 'Organiser',
+      'body' => 'External organiser',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Online type", "Online link", "Online time" fields.
+    $online_start_date = (clone $static_time)->modify('+ 1 months');
+    $online_end_date = (clone $static_time)->modify('+ 2 months');
+    $node->set('oe_event_online_type', 'facebook');
+    $node->set('oe_event_online_link', [
+      'uri' => 'http://www.example.com/online_link',
+      'title' => 'Link to online event',
+    ]);
+    // @todo: "Online description" isn't shown on the page. Why do we need it?
+    $node->set('oe_event_online_description', 'Online event description');
+    $node->set('oe_event_online_dates', [
+      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][4] = [
+      'label' => 'Live stream',
+      'body' => 'Facebook',
+    ];
+    $field_list_expected_values['items'][5] = [
+      'label' => 'Online link',
+      'body' => 'Link to online event',
+    ];
+    $field_list_expected_values['items'][6] = [
+      'label' => 'Online time',
+      'body' => "18 March 2020, 01:00 AEDT\n to 18 April 2020, 00:00 AEST",
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values['items'][3] = [
+      'icon' => 'livestreaming',
+      'text' => 'Live streaming available',
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Assert changing type of "Online type".
+    $node->set('oe_event_online_type', 'livestream')->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][4] = [
+      'label' => 'Live stream',
+      'body' => 'Livestream',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Event website" field.
+    $node->set('oe_event_website', [
+      'uri' => 'http://www.example.com/event',
+      'title' => 'Event website',
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][7] = [
+      'label' => 'Website',
+      'body' => 'Event website',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Registration capacity" field.
+    $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][8] = [
+      'label' => 'Number of seats',
+      'body' => 'event registration capacity',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Entrance fee" field.
+    $node->set('oe_event_entrance_fee', 'entrance fee')->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][9] = [
+      'label' => 'Entrance fee',
+      'body' => 'entrance fee',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    // Assert "Registration URL" field.
+    $node->set('oe_event_registration_url', 'http://www.example.com/registation');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $registration_content = $this->assertSession()->elementExists('css', '#event-registration-block');
+    $this->assertRegisterButtonEnabled($registration_content);
+
+    // Assert "Registration date" field in the past.
+    $registration_start_date = (clone $static_time)->modify('- 2 months');
+    $registration_end_date = (clone $static_time)->modify('- 1 months');
     $node->set('oe_event_registration_dates', [
       'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ])->save();
-    $this->setTimezone('Australia/Sydney');
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Book your seat, the registration will end today, 2 February 2020, 04:00', $registration_info_content->getText());
 
-    $this->setTimezone('America/New_York');
-    \Drupal::entityTypeManager()->getViewBuilder('node')->resetCache([$node]);
+    $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
+    $this->assertEquals('Registration period ended on Saturday 18 January 2020, 01:00', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration is in progress.
+    $registration_start_date = (clone $static_time)->modify('- 10 days');
+    $registration_end_date = (clone $static_time)->modify('+ 10 days');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertEquals('Book your seat, the registration will end today, 1 February 2020, 12:00', $registration_info_content->getText());
+
+    $this->assertRegisterButtonEnabled($registration_content);
+    $this->assertEquals('Book your seat, 1 week left to register, registration will end on 28 February 2020, 01:00', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration will finish today.
+    $registration_start_date = (clone $static_time)->modify('- 10 days');
+    $registration_end_date = (clone $static_time)->modify('+ 1 hours');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegisterButtonEnabled($registration_content);
+    $this->assertEquals('Book your seat, the registration will end today, 18 February 2020, 02:00', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration will start today.
+    $registration_start_date = (clone $static_time)->modify('+ 1 hour');
+    $registration_end_date = (clone $static_time)->modify('+ 10 days');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegisterButtonDisabled($registration_content);
+    $this->assertEquals('Registration will open today, 18 February 2020, 02:00.', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration will start in future.
+    $registration_start_date = (clone $static_time)->modify('+ 1 day');
+    $registration_end_date = (clone $static_time)->modify('+ 10 days');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegisterButtonDisabled($registration_content);
+    $this->assertEquals('Registration will open in 1 day. You can register from 19 February 2020, 01:00, until 28 February 2020, 01:00.', $registration_info_content->getText());
+
+    // Assert "Description summary", "Full text", "Featured media",
+    // "Featured media legend" fields (these fields have to be filled all
+    // together).
+    $node->set('oe_event_description_summary', 'Event description summary');
+    $node->set('body', 'Event full text');
+    $node->set('oe_event_featured_media_legend', 'Event featured media legend');
+    $media_image = $this->createMediaImage('event_featured_media');
+    $node->set('oe_event_featured_media', [$media_image])->save();
+    $this->drupalGet($node->toUrl());
+
+    $description_content = $this->assertSession()->elementExists('css', 'article div div:nth-of-type(3)');
+    $text_featured = new TextFeaturedMediaAssert();
+    $text_featured_expected_values = [
+      'title' => 'Description',
+      'caption' => 'Event featured media legend',
+      'text' => 'Event full text',
+      'image' => [
+        'alt' => 'Alternative text event_featured_media',
+        'src' => 'event_featured_media.png',
+      ],
+    ];
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    // Assert "Report text" and "Summary for report" fields when event finished.
+    $start_date = (clone $static_time)->modify('- 20 days');
+    $end_date = (clone $static_time)->modify('- 10 days');
+    $node->set('oe_event_report_summary', 'Event report summary');
+    $node->set('oe_event_report_text', 'Event report text');
+    $node->set('oe_event_dates', [
+      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $description_summary = $this->assertSession()->elementExists('css', '.ecl-editor', $details_content);
+    $this->assertEquals('Event report summary', $description_summary->getText());
+
+    $text_featured_expected_values['title'] = 'Report';
+    $text_featured_expected_values['text'] = 'Event report text';
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    // Assert "Event contact" field.
+    $contact_entity_general = $this->createContactEntity('general_contact');
+    $contact_entity_press = $this->createContactEntity('press_contact', 'oe_press');
+    $node->set('oe_event_contact', [$contact_entity_general, $contact_entity_press])->save();
+    $this->drupalGet($node->toUrl());
+
+    $event_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts');
+    $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mt-md-3xl.ecl-u-mb-l', $event_contacts_content);
+    $this->assertEquals('Contacts', $event_contacts_header->getText());
+
+    $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
+    $this->assertContactHeader($general_contacts_content, 'General contact');
+    $this->assertContactDetailsRender($general_contacts_content, 'general_contact');
+
+    $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
+    $this->assertContactHeader($press_contacts_content, 'Press contact');
+    $this->assertContactDetailsRender($press_contacts_content, 'press_contact');
+
+    // Assert "Social media links" links.
+    $node->set('oe_social_media_links', [
+      [
+        'uri' => 'http://www.example.com/event_facebook',
+        'title' => 'Event facebook link',
+        'link_type' => 'facebook',
+      ], [
+        'uri' => 'http://www.example.com/event_instagram',
+        'title' => 'Event instagram link',
+        'link_type' => 'instagram',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Social media',
+      'links' => [
+        [
+          'service' => 'facebook',
+          'label' => 'Event facebook link',
+          'url' => 'http://www.example.com/event_facebook',
+        ], [
+          'service' => 'instagram',
+          'label' => 'Event instagram link',
+          'url' => 'http://www.example.com/event_instagram',
+        ],
+      ],
+    ];
+    $social_links_content = $this->assertSession()->elementExists('css', '#event-practical-information .ecl-social-media-follow');
+    $social_links_html = $social_links_content->getOuterHtml();
+    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
+    $social_links_assert->assertVariant('horizontal', $social_links_html);
+
+    // Unpublished Venues and Contacts are not visible for the visitors.
+    $contact_entity_general->setUnpublished()->save();
+    $contact_entity_press->setUnpublished()->save();
+    $venue_entity->setUnpublished()->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', '#event-contacts');
+
+    $field_list_expected_values['items'][1] = [
+      'label' => 'When',
+      'body' => "Wednesday 29 January 2020, 01:00\n to Saturday 8 February 2020, 01:00",
+    ];
+    unset($field_list_expected_values['items'][0]);
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values = [
+      'items' => [
+        [
+          'icon' => 'file',
+          'text' => 'Financing',
+        ], [
+          'icon' => 'calendar',
+          'text' => "29 January 2020, 01:00\n to 8 February 2020, 01:00",
+        ], [
+          'icon' => 'livestreaming',
+          'text' => 'Live streaming available',
+        ],
+      ],
+    ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
   }
 
   /**
-   * Sets site's timezone.
+   * Assets enabled register button.
    *
-   * @param string $timezone
-   *   Timezone.
+   * @param \Behat\Mink\Element\NodeElement $parent_element
+   *   Parent element.
    */
-  protected function setTimezone(string $timezone): void {
-    \Drupal::configFactory()->getEditable('system.date')
-      ->set('timezone.default', $timezone)
-      ->save();
+  protected function assertRegisterButtonEnabled(NodeElement $parent_element): void {
+    $rendered_button = $this->assertSession()->elementExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $parent_element);
+    $this->assertEquals('Register here', $rendered_button->getText());
+    $this->assertEquals('http://www.example.com/registation', $rendered_button->getAttribute('href'));
+  }
+
+  /**
+   * Assets disabled register button.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Parent element.
+   */
+  protected function assertRegisterButtonDisabled(NodeElement $element): void {
+    $rendered_button = $this->assertSession()->elementExists('css', 'button.ecl-button.ecl-button--call.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $element);
+    $this->assertEquals('Register here', $rendered_button->getText());
+    $this->assertTrue($rendered_button->hasAttribute('disabled'));
+  }
+
+  /**
+   * Asserts header of the contact block.
+   *
+   * @param \Behat\Mink\Element\NodeElement $rendered_element
+   *   Rendered element.
+   * @param string $title
+   *   Expected title.
+   */
+  protected function assertContactHeader(NodeElement $rendered_element, string $title): void {
+    $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l', $rendered_element);
+    $this->assertEquals($title, $rendered_header->getText());
+  }
+
+  /**
+   * Asserts rendering of Contact entity using Details view mode.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the Contact entity.
+   */
+  protected function assertContactDetailsRender(NodeElement $element, string $name): void {
+    $field_list_assert = new FieldListAssert();
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Name',
+          'body' => $name,
+        ], [
+          'label' => 'Email',
+          'body' => "$name@example.com",
+        ], [
+          'label' => 'Phone number',
+          'body' => "Phone number $name",
+        ], [
+          'label' => 'Address',
+          'body' => "Address $name, 1001 Brussels, Belgium",
+        ],
+      ],
+    ];
+    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
+    $field_list_html = $content->getOuterHtml();
+    $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('horizontal', $field_list_html);
+
+    // Assert "Social media links" links.
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Social media',
+      'links' => [
+        [
+          'service' => 'facebook',
+          'label' => "Social media $name",
+          'url' => "http://www.example.com/social_media_$name",
+        ],
+      ],
+    ];
+    $social_links_content = $this->assertSession()->elementExists('css', '.ecl-u-mt-l', $element);
+    $social_links_html = $social_links_content->getHtml();
+    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
+    $social_links_assert->assertVariant('horizontal', $social_links_html);
   }
 
 }
