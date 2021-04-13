@@ -6,8 +6,4 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-<div class="ecl-u-mt-l">
-  {% for item in items %}
-    {{- item.content -}}
-  {% endfor %}
-</div>
+{%- include 'field--bare.html.twig' -%}
