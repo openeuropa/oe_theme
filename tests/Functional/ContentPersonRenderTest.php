@@ -177,7 +177,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[1], 'Contact', 'contact');
-    $this->assertContactEntityDefaultDisplay($content_items[1], 'direct_contact');
+    $this->assertContactDefaultRender($content_items[1], 'direct_contact');
 
     $expandable_button = $content_items[1]->find('css', '.ecl-expandable button.ecl-button.ecl-button--secondary.ecl-expandable__toggle');
     $this->assertEquals('Show contact details', $expandable_button->getAttribute('data-ecl-label-collapsed'));
@@ -196,9 +196,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $contacts_content = $content_items[1]->findAll('xpath', '//div[@class="ecl-expandable__content"]/div');
     $this->assertEquals(2, count($contacts_content));
     $this->assertEquals('ecl-row ecl-u-mv-xl', $contacts_content[0]->getAttribute('class'));
-    $this->assertContactEntityDefaultDisplay($contacts_content[0], 'direct_contact');
+    $this->assertContactDefaultRender($contacts_content[0], 'direct_contact');
     $this->assertEmpty($contacts_content[1]->getAttribute('class'));
-    $this->assertContactEntityDefaultDisplay($contacts_content[1], 'organisation_reference_contact');
+    $this->assertContactDefaultRender($contacts_content[1], 'organisation_reference_contact');
 
     // Assert Jobs field.
     $job_1 = $this->createPersonJobEntity('job_1', [
