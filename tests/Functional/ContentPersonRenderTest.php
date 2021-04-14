@@ -288,6 +288,21 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertCount(5, $content_items);
     $this->assertContentHeader($content_items[3], 'Media', 'media');
 
+    // Assert the rendering of the media field as gallery.
+    // @todo Implement the gallery pattern assertion class.
+    $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
+    $items = $gallery->findAll('css', 'li.ecl-gallery__item');
+    $this->assertCount(2, $items);
+
+    // Test the contents of the first item. The second item would have a similar
+    // structure so no need to test.
+    $first_item = $items[0]->find('css', 'img');
+    $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
+    $this->assertContains('/styles/large/public/placeholder_first_media.png?itok=', $first_item->getAttribute('src'));
+    $caption = $items[0]->find('css', '.ecl-gallery__description');
+    $this->assertContains('Test image first_media', $caption->getOuterHtml());
+    $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
+
     // Assert Transparency introduction field.
     $node->set('oe_person_transparency_intro', 'Transparency introduction text')->save();
     $this->drupalGet($node->toUrl());
@@ -420,21 +435,6 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       'description' => 'Teaser text',
     ];
     $publication_teaser_assert->assertPattern($publication_teaser_expected_values, $publication_teaser_content->getOuterHtml());
-
-    // Assert the rendering of the media field as gallery.
-    // @todo Implement the gallery pattern assertion class.
-    $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
-    $items = $gallery->findAll('css', 'li.ecl-gallery__item');
-    $this->assertCount(2, $items);
-
-    // Test the contents of the first item. The second item would have a similar
-    // structure so no need to test.
-    $first_item = $items[0]->find('css', 'img');
-    $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
-    $this->assertContains('/styles/large/public/placeholder_first_media.png?itok=', $first_item->getAttribute('src'));
-    $caption = $items[0]->find('css', '.ecl-gallery__description');
-    $this->assertContains('Test image first_media', $caption->getOuterHtml());
-    $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
 
     // Assert non-eu person.
     $job_1->set('oe_role_name', 'Singer');
