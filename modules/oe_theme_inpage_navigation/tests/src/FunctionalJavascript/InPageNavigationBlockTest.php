@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme_inpage_navigation\FunctionalJavascript;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\NodeType;
+use Drupal\oe_theme_inpage_navigation\InPageNavigationHelper;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 
 /**
@@ -20,6 +21,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
   protected static $modules = [
     'block',
     'oe_theme_helper',
+    'oe_theme_content_page',
     'oe_theme_content_publication',
     'oe_theme_content_organisation',
     'oe_theme_content_organisation_reference',
@@ -36,8 +38,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->container->get('theme_handler')->setDefault('oe_theme');
     $this->container->set('theme.registry', NULL);
 
-    // Enable test module with placed block in new region and overriden
-    // legacy inpage navigation template.
+    // Enable test module with placed block in new region.
     $this->container->get('module_installer')
       ->install(['oe_theme_inpage_navigation_test']);
 
@@ -45,7 +46,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     // oe_theme itself.
     \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
 
-    \Drupal::service('emr.installer')->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['oe_publication']);
+    \Drupal::service('emr.installer')->installEntityMetaTypeOnContentEntityType('oe_theme_inpage_navigation', 'node', ['oe_publication', 'oe_page']);
 
     // Enable inpage_navigation for Publication content.
     $ct_with = NodeType::load('oe_publication');
@@ -54,9 +55,9 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
   }
 
   /**
-   * Test in-page entity meta relation plugin.
+   * Test content with enabled legacy in-page navigation by default.
    */
-  public function testInPageNavigationForm(): void {
+  public function testContentWithInPageNav(): void {
 
     // Create a document for Publication.
     $media_document = $this->createMediaDocument('publication_document');
@@ -83,11 +84,10 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', 'main#main-content div.ecl-col-sm-12 div.ecl-row.ecl-u-mt-l div.oe-theme-content-region.ecl-col-lg-9 #block-oe-theme-main-page-content article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
 
     // Assert in-page navigation part.
-    $navigation = $this->assertSession()
-      ->elementExists('css', 'main#main-content div.ecl-col-sm-12 div.ecl-row.ecl-u-mt-l div.oe-theme-left-sidebar.ecl-col-12.ecl-col-lg-3  nav.ecl-inpage-navigation');
+    $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     $inpage_nav_assert = new InPageNavigationAssert();
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
@@ -135,9 +135,77 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert absence of in-page navigation block.
-    $this->assertSession()->elementNotExists('css', 'main#main-content div.ecl-col-sm-12 div.ecl-row.ecl-u-mt-l div.oe-theme-left-sidebar.ecl-col-12.ecl-col-lg-3  nav.ecl-inpage-navigation');
+    $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     // Assert content part.
-    $this->assertSession()->elementExists('css', 'main#main-content div.ecl-col-sm-12 > #block-oe-theme-main-page-content article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+  }
+
+  /**
+   * Test content with disabled legacy in-page navigation by default.
+   */
+  public function testContentWithoutInPageNav(): void {
+    // Create a Page node with required fields only.
+    /** @var \Drupal\node\Entity\Node $node */
+    $node = $this->container->get('entity_type.manager')
+      ->getStorage('node')
+      ->create([
+        'type' => 'oe_page',
+        'title' => 'Test Page node',
+        'oe_teaser' => 'Teaser text',
+        'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+        'uid' => 0,
+        'status' => 1,
+      ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert content part.
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    // Assert absence of in-page navigation block.
+    $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
+
+    InPageNavigationHelper::enableInPageNavigation($node);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    // Check that in-page navigation block still not visible.
+    $this->assertSession()->elementNotExists('css', 'nav[data-ecl-inpage-navigation]');
+
+    // Check that in-page navigation block visible when available
+    // heading in content.
+    $node->set('oe_related_links', [
+      [
+        'uri' => 'internal:/node',
+        'title' => 'Node listing',
+      ],
+      [
+        'uri' => 'https://example.com',
+        'title' => 'External link',
+      ],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    // Assert in-page navigation part.
+    $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Related links', 'href' => '#related-links'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    // Check that in-page navigation block is hidden when
+    // we don't have anymore heading elements.
+    $node->set('oe_related_links', NULL);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert content part.
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    // Assert absence of in-page navigation block.
+    $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
   }
 
   /**

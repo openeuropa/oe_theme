@@ -5,7 +5,7 @@ dependencies:
     - oe_theme_inpage_navigation
 id: inpage_navigation
 theme: oe_theme
-region: left_sidebar
+region: content
 weight: 0
 provider: null
 plugin: oe_theme_inpage_navigation_menu
