@@ -1,0 +1,10 @@
+{#
+/**
+ * @file
+ * Theme override for blocks in the content region for page content block.
+ *
+ * @see ./block--region-content.html.twig
+ */
+#}
+{% extends 'block--region-content.html.twig' %}
+{% set attributes = attributes.setAttribute('data-inpage-navigation-source-area', 'true') %}

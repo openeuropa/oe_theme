@@ -2,30 +2,31 @@
  * @file
  * ECL inpage navigation initializer.
  */
-(function (ECL, Drupal) {
+(function (ECL, Drupal, $) {
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
+      // In-page navigation blocks.
       var elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
-      var headers = document.querySelectorAll('h2.ecl-u-type-heading-2');
+      // List of headings inside source element of in-page navigation.
+      var headers = document.querySelectorAll('div[data-inpage-navigation-source-area] h2.ecl-u-type-heading-2');
       li_html = [];
       for (var h = 0; h < headers.length; h++) {
-        if (!headers[h].hasAttribute('id')) {
-          continue;
-        }
-        id = headers[h].getAttribute('id');
         title = headers[h].innerHTML;
+        if (!headers[h].hasAttribute('id')) {
+          // Set id if not available yet in h2 tag.
+          headers[h].setAttribute('id', title.replace(/\W/g,'-').toLowerCase())
+        }
+        id = $(headers[h]).uniqueId().attr('id');
         li_html.push('<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link="">' + title + '</a></li>');
       }
 
-      if (li_html.length === 0) {
-        document.querySelector('.oe-theme-left-sidebar').remove();
-        document.querySelector('.oe-theme-content-region').setAttribute('class', 'ecl-col-12');
-        return;
-      }
-
       for (var i = 0; i < elements.length; i++) {
+        if (li_html.length === 0) {
+          elements[i].remove();
+          continue;
+        }
         elements[i].querySelector('ul').innerHTML = li_html.join(' ');
       }
     }
   };
-})(ECL, Drupal);
+})(ECL, Drupal, jQuery);
