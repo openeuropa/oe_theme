@@ -22,6 +22,9 @@
 
       for (var i = 0; i < elements.length; i++) {
         if (li_html.length === 0) {
+          // Adjust layout if we going to remove in-page element.
+          $(elements[i]).closest('.ecl-col-lg-3').next('.ecl-col-lg-9').removeClass('ecl-col-lg-9').addClass('ecl-col-lg-12')
+          // Remove in-page navigation element if we don't have links inside.
           elements[i].remove();
           continue;
         }
