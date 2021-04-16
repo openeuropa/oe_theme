@@ -164,7 +164,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
     // Add overview values.
-    $node->set('oe_organisation_overivew', [
+    $node->set('oe_organisation_overview', [
       [
         'term' => 'Overview Term 1',
         'description' => 'Overview Description 1',
