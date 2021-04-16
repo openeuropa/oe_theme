@@ -163,28 +163,54 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
+    // Add overview values.
+    $node->set('oe_organisation_overivew', [
+      [
+        'term' => 'Overview Term 1',
+        'description' => 'Overview Description 1',
+      ],
+      [
+        'term' => 'Overview Term 2',
+        'description' => 'Overview Description 2',
+      ],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
     $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(2, $content_items);
 
-    // Assert header of first field group is not displayed anymore.
+    // Assert header of the first field group.
+    $this->assertContentHeader($content_items[0], 'Overview', 'overview');
+    // Assert values of the first group.
+    $overview = $content_items[0]->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
+    $this->assertCount(1, $overview);
+    $overview_terms = $overview[0]->findAll('css', 'dt.ecl-description-list__term');
+    $this->assertCount(2, $overview_terms);
+    $this->assertEquals('Overview Term 1', $overview_terms[0]->getText());
+    $this->assertEquals('Overview Term 2', $overview_terms[1]->getText());
+    $overview_descriptions = $overview[0]->findAll('css', 'dd.ecl-description-list__definition');
+    $this->assertCount(2, $overview_descriptions);
+    $this->assertEquals('Overview Description 1', $overview_descriptions[0]->getText());
+    $this->assertEquals('Overview Description 2', $overview_descriptions[1]->getText());
+
+    // Assert body field label is not displayed anymore.
     $this->assertSession()->pageTextNotContains('Description');
-
-    // Assert values for first group.
-    $body = $content_items[0]->findAll('css', '.ecl-editor');
+    // Assert values of the second group.
+    $body = $content_items[1]->findAll('css', '.ecl-editor');
     $this->assertCount(1, $body);
     $this->assertEquals('My body text', $body[0]->getText());
 
-    // Assert header of second field group.
-    $this->assertContentHeader($content_items[1], 'Contact', 'contact');
+    // Assert header of the third field group.
+    $this->assertContentHeader($content_items[2], 'Contact', 'contact');
 
     // Assert Organisation's contacts.
-    $contact_headers = $content_items[1]->findAll('css', 'h2');
+    $contact_headers = $content_items[2]->findAll('css', 'h2');
     $this->assertEquals($contact_headers[0]->getText(), 'Contact');
-    $this->assertContactRendering($content_items[1], 'general_contact');
+    $this->assertContactRendering($content_items[2], 'general_contact');
   }
 
   /**
