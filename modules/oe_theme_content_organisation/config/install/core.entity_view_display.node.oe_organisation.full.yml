@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.oe_organisation.body
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
@@ -43,7 +44,7 @@ third_party_settings:
       format_settings:
         id: ''
         classes: ''
-      label: Description
+      label: ''
     group_contact:
       children:
         - oe_organisation_contact
