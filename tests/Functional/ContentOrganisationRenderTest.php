@@ -137,7 +137,6 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Description', 'href' => '#description'],
         ['label' => 'Contact', 'href' => '#contact'],
       ],
     ];
@@ -171,8 +170,8 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
 
-    // Assert header of first field group.
-    $this->assertContentHeader($content_items[0], 'Description', 'description');
+    // Assert header of first field group is not displayed anymore.
+    $this->assertSession()->pageTextNotContains('Description');
 
     // Assert values for first group.
     $body = $content_items[0]->findAll('css', '.ecl-editor');
