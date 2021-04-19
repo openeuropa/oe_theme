@@ -81,7 +81,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     ]);
     $media->save();
 
-    $general_contact = $this->createContactEntity('general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $first_general_contact = $this->createContactEntity('first_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
@@ -127,7 +127,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
 
     // Add body text and contact values.
     $node->set('body', 'My body text');
-    $node->set('oe_organisation_contact', [$general_contact]);
+    $node->set('oe_organisation_contact', [$first_general_contact]);
     $node->save();
     $this->drupalGet($node->toUrl());
 
@@ -205,13 +205,25 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $this->assertCount(1, $body);
     $this->assertEquals('My body text', $body[0]->getText());
 
-    // Assert header of the third field group.
-    $this->assertContentHeader($content_items[2], 'Contact', 'contact');
-
-    // Assert Organisation's contacts.
+    // Assert Organisation's contact is displayed expanded.
     $contact_headers = $content_items[2]->findAll('css', 'h2');
-    $this->assertEquals($contact_headers[0]->getText(), 'Contact');
-    $this->assertContactRendering($content_items[2], 'general_contact');
+    // Assert header of the third field group.
+    $this->assertEquals('Contact', $contact_headers[0]->getText());
+    $this->assertSession()->pageTextNotContains('Show contact details');
+    $this->assertContactRendering($content_items[2], 'first_general_contact');
+
+    // Create another contact and add it to the node.
+    $second_general_contact = $this->createContactEntity('second_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $node->set('oe_organisation_contact', [$first_general_contact, $second_general_contact]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert rendering is updated.
+    $this->assertSession()->pageTextContains('Show contact details');
+    $contacts = $content->findAll('css', 'div#-content.ecl-expandable__content div.ecl-row.ecl-u-mv-xl');
+    $this->assertCount(2, $contacts);
+    $this->assertContactRendering($contacts[0], 'first_general_contact');
+    $this->assertContactRendering($contacts[1], 'second_general_contact');
   }
 
   /**
@@ -295,7 +307,7 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
   protected function assertContactRendering(NodeElement $rendered_element, string $name): void {
     $contact_sub_headers = $rendered_element->findAll('css', 'h3');
     $this->assertCount(1, $contact_sub_headers);
-    $this->assertEquals($contact_sub_headers[0]->getText(), 'general_contact');
+    $this->assertEquals($contact_sub_headers[0]->getText(), $name);
 
     // Body field.
     $body = $rendered_element->findAll('css', '.ecl-editor');

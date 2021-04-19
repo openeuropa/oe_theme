@@ -9,7 +9,6 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -71,46 +70,46 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       return [];
     }
 
-    $contact = $entity->get('oe_organisation_contact')->entity;
-    if (!$contact instanceof ContactInterface) {
-      return [];
-    }
-
-    $build = [
-      '#type' => 'pattern',
-      '#id' => 'field_list',
-      '#variant' => 'horizontal',
-      '#fields' => [
-        'items' => [],
-      ],
-    ];
+    $build = [];
     $cache = CacheableMetadata::createFromRenderArray($build);
 
-    $contact_access = $contact->access('view', NULL, TRUE);
-    $cache->addCacheableDependency($contact);
-    $cache->addCacheableDependency($contact_access);
-
-    if (!$contact_access->isAllowed()) {
-      $cache->applyTo($build);
-      return $build;
-    }
-
-    $items = [];
-    $fields = [
-      'oe_website' => [],
-      'oe_email' => ['type' => 'email_mailto'],
-      'oe_phone' => [],
-      'oe_address' => [
-        'type' => 'oe_theme_helper_address_inline',
-        'settings' => ['delimiter' => ', '],
-      ],
-    ];
-    foreach ($fields as $field_name => $display_options) {
-      if (!$contact->get($field_name)->isEmpty()) {
-        $items[] = $this->getRenderableFieldListItem($contact, $field_name, $display_options);
+    /** @var \Drupal\oe_content_entity_contact\Entity\ContactInterface $contact */
+    foreach ($entity->get('oe_organisation_contact')->referencedEntities() as $delta => $contact) {
+      if (!$contact) {
+        continue;
       }
+      $contact_access = $contact->access('view', NULL, TRUE);
+      $cache->addCacheableDependency($contact);
+      $cache->addCacheableDependency($contact_access);
+      if (!$contact_access->isAllowed()) {
+        continue;
+      }
+
+      $build[$delta] = [
+        '#type' => 'pattern',
+        '#id' => 'field_list',
+        '#variant' => 'horizontal',
+        '#fields' => [
+          'items' => [],
+        ],
+      ];
+      $items = [];
+      $fields = [
+        'oe_website' => [],
+        'oe_email' => ['type' => 'email_mailto'],
+        'oe_phone' => [],
+        'oe_address' => [
+          'type' => 'oe_theme_helper_address_inline',
+          'settings' => ['delimiter' => ', '],
+        ],
+      ];
+      foreach ($fields as $field_name => $display_options) {
+        if (!$contact->get($field_name)->isEmpty()) {
+          $items[] = $this->getRenderableFieldListItem($contact, $field_name, $display_options);
+        }
+      }
+      $build[$delta]['#fields']['items'] = $items;
     }
-    $build['#fields']['items'] = $items;
     $cache->applyTo($build);
 
     return $build;
