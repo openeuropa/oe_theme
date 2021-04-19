@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
@@ -281,5 +282,16 @@ function oe_theme_helper_entity_bundle_info_alter(&$bundles) {
     $data['media_data_extractor'] = in_array($bundle_id, $iframe_bundles)
       ? 'iframe'
       : 'thumbnail';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the entity view display form.
+ */
+function oe_theme_helper_form_entity_view_display_edit_form_alter(&$form, FormStateInterface $form_state) {
+  foreach ($form['#fieldgroups'] as $name) {
+    if ($form['fields'][$name]['human_name']['#markup'] === "") {
+      $form['fields'][$name]['human_name']['#markup'] = t('- No label -');
+    }
   }
 }
