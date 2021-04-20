@@ -22,6 +22,8 @@ use Drupal\user\RoleInterface;
 
 /**
  * Test Person content type rendering.
+ *
+ * @group batch3
  */
 class ContentPersonRenderTest extends ContentRenderTestBase {
 
