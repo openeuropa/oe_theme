@@ -160,6 +160,9 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
+    // Assert body field label is not displayed anymore.
+    $this->assertSession()->pageTextNotContains('Description');
+
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
@@ -197,8 +200,6 @@ class ContentOrganisationRenderTest extends BrowserTestBase {
     $this->assertEquals('Overview Description 1', $overview_descriptions[0]->getText());
     $this->assertEquals('Overview Description 2', $overview_descriptions[1]->getText());
 
-    // Assert body field label is not displayed anymore.
-    $this->assertSession()->pageTextNotContains('Description');
     // Assert values of the second group.
     $body = $content_items[1]->findAll('css', '.ecl-editor');
     $this->assertCount(1, $body);
