@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.17.1](https://github.com/openeuropa/oe_theme/tree/2.17.1) (2021-04-20)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.17.0...2.17.1)
+
+**Merged pull requests:**
+
+- EWPP-1031: Fix tests that use role reference field. [\#780](https://github.com/openeuropa/oe_theme/pull/780) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-969: Move Social media links outside Media fieldgroup on Person full view display. [\#776](https://github.com/openeuropa/oe_theme/pull/776) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [2.17.0](https://github.com/openeuropa/oe_theme/tree/2.17.0) (2021-04-09)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.16.0...2.17.0)
