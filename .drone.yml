@@ -59,6 +59,8 @@ pipeline:
     commands:
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
+      event:
+        exclude: tag
       matrix:
         COMPOSER_BOUNDARY: lowest
 
@@ -67,6 +69,8 @@ pipeline:
     commands:
       - ./vendor/bin/run drupal:site-install
     when:
+      event:
+        exclude: tag
       matrix:
         TYPE: behat
 
@@ -76,6 +80,8 @@ pipeline:
     commands:
       - ./vendor/bin/grumphp run
     when:
+      event:
+        exclude: tag
       matrix:
         COMPOSER_BOUNDARY: highest
 
@@ -86,6 +92,8 @@ pipeline:
       - ./vendor/bin/run drupal:site-setup
       - ./vendor/bin/phpunit --group $BATCH
     when:
+      event:
+        exclude: tag
       matrix:
         TYPE: phpunit
 
@@ -95,6 +103,8 @@ pipeline:
     commands:
       - ./vendor/bin/behat --strict
     when:
+      event:
+        exclude: tag
       matrix:
         TYPE: behat
 
@@ -103,14 +113,16 @@ pipeline:
     commands:
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
     when:
-      event: tag
+      event:
+        include: tag
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
     secrets: [ github_token ]
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
-      event: tag
+      event:
+        include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
 
