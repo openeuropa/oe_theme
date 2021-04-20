@@ -14,7 +14,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 /**
  * Tests that "Call for tenders" content type renders correctly.
  *
- * @group batch3
+ * @group batch1
  */
 class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 
