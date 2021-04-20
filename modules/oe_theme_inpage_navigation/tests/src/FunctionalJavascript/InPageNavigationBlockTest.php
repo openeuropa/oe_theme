@@ -196,9 +196,32 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
+    // Check that in-page navigation block visible when available
+    // heading in wysiwyg field.
+    $node->set('body', [
+      [
+        'value' => '<h2>Heading from body field</h2>',
+        'format' => 'full_html',
+      ],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    // Assert in-page navigation part.
+    $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Heading from body field', 'href' => '#heading-from-body-field'],
+        ['label' => 'Related links', 'href' => '#related-links'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
     // Check that in-page navigation block is hidden when
     // we don't have anymore heading elements.
     $node->set('oe_related_links', NULL);
+    $node->set('body', NULL);
     $node->save();
     $this->drupalGet($node->toUrl());
 

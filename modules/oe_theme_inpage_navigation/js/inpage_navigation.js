@@ -8,8 +8,8 @@
       // In-page navigation blocks.
       var elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
       // List of headings inside source element of in-page navigation.
-      var headers = document.querySelectorAll('div[data-inpage-navigation-source-area] h2.ecl-u-type-heading-2');
-      li_html = [];
+      var headers = document.querySelectorAll('div[data-inpage-navigation-source-area] h2');
+      var li_html = [];
       for (var h = 0; h < headers.length; h++) {
         title = headers[h].innerHTML;
         if (!headers[h].hasAttribute('id')) {
