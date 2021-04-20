@@ -11,6 +11,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the rendering of paragraphs types.
+ *
+ * @group batch2
  */
 class ParagraphsTest extends ParagraphsTestBase {
 

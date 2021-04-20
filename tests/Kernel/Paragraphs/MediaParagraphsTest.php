@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the rendering of paragraph types with media fields.
+ *
+ * @group batch2
  */
 class MediaParagraphsTest extends ParagraphsTestBase {
 

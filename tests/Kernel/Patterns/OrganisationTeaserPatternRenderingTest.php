@@ -9,6 +9,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test Organisation teaser pattern rendering.
+ *
+ * @group batch2
  */
 class OrganisationTeaserPatternRenderingTest extends AbstractKernelTestBase {
 

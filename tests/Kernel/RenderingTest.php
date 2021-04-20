@@ -11,6 +11,8 @@ use Drupal\Core\Render\Element;
 
 /**
  * Tests that rendering of elements follows the theme implementation.
+ *
+ * @group batch2
  */
 class RenderingTest extends AbstractKernelTestBase implements FormInterface {
 

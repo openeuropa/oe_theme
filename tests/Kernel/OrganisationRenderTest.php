@@ -14,6 +14,8 @@ use Drupal\user\Entity\User;
 
 /**
  * Tests the organisation rendering.
+ *
+ * @group batch2
  */
 class OrganisationRenderTest extends ContentRenderTestBase {
 

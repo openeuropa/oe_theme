@@ -11,6 +11,8 @@ use Drupal\user\Entity\User;
 
 /**
  * Tests the News content type rendering.
+ *
+ * @group batch2
  */
 class NewsRenderTest extends ContentRenderTestBase {
 

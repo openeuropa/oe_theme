@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
  * Tests that our content types render with correct markup.
  *
  * @todo move the individual content type tests to their own classes.
+ *
+ * @group batch2
  */
 class LegacyContentRenderTest extends ContentRenderTestBase {
 
