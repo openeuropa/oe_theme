@@ -72,18 +72,27 @@ pipeline:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/grumphp run
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   phpunit:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/phpunit
+      - ./vendor/bin/phpunit --group $BATCH
+    when:
+      matrix:
+        TYPE: phpunit
 
   behat:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/behat --strict
+    when:
+      matrix:
+        TYPE: behat
 
   before-release:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-dev
@@ -102,9 +111,13 @@ pipeline:
         COMPOSER_BOUNDARY: highest
 
 matrix:
-  COMPOSER_BOUNDARY:
-    - lowest
-    - highest
-  PHP_VERSION:
-    - 7.2
-    - 7.3
+  include:
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: behat }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: behat }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
