@@ -84,7 +84,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
 
     // Assert in-page navigation part.
     $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
@@ -137,7 +137,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
   }
 
   /**
@@ -160,7 +160,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
 
@@ -226,7 +226,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
   }

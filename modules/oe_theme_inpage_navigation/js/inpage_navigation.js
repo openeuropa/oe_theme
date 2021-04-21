@@ -8,7 +8,14 @@
       // In-page navigation blocks.
       var elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
       // List of headings inside source element of in-page navigation.
-      var headers = document.querySelectorAll('div[data-inpage-navigation-source-area] h2');
+      var source_regions = document.querySelectorAll('[data-inpage-navigation-source-area]');
+      var selectors = [];
+      source_regions.forEach(function (element) {
+        var header_selector = element.getAttribute('data-inpage-navigation-source-area');
+        selectors.push('[data-inpage-navigation-source-area="' + header_selector + '"] ' + header_selector);
+      })
+      headers_selector = selectors.join(', ');
+      var headers = document.querySelectorAll(headers_selector);
       var li_html = [];
       for (var h = 0; h < headers.length; h++) {
         title = headers[h].innerHTML;
