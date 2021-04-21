@@ -4,14 +4,17 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.oe_organisation.body
+    - field.field.node.oe_organisation.oe_org_staff_search_link
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_eu_org
     - field.field.node.oe_organisation.oe_organisation_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_logo
     - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
+    - field.field.node.oe_organisation.oe_organisation_org_chart
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_overview
+    - field.field.node.oe_organisation.oe_organisation_persons
     - field.field.node.oe_organisation.oe_summary
     - field.field.node.oe_organisation.oe_teaser
     - node.type.oe_organisation
@@ -19,6 +22,7 @@ dependencies:
     - description_list_field
     - entity_reference_revisions
     - field_group
+    - link
     - text
     - user
 third_party_settings:
@@ -28,6 +32,7 @@ third_party_settings:
         - oe_organisation_logo
         - group_overview
         - group_description
+        - group_leadership_and_organisation
         - group_contact
       parent_name: ''
       weight: 0
@@ -52,7 +57,7 @@ third_party_settings:
       children:
         - oe_organisation_contact
       parent_name: group_in_page_navigation
-      weight: 3
+      weight: 4
       format_type: oe_theme_helper_in_page_navigation_item
       region: content
       format_settings:
@@ -70,6 +75,19 @@ third_party_settings:
         id: ''
         classes: ''
       label: Overview
+    group_leadership_and_organisation:
+      children:
+        - oe_organisation_persons
+        - oe_organisation_org_chart
+        - oe_org_staff_search_link
+      parent_name: group_in_page_navigation
+      weight: 3
+      format_type: oe_theme_helper_in_page_navigation_item
+      region: content
+      format_settings:
+        id: ''
+        classes: ''
+      label: 'Leadership and organisation'
 id: node.oe_organisation.full
 targetEntityType: node
 bundle: oe_organisation
@@ -86,6 +104,18 @@ content:
     weight: 1
     region: content
     settings: {  }
+    third_party_settings: {  }
+  oe_org_staff_search_link:
+    type: link
+    weight: 2
+    region: content
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
   oe_organisation_contact:
     weight: 6
@@ -104,12 +134,30 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+  oe_organisation_org_chart:
+    type: entity_reference_entity_view
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   oe_organisation_overview:
     type: description_list_formatter
     weight: 0
     region: content
     label: hidden
     settings: {  }
+    third_party_settings: {  }
+  oe_organisation_persons:
+    type: entity_reference_entity_view
+    weight: 0
+    region: content
+    label: hidden
+    settings:
+      view_mode: oe_compact_teaser
+      link: false
     third_party_settings: {  }
 hidden:
   extra_field_oe_theme_content_organisation_teaser_details: true
