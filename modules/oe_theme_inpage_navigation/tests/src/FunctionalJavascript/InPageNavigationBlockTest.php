@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_inpage_navigation\FunctionalJavascript;
 
+use Drupal\block\Entity\Block;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\media\MediaInterface;
 use Drupal\node\Entity\NodeType;
@@ -84,7 +85,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
 
     // Assert in-page navigation part.
     $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
@@ -137,7 +138,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
   }
 
   /**
@@ -160,7 +161,7 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
 
@@ -218,15 +219,50 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
+    // Check that in-page navigation block count presence of
+    // h2.ecl-u-type-heading-2 elements inside content region.
+    $block = Block::create([
+      'id' => 'pagetitle',
+      'theme' => 'oe_theme',
+      'langcode' => 'en',
+      'weight' => 0,
+      'status' => TRUE,
+      'region' => 'content',
+      'plugin' => 'page_title_block',
+      'provider' => NULL,
+      'settings' => [
+        'label' => 'Page title',
+        'provider' => 'core',
+        'label_display' => TRUE,
+      ],
+      'visibility' => [],
+    ]);
+    $block->save();
+    \Drupal::service('twig')->invalidate();
+    $this->drupalGet($node->toUrl());
+    // Assert in-page navigation part.
+    $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
+    $inpage_nav_assert = new InPageNavigationAssert();
+    $inpage_nav_expected_values = [
+      'title' => 'Page contents',
+      'list' => [
+        ['label' => 'Test Page node', 'href' => '#test-page-node'],
+        ['label' => 'Heading from body field', 'href' => '#heading-from-body-field'],
+        ['label' => 'Related links', 'href' => '#related-links'],
+      ],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
     // Check that in-page navigation block is hidden when
     // we don't have anymore heading elements.
     $node->set('oe_related_links', NULL);
     $node->set('body', NULL);
     $node->save();
+    $block->delete();
     $this->drupalGet($node->toUrl());
 
     // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area-main] article');
+    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
   }

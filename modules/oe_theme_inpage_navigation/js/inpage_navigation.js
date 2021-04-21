@@ -5,29 +5,30 @@
 (function (ECL, Drupal, $) {
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
-      // In-page navigation blocks.
-      var elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
-      // List of headings inside source element of in-page navigation.
-      var source_regions = document.querySelectorAll('[data-inpage-navigation-source-area]');
-      var selectors = [];
-      source_regions.forEach(function (element) {
-        var header_selector = element.getAttribute('data-inpage-navigation-source-area');
+      // List of heading selectors.
+      const selectors = [];
+      // Collect heading selectors.
+      document.querySelectorAll('[data-inpage-navigation-source-area]').forEach(function (element) {
+        let header_selector = element.getAttribute('data-inpage-navigation-source-area');
         selectors.push('[data-inpage-navigation-source-area="' + header_selector + '"] ' + header_selector);
       })
-      headers_selector = selectors.join(', ');
-      var headers = document.querySelectorAll(headers_selector);
-      var li_html = [];
-      for (var h = 0; h < headers.length; h++) {
-        title = headers[h].innerHTML;
+      let headers_selector = selectors.join(', ');
+      // Run query on all required selectors.
+      const headers = document.querySelectorAll(headers_selector);
+      const li_html = [];
+      for (let h = 0; h < headers.length; h++) {
+        let title = headers[h].textContent.trim();
         if (!headers[h].hasAttribute('id')) {
           // Set id if not available yet in h2 tag.
           headers[h].setAttribute('id', title.replace(/\W/g,'-').toLowerCase())
         }
-        id = $(headers[h]).uniqueId().attr('id');
+        let id = $(headers[h]).uniqueId().attr('id');
         li_html.push('<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link="">' + title + '</a></li>');
       }
 
-      for (var i = 0; i < elements.length; i++) {
+      // In-page navigation blocks.
+      const elements = document.querySelectorAll('[data-ecl-inpage-navigation]');
+      for (let i = 0; i < elements.length; i++) {
         if (li_html.length === 0) {
           // Adjust layout if we going to remove in-page element.
           $(elements[i]).closest('.ecl-col-lg-3').next('.ecl-col-lg-9').removeClass('ecl-col-lg-9').addClass('ecl-col-lg-12')
