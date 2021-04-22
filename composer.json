@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.2",
-        "drupal/core": "^8.9.13",
+        "drupal/core": "^8.9.14",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
@@ -45,7 +45,7 @@
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
-        "openeuropa/drupal-core-require-dev": "^8.9.13",
+        "openeuropa/drupal-core-require-dev": "^8.9.14",
         "openeuropa/oe_content": "2.x-dev",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
