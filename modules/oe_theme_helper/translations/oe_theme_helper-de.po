@@ -309,3 +309,30 @@ msgstr "Die Teilnahmefrist für diese Konsultation ist abgelaufen. Danke für Ih
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Zuständigkeiten"
+
+msgid "Media"
+msgstr "Medien"
+
+msgid "Latest"
+msgstr "Aktuelles"
+
+msgid "Transparency"
+msgstr "Transparenz"
+
+msgid "Articles and presentations"
+msgstr "Veröffentlichungen und Präsentationen"
+
+msgid "Biography"
+msgstr "Biographie"
+
+msgid "Declaration of interests"
+msgstr "Interessenerklärung"
+
+msgid "Show contact details"
+msgstr "Kontaktdaten anzeigen"
+
+msgid "Hide contact details"
+msgstr "Kontaktdaten verbergen"

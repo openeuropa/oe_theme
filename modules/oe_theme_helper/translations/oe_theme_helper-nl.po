@@ -309,3 +309,30 @@ msgstr "De termijn om deel te nemen aan deze raadpleging is verstreken. Hartelij
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Taken"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Latest"
+msgstr "Actueel"
+
+msgid "Transparency"
+msgstr "Transparantie"
+
+msgid "Articles and presentations"
+msgstr "Artikelen en presentaties"
+
+msgid "Biography"
+msgstr "Biografie"
+
+msgid "Declaration of interests"
+msgstr "Belangenverklaring"
+
+msgid "Show contact details"
+msgstr "Contactinformatie"
+
+msgid "Hide contact details"
+msgstr "Contactinformatie verbergen"

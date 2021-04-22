@@ -23,6 +23,15 @@ class InPageNavigation extends InPageNavigationBase {
   /**
    * {@inheritdoc}
    */
+  public function settingsForm() {
+    $form = parent::settingsForm();
+    $form['label']['#required'] = TRUE;
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function preRender(&$element, $rendering_object) {
     parent::preRender($element, $rendering_object);
 

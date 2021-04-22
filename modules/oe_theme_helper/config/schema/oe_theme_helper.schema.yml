@@ -72,6 +72,26 @@ field.formatter.settings.oe_theme_helper_social_media_icons_list_formatter:
   type: field.formatter.settings.link
   label: 'Social media icons list formatter settings'
 
+field.formatter.settings.oe_theme_helper_media_gallery:
+  type: field.formatter.settings.oe_theme_helper_media_thumbnail_url
+  label: 'Media gallery formatter settings'
+  mapping:
+    bundle_settings:
+      type: sequence
+      orderby: key
+      label: 'Bundle settings'
+      sequence:
+        type: mapping
+        orderby: key
+        label: 'List of settings for a bundle.'
+        mapping:
+          caption:
+            type: string
+            label: 'The field to use as source for caption of the media item.'
+          copyright:
+            type: string
+            label: 'The field to use as source for copyright of the media item.'
+
 condition.plugin.oe_theme_helper_current_branding:
   type: condition.plugin
   mapping:

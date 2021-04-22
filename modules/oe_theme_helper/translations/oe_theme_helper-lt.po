@@ -309,3 +309,30 @@ msgstr "Šių konsultacijų nuomonių teikimo laikotarpis baigėsi. Dėkojame, k
 
 msgid "Status: @label"
 msgstr "Būsena: @label"
+
+msgid "Responsibilities"
+msgstr "Pareigos"
+
+msgid "Media"
+msgstr "Žiniasklaida"
+
+msgid "Latest"
+msgstr "Naujausia"
+
+msgid "Transparency"
+msgstr "Skaidrumas"
+
+msgid "Articles and presentations"
+msgstr "Straipsniai ir pranešimai"
+
+msgid "Biography"
+msgstr "Biografija"
+
+msgid "Declaration of interests"
+msgstr "Interesų deklaracija"
+
+msgid "Show contact details"
+msgstr "Rodyti kontaktinius duomenis"
+
+msgid "Hide contact details"
+msgstr "Slėpti kontaktinius duomenis"

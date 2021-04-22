@@ -309,3 +309,30 @@ msgstr "Isteklo je razdoblje za sudjelovanje u ovom savjetovanju. Hvala vam na d
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Odgovornosti"
+
+msgid "Media"
+msgstr "Mediji"
+
+msgid "Latest"
+msgstr "Najnovije"
+
+msgid "Transparency"
+msgstr "Transparentnost"
+
+msgid "Articles and presentations"
+msgstr "Članci i prezentacije"
+
+msgid "Biography"
+msgstr "Biografija"
+
+msgid "Declaration of interests"
+msgstr "Izjava o sukobu interesa"
+
+msgid "Show contact details"
+msgstr "Prikaži podatke za kontakt"
+
+msgid "Hide contact details"
+msgstr "Sakrij podatke za kontakt"

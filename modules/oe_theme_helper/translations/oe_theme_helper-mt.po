@@ -309,3 +309,30 @@ msgstr "Il-perjodu biex tirrispondi għal din il-konsultazzjoni ntemm. Nirringra
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Responsabbiltajiet"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Latest"
+msgstr "L-aktar reċenti"
+
+msgid "Transparency"
+msgstr "Trasparenza"
+
+msgid "Articles and presentations"
+msgstr "Artikli u preżentazzjonijiet"
+
+msgid "Biography"
+msgstr "Bijografija"
+
+msgid "Declaration of interests"
+msgstr "Dikjarazzjoni ta’ interessi"
+
+msgid "Show contact details"
+msgstr "Uri d-dettalji ta' kuntatt"
+
+msgid "Hide contact details"
+msgstr "Aħbi d-dettalji ta' kuntatt"

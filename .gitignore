@@ -20,8 +20,9 @@ docker-compose.*.yml
 /oe_theme/
 *.tar.gz
 
-# Ignore all files in the images folder other than the required icon.
+# Ignore all files in the images folder other than listed below.
 
 /images/*
 !/images/required.svg
+!/images/user_icon.svg
 /.gitattributes

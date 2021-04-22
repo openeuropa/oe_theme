@@ -309,3 +309,30 @@ msgstr "Tämän kuulemisen vastausaika on päättynyt. Kiitos palautteesta."
 
 msgid "Status: @label"
 msgstr "Tila: @label"
+
+msgid "Responsibilities"
+msgstr "Vastuualueet"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Latest"
+msgstr "Uutta"
+
+msgid "Transparency"
+msgstr "Avoimuus"
+
+msgid "Articles and presentations"
+msgstr "Artikkelit ja esitykset"
+
+msgid "Biography"
+msgstr "Henkilöhistoria"
+
+msgid "Declaration of interests"
+msgstr "Ilmoitus sidonnaisuuksista"
+
+msgid "Show contact details"
+msgstr "Näytä yhteystiedot"
+
+msgid "Hide contact details"
+msgstr "Piilota yhteystiedot"

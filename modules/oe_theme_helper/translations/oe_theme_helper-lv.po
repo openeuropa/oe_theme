@@ -309,3 +309,30 @@ msgstr "Atbilžu iesniegšanas termiņš šai aptaujai ir beidzies. Pateicamies 
 
 msgid "Status: @label"
 msgstr "Statuss: @label"
+
+msgid "Responsibilities"
+msgstr "Pienākumi"
+
+msgid "Media"
+msgstr "Mediji"
+
+msgid "Latest"
+msgstr "Jaunumi"
+
+msgid "Transparency"
+msgstr "Pārskatāmība"
+
+msgid "Articles and presentations"
+msgstr "Raksti un prezentācijas"
+
+msgid "Biography"
+msgstr "Biogrāfija"
+
+msgid "Declaration of interests"
+msgstr "Interešu deklarācija"
+
+msgid "Show contact details"
+msgstr "Parādīt kontaktinformāciju"
+
+msgid "Hide contact details"
+msgstr "Paslēpt kontaktinformāciju"

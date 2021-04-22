@@ -1,11 +1,11 @@
 component_library_ec:
   css:
     theme:
-      dist/ec/styles/ecl-ec-preset-legacy-website.css: { media: screen }
-      dist/ec/styles/ecl-ec-preset-legacy-website-print.css: { media: print }
+      dist/ec/styles/ecl-ec-preset-website.css: { media: screen }
+      dist/ec/styles/ecl-ec-preset-website-print.css: { media: print }
       css/style-ec.css: { media: screen }
   js:
-    dist/ec/scripts/ecl-ec-preset-legacy-website.js: {}
+    dist/ec/scripts/ecl-ec-preset-website.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal
@@ -13,11 +13,11 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/eu/styles/ecl-eu-preset-legacy-website.css: { media: screen }
-      dist/eu/styles/ecl-eu-preset-legacy-website-print.css: { media: print }
+      dist/eu/styles/ecl-eu-preset-website.css: { media: screen }
+      dist/eu/styles/ecl-eu-preset-website-print.css: { media: print }
       css/style-eu.css: { media: screen }
   js:
-    dist/eu/scripts/ecl-eu-preset-legacy-website.js: {}
+    dist/eu/scripts/ecl-eu-preset-website.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal

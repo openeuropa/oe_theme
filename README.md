@@ -10,8 +10,10 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
-  - [Upgrade to 2.10.0](#upgrade-to-2100)
-  - [Upgrade to 2.9.0](#upgrade-to-290)
+  - [Upgrade to 2.17.0](#upgrade-to-2.17.0)
+  - [Upgrade to 2.15.0](#upgrade-to-2.15.0)
+  - [Upgrade to 2.10.0](#upgrade-to-2.10.0)
+  - [Upgrade to 2.9.0](#upgrade-to-2.9.0)
   - [Upgrade from 1.x to 2.x](#upgrade-from-1x-to-2x)
 - [Companion sub-modules](#companion-sub-modules)
 - [Corporate blocks](#corporate-blocks)
@@ -78,6 +80,14 @@ ECL branding changes the way users interact with the sites by restricting access
 users can access to the main navigation menu only on sites using standardised ECL branding.
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
+
+### Upgrade to 2.17.0
+
+#### Dropdown UI pattern
+
+In 2.17.0 we dropped support for the `Dropdown` pattern, which will be removed in the next major version.
+The pattern is still available, albeit hidden on the pattern overview page. The new `Dropdown` pattern is based on the
+ECL Expandable component and should work as a drop-in replacement of the old one.
 
 ### Upgrade to 2.15.0
 
@@ -230,6 +240,18 @@ This will:
 - Setup Drush and Drupal's settings using values from `./runner.yml.dist`
 - Setup PHPUnit and Behat configuration files using values from `./runner.yml.dist`
 
+**Please note:** project files and directories are symlinked within the test site by using the
+[OpenEuropa Task Runner's Drupal project symlink](https://github.com/openeuropa/task-runner-drupal-project-symlink) command.
+
+If you add a new file or directory in the root of the project, you need to re-run `drupal:site-setup` in order to make
+sure they are be correctly symlinked.
+
+If you don't want to re-run a full site setup for that, you can simply run:
+
+```
+$ ./vendor/bin/run drupal:symlink-project
+```
+
 After a successful setup install the site by running:
 
 ```bash
@@ -311,6 +333,22 @@ To run the behat tests:
 ```bash
 docker-compose exec web ./vendor/bin/behat
 ```
+
+### Step debugging
+
+To enable step debugging from the command line, pass the `XDEBUG_SESSION` environment variable with any value to
+the container:
+
+```bash
+docker-compose exec -e XDEBUG_SESSION=1 web <your command>
+```
+
+Please note that, starting from XDebug 3, a connection error message will be outputted in the console if the variable is
+set but your client is not listening for debugging connections. The error message will cause false negatives for PHPUnit
+tests.
+
+To initiate step debugging from the browser, set the correct cookie using a browser extension or a bookmarklet
+like the ones generated at https://www.jetbrains.com/phpstorm/marklets/.
 
 ### Disable Drupal 8 caching
 

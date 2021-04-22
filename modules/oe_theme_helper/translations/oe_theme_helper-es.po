@@ -309,3 +309,30 @@ msgstr "El plazo para responder a esta consulta ha finalizado. Gracias por su co
 
 msgid "Status: @label"
 msgstr "Estado: @label"
+
+msgid "Responsibilities"
+msgstr "Responsabilidades"
+
+msgid "Media"
+msgstr "Medios de comunicación"
+
+msgid "Latest"
+msgstr "Últimas noticias"
+
+msgid "Transparency"
+msgstr "Transparencia"
+
+msgid "Articles and presentations"
+msgstr "Artículos y presentaciones"
+
+msgid "Biography"
+msgstr "Biografía"
+
+msgid "Declaration of interests"
+msgstr "Declaración de intereses"
+
+msgid "Show contact details"
+msgstr "Mostrar datos del contacto"
+
+msgid "Hide contact details"
+msgstr "Ocultar datos de contacto"

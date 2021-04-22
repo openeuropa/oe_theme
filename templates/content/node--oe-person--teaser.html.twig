@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme to display a Person node in the teaser view mode.
+ */
+#}
+{% if not node.oe_person_jobs.isEmpty() %}
+  {% set meta = [
+    content.oe_person_jobs
+  ] %}
+{% endif %}
+{% set additional_information = [
+  content.group_organisation,
+  content.oe_person_contacts,
+  content.extra_field_oe_theme_content_person_job_list,
+] %}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'thumbnail_secondary',
+    'url': url,
+    'meta': meta|default([]),
+    'title': label,
+    'detail': content.oe_teaser|field_value,
+    'additional_information': additional_information,
+    'image': content.portrait_image ? { 'src': content.portrait_image|render }
+  }) }}
+{% endblock %}

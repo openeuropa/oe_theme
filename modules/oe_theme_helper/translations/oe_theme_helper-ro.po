@@ -309,3 +309,30 @@ msgstr "Perioada de desfășurare a acestei consultări s-a încheiat. Vă mulț
 
 msgid "Status: @label"
 msgstr "Statut: @label"
+
+msgid "Responsibilities"
+msgstr "Responsabilități"
+
+msgid "Media"
+msgstr "Media"
+
+msgid "Latest"
+msgstr "Actualități"
+
+msgid "Transparency"
+msgstr "Transparență"
+
+msgid "Articles and presentations"
+msgstr "Articole și prezentări"
+
+msgid "Biography"
+msgstr "Biografie"
+
+msgid "Declaration of interests"
+msgstr "Declarație de interese"
+
+msgid "Show contact details"
+msgstr "Afișați datele de contact"
+
+msgid "Hide contact details"
+msgstr "Ascundeți datele de contact"

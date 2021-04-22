@@ -6,8 +6,8 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2",
-        "drupal/core": "^8.9.13",
+        "php": ">=7.3",
+        "drupal/core": "^8.9.14",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
@@ -25,7 +25,7 @@
         "drupal/composite_reference": "~1.0-alpha1",
         "drupal/config_devel": "~1.2",
         "drupal/datetime_testing": "1.x-dev",
-        "drupal/description_list_field": "~1.0.x-dev",
+        "drupal/description_list_field": "1.0.x-dev",
         "drupal/drupal-driver": "~2.0.0-alpha6",
         "drupal/drupal-extension": "~4.0",
         "drupal/emr": "~1.0-beta9",
@@ -33,7 +33,7 @@
         "drupal/entity_browser": "^2.5",
         "drupal/extra_field": "^1.1",
         "drupal/field_group": "~3.0",
-        "drupal/inline_entity_form": "1.0-rc8",
+        "drupal/inline_entity_form": "~1.0-rc9",
         "drupal/json_field": "^1.0.0-rc2",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "~1.0-alpha3",
@@ -46,8 +46,8 @@
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.5",
-        "openeuropa/drupal-core-require-dev": "^8.9.13",
-        "openeuropa/oe_content": "~2.0",
+        "openeuropa/drupal-core-require-dev": "^8.9.14",
+        "openeuropa/oe_content": "2.x-dev",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.11",
@@ -57,7 +57,7 @@
         "openeuropa/oe_webtools": "~1.10",
         "openeuropa/oe_contact_forms": "~1.0",
         "openeuropa/rdf_skos": "~1.0",
-        "openeuropa/task-runner": "^1.0.0-beta5",
+        "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
     },
@@ -105,6 +105,9 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
+            },
+            "drupal/entity_reference_revisions": {
+                "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
             }
         },
         "drupal-scaffold": {

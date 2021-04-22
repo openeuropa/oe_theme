@@ -1,0 +1,27 @@
+name: OpenEuropa Theme Person Content
+type: module
+description: Companion module for the OE Content Person module
+package: OpenEuropa
+core: 8.x
+
+dependencies:
+  - extra_field:extra_field
+  - oe_content:oe_content_person
+  - oe_media:oe_media
+  - oe_media:oe_media_avportal
+  - oe_theme:oe_theme_helper
+  - oe_theme:oe_theme_content_entity_contact
+  - oe_theme:oe_theme_content_organisation_reference
+  - oe_theme:oe_theme_content_sub_entity_document_reference
+
+config_devel:
+  install:
+    - core.entity_view_display.node.oe_person.full
+    - core.entity_view_display.node.oe_person.teaser
+    - core.entity_view_display.node.oe_organisation.oe_person_oe_contact
+    - core.entity_view_display.oe_contact.oe_general.oe_person
+    - core.entity_view_display.oe_contact.oe_organisation_reference.oe_person
+    - core.entity_view_display.oe_person_job.oe_default.full
+    - core.entity_view_mode.node.oe_person_oe_contact
+    - core.entity_view_mode.oe_contact.oe_person
+    - core.entity_view_mode.oe_person_job.full

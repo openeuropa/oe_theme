@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display in-page navigation for organisation nodes.
+ * Theme override to display in-page navigation with image.
  *
  * @see ./modules/oe_theme_helper/templates/oe-theme-helper-in-page-navigation.html.twig
  */
@@ -11,18 +11,18 @@
 {# Replace block navigation #}
 {% block navigation %}
   {% if image %}
-  <div class="ecl-u-mb-l">
-    {% include '@ecl-twig/media-container' with {
-      'image': image.src,
-      'alt': image.alt,
-      'extra_classes': 'ecl-u-bg-white'
-    } %}
-  </div>
+    <div class="ecl-u-mb-l">
+      {% include '@ecl-twig/media-container' with {
+        'image': image.src,
+        'alt': image.alt,
+        'extra_classes': 'ecl-u-bg-white'
+      } %}
+    </div>
   {% endif %}
-  {% if _items %}
+  {% if _links %}
     {% include '@ecl-twig/inpage-navigation' with {
       'title': title,
-      'links': _items,
+      'links': _links,
       'icon_path': ecl_icon_path
     } %}
   {% endif %}
