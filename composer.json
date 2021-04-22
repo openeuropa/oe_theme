@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.3",
         "drupal/core": "^8.9.14",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
@@ -56,7 +56,7 @@
         "openeuropa/oe_webtools": "~1.10",
         "openeuropa/oe_contact_forms": "~1.0",
         "openeuropa/rdf_skos": "~1.0",
-        "openeuropa/task-runner": "^1.0.0-beta5",
+        "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "phpunit/phpunit": "~6.0",
         "symfony/dom-crawler": "~3.4"
     },
