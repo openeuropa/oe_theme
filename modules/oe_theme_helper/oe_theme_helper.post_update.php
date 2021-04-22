@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\block\Entity\Block;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Entity\Entity\EntityViewMode;
 use Drupal\image\Entity\ImageStyle;
 
 /**
@@ -277,4 +278,17 @@ function oe_theme_helper_post_update_20015() {
     $view_display_values['_core']['default_config_hash'] = Crypt::hashBase64(serialize($view_display_values));
     $entity_view_display_storage->create($view_display_values)->save();
   }
+}
+
+/**
+ * Create the OpenEuropa: Compact teaser view mode for node entities.
+ */
+function oe_theme_helper_post_update_20016(): void {
+  EntityViewMode::create([
+    'id' => 'node.oe_compact_teaser',
+    'targetEntityType' => 'node',
+    'status' => TRUE,
+    'enabled' => TRUE,
+    'label' => 'OpenEuropa: Compact teaser',
+  ])->save();
 }
