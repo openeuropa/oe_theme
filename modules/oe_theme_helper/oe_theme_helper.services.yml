@@ -36,3 +36,7 @@ services:
     arguments: ['@current_route_match', '@entity_type.manager', '@entity.repository']
     tags:
       - { name: event_subscriber }
+  plugin.manager.oe_theme.media_data_extractor:
+    class: Drupal\oe_theme_helper\MediaDataExtractorPluginManager
+    parent: default_plugin_manager
+    arguments: ['@entity_type.bundle.info']

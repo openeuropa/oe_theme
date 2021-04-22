@@ -309,3 +309,30 @@ msgstr "A konzultációs időszak lezárult Köszönjük, hogy részt vesz felm�
 
 msgid "Status: @label"
 msgstr "Státusz: @label"
+
+msgid "Responsibilities"
+msgstr "Feladatok"
+
+msgid "Media"
+msgstr "Média"
+
+msgid "Latest"
+msgstr "Legújabb információk"
+
+msgid "Transparency"
+msgstr "Átláthatóság"
+
+msgid "Articles and presentations"
+msgstr "Cikkek és prezentációk"
+
+msgid "Biography"
+msgstr "Szakmai életrajz"
+
+msgid "Declaration of interests"
+msgstr "Érdekeltségi nyilatkozat"
+
+msgid "Show contact details"
+msgstr "Elérhetőségi adatok megjelenítése"
+
+msgid "Hide contact details"
+msgstr "Elérhetőségi adatok elrejtése"

@@ -15,6 +15,7 @@
  */
 #}
 {% set _items = [] %}
+{% set _links = [] %}
 {% for item in items %}
   {#
      We need to pre-render each item content so to establish if to show its related navigation link.
@@ -25,10 +26,16 @@
   {% if content|trim is not empty %}
     {% set _items = _items|merge([{
       id: item.id,
-      href: '#' ~ item.id,
       label: item.label,
       content: content
     }]) %}
+
+    {% if item.label is not empty %}
+      {% set _links = _links|merge([{
+        href: '#' ~ item.id,
+        label: item.label,
+      }]) %}
+    {% endif %}
   {% endif %}
 {% endfor %}
 
@@ -37,7 +44,7 @@
     {% block navigation %}
       {% include '@ecl-twig/inpage-navigation' with {
         'title': title,
-        'links': _items,
+        'links': _links,
         'icon_path': ecl_icon_path
       } %}
     {% endblock %}
@@ -46,7 +53,9 @@
     {% block content %}
       {% for item in _items %}
         <div{{ not loop.last ? ' class="ecl-u-mb-2xl"' }}>
-          <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
+          {% if item.label is not empty %}
+            <h2 id="{{ item.id }}" class="ecl-u-type-heading-2 ecl-u-mt-none ecl-u-mb-l">{{ item.label }}</h2>
+          {% endif %}
           {{ item.content }}
         </div>
       {% endfor %}

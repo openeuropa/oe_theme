@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - oe_content_person
+id: oe_person_job.full
+label: Full
+targetEntityType: oe_person_job
+cache: true

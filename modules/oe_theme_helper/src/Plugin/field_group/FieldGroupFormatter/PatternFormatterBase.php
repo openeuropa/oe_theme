@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\Plugin\field_group\FieldGroupFormatter;
 
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\Element;
 use Drupal\field_group\FieldGroupFormatterBase;
 use Drupal\ui_patterns\UiPatternsManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -131,8 +132,12 @@ abstract class PatternFormatterBase extends FieldGroupFormatterBase implements C
       ],
     ];
 
-    // Pass along the pattern render array.
-    $element = [
+    // Remove all renderable elements, while keeping render metadata as that can
+    // be used to further manipulate the render array.
+    foreach (Element::children($element) as $key) {
+      unset($element[$key]);
+    }
+    $element += [
       'pattern' => $pattern,
     ];
   }

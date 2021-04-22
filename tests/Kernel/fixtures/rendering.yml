@@ -721,22 +721,26 @@
     '#fields':
       items:
         - thumbnail:
-            src: "http://img.jpg"
-            alt: "Example alt"
-          caption: "Example caption"
-          icon: 'video'
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          meta: 'Copyright © 2021, Author and Licence'
+          media_type: 'image'
   assertions:
     count:
       '.ecl-gallery': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image-container': 1
-      '.ecl-gallery__image-container .ecl-gallery__image[src="http://img.jpg"]': 1
-      '.ecl-gallery__image-container .ecl-gallery__image[alt="Example alt"]': 1
-      '.ecl-gallery__image-container figcaption.ecl-gallery__description': 1
-      '.ecl-gallery__image-container .ecl-gallery__description-icon': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image[alt="Example alt text"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': 0
     equals:
-      'figcaption.ecl-gallery__description': 'Example caption<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
+    contains:
+      - 'A picture of a cat'
 - array:
     '#type': pattern
     '#id': gallery
@@ -744,53 +748,40 @@
     '#fields':
       items:
         - thumbnail:
-            src: "http://img_1.jpg"
-            name: "img_1.jpg"
-          icon: "video"
+            src: 'https://loremflickr.com/320/240/cat'
+            alt: 'Example alt text cat'
+          source: 'https://loremflickr.com/800/600/cat'
+          caption: 'A picture of a cat'
+          type: 'image'
         - thumbnail:
-            src: "http://img_2.jpg"
-            name: "img_2.jpg"
-          icon: "audio"
+            src: 'https://loremflickr.com/320/240/dog'
+            alt: 'Example alt text dog'
+          source: 'https://www.youtube.com/watch?v=1-g73ty9v04'
+          caption: "Energy, let's save it!"
+          meta: 'Copyright © 2021 EC'
+          type: 'video'
   assertions:
     count:
       '.ecl-gallery': 1
       '.ecl-gallery .ecl-gallery__list': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 2
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__image-container': 2
-      '.ecl-gallery__image-container .ecl-gallery__image[src="http://img_1.jpg"]': 1
-      '.ecl-gallery__image-container .ecl-gallery__image[src="http://img_2.jpg"]': 1
-      '.ecl-gallery__image-container figcaption.ecl-gallery__description': 2
-      '.ecl-gallery__image-container .ecl-gallery__description-icon': 2
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[src="https://loremflickr.com/320/240/cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image[alt="Example alt text cat"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__meta': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) a.ecl-gallery__item-link[href="https://www.youtube.com/watch?v=1-g73ty9v04"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[src="https://loremflickr.com/320/240/dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image[alt="Example alt text dog"]': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': 1
     equals:
-      '.ecl-gallery__item:nth-child(1) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use></svg>'
-      '.ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': '<svg class="ecl-icon ecl-icon--l ecl-gallery__description-icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--audio"></use></svg>'
-- array:
-    '#type': pattern
-    '#id': gallery
-    '#variant': default
-    '#fields':
-      items:
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-        - thumbnail:
-            src: "http://img.jpg"
-            name: "img.jpg"
-  assertions:
-    count:
-      '.ecl-gallery': 1
-      '.ecl-gallery .ecl-gallery__list': 1
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item': 5
-      '.ecl-gallery__image-container .ecl-gallery__description-icon': 0
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use>'
+    contains:
+      - 'A picture of a cat'
+      - 'Energy, let&#039;s save it!'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1083,6 +1074,28 @@
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
       article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+- array:
+    '#type': pattern
+    '#id': list_item
+    '#variant': "highlight"
+    '#fields':
+      title: "Item title"
+      url: "http://example.com"
+      image:
+        src: "http://via.placeholder.com/300x300"
+        alt: "Alternate text for secondary image"
+      detail: "This is a very long description. Better to trim it off."
+      length: 32
+  assertions:
+    count:
+      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body div.ecl-card__description: 1
+    equals:
+      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body div.ecl-card__description: "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1556,14 +1569,14 @@
           url: 'http://example.com/3'
   assertions:
     count:
-      '.ecl-dropdown-legacy__content a[href="http://example.com/1"]': 1
-      '.ecl-dropdown-legacy__content a[href="http://example.com/2"]': 1
-      '.ecl-dropdown-legacy__content a[href="http://example.com/3"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/1"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/2"]': 1
+      '.ecl-expandable-dropdown__content a[href="http://example.com/3"]': 1
     equals:
-      'button.ecl-dropdown-legacy__toggle span.ecl-button__label': "Dropdown"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
-      '.ecl-dropdown-legacy__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
+      'button.ecl-expandable__toggle span.ecl-button__label': "Dropdown"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(1) a': "Link 1"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(2) a': "Link 2"
+      '.ecl-expandable-dropdown__content .ecl-unordered-list .ecl-unordered-list__item:nth-child(3) a': "Link 3"
 - array:
     '#type': pattern
     '#id': field

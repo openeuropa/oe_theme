@@ -9,7 +9,7 @@ use Drupal\image\Plugin\Field\FieldType\ImageItem;
 /**
  * Handle information about an image, such as source, alt, name and responsive.
  */
-class ImageValueObject extends ValueObjectBase {
+class ImageValueObject extends ValueObjectBase implements ImageValueObjectInterface {
 
   /**
    * Image Source.
@@ -73,40 +73,28 @@ class ImageValueObject extends ValueObjectBase {
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getSource(): string {
     return $this->src;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getName(): string {
     return $this->name;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getAlt(): string {
     return $this->alt;
   }
 
   /**
-   * Getter.
-   *
-   * @return bool
-   *   Property value.
+   * {@inheritdoc}
    */
   public function isResponsive(): bool {
     return $this->responsive;

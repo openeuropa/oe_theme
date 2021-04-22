@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Publication field template of the OE Publication Document reference entity.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15">
+    {{ item.content }}
+  </div>
+{% endfor %}

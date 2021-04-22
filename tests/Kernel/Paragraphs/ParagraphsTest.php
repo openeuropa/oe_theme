@@ -141,7 +141,7 @@ class ParagraphsTest extends ParagraphsTestBase {
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testListItem(): void {
-    file_unmanaged_copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
+    \Drupal::service('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create([
       'uri' => 'public://example.jpg',
     ]);
@@ -196,9 +196,8 @@ class ParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
-
-    // The description should not be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('.ecl-card__description'));
+    $this->assertCount(1, $crawler->filter('.ecl-card__description'));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));

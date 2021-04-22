@@ -309,3 +309,30 @@ msgstr "Fristen for at deltage i denne høring er udløbet. Tak for dit bidrag."
 
 msgid "Status: @label"
 msgstr "Status: @label"
+
+msgid "Responsibilities"
+msgstr "Ansvarsområder"
+
+msgid "Media"
+msgstr "Medierne"
+
+msgid "Latest"
+msgstr "Seneste"
+
+msgid "Transparency"
+msgstr "Gennemsigtighed"
+
+msgid "Articles and presentations"
+msgstr "Artikler og præsentationer"
+
+msgid "Biography"
+msgstr "Biografi"
+
+msgid "Declaration of interests"
+msgstr "Interessetilkendegivelse"
+
+msgid "Show contact details"
+msgstr "Vis kontaktoplysninger"
+
+msgid "Hide contact details"
+msgstr "Skjul kontaktoplysninger"
