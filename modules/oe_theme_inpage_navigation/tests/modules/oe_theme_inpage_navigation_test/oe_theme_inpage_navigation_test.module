@@ -1,0 +1,10 @@
+<?php
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function oe_theme_inpage_navigation_test_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $suggestions[] = $variables['theme_hook_original'] . '__overridden';
+}
