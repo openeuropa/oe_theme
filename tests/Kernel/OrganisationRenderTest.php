@@ -11,6 +11,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the organisation rendering.
@@ -38,6 +39,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     'composite_reference',
     'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
+    'description_list_field',
   ];
 
   /**
@@ -69,7 +71,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
    */
   public function testOrganisationTeaser(): void {
     $logo_media = $this->createMediaImage('organisation_logo');
-    $contact = $this->createContactEntity('organisation_contact', 'oe_general');
+    $first_contact = $this->createContactEntity('first_contact', 'oe_general');
 
     $node = Node::create([
       'type' => 'oe_organisation',
@@ -86,8 +88,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       ],
       'oe_organisation_contact' => [
         [
-          'target_id' => $contact->id(),
-          'target_revision_id' => $contact->getRevisionId(),
+          'target_id' => $first_contact->id(),
+          'target_revision_id' => $first_contact->getRevisionId(),
         ],
       ],
       'status' => 1,
@@ -113,19 +115,19 @@ class OrganisationRenderTest extends ContentRenderTestBase {
           'items' => [
             [
               'label' => 'Website',
-              'body' => 'http://www.example.com/website_organisation_contact',
+              'body' => 'http://www.example.com/website_first_contact',
             ],
             [
               'label' => 'Email',
-              'body' => 'organisation_contact@example.com',
+              'body' => 'first_contact@example.com',
             ],
             [
               'label' => 'Phone number',
-              'body' => 'Phone number organisation_contact',
+              'body' => 'Phone number first_contact',
             ],
             [
               'label' => 'Address',
-              'body' => 'Address organisation_contact, 1001 Brussels, Belgium',
+              'body' => 'Address first_contact, 1001 Brussels, Belgium',
             ],
           ],
         ]),
@@ -134,7 +136,43 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
 
+    // Create another contact and add it to the node.
+    $second_contact = $this->createContactEntity('second_contact', 'oe_general');
+    $node->set('oe_organisation_contact', [$first_contact, $second_contact]);
+    $node->save();
+
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $first_contact_render = $crawler->filter('article .ecl-content-item__additional_information.ecl-u-mb-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mb-m.ecl-u-pb-m');
+    $this->assertCount(1, $first_contact_render);
+
+    $field_assert = new FieldListAssert();
+    $second_contact_expected_values = [
+      'items' => [
+        [
+          'label' => 'Website',
+          'body' => 'http://www.example.com/website_second_contact',
+        ],
+        [
+          'label' => 'Email',
+          'body' => 'second_contact@example.com',
+        ],
+        [
+          'label' => 'Phone number',
+          'body' => 'Phone number second_contact',
+        ],
+        [
+          'label' => 'Address',
+          'body' => 'Address second_contact, 1001 Brussels, Belgium',
+        ],
+      ],
+    ];
+    $second_contact_render = $crawler->filter('article div.ecl-content-item__additional_information.ecl-u-mb-s div:nth-child(2)');
+    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->html());
+
     // Change organisation type to non eu.
+    $node->set('oe_organisation_contact', NULL);
     $node->set('oe_organisation_org_type', 'non_eu');
     $node->set('oe_organisation_non_eu_org_type', 'http://data.europa.eu/uxp/5432');
     $node->save();
@@ -142,6 +180,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
+    $expected_values['additional_information'] = NULL;
     $expected_values['meta'] = 'embassy | Acronym';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
