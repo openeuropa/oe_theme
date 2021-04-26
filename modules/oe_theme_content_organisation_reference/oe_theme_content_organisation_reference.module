@@ -38,7 +38,7 @@ function _oe_theme_content_organisation_reference_display_organisation_contact(a
   foreach ($variables['items'] as &$item) {
     /** @var \Drupal\Core\Entity\ContentEntityInterface $contact */
     $contact = $item['content']['#oe_contact'];
-    $cacheable_metadata  = CacheableMetadata::createFromRenderArray($item['content']);
+    $cacheable_metadata = CacheableMetadata::createFromRenderArray($item['content']);
     // If the contact is not an organisation we don't care.
     if ($contact->bundle() !== 'oe_organisation_reference') {
       continue;

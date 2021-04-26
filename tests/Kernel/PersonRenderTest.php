@@ -241,31 +241,31 @@ class PersonRenderTest extends ContentRenderTestBase {
     // Assert Jobs field.
     $job_1 = $this->createPersonJobEntity('job_1', [
       'oe_acting' => TRUE,
-      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/MEMBER',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS',
     ]);
     $node->set('oe_person_contacts', NULL);
     $node->set('oe_person_jobs', $job_1)->save();
-    $expected_values['meta'] = '(Acting) Member';
+    $expected_values['meta'] = '(Acting) Advisor';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Member',
+          'label' => '(Acting) Advisor',
           'body' => 'Description job_1',
         ],
       ],
     ]);
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
-    $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/ADVOC']);
+    $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
-    $expected_values['meta'] = '(Acting) Member, Advocate';
+    $expected_values['meta'] = '(Acting) Advisor, Chief advisor';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Member',
+          'label' => '(Acting) Advisor',
           'body' => 'Description job_1',
         ], [
-          'label' => 'Advocate',
+          'label' => 'Chief advisor',
           'body' => 'Description job_2',
         ],
       ],

@@ -60,7 +60,7 @@ function oe_theme_content_call_tenders_preprocess_field__node__oe_call_tenders_d
  * @param array $variables
  *   Element variables from preprocess.
  */
-function _oe_theme_content_call_tenders_strike_deadline(&$variables) {
+function _oe_theme_content_call_tenders_strike_deadline(array &$variables): void {
   $node = CallForTendersNodeWrapper::getInstance($variables['element']['#object']);
   if ($node->isClosed()) {
     // Cross out closed tender.
