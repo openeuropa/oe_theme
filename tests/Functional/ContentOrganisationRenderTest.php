@@ -233,12 +233,12 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     // Create jobs for person entity.
     $person_job_1 = PersonJob::create([
       'type' => 'oe_default',
-      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/MEMBER',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS',
     ]);
     $person_job_1->save();
     $person_job_2 = PersonJob::create([
       'type' => 'oe_default',
-      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role/ADVOC',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF',
     ]);
     $person_job_2->save();
     // Create a person node to be referenced by the organisation node.
@@ -270,7 +270,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     // Assert default image.
     $this->assertEquals('background-image:url(/build/themes/custom/oe_theme/images/user_icon.svg)', $first_person_image->getAttribute('style'));
     // Assert roles and name.
-    $this->assertEquals('Member, Advocate', $person[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
+    $this->assertEquals('Advisor, Chief advisor', $person[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
     $this->assertEquals('Jane Doe', $person[0]->find('css', '.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs.ecl-u-mb-none.ecl-u-type-bold')->getText());
 
     // Assert organisation chart document.
