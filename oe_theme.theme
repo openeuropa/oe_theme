@@ -159,15 +159,6 @@ function oe_theme_theme_suggestions_field_alter(array &$suggestions, array $vari
     array_unshift($suggestions, 'field__bare');
   }
 
-  if (!in_array($element['#field_type'], ['extra_field'])) {
-    /** @var \Drupal\field\Entity\FieldConfig $field_definition */
-    $field_definition = $element['#items']->getFieldDefinition();
-    // Add suggestions based on the parent entity and bundle types.
-    $suggestions[] = 'field__' . $element['#field_type'];
-    $suggestions[] = 'field__' . $element['#field_type'] . '__' . $element['#entity_type'];
-    $suggestions[] = 'field__' . $element['#field_type'] . '__' . $element['#entity_type'] . '__' . $element['#bundle'] . '__' . $field_definition->getName();
-  }
-
   // Add suggestions for all 'Entity reference revisions' for each target type.
   if ($element['#field_type'] === 'entity_reference_revisions') {
     /** @var \Drupal\field\Entity\FieldConfig $field_definition */
