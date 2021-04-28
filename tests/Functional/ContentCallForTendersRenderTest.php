@@ -280,7 +280,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
     $this->assertContentHeader($content_items[2], 'Documents', 'documents');
-    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_tenders_document');
+    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_tenders_document', 'English', '2.96 KB - PDF', "sample_call_for_tenders_document.pdf", 'Download');
   }
 
   /**

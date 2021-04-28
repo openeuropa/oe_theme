@@ -121,7 +121,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert header of second field group.
     $this->assertContentHeader($content_items[1], 'Files', 'files');
-    $this->assertMediaDocumentDefaultRender($content_items[1], 'publication_document');
+    $this->assertMediaDocumentDefaultRender($content_items[1], 'publication_document', 'English', '2.96 KB - PDF', "sample_publication_document.pdf", 'Download');
 
     // Assert Introduction and multiple Resource type fields.
     $node->set('oe_summary', 'Publication introduction');

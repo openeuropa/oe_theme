@@ -235,14 +235,9 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'label' => 'Deadline model',
       'body' => 'Two-stage',
     ];
-    $expected_deadline_dates = '15 February 2020, 01:00 (AEDT)23 February 2020, 01:00 (AEDT)';
-    // @todo: should be removed when PHP 7.2 support will be finished.
-    if (version_compare(PHP_VERSION, '7.3') < 0) {
-      $expected_deadline_dates = "15 February 2020, 01:00 (AEDT)\n23 February 2020, 01:00 (AEDT)";
-    }
     $details_expected_values['items'][5] = [
       'label' => 'Deadline dates',
-      'body' => $expected_deadline_dates,
+      'body' => '15 February 2020, 01:00 (AEDT)23 February 2020, 01:00 (AEDT)',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
@@ -345,7 +340,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
     $this->assertContentHeader($content_items[2], 'Documents', 'documents');
-    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_proposals_document');
+    $this->assertMediaDocumentDefaultRender($content_items['2'], 'call_for_proposals_document', 'English', '2.96 KB - PDF', "sample_call_for_proposals_document.pdf", 'Download');
 
     // Assert Contact field.
     $contact = $this->createContactEntity('call_proposal_contact');

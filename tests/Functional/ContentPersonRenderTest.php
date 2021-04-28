@@ -393,7 +393,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertMediaDocumentDefaultRender($content_items[6], 'cv_upload');
+    $this->assertMediaDocumentDefaultRender($content_items[6], 'cv_upload', 'English', '2.96 KB - PDF', "sample_cv_upload.pdf", 'Download');
 
     // Assert Declaration of interests introduction field.
     $node->set('oe_person_interests_intro', 'Declaration of interests introduction text')->save();
@@ -410,7 +410,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     $content_items = $content->findAll('xpath', '/div');
     $declaration_items = $content_items[6]->findAll('xpath', '/div');
-    $this->assertMediaDocumentDefaultRender($declaration_items[2], 'declaration');
+    $this->assertMediaDocumentDefaultRender($declaration_items[2], 'declaration', 'English', '2.96 KB - PDF', "sample_declaration.pdf", 'Download');
 
     // Assert Articles and publications field.
     $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference');
@@ -426,7 +426,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
-    $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference');
+    $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
     $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
