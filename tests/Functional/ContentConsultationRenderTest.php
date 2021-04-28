@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
@@ -13,6 +12,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -20,6 +20,8 @@ use Drupal\user\RoleInterface;
  * Test Consultation content type rendering.
  */
 class ContentConsultationRenderTest extends ContentRenderTestBase {
+
+  use CronRunTrait;
 
   /**
    * {@inheritdoc}
@@ -63,13 +65,9 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
 
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $opening_date = (clone $static_time)->modify('- 5 days');
+    $this->freezeTime($static_time);
+    $opening_date = (clone $static_time)->modify('+ 2 days');
     $deadline_date = (clone $static_time)->modify('+ 10 days');
-
-    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
-    $time = \Drupal::time();
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
 
     // Create a Consultation node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
@@ -92,22 +90,22 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
 
     // Assert page header - metadata.
     $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
-    $assert = new PatternPageHeaderAssert();
-    $expected_values = [
+    $page_header_assert = new PatternPageHeaderAssert();
+    $page_header_expected_values = [
       'title' => 'Test Consultation node',
-      'meta' => 'Consultation | Open',
+      'meta' => 'Consultation | Upcoming',
     ];
-    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
     // Add summary and assert header is updated.
     $node->set('oe_summary', 'Consultation introduction');
     $node->save();
     $this->drupalGet($node->toUrl());
-    $expected_values = [
+    $page_header_expected_values = [
       'title' => 'Test Consultation node',
       'description' => 'Consultation introduction',
-      'meta' => 'Consultation | Open',
+      'meta' => 'Consultation | Upcoming',
     ];
-    $assert->assertPattern($expected_values, $page_header->getOuterHtml());
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert navigation part.
     $navigation = $this->assertSession()->elementExists('css', 'nav.ecl-inpage-navigation');
@@ -135,10 +133,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
-        'body' => 'Open',
+        'body' => 'Upcoming',
       ], [
         'label' => 'Opening date',
-        'body' => '12 February 2020',
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline',
         'body' => '28 February 2020, 01:00 (AEDT)',
@@ -156,10 +154,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
-        'body' => 'Open',
+        'body' => 'Upcoming',
       ], [
         'label' => 'Opening date',
-        'body' => '12 February 2020',
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline',
         'body' => '28 February 2020, 01:00 (AEDT)',
@@ -180,10 +178,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
-        'body' => 'Open',
+        'body' => 'Upcoming',
       ], [
         'label' => 'Opening date',
-        'body' => '12 February 2020',
+        'body' => '19 February 2020',
       ], [
         'label' => 'Deadline',
         'body' => '28 February 2020, 01:00 (AEDT)',
@@ -236,22 +234,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_second_group = $content_items[3]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
     $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
-
-    // Add a link to respond button and assert default label.
-    $node->set('oe_consultation_response_button', [
-      'uri' => 'internal:/node/add',
-    ])->save();
-    $this->drupalGet($node->toUrl());
-    $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
-    $this->assertEquals('Respond to the questionnaire', $respond_button->getText());
-    // Add a link to respond button and assert default label.
-    $node->set('oe_consultation_response_button', [
-      'uri' => 'https://example.com',
-      'title' => 'Link text',
-    ])->save();
-    $this->drupalGet($node->toUrl());
-    $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
-    $this->assertEquals('Link text', $respond_button->getText());
 
     // Set consultation outcome and outcome files and assert content is updated.
     $node->set('oe_consultation_outcome', 'Consultation outcome text');
@@ -392,82 +374,63 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    // Update date values and assert status and respond to the consultation is
-    // updated.
-    $opening_date = (clone $static_time)->modify('+ 3 days');
-    $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
-    $node->save();
-    $content_second_group = $content_items[3]->find('css', '.ecl-editor');
+    // Assert "Open" status.
+    $static_time = new DrupalDateTime('2020-02-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'Upcoming');
-    $this->assertOpeningDateValue($content, '20 February 2020');
-    $this->assertDeadlineDateValue($content, '28 February 2020, 01:00 (AEDT)');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Upcoming');
+
+    $details_expected_values['items']['0']['body'] = 'Open';
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    $page_header_expected_values['meta'] = 'Consultation | Open';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
     $this->assertNotContains('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
 
-    // Assert status "Closed".
-    $opening_date = (clone $static_time)->modify('- 5 days');
-    $deadline_date = (clone $static_time)->modify('- 1 days');
-    $node->set('oe_consultation_opening_date', ['value' => $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT)]);
-    $node->set('oe_consultation_deadline', ['value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT)]);
-    $node->save();
+    // Add a link to respond button and assert default label.
+    $node->set('oe_consultation_response_button', [
+      'uri' => 'internal:/node/add',
+    ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStatusValue($content, 'Closed');
-    $this->assertOpeningDateValue($content, '12 February 2020');
-    $this->assertDeadlineDateValue($content, '17 February 2020, 01:00 (AEDT)');
-    $this->assertSession()->elementTextContains('css', '.ecl-page-header-core .ecl-page-header-core__meta', 'Consultation | Closed');
+    $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
+    $this->assertEquals('Respond to the questionnaire', $respond_button->getText());
+    // Add a link to respond button and assert default label.
+    $node->set('oe_consultation_response_button', [
+      'uri' => 'https://example.com',
+      'title' => 'Link text',
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
+    $this->assertEquals('Link text', $respond_button->getText());
+
+    // Assert status "Closed".
+    $static_time = new DrupalDateTime('2020-04-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items']['0']['body'] = 'Closed';
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    $page_header_expected_values['meta'] = 'Consultation | Closed';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
     $this->assertFalse($content_items[3]->hasLink('Link text'));
+
     // Assert 4th inpage navigation item content is updated.
     $this->assertContentHeader($content_items[3], 'Respond to the consultation', 'respond-to-the-consultation');
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     // Assert default value for closed status text.
     $this->assertEquals('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
     $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
+
     // Set a value and assert the content is updated.
     $node->set('oe_consultation_closed_text', 'Consultation closed status text');
     $node->save();
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Consultation closed status text', $content_second_group->getText());
-  }
-
-  /**
-   * Asserts status field value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertStatusValue(NodeElement $element, string $expected): void {
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="consultation-status ecl-u-text-uppercase"]';
-    $this->assertSession()->elementExists('xpath', $selector);
-    $this->assertEquals($expected, $element->find('xpath', $selector)->getText());
-  }
-
-  /**
-   * Asserts deadline data field value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertDeadlineDateValue(NodeElement $element, string $expected): void {
-    $this->assertEquals($expected, $element->find('xpath', '//*[text() = "Deadline"]/following-sibling::dd/div/time')->getText());
-  }
-
-  /**
-   * Asserts opening date value.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $expected
-   *   Expected value.
-   */
-  protected function assertOpeningDateValue(NodeElement $element, string $expected): void {
-    $value_element = $element->find('xpath', '//*[text() = "Opening date"]/following-sibling::dd/div/time');
-    $this->assertEquals($expected, $value_element->getText());
   }
 
 }

@@ -9,6 +9,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -16,6 +17,8 @@ use Drupal\user\RoleInterface;
  * Tests that "Call for proposals" content type renders correctly.
  */
 class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
+
+  use CronRunTrait;
 
   /**
    * {@inheritdoc}
@@ -49,12 +52,9 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
   public function testProposalRendering(): void {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $publication_date = (clone $static_time)->modify('- 5 days');
+    $this->freezeTime($static_time);
 
-    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
-    $time = \Drupal::time();
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
+    $publication_date = (clone $static_time)->modify('- 5 days');
 
     // Create a Call for proposal node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
@@ -165,20 +165,20 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $publication_details = $this->assertSession()->elementExists('xpath', $journal_link_selector);
     $this->assertLinkIcon($publication_details, 'Official Journal Reference', 'http://example.com/journal');
 
-    // Assert Opening date field.
-    $opening_date = (clone $static_time)->modify('- 3 days');
+    // Assert "Upcoming" status.
+    $opening_date = (clone $static_time)->modify('+ 10 days');
     $node->set('oe_call_proposals_opening_date', ['value' => $opening_date->format('Y-m-d')]);
     $node->set('oe_call_proposals_journal', NULL)->save();
     $this->drupalGet($node->toUrl());
 
-    $header_expected_values['meta'] = 'Call for proposals | Open';
+    $header_expected_values['meta'] = 'Call for proposals | Upcoming';
     $assert->assertPattern($header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values = [
       'items' => [
         [
           'label' => 'Status',
-          'body' => 'Open',
+          'body' => 'Upcoming',
         ], [
           'label' => 'Reference',
           'body' => 'Reference code',
@@ -187,7 +187,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => '12 February 2020',
         ], [
           'label' => 'Opening date',
-          'body' => '14 February 2020',
+          'body' => '27 February 2020',
         ], [
           'label' => 'Deadline model',
           'body' => 'Permanent',
@@ -197,7 +197,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert Deadline model and Deadline dates fields.
-    $deadline_date1 = (clone $static_time)->modify('- 3 days');
+    $deadline_date1 = (clone $static_time)->modify('+ 1 month');
     $node->set('oe_call_proposals_model', 'single_stage');
     $node->set('oe_call_proposals_deadline', $deadline_date1->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT));
     $node->save();
@@ -205,7 +205,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
 
     $details_expected_values['items'][0] = [
       'label' => 'Status',
-      'body' => 'Closed',
+      'body' => 'Upcoming',
     ];
     $details_expected_values['items'][4] = [
       'label' => 'Deadline model',
@@ -213,13 +213,13 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $details_expected_values['items'][5] = [
       'label' => 'Deadline date',
-      'body' => '15 February 2020, 01:00 (AEDT)',
+      'body' => '18 March 2020, 01:00 (AEDT)',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Assert Deadline model and multiple Deadline date fields.
-    $deadline_date1 = (clone $static_time)->modify('- 3 days');
-    $deadline_date2 = (clone $static_time)->modify('+ 5 days');
+    $deadline_date1 = (clone $static_time)->modify('+ 1 month');
+    $deadline_date2 = (clone $static_time)->modify('+ 2 months');
     $node->set('oe_call_proposals_model', 'two_stage');
     $node->set('oe_call_proposals_deadline', [
       $deadline_date1->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -229,7 +229,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
 
     $details_expected_values['items'][0] = [
       'label' => 'Status',
-      'body' => 'Open',
+      'body' => 'Upcoming',
     ];
     $details_expected_values['items'][4] = [
       'label' => 'Deadline model',
@@ -237,7 +237,31 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $details_expected_values['items'][5] = [
       'label' => 'Deadline dates',
-      'body' => '15 February 2020, 01:00 (AEDT)23 February 2020, 01:00 (AEDT)',
+      'body' => '18 March 2020, 01:00 (AEDT)18 April 2020, 00:00 (AEST)',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert "Open" status.
+    $static_time = new DrupalDateTime('2020-04-05 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][0] = [
+      'label' => 'Status',
+      'body' => 'Open',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert "Closed" status.
+    $static_time = new DrupalDateTime('2020-06-05 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][0] = [
+      'label' => 'Status',
+      'body' => 'Closed',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 

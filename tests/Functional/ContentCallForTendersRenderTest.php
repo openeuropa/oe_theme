@@ -10,11 +10,14 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 
 /**
  * Tests that "Call for tenders" content type renders correctly.
  */
 class ContentCallForTendersRenderTest extends ContentRenderTestBase {
+
+  use CronRunTrait;
 
   /**
    * {@inheritdoc}
@@ -35,15 +38,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   public function testTenderRendering(): void {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
 
     $publication_date = (clone $static_time)->modify('- 5 days');
-    $opening_date = (clone $static_time)->modify('- 3 days');
-    $deadline_date = (clone $static_time)->modify('+ 3 days');
-
-    /** @var \Drupal\Component\Datetime\TimeInterface $datetime */
-    $time = \Drupal::time();
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
+    $deadline_date = (clone $static_time)->modify('+ 1 month');
 
     // Create a Call for tender node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
@@ -103,13 +101,13 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => '12 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => '21 February 2020, 01:00 (AEDT)',
+        'body' => '18 March 2020, 01:00 (AEDT)',
       ],
     ];
     $details_html = $content_items[0]->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
-    $this->assertDeadlineDateStrike($content);
+    $this->assertDeadlineDateStrike($content, 'Deadline date');
 
     // Assert Introduction field.
     $node->set('oe_summary', 'Call for tenders introduction')->save();
@@ -121,33 +119,8 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    // Assert "Open" status.
-    $node->set('oe_call_tenders_opening_date', ['value' => $opening_date->format('Y-m-d')])->save();
-    $this->drupalGet($node->toUrl());
-
-    $page_header_expected_values['meta'] = 'Call for tenders | Open';
-    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
-
-    $details_expected_values['items'] = [
-      [
-        'label' => 'Status',
-        'body' => 'Open',
-      ], [
-        'label' => 'Publication date',
-        'body' => '12 February 2020',
-      ], [
-        'label' => 'Opening date',
-        'body' => '14 February 2020',
-      ], [
-        'label' => 'Deadline date',
-        'body' => '21 February 2020, 01:00 (AEDT)',
-      ],
-    ];
-    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
-    $this->assertDeadlineDateStrike($content);
-
     // Assert "Upcoming" status.
-    $opening_date = (clone $static_time)->modify('+ 2 days');
+    $opening_date = (clone $static_time)->modify('+ 10 days');
     $node->set('oe_call_tenders_opening_date', ['value' => $opening_date->format('Y-m-d')])->save();
     $this->drupalGet($node->toUrl());
 
@@ -163,18 +136,46 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => '19 February 2020',
+        'body' => '27 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => '21 February 2020, 01:00 (AEDT)',
+        'body' => '18 March 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
-    $this->assertDeadlineDateStrike($content);
+    $this->assertDeadlineDateStrike($content, 'Deadline date');
+
+    // Assert "Open" status.
+    $static_time = new DrupalDateTime('2020-03-02 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = 'Call for tenders | Open';
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Status',
+        'body' => 'Open',
+      ], [
+        'label' => 'Publication date',
+        'body' => '12 February 2020',
+      ], [
+        'label' => 'Opening date',
+        'body' => '27 February 2020',
+      ], [
+        'label' => 'Deadline date',
+        'body' => '18 March 2020, 01:00 (AEDT)',
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+    $this->assertDeadlineDateStrike($content, 'Deadline date');
 
     // Assert "Closed" status.
-    $deadline_date = (clone $static_time)->modify('- 2 days');
-    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
+    $static_time = new DrupalDateTime('2020-03-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
     $this->drupalGet($node->toUrl());
 
     $page_header_expected_values['meta'] = 'Call for tenders | Closed';
@@ -189,14 +190,14 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => '19 February 2020',
+        'body' => '27 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => '16 February 2020, 01:00 (AEDT)',
+        'body' => '18 March 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
-    $this->assertDeadlineDateStrike($content, TRUE);
+    $this->assertDeadlineDateStrike($content, 'Deadline date', TRUE);
 
     // Assert Reference field.
     $node->set('oe_reference_code', 'Call for tenders reference')->save();
@@ -214,10 +215,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => '12 February 2020',
       ], [
         'label' => 'Opening date',
-        'body' => '19 February 2020',
+        'body' => '27 February 2020',
       ], [
         'label' => 'Deadline date',
-        'body' => '16 February 2020, 01:00 (AEDT)',
+        'body' => '18 March 2020, 01:00 (AEDT)',
       ],
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
@@ -264,9 +265,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 
     // Assert Documents field.
     $media_document = $this->createMediaDocument('call_for_tenders_document');
-    $node->set('oe_documents', [
-      ['target_id' => (int) $media_document->id()],
-    ]);
+    $node->set('oe_documents', $media_document);
     $node->save();
     $this->drupalGet($node->toUrl());
 
@@ -288,11 +287,13 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    *
    * @param \Behat\Mink\Element\NodeElement $element
    *   Rendered element.
+   * @param string $text
+   *   Text to find.
    * @param bool $is_strike
    *   Whether value should be strike or not.
    */
-  protected function assertDeadlineDateStrike(NodeElement $element, bool $is_strike = FALSE): void {
-    $value_wrapper_element = $element->find('xpath', '//*[text() = "Deadline date"]/following-sibling::dd/div');
+  protected function assertDeadlineDateStrike(NodeElement $element, string $text, bool $is_strike = FALSE): void {
+    $value_wrapper_element = $element->find('xpath', '//*[text() = "' . $text . '"]/following-sibling::dd/div');
     if ($is_strike) {
       $this->assertTrue($value_wrapper_element->hasClass('ecl-u-type-strike'));
     }

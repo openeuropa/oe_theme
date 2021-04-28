@@ -677,17 +677,4 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $social_links_assert->assertVariant('horizontal', $social_links_html);
   }
 
-  /**
-   * Freeze time.
-   *
-   * @param \Drupal\Core\Datetime\DrupalDateTime $static_time
-   *   Time to freeze.
-   */
-  protected function freezeTime(DrupalDateTime $static_time): void {
-    /** @var \Drupal\datetime_testing\TestTime $time */
-    $time = \Drupal::time();
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
-  }
-
 }

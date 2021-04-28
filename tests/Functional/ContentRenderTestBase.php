@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_entity_venue\Entity\VenueInterface;
@@ -430,6 +431,19 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ]);
     $document_reference->save();
     return $document_reference;
+  }
+
+  /**
+   * Freeze time.
+   *
+   * @param \Drupal\Core\Datetime\DrupalDateTime $static_time
+   *   Time to freeze.
+   */
+  protected function freezeTime(DrupalDateTime $static_time): void {
+    /** @var \Drupal\datetime_testing\TestTimeInterface $time */
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
   }
 
 }
