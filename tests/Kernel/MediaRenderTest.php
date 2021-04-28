@@ -157,14 +157,14 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         'url' => 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf',
         'translations' => [
           [
-            'title' => 'English',
-            'url' => file_create_url('public://test_en.pdf'),
+            'title' => 'español',
+            'url' => file_create_url('public://test_es.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],
           [
-            'title' => 'español',
-            'url' => file_create_url('public://test_es.pdf'),
+            'title' => 'English',
+            'url' => file_create_url('public://test_en.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],

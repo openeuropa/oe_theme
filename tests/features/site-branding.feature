@@ -23,12 +23,12 @@ Feature: Site branding
     Examples:
       | language_selector       | language   |
       | български               | Bulgarian  |
+      | español                 | Spanish    |
       | čeština                 | Czech      |
       | dansk                   | Danish     |
       | Deutsch                 | German     |
       | eesti                   | Estonian   |
       | ελληνικά                | Greek      |
-      | español                 | Spanish    |
       | français                | French     |
       | Gaeilge                 | Irish      |
       | hrvatski                | Croatian   |

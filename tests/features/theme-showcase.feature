@@ -69,13 +69,13 @@ Feature: Theme showcase
 
     And I should see the following links in the "language switcher":
       | български   |
+      | español     |
       | čeština     |
       | dansk       |
       | Deutsch     |
       | eesti       |
       | ελληνικά    |
       | English     |
-      | español     |
       | français    |
       | Gaeilge     |
       | hrvatski    |
