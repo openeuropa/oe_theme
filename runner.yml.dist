@@ -63,7 +63,7 @@ selenium:
 
 commands:
   drupal:site-setup:
-    - { task: "symlink", from: "../../..", to: "${drupal.root}/themes/custom/oe_theme" }
+    - { task: "run", command: "drupal:symlink-project" }
     - { task: "symlink", from: "${drupal.root}/core/.stylelintrc.json", to: ".stylelintrc.json" }
     - { task: "run", command: "drupal:drush-setup" }
     - { task: "run", command: "drupal:settings-setup" }

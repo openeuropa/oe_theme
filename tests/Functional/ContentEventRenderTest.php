@@ -12,6 +12,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
+use Drupal\Tests\Traits\Core\CronRunTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
@@ -21,6 +22,8 @@ use Drupal\user\RoleInterface;
  * @group batch1
  */
 class ContentEventRenderTest extends ContentRenderTestBase {
+
+  use CronRunTrait;
 
   /**
    * {@inheritdoc}
@@ -139,11 +142,8 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   public function testEventRendering(): void {
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $start_date = (clone $static_time)->modify('+ 1 days');
-
-    $time = \Drupal::time();
-    $time->freezeTime();
-    $time->setTime($static_time->getTimestamp());
+    $this->freezeTime($static_time);
+    $start_date = (clone $static_time)->modify('+ 10 days');
 
     // Create a Event node with required fields only.
     $node = $this->getStorage('node')->create([
@@ -194,7 +194,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => '19 February 2020, 01:00',
+          'text' => '28 February 2020, 01:00',
         ],
       ],
     ];
@@ -210,7 +210,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => 'Wednesday 19 February 2020, 01:00',
+          'body' => 'Friday 28 February 2020, 01:00',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -222,8 +222,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('horizontal', $field_list_html);
 
     // Check case when start and end dates are different.
-    $start_date = (clone $static_time)->modify('+ 1 days');
-    $end_date = (clone $static_time)->modify('+ 10 days');
+    $end_date = (clone $static_time)->modify('+ 20 days');
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -237,7 +236,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => "19 February 2020, 01:00\n to 28 February 2020, 01:00",
+          'text' => "28 February 2020, 01:00\n to 9 March 2020, 01:00",
         ],
       ],
     ];
@@ -247,7 +246,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
+          'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -274,17 +273,13 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => "event_venue\n  Address event_venue, 1001 Brussels, Belgium",
         ], [
           'label' => 'When',
-          'body' => "Wednesday 19 February 2020, 01:00\n to Friday 28 February 2020, 01:00",
+          'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
         ],
       ],
     ];
-    // @todo: should be removed when PHP 7.2 support will be finished.
-    if (version_compare(PHP_VERSION, '7.3') < 0) {
-      $field_list_expected_values['items'][0]['body'] = "event_venue\n\n  Address event_venue, 1001 Brussels, Belgium";
-    }
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values['items'][2] = [
@@ -324,7 +319,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'uri' => 'http://www.example.com/online_link',
       'title' => 'Link to online event',
     ]);
-    // @todo: "Online description" isn't shown on the page. Why do we need it?
+    // The "Online description" field is not currently displayed.
+    // @todo: Assert its visibility as soon as the issue below will be fixed.
+    // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/EWPP-1063
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
       'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -401,68 +398,16 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $registration_content = $this->assertSession()->elementExists('css', '#event-registration-block');
-    $this->assertRegisterButtonEnabled($registration_content);
+    $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
 
-    // Assert "Registration date" field in the past.
-    $registration_start_date = (clone $static_time)->modify('- 2 months');
-    $registration_end_date = (clone $static_time)->modify('- 1 months');
-    $node->set('oe_event_registration_dates', [
-      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
+    // Report isn't shown when event isn't completed yet.
+    $node->set('oe_event_report_summary', 'Event report summary');
+    $node->set('oe_event_report_text', 'Event report text');
+    $node->save();
     $this->drupalGet($node->toUrl());
 
-    $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
-    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
-    $this->assertEquals('Registration period ended on Saturday 18 January 2020, 01:00', $registration_info_content->getText());
-
-    // Assert "Registration date" field when registration is in progress.
-    $registration_start_date = (clone $static_time)->modify('- 10 days');
-    $registration_end_date = (clone $static_time)->modify('+ 10 days');
-    $node->set('oe_event_registration_dates', [
-      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
-    $this->drupalGet($node->toUrl());
-
-    $this->assertRegisterButtonEnabled($registration_content);
-    $this->assertEquals('Book your seat, 1 week left to register, registration will end on 28 February 2020, 01:00', $registration_info_content->getText());
-
-    // Assert "Registration date" field when registration will finish today.
-    $registration_start_date = (clone $static_time)->modify('- 10 days');
-    $registration_end_date = (clone $static_time)->modify('+ 1 hours');
-    $node->set('oe_event_registration_dates', [
-      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
-    $this->drupalGet($node->toUrl());
-
-    $this->assertRegisterButtonEnabled($registration_content);
-    $this->assertEquals('Book your seat, the registration will end today, 18 February 2020, 02:00', $registration_info_content->getText());
-
-    // Assert "Registration date" field when registration will start today.
-    $registration_start_date = (clone $static_time)->modify('+ 1 hour');
-    $registration_end_date = (clone $static_time)->modify('+ 10 days');
-    $node->set('oe_event_registration_dates', [
-      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
-    $this->drupalGet($node->toUrl());
-
-    $this->assertRegisterButtonDisabled($registration_content);
-    $this->assertEquals('Registration will open today, 18 February 2020, 02:00.', $registration_info_content->getText());
-
-    // Assert "Registration date" field when registration will start in future.
-    $registration_start_date = (clone $static_time)->modify('+ 1 day');
-    $registration_end_date = (clone $static_time)->modify('+ 10 days');
-    $node->set('oe_event_registration_dates', [
-      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
-    $this->drupalGet($node->toUrl());
-
-    $this->assertRegisterButtonDisabled($registration_content);
-    $this->assertEquals('Registration will open in 1 day. You can register from 19 February 2020, 01:00, until 28 February 2020, 01:00.', $registration_info_content->getText());
+    $this->assertSession()->pageTextNotContains('Event report summary');
+    $this->assertSession()->pageTextNotContains('Event report text');
 
     // Assert "Description summary", "Full text", "Featured media",
     // "Featured media legend" fields (these fields have to be filled all
@@ -487,15 +432,62 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
-    // Assert "Report text" and "Summary for report" fields when event finished.
-    $start_date = (clone $static_time)->modify('- 20 days');
-    $end_date = (clone $static_time)->modify('- 10 days');
-    $node->set('oe_event_report_summary', 'Event report summary');
-    $node->set('oe_event_report_text', 'Event report text');
-    $node->set('oe_event_dates', [
-      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    // Assert "Registration date" field when registration will start in future.
+    $registration_start_date = (clone $static_time)->modify('+ 1 day');
+    $registration_end_date = (clone $static_time)->modify('+ 4 days');
+    $node->set('oe_event_registration_dates', [
+      'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ])->save();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
+    $this->assertEquals('Registration will open in 1 day. You can register from 19 February 2020, 01:00, until 22 February 2020, 01:00.', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration will start today in
+    // one hour.
+    $static_time = new DrupalDateTime('2020-02-18 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
+    $this->assertEquals('Registration will open today, 19 February 2020, 01:00.', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration is in progress.
+    $static_time = new DrupalDateTime('2020-02-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
+    $this->assertEquals('Book your seat, 1 day left to register, registration will end on 22 February 2020, 01:00', $registration_info_content->getText());
+
+    // Assert "Registration date" field when registration will finish today in
+    // one hour.
+    $static_time = new DrupalDateTime('2020-02-21 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
+    $this->assertEquals('Book your seat, the registration will end today, 22 February 2020, 01:00', $registration_info_content->getText());
+
+    // Assert "Registration date" field in the past.
+    $static_time = new DrupalDateTime('2020-02-24 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+
+    $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
+    $this->assertEquals('Registration period ended on Saturday 22 February 2020, 01:00', $registration_info_content->getText());
+
+    // Assert "Report text" and "Summary for report" fields when event is
+    // finished.
+    $static_time = new DrupalDateTime('2020-04-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
     $this->drupalGet($node->toUrl());
 
     $description_summary = $this->assertSession()->elementExists('css', '.ecl-editor', $details_content);
@@ -504,6 +496,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $text_featured_expected_values['title'] = 'Report';
     $text_featured_expected_values['text'] = 'Event report text';
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    $this->assertSession()->pageTextNotContains('Event description summary');
+    $this->assertSession()->pageTextNotContains('Event full text');
+    $this->assertSession()->pageTextNotContains('<h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">Description</h2>');
+    $this->assertSession()->elementNotExists('css', '#event-registration-block');
 
     // Assert "Event contact" field.
     $contact_entity_general = $this->createContactEntity('general_contact');
@@ -567,7 +564,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $field_list_expected_values['items'][1] = [
       'label' => 'When',
-      'body' => "Wednesday 29 January 2020, 01:00\n to Saturday 8 February 2020, 01:00",
+      'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
     ];
     unset($field_list_expected_values['items'][0]);
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
@@ -579,7 +576,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => "29 January 2020, 01:00\n to 8 February 2020, 01:00",
+          'text' => "28 February 2020, 01:00\n to 9 March 2020, 01:00",
         ], [
           'icon' => 'livestreaming',
           'text' => 'Live streaming available',
@@ -590,26 +587,32 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   }
 
   /**
-   * Assets enabled register button.
+   * Asserts enabled registration button.
    *
    * @param \Behat\Mink\Element\NodeElement $parent_element
    *   Parent element.
+   * @param string $text
+   *   Button text.
+   * @param string $link
+   *   Button link.
    */
-  protected function assertRegisterButtonEnabled(NodeElement $parent_element): void {
+  protected function assertRegistrationButtonEnabled(NodeElement $parent_element, string $text, string $link): void {
     $rendered_button = $this->assertSession()->elementExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $parent_element);
-    $this->assertEquals('Register here', $rendered_button->getText());
-    $this->assertEquals('http://www.example.com/registation', $rendered_button->getAttribute('href'));
+    $this->assertEquals($text, $rendered_button->getText());
+    $this->assertEquals($link, $rendered_button->getAttribute('href'));
   }
 
   /**
-   * Assets disabled register button.
+   * Asserts disabled registration button.
    *
    * @param \Behat\Mink\Element\NodeElement $element
    *   Parent element.
+   * @param string $text
+   *   Button text.
    */
-  protected function assertRegisterButtonDisabled(NodeElement $element): void {
+  protected function assertRegistrationButtonDisabled(NodeElement $element, string $text): void {
     $rendered_button = $this->assertSession()->elementExists('css', 'button.ecl-button.ecl-button--call.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $element);
-    $this->assertEquals('Register here', $rendered_button->getText());
+    $this->assertEquals($text, $rendered_button->getText());
     $this->assertTrue($rendered_button->hasAttribute('disabled'));
   }
 

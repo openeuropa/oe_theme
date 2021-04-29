@@ -170,10 +170,6 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    // @todo: should be removed when PHP 7.2 support will be finished.
-    if (version_compare(PHP_VERSION, '7.3') < 0) {
-      $first_field_list_expected_values['items'][2]['body'] = "09199 Ages Burgos, Spain\n\n\n  Munich, Germany";
-    }
     $field_list_html = $description_lists[0]->getHtml();
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
@@ -186,7 +182,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => '€100',
         ], [
           'label' => 'EU contribution',
-          'body' => '€100100% of the overall budget',
+          'body' => "€100\n\n  100% of the overall budget",
         ],
       ],
     ];
@@ -212,7 +208,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($first_field_list_expected_values, $description_lists[0]->getHtml());
 
     // Assert the second description list block's labels and values.
-    $second_field_list_expected_values['items'][1]['body'] = "€5050% of the overall budget";
+    $second_field_list_expected_values['items'][1]['body'] = "€50\n\n  50% of the overall budget";
     $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.
@@ -230,7 +226,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert documents file.
     $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
-    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_document');
+    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_document', 'English', '2.96 KB - PDF', "sample_project_document.pdf", 'Download');
 
     // Assert top region - Project results.
     $project_results = $this->assertSession()->elementExists('css', 'div#project-results');
@@ -240,7 +236,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert result file.
     $file_wrapper = $project_results->find('css', 'div.ecl-file');
-    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_result');
+    $this->assertMediaDocumentDefaultRender($file_wrapper, 'project_result', 'English', '2.96 KB - PDF', "sample_project_result.pdf", 'Download');
 
     // Assert funding programme.
     $project_funding = $this->assertSession()->elementExists('css', 'div#project-funding');

@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_entity_venue\Entity\VenueInterface;
@@ -95,20 +96,28 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Rendered element.
    * @param string $name
    *   Name of the document.
+   * @param string $language
+   *   Document language.
+   * @param string $meta
+   *   Size and format of the file.
+   * @param string $link
+   *   Link to the file.
+   * @param string $button_label
+   *   Text on the button.
    */
-  protected function assertMediaDocumentDefaultRender(NodeElement $element, string $name): void {
+  protected function assertMediaDocumentDefaultRender(NodeElement $element, string $name, string $language, string $meta, string $link, string $button_label): void {
     // Assert documents file.
     $file_wrapper = $element->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains("Test document $name", $file_title->getText());
+    $this->assertContains($name, $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->getText());
+    $this->assertContains($language, $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
+    $this->assertContains("($meta)", $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains("/sample_$name.pdf", $file_download_link->getAttribute('href'));
-    $this->assertContains('Download', $file_download_link->getText());
+    $this->assertContains($link, $file_download_link->getAttribute('href'));
+    $this->assertContains($button_label, $file_download_link->getText());
   }
 
   /**
@@ -422,6 +431,19 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ]);
     $document_reference->save();
     return $document_reference;
+  }
+
+  /**
+   * Freeze time.
+   *
+   * @param \Drupal\Core\Datetime\DrupalDateTime $static_time
+   *   Time to freeze.
+   */
+  protected function freezeTime(DrupalDateTime $static_time): void {
+    /** @var \Drupal\datetime_testing\TestTimeInterface $time */
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
   }
 
 }
