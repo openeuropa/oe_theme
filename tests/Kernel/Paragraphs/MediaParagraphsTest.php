@@ -11,7 +11,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests the rendering of paragraph types with media fields.
  *
- * @group batch2
+ * @group batch1
  */
 class MediaParagraphsTest extends ParagraphsTestBase {
 
