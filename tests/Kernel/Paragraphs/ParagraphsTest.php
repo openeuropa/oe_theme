@@ -704,13 +704,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Term 3', trim($crawler->filter('dt.ecl-description-list__term:nth-child(5)')->html()));
     $this->assertEquals('<div class="ecl-editor"><p>&lt;p&gt;Description &lt;strong&gt;3&lt;/strong&gt;&lt;/p&gt;</p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(6)')->html()));
     $this->assertEquals('Term 4', trim($crawler->filter('dt.ecl-description-list__term:nth-child(7)')->html()));
-    // @todo Remove when php 7.2 is not supported anymore.
-    if (version_compare(PHP_VERSION, '7.3') < 0) {
-      $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong>' . "\n" . '</div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
-    }
-    else {
-      $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
-    }
+    $this->assertEquals('<div class="ecl-editor">Description <strong>4</strong></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(8)')->html()));
     $this->assertEquals('Term 5', trim($crawler->filter('dt.ecl-description-list__term:nth-child(9)')->html()));
     $this->assertEquals('<div class="ecl-editor"><p>Description <strong>5</strong></p></div>', trim($crawler->filter('dd.ecl-description-list__definition:nth-child(10)')->html()));
 

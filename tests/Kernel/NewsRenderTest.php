@@ -8,7 +8,6 @@ use Drupal\media\Entity\Media;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the News content type rendering.
@@ -29,75 +28,6 @@ class NewsRenderTest extends ContentRenderTestBase {
     // Set current user to UID 1, so that by default we can access everything.
     $account = User::load(1);
     $this->setCurrentUser($account);
-  }
-
-  /**
-   * Tests that the News node type is rendered with the correct ECL markup.
-   */
-  public function testNews(): void {
-    $media = $this->container
-      ->get('entity_type.manager')
-      ->getStorage('media')->create([
-        'bundle' => 'av_portal_photo',
-        'oe_media_avportal_photo' => 'P-038924/00-15',
-        'uid' => 0,
-        'status' => 1,
-      ]);
-
-    $media->save();
-
-    $node = $this->nodeStorage->create([
-      'type' => 'oe_news',
-      'title' => 'Test news node',
-      'oe_teaser' => 'Teaser',
-      'oe_summary' => 'Summary',
-      'body' => 'Body',
-      'oe_news_featured_media' => [
-        [
-          'target_id' => (int) $media->id(),
-        ],
-      ],
-      'oe_publication_date' => '2019-04-05',
-      'oe_subject' => 'http://data.europa.eu/uxp/1000',
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
-      'oe_related_links' => [
-        [
-          'uri' => 'internal:/node',
-          'title' => 'Node listing',
-        ],
-        [
-          'uri' => 'https://example.com',
-          'title' => 'External link',
-        ],
-      ],
-    ]);
-    $node->save();
-
-    $build = $this->nodeViewBuilder->view($node);
-    $html = $this->renderRoot($build);
-
-    $crawler = new Crawler($html);
-
-    // Body wrapper.
-    $body_wrapper = $crawler->filter('.ecl-editor');
-    $this->assertCount(1, $body_wrapper);
-    $this->assertContains('Body', $body_wrapper->text());
-
-    // Featured media.
-    $image = $crawler->filter('article.ecl-u-type-paragraph picture img.ecl-u-width-100.ecl-u-height-auto');
-    $this->assertContains('P-038924', $image->attr('src'));
-
-    // Related links.
-    $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
-    $this->assertContains('Related links', $related_links_heading->text());
-    $related_links = $crawler->filter('.ecl-list .ecl-link.ecl-link--standalone');
-    $this->assertCount(2, $related_links);
-    $link_one = $related_links->first();
-
-    $this->assertContains('/en/node', trim($link_one->extract(['href'])[0]));
-    $link_two = $related_links->first();
-    $this->assertEquals('/en/node', trim($link_two->extract(['href'])[0]));
   }
 
   /**
