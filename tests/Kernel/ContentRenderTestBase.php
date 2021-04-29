@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
-use Drupal\media\Entity\Media;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\Contact;
@@ -167,7 +166,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     $file->setPermanent();
     $file->save();
 
-    $media = Media::create([
+    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
       'bundle' => 'image',
       'name' => "Test image $name",
       'oe_media_image' => [
