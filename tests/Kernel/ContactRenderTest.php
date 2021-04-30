@@ -192,17 +192,23 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $press = $crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $press_link = $press->filter('a');
-    $this->assertCount(1, $press_link);
-    $this->assertEquals("http://www.example.com/press_contact_$name", $press_link->attr('href'));
+    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l');
+    $press_link = $links_wrapper->filter('a');
+    $this->assertBottomLink($press_link, "http://www.example.com/press_contact_$name", 'Press contacts');
 
-    $press_label = $press_link->filter('.ecl-link__label');
-    $this->assertCount(1, $press_label);
-    $this->assertEquals('Press contacts', trim($press_label->text()));
+    // Assert Link field.
+    $contact->set('oe_link', [
+      'uri' => "http://www.example.com/link_$name",
+      'title' => "Link title $name",
+    ])->save();
+    $build = $this->contactViewBuilder->view($contact, 'full');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l');
+    $this->assertCount(2, $links_wrapper);
 
-    $press_icon = $press_link->filter('.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
-    $this->assertCount(1, $press_icon);
+    $link = $links_wrapper->last()->filter('a');
+    $this->assertBottomLink($link, "http://www.example.com/link_$name", "Link title $name");
   }
 
   /**
@@ -250,6 +256,28 @@ class ContactRenderTest extends ContentRenderTestBase {
     // Assert caption.
     $caption = $figure->filter('figcaption');
     $this->assertEquals("Caption $name", trim($caption->text()));
+  }
+
+  /**
+   * Asserts links in the bottom of full view rendering.
+   *
+   * @param \Symfony\Component\DomCrawler\Crawler $element
+   *   Link element.
+   * @param string $link
+   *   Expected href attribute.
+   * @param string $title
+   *   Expected link title.
+   */
+  protected function assertBottomLink(Crawler $element, string $link, string $title) {
+    $this->assertCount(1, $element);
+    $this->assertEquals($link, $element->attr('href'));
+
+    $link_label = $element->filter('.ecl-link__label');
+    $this->assertCount(1, $link_label);
+    $this->assertEquals($title, trim($link_label->text()));
+
+    $link_icon = $element->filter('.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $this->assertCount(1, $link_icon);
   }
 
 }
