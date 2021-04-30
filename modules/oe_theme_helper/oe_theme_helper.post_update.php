@@ -283,7 +283,11 @@ function oe_theme_helper_post_update_20015() {
 /**
  * Create the OpenEuropa: Compact teaser view mode for node entities.
  */
-function oe_theme_helper_post_update_20016(): void {
+function oe_theme_helper_post_update_20016() {
+  if (EntityViewMode::load('node.oe_compact_teaser')) {
+    // We bail out if it already exists.
+    return t('Skipping since the view mode node.oe_compact_teaser already exists.');
+  }
   EntityViewMode::create([
     'id' => 'node.oe_compact_teaser',
     'targetEntityType' => 'node',
