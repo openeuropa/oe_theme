@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Entity\Entity\EntityViewMode;
 
 /**
  * Moves social media links on a separated fieldgroup.
@@ -32,6 +33,16 @@ function oe_theme_content_person_post_update_20001(): void {
  * Create the 'oe_compact_teaser' entity view display on the person CT.
  */
 function oe_theme_content_person_post_update_20002() {
+  // Create the OpenEuropa: Compact teaser if it doesn't exist yet.
+  if (!EntityViewMode::load('node.oe_compact_teaser')) {
+    EntityViewMode::create([
+      'id' => 'node.oe_compact_teaser',
+      'targetEntityType' => 'node',
+      'status' => TRUE,
+      'enabled' => TRUE,
+      'label' => 'OpenEuropa: Compact teaser',
+    ])->save();
+  }
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_person') . '/config/post_updates/20002_create_oe_compact_teaser_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
