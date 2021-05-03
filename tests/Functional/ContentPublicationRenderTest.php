@@ -13,6 +13,8 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 
 /**
  * Tests that "Publication" content type renders correctly.
+ *
+ * @group batch3
  */
 class ContentPublicationRenderTest extends ContentRenderTestBase {
 

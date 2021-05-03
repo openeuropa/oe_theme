@@ -9,6 +9,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test CurrentEclBrandingCondition plugin.
+ *
+ * @group batch2
  */
 class CurrentEclBrandingConditionTest extends AbstractKernelTestBase {
 

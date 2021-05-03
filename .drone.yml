@@ -59,6 +59,8 @@ pipeline:
     commands:
       - composer update --prefer-lowest --ansi --no-suggest --no-progress
     when:
+      event:
+        exclude: tag
       matrix:
         COMPOSER_BOUNDARY: lowest
 
@@ -66,45 +68,72 @@ pipeline:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/run drupal:site-install
+    when:
+      event:
+        exclude: tag
+      matrix:
+        TYPE: behat
 
   grumphp:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/grumphp run
+    when:
+      event:
+        exclude: tag
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   phpunit:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/phpunit
+      - ./vendor/bin/run drupal:site-setup
+      - ./vendor/bin/phpunit --group $BATCH
+    when:
+      event:
+        exclude: tag
+      matrix:
+        TYPE: phpunit
 
   behat:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
       - ./vendor/bin/behat --strict
+    when:
+      event:
+        exclude: tag
+      matrix:
+        TYPE: behat
 
   before-release:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-dev
     commands:
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
     when:
-      event: tag
+      event:
+        include: tag
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
     secrets: [ github_token ]
     files: oe_theme-${DRONE_TAG}.tar.gz
     when:
-      event: tag
+      event:
+        include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
 
 matrix:
-  COMPOSER_BOUNDARY:
-    - lowest
-    - highest
-  PHP_VERSION:
-    - 7.2
-    - 7.3
+  include:
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: behat }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: behat }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }

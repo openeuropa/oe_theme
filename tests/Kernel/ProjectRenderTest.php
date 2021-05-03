@@ -15,6 +15,8 @@ use Drupal\user\Entity\User;
 
 /**
  * Tests the project rendering.
+ *
+ * @group batch2
  */
 class ProjectRenderTest extends ContentRenderTestBase {
 

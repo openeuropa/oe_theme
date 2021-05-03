@@ -11,6 +11,8 @@ use Drupal\user\RoleInterface;
 
 /**
  * Tests the page header block.
+ *
+ * @group batch3
  */
 class PageHeaderBlockTest extends BrowserTestBase {
 

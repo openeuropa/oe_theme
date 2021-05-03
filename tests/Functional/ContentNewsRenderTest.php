@@ -12,6 +12,8 @@ use Drupal\user\RoleInterface;
 
 /**
  * Tests that our News content type renders correctly.
+ *
+ * @group batch1
  */
 class ContentNewsRenderTest extends ContentRenderTestBase {
 

@@ -6,6 +6,8 @@ namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
 /**
  * Test social media link formatter.
+ *
+ * @group batch2
  */
 class SocialMediaLinksFormatterTest extends SocialMediaLinksFormatterTestBase {
 

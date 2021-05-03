@@ -10,7 +10,7 @@ use PHPUnit\Framework\Assert;
 /**
  * Tests the Javascript behaviours of the theme.
  *
- * @group oe_theme
+ * @group batch3
  */
 class JavascriptBehavioursTest extends WebDriverTestBase {
 

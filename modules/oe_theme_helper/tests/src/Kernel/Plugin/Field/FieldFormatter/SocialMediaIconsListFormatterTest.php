@@ -6,6 +6,8 @@ namespace Drupal\Tests\oe_theme_helper\Kernel\Plugin\Field\FieldFormatter;
 
 /**
  * Test "Social media icons list" formatter.
+ *
+ * @group batch2
  */
 class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBase {
 
