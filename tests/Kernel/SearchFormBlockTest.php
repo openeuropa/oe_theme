@@ -8,6 +8,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class SearchFormBlockTest.
+ *
+ * @group batch2
  */
 class SearchFormBlockTest extends AbstractKernelTestBase {
 

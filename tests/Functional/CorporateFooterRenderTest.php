@@ -11,6 +11,8 @@ use Drupal\Component\Utility\Html;
 
 /**
  * Test footer block rendering.
+ *
+ * @group batch3
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
 

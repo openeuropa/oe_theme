@@ -12,6 +12,8 @@ use Drupal\media\Entity\Media;
 
 /**
  * Tests organisation (oe_organisation) content type render.
+ *
+ * @group batch3
  */
 class ContentOrganisationRenderTest extends ContentRenderTestBase {
 

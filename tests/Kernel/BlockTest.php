@@ -13,6 +13,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class BlockTest.
+ *
+ * @group batch2
  */
 class BlockTest extends EntityKernelTestBase {
 

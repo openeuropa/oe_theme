@@ -14,6 +14,8 @@ use Drupal\Tests\Traits\Core\CronRunTrait;
 
 /**
  * Tests that "Call for tenders" content type renders correctly.
+ *
+ * @group batch1
  */
 class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 

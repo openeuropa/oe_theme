@@ -10,6 +10,8 @@ use Drupal\Tests\UnitTestCase;
 
 /**
  * Test gallery item value object.
+ *
+ * @group batch1
  */
 class GalleryItemValueObjectTest extends UnitTestCase {
 
