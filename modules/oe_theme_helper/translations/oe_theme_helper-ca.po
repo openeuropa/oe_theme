@@ -1,0 +1,306 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tipus d'organització"
+
+msgid "Show @numb more items"
+msgstr "Mostra @numb elements més"
+
+msgid "When"
+msgstr "Quan"
+
+msgid "Where"
+msgstr "On"
+
+msgid "Organiser"
+msgstr "Organitzador"
+
+msgid "Website"
+msgstr "Lloc web"
+
+msgid "Social media"
+msgstr "Xarxes socials"
+
+msgid "Number of seats"
+msgstr "Nombre de localitats"
+
+msgid "Entrance fee"
+msgstr "Preu de l'entrada"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "Reserveu la vostra plaça. Queden @time_left per inscriure's-hi. El termini acaba el @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "El termini d'inscripció comença el  @time_left. Podeu inscriure-us del @start_date al @end_date."
+
+msgid "Registration period ended on @end_date."
+msgstr "El termini d'inscripció va finalitzar el @end_date."
+
+msgid "Postal address"
+msgstr "Adreça postal"
+
+msgid "Authors"
+msgstr "Autors"
+
+msgid "Department"
+msgstr "Servei"
+
+msgid "Project duration"
+msgstr "Durada del projecte"
+
+msgid "Project website"
+msgstr "Lloc web del projecte"
+
+msgid "Contact organisation"
+msgstr "Organització de contacte"
+
+msgid "Call status: @label"
+msgstr "Estat de la convocatòria: @label"
+
+msgid "Press contacts"
+msgstr "Contactes de premsa"
+
+msgid "Call for tenders"
+msgstr "Convocatòria de licitacions"
+
+msgid "Related links"
+msgstr "Enllaços relacionats"
+
+msgid "Practical information"
+msgstr "Informació pràctica"
+
+msgid "Phone number"
+msgstr "Número de telèfon"
+
+msgid "Opening date"
+msgstr "Data d'obertura"
+
+msgid "Deadline date"
+msgstr "Data límit"
+
+msgid "Deadline dates"
+msgstr "Dates límit"
+
+msgid "Publication date"
+msgstr "Data de publicació"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Location"
+msgstr "Lloc"
+
+msgid "News type"
+msgstr "Tipus de notícia"
+
+msgid "Project locations"
+msgstr "Llocs del projecte"
+
+msgid "Overall budget"
+msgstr "Pressupost total"
+
+msgid "EU contribution"
+msgstr "Contribució de la UE"
+
+msgid "Departments"
+msgstr "Serveis"
+
+msgid "Results"
+msgstr "Resultats"
+
+msgid "Stakeholders"
+msgstr "Parts interessades"
+
+msgid "Coordinators"
+msgstr "Coordinadors"
+
+msgid "Participants"
+msgstr "Participants"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Countries"
+msgstr "Països"
+
+msgid "EU Organisation"
+msgstr "Organització de la UE"
+
+msgid "Non-EU organisation"
+msgstr "Organització no pertanyent a la UE"
+
+msgid "Reference"
+msgstr "Referència"
+
+msgid "Upcoming"
+msgstr "Properament"
+
+msgid "Open"
+msgstr "Obert"
+
+msgid "Closed"
+msgstr "Tancat"
+
+msgid "Details"
+msgstr "Detalls"
+
+msgid "Status"
+msgstr "Estat"
+
+msgid "Publication"
+msgstr "Publicació"
+
+msgid "Description"
+msgstr "Descripció"
+
+msgid "Email"
+msgstr "Correu electrònic"
+
+msgid "Contact"
+msgstr "Contacte"
+
+msgid "Contacts"
+msgstr "Contactes"
+
+msgid "Organisation"
+msgstr "Organització"
+
+msgid "Fax number"
+msgstr "Número de fax"
+
+msgid "Mobile number"
+msgstr "Número de mòbil"
+
+msgid "Office"
+msgstr "Oficina"
+
+msgid "Documents"
+msgstr "Documents"
+
+msgid "Funding"
+msgstr "Finançament"
+
+msgid "As planned"
+msgstr "Com estava previst"
+
+msgid "Cancelled"
+msgstr "Cancel·lat"
+
+msgid "Rescheduled"
+msgstr "Reprogramat"
+
+msgid "Postponed"
+msgstr "Ajornat"
+
+msgid "Address"
+msgstr "Adreça"
+
+msgid "Live stream"
+msgstr "Retransmissió en directe"
+
+msgid "Live streaming available"
+msgstr "Retransmissió en directe disponible"
+
+msgid "Project"
+msgstr "Projecte"
+
+msgid "Publication type"
+msgstr "Tipus de publicació"
+
+msgid "Call for proposals"
+msgstr "Convocatòria de propostes"
+
+msgid "Funding programme"
+msgstr "Programa de finançament"
+
+msgid "Deadline model"
+msgstr "Model de termini"
+
+msgid "Single-stage"
+msgstr "D'una fase"
+
+msgid "Two-stage"
+msgstr "De dues fases"
+
+msgid "Multiple cut-off"
+msgstr "Vàries dates límit"
+
+msgid "Permanent"
+msgstr "Permanent"
+
+msgid "Last updated on: @date"
+msgstr "Darrera actualització: @date "
+
+msgid "File"
+msgstr "Arxiu"
+
+msgid "Files"
+msgstr "Arxius"
+
+msgid "Identification"
+msgstr "Identificació"
+
+msgid "Identifications"
+msgstr "Identificacions"
+
+msgid "Related department"
+msgstr "Servei relacionat"
+
+msgid "Related departments"
+msgstr "Serveis relacionats"
+
+msgid "Consultation"
+msgstr "Consulta"
+
+msgid "Deadline"
+msgstr "Data límit"
+
+msgid "Respond to the questionnaire"
+msgstr "Responeu el qüestionari"
+
+msgid "Respond to the consultation"
+msgstr "Responeu a la consulta"
+
+msgid "Target audience"
+msgstr "Destinatari"
+
+msgid "Why we are consulting"
+msgstr "Per què fem aquesta consulta"
+
+msgid "Consultation outcome"
+msgstr "Resultat de la consulta"
+
+msgid "Additional information"
+msgstr "Informació addicional"
+
+msgid "Reference documents"
+msgstr "Documents de referència"
+
+msgid "Responsibilities"
+msgstr "Responsabilitats"
+
+msgid "Media"
+msgstr "Mitjans de comunicació"
+
+msgid "Latest"
+msgstr "Actualitat"
+
+msgid "Transparency"
+msgstr "Transparència"
+
+msgid "Articles and presentations"
+msgstr "Articles i presentacions"
+
+msgid "Biography"
+msgstr "Biografia"
+
+msgid "Declaration of interests"
+msgstr "Declaració d'interessos"
+
+msgid "Show contact details"
+msgstr "Mostra les dades de contacte"
+
+msgid "Hide contact details"
+msgstr "Amagueu les dades de contacte"
