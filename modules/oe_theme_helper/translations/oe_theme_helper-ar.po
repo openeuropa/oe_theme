@@ -1,0 +1,309 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "نوع المنظمة"
+
+msgid "Show @numb more items"
+msgstr "إظهار @numb المزيد من العناصر"
+
+msgid "When"
+msgstr "الموعد"
+
+msgid "Where"
+msgstr "المكان"
+
+msgid "Organiser"
+msgstr "المنظم"
+
+msgid "Website"
+msgstr "الموقع الإلكتروني"
+
+msgid "Social media"
+msgstr "وسائل التواصل الاجتماعي"
+
+msgid "Number of seats"
+msgstr "عدد المقاعد"
+
+msgid "Entrance fee"
+msgstr "رسوم الدخول"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date."
+msgstr "احجز مقعدك، < تاريخ انتهاء التسجيل - التاريخ الحالي> بقي للتسجيل، وسوف ينتهي التسجيل في < تاريخ انتهاء التسجيل>."
+
+msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
+msgstr "سيتم فتح التسجيل في < تاريخ بدء التسجيل - التاريخ الحالي>. يمكنكم التسجيل من <تاريخ بدء التسجيل> ، حتى <تاريخ انتهاء التسجيل>. "
+
+msgid "Registration period ended on @end_date."
+msgstr "انتهت فترة التسجيل في  <تاريخ انتهاء التسجيل>."
+
+msgid "Postal address"
+msgstr "العنوان البريدي"
+
+msgid "Authors"
+msgstr "الكتّاب"
+
+msgid "Department"
+msgstr "القسم"
+
+msgid "Project duration"
+msgstr "مدة المشروع"
+
+msgid "Project website"
+msgstr "موقع المشروع الإلكتروني"
+
+msgid "Contact organisation"
+msgstr "جهة الاتصال"
+
+msgid "Call status: @label"
+msgstr "حالة الدعوة"
+
+msgid "Press contacts"
+msgstr "معلومات الاتصال للصحافة"
+
+msgid "Call for tenders"
+msgstr "دعوة لتقديم عطاءات"
+
+msgid "Related links"
+msgstr "روابط ذات صلة"
+
+msgid "Practical information"
+msgstr "معلومات عملية"
+
+msgid "Phone number"
+msgstr "رقم الهاتف"
+
+msgid "Opening date"
+msgstr "موعد بدء استقبال الطلبات"
+
+msgid "Deadline date"
+msgstr "الموعد النهائي"
+
+msgid "Deadline dates"
+msgstr "المواعيد النهائية"
+
+msgid "Publication date"
+msgstr "تاريخ النشر"
+
+msgid "Author"
+msgstr "الكاتب"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "News type"
+msgstr "نوع الخبر"
+
+msgid "Project locations"
+msgstr "مواقع المشروع"
+
+msgid "Overall budget"
+msgstr "الميزانية الإجمالية"
+
+msgid "EU contribution"
+msgstr "مساهمة الاتحاد الأوروبي"
+
+msgid "Departments"
+msgstr "الأقسام"
+
+msgid "Results"
+msgstr "النتائج"
+
+msgid "Stakeholders"
+msgstr "أصحاب المصلحة"
+
+msgid "Coordinators"
+msgstr "المنسقون"
+
+msgid "Participants"
+msgstr "المشاركون"
+
+msgid "Country"
+msgstr "البلد"
+
+msgid "Countries"
+msgstr "البلدان"
+
+msgid "EU Organisation"
+msgstr "منظمة تابعة للاتحاد الأوروبي"
+
+msgid "Non-EU organisation"
+msgstr "منظمة غير تابعة للاتحاد الأوروبي"
+
+msgid "Reference"
+msgstr "رقم المرجع"
+
+msgid "Upcoming"
+msgstr "لم يفتح بعد"
+
+msgid "Open"
+msgstr "مفتوح"
+
+msgid "Closed"
+msgstr "مغلق"
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Status"
+msgstr "حالة الدعوة"
+
+msgid "Publication"
+msgstr "منشور"
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Contact"
+msgstr "اتصل بنا"
+
+msgid "Contacts"
+msgstr "جهات الاتصال"
+
+msgid "Organisation"
+msgstr "اسم المنظمة"
+
+msgid "Fax number"
+msgstr "رقم الفاكس"
+
+msgid "Mobile number"
+msgstr "رقم الهاتف المحمول"
+
+msgid "Office"
+msgstr "مكتب"
+
+msgid "Documents"
+msgstr "الوثائق والمستندات"
+
+msgid "Funding"
+msgstr "التمويل"
+
+msgid "As planned"
+msgstr "كما هو مخطط"
+
+msgid "Cancelled"
+msgstr "ملغى"
+
+msgid "Rescheduled"
+msgstr "معاد جدولته"
+
+msgid "Postponed"
+msgstr "مؤجل"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Live stream"
+msgstr "البث المباشر"
+
+msgid "Live streaming available"
+msgstr "البث المباشر متاح"
+
+msgid "Project"
+msgstr "مشروع"
+
+msgid "Publication type"
+msgstr "نوع المنشور"
+
+msgid "Call for proposals"
+msgstr "دعوة لتقديم مقترحات"
+
+msgid "Funding programme"
+msgstr "برنامج التمويل"
+
+msgid "Deadline model"
+msgstr "نموذج الموعد النهائي"
+
+msgid "Single-stage"
+msgstr "على مرحلة واحدة"
+
+msgid "Two-stage"
+msgstr "على مرحلتين"
+
+msgid "Multiple cut-off"
+msgstr "عدة مراحل متقطعة"
+
+msgid "Permanent"
+msgstr "دائم"
+
+msgid "Last updated on: @date"
+msgstr "<تاريخ> (آخر تحديث في: <تاريخ>)"
+
+msgid "File"
+msgstr "ملف"
+
+msgid "Files"
+msgstr "ملفات"
+
+msgid "Identification"
+msgstr "تعريف"
+
+msgid "Identifications"
+msgstr "تعريفات"
+
+msgid "Related department"
+msgstr "القسم ذو الصلة"
+
+msgid "Related departments"
+msgstr "الأقسام ذوي الصلة"
+
+msgid "Consultation"
+msgstr "استشارة"
+
+msgid "Deadline"
+msgstr "الموعد نهائي"
+
+msgid "Respond to the questionnaire"
+msgstr "الرد على الاستبيان"
+
+msgid "Respond to the consultation"
+msgstr "الرد على الاستشارة"
+
+msgid "Target audience"
+msgstr "الجمهور المستهدف"
+
+msgid "Why we are consulting"
+msgstr "لماذا نطلب الاستشارة"
+
+msgid "Consultation outcome"
+msgstr "نتائج الاستشارة"
+
+msgid "Additional information"
+msgstr "معلومات إضافية"
+
+msgid "Reference documents"
+msgstr "المستندات المرجعية"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "انتهت فترة الاستجابة لهذه الاستشارة. شكراً  على مساهمتكم."
+
+msgid "Responsibilities"
+msgstr "المسؤوليات"
+
+msgid "Media"
+msgstr "الإعلام"
+
+msgid "Latest"
+msgstr "آخر الأحداث"
+
+msgid "Transparency"
+msgstr "الشفافية"
+
+msgid "Articles and presentations"
+msgstr "مقالات وعروض تقديمية"
+
+msgid "Biography"
+msgstr "السيرة الذاتية"
+
+msgid "Declaration of interests"
+msgstr "إعلان المصالح "
+
+msgid "Show contact details"
+msgstr "إظهار تفاصيل الاتصال"
+
+msgid "Hide contact details"
+msgstr "إخفاء تفاصيل الاتصال"
