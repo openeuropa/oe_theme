@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
@@ -65,6 +66,8 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     ]);
     $media->save();
 
+    $first_general_contact = $this->createContactEntity('first_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
       'type' => 'oe_organisation',
@@ -109,6 +112,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Add body text and contact values.
     $node->set('body', 'My body text');
+    $node->set('oe_organisation_contact', [$first_general_contact]);
     $node->save();
     $this->drupalGet($node->toUrl());
 
@@ -118,7 +122,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Description', 'href' => '#description'],
+        ['label' => 'Contact', 'href' => '#contact'],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -144,33 +148,65 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
+    // Add overview values.
+    $node->set('oe_organisation_overview', [
+      [
+        'term' => 'Overview Term 1',
+        'description' => 'Overview Description 1',
+      ],
+      [
+        'term' => 'Overview Term 2',
+        'description' => 'Overview Description 2',
+      ],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
     $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
     $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
     $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(1, $content_items);
 
-    // Assert header of first field group.
-    $this->assertContentHeader($content_items[0], 'Description', 'description');
+    // Assert header of the first field group.
+    $this->assertContentHeader($content_items[0], 'Overview', 'overview');
 
-    // Assert values for first group.
-    $body = $content_items[0]->findAll('css', '.ecl-editor');
+    // Assert values of the first group.
+    $overview = $content_items[0]->findAll('css', 'dl.ecl-description-list.ecl-description-list--horizontal');
+    $this->assertCount(1, $overview);
+    $overview_terms = $overview[0]->findAll('css', 'dt.ecl-description-list__term');
+    $this->assertCount(2, $overview_terms);
+    $this->assertEquals('Overview Term 1', $overview_terms[0]->getText());
+    $this->assertEquals('Overview Term 2', $overview_terms[1]->getText());
+    $overview_descriptions = $overview[0]->findAll('css', 'dd.ecl-description-list__definition');
+    $this->assertCount(2, $overview_descriptions);
+    $this->assertEquals('Overview Description 1', $overview_descriptions[0]->getText());
+    $this->assertEquals('Overview Description 2', $overview_descriptions[1]->getText());
+
+    // Assert values of the second group.
+    $body = $content_items[1]->findAll('css', '.ecl-editor');
     $this->assertCount(1, $body);
     $this->assertEquals('My body text', $body[0]->getText());
 
-    // Assert Organisation's contacts.
-    $contact = $this->createContactEntity('organisation_contact');
-    $node->set('oe_organisation_contact', [$contact])->save();
+    // Assert Organisation's contact is displayed expanded.
+    $contact_headers = $content_items[2]->findAll('css', 'h2');
+    // Assert header of the third field group.
+    $this->assertEquals('Contact', $contact_headers[0]->getText());
+    $this->assertSession()->pageTextNotContains('Show contact details');
+    $this->assertContactDefaultRender($content_items[2], 'first_general_contact');
+
+    // Create another contact and add it to the node.
+    $second_general_contact = $this->createContactEntity('second_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $node->set('oe_organisation_contact', [$first_general_contact, $second_general_contact]);
+    $node->save();
     $this->drupalGet($node->toUrl());
 
-    $content_items = $content->findAll('xpath', '/div');
-    $this->assertCount(2, $content_items);
-    $this->assertContentHeader($content_items[1], 'Contact', 'contact');
-    $this->assertContactDefaultRender($content_items[1], 'organisation_contact');
-
-    $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
-    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    // Assert rendering is updated.
+    $this->assertSession()->pageTextContains('Show contact details');
+    $contacts = $content->findAll('css', 'div#-content.ecl-expandable__content div.ecl-row.ecl-u-mv-xl');
+    $this->assertCount(2, $contacts);
+    $this->assertContactDefaultRender($contacts[0], 'first_general_contact');
+    $this->assertContactDefaultRender($contacts[1], 'second_general_contact');
   }
 
 }
