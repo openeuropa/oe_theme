@@ -212,7 +212,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Set value for only the staff search link field and assert rendering is
     // updated.
-    $node->set('oe_org_staff_search_link', [
+    $node->set('oe_organisation_staff_link', [
       'uri' => 'https://example.com',
       'title' => 'Search for staff',
     ])->save();
@@ -258,7 +258,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Update the node values for person and organisation chart fields.
     $node->set('oe_organisation_persons', $person)
-      ->set('oe_organisation_org_chart', $chart);
+      ->set('oe_organisation_chart', $chart);
     $node->save();
     $this->drupalGet($node->toUrl());
 

@@ -4,14 +4,14 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.oe_organisation.body
-    - field.field.node.oe_organisation.oe_org_staff_search_link
+    - field.field.node.oe_organisation.oe_organisation_staff_link
     - field.field.node.oe_organisation.oe_organisation_acronym
     - field.field.node.oe_organisation.oe_organisation_contact
     - field.field.node.oe_organisation.oe_organisation_eu_org
     - field.field.node.oe_organisation.oe_organisation_eu_org_type
     - field.field.node.oe_organisation.oe_organisation_logo
     - field.field.node.oe_organisation.oe_organisation_non_eu_org_type
-    - field.field.node.oe_organisation.oe_organisation_org_chart
+    - field.field.node.oe_organisation.oe_organisation_chart
     - field.field.node.oe_organisation.oe_organisation_org_type
     - field.field.node.oe_organisation.oe_organisation_overview
     - field.field.node.oe_organisation.oe_organisation_persons
@@ -78,8 +78,8 @@ third_party_settings:
     group_leadership_and_organisation:
       children:
         - oe_organisation_persons
-        - oe_organisation_org_chart
-        - oe_org_staff_search_link
+        - oe_organisation_chart
+        - oe_organisation_staff_link
       parent_name: group_in_page_navigation
       weight: 3
       format_type: oe_theme_helper_in_page_navigation_item
@@ -105,7 +105,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-  oe_org_staff_search_link:
+  oe_organisation_staff_link:
     type: link
     weight: 2
     region: content
@@ -134,7 +134,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
-  oe_organisation_org_chart:
+  oe_organisation_chart:
     type: entity_reference_entity_view
     weight: 1
     region: content
