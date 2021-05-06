@@ -246,10 +246,6 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
       'type' => 'oe_person',
       'oe_person_first_name' => 'Jane',
       'oe_person_last_name' => 'Doe',
-      'oe_person_jobs' => [
-        $person_job_1,
-        $person_job_2,
-      ],
       'status' => 1,
     ]);
     $person->save();
@@ -263,19 +259,26 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $person = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
-    $this->assertCount(1, $person);
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $this->assertCount(1, $person_content);
     // Assert person content.
-    $first_person_image = $person[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
+    $first_person_image = $person_content[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
     // Assert default image.
     $this->assertEquals('background-image:url(/build/themes/custom/oe_theme/images/user_icon.svg)', $first_person_image->getAttribute('style'));
-    // Assert roles and name.
-    $this->assertEquals('Advisor, Chief advisor', $person[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
-    $this->assertEquals('Jane Doe', $person[0]->find('css', '.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs.ecl-u-mb-none.ecl-u-type-bold')->getText());
-
+    // Assert role div is not printed when there are no jobs.
+    $this->assertCount(0, $person_content[0]->findAll('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs'));
+    // Assert name.
+    $this->assertEquals('Jane Doe', $person_content[0]->find('css', '.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs.ecl-u-mb-none.ecl-u-type-bold')->getText());
     // Assert organisation chart document.
     $chart_document = $content_items[2]->findAll('css', '.ecl-u-mb-l.ecl-u-mt-l');
-    $this->assertMediaDocumentDefaultRender($chart_document[0], 'chart', 'en', '', '', 'Download');
+    $this->assertMediaDocumentDefaultRender($chart_document[0], 'chart', 'English', '2.96 KB - PDF', '', 'Download');
+
+    // Update person node with jobs and assert rendering is updated.
+    $person->set('oe_person_jobs', [$person_job_1, $person_job_2]);
+    $person->save();
+    $this->getSession()->reload();
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $this->assertEquals('Advisor, Chief advisor', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
   }
 
 }
