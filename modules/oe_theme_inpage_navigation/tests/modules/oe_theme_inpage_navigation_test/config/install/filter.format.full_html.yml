@@ -1,8 +1,6 @@
 langcode: en
 status: true
-dependencies:
-  module:
-    - media
+dependencies: {}
 name: 'Full HTML'
 format: full_html
 weight: 0

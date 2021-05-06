@@ -11,7 +11,7 @@ use Drupal\Core\Block\BlockBase;
  *
  * @Block(
  *   id = "oe_theme_inpage_navigation_menu",
- *   admin_label = @Translation("Inpage Navigation block"),
+ *   admin_label = @Translation("Inpage navigation block"),
  *   category = @Translation("OpenEuropa"),
  * )
  */
