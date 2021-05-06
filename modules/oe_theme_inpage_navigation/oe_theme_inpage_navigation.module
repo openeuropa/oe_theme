@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * The OE Theme In-page Navigation module.
+ */
+
 declare(strict_types = 1);
 
 /**
