@@ -29,14 +29,14 @@ msgstr "عدد المقاعد"
 msgid "Entrance fee"
 msgstr "رسوم الدخول"
 
-msgid "Book your seat, @time_left left to register, registration will end on @end_date."
-msgstr "احجز مقعدك، < تاريخ انتهاء التسجيل - التاريخ الحالي> بقي للتسجيل، وسوف ينتهي التسجيل في < تاريخ انتهاء التسجيل>."
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "احجز مقعدك، @time_left بقي للتسجيل، وسوف ينتهي التسجيل في @end_date."
 
-msgid "Registration will open in @time_left. You can register from @start_date , until @end_date."
-msgstr "سيتم فتح التسجيل في < تاريخ بدء التسجيل - التاريخ الحالي>. يمكنكم التسجيل من <تاريخ بدء التسجيل> ، حتى <تاريخ انتهاء التسجيل>. "
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "سيتم فتح التسجيل في @time_left. يمكنكم التسجيل من @start_date ، حتى @end_date."
 
 msgid "Registration period ended on @end_date."
-msgstr "انتهت فترة التسجيل في  <تاريخ انتهاء التسجيل>."
+msgstr "انتهت فترة التسجيل في @end_date."
 
 msgid "Postal address"
 msgstr "العنوان البريدي"
@@ -57,7 +57,7 @@ msgid "Contact organisation"
 msgstr "جهة الاتصال"
 
 msgid "Call status: @label"
-msgstr "حالة الدعوة"
+msgstr "حالة الدعوة: @label"
 
 msgid "Press contacts"
 msgstr "معلومات الاتصال للصحافة"
@@ -231,7 +231,7 @@ msgid "Permanent"
 msgstr "دائم"
 
 msgid "Last updated on: @date"
-msgstr "<تاريخ> (آخر تحديث في: <تاريخ>)"
+msgstr "آخر تحديث في: @date"
 
 msgid "File"
 msgstr "ملف"
