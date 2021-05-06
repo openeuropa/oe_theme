@@ -12,6 +12,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Base test class for "Social media links" field formatters.
+ *
+ * @group batch2
  */
 class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
 

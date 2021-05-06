@@ -11,6 +11,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test file pattern rendering.
+ *
+ * @group batch2
  */
 class FilePatternRenderingTest extends AbstractKernelTestBase {
 

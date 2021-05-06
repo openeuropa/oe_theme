@@ -9,6 +9,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test language switcher rendering.
+ *
+ * @group batch2
  */
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 

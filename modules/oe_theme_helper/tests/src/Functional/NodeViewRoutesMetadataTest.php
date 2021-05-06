@@ -9,6 +9,8 @@ use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 
 /**
  * Tests the base metadata class for node view routes.
+ *
+ * @group batch3
  */
 class NodeViewRoutesMetadataTest extends BrowserTestBase {
 

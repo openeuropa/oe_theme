@@ -10,6 +10,8 @@ use Drupal\FunctionalTests\Image\ToolkitTestBase;
  * Tests that the Retina Scale effect upscales images appropriately.
  *
  * @group image
+ *
+ * @group batch3
  */
 class RetinaScaleEffectTest extends ToolkitTestBase {
 

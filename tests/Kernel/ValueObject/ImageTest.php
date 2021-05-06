@@ -14,6 +14,8 @@ use Drupal\Tests\token\Kernel\KernelTestBase;
 
 /**
  * Test image value object with image field type.
+ *
+ * @group batch2
  */
 class ImageTest extends KernelTestBase {
 

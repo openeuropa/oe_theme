@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class MainMenuTest.
+ *
+ * @group batch2
  */
 class MainMenuTest extends AbstractKernelTestBase {
 
