@@ -59,7 +59,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
    * Test content with enabled legacy in-page navigation by default.
    */
   public function testContentWithInPageNav(): void {
-
     // Create a document for Publication.
     $media_document = $this->createMediaDocument('publication_document');
 
@@ -84,9 +83,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
-
     // Assert in-page navigation part.
     $navigation = $this->assertSession()->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     $inpage_nav_assert = new InPageNavigationAssert();
@@ -99,7 +95,8 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    // Add body field to node and check in-page navigation links.
+    // Add body field value to node and check that appeared heading
+    // for description section is counted in-page navigation links.
     $node->set('body', 'Publication description text');
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -110,22 +107,14 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
-    // Remove body field value of node and check in-page navigation links.
-    $node->set('body', NULL);
-    $node->save();
-    $this->drupalGet($node->toUrl());
-    $inpage_nav_expected_values['list'] = [
-      ['label' => 'Details', 'href' => '#details'],
-      ['label' => 'Files', 'href' => '#files'],
-    ];
-    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
-
-    // Remove body field value of node and check in-page navigation links.
+    // Remove documents field value of the node and check that disappearing
+    // of the files section is reflected inside in-page navigation block.
     $node->set('oe_documents', NULL);
     $node->save();
     $this->drupalGet($node->toUrl());
     $inpage_nav_expected_values['list'] = [
       ['label' => 'Details', 'href' => '#details'],
+      ['label' => 'Description', 'href' => '#description'],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
@@ -137,8 +126,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
 
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
-    // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
   }
 
   /**
@@ -159,9 +146,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
       ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-
-    // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
 
@@ -260,9 +244,6 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $node->save();
     $block->delete();
     $this->drupalGet($node->toUrl());
-
-    // Assert content part.
-    $this->assertSession()->elementExists('css', '#block-oe-theme-main-page-content[data-inpage-navigation-source-area] article');
     // Assert absence of in-page navigation block.
     $this->assertSession()->elementNotExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
   }
