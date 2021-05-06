@@ -268,7 +268,7 @@ class ContactRenderTest extends ContentRenderTestBase {
    * @param string $title
    *   Expected link title.
    */
-  protected function assertBottomLink(Crawler $element, string $link, string $title) {
+  protected function assertBottomLink(Crawler $element, string $link, string $title): void {
     $this->assertCount(1, $element);
     $this->assertEquals($link, $element->attr('href'));
 
