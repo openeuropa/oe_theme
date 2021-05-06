@@ -5,14 +5,18 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
+use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 
 /**
  * Base class for testing content types.
@@ -35,6 +39,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
     \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
+
+    // Give anonymous users permission to view entities.
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published skos concept entities')
+      ->save();
   }
 
   /**
@@ -87,20 +96,28 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Rendered element.
    * @param string $name
    *   Name of the document.
+   * @param string $language
+   *   Document language.
+   * @param string $meta
+   *   Size and format of the file.
+   * @param string $link
+   *   Link to the file.
+   * @param string $button_label
+   *   Text on the button.
    */
-  protected function assertMediaDocumentDefaultRender(NodeElement $element, string $name): void {
+  protected function assertMediaDocumentDefaultRender(NodeElement $element, string $name, string $language, string $meta, string $link, string $button_label): void {
     // Assert documents file.
     $file_wrapper = $element->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains("Test document $name", $file_title->getText());
+    $this->assertContains($name, $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->getText());
+    $this->assertContains($language, $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('(2.96 KB - PDF)', $file_info_properties->getText());
+    $this->assertContains("($meta)", $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains("/sample_$name.pdf", $file_download_link->getAttribute('href'));
-    $this->assertContains('Download', $file_download_link->getText());
+    $this->assertContains($link, $file_download_link->getAttribute('href'));
+    $this->assertContains($button_label, $file_download_link->getText());
   }
 
   /**
@@ -144,15 +161,15 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
     $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
     $this->assertCount(1, $figures);
-    $figures = reset($figures);
+    $figure = reset($figures);
 
     // Assert image tag.
-    $image = $figures->find('css', 'img');
+    $image = $figure->find('css', 'img');
     $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
     $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
 
     // Assert caption.
-    $caption = $figures->find('css', 'figcaption');
+    $caption = $figure->find('css', 'figcaption');
     $this->assertEquals("Caption $name", $caption->getText());
   }
 
@@ -169,7 +186,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @return \Drupal\oe_content_entity_contact\Entity\ContactInterface
    *   Contact entity.
    */
-  protected function createContactEntity(string $name, string $bundle, int $status = CorporateEntityInterface::PUBLISHED): ContactInterface {
+  protected function createContactEntity(string $name, string $bundle = 'oe_general', int $status = CorporateEntityInterface::PUBLISHED): ContactInterface {
     // Create image for contact.
     $media = $this->createMediaImage($name);
 
@@ -211,14 +228,14 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   }
 
   /**
-   * Asserts Contact entity field rendering.
+   * Asserts rendering of Contact entity.
    *
    * @param \Behat\Mink\Element\NodeElement $element
    *   Rendered element.
    * @param string $name
-   *   Name of the Contact entity.
+   *   Name of the entity.
    */
-  protected function assertContactEntityDefaultDisplay(NodeElement $element, string $name): void {
+  protected function assertContactDefaultRender(NodeElement $element, string $name): void {
     $contact_name = $element->findAll('css', 'h3');
     $this->assertCount(1, $contact_name);
     $this->assertEquals($name, $contact_name[0]->getText());
@@ -270,6 +287,38 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
 
     // Assert contacts Image.
     $this->assertFeaturedMediaField($element, $name);
+  }
+
+  /**
+   * Creates Venue entity based on provided settings.
+   *
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param int $status
+   *   Entity status.
+   *
+   * @return \Drupal\oe_content_entity_venue\Entity\VenueInterface
+   *   Venue entity instance.
+   */
+  protected function createVenueEntity(string $name, string $bundle = 'oe_default', int $status = CorporateEntityInterface::PUBLISHED): VenueInterface {
+    $venue = $this->getStorage('oe_venue')->create([
+      'bundle' => 'oe_default',
+      'name' => $name,
+      'oe_address' => [
+        'country_code' => 'BE',
+        'locality' => 'Brussels',
+        'address_line1' => "Address $name",
+        'postal_code' => '1001',
+      ],
+      'oe_capacity' => "Capacity $name",
+      'oe_room' => "Room $name",
+      'status' => $status,
+      'uid' => 0,
+    ]);
+    $venue->save();
+    return $venue;
   }
 
   /**
@@ -382,6 +431,19 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ]);
     $document_reference->save();
     return $document_reference;
+  }
+
+  /**
+   * Freeze time.
+   *
+   * @param \Drupal\Core\Datetime\DrupalDateTime $static_time
+   *   Time to freeze.
+   */
+  protected function freezeTime(DrupalDateTime $static_time): void {
+    /** @var \Drupal\datetime_testing\TestTimeInterface $time */
+    $time = \Drupal::time();
+    $time->freezeTime();
+    $time->setTime($static_time->getTimestamp());
   }
 
 }

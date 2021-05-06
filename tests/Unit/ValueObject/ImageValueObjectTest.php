@@ -14,6 +14,8 @@ use Drupal\Tests\UnitTestCase;
 
 /**
  * Test image value object.
+ *
+ * @group batch1
  */
 class ImageValueObjectTest extends UnitTestCase {
 

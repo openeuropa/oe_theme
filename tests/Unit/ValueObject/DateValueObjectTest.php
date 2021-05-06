@@ -11,6 +11,8 @@ use Drupal\Tests\oe_theme\Unit\AbstractUnitTestBase;
 
 /**
  * Test date value object.
+ *
+ * @group batch1
  */
 class DateValueObjectTest extends AbstractUnitTestBase {
 

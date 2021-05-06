@@ -9,6 +9,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test CurrentComponentLibraryCondition plugin.
+ *
+ * @group batch2
  */
 class CurrentComponentLibraryConditionTest extends AbstractKernelTestBase {
 

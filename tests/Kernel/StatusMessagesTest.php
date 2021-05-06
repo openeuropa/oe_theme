@@ -9,6 +9,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the rendering of the status messages.
+ *
+ * @group batch2
  */
 class StatusMessagesTest extends AbstractKernelTestBase {
 

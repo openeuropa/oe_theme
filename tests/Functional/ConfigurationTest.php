@@ -8,6 +8,8 @@ use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests that theme configuration is correctly applied.
+ *
+ * @group batch3
  */
 class ConfigurationTest extends BrowserTestBase {
 

@@ -11,6 +11,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test those Twig extension filters that require Drupal to be bootstrapped.
+ *
+ * @group batch2
  */
 class TwigExtensionTest extends AbstractKernelTestBase {
 

@@ -10,6 +10,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that our contact forms renders with ecl markup.
+ *
+ * @group batch2
  */
 class ContactFormRenderTest extends ContactFormTestBase {
 

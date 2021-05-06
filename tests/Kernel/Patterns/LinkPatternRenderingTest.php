@@ -9,6 +9,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test link pattern rendering.
+ *
+ * @group batch2
  */
 class LinkPatternRenderingTest extends AbstractKernelTestBase {
 

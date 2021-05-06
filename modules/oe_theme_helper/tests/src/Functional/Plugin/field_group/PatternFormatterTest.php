@@ -11,6 +11,8 @@ use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
 
 /**
  * Test the pattern field group formatter.
+ *
+ * @group batch3
  */
 class PatternFormatterTest extends BrowserTestBase {
 

@@ -50,7 +50,7 @@
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.11",
-        "openeuropa/oe_multilingual": "~1.6",
+        "openeuropa/oe_multilingual": "dev-master",
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "~1.10",

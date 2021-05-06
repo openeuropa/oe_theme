@@ -12,6 +12,8 @@ use Drupal\Tests\field_group\Functional\FieldGroupTestTrait;
 
 /**
  * Test In-page navigation field group.
+ *
+ * @group batch3
  */
 class InPageNavigationTest extends BrowserTestBase {
 

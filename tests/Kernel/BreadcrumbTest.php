@@ -14,6 +14,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class BreadcrumbTest.
+ *
+ * @group batch2
  */
 class BreadcrumbTest extends EntityKernelTestBase {
 

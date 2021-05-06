@@ -9,6 +9,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests that Drupal local tasks are properly rendered.
+ *
+ * @group batch2
  */
 class MenuLocalTasksTest extends AbstractKernelTestBase {
 
