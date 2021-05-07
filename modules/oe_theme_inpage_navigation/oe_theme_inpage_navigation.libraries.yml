@@ -3,4 +3,4 @@ inpage_navigation:
     js/inpage_navigation.js: {}
   dependencies:
     - core/drupal
-    - core/jquery.ui
+    - core/jquery
