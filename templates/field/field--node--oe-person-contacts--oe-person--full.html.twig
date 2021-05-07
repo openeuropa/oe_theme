@@ -9,7 +9,7 @@
 {% set contacts %}{% for item in items %}{{ item.content }}{% endfor %}{% endset %}
 
 {% if contacts is not empty %}
-  {% include '@ecl-twig/expandable' with {
+  {% include '@ecl-twig/twig-component-expandable/expandable.html.twig' with {
     'label_expanded': 'Hide contact details'|t,
     'label_collapsed': 'Show contact details'|t,
     'button': {

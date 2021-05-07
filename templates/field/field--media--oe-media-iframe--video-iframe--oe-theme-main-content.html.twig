@@ -5,7 +5,7 @@
  */
 #}
 {% for item in items %}
-  {% include '@ecl-twig/media-container' with {
+  {% include '@ecl-twig/twig-component-media-container/media-container.html.twig' with {
     'embedded_media': item.content,
     'ratio': ratio|replace({'_': '-'}),
   } %}

@@ -32,7 +32,7 @@
 } %}
 {% set extra_attributes = attributes|to_ecl_attributes|merge([{'name': 'data-ecl-search-form'}]) %}
 {% set extra_classes = 'ecl-site-header-' ~ ecl_branding ~ '__search' %}
-{% extends '@ecl-twig/search-form' %}
+{% extends '@ecl-twig/twig-component-search-form/search-form.html.twig' %}
 {% block extra_form_elements %}
   {{ element.form_build_id }}
   {{ element.form_token }}

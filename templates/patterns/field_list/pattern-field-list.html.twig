@@ -20,7 +20,7 @@
 {% endif %}
 {% if _items %}
   {% block content %}
-  {% include '@ecl-twig/description-list' with {
+  {% include '@ecl-twig/twig-component-description-list/description-list.html.twig' with {
     'variant': variant,
     'items': _items,
     'extra_classes': extra_classes,

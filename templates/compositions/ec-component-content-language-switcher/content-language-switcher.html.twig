@@ -21,7 +21,7 @@
 <div class="ecl-lang-select-page">
   <div class="ecl-u-d-flex ecl-u-align-items-start ecl-u-font-s">
     <span class="ecl-lang-select-page__unavailable_language ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
-      {% include '@ecl-twig/icon' with {
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
         icon: {
           path: icon_path,
           type: "general",
@@ -45,7 +45,7 @@
           {% endfor %}
         </ul>
       {% endset %}
-      {% include '@ecl-twig/expandable' with {
+      {% include '@ecl-twig/twig-component-expandable/expandable.html.twig' with {
         'id': expandable_id,
         'label_expanded': current,
         'label_collapsed': current,
@@ -68,7 +68,7 @@
       } only %}
     {% else %}
       {# If we have only one alternative language just display it as a button, without any otherwise empty expandable. #}
-      {% include '@ecl-twig/button' with {
+      {% include '@ecl-twig/twig-component-button/button.html.twig' with {
         'label': current,
         'type': 'button',
         'variant': 'secondary',

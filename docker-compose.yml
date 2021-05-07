@@ -14,7 +14,7 @@ services:
       XDEBUG_MODE: "develop, debug"
       PHP_IDE_CONFIG: "serverName=Docker"
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
-      # XDEBUG_SESSION: 1
+      XDEBUG_SESSION: 1
   mysql:
     image: percona/percona-server:5.7
     command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3

@@ -14,7 +14,7 @@
         <a href="{{ item.url }}" class="ecl-tag ecl-tag--removable ecl-u-mr-xs ecl-u-mb-s">
           {{ item.label }}
           <span type="button" aria-label="Dismiss" class="ecl-tag__icon">
-          {% include '@ecl-twig/icon' with {
+          {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
             icon: {
               path: ecl_icon_path,
               type: "ui",
@@ -23,7 +23,7 @@
             },
             extra_classes: "ecl-tag__icon-close"
           } only %}
-            {% include '@ecl-twig/icon' with {
+            {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
               icon: {
                 path: ecl_icon_path,
                 type: "ui",

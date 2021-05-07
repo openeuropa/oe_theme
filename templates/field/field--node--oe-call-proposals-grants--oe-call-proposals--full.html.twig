@@ -7,7 +7,7 @@
  */
 #}
 {% for item in items %}
-  {% include '@ecl-twig/link' with {
+  {% include '@ecl-twig/twig-component-link/link.html.twig' with {
     link: {
       type: 'standalone',
       label: 'Grands awarded'|t,

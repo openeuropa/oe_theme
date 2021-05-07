@@ -50,7 +50,7 @@
       {% for _link in _links %}
         {% set _active_class = _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
         <li class="ecl-navigation-list__item ecl-unordered-list__item ecl-u-d-inline{{ _list_item_class }}{{ _active_class }}">
-          {% include '@ecl-twig/link' with _link only %}
+          {% include '@ecl-twig/twig-component-link/link.html.twig' with _link only %}
         </li>
       {% endfor %}
     </ul>

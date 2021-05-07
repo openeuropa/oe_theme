@@ -14,6 +14,14 @@ services:
       - '@logger.factory'
     tags:
       - { name: twig.loader, priority: -100 }
+  oe_theme_helper.twig_loader.component_library_new:
+    class: Drupal\oe_theme_helper\Loader\NewComponentLibraryLoader
+    arguments:
+      - '@app.root'
+      - '@theme_handler'
+      - '@logger.factory'
+    tags:
+      - { name: twig.loader, priority: -101 }
   oe_theme_helper.route_subscriber:
     class: Drupal\oe_theme_helper\Routing\RouteSubscriber
     tags:
