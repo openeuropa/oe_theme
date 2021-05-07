@@ -33,7 +33,7 @@
   {% set _links = _links|merge([_link]) %}
 {% endfor %}
 
-{% include '@ecl-twig/social-media-follow' with {
+{% include '@ecl-twig/twig-component-social-media-follow/social-media-follow.html.twig' with {
   'description': title,
   'links': _links,
 } %}

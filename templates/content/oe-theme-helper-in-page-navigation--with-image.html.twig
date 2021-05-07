@@ -12,7 +12,7 @@
 {% block navigation %}
   {% if image %}
     <div class="ecl-u-mb-l">
-      {% include '@ecl-twig/media-container' with {
+      {% include '@ecl-twig/twig-component-media-container/media-container.html.twig' with {
         'image': image.src,
         'alt': image.alt,
         'extra_classes': 'ecl-u-bg-white'
@@ -20,7 +20,7 @@
     </div>
   {% endif %}
   {% if _links %}
-    {% include '@ecl-twig/inpage-navigation' with {
+    {% include '@ecl-twig/twig-component-inpage-navigation/inpage-navigation.html.twig' with {
       'title': title,
       'links': _links,
       'icon_path': ecl_icon_path

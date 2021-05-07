@@ -88,7 +88,7 @@
 
   <label for="{{ _id }}" class="ecl-checkbox__label{{ _required ? " form-required" }}">
     <span class="ecl-checkbox__box">
-      {% include '@ecl-twig/icon' with {
+      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
         icon: {
           path: _icon_path,
           type: "ui",

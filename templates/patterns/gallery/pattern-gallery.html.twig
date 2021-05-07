@@ -19,7 +19,7 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% include '@ecl-twig/gallery' with {
+{% include '@ecl-twig/twig-component-gallery/gallery.html.twig' with {
   'overlay': {
     'counter_separator': ' / ',
     'close': {

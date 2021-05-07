@@ -108,6 +108,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "openeuropa/ecl-twig-loader": {
+                "EWPP-10965": "https://github.com/openeuropa/ecl-twig-loader/compare/2.1.0..EWPP-1096.diff"
             }
         },
         "drupal-scaffold": {

@@ -9,7 +9,7 @@
 {% for item in items %}
   {% set bubble_cache = item.content|render %}
   <div class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pt-l ecl-u-pb-l">
-    {% include '@ecl-twig/link' with {
+    {% include '@ecl-twig/twig-component-link/link.html.twig' with {
       link: {
         type: 'standalone',
         label: 'Press contacts'|t,

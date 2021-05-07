@@ -17,7 +17,7 @@
 <div class="ecl-u-mv-l">
   <h2 class="ecl-u-ma-none ecl-u-type-prolonged-xl ecl-u-type-bold">
     {% if title_url %}
-      {% include '@ecl-twig/link' with {
+      {% include '@ecl-twig/twig-component-link/link.html.twig' with {
         'link': {
           'type': 'standalone',
           'label': title,
@@ -38,7 +38,7 @@
       {% for link in links %}
         <li class="ecl-unordered-list__item">
           {% if link.link.path %}
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% include '@ecl-twig/twig-component-link/link.html.twig' with { link: link.link|merge({type: 'standalone'}) } only %}
           {% else %}
             {{ link.link.label }}
           {% endif %}
@@ -51,7 +51,7 @@
       <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
         {% for link in secondary_links %}
           <li class="ecl-unordered-list__item">
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% include '@ecl-twig/twig-component-link/link.html.twig' with { link: link.link|merge({type: 'standalone'}) } only %}
           </li>
         {% endfor %}
       </ul>
