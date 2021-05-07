@@ -1,43 +1,15 @@
 /**
  * @file
- * ECL inpage navigation initializer.
+ * ECL inpage navigation JS code.
  */
 (function (ECL, Drupal, $) {
-
-  Drupal.theme.oe_theme_inpage_navigation_item = function (id, title) {
-    return '<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link="">' + title + '</a></li>';
-  }
-
+  /**
+   * Initialises the ECL inpage navigation items.
+   *
+   * @type {Drupal~behavior}
+   */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
-
-      // Reused solution introduced in following repo: https://github.com/markedjs/marked/blob/master/src/Slugger.js.
-      // Unfortunately, this javascript code can't be used as a module, that is why this code was incorporated manually.
-      var seenIds = {};
-      function slug (value) {
-        var originalSlug = value
-          .toLowerCase()
-          .trim()
-          // remove html tags
-          .replace(/<[!\/a-z].*?>/ig, '')
-          // remove unwanted chars
-          .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
-          .replace(/\s/g, '-');
-
-        var slug = originalSlug;
-        var occurenceAccumulator = 0;
-        if (seenIds.hasOwnProperty(slug)) {
-          occurenceAccumulator = seenIds[originalSlug];
-          do {
-            occurenceAccumulator++;
-            slug = originalSlug + '-' + occurenceAccumulator;
-          } while (seenIds.hasOwnProperty(slug));
-        }
-        seenIds[originalSlug] = occurenceAccumulator;
-        seenIds[slug] = 0;
-        return slug;
-      }
-
       // Loop through all the elements marked as source areas.
       Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-area]'), function (area) {
         var selectors = area.getAttribute('data-inpage-navigation-source-area');
@@ -82,4 +54,62 @@
       })
     },
   };
+
+  var seenIds = {};
+
+  /**
+   * Generates a unique slug from a text string.
+   *
+   * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
+   * Since the above file is part of a bigger library, we extracted its code and adapted to account for already existing
+   * IDs on the page.
+   *
+   * @param {string} value
+   *   The string to process.
+   *
+   * @returns {string}
+   *   A unique slug, safe to use as ID for an element.
+   */
+  function slug(value) {
+    var originalSlug = value
+      .toLowerCase()
+      .trim()
+      // Remove html tags.
+      .replace(/<[!\/a-z].*?>/ig, '')
+      // Remove unwanted chars.
+      .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
+      .replace(/\s/g, '-');
+
+    var slug = originalSlug;
+    var occurrenceAccumulator = 0;
+
+    // Increase the counter if the slug has already been returned or if an element with said slug as ID exists in the
+    // page.
+    if (seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug)) {
+      occurrenceAccumulator = seenIds[originalSlug] || occurrenceAccumulator;
+      do {
+        occurrenceAccumulator++;
+        slug = originalSlug + '-' + occurrenceAccumulator;
+      } while (seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug));
+    }
+    seenIds[originalSlug] = occurrenceAccumulator;
+    seenIds[slug] = 0;
+
+    return slug;
+  }
+
+  /**
+   * Theme function for a single inpage navigation item.
+   *
+   * @param {string} id
+   *   The ID of the element this item points to.
+   * @param {string} text
+   *   The text of the link.
+   *
+   * @return {string}
+   *   The HTML of the item.
+   */
+  Drupal.theme.oe_theme_inpage_navigation_item = function (id, text) {
+    return '<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link="">' + text + '</a></li>';
+  }
 })(ECL, Drupal, jQuery);
