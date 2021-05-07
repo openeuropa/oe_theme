@@ -83,10 +83,14 @@
     var slug = originalSlug;
     var occurrenceAccumulator = 0;
 
-    // Increase the counter if the slug has already been returned or if an element with said slug as ID exists in the
-    // page.
-    if (seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug)) {
-      occurrenceAccumulator = seenIds[originalSlug] || occurrenceAccumulator;
+    // If an element with the generated slug as ID already exists, mark the slug as seen.
+    if (!seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
+      seenIds[slug] = 0;
+    }
+
+    // If the slug has been returned already, increase the counter, making sure that the ID is not present in the page.
+    if (seenIds.hasOwnProperty(slug)) {
+      occurrenceAccumulator = seenIds[slug];
       do {
         occurrenceAccumulator++;
         slug = originalSlug + '-' + occurrenceAccumulator;
