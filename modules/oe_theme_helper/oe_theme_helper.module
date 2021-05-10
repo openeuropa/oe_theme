@@ -102,6 +102,11 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
         'name' => '',
       ],
     ],
+    'oe_theme_helper_inpage_navigation_block' => [
+      'variables' => [
+        'title' => NULL,
+      ],
+    ],
   ];
 }
 

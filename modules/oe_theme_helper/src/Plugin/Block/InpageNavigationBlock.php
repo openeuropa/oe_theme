@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_inpage_navigation\Plugin\Block;
+namespace Drupal\oe_theme_helper\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
 
@@ -10,7 +10,7 @@ use Drupal\Core\Block\BlockBase;
  * Provides an In-page navigation block.
  *
  * @Block(
- *   id = "oe_theme_inpage_navigation_menu",
+ *   id = "oe_theme_helper_inpage_navigation",
  *   admin_label = @Translation("Inpage navigation block"),
  *   category = @Translation("OpenEuropa"),
  * )
@@ -22,7 +22,7 @@ class InpageNavigationBlock extends BlockBase {
    */
   public function build() {
     $build['content'] = [
-      '#theme' => 'oe_theme_inpage_navigation_block',
+      '#theme' => 'oe_theme_helper_inpage_navigation_block',
       '#title' => $this->t('Page contents'),
     ];
     return $build;
