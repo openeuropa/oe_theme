@@ -39,6 +39,9 @@ function oe_theme_content_organisation_post_update_00001() {
  * Update the 'full' entity view display on the organisation CT.
  */
 function oe_theme_content_organisation_post_update_00002() {
+  // Enable new dependency.
+  \Drupal::service('module_installer')->install(['oe_content_organisation_person_reference']);
+
   $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_organisation') . '/config/post_updates/00002_update_full_view_display');
   $view_display_values = $storage->read('core.entity_view_display.node.oe_organisation.full');
   $view_display = EntityViewDisplay::load($view_display_values['id']);

@@ -21,6 +21,7 @@ class FeaturedMediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterT
    */
   protected static $modules = [
     'oe_content_featured_media_field',
+    'node',
   ];
 
   /**

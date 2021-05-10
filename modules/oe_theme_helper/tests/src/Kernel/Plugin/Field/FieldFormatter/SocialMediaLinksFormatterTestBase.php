@@ -25,6 +25,7 @@ class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
     'link',
     'typed_link',
     'entity_test',
+    'node',
   ];
 
   /**

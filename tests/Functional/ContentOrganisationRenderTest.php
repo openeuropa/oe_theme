@@ -5,6 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\node\Entity\Node;
+use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
@@ -30,6 +32,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     'oe_theme_helper',
     'oe_theme_content_entity_contact',
     'oe_theme_content_organisation',
+    'oe_theme_content_person',
     'page_header_metadata_test',
     'media_avportal_mock',
   ];
@@ -54,7 +57,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = $this->getStorage('media')->create([
+    $media = Media::create([
       'bundle' => 'image',
       'name' => 'test image',
       'oe_media_image' => [
@@ -68,8 +71,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     $first_general_contact = $this->createContactEntity('first_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
 
-    /** @var \Drupal\node\Entity\Node $node */
-    $node = $this->getStorage('node')->create([
+    $node = Node::create([
       'type' => 'oe_organisation',
       'title' => 'My node title',
       'oe_summary' => 'My introduction',
@@ -196,7 +198,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertContactDefaultRender($content_items[2], 'first_general_contact');
 
     // Create another contact and add it to the node.
-    $second_general_contact = $this->createContactEntity('second_general_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $second_general_contact = $this->createContactEntity('second_general_contact', 'oe_general');
     $node->set('oe_organisation_contact', [$first_general_contact, $second_general_contact]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -207,6 +209,76 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $contacts);
     $this->assertContactDefaultRender($contacts[0], 'first_general_contact');
     $this->assertContactDefaultRender($contacts[1], 'second_general_contact');
+
+    // Set value for only the staff search link field and assert rendering is
+    // updated.
+    $node->set('oe_organisation_staff_link', [
+      'uri' => 'https://example.com',
+      'title' => 'Search for staff',
+    ])->save();
+    $this->drupalGet($node->toUrl());
+
+    // Assert Contact group was moved on the 4th position.
+    $content_items = $content->findAll('xpath', '/div');
+    $contact_headers = $content_items[3]->findAll('css', 'h2');
+    $this->assertEquals('Contact', $contact_headers[0]->getText());
+    // Assert Leadership and organisation region is rendered.
+    $this->assertContentHeader($content_items[2], 'Leadership and organisation', 'leadership-and-organisation');
+    // Assert staff search link values.
+    $staff_search_link = $content_items[2]->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $this->assertCount(1, $staff_search_link);
+    $this->assertEquals('Search for staff', $staff_search_link[0]->find('css', '.ecl-link__label')->getText());
+    $staff_search_link[0]->hasLink('https://example.com');
+
+    // Create jobs for person entity.
+    $person_job_1 = PersonJob::create([
+      'type' => 'oe_default',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS',
+    ]);
+    $person_job_1->save();
+    $person_job_2 = PersonJob::create([
+      'type' => 'oe_default',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF',
+    ]);
+    $person_job_2->save();
+    // Create a person node to be referenced by the organisation node.
+    $person = Node::create([
+      'type' => 'oe_person',
+      'oe_person_first_name' => 'Jane',
+      'oe_person_last_name' => 'Doe',
+      'status' => 1,
+    ]);
+    $person->save();
+    // Create document to be referenced as organisation chart.
+    $chart = $this->createMediaDocument('chart');
+
+    // Update the node values for person and organisation chart fields.
+    $node->set('oe_organisation_persons', $person)
+      ->set('oe_organisation_chart', $chart);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $this->assertCount(1, $person_content);
+    // Assert person content.
+    $first_person_image = $person_content[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
+    // Assert default image.
+    $this->assertEquals('background-image:url(/build/themes/custom/oe_theme/images/user_icon.svg)', $first_person_image->getAttribute('style'));
+    // Assert role div is not printed when there are no jobs.
+    $this->assertCount(0, $person_content[0]->findAll('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs'));
+    // Assert name.
+    $this->assertEquals('Jane Doe', $person_content[0]->find('css', '.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs.ecl-u-mb-none.ecl-u-type-bold')->getText());
+    // Assert organisation chart document.
+    $chart_document = $content_items[2]->findAll('css', '.ecl-u-mb-l.ecl-u-mt-l');
+    $this->assertMediaDocumentDefaultRender($chart_document[0], 'chart', 'English', '2.96 KB - PDF', '', 'Download');
+
+    // Update person node with jobs and assert rendering is updated.
+    $person->set('oe_person_jobs', [$person_job_1, $person_job_2]);
+    $person->save();
+    $this->getSession()->reload();
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $this->assertEquals('Advisor, Chief advisor', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
   }
 
 }
