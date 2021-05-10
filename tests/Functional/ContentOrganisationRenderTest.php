@@ -261,6 +261,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
     $this->assertCount(1, $person_content);
+    $this->assertContains('node/2', $person_content[0]->find('css', 'a.ecl-link--standalone.ecl-u-type-none')->getAttribute('href'));
     // Assert person content.
     $first_person_image = $person_content[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
     // Assert default image.
