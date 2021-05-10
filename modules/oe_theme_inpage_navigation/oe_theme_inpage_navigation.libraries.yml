@@ -1,6 +1,0 @@
-inpage_navigation:
-  js:
-    js/inpage_navigation.js: {}
-  dependencies:
-    - core/drupal
-    - core/jquery
