@@ -7,3 +7,11 @@ core: 8.x
 dependencies:
   - oe_theme:oe_theme_helper
   - oe_content:oe_content_entity_contact
+
+config_devel:
+  install:
+    - core.entity_view_display.oe_contact.oe_general.full
+    - core.entity_view_display.oe_contact.oe_general.oe_details
+    - core.entity_view_display.oe_contact.oe_press.full
+    - core.entity_view_display.oe_contact.oe_press.oe_details
+    - core.entity_view_mode.oe_contact.full
