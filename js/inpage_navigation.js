@@ -1,10 +1,14 @@
 /**
  * @file
- * ECL inpage navigation JS code.
+ * ECL inpage navigation initialisation code.
  */
 (function (ECL, Drupal, $) {
   /**
-   * Initialises the ECL inpage navigation items.
+   * Creates ECL inpage navigation items with elements gathered from defined source areas.
+   *
+   * To mark an element as source area, set the attribute `data-inpage-navigation-source-area`, where the value is a
+   * valid CSS selector. The elements targeted by all the selectors in the page will be used to generate an item in the
+   * navigation list. If the element is missing the ID attribute, one will be generated automatically.
    *
    * @type {Drupal~behavior}
    */
