@@ -1,0 +1,44 @@
+{#
+/**
+ * @file
+ * Test template with content for in-page navigation.
+ */
+#}
+{# A source area with a complex selector, including encoded characters. #}
+<div id="inpage-navigation-test-container" data-inpage-navigation-source-area="h3.heading,[data-test-attribute=&quot;heading&quot;]">
+
+  {# A nested source area, with a selector that overlaps partially the one above. #}
+  <div data-inpage-navigation-source-area="h3">
+    {# An element that will be picked by both selectors. First occurrence of an heading with "Details" as text. #}
+    <h3 class="heading">Details</h3>
+    <h3>Multiple words with spaces </h3>
+    <p>Lorem ipsum dolor sit.</p>
+    <h4>Small heading</h4>
+
+    {# Placed inside the nested source area to verify that outer selectors search inside nested areas. #}
+    <strong data-test-attribute="heading">Test on attribute selector.</strong>
+    <p data-test-attribute="content">Lorem ipsum dolor sit amet.</p>
+  </div>
+
+  {# Second occurrence of an heading with "Details" as text. #}
+  <h3 class="heading">Details</h3>
+
+  {# An element with an already specified ID. #}
+  <h3 class="heading" id="details">More details</h3>
+
+  <h3>Not targeted</h3>
+
+  <h3 class="heading">Title with <strong>HTML tags</strong></h3>
+
+  <h4 class="heading">Not targeted</h4>
+
+  <h3 class="heading strip">Strip &#8255;\'!"#$%&()*+,./:;<=>?@[]^`{|}~ unwanted characters</h3>
+
+  {# Scenarios to test the correct handling of object properties with Object.hasOwnProperty(). #}
+  {# An element with an existing ID that can represent a property of the Object prototype. #}
+  <h3 class="heading" id="constructor">Reserved keyword</h3>
+
+  {# An element that will generate an ID that can represent a property of the Object prototype. #}
+  <h3 class="heading">Length</h3>
+
+</div>
