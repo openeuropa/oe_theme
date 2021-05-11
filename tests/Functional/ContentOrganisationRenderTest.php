@@ -261,7 +261,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
     $this->assertCount(1, $person_content);
-    $this->assertContains('node/2', $person_content[0]->find('css', 'a.ecl-link--standalone.ecl-u-type-none')->getAttribute('href'));
+    $this->assertContains('node/2', $person_content[0]->find('css', 'a.ecl-link.ecl-link--standalone')->getAttribute('href'));
     // Assert person content.
     $first_person_image = $person_content[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
     // Assert default image.
@@ -269,7 +269,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     // Assert role div is not printed when there are no jobs.
     $this->assertCount(0, $person_content[0]->findAll('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs'));
     // Assert name.
-    $this->assertEquals('Jane Doe', $person_content[0]->find('css', '.ecl-u-type-paragraph.ecl-u-type-color-grey-100.ecl-u-mt-xs.ecl-u-mb-none.ecl-u-type-bold')->getText());
+    $this->assertEquals('Jane Doe', $person_content[0]->find('css', 'a.ecl-link.ecl-link--standalone')->getText());
     // Assert organisation chart document.
     $chart_document = $content_items[2]->findAll('css', '.ecl-u-mb-l.ecl-u-mt-l');
     $this->assertMediaDocumentDefaultRender($chart_document[0], 'chart', 'English', '2.96 KB - PDF', '', 'Download');

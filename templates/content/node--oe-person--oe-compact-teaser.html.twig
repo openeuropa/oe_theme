@@ -10,8 +10,6 @@
     {% if not node.oe_person_jobs.isEmpty() %}
       <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ content.oe_person_jobs }}</div>
     {% endif %}
-    <a href="{{ url }}" class="ecl-link--standalone ecl-u-type-none">
-      <p class="ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mt-xs ecl-u-mb-none ecl-u-type-bold">{{ label }}</p>
-    </a>
+    <a href="{{ url }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ label }}</a>
   </div>
 </article>
