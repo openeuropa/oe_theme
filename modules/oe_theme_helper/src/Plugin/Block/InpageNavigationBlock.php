@@ -24,6 +24,11 @@ class InpageNavigationBlock extends BlockBase {
     $build['content'] = [
       '#theme' => 'oe_theme_helper_inpage_navigation_block',
       '#title' => $this->t('Page contents'),
+      '#attached' => [
+        'library' => [
+          'oe_theme/inpage_navigation',
+        ],
+      ],
     ];
     return $build;
   }
