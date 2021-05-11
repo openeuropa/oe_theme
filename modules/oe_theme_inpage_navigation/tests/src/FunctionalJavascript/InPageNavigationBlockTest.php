@@ -32,6 +32,8 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   public function setUp() {
+    $this->markTestSkipped('To be moved in EWCMS.');
+
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
