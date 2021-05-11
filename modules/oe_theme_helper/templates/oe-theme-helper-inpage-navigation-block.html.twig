@@ -1,13 +1,10 @@
 {#
 /**
  * @file
- * Theme to display in-page navigation for nodes.
+ * Template to display an inpage navigation block.
  */
 #}
-{{ attach_library('oe_theme/inpage_navigation') }}
-{% block navigation %}
-  {% include '@ecl-twig/inpage-navigation' with {
-    'title': title,
-    'icon_path': ecl_icon_path,
-  } %}
-{% endblock %}
+{% include '@ecl-twig/inpage-navigation' with {
+  'title': title,
+  'icon_path': ecl_icon_path,
+} %}
