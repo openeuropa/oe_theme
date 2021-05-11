@@ -118,6 +118,6 @@
    *   The HTML of the item.
    */
   Drupal.theme.oe_theme_inpage_navigation_item = function (id, text) {
-    return '<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link="">' + text + '</a></li>';
+    return '<li class="ecl-inpage-navigation__item"><a href="#' + id + '" class="ecl-link ecl-link--standalone ecl-inpage-navigation__link" data-ecl-inpage-navigation-link>' + text + '</a></li>';
   }
 })(ECL, Drupal, jQuery);
