@@ -83,6 +83,9 @@ class FilterEclTableTest extends KernelTestBase {
       // Table contains colspan - leave as-is.
       '<table><thead><tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr></thead><tbody><tr><td colspan="2">1-1</td><td>1-3</td></tr><tr><td>2-1</td><td>2-2</td><td>2-3</td></tr></tbody></table>' =>
       '<table><thead><tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr></thead><tbody><tr><td colspan="2">1-1</td><td>1-3</td></tr><tr><td>2-1</td><td>2-2</td><td>2-3</td></tr></tbody></table>',
+      // Table with multi header - leave as-is.
+      '<table><thead><tr><th>Column 1</th><th colspan="2">Columns 2 - 3</th><th>Column 4</th></tr><tr><th></th><th>Column 2</th><th>Column 3</th><th></th></tr></thead><tbody><tr><td>1-1</td><td>1-2</td><td>1-3</td><td>1-4</td></tr><tr><td>2-1</td><td>2-2</td><td>2-3</td><td>2-4</td></tr></tbody></table>' =>
+      '<table><thead><tr><th>Column 1</th><th colspan="2">Columns 2 - 3</th><th>Column 4</th></tr><tr><th></th><th>Column 2</th><th>Column 3</th><th></th></tr></thead><tbody><tr><td>1-1</td><td>1-2</td><td>1-3</td><td>1-4</td></tr><tr><td>2-1</td><td>2-2</td><td>2-3</td><td>2-4</td></tr></tbody></table>',
       // Table without tbody - leave as-is.
       '<table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tr><td>1-1</td><td>1-2</td></tr><tr><td>2-1</td><td>2-2</td></tr></table>' =>
       '<table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tr><td>1-1</td><td>1-2</td></tr><tr><td>2-1</td><td>2-2</td></tr></table>',

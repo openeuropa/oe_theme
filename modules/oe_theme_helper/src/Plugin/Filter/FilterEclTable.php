@@ -97,6 +97,10 @@ class FilterEclTable extends FilterBase {
       // Get columns headers.
       foreach ($thead->getElementsByTagName('tr') as $tr) {
         foreach ($tr->getElementsByTagName('th') as $th) {
+          if ($this->isCellMerged($th)) {
+            // Merged cells aren't supported.
+            return [];
+          }
           $header[] = $th->nodeValue;
         }
       }
