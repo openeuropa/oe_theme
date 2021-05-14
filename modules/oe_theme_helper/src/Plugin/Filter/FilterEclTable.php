@@ -73,6 +73,12 @@ class FilterEclTable extends FilterBase {
     $merged_cells = FALSE;
     $this->processTableCells($tbody_node, $header, $merged_cells, $th_exist);
 
+    $tfoot_node = $table_node->getElementsByTagName('tfoot')->item(0);
+    if (!empty($tfoot_node)) {
+      // Process tfoot.
+      $this->processTableCells($tfoot_node, $header, $merged_cells, $th_exist);
+    }
+
     if (!$merged_cells && $th_exist) {
       // Return new table if there aren't merged cells and th tags exist.
       return $table_node;
@@ -136,7 +142,7 @@ class FilterEclTable extends FilterBase {
 
         if ($node->tagName === 'td') {
           // Add column titles to the "td" tag to support horizontal header.
-          if (!empty($header)) {
+          if (!empty($header[$index])) {
             $node->setAttribute('data-ecl-table-header', $header[$index]);
           }
 
