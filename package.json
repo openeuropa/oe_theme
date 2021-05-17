@@ -4,6 +4,7 @@
   "description": "OpenEuropa base theme.",
   "private": true,
   "scripts": {
+    "build:copy-twig": "grunt copy",
     "build:copy": "ecl-builder copy",
     "build:styles": "ecl-builder styles",
     "build": "npm-run-all --parallel build:* -ln",
@@ -66,6 +67,8 @@
     "@ecl/eu-utility-border": "2.37.0",
     "@ecl/stylelint-config": "0.2.1",
     "chokidar-cli": "1.2.0",
+    "grunt": "^1.4.0",
+    "grunt-contrib-copy": "^1.0.0",
     "node-sass": "4.13.1",
     "npm-run-all": "4.0.2",
     "patch-package": "^5.1.2",
