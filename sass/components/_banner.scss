@@ -1,3 +1,6 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
+@use '@ecl/vanilla-layout-grid/mixins/breakpoints';
 .ecl-page-banner--full-width {
   width: 100vw;
   position: relative;
@@ -7,20 +10,20 @@
   margin-right: -50vw;
 
   // Fix page and hero banner text block left alignment.
-  @include ecl-media-breakpoint-up('lg') {
+  @include breakpoints.up('lg') {
     .ecl-page-banner__container {
-      width: $ecl-container-max-width-lg;
+      width: map.get(theme.$container, 'l');
     }
     .ecl-hero-banner__container {
-      width: $ecl-container-max-width-lg;
+      width: map.get(theme.$container, 'l');
     }
   }
-  @include ecl-media-breakpoint-up('xl') {
+  @include breakpoints.up('xl') {
     .ecl-page-banner__container {
-      width: $ecl-container-max-width-xl;
+      width: map.get(theme.$container, 'xl');
     }
     .ecl-hero-banner__container {
-      width: $ecl-container-max-width-xl;
+      width: map.get(theme.$container, 'xl');
     }
   }
 }

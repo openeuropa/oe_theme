@@ -1,14 +1,7 @@
-@import '@ecl/eu-theme-default/exports/all';
-@import '@ecl/eu-theme-default/exports/colors';
-@import '@ecl/eu-theme-default/exports/colors-bg';
-@import '@ecl/eu-theme-default/exports/spacing';
-@import '@ecl/eu-utility-border/eu-utility-border';
-@import '@ecl/ec-utility-background/ec-utility-background';
-@import '@ecl/eu-component-form-help-block/eu-component-form-help-block';
-// Facts and Figure component is missing from EU family so we add it here.
-// @todo remove this after the above will be fixed upstream.
-@import '@ecl/ec-component-fact-figures/ec-component-fact-figures';
-@import '@ecl/ec-component-media-container/ec-component-media-container';
+@use '@ecl/vanilla-utility-border/border';
+@use '@ecl/vanilla-utility-background/background';
+// TODO: The help form component is not available on ECL v3.
+//@use '@ecl/eu-component-form-help-block/eu-component-form-help-block';
 @import "./compositions/content_item";
 @import "./compositions/content_language_switcher";
 @import "./components/form";
