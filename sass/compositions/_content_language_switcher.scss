@@ -1,11 +1,13 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 .ecl-page-header-core {
   .ecl-lang-select-page {
     &__unavailable_language {
-      color: $ecl-color-white;
+      color: map.get(theme.$color, 'white');
     }
     .ecl-expandable__content {
       .ecl-button {
-        color: $ecl-color-white;
+        color: map.get(theme.$color, 'white');
       }
     }
   }
@@ -13,7 +15,7 @@
 .ecl-page-header-standardised {
   .ecl-lang-select-page {
     &__unavailable_language {
-      color: $ecl-color-blue;
+      color: map.get(theme.$color, 'blue');
     }
   }
 }
