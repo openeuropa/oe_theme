@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Iframe' paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+
+{# Allow cache from fields to bubble up since we use only values from them. #}
+{% set bubble_cache = content.field_oe_iframe_media_full_width|render %}
+{% set bubble_cache = content.field_oe_media|render %}
+
+{% set extra_classes = [] %}
+
+{% if full_width %}
+  {% set extra_classes = ['ecl-media-container--fullwidth'] %}
+{% endif %}
+
+{% if ratio == 'custom' %}
+  {% set extra_classes = extra_classes|merge(['ecl-media-container--custom-ratio']) %}
+{% endif %}
+
+{% if not paragraph.field_oe_title.isEmpty() %}
+  <h2 class="ecl-u-type-heading-2">{{ content.field_oe_title }}</h2>
+{% endif %}
+
+{% include '@ecl-twig/media-container' with {
+  'embedded_media': iframe|default(''),
+  'ratio': ratio,
+  'extra_classes': extra_classes|join(' '),
+} %}
