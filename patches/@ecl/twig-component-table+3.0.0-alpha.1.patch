@@ -1,7 +1,7 @@
 patch-package
---- a/node_modules/@ecl-twig/ec-component-table/ecl-table.html.twig
-+++ b/node_modules/@ecl-twig/ec-component-table/ecl-table.html.twig
-@@ -108,7 +108,7 @@
+--- a/node_modules/@ecl/twig-component-table/table.html.twig
++++ b/node_modules/@ecl/twig-component-table/table.html.twig
+@@ -106,7 +106,7 @@
          {% set _row_extra_attributes = row.extra_attributes %}
        {% endif %}
        <tr class="{{ _row_css_class }}"{{ _row_extra_attributes }}>
