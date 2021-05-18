@@ -1,0 +1,16 @@
+patch-package
+--- a/node_modules/@ecl/twig-component-page-header-core/page-header-core.html.twig
++++ b/node_modules/@ecl/twig-component-page-header-core/page-header-core.html.twig
+@@ -70,7 +70,11 @@
+       extra_classes: 'ecl-page-header-core__breadcrumb',
+     }) only %}
+   {% endif %}
+-
++  {% if composition is not empty %}
++    <div class="ecl-page-header-core__composition">
++      {{- composition|raw -}}
++    </div>
++  {% endif %}
+   {% if _meta is not empty %}
+     <div class="ecl-page-header-core__meta">
+       {% for _item in _meta %}
