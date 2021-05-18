@@ -275,233 +275,233 @@ class TwigExtension extends \Twig_Extension {
     // ECL supported icons naming and rotation.
     $icons = [
       'facebook' => [
-        'name' => 'branded--facebook',
+        'name' => 'facebook',
       ],
       'instagram' => [
-        'name' => 'branded--instagram',
+        'name' => 'instagram',
       ],
       'linkedin' => [
-        'name' => 'branded--linkedin',
+        'name' => 'linkedin',
       ],
       'pinterest' => [
-        'name' => 'branded--pinterest',
+        'name' => 'pinterest',
       ],
       'rss' => [
-        'name' => 'branded--rss',
+        'name' => 'rss',
       ],
       'skype' => [
-        'name' => 'branded--skype',
+        'name' => 'skype',
       ],
       'twitter' => [
-        'name' => 'branded--twitter',
+        'name' => 'twitter',
       ],
       'youtube' => [
-        'name' => 'branded--youtube',
+        'name' => 'youtube',
       ],
       'audio' => [
-        'name' => 'general--audio',
+        'name' => 'audio',
       ],
       'book' => [
-        'name' => 'general--book',
+        'name' => 'book',
       ],
       'brochure' => [
-        'name' => 'general--brochure',
+        'name' => 'brochure',
       ],
       'budget' => [
-        'name' => 'general--budget',
+        'name' => 'budget',
       ],
       'calendar' => [
-        'name' => 'general--calendar',
+        'name' => 'calendar',
       ],
       'copy' => [
-        'name' => 'general--copy',
+        'name' => 'copy',
       ],
       'data' => [
-        'name' => 'general--data',
+        'name' => 'data',
       ],
       'digital' => [
-        'name' => 'general--digital',
+        'name' => 'digital',
       ],
       'edit' => [
-        'name' => 'general--edit',
+        'name' => 'edit',
       ],
       'energy' => [
-        'name' => 'general--energy',
+        'name' => 'energy',
       ],
       'euro' => [
-        'name' => 'general--euro',
+        'name' => 'euro',
       ],
       'faq' => [
-        'name' => 'general--faq',
+        'name' => 'faq',
       ],
       'feedback' => [
-        'name' => 'general--feedback',
+        'name' => 'feedback',
       ],
       'file' => [
-        'name' => 'general--file',
+        'name' => 'file',
       ],
       'gear' => [
-        'name' => 'general--gear',
+        'name' => 'gear',
       ],
       'generic-lang' => [
-        'name' => 'general--generic-lang',
+        'name' => 'generic-lang',
       ],
       'global' => [
-        'name' => 'general--global',
+        'name' => 'global',
       ],
       'googleplus' => [
-        'name' => 'general--digital',
+        'name' => 'digital',
       ],
       'growth' => [
-        'name' => 'general--growth',
+        'name' => 'growth',
       ],
       'hamburger' => [
-        'name' => 'general--hamburger',
+        'name' => 'hamburger',
       ],
       'image' => [
-        'name' => 'general--image',
+        'name' => 'image',
       ],
       'infographic' => [
-        'name' => 'general--infographic',
+        'name' => 'infographic',
       ],
       'language' => [
-        'name' => 'general--language',
+        'name' => 'language',
       ],
       'livestreaming' => [
-        'name' => 'general--livestreaming',
+        'name' => 'livestreaming',
       ],
       'location' => [
-        'name' => 'general--location',
+        'name' => 'location',
       ],
       'log-in' => [
-        'name' => 'general--log-in',
+        'name' => 'log-in',
       ],
       'logged-in' => [
-        'name' => 'general--logged-in',
+        'name' => 'logged-in',
       ],
       'multiple-files' => [
-        'name' => 'general--multiple-files',
+        'name' => 'multiple-files',
       ],
       'organigram' => [
-        'name' => 'general--organigram',
+        'name' => 'organigram',
       ],
       'package' => [
-        'name' => 'general--package',
+        'name' => 'package',
       ],
       'presentation' => [
-        'name' => 'general--presentation',
+        'name' => 'presentation',
       ],
       'print' => [
-        'name' => 'general--print',
+        'name' => 'print',
       ],
       'regulation' => [
-        'name' => 'general--regulation',
+        'name' => 'regulation',
       ],
       'search' => [
-        'name' => 'general--search',
+        'name' => 'search',
       ],
       'share' => [
-        'name' => 'general--share',
+        'name' => 'share',
       ],
       'slides' => [
-        'name' => 'general--presentation',
+        'name' => 'presentation',
       ],
       'spinner' => [
-        'name' => 'general--spinner',
+        'name' => 'spinner',
       ],
       'spreadsheet' => [
-        'name' => 'general--spreadsheet',
+        'name' => 'spreadsheet',
       ],
       'video' => [
-        'name' => 'general--video',
+        'name' => 'video',
       ],
       'camera' => [
-        'name' => 'general--video',
+        'name' => 'video',
       ],
       'error' => [
-        'name' => 'notifications--error',
+        'name' => 'error',
       ],
       'information' => [
-        'name' => 'notifications--information',
+        'name' => 'information',
       ],
       'info' => [
-        'name' => 'notifications--information',
+        'name' => 'information',
       ],
       'success' => [
-        'name' => 'notifications--success',
+        'name' => 'success',
       ],
       'warning' => [
-        'name' => 'notifications--warning',
+        'name' => 'warning',
       ],
       'check' => [
-        'name' => 'ui--check',
+        'name' => 'check',
       ],
       'check-filled' => [
-        'name' => 'ui--check-filled',
+        'name' => 'check-filled',
       ],
       'close' => [
-        'name' => 'ui--close',
+        'name' => 'close',
       ],
       'close-filled' => [
-        'name' => 'ui--close-filled',
+        'name' => 'close-filled',
       ],
       'corner-arrow' => [
-        'name' => 'ui--corner-arrow',
+        'name' => 'corner-arrow',
       ],
       'download' => [
-        'name' => 'ui--download',
+        'name' => 'download',
       ],
       'external' => [
-        'name' => 'ui--external',
+        'name' => 'external',
       ],
       'fullscreen' => [
-        'name' => 'ui--fullscreen',
+        'name' => 'fullscreen',
       ],
       'minus' => [
-        'name' => 'ui--minus',
+        'name' => 'minus',
       ],
       'plus' => [
-        'name' => 'ui--plus',
+        'name' => 'plus',
       ],
       'rounded-arrow' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
       ],
       'solid-arrow' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
       ],
       'close-dark' => [
-        'name' => 'ui--close-filled',
+        'name' => 'close-filled',
       ],
       'in' => [
-        'name' => 'ui--download',
+        'name' => 'download',
       ],
       'tag-close' => [
-        'name' => 'ui--close',
+        'name' => 'close',
       ],
       'up' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
       ],
       'arrow-down' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
         'transform' => 'rotate-180',
       ],
       'arrow-up' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
       ],
       'breadcrumb' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
         'transform' => 'rotate-90',
       ],
       'down' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
         'transform' => 'rotate-180',
       ],
       'left' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
         'transform' => 'rotate-270',
       ],
       'right' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'rounded-arrow',
         'transform' => 'rotate-90',
       ],
     ];
@@ -517,14 +517,14 @@ class TwigExtension extends \Twig_Extension {
 
     if ($size) {
       return [
-        'name' => 'general--digital',
+        'name' => 'digital',
         'path' => $path,
         'size' => $size,
       ];
     }
 
     return [
-      'name' => 'general--digital',
+      'name' => 'digital',
       'path' => $path,
     ];
   }
@@ -628,7 +628,6 @@ class TwigExtension extends \Twig_Extension {
 
     $icon = [
       'path' => $icon_path,
-      'type' => 'ui',
       'size' => $size,
       'color' => 'primary',
     ];
@@ -670,7 +669,6 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link += [
           'icon' => [
             'path' => $context['ecl_icon_path'],
-            'type' => 'ui',
             'name' => 'external',
           ],
         ];
@@ -681,7 +679,6 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link += [
           'icon' => [
             'path' => $context['ecl_icon_path'],
-            'type' => 'branded',
             'name' => $link['social_network'],
           ],
         ];

@@ -299,7 +299,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'right',
         [
-          'name' => 'ui--rounded-arrow',
+          'name' => 'rounded-arrow',
           'transform' => 'rotate-90',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xs',
@@ -309,7 +309,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'close-dark',
         [
-          'name' => 'ui--close-filled',
+          'name' => 'close-filled',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xl',
         ],
@@ -318,7 +318,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'not-supported-icon',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'm',
         ],
@@ -327,7 +327,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'no-size',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
         ],
         NULL,
@@ -335,7 +335,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'empty-size',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => '',
         ],
