@@ -35,7 +35,7 @@
     {% block title %}
       <div class="ecl-content-item-date__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
         {%- if url %}
-          {% include '@ecl-twig/twig-component-link/link.html.twig' with {
+          {% include '@ecl-twig/link/link' with {
             link: {
               type: 'standalone',
               label: title,

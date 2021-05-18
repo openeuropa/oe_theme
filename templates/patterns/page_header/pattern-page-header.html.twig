@@ -49,7 +49,7 @@
   {% endset %}
 {% endif %}
 
-{% include '@ecl-twig/twig-component-page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding ~ '.html.twig' with {
+{% include '@ecl-twig/page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding with {
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,

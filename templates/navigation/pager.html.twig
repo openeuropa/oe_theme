@@ -11,7 +11,7 @@
  */
 #}
 {% if ecl_items %}
-  {% include '@ecl-twig/twig-component-pagination/pagination.html.twig' with {
+  {% include '@ecl-twig/pagination/pagination' with {
     'items': ecl_items,
   } %}
 {% endif %}
