@@ -9,10 +9,7 @@
   {% set _items = _items|merge([{
     id: identifier ~ '-' ~ loop.index0,
     toggle: {
-      label: _item.title,
-      icon: {
-        path: ecl_icon_path
-      }
+      label: _item.title
     },
     content: _item.body
   }]) %}
@@ -20,4 +17,8 @@
 
 {% include '@ecl-twig/accordion/accordion' with {
   'items': _items,
+  'icon': {
+    path: ecl_icon_path,
+    name: 'plus'
+  }
 } %}

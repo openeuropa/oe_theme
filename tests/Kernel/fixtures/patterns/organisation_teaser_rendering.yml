@@ -22,7 +22,7 @@
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(3): "Website"
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(4): '<a class="ecl-link ecl-link--standalone" href="http://www.example.com">http://www.example.com</a>'
       a.ecl-link .ecl-link__label: "Contact organisation"
-      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - fields:
     organisation_details:
       - label: "Address"
@@ -55,11 +55,11 @@
       dl.ecl-description-list dt.ecl-description-list__term:nth-child(1): "Address"
       dl.ecl-description-list dd.ecl-description-list__definition:nth-child(2): "61 Lorem Ipsum Street, Brussels, Belgium, 1000"
       a.ecl-link .ecl-link__label: "Contact organisation"
-      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--corner-arrow"></use>'
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - fields:
     contact_page_url: "mailto:me@example.com"
   assertions:
     count:
       a.ecl-link[href="mailto:me@example.com"]: 1
     equals:
-      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'

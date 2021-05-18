@@ -380,7 +380,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $biography_items = $content_items[6]->findAll('css', 'ol.ecl-timeline2 li.ecl-timeline2__item');
+    $biography_items = $content_items[6]->findAll('css', 'ol.ecl-timeline li.ecl-timeline__item');
     $this->assertCount(6, $biography_items);
     $this->assertTimelineItem($biography_items[0], 'Timeline label 1', 'Timeline title 1', 'Timeline body 1');
     $this->assertTimelineItem($biography_items[1], 'Timeline label 2', 'Timeline title 2', '');
@@ -578,9 +578,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    *   Expected body.
    */
   protected function assertTimelineItem(NodeElement $element, string $label, string $title, string $body):void {
-    $this->assertEquals($label, $element->find('css', '.ecl-timeline2__label')->getText());
-    $this->assertEquals($title, $element->find('css', '.ecl-timeline2__title')->getText());
-    $this->assertEquals($body, $element->find('css', '.ecl-timeline2__content')->getText());
+    $this->assertEquals($label, $element->find('css', '.ecl-timeline__label')->getText());
+    $this->assertEquals($title, $element->find('css', '.ecl-timeline__title')->getText());
+    $this->assertEquals($body, $element->find('css', '.ecl-timeline__content')->getText());
   }
 
 }

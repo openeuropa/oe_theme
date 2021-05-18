@@ -778,7 +778,7 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#video"></use>'
     contains:
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
@@ -1545,16 +1545,16 @@
           body: "Body 2"
   assertions:
     count:
-      '.ecl-accordion2__title': 2
-      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon': 2
-      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-title': 2
-      '.ecl-accordion2__content#id-0-content': 1
-      '.ecl-accordion2__content#id-1-content': 1
+      '.ecl-accordion__title': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
+      '.ecl-accordion__content#id-0-content': 1
+      '.ecl-accordion__content#id-1-content': 1
     equals:
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"] .ecl-accordion2__toggle-title': "Title 1"
-      '.ecl-accordion2__content#id-0-content': "Body 1"
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"] .ecl-accordion2__toggle-title': "Title 2"
-      '.ecl-accordion2__content#id-1-content': "Body 2"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0-content"] .ecl-accordion__toggle-title': "Title 1"
+      '.ecl-accordion__content#id-0-content': "Body 1"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
+      '.ecl-accordion__content#id-1-content': "Body 2"
 - array:
     '#type': pattern
     '#id': dropdown
@@ -2059,8 +2059,8 @@
     count:
       "footer.ecl-card__footer": 1
     equals:
-      'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
-      'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
+      'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
+      'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2090,27 +2090,27 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 2
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 2
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__toggle .ecl-button__label': "Show 2 more items"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__toggle .ecl-button__label': "Show 2 more items"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2137,23 +2137,23 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 6
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 6
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 0
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': "Item 3"
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': "Item 4"
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': "Item 5"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': 'Lorem Ipsum 1'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': "Item 4"
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': "Item 5"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': 'Lorem Ipsum 1'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2183,27 +2183,27 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show all timelines"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show all timelines"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2233,28 +2233,28 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 1
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
     equals:
       'h2.ecl-u-type-heading-2': "Timeline heading"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show 4 more items"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show 4 more items"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2418,10 +2418,10 @@
       'ul li.ecl-unordered-list__item': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Brussels, Belgium'
-      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg>Brussels, Belgium'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -2449,9 +2449,9 @@
       'ul li.ecl-unordered-list__item': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': "pattern"
     '#id': "tag"
@@ -2491,19 +2491,6 @@
       '.ecl-tag': "Tag label"
     count:
       '.ecl-tag--display': 1
-- array:
-    '#type': "pattern"
-    '#id': "tag"
-    '#variant': "default"
-    '#fields':
-      tag_type: "button"
-      url: "http://example.com"
-      label: "Tag label"
-  assertions:
-    equals:
-      'button.ecl-tag': "Tag label"
-    count:
-      'button.ecl-tag': 1
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
@@ -2647,11 +2634,11 @@
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>'
+      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#instagram"></use>'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'

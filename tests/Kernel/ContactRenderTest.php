@@ -165,7 +165,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $expected_values['items'][] = [
       'label' => 'Social media',
-      'body' => html_entity_decode('&nbsp;') . "Social media $name",
+      'body' => "Social media $name",
     ];
     $field_list_assert->assertPattern($expected_values, $this->renderRoot($build));
 

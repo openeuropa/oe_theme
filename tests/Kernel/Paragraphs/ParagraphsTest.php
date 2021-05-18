@@ -92,19 +92,19 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
 
-    $actual = $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle span.ecl-accordion2__toggle-title')->eq(0)->text();
+    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle span.ecl-accordion__toggle-title')->eq(0)->text();
     $this->assertEquals('Item title 1', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion2__content')->eq(0)->text();
+    $actual = $crawler->filter('.ecl-accordion__content')->eq(0)->text();
     $this->assertEquals('Item body 1', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle span.ecl-accordion2__toggle-title')->eq(1)->text();
+    $actual = $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle span.ecl-accordion__toggle-title')->eq(1)->text();
     $this->assertEquals('Item title 2', trim($actual));
 
-    $actual = $crawler->filter('.ecl-accordion2__content')->eq(1)->text();
+    $actual = $crawler->filter('.ecl-accordion__content')->eq(1)->text();
     $this->assertEquals('Item body 2', trim($actual));
 
-    $this->assertCount(2, $crawler->filter('.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon'));
+    $this->assertCount(2, $crawler->filter('.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon'));
   }
 
   /**
@@ -606,9 +606,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
 
     $this->assertEquals('Facts and figures', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#notifications--success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
     $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
