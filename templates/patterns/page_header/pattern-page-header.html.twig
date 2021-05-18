@@ -9,6 +9,7 @@
   {% set _meta %}
     {{ metas|filter_empty|safe_join(" | ") }}
   {% endset %}
+  {% set _metas = [_meta] %}
 {% endif %}
 
 {% set _breadcrumb_links = {} %}
@@ -53,7 +54,7 @@
   'title': title,
   'description': introduction,
   'breadcrumb': _breadcrumb,
-  'meta': _meta,
+  'meta': _metas,
   'infos': _infos,
   'background_image': ecl_branding == 'core' and background_image_url is not empty,
   'background_image_url': background_image_url,

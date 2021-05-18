@@ -108,7 +108,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
       $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
-      $this::assertContains('#general--' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
+      $this::assertContains('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
       $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
     }
   }

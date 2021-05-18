@@ -369,10 +369,10 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertEquals($title, $label[0]->getText());
 
     $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon';
-    $icon_type = 'ui--external';
+    $icon_type = 'external';
     if (!$is_external) {
       $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
-      $icon_type = 'ui--corner-arrow';
+      $icon_type = 'corner-arrow';
     }
     $svg = $link[0]->findAll('css', $svg_locator);
     $this->assertCount(1, $svg);
