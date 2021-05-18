@@ -57,7 +57,7 @@
           {% set _item_classes = _item_classes ~ ' ' ~ 'ecl-contextual-navigation__item--collapsed' %}
         {% endif %}
         <li class="{{ _item_classes }}">
-          {% include '@ecl-twig/twig-component-link/link.html.twig' with item|merge({
+          {% include '@ecl-twig/link/link' with item|merge({
             extra_classes: 'ecl-contextual-navigation__link',
             link: item|merge({
               type: 'standalone'
@@ -70,7 +70,7 @@
           }) %}
           {% set _item_classes = _item_classes ~ ' ' ~ 'ecl-contextual-navigation__item--more' %}
           <li class="{{ _item_classes }}">
-            {% include '@ecl-twig/twig-component-button/button.html.twig' with _item_more|merge({
+            {% include '@ecl-twig/button/button' with _item_more|merge({
               'type': 'button',
               'icon': {
                 'path': ecl_icon_path,

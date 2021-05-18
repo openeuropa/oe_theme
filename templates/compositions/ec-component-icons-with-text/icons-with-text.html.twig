@@ -24,7 +24,7 @@
 <ul class="ecl-unordered-list ecl-unordered-list--no-bullet{{ _compact ? ' ecl-u-type-s ecl-u-mt-m'}}">
   {% for _item in items if _item.text %}
     <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not _compact and not loop.first ? ' ecl-u-mt-m' }}">
-      {% include '@ecl-twig/twig-component-icon/icon.html.twig' with {
+      {% include '@ecl-twig/icon/icon' with {
         icon: {
           path: _icon_path,
           type: 'general',

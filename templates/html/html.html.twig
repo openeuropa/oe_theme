@@ -29,7 +29,7 @@
       Keyboard navigation/accessibility link to main content section in
       page.html.twig.
     #}
-    {% include '@ecl-twig/twig-component-skip-link/skip-link.html.twig' with {
+    {% include '@ecl-twig/skip-link/skip-link' with {
       label: 'Skip to main content'|t,
       href: '#main-content',
       extra_attributes: [{name: 'id', value: 'skip-id'}]

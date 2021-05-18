@@ -48,7 +48,7 @@
       <ul class="ecl-link-block__list ecl-unordered-list--no-bullet ecl-u-ma-none">
         {% for _link in _links %}
           <li class="ecl-link-block__item ecl-u-mt-xs ecl-u-mb-xs">
-            {% include '@ecl-twig/twig-component-link/link.html.twig' with {
+            {% include '@ecl-twig/link/link' with {
               extra_classes: 'ecl-link-block__link'
             }|merge(_link|default({})) only %}
           </li>

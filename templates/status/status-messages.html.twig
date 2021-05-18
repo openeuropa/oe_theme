@@ -18,7 +18,7 @@
 {% endfor %}
 
 {% for type, messages in message_list %}
-  {% include '@ecl-twig/twig-component-message/message.html.twig' with {
+  {% include '@ecl-twig/message/message' with {
     'title': status_headings[type],
     'description': _self.message_list(messages),
     'variant': (type == 'status' ? 'success' : type),
