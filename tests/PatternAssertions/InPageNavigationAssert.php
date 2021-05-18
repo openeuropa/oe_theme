@@ -47,16 +47,17 @@ class InPageNavigationAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertList($expected, string $variant, Crawler $crawler): void {
-    $list_selector = 'ul.ecl-inpage-navigation__list';
-    $this->assertElementExists($list_selector, $crawler);
-    $items = $crawler->filter('.ecl-inpage-navigation__item a');
-    self::assertCount(count($expected), $items);
+    $this->assertElementExists('ul.ecl-inpage-navigation__list', $crawler);
 
-    foreach ($expected as $index => $expected_value) {
-      $item = $items->eq($index);
-      self::assertEquals($expected_value['label'], $item->text());
-      self::assertEquals($expected_value['href'], $item->attr('href'));
-    }
+    $actual = [];
+    $crawler->filter('ul.ecl-inpage-navigation__list .ecl-inpage-navigation__item a')->each(function (Crawler $node) use (&$actual) {
+      $actual[] = [
+        'label' => $node->text(),
+        'href' => $node->attr('href'),
+      ];
+    });
+
+    self::assertEquals($expected, $actual);
   }
 
 }
