@@ -22,167 +22,63 @@ class FilterEclTable extends FilterBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   public function process($text, $langcode) {
     $result = new FilterProcessResult($text);
 
     // Ensure that we have tables in the code.
-    if (stristr($text, '<table') !== FALSE) {
-      $dom = Html::load($text);
-      $body = $dom->getElementsByTagName('body')->item(0);
-      foreach ($dom->getElementsByTagName('table') as $table) {
-        $new_table = $this->getEclTable($table);
-        if ($new_table) {
-          $updated_node = $dom->importNode($new_table, TRUE);
-          $body->replaceChild($updated_node, $table);
+    if (stristr($text, '<table') === FALSE) {
+      return $result;
+    }
+
+    $dom = Html::load($text);
+    $xpath = new \DOMXPath($dom);
+
+    foreach ($xpath->query('//table[.//th]') as $table) {
+      // Skip the table if any cell spans over multiple columns or rows.
+      $span_cells = $xpath->query('.//*[self::th or self::td][(@colspan and @colspan > 1) or (@rowspan and @rowspan > 1)]', $table);
+      if ($span_cells->count() !== 0) {
+        continue;
+      }
+
+      // Do not process tables that use th cells anywhere but in the first
+      // column.
+      $ths_in_body = $xpath->query('.//tr[not(parent::thead)]/*[position()>1 and self::th]', $table);
+      if ($ths_in_body->count() > 0) {
+        continue;
+      }
+
+      $headers = [];
+      // Collect the first header row, validating that is composed only of
+      // th elements.
+      $has_header_row = $xpath->query('(./thead/tr[1])[count(./*[not(self::th)]) = 0]', $table);
+      if ($has_header_row->count()) {
+        $header_row = $has_header_row[0];
+        foreach ($xpath->query('./th', $header_row) as $cell) {
+          $headers[] = $cell->nodeValue;
         }
       }
-      $result->setProcessedText(Html::serialize($dom));
+
+      // Loop through all the table rows, aside from header ones.
+      foreach ($xpath->query('.//tr[not(parent::thead)]', $table) as $row) {
+        // Fetch all the cells inside the row.
+        foreach ($xpath->query('./*[self::th or self::td]', $row) as $cell_index => $cell) {
+          $existing_class = $cell->getAttribute('class');
+          $new_class = $existing_class ? "$existing_class ecl-table__cell" : 'ecl-table__cell';
+          $cell->setAttribute('class', $new_class);
+
+          if (array_key_exists($cell_index, $headers)) {
+            $cell->setAttribute('data-ecl-table-header', $headers[$cell_index]);
+          }
+        }
+      }
     }
+
+    $result->setProcessedText(Html::serialize($dom));
 
     return $result;
-  }
-
-  /**
-   * Gets table with ECL support.
-   *
-   * @param \DOMElement $table
-   *   Original table.
-   *
-   * @return \DOMElement|null
-   *   Table with ECL support or NULL.
-   */
-  protected function getEclTable(\DOMElement $table): ?\DOMElement {
-    // Create a clone to manipulate with.
-    $table_node = $table->cloneNode(TRUE);
-
-    // Skip if "tbody" tag doesn't exist.
-    $tbody_node = $table_node->getElementsByTagName('tbody')->item(0);
-    if (empty($tbody_node)) {
-      return NULL;
-    }
-
-    // Get headers.
-    $th_exist = FALSE;
-    $header = $this->getTableHeader($table_node);
-    if ($header) {
-      $th_exist = TRUE;
-    }
-
-    // Process cells.
-    $merged_cells = FALSE;
-    $this->processTableCells($tbody_node, $header, $merged_cells, $th_exist);
-
-    $tfoot_node = $table_node->getElementsByTagName('tfoot')->item(0);
-    if (!empty($tfoot_node)) {
-      // Process tfoot.
-      $this->processTableCells($tfoot_node, $header, $merged_cells, $th_exist);
-    }
-
-    if (!$merged_cells && $th_exist) {
-      // Return new table if there aren't merged cells and th tags exist.
-      return $table_node;
-    }
-
-    return NULL;
-  }
-
-  /**
-   * Gets columns titles.
-   *
-   * @param \DOMElement $table
-   *   Table as a DOMElement object.
-   *
-   * @return array
-   *   List of columns titles.
-   */
-  protected function getTableHeader(\DOMElement $table): array {
-    $header = [];
-    $thead = $table->getElementsByTagName('thead')->item(0);
-    if (!empty($thead)) {
-      // Get columns headers.
-      foreach ($thead->getElementsByTagName('tr') as $tr) {
-        foreach ($tr->getElementsByTagName('th') as $th) {
-          if ($this->isCellMerged($th)) {
-            // Merged cells aren't supported.
-            return [];
-          }
-          $header[] = $th->nodeValue;
-        }
-      }
-    }
-
-    return $header;
-  }
-
-  /**
-   * Processes table cells.
-   *
-   * @param \DOMElement $tbody
-   *   Tbody node.
-   * @param array $header
-   *   List of columns titles.
-   * @param bool $merged_cells
-   *   Flag to check whether we have merged cells or not.
-   * @param bool $th_exist
-   *   Flag to check whether we have th tag or not.
-   */
-  protected function processTableCells(\DOMElement $tbody, array $header, bool &$merged_cells, bool &$th_exist): void {
-    foreach ($tbody->getElementsByTagName('tr') as $tr_node) {
-      $index = 0;
-
-      foreach ($tr_node->childNodes as $node) {
-        if (!$node instanceof \DOMElement) {
-          continue;
-        }
-        // Set class to "th" and "td" tags in to support vertical headers.
-        $existing_class = $node->getAttribute('class');
-        $new_class = $existing_class ? "$existing_class ecl-table__cell" : 'ecl-table__cell';
-        $node->setAttribute('class', $new_class);
-
-        if ($node->tagName === 'td') {
-          // Add column titles to the "td" tag to support horizontal header.
-          if (!empty($header[$index])) {
-            $node->setAttribute('data-ecl-table-header', $header[$index]);
-          }
-
-          if ($this->isCellMerged($node)) {
-            $merged_cells = TRUE;
-          }
-        }
-
-        if ($node->tagName === 'th') {
-          $th_exist = TRUE;
-        }
-        $index++;
-      }
-    }
-  }
-
-  /**
-   * Checks whether cell is merged or not.
-   *
-   * @param \DOMElement $node
-   *   Table cell.
-   *
-   * @return bool
-   *   TRUE if cell is merged, FALSE otherwise.
-   */
-  protected function isCellMerged(\DOMElement $node): bool {
-    // Tables with merged cells will be skipped.
-    $colspan = (int) $node->getAttribute('colspan');
-    if ($colspan > 1) {
-      // WYSIWYG can set colspan="1" that means no merging cells.
-      return TRUE;
-    }
-
-    $rowspan = (int) $node->getAttribute('rowspan');
-    if ($rowspan > 1) {
-      // WYSIWYG can set rowspan="1" that means no merging cells.
-      return TRUE;
-    }
-
-    return FALSE;
   }
 
 }
