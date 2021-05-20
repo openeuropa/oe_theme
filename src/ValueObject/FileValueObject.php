@@ -11,7 +11,7 @@ use Mimey\MimeTypes;
 /**
  * Handle information about a file, such as its mime type, size, language, etc.
  */
-class FileValueObject extends ValueObjectBase {
+class FileValueObject extends ValueObjectBase implements FileValueObjectInterface {
 
   /**
    * The name of the file.
@@ -63,7 +63,7 @@ class FileValueObject extends ValueObjectBase {
   protected $languageCode = '';
 
   /**
-   * FileType constructor.
+   * Class constructor.
    *
    * @param string $name
    *   Name of the file, e.g. "document.pdf".
@@ -89,7 +89,7 @@ class FileValueObject extends ValueObjectBase {
    *
    * @return $this
    */
-  public static function fromFileEntity(FileInterface $file_entity): ValueObjectInterface {
+  public static function fromFileEntity(FileInterface $file_entity): FileValueObjectInterface {
     $file = new static(
       $file_entity->getFilename(),
       file_create_url($file_entity->getFileUri()),
@@ -126,14 +126,14 @@ class FileValueObject extends ValueObjectBase {
   }
 
   /**
-   * Constructs an object from file link.
+   * Constructs an object from a file link item.
    *
    * @param \Drupal\file_link\Plugin\Field\FieldType\FileLinkItem $link
    *   The file link item.
    *
    * @return $this
    */
-  public static function fromFileLink(FileLinkItem $link): ValueObjectInterface {
+  public static function fromFileLink(FileLinkItem $link): FileValueObjectInterface {
     $file = new static(
       $link->get('title')->getValue() ?? '',
       $link->get('uri')->getValue(),
@@ -147,70 +147,49 @@ class FileValueObject extends ValueObjectBase {
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getUrl(): string {
     return $this->url;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getMime(): string {
     return $this->mime;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getSize(): string {
     return $this->size;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getName(): string {
     return $this->name;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getTitle(): string {
     return $this->title ? $this->title : $this->name;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getLanguageCode(): string {
     return $this->languageCode;
   }
 
   /**
-   * Getter.
-   *
-   * @return string
-   *   Property value.
+   * {@inheritdoc}
    */
   public function getExtension(): string {
     $mime_types = new MimeTypes();
@@ -219,28 +198,18 @@ class FileValueObject extends ValueObjectBase {
   }
 
   /**
-   * Setter.
-   *
-   * @param string $title
-   *   Property value.
-   *
-   * @return $this
+   * {@inheritdoc}
    */
-  public function setTitle(string $title): FileValueObject {
+  public function setTitle(string $title): FileValueObjectInterface {
     $this->title = $title;
 
     return $this;
   }
 
   /**
-   * Setter.
-   *
-   * @param string $language_code
-   *   Property value.
-   *
-   * @return $this
+   * {@inheritdoc}
    */
-  public function setLanguageCode(string $language_code): FileValueObject {
+  public function setLanguageCode(string $language_code): FileValueObjectInterface {
     $this->languageCode = $language_code;
 
     return $this;
