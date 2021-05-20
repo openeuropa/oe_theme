@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\field\Entity\FieldConfig;
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -14,6 +13,8 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 
 /**
  * Tests that "Publication" content type renders correctly.
+ *
+ * @group batch3
  */
 class ContentPublicationRenderTest extends ContentRenderTestBase {
 
@@ -122,7 +123,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert header of second field group.
     $this->assertContentHeader($content_items[1], 'Files', 'files');
-    $this->assertMediaDocumentDefaultRender($content_items[1], 'publication_document');
+    $this->assertMediaDocumentDefaultRender($content_items[1], 'publication_document', 'English', '2.96 KB - PDF', "sample_publication_document.pdf", 'Download');
 
     // Assert Introduction and multiple Resource type fields.
     $node->set('oe_summary', 'Publication introduction');
@@ -275,7 +276,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
 
     // Assert Contact field.
-    $contact = $this->createContactEntity('publication_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
+    $contact = $this->createContactEntity('publication_contact');
     $node->set('oe_publication_contacts', $contact)->save();
     $this->drupalGet($node->toUrl());
 
@@ -285,11 +286,9 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(4, $content_items);
     $this->assertContentHeader($content_items[3], 'Contact', 'contact');
-    $this->assertContactEntityDefaultDisplay($content_items[3], 'publication_contact');
+    $this->assertContactDefaultRender($content_items[3], 'publication_contact');
 
     // Assert Organisation Contact.
-    $organisation_contact = $this->createContactEntity('organisation_contact', 'oe_general', CorporateEntityInterface::PUBLISHED);
-
     // Create an organisation without a contact.
     /** @var \Drupal\node\NodeInterface $node */
     $organisation = $this->getStorage('node')->create([
@@ -335,13 +334,14 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Add a contact to the organisation and assert it gets rendered
     // in the publication page.
+    $organisation_contact = $this->createContactEntity('organisation_contact');
     $organisation->set('oe_organisation_contact', $organisation_contact);
     $organisation->save();
     $this->drupalGet($node->toUrl());
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(4, $content_items);
-    $this->assertContactEntityDefaultDisplay($content_items[3], 'organisation_contact');
+    $this->assertContactDefaultRender($content_items[3], 'organisation_contact');
 
     // Delete organisation contact and assert we do not render the
     // publication contact anymore.

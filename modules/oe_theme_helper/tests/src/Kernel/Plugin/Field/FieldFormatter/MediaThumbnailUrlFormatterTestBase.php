@@ -10,6 +10,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Base class for formatters rendering media thumbnail URLs.
+ *
+ * @group batch2
  */
 class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
 

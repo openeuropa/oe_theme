@@ -9,6 +9,8 @@ use Drupal\Tests\oe_theme\Unit\AbstractUnitTestBase;
 
 /**
  * Test file value object.
+ *
+ * @group batch1
  */
 class FileValueObjectTest extends AbstractUnitTestBase {
 

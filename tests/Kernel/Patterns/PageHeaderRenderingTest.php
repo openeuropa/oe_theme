@@ -8,6 +8,8 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 
 /**
  * Test page header pattern rendering.
+ *
+ * @group batch2
  */
 class PageHeaderRenderingTest extends AbstractKernelTestBase {
 
