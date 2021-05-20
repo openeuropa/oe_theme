@@ -51,9 +51,11 @@ class SummaryExtraField extends DateAwareExtraFieldBase {
 
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
-    $build['#text'] = $view_builder->viewField($entity->get($field_name), [
-      'label' => 'hidden',
-    ]);
+    if (!$entity->get($field_name)->isEmpty()) {
+      $build['#text'] = $view_builder->viewField($entity->get($field_name), [
+        'label' => 'hidden',
+      ]);
+    }
     return $build;
   }
 

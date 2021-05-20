@@ -4,6 +4,8 @@
  * Theme for the registration button extra field on event content type.
  */
 #}
-<div class="ecl-editor">
-  {{ text }}
-</div>
+{% if text is not empty %}
+  <div class="ecl-editor">
+    {{ text }}
+  </div>
+{% endif %}

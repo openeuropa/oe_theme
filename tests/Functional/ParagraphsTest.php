@@ -8,6 +8,8 @@ use Drupal\Tests\BrowserTestBase;
 
 /**
  * Tests paragraphs forms.
+ *
+ * @group batch3
  */
 class ParagraphsTest extends BrowserTestBase {
 

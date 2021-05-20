@@ -9,6 +9,8 @@ use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the "content row" paragraph.
+ *
+ * @group batch2
  */
 class ContentRowTest extends ParagraphsTestBase {
 
