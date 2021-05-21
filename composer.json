@@ -80,7 +80,7 @@
         "psr-4": {
             "Drupal\\Tests\\oe_theme\\": "./tests/",
             "Drupal\\Tests\\oe_content\\": "./build/modules/contrib/oe_content/tests/",
-            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/"
+            "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
     },
     "repositories": {
@@ -107,6 +107,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "openeuropa/oe_media": {
+                "latest-master": "https://github.com/openeuropa/oe_media/compare/1.11.0...master.diff"
             }
         },
         "drupal-scaffold": {
