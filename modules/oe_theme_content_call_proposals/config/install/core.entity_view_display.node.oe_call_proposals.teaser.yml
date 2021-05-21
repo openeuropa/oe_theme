@@ -35,7 +35,7 @@ third_party_settings:
         - oe_call_proposals_deadline
         - oe_call_proposals_funding
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -49,6 +49,16 @@ bundle: oe_call_proposals
 mode: teaser
 content:
   extra_field_oe_call_proposals_label_status:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_call_proposals_publication_info:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_helper_short_title_with_fallback:
     weight: 0
     region: content
     settings: {  }
@@ -98,7 +108,6 @@ hidden:
   body: true
   extra_field_oe_call_proposals_publication_details: true
   extra_field_oe_call_proposals_status: true
-  extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
   oe_call_proposals_contact: true

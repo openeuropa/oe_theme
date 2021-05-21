@@ -32,7 +32,7 @@ third_party_settings:
         - oe_consultation_opening_date
         - oe_consultation_deadline
       parent_name: ''
-      weight: 1
+      weight: 2
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -44,6 +44,11 @@ bundle: oe_consultation
 mode: teaser
 content:
   extra_field_oe_consultation_label_status:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_helper_short_title_with_fallback:
     weight: 0
     region: content
     settings: {  }
@@ -67,9 +72,8 @@ content:
     type: datetime_default
     region: content
 hidden:
-  extra_field_oe_consultation_status: true
-  extra_field_oe_theme_helper_short_title_with_fallback: true
   extra_field_oe_consultation_closed_status_text: true
+  extra_field_oe_consultation_status: true
   langcode: true
   links: true
   oe_consultation_additional_info: true

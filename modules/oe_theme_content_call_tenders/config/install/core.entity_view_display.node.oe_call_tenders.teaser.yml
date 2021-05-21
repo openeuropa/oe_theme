@@ -4,6 +4,8 @@ dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.oe_call_tenders.body
+    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
+    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - field.field.node.oe_call_tenders.oe_departments
     - field.field.node.oe_call_tenders.oe_documents
     - field.field.node.oe_call_tenders.oe_publication_date
@@ -11,8 +13,6 @@ dependencies:
     - field.field.node.oe_call_tenders.oe_subject
     - field.field.node.oe_call_tenders.oe_summary
     - field.field.node.oe_call_tenders.oe_teaser
-    - field.field.node.oe_call_tenders.oe_call_tenders_deadline
-    - field.field.node.oe_call_tenders.oe_call_tenders_opening_date
     - node.type.oe_call_tenders
   module:
     - datetime
@@ -46,6 +46,29 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  extra_field_oe_theme_helper_short_title_with_fallback:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_call_tenders_deadline:
+    type: datetime_default
+    weight: 4
+    region: content
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_tenders_date_full_timezone
+    third_party_settings: {  }
+  oe_call_tenders_opening_date:
+    type: datetime_default
+    weight: 3
+    region: content
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: oe_call_tenders_date_long
+    third_party_settings: {  }
   oe_departments:
     type: skos_concept_entity_reference_label
     weight: 5
@@ -70,28 +93,9 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  oe_call_tenders_deadline:
-    type: datetime_default
-    weight: 4
-    region: content
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: oe_call_tenders_date_full_timezone
-    third_party_settings: {  }
-  oe_call_tenders_opening_date:
-    type: datetime_default
-    weight: 3
-    region: content
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: oe_call_tenders_date_long
-    third_party_settings: {  }
 hidden:
   body: true
   extra_field_oe_call_tenders_status: true
-  extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
   oe_content_content_owner: true

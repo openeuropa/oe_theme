@@ -26,7 +26,12 @@ bundle: oe_organisation
 mode: teaser
 content:
   extra_field_oe_theme_content_organisation_teaser_details:
-    weight: 2
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_helper_short_title_with_fallback:
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -48,7 +53,7 @@ content:
     third_party_settings: {  }
   oe_organisation_logo:
     type: oe_theme_helper_media_thumbnail_url
-    weight: 4
+    weight: 6
     region: content
     label: above
     settings:
@@ -64,14 +69,13 @@ content:
     third_party_settings: {  }
   oe_teaser:
     type: text_default
-    weight: 3
+    weight: 5
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
 hidden:
   body: true
-  extra_field_oe_theme_helper_short_title_with_fallback: true
   langcode: true
   links: true
   oe_content_content_owner: true

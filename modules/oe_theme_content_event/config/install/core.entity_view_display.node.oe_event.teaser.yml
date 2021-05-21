@@ -41,17 +41,22 @@ bundle: oe_event
 mode: teaser
 content:
   extra_field_oe_theme_content_event_date_aware_status:
-    weight: 2
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_teaser_details:
-    weight: 0
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_teaser_meta:
-    weight: 1
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_helper_short_title_with_fallback:
+    weight: 0
     region: content
     settings: {  }
     third_party_settings: {  }
