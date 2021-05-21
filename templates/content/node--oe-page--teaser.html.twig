@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Teaser template implementation for "Page" content type.
+ */
+#}
+{% block content %}
+  {{ pattern('list_item', {
+    'variant': 'default',
+    'url': url,
+    'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
+    'detail': content.oe_teaser|field_value
+  }) }}
+{% endblock %}
