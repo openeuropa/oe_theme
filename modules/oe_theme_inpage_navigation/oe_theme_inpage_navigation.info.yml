@@ -1,8 +1,0 @@
-name: 'OpenEuropa Theme In-page Navigation'
-type: module
-description: 'Module for in-page navigation functionality'
-package: OpenEuropa
-core: 8.x
-dependencies:
-  - drupal:node
-  - entity_meta_relation:emr_node
