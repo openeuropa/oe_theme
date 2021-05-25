@@ -15,7 +15,7 @@ use Drupal\filter\Plugin\FilterBase;
  *   id = "filter_ecl_table",
  *   title = @Translation("ECL table support"),
  *   description = @Translation("Add classes and attributes to the table to align it on mobile devices."),
- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_REVERSIBLE,
+ *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
  * )
  */
 class FilterEclTable extends FilterBase {
