@@ -123,8 +123,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
 
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
-    $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
+    $content = $this->assertSession()->elementExists('css', '.ecl-col-l-9', $wrapper);
+    $this->assertSession()->elementsCount('css', '.ecl-col-l-9', 1);
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');

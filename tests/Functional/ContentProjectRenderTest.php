@@ -151,7 +151,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertFeaturedMediaField($project_details, 'project_featured_media');
 
     // Assert the description blocks inside the Project details.
-    $description_lists = $project_details->findAll('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none .ecl-u-mb-s');
+    $description_lists = $project_details->findAll('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-md-none .ecl-u-mb-s');
     $this->assertCount(3, $description_lists);
 
     // Assert the first description list block's labels and values.

@@ -84,11 +84,11 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert content.
-    $portrait = $this->assertSession()->elementExists('css', 'article .ecl-col-lg-3 img.ecl-media-container__media');
+    $portrait = $this->assertSession()->elementExists('css', 'article .ecl-col-l-3 img.ecl-media-container__media');
     $this->assertContains('/themes/custom/oe_theme/images/user_icon.svg', $portrait->getAttribute('src'));
     $this->assertEmpty($portrait->getAttribute('alt'));
     $this->assertSession()->pageTextNotContains('Page contents');
-    $content = $this->assertSession()->elementExists('css', 'article .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', 'article .ecl-col-l-9');
     $this->assertEmpty($content->getText());
 
     // Assert Display name field.
