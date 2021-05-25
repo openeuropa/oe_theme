@@ -86,6 +86,13 @@ class NewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'News short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'News short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Set news type.
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PRESS_REL')->save();
     $this->nodeViewBuilder->resetCache();
