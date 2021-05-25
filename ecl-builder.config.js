@@ -34,6 +34,7 @@ module.exports = {
   ],
   copy: [
     { from: path.resolve(nodeModules, '@ecl/ec-preset-editor/dist'), to: path.resolve(outputFolder, 'dist') },
+    { from: path.resolve(nodeModules, '@ecl/preset-reset/dist'), to: path.resolve(outputFolder, 'dist/preset-reset') },
     { from: path.resolve(nodeModules, '@ecl/preset-ec/dist'), to: path.resolve(outputFolder, 'dist/ec') },
     { from: path.resolve(nodeModules, '@ecl/preset-eu/dist'), to: path.resolve(outputFolder, 'dist/eu') },
     { from: path.resolve(nodeModules, 'svg4everybody/dist'), patterns: 'svg4everybody.min.js', to: path.resolve(outputFolder, 'dist/js') },
