@@ -8,10 +8,10 @@
 #}
 <div class="ecl-row">
   {% if body is not empty %}
-    <div class="ecl-col-12 ecl-col-md-9 ecl-u-mb-l">{{ body }}</div>
+    <div class="ecl-col-12 ecl-col-m-9 ecl-u-mb-l">{{ body }}</div>
   {% endif %}
   {% if image is not empty %}
-    <div class="ecl-col-12 ecl-col-md-3">
+    <div class="ecl-col-12 ecl-col-m-3">
       {% include '@ecl-twig/media-container' with {
         'image': image.src,
         'alt': image.alt,

@@ -95,7 +95,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(1, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');

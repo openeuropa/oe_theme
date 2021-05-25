@@ -192,7 +192,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert details.
     $details_content = $this->assertSession()->elementExists('css', '#event-details');
     $this->assertSession()->elementNotExists('css', '.ecl-body', $details_content);
-    $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
+    $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-md-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
     $icons_text_assert = new IconsTextAssert();
     $icons_text_expected_values = [
       'items' => [

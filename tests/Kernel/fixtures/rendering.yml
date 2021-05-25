@@ -1267,11 +1267,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
@@ -1297,11 +1297,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
@@ -1325,11 +1325,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1352,11 +1352,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1382,10 +1382,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 2
-      'div.ecl-content-item-block__item.ecl-col-md-6': 2
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 2
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 2
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 2
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1418,10 +1418,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 3
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 3
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 3
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 3
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1442,10 +1442,10 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(4) a.ecl-link': 'A simple link 4'
 - array:
     '#type': pattern
     '#id': list_item_block_six_columns
@@ -1459,12 +1459,12 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(4) a.ecl-link': 'A simple link 4'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(5) a.ecl-link': 'A simple link 5'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(6) a.ecl-link': 'A simple link 6'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(5) a.ecl-link': 'A simple link 5'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(6) a.ecl-link': 'A simple link 6'
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -2276,7 +2276,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
+      'div.ecl-col-m-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2295,7 +2295,7 @@
       'figcaption.ecl-media-container__caption': 1
     equals:
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
+      'div.ecl-col-m-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2307,7 +2307,7 @@
     count:
       'div.ecl-row': 1
       'figure.ecl-media-container': 0
-      'div.ecl-col-md-6.ecl-editor': 0
+      'div.ecl-col-m-6.ecl-editor': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
@@ -2331,7 +2331,7 @@
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
+      'div.ecl-col-m-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2368,7 +2368,7 @@
       'figcaption.ecl-media-container__caption': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-md-6.ecl-editor': "Some more text"
+      'div.ecl-col-m-6.ecl-editor': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media

@@ -56,8 +56,8 @@ class ContactRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($crawler->filter('.ecl-description-list'));
     $this->assertEmpty($crawler->filter('figure.ecl-media-container'));
     $this->assertEmpty($crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l'));
-    $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-md-6'));
-    $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-md-5'));
+    $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6'));
+    $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5'));
 
     // Assert Contact title.
     $contact_sub_headers = $crawler->filter('h3');
@@ -183,7 +183,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $crawler = new Crawler($html);
 
     // Ensure that wrapper for body field has been changed.
-    $rendered_body = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-md-6 .ecl-editor');
+    $rendered_body = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6 .ecl-editor');
     $this->assertCount(1, $rendered_body);
     $this->assertEquals("Body text $name", trim($rendered_body->text()));
 
@@ -245,7 +245,7 @@ class ContactRenderTest extends ContentRenderTestBase {
    */
   protected function assertFeaturedMediaField(string $html, string $name): void {
     $crawler = new Crawler($html);
-    $figure = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-md-5 figure.ecl-media-container');
+    $figure = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5 figure.ecl-media-container');
     $this->assertCount(1, $figure);
 
     // Assert image tag.

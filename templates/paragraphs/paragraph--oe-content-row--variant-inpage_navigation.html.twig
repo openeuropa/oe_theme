@@ -7,14 +7,14 @@
  */
 #}
 <div class="ecl-row">
-  <div class="ecl-col-lg-3 ecl-u-z-navigation">
+  <div class="ecl-col-l-3 ecl-u-z-navigation">
     {% include '@ecl-twig/inpage-navigation/inpage-navigation' with {
       'title': title,
       'links': links,
       'icon_path': ecl_icon_path
     } %}
   </div>
-  <div class="ecl-col-lg-9">
+  <div class="ecl-col-l-9">
     {{ content.field_oe_paragraphs }}
   </div>
 </div>

@@ -108,7 +108,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = 'embassy | My acronym';
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
-    $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
+    $logo = $this->assertSession()->elementExists('css', '.ecl-col-l-3 img.ecl-media-container__media');
     $this->assertContains('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
     $this->assertEquals('Alt', $logo->getAttribute('alt'));
 
@@ -147,7 +147,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $logo = $this->assertSession()->elementExists('css', '.ecl-col-lg-3 img.ecl-media-container__media');
+    $logo = $this->assertSession()->elementExists('css', '.ecl-col-l-3 img.ecl-media-container__media');
     $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
     // Add overview values.
@@ -166,8 +166,8 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Assert content part.
     $wrapper = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l');
-    $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
-    $this->assertSession()->elementsCount('css', '.ecl-col-lg-9', 1);
+    $content = $this->assertSession()->elementExists('css', '.ecl-col-l-9', $wrapper);
+    $this->assertSession()->elementsCount('css', '.ecl-col-l-9', 1);
     $content_items = $content->findAll('xpath', '/div');
 
     // Assert header of the first field group.

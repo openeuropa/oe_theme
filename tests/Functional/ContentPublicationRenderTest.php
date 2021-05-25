@@ -100,7 +100,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
 
@@ -258,10 +258,10 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[1], 'Description', 'description');
     $this->assertContentHeader($content_items[2], 'Files', 'files');
 
-    $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-md-9 .ecl-editor');
+    $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-m-9 .ecl-editor');
     $this->assertCount(1, $body);
     $this->assertEquals('Publication body text', $body[0]->getText());
-    $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-md-3 figure';
+    $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-m-3 figure';
     $this->assertSession()->elementNotExists('css', $thumbnail_wrapper_selector);
 
     // Assert Thumbnail field.
@@ -329,7 +329,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert that the contact is not being rendered since no organisation is
     // being referenced.
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
 
@@ -339,7 +339,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $publication_contact->set('oe_node_reference', $organisation);
     $publication_contact->save();
     $this->drupalGet($node->toUrl());
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
 
@@ -349,7 +349,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $organisation->set('oe_organisation_contact', $organisation_contact);
     $organisation->save();
     $this->drupalGet($node->toUrl());
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(4, $content_items);
     $this->assertContactDefaultRender($content_items[3], 'organisation_contact');
@@ -358,7 +358,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     // publication contact anymore.
     $organisation_contact->delete();
     $this->drupalGet($node->toUrl());
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
   }

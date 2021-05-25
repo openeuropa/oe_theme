@@ -40,7 +40,7 @@
 {% endfor %}
 
 <div {{ attributes.addClass(['ecl-row', 'ecl-u-mt-l']) }}>
-  <div class="ecl-col-12 ecl-col-lg-3">
+  <div class="ecl-col-12 ecl-col-l-3">
     {% block navigation %}
       {% include '@ecl-twig/inpage-navigation' with {
         'title': title,
@@ -49,7 +49,7 @@
       } %}
     {% endblock %}
   </div>
-  <div class="ecl-col-lg-9">
+  <div class="ecl-col-l-9">
     {% block content %}
       {% for item in _items %}
         <div{{ not loop.last ? ' class="ecl-u-mb-2xl"' }}>
