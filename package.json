@@ -52,6 +52,7 @@
     "@ecl/twig-component-text-input": "3.0.0-alpha.1",
     "@ecl/twig-component-timeline": "3.0.0-alpha.1",
     "@ecl/twig-component-datepicker": "3.0.0-alpha.1",
+    "@ecl/preset-reset": "3.0.0-alpha.1",
     "@ecl/preset-ec": "3.0.0-alpha.1",
     "@ecl/preset-eu": "3.0.0-alpha.1",
     "@ecl/ec-component-form-help-block": "2.37.0",
