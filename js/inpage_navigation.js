@@ -34,6 +34,11 @@
       Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-element]'), function (element) {
         var title = element.textContent.trim();
 
+        // Skip elements with empty content.
+        if (title.length === 0) {
+          return;
+        }
+
         // Generate an unique ID if not present.
         if (!element.hasAttribute('id')) {
           element.setAttribute('id', slug(title));
@@ -47,16 +52,16 @@
 
       Array.prototype.forEach.call(document.querySelectorAll('[data-ecl-inpage-navigation]'), function (block) {
         if (items_markup.length === 0) {
-          // @todo Replace within follow-up ticket to make adjusting of layout more flexible for different templates.
-          // Adjust layout if we going to remove in-page element.
-          $(block).closest('.ecl-col-lg-3').next('.ecl-col-lg-9').removeClass('ecl-col-lg-9').addClass('ecl-col-lg-12')
           // Remove in-page navigation element if we don't have links inside.
-          block.remove();
+          Drupal.behaviors.eclInPageNavigation.removeNavBlock(block);
           return;
         }
         block.querySelector('ul').innerHTML = items_markup;
       })
     },
+    removeNavBlock: function removeNavBlock(element) {
+      element.remove();
+    }
   };
 
   var seenIds = {};
