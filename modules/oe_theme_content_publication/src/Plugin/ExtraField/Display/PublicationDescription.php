@@ -92,6 +92,15 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
 
     $cacheability = CacheableMetadata::createFromRenderArray($build);
     $cacheability->addCacheableDependency($media);
+
+    // Run access checks on the media entity.
+    $access = $media->access('view', NULL, TRUE);
+    $cacheability->addCacheableDependency($access);
+    if (!$access->isAllowed()) {
+      $cacheability->applyTo($build);
+      return [];
+    }
+
     $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
 
     if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {

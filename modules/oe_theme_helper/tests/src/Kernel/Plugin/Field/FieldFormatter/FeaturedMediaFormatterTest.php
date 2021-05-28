@@ -68,6 +68,10 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
       'oe_content_featured_media_field',
     ]);
 
+    // Call the install hook of the Media module.
+    module_load_include('install', 'media');
+    media_install();
+
     // Create a content type.
     $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
     $type->save();

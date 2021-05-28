@@ -152,6 +152,8 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
    *
    * @return array
    *   The ECL media-container parameters.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   protected function viewElement(FieldItemInterface $item, string $langcode): array {
     $build = ['#theme' => 'oe_theme_helper_featured_media'];
@@ -165,11 +167,15 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
 
     // Retrieve the correct media translation.
     $media = $this->entityRepository->getTranslationFromContext($media, $langcode);
-
-    // Caches are handled by the formatter usually. Since we are not rendering
-    // the original render arrays, we need to propagate our caches to the
-    // oe_theme_helper_featured_media template.
     $cacheability->addCacheableDependency($media);
+
+    // Run access checks on the media entity.
+    $access = $media->access('view', NULL, TRUE);
+    $cacheability->addCacheableDependency($access);
+    if (!$access->isAllowed()) {
+      $cacheability->applyTo($build);
+      return [];
+    }
 
     // Get the media source.
     $source = $media->getSource();

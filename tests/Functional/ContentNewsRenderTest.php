@@ -152,6 +152,17 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->assertContains('placeholder_news_featured_media.png', $image->getAttribute('src'));
     $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
 
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
     // Assert related links.
     $node->set('oe_related_links', [
       [

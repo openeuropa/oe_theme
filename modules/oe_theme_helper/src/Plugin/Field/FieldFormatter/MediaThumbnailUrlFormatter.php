@@ -76,10 +76,14 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
       $cache->addCacheableDependency($media);
       $cache->addCacheableDependency($items->get($delta)->_accessCacheability);
 
+      // Run access checks on the media entity.
+      $access = $media->access('view', NULL, TRUE);
+      $cache->addCacheableDependency($access);
+      if (!$access->isAllowed()) {
+        continue;
+      }
+
       if ($media->get('thumbnail')->isEmpty()) {
-        // In case the thumbnail is missing from the media entity, we should
-        // apply the cache metadata of the media to the render array.
-        $cache->applyTo($elements[$delta]);
         continue;
       }
 
