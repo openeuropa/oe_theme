@@ -3,5 +3,4 @@ inpage_navigation_test:
     js/inpage_navigation.js: {}
   dependencies:
     - core/drupal
-    - core/jquery
     - oe_theme/inpage_navigation
