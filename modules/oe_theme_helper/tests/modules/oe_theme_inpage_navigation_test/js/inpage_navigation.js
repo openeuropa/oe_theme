@@ -1,6 +1,6 @@
 /**
  * @file
- * ECL inpage navigation block removal behavior override.
+ * Overriding of ECL inpage navigation block removal behavior.
  */
 (function (Drupal) {
   /**
