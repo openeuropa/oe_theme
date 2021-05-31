@@ -19,17 +19,18 @@ class GalleryItemValueObjectTest extends UnitTestCase {
    * Test constructing a gallery item value object from an array.
    */
   public function testFromArray(): void {
+    $image_value_object = ImageValueObject::fromArray([
+      'src' => 'http://placehold.it/380x185',
+      'name' => 'Test thumbnail',
+      'alt' => 'Alt text',
+      'responsive' => TRUE,
+    ]);
     $values = [
-      'thumbnail' => ImageValueObject::fromArray([
-        'src' => 'http://placehold.it/380x185',
-        'name' => 'Test thumbnail',
-        'alt' => 'Alt text',
-        'responsive' => TRUE,
-      ]),
+      'thumbnail' => $image_value_object,
       'source' => 'http://placehold.it/600x400',
       'type' => GalleryItemValueObject::TYPE_VIDEO,
-      'caption' => 'Test caption.',
-      'meta' => 'Test meta.',
+      'caption' => 'Test video caption.',
+      'meta' => 'Test video meta.',
     ];
 
     /** @var \Drupal\oe_theme\ValueObject\GalleryItemValueObject $item */
@@ -41,6 +42,15 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($values['caption'], $item->getCaption());
     $this->assertEquals($values['meta'], $item->getMeta());
 
+    $to_array = $item->getArray();
+    $this->assertEquals($to_array['image'], $image_value_object->getArray());
+    $this->assertEquals($to_array['embedded_video'], [
+      'src' => 'http://placehold.it/600x400',
+    ]);
+    $this->assertEquals($to_array['icon'], 'video');
+    $this->assertEquals($to_array['description'], 'Test video caption.');
+    $this->assertEquals($to_array['meta'], 'Test video meta.');
+
     // Verify that the thumbnail can be also passed as array.
     $item = GalleryItemValueObject::fromArray([
       'thumbnail' => $values['thumbnail']->getArray(),
@@ -51,6 +61,23 @@ class GalleryItemValueObjectTest extends UnitTestCase {
     $this->assertEquals($values['type'], $item->getType());
     $this->assertEquals($values['caption'], $item->getCaption());
     $this->assertEquals($values['meta'], $item->getMeta());
+
+    // Create an image-based Gallery item.
+    $values = [
+      'thumbnail' => $image_value_object,
+      'source' => 'http://placehold.it/800x600',
+      'type' => GalleryItemValueObject::TYPE_IMAGE,
+      'caption' => 'Test image caption.',
+      'meta' => 'Test image meta.',
+    ];
+
+    /** @var \Drupal\oe_theme\ValueObject\GalleryItemValueObject $item */
+    $item = GalleryItemValueObject::fromArray($values);
+    $this->assertEquals($values['type'], $item->getType());
+    $to_array = $item->getArray();
+    $this->assertEquals($to_array['icon'], 'image');
+    $this->assertEquals($to_array['description'], 'Test image caption.');
+    $this->assertEquals($to_array['meta'], 'Test image meta.');
   }
 
   /**
