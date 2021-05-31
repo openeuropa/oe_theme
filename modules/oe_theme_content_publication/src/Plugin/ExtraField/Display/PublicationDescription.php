@@ -98,7 +98,7 @@ class PublicationDescription extends ExtraFieldDisplayFormattedBase implements C
     $cacheability->addCacheableDependency($access);
     if (!$access->isAllowed()) {
       $cacheability->applyTo($build);
-      return [];
+      return $build;
     }
 
     $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;

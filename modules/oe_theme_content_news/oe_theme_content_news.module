@@ -31,8 +31,8 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     // Run access checks on the media entity.
     $access = $media->access('view', $variables['user'], TRUE);
     $cacheability->addCacheableDependency($access);
+    $cacheability->applyTo($variables);
     if (!$access->isAllowed()) {
-      $cacheability->applyTo($variables);
       return;
     }
 
@@ -42,7 +42,6 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
     $variables['content']['featured_image']['#weight'] = -100;
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-type-paragraph';
     $variables['content']['featured_image']['#attributes']['class'][] = 'ecl-u-mb-l';
-    $cacheability->applyTo($variables);
   }
 }
 
