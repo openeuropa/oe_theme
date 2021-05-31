@@ -46,7 +46,7 @@ class FilterEclTable extends FilterBase {
       // Do not process tables that use th cells anywhere but in the first
       // column.
       $ths_in_body = $xpath->query('.//tr[not(parent::thead)]/*[position()>1 and self::th]', $table);
-      if ($ths_in_body->count() > 0) {
+      if ($ths_in_body->count() !== 0) {
         continue;
       }
 
