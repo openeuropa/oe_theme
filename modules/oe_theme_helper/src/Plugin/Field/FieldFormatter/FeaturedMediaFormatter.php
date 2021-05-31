@@ -174,7 +174,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
     $cacheability->addCacheableDependency($access);
     if (!$access->isAllowed()) {
       $cacheability->applyTo($build);
-      return [];
+      return $build;
     }
 
     // Get the media source.
