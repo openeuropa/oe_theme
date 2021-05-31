@@ -32,7 +32,7 @@ class FilterEclTableTest extends UnitTestCase {
     $filter->setStringTranslation($this->getStringTranslationStub());
 
     $processed_text = $filter->process($html, NULL)->getProcessedText();
-    $this->assertContains($expected, $processed_text);
+    $this->assertEquals($expected, $processed_text);
   }
 
   /**
@@ -49,11 +49,11 @@ class FilterEclTableTest extends UnitTestCase {
       ],
       'Table with footer - class and data-ecl-table-header are added' => [
         '<div><table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tbody><tr><td colspan="1">1-1</td><td>1-2</td></tr><tr><td rowspan="1">2-1</td><td>2-2</td></tr></tbody><tfoot><tr><td>Footer 1</td><td>Footer 2</td></tr></tfoot></table></div>',
-        '<table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tbody><tr><td colspan="1" class="ecl-table__cell" data-ecl-table-header="Column 1">1-1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">1-2</td></tr><tr><td rowspan="1" class="ecl-table__cell" data-ecl-table-header="Column 1">2-1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">2-2</td></tr></tbody><tfoot><tr><td class="ecl-table__cell" data-ecl-table-header="Column 1">Footer 1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">Footer 2</td></tr></tfoot></table>',
+        '<div><table><caption>Caption</caption><thead><tr><th>Column 1</th><th>Column 2</th></tr></thead><tbody><tr><td colspan="1" class="ecl-table__cell" data-ecl-table-header="Column 1">1-1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">1-2</td></tr><tr><td rowspan="1" class="ecl-table__cell" data-ecl-table-header="Column 1">2-1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">2-2</td></tr></tbody><tfoot><tr><td class="ecl-table__cell" data-ecl-table-header="Column 1">Footer 1</td><td class="ecl-table__cell" data-ecl-table-header="Column 2">Footer 2</td></tr></tfoot></table></div>',
       ],
       'Table with vertical header - class is added' => [
         '<table><tbody><tr><th>Row 1</th><td>1-1</td><td>1-2</td></tr><tr><th>Row 2</th><td>2-1</td><td>2-2</td></tr><tr><th>Row 3</th><td>3-1</td><td>3-2</td></tr></tbody></table>',
-        '<table><tbody><tr><th class="ecl-table__cell">Row 1</th><td class="ecl-table__cell">1-1</td><td class="ecl-table__cell">1-2</td></tr><tr><th class="ecl-table__cell">Row 2</th><td class="ecl-table__cell">2-1</td><td class="ecl-table__cell">2-2</td></tr><tr><th class="ecl-table__cell">Row 3</th><td class="ecl-table__cell">3-1</td><td class="ecl-table__cell">3-2</td></tr></tbody></table',
+        '<table><tbody><tr><th class="ecl-table__cell">Row 1</th><td class="ecl-table__cell">1-1</td><td class="ecl-table__cell">1-2</td></tr><tr><th class="ecl-table__cell">Row 2</th><td class="ecl-table__cell">2-1</td><td class="ecl-table__cell">2-2</td></tr><tr><th class="ecl-table__cell">Row 3</th><td class="ecl-table__cell">3-1</td><td class="ecl-table__cell">3-2</td></tr></tbody></table>',
       ],
       'Table with horizontal and vertical headers' => [
         '<table><thead><tr><th>Column 1</th><th>Column 2</th><th>Column 3</th></tr></thead><tbody><tr><th>Row 1</th><td>1-2</td><td>1-3</td></tr><tr><th>Row 2</th><td>2-2</td><td>2-3</td></tr></tbody></table>',
