@@ -993,17 +993,31 @@ function oe_theme_preprocess_paragraph__oe_iframe_media(&$variables) {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
-  // Get the full width value.
-  if (!$paragraph->get('field_oe_iframe_media_full_width')->isEmpty()) {
-    $variables['full_width'] = (bool) $paragraph->get('field_oe_iframe_media_full_width')->value;
-  }
-
   /** @var \Drupal\media\Entity\Media $media */
   $media = $paragraph->get('field_oe_media')->entity;
   if (!$media instanceof MediaInterface) {
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheableDependency($media);
+  $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
+  $cacheability->addCacheableDependency($media_type);
+
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  $cacheability->applyTo($variables);
+
+  if (!$access->isAllowed()) {
+    return;
+  }
+
+  // Get the full width value.
+  $variables['full_width'] = (bool) $paragraph->get('field_oe_iframe_media_full_width')->value;
 
   // Retrieve the correct media translation.
   $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());

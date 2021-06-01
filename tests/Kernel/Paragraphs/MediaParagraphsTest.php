@@ -751,12 +751,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
-    // Create Iframe media with required fields and add it to the paragraph.
+    // Create unpublished Iframe media with required fields to check access.
     $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
     $media = $media_storage->create([
       'bundle' => 'iframe',
       'name' => 'Test Iframe',
       'oe_media_iframe' => '<iframe src="http://example.com/iframe"></iframe>',
+      'status' => 0,
     ]);
     $media->save();
 
@@ -771,9 +772,18 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ]);
     $paragraph->save();
 
-    // Assert the paragraph is rendered properly.
+    // Assert unpublished media isn't shown.
     $html = $this->renderParagraph($paragraph);
+    $this->assertNotContains('figure', $html);
+    $this->assertNotContains('http://example.com/iframe', $html);
+    $this->assertNotContains('ecl-u-type-heading-2', $html);
 
+    // Publish media.
+    $media->setPublished()->save();
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+    $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
     $this->assertContains('http://example.com/iframe', $iframe->attr('src'));
