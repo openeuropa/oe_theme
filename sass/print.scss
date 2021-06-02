@@ -4,3 +4,9 @@
 #globan, #cookie-consent-banner {
   display: none;
 }
+
+// https://europa.eu/webtools/webtools.laco.css and https://europa.eu/webtools/webtools.search.css
+// have style "[hidden] {display: none}" that makes accordion content hidden on the print version.
+[hidden].ecl-accordion2__content {
+  display: block;
+}
