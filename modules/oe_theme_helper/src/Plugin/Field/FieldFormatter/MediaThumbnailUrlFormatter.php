@@ -74,7 +74,6 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
       // to each element.
       $cache = new CacheableMetadata();
       $cache->addCacheableDependency($media);
-      $cache->addCacheableDependency($items->get($delta)->_accessCacheability);
 
       // Run access checks on the media entity.
       $access = $media->access('view', NULL, TRUE);
