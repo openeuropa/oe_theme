@@ -156,7 +156,7 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   protected function viewElement(FieldItemInterface $item, string $langcode): array {
-    $build = ['#theme' => 'oe_theme_helper_featured_media'];
+    $build = [];
     $params = ['description' => $item->caption];
     $media = $item->entity;
     $cacheability = CacheableMetadata::createFromRenderArray($build);
@@ -176,6 +176,8 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
       $cacheability->applyTo($build);
       return $build;
     }
+
+    $build['#theme'] = 'oe_theme_helper_featured_media';
 
     // Get the media source.
     $source = $media->getSource();

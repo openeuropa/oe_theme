@@ -140,6 +140,15 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($contacts_content, 'Contacts');
     $this->assertContactDefaultRender($contacts_content, 'news_contact');
 
+    // Add a different and unpublished media and assert it is not rendered
+    // in the contact.
+    $contact_media = $this->createMediaImage('news_contact_media');
+    $contact_media->set('status', 0)->save();
+    $contact->set('oe_image', [$contact_media])->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'div#news-contacts div figure.ecl-media-container img');
+
     // Assert Featured media field.
     $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l');
 
