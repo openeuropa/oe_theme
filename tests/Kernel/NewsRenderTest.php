@@ -101,7 +101,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
 
     $expected_values = [
-      'title' => 'Test news node',
+      'title' => 'News short title',
       'url' => '/en/node/1',
       'description' => 'Teaser',
       'meta' => 'News article | 2 April 2019',
@@ -126,7 +126,7 @@ class NewsRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
 
     $expected_values = [
-      'title' => 'Test news node',
+      'title' => 'News short title',
       'url' => '/en/node/1',
       'description' => 'Teaser',
       'meta' => 'Press release | 2 April 2019',
