@@ -36,22 +36,54 @@ This depends on the following software:
 
 The recommended way of installing the OpenEuropa theme is via [Composer][2].
 
+Before proceeding, please note that theme releases are built by a continuous integration system, and include code coming
+from third-party libraries, such as [ECL][1] templates and other assets. Simply Running `composer require openeuropa/oe_theme`
+will download the raw theme source code, which misses required third-party code.
+
+In order to instruct Composer to download the actual built artifact, you need to require and configure the
+[Composer Artifacts][19] project. To do so run:
+
+```
+composer require openeuropa/composer-artifacts
+```
+
+Then add the following section, in your project's `composer.json`:
+
+```
+    "extra": {
+        "artifacts": {
+            "openeuropa/oe_theme": {
+                "dist": {
+                    "url": "https://github.com/{name}/releases/download/{pretty-version}/{project-name}-{pretty-version}.tar.gz",
+                    "type": "tar"
+                }
+            }
+        },
+    }
+```
+
+Once you are done, run:
+
 ```bash
 composer require openeuropa/oe_theme
 ```
 
-If you are not using Composer then download the [release package][3] and install it as described [here][10].
+This will download the fully built artifact, as opposed to the raw theme source code.
 
-**Note:** Release archives are built by the continuous integration system and include code coming from third-party
-libraries, such as [ECL][1] templates and other assets. Make sure you use an actual release and not the source code
-archives.
+If you are not using Composer, then simply download a release artifact [here][3] (i.e. a `oe_theme-[x.y.z].tar.gz` file)
+and install it as described [here][10].
 
 ### Enable the theme
 
 In order to enable the theme in your project perform the following steps:
 
 1. Enable the OpenEuropa Theme Helper module ```./vendor/bin/drush en oe_theme_helper```
-2. Enable the OpenEuropa Theme and set it as default ```./vendor/bin/drush config-set system.theme default oe_theme```
+2. Enable the OpenEuropa Theme and set it as default
+
+```
+./vendor/bin/drush theme:enable oe_theme
+./vendor/bin/drush config-set system.theme default oe_theme
+```
 
 Step 1. is necessary until the following [Drupal core issue][8] is resolved. Alternatively you can patch Drupal core
 with [this patch][9] and enable the theme: the patched core will then enable the required OpenEuropa Theme Helper
@@ -467,3 +499,4 @@ We use [SemVer](http://semver.org/) for versioning. For the available versions, 
 [16]: https://github.com/openeuropa/ecl-twig-loader
 [17]: https://drone.io
 [18]: https://www.npmjs.com/package/patch-package
+[19]: https://github.com/openeuropa/composer-artifacts

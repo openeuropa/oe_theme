@@ -1,10 +1,21 @@
 # Changelog
 
+## [2.18.0](https://github.com/openeuropa/oe_theme/tree/2.18.0) (2021-05-10)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.17.1...2.18.0)
+
+**Merged pull requests:**
+
+- EWPP-1059: Add translation for arabic, catalan and turhish languages. [\#800](https://github.com/openeuropa/oe_theme/pull/800) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Release 2.17.x into 2.x. [\#786](https://github.com/openeuropa/oe_theme/pull/786) ([nagyad](https://github.com/nagyad))
+
 ## [2.17.1](https://github.com/openeuropa/oe_theme/tree/2.17.1) (2021-04-20)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.17.0...2.17.1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 2.17.1. [\#785](https://github.com/openeuropa/oe_theme/pull/785) ([ademarco](https://github.com/ademarco))
 - EWPP-1031: Fix tests that use role reference field. [\#780](https://github.com/openeuropa/oe_theme/pull/780) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-969: Move Social media links outside Media fieldgroup on Person full view display. [\#776](https://github.com/openeuropa/oe_theme/pull/776) ([22Alexandra](https://github.com/22Alexandra))
 
