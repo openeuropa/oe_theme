@@ -12,11 +12,11 @@ gallery:
       description: 'List of GalleryItemValueObject objects.'
       preview:
         - thumbnail:
-            src: 'http://i3.ytimg.com/vi/DSXipcdzfmM/maxresdefault.jpg'
+            src: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-external-video.jpg'
             alt: 'Example alt text'
           caption: 'Bio-defence preparedness programme'
           meta: 'Copyright © 2021, Author and Licence'
-          source: 'https://www.youtube.com/embed/DSXipcdzfmM'
+          source: 'https://inno-ecl.s3.amazonaws.com/media/videos/big_buck_bunny.mp4'
           media_type: 'video'
         - thumbnail:
             src: 'https://loremflickr.com/800/600/cat'
