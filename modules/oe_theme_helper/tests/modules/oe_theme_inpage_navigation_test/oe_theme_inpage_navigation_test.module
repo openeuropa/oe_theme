@@ -18,8 +18,5 @@ function oe_theme_inpage_navigation_test_theme($existing, $type, $theme, $path) 
     'oe_theme_inpage_navigation_test_no_elements' => [
       'render element' => 'element',
     ],
-    'oe_theme_inpage_navigation_test_no_elements_remove_block_behavior' => [
-      'render element' => 'element',
-    ],
   ];
 }

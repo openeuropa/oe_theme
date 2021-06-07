@@ -144,11 +144,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $this->drupalGet('/oe-theme-inpage-navigation-test/no-entries');
     // Give time for the javascript code to remove the block from the page.
     $assert_session->waitForElementRemoved('css', '#block-inpage-navigation');
-    $this->assertEqual($this->getSession()->evaluateScript("document.querySelector('h1.ecl-page-header-core__title').style.color"), '');
-
-    $this->drupalGet('/oe-theme-inpage-navigation-test/no-entries-remove-nav-block');
-    $assert_session->waitForElementRemoved('css', '#block-inpage-navigation');
-    // Insure that overridden function is triggered on remove of block.
+    // Ensure that overridden callback is triggered for empty navigation list.
     $this->assertEqual($this->getSession()->evaluateScript("document.querySelector('h1.ecl-page-header-core__title').style.color"), 'red');
   }
 

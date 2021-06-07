@@ -13,11 +13,3 @@ oe_theme_inpage_navigation_test.no_entries:
     _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::noEntriesPage'
   requirements:
     _access: 'TRUE'
-
-oe_theme_inpage_navigation_test.no_entries.with-block-removal-behavior:
-  path: '/oe-theme-inpage-navigation-test/no-entries-remove-nav-block'
-  defaults:
-    _title: 'In-page navigation no entries page with custom behavior on block removal'
-    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::noEntriesPageNavBlockRemovalBehavior'
-  requirements:
-    _access: 'TRUE'

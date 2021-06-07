@@ -35,16 +35,4 @@ class InpageNavigationTestController extends ControllerBase {
     ];
   }
 
-  /**
-   * Returns content that doesn't generate any entries for inpage navigation.
-   *
-   * @return array
-   *   The response render array.
-   */
-  public function noEntriesPageNavBlockRemovalBehavior(): array {
-    return [
-      '#theme' => 'oe_theme_inpage_navigation_test_no_elements_remove_block_behavior',
-    ];
-  }
-
 }
