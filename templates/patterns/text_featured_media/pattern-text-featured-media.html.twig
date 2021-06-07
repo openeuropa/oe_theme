@@ -20,13 +20,13 @@
     {% if image or video %}
       <div class="ecl-col-m-6 ecl-u-order-md-last ecl-u-mb-m ecl-u-mb-md-none">
         {% if image %}
-          {% include '@ecl-twig/media-container/media-container' with {
+          {% include '@ecl-twig/media-container' with {
             'image': image.src,
             'alt': image.alt,
             'description': caption,
           } %}
         {% elseif video %}
-          {% include '@ecl-twig/media-container/media-container' with {
+          {% include '@ecl-twig/media-container' with {
             'embedded_media': video,
             'ratio': video_ratio,
             'description': caption,

@@ -73,7 +73,7 @@
   aria-expanded="false"
 >
   <span class="ecl-site-header-{{ _ecl_branding }}__language-icon">
-    {% include '@ecl-twig/icon/icon' with {
+    {% include '@ecl-twig/icon' with {
       icon: {
         path: _icon_path,
         type: 'general',
@@ -86,7 +86,7 @@
   </span>
   {{- _label -}}
  </a>
-{% include '@ecl-twig/language-list/language-list' with {
+{% include '@ecl-twig/language-list' with {
   eu_category: eu_category,
   non_eu_category: non_eu_category,
   items: items,
