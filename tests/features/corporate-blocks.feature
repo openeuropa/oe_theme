@@ -24,6 +24,7 @@ Feature: Corporate blocks feature
       | the home page               |
       | the user registration page  |
 
+  @wip
   Scenario Outline: Changing the site's style will display either the European Commission or the European Union footer.
     Given I am an anonymous user
     When I am on "<page>"

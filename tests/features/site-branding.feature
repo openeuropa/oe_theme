@@ -4,7 +4,7 @@ Feature: Site branding
   As a product owner
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.
 
-  @javascript @enable-non-eu-language
+  @javascript @enable-non-eu-language @wip
   Scenario Outline: The European Commission logo is available throughout the site.
     Given I am on the homepage
     When the theme is configured to use the "European Union" style
@@ -48,7 +48,7 @@ Feature: Site branding
       # Non-EU language.
       | Icelandic               | English    |
 
-  @javascript @enable-non-eu-language
+  @javascript @enable-non-eu-language @wip
   Scenario: The European Union logo is available in the footer when non-EU language is selected.
     Given I am on the homepage
     When the theme is configured to use the "European Union" style
