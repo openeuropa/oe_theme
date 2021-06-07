@@ -11,7 +11,7 @@
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "~2.0",
+        "openeuropa/ecl-twig-loader": "3.x-dev",
         "openeuropa/oe_time_caching": "~1.0",
         "ralouphie/mimey": "^2.1"
     },
@@ -110,7 +110,7 @@
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
             },
             "openeuropa/ecl-twig-loader": {
-                "EWPP-10965": "https://github.com/openeuropa/ecl-twig-loader/compare/2.1.0..EWPP-1096.diff"
+                "EWPP-10965": "https://github.com/openeuropa/ecl-twig-loader/compare/3.x..EWPP-1146.diff"
             }
         },
         "drupal-scaffold": {

@@ -38,7 +38,7 @@
 {% endfor %}
 
 {% if _items or site_name %}
-  {% include '@ecl-twig/menu/menu' with {
+  {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
     close: 'Close'|t,
     back: 'Back'|t,
