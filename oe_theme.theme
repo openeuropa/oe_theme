@@ -81,10 +81,17 @@ function oe_theme_preprocess(&$variables) {
  * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(array &$variables): void {
-  $request     = \Drupal::request();
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheContexts(['route']);
+
+  $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
-  $title       = \Drupal::service('title_resolver')
-    ->getTitle($request, $route_match->getRouteObject());
+
+  $node = $route_match->getRouteObject();
+  $title = \Drupal::service('title_resolver')->getTitle($request, $node);
+
+  $cacheability->addCacheableDependency($node);
+  $cacheability->applyTo($variables);
 
   unset($variables['links']);
   $variables['links'] = array_map(function ($item) {
