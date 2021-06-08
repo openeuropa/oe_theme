@@ -145,7 +145,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // Give time for the javascript code to remove the block from the page.
     $assert_session->waitForElementRemoved('css', '#block-inpage-navigation');
     // Ensure that overridden callback is triggered for empty navigation list.
-    $this->assertEqual($this->getSession()->evaluateScript("document.querySelector('h1.ecl-page-header-core__title').style.color"), 'red');
+    $assert_session->elementExists('css', 'h1.ecl-page-header-core__title.empty-inpage-nav-test');
   }
 
 }
