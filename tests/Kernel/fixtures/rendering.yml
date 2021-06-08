@@ -2660,7 +2660,7 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
-      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"]': 'View all metrics'
+      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
 - array:
     '#type': 'pattern'
     '#id': 'facts_figures'
