@@ -73,7 +73,7 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
-  $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
+  $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 

@@ -11,24 +11,22 @@
  */
 #}
 
-{% set _section_2 = [] %}
-{% set _section_3 = [] %}
+{% set _top_left_column = [] %}
+{% set _top_right_column = [] %}
 
 {# First we parse the other_links, we make a simple grid. #}
 {% for section in site_specific_footer.other_links %}
   {% if loop.index is odd %}
-    {% set _section_2 = _section_2|merge([{
+    {% set _top_left_column = _top_left_column|merge([{
       'title': section.label,
+      'title_with_separator': true,
       'links': ecl_footer_links(section.links),
-      'section_id': 2,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
     }]) %}
   {% else %}
-    {% set _section_3 = _section_3|merge([{
+    {% set _top_right_column = _top_right_column|merge([{
       'title': section.label,
+      'title_with_separator': true,
       'links': ecl_footer_links(section.links),
-      'section_id': 3,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
     }]) %}
   {% endif %}
 {% endfor %}
@@ -36,84 +34,71 @@
 {# When follow section is present. #}
 {% if site_specific_footer.social_links is not empty %}
   {# If section numbers are odd, then we flip the last row so to have the follow as first. #}
-  {% if _section_2|length > _section_3|length %}
-    {% set _last_in_section_2 = _section_2|last %}
+  {% if _top_left_column|length > _top_right_column|length %}
+    {% set _last_in_top_left_column = _top_left_column|last %}
 
-    {# Compensate for bug in twig where _section_2[1:] returns empty if _section_2|length is 1. #}
-    {% if _last_in_section_2 is empty %}
-      {% set _last_in_section_2 = _section_2[0] %}
-      {% set _section_2 = [] %}
+    {# Compensate for bug in twig where _top_left_column[1:] returns empty if _top_left_column|length is 1. #}
+    {% if _last_in_top_left_column is empty %}
+      {% set _last_in_top_left_column = _top_left_column[0] %}
+      {% set _top_left_column = [] %}
     {% endif %}
 
-    {% set _section_2 = _section_2[:_section_2|length - 1] %}
-    {% set _last_in_section_2 = _last_in_section_2|merge({'section_id': 3}) %}
-    {% set _section_3 = _section_3|merge([_last_in_section_2]) %}
+    {% set _top_left_column = _top_left_column[:_top_left_column|length - 1] %}
+    {% set _top_right_column = _top_right_column|merge([_last_in_top_left_column]) %}
 
   {% endif %}
 
   {# Follow section must always be the last on the left. #}
-  {% set _section_2 = _section_2|merge([{
+  {% set _top_left_column = _top_left_column|merge([{
     'title': 'Follow us'|t,
+    'title_with_separator': true,
     'links': ecl_footer_links(site_specific_footer.social_links),
-    'section_id': 2,
-    'list_class_name': 'ecl-footer-standardised__list--inline',
-    'title_class_name': 'ecl-footer-standardised__title--separator',
-  }]) %}
-{% endif %}
-
-{# Section 2 and 3 needs minimum 2 items to display. #}
-{% if _section_2|length == 1 %}
-  {% set _section_2 = _section_2|merge([{
-    'section_id': 2,
-    'title_class_name': 'ecl-footer-standardised__title--separator',
-  }]) %}
-{% endif %}
-
-{% if _section_3|length == 1 %}
-  {% set _section_3 = _section_3|merge([{
-    'section_id': 3,
-    'title_class_name': 'ecl-footer-standardised__title--separator',
+    'links_inline': true,
   }]) %}
 {% endif %}
 
 {% block content %}
-  {% set _sections = [
-    {
-      'title': {
-      'link': {
-        'label': site_specific_footer.site_identity,
-        'path': url('<front>'),
-      }
-    },
-      'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
-      'section_id': 1,
-    },
-    _section_2,
-    _section_3,
-    {
-      'section_id': 6,
-      'list_class_name': 'ecl-footer-standardised__list--condensed',
-    },
-    {
-      'title': {
-      'link': {
-        'label': corporate_footer.corporate_site_link.label,
-        'path': corporate_footer.corporate_site_link.href,
+  {# Populate the top row with the site identity and the custom links. #}
+  {% set _top_row = [
+    [
+      {
+        'title': {
+        'link': {
+          'label': site_specific_footer.site_identity,
+          'path': url('<front>'),
+        }
       },
-    },
-      'section_id': 7,
-    },
-    {
-      'links': ecl_footer_links(corporate_footer.service_navigation),
-      'section_id': 8,
-    },
-    {
-      'links': ecl_footer_links(corporate_footer.legal_navigation),
-      'section_id': 9,
-    },
+        'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+      }
+    ],
+    _top_left_column,
+    _top_right_column
   ] %}
 
+  {# Populate the bottom row with the corporate links. #}
+  {% set _bottom_row = [
+    [
+      {
+        'title': {
+        'link': {
+          'label': corporate_footer.corporate_site_link.label,
+          'path': corporate_footer.corporate_site_link.href,
+        },
+      },
+      }
+    ],
+    [
+      {
+        'links': ecl_footer_links(corporate_footer.service_navigation),
+      }
+    ],
+    [
+      {
+        'links': ecl_footer_links(corporate_footer.legal_navigation),
+      }
+    ],
+  ] %}
   {% include '@ecl-twig/footer-standardised' with {
-    'sections': _sections,
+    'rows': [ _top_row, _bottom_row],
   } %}
 {% endblock %}
