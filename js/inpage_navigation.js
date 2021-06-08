@@ -11,6 +11,9 @@
    * navigation list. If the element is missing the ID attribute, one will be generated automatically.
    *
    * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Attaches the inpage navigation behaviors.
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
@@ -58,15 +61,30 @@
 
       Array.prototype.forEach.call(document.querySelectorAll('[data-ecl-inpage-navigation]'), function (block) {
         if (items_markup.length === 0) {
-          // Remove in-page navigation element if we don't have links inside.
-          Drupal.behaviors.eclInPageNavigation.removeNavBlock(block);
+          // When there are no items, execute the callback to handle the block.
+          Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
           return;
         }
         block.querySelector('ul').innerHTML = items_markup;
       })
-    },
-    removeNavBlock: function removeNavBlock(element) {
-      element.remove();
+    }
+  };
+
+  /**
+   * Holds inpage navigation related functionality.
+   *
+   * @namespace
+   */
+  Drupal.eclInPageNavigation = {
+
+    /**
+     * Handles an inpage navigation block with no items.
+     *
+     * @param {Element} block
+     *   The inpage navigation block element.
+     */
+    handleEmptyInpageNavigation: function(block) {
+      block.remove();
     }
   };
 

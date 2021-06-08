@@ -6,7 +6,7 @@
   /**
    * Override behaviour for empty navigation list.
    */
-  Drupal.behaviors.eclInPageNavigation.removeNavBlock = function removeNavBlock(element) {
+  Drupal.eclInPageNavigation.handleEmptyInpageNavigation = function(element) {
     document.querySelector('h1.ecl-page-header-core__title').style.color = 'red';
     element.remove();
   }
