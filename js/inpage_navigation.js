@@ -41,7 +41,13 @@
 
         // Generate an unique ID if not present.
         if (!element.hasAttribute('id')) {
-          element.setAttribute('id', slug(title));
+          var id = slug(title);
+          // If an empty ID is generated, skip this element.
+          if (id === false) {
+            return;
+          }
+
+          element.setAttribute('id', id);
         }
 
         // Cleanup the markup from the helper attribute added above.
@@ -76,8 +82,8 @@
    * @param {string} value
    *   The string to process.
    *
-   * @returns {string}
-   *   A unique slug, safe to use as ID for an element.
+   * @returns {string|boolean}
+   *   A unique slug, safe to use as ID for an element. False when the generated slug is empty.
    */
   function slug(value) {
     var originalSlug = value
@@ -91,6 +97,11 @@
 
     var slug = originalSlug;
     var occurrenceAccumulator = 0;
+
+    // If the slug string is empty, quit.
+    if (slug.length === 0) {
+      return false;
+    }
 
     // If an element with the generated slug as ID already exists, mark the slug as seen.
     if (!seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
