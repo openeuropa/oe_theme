@@ -14,62 +14,63 @@
 {% extends "@oe_theme/navigation/oe-corporate-blocks-ec-footer--standardised.html.twig" %}
 
 {% block content %}
-  {% set _logo_path = ecl_logo_path ~ '/logo--' ~ current_language_id|to_internal_language_id ~ '.svg' %}
-  {% set _sections = [
-    {
-      'title': {
-      'link': {
-        'label': site_specific_footer.site_identity,
-        'path': url('<front>'),
+  {% set _logo_path = ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg' %}
+  {# Populate the top row with the site identity and the custom links. #}
+  {% set _top_row = [
+    [
+      {
+        'title': {
+        'link': {
+          'label': site_specific_footer.site_identity,
+          'path': url('<front>'),
+        }
+      },
+        'description': site_owner ? 'This site is managed by the European Commission, @name'|t({'@name': site_owner}),
       }
-    },
-      'description': site_owner ? 'This site is managed by the European Commission, @name'|t({'@name': site_owner}),
-      'section_id': 1,
-    },
-    _section_2,
-    _section_3,
-    {
-      'section_id': 6,
-    },
-    {
-      'logo': {
-      'path': 'https://europa.eu/',
-      'language': current_language_id,
-      'src_mobile': _logo_path,
-      'src_desktop': _logo_path,
-    },
-      'description': logo_description,
-      'section_id': 7,
-    },
+    ],
+    _top_left_column,
+    _top_right_column
+  ] %}
+  {# Populate the bottom row with the corporate links. #}
+  {% set _bottom_row = [
+    [
+      {
+        'logo': {
+          'path': 'https://europa.eu/',
+          'language': current_language_id,
+          'src_mobile': _logo_path,
+          'src_desktop': _logo_path,
+        },
+        'description': logo_description,
+      },
+    ],
     [
       {
         'title': corporate_footer.contact_title,
         'links': ecl_footer_links(corporate_footer.contact),
-        'section_id': 8,
-        'title_class_name': 'ecl-footer-standardised__title--separator',
+        'title_with_separator': true,
       },
       {
         'title': corporate_footer.social_media_title,
         'links': ecl_footer_links(corporate_footer.social_media),
-        'section_id': 8,
-        'title_class_name': 'ecl-footer-standardised__title--separator',
+        'title_with_separator': true,
       },
       {
         'title': corporate_footer.legal_links_title,
         'links': ecl_footer_links(corporate_footer.legal_links),
-        'section_id': 8,
-        'title_class_name': 'ecl-footer-standardised__title--separator',
+        'title_with_separator': true,
       }
     ],
-    {
-      'title': corporate_footer.institution_links_title,
-      'links': ecl_footer_links(corporate_footer.institution_links),
-      'section_id': 9,
-      'title_class_name': 'ecl-footer-standardised__title--separator',
-    }
+    [
+      {
+        'title': corporate_footer.institution_links_title,
+        'links': ecl_footer_links(corporate_footer.institution_links),
+        'title_with_separator': true,
+      }
+    ],
   ] %}
 
   {% include '@ecl-twig/footer-standardised' with {
-    'sections': _sections,
+    'rows': [ _top_row, _bottom_row],
   } %}
 {% endblock %}
