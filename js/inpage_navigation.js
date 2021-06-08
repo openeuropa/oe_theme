@@ -44,7 +44,7 @@
 
         // Generate an unique ID if not present.
         if (!element.hasAttribute('id')) {
-          var id = slug(title);
+          var id = Drupal.eclInPageNavigation.slug(title);
           // If an empty ID is generated, skip this element.
           if (id === false) {
             return;
@@ -78,6 +78,63 @@
   Drupal.eclInPageNavigation = {
 
     /**
+     * A list of IDs already used by the slug generator.
+     *
+     * @type {object}
+     */
+    seenIds: {},
+
+    /**
+     * Generates a unique slug from a text string.
+     *
+     * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
+     * Since the above file is part of a bigger library, we extracted its code and adapted to account for already existing
+     * IDs on the page.
+     *
+     * @param {string} value
+     *   The string to process.
+     *
+     * @returns {string|boolean}
+     *   A unique slug, safe to use as ID for an element. False when the generated slug is empty.
+     */
+    slug: function(value) {
+      var originalSlug = value
+        .toLowerCase()
+        .trim()
+        // Remove html tags.
+        .replace(/<[!\/a-z].*?>/ig, '')
+        // Remove unwanted chars.
+        .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
+        .replace(/\s/g, '-');
+
+      var slug = originalSlug;
+      var occurrenceAccumulator = 0;
+
+      // If the slug string is empty, quit.
+      if (slug.length === 0) {
+        return false;
+      }
+
+      // If an element with the generated slug as ID already exists, mark the slug as seen.
+      if (!this.seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
+        this.seenIds[slug] = 0;
+      }
+
+      // If the slug has been returned already, increase the counter, making sure that the ID is not present in the page.
+      if (this.seenIds.hasOwnProperty(slug)) {
+        occurrenceAccumulator = this.seenIds[slug];
+        do {
+          occurrenceAccumulator++;
+          slug = originalSlug + '-' + occurrenceAccumulator;
+        } while (this.seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug));
+      }
+      this.seenIds[originalSlug] = occurrenceAccumulator;
+      this.seenIds[slug] = 0;
+
+      return slug;
+    },
+
+    /**
      * Handles an inpage navigation block with no items.
      *
      * @param {Element} block
@@ -87,58 +144,6 @@
       block.remove();
     }
   };
-
-  var seenIds = {};
-
-  /**
-   * Generates a unique slug from a text string.
-   *
-   * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
-   * Since the above file is part of a bigger library, we extracted its code and adapted to account for already existing
-   * IDs on the page.
-   *
-   * @param {string} value
-   *   The string to process.
-   *
-   * @returns {string|boolean}
-   *   A unique slug, safe to use as ID for an element. False when the generated slug is empty.
-   */
-  function slug(value) {
-    var originalSlug = value
-      .toLowerCase()
-      .trim()
-      // Remove html tags.
-      .replace(/<[!\/a-z].*?>/ig, '')
-      // Remove unwanted chars.
-      .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
-      .replace(/\s/g, '-');
-
-    var slug = originalSlug;
-    var occurrenceAccumulator = 0;
-
-    // If the slug string is empty, quit.
-    if (slug.length === 0) {
-      return false;
-    }
-
-    // If an element with the generated slug as ID already exists, mark the slug as seen.
-    if (!seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
-      seenIds[slug] = 0;
-    }
-
-    // If the slug has been returned already, increase the counter, making sure that the ID is not present in the page.
-    if (seenIds.hasOwnProperty(slug)) {
-      occurrenceAccumulator = seenIds[slug];
-      do {
-        occurrenceAccumulator++;
-        slug = originalSlug + '-' + occurrenceAccumulator;
-      } while (seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug));
-    }
-    seenIds[originalSlug] = occurrenceAccumulator;
-    seenIds[slug] = 0;
-
-    return slug;
-  }
 
   /**
    * Theme function for a single inpage navigation item.
