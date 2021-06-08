@@ -567,12 +567,14 @@ class ParagraphsTest extends ParagraphsTestBase {
    * Test 'Facts and figures' paragraph rendering.
    */
   public function testFactsFigures(): void {
+    // Set the component library to "European Union".
+    $this->config('oe_theme.settings')->set('component_library', 'eu')->save();
     // Create three Facts to be referenced from the Facts and figures paragraph.
     $items = [];
     $icons = [
-      '1' => 'instagram',
-      '2' => 'success',
-      '3' => 'file',
+      '1' => 'infographic',
+      '2' => 'spreadsheet',
+      '3' => 'digital',
     ];
     for ($i = 1; $i < 4; $i++) {
       $paragraph = Paragraph::create([
@@ -600,15 +602,16 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($html);
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
-    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
-    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
-    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon'));
-    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon'));
+    $this->assertCount(1, $crawler->filter('div.ecl-fact-figures__view-all svg.ecl-icon.ecl-icon--m.ecl-icon--rotate-90.ecl-link__icon'));
 
     $this->assertEquals('Facts and figures', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#instagram"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#success"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
-    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#infographic"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#spreadsheet"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#digital"></use>', $crawler->filter('div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon')->html());
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/eu/images/icons/sprites/icons.svg#corner-arrow"></use>', $crawler->filter('div.ecl-fact-figures__view-all svg.ecl-icon.ecl-icon--m.ecl-icon--rotate-90.ecl-link__icon')->html());
     $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
