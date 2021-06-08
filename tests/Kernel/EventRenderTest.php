@@ -176,6 +176,13 @@ class EventRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date', $html);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Event short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'Event short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Set the online type to be livestream and assert the details are updated.
     $node->set('oe_event_online_type', 'livestream')->save();
     $this->nodeViewBuilder->resetCache();
