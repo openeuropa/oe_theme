@@ -4,7 +4,9 @@
  * Template to display an inpage navigation block.
  */
 #}
-{% include '@ecl-twig/inpage-navigation' with {
-  'title': title,
-  'icon_path': ecl_icon_path,
-} %}
+{% block navigation %}
+  {% include '@ecl-twig/inpage-navigation' with {
+    'title': title,
+    'icon_path': ecl_icon_path,
+  } %}
+{% endblock %}
