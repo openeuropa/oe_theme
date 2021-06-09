@@ -1,0 +1,44 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.oe_policy.body
+    - field.field.node.oe_policy.oe_author
+    - field.field.node.oe_policy.oe_subject
+    - field.field.node.oe_policy.oe_summary
+    - field.field.node.oe_policy.oe_teaser
+    - field.field.node.oe_policy.oe_timeline
+    - node.type.oe_policy
+  module:
+    - text
+    - user
+id: node.oe_policy.teaser
+targetEntityType: node
+bundle: oe_policy
+mode: teaser
+content:
+  extra_field_oe_theme_helper_short_title_with_fallback:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  oe_teaser:
+    type: text_default
+    weight: 1
+    region: content
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  body: true
+  langcode: true
+  links: true
+  oe_author: true
+  oe_content_content_owner: true
+  oe_content_legacy_link: true
+  oe_content_navigation_title: true
+  oe_content_short_title: true
+  oe_subject: true
+  oe_summary: true
+  oe_timeline: true
