@@ -178,6 +178,13 @@ class ProjectRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
+
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Project short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'Project short title';
+    $assert->assertPattern($expected_values, $html);
   }
 
 }

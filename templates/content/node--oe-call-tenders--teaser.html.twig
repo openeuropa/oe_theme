@@ -14,7 +14,7 @@
   {{ pattern('list_item', {
     'variant': 'default',
     'url': url,
-    'title': label,
+    'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'meta': meta,
     'additional_information': additional_information,
   }) }}
