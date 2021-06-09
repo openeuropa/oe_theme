@@ -1,0 +1,306 @@
+
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Organizasyon türü"
+
+msgid "Show @numb more items"
+msgstr "Daha fazla öğe göster @numb"
+
+msgid "When"
+msgstr "Tarih"
+
+msgid "Where"
+msgstr "Yer"
+
+msgid "Organiser"
+msgstr "Organizatör"
+
+msgid "Website"
+msgstr "İnternet sitesi"
+
+msgid "Social media"
+msgstr "Sosyal medya"
+
+msgid "Number of seats"
+msgstr "Yer sayısı"
+
+msgid "Entrance fee"
+msgstr "Giriş ücreti"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Yerinizi ayırmak için rezervasyon yapın,  Kayıt için kalan süre: @time_left, Kayıtlar @end_date tarihinde sona erecek."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Kayıtlar @time_left içinde açılacaktır. @start_date tarihinden @end_date tarihine kadar kayıt yaptırabilirsiniz.yaptırabilirsiniz."
+
+msgid "Registration period ended on @date."
+msgstr "Kayıt dönemi @end_date tarihinde sona erdi."
+
+msgid "Postal address"
+msgstr "Posta adresi"
+
+msgid "Authors"
+msgstr "Yazarlar"
+
+msgid "Department"
+msgstr "Bölüm"
+
+msgid "Project duration"
+msgstr "Proje süresi"
+
+msgid "Project website"
+msgstr "Proje web sitesi"
+
+msgid "Contact organisation"
+msgstr "İletişime geçilecek kurum"
+
+msgid "Call status: @label"
+msgstr "Çağrı durumu: @label"
+
+msgid "Press contacts"
+msgstr "İletişime geçilecek basın görevlileri"
+
+msgid "Call for tenders"
+msgstr "İhale çağrısı"
+
+msgid "Related links"
+msgstr "İlgili linkler (bağlantılar)"
+
+msgid "Practical information"
+msgstr "Pratik bilgiler"
+
+msgid "Phone number"
+msgstr "Telefon numarası"
+
+msgid "Opening date"
+msgstr "Açılış tarihi"
+
+msgid "Deadline date"
+msgstr "Son teslim tarihi"
+
+msgid "Deadline dates"
+msgstr "Son teslim tarihleri"
+
+msgid "Publication date"
+msgstr "Yayın tarihi"
+
+msgid "Author"
+msgstr "Yazar"
+
+msgid "Location"
+msgstr "Konum "
+
+msgid "News type"
+msgstr "Haber türü"
+
+msgid "Project locations"
+msgstr "Proje yerleri"
+
+msgid "Overall budget"
+msgstr "Genel bütçe"
+
+msgid "EU contribution"
+msgstr "AB katkısı"
+
+msgid "Departments"
+msgstr "Bölümler"
+
+msgid "Results"
+msgstr "Sonuçlar"
+
+msgid "Stakeholders"
+msgstr "Paydaşlar"
+
+msgid "Coordinators"
+msgstr "Koordinatörler"
+
+msgid "Participants"
+msgstr "Katılımcılar"
+
+msgid "Country"
+msgstr "Ülke"
+
+msgid "Countries"
+msgstr "Ülkeler"
+
+msgid "EU Organisation"
+msgstr "AB Organizasyonu"
+
+msgid "Non-EU organisation"
+msgstr "AB Dışı Kuruluş"
+
+msgid "Reference"
+msgstr "Referans"
+
+msgid "Upcoming"
+msgstr "Önümüzdeki"
+
+msgid "Open"
+msgstr "Açık"
+
+msgid "Closed"
+msgstr "Kapalı"
+
+msgid "Details"
+msgstr "Detaylar"
+
+msgid "Status"
+msgstr "Durum"
+
+msgid "Publication"
+msgstr "Yayın"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Email"
+msgstr "E-posta adresi"
+
+msgid "Contact"
+msgstr "İletişim"
+
+msgid "Contacts"
+msgstr "İletişime geçilecek kişiler"
+
+msgid "Organisation"
+msgstr "Organizasyon "
+
+msgid "Fax number"
+msgstr "Faks numarası"
+
+msgid "Mobile number"
+msgstr "Mobil telefon numarası"
+
+msgid "Office"
+msgstr "Ofis"
+
+msgid "Documents"
+msgstr "Belgeler"
+
+msgid "Funding"
+msgstr "Finansman"
+
+msgid "As planned"
+msgstr "Planlandığı üzere"
+
+msgid "Cancelled"
+msgstr "İptal edildi"
+
+msgid "Rescheduled"
+msgstr "Yeni bir tarihe ertelendi"
+
+msgid "Postponed"
+msgstr "Ertelendi"
+
+msgid "Address"
+msgstr "Adres"
+
+msgid "Live stream"
+msgstr "Canlı yayın"
+
+msgid "Live streaming available"
+msgstr "Canlı yayın mevcut"
+
+msgid "Project"
+msgstr "Proje"
+
+msgid "Publication type"
+msgstr "Yayın türü"
+
+msgid "Call for proposals"
+msgstr "Teklif çağrısı"
+
+msgid "Funding programme"
+msgstr "Finansman programı"
+
+msgid "Deadline model"
+msgstr "Son teslim tarihi modeli"
+
+msgid "Single-stage"
+msgstr "Tek aşamalı"
+
+msgid "Two-stage"
+msgstr "İki aşamalı"
+
+msgid "Multiple cut-off"
+msgstr "Çoklu aşamalı ihale düzeni"
+
+msgid "Permanent"
+msgstr "Kalıcı"
+
+msgid "File"
+msgstr "Dosya"
+
+msgid "Files"
+msgstr "Dosyalar"
+
+msgid "Identification"
+msgstr "Kimlik"
+
+msgid "Identifications"
+msgstr "Kimlikler"
+
+msgid "Related department"
+msgstr "İlgili bölüm"
+
+msgid "Related departments"
+msgstr "İlgili bölümler"
+
+msgid "Consultation"
+msgstr "İstişare "
+
+msgid "Deadline"
+msgstr "Son teslim tarihi"
+
+msgid "Respond to the questionnaire"
+msgstr "Ankete katılın"
+
+msgid "Respond to the consultation"
+msgstr "Halka açık  istişare toplantısına katılın"
+
+msgid "Target audience"
+msgstr "Hedef kitle"
+
+msgid "Why we are consulting"
+msgstr "Neden istişare toplantısı düzenliyoruz"
+
+msgid "Consultation outcome"
+msgstr "İstişare toplantısı sonucu"
+
+msgid "Additional information"
+msgstr "Ek Bilgiler"
+
+msgid "Reference documents"
+msgstr "Referans dökümanlar"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Bu istişare toplantısı için yanıt süresi sona ermiştir. Katkılarınız için teşekkürler."
+
+msgid "Responsibilities"
+msgstr "Sorumluluklar"
+
+msgid "Media"
+msgstr "Medya"
+
+msgid "Latest"
+msgstr "Son"
+
+msgid "Transparency"
+msgstr "Şeffaflık"
+
+msgid "Articles and presentations"
+msgstr "Makaleler ve sunumlar"
+
+msgid "Biography"
+msgstr "Biyografi"
+
+msgid "Declaration of interests"
+msgstr "İlgi alanları beyanı"
+
+msgid "Show contact details"
+msgstr "İletişim bilgilerinizi gösteriniz"
+
+msgid "Hide contact details"
+msgstr "İletişim bilgilerinizi gizle"
