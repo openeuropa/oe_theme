@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Press contacts field in the Contact entity default view mode.
+ * Link field in the Contact entity default view mode.
  *
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
@@ -12,7 +12,7 @@
     {% include '@ecl-twig/link' with {
       link: {
         type: 'standalone',
-        label: 'Press contacts'|t,
+        label: item.content['#title'],
         path: item.content['#url'],
         icon_position: 'after'
       },
