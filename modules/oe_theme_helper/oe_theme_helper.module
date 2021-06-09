@@ -73,6 +73,8 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'oe_theme_helper_featured_media' => [
       'variables' => [
         'params' => [],
+        'entity' => [],
+        'field_name' => NULL,
       ],
     ],
     'oe_theme_helper_social_media_icons_list' => [

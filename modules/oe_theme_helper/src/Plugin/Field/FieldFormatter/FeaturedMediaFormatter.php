@@ -178,6 +178,10 @@ class FeaturedMediaFormatter extends EntityReferenceFormatterBase {
     }
 
     $build['#theme'] = 'oe_theme_helper_featured_media';
+    // Add the entity object and field_name to the build array.
+    $build['#entity'] = $item->getEntity();
+    $build['#field_name'] = $item->getFieldDefinition()->getName();
+    $cacheability->applyTo($build);
 
     // Get the media source.
     $source = $media->getSource();
