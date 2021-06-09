@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 
 /**
  * Create the 'full' entity view display on the organisation CT.
@@ -32,4 +33,24 @@ function oe_theme_content_organisation_post_update_00001() {
 
   $entity = $entity_storage->createFromStorageRecord($config);
   $entity->save();
+}
+
+/**
+ * Updates the teaser view display.
+ */
+function oe_theme_content_organisation_post_update_00002(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_organisation') . '/config/post_updates/00002_update_teaser_view_display');
+
+  $display_values = $storage->read('core.entity_view_display.node.oe_organisation.teaser');
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+
+  $view_display = EntityViewDisplay::load($display_values['id']);
+  if ($view_display) {
+    $display = $storage->updateFromStorageRecord($view_display, $display_values);
+    $display->save();
+    return;
+  }
+
+  $display = $storage->createFromStorageRecord($display_values);
+  $display->save();
 }
