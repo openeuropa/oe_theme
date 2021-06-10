@@ -207,6 +207,10 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       'oe_organisation' => "Organisation $name",
       'oe_phone' => "Phone number $name",
       'oe_press_contact_url' => ['uri' => "http://www.example.com/press_contact_$name"],
+      'oe_link' => [
+        'uri' => "http://www.example.com/link_$name",
+        'title' => "Link title $name",
+      ],
       'oe_social_media' => [
         [
           'uri' => "http://www.example.com/social_media_$name",
@@ -281,9 +285,13 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $field_list_assert->assertPattern($contact_expected_values, $contacts_html);
     $field_list_assert->assertVariant('horizontal', $contacts_html);
 
-    // Assert Press contacts.
-    $press = $element->find('css', '.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l');
-    $this->assertLinkIcon($press, 'Press contacts', "http://www.example.com/press_contact_$name");
+    // Assert Press contacts field.
+    $links_wrapper = $element->findAll('css', 'div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l');
+    $this->assertCount(2, $links_wrapper);
+    $this->assertLinkIcon($links_wrapper[0], 'Press contacts', "http://www.example.com/press_contact_$name");
+
+    // Assert Link field.
+    $this->assertLinkIcon($links_wrapper[1], "Link title $name", "http://www.example.com/link_$name");
 
     // Assert contacts Image.
     $this->assertFeaturedMediaField($element, $name);

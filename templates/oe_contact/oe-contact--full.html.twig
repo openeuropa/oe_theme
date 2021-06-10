@@ -16,14 +16,19 @@
     <div class="ecl-col-12">
   {% endif %}
     {% if entity.oe_body is not empty %}
-      <div class="ecl-editor">
+      <div class="ecl-u-mb-l">
         {{ content.oe_body }}
       </div>
     {% endif %}
     {{ content.group_contact_information }}
-    {{ content.oe_press_contact_url }}
-  </div>
-  {% if entity.oe_image is not empty %}
+    {% if not entity.oe_press_contact_url.isEmpty() or not entity.oe_link.isEmpty() %}
+      <div class="ecl-u-border-top ecl-u-border-color-grey-15 ecl-u-mt-s">
+        {{ content.oe_press_contact_url }}
+        {{ content.oe_link }}
+      </div>
+    {% endif %}
+    </div>
+  {% if not entity.oe_image.isEmpty() %}
     <div class="ecl-col-md-5">
       {{ content.oe_image }}
     </div>
