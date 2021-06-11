@@ -295,6 +295,16 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
+    // Assert address in Venue using country only.
+    $venue_entity->set('oe_address', ['country_code' => 'MX'])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][0]['body'] = "event_venue\n  Mexico";
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values['items'][2]['text'] = 'Mexico';
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
     // Assert "Internal organiser" field.
     $node->set('oe_event_organiser_is_internal', TRUE);
     $node->set('oe_event_organiser_internal', 'http://publications.europa.eu/resource/authority/corporate-body/AASM');

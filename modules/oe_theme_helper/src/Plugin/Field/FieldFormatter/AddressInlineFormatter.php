@@ -100,6 +100,7 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
     else {
       $format_string = $address_format->getFormat() . "\n" . '%country';
     }
+    $format_string = str_replace([',', ' - '], "\n", $format_string);
 
     $items = $this->extractAddressItems($format_string, $address_elements);
 
