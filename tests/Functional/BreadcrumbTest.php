@@ -71,29 +71,43 @@ class BreadcrumbTest extends ContentRenderTestBase {
     ]);
     $node_2->save();
 
+    $expected = [
+      'Home',
+      'Node',
+      'Test news node',
+    ];
     $this->drupalGet($node_1->toUrl());
-    $this->assertSystemBreadcrumbs('Test news node');
+    $this->assertSystemBreadcrumbs($expected);
 
+    $expected = [
+      'Home',
+      'Node',
+      'Test news article breadcrumb',
+    ];
     $this->drupalGet($node_2->toUrl());
-    $this->assertSystemBreadcrumbs('Test news article breadcrumb');
+    $this->assertSystemBreadcrumbs($expected);
   }
 
   /**
    * Helper to assert system breadcrumbs on the page.
    *
-   * @param string $last_segment_title
-   *   The expected last segment.
+   * @param array $expected
+   *   The expected breadcrumb titles in the expected order.
    */
-  protected function assertSystemBreadcrumbs(string $last_segment_title): void {
+  protected function assertSystemBreadcrumbs(array $expected): void {
+    // Get the last segment title nad the link titles.
+    $last_segment_title = array_pop($expected);
+    $page_breadcrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb-core"]');
+
     // Assert the link titles.
-    $page_breadrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb-core"]');
-    $links = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__segment a.ecl-breadcrumb-core__link');
-    $this->assertCount(2, $links);
-    $this->assertEquals('Home', trim($links[0]->getText()));
-    $this->assertEquals('Node', trim($links[1]->getText()));
+    $links = $page_breadcrumb->findAll('css', 'a');
+    $this->assertCount(count($expected), $links);
+    foreach ($expected as $index => $title) {
+      $this->assertEquals($title, trim($links[$index]->getText()));
+    }
 
     // Check the last segment title.
-    $current_page = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__current-page');
+    $current_page = $page_breadcrumb->findAll('css', 'li:last-child');
     $this->assertCount(1, $current_page);
     $current_page = reset($current_page);
     $this->assertEquals($last_segment_title, trim($current_page->getText()));
