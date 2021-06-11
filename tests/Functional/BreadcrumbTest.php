@@ -14,7 +14,7 @@ class BreadcrumbTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'system',
     'oe_theme_helper',
@@ -95,13 +95,13 @@ class BreadcrumbTest extends ContentRenderTestBase {
    *   The expected breadcrumb titles in the expected order.
    */
   protected function assertSystemBreadcrumbs(array $expected): void {
-    // Get the last segment title nad the link titles.
+    // Get the last segment title and the link titles.
     $last_segment_title = array_pop($expected);
     $page_breadcrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb-core"]');
 
     // Assert the link titles.
     $links = $page_breadcrumb->findAll('css', 'a');
-    $this->assertCount(count($expected), $links);
+    $this->assertSameSize($expected, $links);
     foreach ($expected as $index => $title) {
       $this->assertEquals($title, trim($links[$index]->getText()));
     }
