@@ -400,10 +400,6 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
-  if ($variables['field_name'] === 'body') {
-    $variables['attributes']['class'][] = 'ecl-editor';
-  }
-
   // Add the ECL image class to the image fields.
   $field_name = $variables['field_name'];
   if (in_array($field_name, ['oe_media_avportal_photo'])) {

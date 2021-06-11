@@ -6,6 +6,5 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-<div class="ecl-editor">
-  {%- include 'field--bare.html.twig' -%}
-</div>
+{% set label_hidden = true %}
+{% include '@oe_theme/field/field--text-long.html.twig' %}

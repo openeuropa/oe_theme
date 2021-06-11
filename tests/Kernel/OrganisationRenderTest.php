@@ -138,6 +138,13 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Organisation short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'Organisation short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Create another contact and add it to the node.
     $second_contact = $this->createContactEntity('second_contact', 'oe_general');
     $node->set('oe_organisation_contact', [$first_contact, $second_contact]);
