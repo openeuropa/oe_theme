@@ -5,11 +5,11 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 /**
- * Tests that breadcrumbs are rendered correctly.
+ * Tests that breadcrumbs are cached correctly.
  *
  * @group batch1
  */
-class BreadcrumbRenderTest extends ContentRenderTestBase {
+class BreadcrumbTest extends ContentRenderTestBase {
 
   /**
    * {@inheritdoc}
@@ -24,15 +24,15 @@ class BreadcrumbRenderTest extends ContentRenderTestBase {
   ];
 
   /**
-   * Tests that the breadcrumbs are rendered correctly for news content type.
+   * Tests that the breadcrumbs are cached correctly.
    */
-  public function testNewsBreadcrumbRendering(): void {
+  public function testBreadcrumbCaching(): void {
     // Ensure that the system breadcrumb is placed as well.
     $this->drupalPlaceBlock('system_breadcrumb_block', [
       'region' => 'page_header',
     ]);
 
-    // Create a News node.
+    // Create a news node.
     /** @var \Drupal\node\Entity\Node $node */
     $node_1 = $this->getStorage('node')->create([
       'type' => 'oe_news',
@@ -52,7 +52,7 @@ class BreadcrumbRenderTest extends ContentRenderTestBase {
     ]);
     $node_1->save();
 
-    // Create a news article with different title.
+    // Create another news node with different title.
     $node_2 = $this->getStorage('node')->create([
       'type' => 'oe_news',
       'title' => 'Test news article breadcrumb',
@@ -72,42 +72,31 @@ class BreadcrumbRenderTest extends ContentRenderTestBase {
     $node_2->save();
 
     $this->drupalGet($node_1->toUrl());
-    $this->assertBreadcrumbs('Test news node');
+    $this->assertSystemBreadcrumbs('Test news node');
 
     $this->drupalGet($node_2->toUrl());
-    $this->assertBreadcrumbs('Test news article breadcrumb');
+    $this->assertSystemBreadcrumbs('Test news article breadcrumb');
   }
 
   /**
-   * Helper to assert both system and page header breadcrumbs on the page.
+   * Helper to assert system breadcrumbs on the page.
    *
    * @param string $last_segment_title
    *   The expected last segment.
    */
-  protected function assertBreadcrumbs(string $last_segment_title): void {
-    $breadcrumbs = [
-      // Test the page header breadcrumb.
-      '.ecl-page-header-core .ecl-breadcrumb-core',
-      // Test the system breadcrumb.
-      '[class="ecl-breadcrumb-core"]',
-    ];
+  protected function assertSystemBreadcrumbs(string $last_segment_title): void {
+    // Assert the link titles.
+    $page_breadrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb-core"]');
+    $links = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__segment a.ecl-breadcrumb-core__link');
+    $this->assertCount(2, $links);
+    $this->assertEquals('Home', trim($links[0]->getText()));
+    $this->assertEquals('Node', trim($links[1]->getText()));
 
-    foreach ($breadcrumbs as $breadcrumb) {
-      // Check for the number of segments.
-      $page_breadrumb = $this->assertSession()->elementExists('css', $breadcrumb);
-      $segments = $page_breadrumb->findAll('css', '.ecl-breadcrumb-core__segment');
-      $this->assertCount(3, $segments);
-
-      // Check for the number of links.
-      $links_count = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__segment a.ecl-breadcrumb-core__link');
-      $this->assertCount(2, $links_count);
-
-      // Check the last segment.
-      $current_page = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__current-page');
-      $this->assertCount(1, $current_page);
-      $current_page = reset($current_page);
-      $this->assertEquals($last_segment_title, trim($current_page->getText()));
-    }
+    // Check the last segment title.
+    $current_page = $page_breadrumb->findAll('css', 'ol.ecl-breadcrumb-core__container li.ecl-breadcrumb-core__current-page');
+    $this->assertCount(1, $current_page);
+    $current_page = reset($current_page);
+    $this->assertEquals($last_segment_title, trim($current_page->getText()));
   }
 
 }

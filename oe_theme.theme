@@ -83,15 +83,13 @@ function oe_theme_preprocess(&$variables) {
 function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
   $cacheability->addCacheContexts(['route']);
+  $cacheability->applyTo($variables);
 
   $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
 
-  $node = $route_match->getRouteObject();
-  $title = \Drupal::service('title_resolver')->getTitle($request, $node);
-
-  $cacheability->addCacheableDependency($node);
-  $cacheability->applyTo($variables);
+  $route = $route_match->getRouteObject();
+  $title = \Drupal::service('title_resolver')->getTitle($request, $route);
 
   unset($variables['links']);
   $variables['links'] = array_map(function ($item) {
