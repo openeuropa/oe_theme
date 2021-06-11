@@ -56,7 +56,7 @@ class DetailsExtraField extends EventExtraFieldBase {
    *   The renderer service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, RendererInterface $renderer) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $entity_repository);
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->entityRepository = $entity_repository;
     $this->renderer = $renderer;
   }
