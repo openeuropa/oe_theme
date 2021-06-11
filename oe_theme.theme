@@ -923,6 +923,14 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   // paragraph template.
   $cacheability->addCacheableDependency($media);
 
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
   // Get the media source.
   $source = $media->getSource();
 
@@ -1428,6 +1436,14 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   // the original render arrays, we need to propagate our caches to the
   // paragraph template.
   $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
 
   $source = $media->getSource();
   // We only support images and AV Portal photos for now.
