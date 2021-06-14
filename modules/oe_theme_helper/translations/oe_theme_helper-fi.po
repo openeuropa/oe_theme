@@ -336,3 +336,6 @@ msgstr "Näytä yhteystiedot"
 
 msgid "Hide contact details"
 msgstr "Piilota yhteystiedot"
+
+msgid "Leadership and organisation"
+msgstr "Johto ja organisaatio"

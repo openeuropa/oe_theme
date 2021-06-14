@@ -336,3 +336,6 @@ msgstr "Contactinformatie"
 
 msgid "Hide contact details"
 msgstr "Contactinformatie verbergen"
+
+msgid "Leadership and organisation"
+msgstr "Leiding en organisatie"

@@ -336,3 +336,6 @@ msgstr "Zobraziť kontaktné informácie"
 
 msgid "Hide contact details"
 msgstr "Skryť kontaktné informácie"
+
+msgid "Leadership and organisation"
+msgstr "Vedenie a organizácia"

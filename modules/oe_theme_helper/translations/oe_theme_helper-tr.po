@@ -304,3 +304,6 @@ msgstr "İletişim bilgilerinizi gösteriniz"
 
 msgid "Hide contact details"
 msgstr "İletişim bilgilerinizi gizle"
+
+msgid "Leadership and organisation"
+msgstr "Liderlik ve organizasyon"
