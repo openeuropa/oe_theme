@@ -336,3 +336,6 @@ msgstr "Näita kontaktandmeid"
 
 msgid "Hide contact details"
 msgstr "Peida kontaktandmed"
+
+msgid "Leadership and organisation"
+msgstr "Juhtkond ja struktuur"

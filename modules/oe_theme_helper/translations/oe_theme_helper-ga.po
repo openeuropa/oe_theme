@@ -336,3 +336,6 @@ msgstr "Taispeáin de shonraí teagmhála"
 
 msgid "Hide contact details"
 msgstr "Cuir na sonraí teagmhála i bhfolach"
+
+msgid "Leadership and organisation"
+msgstr "Ceannaireacht agus eagrúchán"
