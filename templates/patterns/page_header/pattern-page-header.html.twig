@@ -4,19 +4,13 @@
  * Default implementation for the page header component.
  */
 #}
-{% set _meta = '' %}
-{% if metas is not empty %}
-  {% set _meta %}
-    {{ metas|filter_empty|safe_join(" | ") }}
-  {% endset %}
-  {% set _metas = [_meta] %}
-{% endif %}
 
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
   {% set _links = {
     'label' : breadcrumb_item.label,
-    'path' : breadcrumb_item.href
+    'path' : breadcrumb_item.href,
+    'negative' : ecl_component_library == 'ec' and ecl_branding == 'core'
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
@@ -52,12 +46,12 @@
 
 {% include '@ecl-twig/page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding with {
   'title': title,
+  'thumbnail': thumbnail,
   'description': introduction,
   'breadcrumb': _breadcrumb,
-  'meta': _metas,
-  'infos': _infos,
-  'background_image': ecl_branding == 'core' and background_image_url is not empty,
+  'meta': metas,
   'background_image_url': background_image_url,
   'composition': _language_switcher,
   'extra_classes': _extra_classes|join(' '),
+  'overlay': overlay,
 } %}
