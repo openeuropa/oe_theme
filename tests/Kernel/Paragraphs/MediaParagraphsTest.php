@@ -55,6 +55,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'options',
       'oe_media_iframe',
     ]);
+    // Call the install hook of the Media module.
+    module_load_include('install', 'media');
+    media_install();
   }
 
   /**
@@ -152,6 +155,31 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ];
     $html = $this->renderParagraph($paragraph, 'bg');
     $assert->assertPattern($expected_values, $html);
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $expected_values = [
+      'title' => 'Title',
+      'caption' => NULL,
+      'text' => 'Full text',
+      'image' => NULL,
+    ];
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertPattern($expected_values, $html);
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
     // Remove the text and assert the element is no longer rendered.
     $paragraph->set('field_oe_text_long', '');
@@ -348,6 +376,27 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Variant - image / Modifier - hero_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
     $paragraph->save();
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 

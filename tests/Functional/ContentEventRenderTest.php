@@ -125,8 +125,8 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
 
     $file_urls = [
-      'en' => $en_file->createFileUrl(),
       'bg' => $bg_file->createFileUrl(),
+      'en' => $en_file->createFileUrl(),
     ];
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
@@ -134,6 +134,13 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls['en'] . '"][alt="default en alt"]');
   }
 
   /**

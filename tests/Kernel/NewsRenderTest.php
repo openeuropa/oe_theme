@@ -7,7 +7,6 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\media\Entity\Media;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
-use Drupal\user\Entity\User;
 
 /**
  * Tests the News content type rendering.
@@ -26,10 +25,6 @@ class NewsRenderTest extends ContentRenderTestBase {
 
     module_load_include('install', 'oe_content');
     oe_content_install();
-
-    // Set current user to UID 1, so that by default we can access everything.
-    $account = User::load(1);
-    $this->setCurrentUser($account);
   }
 
   /**
@@ -93,6 +88,36 @@ class NewsRenderTest extends ContentRenderTestBase {
     $expected_values['title'] = 'News short title';
     $assert->assertPattern($expected_values, $html);
 
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+
+    $expected_values = [
+      'title' => 'News short title',
+      'url' => '/en/node/1',
+      'description' => 'Teaser',
+      'meta' => 'News article | 2 April 2019',
+      'image' => NULL,
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('default', $html);
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
     // Set news type.
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PRESS_REL')->save();
     $this->nodeViewBuilder->resetCache();
@@ -100,7 +125,16 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Press release | 2 April 2019';
+    $expected_values = [
+      'title' => 'News short title',
+      'url' => '/en/node/1',
+      'description' => 'Teaser',
+      'meta' => 'Press release | 2 April 2019',
+      'image' => [
+        'src' => 'example_1.jpeg',
+        'alt' => '',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
