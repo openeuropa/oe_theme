@@ -263,6 +263,14 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
 
+    // Load logo that is unpublished and assert that is not rendered.
+    $media = $this->getStorage('media')->loadByProperties(['name' => 'Test image coordinator']);
+    $media = reset($media);
+    $media->set('status', 0)->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertEmpty($project_stakeholders->findAll('css', 'div[role=img]'));
+
     // Unpublish Coordinator and publish Participant organisations.
     $coordinator_organisation->set('status', CorporateEntityInterface::NOT_PUBLISHED);
     $coordinator_organisation->save();

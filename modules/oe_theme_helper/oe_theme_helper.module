@@ -241,6 +241,18 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
   $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
   $alt = '';
   if ($thumbnail instanceof ImageItem) {
@@ -254,8 +266,7 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     ],
   ]);
 
-  CacheableMetadata::createFromRenderArray($variables)
-    ->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
+  $cacheability->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
     ->applyTo($variables);
 
   $variables['image'] = ImageValueObject::fromArray([

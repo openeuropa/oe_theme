@@ -140,6 +140,15 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($contacts_content, 'Contacts');
     $this->assertContactDefaultRender($contacts_content, 'news_contact');
 
+    // Add a different and unpublished media and assert it is not rendered
+    // in the contact.
+    $media = $this->getStorage('media')->loadByProperties(['name' => 'Test image news_contact']);
+    $media = reset($media);
+    $media->set('status', 0)->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'div#news-contacts div figure.ecl-media-container img');
+
     // Assert Featured media field.
     $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l');
 
@@ -151,6 +160,17 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $image = $this->assertSession()->elementExists('css', 'img.ecl-u-width-100.ecl-u-height-auto', $picture);
     $this->assertContains('placeholder_news_featured_media.png', $image->getAttribute('src'));
     $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
 
     // Assert related links.
     $node->set('oe_related_links', [
