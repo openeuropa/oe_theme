@@ -26,6 +26,7 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
     'field',
     'file',
     'media',
+    'node',
   ];
 
   /**
