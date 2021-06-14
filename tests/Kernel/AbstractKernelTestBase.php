@@ -31,6 +31,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     'ui_patterns',
     'ui_patterns_library',
     'user',
+    'node',
   ];
 
   /**

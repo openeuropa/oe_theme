@@ -304,3 +304,6 @@ msgstr "Mostra les dades de contacte"
 
 msgid "Hide contact details"
 msgstr "Amagueu les dades de contacte"
+
+msgid "Leadership and organisation"
+msgstr "Direcció i organització"

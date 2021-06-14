@@ -40,6 +40,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     'oe_media_iframe',
     'oe_media_oembed_mock',
     'options',
+    'node',
   ];
 
   /**

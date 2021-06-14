@@ -336,3 +336,6 @@ msgstr "Показване на координати за връзка"
 
 msgid "Hide contact details"
 msgstr "Скриване на координатите за връзка"
+
+msgid "Leadership and organisation"
+msgstr "Ръководство и организация"
