@@ -31,15 +31,19 @@ function oe_theme_content_entity_organisation_preprocess_oe_organisation(&$varia
     $media_image = \Drupal::service('entity.repository')->getTranslationFromContext($media_image);
     $cacheability = CacheableMetadata::createFromRenderArray($variables);
     $cacheability->addCacheableDependency($media_image);
-
-    // Get the media source.
-    $source = $media_image->getSource();
-    if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
-      $thumbnail = $media_image->get('thumbnail')->first();
-      $variables['logo'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
-      $cacheability->addCacheableDependency($thumbnail->entity);
+    // Run access checks on the media entity.
+    $access = $media_image->access('view', NULL, TRUE);
+    $cacheability->addCacheableDependency($access);
+    if ($access->isAllowed()) {
+      // Get the media source.
+      $source = $media_image->getSource();
+      if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+        $thumbnail = $media_image->get('thumbnail')->first();
+        $variables['logo'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+        $cacheability->addCacheableDependency($thumbnail->entity);
+      }
+      $cacheability->applyTo($variables);
     }
-    $cacheability->applyTo($variables);
   }
 
   // Set contact page url.

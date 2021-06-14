@@ -193,6 +193,15 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
 
     $cache = new CacheableMetadata();
     $cache->addCacheableDependency($media);
+
+    // Run access checks on the media entity.
+    $access = $media->access('view', NULL, TRUE);
+    $cache->addCacheableDependency($access);
+    if (!$access->isAllowed()) {
+      $cache->applyTo($build);
+      return;
+    }
+
     $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
     if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
       $cache->applyTo($build);
