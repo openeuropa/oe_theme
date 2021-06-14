@@ -336,3 +336,6 @@ msgstr "Rodyti kontaktinius duomenis"
 
 msgid "Hide contact details"
 msgstr "Slėpti kontaktinius duomenis"
+
+msgid "Leadership and organisation"
+msgstr "Vadovybė ir organizacinė struktūra"
