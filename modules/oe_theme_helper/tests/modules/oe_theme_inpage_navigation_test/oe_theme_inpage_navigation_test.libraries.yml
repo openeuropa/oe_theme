@@ -1,0 +1,6 @@
+inpage_navigation_test:
+  js:
+    js/inpage_navigation_test.js: {}
+  dependencies:
+    - core/drupal
+    - oe_theme/inpage_navigation

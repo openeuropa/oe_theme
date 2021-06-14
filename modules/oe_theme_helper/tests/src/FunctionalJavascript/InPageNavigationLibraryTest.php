@@ -10,6 +10,8 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 /**
  * Test the inpage navigation library.
  *
+ * @group batch3
+ *
  * @group oe_theme_helper
  */
 class InPageNavigationLibraryTest extends WebDriverTestBase {
@@ -64,7 +66,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // container.
     // CSS selector uses "descendent-or-self" as prefix, so we need to use
     // XPath to exclude the container from the selection.
-    $this->assertCount(9, $container->findAll('xpath', '//*[@id]'));
+    $this->assertCount(10, $container->findAll('xpath', '//*[@id]'));
 
     $inner = $container->find('xpath', '/div[@data-inpage-navigation-source-area="h3"]');
     // Since an element with ID "details" already exists in the page, the
@@ -142,6 +144,8 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $this->drupalGet('/oe-theme-inpage-navigation-test/no-entries');
     // Give time for the javascript code to remove the block from the page.
     $assert_session->waitForElementRemoved('css', '#block-inpage-navigation');
+    // Ensure that overridden callback is triggered for empty navigation list.
+    $assert_session->elementExists('css', 'h1.ecl-page-header-core__title.empty-inpage-nav-test');
   }
 
 }

@@ -11,6 +11,9 @@
    * navigation list. If the element is missing the ID attribute, one will be generated automatically.
    *
    * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Attaches the inpage navigation behaviors.
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
@@ -34,9 +37,20 @@
       Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-element]'), function (element) {
         var title = element.textContent.trim();
 
+        // Skip elements with empty content.
+        if (title.length === 0) {
+          return;
+        }
+
         // Generate an unique ID if not present.
         if (!element.hasAttribute('id')) {
-          element.setAttribute('id', slug(title));
+          var id = Drupal.eclInPageNavigation.slug(title);
+          // If an empty ID is generated, skip this element.
+          if (id === false) {
+            return;
+          }
+
+          element.setAttribute('id', id);
         }
 
         // Cleanup the markup from the helper attribute added above.
@@ -47,64 +61,89 @@
 
       Array.prototype.forEach.call(document.querySelectorAll('[data-ecl-inpage-navigation]'), function (block) {
         if (items_markup.length === 0) {
-          // @todo Replace within follow-up ticket to make adjusting of layout more flexible for different templates.
-          // Adjust layout if we going to remove in-page element.
-          $(block).closest('.ecl-col-lg-3').next('.ecl-col-lg-9').removeClass('ecl-col-lg-9').addClass('ecl-col-lg-12')
-          // Remove in-page navigation element if we don't have links inside.
-          block.remove();
+          // When there are no items, execute the callback to handle the block.
+          Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
           return;
         }
         block.querySelector('ul').innerHTML = items_markup;
       })
-    },
+    }
   };
 
-  var seenIds = {};
-
   /**
-   * Generates a unique slug from a text string.
+   * Holds inpage navigation related functionality.
    *
-   * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
-   * Since the above file is part of a bigger library, we extracted its code and adapted to account for already existing
-   * IDs on the page.
-   *
-   * @param {string} value
-   *   The string to process.
-   *
-   * @returns {string}
-   *   A unique slug, safe to use as ID for an element.
+   * @namespace
    */
-  function slug(value) {
-    var originalSlug = value
-      .toLowerCase()
-      .trim()
-      // Remove html tags.
-      .replace(/<[!\/a-z].*?>/ig, '')
-      // Remove unwanted chars.
-      .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
-      .replace(/\s/g, '-');
+  Drupal.eclInPageNavigation = {
 
-    var slug = originalSlug;
-    var occurrenceAccumulator = 0;
+    /**
+     * A list of IDs already used by the slug generator.
+     *
+     * @type {object}
+     */
+    seenIds: {},
 
-    // If an element with the generated slug as ID already exists, mark the slug as seen.
-    if (!seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
-      seenIds[slug] = 0;
+    /**
+     * Generates a unique slug from a text string.
+     *
+     * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
+     * Since the above file is part of a bigger library, we extracted its code and adapted to account for already existing
+     * IDs on the page.
+     *
+     * @param {string} value
+     *   The string to process.
+     *
+     * @returns {string|boolean}
+     *   A unique slug, safe to use as ID for an element. False when the generated slug is empty.
+     */
+    slug: function(value) {
+      var originalSlug = value
+        .toLowerCase()
+        .trim()
+        // Remove html tags.
+        .replace(/<[!\/a-z].*?>/ig, '')
+        // Remove unwanted chars.
+        .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
+        .replace(/\s/g, '-');
+
+      var slug = originalSlug;
+      var occurrenceAccumulator = 0;
+
+      // If the slug string is empty, quit.
+      if (slug.length === 0) {
+        return false;
+      }
+
+      // If an element with the generated slug as ID already exists, mark the slug as seen.
+      if (!this.seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
+        this.seenIds[slug] = 0;
+      }
+
+      // If the slug has been returned already, increase the counter, making sure that the ID is not present in the page.
+      if (this.seenIds.hasOwnProperty(slug)) {
+        occurrenceAccumulator = this.seenIds[slug];
+        do {
+          occurrenceAccumulator++;
+          slug = originalSlug + '-' + occurrenceAccumulator;
+        } while (this.seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug));
+      }
+      this.seenIds[originalSlug] = occurrenceAccumulator;
+      this.seenIds[slug] = 0;
+
+      return slug;
+    },
+
+    /**
+     * Handles an inpage navigation block with no items.
+     *
+     * @param {Element} block
+     *   The inpage navigation block element.
+     */
+    handleEmptyInpageNavigation: function(block) {
+      block.remove();
     }
-
-    // If the slug has been returned already, increase the counter, making sure that the ID is not present in the page.
-    if (seenIds.hasOwnProperty(slug)) {
-      occurrenceAccumulator = seenIds[slug];
-      do {
-        occurrenceAccumulator++;
-        slug = originalSlug + '-' + occurrenceAccumulator;
-      } while (seenIds.hasOwnProperty(slug) || document.querySelector('#' + slug));
-    }
-    seenIds[originalSlug] = occurrenceAccumulator;
-    seenIds[slug] = 0;
-
-    return slug;
-  }
+  };
 
   /**
    * Theme function for a single inpage navigation item.
