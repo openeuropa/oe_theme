@@ -85,7 +85,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Publication node',
-      'meta' => 'Abstract',
+      'meta' => ['Abstract'],
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
@@ -139,7 +139,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Publication node',
-      'meta' => 'Abstract, Legislative acts',
+      'meta' => ['Abstract, Legislative acts'],
       'description' => 'Publication introduction',
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());

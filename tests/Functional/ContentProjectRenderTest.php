@@ -141,7 +141,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $expected_values = [
       'title' => 'Test project node',
       'description' => 'Summary',
-      'meta' => 'Project',
+      'meta' => ['Project'],
     ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 

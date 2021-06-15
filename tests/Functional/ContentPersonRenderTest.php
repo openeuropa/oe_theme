@@ -80,7 +80,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
-      'meta' => NULL,
+      'meta' => [],
       'title' => 'Mick Jagger',
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
@@ -222,7 +222,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', $job_1)->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = '(Acting) Advisor';
+    $page_header_expected_values['meta'] = ['(Acting) Advisor'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $inpage_nav_expected_values['list'][] = [
@@ -244,7 +244,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = '(Acting) Advisor, Chief advisor';
+    $page_header_expected_values['meta'] = ['(Acting) Advisor, Chief advisor'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');

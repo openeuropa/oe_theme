@@ -81,7 +81,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $assert = new PatternPageHeaderAssert();
     $header_expected_values = [
       'title' => 'Test Call for proposals node',
-      'meta' => 'Call for proposals',
+      'meta' => ['Call for proposals'],
     ];
     $assert->assertPattern($header_expected_values, $page_header->getOuterHtml());
 
@@ -175,7 +175,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_journal', NULL)->save();
     $this->drupalGet($node->toUrl());
 
-    $header_expected_values['meta'] = 'Call for proposals | Upcoming';
+    $header_expected_values['meta'] = [
+      'Call for proposals',
+      'Upcoming',
+    ];
     $assert->assertPattern($header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values = [

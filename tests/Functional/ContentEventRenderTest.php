@@ -181,7 +181,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test event node',
-      'meta' => 'Competitions and award ceremonies',
+      'meta' => ['Competitions and award ceremonies'],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
