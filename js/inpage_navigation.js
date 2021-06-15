@@ -59,14 +59,22 @@
         items_markup += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
       });
 
-      Array.prototype.forEach.call(document.querySelectorAll('[data-ecl-inpage-navigation]'), function (block) {
+      Array.prototype.forEach.call(document.querySelectorAll('.oe-theme-ecl-inpage-navigation'), function (block) {
         if (items_markup.length === 0) {
           // When there are no items, execute the callback to handle the block.
           Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
           return;
         }
         block.querySelector('ul').innerHTML = items_markup;
+        var inpageNavigationInstance = new ECL.InpageNavigation(block);
+        inpageNavigationInstance.init();
+        Drupal.eclInPageNavigation.instances.push(inpageNavigation);
       })
+    },
+    detach: function detach(context, settings, trigger) {
+      Drupal.eclInPageNavigation.instances.forEach(function(inpageNavigation){
+        inpageNavigation.destroy();
+      });
     }
   };
 
@@ -83,6 +91,13 @@
      * @type {object}
      */
     seenIds: {},
+
+    /**
+     * A list of initialized ECL InPageNavigation instances.
+     *
+     * @type {Array}
+     */
+    instances: [],
 
     /**
      * Generates a unique slug from a text string.
