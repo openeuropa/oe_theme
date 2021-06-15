@@ -1,0 +1,30 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.oe_contact.field_oe_contacts
+    - field.field.paragraph.oe_contact.field_oe_title
+    - paragraphs.paragraphs_type.oe_contact
+id: paragraph.oe_contact.default
+targetEntityType: paragraph
+bundle: oe_contact
+mode: default
+content:
+  field_oe_contacts:
+    weight: 1
+    label: above
+    settings:
+      view_mode: full
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_oe_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

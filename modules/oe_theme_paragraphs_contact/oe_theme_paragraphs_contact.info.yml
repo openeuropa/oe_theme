@@ -1,0 +1,7 @@
+name: OpenEuropa Theme Paragraphs Contact
+type: module
+description: Companion module for the OE Paragraphs Contact module
+package: OpenEuropa
+core: 8.x
+dependencies:
+  - oe_paragraphs:oe_paragraphs_contact
