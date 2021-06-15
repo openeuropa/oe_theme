@@ -316,7 +316,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       'name' => $name,
       'oe_address' => [
         'country_code' => 'BE',
-        'locality' => 'Brussels',
+        'locality' => '<Brussels>',
         'address_line1' => "Address $name",
         'postal_code' => '1001',
       ],

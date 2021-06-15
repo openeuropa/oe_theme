@@ -183,7 +183,7 @@ class EventRenderTest extends ContentRenderTestBase {
     // Set full address in venue.
     $venue->set('oe_address', [
       'country_code' => 'BE',
-      'locality' => 'Brussels',
+      'locality' => '<Brussels>',
       'postal_code' => 1000,
       'address_line1' => 'The street',
     ])->save();
@@ -197,7 +197,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'location',
-          'text' => 'Brussels, Belgium',
+          'text' => '<Brussels>, Belgium',
         ],
         [
           'icon' => 'livestreaming',
@@ -249,7 +249,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'location',
-          'text' => 'Brussels, Белгия',
+          'text' => '<Brussels>, Белгия',
         ],
         [
           'icon' => 'livestreaming',

@@ -166,7 +166,9 @@ class DetailsExtraField extends EventExtraFieldBase {
       if (!empty($address)) {
         $build['#fields']['items'][] = [
           'icon' => 'location',
-          'text' => $address,
+          'text' => [
+            '#markup' => $address,
+          ],
         ];
       }
     }
