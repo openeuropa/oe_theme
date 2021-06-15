@@ -282,6 +282,55 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $expected_values['video_ratio'] = '1:1';
     $assert->assertPattern($expected_values, $html);
+
+    // Assert Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'http://www.example.com/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => 'http://www.example.com/',
+      'icon' => 'external',
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert icon of the Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'internal:/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => '/',
+      'icon' => 'corner-arrow',
+    ];
+    $assert->assertPattern($expected_values, $html);
+
+    // Assert "Text on the left, simple call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'left_simple')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert "Text on the right, simple call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_simple')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_simple', $html);
+
+    // Assert "Text on the left, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'left_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert "Text on the right, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_featured', $html);
   }
 
   /**

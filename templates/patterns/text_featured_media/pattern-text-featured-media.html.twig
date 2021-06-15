@@ -2,8 +2,12 @@
 /**
  * @file
  * Text with featured media.
+ *
+ * Variant "left_simple" is used by default.
  */
 #}
+
+{% set variant = variant|default('left_simple') %}
 
 {% set video_ratio = video_ratio|replace({':': '-'}) %}
 {% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
@@ -12,13 +16,39 @@
 {% endif %}
 {% set text = text|render %}
 
-{% if image or video or text %}
+{% set media_position_class = ' ecl-u-order-md-last' %}
+{% if 'right' in variant %}
+  {% set media_position_class = '' %}
+{% endif %}
+
+{% set call_to_action_link = '' %}
+{% if link %}
+  {% set link_type = 'standalone' %}
+  {% if 'featured' in variant %}
+    {% set link_type = 'cta' %}
+  {% endif %}
+
+  {% set call_to_action_link %}
+    {% include '@ecl-twig/link' with {
+      link: {
+        type: link_type,
+        label: link.label,
+        path: link.path,
+        icon_position: 'after'
+      },
+      extra_classes: 'ecl-u-mt-m ecl-u-mt-md-l ecl-u-type-bold',
+      icon: get_link_icon(link.path)
+    } %}
+  {% endset %}
+{% endif %}
+
+{% if image or video or text or call_to_action_link %}
   {% if title %}
     <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">{{ title }}</h2>
   {% endif %}
   <div class="ecl-row">
     {% if image or video %}
-      <div class="ecl-col-md-6 ecl-u-order-md-last ecl-u-mb-m ecl-u-mb-md-none">
+      <div class="ecl-col-md-6 ecl-u-mb-m ecl-u-mb-md-none{{ media_position_class }}">
         {% if image %}
           {% include '@ecl-twig/media-container' with {
             'image': image.src,
@@ -34,8 +64,13 @@
         {% endif %}
       </div>
     {% endif %}
-    {% if text %}
-      <div class="{{ image or video ? ' ecl-col-md-6' : 'ecl-col-12' }} ecl-editor">{{ text }}</div>
+    {% if text or call_to_action_link %}
+      <div class="{{ image or video ? 'ecl-col-md-6' : 'ecl-col-12' }}">
+        {% if text %}
+          <div class="ecl-editor">{{ text }}</div>
+        {% endif %}
+        {{ call_to_action_link }}
+      </div>
     {% endif %}
   </div>
 {% endif %}
