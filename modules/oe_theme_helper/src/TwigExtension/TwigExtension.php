@@ -679,7 +679,7 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link += [
           'icon' => [
             'path' => $context['ecl_icon_social_media_path'],
-            'name' => $link['social_network'],
+            'name' => $context['ecl_component_library'] == 'eu' ? $link['social_network'] : $link['social_network'] . '-negative',
           ],
         ];
       }
