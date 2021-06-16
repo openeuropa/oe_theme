@@ -432,12 +432,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+      'icon_name' => 'facebook',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+      'icon_name' => 'instagram',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
@@ -495,12 +503,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+      'icon_name' => 'facebook',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+      'icon_name' => 'instagram',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
@@ -587,12 +603,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+      'icon_name' => 'facebook-negative',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+      'icon_name' => 'instagram-negative',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
@@ -637,12 +661,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $this->assertNotEquals('Custom about 1', $social_link->getText());
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+      'icon_name' => 'facebook-negative',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+      'icon_name' => 'instagram-negative',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     // Assert deleting sections in backend is reflected in the footer.
@@ -728,6 +760,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   protected function assertSocialLink(NodeElement $label, NodeElement $link, array $expected): void {
     $this->assertEquals($expected['label'], $label->getText());
     $this->assertEquals($expected['href'], $link->getAttribute('href'));
+    $icon = $link->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
+    $this->assertContains('icons-social-media.svg#' . $expected['icon_name'], $icon->getAttribute('xlink:href'));
     $this->assertEquals('ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-before ecl-footer-standardised__link', $link->getAttribute('class'));
   }
 
