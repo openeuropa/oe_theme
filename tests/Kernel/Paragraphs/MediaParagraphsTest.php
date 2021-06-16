@@ -24,6 +24,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
+    'field_group',
+    'address',
+    'composite_reference',
+    'inline_entity_form',
     'media',
     'oe_media',
     'oe_media_oembed_mock',
@@ -40,6 +44,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'options',
     'oe_media_iframe',
     'file_link',
+    'oe_content_entity_contact',
+    'oe_content_featured_media_field',
+    'oe_content_entity',
+    'oe_theme_content_entity_contact',
     'oe_paragraphs_contact',
     'oe_theme_paragraphs_contact',
   ];
@@ -53,7 +61,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
     oe_paragraphs_media_field_storage_install();
     $this->installEntitySchema('media');
+    $this->installEntitySchema('oe_contact');
     $this->installConfig([
+      'composite_reference',
+      'oe_content_entity_contact',
+      'address',
+      'oe_content_entity',
+      'oe_theme_content_entity_contact',
       'media',
       'oe_media',
       'oe_paragraphs_media',
