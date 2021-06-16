@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for OpenEuropa Theme Paragraphs Contact module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
+
+/**
+ * Implements hook_install().
+ *
+ * Sets contacts rendering to use the full view mode.
+ */
+function oe_theme_paragraphs_contact_install() {
+  $entity_view_display = EntityViewDisplay::load('paragraph.oe_contact.default');
+  $contacts = $entity_view_display->getComponent('field_oe_contacts');
+  $contacts['settings']['view_mode'] = 'full';
+  $entity_view_display->setComponent('field_oe_contacts', $contacts);
+  $entity_view_display->save();
+}

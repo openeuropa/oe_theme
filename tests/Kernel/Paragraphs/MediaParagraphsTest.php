@@ -64,11 +64,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'options',
       'oe_media_iframe',
       'oe_paragraphs_contact',
-      'oe_theme_paragraphs_contact',
     ]);
     // Call the install hook of the Media module.
     module_load_include('install', 'media');
     media_install();
+    $this->container->get('module_handler')->loadInclude('oe_theme_paragraphs_contact', 'install');
+    oe_theme_paragraphs_contact_install();
 
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published oe_contact')
