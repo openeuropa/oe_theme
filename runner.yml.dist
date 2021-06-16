@@ -33,6 +33,7 @@ drupal:
     - "./vendor/bin/drush en oe_theme_content_organisation_reference -y"
     - "./vendor/bin/drush en oe_theme_content_person -y"
     - "./vendor/bin/drush en oe_theme_contact_forms -y"
+    - "./vendor/bin/drush en oe_theme_paragraphs_contact -y"
     - "./vendor/bin/drush en field_ui -y"
     - "./vendor/bin/drush en config_devel -y"
     - "./vendor/bin/drush en toolbar -y"

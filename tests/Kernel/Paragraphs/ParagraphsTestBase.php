@@ -21,6 +21,7 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'paragraphs',
     'file',
     'field',
+    'field_group',
     'entity_reference_revisions',
     'datetime',
     'link',
@@ -36,6 +37,13 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
     'node',
     'description_list_field',
     'oe_paragraphs_description_list',
+    'composite_reference',
+    'oe_content_entity_contact',
+    'address',
+    'oe_content_featured_media_field',
+    'oe_content_entity',
+    'oe_theme_content_entity_contact',
+    'inline_entity_form',
   ];
 
   /**
@@ -46,6 +54,7 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
 
     $this->installEntitySchema('paragraph');
     $this->installEntitySchema('file');
+    $this->installEntitySchema('oe_contact');
     $this->installSchema('file', ['file_usage']);
     $this->installSchema('locale', [
       'locales_location',
@@ -62,6 +71,12 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
       'node',
       'oe_paragraphs_description_list',
       'description_list_field',
+      'composite_reference',
+      'oe_content_entity_contact',
+      'address',
+      'oe_content_featured_media_field',
+      'oe_content_entity',
+      'oe_theme_content_entity_contact',
     ]);
   }
 

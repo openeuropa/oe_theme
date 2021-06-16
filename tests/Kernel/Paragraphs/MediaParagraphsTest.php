@@ -4,8 +4,13 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\oe_content_entity_contact\Entity\Contact;
+use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
 use Drupal\Core\Url;
+use Drupal\user\Entity\Role;
+use Drupal\user\RoleInterface;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -35,6 +40,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'options',
     'oe_media_iframe',
     'file_link',
+    'oe_paragraphs_contact',
+    'oe_theme_paragraphs_contact',
   ];
 
   /**
@@ -56,10 +63,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_paragraphs_iframe_media',
       'options',
       'oe_media_iframe',
+      'oe_paragraphs_contact',
+      'oe_theme_paragraphs_contact',
     ]);
     // Call the install hook of the Media module.
     module_load_include('install', 'media');
     media_install();
+
+    Role::load(RoleInterface::ANONYMOUS_ID)
+      ->grantPermission('view published oe_contact')
+      ->save();
   }
 
   /**
@@ -744,15 +757,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    */
   public function testIframe(): void {
     // Set Iframe media translatable.
-    $this->container->get('content_translation.manager')->setEnabled('media', 'iframe', TRUE);
+    $this->container->get('content_translation.manager')
+      ->setEnabled('media', 'iframe', TRUE);
 
     // Make the Iframe field translatable.
-    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.iframe.oe_media_iframe');
+    $field_config = $this->container->get('entity_type.manager')
+      ->getStorage('field_config')
+      ->load('media.iframe.oe_media_iframe');
     $field_config->set('translatable', TRUE)->save();
     $this->container->get('router.builder')->rebuild();
 
     // Create unpublished Iframe media with required fields to check access.
-    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
+    $media_storage = $this->container->get('entity_type.manager')
+      ->getStorage('media');
     $media = $media_storage->create([
       'bundle' => 'iframe',
       'name' => 'Test Iframe',
@@ -782,7 +799,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $media->setPublished()->save();
     // Since static cache is not cleared due to lack of requests in the test we
     // need to reset manually.
-    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+    $this->container->get('entity_type.manager')
+      ->getAccessControlHandler('media')
+      ->resetCache();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
@@ -821,7 +840,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $media_bg->save();
 
     // Add Bulgarian translation.
-    $paragraph->addTranslation('bg', ['field_oe_title' => 'Iframe paragraph title bg'])->save();
+    $paragraph->addTranslation('bg', ['field_oe_title' => 'Iframe paragraph title bg'])
+      ->save();
 
     // Assert paragraph translation.
     $html = $this->renderParagraph($paragraph, 'bg');
@@ -830,6 +850,94 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertContains('Iframe paragraph title bg', $title->text());
     $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
     $this->assertContains('http://example.com/iframe_bg', $iframe->attr('src'));
+  }
+
+  /**
+   * Test contact paragraph rendering.
+   *
+   * @throws \Drupal\Core\Entity\EntityStorageException
+   */
+  public function testContact(): void {
+    // Create a media entity for contact.
+    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file->setPermanent();
+    $file->save();
+    $media = $this->container->get('entity_type.manager')->getStorage('media')->create([
+      'bundle' => 'image',
+      'name' => "Test image",
+      'oe_media_image' => [
+        'target_id' => (int) $file->id(),
+        'alt' => "Alternative text",
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+    // Create general contact.
+    $general_contact = Contact::create([
+      'bundle' => 'oe_general',
+      'name' => 'General contact',
+      'oe_address' => [
+        'country_code' => 'BE',
+        'locality' => 'Brussels',
+        'address_line1' => 'Address of General contact',
+        'postal_code' => '1001',
+      ],
+      'oe_body' => 'General contact body text',
+      'oe_email' => 'general@example.com',
+      'oe_organisation' => 'General contact Organisation',
+      'oe_social_media' => [
+        [
+          'uri' => 'http://www.example.com/facebook',
+          'title' => 'Facebook',
+          'link_type' => 'facebook',
+        ],
+      ],
+      'oe_image' => [
+        [
+          'target_id' => (int) $media->id(),
+          'caption' => "General contact media caption",
+        ],
+      ],
+      'status' => CorporateEntityInterface::PUBLISHED,
+    ]);
+    $general_contact->save();
+    // Create press contact.
+    $press_contact = Contact::create([
+      'bundle' => 'oe_press',
+      'name' => 'Press contact',
+      'oe_body' => 'Press contact body text',
+      'status' => CorporateEntityInterface::PUBLISHED,
+    ]);
+    $press_contact->save();
+    // Create contact paragraph.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_contact',
+      'field_oe_contacts' => [$general_contact, $press_contact],
+    ]);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    // Assert paragraph heading markup is not rendered if no title is set.
+    $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+    // Assert rendering of the first contact.
+    $this->assertEquals('General contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(1) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
+    $this->assertEquals('<p>General contact body text</p>', trim($crawler->filter('div.ecl-col-md-6 div.ecl-u-mb-l:nth-child(1) div.ecl-editor')->html()));
+    $this->assertEquals('General contact Organisation', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(2) div')->html()));
+    $this->assertEquals('general@example.com', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(4) div a')->html()));
+    $this->assertEquals('Address of General contact, 1001 Brussels, Belgium', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(6) div span')->html()));
+    $this->assertEquals('Facebook', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(8) div div div a span')->html()));
+    $this->assertContains('example_1.jpeg', $crawler->filter('div.ecl-col-md-5 figure.ecl-media-container img')->attr('src'));
+    // Assert rendering of the second contact.
+    $this->assertEquals('Press contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(2) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
+    $this->assertEquals('<p>Press contact body text</p>', trim($crawler->filter('div.ecl-col-12:nth-child(2) div.ecl-u-mb-l div.ecl-editor')->html()));
+
+    // Set paragraph title and assert rendering is updated.
+    $paragraph->set('field_oe_title', 'Contact paragraph Test')->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertEquals('Contact paragraph Test', trim($crawler->filter('h2.ecl-u-type-heading-2')->html()));
   }
 
 }
