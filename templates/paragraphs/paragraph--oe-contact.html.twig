@@ -1,3 +1,4 @@
+
 {#
 /**
  * @file
@@ -6,9 +7,9 @@
  * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
  */
 #}
-{% if title is not empty %}
+{% if not paragraph.field_oe_title.isEmpty() %}
   <h2 class="ecl-u-type-heading-2">
-    {{ title }}
+    {{ content.field_oe_title }}
   </h2>
 {% endif %}
 {{ content.field_oe_contacts }}
