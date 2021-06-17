@@ -32,19 +32,91 @@ class AddressInlineFormatterTest extends FormatterTestBase {
   /**
    * Tests formatting of address.
    */
-  public function testInlineFormatterAddress() {
+  public function testInlineFormatterAddress(): void {
     $entity = EntityTestMul::create([]);
-    $entity->{$this->fieldName} = [
-      'country_code' => 'BE',
-      'locality' => 'Brussels <Bruxelles>',
-      'postal_code' => '1000',
-      'address_line1' => 'Rue de la Loi, 56 <123>',
-      'address_line2' => 'or \'Wetstraat\' (Dutch), meaning "Law Street"',
-    ];
+    foreach ($this->addressFieldTestData() as $data) {
+      $cloned_entity = clone $entity;
+      $cloned_entity->{$this->fieldName} = $data['address'];
+      $this->renderEntityFields($cloned_entity, $this->display);
+      $this->assertRaw($data['expected']);
+      unset($cloned_entity);
+    }
+  }
 
-    $this->renderEntityFields($entity, $this->display);
-    $expected = 'Rue de la Loi, 56 &lt;123&gt;, or &#039;Wetstraat&#039; (Dutch), meaning &quot;Law Street&quot;, 1000 Brussels &lt;Bruxelles&gt;, Belgium';
-    $this->assertRaw($expected);
+  /**
+   * Test data for testInlineFormatterAddress.
+   *
+   * @return array[]
+   *   An array of test data arrays with expected result.
+   */
+  public function addressFieldTestData(): array {
+    return [
+      'Brussels Belgium' => [
+        'address' => [
+          'country_code' => 'BE',
+          'locality' => 'Brussels <Bruxelles>',
+          'postal_code' => '1000',
+          'address_line1' => 'Rue de la Loi, 56 <123>',
+          'address_line2' => 'or \'Wetstraat\' (Dutch), meaning "Law Street"',
+        ],
+        'expected' => 'Rue de la Loi, 56 &lt;123&gt;, or &#039;Wetstraat&#039; (Dutch), meaning &quot;Law Street&quot;, 1000 Brussels &lt;Bruxelles&gt;, Belgium',
+      ],
+      'Mexico' => [
+        'address' => [
+          'country_code' => 'MX',
+        ],
+        'expected' => 'Mexico',
+      ],
+      'Mexico Ciudad de Mexico' => [
+        'address' => [
+          'country_code' => 'MX',
+          'administrative_area' => 'CDMX',
+        ],
+        'expected' => 'CDMX, Mexico',
+      ],
+      'Mexico Baja California Tijuana' => [
+        'address' => [
+          'country_code' => 'MX',
+          'administrative_area' => 'B.C.',
+          'locality' => 'Tijuana',
+        ],
+        'expected' => 'Tijuana, B.C., Mexico',
+      ],
+      'Mexico Baja California Tijuana 22000' => [
+        'address' => [
+          'country_code' => 'MX',
+          'administrative_area' => 'B.C.',
+          'locality' => 'Tijuana',
+          'postal_code' => '22000',
+        ],
+        'expected' => '22000 Tijuana, B.C., Mexico',
+      ],
+      'Mexico Baja California Tijuana 22000 Street' => [
+        'address' => [
+          'country_code' => 'MX',
+          'administrative_area' => 'B.C.',
+          'locality' => 'Tijuana',
+          'postal_code' => '22000',
+          'address_line1' => 'Street',
+        ],
+        'expected' => 'Street, 22000 Tijuana, B.C., Mexico',
+      ],
+      'Bangladesh Dhaka' => [
+        'address' => [
+          'country_code' => 'BD',
+          'locality' => 'Dhaka',
+        ],
+        'expected' => 'Dhaka, Bangladesh',
+      ],
+      'Bangladesh Dhaka 1100' => [
+        'address' => [
+          'country_code' => 'BD',
+          'locality' => 'Dhaka',
+          'postal_code' => '1100',
+        ],
+        'expected' => 'Dhaka, 1100, Bangladesh',
+      ],
+    ];
   }
 
 }

@@ -99,9 +99,6 @@ class EventRenderTest extends ContentRenderTestBase {
 
     $venue->set('oe_address', [
       'country_code' => 'BE',
-      'locality' => 'Brussels',
-      'postal_code' => 1000,
-      'address_line1' => 'The street',
     ]);
 
     $venue->save();
@@ -160,7 +157,7 @@ class EventRenderTest extends ContentRenderTestBase {
         'items' => [
           [
             'icon' => 'location',
-            'text' => 'Brussels, Belgium',
+            'text' => 'Belgium',
           ],
         ],
       ]),
@@ -183,6 +180,14 @@ class EventRenderTest extends ContentRenderTestBase {
     $expected_values['title'] = 'Event short title';
     $assert->assertPattern($expected_values, $html);
 
+    // Set full address in venue.
+    $venue->set('oe_address', [
+      'country_code' => 'BE',
+      'locality' => '<Brussels>',
+      'postal_code' => 1000,
+      'address_line1' => 'The street',
+    ])->save();
+
     // Set the online type to be livestream and assert the details are updated.
     $node->set('oe_event_online_type', 'livestream')->save();
     $this->nodeViewBuilder->resetCache();
@@ -192,7 +197,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'location',
-          'text' => 'Brussels, Belgium',
+          'text' => '<Brussels>, Belgium',
         ],
         [
           'icon' => 'livestreaming',
@@ -244,7 +249,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'location',
-          'text' => 'Brussels, Белгия',
+          'text' => '<Brussels>, Белгия',
         ],
         [
           'icon' => 'livestreaming',

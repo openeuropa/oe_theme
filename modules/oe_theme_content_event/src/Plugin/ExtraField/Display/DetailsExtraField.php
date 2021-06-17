@@ -4,11 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Render\RendererInterface;
 use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -24,7 +23,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryPluginInterface {
+class DetailsExtraField extends EventExtraFieldBase {
 
   /**
    * The entity repository.
@@ -32,6 +31,13 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
    * @var \Drupal\Core\Entity\EntityRepositoryInterface
    */
   protected $entityRepository;
+
+  /**
+   * The renderer service.
+   *
+   * @var \Drupal\Core\Render\RendererInterface
+   */
+  protected $renderer;
 
   /**
    * EventExtraFieldBase constructor.
@@ -46,10 +52,17 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
    *   The entity type manager.
    * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
    *   The entity repository service.
+   * @param \Drupal\Core\Render\RendererInterface|null $renderer
+   *   The renderer service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository, RendererInterface $renderer = NULL) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager);
     $this->entityRepository = $entity_repository;
+    // Load service statically to provide backward compatibility.
+    if (!$renderer instanceof RendererInterface) {
+      $renderer = \Drupal::service('renderer');
+    }
+    $this->renderer = $renderer;
   }
 
   /**
@@ -61,7 +74,8 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
       $plugin_id,
       $plugin_definition,
       $container->get('entity_type.manager'),
-      $container->get('entity.repository')
+      $container->get('entity.repository'),
+      $container->get('renderer')
     );
   }
 
@@ -95,12 +109,7 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
     ];
 
     $this->addRenderableLocation($build, $entity);
-    if (!$entity->get('oe_event_online_type')->isEmpty()) {
-      $build['#fields']['items'][] = [
-        'icon' => 'livestreaming',
-        'text' => $this->t('Live streaming available'),
-      ];
-    }
+    $this->addRenderableOnlineType($build, $entity);
 
     return $build;
   }
@@ -144,7 +153,7 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
   }
 
   /**
-   * Add event location to event details, if any.
+   * Add event locality and country to event details.
    *
    * @param array $build
    *   Render array.
@@ -152,41 +161,70 @@ class DetailsExtraField extends EventExtraFieldBase implements ContainerFactoryP
    *   Content entity.
    */
   protected function addRenderableLocation(array &$build, ContentEntityInterface $entity): void {
-    if ($entity->get('oe_event_venue')->isEmpty()) {
-      return;
+    if (!$entity->get('oe_event_venue')->isEmpty() && $entity->get('oe_event_venue')->entity instanceof VenueInterface) {
+      $address = $this->getVenueInlineAddress($entity->get('oe_event_venue')->entity);
+      if (!empty($address)) {
+        $build['#fields']['items'][] = [
+          'icon' => 'location',
+          'text' => [
+            '#markup' => $address,
+          ],
+        ];
+      }
     }
+  }
 
-    $venue = $entity->get('oe_event_venue')->entity;
-    if (!$venue instanceof VenueInterface) {
-      return;
-    }
-
+  /**
+   * Gets rendered address field from Venue entity.
+   *
+   * @param \Drupal\oe_content_entity_venue\Entity\VenueInterface $venue
+   *   Venue entity.
+   *
+   * @return string|null
+   *   Rendered address field.
+   */
+  protected function getVenueInlineAddress(VenueInterface $venue): ?string {
     $venue = $this->entityRepository->getTranslationFromContext($venue);
-    $cacheability = CacheableMetadata::createFromRenderArray($build);
-
     $access = $venue->access('view', NULL, TRUE);
-    $cacheability->addCacheableDependency($access);
-
     if (!$access->isAllowed()) {
-      return;
+      return NULL;
     }
 
-    $cacheability->addCacheableDependency($venue);
-    $cacheability->applyTo($build);
+    // Bubble cacheability metadata of the entity into the current render
+    // context.
+    $build = $this->entityTypeManager->getViewBuilder('oe_venue')->view($venue);
+    $this->renderer->render($build);
 
-    // If address is empty only return cache metadata, so it can bubble up.
     if ($venue->get('oe_address')->isEmpty()) {
-      return;
+      return NULL;
     }
 
-    // Only display locality and country, inline.
+    $location = [];
     $renderable = $this->entityTypeManager->getViewBuilder('oe_venue')->viewField($venue->get('oe_address'));
-    $build['#fields']['items'][] = [
-      'icon' => 'location',
-      'text' => [
-        '#markup' => $renderable[0]['locality']['#value'] . ', ' . $renderable[0]['country']['#value'],
-      ],
-    ];
+    foreach (['locality', 'country'] as $field) {
+      if (!empty($renderable[0][$field]['#value'])) {
+        $location[] = $renderable[0][$field]['#value'];
+      }
+    }
+
+    return implode(', ', $location);
+  }
+
+  /**
+   * Add event online type to event details.
+   *
+   * @param array $build
+   *   Render array.
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   Content entity.
+   */
+  protected function addRenderableOnlineType(array &$build, ContentEntityInterface $entity): void {
+    if (!$entity->get('oe_event_online_type')->isEmpty()) {
+      $build['#fields']['items'][] = [
+        'icon' => 'livestreaming',
+        'text' => $this->t('Live streaming available'),
+      ];
+    }
   }
 
 }
