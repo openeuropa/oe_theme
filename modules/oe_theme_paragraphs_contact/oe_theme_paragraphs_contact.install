@@ -14,7 +14,11 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
  *
  * Sets contacts rendering to use the full view mode.
  */
-function oe_theme_paragraphs_contact_install() {
+function oe_theme_paragraphs_contact_install($is_syncing) {
+  // If we are installing from config, we bail out.
+  if ($is_syncing) {
+    return;
+  }
   $entity_view_display = EntityViewDisplay::load('paragraph.oe_contact.default');
   $contacts = $entity_view_display->getComponent('field_oe_contacts');
   $contacts['settings']['view_mode'] = 'full';
