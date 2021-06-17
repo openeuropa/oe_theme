@@ -1,11 +1,22 @@
 # Changelog
 
+## [2.20.0](https://github.com/openeuropa/oe_theme/tree/2.20.0) (2021-06-17)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.19.0...2.20.0)
+
+**Merged pull requests:**
+
+- EWPP-1170: Remove dev branch from dependencies. [\#849](https://github.com/openeuropa/oe_theme/pull/849) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1112: Style the iframe paragraph. [\#809](https://github.com/openeuropa/oe_theme/pull/809) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1049: Address field should have only Country as mandatory. [\#792](https://github.com/openeuropa/oe_theme/pull/792) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [2.19.0](https://github.com/openeuropa/oe_theme/tree/2.19.0) (2021-06-15)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.18.0...2.19.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.19.0. [\#848](https://github.com/openeuropa/oe_theme/pull/848) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-851: Update EPIC branch. [\#846](https://github.com/openeuropa/oe_theme/pull/846) ([sergepavle](https://github.com/sergepavle))
 - EWPP-953: Organisation version 2 epic [\#845](https://github.com/openeuropa/oe_theme/pull/845) ([ademarco](https://github.com/ademarco))
 - EWPP-953: Update epic.  [\#844](https://github.com/openeuropa/oe_theme/pull/844) ([nagyad](https://github.com/nagyad))
