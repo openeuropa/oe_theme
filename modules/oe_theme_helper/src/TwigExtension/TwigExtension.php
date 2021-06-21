@@ -670,6 +670,7 @@ class TwigExtension extends \Twig_Extension {
           'icon' => [
             'path' => $context['ecl_icon_path'],
             'name' => 'external',
+            'size' => 'xs',
           ],
         ];
       }
