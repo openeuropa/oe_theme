@@ -11,38 +11,44 @@
  */
 #}
 
-{% set _logo_path = ecl_logo_path ~ '/logo--' ~ current_language_id|to_internal_language_id ~ '.svg' %}
-
-{% set _sections = [
-  {
-    'logo': {
-      'path': 'https://europa.eu/',
-      'language': current_language_id,
-      'src_mobile': _logo_path,
-      'src_desktop': _logo_path,
+{% set _row = [
+  [
+    {
+      'logo': {
+        'path': 'https://europa.eu/',
+        'language': current_language_id,
+        'src_mobile': ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+        'src_desktop': ecl_logo_path ~ '/standard-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+      },
+      'description': site_owner ? 'This site is managed by the European Commission, @name'|t({'@name': site_owner}),
     },
-    'description': site_owner ? 'This site is managed by the European Commission, @name'|t({'@name': site_owner}),
-  },
+  ],
   [
     {
       'title': corporate_footer.contact_title,
+      'title_with_separator': true,
       'links': ecl_footer_links(corporate_footer.contact),
     },
     {
       'title': corporate_footer.social_media_title,
+      'title_with_separator': true,
       'links': ecl_footer_links(corporate_footer.social_media),
     },
     {
       'title': corporate_footer.legal_links_title,
+      'title_with_separator': true,
       'links': ecl_footer_links(corporate_footer.legal_links),
     },
   ],
-  {
-    'title': corporate_footer.institution_links_title,
-    'links': ecl_footer_links(corporate_footer.institution_links),
-  },
+  [
+    {
+      'title': corporate_footer.institution_links_title,
+      'title_with_separator': true,
+      'links': ecl_footer_links(corporate_footer.institution_links),
+    },
+  ],
 ] %}
 
 {% include '@ecl-twig/footer-core' with {
-  'sections': _sections,
+  'rows': [_row],
 } %}

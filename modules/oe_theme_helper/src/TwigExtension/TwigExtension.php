@@ -670,6 +670,7 @@ class TwigExtension extends \Twig_Extension {
           'icon' => [
             'path' => $context['ecl_icon_path'],
             'name' => 'external',
+            'size' => 'xs',
           ],
         ];
       }
@@ -678,8 +679,8 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link['link']['icon_position'] = 'before';
         $ecl_link += [
           'icon' => [
-            'path' => $context['ecl_icon_path'],
-            'name' => $link['social_network'],
+            'path' => $context['ecl_icon_social_media_path'],
+            'name' => $context['ecl_component_library'] == 'eu' ? $link['social_network'] : $link['social_network'] . '-negative',
           ],
         ];
       }
