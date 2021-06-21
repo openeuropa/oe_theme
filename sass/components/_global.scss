@@ -4,6 +4,8 @@
 
 body {
   font-family: map.get(theme.$font-family, 'default');
+  margin: 0;
+  padding: 0;
 }
 
 a {
