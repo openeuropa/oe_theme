@@ -48,7 +48,7 @@ Feature: Site branding
       # Non-EU language.
       | Icelandic               | English    |
 
-  @javascript @enable-non-eu-language @wip
+  @javascript @enable-non-eu-language
   Scenario: The European Union logo is available in the footer when non-EU language is selected.
     Given I am on the homepage
     When the theme is configured to use the "European Union" style
