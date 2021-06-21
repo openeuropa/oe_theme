@@ -11,7 +11,7 @@
   {% set extraAttributes = extraAttributes|merge([{'name': name, 'value': value}]) %}
 {% endfor %}
 
-{% include '@ecl-twig/button/button' with {
+{% include '@ecl-twig/button' with {
   label: attributes.value,
   variant: 'primary',
   extra_attributes: extraAttributes

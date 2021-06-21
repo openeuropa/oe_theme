@@ -30,7 +30,7 @@
   {% set _detail_meta = _detail_meta|merge([publication_date]) %}
 {% endif %}
 
-{% include '@ecl-twig/file/file' with {
+{% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(length),
   'image': {

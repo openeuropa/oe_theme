@@ -19,7 +19,7 @@
     <a href="{{ link.href }}" class="ecl-button ecl-button--call">
       <span class="ecl-button__container">
         <span class="ecl-button__label">{{ link.label }}</span>
-        {% include '@ecl-twig/icon/icon' with {
+        {% include '@ecl-twig/icon' with {
           icon: {
             path: ecl_icon_path,
             type: "ui",
@@ -54,6 +54,6 @@
   'image': image
 } %}
 
-{% include '@ecl-twig/card/card' with {
+{% include '@ecl-twig/card' with {
   'card': card,
 } %}

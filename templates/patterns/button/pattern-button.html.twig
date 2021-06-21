@@ -5,7 +5,7 @@
  */
 #}
 {% if variant == 'default' %}
-  {% include '@ecl-twig/link/link' with {
+  {% include '@ecl-twig/link' with {
     'link': {
       'type': 'standalone',
       'label': label,
@@ -20,7 +20,7 @@
     }
   } only %}
 {% else %}
-  {% include '@ecl-twig/button/button' with {
+  {% include '@ecl-twig/button' with {
     'label': label,
     'variant': variant|replace({'_':'-'}),
     'type': type_attribute,

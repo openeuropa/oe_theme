@@ -22,7 +22,7 @@
 {% endif %}
 {% if _items %}
   {% block content %}
-    {% include '@ecl-twig/description-list/description-list' with {
+    {% include '@ecl-twig/description-list' with {
       'variant': 'horizontal',
       'items': _items,
     } %}
