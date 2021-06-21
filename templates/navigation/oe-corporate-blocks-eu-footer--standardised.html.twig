@@ -14,7 +14,6 @@
 {% extends "@oe_theme/navigation/oe-corporate-blocks-ec-footer--standardised.html.twig" %}
 
 {% block content %}
-  {% set _logo_path = ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg' %}
   {# Populate the top row with the site identity and the custom links. #}
   {% set _top_row = [
     [
@@ -38,8 +37,8 @@
         'logo': {
           'path': 'https://europa.eu/',
           'language': current_language_id,
-          'src_mobile': _logo_path,
-          'src_desktop': _logo_path,
+          'src_mobile': ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+          'src_desktop': ecl_logo_path ~ '/standard-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
         },
         'description': logo_description,
       },
