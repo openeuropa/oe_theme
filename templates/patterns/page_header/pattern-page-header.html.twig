@@ -49,9 +49,9 @@
   'thumbnail': thumbnail,
   'description': introduction,
   'breadcrumb': _breadcrumb,
-  'meta': metas,
+  'meta': metas|filter_empty,
   'background_image_url': background_image_url,
   'composition': _language_switcher,
   'extra_classes': _extra_classes|join(' '),
-  'overlay': overlay,
+  'overlay': ecl_component_library == 'ec' and overlay is not empty,
 } %}
