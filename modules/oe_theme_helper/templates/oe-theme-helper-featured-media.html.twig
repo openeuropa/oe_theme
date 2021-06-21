@@ -13,4 +13,6 @@
  * @ingroup themeable
  */
 #}
-{% include '@ecl-twig/media-container' with params only %}
+{% if params.image or params.embedded_media %}
+  {% include '@ecl-twig/media-container' with params only %}
+{% endif %}
