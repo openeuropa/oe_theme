@@ -1,7 +1,7 @@
 component_library_ec:
   css:
     theme:
-      dist/preset-reset/styles/ecl-reset.css: { media: screen }
+      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
       dist/ec/styles/ecl-ec.css: { media: screen }
       dist/ec/styles/ecl-ec-print.css: { media: print }
       css/style-ec.css: { media: screen }
@@ -15,7 +15,7 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/preset-reset/styles/ecl-reset.css: { media: screen }
+      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
       dist/eu/styles/ecl-eu.css: { media: screen }
       dist/eu/styles/ecl-eu-print.css: { media: print }
       css/style-eu.css: { media: screen }
