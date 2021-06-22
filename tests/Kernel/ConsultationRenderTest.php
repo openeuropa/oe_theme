@@ -43,8 +43,6 @@ class ConsultationRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     $this->installConfig([
       'composite_reference',
       'oe_content_departments_field',
