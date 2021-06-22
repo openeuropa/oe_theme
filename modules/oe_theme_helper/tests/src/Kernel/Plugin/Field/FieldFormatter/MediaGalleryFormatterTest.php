@@ -40,6 +40,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     'oe_media_iframe',
     'oe_media_oembed_mock',
     'options',
+    'node',
   ];
 
   /**
@@ -59,6 +60,10 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       'oe_media',
       'oe_media_iframe',
     ]);
+
+    // Call the install hook of the Media module.
+    module_load_include('install', 'media');
+    media_install();
 
     // Add a copyright field to some of the media bundles used in the test. Use
     // different names to make sure that the correct settings are used in the

@@ -336,3 +336,6 @@ msgstr "Elérhetőségi adatok megjelenítése"
 
 msgid "Hide contact details"
 msgstr "Elérhetőségi adatok elrejtése"
+
+msgid "Leadership and organisation"
+msgstr "Vezetés és szervezeti felépítés"

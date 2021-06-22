@@ -56,7 +56,7 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
     ]);
 
     $this->container->get('module_handler')->loadInclude('oe_multilingual', 'install');
-    oe_multilingual_install();
+    oe_multilingual_install(FALSE);
 
     // Rebuild the container in order to make sure tests pass.
     // @todo: fix test setup so that we can get rid of this line.

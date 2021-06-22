@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * The oe_theme_inpage_navigation_test module.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_theme().
+ */
+function oe_theme_inpage_navigation_test_theme($existing, $type, $theme, $path) {
+  return [
+    'oe_theme_inpage_navigation_test_content' => [
+      'render element' => 'element',
+    ],
+    'oe_theme_inpage_navigation_test_no_elements' => [
+      'render element' => 'element',
+    ],
+  ];
+}

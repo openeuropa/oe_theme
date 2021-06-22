@@ -125,8 +125,8 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
 
     $file_urls = [
-      'en' => $en_file->createFileUrl(),
       'bg' => $bg_file->createFileUrl(),
+      'en' => $en_file->createFileUrl(),
     ];
 
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
@@ -134,6 +134,13 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       $this->drupalGet($node->toUrl());
       $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'figure[class="ecl-media-container"] img[src*="' . $file_urls['en'] . '"][alt="default en alt"]');
   }
 
   /**
@@ -270,7 +277,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => "event_venue\n  Address event_venue, 1001 Brussels, Belgium",
+          'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
         ], [
           'label' => 'When',
           'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
@@ -284,8 +291,18 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $icons_text_expected_values['items'][2] = [
       'icon' => 'location',
-      'text' => 'Brussels, Belgium',
+      'text' => '<Brussels>, Belgium',
     ];
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Assert address in Venue using country only.
+    $venue_entity->set('oe_address', ['country_code' => 'MX'])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_expected_values['items'][0]['body'] = "event_venue\n  Mexico";
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values['items'][2]['text'] = 'Mexico';
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
     // Assert "Internal organiser" field.

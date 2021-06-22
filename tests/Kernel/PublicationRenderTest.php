@@ -60,6 +60,13 @@ class PublicationRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Publication short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'Publication short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Add thumbnail.
     $media_image = $this->createMediaImage('publication_image');
     $node->set('oe_publication_thumbnail', $media_image)->save();

@@ -121,6 +121,13 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Consultation short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'Consultation short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Check status Closed label and background.
     $deadline_date->modify('- 4 days');
     $node->set('oe_consultation_deadline', [

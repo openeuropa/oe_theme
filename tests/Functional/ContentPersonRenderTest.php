@@ -114,6 +114,16 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertContains('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
     $this->assertEquals('Alternative text portrait', $portrait->getAttribute('alt'));
 
+    // Unpublish the media and assert it is not rendered anymore.
+    $portrait_media->set('status', 0);
+    $portrait_media->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertNotContains('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
+
+    // Publish the media.
+    $portrait_media->set('status', 1);
+    $portrait_media->save();
+
     // Assert Department field with single value.
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
     $this->drupalGet($node->toUrl());
