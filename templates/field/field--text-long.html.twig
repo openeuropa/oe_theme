@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override for the text long fields.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% spaceless %}
+  {% if not label_hidden %}
+    {%
+      set title_classes = [
+      'ecl-u-type-bold',
+      'ecl-u-mb-m',
+      label_display == 'visually_hidden' ? 'visually-hidden',
+    ]
+    %}
+    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+  {% endif %}
+  <div class="ecl-editor">
+    {%- include 'field--bare.html.twig' -%}
+  </div>
+{% endspaceless %}

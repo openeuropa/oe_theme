@@ -336,3 +336,6 @@ msgstr "Εμφάνιση στοιχείων επικοινωνίας"
 
 msgid "Hide contact details"
 msgstr "Απόκρυψη στοιχείων επικοινωνίας"
+
+msgid "Leadership and organisation"
+msgstr "Διοίκηση και οργάνωση"

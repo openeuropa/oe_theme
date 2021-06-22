@@ -1,0 +1,15 @@
+oe_theme_inpage_navigation_test.content:
+  path: '/oe-theme-inpage-navigation-test/content'
+  defaults:
+    _title: 'In-page navigation content page'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::contentPage'
+  requirements:
+    _access: 'TRUE'
+
+oe_theme_inpage_navigation_test.no_entries:
+  path: '/oe-theme-inpage-navigation-test/no-entries'
+  defaults:
+    _title: 'In-page navigation no entries page'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::noEntriesPage'
+  requirements:
+    _access: 'TRUE'

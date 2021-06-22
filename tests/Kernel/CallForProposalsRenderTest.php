@@ -137,6 +137,13 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'CFP short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'CFP short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Check label for multiple deadline values.
     $deadline_date2 = (clone $static_time)->modify('+ 4 days');
     $deadline_date2->setTimeZone(new \DateTimeZone('Australia/Sydney'));

@@ -65,3 +65,28 @@ function oe_theme_content_entity_contact_post_update_00002(): void {
     $entity->save();
   }
 }
+
+/**
+ * Add Link field to the "Full" and "Details" Contact entity view displays.
+ */
+function oe_theme_content_entity_contact_post_update_00003(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/post_updates/00003_full_view_display_link_field');
+
+  // View display configurations to update.
+  $displays = [
+    'core.entity_view_display.oe_contact.oe_general.full',
+    'core.entity_view_display.oe_contact.oe_general.oe_details',
+    'core.entity_view_display.oe_contact.oe_press.full',
+    'core.entity_view_display.oe_contact.oe_press.oe_details',
+  ];
+  foreach ($displays as $display) {
+    $display_values = $storage->read($display);
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $updated_display = \Drupal::entityTypeManager()
+        ->getStorage($view_display->getEntityTypeId())
+        ->updateFromStorageRecord($view_display, $display_values);
+      $updated_display->save();
+    }
+  }
+}

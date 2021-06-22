@@ -34,6 +34,11 @@ services:
     environment:
       - DISPLAY=:99
       - SE_OPTS=-debug
+      - DISPLAY=:99
+      - SCREEN_WIDTH=1280
+      - SCREEN_HEIGHT=800
+      - NODE_MAX_INSTANCES=5
+      - NODE_MAX_SESSION=5
 
 pipeline:
   npm-build:

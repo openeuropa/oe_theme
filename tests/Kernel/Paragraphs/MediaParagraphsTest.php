@@ -25,6 +25,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_media',
     'allowed_formats',
     'oe_paragraphs_media_field_storage',
+    'oe_paragraphs_iframe_media',
     'oe_paragraphs_banner',
     'views',
     'entity_browser',
@@ -52,9 +53,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'media_avportal',
       'oe_media_avportal',
       'oe_paragraphs_banner',
+      'oe_paragraphs_iframe_media',
       'options',
       'oe_media_iframe',
     ]);
+    // Call the install hook of the Media module.
+    module_load_include('install', 'media');
+    media_install();
   }
 
   /**
@@ -152,6 +157,31 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ];
     $html = $this->renderParagraph($paragraph, 'bg');
     $assert->assertPattern($expected_values, $html);
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $expected_values = [
+      'title' => 'Title',
+      'caption' => NULL,
+      'text' => 'Full text',
+      'image' => NULL,
+    ];
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertPattern($expected_values, $html);
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
     // Remove the text and assert the element is no longer rendered.
     $paragraph->set('field_oe_text_long', '');
@@ -348,6 +378,27 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Variant - image / Modifier - hero_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
     $paragraph->save();
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+
+    // Publish the media.
+    $media->set('status', 1);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
@@ -686,6 +737,99 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'url(' . (file_create_url('avportal://P-038924/00-15.jpg')) . ')',
       $image_element->attr('style')
     );
+  }
+
+  /**
+   * Test 'Iframe' paragraph rendering.
+   */
+  public function testIframe(): void {
+    // Set Iframe media translatable.
+    $this->container->get('content_translation.manager')->setEnabled('media', 'iframe', TRUE);
+
+    // Make the Iframe field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.iframe.oe_media_iframe');
+    $field_config->set('translatable', TRUE)->save();
+    $this->container->get('router.builder')->rebuild();
+
+    // Create unpublished Iframe media with required fields to check access.
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
+    $media = $media_storage->create([
+      'bundle' => 'iframe',
+      'name' => 'Test Iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com/iframe"></iframe>',
+      'status' => 0,
+    ]);
+    $media->save();
+
+    // Create a paragraph with required fields only.
+    $paragraph = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('paragraph')->create([
+        'type' => 'oe_iframe_media',
+        'field_oe_media' => [
+          'target_id' => $media->id(),
+        ],
+      ]);
+    $paragraph->save();
+
+    // Assert unpublished media isn't shown.
+    $html = $this->renderParagraph($paragraph);
+    $this->assertNotContains('figure', $html);
+    $this->assertNotContains('http://example.com/iframe', $html);
+    $this->assertNotContains('ecl-u-type-heading-2', $html);
+
+    // Publish media.
+    $media->setPublished()->save();
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
+    $this->assertContains('http://example.com/iframe', $iframe->attr('src'));
+    $this->assertNotContains('ecl-u-type-heading-2', $html);
+
+    // Assert "Full width" field.
+    $paragraph->set('field_oe_iframe_media_full_width', TRUE)->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
+    $this->assertContains('http://example.com/iframe', $iframe->attr('src'));
+
+    // Assert ratio.
+    $media->set('oe_media_iframe_ratio', '1_1')->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $this->assertContains('http://example.com/iframe', $iframe->attr('src'));
+
+    // Assert title and full width.
+    $paragraph->set('field_oe_title', 'Iframe paragraph title');
+    $paragraph->set('field_oe_iframe_media_full_width', FALSE)->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $title = $crawler->filter('h2.ecl-u-type-heading-2', $html);
+    $this->assertContains('Iframe paragraph title', $title->text());
+    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $this->assertContains('http://example.com/iframe', $iframe->attr('src'));
+
+    // Translate the media to Bulgarian.
+    $media_bg = $media->addTranslation('bg', [
+      'name' => 'Test Iframe bg',
+      'oe_media_iframe' => '<iframe src="http://example.com/iframe_bg"></iframe>',
+    ]);
+    $media_bg->save();
+
+    // Add Bulgarian translation.
+    $paragraph->addTranslation('bg', ['field_oe_title' => 'Iframe paragraph title bg'])->save();
+
+    // Assert paragraph translation.
+    $html = $this->renderParagraph($paragraph, 'bg');
+    $crawler = new Crawler($html);
+    $title = $crawler->filter('h2.ecl-u-type-heading-2', $html);
+    $this->assertContains('Iframe paragraph title bg', $title->text());
+    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $this->assertContains('http://example.com/iframe_bg', $iframe->attr('src'));
   }
 
 }

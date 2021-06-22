@@ -11,6 +11,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
@@ -100,6 +101,11 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
       'variables' => [
         'label' => '',
         'name' => '',
+      ],
+    ],
+    'oe_theme_helper_inpage_navigation_block' => [
+      'variables' => [
+        'title' => NULL,
       ],
     ],
   ];
@@ -236,6 +242,18 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     // The media entity is not available anymore, bail out.
     return;
   }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
   $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
   $alt = '';
   if ($thumbnail instanceof ImageItem) {
@@ -249,8 +267,7 @@ function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInte
     ],
   ]);
 
-  CacheableMetadata::createFromRenderArray($variables)
-    ->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
+  $cacheability->merge(CacheableMetadata::createFromRenderArray($renderable[0]))
     ->applyTo($variables);
 
   $variables['image'] = ImageValueObject::fromArray([
@@ -277,5 +294,16 @@ function oe_theme_helper_entity_bundle_info_alter(&$bundles) {
     $data['media_data_extractor'] = in_array($bundle_id, $iframe_bundles)
       ? 'iframe'
       : 'thumbnail';
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the entity view display form.
+ */
+function oe_theme_helper_form_entity_view_display_edit_form_alter(&$form, FormStateInterface $form_state) {
+  foreach ($form['#fieldgroups'] as $name) {
+    if ($form['fields'][$name]['human_name']['#markup'] === "") {
+      $form['fields'][$name]['human_name']['#markup'] = t('- No label -');
+    }
   }
 }
