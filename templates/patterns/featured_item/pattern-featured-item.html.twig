@@ -22,7 +22,6 @@
         {% include '@ecl-twig/icon' with {
           icon: {
             path: ecl_icon_path,
-            type: "ui",
             name: "corner-arrow",
             size: "xs",
             transform: "rotate-90"
@@ -34,11 +33,16 @@
   {% endset %}
 {% endif %}
 
+{% if ecl_component_library == 'eu' %}
+  {% set icon_size = 'm' %}
+{% else %}
+  {% set icon_size = 'xs' %}
+{% endif %}
 {% set _footer_items = [] %}
 {% for item in footer_items %}
   {% set _footer_items = _footer_items|merge([{
     'label': item.text,
-    'icon': to_ecl_icon(item.icon, 'xs'),
+    'icon': to_ecl_icon(item.icon, icon_size),
   }]) %}
 {% endfor %}
 
