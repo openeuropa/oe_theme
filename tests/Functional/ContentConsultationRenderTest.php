@@ -45,8 +45,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
