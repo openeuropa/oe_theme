@@ -278,7 +278,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
           'body' => "Office $name",
         ], [
           'label' => 'Social media',
-          'body' => html_entity_decode('&nbsp;') . 'Social media ' . $name,
+          'body' => 'Social media ' . $name,
         ],
       ],
     ];
