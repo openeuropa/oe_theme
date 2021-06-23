@@ -14,6 +14,8 @@
    *
    * @prop {Drupal~behaviorAttach} attach
    *   Attaches the inpage navigation behaviors.
+   * @prop {Drupal~behaviorAttach} detach
+   *   Detaches the inpage navigation behaviors.
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
@@ -59,21 +61,25 @@
         items_markup += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
       });
 
+      // Loop through all the inpage navigation marked with our special class. The auto-initialisation is disabled on
+      // them, as initialisation should be run only after the items are added. Otherwise JS callbacks won't be applied
+      // correctly.
       Array.prototype.forEach.call(document.querySelectorAll('.oe-theme-ecl-inpage-navigation'), function (block) {
         if (items_markup.length === 0) {
           // When there are no items, execute the callback to handle the block.
           Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
           return;
         }
+
         block.querySelector('ul').innerHTML = items_markup;
-        var inpageNavigationInstance = new ECL.InpageNavigation(block);
-        inpageNavigationInstance.init();
-        Drupal.eclInPageNavigation.instances.push(inpageNavigationInstance);
+        var instance = new ECL.InpageNavigation(block);
+        instance.init();
+        Drupal.eclInPageNavigation.instances.push(instance);
       })
     },
     detach: function detach(context, settings, trigger) {
-      Drupal.eclInPageNavigation.instances.forEach(function(inpageNavigation){
-        inpageNavigation.destroy();
+      Drupal.eclInPageNavigation.instances.forEach(function (instance){
+        instance.destroy();
       });
     }
   };
