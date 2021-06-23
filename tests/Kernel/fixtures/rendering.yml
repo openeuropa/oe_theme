@@ -1946,7 +1946,7 @@
       "div.ecl-card__image": 0
       'h1.ecl-card__title': 1
       'div.ecl-card__description': 0
-      'footer.ecl-card__footer': 0
+      'ul.ecl-card__info-container': 0
     equals:
       'h1.ecl-card__title': "Example title"
 - array:
@@ -2059,7 +2059,7 @@
           text: "Brussels, Belgium"
   assertions:
     count:
-      "footer.ecl-card__footer": 1
+      "ul.ecl-card__info-container": 1
     equals:
       'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
       'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
