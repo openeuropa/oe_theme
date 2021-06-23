@@ -226,7 +226,7 @@
       full_width: false
   assertions:
     count:
-      'section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered': 1
+      'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
@@ -323,7 +323,7 @@
       alignment: "center"
   assertions:
     count:
-      'section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered': 1
+      'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
