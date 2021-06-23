@@ -68,7 +68,7 @@
         block.querySelector('ul').innerHTML = items_markup;
         var inpageNavigationInstance = new ECL.InpageNavigation(block);
         inpageNavigationInstance.init();
-        Drupal.eclInPageNavigation.instances.push(inpageNavigation);
+        Drupal.eclInPageNavigation.instances.push(inpageNavigationInstance);
       })
     },
     detach: function detach(context, settings, trigger) {
