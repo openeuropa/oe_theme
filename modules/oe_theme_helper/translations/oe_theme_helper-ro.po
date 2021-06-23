@@ -336,3 +336,6 @@ msgstr "Afișați datele de contact"
 
 msgid "Hide contact details"
 msgstr "Ascundeți datele de contact"
+
+msgid "Leadership and organisation"
+msgstr "Conducere și organizare"

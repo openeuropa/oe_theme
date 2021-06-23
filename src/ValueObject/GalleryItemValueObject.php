@@ -170,7 +170,7 @@ class GalleryItemValueObject extends ValueObjectBase {
       'image' => $this->getThumbnail()->getArray(),
       'description' => $this->getCaption(),
       'meta' => $this->getMeta(),
-      'icon' => '',
+      'icon' => 'image',
     ];
 
     // If video, then set the required source URL format and icon.

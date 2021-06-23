@@ -137,6 +137,13 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'CFT short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['title'] = 'CFT short title';
+    $assert->assertPattern($expected_values, $html);
+
     // Check Department/s label for multiple department values.
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');

@@ -46,3 +46,10 @@ print:
   css:
     theme:
       css/print.css: { media: print }
+
+inpage_navigation:
+  js:
+    js/inpage_navigation.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

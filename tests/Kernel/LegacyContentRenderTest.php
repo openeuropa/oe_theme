@@ -53,6 +53,9 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
 
     $crawler = new Crawler($html);
 
+    $title = $crawler->filter('h2 a span');
+    $this->assertEquals('Test page node', $title->text());
+
     // Body wrapper.
     $body_wrapper = $crawler->filter('.ecl-editor');
     $this->assertCount(1, $body_wrapper);
@@ -63,6 +66,14 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $this->assertContains('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list .ecl-link.ecl-link--standalone');
     $this->assertCount(2, $related_links);
+
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Page short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $title = $crawler->filter('.ecl-content-item__title.ecl-u-type-heading-5.ecl-u-mb-xs.ecl-u-mt-none');
+    $this->assertEquals('Page short title', $title->text());
   }
 
   /**
@@ -84,10 +95,21 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
 
     $crawler = new Crawler($html);
 
+    $title = $crawler->filter('h2 a span');
+    $this->assertEquals('Test policy node', $title->text());
+
     // Body wrapper.
     $body_wrapper = $crawler->filter('.ecl-editor');
     $this->assertCount(1, $body_wrapper);
     $this->assertContains('Body', $body_wrapper->text());
+
+    // Test short title fallback.
+    $node->set('oe_content_short_title', 'Policy short title')->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $title = $crawler->filter('.ecl-content-item__title.ecl-u-type-heading-5.ecl-u-mb-xs.ecl-u-mt-none');
+    $this->assertEquals('Policy short title', $title->text());
   }
 
   /**

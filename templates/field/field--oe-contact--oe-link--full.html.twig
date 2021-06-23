@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Link field in the Contact entity default view mode.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  {% set bubble_cache = item.content|render %}
+  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pt-l ecl-u-pb-l">
+    {% include '@ecl-twig/link' with {
+      link: {
+        type: 'standalone',
+        label: item.content['#title'],
+        path: item.content['#url'],
+        icon_position: 'after'
+      },
+      icon: get_link_icon(item.content['#url'].toString())
+    } %}
+  </div>
+{% endfor %}

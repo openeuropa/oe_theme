@@ -17,6 +17,13 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 class TwigExtensionTest extends AbstractKernelTestBase {
 
   /**
+   * {@inheritdoc}
+   */
+  protected static $modules = [
+    'node',
+  ];
+
+  /**
    * Test smart_trim filter.
    *
    * @param array $variables

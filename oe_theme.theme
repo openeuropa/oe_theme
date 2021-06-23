@@ -82,10 +82,15 @@ function oe_theme_preprocess(&$variables) {
  * Implements hook_preprocess_breadcrumb().
  */
 function oe_theme_preprocess_breadcrumb(array &$variables): void {
-  $request     = \Drupal::request();
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheContexts(['route']);
+  $cacheability->applyTo($variables);
+
+  $request = \Drupal::request();
   $route_match = \Drupal::routeMatch();
-  $title       = \Drupal::service('title_resolver')
-    ->getTitle($request, $route_match->getRouteObject());
+
+  $route = $route_match->getRouteObject();
+  $title = \Drupal::service('title_resolver')->getTitle($request, $route);
 
   unset($variables['links']);
   $variables['links'] = array_map(function ($item) {
@@ -401,10 +406,6 @@ function oe_theme_preprocess_form_element(array &$variables): void {
  * Add paragraph formatting to body.
  */
 function oe_theme_preprocess_field(&$variables, $hook): void {
-  if ($variables['field_name'] === 'body') {
-    $variables['attributes']['class'][] = 'ecl-editor';
-  }
-
   // Add the ECL image class to the image fields.
   $field_name = $variables['field_name'];
   if (in_array($field_name, ['oe_media_avportal_photo'])) {
@@ -928,6 +929,14 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   // paragraph template.
   $cacheability->addCacheableDependency($media);
 
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
   // Get the media source.
   $source = $media->getSource();
 
@@ -976,6 +985,52 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   }
 
   $cacheability->applyTo($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_paragraph__oe_iframe_media(&$variables) {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $paragraph->get('field_oe_media')->entity;
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $cacheability->addCacheableDependency($media);
+  $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
+  $cacheability->addCacheableDependency($media_type);
+
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  $cacheability->applyTo($variables);
+
+  if (!$access->isAllowed()) {
+    return;
+  }
+
+  // Get the full width value.
+  $variables['full_width'] = (bool) $paragraph->get('field_oe_iframe_media_full_width')->value;
+
+  // Retrieve the correct media translation.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+
+  // Get the ratio value.
+  $variables['ratio'] = _oe_theme_get_oe_media_iframe_ratio($media);
+
+  // Get the Iframe content to render.
+  $variables['iframe'] = $media->get('oe_media_iframe')->view([
+    'label' => 'hidden',
+    'type' => 'oe_media_iframe',
+  ]);
 }
 
 /**
@@ -1434,6 +1489,14 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   // paragraph template.
   $cacheability->addCacheableDependency($media);
 
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
   $source = $media->getSource();
   // We only support images and AV Portal photos for now.
   if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
@@ -1526,12 +1589,26 @@ function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_the
 }
 
 /**
+ * Gets the value from oe_media_iframe_ratio field.
+ *
+ * @param \Drupal\media\MediaInterface $media
+ *   Media with oe_media_iframe_ratio field.
+ *
+ * @return string
+ *   Prepared ratio to be used in templates.
+ */
+function _oe_theme_get_oe_media_iframe_ratio(MediaInterface $media): string {
+  $ratio = $media->get('oe_media_iframe_ratio')->value ?? 'custom';
+  return str_replace('_', '-', $ratio);
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_field__media__oe_media_iframe__iframe__oe_theme_main_content(array &$variables): void {
   // Set iframe aspect ratio when rendering  the "oe_theme_main_content"
   // display mode.
-  $variables['ratio'] = $variables['element']['#object']->get('oe_media_iframe_ratio')->value ?? 'custom';
+  $variables['ratio'] = _oe_theme_get_oe_media_iframe_ratio($variables['element']['#object']);
 }
 
 /**

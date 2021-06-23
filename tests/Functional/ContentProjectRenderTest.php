@@ -184,7 +184,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => '€100',
         ], [
           'label' => 'EU contribution',
-          'body' => "€100\n\n  100% of the overall budget",
+          'body' => "€100100% of the overall budget",
         ],
       ],
     ];
@@ -210,7 +210,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($first_field_list_expected_values, $description_lists[0]->getHtml());
 
     // Assert the second description list block's labels and values.
-    $second_field_list_expected_values['items'][1]['body'] = "€50\n\n  50% of the overall budget";
+    $second_field_list_expected_values['items'][1]['body'] = "€5050% of the overall budget";
     $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.
@@ -264,6 +264,14 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
+
+    // Load logo that is unpublished and assert that is not rendered.
+    $media = $this->getStorage('media')->loadByProperties(['name' => 'Test image coordinator']);
+    $media = reset($media);
+    $media->set('status', 0)->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertEmpty($project_stakeholders->findAll('css', 'div[role=img]'));
 
     // Unpublish Coordinator and publish Participant organisations.
     $coordinator_organisation->set('status', CorporateEntityInterface::NOT_PUBLISHED);

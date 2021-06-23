@@ -26,6 +26,7 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
     'field',
     'file',
     'media',
+    'node',
   ];
 
   /**
@@ -44,6 +45,10 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
       'entity_reference',
       'media',
     ]);
+
+    // Call the install hook of the Media module.
+    module_load_include('install', 'media');
+    media_install();
   }
 
   /**

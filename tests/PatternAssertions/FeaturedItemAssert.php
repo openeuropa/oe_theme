@@ -57,11 +57,18 @@ class FeaturedItemAssert extends BasePatternAssert {
    *
    * @param array|null $expected_image
    *   The expected image values.
+   * @param string $variant
+   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertFeaturedItemImage($expected_image, Crawler $crawler): void {
-    $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
+  protected function assertFeaturedItemImage($expected_image, string $variant, Crawler $crawler): void {
+    $image_div_selector = 'article.ecl-card header.ecl-card__header div.ecl-card__image';
+    if (is_null($expected_image)) {
+      $this->assertElementNotExists($image_div_selector, $crawler);
+      return;
+    }
+    $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
     self::assertContains($expected_image['src'], $image_div->attr('style'));
   }

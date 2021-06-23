@@ -277,6 +277,17 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContains("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
     $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
 
+    // Unpublish the media and assert it is not rendered anymore.
+    $media_image->set('status', 0);
+    $media_image->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', $thumbnail_wrapper_selector);
+
+    // Publish the media.
+    $media_image->set('status', 1);
+    $media_image->save();
+
     // Assert Contact field.
     $contact = $this->createContactEntity('publication_contact');
     $node->set('oe_publication_contacts', $contact)->save();

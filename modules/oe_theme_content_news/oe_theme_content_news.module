@@ -7,6 +7,7 @@
 
 declare(strict_types = 1);
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\media\MediaInterface;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
@@ -24,6 +25,17 @@ function oe_theme_content_news_preprocess_node__oe_news(&$variables) {
 
   $media = $node->get('oe_news_featured_media')->entity;
   if ($media instanceof MediaInterface) {
+    $cacheability = CacheableMetadata::createFromRenderArray($variables);
+    $cacheability->addCacheableDependency($media);
+
+    // Run access checks on the media entity.
+    $access = $media->access('view', $variables['user'], TRUE);
+    $cacheability->addCacheableDependency($access);
+    $cacheability->applyTo($variables);
+    if (!$access->isAllowed()) {
+      return;
+    }
+
     $builder = \Drupal::entityTypeManager()->getViewBuilder('media');
     $variables['content']['featured_image'] = $builder->view($media, 'oe_theme_main_content');
     // Show the image always at the top.
