@@ -1,11 +1,20 @@
 # Changelog
 
+## [2.20.1](https://github.com/openeuropa/oe_theme/tree/2.20.1) (2021-06-23)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.20.0...2.20.1)
+
+**Merged pull requests:**
+
+- EWPP-1230: Fixing the featured item assert class image assertion. [\#853](https://github.com/openeuropa/oe_theme/pull/853) ([upchuk](https://github.com/upchuk))
+
 ## [2.20.0](https://github.com/openeuropa/oe_theme/tree/2.20.0) (2021-06-17)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.19.0...2.20.0)
 
 **Merged pull requests:**
 
+- Prepare release 2.20.0. [\#852](https://github.com/openeuropa/oe_theme/pull/852) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1170: Remove dev branch from dependencies. [\#849](https://github.com/openeuropa/oe_theme/pull/849) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1112: Style the iframe paragraph. [\#809](https://github.com/openeuropa/oe_theme/pull/809) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1049: Address field should have only Country as mandatory. [\#792](https://github.com/openeuropa/oe_theme/pull/792) ([yenyasinn](https://github.com/yenyasinn))
