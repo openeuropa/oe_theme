@@ -15,15 +15,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-  }
-
-  /**
    * Test language switcher link list rendering.
    */
   public function testLanguageSwitcherLinkListRendering(): void {
