@@ -16,15 +16,6 @@ use Symfony\Component\DomCrawler\Crawler;
 class LegacyContentRenderTest extends ContentRenderTestBase {
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-  }
-
-  /**
    * Tests that the Page node type is rendered with the correct ECL markup.
    */
   public function testPage(): void {
