@@ -30,8 +30,6 @@ class ContactRenderTest extends ContentRenderTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     $this->installEntitySchema('oe_contact');
     $this->installConfig([
       'oe_theme_content_entity_contact',

@@ -38,8 +38,6 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
   protected function setUp() {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     $this->installSchema('locale', [
       'locales_location',
       'locales_source',
