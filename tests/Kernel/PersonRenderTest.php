@@ -234,7 +234,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Office organisation_reference_contact',
         ], [
           'label' => 'Social media links',
-          'body' => ' Social media organisation_reference_contact',
+          'body' => 'Social media organisation_reference_contact',
         ],
       ],
     ];
@@ -324,7 +324,7 @@ class PersonRenderTest extends ContentRenderTestBase {
               'body' => 'Office direct_contact',
             ], [
               'label' => 'Social media links',
-              'body' => ' Social media direct_contact',
+              'body' => 'Social media direct_contact',
             ],
           ],
         ]),
