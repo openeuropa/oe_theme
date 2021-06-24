@@ -28,8 +28,6 @@ class ConfigurationTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme', 'oe_theme_subtheme_test']);
   }
@@ -45,19 +43,21 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Assert that we load the EC component library by default.
-      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
-      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
+      $this->assertScriptContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
       // Assert that we do not load the EU component library by default.
-      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
-      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
 
       // Assert that the ECL Editor preset is always loaded.
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
@@ -95,22 +95,24 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Assert that we load the EU component library.
-      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
-      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
+      $this->assertScriptContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
 
       // Assert that we do not load the EC component library.
-      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
-      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-eu.js');
 
       // Assert that the ECL Editor preset is always loaded.
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
@@ -126,22 +128,23 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Assert that we load the EC component library by default.
-      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website.css');
-      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-preset-website-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec-preset-website.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
 
       // Assert that we do not load the EU component library by default.
-      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website.css');
-      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-preset-website-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu-preset-website.js');
+      $this->assertScriptNotContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-eu.js');
 
       // Assert that the ECL Editor preset is always loaded.
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
@@ -221,7 +224,7 @@ class ConfigurationTest extends BrowserTestBase {
    *   Partial content of the src attribute.
    */
   protected function assertScriptContainsSrc(string $src): void {
-    $this->assertSession()->responseMatches('<script .*src=\".*' . preg_quote($src) . '\?\w+\">');
+    $this->assertSession()->responseMatches('<script .*src=\".*' . preg_quote($src) . '\?*\w*\">');
   }
 
   /**
