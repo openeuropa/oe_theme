@@ -16,17 +16,11 @@
 {% endif %}
 {% set text = text|render %}
 
-{% set media_position_class = ' ecl-u-order-md-last' %}
-{% if 'right' in variant %}
-  {% set media_position_class = '' %}
-{% endif %}
+{% set media_position_class = 'right' in variant ? '' : ' ecl-u-order-md-last' %}
 
 {% set call_to_action_link = '' %}
 {% if link %}
-  {% set link_type = 'standalone' %}
-  {% if 'featured' in variant %}
-    {% set link_type = 'cta' %}
-  {% endif %}
+  {% set link_type = 'featured' in variant ? 'cta' : 'standalone' %}
 
   {% set call_to_action_link %}
     {% include '@ecl-twig/link' with {

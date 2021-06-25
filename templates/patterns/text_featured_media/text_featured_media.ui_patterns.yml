@@ -4,7 +4,7 @@ text_featured_media:
   variants:
     left_simple:
       label: 'Left simple'
-      description: 'Text on the left, simple call to action.'
+      description: 'Text on the left, simple call to action. This is the default behaviour.'
     right_simple:
       label: 'Right simple'
       description: 'Text on the right, simple call to action.'

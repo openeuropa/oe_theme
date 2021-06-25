@@ -101,19 +101,21 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getPatternVariant(string $html): string {
-    // Variant can be clearly recognised if image or video and link exist only.
-    // In case if the link isn't provided then "left_simple", "right_simple"
-    // will be returned based on the position of media.
-    // In case if the image or video aren't provided then
-    // "left_simple", "left_featured" will be returned based on the link style.
-    // If image or video and link aren't provided then "left_simple" will be
-    // returned as default value.
+    // The variant is extracted by checking the presence and properties
+    // of the media and link.
+    // If the link is not present then we return "left_simple" or "right_simple"
+    // based on the media position.
+    // If the media is not present then "left simple" or "left featured"
+    // will be returned based on the link style.
+    // If neither media nor image are present then "left_simple? will be
+    // returned.
     $crawler = new Crawler($html);
 
     $position_variant = 'left';
+    $media_wrapper = $crawler->filter('.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none');
     $media_position = $crawler->filter('.ecl-u-order-md-last');
-    if (!$media_position->count()) {
-      // Class doesn't exist.
+    if ($media_wrapper->count() && !$media_position->count()) {
+      // Media exists but media position class doesn't exist.
       $position_variant = 'right';
     }
 
