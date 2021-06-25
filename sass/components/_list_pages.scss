@@ -1,0 +1,14 @@
+/**
+ * Expand datepicker on the list page form filter to have the same width as select boxes.
+ */
+.oe-list-pages-facets-form .ecl-datepicker {
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media (min-width: 996px) {
+    width: 100%;
+  }
+}
