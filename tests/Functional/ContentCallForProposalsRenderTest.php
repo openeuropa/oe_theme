@@ -41,8 +41,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     // Give anonymous users permission to view entities.
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
@@ -162,7 +160,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference" . chr(194) . chr(160);
+    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference";
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';
@@ -279,7 +277,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Results',
-          'body' => 'Grands awarded ',
+          'body' => 'Grands awarded',
         ],
       ],
     ];

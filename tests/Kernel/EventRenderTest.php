@@ -55,8 +55,6 @@ class EventRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-
     $this->installEntitySchema('oe_contact');
     $this->installEntitySchema('oe_organisation');
     $this->installEntitySchema('oe_venue');
