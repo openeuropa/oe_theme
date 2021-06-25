@@ -112,7 +112,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-eu.js');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
 
       // Assert that the ECL Editor preset is always loaded.
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
@@ -144,7 +144,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
-      $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-eu.js');
+      $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
 
       // Assert that the ECL Editor preset is always loaded.
       $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
