@@ -14,7 +14,6 @@
     },
     'icon': {
       'path': ecl_icon_path,
-      'type': "ui",
       'name': "corner-arrow",
       'transform': "rotate-90",
       'size': "xs"
@@ -30,10 +29,10 @@
 <div{{ container_attributes }}>
   {% include '@ecl-twig/page-banner' with {
     title: title,
-    baseline: description,
+    description: description,
     link: _link,
     image: image.src,
-    type: _variant,
+    variant: _variant,
     centered: alignment == 'center'
   } only %}
 </div>

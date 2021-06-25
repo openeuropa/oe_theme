@@ -226,7 +226,7 @@
       full_width: false
   assertions:
     count:
-      'section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered': 1
+      'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
@@ -323,7 +323,7 @@
       alignment: "center"
   assertions:
     count:
-      'section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered': 1
+      'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
@@ -739,7 +739,7 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description svg.ecl-icon': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--image"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
     contains:
       - 'A picture of a cat'
 - array:
@@ -778,7 +778,7 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': 1
     equals:
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--image"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#video"></use>'
     contains:
@@ -1069,13 +1069,13 @@
         alt: "Alternate text for secondary image"
   assertions:
     count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1090,13 +1090,13 @@
       length: 32
   assertions:
     count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 1
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-card__description: "This is a very long description..."
 - array:
     '#type': pattern
@@ -1108,11 +1108,11 @@
       detail: "Item test"
   assertions:
     count:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
-      'article.ecl-card header.ecl-card__header div.ecl-card__image': 0
-      'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
+      'article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
+      'article.ecl-card div.ecl-card__image': 0
+      'article.ecl-card div.ecl-card__body div.ecl-card__meta': 0
     equals:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link': "Item title"
+      'article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
 - array:
     '#type': pattern
@@ -1946,7 +1946,7 @@
       "div.ecl-card__image": 0
       'h1.ecl-card__title': 1
       'div.ecl-card__description': 0
-      'footer.ecl-card__footer': 0
+      'ul.ecl-card__info-container': 0
     equals:
       'h1.ecl-card__title': "Example title"
 - array:
@@ -2059,7 +2059,7 @@
           text: "Brussels, Belgium"
   assertions:
     count:
-      "footer.ecl-card__footer": 1
+      "ul.ecl-card__info-container": 1
     equals:
       'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
       'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
