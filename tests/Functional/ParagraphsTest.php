@@ -26,15 +26,6 @@ class ParagraphsTest extends BrowserTestBase {
   ];
 
   /**
-   * {@inheritdoc}
-   */
-  protected function setUp() {
-    parent::setUp();
-
-    $this->markTestSkipped('Skip this test temporarily, as part of ECL v3 upgrade.');
-  }
-
-  /**
    * Test Accordion item paragraph form.
    */
   public function testAccordionItemParagraph(): void {

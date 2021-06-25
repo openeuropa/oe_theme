@@ -197,7 +197,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title')->text()));
     $this->assertCount(1, $crawler->filter('.ecl-card__description'));
     $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
 
@@ -210,11 +210,11 @@ class ParagraphsTest extends ParagraphsTestBase {
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
-    $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $image_element = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
+    $image_element = $crawler->filter('article.ecl-card div.ecl-card__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
       file_url_transform_relative(file_create_url($image->getFileUri())),
@@ -230,7 +230,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title')->text()));
     $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
 
     // No date should be rendered neither.
@@ -242,12 +242,12 @@ class ParagraphsTest extends ParagraphsTestBase {
     // Neither the metas.
     $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
 
-    $link_element = $crawler->filter('article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
     // No image should be rendered neither.
-    $this->assertCount(0, $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image'));
+    $this->assertCount(0, $crawler->filter('article.ecl-card div.ecl-card__image'));
 
     // Change the variant to thumbnail primary.
     $paragraph->get('oe_paragraphs_variant')->setValue('thumbnail_primary');
