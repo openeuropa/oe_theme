@@ -6,7 +6,7 @@ component_library_ec:
       dist/ec/styles/ecl-ec-print.css: { media: print }
       css/style-ec.css: { media: screen }
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js: { type: external, minified: true }
+    dist/js/moment.min.js: { minified: true }
     dist/ec/scripts/ecl-ec.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
@@ -20,7 +20,7 @@ component_library_eu:
       dist/eu/styles/ecl-eu-print.css: { media: print }
       css/style-eu.css: { media: screen }
   js:
-    https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js: { type: external, minified: true }
+    dist/js/moment.min.js: { minified: true }
     dist/eu/scripts/ecl-eu.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
