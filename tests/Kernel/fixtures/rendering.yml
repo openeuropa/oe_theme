@@ -1781,7 +1781,6 @@
 - array:
     '#type': pattern
     '#id': button
-    '#variant': primary
     '#fields':
       type_attribute: "submit"
       label: "Button label"
@@ -1791,6 +1790,19 @@
       'button.ecl-button[type="submit"]': 1
     equals:
       'button.ecl-button--primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': secondary
+    '#fields':
+      type_attribute: "submit"
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button--secondary': 1
+      'button.ecl-button[type="submit"]': 1
+    equals:
+      'button.ecl-button--secondary': "Button label"
 - array:
     '#type': pattern
     '#id': button
