@@ -95,7 +95,10 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $expected_values = [
       'title' => 'My node title',
       'description' => 'My introduction',
-      'meta' => 'International organisation | My acronym',
+      'meta' => [
+        'International organisation',
+        'My acronym',
+      ],
     ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
@@ -105,7 +108,10 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $expected_values['meta'] = 'embassy | My acronym';
+    $expected_values['meta'] = [
+      'embassy',
+      'My acronym',
+    ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-l-3 img.ecl-media-container__media');

@@ -1,13 +1,17 @@
 @use "sass:map";
 @use '@ecl/theme-dev/theme';
+
+$_core_color: map.get(theme.$color, 'white') !default;
+$_standardised_color: map.get(theme.$color, 'blue') !default;
+
 .ecl-page-header-core {
   .ecl-lang-select-page {
     &__unavailable_language {
-      color: map.get(theme.$color, 'white');
+      color: $_core_color;
     }
     .ecl-expandable__content {
       .ecl-button {
-        color: map.get(theme.$color, 'white');
+        color: $_core_color;
       }
     }
   }
@@ -15,7 +19,7 @@
 .ecl-page-header-standardised {
   .ecl-lang-select-page {
     &__unavailable_language {
-      color: map.get(theme.$color, 'blue');
+      color: $_standardised_color;
     }
   }
 }

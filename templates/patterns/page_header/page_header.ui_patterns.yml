@@ -7,6 +7,13 @@ page_header:
       label: "Title"
       description: "The title of the page."
       preview: "Business, Economy, Euro"
+    thumbnail:
+      type: "ImageValueObject"
+      label: "Thumbnail"
+      description: "Thumbnail displayed alongside the description."
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for thumbnail"
     introduction:
       type: "text"
       label: "Introduction"
@@ -63,17 +70,8 @@ page_header:
       label: "Background image URL"
       description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
       preview: "page-header-pattern-background-preview.jpeg"
-    identity:
+    overlay:
       type: "text"
-      label: "Identity (deprecated)"
-      description: "The site name. Deprecated from ECL 2.30."
-      preview: "Digital single market"
-    infos:
-      type: "array"
-      label: "Infos (deprecated)"
-      description: "A list of infos of the current page. Deprecated from ECL 2.30."
-      preview:
-        - text: "Monday 8 February"
-          icon: "calendar"
-        - text: "Munich, Germany"
-          icon: "location"
+      label: "Overlay"
+      description: "Optional overlay on top of background image (can be 'light', 'dark'). Only used on EC sites"
+      preview: "dark"

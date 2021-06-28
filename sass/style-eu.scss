@@ -1,15 +1,21 @@
+@use '@ecl/theme-eu';
 @use '@ecl/vanilla-utility-border/border';
 @use '@ecl/vanilla-utility-background/background';
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 // TODO: The help form component is not available on ECL v3.
 //@use '@ecl/eu-component-form-help-block/eu-component-form-help-block';
-@import "./compositions/content_item";
-@import "./compositions/content_language_switcher";
-@import "./components/form";
-@import "./components/toolbar";
-@import "./components/banner";
-@import "./components/wysiwyg";
-@import "./components/page_header";
-@import "./components/global";
-@import "./components/description_list";
-@import "./components/media_iframe";
-@import "./components/expandable";
+@use '@ecl/theme-dev/maps/color';
+@use "./compositions/content_item";
+@use "./compositions/content_language_switcher" with (
+  $_core_color: map.get(theme.$color, 'blue-100'),
+);
+@use "./components/form";
+@use "./components/toolbar";
+@use "./components/banner";
+@use "./components/wysiwyg";
+@use "./components/page_header";
+@use "./components/global";
+@use "./components/description_list";
+@use "./components/media_iframe";
+@use "./components/expandable";

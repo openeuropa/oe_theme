@@ -95,7 +95,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Consultation node',
-      'meta' => 'Consultation | Upcoming',
+      'meta' => [
+        'Consultation',
+        'Upcoming',
+      ],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
     // Add summary and assert header is updated.
@@ -105,7 +108,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $page_header_expected_values = [
       'title' => 'Test Consultation node',
       'description' => 'Consultation introduction',
-      'meta' => 'Consultation | Upcoming',
+      'meta' => [
+        'Consultation',
+        'Upcoming',
+      ],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
@@ -385,7 +391,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items']['0']['body'] = 'Open';
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    $page_header_expected_values['meta'] = 'Consultation | Open';
+    $page_header_expected_values['meta'] = [
+      'Consultation',
+      'Open',
+    ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
@@ -417,7 +426,10 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items']['0']['body'] = 'Closed';
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
-    $page_header_expected_values['meta'] = 'Consultation | Closed';
+    $page_header_expected_values['meta'] = [
+      'Consultation',
+      'Closed',
+    ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
     $this->assertFalse($content_items[3]->hasLink('Link text'));
 

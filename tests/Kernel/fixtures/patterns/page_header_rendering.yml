@@ -48,13 +48,15 @@
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
       '.ecl-page-header-core__background': 0
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 1
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
       '.ecl-page-header-core__info-list': 0
       '.ecl-page-header-core__info-item': 0
     equals:
       'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
@@ -117,13 +119,15 @@
       '.ecl-page-header-core__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 1
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
       '.ecl-page-header-core__info-list': 0
       '.ecl-page-header-core__info-item': 0
     equals:
       'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
@@ -167,14 +171,16 @@
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
       '.ecl-page-header-core__background': 0
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 1
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
       '.ecl-page-header-core__info-list': 0
       '.ecl-page-header-core__info-item': 0
       '.ecl-breadcrumb-core__container': 0
     equals:
       'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
@@ -229,13 +235,15 @@
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-page-header-core__background': 0
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 1
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
     equals:
       'h1.ecl-page-header-standardised__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-standardised__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
@@ -298,13 +306,15 @@
       '.ecl-page-header-core__background': 0
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 1
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
     equals:
       'h1.ecl-page-header-standardised__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-standardised__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
@@ -347,14 +357,16 @@
       '.ecl-page-header-core__background': 0
       '.ecl-lang-select-page button.ecl-button': 1
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button': 2
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 1
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
       '.ecl-breadcrumb-core__container': 0
     equals:
       'h1.ecl-page-header-standardised__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-standardised__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': "News article&gt; | 6 July 2015&amp; | Brussels&lt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(3)': "Brussels&lt;"
       '.ecl-lang-select-page .ecl-u-type-strike': "English"
       '.ecl-lang-select-page button.ecl-button .ecl-button__label': "French"
       '.ecl-lang-select-page .ecl-expandable__content ul li a.ecl-button[lang="es"]': "Spanish"
