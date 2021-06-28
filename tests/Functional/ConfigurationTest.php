@@ -48,7 +48,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
-      $this->assertScriptContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
@@ -100,7 +100,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
@@ -134,6 +134,7 @@ class ConfigurationTest extends BrowserTestBase {
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+      $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
 
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
@@ -143,7 +144,6 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
-      $this->assertScriptNotContainsSrc('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js');
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
 
       // Assert that the ECL Editor preset is always loaded.
@@ -224,7 +224,7 @@ class ConfigurationTest extends BrowserTestBase {
    *   Partial content of the src attribute.
    */
   protected function assertScriptContainsSrc(string $src): void {
-    $this->assertSession()->responseMatches('<script .*src=\".*' . preg_quote($src) . '\?*\w*\">');
+    $this->assertSession()->responseMatches('<script .*src=\".*' . preg_quote($src) . '\?\w+\">');
   }
 
   /**
