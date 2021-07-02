@@ -1,78 +1,110 @@
 {% spaceless %}
 
 {#
+  Based on the ECL eTrans composition: https://v3--europa-component-library.netlify.app/playground/ec/?path=/story/compositions-etranslation--default
   Parameters:
+    - "unavailable_language" (string) (default: ''): the name of the unavailable language.
     - "expandable_id" (string) (default: ''): unique ID for the expandable component.
-    - "unavailable" (string) (default: ''): language currently unavailable.
-    - "current" (string) (default: ''): language currently displayed instead of the selected, unavailable, one.
-    - "options" (array) (default: []): array of links to the content in different languages. Format:
+    - "webtools_id" (string) (default: ''): unique ID for the webtools eTranslation component.
+    - "languages" (array) (default: []): array of links to the content in different languages. Format:
       [
         {
           "href" (string) URL of the content (default: ''),
           "hreflang" (string) language code to be used as link attribute,
-          "label" (string) link label, i.e. the language name in its native form (default: '')
+          "label" (string) link label, i.e. the language name in its native form (default: ''),
+          "current" (boolean) whether the language is the current page language or not (default: false)
         },
         ...
       ]
-    - "icon_path" (string) (default: ''): path to ECL SVG icon assets.
 #}
-
-<div class="ecl-lang-select-page">
-  <div class="ecl-u-d-flex ecl-u-align-items-start ecl-u-font-s">
-    <span class="ecl-lang-select-page__unavailable_language ecl-u-d-flex ecl-u-align-items-center ecl-u-pt-xs">
-      {% include '@ecl-twig/icon' with {
+  {% set _languages = languages|default([]) %}
+  <div class="ecl-u-bg-grey-5 ecl-u-pv-m">
+    <div class="ecl-container">
+      {% include '@ecl-twig/message' with {
+        title: 'The @language language is unavailable.'|t({'@language': unavailable_language}),
+        variant: 'warning',
+        extra_classes: 'ecl-u-bg-transparent ecl-u-mb-m',
         icon: {
-          path: icon_path,
-          name: "generic-lang",
-          size: "l"
-        }
-      } only %}
-      {# Show the unavailable language with a striketrought. #}
-      <span class="ecl-u-ml-m ecl-u-type-m ecl-u-type-strike">
-        {{ unavailable }}
-      </span>
-    </span>
-    {# If we have more than one optional languages then use an expandable to display them. #}
-    {% if options %}
-      {% set languages %}
-        <ul class="ecl-u-d-flex ecl-u-flex-wrap ecl-unordered-list ecl-unordered-list--no-bullet">
-          {% for language in options %}
-            <li class="ecl-u-mt-none ecl-u-d-flex ecl-unordered-list__item">
-              <a href="{{ language.href }}" lang="{{ language.hreflang }}" class="ecl-button">{{ language.label }}</a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endset %}
-      {% include '@ecl-twig/expandable' with {
-        'id': expandable_id,
-        'label_expanded': current,
-        'label_collapsed': current,
-        'expanded': false,
-        'button': {
-          'label': current,
-          'type': 'button',
-          'variant': 'secondary',
-          'icon': {
-            'path': icon_path,
-            'name': "corner-arrow",
-            'size': "xs",
-            'transform': "rotate-180"
-          },
-          'icon_position': 'after'
+          path: ecl_icon_path,
+          name: 'warning',
+          size: 'l',
         },
-        'extra_classes': 'ecl-u-ml-s',
-        'content': languages,
+        close: {
+          label: 'Close this message'|t,
+          icon : {
+            path: ecl_icon_path,
+            name: 'close',
+            size: 's',
+          }
+        },
       } only %}
-    {% else %}
-      {# If we have only one alternative language just display it as a button, without any otherwise empty expandable. #}
-      {% include '@ecl-twig/button' with {
-        'label': current,
-        'type': 'button',
-        'variant': 'secondary',
-        'extra_classes': 'ecl-u-ml-s'
-      } only %}
-    {% endif %}
+
+      {# If there is a language list, render it with an expandable. #}
+      {% if _languages is not empty %}
+        {% set _label = 'Choose another language'|t %}
+        <div data-ecl-expandable="true" data-ecl-auto-init="Expandable">
+          <div class="ecl-u-d-inline-flex ecl-u-align-items-center">
+            {% include '@ecl/button/button.html.twig' with {
+              label: _label,
+              variant: 'secondary',
+              type: 'button',
+              icon_position: "after",
+              icon: {
+                path: ecl_icon_path,
+                name: 'corner-arrow',
+                size: 'fluid',
+                transform: 'rotate-180'
+              },
+              extra_classes: 'ecl-expandable__toggle ecl-u-mr-s ecl-u-bg-transparent',
+              extra_attributes: [
+                { name: 'aria-controls', value: expandable_id ~ '-content'|default('') },
+                { name: 'data-ecl-expandable-toggle' },
+                { name: 'data-ecl-label-expanded', value: _label },
+                { name: 'data-ecl-label-collapsed', value: _label},
+                { name: 'aria-expanded', value: 'false' }
+              ]
+            } only %}
+            {# Allow to add extra links for templates extending the language switcher #}
+            {% block extra_links %}{% endblock %}
+          </div>
+          <div
+            id="{{ expandable_id ~ '-content' }}"
+            class="ecl-expandable__content"
+            hidden
+          >
+            <ul
+              style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)"
+              class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-bullet ecl-u-mt-xs ecl-u-type-m"
+            >
+              {% for language in _languages %}
+                <li class="ecl-unordered-list__item ecl-u-ma-2xs">
+                  {% set link_classes = language.current ? 'ecl-u-bg-blue-50 ecl-u-type-color-white ecl-u-type-bold' : '' %}
+                  {% include '@ecl/link/link.html.twig' with {
+                    link: {
+                      label: language.label,
+                      path: language.href,
+                      type: 'standalone',
+                      no_visited: true,
+                      extra_attributes: [
+                        [
+                          'lang',
+                          language.hreflang
+                        ]
+                      ]
+                    },
+                    extra_classes: 'ecl-u-pv-s ecl-u-ph-m ecl-u-d-block ' ~ link_classes,
+                  } only %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+      {# If there is a no language list, render nothing but allow other templates to do it. #}
+      {% else %}
+        {% block language_list_alternative %}{% endblock %}
+      {% endif %}
+    </div>
   </div>
-</div>
 
 {% endspaceless %}
