@@ -1,0 +1,85 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
+@use '@ecl/vanilla-layout-grid/mixins/breakpoints';
+
+.ecl-contextual-navigation {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.ecl-contextual-navigation__label {
+  color: map.get(theme.$color, 'black-100');
+  font: map.get(theme.$font, 'm');
+}
+
+.ecl-contextual-navigation__list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: map.get(theme.$spacing, 's');
+  padding-left: 0;
+}
+
+.ecl-contextual-navigation__item {
+  border-right: 1px solid map.get(theme.$color, 'grey-50');
+  display: block;
+  margin-right: map.get(theme.$spacing, 's');
+  padding-right: map.get(theme.$spacing, 's');
+}
+
+.ecl-contextual-navigation__item:last-child {
+  border-right-width: 0;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.ecl-contextual-navigation__item--collapsed {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
+
+.ecl-contextual-navigation__item--more {
+  .no-js & {
+    display: none;
+  }
+}
+
+.ecl-contextual-navigation__list[aria-expanded='true'] {
+  .ecl-contextual-navigation__item--collapsed {
+    display: block;
+  }
+}
+
+.ecl-contextual-navigation__more {
+  font-weight: map.get(theme.$font, 'weight-regular');
+  line-height: 1;
+  padding: 0;
+
+  &:hover {
+    color: map.get(theme.$color, 'black-100');
+  }
+
+  &:focus {
+    color: map.get(theme.$color, 'black-100');
+    outline-offset: 2px;
+  }
+}
+
+@include breakpoints.up('sm') {
+  .ecl-contextual-navigation {
+    flex-direction: row;
+  }
+
+  .ecl-contextual-navigation__label {
+    margin-right: map.get(theme.$spacing, '4xl');
+  }
+
+  .ecl-contextual-navigation__list {
+    margin-top: 0;
+  }
+}
