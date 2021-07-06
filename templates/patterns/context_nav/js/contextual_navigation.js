@@ -1,11 +1,10 @@
 /**
  * @file
- * Contextual navigation initialisation code.
+ * Contextual navigation behavior.
  *
- * Simplified version of javascript code for supporting contextual navigation composition which is not part of ECL
- * anymore. Based on https://github.com/ec-europa/europa-component-library/tree/v2-dev/src/systems/ec/implementations/vanilla/packages/ec-component-contextual-navigation
- * implementation. In opposite to original solution we don't use anymore 'autoInit' approach. Initialization of all
- * existing
+ * Simplified version of the deprecated ECL contextual navigation javascript logic, based on
+ * https://github.com/ec-europa/europa-component-library/tree/v2-dev/src/systems/ec/implementations/vanilla/packages/ec-component-contextual-navigation.
+ * As opposed to using the original 'autoInit' approach we instead add a simple event listener to the appropriate elements.
  */
 (function (Drupal) {
   /**
