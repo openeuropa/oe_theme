@@ -22,16 +22,7 @@
 }
 
 .ecl-contextual-navigation__item {
-  border-right: 1px solid map.get(theme.$color, 'grey-50');
   display: block;
-  margin-right: map.get(theme.$spacing, 's');
-  padding-right: map.get(theme.$spacing, 's');
-}
-
-.ecl-contextual-navigation__item:last-child {
-  border-right-width: 0;
-  margin-right: 0;
-  padding-right: 0;
 }
 
 .ecl-contextual-navigation__item--more {

@@ -47,6 +47,11 @@
   .no-js & {
     display: none;
   }
+  button.ecl-button--ghost:focus {
+    padding: 0;
+    border: 0;
+    outline: 3px solid map.get(theme.$color, 'yellow');
+  }
 }
 
 .ecl-contextual-navigation__list[aria-expanded='true'] {
