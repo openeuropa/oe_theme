@@ -154,6 +154,17 @@ infos:
   description: "A list of infos of the current page. Deprecated from ECL 2.30."
 ```
 
+#### Content item compositions
+
+We have removed the following compositions from our theme:
+
+```
+templates/compositions/ec-component-content-item/content-item-date.html.twig
+templates/compositions/ec-component-content-item/content-item.html.twig
+```
+
+Consider using the [List item](/templates/patterns/list_item/list_item.ui_patterns.yml) pattern and its variants instead.
+
 ### Upgrade to 2.17.0
 
 #### Dropdown UI pattern
