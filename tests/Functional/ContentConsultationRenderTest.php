@@ -286,7 +286,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(6, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[5], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser = $content_items[5]->find('css', '.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $publication_teaser = $content_items[5]->find('css', '.ecl-content-item.ecl-u-d-s-flex.ecl-u-pb-m');
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Publication node',

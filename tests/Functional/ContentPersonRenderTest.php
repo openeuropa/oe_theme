@@ -439,7 +439,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-s-flex.ecl-u-pb-m');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
       'title' => 'publication_reference',
