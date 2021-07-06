@@ -2,6 +2,8 @@
 @use '@ecl/theme-dev/theme';
 @use '@ecl/vanilla-layout-grid/mixins/breakpoints';
 
+$outline-width: 3px !default;
+
 .ecl-contextual-navigation {
   display: flex;
   flex-direction: column;
@@ -50,7 +52,7 @@
   button.ecl-button--ghost:focus {
     padding: 0;
     border: 0;
-    outline: 3px solid map.get(theme.$color, 'yellow');
+    outline: $outline-width solid map.get(theme.$color, 'secondary');
   }
 }
 
