@@ -42,11 +42,11 @@ class ParagraphsTest extends BrowserTestBase {
     $this->assertSession()->fieldExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text][0][value]');
     $this->assertSession()->fieldExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]');
     $this->assertSession()->fieldNotExists('field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_icon]');
-
     $values = [
       'title[0][value]' => 'Test Accordion',
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text][0][value]' => 'Accordion item title',
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]' => 'Accordion item body',
+      'oe_content_content_owner[0][target_id]' => 'Directorate-General for Informatics',
     ];
     $this->drupalPostForm(NULL, $values, 'Save');
     $this->drupalGet('/node/1');
