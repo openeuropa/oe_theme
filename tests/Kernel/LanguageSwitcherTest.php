@@ -68,7 +68,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Check for non-EU languages category.
     $actual = $crawler->filter('.ecl-language-list__non-eu .ecl-language-list__category')->text();
-    $this->assertEquals('Non-EU languages', trim($actual));
+    $this->assertEquals('Other languages', trim($actual));
 
     // Assert there is only one link in the non-EU category.
     $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__non-eu a');
