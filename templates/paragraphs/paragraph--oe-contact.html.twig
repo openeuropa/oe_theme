@@ -1,0 +1,15 @@
+
+{#
+/**
+ * @file
+ * Theme override to display the Contact paragraph type.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{% if not paragraph.field_oe_title.isEmpty() %}
+  <h2 class="ecl-u-type-heading-2">
+    {{ content.field_oe_title }}
+  </h2>
+{% endif %}
+{{ content.field_oe_contacts }}

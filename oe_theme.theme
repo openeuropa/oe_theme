@@ -322,6 +322,15 @@ function oe_theme_preprocess_input__date(array &$variables): void {
 }
 
 /**
+ * Implements template_preprocess_input__submit().
+ */
+function oe_theme_preprocess_input__submit(array &$variables): void {
+  if (isset($variables['element']['#button_type'])) {
+    $variables['variant'] = $variables['element']['#button_type'];
+  }
+}
+
+/**
  * Helper function to additionally preprocess checkbox and radio elements.
  *
  * Moves the label element to the input template and creates some helper

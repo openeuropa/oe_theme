@@ -19,7 +19,7 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% include '@ecl-twig/gallery' with {
+{% set _gallery = {
   'overlay': {
     'counter_separator': ' / ',
     'close': {
@@ -30,29 +30,6 @@
         'type': 'ui',
         'name': 'close',
         'size': 's',
-      },
-    },
-    'previous': {
-      'variant': 'ghost',
-      'label': 'Previous'|t,
-      'icon': {
-        'path': ecl_icon_path,
-        'type': 'ui',
-        'name': 'corner-arrow',
-        'transform': 'rotate-270',
-        'size': 'l',
-      },
-      'icon_position': 'before',
-    },
-    'next': {
-      'variant': 'ghost',
-      'label': 'Next'|t,
-      'icon': {
-        'path': ecl_icon_path,
-        'type': 'ui',
-        'name': 'corner-arrow',
-        'transform': 'rotate-90',
-        'size': 'l',
       },
     },
     'download': {
@@ -86,3 +63,33 @@
   'counter_label': "media items"|t,
   'items': _items
 } %}
+
+{% if _items|length > 1 %}
+  {% set _gallery = _gallery|merge({'overlay': _gallery.overlay|merge({
+    'previous': {
+      'variant': 'ghost',
+      'label': 'Previous'|t,
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'corner-arrow',
+        'transform': 'rotate-270',
+        'size': 'l',
+      },
+      'icon_position': 'before',
+    },
+    'next': {
+      'variant': 'ghost',
+      'label': 'Next'|t,
+      'icon': {
+        'path': ecl_icon_path,
+        'type': 'ui',
+        'name': 'corner-arrow',
+        'transform': 'rotate-90',
+        'size': 'l',
+      },
+    },
+  })}) %}
+{% endif %}
+
+{% include '@ecl-twig/gallery' with _gallery %}
