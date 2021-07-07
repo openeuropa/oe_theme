@@ -5,8 +5,16 @@
  */
 #}
 {% block navigation %}
+  {# We add the extra attribute to guarantee the component is not auto initialized. #}
   {% include '@ecl-twig/inpage-navigation' with {
     'title': title,
     'icon_path': ecl_icon_path,
+    'extra_classes': 'oe-theme-ecl-inpage-navigation',
+    'extra_attributes': [
+      {
+        'name': 'data-ecl-auto-initialized',
+        'value': 'true'
+      }
+    ]
   } %}
 {% endblock %}

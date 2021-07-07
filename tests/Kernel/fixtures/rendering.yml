@@ -737,6 +737,8 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item figcaption.ecl-gallery__description svg.ecl-icon': 1
+      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 0
+      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 0
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
@@ -777,6 +779,8 @@
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) figcaption.ecl-gallery__description': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 1
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': 1
+      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 1
+      '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 1
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
@@ -1777,7 +1781,6 @@
 - array:
     '#type': pattern
     '#id': button
-    '#variant': primary
     '#fields':
       type_attribute: "submit"
       label: "Button label"
@@ -1787,6 +1790,19 @@
       'button.ecl-button[type="submit"]': 1
     equals:
       'button.ecl-button--primary': "Button label"
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': secondary
+    '#fields':
+      type_attribute: "submit"
+      label: "Button label"
+  assertions:
+    count:
+      'button.ecl-button--secondary': 1
+      'button.ecl-button[type="submit"]': 1
+    equals:
+      'button.ecl-button--secondary': "Button label"
 - array:
     '#type': pattern
     '#id': button
