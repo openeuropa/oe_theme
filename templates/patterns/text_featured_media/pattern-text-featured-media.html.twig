@@ -18,7 +18,7 @@
   {% endif %}
   <div class="ecl-row">
     {% if image or video %}
-      <div class="ecl-col-m-6 ecl-u-order-md-last ecl-u-mb-m ecl-u-mb-md-none">
+      <div class="ecl-col-m-6 ecl-u-order-last ecl-u-mb-m ecl-u-mb-md-none">
         {% if image %}
           {% include '@ecl-twig/media-container' with {
             'image': image.src,
