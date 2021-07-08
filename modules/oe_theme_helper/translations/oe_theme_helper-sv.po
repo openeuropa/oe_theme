@@ -35,7 +35,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "Du kan anmäla dig under perioden @time_left. Du kan anmäla dig från @start_date till @end_date."
 
 msgid "Registration period ended on @date."
-msgstr "Anmälningstiden gick ut @end_date."
+msgstr "Sista anmälningsdag var den @date."
 
 msgid "Postal address"
 msgstr "Postadress"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Aktuell"
 
 msgid "Closed"
-msgstr "Avslutad"
+msgstr "Avslutade"
 
 msgid "Details"
 msgstr "Översikt"
@@ -339,3 +339,126 @@ msgstr "Dölj kontaktuppgifter"
 
 msgid "Leadership and organisation"
 msgstr "Ledning och organisation"
+
+msgid "Available translations"
+msgstr "Tillgängliga översättningar"
+
+msgid "General contact"
+msgstr "Kontaktuppgifter"
+
+msgid "Grants awarded"
+msgstr "Beviljade bidrag"
+
+msgid "Page contents"
+msgstr "Innehåll"
+
+msgid "Your name"
+msgstr "Ditt namn"
+
+msgid "Your email address"
+msgstr "Din mejladress"
+
+msgid "Subject"
+msgstr "Ärende"
+
+msgid "Message"
+msgstr "Meddelande"
+
+msgid "Country of residence"
+msgstr "Bosättningsland"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Skicka mig en kopia"
+
+msgid "Status message"
+msgstr "Statusmeddelande"
+
+msgid "Close this message"
+msgstr "Stäng meddelandet"
+
+msgid "The sender's name"
+msgstr "Avsändarens namn"
+
+msgid "The sender's email"
+msgstr "Avsändarens mejladress"
+
+msgid "Topic"
+msgstr "Ämne"
+
+msgid "Languages"
+msgstr "Språk"
+
+msgid "Keywords"
+msgstr "Sökord"
+
+msgid "No results have been found"
+msgstr "Inga träffar"
+
+msgid "Event date"
+msgstr "Evenemangsdatum"
+
+msgid "Select"
+msgstr "Välj"
+
+msgid "After"
+msgstr "Efter"
+
+msgid "Before"
+msgstr "Före"
+
+msgid "In between"
+msgstr "Mellan"
+
+msgid "Select all"
+msgstr "Välj alla"
+
+msgid "Upcoming and ongoing"
+msgstr "Kommande och pågående"
+
+msgid "Past"
+msgstr "Tidigare"
+
+msgid "Event type"
+msgstr "Typ av evenemang"
+
+msgid "Venue"
+msgstr "Plats"
+
+msgid "Online type"
+msgstr "Typ av webbevenemang"
+
+msgid "Livestream"
+msgstr "Webbsändning"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "EU organisation type"
+msgstr "Typ av EU-organ"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "End Date"
+msgstr "Slutdatum"
+
+msgid "Responsible department"
+msgstr "Ansvarig avdelning"
+
+msgid "Upcoming and open"
+msgstr "Kommande och öppna"
+
+msgid "Content owner"
+msgstr "Innehållsansvarig"
+
+msgid "Overview"
+msgstr "Översikt"
+
+msgid "Open gallery"
+msgstr "Öppna galleri"
+
+msgid "(Acting) @role"
+msgstr "(Tillförordnad) @role"

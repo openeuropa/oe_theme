@@ -35,7 +35,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."
 
 msgid "Registration period ended on @date."
-msgstr "Периодът на регистрация приключи на @end_date."
+msgstr "Срокът за регистрация приключи на @date."
 
 msgid "Postal address"
 msgstr "Пощенски адрес"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Отворено"
 
 msgid "Closed"
-msgstr "приключило"
+msgstr "Приключила"
 
 msgid "Details"
 msgstr "Данни"
@@ -339,3 +339,126 @@ msgstr "Скриване на координатите за връзка"
 
 msgid "Leadership and organisation"
 msgstr "Ръководство и организация"
+
+msgid "Available translations"
+msgstr "Налични преводи"
+
+msgid "General contact"
+msgstr "Общи въпроси"
+
+msgid "Grants awarded"
+msgstr "Отпуснати безвъзмездни средства"
+
+msgid "Page contents"
+msgstr "Съдържание"
+
+msgid "Your name"
+msgstr "Вашето име"
+
+msgid "Your email address"
+msgstr "Вашият електронен адрес"
+
+msgid "Subject"
+msgstr "Относно"
+
+msgid "Message"
+msgstr "Съобщение"
+
+msgid "Country of residence"
+msgstr "Държава на пребиваване"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Send yourself a copy"
+msgstr "Изпращане на копие до вас"
+
+msgid "Status message"
+msgstr "Съобщение за състояние"
+
+msgid "Close this message"
+msgstr "Затваряне на съобщението"
+
+msgid "The sender's name"
+msgstr "Име на подателя"
+
+msgid "The sender's email"
+msgstr "Електронен адрес на подателя"
+
+msgid "Topic"
+msgstr "Тема"
+
+msgid "Languages"
+msgstr "Езици"
+
+msgid "Keywords"
+msgstr "Ключови думи"
+
+msgid "No results have been found"
+msgstr "Не са намерени резултати"
+
+msgid "Event date"
+msgstr "Дата на проявата"
+
+msgid "Select"
+msgstr "Избор"
+
+msgid "After"
+msgstr "След"
+
+msgid "Before"
+msgstr "Преди"
+
+msgid "In between"
+msgstr "Между"
+
+msgid "Select all"
+msgstr "Избор на всички"
+
+msgid "Upcoming and ongoing"
+msgstr "Предстоящи и текущи"
+
+msgid "Past"
+msgstr "Минали"
+
+msgid "Event type"
+msgstr "Вид проява"
+
+msgid "Venue"
+msgstr "Място на провеждане"
+
+msgid "Online type"
+msgstr "Онлайн проява"
+
+msgid "Livestream"
+msgstr "Излъчване на живо"
+
+msgid "Type"
+msgstr "Вид"
+
+msgid "EU organisation type"
+msgstr "Вид организация на ЕС"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "End Date"
+msgstr "Крайна дата"
+
+msgid "Responsible department"
+msgstr "Отговорно ведомство"
+
+msgid "Upcoming and open"
+msgstr "Предстоящи и текущи"
+
+msgid "Content owner"
+msgstr "Собственик на съдържанието"
+
+msgid "Overview"
+msgstr "Общ преглед"
+
+msgid "Open gallery"
+msgstr "Към галерията"
+
+msgid "(Acting) @role"
+msgstr "(Временно изпълняващ длъжността) @role"

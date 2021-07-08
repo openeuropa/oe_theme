@@ -36,7 +36,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "El termini d'inscripció comença el  @time_left. Podeu inscriure-us del @start_date al @end_date."
 
 msgid "Registration period ended on @date."
-msgstr "El termini d'inscripció va finalitzar el @end_date."
+msgstr "El termini d'inscripció va finalitzar el @date."
 
 msgid "Postal address"
 msgstr "Adreça postal"

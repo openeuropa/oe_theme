@@ -35,7 +35,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "Perioada de înregistrare începe în @time_left. Vă puteți înscrie de pe @start_date  până pe @end_date."
 
 msgid "Registration period ended on @date."
-msgstr "Perioada de înregistrare s-a încheiat pe  @end_date."
+msgstr "Perioada de înregistrare s-a încheiat la @date."
 
 msgid "Postal address"
 msgstr "Adresă poștală"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Deschis(ă)"
 
 msgid "Closed"
-msgstr "Încheiat(ă)"
+msgstr "Încheiate"
 
 msgid "Details"
 msgstr "Detalii"
@@ -339,3 +339,126 @@ msgstr "Ascundeți datele de contact"
 
 msgid "Leadership and organisation"
 msgstr "Conducere și organizare"
+
+msgid "Available translations"
+msgstr "Traduceri disponibile"
+
+msgid "General contact"
+msgstr "Date de contact pentru chestiuni generale"
+
+msgid "Grants awarded"
+msgstr "Granturi atribuite"
+
+msgid "Page contents"
+msgstr "Cuprinsul paginii"
+
+msgid "Your name"
+msgstr "Numele dvs."
+
+msgid "Your email address"
+msgstr "Adresa dvs. de e-mail"
+
+msgid "Subject"
+msgstr "Subiect"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Country of residence"
+msgstr "Țara de reședință"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Trimiteți-vă o copie"
+
+msgid "Status message"
+msgstr "Mesaj de statut"
+
+msgid "Close this message"
+msgstr "Închideți acest mesaj"
+
+msgid "The sender's name"
+msgstr "Numele expeditorului"
+
+msgid "The sender's email"
+msgstr "E-mailul expeditorului"
+
+msgid "Topic"
+msgstr "Temă"
+
+msgid "Languages"
+msgstr "Limbi"
+
+msgid "Keywords"
+msgstr "Cuvinte-cheie"
+
+msgid "No results have been found"
+msgstr "Nu am găsit rezultate"
+
+msgid "Event date"
+msgstr "Data evenimentului"
+
+msgid "Select"
+msgstr "Selectați"
+
+msgid "After"
+msgstr "După"
+
+msgid "Before"
+msgstr "Înainte"
+
+msgid "In between"
+msgstr "Între"
+
+msgid "Select all"
+msgstr "Selectați tot"
+
+msgid "Upcoming and ongoing"
+msgstr "Viitoare și în curs"
+
+msgid "Past"
+msgstr "Trecute"
+
+msgid "Event type"
+msgstr "Tip de eveniment"
+
+msgid "Venue"
+msgstr "Locație"
+
+msgid "Online type"
+msgstr "Tip de eveniment online"
+
+msgid "Livestream"
+msgstr "Transmisiune în direct online"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "EU organisation type"
+msgstr "Tip de organism UE"
+
+msgid "Date"
+msgstr "Dată"
+
+msgid "End Date"
+msgstr "Data încheierii"
+
+msgid "Responsible department"
+msgstr "Serviciul responsabil"
+
+msgid "Upcoming and open"
+msgstr "Viitoare și deschise"
+
+msgid "Content owner"
+msgstr "Proprietarul conținutului"
+
+msgid "Overview"
+msgstr "Prezentare"
+
+msgid "Open gallery"
+msgstr "Deschideți galeria"
+
+msgid "(Acting) @role"
+msgstr "@role (interimar)"

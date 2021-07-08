@@ -35,7 +35,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "Η εγγραφή θα είναι δυνατή από την/τις @time_left. Μπορείτε να εγγραφείτε από την/τις @start_date, έως την/τις @end_date."
 
 msgid "Registration period ended on @date."
-msgstr "Η περίοδος εγγραφής έληξε την/στις @end_date."
+msgstr "Η περίοδος εγγραφής έληξε στις @date."
 
 msgid "Postal address"
 msgstr "Ταχυδρομική διεύθυνση"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Ανοικτό"
 
 msgid "Closed"
-msgstr "Έχει κλείσει"
+msgstr "Κλειστές"
 
 msgid "Details"
 msgstr "Λεπτομέρειες"
@@ -339,3 +339,126 @@ msgstr "Απόκρυψη στοιχείων επικοινωνίας"
 
 msgid "Leadership and organisation"
 msgstr "Διοίκηση και οργάνωση"
+
+msgid "Available translations"
+msgstr "Διαθέσιμες μεταφράσεις"
+
+msgid "General contact"
+msgstr "Γενικά στοιχεία επικοινωνίας"
+
+msgid "Grants awarded"
+msgstr "Εγκριθείσες επιχορηγήσεις"
+
+msgid "Page contents"
+msgstr "Περιεχόμενα σελίδας"
+
+msgid "Your name"
+msgstr "Όνομα"
+
+msgid "Your email address"
+msgstr "Ηλεκτρονική διεύθυνση"
+
+msgid "Subject"
+msgstr "Αντικείμενο"
+
+msgid "Message"
+msgstr "Μήνυμα"
+
+msgid "Country of residence"
+msgstr "Χώρα διαμονής"
+
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+msgid "Send yourself a copy"
+msgstr "Αποστολή αντίγραφου"
+
+msgid "Status message"
+msgstr "Μήνυμα κατάστασης"
+
+msgid "Close this message"
+msgstr "Κλείσιμο αυτού του μηνύματος"
+
+msgid "The sender's name"
+msgstr "Όνομα αποστολέα"
+
+msgid "The sender's email"
+msgstr "Ηλεκτρονικό ταχυδρομείο αποστολέα"
+
+msgid "Topic"
+msgstr "Θέμα"
+
+msgid "Languages"
+msgstr "Γλώσσες"
+
+msgid "Keywords"
+msgstr "Λέξεις-κλειδιά"
+
+msgid "No results have been found"
+msgstr "Δεν βρέθηκαν αποτελέσματα"
+
+msgid "Event date"
+msgstr "Ημερομηνία εκδήλωσης"
+
+msgid "Select"
+msgstr "Επιλογή"
+
+msgid "After"
+msgstr "Μετά"
+
+msgid "Before"
+msgstr "Πριν"
+
+msgid "In between"
+msgstr "Μεταξύ"
+
+msgid "Select all"
+msgstr "Επιλογή όλων"
+
+msgid "Upcoming and ongoing"
+msgstr "Προσεχείς και τρέχουσες"
+
+msgid "Past"
+msgstr "Προηγούμενες"
+
+msgid "Event type"
+msgstr "Είδος εκδήλωσης"
+
+msgid "Venue"
+msgstr "Τόπος εκδήλωσης"
+
+msgid "Online type"
+msgstr "Είδος διαδικτυακής εκδήλωσης"
+
+msgid "Livestream"
+msgstr "Ζωντανή μετάδοση"
+
+msgid "Type"
+msgstr "Είδος"
+
+msgid "EU organisation type"
+msgstr "Είδος οργανισμού της ΕΕ"
+
+msgid "Date"
+msgstr "Ημερομηνία"
+
+msgid "End Date"
+msgstr "Ημερομηνία λήξης"
+
+msgid "Responsible department"
+msgstr "Αρμόδια υπηρεσία"
+
+msgid "Upcoming and open"
+msgstr "Προσεχείς και ανοικτές"
+
+msgid "Content owner"
+msgstr "Ιδιοκτήτης περιεχομένου"
+
+msgid "Overview"
+msgstr "Επισκόπηση"
+
+msgid "Open gallery"
+msgstr "Άνοιγμα συλλογής"
+
+msgid "(Acting) @role"
+msgstr "(Ασκών/-ούσα καθήκοντα) @role"
