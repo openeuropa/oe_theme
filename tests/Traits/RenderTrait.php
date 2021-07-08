@@ -48,7 +48,7 @@ trait RenderTrait {
     if (isset($assertions['contains'])) {
       foreach ($assertions['contains'] as $string) {
         $message = "String '{$string}' not found in:" . PHP_EOL . $html;
-        $this->assertContains($string, $html, $message);
+        $this->assertStringContainsString($string, $html, $message);
       }
     }
 

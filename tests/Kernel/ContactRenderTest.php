@@ -27,7 +27,7 @@ class ContactRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('oe_contact');
@@ -250,7 +250,7 @@ class ContactRenderTest extends ContentRenderTestBase {
 
     // Assert image tag.
     $image = $figure->filter('img');
-    $this->assertContains("placeholder_$name.png", $image->attr('src'));
+    $this->assertStringContainsString("placeholder_$name.png", $image->attr('src'));
     $this->assertEquals("Alternative text $name", $image->attr('alt'));
 
     // Assert caption.

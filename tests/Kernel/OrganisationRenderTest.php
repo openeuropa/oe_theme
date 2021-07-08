@@ -61,7 +61,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     ]);
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.
     $account = User::load(1);

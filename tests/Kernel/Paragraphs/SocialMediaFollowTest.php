@@ -53,34 +53,34 @@ class SocialMediaFollowTest extends ParagraphsTestBase {
 
     // Verify that the paragraph contains all the links.
     $links_html = $links->html();
-    $this->assertContains('Email', $links_html);
+    $this->assertStringContainsString('Email', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 5) = \'#email\']'));
     // Assert that the Facebook link is rendered but not the Facebook icon, as
     // this link has no type associated.
-    $this->assertContains('Facebook', $links_html);
+    $this->assertStringContainsString('Facebook', $links_html);
     $this->assertCount(0, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 8) = \'#facebook\']'));
-    $this->assertContains('Flickr', $links_html);
+    $this->assertStringContainsString('Flickr', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#flickr\']'));
-    $this->assertContains('Google+', $links_html);
+    $this->assertStringContainsString('Google+', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#google\']'));
-    $this->assertContains('Instagram', $links_html);
+    $this->assertStringContainsString('Instagram', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 9) = \'#instagram\']'));
-    $this->assertContains('LinkedIn', $links_html);
+    $this->assertStringContainsString('LinkedIn', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 8) = \'#linkedin\']'));
-    $this->assertContains('Pinterest', $links_html);
+    $this->assertStringContainsString('Pinterest', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 9) = \'#pinterest\']'));
-    $this->assertContains('RSS', $links_html);
+    $this->assertStringContainsString('RSS', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 3) = \'#rss\']'));
-    $this->assertContains('Storify', $links_html);
+    $this->assertStringContainsString('Storify', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#storify\']'));
-    $this->assertContains('1st Twitter', $links_html);
-    $this->assertContains('2nd Twitter', $links_html);
+    $this->assertStringContainsString('1st Twitter', $links_html);
+    $this->assertStringContainsString('2nd Twitter', $links_html);
     $this->assertCount(2, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#twitter\']'));
-    $this->assertContains('Yammer', $links_html);
+    $this->assertStringContainsString('Yammer', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 6) = \'#yammer\']'));
-    $this->assertContains('Youtube', $links_html);
+    $this->assertStringContainsString('Youtube', $links_html);
     $this->assertCount(1, $crawler->filterXPath('//*[name()=\'use\' and substring(@*, string-length(@*) - 7) = \'#youtube\']'));
-    $this->assertContains('Other social networks', $links_html);
+    $this->assertStringContainsString('Other social networks', $links_html);
 
     // Fix the Facebook link type.
     $paragraph->get('field_oe_social_media_links')->get(1)->set('link_type', 'facebook');

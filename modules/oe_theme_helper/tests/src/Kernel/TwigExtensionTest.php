@@ -54,10 +54,10 @@ class TwigExtensionTest extends AbstractKernelTestBase {
     if ($metadata) {
       /** @var \Drupal\Core\Render\BubbleableMetadata $actual_metadata */
       $actual_metadata = $context->pop();
-      $this->assertEqual($actual_metadata->getAttachments(), $metadata['attachments']);
-      $this->assertEqual($actual_metadata->getCacheContexts(), $metadata['contexts']);
-      $this->assertEqual($actual_metadata->getCacheTags(), $metadata['tags']);
-      $this->assertEqual($actual_metadata->getCacheMaxAge(), $metadata['max_age']);
+      $this->assertEquals($metadata['attachments'], $actual_metadata->getAttachments());
+      $this->assertEquals($metadata['contexts'], $actual_metadata->getCacheContexts());
+      $this->assertEquals($metadata['tags'], $actual_metadata->getCacheTags());
+      $this->assertEquals($metadata['max_age'], $actual_metadata->getCacheMaxAge());
     }
 
     $this->assertRendering($output, $assertions);

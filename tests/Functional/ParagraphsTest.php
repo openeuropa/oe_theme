@@ -26,6 +26,11 @@ class ParagraphsTest extends BrowserTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * Test Accordion item paragraph form.
    */
   public function testAccordionItemParagraph(): void {
@@ -49,7 +54,7 @@ class ParagraphsTest extends BrowserTestBase {
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]' => 'Accordion item body',
       'oe_content_content_owner[0][target_id]' => 'Committee on Agriculture and Rural Development',
     ];
-    $this->drupalPostForm(NULL, $values, 'Save');
+    $this->submitForm($values, 'Save');
     $this->drupalGet('/node/1');
 
     // Assert paragraph values are displayed.

@@ -2,7 +2,7 @@ name: OpenEuropa Theme Content Entity Contact
 description: Companion module for the OE Content Entity Contact module
 package: OpenEuropa
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 dependencies:
   - oe_theme:oe_theme_helper

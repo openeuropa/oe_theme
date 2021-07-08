@@ -30,7 +30,12 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
     $this->manager = $this->container->get('plugin.manager.image.effect');
   }
@@ -47,8 +52,8 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], 10, 'Width was passed correctly');
-    $this->assertEqual($calls['scale'][0][1], 10, 'Height was based off aspect ratio and passed correctly');
+    $this->assertEquals(10, $calls['scale'][0][0], 'Width was passed correctly');
+    $this->assertEquals(10, $calls['scale'][0][1], 'Height was based off aspect ratio and passed correctly');
   }
 
   /**
@@ -63,7 +68,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 4, 'Width was passed correctly');
+    $this->assertEquals($this->image->getWidth() * 4, $calls['scale'][0][0], 'Width was passed correctly');
   }
 
   /**
@@ -77,7 +82,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 2, 'Width is double the original size.');
+    $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0], 'Width is double the original size.');
   }
 
   /**
@@ -92,7 +97,7 @@ class RetinaScaleEffectTest extends ToolkitTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEqual($calls['scale'][0][0], $this->image->getWidth() * 3, 'Width is triple the original size.');
+    $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0], 'Width is triple the original size.');
   }
 
   /**

@@ -32,7 +32,7 @@ class ImageTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('file');
@@ -89,10 +89,11 @@ class ImageTest extends KernelTestBase {
     $object = ImageValueObject::fromStyledImageItem($entity->get('field_image')->first(), $style->getName());
     $this->assertEquals($title, $object->getName());
     $this->assertEquals($alt, $object->getAlt());
-    $this->assertContains('/styles/main_style/public/example_1.jpg', $object->getSource());
+    $this->assertStringContainsString('/styles/main_style/public/example_1.jpg', $object->getSource());
 
     $invalid_image_style = $this->randomMachineName();
-    $this->setExpectedException(\InvalidArgumentException::class, sprintf('Could not load image style with name "%s".', $invalid_image_style));
+    $this->expectException('InvalidArgumentException');
+    $this->expectExceptionMessage(sprintf('Could not load image style with name "%s".', $invalid_image_style));
     ImageValueObject::fromStyledImageItem($entity->get('field_image')->first(), $invalid_image_style);
   }
 

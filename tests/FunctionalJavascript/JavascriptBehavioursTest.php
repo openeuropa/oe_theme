@@ -29,12 +29,17 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
   }
 
@@ -172,7 +177,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert some small differences on the second date input element.
     $input = $this->getSession()->getPage()->find('css', 'input[name="test_datepicker_two"]');
     $this->assertEquals('YYYY-MM-DD', $input->getAttribute('placeholder'));
-    $this->assertContains('2020-05-10', $input->getAttribute('value'));
+    $this->assertStringContainsString('2020-05-10', $input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertFalse($input->hasAttribute('required'));
 

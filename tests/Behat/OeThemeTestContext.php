@@ -141,7 +141,7 @@ class OeThemeTestContext extends RawDrupalContext {
     }
 
     /** @var \Drupal\Core\Field\FieldConfigBase[] $fields */
-    $fields = \Drupal::entityManager()->getFieldDefinitions('node', $entity_type);
+    $fields = \Drupal::service('entity_field.manager')->getFieldDefinitions('node', $entity_type);
     foreach ($fields as $field) {
       if ($field instanceof FieldConfig && $field->label() === $label) {
         return $field->getName();

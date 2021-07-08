@@ -42,6 +42,11 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -235,7 +240,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertCount(4, $content_items);
     $content_second_group = $content_items[3]->find('css', '.ecl-editor p');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
-    $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
+    $this->assertSession()->elementNotExists('css', '.ecl-link.ecl-link--cta');
 
     // Set consultation outcome and outcome files and assert content is updated.
     $node->set('oe_consultation_outcome', 'Consultation outcome text');
@@ -390,7 +395,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
 
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
-    $this->assertNotContains('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
+    $this->assertStringNotContainsString('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
 
     // Add a link to respond button and assert default label.
     $node->set('oe_consultation_response_button', [
@@ -426,7 +431,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_second_group = $content_items[3]->find('css', '.ecl-editor');
     // Assert default value for closed status text.
     $this->assertEquals('The response period for this consultation has ended. Thank you for your input.', $content_second_group->getText());
-    $this->assertElementNotPresent('.ecl-link.ecl-link--cta');
+    $this->assertSession()->elementNotExists('css', '.ecl-link.ecl-link--cta');
 
     // Set a value and assert the content is updated.
     $node->set('oe_consultation_closed_text', 'Consultation closed status text');

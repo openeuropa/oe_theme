@@ -27,9 +27,9 @@ class CurrentEclBrandingConditionTest extends AbstractKernelTestBase {
     $condition_negated = $manager->createInstance('oe_theme_helper_current_branding');
     $condition_negated->setConfiguration(['branding' => 'standardised', 'negate' => TRUE]);
 
-    $this->assertEqual($condition->summary(), new FormattableMarkup('The current ECL branding is @branding', ['@branding' => 'standardised']));
-    $this->assertEqual($condition_empty->summary(), new FormattableMarkup('The current ECL branding can be set to anything', []));
-    $this->assertEqual($condition_negated->summary(), new FormattableMarkup('The current ECL branding is not @branding', ['@branding' => 'standardised']));
+    $this->assertEquals(new FormattableMarkup('The current ECL branding is @branding', ['@branding' => 'standardised']), $condition->summary());
+    $this->assertEquals(new FormattableMarkup('The current ECL branding can be set to anything', []), $condition_empty->summary());
+    $this->assertEquals(new FormattableMarkup('The current ECL branding is not @branding', ['@branding' => 'standardised']), $condition_negated->summary());
 
     // Assert condition values, by default ECL branding set to "Standardised".
     $this->assertFalse($condition->execute(), 'Condition asserting that ECL branding is "standardised" should be false.');

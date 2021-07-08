@@ -38,7 +38,7 @@ class BlockTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('user');
@@ -52,7 +52,7 @@ class BlockTest extends EntityKernelTestBase {
     ]);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
   }
@@ -83,7 +83,7 @@ class BlockTest extends EntityKernelTestBase {
     ]);
     $block_content->save();
     $block = $this->placeBlock('block_content:' . $block_content->uuid());
-    $build = $this->container->get('entity.manager')->getViewBuilder('block')->view($block, 'block');
+    $build = $this->container->get('entity_type.manager')->getViewBuilder('block')->view($block, 'block');
 
     $crawler = new Crawler($this->renderRoot($build));
 
