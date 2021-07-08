@@ -113,6 +113,20 @@ users can access to the main navigation menu only on sites using standardised EC
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
+### Upgrade to 2.21.0
+
+#### Text with Featured media pattern
+
+The pattern [Text with Featured media](/templates/patterns/text_featured_media/text_featured_media.ui_patterns.yml) now
+supports the following 4 variants:
+
+- Left simple / `left_simple`: text on the left, simple call to action. This is the default behaviour.
+- Right simple / `right_simple`: text on the right, simple call to action.
+- Left featured / `left_featured`: text on the left, featured call to action.
+- Right featured / `right_featured`: text on the right, featured call to action.
+
+If no variant is set, then the pattern will be visualized using the default one. This guarantees backward compatibility.
+
 ### Upgrade to 2.17.0
 
 #### Dropdown UI pattern

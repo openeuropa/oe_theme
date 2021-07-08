@@ -87,6 +87,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'image' => NULL,
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -145,6 +146,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ];
     $html = $this->renderParagraph($paragraph, 'en');
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     $expected_values = [
       'title' => 'Title bg',
@@ -174,6 +176,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ];
     $html = $this->renderParagraph($paragraph);
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Publish the media.
     $media->set('status', 1);
@@ -198,6 +201,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ],
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Remove the title and assert the element is no longer rendered.
     $paragraph->set('field_oe_title', '');
@@ -206,6 +210,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $expected_values['title'] = NULL;
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
@@ -248,6 +253,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Create iframe video with aspect ration 16:9 and add it to the paragraph.
     $media = $media_storage->create([
@@ -257,6 +263,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media->save();
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->set('oe_paragraphs_variant', 'left_featured');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -268,6 +275,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
+    // Since link doesn't exist variant is recognized as "left_simple".
+    $assert->assertVariant('left_simple', $html);
 
     // Create iframe video with aspect ration 1:1 and add it to the paragraph.
     $media = $media_storage->create([
@@ -282,6 +291,75 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $expected_values['video_ratio'] = '1:1';
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'http://www.example.com/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => 'http://www.example.com/',
+      'icon' => 'external',
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert icon of the Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'internal:/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => '/',
+      'icon' => 'corner-arrow',
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert "Text on the left, simple call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'left_simple')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert "Text on the right, simple call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_simple')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_simple', $html);
+
+    // Assert "Text on the left, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'left_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert "Text on the right, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_featured', $html);
+
+    // Assert Link field without media.
+    $paragraph->set('field_oe_media', [])->save();
+    $expected_values = [
+      'title' => NULL,
+      'caption' => NULL,
+      'text' => NULL,
+      'link' => [
+        'label' => 'Read more',
+        'path' => '/',
+        'icon' => 'corner-arrow',
+      ],
+    ];
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertPattern($expected_values, $html);
+    // Variant "right_featured" without media but with link will be determined
+    // as "left_featured".
+    $assert->assertVariant('left_featured', $html);
   }
 
   /**

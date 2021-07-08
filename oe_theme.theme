@@ -915,6 +915,20 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
+  // Set pattern variant.
+  if (!$paragraph->get('oe_paragraphs_variant')->isEmpty()) {
+    $variables['variant'] = $paragraph->get('oe_paragraphs_variant')->first()->value;
+  }
+
+  // Add link field.
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $link_field = $paragraph->get('field_oe_link')->first();
+    $variables['link'] = [
+      'path' => $link_field->getUrl()->toString(),
+      'label' => $link_field->get('title')->getValue(),
+    ];
+  }
+
   // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;
