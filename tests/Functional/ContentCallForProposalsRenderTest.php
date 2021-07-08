@@ -277,12 +277,12 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Results',
-          'body' => 'Grands awarded ',
+          'body' => 'Grants awarded ',
         ],
       ],
     ];
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
-    $this->assertLinkIcon($results_field_group, 'Grands awarded', 'http://example.com/results');
+    $this->assertLinkIcon($results_field_group, 'Grants awarded', 'http://example.com/results');
 
     // Assert internal Grants awarded link field.
     $node->set('oe_call_proposals_grants', ['uri' => 'internal:/']);
@@ -290,7 +290,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
-    $this->assertLinkIcon($results_field_group, 'Grands awarded', '/build/', FALSE);
+    $this->assertLinkIcon($results_field_group, 'Grants awarded', '/build/', FALSE);
 
     // Assert Funding programme field.
     $node->set('oe_call_proposals_funding', 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020');
