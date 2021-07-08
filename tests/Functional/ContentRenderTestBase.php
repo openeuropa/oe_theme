@@ -26,6 +26,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -110,14 +115,14 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $file_wrapper = $element->find('css', 'div.ecl-file');
     $file_row = $file_wrapper->find('css', '.ecl-file .ecl-file__container');
     $file_title = $file_row->find('css', '.ecl-file__title');
-    $this->assertContains($name, $file_title->getText());
+    $this->assertStringContainsString($name, $file_title->getText());
     $file_info_language = $file_row->find('css', '.ecl-file__info div.ecl-file__language');
-    $this->assertContains($language, $file_info_language->getText());
+    $this->assertStringContainsString($language, $file_info_language->getText());
     $file_info_properties = $file_row->find('css', '.ecl-file__info div.ecl-file__meta');
-    $this->assertContains("($meta)", $file_info_properties->getText());
+    $this->assertStringContainsString("($meta)", $file_info_properties->getText());
     $file_download_link = $file_row->find('css', '.ecl-file__download');
-    $this->assertContains($link, $file_download_link->getAttribute('href'));
-    $this->assertContains($button_label, $file_download_link->getText());
+    $this->assertStringContainsString($link, $file_download_link->getAttribute('href'));
+    $this->assertStringContainsString($button_label, $file_download_link->getText());
   }
 
   /**
@@ -165,7 +170,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
 
     // Assert image tag.
     $image = $figure->find('css', 'img');
-    $this->assertContains("placeholder_$name.png", $image->getAttribute('src'));
+    $this->assertStringContainsString("placeholder_$name.png", $image->getAttribute('src'));
     $this->assertEquals("Alternative text $name", $image->getAttribute('alt'));
 
     // Assert caption.
@@ -378,7 +383,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $svg);
     $icon = $svg[0]->findAll('css', 'use');
     $this->assertCount(1, $icon);
-    $this->assertContains($icon_type, $icon[0]->getAttribute('xlink:href'));
+    $this->assertStringContainsString($icon_type, $icon[0]->getAttribute('xlink:href'));
   }
 
   /**

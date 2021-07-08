@@ -85,7 +85,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->setUpSparql();
@@ -116,7 +116,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     $this->container->get('config.installer')->installDefaultConfig('theme', 'oe_theme');
 
     $this->container->get('module_handler')->loadInclude('oe_content_documents_field', 'install');
-    oe_content_documents_field_install();
+    oe_content_documents_field_install(FALSE);
 
     $this->installConfig([
       'oe_content',
@@ -142,7 +142,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
       ->save();
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
 
     $this->installEntitySchema('skos_concept');
     $this->installEntitySchema('skos_concept_scheme');

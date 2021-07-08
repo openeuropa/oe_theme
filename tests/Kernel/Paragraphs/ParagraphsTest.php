@@ -216,7 +216,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $image_element = $crawler->filter('article.ecl-card div.ecl-card__image');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
+    $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
       $image_element->attr('style')
     );
@@ -269,7 +269,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
     $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-l-block');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
+    $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
       $image_element->attr('style')
     );
@@ -303,7 +303,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
     $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-l-block');
     $this->assertCount(1, $image_element);
-    $this->assertContains(
+    $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
       $image_element->attr('style')
     );

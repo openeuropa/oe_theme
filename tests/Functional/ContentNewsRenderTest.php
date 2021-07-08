@@ -33,6 +33,11 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -167,7 +172,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
 
     $picture = $this->assertSession()->elementExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');
     $image = $this->assertSession()->elementExists('css', 'img.ecl-u-width-100.ecl-u-height-auto', $picture);
-    $this->assertContains('placeholder_news_featured_media.png', $image->getAttribute('src'));
+    $this->assertStringContainsString('placeholder_news_featured_media.png', $image->getAttribute('src'));
     $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
 
     // Unpublish the media and assert it is not rendered anymore.

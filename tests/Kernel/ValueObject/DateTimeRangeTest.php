@@ -37,7 +37,7 @@ class DateTimeRangeTest extends DateTimeTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // Add a datetime range field.

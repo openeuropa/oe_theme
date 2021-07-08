@@ -70,7 +70,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     }
     $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($expected_image['src'], $image_div->attr('style'));
+    self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
   }
 
   /**
@@ -108,7 +108,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
       $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
-      $this::assertContains('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
+      $this::assertStringContainsString('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
       $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
     }
   }

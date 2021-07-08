@@ -28,7 +28,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->installConfig('filter');
   }

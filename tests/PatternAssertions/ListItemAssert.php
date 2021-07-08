@@ -190,7 +190,7 @@ class ListItemAssert extends BasePatternAssert {
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($expected_image['src'], $image_div->attr('style'));
+    self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
   }
 
   /**
@@ -206,7 +206,7 @@ class ListItemAssert extends BasePatternAssert {
   protected function assertHighlightImage($expected_image, string $variant, Crawler $crawler): void {
     $image_div = $crawler->filter('article.ecl-card header.ecl-card__header div.ecl-card__image');
     self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertContains($expected_image['src'], $image_div->attr('style'));
+    self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
   }
 
   /**

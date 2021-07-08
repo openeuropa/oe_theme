@@ -36,7 +36,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
 
     $this->installConfig(['system', 'image', 'responsive_image', 'contact']);
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
   }
 
@@ -84,8 +84,8 @@ class ContactFormRenderTest extends ContactFormTestBase {
     $actual = $crawler->filter('.ecl-u-mv-m');
     $this->assertCount(7, $actual);
     $telephone = $crawler->filter('.field--name-oe-telephone input');
-    $this->assertEqual(60, $telephone->attr('size'));
-    $this->assertContains('ecl-text-input', $telephone->attr('class'));
+    $this->assertEquals($telephone->attr('size'), 60);
+    $this->assertStringContainsString('ecl-text-input', $telephone->attr('class'));
 
     /** @var \Drupal\Core\Messenger\MessengerInterface $messenger */
     $messenger = $this->container->get('messenger');

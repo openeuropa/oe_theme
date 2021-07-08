@@ -28,7 +28,12 @@ class ParagraphsTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
@@ -67,7 +72,7 @@ class ParagraphsTest extends BrowserTestBase {
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]' => 'Accordion item body',
       'oe_content_content_owner[0][target_id]' => 'Directorate-General for Informatics',
     ];
-    $this->drupalPostForm(NULL, $values, 'Save');
+    $this->submitForm($values, 'Save');
     $this->drupalGet('/node/1');
 
     // Assert paragraph values are displayed.

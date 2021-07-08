@@ -6,21 +6,18 @@ namespace Drupal\Tests\oe_theme;
 
 use PHPUnit\Framework\Test;
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\TestListener;
-use PHPUnit\Framework\TestListenerDefaultImplementation;
 use PHPUnit\Runner\Exception;
+use PHPUnit\Runner\TestHook;
 
 /**
  * Check if a test has been assigned to a test batch.
  */
-class EnsurePHPUnitBatchingTestListener implements TestListener {
-
-  use TestListenerDefaultImplementation;
+class EnsurePHPUnitBatchingTestListener implements TestHook {
 
   /**
    * {@inheritdoc}
    */
-  public function startTest(Test $test) {
+  public function startTest(Test $test): void {
     if ($test instanceof TestCase) {
       $groups = $test->getGroups();
       if (empty(preg_grep('/^batch(\d+)$/', $groups))) {

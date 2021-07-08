@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="${drupal.root}/core/tests/bootstrap.php" backupGlobals="true" colors="true" >
+<phpunit bootstrap="${drupal.root}/core/tests/bootstrap.php" backupGlobals="true" colors="true" cacheResult="false">
   <php>
     <ini name="error_reporting" value="32767"/>
     <ini name="memory_limit" value="-1"/>
@@ -9,11 +9,11 @@
     <env name="SIMPLETEST_SPARQL_DB" value="sparql://${drupal.sparql.host}:${drupal.sparql.port}/?module=sparql_entity_storage"/>
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", null, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
-  <listeners>
-    <listener class="Drupal\Tests\oe_theme\EnsurePHPUnitBatchingTestListener" file="./tests/EnsurePHPUnitBatchingTestListener.php"></listener>
-  </listeners>
+  <extensions>
+    <extension class="Drupal\Tests\oe_theme\EnsurePHPUnitBatchingTestListener" />
+  </extensions>
   <testsuites>
-    <testsuite>
+    <testsuite name="OE Theme Tests">
       <directory>./modules/**/tests/</directory>
       <directory>./tests/</directory>
     </testsuite>

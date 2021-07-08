@@ -46,7 +46,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
     $this->installEntitySchema('entity_test');
     $this->installEntitySchema('media');
@@ -210,7 +210,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
     $this->assertStringEndsWith('/example_1.jpeg', $image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
-    $this->assertContains('Extra image title', $caption->html());
+    $this->assertStringContainsString('Extra image title', $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test the second gallery item.
@@ -222,7 +222,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
     $this->assertStringEndsWith('/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg', $image_node->attr('src'));
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
-    $this->assertContains($video_media->label(), $caption->html());
+    $this->assertStringContainsString($video_media->label(), $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test the third item.
@@ -234,7 +234,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertEquals('Alt text for test video iframe.', $image_node->attr('alt'));
     $this->assertStringEndsWith('/placeholder.png', $image_node->attr('src'));
     $caption = $items->eq(2)->filter('.ecl-gallery__description');
-    $this->assertContains('Test video iframe title', $caption->html());
+    $this->assertStringContainsString('Test video iframe title', $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test that all the cache tags have present and bubbled up.
@@ -271,14 +271,14 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the contents of the first item.
     $caption = $items->first()->filter('.ecl-gallery__description');
-    $this->assertContains($image_media->label(), $caption->html());
+    $this->assertStringContainsString($image_media->label(), $caption->html());
     $copyright = $caption->filter('.ecl-gallery__meta');
     $this->assertCount(1, $copyright);
     $this->assertEquals('Copyright for test image ©', $copyright->html());
 
     // Test the second gallery item.
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
-    $this->assertContains($video_media->label(), $caption->html());
+    $this->assertStringContainsString($video_media->label(), $caption->html());
     $copyright = $caption->filter('.ecl-gallery__meta');
     $this->assertCount(1, $copyright);
     $this->assertEquals('Copyright for test remote video ©', $copyright->html());
@@ -305,9 +305,9 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     // Test the contents of the first item.
     $image_node = $items->first()->filter('img');
     $this->assertEquals('Alt text for test image.', $image_node->attr('alt'));
-    $this->assertContains('/files/styles/medium/public/example_1.jpeg?itok=', $image_node->attr('src'));
+    $this->assertStringContainsString('/files/styles/medium/public/example_1.jpeg?itok=', $image_node->attr('src'));
     $caption = $items->first()->filter('.ecl-gallery__description');
-    $this->assertContains($image_media->label(), $caption->html());
+    $this->assertStringContainsString($image_media->label(), $caption->html());
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
@@ -316,12 +316,12 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     );
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
-    $this->assertContains(
+    $this->assertStringContainsString(
       '/files/styles/medium/public/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg?itok=',
       $image_node->attr('src')
     );
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
-    $this->assertContains($video_media->label(), $caption->html());
+    $this->assertStringContainsString($video_media->label(), $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
   }
 

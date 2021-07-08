@@ -40,6 +40,11 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -115,7 +120,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-l-3 img.ecl-media-container__media');
-    $this->assertContains('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
+    $this->assertStringContainsString('styles/oe_theme_medium_no_crop/public/example_1.jpeg', $logo->getAttribute('src'));
     $this->assertEquals('Alt', $logo->getAttribute('alt'));
 
     // Add body text and contact values.
@@ -154,7 +159,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $logo = $this->assertSession()->elementExists('css', '.ecl-col-l-3 img.ecl-media-container__media');
-    $this->assertContains('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
+    $this->assertStringContainsString('files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $file->getFilename(), $logo->getAttribute('src'));
 
     // Add overview values.
     $node->set('oe_organisation_overview', [
@@ -270,7 +275,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
     $this->assertCount(1, $person_content);
-    $this->assertContains('node/2', $person_content[0]->find('css', 'a.ecl-link.ecl-link--standalone')->getAttribute('href'));
+    $this->assertStringContainsString('node/2', $person_content[0]->find('css', 'a.ecl-link.ecl-link--standalone')->getAttribute('href'));
     // Assert person content.
     $first_person_image = $person_content[0]->find('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none');
     // Assert default image.

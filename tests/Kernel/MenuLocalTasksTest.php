@@ -51,7 +51,6 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
           '#weight' => 0,
         ],
       ],
-      '#user' => $this->user,
     ];
 
     $html = $this->renderRoot($render);

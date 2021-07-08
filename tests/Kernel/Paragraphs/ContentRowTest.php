@@ -97,16 +97,16 @@ class ContentRowTest extends ParagraphsTestBase {
     // Verify that there is a full size column rendered.
     $this->assertCount(1, $crawler->filter('.ecl-row .ecl-col-m-12'));
     // Do a smoke test that inner paragraphs are rendered.
-    $this->assertContains('Links block title', $html);
-    $this->assertContains('List item title', $html);
-    $this->assertContains('List block title', $html);
-    $this->assertContains('Rich text without title.', $html);
-    $this->assertContains('Rich text with title.', $html);
+    $this->assertStringContainsString('Links block title', $html);
+    $this->assertStringContainsString('List item title', $html);
+    $this->assertStringContainsString('List block title', $html);
+    $this->assertStringContainsString('Rich text without title.', $html);
+    $this->assertStringContainsString('Rich text with title.', $html);
 
     // No page navigation should be shown.
     $this->assertCount(0, $crawler->filter('.ecl-inpage-navigation'));
     // Neither the title.
-    $this->assertNotContains('Page navigation', $html);
+    $this->assertStringNotContainsString('Page navigation', $html);
 
     // Change variant to the inpage navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('inpage_navigation');
@@ -121,11 +121,11 @@ class ContentRowTest extends ParagraphsTestBase {
 
     // Verify that the right column still contains all the paragraphs.
     $right_column_html = $right_column->html();
-    $this->assertContains('Links block title', $right_column_html);
-    $this->assertContains('List item title', $right_column_html);
-    $this->assertContains('List block title', $right_column_html);
-    $this->assertContains('Rich text without title.', $right_column_html);
-    $this->assertContains('Rich text with title.', $right_column_html);
+    $this->assertStringContainsString('Links block title', $right_column_html);
+    $this->assertStringContainsString('List item title', $right_column_html);
+    $this->assertStringContainsString('List block title', $right_column_html);
+    $this->assertStringContainsString('Rich text without title.', $right_column_html);
+    $this->assertStringContainsString('Rich text with title.', $right_column_html);
 
     // Verify that the inpage navigation title has been rendered.
     $this->assertEquals('Page navigation', trim($left_column->filter('.ecl-inpage-navigation__title')->text()));
@@ -146,7 +146,7 @@ class ContentRowTest extends ParagraphsTestBase {
 
     // Assert that side-menu is correctly rendered with the default title.
     $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
-    $this->assertContains('Page contents', $left_column->html());
+    $this->assertStringContainsString('Page contents', $left_column->html());
   }
 
   /**
@@ -186,16 +186,16 @@ class ContentRowTest extends ParagraphsTestBase {
 
     // Assert that side-menu "English" translation is correctly rendered.
     $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
-    $this->assertContains('English page navigation', $left_column->html());
-    $this->assertContains('English rich text title', $left_column->html());
+    $this->assertStringContainsString('English page navigation', $left_column->html());
+    $this->assertStringContainsString('English rich text title', $left_column->html());
 
     $html = $this->renderParagraph($paragraph, 'fr');
     $crawler = new Crawler($html);
 
     // Assert that side-menu "French" translation is correctly rendered.
     $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
-    $this->assertContains('French page navigation', $left_column->html());
-    $this->assertContains('French rich text title', $left_column->html());
+    $this->assertStringContainsString('French page navigation', $left_column->html());
+    $this->assertStringContainsString('French rich text title', $left_column->html());
   }
 
   /**
@@ -211,7 +211,7 @@ class ContentRowTest extends ParagraphsTestBase {
   protected function assertNavigationItem(Crawler $item, string $title, Crawler $content) {
     $link = $item->filter('a');
     $this->assertEquals($title, trim($link->text()));
-    $this->assertContains($title, $content->filter($link->attr('href'))->html());
+    $this->assertStringContainsString($title, $content->filter($link->attr('href'))->html());
   }
 
 }

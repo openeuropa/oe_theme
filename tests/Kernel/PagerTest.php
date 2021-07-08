@@ -36,6 +36,13 @@ class PagerTest extends AbstractKernelTestBase {
    * @throws \Exception
    */
   public function testMultiplePagers(): void {
+    \Drupal::request()->query->set('page', '6,0,14');
+
+    $pager_manager = \Drupal::service('pager.manager');
+    $pager_manager->createPager(100, 7, 0);
+    $pager_manager->createPager(100, 7, 1);
+    $pager_manager->createPager(100, 7, 2);
+
     // Set up a render array.
     $build['pager_0'] = [
       '#type' => 'pager',
@@ -50,17 +57,6 @@ class PagerTest extends AbstractKernelTestBase {
       '#element' => 2,
     ];
 
-    // Initialize pagers with some fake data.
-    pager_default_initialize(100, 7, 0);
-    pager_default_initialize(100, 7, 1);
-    pager_default_initialize(100, 7, 2);
-
-    // Set up the current page numbers for pagers.
-    global $pager_page_array;
-    $pager_page_array[0] = 6;
-    $pager_page_array[1] = 0;
-    $pager_page_array[2] = 14;
-
     // Rendering the markup.
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
@@ -74,36 +70,36 @@ class PagerTest extends AbstractKernelTestBase {
     // Assert that the pager contain 'next' and 'previous' page links.
     $previous = $first_pager->filter('li.ecl-pagination__item--previous');
     $this->assertSpecialPagerElement($previous, TRUE, $this->generatePagerUrl('<none>', 6), 'Go to previous page');
-    $this->assertContains(self::PREVIOUS_PAGE_LINK_TEXT, $first_pager->text());
+    $this->assertStringContainsString(self::PREVIOUS_PAGE_LINK_TEXT, $first_pager->text());
     $next = $first_pager->filter('li.ecl-pagination__item--next');
     $this->assertSpecialPagerElement($next, TRUE, $this->generatePagerUrl('<none>', 8), 'Go to next page');
-    $this->assertContains(self::NEXT_PAGE_LINK_TEXT, $first_pager->text());
+    $this->assertStringContainsString(self::NEXT_PAGE_LINK_TEXT, $first_pager->text());
     // Assert that the pager contain two ellipsis elements.
     $ellipsis_count = $first_pager->filter('li.ecl-pagination__item--ellipsis');
     $this->assertCount(2, $ellipsis_count);
     // Assert the current page number.
     $current_page_number = $first_pager->filter('li.ecl-pagination__item--current')->html();
-    $this->assertContains('Page 7', $current_page_number);
+    $this->assertStringContainsString('Page 7', $current_page_number);
 
     // Check the second variant (pager set on the first page).
     $second_pager = $crawler->filter('nav:nth-of-type(2)');
     // Assert that the pager contains only the 'next' page link.
-    $this->assertContains(self::NEXT_PAGE_LINK_TEXT, $second_pager->text());
-    $this->assertNotContains(self::PREVIOUS_PAGE_LINK_TEXT, $second_pager->text());
+    $this->assertStringContainsString(self::NEXT_PAGE_LINK_TEXT, $second_pager->text());
+    $this->assertStringNotContainsString(self::PREVIOUS_PAGE_LINK_TEXT, $second_pager->text());
 
     // Assert that the pager is set on the first page.
     $first_page_number = $second_pager->filter('li.ecl-pagination__item--current')->html();
-    $this->assertContains('Page 1', $first_page_number);
+    $this->assertStringContainsString('Page 1', $first_page_number);
 
     // Check the third variant (pager set on the last page).
     $third_pager = $crawler->filter('nav:nth-of-type(3)');
     // Assert that the pager contains only the 'previous' page link.
-    $this->assertContains(self::PREVIOUS_PAGE_LINK_TEXT, $third_pager->text());
-    $this->assertNotContains(self::NEXT_PAGE_LINK_TEXT, $third_pager->text());
+    $this->assertStringContainsString(self::PREVIOUS_PAGE_LINK_TEXT, $third_pager->text());
+    $this->assertStringNotContainsString(self::NEXT_PAGE_LINK_TEXT, $third_pager->text());
 
     // Assert that the pager is set on the last page.
     $first_page_number = $third_pager->filter('li.ecl-pagination__item--current')->html();
-    $this->assertContains('Page 15', $first_page_number);
+    $this->assertStringContainsString('Page 15', $first_page_number);
   }
 
   /**
@@ -125,16 +121,17 @@ class PagerTest extends AbstractKernelTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testSinglePager(int $current_page, int $total_pages, string $route_name = '<none>'): void {
+    \Drupal::request()->query->set('page', $current_page - 1);
+
+    $pager_manager = \Drupal::service('pager.manager');
+    $pager_manager->createPager($total_pages * 10, 10, 0);
+
     $build['pager'] = [
-      '#type' => 'pager',
       '#route_name' => $route_name,
+      '#type' => 'pager',
+      '#element' => 0,
     ];
 
-    pager_default_initialize($total_pages * 10, 10);
-
-    global $pager_page_array;
-    // Normalise the current page array to 0-based.
-    $pager_page_array[0] = $current_page - 1;
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
 
@@ -144,7 +141,7 @@ class PagerTest extends AbstractKernelTestBase {
 
     // Assert that the current page set is correct.
     $current_page_element = $wrapper->filter('li.ecl-pagination__item--current');
-    $this->assertContains('Page ' . $current_page, $current_page_element->html());
+    $this->assertStringContainsString('Page ' . $current_page, $current_page_element->html());
 
     // By specifications, the following links should be visible:
     // - links to the previous two pages (if applicable);
@@ -184,7 +181,7 @@ class PagerTest extends AbstractKernelTestBase {
 
     $previous = $crawler->filter('li.ecl-pagination__item--previous');
     $this->assertSpecialPagerElement($previous, $show_start_links, $this->generatePagerUrl($route_name, $current_page - 1), 'Go to previous page');
-    $this->{$show_start_links ? 'assertContains' : 'assertNotContains'}(self::PREVIOUS_PAGE_LINK_TEXT, $crawler->html());
+    $this->{$show_start_links ? 'assertStringContainsString' : 'assertStringNotContainsString'}(self::PREVIOUS_PAGE_LINK_TEXT, $crawler->html());
 
     $first_page = $crawler->filter('li.ecl-pagination__item--first');
     $this->assertSpecialPagerElement($first_page, $show_start_links, $this->generatePagerUrl($route_name, 1), 'Go to page 1');
@@ -197,7 +194,7 @@ class PagerTest extends AbstractKernelTestBase {
 
     $next = $crawler->filter('li.ecl-pagination__item--next');
     $this->assertSpecialPagerElement($next, $show_end_links, $this->generatePagerUrl($route_name, $current_page + 1), 'Go to next page');
-    $this->{$show_end_links ? 'assertContains' : 'assertNotContains'}(self::NEXT_PAGE_LINK_TEXT, $crawler->html());
+    $this->{$show_end_links ? 'assertStringContainsString' : 'assertStringNotContainsString'}(self::NEXT_PAGE_LINK_TEXT, $crawler->html());
 
     $last_page = $crawler->filter('li.ecl-pagination__item--last');
     $this->assertSpecialPagerElement($last_page, $show_end_links, $this->generatePagerUrl($route_name, $total_pages), "Go to page $total_pages");
@@ -285,8 +282,9 @@ class PagerTest extends AbstractKernelTestBase {
    *   A string URL.
    */
   protected function generatePagerUrl(string $route_name, int $page, int $element = 0): string {
+    $pager_manager = \Drupal::service('pager.manager');
     $options = [
-      'query' => pager_query_add_page([], $element, $page - 1),
+      'query' => $pager_manager->getUpdatedParameters([], $element, $page - 1),
     ];
 
     return Url::fromRoute($route_name, [], $options)->toString();

@@ -43,6 +43,11 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -85,7 +90,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     // Assert content.
     $portrait = $this->assertSession()->elementExists('css', 'article .ecl-col-l-3 img.ecl-media-container__media');
-    $this->assertContains('/themes/custom/oe_theme/images/user_icon.svg', $portrait->getAttribute('src'));
+    $this->assertStringContainsString('/themes/custom/oe_theme/images/user_icon.svg', $portrait->getAttribute('src'));
     $this->assertEmpty($portrait->getAttribute('alt'));
     $this->assertSession()->pageTextNotContains('Page contents');
     $content = $this->assertSession()->elementExists('css', 'article .ecl-col-l-9');
@@ -109,14 +114,14 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $portrait_media = $this->createMediaImage('portrait');
     $node->set('oe_person_photo', $portrait_media)->save();
     $this->drupalGet($node->toUrl());
-    $this->assertContains('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
+    $this->assertStringContainsString('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
     $this->assertEquals('Alternative text portrait', $portrait->getAttribute('alt'));
 
     // Unpublish the media and assert it is not rendered anymore.
     $portrait_media->set('status', 0);
     $portrait_media->save();
     $this->drupalGet($node->toUrl());
-    $this->assertNotContains('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
+    $this->assertStringNotContainsString('/files/styles/oe_theme_medium_no_crop/public/placeholder_portrait.png', $portrait->getAttribute('src'));
 
     // Publish the media.
     $portrait_media->set('status', 1);
@@ -310,9 +315,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     // structure so no need to test.
     $first_item = $items[0]->find('css', 'img');
     $this->assertEquals('Alternative text first_media', $first_item->getAttribute('alt'));
-    $this->assertContains('/styles/large/public/placeholder_first_media.png?itok=', $first_item->getAttribute('src'));
+    $this->assertStringContainsString('/styles/large/public/placeholder_first_media.png?itok=', $first_item->getAttribute('src'));
     $caption = $items[0]->find('css', '.ecl-gallery__description');
-    $this->assertContains('Test image first_media', $caption->getOuterHtml());
+    $this->assertStringContainsString('Test image first_media', $caption->getOuterHtml());
     $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
 
     // Assert Transparency introduction field.

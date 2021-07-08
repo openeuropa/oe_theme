@@ -50,11 +50,11 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     // Body wrapper.
     $body_wrapper = $crawler->filter('.ecl');
     $this->assertCount(1, $body_wrapper);
-    $this->assertContains('Body', $body_wrapper->text());
+    $this->assertStringContainsString('Body', $body_wrapper->text());
 
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
-    $this->assertContains('Related links', $related_links_heading->text());
+    $this->assertStringContainsString('Related links', $related_links_heading->text());
     $related_links = $crawler->filter('.ecl-list .ecl-link.ecl-link--standalone');
     $this->assertCount(2, $related_links);
 
@@ -92,7 +92,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     // Body wrapper.
     $body_wrapper = $crawler->filter('.ecl');
     $this->assertCount(1, $body_wrapper);
-    $this->assertContains('Body', $body_wrapper->text());
+    $this->assertStringContainsString('Body', $body_wrapper->text());
 
     // Test short title fallback.
     $node->set('oe_content_short_title', 'Policy short title')->save();
@@ -156,17 +156,17 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $file_row);
 
     $file_title = $file_row->filter('.ecl-file__title');
-    $this->assertContains('test document', $file_title->text());
+    $this->assertStringContainsString('test document', $file_title->text());
 
     $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
-    $this->assertContains('English', $file_info_language->text());
+    $this->assertStringContainsString('English', $file_info_language->text());
 
     $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
-    $this->assertContains('KB - PDF)', $file_info_properties->text());
+    $this->assertStringContainsString('KB - PDF)', $file_info_properties->text());
 
     $file_download_link = $file_row->filter('.ecl-file__download');
-    $this->assertContains('/test.pdf', $file_download_link->attr('href'));
-    $this->assertContains('Download', $file_download_link->text());
+    $this->assertStringContainsString('/test.pdf', $file_download_link->attr('href'));
+    $this->assertStringContainsString('Download', $file_download_link->text());
   }
 
 }

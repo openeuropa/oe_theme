@@ -37,6 +37,11 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -147,7 +152,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $project_details = $this->assertSession()->elementExists('css', 'div#project-details');
 
     // Assert the body text.
-    $this->assertContains('Body', $project_details->getText());
+    $this->assertStringContainsString('Body', $project_details->getText());
     $this->assertFeaturedMediaField($project_details, 'project_featured_media');
 
     // Assert the description blocks inside the Project details.
@@ -232,7 +237,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $project_results = $this->assertSession()->elementExists('css', 'div#project-results');
 
     // Assert results text.
-    $this->assertContains('Project results...', $project_results->getText());
+    $this->assertStringContainsString('Project results...', $project_results->getText());
 
     // Assert result file.
     $file_wrapper = $project_results->find('css', 'div.ecl-file');
@@ -356,7 +361,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     // Assert logo.
     $logos = $rendered_stakeholder_element->findAll('css', 'div[role=img]');
     $this->assertCount(1, $logos);
-    $this->assertContains("placeholder_$name.png", $logos[0]->getAttribute('style'));
+    $this->assertStringContainsString("placeholder_$name.png", $logos[0]->getAttribute('style'));
 
     // Assert the Organisation contacts list block's labels and values.
     $field_list_assert = new FieldListAssert();
@@ -379,7 +384,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     // Assert contact link.
     $contact_links = $rendered_stakeholder_element->findAll('css', '.ecl-link');
     $this->assertCount(1, $contact_links);
-    $this->assertContains("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
+    $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
     $contact_link_labels = $rendered_stakeholder_element->findAll('css', '.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());

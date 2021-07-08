@@ -25,7 +25,12 @@ class ConfigurationTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
@@ -40,7 +45,7 @@ class ConfigurationTest extends BrowserTestBase {
    */
   public function testDefaultLibraryLoading(): void {
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
-      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->get('config.factory')->getEditable('system.theme')->set('default', $active_theme)->save();
       $this->container->set('theme.registry', NULL);
 
       $this->drupalGet('<front>');
@@ -71,7 +76,7 @@ class ConfigurationTest extends BrowserTestBase {
    */
   public function testChangeComponentLibrary(): void {
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
-      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->get('config.factory')->getEditable('system.theme')->set('default', $active_theme)->save();
       $this->container->set('theme.registry', NULL);
 
       $page = $this->getSession()->getPage();
@@ -159,7 +164,7 @@ class ConfigurationTest extends BrowserTestBase {
     $page = $this->getSession()->getPage();
     $assert_session = $this->assertSession();
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
-      $this->container->get('theme_handler')->setDefault($active_theme);
+      $this->container->get('config.factory')->getEditable('system.theme')->set('default', $active_theme)->save();
       $this->container->set('theme.registry', NULL);
 
       // Create a user that does have permission to administer theme settings.

@@ -28,7 +28,7 @@ class MainMenuTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->installEntitySchema('menu_link_content');

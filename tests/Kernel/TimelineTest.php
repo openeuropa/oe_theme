@@ -84,7 +84,7 @@ class TimelineTest extends AbstractKernelTestBase {
     $this->installEntitySchema('skos_concept_scheme');
 
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
     // Create content type.
@@ -199,8 +199,8 @@ class TimelineTest extends AbstractKernelTestBase {
 
     $build = $display->build($node);
     $output = $this->renderRoot($build);
-    $this->assertNotContains('.ecl-timeline__item--toggle', (string) $output);
-    $this->assertNotContains('.ecl-timeline__item--collapsed', (string) $output);
+    $this->assertStringNotContainsString('.ecl-timeline__item--toggle', (string) $output);
+    $this->assertStringNotContainsString('.ecl-timeline__item--collapsed', (string) $output);
   }
 
 }
