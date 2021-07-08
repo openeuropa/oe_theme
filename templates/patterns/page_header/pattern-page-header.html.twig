@@ -31,18 +31,6 @@
 ]
 %}
 
-{% if language_switcher %}
-  {% set _language_switcher %}
-    {% include '@oe_theme/compositions/ec-component-content-language-switcher/content-language-switcher.html.twig' with {
-      'expandable_id': language_switcher.expandable_id,
-      'unavailable': language_switcher.unavailable,
-      'current': language_switcher.current,
-      'options': language_switcher.options,
-      'icon_path': ecl_icon_path,
-    } only %}
-  {% endset %}
-{% endif %}
-
 {% include '@ecl-twig/page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding with {
   'title': title,
   'thumbnail': thumbnail,
@@ -50,7 +38,6 @@
   'breadcrumb': _breadcrumb,
   'meta': metas|filter_empty,
   'background_image_url': background_image_url,
-  'composition': _language_switcher,
   'extra_classes': _extra_classes|join(' '),
   'overlay': ecl_component_library == 'ec' and overlay is not empty,
 } %}
