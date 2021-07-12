@@ -154,6 +154,12 @@ infos:
   description: "A list of infos of the current page. Deprecated from ECL 2.30."
 ```
 
+In addition, the customization that allowed the content language switcher to be rendered inside the page header
+has been deprecated in favor of the new [ECL composition](https://v3--europa-component-library.netlify.app/playground/ec/?path=/story/compositions-etranslation--default).
+Instead, the OpenEuropa Content Language Switcher block provided by Openeuropa Multilingual needs to be used
+in its place. Sites updating to Openeuropa Theme V3 are advised to place this block in the page header region
+if they wish still need the functionality.
+
 ### Upgrade to 2.17.0
 
 #### Dropdown UI pattern
