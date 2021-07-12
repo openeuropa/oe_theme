@@ -724,9 +724,10 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   }
 
   // Add the current language to the list.
-  $entity = \Drupal::service('oe_multilingual.helper')->getEntityFromCurrentRoute();
+  $multilingual_helper = \Drupal::service('oe_multilingual.helper');
+  $entity = $multilingual_helper->getEntityFromCurrentRoute();
   /** @var \Drupal\Core\Entity\EntityInterface $translation */
-  $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
+  $translation = $multilingual_helper->getCurrentLanguageEntityTranslation($entity);
   $variables['languages'][] = [
     'href' => $translation->toUrl()->setAbsolute(TRUE)->toString(),
     'hreflang' => $translation->language()->getId(),
