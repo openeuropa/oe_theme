@@ -2279,6 +2279,7 @@
     '#variant': "left_simple"
     '#fields':
       title: "Heading"
+      text_title: "Title"
       image:
         src: "http://via.placeholder.com/150x150"
       caption: "Some caption text for the image"
@@ -2290,6 +2291,7 @@
     count:
       'div.ecl-row': 1
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 1
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
@@ -2297,6 +2299,7 @@
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-col-md-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
@@ -2305,6 +2308,7 @@
     '#id': text_featured_media
     '#variant': "right_simple"
     '#fields':
+      text_title: "Title"
       image:
         src: "http://via.placeholder.com/150x150"
       caption: "Some caption text for the image"
@@ -2317,12 +2321,43 @@
       'h2.ecl-u-type-heading-2': 0
       'div.ecl-row': 1
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
+      'figcaption.ecl-media-container__caption': "Some caption text for the image"
+      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'a.ecl-link span.ecl-link__label': "Call to action"
+- array:
+    '#type': pattern
+    '#id': text_featured_media
+    '#variant': "right_simple"
+    '#fields':
+      title: "Heading"
+      image:
+        src: "http://via.placeholder.com/150x150"
+      caption: "Some caption text for the image"
+      text: "Some more text"
+      link:
+        label: "Call to action"
+        path: "http://example.com"
+  assertions:
+    count:
+      'h2.ecl-u-type-heading-2': 1
+      'div.ecl-row': 1
+      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 0
+      'figure.ecl-media-container': 1
+      'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'figcaption.ecl-media-container__caption': 1
+      'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-col-md-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
@@ -2331,12 +2366,14 @@
     '#id': text_featured_media
     '#fields':
       title: "Heading"
+      text_title: "Title"
       caption: "Some caption text for the image"
       text: "Some more text"
   assertions:
     count:
       'div.ecl-row': 1
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 0
       'div.ecl-col-md-6.ecl-editor': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
@@ -2345,6 +2382,7 @@
       'a.ecl-link': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'div.ecl-col-12 div.ecl-editor': "Some more text"
 - array:
     '#type': pattern
@@ -2352,6 +2390,7 @@
     '#variant': "right_featured"
     '#fields':
       title: "Heading"
+      text_title: "Title"
       image:
         src: "http://via.placeholder.com/150x150"
       text: "Some more text"
@@ -2362,6 +2401,7 @@
     count:
       'div.ecl-row': 1
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
@@ -2369,6 +2409,7 @@
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'div.ecl-col-md-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
