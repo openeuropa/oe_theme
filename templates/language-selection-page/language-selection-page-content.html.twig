@@ -18,6 +18,11 @@
   {% endif %}
 {% endif %}
 
+{% if ecl_component_library == 'eu' %}
+  {% set logo_path = ecl_logo_path ~ '/logo-eu--mute.svg'%}
+{% else %}
+  {% set logo_path = ecl_logo_path ~ '/logo-ec--mute.svg'%}
+{% endif %}
 
 {% include '@ecl-twig/language-list' with {
   eu_category: eu_category,
@@ -27,6 +32,6 @@
   icon_path: ecl_icon_path,
   logo: {
     alt: 'European Commission logo'|t,
-    path: ecl_logo_path ~ '/logo--mute.svg'
+    path: logo_path
   }
 } only %}
