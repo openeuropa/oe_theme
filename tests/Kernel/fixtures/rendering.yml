@@ -1246,7 +1246,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -2692,7 +2692,7 @@
           url: ''
   assertions:
     count:
-      'div.active-search-filters.ecl-u-d-md-flex': 1
+      'div.active-search-filters.ecl-u-d-m-flex': 1
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 1
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 1
       'span.ecl-tag__icon': 2

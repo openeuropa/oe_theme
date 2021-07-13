@@ -13,7 +13,7 @@
     contact_page_url: "http://www.example.com/contact"
   assertions:
     count:
-      div[role="img"].ecl-u-d-lg-block: 1
+      div[role="img"].ecl-u-d-l-block: 1
       a.ecl-link[href="http://www.example.com/contact"]: 1
     equals:
       h4.ecl-u-type-heading-4: "Organisation name (Acronym)"
@@ -35,7 +35,7 @@
     name: "Organisation name"
   assertions:
     count:
-      div[role="img"].ecl-u-d-lg-block: 0
+      div[role="img"].ecl-u-d-l-block: 0
       dl.ecl-description-list: 0
       a.ecl-link: 0
     equals:

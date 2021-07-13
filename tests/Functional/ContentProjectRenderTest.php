@@ -151,7 +151,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertFeaturedMediaField($project_details, 'project_featured_media');
 
     // Assert the description blocks inside the Project details.
-    $description_lists = $project_details->findAll('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-md-none .ecl-u-mb-s');
+    $description_lists = $project_details->findAll('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-m-none .ecl-u-mb-s');
     $this->assertCount(3, $description_lists);
 
     // Assert the first description list block's labels and values.
@@ -258,7 +258,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($project_stakeholders, 'Stakeholders');
 
     // Assert Coordinators field.
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
@@ -279,7 +279,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert Participants field.
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
