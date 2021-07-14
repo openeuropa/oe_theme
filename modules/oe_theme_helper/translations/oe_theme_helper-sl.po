@@ -339,3 +339,6 @@ msgstr "Skrij kontaktne podatke"
 
 msgid "Leadership and organisation"
 msgstr "Vodstvo in organiziranost"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Spremljajte najnovejše dogajanje in sodelujte v družbenih medijih."

@@ -339,3 +339,6 @@ msgstr "Peida kontaktandmed"
 
 msgid "Leadership and organisation"
 msgstr "Juhtkond ja struktuur"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Hoidke end kursis ning uurige, kuidas saaksite ise osaleda."

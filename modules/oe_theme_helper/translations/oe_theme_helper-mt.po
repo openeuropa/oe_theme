@@ -339,3 +339,6 @@ msgstr "Aħbi d-dettalji ta' kuntatt"
 
 msgid "Leadership and organisation"
 msgstr "Tmexxija u organizzazzjoni"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Segwi l-progress l-aktar reċenti u tgħallem aktar dwar kif tinvolvi ruħek."

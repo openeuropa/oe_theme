@@ -339,3 +339,6 @@ msgstr "Contactinformatie verbergen"
 
 msgid "Leadership and organisation"
 msgstr "Leiding en organisatie"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Volg ons en geef uw mening!"

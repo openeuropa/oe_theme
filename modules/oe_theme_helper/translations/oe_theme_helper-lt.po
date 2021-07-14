@@ -339,3 +339,6 @@ msgstr "Slėpti kontaktinius duomenis"
 
 msgid "Leadership and organisation"
 msgstr "Vadovybė ir organizacinė struktūra"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sekite naujienas ir daugiau sužinokite, kaip galite dalyvauti."

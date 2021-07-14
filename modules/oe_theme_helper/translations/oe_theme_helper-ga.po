@@ -339,3 +339,6 @@ msgstr "Cuir na sonraí teagmhála i bhfolach"
 
 msgid "Leadership and organisation"
 msgstr "Ceannaireacht agus eagrúchán"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Eolas faoin dul chun cinn is déanaí agus faoi conas páirt a ghlacadh."

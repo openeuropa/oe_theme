@@ -339,3 +339,6 @@ msgstr "Skjul kontaktoplysninger"
 
 msgid "Leadership and organisation"
 msgstr "Ledelse og organisation"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Følg med i den seneste udvikling, og læs mere om, hvordan du kan deltage."

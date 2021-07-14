@@ -339,3 +339,6 @@ msgstr "Piilota yhteystiedot"
 
 msgid "Leadership and organisation"
 msgstr "Johto ja organisaatio"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Seuraa ja osallistu:"

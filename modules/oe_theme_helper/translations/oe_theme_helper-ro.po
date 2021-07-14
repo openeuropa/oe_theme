@@ -339,3 +339,6 @@ msgstr "Ascundeți datele de contact"
 
 msgid "Leadership and organisation"
 msgstr "Conducere și organizare"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Urmăriți ultimele evoluții și aflați cum vă puteți implica."

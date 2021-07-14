@@ -339,3 +339,6 @@ msgstr "Elérhetőségi adatok elrejtése"
 
 msgid "Leadership and organisation"
 msgstr "Vezetés és szervezeti felépítés"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Kövesse a legújabb fejleményeket és tájékozódjon arról, hogyan vehet részt Ön is a folyamatokban!"

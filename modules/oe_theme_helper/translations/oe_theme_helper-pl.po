@@ -339,3 +339,6 @@ msgstr "Ukryj dane kontaktowe"
 
 msgid "Leadership and organisation"
 msgstr "Kierownictwo i organizacja"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Bądź na bieżąco i dowiedz się, jak możesz zabrać głos."

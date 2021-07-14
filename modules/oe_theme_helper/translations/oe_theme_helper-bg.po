@@ -339,3 +339,6 @@ msgstr "Скриване на координатите за връзка"
 
 msgid "Leadership and organisation"
 msgstr "Ръководство и организация"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Следете новините и научете как да участвате."

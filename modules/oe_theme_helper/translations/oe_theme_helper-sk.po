@@ -339,3 +339,6 @@ msgstr "Skryť kontaktné informácie"
 
 msgid "Leadership and organisation"
 msgstr "Vedenie a organizácia"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sledujte najnovší vývoj a získajte viac informácií o tom, ako sa zapojiť."
