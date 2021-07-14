@@ -453,3 +453,6 @@ msgstr "Άνοιγμα συλλογής"
 
 msgid "(Acting) @role"
 msgstr "(Ασκών/-ούσα καθήκοντα) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Παρακολουθείτε τις τελευταίες εξελίξεις και ενημερωθείτε για τις δυνατότητες συμμετοχής σας."

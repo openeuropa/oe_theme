@@ -453,3 +453,6 @@ msgstr "Avaa galleria"
 
 msgid "(Acting) @role"
 msgstr "@role (vt.)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Seuraa ja osallistu:"

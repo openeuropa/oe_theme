@@ -453,3 +453,6 @@ msgstr "Galerij openen"
 
 msgid "(Acting) @role"
 msgstr "(Waarnemend) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Volg ons en geef uw mening!"

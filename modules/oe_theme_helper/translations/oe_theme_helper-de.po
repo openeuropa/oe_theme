@@ -453,3 +453,6 @@ msgstr "Galerie öffnen"
 
 msgid "(Acting) @role"
 msgstr "(Stellvertretende/r) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Auf dem Laufenden bleiben und mitreden"

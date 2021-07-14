@@ -453,3 +453,6 @@ msgstr "An gailearaí"
 
 msgid "(Acting) @role"
 msgstr "(Gníomhach) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Eolas faoin dul chun cinn is déanaí agus faoi conas páirt a ghlacadh."
