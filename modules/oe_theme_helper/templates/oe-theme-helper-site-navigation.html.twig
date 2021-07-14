@@ -16,8 +16,8 @@
     items: menu_items,
     site_name: site_name,
   }, 'vertical') }}
-{% else %}
-  <div class="ecl-site-header-{{ ecl_branding }}__banner">
+{% elseif ecl_branding == 'standardised' %}
+  <div class="ecl-site-header-standardised__banner">
     <div class="ecl-container">{{ site_name }}</div>
   </div>
 {% endif %}

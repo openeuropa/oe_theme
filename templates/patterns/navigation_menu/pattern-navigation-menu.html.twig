@@ -46,8 +46,8 @@
     items: _items,
     icon_path: ecl_icon_path
   } only %}
-{% elseif site_name %}
-  <div class="ecl-site-header-{{ ecl_branding }}__banner">
+{% elseif site_name and ecl_branding == 'standardised' %}
+  <div class="ecl-site-header-standardised__banner">
     <div class="ecl-container">
       {{ site_name }}
     </div>
