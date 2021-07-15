@@ -72,7 +72,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ->getStorage('paragraph')->create([
         'type' => 'oe_text_feature_media',
         'field_oe_title' => 'Heading',
-        'field_oe_text_title' => 'Title',
+        'field_oe_feature_media_title' => 'Title',
         'field_oe_plain_text_long' => 'Caption',
         'field_oe_text_long' => 'Full text',
       ]);
@@ -136,7 +136,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Add Bulgarian translation.
     $paragraph->addTranslation('bg', [
       'field_oe_title' => 'Heading bg',
-      'field_oe_text_title' => 'Title bg',
+      'field_oe_feature_media_title' => 'Title bg',
       'field_oe_plain_text_long' => 'Caption bg',
       'field_oe_text_long' => 'Full text bg',
     ])->save();
@@ -222,7 +222,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertVariant('left_simple', $html);
 
     // Remove the title and assert the element is no longer rendered.
-    $paragraph->set('field_oe_text_title', '');
+    $paragraph->set('field_oe_feature_media_title', '');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
