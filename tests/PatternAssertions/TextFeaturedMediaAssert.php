@@ -23,6 +23,10 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
         [$this, 'assertElementText'],
         'h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mt-md-3xl.ecl-u-mb-l',
       ],
+      'text_title' => [
+        [$this, 'assertElementText'],
+        'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey',
+      ],
       'image' => [
         [$this, 'assertImage'],
         'div.ecl-row figure.ecl-media-container img',

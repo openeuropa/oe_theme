@@ -1,0 +1,71 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.oe_text_feature_media.field_oe_feature_media_title
+    - field.field.paragraph.oe_text_feature_media.field_oe_link
+    - field.field.paragraph.oe_text_feature_media.field_oe_media
+    - field.field.paragraph.oe_text_feature_media.field_oe_plain_text_long
+    - field.field.paragraph.oe_text_feature_media.field_oe_text_long
+    - field.field.paragraph.oe_text_feature_media.field_oe_title
+    - paragraphs.paragraphs_type.oe_text_feature_media
+  module:
+    - link
+    - text
+id: paragraph.oe_text_feature_media.default
+targetEntityType: paragraph
+bundle: oe_text_feature_media
+mode: default
+content:
+  field_oe_feature_media_title:
+    type: string
+    weight: 1
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_oe_link:
+    type: link
+    weight: 5
+    region: content
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_oe_media:
+    type: entity_reference_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  field_oe_plain_text_long:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_oe_text_long:
+    weight: 4
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_oe_title:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }
