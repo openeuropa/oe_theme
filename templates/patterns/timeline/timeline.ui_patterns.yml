@@ -10,7 +10,7 @@ timeline:
     limit:
       type: "numeric"
       label: "Timeline index for starting hiding"
-      description: "Item index after which to start hiding timeline items. Default is null."
+      description: "Item index after which to start hiding timeline items. Default is 12."
       preview: 2
       escape: false
     limit_to:

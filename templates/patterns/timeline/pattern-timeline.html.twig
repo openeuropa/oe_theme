@@ -16,7 +16,8 @@
 
 {% set total_num = items|length %}
 {% set hide_from = limit_to == 0 ? total_num : limit_to %}
-{% set hidden_num = total_num - (items|slice(0, limit)|length + items|slice(hide_from)|length) %}
+{% set _limit = limit == 0 ? 12 : limit %}
+{% set hidden_num = total_num - (items|slice(0, _limit)|length + items|slice(hide_from)|length) %}
 
 {% set _toggle_collapsed = button_label|default('Show @numb more items'|trans({'@numb': hidden_num})) %}
 {% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
@@ -30,7 +31,7 @@
   'toggle_collapsed': _toggle_collapsed,
   'toggle_expanded': _toggle_expanded,
   'hide': {
-    'from': limit,
+    'from': _limit,
     'to': limit_to|default(0),
   },
   'items': _items,
