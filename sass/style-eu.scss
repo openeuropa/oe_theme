@@ -19,3 +19,6 @@
 @use "./components/description_list";
 @use "./components/media_iframe";
 @use "./components/expandable";
+@use "./components/contextual_navigation" with (
+  $outline-width: 2px,
+);
