@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
+use Drupal\Tests\PhpUnitCompatibilityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
@@ -12,6 +13,8 @@ use Symfony\Component\DomCrawler\Crawler;
  * Base class for asserting patterns.
  */
 abstract class BasePatternAssert extends Assert implements PatternAssertInterface {
+
+  use PhpUnitCompatibilityTrait;
 
   /**
    * Method that returns the assertions to be run by a particular pattern.
@@ -195,7 +198,7 @@ abstract class BasePatternAssert extends Assert implements PatternAssertInterfac
     $this->assertElementExists($selector, $crawler);
     $element = $crawler->filter($selector);
     self::assertEquals($expected_image['alt'], $element->attr('alt'));
-    self::assertContains($expected_image['src'], $element->attr('src'));
+    self::assertStringContainsString($expected_image['src'], $element->attr('src'));
   }
 
 }

@@ -4,7 +4,7 @@ description: 'OpenEuropa theme test module.'
 package: OpenEuropa
 hidden: true
 version: VERSION
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 
 config_devel:
   install:

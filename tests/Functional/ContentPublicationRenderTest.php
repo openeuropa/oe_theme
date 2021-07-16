@@ -35,6 +35,11 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
+  protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
   protected function setUp(): void {
     parent::setUp();
 
@@ -271,8 +276,8 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     $thumbnail_wrapper = $this->assertSession()->elementExists('css', $thumbnail_wrapper_selector);
     $image_element = $this->assertSession()->elementExists('css', 'img', $thumbnail_wrapper);
-    $this->assertContains("placeholder_publication_image.png", $image_element->getAttribute('src'));
-    $this->assertContains("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
+    $this->assertStringContainsString("placeholder_publication_image.png", $image_element->getAttribute('src'));
+    $this->assertStringContainsString("oe_theme_publication_thumbnail", $image_element->getAttribute('src'));
     $this->assertEquals("Alternative text publication_image", $image_element->getAttribute('alt'));
 
     // Unpublish the media and assert it is not rendered anymore.

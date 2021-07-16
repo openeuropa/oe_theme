@@ -57,7 +57,7 @@ class ImageValueObjectTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     $this->imageUri = $this->prophesize(FieldItemList::class);
@@ -161,7 +161,7 @@ if (!function_exists('Drupal\oe_theme\ValueObject\file_create_url')) {
    *   Processed url.
    */
   function file_create_url($uri): string {
-    return \Drupal\Tests\oe_theme\Unit\Patterns\file_create_url($uri);
+    return $uri;
   }
 
 }

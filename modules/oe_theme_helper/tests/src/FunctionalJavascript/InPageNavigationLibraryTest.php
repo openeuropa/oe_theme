@@ -33,12 +33,12 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('theme_handler')->setDefault('oe_theme');
+    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
     // Rebuild the ui_pattern definitions to collect the ones provided by

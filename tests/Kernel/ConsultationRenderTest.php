@@ -51,7 +51,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     ]);
 
     module_load_include('install', 'oe_content');
-    oe_content_install();
+    oe_content_install(FALSE);
 
     $this->setUpCurrentUser([], [], TRUE);
   }
