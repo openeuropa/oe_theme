@@ -229,8 +229,9 @@ msgstr "Fi stadji multipli"
 msgid "Permanent"
 msgstr "Permanenti"
 
-msgid "in"
-msgstr "fi"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " fi"
 
 msgid "Contact us"
 msgstr "Ikkuntattjana"

@@ -229,8 +229,9 @@ msgstr "Prazos múltiplos"
 msgid "Permanent"
 msgstr "Permanente"
 
-msgid "in"
-msgstr "no"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " no"
 
 msgid "Contact us"
 msgstr "Contacte-nos"

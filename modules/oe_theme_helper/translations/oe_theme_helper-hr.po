@@ -229,8 +229,9 @@ msgstr "Više rokova"
 msgid "Permanent"
 msgstr "Stalno"
 
-msgid "in"
-msgstr ""
+msgctxt "Call for proposals"
+msgid " in"
+msgstr ","
 
 msgid "Contact us"
 msgstr "Kontakt"

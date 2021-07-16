@@ -229,8 +229,9 @@ msgstr "Monivaiheinen"
 msgid "Permanent"
 msgstr "Jatkuva"
 
-msgid "in"
-msgstr "julkaisu"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " julkaisu"
 
 msgid "Contact us"
 msgstr "Yhteydenotot"

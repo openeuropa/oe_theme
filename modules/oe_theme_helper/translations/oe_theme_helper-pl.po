@@ -229,8 +229,9 @@ msgstr "Więcej dat zakończenia"
 msgid "Permanent"
 msgstr "Stały"
 
-msgid "in"
-msgstr "w"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " w"
 
 msgid "Contact us"
 msgstr "Kontakt"

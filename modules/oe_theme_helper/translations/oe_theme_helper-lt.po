@@ -229,8 +229,9 @@ msgstr "Keli terminai"
 msgid "Permanent"
 msgstr "Nuolatinis"
 
-msgid "in"
-msgstr ""
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " "
 
 msgid "Contact us"
 msgstr "Susisiekite su mumis"

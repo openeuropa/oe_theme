@@ -229,8 +229,9 @@ msgstr "Πολλές ημερομηνίες λήξης"
 msgid "Permanent"
 msgstr "Μόνιμος"
 
-msgid "in"
-msgstr "στην"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " στην"
 
 msgid "Contact us"
 msgstr "Επικοινωνήστε μαζί μας"

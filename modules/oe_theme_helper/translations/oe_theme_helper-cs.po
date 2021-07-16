@@ -229,8 +229,9 @@ msgstr "Několik termínů"
 msgid "Permanent"
 msgstr "Stálý"
 
-msgid "in"
-msgstr "v"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " v"
 
 msgid "Contact us"
 msgstr "Kontakt"

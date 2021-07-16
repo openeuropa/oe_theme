@@ -229,8 +229,9 @@ msgstr "Flera tidsfrister"
 msgid "Permanent"
 msgstr "Ständigt pågående"
 
-msgid "in"
-msgstr "i"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " i"
 
 msgid "Contact us"
 msgstr "Kontakta oss"

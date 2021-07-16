@@ -229,7 +229,8 @@ msgstr "Няколко крайни срока"
 msgid "Permanent"
 msgstr "Постоянен"
 
-msgid "in"
+msgctxt "Call for proposals"
+msgid " in"
 msgstr "в"
 
 msgid "Contact us"

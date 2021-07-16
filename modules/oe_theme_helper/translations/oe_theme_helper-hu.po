@@ -229,8 +229,9 @@ msgstr "Többkörös"
 msgid "Permanent"
 msgstr "Állandó"
 
-msgid "in"
-msgstr ""
+msgctxt "Call for proposals"
+msgid " in"
+msgstr ","
 
 msgid "Contact us"
 msgstr "Kapcsolatfelvétel"

@@ -229,8 +229,9 @@ msgstr "Vairāki termiņi"
 msgid "Permanent"
 msgstr "Pastāvīgs"
 
-msgid "in"
-msgstr ""
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " "
 
 msgid "Contact us"
 msgstr "Sazinieties ar mums"

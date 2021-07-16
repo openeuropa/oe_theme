@@ -6,9 +6,8 @@
  * @see \Drupal\oe_theme_content_call_proposals\Plugin\ExtraField\Display\CallForProposalsPublicationInfoExtraField::viewElements()
  */
 #}
-{{ date }}
-{% if link is not empty %}
-  {{ 'in'|t }}
+{# Such formatting is required to support comma between date and link in translations. #}
+{{ date }}{% if link is not empty %}{% trans ' in' with {'context': 'Call for proposals'} %}
   {% include '@ecl-twig/link' with {
     link: {
       type: 'standalone',

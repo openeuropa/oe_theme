@@ -229,8 +229,9 @@ msgstr "Scoitheadh ilchéimneach"
 msgid "Permanent"
 msgstr "Buan"
 
-msgid "in"
-msgstr "sa"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " sa"
 
 msgid "Contact us"
 msgstr "Sonraí teagmhála"

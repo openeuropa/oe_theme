@@ -229,8 +229,9 @@ msgstr "Mehrere Enddaten"
 msgid "Permanent"
 msgstr "Unbefristet"
 
-msgid "in"
-msgstr "im"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " im"
 
 msgid "Contact us"
 msgstr "Kontakt"

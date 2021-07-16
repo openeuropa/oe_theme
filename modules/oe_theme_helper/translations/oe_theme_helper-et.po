@@ -229,8 +229,9 @@ msgstr "Mitme tähtajaga"
 msgid "Permanent"
 msgstr "Alaline"
 
-msgid "in"
-msgstr "väljaandes"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " väljaandes"
 
 msgid "Contact us"
 msgstr "Võtke meiega ühendust"

@@ -229,8 +229,9 @@ msgstr "In più fasiIn più fasi"
 msgid "Permanent"
 msgstr "Permanente"
 
-msgid "in"
-msgstr "in"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " in"
 
 msgid "Contact us"
 msgstr "Contattaci"

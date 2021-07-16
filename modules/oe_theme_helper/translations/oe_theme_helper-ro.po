@@ -229,8 +229,9 @@ msgstr "Cu mai multe etape"
 msgid "Permanent"
 msgstr "Permanent(ă)"
 
-msgid "in"
-msgstr "în"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " în"
 
 msgid "Contact us"
 msgstr "Contactați-ne"

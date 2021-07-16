@@ -229,8 +229,9 @@ msgstr "Meerdere deadlines"
 msgid "Permanent"
 msgstr "Permanent"
 
-msgid "in"
-msgstr "in"
+msgctxt "Call for proposals"
+msgid " in"
+msgstr " in"
 
 msgid "Contact us"
 msgstr "Contact"
