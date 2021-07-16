@@ -1382,10 +1382,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 2
-      'div.ecl-content-item-block__item.ecl-col-m-6': 2
-      'div.ecl-content-item-block__item.ecl-col-m-4': 0
-      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 2
-      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-l-6': 2
+      'div.ecl-content-item-block__item.ecl-col-l-4': 0
+      'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 2
+      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1418,10 +1418,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 3
-      'div.ecl-content-item-block__item.ecl-col-m-6': 0
-      'div.ecl-content-item-block__item.ecl-col-m-4': 3
-      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-l-6': 0
+      'div.ecl-content-item-block__item.ecl-col-l-4': 3
+      'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 3
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1442,10 +1442,10 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-l-3:nth-child(4) a.ecl-link': 'A simple link 4'
 - array:
     '#type': pattern
     '#id': list_item_block_six_columns
@@ -1459,12 +1459,12 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(4) a.ecl-link': 'A simple link 4'
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(5) a.ecl-link': 'A simple link 5'
-      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(6) a.ecl-link': 'A simple link 6'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(5) a.ecl-link': 'A simple link 5'
+      'div.ecl-content-item-block__item.ecl-col-l-2:nth-child(6) a.ecl-link': 'A simple link 6'
 - array:
     '#type': pattern
     '#id': navigation_list
