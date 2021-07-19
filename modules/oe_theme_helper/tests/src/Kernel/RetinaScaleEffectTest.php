@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\Tests\oe_theme_helper\Functional;
+namespace Drupal\Tests\oe_theme_helper\Kernel;
 
+use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\oe_theme_helper\Traits\ToolkitTestTrait;
-use Drupal\Tests\token\Kernel\KernelTestBase;
 
 /**
  * Tests that the Retina Scale effect upscales images appropriately.
@@ -27,10 +27,10 @@ class RetinaScaleEffectTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'image',
-    'oe_theme_helper',
     'image_test',
+    'oe_theme_helper',
     'system',
   ];
 
@@ -68,8 +68,8 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals(10, $calls['scale'][0][0], 'Width was passed correctly');
-    $this->assertEquals(10, $calls['scale'][0][1], 'Height was based off aspect ratio and passed correctly');
+    $this->assertEquals(10, $calls['scale'][0][0]);
+    $this->assertEquals(10, $calls['scale'][0][1]);
   }
 
   /**
@@ -84,7 +84,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals($this->image->getWidth() * 4, $calls['scale'][0][0], 'Width was passed correctly');
+    $this->assertEquals($this->image->getWidth() * 4, $calls['scale'][0][0]);
   }
 
   /**
@@ -98,7 +98,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0], 'Width is double the original size.');
+    $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0], 'Width must be twice the original size.');
   }
 
   /**
@@ -113,7 +113,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0], 'Width is triple the original size.');
+    $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0], 'Width is three times the original size.');
   }
 
   /**
@@ -131,7 +131,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
   protected function assertImageEffect(array $operations, $effect_name, array $data): void {
     /** @var \Drupal\image\ImageEffectInterface $effect */
     $effect = $this->manager->createInstance($effect_name, ['data' => $data]);
-    $this->assertTrue($effect->applyEffect($this->image), 'Function returned the expected value.');
+    $this->assertTrue($effect->applyEffect($this->image));
   }
 
 }
