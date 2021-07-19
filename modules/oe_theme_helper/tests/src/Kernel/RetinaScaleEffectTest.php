@@ -98,7 +98,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0], 'Width must be twice the original size.');
+    $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0]);
   }
 
   /**
@@ -113,7 +113,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
     $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
-    $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0], 'Width is three times the original size.');
+    $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0]);
   }
 
   /**
