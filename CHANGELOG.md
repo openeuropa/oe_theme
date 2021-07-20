@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.20.2](https://github.com/openeuropa/oe_theme/tree/2.20.2) (2021-07-07)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.20.1...2.20.2)
+
+**Merged pull requests:**
+- EWPP-1303: Rename Non-EU languages to Other languages on front-end. [\#871](https://github.com/openeuropa/oe_theme/pull/871) ([nagyad](https://github.com/nagyad))
+
 ## [2.20.1](https://github.com/openeuropa/oe_theme/tree/2.20.1) (2021-06-23)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.20.0...2.20.1)

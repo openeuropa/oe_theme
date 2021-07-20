@@ -65,7 +65,7 @@ Feature: Theme showcase
     Then the overlay "language switcher links" is visible
 
     And I should not see "EU official languages" in the "language switcher"
-    And I should not see "Non-EU languages" in the "language switcher"
+    And I should not see "Other languages" in the "language switcher"
 
     And I should see the following links in the "language switcher":
       | български   |
