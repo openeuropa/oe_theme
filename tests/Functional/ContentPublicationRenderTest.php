@@ -291,7 +291,10 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $node->set('oe_publication_contacts', $contact)->save();
     $this->drupalGet($node->toUrl());
 
-    $inpage_nav_expected_values['list'][] = ['label' => 'Contact', 'href' => '#contact'];
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Contact',
+      'href' => '#contact',
+    ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');

@@ -11,7 +11,7 @@ use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 use PHPUnit\Framework\Assert;
 
 /**
- * Class MinkContext.
+ * Extends default Mink context.
  */
 class MinkContext extends DrupalExtensionMinkContext {
 

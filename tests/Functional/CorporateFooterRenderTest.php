@@ -347,7 +347,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $section = $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -363,7 +366,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -373,7 +379,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $expected = [
+      'label' => 'Custom about 1',
+      'href' => 'http://example.com/custom-about-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Add one more, assert odd goes into section 2, even goes into section 3.
@@ -387,7 +396,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -396,7 +408,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom related 1', 'href' => 'http://example.com/custom-related-1'];
+    $expected = [
+      'label' => 'Custom related 1',
+      'href' => 'http://example.com/custom-related-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -406,7 +421,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $expected = [
+      'label' => 'Custom about 1',
+      'href' => 'http://example.com/custom-about-1',
+    ];
 
     // Add the follow us, assert it goes last, into the left column.
     // We have 3 sub-sections plus follow, distribution should be 2 and 2.
@@ -421,7 +439,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -431,12 +452,18 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -446,7 +473,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $expected = [
+      'label' => 'Custom about 1',
+      'href' => 'http://example.com/custom-about-1',
+    ];
 
     // Assert previous last in section 2 moved to the right into section 3.
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -455,7 +485,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom related 1', 'href' => 'http://example.com/custom-related-1'];
+    $expected = [
+      'label' => 'Custom related 1',
+      'href' => 'http://example.com/custom-related-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert adding a custom section in backend appears,
@@ -471,7 +504,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Since we have an even number there is no switch,
@@ -482,7 +518,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom related 1', 'href' => 'http://example.com/custom-related-1'];
+    $expected = [
+      'label' => 'Custom related 1',
+      'href' => 'http://example.com/custom-related-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Here we assert Follow us is still on the left in section 2.
@@ -493,12 +532,18 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -508,7 +553,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $expected = [
+      'label' => 'Custom about 1',
+      'href' => 'http://example.com/custom-about-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -517,7 +565,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom link 1', 'href' => 'http://example.com/custom-link-1'];
+    $expected = [
+      'label' => 'Custom link 1',
+      'href' => 'http://example.com/custom-link-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert updating a general link also changes the footer content.
@@ -534,7 +585,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom link altered', 'href' => 'http://example.com/custom-link-altered'];
+    $expected = [
+      'label' => 'Custom link altered',
+      'href' => 'http://example.com/custom-link-altered',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert updating a section also changes the footer content.
@@ -567,7 +621,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -576,7 +633,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom about 1', 'href' => 'http://example.com/custom-about-1'];
+    $expected = [
+      'label' => 'Custom about 1',
+      'href' => 'http://example.com/custom-about-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $section);
@@ -586,12 +646,18 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $section = $assert->elementExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
@@ -601,7 +667,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Section altered', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom link altered', 'href' => 'http://example.com/custom-link-altered'];
+    $expected = [
+      'label' => 'Custom link altered',
+      'href' => 'http://example.com/custom-link-altered',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -610,7 +679,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom related 1', 'href' => 'http://example.com/custom-related-1'];
+    $expected = [
+      'label' => 'Custom related 1',
+      'href' => 'http://example.com/custom-related-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert deleting links removes the section.
@@ -625,7 +697,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = ['label' => 'Custom contact 1', 'href' => 'http://example.com/custom-contact-1'];
+    $expected = [
+      'label' => 'Custom contact 1',
+      'href' => 'http://example.com/custom-contact-1',
+    ];
     $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $section);
@@ -637,12 +712,18 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
     $this->assertNotEquals('Custom about 1', $social_link->getText());
     $social_label = $subsection->find('css', 'ul li:nth-child(1) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 1', 'href' => 'http://example.com/social-1'];
+    $expected = [
+      'label' => 'Social 1',
+      'href' => 'http://example.com/social-1',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     $social_link = $subsection->find('css', 'ul li:nth-child(2) > a');
     $social_label = $subsection->find('css', 'ul li:nth-child(2) > a span.ecl-link__label');
-    $expected = ['label' => 'Social 2', 'href' => 'http://example.com/social-2'];
+    $expected = [
+      'label' => 'Social 2',
+      'href' => 'http://example.com/social-2',
+    ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
     // Assert deleting sections in backend is reflected in the footer.
@@ -654,8 +735,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->deleteEntity('footer_link_social', 'social-2');
     $this->drupalGet('<front>');
 
-    $section = $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section2');
-    $section = $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
+    $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section2');
+    $assert->elementNotExists('css', 'footer.ecl-footer-standardised section.ecl-footer-standardised__section3');
   }
 
   /**
@@ -680,7 +761,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   The test data for config and assertion.
    */
   protected function overrideCorporateBlocksFooter(string $type, array $test_data): void {
-    /* @var $config_obj \Drupal\Core\Config\Config */
+    /** @var \Drupal\Core\Config\Config $config_obj */
     $config_obj = $this->configFactory->getEditable("oe_corporate_blocks.{$type}_data.footer");
     $config_obj->setData($test_data);
     $config_obj->save();

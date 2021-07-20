@@ -61,8 +61,14 @@ class TwigExtension extends \Twig_Extension {
     return [
       new \Twig_SimpleFilter('format_size', 'format_size'),
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
-      new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
-      new \Twig_SimpleFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
+      new \Twig_SimpleFilter('to_native_language', [
+        $this,
+        'toNativeLanguageName',
+      ]),
+      new \Twig_SimpleFilter('to_internal_language_id', [
+        $this,
+        'toInternalLanguageId',
+      ]),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),

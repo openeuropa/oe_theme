@@ -9,7 +9,7 @@ use Drupal\menu_link_content\Entity\MenuLinkContent;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class MainMenuTest.
+ * Tests that the main menu is properly displayed.
  *
  * @group batch2
  */
@@ -78,7 +78,10 @@ class MainMenuTest extends AbstractKernelTestBase {
     }
 
     $parameters = new MenuTreeParameters();
-    $parameters->setActiveTrail(["menu_link_content:" . $parent->uuid(), "menu_link_content:" . $child->uuid()]);
+    $parameters->setActiveTrail([
+      "menu_link_content:" . $parent->uuid(),
+      "menu_link_content:" . $child->uuid(),
+    ]);
     $tree = $menu_tree->load('main', $parameters);
     $build = $menu_tree->build($tree);
     $html = $this->renderRoot($build);

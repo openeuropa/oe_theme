@@ -92,7 +92,10 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
         'value' => $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
       'oe_reference_code' => 'Call for tenders reference',
-      'oe_departments' => ['http://publications.europa.eu/resource/authority/corporate-body/ABEC', 'http://publications.europa.eu/resource/authority/corporate-body/ACM'],
+      'oe_departments' => [
+        'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
+        'http://publications.europa.eu/resource/authority/corporate-body/ACM',
+      ],
       'uid' => 0,
       'status' => 1,
     ];
