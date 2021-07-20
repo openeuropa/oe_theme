@@ -73,7 +73,10 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
     media_install();
 
     // Create a content type.
-    $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
+    $type = NodeType::create([
+      'name' => 'Test content type',
+      'type' => 'test_ct',
+    ]);
     $type->save();
 
     FieldStorageConfig::create([

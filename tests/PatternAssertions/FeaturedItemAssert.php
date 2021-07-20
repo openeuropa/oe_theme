@@ -85,11 +85,11 @@ class FeaturedItemAssert extends BasePatternAssert {
    */
   protected function assertLink($expected_link, string $variant, Crawler $crawler): void {
     // Assert the title url points to the correct direction.
-    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link', 'href', $crawler);;
+    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link', 'href', $crawler);
 
     // If the variant is extended, assert that the button is correct.
     if ($variant == 'extended') {
-      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);;
+      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);
       $this->assertElementText($expected_link['label'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call span.ecl-button__container span.ecl-button__label', $crawler);
     }
   }

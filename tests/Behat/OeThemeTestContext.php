@@ -330,7 +330,7 @@ class OeThemeTestContext extends RawDrupalContext {
     //
     // We have a step in EWCMS that does the same thing, ideally we would need
     // to port this in our traits and remove it from here.
-    // @todo: reuse reset check sums once available as a trait.
+    // @todo reuse reset check sums once available as a trait.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
@@ -463,7 +463,7 @@ class OeThemeTestContext extends RawDrupalContext {
     //
     // We have a step in EWCMS that does the same thing, ideally we would need
     // to port this in our traits and remove it from here.
-    // @todo: reuse reset check sums once available as a trait.
+    // @todo reuse reset check sums once available as a trait.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
   }
 
