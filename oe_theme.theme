@@ -35,7 +35,7 @@ use Drupal\Component\Render\FormattableMarkup;
  */
 function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
   // Work-around for a core bug affecting admin themes.
-  // @todo: remove this once the core issue below is fixed.
+  // @todo remove this once the core issue below is fixed.
   // @link https://www.drupal.org/node/943212
   if (isset($form_id)) {
     return;
@@ -258,8 +258,14 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
   // Sort local tasks by weight.
-  uasort($variables['primary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
-  uasort($variables['secondary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+  uasort($variables['primary'], [
+    '\Drupal\Component\Utility\SortArray',
+    'sortByWeightProperty',
+  ]);
+  uasort($variables['secondary'], [
+    '\Drupal\Component\Utility\SortArray',
+    'sortByWeightProperty',
+  ]);
 
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
@@ -1451,7 +1457,8 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $link = $paragraph->get('field_oe_link')->first();
     $variables['url'] = $link->getUrl();
-    $variables['label'] = $link->get('title')->getValue();;
+    $variables['label'] = $link->get('title')->getValue();
+    ;
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;

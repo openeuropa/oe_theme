@@ -53,7 +53,7 @@ function oe_theme_contact_forms_form_contact_message_form_alter(&$form, FormStat
 
   $form['privacy_policy']['#title'] = t('I have read and agree with the @link', [
     '@link' => $privacy_link->toString(),
-  ]);;
+  ]);
 }
 
 /**

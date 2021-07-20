@@ -8,7 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 use Drupal\Tests\UnitTestCase;
 
 /**
- * Class AbstractUnitTestBase.
+ * Base class for theme's unit tests.
  */
 abstract class AbstractUnitTestBase extends UnitTestCase {
 

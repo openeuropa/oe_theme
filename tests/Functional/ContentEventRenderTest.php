@@ -337,7 +337,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'title' => 'Link to online event',
     ]);
     // The "Online description" field is not currently displayed.
-    // @todo: Assert its visibility as soon as the issue below will be fixed.
+    // @todo Assert its visibility as soon as the issue below will be fixed.
     // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/EWPP-1063
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
@@ -522,7 +522,10 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert "Event contact" field.
     $contact_entity_general = $this->createContactEntity('general_contact');
     $contact_entity_press = $this->createContactEntity('press_contact', 'oe_press');
-    $node->set('oe_event_contact', [$contact_entity_general, $contact_entity_press])->save();
+    $node->set('oe_event_contact', [
+      $contact_entity_general,
+      $contact_entity_press,
+    ])->save();
     $this->drupalGet($node->toUrl());
 
     $event_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts');

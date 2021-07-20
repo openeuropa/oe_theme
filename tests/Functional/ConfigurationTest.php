@@ -29,7 +29,10 @@ class ConfigurationTest extends BrowserTestBase {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme', 'oe_theme_subtheme_test']);
+    $this->container->get('theme_installer')->install([
+      'oe_theme',
+      'oe_theme_subtheme_test',
+    ]);
   }
 
   /**
