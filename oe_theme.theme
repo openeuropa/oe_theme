@@ -219,6 +219,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
  */
 function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
   // Massage data to be compliant with ECL Accordion2 component data structure.
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   $variables['identifier'] = 'paragraph-' . $variables['paragraph']->id();
   $variables['items'] = [];
 
@@ -226,8 +227,8 @@ function oe_theme_preprocess_paragraph__oe_accordion(array &$variables): void {
   foreach ($variables['paragraph']->get('field_oe_paragraphs') as $field_item) {
     $paragraph = \Drupal::service('entity.repository')->getTranslationFromContext($field_item->entity);
     $variables['items'][] = [
-      'title' => $paragraph->get('field_oe_text')->value,
-      'body' => $paragraph->get('field_oe_text_long')->value,
+      'title' => $builder->viewField($paragraph->get('field_oe_text')),
+      'body' => $builder->viewField($paragraph->get('field_oe_text_long')),
     ];
   }
 }
