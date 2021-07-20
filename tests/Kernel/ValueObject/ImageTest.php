@@ -92,8 +92,7 @@ class ImageTest extends KernelTestBase {
     $this->assertStringContainsString('/styles/main_style/public/example_1.jpg', $object->getSource());
 
     $invalid_image_style = $this->randomMachineName();
-    $this->expectException('InvalidArgumentException');
-    $this->expectExceptionMessage(sprintf('Could not load image style with name "%s".', $invalid_image_style));
+    $this->expectExceptionObject(new \InvalidArgumentException(sprintf('Could not load image style with name "%s".', $invalid_image_style)));
     ImageValueObject::fromStyledImageItem($entity->get('field_image')->first(), $invalid_image_style);
   }
 

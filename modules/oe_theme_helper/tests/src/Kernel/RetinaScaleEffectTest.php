@@ -12,9 +12,10 @@ use Drupal\Tests\oe_theme_helper\Traits\ToolkitTestTrait;
  *
  * @group image
  *
- * @group batch3
+ * @group batch2
  */
 class RetinaScaleEffectTest extends KernelTestBase {
+
   use ToolkitTestTrait;
 
   /**
@@ -128,7 +129,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
    *
    * @throws \Drupal\Component\Plugin\Exception\PluginException
    */
-  protected function assertImageEffect(array $operations, $effect_name, array $data): void {
+  protected function assertImageEffect(array $operations, string $effect_name, array $data): void {
     /** @var \Drupal\image\ImageEffectInterface $effect */
     $effect = $this->manager->createInstance($effect_name, ['data' => $data]);
     $this->assertTrue($effect->applyEffect($this->image));
