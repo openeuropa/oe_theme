@@ -96,7 +96,7 @@ class MediaThumbnailUrlFormatter extends ImageFormatter {
 
       // Get processed URL if image style is set.
       if ($image_style_setting) {
-        /* @var \Drupal\image\Entity\ImageStyle $image_style */
+        /** @var \Drupal\image\Entity\ImageStyle $image_style */
         $image_style = $this->imageStyleStorage->load($image_style_setting);
         $url = file_url_transform_relative($image_style->buildUrl($uri));
         $cache->addCacheableDependency($image_style);

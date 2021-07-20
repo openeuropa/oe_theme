@@ -427,7 +427,10 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     // Assert Articles and publications field.
     $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference');
     $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference');
-    $node->set('oe_person_documents', [$document_reference, $publication_reference])->save();
+    $node->set('oe_person_documents', [
+      $document_reference,
+      $publication_reference,
+    ])->save();
     $this->drupalGet($node->toUrl());
 
     $inpage_nav_expected_values['list'][] = [
@@ -460,9 +463,18 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $inpage_nav_expected_values['list'] = [
-      ['label' => 'Contact', 'href' => '#contact'],
-      ['label' => 'Responsibilities', 'href' => '#responsibilities'],
-      ['label' => 'Articles and presentations', 'href' => '#articles-and-presentations'],
+      [
+        'label' => 'Contact',
+        'href' => '#contact',
+      ],
+      [
+        'label' => 'Responsibilities',
+        'href' => '#responsibilities',
+      ],
+      [
+        'label' => 'Articles and presentations',
+        'href' => '#articles-and-presentations',
+      ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 

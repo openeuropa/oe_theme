@@ -224,10 +224,22 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -247,11 +259,26 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -262,18 +289,39 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->assertMediaDocumentDefaultRender($content_items[4], 'consultation_document', 'English', '2.96 KB - PDF', "sample_consultation_document.pdf", 'Download');
 
     // Reference documents and publication node and assert content is updated.
-    $node->set('oe_consultation_documents', [$document_reference, $publication_reference]);
+    $node->set('oe_consultation_documents', [
+      $document_reference,
+      $publication_reference,
+    ]);
     $node->save();
     $this->drupalGet($node->toUrl());
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
-        ['label' => 'Reference documents', 'href' => '#reference-documents'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
+        [
+          'label' => 'Reference documents',
+          'href' => '#reference-documents',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -296,13 +344,34 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
-        ['label' => 'Reference documents', 'href' => '#reference-documents'],
-        ['label' => 'Additional information', 'href' => '#additional-information'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
+        [
+          'label' => 'Reference documents',
+          'href' => '#reference-documents',
+        ],
+        [
+          'label' => 'Additional information',
+          'href' => '#additional-information',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -318,14 +387,38 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
-        ['label' => 'Reference documents', 'href' => '#reference-documents'],
-        ['label' => 'Additional information', 'href' => '#additional-information'],
-        ['label' => 'Legal notice', 'href' => '#legal-notice'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
+        [
+          'label' => 'Reference documents',
+          'href' => '#reference-documents',
+        ],
+        [
+          'label' => 'Additional information',
+          'href' => '#additional-information',
+        ],
+        [
+          'label' => 'Legal notice',
+          'href' => '#legal-notice',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -341,15 +434,42 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
-        ['label' => 'Reference documents', 'href' => '#reference-documents'],
-        ['label' => 'Additional information', 'href' => '#additional-information'],
-        ['label' => 'Legal notice', 'href' => '#legal-notice'],
-        ['label' => 'Contact', 'href' => '#contact'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
+        [
+          'label' => 'Reference documents',
+          'href' => '#reference-documents',
+        ],
+        [
+          'label' => 'Additional information',
+          'href' => '#additional-information',
+        ],
+        [
+          'label' => 'Legal notice',
+          'href' => '#legal-notice',
+        ],
+        [
+          'label' => 'Contact',
+          'href' => '#contact',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
@@ -363,15 +483,42 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Details', 'href' => '#details'],
-        ['label' => 'Target audience', 'href' => '#target-audience'],
-        ['label' => 'Why we are consulting', 'href' => '#why-we-are-consulting'],
-        ['label' => 'Respond to the consultation', 'href' => '#respond-to-the-consultation'],
-        ['label' => 'Consultation outcome', 'href' => '#consultation-outcome'],
-        ['label' => 'Reference documents', 'href' => '#reference-documents'],
-        ['label' => 'Additional information', 'href' => '#additional-information'],
-        ['label' => 'Legal notice', 'href' => '#legal-notice'],
-        ['label' => 'Contacts', 'href' => '#contact'],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+        [
+          'label' => 'Target audience',
+          'href' => '#target-audience',
+        ],
+        [
+          'label' => 'Why we are consulting',
+          'href' => '#why-we-are-consulting',
+        ],
+        [
+          'label' => 'Respond to the consultation',
+          'href' => '#respond-to-the-consultation',
+        ],
+        [
+          'label' => 'Consultation outcome',
+          'href' => '#consultation-outcome',
+        ],
+        [
+          'label' => 'Reference documents',
+          'href' => '#reference-documents',
+        ],
+        [
+          'label' => 'Additional information',
+          'href' => '#additional-information',
+        ],
+        [
+          'label' => 'Legal notice',
+          'href' => '#legal-notice',
+        ],
+        [
+          'label' => 'Contacts',
+          'href' => '#contact',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());

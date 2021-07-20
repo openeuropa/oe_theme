@@ -88,7 +88,10 @@ class TimelineTest extends AbstractKernelTestBase {
     $this->container->set('theme.registry', NULL);
 
     // Create content type.
-    $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
+    $type = NodeType::create([
+      'name' => 'Test content type',
+      'type' => 'test_ct',
+    ]);
     $type->save();
 
     FilterFormat::create([

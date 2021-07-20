@@ -57,7 +57,7 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
     oe_multilingual_install(FALSE);
 
     // Rebuild the container in order to make sure tests pass.
-    // @todo: fix test setup so that we can get rid of this line.
+    // @todo fix test setup so that we can get rid of this line.
     $this->container->get('kernel')->rebuildContainer();
   }
 

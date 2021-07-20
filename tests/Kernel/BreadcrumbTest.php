@@ -13,7 +13,7 @@ use Drupal\Tests\oe_theme\Traits\RequestTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class BreadcrumbTest.
+ * Tests that the breadcrumb is properly displayed.
  *
  * @group batch2
  */

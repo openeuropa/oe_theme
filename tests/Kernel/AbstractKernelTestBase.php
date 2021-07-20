@@ -10,9 +10,7 @@ use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class AbstractKernelTestBase.
- *
- * @package Drupal\Tests\oe_theme\Kernel
+ * Base class for theme's kernel tests.
  */
 abstract class AbstractKernelTestBase extends KernelTestBase {
 

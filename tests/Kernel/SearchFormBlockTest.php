@@ -7,7 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class SearchFormBlockTest.
+ * Tests that the search form is properly displayed.
  *
  * @group batch2
  */

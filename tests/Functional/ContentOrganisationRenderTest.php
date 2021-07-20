@@ -199,7 +199,10 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
 
     // Create another contact and add it to the node.
     $second_general_contact = $this->createContactEntity('second_general_contact', 'oe_general');
-    $node->set('oe_organisation_contact', [$first_general_contact, $second_general_contact]);
+    $node->set('oe_organisation_contact', [
+      $first_general_contact,
+      $second_general_contact,
+    ]);
     $node->save();
     $this->drupalGet($node->toUrl());
 

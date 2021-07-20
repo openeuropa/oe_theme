@@ -12,7 +12,7 @@ use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Class BlockTest.
+ * Tests that blocks are properly displayed.
  *
  * @group batch2
  */

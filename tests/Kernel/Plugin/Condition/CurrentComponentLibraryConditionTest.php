@@ -25,7 +25,10 @@ class CurrentComponentLibraryConditionTest extends AbstractKernelTestBase {
     $condition_empty = $manager->createInstance('oe_theme_helper_current_component_library');
 
     $condition_negated = $manager->createInstance('oe_theme_helper_current_component_library');
-    $condition_negated->setConfiguration(['component_library' => 'ec', 'negate' => TRUE]);
+    $condition_negated->setConfiguration([
+      'component_library' => 'ec',
+      'negate' => TRUE,
+    ]);
 
     $this->assertEqual($condition->summary(), new FormattableMarkup('The current component library is @component_library', ['@component_library' => 'ec']));
     $this->assertEqual($condition_empty->summary(), new FormattableMarkup('The current component library can be set to anything', []));
