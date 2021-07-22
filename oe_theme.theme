@@ -743,7 +743,6 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
 
   // Generate required ids.
   $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
-  $variables['webtools_id'] = Html::getUniqueId('ecl-webtools-etrans');
 }
 
 /**
