@@ -66,7 +66,7 @@
         "We explicity require drupal/core to allow lower 'composer update --prefer-lowest' to complete successfully.",
         "openeuropa/oe_search is used from a branch because of major upgrading is pending. Change again when it released.",
         "openeuropa/ecl-twig-loader is used from a branch because it must be upgrade to be D9 compatible. Change again when it released.",
-        "openeuropa/oe_multilingual is used from a branch because it was an issue with D9. Change again when it released."
+        "openeuropa/oe_multilingual is used from a branch because it has an issue with D9. Change again when it released."
     ],
     "conflict": {
         "openeuropa/oe_corporate_blocks": "<3.0.0",
