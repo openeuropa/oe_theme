@@ -1,7 +1,6 @@
 {% spaceless %}
 
 {#
-  Based on the ECL eTrans composition: https://v3--europa-component-library.netlify.app/playground/ec/?path=/story/compositions-etranslation--default
   Parameters:
     - "unavailable_language" (string) (default: ''): the name of the unavailable language.
     - "expandable_id" (string) (default: ''): unique ID for the expandable component.
@@ -16,7 +15,6 @@
         ...
       ]
 #}
-  {% set _languages = languages|default([]) %}
   <div class="ecl-u-bg-grey-5 ecl-u-pv-m">
     <div class="ecl-container">
       {% include '@ecl-twig/message' with {
@@ -38,12 +36,15 @@
         },
       } only %}
 
-      {# If there is a language list, render it with an expandable. #}
-      {% if _languages is not empty %}
-        {% set _label = 'Choose another language'|t %}
-        <div data-ecl-expandable="true" data-ecl-auto-init="Expandable">
-          <div class="ecl-u-d-inline-flex ecl-u-align-items-center">
-            {% include '@ecl/button/button.html.twig' with {
+      {# The expandable containing languages is split in two different blocks: "button" and "languages" #}
+      {# This is necessary as, in some cases, additional Webtools widgets might need to be placed right #}
+      {# beside the expandalbe button region, whether we have languages or not. #}
+      <div class="ecl-u-d-inline-flex ecl-u-align-items-center"{{ languages ? ' data-ecl-expandable="true" data-ecl-auto-init="Expandable"' }}>
+        {# This block wraps around the expandable button and it is displayed even if the button is not. #}
+        {% block button %}
+          {% if languages %}
+            {% set _label = 'Choose another language'|t %}
+            {% include '@ecl-twig/button' with {
               label: _label,
               variant: 'secondary',
               type: 'button',
@@ -63,46 +64,38 @@
                 { name: 'aria-expanded', value: 'false' }
               ]
             } only %}
-            {# Allow to add extra links for templates extending the language switcher #}
-            {% block extra_links %}{% endblock %}
-          </div>
-          <div
-            id="{{ expandable_id ~ '-content' }}"
-            class="ecl-expandable__content"
-            hidden
-          >
-            <ul
-              style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)"
-              class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-bullet ecl-u-mt-xs ecl-u-type-m"
-            >
-              {% for language in _languages %}
-                <li class="ecl-unordered-list__item ecl-u-ma-2xs">
-                  {% set link_classes = language.current ? 'ecl-u-bg-blue-50 ecl-u-type-color-white ecl-u-type-bold' : '' %}
-                  {% include '@ecl/link/link.html.twig' with {
-                    link: {
-                      label: language.label,
-                      path: language.href,
-                      type: 'standalone',
-                      no_visited: true,
-                      extra_attributes: [
-                        [
-                          'lang',
-                          language.hreflang
-                        ]
+          {% endif %}
+        {% endblock %}
+      </div>
+      {# This block wraps around the expandable content and it is displayed even if the content is not. #}
+      {% block language_list %}
+        {% if languages %}
+        <div id="{{ expandable_id ~ '-content' }}" class="ecl-expandable__content" hidden>
+          <ul style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)" class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-bullet ecl-u-mt-xs ecl-u-type-m">
+            {% for language in languages %}
+              <li class="ecl-unordered-list__item ecl-u-ma-2xs">
+                {% set link_classes = language.current ? 'ecl-u-bg-blue-50 ecl-u-type-color-white ecl-u-type-bold' : '' %}
+                {% include '@ecl-twig/link' with {
+                  link: {
+                    label: language.label,
+                    path: language.href,
+                    type: 'standalone',
+                    no_visited: true,
+                    extra_attributes: [
+                      [
+                        'lang',
+                        language.hreflang
                       ]
-                    },
-                    extra_classes: 'ecl-u-pv-s ecl-u-ph-m ecl-u-d-block ' ~ link_classes,
-                  } only %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
+                    ]
+                  },
+                  extra_classes: 'ecl-u-pv-s ecl-u-ph-m ecl-u-d-block ' ~ link_classes,
+                } only %}
+              </li>
+            {% endfor %}
+          </ul>
         </div>
-
-      {# If there is a no language list, render nothing but allow other templates to do it. #}
-      {% else %}
-        {% block language_list_alternative %}{% endblock %}
-      {% endif %}
+        {% endif %}
+      {% endblock %}
     </div>
   </div>
 
