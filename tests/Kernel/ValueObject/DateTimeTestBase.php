@@ -10,7 +10,7 @@ use Drupal\Tests\oe_theme\Traits\RenderTrait;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * Class DateTimeTestBase.
+ * Base class for "date type" field kernel tests.
  */
 abstract class DateTimeTestBase extends FieldKernelTestBase {
 

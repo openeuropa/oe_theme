@@ -98,7 +98,7 @@ class Thumbnail extends MediaDataExtractorPluginBase implements ContainerFactory
       return $thumbnail;
     }
 
-    /* @var \Drupal\image\Entity\ImageStyle $image_style */
+    /** @var \Drupal\image\Entity\ImageStyle $image_style */
     $image_style = $this->entityTypeManager
       ->getStorage('image_style')
       ->load($configuration['thumbnail_image_style']);

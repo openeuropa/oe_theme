@@ -56,7 +56,10 @@ class InPageNavigationTest extends BrowserTestBase {
 
     // Create content type.
     $this->type = 'first_node_type';
-    $this->drupalCreateContentType(['name' => 'Test type', 'type' => $this->type]);
+    $this->drupalCreateContentType([
+      'name' => 'Test type',
+      'type' => $this->type,
+    ]);
 
     // Create view display instance.
     $display = \Drupal::entityTypeManager()

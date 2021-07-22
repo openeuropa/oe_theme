@@ -159,7 +159,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $page_header_expected_values['meta'] = [
       'Call for tenders',
       'Open',
-    ];;
+    ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values['items'] = [
@@ -189,7 +189,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $page_header_expected_values['meta'] = [
       'Call for tenders',
       'Closed',
-    ];;
+    ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values['items'] = [
