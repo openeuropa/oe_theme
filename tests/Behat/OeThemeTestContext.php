@@ -425,6 +425,12 @@ class OeThemeTestContext extends RawDrupalContext {
     $this->assertSession()->elementExists('css', 'a.ecl-site-header-' . $ecl_branding_code . '__logo-link .ecl-site-header-' . $ecl_branding_code . '__logo-image');
     $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__language-selector');
     $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__search-container');
+    $site_name_method = 'elementExists';
+    if ($ecl_branding_code == 'core') {
+      $site_name_method = 'elementNotExists';
+    }
+    $this->assertSession()->{$site_name_method}('css', '.ecl-site-header-' . $ecl_branding_code . '__banner');
+
   }
 
   /**
