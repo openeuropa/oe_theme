@@ -71,7 +71,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ->get('entity_type.manager')
       ->getStorage('paragraph')->create([
         'type' => 'oe_text_feature_media',
-        'field_oe_title' => 'Title',
+        'field_oe_title' => 'Heading',
+        'field_oe_feature_media_title' => 'Title',
         'field_oe_plain_text_long' => 'Caption',
         'field_oe_text_long' => 'Full text',
       ]);
@@ -81,7 +82,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $assert = new TextFeaturedMediaAssert();
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
+      'text_title' => 'Title',
       'caption' => NULL,
       'text' => 'Full text',
       'image' => NULL,
@@ -132,11 +134,17 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     // Add Bulgarian translation.
-    $paragraph->addTranslation('bg', ['field_oe_title' => 'Title bg'])->save();
+    $paragraph->addTranslation('bg', [
+      'field_oe_title' => 'Heading bg',
+      'field_oe_feature_media_title' => 'Title bg',
+      'field_oe_plain_text_long' => 'Caption bg',
+      'field_oe_text_long' => 'Full text bg',
+    ])->save();
 
     // Test the translated media is rendered with the translated paragraph.
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
+      'text_title' => 'Title',
       'caption' => 'Caption',
       'text' => 'Full text',
       'image' => [
@@ -149,9 +157,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertVariant('left_simple', $html);
 
     $expected_values = [
-      'title' => 'Title bg',
-      'caption' => NULL,
-      'text' => NULL,
+      'title' => 'Heading bg',
+      'text_title' => 'Title bg',
+      'caption' => 'Caption bg',
+      'text' => 'Full text bg',
       'image' => [
         'src' => 'example_1_bg.jpeg',
         'alt' => 'Alt bg',
@@ -169,7 +178,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
       'caption' => NULL,
       'text' => 'Full text',
       'image' => NULL,
@@ -192,7 +201,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
       'caption' => 'Caption',
       'text' => NULL,
       'image' => [
@@ -203,12 +212,21 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
 
-    // Remove the title and assert the element is no longer rendered.
+    // Remove the heading and assert the element is no longer rendered.
     $paragraph->set('field_oe_title', '');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
     $expected_values['title'] = NULL;
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
+
+    // Remove the title and assert the element is no longer rendered.
+    $paragraph->set('field_oe_feature_media_title', '');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['text_title'] = NULL;
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
 
