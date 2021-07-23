@@ -26,6 +26,24 @@ class ParagraphsTest extends BrowserTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+
+    // Enable and set OpenEuropa Theme as default.
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()
+      ->getEditable('system.theme')
+      ->set('default', 'oe_theme')
+      ->save();
+
+    // Rebuild the ui_pattern definitions to collect the ones provided by
+    // oe_theme itself.
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
+  }
+
+  /**
    * Test Accordion item paragraph form.
    */
   public function testAccordionItemParagraph(): void {
