@@ -68,7 +68,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Make sure that content language switcher block is present.
-    $actual = $crawler->filter('div.ecl-u-bg-grey-5.ecl-u-pv-m div.ecl-container');
+    $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container');
     $this->assertCount(1, $actual);
 
     // Make sure that warning message contains the unavailable language.
@@ -111,7 +111,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The label of the language.
    */
   protected function assertUnavailableLanguage(Crawler $crawler, string $expected): void {
-    $actual = $crawler->filter('div.ecl-u-bg-grey-5.ecl-u-pv-m div.ecl-container div.ecl-message--warning')->text();
+    $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-message--warning')->text();
     $this->assertContains($expected, trim($actual));
   }
 
@@ -124,7 +124,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The label of the language.
    */
   protected function assertSelectedLanguage(Crawler $crawler, string $expected): void {
-    $actual = $crawler->filter('div.ecl-u-bg-grey-5.ecl-u-pv-m div.ecl-container div.ecl-expandable__content li.ecl-unordered-list__item a.ecl-u-bg-blue-50')->text();
+    $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-expandable__content li.ecl-unordered-list__item a.ecl-u-bg-blue-50')->text();
     $this->assertEquals($expected, trim($actual));
   }
 
@@ -137,7 +137,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The labels of the translations that should be rendered as links.
    */
   protected function assertTranslationLinks(Crawler $crawler, array $expected): void {
-    $elements = $crawler->filter('div.ecl-u-bg-grey-5.ecl-u-pv-m div.ecl-container div.ecl-expandable__content li.ecl-unordered-list__item a:not(.ecl-u-bg-blue-50)');
+    $elements = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-expandable__content li.ecl-unordered-list__item a:not(.ecl-u-bg-blue-50)');
     $this->assertSameSize($expected, $elements);
 
     $actual = array_column(iterator_to_array($elements), 'nodeValue');
