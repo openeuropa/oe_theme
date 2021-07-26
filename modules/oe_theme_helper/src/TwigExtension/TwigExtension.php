@@ -277,32 +277,40 @@ class TwigExtension extends \Twig_Extension {
    */
   public function toEclIcon(array $context, $icon, string $size = ''): array {
     $path = $context['ecl_icon_path'];
+    $social_path = $context['ecl_icon_social_media_path'];
 
     // ECL supported icons naming and rotation.
     $icons = [
       'facebook' => [
         'name' => 'facebook',
+        'social' => TRUE,
       ],
       'instagram' => [
         'name' => 'instagram',
+        'social' => TRUE,
       ],
       'linkedin' => [
         'name' => 'linkedin',
+        'social' => TRUE,
       ],
       'pinterest' => [
         'name' => 'pinterest',
+        'social' => TRUE,
       ],
       'rss' => [
         'name' => 'rss',
       ],
       'skype' => [
         'name' => 'skype',
+        'social' => TRUE,
       ],
       'twitter' => [
         'name' => 'twitter',
+        'social' => TRUE,
       ],
       'youtube' => [
         'name' => 'youtube',
+        'social' => TRUE,
       ],
       'audio' => [
         'name' => 'audio',
@@ -469,9 +477,6 @@ class TwigExtension extends \Twig_Extension {
       'plus' => [
         'name' => 'plus',
       ],
-      'rounded-arrow' => [
-        'name' => 'rounded-arrow',
-      ],
       'solid-arrow' => [
         'name' => 'solid-arrow',
       ],
@@ -485,7 +490,7 @@ class TwigExtension extends \Twig_Extension {
         'name' => 'close',
       ],
       'up' => [
-        'name' => 'rounded-arrow',
+        'name' => 'corner-arrow',
       ],
       'arrow-down' => [
         'name' => 'solid-arrow',
@@ -495,25 +500,28 @@ class TwigExtension extends \Twig_Extension {
         'name' => 'solid-arrow',
       ],
       'breadcrumb' => [
-        'name' => 'rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
       'down' => [
-        'name' => 'rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-180',
       ],
       'left' => [
-        'name' => 'rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-270',
       ],
       'right' => [
-        'name' => 'rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
     ];
 
     if (array_key_exists($icon, $icons)) {
       $icons[$icon]['path'] = $path;
+      if (isset($icons[$icon]['social']) && $icons[$icon]['social']) {
+        $icons[$icon]['path'] = $social_path;
+      }
       if ($size) {
         $icons[$icon]['size'] = $size;
       }

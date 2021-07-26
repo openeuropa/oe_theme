@@ -2652,7 +2652,7 @@
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#instagram"></use>'
+      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons-social-media/sprites/icons-social-media.svg#instagram"></use>'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
@@ -2660,7 +2660,7 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
-      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"]': 'View all metrics'
+      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
 - array:
     '#type': 'pattern'
     '#id': 'facts_figures'

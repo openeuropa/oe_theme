@@ -20,6 +20,11 @@
       </div>
     </div>
   </div>
+  {% if ecl_branding == 'standardised' %}
+    <div class="ecl-site-header-{{ ecl_branding }}__banner">
+      <div class="ecl-container">{{ site_name }}</div>
+    </div>
+  {% endif %}
   {% block navigation %}
     {{ page.navigation }}
   {% endblock %}

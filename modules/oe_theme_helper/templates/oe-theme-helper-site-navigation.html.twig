@@ -10,14 +10,8 @@
  * @ingroup themeable
  */
 #}
-{% if menu_items %}
-  {{ pattern('navigation_menu', {
-    label: 'Menu'|t,
-    items: menu_items,
-    site_name: site_name,
-  }, 'vertical') }}
-{% else %}
-  <div class="ecl-site-header-{{ ecl_branding }}__banner">
-    <div class="ecl-container">{{ site_name }}</div>
-  </div>
-{% endif %}
+{{ pattern('navigation_menu', {
+  label: 'Menu'|t,
+  items: menu_items,
+  site_name: site_name,
+}, 'vertical') }}
