@@ -1583,6 +1583,7 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function oe_theme_preprocess_page(array &$variables): void {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['main_attributes'] = new Attribute([
     'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],

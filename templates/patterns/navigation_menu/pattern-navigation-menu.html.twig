@@ -37,7 +37,7 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% if _items or site_name %}
+{% if _items %}
   {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
     close: 'Close'|t,
@@ -46,11 +46,5 @@
     items: _items,
     icon_path: ecl_icon_path
   } only %}
-{% elseif site_name %}
-  <div class="ecl-site-header-{{ ecl_branding }}__banner">
-    <div class="ecl-container">
-      {{ site_name }}
-    </div>
-  </div>
 {% endif %}
 
