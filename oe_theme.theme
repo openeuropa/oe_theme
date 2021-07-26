@@ -705,23 +705,15 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
  * and prepares the links for rendering.
  */
 function oe_theme_preprocess_links__oe_multilingual_content_language_block(array &$variables): void {
-  $entity = \Drupal::service('oe_multilingual.helper')->getEntityFromCurrentRoute();
-  /** @var \Drupal\Core\Entity\EntityInterface $translation */
-  $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
-  $variables['current'] = $translation->language()->getName();
+
+  // Generate the label for the unavailable language.
   /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
   $languages = \Drupal::service('language_manager')->getNativeLanguages();
-  $variables['unavailable'] = $languages[$variables['current_language_id']]->getName();
+  $variables['unavailable_language'] = $languages[$variables['current_language_id']]->getName();
 
   // Normalize the links to an array of optional languages suitable for the ECL.
-  $variables['options'] = [];
+  $variables['languages'] = [];
   foreach ($variables['links'] as $language_code => $link) {
-
-    $language_internal = $language_code;
-    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
-      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
-    }
-
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
     $href = $url
@@ -729,15 +721,27 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    $variables['options'][] = [
+    $variables['languages'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_internal,
+      'current' => FALSE,
     ];
   }
 
-  // Generate unique element ID for the expandable component.
+  // Add the current language to the list.
+  $multilingual_helper = \Drupal::service('oe_multilingual.helper');
+  $entity = $multilingual_helper->getEntityFromCurrentRoute();
+  /** @var \Drupal\Core\Entity\EntityInterface $translation */
+  $translation = $multilingual_helper->getCurrentLanguageEntityTranslation($entity);
+  $variables['languages'][] = [
+    'href' => $translation->toUrl()->setAbsolute(TRUE)->toString(),
+    'hreflang' => $translation->language()->getId(),
+    'label' => $languages[$translation->language()->getId()]->getName(),
+    'current' => TRUE,
+  ];
+
+  // Generate required ids.
   $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
 }
 
