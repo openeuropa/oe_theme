@@ -20,7 +20,7 @@
       {% include '@ecl-twig/message' with {
         title: 'The @language language is unavailable.'|t({'@language': unavailable_language}),
         variant: 'warning',
-        extra_classes: 'ecl-u-bg-transparent ecl-u-mb-m',
+        extra_classes: ecl_component_library == 'ec' ? 'ecl-u-mb-m ecl-u-bg-transparent' : 'ecl-u-mb-m',
         icon: {
           path: ecl_icon_path,
           name: 'warning',
