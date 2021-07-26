@@ -15,6 +15,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
+use Drupal\oe_theme_helper\LanguageSwitcherBuilderCallback;
+use Drupal\Core\Block\BlockPluginInterface;
 
 /**
  * Implements hook_page_attachments().
@@ -305,5 +307,19 @@ function oe_theme_helper_form_entity_view_display_edit_form_alter(&$form, FormSt
     if ($form['fields'][$name]['human_name']['#markup'] === "") {
       $form['fields'][$name]['human_name']['#markup'] = t('- No label -');
     }
+  }
+}
+
+/**
+ * Implements hook_block_view_BASE_BLOCK_ID_alter().
+ */
+function oe_theme_helper_block_view_oe_theme_helper_page_header_alter(array &$build, BlockPluginInterface $block) {
+  // Add pre-render callback to build and inject the content language switcher
+  // within the page header block.
+  if (\Drupal::service('module_handler')->moduleExists('oe_multilingual')) {
+    $build['#pre_render'][] = [
+      LanguageSwitcherBuilderCallback::class,
+      'preRender',
+    ];
   }
 }
