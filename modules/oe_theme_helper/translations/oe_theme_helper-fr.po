@@ -339,3 +339,12 @@ msgstr "Masquer les coordonnées"
 
 msgid "Leadership and organisation"
 msgstr "Direction et organisation"
+
+msgid "Upcoming and ongoing"
+msgstr "À venir et en cours"
+
+msgid "Past"
+msgstr "Passé"
+
+msgid "Upcoming and open"
+msgstr "À venir et en cours"

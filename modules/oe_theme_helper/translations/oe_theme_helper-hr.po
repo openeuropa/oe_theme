@@ -339,3 +339,12 @@ msgstr "Sakrij podatke za kontakt"
 
 msgid "Leadership and organisation"
 msgstr "Vodstvo i ustroj"
+
+msgid "Upcoming and ongoing"
+msgstr "Budući i u tijeku"
+
+msgid "Past"
+msgstr "Prošli"
+
+msgid "Upcoming and open"
+msgstr "Budući i otvoreni"
