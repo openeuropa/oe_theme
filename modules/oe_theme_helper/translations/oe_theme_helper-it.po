@@ -456,3 +456,12 @@ msgstr "(Vice) @role"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Segui gli ultimi sviluppi e scopri come partecipare."
+
+msgid "Upcoming and ongoing"
+msgstr "Prossimi e in corso"
+
+msgid "Past"
+msgstr "Precedenti"
+
+msgid "Upcoming and open"
+msgstr "In programma e aperti"

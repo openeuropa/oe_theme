@@ -456,3 +456,12 @@ msgstr "@role (pienākumu izpildītājs)"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Sekojiet jaunumiem un uzziniet vairāk par iespējām piedalīties."
+
+msgid "Upcoming and ongoing"
+msgstr "Gaidāms(-ie) un pašlaik notiekošs(-ie)"
+
+msgid "Past"
+msgstr "Iepriekšējs(-ie)"
+
+msgid "Upcoming and open"
+msgstr "Gaidāms(-ie) un atklāts(-ie)"

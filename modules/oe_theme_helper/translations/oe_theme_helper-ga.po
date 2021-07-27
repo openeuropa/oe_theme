@@ -456,3 +456,12 @@ msgstr "(Gníomhach) @role"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Eolas faoin dul chun cinn is déanaí agus faoi conas páirt a ghlacadh."
+
+msgid "Upcoming and ongoing"
+msgstr "Le teacht agus ar siúl faoi láthair"
+
+msgid "Past"
+msgstr "Roimhe seo"
+
+msgid "Upcoming and open"
+msgstr "Le teacht agus ar oscailt"

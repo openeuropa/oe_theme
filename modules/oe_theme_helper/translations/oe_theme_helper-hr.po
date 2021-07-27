@@ -456,3 +456,12 @@ msgstr "@role (vršitelj dužnosti)"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Pratite najnoviji razvoj događaja i doznajte kako se uključiti"
+
+msgid "Upcoming and ongoing"
+msgstr "Budući i u tijeku"
+
+msgid "Past"
+msgstr "Prošli"
+
+msgid "Upcoming and open"
+msgstr "Budući i otvoreni"
