@@ -226,7 +226,7 @@
       full_width: false
   assertions:
     count:
-      'section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered': 1
+      'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
@@ -323,7 +323,7 @@
       alignment: "center"
   assertions:
     count:
-      'section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered': 1
+      'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
@@ -741,7 +741,7 @@
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 0
     equals:
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item .ecl-gallery__meta': 'Copyright © 2021, Author and Licence'
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--image"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
     contains:
       - 'A picture of a cat'
 - array:
@@ -782,9 +782,9 @@
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-previous': 1
       '.ecl-gallery .ecl-button.ecl-button--ghost.ecl-gallery__slider-next': 1
     equals:
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--image"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(1) .ecl-gallery__image-container svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#image"></use>'
       '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__meta': 'Copyright © 2021 EC'
-      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--video"></use>'
+      '.ecl-gallery .ecl-gallery__list .ecl-gallery__item:nth-child(2) .ecl-gallery__image-container figcaption.ecl-gallery__description svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#video"></use>'
     contains:
       - 'A picture of a cat'
       - 'Energy, let&#039;s save it!'
@@ -801,7 +801,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -821,7 +821,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -847,7 +847,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
       'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
@@ -874,7 +874,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -896,7 +896,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -918,7 +918,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -942,7 +942,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -966,7 +966,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
       'article > div .ecl-description-list': 0
@@ -1030,7 +1030,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-l-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 1
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -1054,7 +1054,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-lg-block': 1
+      'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-l-block': 1
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 1
     equals:
@@ -1073,13 +1073,13 @@
         alt: "Alternate text for secondary image"
   assertions:
     count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1094,13 +1094,13 @@
       length: 32
   assertions:
     count:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
-      article.ecl-card header.ecl-card__header div.ecl-card__meta: 0
+      article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
+      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
+      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 1
     equals:
-      article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link: "Item title"
+      article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-card__description: "This is a very long description..."
 - array:
     '#type': pattern
@@ -1112,11 +1112,11 @@
       detail: "Item test"
   assertions:
     count:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
-      'article.ecl-card header.ecl-card__header div.ecl-card__image': 0
-      'article.ecl-card header.ecl-card__header div.ecl-card__meta': 0
+      'article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
+      'article.ecl-card div.ecl-card__image': 0
+      'article.ecl-card div.ecl-card__body div.ecl-card__meta': 0
     equals:
-      'article.ecl-card header.ecl-card__header h1.ecl-card__title .ecl-link': "Item title"
+      'article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
 - array:
     '#type': pattern
@@ -1246,7 +1246,7 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-lg-block': 0
+      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
@@ -1271,11 +1271,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
@@ -1301,11 +1301,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
@@ -1329,11 +1329,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 1
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1356,11 +1356,11 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 1
       'div.ecl-content-item-block__item.ecl-col-12': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1386,10 +1386,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 2
-      'div.ecl-content-item-block__item.ecl-col-md-6': 2
-      'div.ecl-content-item-block__item.ecl-col-md-4': 0
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 2
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6': 2
+      'div.ecl-content-item-block__item.ecl-col-m-4': 0
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 2
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1422,10 +1422,10 @@
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 3
-      'div.ecl-content-item-block__item.ecl-col-md-6': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4': 3
-      'div.ecl-content-item-block__item.ecl-col-md-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-md-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-m-6': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4': 3
+      'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
+      'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 3
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
@@ -1446,10 +1446,10 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 4' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-md-3:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-m-3:nth-child(4) a.ecl-link': 'A simple link 4'
 - array:
     '#type': pattern
     '#id': list_item_block_six_columns
@@ -1463,12 +1463,12 @@
         - { '#type': 'pattern', '#id': 'link', '#fields': { url: '#', text: 'A simple link 6' } }
   assertions:
     equals:
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(1) a.ecl-link': 'A simple link 1'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(2) a.ecl-link': 'A simple link 2'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(3) a.ecl-link': 'A simple link 3'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(4) a.ecl-link': 'A simple link 4'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(5) a.ecl-link': 'A simple link 5'
-      'div.ecl-content-item-block__item.ecl-col-md-2:nth-child(6) a.ecl-link': 'A simple link 6'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(1) a.ecl-link': 'A simple link 1'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(2) a.ecl-link': 'A simple link 2'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(3) a.ecl-link': 'A simple link 3'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(4) a.ecl-link': 'A simple link 4'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(5) a.ecl-link': 'A simple link 5'
+      'div.ecl-content-item-block__item.ecl-col-m-2:nth-child(6) a.ecl-link': 'A simple link 6'
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -1551,16 +1551,16 @@
           body: "Body 2"
   assertions:
     count:
-      '.ecl-accordion2__title': 2
-      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-icon': 2
-      '.ecl-accordion2__title button.ecl-accordion2__toggle .ecl-accordion2__toggle-title': 2
-      '.ecl-accordion2__content#id-0-content': 1
-      '.ecl-accordion2__content#id-1-content': 1
+      '.ecl-accordion__title': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-icon': 2
+      '.ecl-accordion__title button.ecl-accordion__toggle .ecl-accordion__toggle-title': 2
+      '.ecl-accordion__content#id-0-content': 1
+      '.ecl-accordion__content#id-1-content': 1
     equals:
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-0-content"] .ecl-accordion2__toggle-title': "Title 1"
-      '.ecl-accordion2__content#id-0-content': "Body 1"
-      '.ecl-accordion2__title button.ecl-accordion2__toggle[aria-controls="id-1-content"] .ecl-accordion2__toggle-title': "Title 2"
-      '.ecl-accordion2__content#id-1-content': "Body 2"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-0-content"] .ecl-accordion__toggle-title': "Title 1"
+      '.ecl-accordion__content#id-0-content': "Body 1"
+      '.ecl-accordion__title button.ecl-accordion__toggle[aria-controls="id-1-content"] .ecl-accordion__toggle-title': "Title 2"
+      '.ecl-accordion__content#id-1-content': "Body 2"
 - array:
     '#type': pattern
     '#id': dropdown
@@ -1962,7 +1962,7 @@
       "div.ecl-card__image": 0
       'h1.ecl-card__title': 1
       'div.ecl-card__description': 0
-      'footer.ecl-card__footer': 0
+      'ul.ecl-card__info-container': 0
     equals:
       'h1.ecl-card__title': "Example title"
 - array:
@@ -2075,10 +2075,10 @@
           text: "Brussels, Belgium"
   assertions:
     count:
-      "footer.ecl-card__footer": 1
+      "ul.ecl-card__info-container": 1
     equals:
-      'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
-      'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
+      'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
+      'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2108,27 +2108,27 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 2
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 2
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__toggle .ecl-button__label': "Show 2 more items"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__toggle .ecl-button__label': "Show 2 more items"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2155,23 +2155,23 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 6
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 0
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 6
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 0
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': "Item 3"
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': "Item 4"
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': "Item 5"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': 'Lorem Ipsum 1'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': "Item 3"
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': "Item 4"
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': "Item 5"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': 'Lorem Ipsum 1'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2201,27 +2201,27 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
     equals:
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show all timelines"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show all timelines"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': timeline
@@ -2251,28 +2251,28 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 1
-      'ol.ecl-timeline2': 1
-      'li.ecl-timeline2__item': 7
-      '.ecl-timeline2__item.ecl-timeline2__item--toggle': 1
-      '.ecl-timeline2__item.ecl-timeline2__item--collapsed': 4
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__title': 0
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__title': 0
+      'ol.ecl-timeline': 1
+      'li.ecl-timeline__item': 7
+      '.ecl-timeline__item.ecl-timeline__item--toggle': 1
+      '.ecl-timeline__item.ecl-timeline__item--collapsed': 4
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__title': 0
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
     equals:
       'h2.ecl-u-type-heading-2': "Timeline heading"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__title': "Item 1"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__label': "13 September 2017"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__title': "Item 2"
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__label': "28-29 September 2017"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__title': "Item 6"
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__label': "6 February 2018"
-      '.ecl-timeline2__item:nth-child(7) .ecl-timeline2__toggle .ecl-button__label': "Show 4 more items"
-      '.ecl-timeline2__item:nth-child(1) .ecl-timeline2__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
-      '.ecl-timeline2__item:nth-child(2) .ecl-timeline2__content': 'Lorem Ipsum 2'
-      '.ecl-timeline2__item:nth-child(3) .ecl-timeline2__content': 'Lorem Ipsum 3'
-      '.ecl-timeline2__item:nth-child(4) .ecl-timeline2__content': 'Lorem Ipsum 4'
-      '.ecl-timeline2__item:nth-child(5) .ecl-timeline2__content': 'Lorem Ipsum 5'
-      '.ecl-timeline2__item:nth-child(6) .ecl-timeline2__content': 'Lorem Ipsum 6'
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__label': "28-29 September 2017"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__title': "Item 6"
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__label': "6 February 2018"
+      '.ecl-timeline__item:nth-child(7) .ecl-timeline__toggle .ecl-button__label': "Show 4 more items"
+      '.ecl-timeline__item:nth-child(1) .ecl-timeline__content': '<a href="/example" class="ecl-link">Economic and Monetary Union package of proposals</a>'
+      '.ecl-timeline__item:nth-child(2) .ecl-timeline__content': 'Lorem Ipsum 2'
+      '.ecl-timeline__item:nth-child(3) .ecl-timeline__content': 'Lorem Ipsum 3'
+      '.ecl-timeline__item:nth-child(4) .ecl-timeline__content': 'Lorem Ipsum 4'
+      '.ecl-timeline__item:nth-child(5) .ecl-timeline__content': 'Lorem Ipsum 5'
+      '.ecl-timeline__item:nth-child(6) .ecl-timeline__content': 'Lorem Ipsum 6'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2290,7 +2290,7 @@
   assertions:
     count:
       'div.ecl-row': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 1
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 1
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2301,7 +2301,7 @@
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2320,7 +2320,7 @@
     count:
       'h2.ecl-u-type-heading-2': 0
       'div.ecl-row': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 0
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2330,7 +2330,7 @@
     equals:
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2349,7 +2349,7 @@
     count:
       'h2.ecl-u-type-heading-2': 1
       'div.ecl-row': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 0
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 0
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2359,7 +2359,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2375,7 +2375,7 @@
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 0
-      'div.ecl-col-md-6.ecl-editor': 0
+      'div.ecl-col-m-6.ecl-editor': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
@@ -2400,7 +2400,7 @@
   assertions:
     count:
       'div.ecl-row': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 0
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 0
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2410,7 +2410,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
-      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2448,7 +2448,7 @@
   assertions:
     count:
       'div.ecl-row': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 1
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
@@ -2456,7 +2456,7 @@
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-col-md-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2489,7 +2489,7 @@
   assertions:
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none.ecl-u-order-md-last': 1
+      'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
 - array:
     '#type': pattern
@@ -2514,10 +2514,10 @@
       'ul li.ecl-unordered-list__item': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--calendar"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--location"></use></svg>Brussels, Belgium'
-      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg>Brussels, Belgium'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -2545,9 +2545,9 @@
       'ul li.ecl-unordered-list__item': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--file"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#general--livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': "pattern"
     '#id': "tag"
@@ -2587,19 +2587,6 @@
       '.ecl-tag': "Tag label"
     count:
       '.ecl-tag--display': 1
-- array:
-    '#type': "pattern"
-    '#id': "tag"
-    '#variant': "default"
-    '#fields':
-      tag_type: "button"
-      url: "http://example.com"
-      label: "Tag label"
-  assertions:
-    equals:
-      'button.ecl-tag': "Tag label"
-    count:
-      'button.ecl-tag': 1
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
@@ -2743,15 +2730,15 @@
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
     equals:
-      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#branded--instagram"></use>'
+      'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons-social-media/sprites/icons-social-media.svg#instagram"></use>'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value': '00.0 million'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title': 'Lorem ipsum'
       'div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description': 'Nunc condimentum sapien ut nibh finibus suscipit vitae at justo. Morbi quis odio faucibus, commodo tortor id, elementum libero.'
-      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#ui--external"></use>'
+      'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--m.ecl-fact-figures__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
-      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"]': 'View all metrics'
+      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
 - array:
     '#type': 'pattern'
     '#id': 'facts_figures'
@@ -2783,7 +2770,7 @@
           url: ''
   assertions:
     count:
-      'div.active-search-filters.ecl-u-d-md-flex': 1
+      'div.active-search-filters.ecl-u-d-m-flex': 1
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://dg-trad.com"]': 1
       'a.ecl-u-mr-xs.ecl-u-mb-s.ecl-tag.ecl-tag--removable[href="http://health.com"]': 1
       'span.ecl-tag__icon': 2

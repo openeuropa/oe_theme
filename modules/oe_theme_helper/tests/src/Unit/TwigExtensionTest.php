@@ -273,7 +273,10 @@ class TwigExtensionTest extends UnitTestCase {
    * @dataProvider toEclIconProvider
    */
   public function testToEclIcon(string $icon_name, array $expected_icon_array, string $size = NULL) {
-    $context = ['ecl_icon_path' => '/path/to/theme/resources/icons/'];
+    $context = [
+      'ecl_icon_path' => '/path/to/theme/resources/icons/',
+      'ecl_icon_social_media_path' => '/path/to/theme/resources/social-media-icons/',
+    ];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
     if ($size === NULL) {
@@ -299,7 +302,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'right',
         [
-          'name' => 'ui--rounded-arrow',
+          'name' => 'corner-arrow',
           'transform' => 'rotate-90',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xs',
@@ -307,9 +310,20 @@ class TwigExtensionTest extends UnitTestCase {
         'xs',
       ],
       [
+        'instagram',
+        [
+          'name' => 'instagram',
+          // A TRUE value is rendered as 1 by twig.
+          'social' => 1,
+          'path' => '/path/to/theme/resources/social-media-icons/',
+          'size' => 'xs',
+        ],
+        'xs',
+      ],
+      [
         'close-dark',
         [
-          'name' => 'ui--close-filled',
+          'name' => 'close-filled',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'xl',
         ],
@@ -318,7 +332,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'not-supported-icon',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'm',
         ],
@@ -327,7 +341,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'no-size',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
         ],
         NULL,
@@ -335,7 +349,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'empty-size',
         [
-          'name' => 'general--digital',
+          'name' => 'digital',
           'path' => '/path/to/theme/resources/icons/',
           'size' => '',
         ],

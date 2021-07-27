@@ -181,7 +181,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test event node',
-      'meta' => 'Competitions and award ceremonies',
+      'meta' => ['Competitions and award ceremonies'],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
@@ -192,7 +192,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert details.
     $details_content = $this->assertSession()->elementExists('css', '#event-details');
     $this->assertSession()->elementNotExists('css', '.ecl-body', $details_content);
-    $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-md-6.ecl-u-mt-l.ecl-u-mt-md-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
+    $details_list_content = $this->assertSession()->elementExists('css', '.ecl-col-12.ecl-col-m-6.ecl-u-mt-l.ecl-u-mt-m-none ul.ecl-unordered-list.ecl-unordered-list--no-bullet', $details_content);
     $icons_text_assert = new IconsTextAssert();
     $icons_text_expected_values = [
       'items' => [
@@ -337,7 +337,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'title' => 'Link to online event',
     ]);
     // The "Online description" field is not currently displayed.
-    // @todo: Assert its visibility as soon as the issue below will be fixed.
+    // @todo Assert its visibility as soon as the issue below will be fixed.
     // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/EWPP-1063
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
@@ -516,17 +516,20 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->assertSession()->pageTextNotContains('Event description summary');
     $this->assertSession()->pageTextNotContains('Event full text');
-    $this->assertSession()->pageTextNotContains('<h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-md-3xl ecl-u-mb-l">Description</h2>');
+    $this->assertSession()->pageTextNotContains('<h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-m-3xl ecl-u-mb-l">Description</h2>');
     $this->assertSession()->elementNotExists('css', '#event-registration-block');
 
     // Assert "Event contact" field.
     $contact_entity_general = $this->createContactEntity('general_contact');
     $contact_entity_press = $this->createContactEntity('press_contact', 'oe_press');
-    $node->set('oe_event_contact', [$contact_entity_general, $contact_entity_press])->save();
+    $node->set('oe_event_contact', [
+      $contact_entity_general,
+      $contact_entity_press,
+    ])->save();
     $this->drupalGet($node->toUrl());
 
     $event_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts');
-    $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mt-md-3xl.ecl-u-mb-l', $event_contacts_content);
+    $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mt-m-3xl.ecl-u-mb-l', $event_contacts_content);
     $this->assertEquals('Contacts', $event_contacts_header->getText());
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
@@ -642,7 +645,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    *   Expected title.
    */
   protected function assertContactHeader(NodeElement $rendered_element, string $title): void {
-    $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-md-l', $rendered_element);
+    $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l', $rendered_element);
     $this->assertEquals($title, $rendered_header->getText());
   }
 

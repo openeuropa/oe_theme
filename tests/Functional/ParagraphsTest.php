@@ -26,6 +26,24 @@ class ParagraphsTest extends BrowserTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected function setUp() {
+    parent::setUp();
+
+    // Enable and set OpenEuropa Theme as default.
+    \Drupal::service('theme_installer')->install(['oe_theme']);
+    \Drupal::configFactory()
+      ->getEditable('system.theme')
+      ->set('default', 'oe_theme')
+      ->save();
+
+    // Rebuild the ui_pattern definitions to collect the ones provided by
+    // oe_theme itself.
+    \Drupal::service('plugin.manager.ui_patterns')->clearCachedDefinitions();
+  }
+
+  /**
    * Test Accordion item paragraph form.
    */
   public function testAccordionItemParagraph(): void {
@@ -47,7 +65,7 @@ class ParagraphsTest extends BrowserTestBase {
       'title[0][value]' => 'Test Accordion',
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text][0][value]' => 'Accordion item title',
       'field_oe_demo_body[0][subform][field_oe_paragraphs][0][subform][field_oe_text_long][0][value]' => 'Accordion item body',
-      'oe_content_content_owner[0][target_id]' => 'Committee on Agriculture and Rural Development',
+      'oe_content_content_owner[0][target_id]' => 'Directorate-General for Informatics',
     ];
     $this->drupalPostForm(NULL, $values, 'Save');
     $this->drupalGet('/node/1');

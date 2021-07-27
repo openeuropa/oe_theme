@@ -1,8 +1,10 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 .ecl-page-header {
   &-core,
   &-standardised {
     &__composition {
-      margin-bottom: $ecl-spacing-xl;
+      margin-bottom: map.get(theme.$spacing, 'xl');
     }
   }
 }

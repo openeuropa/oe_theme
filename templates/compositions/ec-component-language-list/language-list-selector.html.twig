@@ -66,7 +66,7 @@
 {% endif %}
 
 <a
-  class="ecl-link ecl-link--standalone ecl-site-header-{{ _ecl_branding }}__language-selector"
+  class="ecl-button ecl-button--ghost  ecl-site-header-{{ _ecl_branding }}__language-selector"
   href="{{ _path }}"
   data-ecl-language-selector
   aria-controls="language-list-overlay"
@@ -76,7 +76,6 @@
     {% include '@ecl-twig/icon' with {
       icon: {
         path: _icon_path,
-        type: 'general',
         name: 'language',
         size: 's'
       },
@@ -86,7 +85,7 @@
   </span>
   {{- _label -}}
  </a>
-{% include '@ecl-twig/language-list/language-list' with {
+{% include '@ecl-twig/language-list' with {
   eu_category: eu_category,
   non_eu_category: non_eu_category,
   items: items,

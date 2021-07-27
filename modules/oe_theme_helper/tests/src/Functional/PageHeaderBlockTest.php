@@ -105,11 +105,10 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $this->assertEquals($test_data['title'], trim($header->find('css', '.ecl-page-header-core__title')->getText()));
     $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header-core__description')->getText()));
 
-    $metas = '';
-    foreach ($test_data['metas'] as $meta) {
-      $metas .= ($metas != '' ? ' | ' : '') . $meta;
+    $actual_metas = $header->findAll('css', '.ecl-page-header-core__meta .ecl-page-header-core__meta-item');
+    foreach ($test_data['metas'] as $index => $expected_meta) {
+      $this->assertEquals($expected_meta, $actual_metas[$index]->getText());
     }
-    $this->assertEquals($metas, trim($header->find('css', '.ecl-page-header-core__meta')->getText()));
   }
 
 }

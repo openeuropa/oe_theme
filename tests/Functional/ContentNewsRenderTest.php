@@ -72,7 +72,11 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $expected_values = [
       'title' => 'Test news node',
       'description' => 'http://www.example.org is a web page',
-      'meta' => 'News article | 18 September 2020 | African Court of Justice and Human Rights',
+      'meta' => [
+        'News article',
+        '18 September 2020',
+        'African Court of Justice and Human Rights',
+      ],
     ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
@@ -85,7 +89,12 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');
     $node->save();
     $this->drupalGet($node->toUrl());
-    $expected_values['meta'] = 'General publications | 18 September 2020 | Abu Dhabi | African Court of Justice and Human Rights';
+    $expected_values['meta'] = [
+      'General publications',
+      '18 September 2020',
+      'Abu Dhabi',
+      'African Court of Justice and Human Rights',
+    ];
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // Assert news details.

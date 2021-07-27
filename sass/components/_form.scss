@@ -1,16 +1,18 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 .main-content {
   .password-strength {
     .is-weak {
-      background-color: map-get($ecl-colors, 'error');
+      background-color: map.get(theme.$color, 'red-100');
     }
 
     .is-fair {
-      background-color: map-get($ecl-colors, 'warning');
+      background-color: map.get(theme.$color, 'orange-100');
     }
 
     .is-good,
     .is-strong {
-      background-color: map-get($ecl-colors, 'success');
+      background-color: map.get(theme.$color, 'green-100')
     }
   }
 
@@ -19,7 +21,8 @@
   .password-suggestions.description,
   .password-confirm,
   .filter-help {
-    @extend .ecl-help-block;
+    // TODO: The help form component is not available on ECL v3.
+    //@extend .ecl-help-block;
   }
 }
 

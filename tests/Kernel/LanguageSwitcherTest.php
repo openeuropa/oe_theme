@@ -163,7 +163,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Make sure that the actual language link is set as active.
     $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__item--is-active a.ecl-language-list__link[lang={$lang_prefix}]")->text();
-    $this->assertEquals($language_name . ' ', trim($actual));
+    $this->assertEquals($language_name, trim($actual));
   }
 
   /**

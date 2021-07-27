@@ -18,7 +18,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+        'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link',
       ],
       'link' => [
         [$this, 'assertLink'],
@@ -34,7 +34,7 @@ class FeaturedItemAssert extends BasePatternAssert {
       ],
       'meta' => [
         [$this, 'assertElementText'],
-        'article.ecl-card header.ecl-card__header div.ecl-card__meta',
+        'article.ecl-card .ecl-card__body div.ecl-card__meta',
       ],
       'footer_items' => [
         [$this, 'assertFooterItems'],
@@ -63,7 +63,7 @@ class FeaturedItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertFeaturedItemImage($expected_image, string $variant, Crawler $crawler): void {
-    $image_div_selector = 'article.ecl-card header.ecl-card__header div.ecl-card__image';
+    $image_div_selector = 'article.ecl-card div.ecl-card__image';
     if (is_null($expected_image)) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
@@ -85,11 +85,11 @@ class FeaturedItemAssert extends BasePatternAssert {
    */
   protected function assertLink($expected_link, string $variant, Crawler $crawler): void {
     // Assert the title url points to the correct direction.
-    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link', 'href', $crawler);;
+    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link', 'href', $crawler);
 
     // If the variant is extended, assert that the button is correct.
     if ($variant == 'extended') {
-      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);;
+      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);
       $this->assertElementText($expected_link['label'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call span.ecl-button__container span.ecl-button__label', $crawler);
     }
   }
@@ -103,12 +103,12 @@ class FeaturedItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertFooterItems($expected_info_items, Crawler $crawler): void {
-    $info_elements = $crawler->filter('article.ecl-card footer.ecl-card__footer ul.ecl-card__info-container li.ecl-card__info-item');
+    $info_elements = $crawler->filter('article.ecl-card div.ecl-card__body ul.ecl-card__info-container li.ecl-card__info-item');
     self::assertCount(count($expected_info_items), $info_elements, 'The expected info items do not match the found info items.');
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
       $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
-      $this::assertContains('#general--' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
+      $this::assertContains('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
       $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
     }
   }

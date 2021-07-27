@@ -2,12 +2,14 @@
  * @file
  * Apply styling of 'dropdown-legacy' component to 'expandable'.
  */
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 .ecl-expandable-dropdown__content {
-  background-color: $ecl-color-grey-5;
-  border: 1px solid $ecl-color-grey-25;
+  background-color: map.get(theme.$color, 'grey-5');
+  border: 1px solid map.get(theme.$color, 'grey-25');
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   position: absolute;
-  padding: $ecl-spacing-s $ecl-spacing-m;
+  padding: map.get(theme.$spacing, 's') map.get(theme.$spacing, 'm');
 }
 
 .no-js .ecl-expandable-dropdown__content {

@@ -108,8 +108,14 @@ class InPageNavigationBlockTest extends WebDriverTestBase {
     $inpage_nav_expected_values = [
       'title' => 'Page contents',
       'list' => [
-        ['label' => 'Heading from body field', 'href' => '#heading-from-body-field'],
-        ['label' => 'Related links', 'href' => '#related-links'],
+        [
+          'label' => 'Heading from body field',
+          'href' => '#heading-from-body-field',
+        ],
+        [
+          'label' => 'Related links',
+          'href' => '#related-links',
+        ],
       ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());

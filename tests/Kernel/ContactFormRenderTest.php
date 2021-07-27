@@ -51,7 +51,12 @@ class ContactFormRenderTest extends ContactFormTestBase {
     $contact_form->setThirdPartySetting('oe_contact_forms', 'privacy_policy', $privacy_url);
     $optional_selected = ['oe_telephone' => 'oe_telephone'];
     $contact_form->setThirdPartySetting('oe_contact_forms', 'optional_fields', $optional_selected);
-    $topics = [['topic_name' => 'Topic name', 'topic_email_address' => 'topic@emailaddress.com']];
+    $topics = [
+      [
+        'topic_name' => 'Topic name',
+        'topic_email_address' => 'topic@emailaddress.com',
+      ],
+    ];
     $contact_form->setThirdPartySetting('oe_contact_forms', 'topics', $topics);
     $contact_form->save();
 

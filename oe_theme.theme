@@ -35,7 +35,7 @@ use Drupal\Component\Render\FormattableMarkup;
  */
 function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$form_state, $form_id = NULL) {
   // Work-around for a core bug affecting admin themes.
-  // @todo: remove this once the core issue below is fixed.
+  // @todo remove this once the core issue below is fixed.
   // @link https://www.drupal.org/node/943212
   if (isset($form_id)) {
     return;
@@ -73,7 +73,8 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
-  $variables['ecl_social_icon_path'] = $variables['ecl_images_path'] . '/social-icons/sprites/icons-social.svg';
+  $variables['ecl_social_icon_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
+  $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 
@@ -257,8 +258,14 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
  */
 function oe_theme_preprocess_menu_local_tasks(array &$variables): void {
   // Sort local tasks by weight.
-  uasort($variables['primary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
-  uasort($variables['secondary'], ['\Drupal\Component\Utility\SortArray', 'sortByWeightProperty']);
+  uasort($variables['primary'], [
+    '\Drupal\Component\Utility\SortArray',
+    'sortByWeightProperty',
+  ]);
+  uasort($variables['secondary'], [
+    '\Drupal\Component\Utility\SortArray',
+    'sortByWeightProperty',
+  ]);
 
   foreach ($variables['primary'] as $link) {
     /** @var Drupal\Core\Url $url */
@@ -698,23 +705,15 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
  * and prepares the links for rendering.
  */
 function oe_theme_preprocess_links__oe_multilingual_content_language_block(array &$variables): void {
-  $entity = \Drupal::service('oe_multilingual.helper')->getEntityFromCurrentRoute();
-  /** @var \Drupal\Core\Entity\EntityInterface $translation */
-  $translation = \Drupal::service('oe_multilingual.helper')->getCurrentLanguageEntityTranslation($entity);
-  $variables['current'] = $translation->language()->getName();
+
+  // Generate the label for the unavailable language.
   /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
   $languages = \Drupal::service('language_manager')->getNativeLanguages();
-  $variables['unavailable'] = $languages[$variables['current_language_id']]->getName();
+  $variables['unavailable_language'] = $languages[$variables['current_language_id']]->getName();
 
   // Normalize the links to an array of optional languages suitable for the ECL.
-  $variables['options'] = [];
+  $variables['languages'] = [];
   foreach ($variables['links'] as $language_code => $link) {
-
-    $language_internal = $language_code;
-    if (EuropeanUnionLanguages::hasLanguage($language_code)) {
-      $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
-    }
-
     /** @var \Drupal\Core\Url $url */
     $url = $link['link']['#url'];
     $href = $url
@@ -722,15 +721,27 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
       ->setAbsolute(TRUE)
       ->toString();
 
-    $variables['options'][] = [
+    $variables['languages'][] = [
       'href' => $href,
       'hreflang' => $language_code,
       'label' => $link['link']['#title'],
-      'lang' => $language_internal,
+      'current' => FALSE,
     ];
   }
 
-  // Generate unique element ID for the expandable component.
+  // Add the current language to the list.
+  $multilingual_helper = \Drupal::service('oe_multilingual.helper');
+  $entity = $multilingual_helper->getEntityFromCurrentRoute();
+  /** @var \Drupal\Core\Entity\EntityInterface $translation */
+  $translation = $multilingual_helper->getCurrentLanguageEntityTranslation($entity);
+  $variables['languages'][] = [
+    'href' => $translation->toUrl()->setAbsolute(TRUE)->toString(),
+    'hreflang' => $translation->language()->getId(),
+    'label' => $languages[$translation->language()->getId()]->getName(),
+    'current' => TRUE,
+  ];
+
+  // Generate required ids.
   $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
 }
 
@@ -1464,7 +1475,8 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $link = $paragraph->get('field_oe_link')->first();
     $variables['url'] = $link->getUrl();
-    $variables['label'] = $link->get('title')->getValue();;
+    $variables['label'] = $link->get('title')->getValue();
+    ;
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
@@ -1589,6 +1601,7 @@ function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
  * Implements hook_preprocess_page().
  */
 function oe_theme_preprocess_page(array &$variables): void {
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['main_attributes'] = new Attribute([
     'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],

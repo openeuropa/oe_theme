@@ -78,17 +78,17 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
-      'meta' => NULL,
+      'meta' => [],
       'title' => 'Mick Jagger',
     ];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert content.
-    $portrait = $this->assertSession()->elementExists('css', 'article .ecl-col-lg-3 img.ecl-media-container__media');
+    $portrait = $this->assertSession()->elementExists('css', 'article .ecl-col-l-3 img.ecl-media-container__media');
     $this->assertContains('/themes/custom/oe_theme/images/user_icon.svg', $portrait->getAttribute('src'));
     $this->assertEmpty($portrait->getAttribute('alt'));
     $this->assertSession()->pageTextNotContains('Page contents');
-    $content = $this->assertSession()->elementExists('css', 'article .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', 'article .ecl-col-l-9');
     $this->assertEmpty($content->getText());
 
     // Assert Display name field.
@@ -220,7 +220,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', $job_1)->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = '(Acting) Advisor';
+    $page_header_expected_values['meta'] = ['(Acting) Advisor'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $inpage_nav_expected_values['list'][] = [
@@ -242,7 +242,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = '(Acting) Advisor, Chief advisor';
+    $page_header_expected_values['meta'] = ['(Acting) Advisor, Chief advisor'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
@@ -390,7 +390,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $biography_items = $content_items[6]->findAll('css', 'ol.ecl-timeline2 li.ecl-timeline2__item');
+    $biography_items = $content_items[6]->findAll('css', 'ol.ecl-timeline li.ecl-timeline__item');
     $this->assertCount(6, $biography_items);
     $this->assertTimelineItem($biography_items[0], 'Timeline label 1', 'Timeline title 1', 'Timeline body 1');
     $this->assertTimelineItem($biography_items[1], 'Timeline label 2', 'Timeline title 2', '');
@@ -427,7 +427,10 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     // Assert Articles and publications field.
     $document_reference = $this->createDocumentDocumentReferenceEntity('document_reference');
     $publication_reference = $this->createPublicationDocumentReferenceEntity('publication_reference');
-    $node->set('oe_person_documents', [$document_reference, $publication_reference])->save();
+    $node->set('oe_person_documents', [
+      $document_reference,
+      $publication_reference,
+    ])->save();
     $this->drupalGet($node->toUrl());
 
     $inpage_nav_expected_values['list'][] = [
@@ -439,7 +442,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-sm-flex.ecl-u-pb-m');
+    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15 article.ecl-content-item.ecl-u-d-s-flex.ecl-u-pb-m');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
       'title' => 'publication_reference',
@@ -460,9 +463,18 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $inpage_nav_expected_values['list'] = [
-      ['label' => 'Contact', 'href' => '#contact'],
-      ['label' => 'Responsibilities', 'href' => '#responsibilities'],
-      ['label' => 'Articles and presentations', 'href' => '#articles-and-presentations'],
+      [
+        'label' => 'Contact',
+        'href' => '#contact',
+      ],
+      [
+        'label' => 'Responsibilities',
+        'href' => '#responsibilities',
+      ],
+      [
+        'label' => 'Articles and presentations',
+        'href' => '#articles-and-presentations',
+      ],
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
@@ -588,9 +600,9 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    *   Expected body.
    */
   protected function assertTimelineItem(NodeElement $element, string $label, string $title, string $body):void {
-    $this->assertEquals($label, $element->find('css', '.ecl-timeline2__label')->getText());
-    $this->assertEquals($title, $element->find('css', '.ecl-timeline2__title')->getText());
-    $this->assertEquals($body, $element->find('css', '.ecl-timeline2__content')->getText());
+    $this->assertEquals($label, $element->find('css', '.ecl-timeline__label')->getText());
+    $this->assertEquals($title, $element->find('css', '.ecl-timeline__title')->getText());
+    $this->assertEquals($body, $element->find('css', '.ecl-timeline__content')->getText());
   }
 
 }

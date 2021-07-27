@@ -8,17 +8,16 @@
 #}
 <div class="ecl-site-header-{{ ecl_branding }}__search-container">
   <a
-    class="ecl-link ecl-link--standalone ecl-site-header-{{ ecl_branding }}__search-toggle"
+    class="ecl-button ecl-button--ghost ecl-site-header-{{ ecl_branding }}__search-toggle"
     href=""
     data-ecl-search-toggle="true"
     aria-controls="{{ content['#id'] }}"
     aria-expanded="false"
   >
-    {%- include '@ecl-twig/ec-component-icon/ecl-icon.html.twig' with {
+    {%- include '@ecl-twig/icon' with {
       icon: {
         name: 'search',
         path: ecl_icon_path,
-        type: 'general',
         size: 's',
         extra_attributes: [
           { name: 'aria-hidden', value: true }

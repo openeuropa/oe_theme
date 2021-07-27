@@ -8,7 +8,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\datetime_range\Plugin\Field\FieldType\DateRangeItem;
 
 /**
- * Interface DateValueObjectInterface.
+ * Interface for the "Date" value object.
  */
 interface DateValueObjectInterface extends ValueObjectInterface {
 
