@@ -258,7 +258,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[1], 'Description', 'description');
     $this->assertContentHeader($content_items[2], 'Files', 'files');
 
-    $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-m-9 .ecl-editor');
+    $body = $content_items[1]->findAll('css', '.ecl-row .ecl-col-12.ecl-col-m-9 .ecl');
     $this->assertCount(1, $body);
     $this->assertEquals('Publication body text', $body[0]->getText());
     $thumbnail_wrapper_selector = '.ecl-row .ecl-col-12.ecl-col-m-3 figure';

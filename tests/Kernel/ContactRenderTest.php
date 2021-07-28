@@ -52,7 +52,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $crawler = new Crawler($html);
 
     // Assert that empty values don't exist.
-    $this->assertEmpty($crawler->filter('.ecl-editor'));
+    $this->assertEmpty($crawler->filter('.ecl'));
     $this->assertEmpty($crawler->filter('.ecl-description-list'));
     $this->assertEmpty($crawler->filter('figure.ecl-media-container'));
     $this->assertEmpty($crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l'));
@@ -69,7 +69,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $rendered_body = $crawler->filter('.ecl-col-12 .ecl-editor');
+    $rendered_body = $crawler->filter('.ecl-col-12 .ecl');
     $this->assertCount(1, $rendered_body);
     $this->assertEquals("Body text $name", trim($rendered_body->text()));
 
@@ -183,7 +183,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $crawler = new Crawler($html);
 
     // Ensure that wrapper for body field has been changed.
-    $rendered_body = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6 .ecl-editor');
+    $rendered_body = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6 .ecl');
     $this->assertCount(1, $rendered_body);
     $this->assertEquals("Body text $name", trim($rendered_body->text()));
 
