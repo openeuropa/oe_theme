@@ -16,7 +16,7 @@
 {% endif %}
 {% set text = text|render %}
 
-{% set media_position_class = 'right' in variant ? '' : ' ecl-u-order-md-last' %}
+{% set media_position_class = 'right' in variant ? '' : ' ecl-u-order-m-last' %}
 
 {% set call_to_action_link = '' %}
 {% if link %}
@@ -30,7 +30,7 @@
         path: link.path,
         icon_position: 'after'
       },
-      extra_classes: 'ecl-u-mt-m ecl-u-mt-md-l ecl-u-type-bold',
+      extra_classes: 'ecl-u-mt-m ecl-u-mt-m-l ecl-u-type-bold',
       icon: get_link_icon(link.path)
     } %}
   {% endset %}
