@@ -349,7 +349,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert "Text on the right, simple call to action" variant.
     $paragraph->set('oe_paragraphs_variant', 'right_simple')->save();
     $html = $this->renderParagraph($paragraph);
-    $assert->assertVariant('left_simple', $html);
+    $assert->assertVariant('right_simple', $html);
 
     // Assert "Text on the left, featured call to action" variant.
     $paragraph->set('oe_paragraphs_variant', 'left_featured')->save();
@@ -359,7 +359,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert "Text on the right, featured call to action" variant.
     $paragraph->set('oe_paragraphs_variant', 'right_featured')->save();
     $html = $this->renderParagraph($paragraph);
-    $assert->assertVariant('left_featured', $html);
+    $assert->assertVariant('right_featured', $html);
 
     // Assert Link field without media.
     $paragraph->set('field_oe_media', [])->save();
