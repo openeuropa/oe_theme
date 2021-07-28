@@ -95,7 +95,10 @@ class DatePickerTestForm extends FormBase {
         continue;
       }
       $date = DrupalDateTime::createFromFormat('Y-m-d', $value);
-      $this->messenger->addStatus($this->t('Date @key is @date', ['@key' => $key, '@date' => $date->format('j F Y')]));
+      $this->messenger->addStatus($this->t('Date @key is @date', [
+        '@key' => $key,
+        '@date' => $date->format('j F Y'),
+      ]));
     }
   }
 

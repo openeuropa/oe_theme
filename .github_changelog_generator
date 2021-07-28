@@ -1,2 +1,2 @@
-release-branch=2.x
-exclude-tags-regex=^[0-1].[0-9]+.[0-9]+.*
+release-branch=3.x
+exclude-tags-regex=^[0-2].[0-9]+.[0-9]+.*

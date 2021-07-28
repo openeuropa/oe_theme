@@ -106,7 +106,7 @@ pipeline:
     group: test
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
-      - ./vendor/bin/behat --strict
+      - ./vendor/bin/behat --strict --tags="~@wip"
     when:
       event:
         exclude: tag

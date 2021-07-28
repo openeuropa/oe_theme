@@ -4,18 +4,13 @@
  * Default implementation for the page header component.
  */
 #}
-{% set _meta = '' %}
-{% if metas is not empty %}
-  {% set _meta %}
-    {{ metas|filter_empty|safe_join(" | ") }}
-  {% endset %}
-{% endif %}
 
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
   {% set _links = {
     'label' : breadcrumb_item.label,
-    'path' : breadcrumb_item.href
+    'path' : breadcrumb_item.href,
+    'negative' : ecl_component_library == 'ec' and ecl_branding == 'core'
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
@@ -36,27 +31,13 @@
 ]
 %}
 
-{% if language_switcher %}
-  {% set _language_switcher %}
-    {% include '@oe_theme/compositions/ec-component-content-language-switcher/content-language-switcher.html.twig' with {
-      'expandable_id': language_switcher.expandable_id,
-      'unavailable': language_switcher.unavailable,
-      'current': language_switcher.current,
-      'options': language_switcher.options,
-      'icon_path': ecl_icon_path,
-      'ecl_branding': ecl_branding,
-    } only %}
-  {% endset %}
-{% endif %}
-
-{% include '@ecl-twig/page-header-' ~ ecl_branding with {
+{% include '@ecl-twig/page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding with {
   'title': title,
+  'thumbnail': thumbnail,
   'description': introduction,
   'breadcrumb': _breadcrumb,
-  'meta': _meta,
-  'infos': _infos,
-  'background_image': ecl_branding == 'core' and background_image_url is not empty,
+  'meta': metas|filter_empty,
   'background_image_url': background_image_url,
-  'composition': _language_switcher,
   'extra_classes': _extra_classes|join(' '),
+  'overlay': ecl_component_library == 'ec' and overlay is not empty,
 } %}

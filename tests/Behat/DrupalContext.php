@@ -15,7 +15,7 @@ use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
 /**
- * Class DrupalContext.
+ * Provides Drupal-related Behat steps.
  */
 class DrupalContext extends RawDrupalContext {
 

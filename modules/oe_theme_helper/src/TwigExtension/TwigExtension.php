@@ -61,8 +61,14 @@ class TwigExtension extends \Twig_Extension {
     return [
       new \Twig_SimpleFilter('format_size', 'format_size'),
       new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
-      new \Twig_SimpleFilter('to_native_language', [$this, 'toNativeLanguageName']),
-      new \Twig_SimpleFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
+      new \Twig_SimpleFilter('to_native_language', [
+        $this,
+        'toNativeLanguageName',
+      ]),
+      new \Twig_SimpleFilter('to_internal_language_id', [
+        $this,
+        'toInternalLanguageId',
+      ]),
       new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
       new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
       new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
@@ -271,243 +277,251 @@ class TwigExtension extends \Twig_Extension {
    */
   public function toEclIcon(array $context, $icon, string $size = ''): array {
     $path = $context['ecl_icon_path'];
+    $social_path = $context['ecl_icon_social_media_path'];
 
     // ECL supported icons naming and rotation.
     $icons = [
       'facebook' => [
-        'name' => 'branded--facebook',
+        'name' => 'facebook',
+        'social' => TRUE,
       ],
       'instagram' => [
-        'name' => 'branded--instagram',
+        'name' => 'instagram',
+        'social' => TRUE,
       ],
       'linkedin' => [
-        'name' => 'branded--linkedin',
+        'name' => 'linkedin',
+        'social' => TRUE,
       ],
       'pinterest' => [
-        'name' => 'branded--pinterest',
+        'name' => 'pinterest',
+        'social' => TRUE,
       ],
       'rss' => [
-        'name' => 'branded--rss',
+        'name' => 'rss',
       ],
       'skype' => [
-        'name' => 'branded--skype',
+        'name' => 'skype',
+        'social' => TRUE,
       ],
       'twitter' => [
-        'name' => 'branded--twitter',
+        'name' => 'twitter',
+        'social' => TRUE,
       ],
       'youtube' => [
-        'name' => 'branded--youtube',
+        'name' => 'youtube',
+        'social' => TRUE,
       ],
       'audio' => [
-        'name' => 'general--audio',
+        'name' => 'audio',
       ],
       'book' => [
-        'name' => 'general--book',
+        'name' => 'book',
       ],
       'brochure' => [
-        'name' => 'general--brochure',
+        'name' => 'brochure',
       ],
       'budget' => [
-        'name' => 'general--budget',
+        'name' => 'budget',
       ],
       'calendar' => [
-        'name' => 'general--calendar',
+        'name' => 'calendar',
       ],
       'copy' => [
-        'name' => 'general--copy',
+        'name' => 'copy',
       ],
       'data' => [
-        'name' => 'general--data',
+        'name' => 'data',
       ],
       'digital' => [
-        'name' => 'general--digital',
+        'name' => 'digital',
       ],
       'edit' => [
-        'name' => 'general--edit',
+        'name' => 'edit',
       ],
       'energy' => [
-        'name' => 'general--energy',
+        'name' => 'energy',
       ],
       'euro' => [
-        'name' => 'general--euro',
+        'name' => 'euro',
       ],
       'faq' => [
-        'name' => 'general--faq',
+        'name' => 'faq',
       ],
       'feedback' => [
-        'name' => 'general--feedback',
+        'name' => 'feedback',
       ],
       'file' => [
-        'name' => 'general--file',
+        'name' => 'file',
       ],
       'gear' => [
-        'name' => 'general--gear',
+        'name' => 'gear',
       ],
       'generic-lang' => [
-        'name' => 'general--generic-lang',
+        'name' => 'generic-lang',
       ],
       'global' => [
-        'name' => 'general--global',
+        'name' => 'global',
       ],
       'googleplus' => [
-        'name' => 'general--digital',
+        'name' => 'digital',
       ],
       'growth' => [
-        'name' => 'general--growth',
+        'name' => 'growth',
       ],
       'hamburger' => [
-        'name' => 'general--hamburger',
+        'name' => 'hamburger',
       ],
       'image' => [
-        'name' => 'general--image',
+        'name' => 'image',
       ],
       'infographic' => [
-        'name' => 'general--infographic',
+        'name' => 'infographic',
       ],
       'language' => [
-        'name' => 'general--language',
+        'name' => 'language',
       ],
       'livestreaming' => [
-        'name' => 'general--livestreaming',
+        'name' => 'livestreaming',
       ],
       'location' => [
-        'name' => 'general--location',
+        'name' => 'location',
       ],
       'log-in' => [
-        'name' => 'general--log-in',
+        'name' => 'log-in',
       ],
       'logged-in' => [
-        'name' => 'general--logged-in',
+        'name' => 'logged-in',
       ],
       'multiple-files' => [
-        'name' => 'general--multiple-files',
+        'name' => 'multiple-files',
       ],
       'organigram' => [
-        'name' => 'general--organigram',
+        'name' => 'organigram',
       ],
       'package' => [
-        'name' => 'general--package',
+        'name' => 'package',
       ],
       'presentation' => [
-        'name' => 'general--presentation',
+        'name' => 'presentation',
       ],
       'print' => [
-        'name' => 'general--print',
+        'name' => 'print',
       ],
       'regulation' => [
-        'name' => 'general--regulation',
+        'name' => 'regulation',
       ],
       'search' => [
-        'name' => 'general--search',
+        'name' => 'search',
       ],
       'share' => [
-        'name' => 'general--share',
+        'name' => 'share',
       ],
       'slides' => [
-        'name' => 'general--presentation',
+        'name' => 'presentation',
       ],
       'spinner' => [
-        'name' => 'general--spinner',
+        'name' => 'spinner',
       ],
       'spreadsheet' => [
-        'name' => 'general--spreadsheet',
+        'name' => 'spreadsheet',
       ],
       'video' => [
-        'name' => 'general--video',
+        'name' => 'video',
       ],
       'camera' => [
-        'name' => 'general--video',
+        'name' => 'video',
       ],
       'error' => [
-        'name' => 'notifications--error',
+        'name' => 'error',
       ],
       'information' => [
-        'name' => 'notifications--information',
+        'name' => 'information',
       ],
       'info' => [
-        'name' => 'notifications--information',
+        'name' => 'information',
       ],
       'success' => [
-        'name' => 'notifications--success',
+        'name' => 'success',
       ],
       'warning' => [
-        'name' => 'notifications--warning',
+        'name' => 'warning',
       ],
       'check' => [
-        'name' => 'ui--check',
+        'name' => 'check',
       ],
       'check-filled' => [
-        'name' => 'ui--check-filled',
+        'name' => 'check-filled',
       ],
       'close' => [
-        'name' => 'ui--close',
+        'name' => 'close',
       ],
       'close-filled' => [
-        'name' => 'ui--close-filled',
+        'name' => 'close-filled',
       ],
       'corner-arrow' => [
-        'name' => 'ui--corner-arrow',
+        'name' => 'corner-arrow',
       ],
       'download' => [
-        'name' => 'ui--download',
+        'name' => 'download',
       ],
       'external' => [
-        'name' => 'ui--external',
+        'name' => 'external',
       ],
       'fullscreen' => [
-        'name' => 'ui--fullscreen',
+        'name' => 'fullscreen',
       ],
       'minus' => [
-        'name' => 'ui--minus',
+        'name' => 'minus',
       ],
       'plus' => [
-        'name' => 'ui--plus',
-      ],
-      'rounded-arrow' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'plus',
       ],
       'solid-arrow' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
       ],
       'close-dark' => [
-        'name' => 'ui--close-filled',
+        'name' => 'close-filled',
       ],
       'in' => [
-        'name' => 'ui--download',
+        'name' => 'download',
       ],
       'tag-close' => [
-        'name' => 'ui--close',
+        'name' => 'close',
       ],
       'up' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'corner-arrow',
       ],
       'arrow-down' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
         'transform' => 'rotate-180',
       ],
       'arrow-up' => [
-        'name' => 'ui--solid-arrow',
+        'name' => 'solid-arrow',
       ],
       'breadcrumb' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
       'down' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-180',
       ],
       'left' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-270',
       ],
       'right' => [
-        'name' => 'ui--rounded-arrow',
+        'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
     ];
 
     if (array_key_exists($icon, $icons)) {
       $icons[$icon]['path'] = $path;
+      if (isset($icons[$icon]['social']) && $icons[$icon]['social']) {
+        $icons[$icon]['path'] = $social_path;
+      }
       if ($size) {
         $icons[$icon]['size'] = $size;
       }
@@ -517,14 +531,14 @@ class TwigExtension extends \Twig_Extension {
 
     if ($size) {
       return [
-        'name' => 'general--digital',
+        'name' => 'digital',
         'path' => $path,
         'size' => $size,
       ];
     }
 
     return [
-      'name' => 'general--digital',
+      'name' => 'digital',
       'path' => $path,
     ];
   }
@@ -628,7 +642,6 @@ class TwigExtension extends \Twig_Extension {
 
     $icon = [
       'path' => $icon_path,
-      'type' => 'ui',
       'size' => $size,
       'color' => 'primary',
     ];
@@ -670,8 +683,8 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link += [
           'icon' => [
             'path' => $context['ecl_icon_path'],
-            'type' => 'ui',
             'name' => 'external',
+            'size' => 'xs',
           ],
         ];
       }
@@ -680,9 +693,8 @@ class TwigExtension extends \Twig_Extension {
         $ecl_link['link']['icon_position'] = 'before';
         $ecl_link += [
           'icon' => [
-            'path' => $context['ecl_icon_path'],
-            'type' => 'branded',
-            'name' => $link['social_network'],
+            'path' => $context['ecl_icon_social_media_path'],
+            'name' => $context['ecl_component_library'] == 'eu' ? $link['social_network'] : $link['social_network'] . '-negative',
           ],
         ];
       }

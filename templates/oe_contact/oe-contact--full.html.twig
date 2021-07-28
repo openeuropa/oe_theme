@@ -12,12 +12,12 @@
     <h3 class="ecl-u-type-heading-3 ecl-u-mt-none">{{ content.name }}</h3>
   </div>
   {% if image is not empty %}
-    <div class="ecl-col-md-6">
+    <div class="ecl-col-m-6">
   {% else %}
     <div class="ecl-col-12">
   {% endif %}
     {% if entity.oe_body is not empty %}
-      <div class="ecl-u-mb-l">
+      <div class="ecl-u-m-l">
         {{ content.oe_body }}
       </div>
     {% endif %}
@@ -30,7 +30,7 @@
     {% endif %}
     </div>
   {% if image is not empty %}
-    <div class="ecl-col-md-5">
+    <div class="ecl-col-m-5">
       {{ image }}
     </div>
   {% endif %}

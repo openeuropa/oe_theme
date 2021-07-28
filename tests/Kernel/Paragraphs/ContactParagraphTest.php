@@ -137,15 +137,15 @@ class ContactParagraphTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
     // Assert rendering of the first contact.
     $this->assertEquals('General contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(1) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
-    $this->assertEquals('<p>General contact body text</p>', trim($crawler->filter('div.ecl-col-md-6 div.ecl-u-mb-l:nth-child(1) div.ecl-editor')->html()));
+    $this->assertEquals('<p>General contact body text</p>', trim($crawler->filter('div.ecl-col-m-6 div.ecl-u-m-l:nth-child(1) div.ecl-editor')->html()));
     $this->assertEquals('General contact Organisation', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(2) div')->html()));
     $this->assertEquals('general@example.com', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(4) div a')->html()));
     $this->assertEquals('Address of General contact, 1001 Brussels, Belgium', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(6) div span')->html()));
     $this->assertEquals('Facebook', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(8) div div div a span')->html()));
-    $this->assertContains('example_1.jpeg', $crawler->filter('div.ecl-col-md-5 figure.ecl-media-container img')->attr('src'));
+    $this->assertContains('example_1.jpeg', $crawler->filter('div.ecl-col-m-5 figure.ecl-media-container img')->attr('src'));
     // Assert rendering of the second contact.
     $this->assertEquals('Press contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(2) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
-    $this->assertEquals('<p>Press contact body text</p>', trim($crawler->filter('div.ecl-col-12:nth-child(2) div.ecl-u-mb-l div.ecl-editor')->html()));
+    $this->assertEquals('<p>Press contact body text</p>', trim($crawler->filter('div.ecl-col-12:nth-child(2) div.ecl-u-m-l div.ecl-editor')->html()));
 
     // Set paragraph title and assert rendering is updated.
     $paragraph->set('field_oe_title', 'Contact paragraph Test')->save();

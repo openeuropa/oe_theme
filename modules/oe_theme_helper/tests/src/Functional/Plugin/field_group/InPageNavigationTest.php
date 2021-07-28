@@ -56,7 +56,10 @@ class InPageNavigationTest extends BrowserTestBase {
 
     // Create content type.
     $this->type = 'first_node_type';
-    $this->drupalCreateContentType(['name' => 'Test type', 'type' => $this->type]);
+    $this->drupalCreateContentType([
+      'name' => 'Test type',
+      'type' => $this->type,
+    ]);
 
     // Create view display instance.
     $display = \Drupal::entityTypeManager()
@@ -161,7 +164,7 @@ class InPageNavigationTest extends BrowserTestBase {
     }
 
     // Assert content part.
-    $content = $this->assertSession()->elementExists('css', '.ecl-col-lg-9', $wrapper);
+    $content = $this->assertSession()->elementExists('css', '.ecl-col-l-9', $wrapper);
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
     // Assert headers of field groups.

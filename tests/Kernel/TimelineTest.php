@@ -88,7 +88,10 @@ class TimelineTest extends AbstractKernelTestBase {
     $this->container->set('theme.registry', NULL);
 
     // Create content type.
-    $type = NodeType::create(['name' => 'Test content type', 'type' => 'test_ct']);
+    $type = NodeType::create([
+      'name' => 'Test content type',
+      'type' => 'test_ct',
+    ]);
     $type->save();
 
     FilterFormat::create([
@@ -172,22 +175,22 @@ class TimelineTest extends AbstractKernelTestBase {
 
     // Assert the timeline items are the number of entries plus one for the
     // "See more" button.
-    $timeline_item = $crawler->filter('.ecl-timeline2__item');
+    $timeline_item = $crawler->filter('.ecl-timeline__item');
     $this->assertCount(4, $timeline_item);
 
-    $timeline_body = $crawler->filter('.ecl-timeline2__label');
+    $timeline_body = $crawler->filter('.ecl-timeline__label');
     $this->assertCount(3, $timeline_body);
 
-    $timeline_title = $crawler->filter('.ecl-timeline2__title');
+    $timeline_title = $crawler->filter('.ecl-timeline__title');
     $this->assertCount(3, $timeline_title);
 
-    $timeline_body = $crawler->filter('.ecl-timeline2__content');
+    $timeline_body = $crawler->filter('.ecl-timeline__content');
     $this->assertCount(3, $timeline_body);
 
-    $hidden_timeline_item = $crawler->filter('.ecl-timeline2__item--collapsed');
+    $hidden_timeline_item = $crawler->filter('.ecl-timeline__item--collapsed');
     $this->assertCount(1, $hidden_timeline_item);
 
-    $show_more_button = $crawler->filter('.ecl-timeline2__item--toggle');
+    $show_more_button = $crawler->filter('.ecl-timeline__item--toggle');
     $this->assertCount(1, $show_more_button);
 
     // Change the limit to show all items without the "show more" button.
@@ -196,8 +199,8 @@ class TimelineTest extends AbstractKernelTestBase {
 
     $build = $display->build($node);
     $output = $this->renderRoot($build);
-    $this->assertNotContains('.ecl-timeline2__item--toggle', (string) $output);
-    $this->assertNotContains('.ecl-timeline2__item--collapsed', (string) $output);
+    $this->assertNotContains('.ecl-timeline__item--toggle', (string) $output);
+    $this->assertNotContains('.ecl-timeline__item--collapsed', (string) $output);
   }
 
 }

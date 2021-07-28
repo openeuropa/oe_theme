@@ -10,6 +10,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 3.0.0](#upgrade-to-3.0.0)
   - [Upgrade to 2.17.0](#upgrade-to-2.17.0)
   - [Upgrade to 2.15.0](#upgrade-to-2.15.0)
   - [Upgrade to 2.10.0](#upgrade-to-2.10.0)
@@ -112,6 +113,63 @@ ECL branding changes the way users interact with the sites by restricting access
 users can access to the main navigation menu only on sites using standardised ECL branding.
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
+
+### Upgrade to 3.0.0
+
+#### Page header pattern
+
+ECL v3 adds the following features to the page header component:
+
+- The possibility of displaying a thumbnail right next to the page description
+- The possibility of adding a background image
+- The possibility of adding an overlay on top of the background image, to compensate for poor text contrast
+
+In order to accommodate these changes we have added the following optional fields to the "Page header" pattern:
+
+```yaml
+thumbnail:
+  type: "ImageValueObject"
+  label: "Thumbnail"
+  description: "Thumbnail displayed alongside the description."
+background_image_url:
+  type: "array"
+  label: "Background image URL"
+  description: "Background image URL, only displayed when the theme ECL branding is set to 'Core'."
+overlay:
+  type: "text"
+  label: "Overlay"
+  description: "Optional overlay on top of background image (can be 'light', 'dark'). Only used on EC sites"
+```
+
+We have also removed the following deprecated fields:
+
+```yaml
+identity:
+  type: "text"
+  label: "Identity (deprecated)"
+  description: "The site name. Deprecated from ECL 2.30."
+infos:
+  type: "array"
+  label: "Infos (deprecated)"
+  description: "A list of infos of the current page. Deprecated from ECL 2.30."
+```
+
+In addition, the customization that allowed the content language switcher to be rendered inside the page header
+has been deprecated in favor of the new [ECL composition](https://europa-component-library.netlify.app/playground/ec/?path=/story/compositions-etranslation--default).
+Instead, the OpenEuropa Content Language Switcher block provided by OpenEuropa Multilingual needs to be used
+in its place. Sites updating to OpenEuropa Theme V3 are advised to place this block in the page header region
+if they wish still need the functionality.
+
+#### Content item compositions
+
+We have removed the following compositions from our theme:
+
+```
+templates/compositions/ec-component-content-item/content-item-date.html.twig
+templates/compositions/ec-component-content-item/content-item.html.twig
+```
+
+Consider using the [List item](/templates/patterns/list_item/list_item.ui_patterns.yml) pattern and its variants instead.
 
 ### Upgrade to 2.21.0
 

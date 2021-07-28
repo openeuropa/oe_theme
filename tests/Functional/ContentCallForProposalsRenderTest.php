@@ -79,7 +79,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $assert = new PatternPageHeaderAssert();
     $header_expected_values = [
       'title' => 'Test Call for proposals node',
-      'meta' => 'Call for proposals',
+      'meta' => ['Call for proposals'],
     ];
     $assert->assertPattern($header_expected_values, $page_header->getOuterHtml());
 
@@ -95,7 +95,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     // Assert content part.
-    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-lg-9');
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(1, $content_items);
     $this->assertContentHeader($content_items[0], 'Details', 'details');
@@ -160,7 +160,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference" . chr(194) . chr(160);
+    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference";
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';
@@ -173,7 +173,10 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_journal', NULL)->save();
     $this->drupalGet($node->toUrl());
 
-    $header_expected_values['meta'] = 'Call for proposals | Upcoming';
+    $header_expected_values['meta'] = [
+      'Call for proposals',
+      'Upcoming',
+    ];
     $assert->assertPattern($header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values = [
@@ -277,7 +280,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Results',
-          'body' => 'Grands awarded ',
+          'body' => 'Grands awarded',
         ],
       ],
     ];

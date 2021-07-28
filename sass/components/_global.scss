@@ -1,8 +1,11 @@
-@import '@ecl/ec-base/ec-base';
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
 // Apply global css.
 
 body {
-  font-family: $ecl-font-family;
+  font-family: map.get(theme.$font-family, 'default');
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -11,7 +14,7 @@ a {
   &:focus {
     text-decoration: underline;
   }
-  color: $ecl-color-blue;
+  color: map.get(theme.$color, 'blue');
 }
 
 .ecl-editor {

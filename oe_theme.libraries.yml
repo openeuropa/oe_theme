@@ -1,11 +1,13 @@
 component_library_ec:
   css:
     theme:
-      dist/ec/styles/ecl-ec-preset-website.css: { media: screen }
-      dist/ec/styles/ecl-ec-preset-website-print.css: { media: print }
+      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
+      dist/ec/styles/ecl-ec.css: { media: screen }
+      dist/ec/styles/ecl-ec-print.css: { media: print }
       css/style-ec.css: { media: screen }
   js:
-    dist/ec/scripts/ecl-ec-preset-website.js: {}
+    dist/js/moment.min.js: { minified: true }
+    dist/ec/scripts/ecl-ec.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal
@@ -13,11 +15,13 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/eu/styles/ecl-eu-preset-website.css: { media: screen }
-      dist/eu/styles/ecl-eu-preset-website-print.css: { media: print }
+      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
+      dist/eu/styles/ecl-eu.css: { media: screen }
+      dist/eu/styles/ecl-eu-print.css: { media: print }
       css/style-eu.css: { media: screen }
   js:
-    dist/eu/scripts/ecl-eu-preset-website.js: {}
+    dist/js/moment.min.js: { minified: true }
+    dist/eu/scripts/ecl-eu.js: {}
     js/ecl_auto_init.js: {}
   dependencies:
     - core/drupal

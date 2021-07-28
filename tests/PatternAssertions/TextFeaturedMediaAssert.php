@@ -21,7 +21,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mt-md-3xl.ecl-u-mb-l',
+        'h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mt-m-3xl.ecl-u-mb-l',
       ],
       'text_title' => [
         [$this, 'assertElementText'],
@@ -91,14 +91,14 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLink(array $expected_link, Crawler $crawler): void {
-    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-m.ecl-u-mt-md-l.ecl-u-type-bold');
+    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-m.ecl-u-mt-m-l.ecl-u-type-bold');
     self::assertEquals($expected_link['path'], $link_element->attr('href'));
 
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
     $svg = $link_element->filter('svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon use');
-    self::assertContains('icons.svg#ui--' . $expected_link['icon'], $svg->attr('xlink:href'));
+    self::assertContains('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
   }
 
   /**

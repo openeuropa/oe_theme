@@ -1,5 +1,5 @@
 parameters:
-  oe_theme_helper.twig_loader.namespaces: ['ecl-twig']
+  oe_theme_helper.twig_loader.namespaces: ['ecl-twig', 'ecl']
   oe_theme_helper.twig_loader.theme: 'oe_theme'
   oe_theme_helper.twig_loader.directory: 'components'
 services:
