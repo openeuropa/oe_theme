@@ -1,57 +1,25 @@
 {#
 /**
  * @file
- * Theme override to display a single page.
+ * Theme override to display a single page for 'Standardised' ECL branding.
  *
- * @see ./core/themes/stable/templates/layout/page.html.twig
+ * There is additional wrapper for 'site_header_container' block and banner with site_name.
+ *
+ * @see ./oe_theme/templates/layout/page.html.twig
  */
 #}
-{% block site_header %}
-<header
-  class="ecl-site-header-{{ ecl_branding }}"
-  data-ecl-auto-init="SiteHeader{{ ecl_branding|capitalize }}"
-  {{ ecl_has_menu_attribute }}
->
-  {{ page.site_top_bar }}
+{% extends "page.html.twig" %}
+
+{% block site_header_container %}
   <div class="ecl-site-header-{{ ecl_branding }}__header">
-    <div class="ecl-site-header-{{ ecl_branding }}__container ecl-container">
-      <div class="ecl-site-header-{{ ecl_branding }}__top">
-        {{ page.site_header }}
-        <div class="ecl-site-header-{{ ecl_branding }}__action">
-          {{ page.site_header_secondary }}
-        </div>
-      </div>
-    </div>
+    {{ parent() }}
   </div>
+{% endblock %}
+
+{% block navigation %}
   <div class="ecl-site-header-{{ ecl_branding }}__banner">
     <div class="ecl-container">{{ site_name }}</div>
   </div>
-  {% block navigation %}
-    {{ page.navigation }}
-  {% endblock %}
-</header>
+  {{ parent() }}
 {% endblock %}
 
-{% block page_header %}
-  {% if page.page_header %}
-    {{ page.page_header }}
-  {% endif %}
-{% endblock %}
-
-{% block content %}
-<main{{ main_attributes }}>
-  <div class="ecl-container">
-    <div class="ecl-row">
-      <div class="ecl-col-s-12">
-        {{ page.content }}
-      </div>
-    </div>
-  </div>
-</main>
-{% endblock %}
-
-{% if page.footer %}
-  {% block footer %}
-    {{ page.footer }}
-  {% endblock %}
-{% endif %}
