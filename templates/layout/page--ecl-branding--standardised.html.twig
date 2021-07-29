@@ -13,13 +13,18 @@
   {{ ecl_has_menu_attribute }}
 >
   {{ page.site_top_bar }}
-  <div class="ecl-site-header-{{ ecl_branding }}__container ecl-container">
-    <div class="ecl-site-header-{{ ecl_branding }}__top">
-      {{ page.site_header }}
-      <div class="ecl-site-header-{{ ecl_branding }}__action">
-        {{ page.site_header_secondary }}
+  <div class="ecl-site-header-{{ ecl_branding }}__header">
+    <div class="ecl-site-header-{{ ecl_branding }}__container ecl-container">
+      <div class="ecl-site-header-{{ ecl_branding }}__top">
+        {{ page.site_header }}
+        <div class="ecl-site-header-{{ ecl_branding }}__action">
+          {{ page.site_header_secondary }}
+        </div>
       </div>
     </div>
+  </div>
+  <div class="ecl-site-header-{{ ecl_branding }}__banner">
+    <div class="ecl-container">{{ site_name }}</div>
   </div>
   {% block navigation %}
     {{ page.navigation }}
