@@ -1,9 +1,9 @@
 {#
 /**
  * @file
- * Theme override to display a single page for 'Standardised' ECL branding.
+ * Overrides single page template for 'Standardised' ECL branding.
  *
- * There is additional wrapper for 'site_header_container' block and banner with site_name.
+ * Add additional information to 'site_header_container' and 'navigation' blocks.
  *
  * @see ./oe_theme/templates/layout/page.html.twig
  */
@@ -11,13 +11,13 @@
 {% extends "page.html.twig" %}
 
 {% block site_header_container %}
-  <div class="ecl-site-header-{{ ecl_branding }}__header">
+  <div class="ecl-site-header-standardised__header">
     {{ parent() }}
   </div>
 {% endblock %}
 
 {% block navigation %}
-  <div class="ecl-site-header-{{ ecl_branding }}__banner">
+  <div class="ecl-site-header-standardised__banner">
     <div class="ecl-container">{{ site_name }}</div>
   </div>
   {{ parent() }}
