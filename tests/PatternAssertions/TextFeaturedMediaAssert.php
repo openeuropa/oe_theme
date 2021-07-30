@@ -111,7 +111,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     // based on the media position.
     // If the media is not present then "left simple" or "left featured"
     // will be returned based on the link style.
-    // If neither media nor image are present then "left_simple? will be
+    // If neither media nor image are present then "left_simple" will be
     // returned.
     $crawler = new Crawler($html);
 

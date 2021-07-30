@@ -928,7 +928,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
 
   // Set pattern variant.
   if (!$paragraph->get('oe_paragraphs_variant')->isEmpty()) {
-    $variables['variant'] = $paragraph->get('oe_paragraphs_variant')->first()->value;
+    $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
+    // The default variant of the paragraph is the 'Left simple'
+    // variant of pattern.
+    $variables['variant'] = $variant === 'default' ? 'left_simple' : $variant;
   }
 
   // Add link field.

@@ -341,8 +341,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_featured', $html);
 
-    // Assert "Text on the left, simple call to action" variant.
-    $paragraph->set('oe_paragraphs_variant', 'left_simple')->save();
+    // Assert default ("Text on the left, simple call to action") variant.
+    $paragraph->set('oe_paragraphs_variant', 'default')->save();
     $html = $this->renderParagraph($paragraph);
     $assert->assertVariant('left_simple', $html);
 
