@@ -124,6 +124,14 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
 
+    // Assert Last update date field.
+    $node->set('oe_news_last_updated', '2021-08-04')->save();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][1]['body'] = '18 September 2020 (Last updated on: 4 August 2021)';
+    $details_html = $details->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+
     // Assert Author field label.
     $node->set('oe_author', [
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR'],
