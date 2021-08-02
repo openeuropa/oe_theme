@@ -171,8 +171,6 @@ templates/compositions/ec-component-content-item/content-item.html.twig
 
 Consider using the [List item](/templates/patterns/list_item/list_item.ui_patterns.yml) pattern and its variants instead.
 
-### Upgrade to 2.21.0
-
 #### Text with Featured media pattern
 
 The pattern [Text with Featured media](/templates/patterns/text_featured_media/text_featured_media.ui_patterns.yml) now
