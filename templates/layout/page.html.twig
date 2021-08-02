@@ -7,10 +7,11 @@
  */
 #}
 {% block site_header %}
+  {% set has_menu = page.navigation|render|striptags|trim is not empty %}
 <header
   class="ecl-site-header-{{ ecl_branding }}"
   data-ecl-auto-init="SiteHeader{{ ecl_branding|capitalize }}"
-  {{ ecl_has_menu_attribute }}
+  {% if has_menu %}data-ecl-has-menu{% endif %}
 >
   {{ page.site_top_bar }}
   {% block site_header_container %}

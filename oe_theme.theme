@@ -1594,9 +1594,6 @@ function oe_theme_preprocess_page(array &$variables): void {
     'class' => ['ecl-u-pb-xl'],
     'id' => ['main-content'],
   ]);
-  // Put 'data-ecl-has-menu' attribute only if we have a menu inside
-  // the site header.
-  $variables['ecl_has_menu_attribute'] = !empty($variables['page']['navigation']) ? 'data-ecl-has-menu' : '';
 }
 
 /**
