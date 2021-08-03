@@ -160,7 +160,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference" . chr(194) . chr(160);
+    $details_expected_values['items'][2]['body'] = "12 February 2020 in     Official Journal Reference ";
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';

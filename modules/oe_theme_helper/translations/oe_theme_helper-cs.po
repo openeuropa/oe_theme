@@ -34,8 +34,8 @@ msgstr "Zarezervujte si místo. Do konce registrace zbývá: @time_left. Konec r
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrace bude zahájena za @time_left dní. Můžete se zaregistrovat od @start_date do @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registrace skončila @end_date."
+msgid "Registration period ended on @date"
+msgstr "Registrační období skončilo @date"
 
 msgid "Postal address"
 msgstr "Poštovní adresa"
@@ -83,7 +83,7 @@ msgid "Deadline dates"
 msgstr "Lhůty"
 
 msgid "Publication date"
-msgstr "Datum vydání publikace"
+msgstr "Datum zveřejnění"
 
 msgid "Author"
 msgstr "Autor /Autorka"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Probíhá"
 
 msgid "Closed"
-msgstr "ukončeno"
+msgstr "Uzavřeno"
 
 msgid "Details"
 msgstr "Podrobnosti"
@@ -206,7 +206,7 @@ msgid "Project"
 msgstr "Projekt"
 
 msgid "Publication type"
-msgstr "Typ publikace"
+msgstr "Typ zveřejnění"
 
 msgid "Call for proposals"
 msgstr "Výzva k podávání návrhů"
@@ -229,8 +229,8 @@ msgstr "Několik termínů"
 msgid "Permanent"
 msgstr "Stálý"
 
-msgid "in"
-msgstr "v"
+msgid "@date in"
+msgstr "@date v"
 
 msgid "Contact us"
 msgstr "Kontakt"
@@ -339,3 +339,117 @@ msgstr "Skrýt kontaktní údaje"
 
 msgid "Leadership and organisation"
 msgstr "Vedení a organizace"
+
+msgid "Available translations"
+msgstr "Dostupné překlady"
+
+msgid "General contact"
+msgstr "Obecné kontakty"
+
+msgid "Grants awarded"
+msgstr "Granty uděleny"
+
+msgid "Page contents"
+msgstr "Obsah stránky"
+
+msgid "Your name"
+msgstr "Vaše jméno"
+
+msgid "Your email address"
+msgstr "Vaše e-mailová adresa"
+
+msgid "Subject"
+msgstr "Předmět"
+
+msgid "Message"
+msgstr "Zpráva"
+
+msgid "Country of residence"
+msgstr "Země bydliště"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Poslat si kopii"
+
+msgid "Status message"
+msgstr "Zpráva o stavu"
+
+msgid "Close this message"
+msgstr "Zavřít tuto zprávu"
+
+msgid "The sender's name"
+msgstr "Jméno odesílatele"
+
+msgid "The sender's email"
+msgstr "E-mail odesílatele"
+
+msgid "Topic"
+msgstr "Téma"
+
+msgid "Languages"
+msgstr "Jazyky"
+
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+msgid "No results have been found"
+msgstr "Nebyly nalezeny žádné výsledky"
+
+msgid "Event date"
+msgstr "Datum akce"
+
+msgid "Select"
+msgstr "Vybrat"
+
+msgid "After"
+msgstr "po"
+
+msgid "Before"
+msgstr "před"
+
+msgid "In between"
+msgstr "mezi"
+
+msgid "Select all"
+msgstr "Vybrat vše"
+
+msgid "Event type"
+msgstr "Typ akce"
+
+msgid "Venue"
+msgstr "Místo konání"
+
+msgid "Online type"
+msgstr "Koná se online"
+
+msgid "Livestream"
+msgstr "Živý přenos"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "EU organisation type"
+msgstr "Typ organizace EU"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "End Date"
+msgstr "Datum ukončení"
+
+msgid "Responsible department"
+msgstr "Odpovědné oddělení"
+
+msgid "Content owner"
+msgstr "Vlastník obsahu"
+
+msgid "Overview"
+msgstr "Přehled"
+
+msgid "Open gallery"
+msgstr "Otevřít galerii"
+
+msgid "(Acting) @role"
+msgstr "(Úřadující) @role"

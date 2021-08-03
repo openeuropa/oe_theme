@@ -34,8 +34,8 @@ msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimin
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreerimise alguskuupäev: @time_left. Registreerimine kestab: @start_date kuni @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registreerimisperioodi lõppkuupäev: @end_date."
+msgid "Registration period ended on @date"
+msgstr "Registreerimine lõppes @date"
 
 msgid "Postal address"
 msgstr "Postiaadress"
@@ -229,8 +229,8 @@ msgstr "Mitme tähtajaga"
 msgid "Permanent"
 msgstr "Alaline"
 
-msgid "in"
-msgstr "väljaandes"
+msgid "@date in"
+msgstr "@date väljaandes"
 
 msgid "Contact us"
 msgstr "Võtke meiega ühendust"
@@ -339,3 +339,117 @@ msgstr "Peida kontaktandmed"
 
 msgid "Leadership and organisation"
 msgstr "Juhtkond ja struktuur"
+
+msgid "Available translations"
+msgstr "Olemasolevad tõlked"
+
+msgid "General contact"
+msgstr "Üldkontakt"
+
+msgid "Grants awarded"
+msgstr "Antud toetused"
+
+msgid "Page contents"
+msgstr "Lehekülje sisu"
+
+msgid "Your name"
+msgstr "Teie nimi"
+
+msgid "Your email address"
+msgstr "Teie e-posti aadress"
+
+msgid "Subject"
+msgstr "Teema"
+
+msgid "Message"
+msgstr "Sõnum"
+
+msgid "Country of residence"
+msgstr "Elukohariik"
+
+msgid "Phone"
+msgstr "Telefoninumber"
+
+msgid "Send yourself a copy"
+msgstr "Soovin koopiat"
+
+msgid "Status message"
+msgstr "Staatuse teade"
+
+msgid "Close this message"
+msgstr "Sulge teade"
+
+msgid "The sender's name"
+msgstr "Saatja nimi"
+
+msgid "The sender's email"
+msgstr "Saatja e-posti aadress"
+
+msgid "Topic"
+msgstr "Valdkond"
+
+msgid "Languages"
+msgstr "Keeled"
+
+msgid "Keywords"
+msgstr "Märksõnad"
+
+msgid "No results have been found"
+msgstr "Tulemusi ei leitud"
+
+msgid "Event date"
+msgstr "Ürituse kuupäev"
+
+msgid "Select"
+msgstr "Valige"
+
+msgid "After"
+msgstr "Pärast"
+
+msgid "Before"
+msgstr "Enne"
+
+msgid "In between"
+msgstr "Ajavahemikus"
+
+msgid "Select all"
+msgstr "Vali kõik"
+
+msgid "Event type"
+msgstr "Ürituse liik"
+
+msgid "Venue"
+msgstr "Toimumiskoht"
+
+msgid "Online type"
+msgstr "Veebiürituse liik"
+
+msgid "Livestream"
+msgstr "Otseülekanne"
+
+msgid "Type"
+msgstr "Liik"
+
+msgid "EU organisation type"
+msgstr "ELi asutuse liik"
+
+msgid "Date"
+msgstr "Kuupäev"
+
+msgid "End Date"
+msgstr "Lõppkuupäev"
+
+msgid "Responsible department"
+msgstr "Vastutav talitus"
+
+msgid "Content owner"
+msgstr "Sisu omanik"
+
+msgid "Overview"
+msgstr "Ülevaade"
+
+msgid "Open gallery"
+msgstr "Ava galerii"
+
+msgid "(Acting) @role"
+msgstr "@role (kohusetäitja) "
