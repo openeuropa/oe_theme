@@ -34,8 +34,8 @@ msgstr "Rezervuokitės vietą, @time_left iki registracijos pabaigos, registraci
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Iki registracijos pradžios liko @time_left. Registruotis galima nuo @start_date iki @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registracijos laikotarpis baigėsi @end_date."
+msgid "Registration period ended on @date"
+msgstr "Registracijos laikotarpis baigėsi @date"
 
 msgid "Postal address"
 msgstr "Pašto adresas"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Vyksta"
 
 msgid "Closed"
-msgstr "Uždaryta"
+msgstr "Baigėsi"
 
 msgid "Details"
 msgstr "Išsamūs duomenys"
@@ -229,8 +229,8 @@ msgstr "Keli terminai"
 msgid "Permanent"
 msgstr "Nuolatinis"
 
-msgid "in"
-msgstr ""
+msgid "@date in"
+msgstr "@date"
 
 msgid "Contact us"
 msgstr "Susisiekite su mumis"
@@ -339,3 +339,117 @@ msgstr "Slėpti kontaktinius duomenis"
 
 msgid "Leadership and organisation"
 msgstr "Vadovybė ir organizacinė struktūra"
+
+msgid "Available translations"
+msgstr "Vertimai"
+
+msgid "General contact"
+msgstr "Bendri kontaktiniai duomenys"
+
+msgid "Grants awarded"
+msgstr "Skirtos dotacijos"
+
+msgid "Page contents"
+msgstr "Puslapio turinys"
+
+msgid "Your name"
+msgstr "Jūsų vardas ir pavardė"
+
+msgid "Your email address"
+msgstr "Jūsų e. pašto adresas"
+
+msgid "Subject"
+msgstr "Tema"
+
+msgid "Message"
+msgstr "Žinutė"
+
+msgid "Country of residence"
+msgstr "Gyvenamoji šalis"
+
+msgid "Phone"
+msgstr "Telefonas"
+
+msgid "Send yourself a copy"
+msgstr "Siųsti kopiją sau"
+
+msgid "Status message"
+msgstr "Būsenos pranešimas"
+
+msgid "Close this message"
+msgstr "Uždaryti šią žinutę"
+
+msgid "The sender's name"
+msgstr "Siuntėjo vardas ir pavardė"
+
+msgid "The sender's email"
+msgstr "Siuntėjo e. pašto adresas"
+
+msgid "Topic"
+msgstr "Tema"
+
+msgid "Languages"
+msgstr "Kalbos"
+
+msgid "Keywords"
+msgstr "Raktažodžiai"
+
+msgid "No results have been found"
+msgstr "Rezultatų nerasta"
+
+msgid "Event date"
+msgstr "Renginio data"
+
+msgid "Select"
+msgstr "Pasirinkti"
+
+msgid "After"
+msgstr "Po"
+
+msgid "Before"
+msgstr "Iki"
+
+msgid "In between"
+msgstr "Tarp"
+
+msgid "Select all"
+msgstr "Pasirinkti viską"
+
+msgid "Event type"
+msgstr "Renginio rūšis"
+
+msgid "Venue"
+msgstr "Vieta"
+
+msgid "Online type"
+msgstr "Internetinio renginio rūšis"
+
+msgid "Livestream"
+msgstr "Tiesioginė transliacija"
+
+msgid "Type"
+msgstr "Rūšis"
+
+msgid "EU organisation type"
+msgstr "ES organizacijos rūšis"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "End Date"
+msgstr "Pabaigos data"
+
+msgid "Responsible department"
+msgstr "Atsakingas padalinys"
+
+msgid "Content owner"
+msgstr "Turinio savininkas"
+
+msgid "Overview"
+msgstr "Apžvalga"
+
+msgid "Open gallery"
+msgstr "Atidaryti galeriją"
+
+msgid "(Acting) @role"
+msgstr "(L. e. p.) @role"

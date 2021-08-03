@@ -34,8 +34,8 @@ msgstr "Boek uw plaats. U heeft nog @time_left, inschrijven kan nog tot @end_dat
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreren kan over @time_left. Registreren kan van @start_date  tot @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registratietermijn verstreken op @end_date."
+msgid "Registration period ended on @date"
+msgstr "De registratieperiode eindigde op @date"
 
 msgid "Postal address"
 msgstr "Postadres"
@@ -83,7 +83,7 @@ msgid "Deadline dates"
 msgstr "Deadlines"
 
 msgid "Publication date"
-msgstr "Publicatiedatum"
+msgstr "Datum publicatie"
 
 msgid "Author"
 msgstr "Auteur"
@@ -229,8 +229,8 @@ msgstr "Meerdere deadlines"
 msgid "Permanent"
 msgstr "Permanent"
 
-msgid "in"
-msgstr ""
+msgid "@date in"
+msgstr "@date in"
 
 msgid "Contact us"
 msgstr "Contact"
@@ -339,3 +339,117 @@ msgstr "Contactinformatie verbergen"
 
 msgid "Leadership and organisation"
 msgstr "Leiding en organisatie"
+
+msgid "Available translations"
+msgstr "Vertalingen"
+
+msgid "General contact"
+msgstr "Algemeen"
+
+msgid "Grants awarded"
+msgstr "Subsidies"
+
+msgid "Page contents"
+msgstr "Inhoud"
+
+msgid "Your name"
+msgstr "Uw naam"
+
+msgid "Your email address"
+msgstr "Uw e-mailadres"
+
+msgid "Subject"
+msgstr "Onderwerp"
+
+msgid "Message"
+msgstr "Bericht"
+
+msgid "Country of residence"
+msgstr "Land van woonplaats"
+
+msgid "Phone"
+msgstr "Telefoon"
+
+msgid "Send yourself a copy"
+msgstr "Stuur mij een kopie"
+
+msgid "Status message"
+msgstr "Statusbericht"
+
+msgid "Close this message"
+msgstr "Bericht sluiten"
+
+msgid "The sender's name"
+msgstr "Naam afzender"
+
+msgid "The sender's email"
+msgstr "E-mailadres afzender"
+
+msgid "Topic"
+msgstr "Onderwerp"
+
+msgid "Languages"
+msgstr "Talen"
+
+msgid "Keywords"
+msgstr "Trefwoorden"
+
+msgid "No results have been found"
+msgstr "Geen resultaten"
+
+msgid "Event date"
+msgstr "Datum evenement"
+
+msgid "Select"
+msgstr "Kiezen"
+
+msgid "After"
+msgstr "Na"
+
+msgid "Before"
+msgstr "Voor"
+
+msgid "In between"
+msgstr "Tussen"
+
+msgid "Select all"
+msgstr "Alles selecteren"
+
+msgid "Event type"
+msgstr "Soort evenement"
+
+msgid "Venue"
+msgstr "Plaats"
+
+msgid "Online type"
+msgstr "Soort online"
+
+msgid "Livestream"
+msgstr "Livestream"
+
+msgid "Type"
+msgstr "Soort"
+
+msgid "EU organisation type"
+msgstr "Soort EU-organisatie"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "End Date"
+msgstr "Einddatum"
+
+msgid "Responsible department"
+msgstr "Verantwoordelijke dienst"
+
+msgid "Content owner"
+msgstr "Eigenaar content"
+
+msgid "Overview"
+msgstr "Overzicht"
+
+msgid "Open gallery"
+msgstr "Galerij openen"
+
+msgid "(Acting) @role"
+msgstr "(Waarnemend) @role"

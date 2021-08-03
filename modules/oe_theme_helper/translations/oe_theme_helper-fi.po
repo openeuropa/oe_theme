@@ -34,8 +34,8 @@ msgstr "Varaa paikkasi, ilmoittautumisaikaa on jäljellä @time_left, ilmoittaut
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Ilmoittautuminen alkaa @time_left. Voit ilmoittautua @start_date – @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Ilmoittautuminen päättyi @end_date."
+msgid "Registration period ended on @date"
+msgstr "Ilmoittautumisaika päättyi @date"
 
 msgid "Postal address"
 msgstr "Postiosoite"
@@ -229,8 +229,8 @@ msgstr "Monivaiheinen"
 msgid "Permanent"
 msgstr "Jatkuva"
 
-msgid "in"
-msgstr "julkaisussa"
+msgid "@date in"
+msgstr "@date julkaisu"
 
 msgid "Contact us"
 msgstr "Yhteydenotot"
@@ -339,3 +339,117 @@ msgstr "Piilota yhteystiedot"
 
 msgid "Leadership and organisation"
 msgstr "Johto ja organisaatio"
+
+msgid "Available translations"
+msgstr "Saatavilla olevat käännökset"
+
+msgid "General contact"
+msgstr "Yhteystiedot"
+
+msgid "Grants awarded"
+msgstr "Myönnetyt avustukset"
+
+msgid "Page contents"
+msgstr "Sivun sisältö"
+
+msgid "Your name"
+msgstr "Lähettäjän nimi"
+
+msgid "Your email address"
+msgstr "Lähettäjän sähköpostiosoite"
+
+msgid "Subject"
+msgstr "Aihe"
+
+msgid "Message"
+msgstr "Viesti"
+
+msgid "Country of residence"
+msgstr "Asuinmaa"
+
+msgid "Phone"
+msgstr "Puhelinnumero"
+
+msgid "Send yourself a copy"
+msgstr "Lähetä itsellesi kopio"
+
+msgid "Status message"
+msgstr "Tilasanoma"
+
+msgid "Close this message"
+msgstr "Sulje tämä viesti"
+
+msgid "The sender's name"
+msgstr "Lähettäjän nimi"
+
+msgid "The sender's email"
+msgstr "Lähettäjän sähköpostiosoite"
+
+msgid "Topic"
+msgstr "Toiminta-ala"
+
+msgid "Languages"
+msgstr "Kielet"
+
+msgid "Keywords"
+msgstr "Avainsanat"
+
+msgid "No results have been found"
+msgstr "Ei hakutuloksia"
+
+msgid "Event date"
+msgstr "Tapahtuman ajankohta"
+
+msgid "Select"
+msgstr "Valitse"
+
+msgid "After"
+msgstr "Aikaisintaan"
+
+msgid "Before"
+msgstr "Viimeistään"
+
+msgid "In between"
+msgstr "Aikavälillä"
+
+msgid "Select all"
+msgstr "Valitse kaikki"
+
+msgid "Event type"
+msgstr "Tapahtuman tyyppi"
+
+msgid "Venue"
+msgstr "Paikka"
+
+msgid "Online type"
+msgstr "Verkkotapahtuman tyyppi"
+
+msgid "Livestream"
+msgstr "Suora verkkolähetys"
+
+msgid "Type"
+msgstr "Tyyppi"
+
+msgid "EU organisation type"
+msgstr "EU-elimen tyyppi"
+
+msgid "Date"
+msgstr "Ajankohta"
+
+msgid "End Date"
+msgstr "Päättymispäivä"
+
+msgid "Responsible department"
+msgstr "Vastaava pääosasto"
+
+msgid "Content owner"
+msgstr "Sisällön omistaja"
+
+msgid "Overview"
+msgstr "Perustiedot"
+
+msgid "Open gallery"
+msgstr "Avaa galleria"
+
+msgid "(Acting) @role"
+msgstr "@role (vt.)"
