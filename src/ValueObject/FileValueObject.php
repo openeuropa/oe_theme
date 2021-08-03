@@ -137,7 +137,10 @@ class FileValueObject extends ValueObjectBase {
     $file = new static(
       $link->get('title')->getValue() ?? '',
       $link->get('uri')->getValue(),
-      $link->getFormat(),
+      // The file_link module can be configured to link to basically anything
+      // so we have to have a fallback format in case one is not determined.
+      // This is usually going to be a basic HTML page.
+      $link->getFormat() ?? 'text/html',
       (string) $link->getSize()
     );
 
