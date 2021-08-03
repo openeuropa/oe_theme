@@ -24,12 +24,12 @@
     <div class="ecl-row">
       {% if filters %}
         <div class="ecl-col-s-12 ecl-col-m-3">
-          <h2 class="ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">{{ 'Filter by'|t }}</h2>
+          <h2 class="ecl-u-type-heading-2 ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">{{ 'Filter by'|t }}</h2>
           {{ filters }}
         </div>
       {% endif %}
       <div class="ecl-col-s-12 {% if filters %}ecl-col-m-9{% endif %}">
-        <h2 class="ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">
+        <h2 class="ecl-u-type-heading-2 ecl-u-border-bottom ecl-u-border-width-2 ecl-u-pb-s">
           {{ label }}
           <span> ({{ content['extra_field_oe_list_page_total_count:node:oe_list_page'] }})</span>
         </h2>
