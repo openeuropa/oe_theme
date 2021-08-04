@@ -238,25 +238,52 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       }
     }
 
-    // Create a document media with non-existing remote file.
+    // Create a document media with non-existing remote file. With this
+    // File Link will not be able to determine a size or format so we are
+    // testing the fallback.
     /** @var \Drupal\media\MediaInterface $media */
     $media = $this->mediaStorage->create([
       'bundle' => 'document',
-      'name' => 'test document en',
+      'name' => 'test document remote HTML broken file',
       'oe_media_file_type' => 'remote',
       'oe_media_remote_file' => [
-        'uri' => 'https://www.google.com/nofile.pdf',
+        'uri' => 'https://www.google.com/nofile',
+      ],
+    ]);
+
+    $media->addTranslation('fr', [
+      'name' => 'test document remote HTML broken file fr',
+      'oe_media_file_type' => 'remote',
+      'oe_media_remote_file' => [
+        'uri' => 'https://www.google.com/nofile',
       ],
     ]);
 
     $media->save();
 
-    // Assert that the media is not rendered if there is no file available.
+    // Assert that the media is also rendered if there is no file available.
     foreach ($view_modes as $view_mode) {
       $build = $this->mediaViewBuilder->view($media, $view_mode);
       $output = $this->renderRoot($build);
 
-      $expected = [];
+      $expected = [
+        'button_label' => 'Download',
+        'file' => [
+          'title' => 'test document remote HTML broken file',
+          'url' => 'https://www.google.com/nofile',
+          'language' => 'English',
+          'meta' => '(HTML)',
+          'icon' => 'file',
+        ],
+        'translations' => [
+          [
+            'title' => 'français',
+            'url' => 'https://www.google.com/nofile',
+            'meta' => '(HTML)',
+            'icon' => 'file',
+          ],
+        ],
+      ];
 
       $assert = new FileTranslationAssert();
       $assert->assertPattern($expected, $output);
