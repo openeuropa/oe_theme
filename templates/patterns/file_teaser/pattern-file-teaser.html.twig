@@ -8,10 +8,14 @@
 {# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
 {% for item in translations %}
+  {% set _translation_meta = '(' ~ item.file.extension|upper  ~ ')' %}
+  {% if item.file.size %}
+    {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
+  {% endif %}
   {% set _translations = _translations|merge([{
     'title': item.file.title,
     'description': item.teaser|smart_trim(length),
-    'meta': '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')',
+    'meta': _translation_meta,
     'lang': item.file.language_code,
     'download': {
       'link': {
@@ -30,6 +34,10 @@
   {% set _detail_meta = _detail_meta|merge([publication_date]) %}
 {% endif %}
 
+{% set _meta = '(' ~ file.extension|upper  ~ ')' %}
+{% if file.size %}
+  {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
+{% endif %}
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(length),
@@ -38,7 +46,7 @@
     'alt': thumbnail.alt,
   },
   'language': file.language_code|to_language,
-  'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
+  'meta': _meta,
   'download': {
     'link': {
       'label': button_label|default('Download'|t),

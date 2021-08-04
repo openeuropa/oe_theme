@@ -34,8 +34,8 @@ msgstr "Book din plads, @time_left til at registrere, registrering slutter den@e
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrering starter om @time_left. Du kan registrere dig fra @start_date og frem til @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registreringsperiode udløb den @end_date."
+msgid "Registration period ended on @date"
+msgstr "Registreringsperioden sluttede den @date"
 
 msgid "Postal address"
 msgstr "Postadresse"
@@ -83,7 +83,7 @@ msgid "Deadline dates"
 msgstr "Tidsfrist (datoer)"
 
 msgid "Publication date"
-msgstr "Dato for offentliggørelse"
+msgstr "Publikationsdato"
 
 msgid "Author"
 msgstr "Forfatter"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Åben"
 
 msgid "Closed"
-msgstr "Lukket"
+msgstr "Lukkede"
 
 msgid "Details"
 msgstr "Detaljer"
@@ -229,8 +229,8 @@ msgstr "Flere faser"
 msgid "Permanent"
 msgstr "Permanent"
 
-msgid "in"
-msgstr "i"
+msgid "@date in"
+msgstr "@date i"
 
 msgid "Contact us"
 msgstr "Kontakt os"
@@ -339,3 +339,117 @@ msgstr "Skjul kontaktoplysninger"
 
 msgid "Leadership and organisation"
 msgstr "Ledelse og organisation"
+
+msgid "Available translations"
+msgstr "Sprogudgaver"
+
+msgid "General contact"
+msgstr "Generelle henvendelser"
+
+msgid "Grants awarded"
+msgstr "Bevilgede tilskud"
+
+msgid "Page contents"
+msgstr "Sidens indhold"
+
+msgid "Your name"
+msgstr "Dit navn"
+
+msgid "Your email address"
+msgstr "Din e-mailadresse"
+
+msgid "Subject"
+msgstr "Emne"
+
+msgid "Message"
+msgstr "Meddelelse"
+
+msgid "Country of residence"
+msgstr "Bopælsland"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Send dig selv en kopi"
+
+msgid "Status message"
+msgstr "Statusmeddelelse"
+
+msgid "Close this message"
+msgstr "Luk denne meddelelse"
+
+msgid "The sender's name"
+msgstr "Afsenderens navn"
+
+msgid "The sender's email"
+msgstr "Afsenderens e-mail"
+
+msgid "Topic"
+msgstr "Emne"
+
+msgid "Languages"
+msgstr "Sprog"
+
+msgid "Keywords"
+msgstr "Nøgleord"
+
+msgid "No results have been found"
+msgstr "Ingen resultater fundet"
+
+msgid "Event date"
+msgstr "Dato for arrangementet"
+
+msgid "Select"
+msgstr "Vælg"
+
+msgid "After"
+msgstr "Efter"
+
+msgid "Before"
+msgstr "Før"
+
+msgid "In between"
+msgstr "Imellem"
+
+msgid "Select all"
+msgstr "Vælg alle"
+
+msgid "Event type"
+msgstr "Type af arrangement"
+
+msgid "Venue"
+msgstr "Sted"
+
+msgid "Online type"
+msgstr "Online"
+
+msgid "Livestream"
+msgstr "Livestreaming"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "EU organisation type"
+msgstr "Type EU-organisation"
+
+msgid "Date"
+msgstr "Dato"
+
+msgid "End Date"
+msgstr "Slutdato"
+
+msgid "Responsible department"
+msgstr "Ansvarlig afdeling"
+
+msgid "Content owner"
+msgstr "Indehaver af indhold"
+
+msgid "Overview"
+msgstr "Oversigt"
+
+msgid "Open gallery"
+msgstr "Åbn galleriet"
+
+msgid "(Acting) @role"
+msgstr "(Fungerende) @rolle"

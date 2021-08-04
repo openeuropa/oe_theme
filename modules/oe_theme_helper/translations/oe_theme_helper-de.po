@@ -34,8 +34,8 @@ msgstr "Jetzt Ihren Platz sichern – es bleiben noch @time_left bis zum Ende de
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrierung beginnt in @time_left. Sie können sich vom @start_date bis zum @end_date registrieren."
 
-msgid "Registration period ended on @date."
-msgstr "Die Registrierung endete am @date."
+msgid "Registration period ended on @date"
+msgstr "Der Registrierungszeitraum endete am @date"
 
 msgid "Postal address"
 msgstr "Postanschrift"
@@ -83,7 +83,7 @@ msgid "Deadline dates"
 msgstr "Stichtage"
 
 msgid "Publication date"
-msgstr "Veröffentlicht am"
+msgstr "Datum der Veröffentlichung"
 
 msgid "Author"
 msgstr "Autor"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Offen"
 
 msgid "Closed"
-msgstr "Beendet"
+msgstr "Vorbei"
 
 msgid "Details"
 msgstr "Einzelheiten"
@@ -229,8 +229,8 @@ msgstr "Mehrere Enddaten"
 msgid "Permanent"
 msgstr "Unbefristet"
 
-msgid "in"
-msgstr "im"
+msgid "@date in"
+msgstr "@date im"
 
 msgid "Contact us"
 msgstr "Kontakt"
@@ -339,3 +339,117 @@ msgstr "Kontaktdaten verbergen"
 
 msgid "Leadership and organisation"
 msgstr "Leitung und Organisation"
+
+msgid "Available translations"
+msgstr "Verfügbare Übersetzungen"
+
+msgid "General contact"
+msgstr "Kontakt"
+
+msgid "Grants awarded"
+msgstr "Finanzhilfen gewährt"
+
+msgid "Page contents"
+msgstr "Seiteninhalte"
+
+msgid "Your name"
+msgstr "Ihr Name"
+
+msgid "Your email address"
+msgstr "Ihre E-Mail-Adresse"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Message"
+msgstr "Nachricht"
+
+msgid "Country of residence"
+msgstr "Wohnsitzland"
+
+msgid "Phone"
+msgstr "Telefonnummer"
+
+msgid "Send yourself a copy"
+msgstr "Kopie an mich senden"
+
+msgid "Status message"
+msgstr "Statusmeldung"
+
+msgid "Close this message"
+msgstr "Diese Nachricht schließen"
+
+msgid "The sender's name"
+msgstr "Name des Absenders"
+
+msgid "The sender's email"
+msgstr "E-Mail-Adresse des Absenders"
+
+msgid "Topic"
+msgstr "Thema"
+
+msgid "Languages"
+msgstr "Sprachen"
+
+msgid "Keywords"
+msgstr "Schlüsselwörter"
+
+msgid "No results have been found"
+msgstr "Keine Ergebnisse gefunden"
+
+msgid "Event date"
+msgstr "Datum der Veranstaltung"
+
+msgid "Select"
+msgstr "Auswählen"
+
+msgid "After"
+msgstr "Nach"
+
+msgid "Before"
+msgstr "Vor"
+
+msgid "In between"
+msgstr "Zwischen"
+
+msgid "Select all"
+msgstr "Alle auswählen"
+
+msgid "Event type"
+msgstr "Art der Veranstaltung"
+
+msgid "Venue"
+msgstr "Ort"
+
+msgid "Online type"
+msgstr "Online"
+
+msgid "Livestream"
+msgstr "Livestream"
+
+msgid "Type"
+msgstr "Art"
+
+msgid "EU organisation type"
+msgstr "EU-Einrichtung"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "End Date"
+msgstr "Enddatum"
+
+msgid "Responsible department"
+msgstr "Zuständige Abteilung"
+
+msgid "Content owner"
+msgstr "Inhaltseigentümer"
+
+msgid "Overview"
+msgstr "Überblick"
+
+msgid "Open gallery"
+msgstr "Galerie öffnen"
+
+msgid "(Acting) @role"
+msgstr "(Stellvertretende/r) @role"
