@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.oe_news.oe_news_featured_media
     - field.field.node.oe_news.oe_news_last_updated
     - field.field.node.oe_news.oe_news_location
+    - field.field.node.oe_news.oe_news_sources
     - field.field.node.oe_news.oe_news_types
     - field.field.node.oe_news.oe_publication_date
     - field.field.node.oe_news.oe_reference_code
@@ -34,7 +35,7 @@ third_party_settings:
         - oe_author
         - oe_news_location
       parent_name: ''
-      weight: 1
+      weight: 3
       format_type: oe_theme_helper_field_list_pattern
       region: content
       format_settings:
@@ -67,7 +68,7 @@ content:
     third_party_settings: {  }
   oe_news_contacts:
     type: entity_reference_revisions_entity_view
-    weight: 2
+    weight: 4
     region: content
     label: above
     settings:
@@ -82,6 +83,18 @@ content:
     settings:
       link: false
     third_party_settings: {  }
+  oe_news_sources:
+    type: link
+    weight: 1
+    region: content
+    label: hidden
+    settings:
+      trim_length: null
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings: {  }
   oe_reference_code:
     type: string
     weight: 12
@@ -92,7 +105,7 @@ content:
     third_party_settings: {  }
   oe_related_links:
     type: link
-    weight: 3
+    weight: 5
     region: content
     label: hidden
     settings:
