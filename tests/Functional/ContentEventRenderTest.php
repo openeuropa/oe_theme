@@ -507,7 +507,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
-    $description_summary = $this->assertSession()->elementExists('css', '.ecl-editor', $details_content);
+    $description_summary = $this->assertSession()->elementExists('css', '.ecl', $details_content);
     $this->assertEquals('Event report summary', $description_summary->getText());
 
     $text_featured_expected_values['title'] = 'Report';

@@ -12,7 +12,7 @@
 {% if items %}
   {% for _item in items %}
     {% set _description %}
-      <div class="ecl-editor">{{ _item.description }}</div>
+      <div class="ecl">{{ _item.description }}</div>
     {% endset %}
     {% set _items = _items|merge([{
       term: _item.term,
