@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Drupal\oe_theme_content_publication\Plugin\ExtraField\Display;
+namespace Drupal\oe_theme_helper\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -19,6 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Publication date"),
  *   bundles = {
  *     "node.oe_publication",
+ *     "node.oe_news",
  *   },
  *   visible = true
  * )
@@ -26,6 +27,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PublicationDate extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
+
+  /**
+   * Date formats keyed by bundle ids.
+   *
+   * @var string[]
+   */
+  protected $dateFormats = [
+    'oe_publication' => 'oe_theme_publication_date',
+    'oe_news' => 'oe_theme_news_date',
+  ];
 
   /**
    * Date formatter service instance.
@@ -73,22 +84,23 @@ class PublicationDate extends ExtraFieldDisplayFormattedBase implements Containe
   /**
    * {@inheritdoc}
    */
-  public function viewElements(ContentEntityInterface $entity) {
+  public function viewElements(ContentEntityInterface $entity): array {
+    $bundle = $entity->bundle();
     $publication_date_timestamp = $entity->get('oe_publication_date')->date->getTimestamp();
-    $publication_date = $this->dateFormatter->format($publication_date_timestamp, 'oe_theme_publication_date');
-    if ($entity->get('oe_publication_last_updated')->isEmpty()) {
+    $publication_date = $this->dateFormatter->format($publication_date_timestamp, $this->dateFormats[$bundle]);
+    if ($entity->get($bundle . '_last_updated')->isEmpty()) {
       return [
         '#markup' => $publication_date,
       ];
     }
 
-    $last_update_timestamp = $entity->get('oe_publication_last_updated')->date->getTimestamp();
+    $last_update_timestamp = $entity->get($bundle . '_last_updated')->date->getTimestamp();
     return [
       '#type' => 'inline_template',
       '#template' => "{{ publication_date }} ({{'Last updated on: @date'|t({'@date': last_update}) }})",
       '#context' => [
         'publication_date' => $publication_date,
-        'last_update' => $this->dateFormatter->format($last_update_timestamp, 'oe_theme_publication_date'),
+        'last_update' => $this->dateFormatter->format($last_update_timestamp, $this->dateFormats[$bundle]),
       ],
     ];
   }
