@@ -57,6 +57,7 @@ function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $e
     // Rename field labels based on number of items.
     $plural_label_overrides = [
       'oe_author' => t('Authors'),
+      'oe_departments' => t('Related departments'),
     ];
 
     foreach ($plural_label_overrides as $name => $label_override) {
