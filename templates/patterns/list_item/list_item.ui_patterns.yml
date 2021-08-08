@@ -90,3 +90,8 @@ list_item:
       preview:
         src: "https://placeimg.com/1200/900/arch"
         alt: "Alternative text for image"
+    icon:
+      type: "text"
+      label: "Icon"
+      description: "An optional icon to be used with the link."
+      preview: "external"
