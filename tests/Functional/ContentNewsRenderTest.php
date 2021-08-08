@@ -98,29 +98,24 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    // Assert header.
     $source_links_header = $this->assertSession()->elementExists('css', 'article[role=article] > div > h2:nth-child(2)');
     $this->assertContentHeader($source_links_header, 'Sources');
-    $source_links = $this->getSession()->getPage()->findAll('css', 'div.ecl-list:nth-child(3) article.ecl-content-item');
-    $this->assertCount(2, $source_links);
-    $selector = 'div.ecl-content-item__title.ecl-u-type-heading-5.ecl-u-mb-xs.ecl-u-mt-none a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after';
-    $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-link__icon';
-    // Assert the internal source link content.
-    $first_source_link = $source_links[0]->find('css', $selector);
-    $this->assertEquals('/build/node', $first_source_link->getAttribute('href'));
-    $first_source_text = $source_links[0]->find('css', $selector . ' span.ecl-link__label');
-    $this->assertEquals('Internal source link', $first_source_text->getText());
-    $first_source_link_svg = $source_links[0]->findAll('css', $svg_locator);
-    $icon = $first_source_link_svg[0]->findAll('css', 'use');
-    $this->assertContains('external', $icon[0]->getAttribute('xlink:href'));
-    // Assert the external source link content.
-    $second_source_link = $source_links[1]->find('css', $selector);
-    $this->assertEquals('https://example.com', $second_source_link->getAttribute('href'));
-    $second_source_text = $source_links[1]->find('css', $selector . ' span.ecl-link__label');
-    $this->assertEquals('External source link', $second_source_text->getText());
-    $second_source_link_svg = $source_links[1]->findAll('css', $svg_locator);
-    $icon = $second_source_link_svg[0]->findAll('css', 'use');
-    $this->assertContains('external', $icon[0]->getAttribute('xlink:href'));
+    $source_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(3) article.ecl-content-item:nth-child(1)');
+    $link_assert = new ListItemAssert();
+    $link_expected_values = [
+      'url' => '/build/node',
+      'title' => 'Internal source link',
+    ];
+    $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
+    $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
+
+    $source_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(3) article.ecl-content-item:nth-child(2)');
+    $link_expected_values = [
+      'url' => 'https://example.com',
+      'title' => 'External source link',
+    ];
+    $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
+    $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');

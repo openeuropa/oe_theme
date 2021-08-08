@@ -430,7 +430,11 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
     }
   }
 
-  if ($variables['field_name'] === 'oe_related_links') {
+  $link_fields = [
+    'oe_related_links',
+    'oe_news_sources',
+  ];
+  if (in_array($variables['field_name'], $link_fields)) {
     foreach ($variables['items'] as $delta => $item) {
       $variables['items'][$delta]['content'] = [
         '#type' => 'pattern',
@@ -441,6 +445,9 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
           'title' => $item['content']['#title'],
         ],
       ];
+      if ($variables['element']['#bundle'] === 'oe_news') {
+        $variables['items'][$delta]['content']['#fields']['icon'] = 'external';
+      }
     }
   }
 }
