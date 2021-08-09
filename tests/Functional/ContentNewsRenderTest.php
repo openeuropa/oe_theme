@@ -152,7 +152,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
           'body' => 'African Court of Justice and Human Rights',
         ],
         [
-          'label' => 'Related department',
+          'label' => 'Department',
           'body' => 'Associated African States and Madagascar',
         ],
         [
@@ -185,14 +185,14 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 
-    // Assert Related departments field label.
+    // Assert Departments field label.
     $node->set('oe_departments', [
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
       ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
-    $details_expected_values['items'][3]['label'] = 'Related departments';
+    $details_expected_values['items'][3]['label'] = 'Departments';
     $details_expected_values['items'][3]['body'] = 'Associated African States and Madagascar | Audit Board of the European Communities';
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
