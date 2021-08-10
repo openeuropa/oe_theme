@@ -49,18 +49,23 @@
     {% block title %}
       <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
         {%- if url %}
-          {% include '@ecl-twig/link' with {
+          {% set _link = {
             link: {
               type: 'standalone',
               label: title,
-              path: url
-            },
-            icon: {
-              'path': ecl_icon_path,
-              'name': icon|default(''),
-              'size': 's'
+              path: url,
             }
-          } only %}
+          } %}
+          {% if icon %}
+            {% set _link = _link|merge({
+              icon: {
+                'path': ecl_icon_path,
+                'name': icon,
+                'size': 's',
+              }
+            }) %}
+          {% endif %}
+          {% include '@ecl-twig/link' with _link only %}
         {% else %}
           {{ title }}
         {%- endif -%}
