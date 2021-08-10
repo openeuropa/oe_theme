@@ -934,8 +934,8 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     $variables['variant'] = $variant === 'default' ? 'left_simple' : $variant;
   }
 
-  // Add link field.
-  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+  // Link field doesn't exist in oe_paragraphs <= 1.8.0, so ensure it exists.
+  if ($paragraph->hasField('field_oe_link') && !$paragraph->get('field_oe_link')->isEmpty()) {
     $link_field = $paragraph->get('field_oe_link')->first();
     $variables['link'] = [
       'path' => $link_field->getUrl()->toString(),
