@@ -59,6 +59,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
         'value' => '2020-09-18',
       ],
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
+      'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
       'status' => 1,
@@ -151,6 +152,10 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
           'body' => 'African Court of Justice and Human Rights',
         ],
         [
+          'label' => 'Department',
+          'body' => 'Associated African States and Madagascar',
+        ],
+        [
           'label' => 'Location',
           'body' => 'Abu Dhabi',
         ],
@@ -177,6 +182,18 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $details_expected_values['items'][2]['label'] = 'Authors';
     $details_expected_values['items'][2]['body'] = 'African Court of Justice and Human Rights | Centre for the Development of Enterprise';
+    $details_html = $details->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+
+    // Assert Departments field label.
+    $node->set('oe_departments', [
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'][3]['label'] = 'Departments';
+    $details_expected_values['items'][3]['body'] = 'Associated African States and Madagascar | Audit Board of the European Communities';
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 
