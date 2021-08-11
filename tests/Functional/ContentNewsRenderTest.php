@@ -105,6 +105,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $link_expected_values = [
       'url' => '/build/node',
       'title' => 'Internal source link',
+      'icon' => 'external',
     ];
     $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
     $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
@@ -113,6 +114,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $link_expected_values = [
       'url' => 'https://example.com',
       'title' => 'External source link',
+      'icon' => 'external',
     ];
     $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
     $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
@@ -256,6 +258,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $link_expected_values = [
       'url' => '/build/node',
       'title' => 'Node listing',
+      'icon' => NULL,
     ];
     $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
     $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
@@ -264,6 +267,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $link_expected_values = [
       'url' => 'https://example.com',
       'title' => 'External link',
+      'icon' => NULL,
     ];
     $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
     $link_assert->assertVariant('default', $related_links_content->getOuterHtml());

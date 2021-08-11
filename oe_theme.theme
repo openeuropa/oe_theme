@@ -443,11 +443,9 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
         '#fields' => [
           'url' => $item['content']['#url'],
           'title' => $item['content']['#title'],
+          'icon' => $variables['field_name'] === 'oe_news_sources' ? 'external' : '',
         ],
       ];
-      if ($variables['element']['#bundle'] === 'oe_news') {
-        $variables['items'][$delta]['content']['#fields']['icon'] = 'external';
-      }
     }
   }
 }
