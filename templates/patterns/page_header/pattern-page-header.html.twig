@@ -39,5 +39,5 @@
   'meta': metas|filter_empty,
   'background_image_url': background_image_url,
   'extra_classes': _extra_classes|join(' '),
-  'overlay': ecl_component_library == 'ec' and overlay is not empty,
+  'overlay': overlay|default(''),
 } %}

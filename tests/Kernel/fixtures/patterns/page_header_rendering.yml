@@ -36,6 +36,8 @@
       '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
       '.ecl-page-header-core__info-list': 0
       '.ecl-page-header-core__info-item': 0
+      '.ecl-page-header-core--overlay-dark': 0
+      '.ecl-page-header-core--overlay-light': 0
     equals:
       'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -88,6 +90,8 @@
       '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
       '.ecl-page-header-core__info-list': 0
       '.ecl-page-header-core__info-item': 0
+      '.ecl-page-header-core--overlay-dark': 0
+      '.ecl-page-header-core--overlay-light': 0
     equals:
       'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -162,7 +166,7 @@
     count:
       '.ecl-page-header-standardised': 1
       '.ecl-breadcrumb-standardised__segment': 7
-      '.ecl-page-header-core__background': 0
+      '.ecl-page-header-standardised__background': 0
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
@@ -210,14 +214,17 @@
           href: "http://www.example.com/news/"
           label: "News"
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      overlay: 'light'
   assertions:
     count:
       '.ecl-page-header-standardised': 1
       '.ecl-breadcrumb-standardised__segment': 7
-      '.ecl-page-header-core__background': 0
+      '.ecl-page-header-standardised__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
+      '.ecl-page-header-core--overlay-dark': 0
+      '.ecl-page-header-core--overlay-light': 0
     equals:
       'h1.ecl-page-header-standardised__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header-standardised__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
@@ -259,7 +266,7 @@
     count:
       '.ecl-page-header-standardised': 1
       '.ecl-u-pt-m': 1
-      '.ecl-page-header-core__background': 0
+      '.ecl-page-header-standardised__background': 0
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item': 3
       '.ecl-page-header-standardised__info-list': 0
       '.ecl-page-header-standardised__info-item': 0
@@ -270,3 +277,59 @@
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header-standardised__meta .ecl-page-header-standardised__meta-item:nth-child(3)': "Brussels&lt;"
+- branding: core
+  pattern:
+    '#type': pattern
+    '#id': page_header
+    '#fields':
+      title: "Business, Economy, Euro<"
+      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+      metas:
+        - "News article>"
+        - "6 July 2015&"
+        - "Brussels<"
+      background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      overlay: 'dark'
+  assertions:
+    count:
+      '.ecl-page-header-core': 1
+      '.ecl-page-header-core__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
+      '.ecl-page-header-core__info-list': 0
+      '.ecl-page-header-core__info-item': 0
+      '.ecl-page-header-core--overlay-dark': 1
+      '.ecl-page-header-core--overlay-light': 0
+    equals:
+      'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
+      '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(3)': "Brussels&lt;"
+- branding: core
+  pattern:
+    '#type': pattern
+    '#id': page_header
+    '#fields':
+      title: "Business, Economy, Euro<"
+      introduction: "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.<cc>&"
+      metas:
+        - "News article>"
+        - "6 July 2015&"
+        - "Brussels<"
+      background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
+      overlay: 'light'
+  assertions:
+    count:
+      '.ecl-page-header-core': 1
+      '.ecl-page-header-core__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
+      '.ecl-page-header-core__info-list': 0
+      '.ecl-page-header-core__info-item': 0
+      '.ecl-page-header-core--overlay-dark': 0
+      '.ecl-page-header-core--overlay-light': 1
+    equals:
+      'h1.ecl-page-header-core__title': "Business, Economy, Euro&lt;"
+      '.ecl-page-header-core__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(1)': "News article&gt;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(2)': "6 July 2015&amp;"
+      '.ecl-page-header-core__meta .ecl-page-header-core__meta-item:nth-child(3)': "Brussels&lt;"
