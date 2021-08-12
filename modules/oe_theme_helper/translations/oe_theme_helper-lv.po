@@ -453,3 +453,6 @@ msgstr "Atvērt galeriju"
 
 msgid "(Acting) @role"
 msgstr "@role (pienākumu izpildītājs)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sekojiet jaunumiem un uzziniet vairāk par iespējām piedalīties."

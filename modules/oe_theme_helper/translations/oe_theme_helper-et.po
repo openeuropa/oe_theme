@@ -453,3 +453,6 @@ msgstr "Ava galerii"
 
 msgid "(Acting) @role"
 msgstr "@role (kohusetäitja) "
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Hoidke end kursis ning uurige, kuidas saaksite ise osaleda."

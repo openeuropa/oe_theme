@@ -453,3 +453,6 @@ msgstr "Към галерията"
 
 msgid "(Acting) @role"
 msgstr "(Временно изпълняващ длъжността) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Следете новините и научете как да участвате."

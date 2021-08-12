@@ -453,3 +453,6 @@ msgstr "Iftaħ il-ġabra"
 
 msgid "(Acting) @role"
 msgstr "(Aġent) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Segwi l-progress l-aktar reċenti u tgħallem aktar dwar kif tinvolvi ruħek."

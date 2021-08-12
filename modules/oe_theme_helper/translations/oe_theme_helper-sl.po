@@ -453,3 +453,6 @@ msgstr "Odpri galerijo"
 
 msgid "(Acting) @role"
 msgstr "(Vršilec/-ka dolžnosti) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Spremljajte najnovejše dogajanje in sodelujte v družbenih medijih."
