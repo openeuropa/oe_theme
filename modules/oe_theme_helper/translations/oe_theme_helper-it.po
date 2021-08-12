@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Biglietto d'ingresso"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Prenota un posto, tempo restante @time_left, la registrazione si concluderà in data @end_date."
+msgstr "Prenota il posto, @time_left per registrarsi, scadenza per l'iscrizione @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Le registrazioni si apriranno tra @time_left. È possibile registrarsi dal @start_date al @end_date."
@@ -465,3 +465,53 @@ msgstr "Precedenti"
 
 msgid "Upcoming and open"
 msgstr "In programma e aperti"
+
+msgid "This page is not available in @language_name."
+msgstr "Questa pagina non è disponibile in @language_name."
+
+msgid "Choose another language"
+msgstr "Scegliere un’altra lingua"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 giorno"
+msgstr[1] "@count giorni"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 settimana"
+msgstr[1] "@count settimane"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 anno"
+msgstr[1] "@count anni"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mese"
+msgstr[1] "@count mesi"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 ora"
+msgstr[1] "@count ore"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minuto"
+msgstr[1] "@count minuti"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 secondo"
+msgstr[1] "@count secondi"
+
+msgid "Online link"
+msgstr "Link per l'accesso online"
+
+msgid "Online time"
+msgstr "Ora online"
+
+msgid "Name"
+msgstr "Nome"

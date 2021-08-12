@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Inschrijvingsgeld"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Boek uw plaats. U heeft nog @time_left, inschrijven kan nog tot @end_date."
+msgstr "Reserveer uw plaats, nog @time_left tijd om in te schrijven, de inschrijving eindigt op @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreren kan over @time_left. Registreren kan van @start_date  tot @end_date."
@@ -465,3 +465,53 @@ msgstr "Voorbij"
 
 msgid "Upcoming and open"
 msgstr "Lopend en gepland"
+
+msgid "This page is not available in @language_name."
+msgstr "Deze pagina is niet beschikbaar in het @language_name."
+
+msgid "Choose another language"
+msgstr "Kies een andere taal"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 dag"
+msgstr[1] "@count dagen"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 week"
+msgstr[1] "@count weken"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 jaar"
+msgstr[1] "@count jaar"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 maand"
+msgstr[1] "@count maanden"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 uur"
+msgstr[1] "@count uur"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minuut"
+msgstr[1] "@count minuten"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 seconde"
+msgstr[1] "@count seconden"
+
+msgid "Online link"
+msgstr "Link"
+
+msgid "Online time"
+msgstr "Online-tijd"
+
+msgid "Name"
+msgstr "Naam"

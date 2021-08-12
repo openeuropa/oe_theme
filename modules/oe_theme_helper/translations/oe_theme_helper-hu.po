@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Belépődíj"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs időszak végéig, a regisztrációs időszak záró dátuma: @end_date."
+msgstr "Foglalja le a helyét már most! @time_left van még hátra, a regisztráció határideje @end_date."
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "A regisztrációs időszak kezdetéig hátra van még @time_left. Regisztrálni ettől az időponttól: @start_date eddig az időpontig: @end_date lehet."
@@ -465,3 +465,53 @@ msgstr "Korábbi"
 
 msgid "Upcoming and open"
 msgstr "Közelgő és aktuális"
+
+msgid "This page is not available in @language_name."
+msgstr "Ez az oldal nem érhető el @language_name nyelven."
+
+msgid "Choose another language"
+msgstr "Válasszon másik nyelvet"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 nap"
+msgstr[1] "@count nap"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 hét"
+msgstr[1] "@count hét"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 év"
+msgstr[1] "@count év"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 hónap"
+msgstr[1] "@count hónap"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 óra"
+msgstr[1] "@count óra"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 perc"
+msgstr[1] "@count perc"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 másodperc"
+msgstr[1] "@count másodperc"
+
+msgid "Online link"
+msgstr "Az esemény linkje"
+
+msgid "Online time"
+msgstr "Az esemény időpontja"
+
+msgid "Name"
+msgstr "Név"

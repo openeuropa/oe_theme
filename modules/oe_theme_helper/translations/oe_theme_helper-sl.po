@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Vstopnina"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervirajte svoje mesto. Za prijavo preostane še @time_left. Prijava je mogoča do @end_date."
+msgstr "Rezervirajte svoj sedež, @time_left ostane za registracijo, registracija bo potekla @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registracija se začne v @time_left. Registrirate se lahko od @start_date  do @end_date."
@@ -465,3 +465,53 @@ msgstr "Pretekli"
 
 msgid "Upcoming and open"
 msgstr "Prihodnji in odprti"
+
+msgid "This page is not available in @language_name."
+msgstr "Ta stran v @language_name ni na voljo."
+
+msgid "Choose another language"
+msgstr "Izberi drug jezik"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 dan"
+msgstr[1] "@count dni"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 teden"
+msgstr[1] "@count tednov"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 leto"
+msgstr[1] "@count leta"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mesec"
+msgstr[1] "@count mesecev"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 ura"
+msgstr[1] "@count ur"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minuta"
+msgstr[1] "@count minut"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekunda"
+msgstr[1] "@count sekund"
+
+msgid "Online link"
+msgstr "Spletna povezava"
+
+msgid "Online time"
+msgstr "Spletni čas"
+
+msgid "Name"
+msgstr "Ime"
