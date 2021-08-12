@@ -132,7 +132,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--high.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Test short title fallback.
@@ -210,7 +210,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--low.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--low.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
@@ -249,7 +249,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-u-text-uppercase.ecl-label--medium.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--medium.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status N/A.

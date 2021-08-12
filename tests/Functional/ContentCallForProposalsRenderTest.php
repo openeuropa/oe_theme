@@ -119,7 +119,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
 
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-text-uppercase"]';
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-type-uppercase"]';
     $this->assertSession()->elementExists('xpath', $selector);
     $this->assertEquals('N/A', $content_items[0]->find('xpath', $selector)->getText());
 
