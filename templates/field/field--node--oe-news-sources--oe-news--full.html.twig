@@ -9,28 +9,6 @@
 <h2 class="ecl-u-type-heading-2">{{ 'Sources'|t }}</h2>
 <div class="ecl-list">
   {% for item in items %}
-    <article class="ecl-content-item ecl-u-d-s-flex ecl-u-pb-m">
-      <div class="ecl-u-flex-grow-1">
-        <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
-          {%- if item.content['#url'] %}
-            {% include '@ecl-twig/link' with {
-              link: {
-                type: 'standalone',
-                icon_position: 'after',
-                label: item.content['#title'],
-                path: item.content['#url']
-              },
-              icon: {
-                name: 'external',
-                size: 's',
-                path: ecl_icon_path
-              }
-            } %}
-          {% else %}
-            {{ item.content['#title'] }}
-          {%- endif -%}
-        </div>
-      </div>
-    </article>
+    {{ item.content }}
   {% endfor %}
 </div>
