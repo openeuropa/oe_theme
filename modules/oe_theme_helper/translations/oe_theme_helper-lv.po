@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Ieejas maksa"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervējiet savu vietu! Jums vēl ir @time_left, lai reģistrētos. Reģistrācija beigsies @end_date."
+msgstr "Rezervējiet savu vietu! Jums vēl ir @time_left, lai reģistrētos. Reģistrācija beigsies @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Reģistrācija sāksies @time_left. Varat reģistrēties no @start_date līdz @end_date."

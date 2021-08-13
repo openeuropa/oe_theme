@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Входна такса"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Запазете своето място! Имате @time_left да се регистрирате, регистрацията ще приключи на @end_date."
+msgstr "Запазете своето място! Имате @time_left да се регистрирате, регистрацията ще приключи на @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."

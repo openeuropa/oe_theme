@@ -470,7 +470,7 @@ msgid "This page is not available in @language_name."
 msgstr "Η σελίδα αυτή δεν είναι διαθέσιμη στα @language_name."
 
 msgid "Choose another language"
-msgstr "Επιλέξτε άλλη γλώσσα."
+msgstr "Επιλέξτε άλλη γλώσσα"
 
 msgid "1 day"
 msgid_plural "@count days"

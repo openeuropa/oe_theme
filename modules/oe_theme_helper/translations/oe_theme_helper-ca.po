@@ -30,7 +30,7 @@ msgid "Entrance fee"
 msgstr "Preu de l'entrada"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Reserveu la vostra plaça. Queden @time_left per inscriure's-hi. El termini acaba el @end_date."
+msgstr "Reserveu la vostra plaça. Queden @time_left per inscriure's-hi. El termini acaba el @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "El termini d'inscripció comença el  @time_left. Podeu inscriure-us del @start_date al @end_date."

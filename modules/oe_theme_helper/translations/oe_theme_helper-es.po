@@ -470,7 +470,7 @@ msgid "This page is not available in @language_name."
 msgstr "Esta página no está disponible en @language_name."
 
 msgid "Choose another language"
-msgstr "Elija otro idioma."
+msgstr "Elija otro idioma"
 
 msgid "1 day"
 msgid_plural "@count days"
