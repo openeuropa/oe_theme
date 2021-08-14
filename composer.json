@@ -11,7 +11,7 @@
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "3.x-dev",
+        "openeuropa/ecl-twig-loader": "^3.0",
         "openeuropa/oe_time_caching": "~1.0",
         "ralouphie/mimey": "^2.1"
     },

@@ -35,8 +35,8 @@ msgstr "Yerinizi ayırmak için rezervasyon yapın,  Kayıt için kalan süre: @
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Kayıtlar @time_left içinde açılacaktır. @start_date tarihinden @end_date tarihine kadar kayıt yaptırabilirsiniz.yaptırabilirsiniz."
 
-msgid "Registration period ended on @date."
-msgstr "Kayıt dönemi @end_date tarihinde sona erdi."
+msgid "Registration period ended on @date"
+msgstr "Kayıt dönemi @date tarihinde sona erdi"
 
 msgid "Postal address"
 msgstr "Posta adresi"

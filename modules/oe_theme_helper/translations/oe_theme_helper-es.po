@@ -34,8 +34,8 @@ msgstr "Reserve su localidad. Quedan @time_left para inscribirse. El plazo final
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "El plazo de inscripción empieza el @time_left. Puede inscribirse del @start_date al @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "El plazo de inscripción finalizó el @end_date."
+msgid "Registration period ended on @date"
+msgstr "El plazo de inscripción finalizó el @end_date"
 
 msgid "Postal address"
 msgstr "Dirección postal"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Abierto"
 
 msgid "Closed"
-msgstr "Cerrado"
+msgstr "Cerrados"
 
 msgid "Details"
 msgstr "Detalles"
@@ -229,8 +229,8 @@ msgstr "Múltiples fechas límite"
 msgid "Permanent"
 msgstr "Permanente"
 
-msgid "in"
-msgstr "en"
+msgid "@date in"
+msgstr "@date en"
 
 msgid "Contact us"
 msgstr "Contacto"
@@ -339,3 +339,120 @@ msgstr "Ocultar datos de contacto"
 
 msgid "Leadership and organisation"
 msgstr "Dirección y organización"
+
+msgid "Available translations"
+msgstr "Traducciones disponibles"
+
+msgid "General contact"
+msgstr "Contacto general"
+
+msgid "Grants awarded"
+msgstr "Subvenciones concedidas"
+
+msgid "Page contents"
+msgstr "Contenido de la página"
+
+msgid "Your name"
+msgstr "Nombre"
+
+msgid "Your email address"
+msgstr "Dirección de correo electrónico"
+
+msgid "Subject"
+msgstr "Asunto"
+
+msgid "Message"
+msgstr "Mensaje"
+
+msgid "Country of residence"
+msgstr "País de residencia"
+
+msgid "Phone"
+msgstr "Teléfono"
+
+msgid "Send yourself a copy"
+msgstr "Recibir una copia"
+
+msgid "Status message"
+msgstr "Mensaje de estado"
+
+msgid "Close this message"
+msgstr "Cerrar este mensaje"
+
+msgid "The sender's name"
+msgstr "Nombre del remitente"
+
+msgid "The sender's email"
+msgstr "Correo electrónico del remitente"
+
+msgid "Topic"
+msgstr "Ámbito"
+
+msgid "Languages"
+msgstr "Lenguas"
+
+msgid "Keywords"
+msgstr "Palabras clave"
+
+msgid "No results have been found"
+msgstr "No se han encontrado resultados"
+
+msgid "Event date"
+msgstr "Fecha del evento"
+
+msgid "Select"
+msgstr "Seleccionar"
+
+msgid "After"
+msgstr "Después de"
+
+msgid "Before"
+msgstr "Antes de"
+
+msgid "In between"
+msgstr "Entre"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "Event type"
+msgstr "Tipo de evento"
+
+msgid "Venue"
+msgstr "Lugar"
+
+msgid "Online type"
+msgstr "En línea"
+
+msgid "Livestream"
+msgstr "En directo por internet"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "EU organisation type"
+msgstr "Tipo de organización de la UE"
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "End Date"
+msgstr "Fecha de final"
+
+msgid "Responsible department"
+msgstr "Servicio responsable"
+
+msgid "Content owner"
+msgstr "Propietario del contenido"
+
+msgid "Overview"
+msgstr "Visión general"
+
+msgid "Open gallery"
+msgstr "Abrir galería"
+
+msgid "(Acting) @role"
+msgstr "(En funciones) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Siga los últimos avances y descubra cómo puede participar."

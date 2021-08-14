@@ -1557,15 +1557,6 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 }
 
 /**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_banner_hero(array &$variables): void {
-  if ($variables['full_width'] === TRUE) {
-    $variables['container_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
-  }
-}
-
-/**
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
@@ -1577,15 +1568,8 @@ function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $varia
     $suggestions[] = 'page__node__' . $route->getParameter('node_preview')->bundle();
     $suggestions[] = 'page__node__preview__' . $route->getParameter('node_preview')->bundle();
   }
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
-function oe_theme_preprocess_pattern_banner_page(array &$variables): void {
-  if ($variables['full_width'] === TRUE) {
-    $variables['container_attributes'] = new Attribute(['class' => 'ecl-page-banner--full-width']);
-  }
+  $branding = theme_get_setting('branding') ?? 'core';
+  $suggestions[] = 'page__ecl_branding__' . $branding;
 }
 
 /**
@@ -1699,5 +1683,16 @@ function oe_theme_preprocess_patterns_overview_page(&$variables) {
     if (!empty($pattern['additional']['hidden'])) {
       unset($variables['patterns'][$key]);
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
+  if ($variables['ecl_branding'] === 'core') {
+    // We shouldn't have site_name inside the navigation block
+    // with 'Core' ECL branding.
+    unset($variables['site_name']);
   }
 }

@@ -49,6 +49,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
@@ -58,12 +59,10 @@ class ConfigurationTest extends BrowserTestBase {
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
-
-      // Assert that the ECL Editor preset is always loaded.
-      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
     }
   }
 
@@ -101,6 +100,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
@@ -113,12 +113,10 @@ class ConfigurationTest extends BrowserTestBase {
       // Assert that we do not load the EC component library.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
-
-      // Assert that the ECL Editor preset is always loaded.
-      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
@@ -133,6 +131,7 @@ class ConfigurationTest extends BrowserTestBase {
       // Assert that we load the EC component library by default.
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
       $this->assertLinkContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
@@ -145,12 +144,11 @@ class ConfigurationTest extends BrowserTestBase {
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');
       $this->assertLinkNotContainsHref('/oe_theme/css/style-eu.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
 
-      // Assert that the ECL Editor preset is always loaded.
-      $this->assertLinkContainsHref('/oe_theme/dist/styles/ecl-ec-preset-editor.css');
     }
   }
 
@@ -184,6 +182,10 @@ class ConfigurationTest extends BrowserTestBase {
       $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top');
       $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top div.ecl-site-header-core__action');
 
+      // Make sure that 'Site name' banner is not present in the site header
+      // for Core template.
+      $assert_session->elementNotExists('css', 'header.ecl-site-header-core .ecl-site-header-standardised__banner .ecl-container');
+
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 
@@ -195,8 +197,11 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Make sure that classes for Standardised branding is present.
-      $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top');
-      $assert_session->elementExists('css', 'header.ecl-site-header-standardised div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
+      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__header div.ecl-site-header-standardised__top');
+      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__header div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
+      // Make sure that 'Site name' banner is present in the site header
+      // for Standardised template.
+      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__banner .ecl-container');
     }
   }
 

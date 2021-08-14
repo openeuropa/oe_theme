@@ -34,8 +34,8 @@ msgstr "Rezervirajte svoje mesto. Za prijavo preostane še @time_left. Prijava j
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registracija se začne v @time_left. Registrirate se lahko od @start_date  do @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registracija se je končala  @end_date."
+msgid "Registration period ended on @date"
+msgstr "Obdobje registracije se je končalo @date"
 
 msgid "Postal address"
 msgstr "Poštni naslov"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Odprto"
 
 msgid "Closed"
-msgstr "Končano"
+msgstr "Zaprti"
 
 msgid "Details"
 msgstr "Več informacij"
@@ -229,8 +229,8 @@ msgstr "Več končnih datumov"
 msgid "Permanent"
 msgstr "Stalno"
 
-msgid "in"
-msgstr "v"
+msgid "@date in"
+msgstr "@date v"
 
 msgid "Contact us"
 msgstr "Kontakt"
@@ -339,3 +339,120 @@ msgstr "Skrij kontaktne podatke"
 
 msgid "Leadership and organisation"
 msgstr "Vodstvo in organiziranost"
+
+msgid "Available translations"
+msgstr "Vsi prevodi"
+
+msgid "General contact"
+msgstr "Splošni kontakt"
+
+msgid "Grants awarded"
+msgstr "Dodeljena nepovratna sredstva"
+
+msgid "Page contents"
+msgstr "Vsebina strani"
+
+msgid "Your name"
+msgstr "Vaše ime"
+
+msgid "Your email address"
+msgstr "Vaš elektronski naslov"
+
+msgid "Subject"
+msgstr "Zadeva"
+
+msgid "Message"
+msgstr "Sporočilo"
+
+msgid "Country of residence"
+msgstr "Država prebivališča"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Pošlji mi kopijo"
+
+msgid "Status message"
+msgstr "Statusno sporočilo"
+
+msgid "Close this message"
+msgstr "Zapri to sporočilo"
+
+msgid "The sender's name"
+msgstr "Ime pošiljatelja"
+
+msgid "The sender's email"
+msgstr "Elektronski naslov pošiljatelja"
+
+msgid "Topic"
+msgstr "Tema"
+
+msgid "Languages"
+msgstr "Jeziki"
+
+msgid "Keywords"
+msgstr "Ključne besede"
+
+msgid "No results have been found"
+msgstr "Ni zadetkov"
+
+msgid "Event date"
+msgstr "Datum dogodka"
+
+msgid "Select"
+msgstr "Izberi"
+
+msgid "After"
+msgstr "Pozneje"
+
+msgid "Before"
+msgstr "Pred"
+
+msgid "In between"
+msgstr "Vmes"
+
+msgid "Select all"
+msgstr "Izberi vse"
+
+msgid "Event type"
+msgstr "Vrsta dogodka"
+
+msgid "Venue"
+msgstr "Lokacija"
+
+msgid "Online type"
+msgstr "Spletni prenos"
+
+msgid "Livestream"
+msgstr "Prenos v živo"
+
+msgid "Type"
+msgstr "Vrsta"
+
+msgid "EU organisation type"
+msgstr "Vrsta organizacije EU"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "End Date"
+msgstr "Končni datum"
+
+msgid "Responsible department"
+msgstr "Pristojni oddelek"
+
+msgid "Content owner"
+msgstr "Lastnik vsebine"
+
+msgid "Overview"
+msgstr "Pregled"
+
+msgid "Open gallery"
+msgstr "Odpri galerijo"
+
+msgid "(Acting) @role"
+msgstr "(Vršilec/-ka dolžnosti) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Spremljajte najnovejše dogajanje in sodelujte v družbenih medijih."

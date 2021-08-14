@@ -34,8 +34,8 @@ msgstr "Foglalja le helyét, @time_left van még hátra a regisztrációs idősz
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "A regisztrációs időszak kezdetéig hátra van még @time_left. Regisztrálni ettől az időponttól: @start_date eddig az időpontig: @end_date lehet."
 
-msgid "Registration period ended on @date."
-msgstr "A regisztrációs időszak vége: @end_date."
+msgid "Registration period ended on @date"
+msgstr "A regisztrációs időszak vége: @date"
 
 msgid "Postal address"
 msgstr "Postai cím"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Folyamatban"
 
 msgid "Closed"
-msgstr "Lezárva"
+msgstr "Lezárt"
 
 msgid "Details"
 msgstr "Leírás"
@@ -229,8 +229,8 @@ msgstr "Többkörös"
 msgid "Permanent"
 msgstr "Állandó"
 
-msgid "in"
-msgstr "itt"
+msgid "@date in"
+msgstr "@date,"
 
 msgid "Contact us"
 msgstr "Kapcsolatfelvétel"
@@ -339,3 +339,120 @@ msgstr "Elérhetőségi adatok elrejtése"
 
 msgid "Leadership and organisation"
 msgstr "Vezetés és szervezeti felépítés"
+
+msgid "Available translations"
+msgstr "Elérhető fordítások"
+
+msgid "General contact"
+msgstr "Általános kapcsolattartás"
+
+msgid "Grants awarded"
+msgstr "Támogatások odaítélve"
+
+msgid "Page contents"
+msgstr "Tartalom"
+
+msgid "Your name"
+msgstr "Az Ön neve"
+
+msgid "Your email address"
+msgstr "Az Ön e-mail-címe"
+
+msgid "Subject"
+msgstr "Tárgy"
+
+msgid "Message"
+msgstr "Üzenet"
+
+msgid "Country of residence"
+msgstr "Lakóhely szerinti ország"
+
+msgid "Phone"
+msgstr "Telefonszám"
+
+msgid "Send yourself a copy"
+msgstr "Kérek másolatot az üzenetről"
+
+msgid "Status message"
+msgstr "Állapotüzenet"
+
+msgid "Close this message"
+msgstr "Üzenet bezárása"
+
+msgid "The sender's name"
+msgstr "A küldő neve"
+
+msgid "The sender's email"
+msgstr "A küldő e-mail-címe"
+
+msgid "Topic"
+msgstr "Téma"
+
+msgid "Languages"
+msgstr "Nyelvek"
+
+msgid "Keywords"
+msgstr "Kulcsszavak"
+
+msgid "No results have been found"
+msgstr "Nincs találat"
+
+msgid "Event date"
+msgstr "Esemény dátuma"
+
+msgid "Select"
+msgstr "Kiválasztás"
+
+msgid "After"
+msgstr "Ettől:"
+
+msgid "Before"
+msgstr "Eddig:"
+
+msgid "In between"
+msgstr "Időköz"
+
+msgid "Select all"
+msgstr "Összes kiválasztása"
+
+msgid "Event type"
+msgstr "Az esemény típusa"
+
+msgid "Venue"
+msgstr "Helyszín"
+
+msgid "Online type"
+msgstr "Online"
+
+msgid "Livestream"
+msgstr "Élő online közvetítés"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "EU organisation type"
+msgstr "Uniós szervezet típusa"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "End Date"
+msgstr "Záró dátum"
+
+msgid "Responsible department"
+msgstr "Felelős szervezeti egység"
+
+msgid "Content owner"
+msgstr "Tartalomtulajdonos"
+
+msgid "Overview"
+msgstr "Áttekintés"
+
+msgid "Open gallery"
+msgstr "Galéria megnyitása"
+
+msgid "(Acting) @role"
+msgstr "(Megbízott) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Kövesse a legújabb fejleményeket és tájékozódjon arról, hogyan vehet részt Ön is a folyamatokban!"

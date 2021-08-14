@@ -244,7 +244,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $contact_name);
     $this->assertEquals($name, $contact_name[0]->getText());
 
-    $contact_body = $element->findAll('css', '.ecl-editor');
+    $contact_body = $element->findAll('css', '.ecl');
     $this->assertCount(1, $contact_body);
     $this->assertEquals("Body text $name", $contact_body[0]->getText());
 

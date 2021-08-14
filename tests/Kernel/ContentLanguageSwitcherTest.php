@@ -72,7 +72,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Make sure that warning message contains the unavailable language.
-    $this->assertUnavailableLanguage($crawler, 'български');
+    $this->assertUnavailableLanguage($crawler, 'This page is not available in български.');
 
     // Make sure that selected language is properly rendered.
     $this->assertSelectedLanguage($crawler, 'English');
@@ -93,7 +93,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Verify that the requested language is set as unavailable.
-    $this->assertUnavailableLanguage($crawler, 'español');
+    $this->assertUnavailableLanguage($crawler, 'This page is not available in español.');
 
     // Verify that the content has been rendered in the fallback language.
     $this->assertSelectedLanguage($crawler, 'English');
