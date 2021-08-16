@@ -34,8 +34,8 @@ msgstr "Ibbukkja l-post tiegħek, @time_left baqa’ biex tirreġistra, ir-reġi
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Ir-reġistrazzjoni se tiftaħ fi @time_left. Tista’ tirreġistra minn@start_date, sa@end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Il-perjodu tar-reġistrazzjoni spiċċa fi @end_date."
+msgid "Registration period ended on @date"
+msgstr "Data meta spiċċa l-perjodu ta’ reġistrazzjoni: @date"
 
 msgid "Postal address"
 msgstr "Indirizz postali"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Miftuħ"
 
 msgid "Closed"
-msgstr "Magħluq"
+msgstr "Magħluqin"
 
 msgid "Details"
 msgstr "Dettalji"
@@ -229,8 +229,8 @@ msgstr "Fi stadji multipli"
 msgid "Permanent"
 msgstr "Permanenti"
 
-msgid "in"
-msgstr "fi"
+msgid "@date in"
+msgstr "@date fi"
 
 msgid "Contact us"
 msgstr "Ikkuntattjana"
@@ -339,3 +339,120 @@ msgstr "Aħbi d-dettalji ta' kuntatt"
 
 msgid "Leadership and organisation"
 msgstr "Tmexxija u organizzazzjoni"
+
+msgid "Available translations"
+msgstr "Traduzzjonijiet disponibbli"
+
+msgid "General contact"
+msgstr "Kuntatt ġenerali"
+
+msgid "Grants awarded"
+msgstr "Għotjiet mogħtija"
+
+msgid "Page contents"
+msgstr "Kontenut tal-Paġna"
+
+msgid "Your name"
+msgstr "Ismek"
+
+msgid "Your email address"
+msgstr "L-indirizz tal-email tiegħek"
+
+msgid "Subject"
+msgstr "Suġġett"
+
+msgid "Message"
+msgstr "Messaġġ"
+
+msgid "Country of residence"
+msgstr "Pajjiż ta’ residenza"
+
+msgid "Phone"
+msgstr "Telefown"
+
+msgid "Send yourself a copy"
+msgstr "Ibgħat kopja lilek stess"
+
+msgid "Status message"
+msgstr "Messaġġ dwar l-istatus"
+
+msgid "Close this message"
+msgstr "Agħlaq dan il-messaġġ"
+
+msgid "The sender's name"
+msgstr "Isem l-ispeditur"
+
+msgid "The sender's email"
+msgstr "L-email tal-mittent"
+
+msgid "Topic"
+msgstr "Suġġett"
+
+msgid "Languages"
+msgstr "Lingwi"
+
+msgid "Keywords"
+msgstr "Keywords"
+
+msgid "No results have been found"
+msgstr "Ma nstab ebda riżultat"
+
+msgid "Event date"
+msgstr "Data tal-avveniment"
+
+msgid "Select"
+msgstr "Agħżel"
+
+msgid "After"
+msgstr "Wara"
+
+msgid "Before"
+msgstr "Qabel"
+
+msgid "In between"
+msgstr "Bejn"
+
+msgid "Select all"
+msgstr "Agħżel kollox"
+
+msgid "Event type"
+msgstr "Tip ta' avveniment"
+
+msgid "Venue"
+msgstr "Post"
+
+msgid "Online type"
+msgstr "Tip ta’ online"
+
+msgid "Livestream"
+msgstr "Xandira diretta fuq l-internet"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "EU organisation type"
+msgstr "Tip ta’ organizzazzjoni tal-UE"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "End Date"
+msgstr "Data tat-Tmiem"
+
+msgid "Responsible department"
+msgstr "Servizz responsabbli"
+
+msgid "Content owner"
+msgstr "Sid tal-kontenut"
+
+msgid "Overview"
+msgstr "Ħarsa ġenerali"
+
+msgid "Open gallery"
+msgstr "Iftaħ il-ġabra"
+
+msgid "(Acting) @role"
+msgstr "(Aġent) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Segwi l-progress l-aktar reċenti u tgħallem aktar dwar kif tinvolvi ruħek."

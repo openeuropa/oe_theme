@@ -131,7 +131,7 @@ class SiteNavigationBlock extends SystemMenuBlock {
     // Build site tree and process its links.
     $menu_build = $this->buildRenderableMenu($tree);
     $cacheable_metadata->merge(CacheableMetadata::createFromRenderArray($menu_build));
-    $build['#menu_items'] = $this->getEclLinks($menu_build['#items']);
+    $build['#menu_items'] = $this->getEclLinks($menu_build['#items'] ?? []);
     $cacheable_metadata->applyTo($build);
 
     return $build;

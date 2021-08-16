@@ -234,7 +234,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
     $job_role_content = $content_items[2]->find('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
     $this->assertEquals('(Acting) Advisor', $job_role_content->getText());
-    $job_description_content = $content_items[2]->find('css', 'div.ecl-u-mb-l.ecl-editor');
+    $job_description_content = $content_items[2]->find('css', 'div.ecl-u-mb-l.ecl');
     $this->assertEquals('Description job_1', $job_description_content->getText());
 
     // Assert Jobs field with multiple values.
@@ -248,7 +248,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
     $this->assertEquals('Chief advisor', $job_role_items[1]->getText());
-    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl-editor');
+    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl');
     $this->assertEquals('Description job_2', $job_description_items[1]->getText());
 
     // Assert Social media links field.
@@ -328,7 +328,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(6, $content_items);
     $this->assertContentHeader($content_items[5], 'Transparency', 'transparency');
-    $transparancy_intro_content = $content_items[5]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $transparancy_intro_content = $content_items[5]->find('css', 'div.ecl.ecl-u-mb-m');
     $this->assertEquals('Transparency introduction text', $transparancy_intro_content->getText());
 
     // Assert Transparency links field.
@@ -363,7 +363,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(7, $content_items);
     $this->assertContentHeader($content_items[6], 'Biography', 'biography');
-    $biography_content = $content_items[6]->find('css', 'div.ecl-editor.ecl-u-mb-m');
+    $biography_content = $content_items[6]->find('css', 'div.ecl.ecl-u-mb-m');
     $this->assertEquals('Biography introduction text', $biography_content->getText());
 
     // Assert Biography field.
@@ -413,7 +413,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     $content_items = $content->findAll('xpath', '/div');
     $this->assertEquals('Declaration of interests', $content_items[6]->find('css', 'h3.ecl-u-type-heading-3')->getText());
-    $this->assertEquals('Declaration of interests introduction text', $content_items[6]->find('css', 'div.ecl-u-mb-l.ecl-editor')->getText());
+    $this->assertEquals('Declaration of interests introduction text', $content_items[6]->find('css', 'div.ecl-u-mb-l.ecl')->getText());
 
     // Assert Declaration of interests file field.
     $cv_media_document = $this->createMediaDocument('declaration');
@@ -501,7 +501,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
     $this->assertEquals('Singer', $job_role_items[0]->getText());
     $this->assertEquals('Dancer', $job_role_items[1]->getText());
-    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl-editor');
+    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl');
     $this->assertEquals('Description job_1', $job_description_items[0]->getText());
     $this->assertEquals('Description job_2', $job_description_items[1]->getText());
 

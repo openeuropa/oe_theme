@@ -34,8 +34,8 @@ msgstr "Rezervējiet sev sēdvietu, reģistrācijai atlikušais laiks: @time_lef
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Reģistrācija sāksies @time_left. Varat reģistrēties no @start_date līdz @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Reģistrācijas periods beidzies @end_date."
+msgid "Registration period ended on @date"
+msgstr "Reģistrācijas periods beidzās @date"
 
 msgid "Postal address"
 msgstr "Pasta adrese"
@@ -140,7 +140,7 @@ msgid "Open"
 msgstr "Sācies"
 
 msgid "Closed"
-msgstr "Beidzies"
+msgstr "Slēgts(-i)"
 
 msgid "Details"
 msgstr "Sīkāka informācija"
@@ -229,8 +229,8 @@ msgstr "Vairāki termiņi"
 msgid "Permanent"
 msgstr "Pastāvīgs"
 
-msgid "in"
-msgstr "oficiālajā laikrakstā"
+msgid "@date in"
+msgstr "@date"
 
 msgid "Contact us"
 msgstr "Sazinieties ar mums"
@@ -339,3 +339,120 @@ msgstr "Paslēpt kontaktinformāciju"
 
 msgid "Leadership and organisation"
 msgstr "Vadība un organizācija"
+
+msgid "Available translations"
+msgstr "Pieejamie tulkojumi"
+
+msgid "General contact"
+msgstr "Vispārīgi jautājumi"
+
+msgid "Grants awarded"
+msgstr "Piešķirtās dotācijas"
+
+msgid "Page contents"
+msgstr "Lapas saturs"
+
+msgid "Your name"
+msgstr "Jūsu vārds, uzvārds"
+
+msgid "Your email address"
+msgstr "Jūsu e-pasta adrese"
+
+msgid "Subject"
+msgstr "Priekšmets"
+
+msgid "Message"
+msgstr "Ziņa"
+
+msgid "Country of residence"
+msgstr "Rezidences valsts"
+
+msgid "Phone"
+msgstr "Tālrunis"
+
+msgid "Send yourself a copy"
+msgstr "Nosūtiet sev kopiju"
+
+msgid "Status message"
+msgstr "Statusa ziņojums"
+
+msgid "Close this message"
+msgstr "Aizvērt šo ziņojumu"
+
+msgid "The sender's name"
+msgstr "Sūtītāja vārds, uzvārds"
+
+msgid "The sender's email"
+msgstr "Sūtītāja e-pasts"
+
+msgid "Topic"
+msgstr "Joma"
+
+msgid "Languages"
+msgstr "Atslēgvārdi"
+
+msgid "Keywords"
+msgstr "Priekšmets"
+
+msgid "No results have been found"
+msgstr "Nekas nav atrasts"
+
+msgid "Event date"
+msgstr "Pasākuma datums"
+
+msgid "Select"
+msgstr "Atlasīt"
+
+msgid "After"
+msgstr "Pēc"
+
+msgid "Before"
+msgstr "Pirms"
+
+msgid "In between"
+msgstr "Starp"
+
+msgid "Select all"
+msgstr "Atlasīt visu"
+
+msgid "Event type"
+msgstr "Pasākuma veids"
+
+msgid "Venue"
+msgstr "Norises vieta"
+
+msgid "Online type"
+msgstr "Tiešsaistes"
+
+msgid "Livestream"
+msgstr "Straumējums"
+
+msgid "Type"
+msgstr "Veids"
+
+msgid "EU organisation type"
+msgstr "ES struktūras veids"
+
+msgid "Date"
+msgstr "Datums"
+
+msgid "End Date"
+msgstr "Beigu datums"
+
+msgid "Responsible department"
+msgstr "Atbildīgā struktūrvienība"
+
+msgid "Content owner"
+msgstr "Satura īpašnieks"
+
+msgid "Overview"
+msgstr "Pārskats"
+
+msgid "Open gallery"
+msgstr "Atvērt galeriju"
+
+msgid "(Acting) @role"
+msgstr "@role (pienākumu izpildītājs)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sekojiet jaunumiem un uzziniet vairāk par iespējām piedalīties."

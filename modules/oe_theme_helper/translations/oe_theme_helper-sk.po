@@ -34,8 +34,8 @@ msgstr "Rezervujte si miesto, počet dní do uzatvorenia registrácie: @time_lef
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrácia sa otvorí @time_left. Registrovať sa môžete od @start_date do @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Registračné obdobie uzavreté @end_date."
+msgid "Registration period ended on @date"
+msgstr "Obdobie registrácie sa skončilo dňa @date"
 
 msgid "Postal address"
 msgstr "Poštová adresa"
@@ -83,7 +83,7 @@ msgid "Deadline dates"
 msgstr "Lehoty (dátumy)"
 
 msgid "Publication date"
-msgstr "Dátum publikácie"
+msgstr "Dátum uverejnenia"
 
 msgid "Author"
 msgstr "Autor/autorka"
@@ -229,8 +229,8 @@ msgstr "Viacfázový"
 msgid "Permanent"
 msgstr "Stály"
 
-msgid "in"
-msgstr "v"
+msgid "@date in"
+msgstr "@date v"
 
 msgid "Contact us"
 msgstr "Kontakt"
@@ -339,3 +339,120 @@ msgstr "Skryť kontaktné informácie"
 
 msgid "Leadership and organisation"
 msgstr "Vedenie a organizácia"
+
+msgid "Available translations"
+msgstr "Dostupné preklady"
+
+msgid "General contact"
+msgstr "Všeobecná kontaktná adresa"
+
+msgid "Grants awarded"
+msgstr "Udelené granty"
+
+msgid "Page contents"
+msgstr "Obsah stránky"
+
+msgid "Your name"
+msgstr "Vaše meno"
+
+msgid "Your email address"
+msgstr "Vaša e-mailová adresa"
+
+msgid "Subject"
+msgstr "Objekt"
+
+msgid "Message"
+msgstr "Správa"
+
+msgid "Country of residence"
+msgstr "Krajina pobytu"
+
+msgid "Phone"
+msgstr "Telefón"
+
+msgid "Send yourself a copy"
+msgstr "Pošlite si kópiu"
+
+msgid "Status message"
+msgstr "Správa o stave"
+
+msgid "Close this message"
+msgstr "Zatvoriť túto správu"
+
+msgid "The sender's name"
+msgstr "Meno odosielateľa"
+
+msgid "The sender's email"
+msgstr "E-mail odosielateľa"
+
+msgid "Topic"
+msgstr "Oblasť"
+
+msgid "Languages"
+msgstr "Jazyky"
+
+msgid "Keywords"
+msgstr "Kľúčové slová"
+
+msgid "No results have been found"
+msgstr "Nenašli sa žiadne výsledky"
+
+msgid "Event date"
+msgstr "Dátum udalosti"
+
+msgid "Select"
+msgstr "Vybrať"
+
+msgid "After"
+msgstr "Po"
+
+msgid "Before"
+msgstr "Pred"
+
+msgid "In between"
+msgstr "Medzi"
+
+msgid "Select all"
+msgstr "Vybrať všetko"
+
+msgid "Event type"
+msgstr "Druh podujatia"
+
+msgid "Venue"
+msgstr "Miesto konania"
+
+msgid "Online type"
+msgstr "Formát online"
+
+msgid "Livestream"
+msgstr "Živé vysielanie"
+
+msgid "Type"
+msgstr "Druh"
+
+msgid "EU organisation type"
+msgstr "Druh organizácie EÚ"
+
+msgid "Date"
+msgstr "Dátum"
+
+msgid "End Date"
+msgstr "Dátum ukončenia"
+
+msgid "Responsible department"
+msgstr "Zodpovedný útvar"
+
+msgid "Content owner"
+msgstr "Vlastník obsahu"
+
+msgid "Overview"
+msgstr "Prehľad"
+
+msgid "Open gallery"
+msgstr "Otvoriť galériu"
+
+msgid "(Acting) @role"
+msgstr "(Zohrávajúci/-a) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sledujte najnovší vývoj a získajte viac informácií o tom, ako sa zapojiť."

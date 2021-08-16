@@ -19,9 +19,4 @@ settings:
   provider: oe_theme_helper
   label_display: '0'
   level: 1
-visibility:
-  oe_theme_helper_current_branding:
-    id: oe_theme_helper_current_branding
-    branding: standardised
-    negate: false
-    context_mapping: {  }
+visibility: {  }

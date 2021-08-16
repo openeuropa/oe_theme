@@ -34,8 +34,8 @@ msgstr "Cuir do shuíochán in áirithe, @time_left fágtha le clárú, cuirfear
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Beidh an tréimhse chlárúcháin ar oscailt idir an @time_left. Beidh tú in ann clárú ón @start_date, go dtí an @end_date."
 
-msgid "Registration period ended on @date."
-msgstr "Tháinig deireadh leis an tréimhse chlárúcháin an @end_date."
+msgid "Registration period ended on @date"
+msgstr "Tháinig deireadh leis an tréimhse chlárúcháin an @date"
 
 msgid "Postal address"
 msgstr "Seoladh poist"
@@ -229,8 +229,8 @@ msgstr "Scoitheadh ilchéimneach"
 msgid "Permanent"
 msgstr "Buan"
 
-msgid "in"
-msgstr "in"
+msgid "@date in"
+msgstr "@date sa"
 
 msgid "Contact us"
 msgstr "Sonraí teagmhála"
@@ -339,3 +339,120 @@ msgstr "Cuir na sonraí teagmhála i bhfolach"
 
 msgid "Leadership and organisation"
 msgstr "Ceannaireacht agus eagrúchán"
+
+msgid "Available translations"
+msgstr "Aistriúcháin atá ar fáil"
+
+msgid "General contact"
+msgstr "Teagmháil ghinearálta"
+
+msgid "Grants awarded"
+msgstr "Deontais bhronnta"
+
+msgid "Page contents"
+msgstr "Inneachar an leathanaigh"
+
+msgid "Your name"
+msgstr "D’ainm"
+
+msgid "Your email address"
+msgstr "Do sheoladh ríomhphoist"
+
+msgid "Subject"
+msgstr "Ábhar"
+
+msgid "Message"
+msgstr "Teachtaireacht"
+
+msgid "Country of residence"
+msgstr "An tír chónaithe"
+
+msgid "Phone"
+msgstr "Guthán"
+
+msgid "Send yourself a copy"
+msgstr "Cóip a sheoladh chugat féin"
+
+msgid "Status message"
+msgstr "Teachtaireacht stádais"
+
+msgid "Close this message"
+msgstr "Dún an teachtaireacht seo"
+
+msgid "The sender's name"
+msgstr "Ainm an tseoltóra"
+
+msgid "The sender's email"
+msgstr "Ríomhphost an tseoltóra"
+
+msgid "Topic"
+msgstr "Ábhar"
+
+msgid "Languages"
+msgstr "Teangacha"
+
+msgid "Keywords"
+msgstr "Eochairfhocail"
+
+msgid "No results have been found"
+msgstr "Níor aimsíodh aon toradh"
+
+msgid "Event date"
+msgstr "Dáta an imeachta"
+
+msgid "Select"
+msgstr "Roghnaigh"
+
+msgid "After"
+msgstr "Tar éis"
+
+msgid "Before"
+msgstr "Roimh"
+
+msgid "In between"
+msgstr "Idir"
+
+msgid "Select all"
+msgstr "Roghnaigh gach rud"
+
+msgid "Event type"
+msgstr "An cineál imeachta"
+
+msgid "Venue"
+msgstr "An t-ionad"
+
+msgid "Online type"
+msgstr "An cineál imeachta ar líne"
+
+msgid "Livestream"
+msgstr "Beosruthú"
+
+msgid "Type"
+msgstr "Cineál"
+
+msgid "EU organisation type"
+msgstr "An cineál eagraíochta AE"
+
+msgid "Date"
+msgstr "Dáta"
+
+msgid "End Date"
+msgstr "Dáta Críochnaithe"
+
+msgid "Responsible department"
+msgstr "Roinn atá freagrach"
+
+msgid "Content owner"
+msgstr "Úinéir an inneachair"
+
+msgid "Overview"
+msgstr "Forbhreathnú"
+
+msgid "Open gallery"
+msgstr "An gailearaí"
+
+msgid "(Acting) @role"
+msgstr "(Gníomhach) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Eolas faoin dul chun cinn is déanaí agus faoi conas páirt a ghlacadh."

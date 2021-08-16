@@ -7,10 +7,15 @@
 
 {# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
+
 {% for item in translations %}
+  {% set _translation_meta = '(' ~ item.extension|upper  ~ ')' %}
+  {% if item.size %}
+    {% set _translation_meta = '(' ~ item.size|format_size ~ ' - ' ~ item.extension|upper  ~ ')' %}
+  {% endif %}
   {% set _translations = _translations|merge([{
     'title': item.language_code|to_native_language,
-    'meta': '(' ~ item.size|format_size ~ ' - ' ~ item.extension|upper  ~ ')',
+    'meta': _translation_meta,
     'lang': item.language_code,
     'download': {
       'link': {
@@ -21,10 +26,14 @@
   }]) %}
 {% endfor %}
 
+{% set _meta = '(' ~ file.extension|upper  ~ ')' %}
+{% if file.size %}
+  {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
+{% endif %}
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'language': file.language_code|to_language,
-  'meta': '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper ~ ')',
+  'meta': _meta,
   'icon': {
     'path': ecl_icon_path,
     'name': file.extension|to_file_icon,

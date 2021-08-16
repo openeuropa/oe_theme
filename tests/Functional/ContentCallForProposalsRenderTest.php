@@ -119,7 +119,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
 
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-text-uppercase"]';
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-type-uppercase"]';
     $this->assertSession()->elementExists('xpath', $selector);
     $this->assertEquals('N/A', $content_items[0]->find('xpath', $selector)->getText());
 
@@ -160,7 +160,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $details_expected_values['items'][2]['body'] = "12 February 2020\n  in\n  Official Journal Reference";
+    $details_expected_values['items'][2]['body'] = "12 February 2020 in     Official Journal Reference";
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     $journal_link_selector = '//*[text() = "Publication date"]/following-sibling::dd[1]/div';
@@ -280,12 +280,12 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Results',
-          'body' => 'Grands awarded',
+          'body' => 'Grants awarded',
         ],
       ],
     ];
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
-    $this->assertLinkIcon($results_field_group, 'Grands awarded', 'http://example.com/results');
+    $this->assertLinkIcon($results_field_group, 'Grants awarded', 'http://example.com/results');
 
     // Assert internal Grants awarded link field.
     $node->set('oe_call_proposals_grants', ['uri' => 'internal:/']);
@@ -293,7 +293,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $field_list_assert->assertPattern($results_expected_values, $results_field_group->getHtml());
-    $this->assertLinkIcon($results_field_group, 'Grands awarded', '/build/', FALSE);
+    $this->assertLinkIcon($results_field_group, 'Grants awarded', '/build/', FALSE);
 
     // Assert Funding programme field.
     $node->set('oe_call_proposals_funding', 'http://publications.europa.eu/resource/authority/eu-programme/AFIS2020');
@@ -349,7 +349,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[1], 'Description', 'description');
-    $content_second_group = $content_items[1]->find('css', '.ecl-editor p');
+    $content_second_group = $content_items[1]->find('css', '.ecl p');
     $this->assertEquals('Call for proposals body', $content_second_group->getText());
 
     // Assert Documents field.
