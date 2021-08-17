@@ -23,12 +23,6 @@ class BreadcrumbTest extends ContentRenderTestBase {
     'block',
   ];
 
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $defaultTheme = 'stark';
-
   /**
    * Tests that the breadcrumbs are cached correctly.
    */

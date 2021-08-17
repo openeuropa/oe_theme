@@ -35,11 +35,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   ];
 
   /**
-   * {@inheritdoc}
-   */
-  protected $defaultTheme = 'stark';
-
-  /**
    * Tests that the Call for tenders page renders correctly.
    */
   public function testTenderRendering(): void {

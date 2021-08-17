@@ -14,6 +14,8 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 abstract class BasePatternAssert extends Assert implements PatternAssertInterface {
 
+  // Adds support of new asserts like assertStringContainsString() for
+  // PHPUnit 6.5.
   use PhpUnitCompatibilityTrait;
 
   /**

@@ -35,12 +35,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     'oe_theme_content_call_proposals',
   ];
 
-
-  /**
-   * {@inheritdoc}
-   */
-  protected $defaultTheme = 'stark';
-
   /**
    * {@inheritdoc}
    */

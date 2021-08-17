@@ -112,7 +112,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    */
   protected function assertUnavailableLanguage(Crawler $crawler, string $expected): void {
     $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-message--warning')->text();
-    $this->assertContains($expected, trim($actual));
+    $this->assertStringContainsString($expected, trim($actual));
   }
 
   /**

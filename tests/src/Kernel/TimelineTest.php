@@ -84,7 +84,7 @@ class TimelineTest extends AbstractKernelTestBase {
     $this->installEntitySchema('skos_concept_scheme');
 
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
     // Create content type.

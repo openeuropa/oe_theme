@@ -52,7 +52,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
     // Rebuild the ui_pattern definitions to collect the ones provided by
@@ -823,7 +823,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals($expected['label'], $label->getText());
     $this->assertEquals($expected['href'], $link->getAttribute('href'));
     $icon = $link->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertContains('icons-social-media.svg#' . $expected['icon_name'], $icon->getAttribute('xlink:href'));
+    $this->assertStringContainsString('icons-social-media.svg#' . $expected['icon_name'], $icon->getAttribute('xlink:href'));
     $this->assertEquals('ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-before ecl-footer-standardised__link', $link->getAttribute('class'));
   }
 

@@ -55,7 +55,7 @@ class ImageTest extends KernelTestBase {
     ])->save();
 
     // Copy file in public files to use it for styling.
-    \Drupal::service('file_system')->copy(__DIR__ . '/../../fixtures/example_1.jpeg', 'public://example_1.jpg');
+    \Drupal::service('file_system')->copy(__DIR__ . '/../../../fixtures/example_1.jpeg', 'public://example_1.jpg');
   }
 
   /**

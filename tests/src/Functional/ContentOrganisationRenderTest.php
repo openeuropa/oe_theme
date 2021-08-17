@@ -40,11 +40,6 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  protected $defaultTheme = 'stark';
-
-  /**
-   * {@inheritdoc}
-   */
   protected function setUp(): void {
     parent::setUp();
 

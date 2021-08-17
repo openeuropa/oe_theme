@@ -35,7 +35,7 @@ abstract class DateTimeTestBase extends FieldKernelTestBase {
     parent::setUp();
 
     $this->container->get('theme_installer')->install(['oe_theme']);
-    \Drupal::configFactory()->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
     $this->installConfig(['image', 'responsive_image']);
   }

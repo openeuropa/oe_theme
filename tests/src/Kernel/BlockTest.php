@@ -52,7 +52,7 @@ class BlockTest extends EntityKernelTestBase {
     ]);
 
     $this->container->get('theme_installer')->install(['oe_theme']);
-    $this->container->get('config.factory')->getEditable('system.theme')->set('default', 'oe_theme')->save();
+    $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
 
   }

@@ -119,28 +119,6 @@ class ImageValueObjectTest extends UnitTestCase {
 }
 
 /**
- * Temporary mock for file_create_url().
- *
- * @see https://www.drupal.org/project/drupal/issues/2669074
- */
-if (!function_exists('Drupal\Tests\oe_theme\Unit\Patterns\file_create_url')) {
-
-  /**
-   * Mock for file_create_url().
-   *
-   * @param string $uri
-   *   Uri to be processed.
-   *
-   * @return string
-   *   Process url.
-   */
-  function file_create_url($uri): string {
-    return $uri;
-  }
-
-}
-
-/**
  * Mocking file_create_url().
  *
  * ImageValueObject uses file_create_url()
