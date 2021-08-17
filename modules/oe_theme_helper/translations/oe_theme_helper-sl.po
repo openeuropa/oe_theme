@@ -456,3 +456,12 @@ msgstr "(Vršilec/-ka dolžnosti) @role"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Spremljajte najnovejše dogajanje in sodelujte v družbenih medijih."
+
+msgid "Upcoming and ongoing"
+msgstr "Prihodnji in tekoči"
+
+msgid "Past"
+msgstr "Pretekli"
+
+msgid "Upcoming and open"
+msgstr "Prihodnji in odprti"

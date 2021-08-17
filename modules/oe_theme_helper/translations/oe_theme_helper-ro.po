@@ -456,3 +456,12 @@ msgstr "@role (interimar)"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Urmăriți ultimele evoluții și aflați cum vă puteți implica."
+
+msgid "Upcoming and ongoing"
+msgstr "Viitoare și în curs"
+
+msgid "Past"
+msgstr "Trecute"
+
+msgid "Upcoming and open"
+msgstr "Viitoare și deschise"

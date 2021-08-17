@@ -456,3 +456,12 @@ msgstr "(Fungerende) @rolle"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Følg med i den seneste udvikling, og læs mere om, hvordan du kan deltage."
+
+msgid "Upcoming and ongoing"
+msgstr "Kommende og igangværende"
+
+msgid "Past"
+msgstr "Tidligere"
+
+msgid "Upcoming and open"
+msgstr "Kommende og åbne"
