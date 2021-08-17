@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Входна такса"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Резервирайте мястото си, @time_left до края на регистрацията, регистрацията ще приключи на @end_date."
+msgstr "Запазете своето място! Имате @time_left да се регистрирате, регистрацията ще приключи на @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Регистрацията ще започне на @time_left. Можете да се регистрирате от @start_date до @end_date."
@@ -465,3 +465,53 @@ msgstr "Минали"
 
 msgid "Upcoming and open"
 msgstr "Предстоящи и текущи"
+
+msgid "This page is not available in @language_name."
+msgstr "Тази страница не е достъпна на @language_name."
+
+msgid "Choose another language"
+msgstr "Изберете друг език"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 ден"
+msgstr[1] "@count дни"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 седмица"
+msgstr[1] "@count седмици"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 година"
+msgstr[1] "@count години"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 месец"
+msgstr[1] "@count месеца"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 час"
+msgstr[1] "@count часа"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 минута"
+msgstr[1] "@count минути"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 секунда"
+msgstr[1] "@count секунди"
+
+msgid "Online link"
+msgstr "Връзка към проявата"
+
+msgid "Online time"
+msgstr "Час на проявата"
+
+msgid "Name"
+msgstr "Име"
