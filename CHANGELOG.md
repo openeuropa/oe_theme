@@ -1,10 +1,30 @@
 # Change Log
 
+## [3.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta1) (2021-08-16)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-alpha1...3.0.0-beta1)
+
+**Merged pull requests:**
+
+- EWPP-1324: Add missing person string translations. [\#917](https://github.com/openeuropa/oe_theme/pull/917) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1409: Change string in language switcher. [\#915](https://github.com/openeuropa/oe_theme/pull/915) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1391: Remove deprecated ecl classes [\#912](https://github.com/openeuropa/oe_theme/pull/912) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1389: List page pager info has broken html [\#909](https://github.com/openeuropa/oe_theme/pull/909) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-1227\] EWPP-1229: Rely on ecl implementation regarding theme branding page header overlay. [\#907](https://github.com/openeuropa/oe_theme/pull/907) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1374: List page header font is wrong. [\#906](https://github.com/openeuropa/oe_theme/pull/906) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1289: Add missing interface translations v3. [\#904](https://github.com/openeuropa/oe_theme/pull/904) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1304: Change link label for Awarded grants field of the Call for proposals CT on the full view [\#902](https://github.com/openeuropa/oe_theme/pull/902) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1351: Fix templates for core and standard branding. [\#900](https://github.com/openeuropa/oe_theme/pull/900) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1354: Replace the ecl-editor class. [\#899](https://github.com/openeuropa/oe_theme/pull/899) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1350: Use ecl implementation of full width for banner patterns. [\#897](https://github.com/openeuropa/oe_theme/pull/897) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1339: Handling remote documents without a file size. [\#884](https://github.com/openeuropa/oe_theme/pull/884) ([upchuk](https://github.com/upchuk))
+- \[EWPP-1142\] EWPP-1250: Remove visibility condition for the main navigation block. [\#868](https://github.com/openeuropa/oe_theme/pull/868) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-alpha1](https://github.com/openeuropa/oe_theme/tree/3.0.0-alpha1) (2021-07-26)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/2.20.2...3.0.0-alpha1)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 3.0.0-alpha1. [\#893](https://github.com/openeuropa/oe_theme/pull/893) ([ademarco](https://github.com/ademarco))
 - \[EWPP-1142\] EWPP-1278: Remove language switcher builder callback, introduced in 2.x. [\#891](https://github.com/openeuropa/oe_theme/pull/891) ([ademarco](https://github.com/ademarco))
 - \[EWPP-1142\] EWPP-1278: Add pre-render callback to build and inject the content language switcher within the page header block. [\#890](https://github.com/openeuropa/oe_theme/pull/890) ([ademarco](https://github.com/ademarco))
 - EWPP-1344: Add site name to the page template for standardised sites. [\#889](https://github.com/openeuropa/oe_theme/pull/889) ([imanoleguskiza](https://github.com/imanoleguskiza))
