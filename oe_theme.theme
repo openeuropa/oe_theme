@@ -430,25 +430,6 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
       $item['content']['#attributes']['class'][] = 'ecl-u-height-auto';
     }
   }
-
-  $link_fields = [
-    'oe_related_links',
-    'oe_news_sources',
-  ];
-  if (in_array($variables['field_name'], $link_fields)) {
-    foreach ($variables['items'] as $delta => $item) {
-      $variables['items'][$delta]['content'] = [
-        '#type' => 'pattern',
-        '#id' => 'list_item',
-        '#variant' => 'default',
-        '#fields' => [
-          'url' => $item['content']['#url'],
-          'title' => $item['content']['#title'],
-          'icon' => $variables['field_name'] === 'oe_news_sources' ? 'external' : '',
-        ],
-      ];
-    }
-  }
 }
 
 /**

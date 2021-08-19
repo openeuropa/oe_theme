@@ -357,7 +357,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @param string $href
    *   Link URL.
    * @param bool $is_external
-   *   Defines whether it is extrernal link or internal.
+   *   Defines whether it is external link or internal.
    */
   protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
     $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');

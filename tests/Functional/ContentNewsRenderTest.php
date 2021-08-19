@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -97,27 +96,11 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       ],
     ])->save();
     $this->drupalGet($node->toUrl());
-
-    $source_links_header = $this->assertSession()->elementExists('css', 'article[role=article] > div > h2:nth-child(2)');
-    $this->assertContentHeader($source_links_header, 'Sources');
-    $source_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(3) article.ecl-content-item:nth-child(1)');
-    $link_assert = new ListItemAssert();
-    $link_expected_values = [
-      'url' => '/build/node',
-      'title' => 'Internal source link',
-      'icon' => 'external',
-    ];
-    $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
-
-    $source_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(3) article.ecl-content-item:nth-child(2)');
-    $link_expected_values = [
-      'url' => 'https://example.com',
-      'title' => 'External source link',
-      'icon' => 'external',
-    ];
-    $link_assert->assertPattern($link_expected_values, $source_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $source_links_content->getOuterHtml());
+    $this->assertEquals('Sources', $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3')->getText());
+    $internal_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l:nth-child(3)');
+    $this->assertLinkIcon($internal_source_link, 'Internal source link', '/build/node', FALSE);
+    $external_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l:nth-child(4)');
+    $this->assertLinkIcon($external_source_link, 'External source link', 'https://example.com');
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');
@@ -250,27 +233,13 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       ],
     ])->save();
     $this->drupalGet($node->toUrl());
-
-    $related_links_header = $this->assertSession()->elementExists('css', 'article[role=article] > div > h2:nth-child(7)');
-    $this->assertContentHeader($related_links_header, 'Related links');
-    $related_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(8) article.ecl-content-item:nth-child(1)');
-    $link_assert = new ListItemAssert();
-    $link_expected_values = [
-      'url' => '/build/node',
-      'title' => 'Node listing',
-      'icon' => NULL,
-    ];
-    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
-
-    $related_links_content = $this->assertSession()->elementExists('css', 'div.ecl-list:nth-child(8) article.ecl-content-item:nth-child(2)');
-    $link_expected_values = [
-      'url' => 'https://example.com',
-      'title' => 'External link',
-      'icon' => NULL,
-    ];
-    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
+    $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(8)')->getText());
+    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l:nth-child(9) a');
+    $this->assertEquals('/build/node', $first_related_link->getAttribute('href'));
+    $this->assertEquals('Node listing', $first_related_link->getText());
+    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l:nth-child(10) a');
+    $this->assertEquals('https://example.com', $second_related_link->getAttribute('href'));
+    $this->assertEquals('External link', $second_related_link->getText());
   }
 
 }
