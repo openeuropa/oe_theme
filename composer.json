@@ -57,7 +57,8 @@
         "openeuropa/oe_contact_forms": "dev-OEL-164",
         "openeuropa/rdf_skos": "~1.0",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
-        "phpspec/prophecy-phpunit": "^1 || ^2"
+        "phpspec/prophecy-phpunit": "^1 || ^2",
+        "phpunit/phpunit": "^7.5 || ^8 || ^9"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
