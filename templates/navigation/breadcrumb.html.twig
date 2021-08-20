@@ -8,5 +8,16 @@
  */
 #}
 {% if breadcrumb %}
-  {% include '@ecl-twig/breadcrumb-' ~ ecl_branding ~ '/breadcrumb-' ~ ecl_branding %}
+  {% set _breadcrumb_links = {} %}
+  {% for link in links %}
+    {% set _links = {
+      'label' : link.label,
+      'path' : link.href,
+      'negative' : ecl_component_library == 'ec' and ecl_branding == 'core'
+    } %}
+    {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
+  {% endfor %}
+  {% include '@ecl-twig/breadcrumb-' ~ ecl_branding ~ '/breadcrumb-' ~ ecl_branding with {
+    links: _breadcrumb_links
+  } %}
 {% endif %}

@@ -1636,6 +1636,12 @@ function oe_theme_theme_suggestions_block_alter(array &$suggestions, array $vari
   }
   $suggestions[] = 'block__region_' . $block->getRegion();
   $suggestions[] = 'block__region_' . $block->getRegion() . '__' . $variables['elements']['#id'];
+
+  // Add support of template override which depending on
+  // ECL branding and ECL component library.
+  $branding = theme_get_setting('branding') ?? 'core';
+  $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#plugin_id'] . '__ecl_component_library_' . theme_get_setting('component_library');
+  $suggestions[] = $variables['theme_hook_original'] . '__' . $variables['elements']['#plugin_id'] . '__ecl_component_library_' . theme_get_setting('component_library') . '__ecl_branding_' . $branding;
 }
 
 /**
