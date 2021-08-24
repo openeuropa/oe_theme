@@ -93,10 +93,11 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $title = \Drupal::service('title_resolver')->getTitle($request, $route);
 
   unset($variables['links']);
-  $variables['links'] = array_map(function ($item) {
+  $variables['links'] = array_map(function ($item) use ($variables) {
     return [
       'path' => $item['url'],
       'label' => $item['text'],
+      'negative' => $variables['ecl_branding'] === 'core' && $variables['ecl_component_library'] === 'ec',
     ];
   }, $variables['breadcrumb']);
 
