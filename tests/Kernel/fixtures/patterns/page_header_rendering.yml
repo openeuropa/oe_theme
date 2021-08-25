@@ -119,7 +119,7 @@
   assertions:
     count:
       '.ecl-page-header-core': 1
-      '.ecl-u-mb-xl': 1
+      '.ecl-u-mb-xl': 0
       '.ecl-u-pt-m': 1
       '.ecl-page-header-core__background': 0
       '.ecl-page-header-core__meta .ecl-page-header-core__meta-item': 3
