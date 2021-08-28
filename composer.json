@@ -37,7 +37,6 @@
         "drupal/json_field": "^1.0.0-rc2",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "~1.0@beta",
-        "drupal/typed_link": "~1.1",
         "drush/drush": "~10.3",
         "easyrdf/easyrdf": "1.0.0 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
