@@ -6,10 +6,10 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-<h3 class="ecl-u-type-heading-3">{{ 'Sources'|t }}</h3>
+<h3 class="ecl-u-type-heading-3 ecl-u-mt-3xl">{{ 'Sources'|t }}</h3>
 {% for item in items %}
   {% set bubble_cache = item.content|render %}
-  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pt-l ecl-u-pb-l">
+  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pt-m ecl-u-pb-m">
     {% include '@ecl-twig/link' with {
       link: {
         type: 'standalone',
@@ -17,7 +17,7 @@
         path: item.content['#url'],
         icon_position: 'after'
       },
-      icon: get_link_icon(item.content['#url'].toString())
+      icon: get_link_icon(item.content['#url'].toString(), 'xs')
     } %}
   </div>
 {% endfor %}
