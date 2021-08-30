@@ -515,3 +515,9 @@ msgstr "Am an imeachta ar líne"
 
 msgid "Name"
 msgstr "Ainm"
+
+msgid "I have read and agree with the @link"
+msgstr "Tá na @link léite agam agus glacaim leo"
+
+msgid "data protection terms"
+msgstr "téarmaí cosanta sonraí"

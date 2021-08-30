@@ -55,7 +55,7 @@
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "~1.0",
         "openeuropa/oe_webtools": "~1.10",
-        "openeuropa/oe_contact_forms": "~1.0",
+        "openeuropa/oe_contact_forms": "dev-EWPP-1312",
         "openeuropa/rdf_skos": "~1.0",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "phpunit/phpunit": "~6.0",
