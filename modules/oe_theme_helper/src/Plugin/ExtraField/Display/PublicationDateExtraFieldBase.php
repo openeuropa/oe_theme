@@ -12,31 +12,11 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Displays publication date and last update date fields.
- *
- * @ExtraFieldDisplay(
- *   id = "oe_theme_content_publication_date",
- *   label = @Translation("Publication date"),
- *   bundles = {
- *     "node.oe_publication",
- *     "node.oe_news",
- *   },
- *   visible = true
- * )
+ * Base class for publication date extra fields.
  */
-class PublicationDate extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+abstract class PublicationDateExtraFieldBase extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
-
-  /**
-   * Date formats keyed by bundle ids.
-   *
-   * @var string[]
-   */
-  protected $dateFormats = [
-    'oe_publication' => 'oe_theme_publication_date',
-    'oe_news' => 'oe_theme_news_date',
-  ];
 
   /**
    * Date formatter service instance.
@@ -82,12 +62,20 @@ class PublicationDate extends ExtraFieldDisplayFormattedBase implements Containe
   }
 
   /**
-   * {@inheritdoc}
+   * Render the publication date field with the specified date format.
+   *
+   * @param \Drupal\Core\Entity\ContentEntityInterface $entity
+   *   The entity the field is being rendered on.
+   * @param string $date_format
+   *   The date format to use.
+   *
+   * @return array
+   *   The render array.
    */
-  public function viewElements(ContentEntityInterface $entity): array {
+  protected function renderPublicationDateExtraField(ContentEntityInterface $entity, string $date_format): array {
     $bundle = $entity->bundle();
     $publication_date_timestamp = $entity->get('oe_publication_date')->date->getTimestamp();
-    $publication_date = $this->dateFormatter->format($publication_date_timestamp, $this->dateFormats[$bundle]);
+    $publication_date = $this->dateFormatter->format($publication_date_timestamp, $date_format);
     if ($entity->get($bundle . '_last_updated')->isEmpty()) {
       return [
         '#markup' => $publication_date,
@@ -100,7 +88,7 @@ class PublicationDate extends ExtraFieldDisplayFormattedBase implements Containe
       '#template' => "{{ publication_date }} ({{'Last updated on: @date'|t({'@date': last_update}) }})",
       '#context' => [
         'publication_date' => $publication_date,
-        'last_update' => $this->dateFormatter->format($last_update_timestamp, $this->dateFormats[$bundle]),
+        'last_update' => $this->dateFormatter->format($last_update_timestamp, $date_format),
       ],
     ];
   }
