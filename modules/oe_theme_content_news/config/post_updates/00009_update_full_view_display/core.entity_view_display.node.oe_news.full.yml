@@ -31,7 +31,7 @@ third_party_settings:
     group_details:
       children:
         - oe_reference_code
-        - extra_field_oe_theme_content_publication_date
+        - extra_field_oe_theme_content_news_date
         - oe_author
         - oe_departments
         - oe_news_location
@@ -54,7 +54,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
-  extra_field_oe_theme_content_publication_date:
+  extra_field_oe_theme_content_news_date:
     weight: 13
     region: content
     settings: {  }
