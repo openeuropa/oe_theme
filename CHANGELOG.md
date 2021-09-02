@@ -1,5 +1,20 @@
 # Change Log
 
+## [3.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta2) (2021-08-25)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta1...3.0.0-beta2)
+
+**Merged pull requests:**
+
+- EWPP-1096: Fix bottom margin class on contact body field [\#930](https://github.com/openeuropa/oe_theme/pull/930) ([ademarco](https://github.com/ademarco))
+- EWPP-1460: Update ECL version. [\#929](https://github.com/openeuropa/oe_theme/pull/929) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1449: Setting negative option for links in breadcrumbs. [\#928](https://github.com/openeuropa/oe_theme/pull/928) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1457: Hardcode styling of content item titles. [\#927](https://github.com/openeuropa/oe_theme/pull/927) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1456: Remove extra bottom margin added by EWCMS from page header. [\#926](https://github.com/openeuropa/oe_theme/pull/926) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1373: Update ECL version to v3.0.0. [\#919](https://github.com/openeuropa/oe_theme/pull/919) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1420: Add interface translations in official languages. [\#918](https://github.com/openeuropa/oe_theme/pull/918) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1411: Splash screen broken layout. [\#916](https://github.com/openeuropa/oe_theme/pull/916) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1345: Translations for facets. [\#905](https://github.com/openeuropa/oe_theme/pull/905) ([yenyasinn](https://github.com/yenyasinn))
+
 ## [3.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta1) (2021-08-16)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-alpha1...3.0.0-beta1)
 

@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Pääsymaksu"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Varaa paikkasi, ilmoittautumisaikaa on jäljellä @time_left, ilmoittautuminen päättyy @end_date."
+msgstr "Varaa paikkasi – @time_left ilmoittautumisaikaa jäljellä. Ilmoittautuminen päättyy @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Ilmoittautuminen alkaa @time_left. Voit ilmoittautua @start_date – @end_date."
@@ -456,3 +456,62 @@ msgstr "@role (vt.)"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Seuraa ja osallistu:"
+
+msgid "Upcoming and ongoing"
+msgstr "Tulossa tai meneillään"
+
+msgid "Past"
+msgstr "Päättynyt"
+
+msgid "Upcoming and open"
+msgstr "Tulossa tai meneillään"
+
+msgid "This page is not available in @language_name."
+msgstr "Tämä sivu ei ole saatavilla kielellä: @language_name."
+
+msgid "Choose another language"
+msgstr "Valitse toinen kieli"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 päivä"
+msgstr[1] "@count päivää"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 viikko"
+msgstr[1] "@count viikkoa"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 vuosi"
+msgstr[1] "@count vuotta"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 kuukausi"
+msgstr[1] "@count kuukautta"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 tunti"
+msgstr[1] "@count tuntia"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minuutti"
+msgstr[1] "@count minuuttia"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekunti"
+msgstr[1] "@count sekuntia"
+
+msgid "Online link"
+msgstr "Verkkotapahtuman linkki"
+
+msgid "Online time"
+msgstr "Verkkotapahtuman ajankohta"
+
+msgid "Name"
+msgstr "Nimi"

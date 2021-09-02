@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Inträdesavgift"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Boka plats, @time_left dagar kvar, sista anmälningsdag @end_date."
+msgstr "Boka din plats. Du har @time_left på dig. Anmäl dig senast den @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Du kan anmäla dig under perioden @time_left. Du kan anmäla dig från @start_date till @end_date."
@@ -456,3 +456,62 @@ msgstr "(Tillförordnad) @role"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Följ utvecklingen och var med och påverka."
+
+msgid "Upcoming and ongoing"
+msgstr "Kommande och pågående"
+
+msgid "Past"
+msgstr "Tidigare"
+
+msgid "Upcoming and open"
+msgstr "Kommande och öppna"
+
+msgid "This page is not available in @language_name."
+msgstr "Den här sidan finns inte på @language_name."
+
+msgid "Choose another language"
+msgstr "Välj ett annat språk"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 dag"
+msgstr[1] "@count dagar"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 vecka"
+msgstr[1] "@count veckor"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 år"
+msgstr[1] "@count år"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 månad"
+msgstr[1] "@count månader"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 timme"
+msgstr[1] "@count timmar"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minut"
+msgstr[1] "@count minuter"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekund"
+msgstr[1] "@count sekunder"
+
+msgid "Online link"
+msgstr "Länk till evenemanget"
+
+msgid "Online time"
+msgstr "Tid för evenemanget"
+
+msgid "Name"
+msgstr "Namn"
