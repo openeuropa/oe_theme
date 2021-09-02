@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Osalustasu"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Broneeri koht, registeerimisaega on jäänud: @time_left, registreerimine lõppeb: @end_date."
+msgstr "Broneerige oma koht, registreerimiseks on jäänud @time_left, registreerimine lõpeb @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registreerimise alguskuupäev: @time_left. Registreerimine kestab: @start_date kuni @end_date."
@@ -456,3 +456,62 @@ msgstr "@role (kohusetäitja) "
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Hoidke end kursis ning uurige, kuidas saaksite ise osaleda."
+
+msgid "Upcoming and ongoing"
+msgstr "Eelseisvad ja käimasolevad"
+
+msgid "Past"
+msgstr "Toimunud"
+
+msgid "Upcoming and open"
+msgstr "Eelseisvad ja käimasolevad"
+
+msgid "This page is not available in @language_name."
+msgstr "See lehekülg ei ole kättesaadav @language_name keeles."
+
+msgid "Choose another language"
+msgstr "Valige mõni teine keel"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 päev"
+msgstr[1] "@count päeva"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 nädal"
+msgstr[1] "@count nädalat"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 aasta"
+msgstr[1] "@count aastat"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 kuu"
+msgstr[1] "@count kuud"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 tund"
+msgstr[1] "@count tundi"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minut"
+msgstr[1] "@count minutit"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekund"
+msgstr[1] "@count sekundit"
+
+msgid "Online link"
+msgstr "Veebilink"
+
+msgid "Online time"
+msgstr "Veebiaeg"
+
+msgid "Name"
+msgstr "Nimi"

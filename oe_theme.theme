@@ -93,10 +93,11 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
   $title = \Drupal::service('title_resolver')->getTitle($request, $route);
 
   unset($variables['links']);
-  $variables['links'] = array_map(function ($item) {
+  $variables['links'] = array_map(function ($item) use ($variables) {
     return [
       'path' => $item['url'],
       'label' => $item['text'],
+      'negative' => $variables['ecl_branding'] === 'core' && $variables['ecl_component_library'] === 'ec',
     ];
   }, $variables['breadcrumb']);
 
@@ -1560,6 +1561,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
  * Implements hook_theme_suggestions_HOOK_alter().
  */
 function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
+  // Set branding template in the beginning as more common.
+  $branding = theme_get_setting('branding') ?? 'core';
+  array_unshift($suggestions, 'page__ecl_branding__' . $branding);
+
   $route = \Drupal::routeMatch();
   if ($route->getRouteName() === 'entity.node.canonical') {
     $suggestions[] = 'page__node__' . $route->getParameter('node')->bundle();
@@ -1568,8 +1573,6 @@ function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $varia
     $suggestions[] = 'page__node__' . $route->getParameter('node_preview')->bundle();
     $suggestions[] = 'page__node__preview__' . $route->getParameter('node_preview')->bundle();
   }
-  $branding = theme_get_setting('branding') ?? 'core';
-  $suggestions[] = 'page__ecl_branding__' . $branding;
 }
 
 /**

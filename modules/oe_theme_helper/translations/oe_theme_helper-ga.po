@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Táille iontrála"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Cuir do shuíochán in áirithe, @time_left fágtha le clárú, cuirfear deireadh leis an bpróiseas clárúcháin an @end_date."
+msgstr "Cuir do shuíochán in áirithe, @time_left fágtha chun clárú, críochnóidh an clárúchán an @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Beidh an tréimhse chlárúcháin ar oscailt idir an @time_left. Beidh tú in ann clárú ón @start_date, go dtí an @end_date."
@@ -456,3 +456,62 @@ msgstr "(Gníomhach) @role"
 
 msgid "Follow the latest progress and learn more about getting involved."
 msgstr "Eolas faoin dul chun cinn is déanaí agus faoi conas páirt a ghlacadh."
+
+msgid "Upcoming and ongoing"
+msgstr "Le teacht agus ar siúl faoi láthair"
+
+msgid "Past"
+msgstr "Roimhe seo"
+
+msgid "Upcoming and open"
+msgstr "Le teacht agus ar oscailt"
+
+msgid "This page is not available in @language_name."
+msgstr "Níl an leathanach seo ar fáil i @language_name."
+
+msgid "Choose another language"
+msgstr "Choisir une autre langue"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 lá"
+msgstr[1] "@count de laethanta"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 seachtain"
+msgstr[1] "@count de sheachtainí"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 bhliain"
+msgstr[1] "@count de bhlianta"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mhí"
+msgstr[1] "@count de mhíonna"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 uair an chloig"
+msgstr[1] "@count uair an chloig"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 nóiméad"
+msgstr[1] "@count de nóiméid"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 soicind"
+msgstr[1] "@count de shoicindí"
+
+msgid "Online link"
+msgstr "Nasc chuig an imeacht ar líne"
+
+msgid "Online time"
+msgstr "Am an imeachta ar líne"
+
+msgid "Name"
+msgstr "Ainm"
