@@ -2297,7 +2297,7 @@
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-m-6 div.ecl': "Some more text"
+      'div.ecl-col-m-6 > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2326,7 +2326,7 @@
     equals:
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-m-6 div.ecl': "Some more text"
+      'div.ecl-col-m-6 > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2355,7 +2355,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-col-m-6 div.ecl-editor': "Some more text"
+      'div.ecl-col-m-6 > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2379,7 +2379,7 @@
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey': "Title"
-      'div.ecl-col-12 div': "Some more text"
+      'div.ecl-col-12 > div.ecl': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
