@@ -192,7 +192,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Overview Description 2', $overview_descriptions[1]->getText());
 
     // Assert values of the second group.
-    $body = $content_items[1]->findAll('css', '.ecl-editor');
+    $body = $content_items[1]->findAll('css', '.ecl');
     $this->assertCount(1, $body);
     $this->assertEquals('My body text', $body[0]->getText());
 

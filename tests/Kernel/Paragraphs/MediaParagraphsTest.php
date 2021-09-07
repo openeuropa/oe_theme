@@ -459,7 +459,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-hero-banner--full-width'));
 
     // Render paragraph in Bulgarian.
     $html = $this->renderParagraph($paragraph, 'bg');
@@ -510,7 +510,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-hero-banner--full-width'));
 
     // Variant - image / Modifier - page_center / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_center');
@@ -529,7 +529,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-banner--full-width'));
 
     // Variant - image / Modifier - page_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
@@ -539,7 +539,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--full-width'));
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
@@ -550,7 +550,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - image-shade / Modifier - hero_center / Full width - Yes.
     $paragraph->get('oe_paragraphs_variant')->setValue('oe_banner_image_shade');
@@ -559,7 +558,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered.ecl-hero-banner--full-width'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
@@ -570,7 +569,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - image-shade / Modifier - hero_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
@@ -579,7 +577,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--full-width'));
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertContains(
@@ -590,7 +588,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - image-shade / Modifier - page_center / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_center');
@@ -610,7 +607,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-banner--full-width'));
 
     // Variant - image-shade / Modifier - page_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
@@ -630,7 +627,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-banner--full-width'));
 
     // Variant - default / Modifier - hero_center / Full width - No.
     $paragraph->get('oe_paragraphs_variant')->setValue('default');
@@ -651,7 +648,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-hero-banner--full-width'));
 
     // Variant - default / Modifier - hero_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
@@ -661,7 +658,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--default.ecl-hero-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
@@ -673,7 +670,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - default / Modifier - page_center / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('page_center');
@@ -681,7 +677,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered.ecl-page-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
@@ -693,7 +689,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - default / Modifier - page_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
@@ -702,7 +697,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(0, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--default.ecl-page-banner--full-width'));
 
     // No image should be displayed on 'default' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
@@ -714,7 +709,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - primary / Modifier - hero_center / Full width - Yes.
     $paragraph->get('oe_paragraphs_variant')->setValue('oe_banner_primary');
@@ -723,7 +717,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered.ecl-hero-banner--full-width'));
 
     // No image should be displayed on 'primary' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image'));
@@ -735,7 +729,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - primary / Modifier - hero_left / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
@@ -744,7 +737,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
 
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary'));
+    $this->assertCount(1, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--full-width'));
 
     // No image should be displayed on 'primary' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
@@ -756,7 +749,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - primary / Modifier - page_center / Full width - Yes.
     $paragraph->get('field_oe_banner_type')->setValue('page_center');
@@ -764,7 +756,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered.ecl-page-banner--full-width'));
 
     // No image should be displayed on 'primary' variant.
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image'));
@@ -776,7 +768,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-page-banner--full-width'));
 
     // Variant - primary / Modifier - page_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('page_left');
@@ -798,7 +789,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-page-banner__content p.ecl-page-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
     $this->assertContains('Example', trim($crawler->filter('div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
-    $this->assertCount(0, $crawler->filter('div.ecl-page-banner--full-width'));
+    $this->assertCount(0, $crawler->filter('.ecl-page-banner--full-width'));
 
     // Create a media using AV Portal image and add it to the paragraph.
     $media = $media_storage->create([

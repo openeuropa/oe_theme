@@ -1,6 +1,6 @@
 @use "sass:map";
 @use '@ecl/theme-dev/theme';
-.ecl-editor {
+.ecl {
   article,
   .ecl-file {
     margin-top: map.get(theme.$spacing, 'xs');

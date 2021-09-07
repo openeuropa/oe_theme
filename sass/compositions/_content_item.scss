@@ -1,3 +1,6 @@
+@use "sass:map";
+@use '@ecl/theme-dev/theme';
+
 .ecl-content-item-date,
 .ecl-content-item {
   &__meta {
@@ -8,4 +11,16 @@
       margin: 0;
     }
   }
+}
+
+.ecl-content-item__title {
+  a {
+    color: map.get(theme.$color, 'blue-100');
+    font-weight: map.get(theme.$font-weight, 'bold')!important;
+    font: map.get(theme.$font-prolonged, 'm');
+  }
+}
+
+.ecl-content-item__description {
+  color: map.get(theme.$color, 'grey-140')!important;
 }
