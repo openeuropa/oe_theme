@@ -119,7 +119,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
 
-    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-text-uppercase"]';
+    $selector = '//*[text() = "Status"]/following-sibling::dd[1]/div/span[@class="call-proposals-status ecl-u-type-uppercase"]';
     $this->assertSession()->elementExists('xpath', $selector);
     $this->assertEquals('N/A', $content_items[0]->find('xpath', $selector)->getText());
 
@@ -349,7 +349,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[1], 'Description', 'description');
-    $content_second_group = $content_items[1]->find('css', '.ecl-editor p');
+    $content_second_group = $content_items[1]->find('css', '.ecl p');
     $this->assertEquals('Call for proposals body', $content_second_group->getText());
 
     // Assert Documents field.

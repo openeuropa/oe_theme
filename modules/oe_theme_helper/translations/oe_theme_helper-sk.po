@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Vstupný poplatok"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervujte si miesto, počet dní do uzatvorenia registrácie: @time_left, registrácia sa uzatvorí @end_date."
+msgstr "Rezervujte si miesto, do uzatvorenia registrácie ešte zostáva @time_left, registrácia sa uzatvorí @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registrácia sa otvorí @time_left. Registrovať sa môžete od @start_date do @end_date."
@@ -453,3 +453,65 @@ msgstr "Otvoriť galériu"
 
 msgid "(Acting) @role"
 msgstr "(Zohrávajúci/-a) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sledujte najnovší vývoj a získajte viac informácií o tom, ako sa zapojiť."
+
+msgid "Upcoming and ongoing"
+msgstr "Nadchádzajúce a prebiehajúce"
+
+msgid "Past"
+msgstr "Uskutočnené"
+
+msgid "Upcoming and open"
+msgstr "Pripravované a otvorené"
+
+msgid "This page is not available in @language_name."
+msgstr "Táto stránka nie je dostupná v @language_name."
+
+msgid "Choose another language"
+msgstr "Vyberte iný jazyk"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 deň"
+msgstr[1] "@count dní"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 týždeň"
+msgstr[1] "@count týždňov"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 rok"
+msgstr[1] "@count rokov"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mesiac"
+msgstr[1] "@count mesiacov"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 hodina"
+msgstr[1] "@count hodín"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minúta"
+msgstr[1] "@count minút"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekunda"
+msgstr[1] "@count sekúnd"
+
+msgid "Online link"
+msgstr "Odkaz"
+
+msgid "Online time"
+msgstr "Čas"
+
+msgid "Name"
+msgstr "Meno/Názov"

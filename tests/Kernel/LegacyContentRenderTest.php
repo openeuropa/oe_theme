@@ -48,7 +48,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Test page node', $title->text());
 
     // Body wrapper.
-    $body_wrapper = $crawler->filter('.ecl-editor');
+    $body_wrapper = $crawler->filter('.ecl');
     $this->assertCount(1, $body_wrapper);
     $this->assertContains('Body', $body_wrapper->text());
 
@@ -90,7 +90,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Test policy node', $title->text());
 
     // Body wrapper.
-    $body_wrapper = $crawler->filter('.ecl-editor');
+    $body_wrapper = $crawler->filter('.ecl');
     $this->assertCount(1, $body_wrapper);
     $this->assertContains('Body', $body_wrapper->text());
 

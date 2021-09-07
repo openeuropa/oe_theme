@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Kotizacija"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervirajte svoje mjesto. Preostalo je još @time_left za registraciju. Registracija je moguća do @end_date."
+msgstr "Rezervirajte svoje sjedalo, preostalo vrijeme za registraciju: @time_left, registracija završava na @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Registracija počinje za @time_left. Možete se registrirati od @start_date do @end_date."
@@ -453,3 +453,65 @@ msgstr "Otvaranje galerije"
 
 msgid "(Acting) @role"
 msgstr "@role (vršitelj dužnosti)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Pratite najnoviji razvoj događaja i doznajte kako se uključiti"
+
+msgid "Upcoming and ongoing"
+msgstr "Budući i u tijeku"
+
+msgid "Past"
+msgstr "Prošli"
+
+msgid "Upcoming and open"
+msgstr "Budući i otvoreni"
+
+msgid "This page is not available in @language_name."
+msgstr "Ova stranica nije dostupna na sljedećem jeziku: @language_name."
+
+msgid "Choose another language"
+msgstr "Odaberite drugi jezik"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 dan"
+msgstr[1] "dana: @count"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 tjedan"
+msgstr[1] "tjedana: @count"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 godina"
+msgstr[1] "godina: @count"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mjesec"
+msgstr[1] "mjeseci: @count"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 sat"
+msgstr[1] "sati: @count"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minuta"
+msgstr[1] "minuta: @count"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekunda"
+msgstr[1] "sekunda: @count"
+
+msgid "Online link"
+msgstr "Poveznica"
+
+msgid "Online time"
+msgstr "Internetsko vrijeme"
+
+msgid "Name"
+msgstr "Ime"

@@ -17,11 +17,15 @@ a {
   color: map.get(theme.$color, 'blue');
 }
 
-.ecl-editor {
+.ecl {
   p:first-child {
     margin-top: 0;
   }
   p:last-child {
     margin-bottom: 0;
   }
+}
+
+.ecl-u-shadow-none {
+  box-shadow: none!important;
 }

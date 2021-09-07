@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Taxă de intrare"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervați-vă un loc! Mai aveți la dispoziție @time_left  pentru a vă înregistra. Perioada de înregistrare se încheie la @end_date."
+msgstr "Rezervați-vă un loc, mai aveți @time_left pentru a vă înscrie. Înscrierile se încheie pe @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Perioada de înregistrare începe în @time_left. Vă puteți înscrie de pe @start_date  până pe @end_date."
@@ -453,3 +453,65 @@ msgstr "Deschideți galeria"
 
 msgid "(Acting) @role"
 msgstr "@role (interimar)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Urmăriți ultimele evoluții și aflați cum vă puteți implica."
+
+msgid "Upcoming and ongoing"
+msgstr "Viitoare și în curs"
+
+msgid "Past"
+msgstr "Trecute"
+
+msgid "Upcoming and open"
+msgstr "Viitoare și deschise"
+
+msgid "This page is not available in @language_name."
+msgstr "Această pagină nu este disponibilă în @language_name."
+
+msgid "Choose another language"
+msgstr "Selectați altă limbă"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 zi"
+msgstr[1] "@count zile"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 săptămână"
+msgstr[1] "@count săptămâni"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 an"
+msgstr[1] "@count ani"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 lună"
+msgstr[1] "@count luni"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 oră"
+msgstr[1] "@count ore"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minut"
+msgstr[1] "@count minute"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 secundă"
+msgstr[1] "@count secunde"
+
+msgid "Online link"
+msgstr "Link de acces la evenimentul online"
+
+msgid "Online time"
+msgstr "Momentul la care are loc evenimentul online"
+
+msgid "Name"
+msgstr "Nume"

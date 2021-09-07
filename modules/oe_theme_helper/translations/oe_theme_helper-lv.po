@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Ieejas maksa"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Rezervējiet sev sēdvietu, reģistrācijai atlikušais laiks: @time_left, reģistrācija beigsies @end_date."
+msgstr "Rezervējiet savu vietu! Jums vēl ir @time_left, lai reģistrētos. Reģistrācija beigsies @end_date"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Reģistrācija sāksies @time_left. Varat reģistrēties no @start_date līdz @end_date."
@@ -453,3 +453,65 @@ msgstr "Atvērt galeriju"
 
 msgid "(Acting) @role"
 msgstr "@role (pienākumu izpildītājs)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Sekojiet jaunumiem un uzziniet vairāk par iespējām piedalīties."
+
+msgid "Upcoming and ongoing"
+msgstr "Gaidāms(-ie) un pašlaik notiekošs(-ie)"
+
+msgid "Past"
+msgstr "Iepriekšējs(-ie)"
+
+msgid "Upcoming and open"
+msgstr "Gaidāms(-ie) un atklāts(-ie)"
+
+msgid "This page is not available in @language_name."
+msgstr "Šī lapa nav pieejama šādā valodā: @language_name."
+
+msgid "Choose another language"
+msgstr "Izvēlieties citu valodu"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 diena"
+msgstr[1] "@count dienas"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 nedēļa"
+msgstr[1] "@count nedēļas"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 gads"
+msgstr[1] "@count gadi"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mēnesis"
+msgstr[1] "@count mēneši"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 stunda"
+msgstr[1] "@count stundas"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minūte"
+msgstr[1] "@count minūtes"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 sekunde"
+msgstr[1] "@count sekundes"
+
+msgid "Online link"
+msgstr "Saite uz pasākumu tiešsaistē"
+
+msgid "Online time"
+msgstr "Laiks"
+
+msgid "Name"
+msgstr "Nosaukums"
