@@ -6,7 +6,7 @@ dependencies:
     - field.field.media.document.oe_media_file
     - media.type.document
   module:
-    - file
+    - oe_media
 id: media.document.oe_theme_main_content
 targetEntityType: media
 bundle: document

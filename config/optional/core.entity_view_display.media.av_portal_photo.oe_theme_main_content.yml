@@ -7,7 +7,7 @@ dependencies:
     - media.type.av_portal_photo
     - responsive_image.styles.oe_theme_main_content
   module:
-    - media_avportal
+    - oe_media_avportal
 id: media.av_portal_photo.oe_theme_main_content
 targetEntityType: media
 bundle: av_portal_photo
