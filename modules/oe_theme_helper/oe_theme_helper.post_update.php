@@ -296,23 +296,3 @@ function oe_theme_helper_post_update_20016() {
     'label' => 'OpenEuropa: Compact teaser',
   ])->save();
 }
-
-/**
- * Update default view display for Text with featured media paragraph.
- */
-function oe_theme_helper_post_update_20017() {
-  if (!\Drupal::moduleHandler()->moduleExists('oe_paragraphs_media')) {
-    // Ensure that module for Text with featured media paragraph is enabled.
-    return t('Skipping since the oe_paragraphs_media module is not enabled.');
-  }
-
-  // Update existing default view display.
-  $storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/post_updates/20017_update_view_display_paragraph_text_media');
-  $display_values = $storage->read('core.entity_view_display.paragraph.oe_text_feature_media.default');
-  $display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
-  $display = $display_storage->load($display_values['id']);
-  if ($display) {
-    $display = $display_storage->updateFromStorageRecord($display, $display_values);
-    $display->save();
-  }
-}
