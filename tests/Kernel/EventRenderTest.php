@@ -259,6 +259,15 @@ class EventRenderTest extends ContentRenderTestBase {
     ]);
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_cancelled', $html);
+
+    // Verify that the teaser renders correctly when a non-existing event type
+    // is set.
+    $node->set('oe_event_type', 'http://publications.europa.eu/resource/authority/public-event-type/OP_DATPRO')
+      ->save();
+    $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
+    $html = $this->renderRoot($build);
+    unset($expected_values['meta']);
+    $assert->assertPattern($expected_values, $html);
   }
 
 }
