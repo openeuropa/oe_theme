@@ -408,15 +408,28 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Assert the referenced publication page 'Part of collection' extra field.
     $this->drupalGet($node->toUrl());
-    $details_expected_values['items'][0] = [
-      'label' => 'Part of collection',
-      'body' => 'Test Publication collection node 1',
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Identification',
+        'body' => 'ID 1, ID 2',
+      ],
+      [
+        'label' => 'Part of collection',
+        'body' => 'Test Publication collection node 1',
+      ],
+      [
+        'label' => 'Publication date',
+        'body' => '15 April 2020 (Last updated on: 17 June 2020)',
+      ],
+      [
+        'label' => 'Related departments',
+        'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+      ],
+      [
+        'label' => 'Countries',
+        'body' => 'United Kingdom, France',
+      ],
     ];
-    $first_element = [
-      'label' => 'Identification',
-      'body' => 'ID 1, ID 2',
-    ];
-    array_unshift($details_expected_values['items'], $first_element);
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
     // Create a second collection and assert the 'Part of collection' extra
@@ -444,6 +457,16 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'][1] = [
       'label' => 'Part of collections',
       'body' => 'Test Publication collection node 1 | Test Publication collection node 2',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Now unpublish one of the collections and assert the 'Part of collection'.
+    $collection->set('status', 0)->save();
+    $this->getSession()->reload();
+
+    $details_expected_values['items'][1] = [
+      'label' => 'Part of collection',
+      'body' => 'Test Publication collection node 2',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
   }

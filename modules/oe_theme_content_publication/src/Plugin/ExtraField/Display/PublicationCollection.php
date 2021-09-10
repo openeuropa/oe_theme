@@ -96,19 +96,19 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
       '#theme' => 'oe_theme_content_publication_collections',
     ];
 
-    // Set the label of the field.
-    if (count($collections) > 1) {
-      $this->label = $this->t('Part of collections');
-    }
-    else {
-      $this->label = $this->t('Part of collection');
-    }
-
     $cache = CacheableMetadata::createFromRenderArray($build);
 
     $items = [];
     foreach ($collections as $collection) {
       $cache->addCacheableDependency($collection);
+
+      // Run access checks on the node.
+      $access = $collection->access('view', NULL, TRUE);
+      $cache->addCacheableDependency($access);
+      if (!$access->isAllowed()) {
+        continue;
+      }
+
       $items[] = [
         '#type' => 'link',
         '#title' => $collection->label(),
@@ -117,6 +117,14 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
           'class' => ['ecl-link', 'ecl-link--standalone'],
         ],
       ];
+    }
+
+    // Set the label of the field.
+    if (count($items) > 1) {
+      $this->label = $this->t('Part of collections');
+    }
+    else {
+      $this->label = $this->t('Part of collection');
     }
 
     $build['#items'] = $items;
@@ -136,19 +144,17 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
    *   The loaded publication entities.
    */
   protected function getReferencingCollections(EntityInterface $entity): array {
-    $referencing_entities = [];
-
     // Load all entities that have a reference to the given entity.
     $entity_type_storage = $this->entityTypeManager->getStorage('node');
-    $query = $entity_type_storage->getQuery('OR');
+    $query = $entity_type_storage->getQuery();
     $query->condition('oe_publication_publications.target_id', $entity->id());
 
     $ids = $query->execute();
     if ($ids) {
-      $referencing_entities = array_merge($referencing_entities, $entity_type_storage->loadMultiple($ids));
+      return $entity_type_storage->loadMultiple($ids);
     }
 
-    return $referencing_entities;
+    return [];
   }
 
 }
