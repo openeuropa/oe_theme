@@ -220,9 +220,5 @@ function oe_theme_content_publication_post_update_30001(): void {
   if ($view_display) {
     $display = $storage->updateFromStorageRecord($view_display, $display_values);
     $display->save();
-    return;
   }
-
-  $display = $storage->createFromStorageRecord($display_values);
-  $display->save();
 }

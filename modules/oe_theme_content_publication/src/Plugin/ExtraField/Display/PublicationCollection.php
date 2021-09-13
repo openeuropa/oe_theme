@@ -10,7 +10,6 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Url;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -112,7 +111,7 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
       $items[] = [
         '#type' => 'link',
         '#title' => $collection->label(),
-        '#url' => Url::fromRoute('entity.node.canonical', ['node' => $collection->id()]),
+        '#url' => $collection->toUrl(),
         '#attributes' => [
           'class' => ['ecl-link', 'ecl-link--standalone'],
         ],
