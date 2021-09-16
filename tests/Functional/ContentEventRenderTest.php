@@ -617,6 +617,24 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'title' => 'Test event node',
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+
+    // Add media items.
+    $node->set('oe_event_media', [
+      $this->createMediaImage('first_image')->id(),
+      $this->createMediaImage('second_image')->id(),
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    // Assert gallery rendering.
+    $this->assertSession()->elementTextContains('css', 'div#event-details div.ecl-col-12 h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mb-l', 'Media');
+    $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
+    $items = $gallery->findAll('css', 'li.ecl-gallery__item');
+    $this->assertCount(2, $items);
+    $first_item = $items[0]->find('css', 'img');
+    $this->assertEquals('Alternative text first_image', $first_item->getAttribute('alt'));
+    $this->assertContains('placeholder_first_image.png', $first_item->getAttribute('src'));
+    $caption = $items[0]->find('css', '.ecl-gallery__description');
+    $this->assertContains('Test image first_image', $caption->getOuterHtml());
+    $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
   }
 
   /**
