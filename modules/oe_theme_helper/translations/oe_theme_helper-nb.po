@@ -29,7 +29,7 @@ msgid "Entrance fee"
 msgstr "Inngangsbillett"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Reserver din plass! Registrering må skje innen @end_date, så du har @time_left igjen."
+msgstr "Reserver din plass! Registrering må skje innen @end_date, så du har @time_left igjen"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Du kan registrere deg om @time_left. Tidsrommet for registrering er fra @start_date til @end_date."

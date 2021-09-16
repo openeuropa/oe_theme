@@ -332,7 +332,7 @@ msgid "Status: @label"
 msgstr "Staða: @label"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Bókaðu sæti þitt, bóka innan @time_left , skráning mun renna út þann @end_date"
+msgstr "Bókaðu sæti þitt, bóka innan @time_left, skráning mun renna út þann @end_date"
 
 msgid "1 day"
 msgid_plural "@count days"
