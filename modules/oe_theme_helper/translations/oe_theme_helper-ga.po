@@ -470,7 +470,7 @@ msgid "This page is not available in @language_name."
 msgstr "Níl an leathanach seo ar fáil i @language_name."
 
 msgid "Choose another language"
-msgstr "Choisir une autre langue"
+msgstr "Roghnaigh teanga eile"
 
 msgid "1 day"
 msgid_plural "@count days"
