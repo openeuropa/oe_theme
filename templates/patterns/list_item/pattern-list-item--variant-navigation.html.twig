@@ -4,9 +4,8 @@
  * Default implementation for the navigation list item component.
  */
 #}
-{% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
-  title: title,
-  url: url,
-  detail: detail,
-  length: length,
-} only %}
+{% set meta = [] %}
+{% set image = [] %}
+{% set image_position = '' %}
+{% set additional_information = [] %}
+{% extends '@oe_theme/patterns/list_item/pattern-list-item.html.twig' %}
