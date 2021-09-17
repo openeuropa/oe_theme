@@ -71,7 +71,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ->get('entity_type.manager')
       ->getStorage('paragraph')->create([
         'type' => 'oe_text_feature_media',
-        'field_oe_title' => 'Title',
+        'field_oe_title' => 'Heading',
+        'field_oe_feature_media_title' => 'Title',
         'field_oe_plain_text_long' => 'Caption',
         'field_oe_text_long' => 'Full text',
       ]);
@@ -81,12 +82,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $assert = new TextFeaturedMediaAssert();
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
+      'text_title' => 'Title',
       'caption' => NULL,
       'text' => 'Full text',
       'image' => NULL,
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -131,11 +134,17 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->save();
 
     // Add Bulgarian translation.
-    $paragraph->addTranslation('bg', ['field_oe_title' => 'Title bg'])->save();
+    $paragraph->addTranslation('bg', [
+      'field_oe_title' => 'Heading bg',
+      'field_oe_feature_media_title' => 'Title bg',
+      'field_oe_plain_text_long' => 'Caption bg',
+      'field_oe_text_long' => 'Full text bg',
+    ])->save();
 
     // Test the translated media is rendered with the translated paragraph.
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
+      'text_title' => 'Title',
       'caption' => 'Caption',
       'text' => 'Full text',
       'image' => [
@@ -145,11 +154,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ];
     $html = $this->renderParagraph($paragraph, 'en');
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     $expected_values = [
-      'title' => 'Title bg',
-      'caption' => NULL,
-      'text' => NULL,
+      'title' => 'Heading bg',
+      'text_title' => 'Title bg',
+      'caption' => 'Caption bg',
+      'text' => 'Full text bg',
       'image' => [
         'src' => 'example_1_bg.jpeg',
         'alt' => 'Alt bg',
@@ -167,13 +178,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
       'caption' => NULL,
       'text' => 'Full text',
       'image' => NULL,
     ];
     $html = $this->renderParagraph($paragraph);
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Publish the media.
     $media->set('status', 1);
@@ -189,7 +201,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $expected_values = [
-      'title' => 'Title',
+      'title' => 'Heading',
       'caption' => 'Caption',
       'text' => NULL,
       'image' => [
@@ -198,14 +210,25 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ],
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
-    // Remove the title and assert the element is no longer rendered.
+    // Remove the heading and assert the element is no longer rendered.
     $paragraph->set('field_oe_title', '');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
     $expected_values['title'] = NULL;
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
+
+    // Remove the title and assert the element is no longer rendered.
+    $paragraph->set('field_oe_feature_media_title', '');
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['text_title'] = NULL;
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
@@ -248,6 +271,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
 
     // Create iframe video with aspect ration 16:9 and add it to the paragraph.
     $media = $media_storage->create([
@@ -257,6 +281,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     ]);
     $media->save();
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->set('oe_paragraphs_variant', 'left_featured');
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
@@ -268,6 +293,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
+    // Since link doesn't exist variant is recognized as "left_simple".
+    $assert->assertVariant('left_simple', $html);
 
     // Create iframe video with aspect ration 1:1 and add it to the paragraph.
     $media = $media_storage->create([
@@ -282,6 +309,75 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $expected_values['video_ratio'] = '1:1';
     $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'http://www.example.com/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => 'http://www.example.com/',
+      'icon' => 'external',
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert icon of the Link field.
+    $paragraph->set('field_oe_link', [
+      'uri' => 'internal:/',
+      'title' => 'Read more',
+    ])->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $expected_values['link'] = [
+      'label' => 'Read more',
+      'path' => '/',
+      'icon' => 'corner-arrow',
+    ];
+    $assert->assertPattern($expected_values, $html);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert default ("Text on the left, simple call to action") variant.
+    $paragraph->set('oe_paragraphs_variant', 'default')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_simple', $html);
+
+    // Assert "Text on the right, simple call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_simple')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_simple', $html);
+
+    // Assert "Text on the left, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'left_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_featured', $html);
+
+    // Assert "Text on the right, featured call to action" variant.
+    $paragraph->set('oe_paragraphs_variant', 'right_featured')->save();
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('right_featured', $html);
+
+    // Assert Link field without media.
+    $paragraph->set('field_oe_media', [])->save();
+    $expected_values = [
+      'title' => NULL,
+      'caption' => NULL,
+      'text' => NULL,
+      'link' => [
+        'label' => 'Read more',
+        'path' => '/',
+        'icon' => 'corner-arrow',
+      ],
+    ];
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertPattern($expected_values, $html);
+    // Variant "right_featured" without media but with link will be determined
+    // as "left_featured".
+    $assert->assertVariant('left_featured', $html);
   }
 
   /**

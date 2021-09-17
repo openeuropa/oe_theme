@@ -927,6 +927,23 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
+  // Set pattern variant.
+  if (!$paragraph->get('oe_paragraphs_variant')->isEmpty()) {
+    $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
+    // The default variant of the paragraph is the 'Left simple'
+    // variant of pattern.
+    $variables['variant'] = $variant === 'default' ? 'left_simple' : $variant;
+  }
+
+  // Link field doesn't exist in oe_paragraphs <= 1.8.0, so ensure it exists.
+  if ($paragraph->hasField('field_oe_link') && !$paragraph->get('field_oe_link')->isEmpty()) {
+    $link_field = $paragraph->get('field_oe_link')->first();
+    $variables['link'] = [
+      'path' => $link_field->getUrl()->toString(),
+      'label' => $link_field->get('title')->getValue(),
+    ];
+  }
+
   // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;

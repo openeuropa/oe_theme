@@ -1,8 +1,26 @@
 text_featured_media:
   label: "Text with Featured media"
   description: "Shows a rich text with a title and a featured media on the right, if any."
+  variants:
+    left_simple:
+      label: 'Left simple'
+      description: 'Text on the left, simple call to action. This is the default behaviour.'
+    right_simple:
+      label: 'Right simple'
+      description: 'Text on the right, simple call to action.'
+    left_featured:
+      label: 'Left featured'
+      description: 'Text on the left, featured call to action'
+    right_featured:
+      label: 'Right featured'
+      description: 'Text on the right, featured call to action'
   fields:
     title:
+      type: "text"
+      label: "Heading"
+      description: "The heading, displayed on the top."
+      preview: "Lorem ipsum"
+    text_title:
       type: "text"
       label: "Title"
       description: "The title, displayed above text and media."
@@ -35,3 +53,10 @@ text_featured_media:
       label: "Video aspect ratio"
       description: "Aspect ratio used to display videos in media container. Allowed values: 16:9, 4:3, 3:2, 1:1. Defaults to 16:9 if in invalid value is passed. This will not have any effects when used with images."
       preview: "16:9"
+    link:
+      type: "array"
+      label: "Link"
+      description: "Call to action link with icon"
+      preview:
+        label: "View all"
+        path: "#"
