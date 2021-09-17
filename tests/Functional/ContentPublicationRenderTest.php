@@ -31,6 +31,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     'oe_theme_content_publication',
     'oe_theme_content_organisation',
     'oe_theme_content_organisation_reference',
+    'oe_multilingual',
   ];
 
   /**
@@ -51,6 +52,9 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $settings['target_bundles']['oe_organisation_reference'] = 'oe_organisation_reference';
     $field->setSetting('handler_settings', $settings);
     $field->save();
+
+    // Make publications translatable.
+    \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_publication', TRUE);
   }
 
   /**
@@ -79,6 +83,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'status' => 1,
     ]);
     $node->save();
+    $node->addTranslation('es', ['title' => 'ES Test Publication node'])->save();
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
@@ -452,6 +457,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'status' => 1,
     ]);
     $collection2->save();
+    $collection2->addTranslation('es', ['title' => 'ES Test Publication collection node 2'])->save();
     $this->drupalGet($node->toUrl());
 
     $details_expected_values['items'][1] = [
@@ -460,13 +466,25 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 
+    // Assert the translated collection label.
+    $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, 'es');
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][1] = [
+      'label' => 'Part of collections',
+      'body' => 'Test Publication collection node 1 | ES Test Publication collection node 2',
+    ];
+    $details_expected_values['items'][3]['body'] = 'Comisión de Control de las Comunidades Europeas | Estados africanos y malgache asociados';
+    $details_expected_values['items'][4]['body'] = 'Reino Unido, Francia';
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
     // Now unpublish one of the collections and assert the 'Part of collection'.
     $collection->set('status', 0)->save();
     $this->getSession()->reload();
 
     $details_expected_values['items'][1] = [
       'label' => 'Part of collection',
-      'body' => 'Test Publication collection node 2',
+      'body' => 'ES Test Publication collection node 2',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
   }

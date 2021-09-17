@@ -7,6 +7,7 @@ namespace Drupal\oe_theme_content_publication\Plugin\ExtraField\Display;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
@@ -44,6 +45,13 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
   protected $entityTypeManager;
 
   /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
    * PublicationCollection constructor.
    *
    * @param array $configuration
@@ -54,10 +62,13 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -68,7 +79,8 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('entity.repository')
     );
   }
 
@@ -107,6 +119,9 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
       if (!$access->isAllowed()) {
         continue;
       }
+
+      // Get the current translation.
+      $collection = $this->entityRepository->getTranslationFromContext($collection);
 
       $items[] = [
         '#type' => 'link',
