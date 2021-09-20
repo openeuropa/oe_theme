@@ -604,6 +604,16 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       ],
     ];
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Verify that the event renders correctly when a non-existing event type
+    // is set.
+    $node->set('oe_event_type', 'http://publications.europa.eu/resource/authority/public-event-type/OP_DATPRO')
+      ->save();
+    $this->drupalGet($node->toUrl());
+    $page_header_expected_values = [
+      'title' => 'Test event node',
+    ];
+    $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
   }
 
   /**
