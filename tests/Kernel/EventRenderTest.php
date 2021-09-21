@@ -241,7 +241,7 @@ class EventRenderTest extends ContentRenderTestBase {
     \Drupal::languageManager()->reset();
     $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
     $html = $this->renderRoot($build);
-    $expected_values['title'] = 'заглавието на моя възел';
+    $expected_values['title'] = 'My node title';
     $expected_values['meta'] = 'Конкурси и церемонии по награждаване | Cancelled';
     $expected_values['url'] = '/bg/node/1';
     $expected_values['date']['month_name'] = 'Ян.';
