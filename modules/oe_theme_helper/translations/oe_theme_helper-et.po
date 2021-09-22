@@ -515,3 +515,9 @@ msgstr "Veebiaeg"
 
 msgid "Name"
 msgstr "Nimi"
+
+msgid "I have read and agree with the @link"
+msgstr "Olen tutvunud ja nõustun @link"
+
+msgid "data protection terms"
+msgstr "isikuandmete kaitse põhimõtetega"

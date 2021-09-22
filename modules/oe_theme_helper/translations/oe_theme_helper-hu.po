@@ -515,3 +515,9 @@ msgstr "Az esemény időpontja"
 
 msgid "Name"
 msgstr "Név"
+
+msgid "I have read and agree with the @link"
+msgstr "Elolvastam az @link és egyetértek vele"
+
+msgid "data protection terms"
+msgstr "adatvédelmi nyilatkozatot,"

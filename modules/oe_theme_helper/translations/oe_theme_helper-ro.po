@@ -515,3 +515,9 @@ msgstr "Momentul la care are loc evenimentul online"
 
 msgid "Name"
 msgstr "Nume"
+
+msgid "I have read and agree with the @link"
+msgstr "Am citit și sunt de acord cu @link"
+
+msgid "data protection terms"
+msgstr "prevederile referitoare la protecția datelor"

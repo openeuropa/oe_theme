@@ -515,3 +515,9 @@ msgstr "Tidspunkt for arrangementet"
 
 msgid "Name"
 msgstr "Navn"
+
+msgid "I have read and agree with the @link"
+msgstr "Jeg har læst og accepterer bestemmelserne om @link"
+
+msgid "data protection terms"
+msgstr "databeskyttelse"

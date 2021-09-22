@@ -515,3 +515,9 @@ msgstr "Tid för evenemanget"
 
 msgid "Name"
 msgstr "Namn"
+
+msgid "I have read and agree with the @link"
+msgstr "Jag har läst och godkänner villkoren för @link"
+
+msgid "data protection terms"
+msgstr "skydd av personuppgifter"
