@@ -95,3 +95,9 @@ list_item:
       label: "Icon"
       description: "An optional icon to be used with the link."
       preview: "external"
+    highlighted:
+      type: "boolean"
+      label: "Highlighted"
+      description: "Define if the item should be labeled as highlighted."
+      preview: true
+      escape: false

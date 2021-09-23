@@ -29,7 +29,14 @@
   <div class="ecl-u-flex-grow-1">
     {% block meta %}
       {% if meta is not empty %}
-        <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ meta|filter_empty|safe_join(" | ") }}</div>
+        <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">
+          {% if highlighted %}
+            <div class="ecl-label ecl-label--highlight ecl-u-mr-xs">{{ 'Highlighted'|t }}</div>
+          {% endif %}
+          {% if meta is not empty %}
+            {{ meta|filter_empty|safe_join(" | ") }}
+          {% endif %}
+        </div>
       {% endif %}
     {% endblock %}
     {% block title %}
