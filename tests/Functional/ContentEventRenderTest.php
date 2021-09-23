@@ -426,10 +426,8 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->pageTextNotContains('Event report summary');
     $this->assertSession()->pageTextNotContains('Event report text');
 
-    // Assert "Description summary", "Full text", "Featured media",
-    // "Featured media legend" fields (these fields have to be filled all
-    // together).
-    $node->set('oe_event_description_summary', 'Event description summary');
+    // Assert "Full text", "Featured media", "Featured media legend" fields
+    // (these fields have to be filled all together).
     $node->set('body', 'Event full text');
     $node->set('oe_event_featured_media_legend', 'Event featured media legend');
     $media_image = $this->createMediaImage('event_featured_media');
@@ -448,6 +446,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       ],
     ];
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    // Assert "Description summary" field value.
+    $node->set('oe_event_description_summary', 'Event description summary')->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->pageTextContains('Event description summary');
 
     // Assert "Registration date" field when registration will start in future.
     $registration_start_date = (clone $static_time)->modify('+ 1 day');
