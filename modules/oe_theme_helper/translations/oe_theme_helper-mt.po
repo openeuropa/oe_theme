@@ -521,3 +521,6 @@ msgstr "Qrajt u naqbel @link"
 
 msgid "data protection terms"
 msgstr "mat-termini tal-protezzjoni tad-data"
+
+msgid "Highlighted"
+msgstr "Enfasizzat"

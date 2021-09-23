@@ -521,3 +521,6 @@ msgstr "Przeczytałem(-am) i akceptuję @link"
 
 msgid "data protection terms"
 msgstr "warunki ochrony danych"
+
+msgid "Highlighted"
+msgstr "Na pierwszym planie"

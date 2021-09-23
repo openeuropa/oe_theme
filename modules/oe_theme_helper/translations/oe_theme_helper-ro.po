@@ -521,3 +521,6 @@ msgstr "Am citit și sunt de acord cu @link"
 
 msgid "data protection terms"
 msgstr "prevederile referitoare la protecția datelor"
+
+msgid "Highlighted"
+msgstr "În prim-plan"

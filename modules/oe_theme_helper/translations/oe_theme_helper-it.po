@@ -521,3 +521,6 @@ msgstr "Ho letto e accetto le @link"
 
 msgid "data protection terms"
 msgstr "condizioni relative alla protezione dei dati"
+
+msgid "Highlighted"
+msgstr "Evidenziato"
