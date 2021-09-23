@@ -267,7 +267,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'title' => NULL,
       'caption' => 'Caption',
       'text' => NULL,
-      'video' => '<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="640" height="390" class="media-avportal-content"></iframe>',
+      'video' => '<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="400" class="media-avportal-content"></iframe>',
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
