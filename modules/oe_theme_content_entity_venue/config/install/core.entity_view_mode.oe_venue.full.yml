@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - oe_theme_content_entity_venue
-id: oe_venue.full
-label: Full
-targetEntityType: oe_venue
-cache: true

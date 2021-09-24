@@ -1,7 +1,0 @@
-name: OpenEuropa Theme Page Content
-type: module
-description: Companion module for the OE Content Page module
-package: OpenEuropa
-core: 8.x
-dependencies:
-  - oe_content_page:oe_content_page

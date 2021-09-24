@@ -37,7 +37,7 @@
         "drupal/json_field": "^1.0.0-rc2",
         "drupal/renderviz": "^1.0@alpha",
         "drupal/styleguide": "~1.0-alpha3",
-        "drupal/typed_link": "~1.1",
+        "drupal/typed_link": "2.0.x-dev",
         "drush/drush": "~9.0",
         "easyrdf/easyrdf": "1.0.0 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
@@ -48,6 +48,7 @@
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.9.14",
         "openeuropa/oe_content": "2.x-dev",
+        "openeuropa/oe_theme_content": "dev-EWPP-1575-2.x",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.12",
@@ -85,12 +86,16 @@
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/oe_theme_content"
         }
-    },
+    ],
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,
