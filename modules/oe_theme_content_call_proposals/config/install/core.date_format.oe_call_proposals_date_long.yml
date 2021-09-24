@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_call_proposals_date_long
-label: 'Call for proposals long date'
-locked: false
-pattern: 'd F Y'
