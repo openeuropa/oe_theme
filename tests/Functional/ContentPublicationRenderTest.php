@@ -55,6 +55,13 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
 
     // Make publications translatable.
     \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_publication', TRUE);
+
+    // Make node title translatable.
+    $fields = \Drupal::service('entity_field.manager')
+      ->getBaseFieldDefinitions('node', 'oe_publication');
+    $field_config = $fields['title']->getConfig('oe_publication');
+    $field_config->setTranslatable(TRUE);
+    $field_config->save();
   }
 
   /**
