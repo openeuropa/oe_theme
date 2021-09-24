@@ -57,11 +57,20 @@ function oe_theme_content_news_node_view_alter(array &$build, EntityInterface $e
     // Rename field labels based on number of items.
     $plural_label_overrides = [
       'oe_author' => t('Authors'),
+      'oe_departments' => t('Departments'),
+    ];
+
+    $singular_label_overrides = [
+      'oe_departments' => t('Department'),
     ];
 
     foreach ($plural_label_overrides as $name => $label_override) {
       if (!$entity->get($name)->isEmpty() && $entity->get($name)->count() > 1 && isset($build[$name]['#title'])) {
         $build[$name]['#title'] = $label_override;
+      }
+      // Override singular labels if defined.
+      elseif (!$entity->get($name)->isEmpty() && $entity->get($name)->count() == 1 && isset($build[$name]['#title']) && isset($singular_label_overrides[$name])) {
+        $build[$name]['#title'] = $singular_label_overrides[$name];
       }
     }
   }
