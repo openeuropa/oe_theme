@@ -515,3 +515,9 @@ msgstr "Online-tijd"
 
 msgid "Name"
 msgstr "Naam"
+
+msgid "I have read and agree with the @link"
+msgstr "Ik heb de @link gelezen en ga ermee akkoord"
+
+msgid "data protection terms"
+msgstr "privacyverklaring"

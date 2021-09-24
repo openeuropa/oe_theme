@@ -1,5 +1,25 @@
 # Change Log
 
+## [3.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta3) (2021-09-23)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta2...3.0.0-beta3)
+
+**Merged pull requests:**
+
+- EWPP-1495: Make sure that event registration button is displayed as an inline block. [\#950](https://github.com/openeuropa/oe_theme/pull/950) ([ademarco](https://github.com/ademarco))
+- EWPP-1514: Wrong Irish translation in language switcher. [\#947](https://github.com/openeuropa/oe_theme/pull/947) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1467: Fix font name issue. [\#946](https://github.com/openeuropa/oe_theme/pull/946) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1458: Events render correctly when a non-existing event type is specified. [\#943](https://github.com/openeuropa/oe_theme/pull/943) ([brummbar](https://github.com/brummbar))
+- EWPP-1472: Fix output of image \(avportal\) inside news content type. [\#942](https://github.com/openeuropa/oe_theme/pull/942) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-0000: Version 2.0 of typed\_link is required by oe\_paragraphs. [\#941](https://github.com/openeuropa/oe_theme/pull/941) ([brummbar](https://github.com/brummbar))
+- EWPP-873: Text with featured media paragraph type V2 [\#939](https://github.com/openeuropa/oe_theme/pull/939) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1470: Content item title styling is not consistent. [\#934](https://github.com/openeuropa/oe_theme/pull/934) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1312: Translate "I have read and agree with the data protection terms" string [\#932](https://github.com/openeuropa/oe_theme/pull/932) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-847: Add optional oe\_theme\_main\_content view display for JS asset media [\#896](https://github.com/openeuropa/oe_theme/pull/896) ([brummbar](https://github.com/brummbar))
+- EWPP-1206: Update grid classes for list item block pattern. [\#882](https://github.com/openeuropa/oe_theme/pull/882) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1046: Change label from "Open gallery" to "See all" in the gallery [\#881](https://github.com/openeuropa/oe_theme/pull/881) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1162: Update event rendering test. [\#866](https://github.com/openeuropa/oe_theme/pull/866) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-866: Use extend in list-item templates. [\#817](https://github.com/openeuropa/oe_theme/pull/817) ([nagyad](https://github.com/nagyad))
+
 ## [3.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta2) (2021-08-25)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta1...3.0.0-beta2)
 

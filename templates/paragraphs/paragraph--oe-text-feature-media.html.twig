@@ -7,16 +7,23 @@
  */
 #}
 
+{% if not paragraph.field_oe_link.isEmpty %}
+  {# Add cache info from the Link field to the page. #}
+  {% set bubble_cache = content.field_oe_link|render %}
+{% endif %}
+
 {#
   Unfortunately even when the field is empty the variable content.* still contains information (such as the weight)
   so we can't pass it to the pattern directly.
  #}
-
 {{ pattern('text_featured_media', {
+  'variant': variant,
   'title': not paragraph.field_oe_title.isEmpty ? content.field_oe_title,
+  'text_title': not paragraph.field_oe_feature_media_title.isEmpty ? content.field_oe_feature_media_title,
   'image': image,
   'video': video,
   'video_ratio': ratio,
   'caption': not paragraph.field_oe_plain_text_long.isEmpty ? content.field_oe_plain_text_long,
   'text': not paragraph.field_oe_text_long.isEmpty ? content.field_oe_text_long,
+  'link': link|default([]),
 }) }}

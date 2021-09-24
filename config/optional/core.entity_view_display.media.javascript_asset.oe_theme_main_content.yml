@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.media.oe_theme_main_content
+    - field.field.media.javascript_asset.oe_media_js_asset_url
+    - media.type.javascript_asset
+  module:
+    - oe_media_embed
+    - oe_media_js_asset
+third_party_settings:
+  oe_media_embed:
+    embeddable: true
+id: media.javascript_asset.oe_theme_main_content
+targetEntityType: media
+bundle: javascript_asset
+mode: oe_theme_main_content
+content:
+  oe_media_js_asset_url:
+    type: oe_media_js_asset_url
+    weight: 0
+    region: content
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  ewcms_available_translations: true
+  langcode: true
+  name: true
+  search_api_excerpt: true
+  thumbnail: true
+  uid: true

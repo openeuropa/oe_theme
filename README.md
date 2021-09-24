@@ -168,6 +168,18 @@ templates/compositions/ec-component-content-item/content-item.html.twig
 
 Consider using the [List item](/templates/patterns/list_item/list_item.ui_patterns.yml) pattern and its variants instead.
 
+#### Text with Featured media pattern
+
+The pattern [Text with Featured media](/templates/patterns/text_featured_media/text_featured_media.ui_patterns.yml) now
+supports the following 4 variants:
+
+- Left simple / `left_simple`: text on the left, simple call to action. This is the default behaviour.
+- Right simple / `right_simple`: text on the right, simple call to action.
+- Left featured / `left_featured`: text on the left, featured call to action.
+- Right featured / `right_featured`: text on the right, featured call to action.
+
+If no variant is set, then the pattern will be visualized using the default one. This guarantees backward compatibility.
+
 #### Site header
 
 ECL v3 supports the horizontal menu in both Core and Standardised branding. In order to accommodate this, we removed the

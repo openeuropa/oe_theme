@@ -2,8 +2,12 @@
 /**
  * @file
  * Text with featured media.
+ *
+ * Variant "left_simple" is used by default.
  */
 #}
+
+{% set variant = variant|default('left_simple') %}
 
 {% set video_ratio = video_ratio|replace({':': '-'}) %}
 {% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
@@ -12,13 +16,33 @@
 {% endif %}
 {% set text = text|render %}
 
-{% if image or video or text %}
+{% set media_position_class = 'right' in variant ? '' : ' ecl-u-order-m-last' %}
+
+{% set call_to_action_link = '' %}
+{% if link %}
+  {% set link_type = 'featured' in variant ? 'cta' : 'standalone' %}
+
+  {% set call_to_action_link %}
+    {% include '@ecl-twig/link' with {
+      link: {
+        type: link_type,
+        label: link.label,
+        path: link.path,
+        icon_position: 'after'
+      },
+      extra_classes: 'ecl-u-mt-m ecl-u-mt-m-l ecl-u-type-bold',
+      icon: get_link_icon(link.path)
+    } %}
+  {% endset %}
+{% endif %}
+
+{% if image or video or text or call_to_action_link or text_title %}
   {% if title %}
     <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-m-3xl ecl-u-mb-l">{{ title }}</h2>
   {% endif %}
   <div class="ecl-row">
     {% if image or video %}
-      <div class="ecl-col-m-6 ecl-u-order-m-last ecl-u-mb-m ecl-u-mb-m-none">
+      <div class="ecl-col-m-6 ecl-u-mb-m ecl-u-mb-m-none{{ media_position_class }}">
         {% if image %}
           {% include '@ecl-twig/media-container' with {
             'image': image.src,
@@ -34,8 +58,16 @@
         {% endif %}
       </div>
     {% endif %}
-    {% if text %}
-      <div class="{{ image or video ? ' ecl-col-m-6' : 'ecl-col-12' }} ecl">{{ text }}</div>
+    {% if text_title or text or call_to_action_link %}
+      <div class="{{ image or video ? 'ecl-col-m-6' : 'ecl-col-12' }}">
+        {% if text_title %}
+          <div class="ecl-u-type-prolonged-m ecl-u-type-bold ecl-u-type-color-grey">{{ text_title }}</div>
+        {% endif %}
+        {% if text %}
+          <div class="ecl">{{ text }}</div>
+        {% endif %}
+        {{ call_to_action_link }}
+      </div>
     {% endif %}
   </div>
 {% endif %}

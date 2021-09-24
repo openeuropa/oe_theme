@@ -206,3 +206,19 @@ function oe_theme_content_publication_post_update_00010(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Updates the full view display.
+ */
+function oe_theme_content_publication_post_update_30001(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/30001_publication_collection');
+
+  $display_values = $storage->read('core.entity_view_display.node.oe_publication.full');
+  $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+
+  $view_display = EntityViewDisplay::load($display_values['id']);
+  if ($view_display) {
+    $display = $storage->updateFromStorageRecord($view_display, $display_values);
+    $display->save();
+  }
+}

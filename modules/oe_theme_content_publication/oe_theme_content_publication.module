@@ -21,6 +21,11 @@ function oe_theme_content_publication_theme() {
         'image' => '',
       ],
     ],
+    'oe_theme_content_publication_collections' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
   ];
 }
 
@@ -51,6 +56,12 @@ function oe_theme_content_publication_node_view_alter(array &$build, EntityInter
       if (!$entity->get($name)->isEmpty() && isset($build[$name]['#title'])) {
         $build[$name]['#title'] = $label_override;
       }
+    }
+
+    // Change the 'Files' field group label to 'Documents' when a publication
+    // collection is rendered.
+    if ($entity->get('oe_publication_publications')->count() > 0) {
+      $build['#fieldgroups']['group_item_files']->label = t('Documents');
     }
   }
 }
