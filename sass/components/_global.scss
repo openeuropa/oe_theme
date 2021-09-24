@@ -3,7 +3,7 @@
 // Apply global css.
 
 body {
-  font-family: map.get(theme.$font-family, 'default');
+  font-family: #{map.get(theme.$font-family, 'default')};
   margin: 0;
   padding: 0;
 }

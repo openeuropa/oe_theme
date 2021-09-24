@@ -515,3 +515,9 @@ msgstr "Datum a hodina"
 
 msgid "Name"
 msgstr "Jméno/Název"
+
+msgid "I have read and agree with the @link"
+msgstr "Obeznámil(a) jsem se s podmínkami, které se týkají @link"
+
+msgid "data protection terms"
+msgstr "ochrany údajů"

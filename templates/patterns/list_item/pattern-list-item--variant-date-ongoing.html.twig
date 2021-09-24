@@ -4,13 +4,5 @@
  * Ongoing event list item component.
  */
 #}
-{% include '@oe_theme/patterns/list_item/pattern-list-item--variant-date.html.twig' with {
-  title: title,
-  url: url,
-  date: date,
-  detail: detail,
-  length: length,
-  meta: meta,
-  additional_information: additional_information,
-  variant: 'ongoing'
-} only %}
+{% set variant = 'ongoing' %}
+{% extends '@oe_theme/patterns/list_item/pattern-list-item--variant-date.html.twig' %}

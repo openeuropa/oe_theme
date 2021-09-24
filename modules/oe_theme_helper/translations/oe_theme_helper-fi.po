@@ -515,3 +515,9 @@ msgstr "Verkkotapahtuman ajankohta"
 
 msgid "Name"
 msgstr "Nimi"
+
+msgid "I have read and agree with the @link"
+msgstr "Olen lukenut @link ja hyväksyn sen ehdot"
+
+msgid "data protection terms"
+msgstr "tietosuojaselosteen"

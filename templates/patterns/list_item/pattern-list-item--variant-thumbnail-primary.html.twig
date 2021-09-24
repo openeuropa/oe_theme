@@ -4,13 +4,5 @@
  * Default theme implementation for a ECL thumbnail list item component.
  */
 #}
-{% include '@oe_theme/patterns/list_item/pattern-list-item.html.twig' with {
-  title: title,
-  url: url,
-  detail: detail,
-  length: length,
-  image: image,
-  image_position: 'before',
-  additional_information: additional_information,
-  meta: meta
-} only %}
+{% set image_position = 'before' %}
+{% extends '@oe_theme/patterns/list_item/pattern-list-item.html.twig' %}

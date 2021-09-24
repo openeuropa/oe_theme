@@ -515,3 +515,9 @@ msgstr "Spletni čas"
 
 msgid "Name"
 msgstr "Ime"
+
+msgid "I have read and agree with the @link"
+msgstr "Prebral/-a sem pogoje o @link in se strinjam z njimi"
+
+msgid "data protection terms"
+msgstr "varstvu podatkov"

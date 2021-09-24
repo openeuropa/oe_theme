@@ -13,7 +13,8 @@
   }
 }
 
-.ecl-content-item__title {
+.ecl-content-item__title,
+.ecl-content-item-date__title {
   a {
     color: map.get(theme.$color, 'blue-100');
     font-weight: map.get(theme.$font-weight, 'bold')!important;
@@ -21,6 +22,7 @@
   }
 }
 
-.ecl-content-item__description {
+.ecl-content-item__description,
+.ecl-content-item-date__description {
   color: map.get(theme.$color, 'grey-140')!important;
 }

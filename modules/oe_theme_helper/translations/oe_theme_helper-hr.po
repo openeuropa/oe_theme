@@ -515,3 +515,9 @@ msgstr "Internetsko vrijeme"
 
 msgid "Name"
 msgstr "Ime"
+
+msgid "I have read and agree with the @link"
+msgstr "Pročitao sam i prihvaćam @link"
+
+msgid "data protection terms"
+msgstr "uvjete zaštite podataka"
