@@ -48,6 +48,7 @@
         "openeuropa/code-review": "~1.5",
         "openeuropa/drupal-core-require-dev": "^8.9.14",
         "openeuropa/oe_content": "~2.5",
+        "openeuropa/oe_theme_content": "dev-EWPP-1575-3x",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.12",
@@ -85,12 +86,17 @@
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
     },
-    "repositories": {
-        "drupal": {
+    "repositories": [
+        {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/openeuropa/oe_theme_content",
+            "no-api": true
         }
-    },
+    ],
     "extra": {
         "composer-exit-on-patch-failure": true,
         "enable-patching": true,

@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_project_date
-label: 'Project period'
-locked: false
-pattern: d.m.Y

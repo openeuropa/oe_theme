@@ -1,9 +1,0 @@
-langcode: en
-status: true
-dependencies:
-  module:
-    - oe_content_sub_entity_document_reference
-id: oe_document_reference.full
-label: Full
-targetEntityType: oe_document_reference
-cache: true

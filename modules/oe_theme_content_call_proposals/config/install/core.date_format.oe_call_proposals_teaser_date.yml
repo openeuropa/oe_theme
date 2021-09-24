@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_call_proposals_teaser_date
-label: 'Call for proposals teaser date'
-locked: false
-pattern: 'j F Y'
