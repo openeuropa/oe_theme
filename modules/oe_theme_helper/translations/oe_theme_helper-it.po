@@ -229,8 +229,8 @@ msgstr "In più fasiIn più fasi"
 msgid "Permanent"
 msgstr "Permanente"
 
-msgid "@date in"
-msgstr "@date in"
+msgid "@date in @journal"
+msgstr "@date in @journal"
 
 msgid "Contact us"
 msgstr "Contattaci"

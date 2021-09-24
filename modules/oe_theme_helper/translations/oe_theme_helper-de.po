@@ -229,8 +229,8 @@ msgstr "Mehrere Enddaten"
 msgid "Permanent"
 msgstr "Unbefristet"
 
-msgid "@date in"
-msgstr "@date im"
+msgid "@date in @journal"
+msgstr "@date im @journal"
 
 msgid "Contact us"
 msgstr "Kontakt"

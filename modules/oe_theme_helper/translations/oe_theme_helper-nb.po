@@ -519,8 +519,8 @@ msgstr "Sideinnhold"
 msgid "Name"
 msgstr "Navn"
 
-msgid "@date in"
-msgstr "@date i"
+msgid "@date in @journal"
+msgstr "@date i @journal"
 
 msgid "The response period for this consultation has ended. Thank you for your input."
 msgstr "Høringsfristen har utløpt. Takk for ditt bidrag."

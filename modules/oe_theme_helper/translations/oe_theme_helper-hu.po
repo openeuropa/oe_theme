@@ -229,8 +229,8 @@ msgstr "Többkörös"
 msgid "Permanent"
 msgstr "Állandó"
 
-msgid "@date in"
-msgstr "@date,"
+msgid "@date in @journal"
+msgstr "@date, @journal"
 
 msgid "Contact us"
 msgstr "Kapcsolatfelvétel"

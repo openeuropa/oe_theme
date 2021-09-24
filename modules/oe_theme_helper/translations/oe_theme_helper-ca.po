@@ -520,8 +520,8 @@ msgstr "Contingut de la pàgina"
 msgid "Name"
 msgstr "Nom"
 
-msgid "@date in"
-msgstr "@date en"
+msgid "@date in @journal"
+msgstr "@date en @journal"
 
 msgid "I have read and agree with the @link"
 msgstr "He llegit la @link i accepto les condicions"
