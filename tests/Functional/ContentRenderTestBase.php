@@ -357,9 +357,11 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    * @param string $href
    *   Link URL.
    * @param bool $is_external
-   *   Defines whether it is extrernal link or internal.
+   *   Defines whether it is external link or internal.
+   * @param string $icon_size
+   *   Icon size.
    */
-  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE): void {
+  protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE, string $icon_size = 's'): void {
     $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
     $this->assertCount(1, $link);
     $this->assertEquals($href, $link[0]->getAttribute('href'));
@@ -368,10 +370,10 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $this->assertCount(1, $label);
     $this->assertEquals($title, $label[0]->getText());
 
-    $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon';
+    $svg_locator = 'svg.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--primary.ecl-link__icon';
     $icon_type = 'external';
     if (!$is_external) {
-      $svg_locator = 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
+      $svg_locator = 'svg.ecl-icon.ecl-icon--' . $icon_size . '.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon';
       $icon_type = 'corner-arrow';
     }
     $svg = $link[0]->findAll('css', $svg_locator);
