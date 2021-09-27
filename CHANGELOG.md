@@ -1,10 +1,34 @@
-# Change Log
+# Changelog
+
+## [3.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta4) (2021-09-27)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta3...3.0.0-beta4)
+
+**Merged pull requests:**
+
+- Epic ewpp 1360 news v3 [\#957](https://github.com/openeuropa/oe_theme/pull/957) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic news [\#956](https://github.com/openeuropa/oe_theme/pull/956) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1486: Theme publication collection related fields. [\#945](https://github.com/openeuropa/oe_theme/pull/945) ([nagyad](https://github.com/nagyad))
+- EWPP-1465: Enable non-eu languages: nb, is. [\#937](https://github.com/openeuropa/oe_theme/pull/937) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1360: Epic update. [\#936](https://github.com/openeuropa/oe_theme/pull/936) ([nagyad](https://github.com/nagyad))
+- EWPP-1478: Add interface translations in non-eu languages. [\#935](https://github.com/openeuropa/oe_theme/pull/935) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1362: Reorganise publication date extra field class. [\#933](https://github.com/openeuropa/oe_theme/pull/933) ([nagyad](https://github.com/nagyad))
+- EWPP-1368: Update Sources and Related links fields rendering. [\#924](https://github.com/openeuropa/oe_theme/pull/924) ([22Alexandra](https://github.com/22Alexandra))
+- Update news v3 epic [\#922](https://github.com/openeuropa/oe_theme/pull/922) ([22Alexandra](https://github.com/22Alexandra))
+- Update news v3 epic. [\#920](https://github.com/openeuropa/oe_theme/pull/920) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1360\] EWPP-1388: Add icon optional parameter to list item pattern. [\#913](https://github.com/openeuropa/oe_theme/pull/913) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1367: Add related departments field to news. [\#910](https://github.com/openeuropa/oe_theme/pull/910) ([nagyad](https://github.com/nagyad))
+- \[EWPP-1360\] EWPP-1363: Style Sources field in full view mode. [\#903](https://github.com/openeuropa/oe_theme/pull/903) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1360\] EWPP-1362: Use PublicationDate extra field to display the publication date and last update date fields for News. [\#901](https://github.com/openeuropa/oe_theme/pull/901) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta3) (2021-09-23)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta2...3.0.0-beta3)
 
 **Merged pull requests:**
 
+- Prepare changelog for version 3.0.0-beta3. [\#954](https://github.com/openeuropa/oe_theme/pull/954) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic ewpp 873 text media 2 20210917 2 [\#951](https://github.com/openeuropa/oe_theme/pull/951) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1495: Make sure that event registration button is displayed as an inline block. [\#950](https://github.com/openeuropa/oe_theme/pull/950) ([ademarco](https://github.com/ademarco))
 - EWPP-1514: Wrong Irish translation in language switcher. [\#947](https://github.com/openeuropa/oe_theme/pull/947) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1467: Fix font name issue. [\#946](https://github.com/openeuropa/oe_theme/pull/946) ([sergepavle](https://github.com/sergepavle))
