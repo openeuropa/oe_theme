@@ -103,6 +103,13 @@ class EventRenderTest extends ContentRenderTestBase {
 
     $venue->save();
 
+    // Make node title translatable.
+    $fields = \Drupal::service('entity_field.manager')
+      ->getBaseFieldDefinitions('node', 'oe_event');
+    $field_config = $fields['title']->getConfig('oe_event');
+    $field_config->setTranslatable(TRUE);
+    $field_config->save();
+
     $date = new \DateTime('2022-01-02');
     $values = [
       'type' => 'oe_event',
