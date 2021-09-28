@@ -515,3 +515,9 @@ msgstr "Horaire de l’événement en ligne"
 
 msgid "Name"
 msgstr "Nom"
+
+msgid "I have read and agree with the @link"
+msgstr "J'ai lu et j'accepte les @link"
+
+msgid "data protection terms"
+msgstr "conditions relatives à la protection des données"

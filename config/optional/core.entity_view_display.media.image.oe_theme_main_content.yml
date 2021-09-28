@@ -7,6 +7,7 @@ dependencies:
     - media.type.image
     - responsive_image.styles.oe_theme_main_content
   module:
+    - oe_media
     - responsive_image
 id: media.image.oe_theme_main_content
 targetEntityType: media

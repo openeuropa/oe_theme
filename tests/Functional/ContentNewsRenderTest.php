@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -59,6 +58,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
         'value' => '2020-09-18',
       ],
       'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/ACJHR',
+      'oe_departments' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'uid' => 0,
       'status' => 1,
@@ -84,6 +84,23 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $header_link = $this->assertSession()->elementExists('css', '.ecl-page-header-core__description a');
     $this->assertEquals('http://www.example.org', $header_link->getAttribute('href'));
     $this->assertEquals('http://www.example.org', $header_link->getText());
+
+    // Assert Sources field content.
+    $node->set('oe_news_sources', [
+      [
+        'uri' => 'internal:/node',
+        'title' => 'Internal source link',
+      ], [
+        'uri' => 'https://example.com',
+        'title' => 'External source link',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertEquals('Sources', $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3')->getText());
+    $internal_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(3)');
+    $this->assertLinkIcon($internal_source_link, 'Internal source link', '/build/node', FALSE, 'xs');
+    $external_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(4)');
+    $this->assertLinkIcon($external_source_link, 'External source link', 'https://example.com', TRUE, 'xs');
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
     $node->set('oe_news_types', 'http://publications.europa.eu/resource/authority/resource-type/PUB_GEN');
@@ -115,6 +132,10 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
           'body' => 'African Court of Justice and Human Rights',
         ],
         [
+          'label' => 'Department',
+          'body' => 'Associated African States and Madagascar',
+        ],
+        [
           'label' => 'Location',
           'body' => 'Abu Dhabi',
         ],
@@ -123,6 +144,14 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
     $field_list_assert->assertVariant('horizontal', $details_html);
+
+    // Assert Last update date field.
+    $node->set('oe_news_last_updated', '2021-08-04')->save();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][1]['body'] = '18 September 2020 (Last updated on: 4 August 2021)';
+    $details_html = $details->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
 
     // Assert Author field label.
     $node->set('oe_author', [
@@ -133,6 +162,18 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $details_expected_values['items'][2]['label'] = 'Authors';
     $details_expected_values['items'][2]['body'] = 'African Court of Justice and Human Rights | Centre for the Development of Enterprise';
+    $details_html = $details->getHtml();
+    $field_list_assert->assertPattern($details_expected_values, $details_html);
+
+    // Assert Departments field label.
+    $node->set('oe_departments', [
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM'],
+      ['target_id' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC'],
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'][3]['label'] = 'Departments';
+    $details_expected_values['items'][3]['body'] = 'Associated African States and Madagascar | Audit Board of the European Communities';
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 
@@ -167,7 +208,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
 
     $picture = $this->assertSession()->elementExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');
     $image = $this->assertSession()->elementExists('css', 'img.ecl-u-width-100.ecl-u-height-auto', $picture);
-    $this->assertContains('placeholder_news_featured_media.png', $image->getAttribute('src'));
+    $this->assertContains('files/styles/oe_theme_medium_no_crop/public/placeholder_news_featured_media.png', $image->getAttribute('src'));
     $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -192,25 +233,13 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       ],
     ])->save();
     $this->drupalGet($node->toUrl());
-
-    $related_links_header = $this->assertSession()->elementExists('css', 'article[role=article] > div > h2');
-    $this->assertContentHeader($related_links_header, 'Related links');
-    $related_links_content = $this->assertSession()->elementExists('css', 'article[role=article] > div > div.ecl-list article.ecl-content-item:nth-child(1)');
-    $link_assert = new ListItemAssert();
-    $link_expected_values = [
-      'url' => '/build/node',
-      'title' => 'Node listing',
-    ];
-    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
-
-    $related_links_content = $this->assertSession()->elementExists('css', 'article[role=article] > div > div.ecl-list article.ecl-content-item:nth-child(2)');
-    $link_expected_values = [
-      'url' => 'https://example.com',
-      'title' => 'External link',
-    ];
-    $link_assert->assertPattern($link_expected_values, $related_links_content->getOuterHtml());
-    $link_assert->assertVariant('default', $related_links_content->getOuterHtml());
+    $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(8)')->getText());
+    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(9) a');
+    $this->assertEquals('/build/node', $first_related_link->getAttribute('href'));
+    $this->assertEquals('Node listing', $first_related_link->getText());
+    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
+    $this->assertEquals('https://example.com', $second_related_link->getAttribute('href'));
+    $this->assertEquals('External link', $second_related_link->getText());
   }
 
 }

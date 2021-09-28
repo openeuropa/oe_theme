@@ -515,3 +515,9 @@ msgstr "Tiempo en línea"
 
 msgid "Name"
 msgstr "Nombre"
+
+msgid "I have read and agree with the @link"
+msgstr "He leído y acepto las @link"
+
+msgid "data protection terms"
+msgstr "condiciones de protección de datos"

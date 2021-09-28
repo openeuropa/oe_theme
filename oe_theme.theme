@@ -430,20 +430,6 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
       $item['content']['#attributes']['class'][] = 'ecl-u-height-auto';
     }
   }
-
-  if ($variables['field_name'] === 'oe_related_links') {
-    foreach ($variables['items'] as $delta => $item) {
-      $variables['items'][$delta]['content'] = [
-        '#type' => 'pattern',
-        '#id' => 'list_item',
-        '#variant' => 'default',
-        '#fields' => [
-          'url' => $item['content']['#url'],
-          'title' => $item['content']['#title'],
-        ],
-      ];
-    }
-  }
 }
 
 /**

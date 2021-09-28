@@ -849,6 +849,7 @@
       'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
       'div.ecl-content-item__additional_information .ecl-description-list__term': 2
       'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
@@ -867,6 +868,7 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      icon: "check"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -874,8 +876,9 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#check"></use>'
       'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link span.ecl-link__label': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail. It...</div>"
 - array:
     '#type': pattern
