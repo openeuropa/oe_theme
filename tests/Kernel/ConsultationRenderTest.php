@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
@@ -97,7 +98,8 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Consultation node',
-      'meta' => 'Status: Open',
+      'status' => 'Status: Open',
+      'highlighted' => NULL,
       'image' => NULL,
       'additional_information' => [
         new PatternAssertState(new FieldListAssert(), [
@@ -120,11 +122,13 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'Consultation short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'Consultation short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Consultation short title';
+    $expected_values['highlighted'] = 'Highlighted';
     $assert->assertPattern($expected_values, $html);
 
     // Check status Closed label and background.
@@ -134,7 +138,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     ])->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Status: Closed';
+    $expected_values['status'] = 'Status: Closed';
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
@@ -163,7 +167,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     $node->set('oe_consultation_opening_date', $opening_date->format(DateTimeItemInterface::DATE_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Status: Upcoming';
+    $expected_values['status'] = 'Status: Upcoming';
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [

@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
@@ -46,16 +47,19 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Test Publication node',
+      'highlighted' => NULL,
       'meta' => "Delegated directive | 15 April 2020\n | Arab Common Market",
       'description' => 'Test teaser text.',
     ];
     $assert->assertPattern($expected_values, $html);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'Publication short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'Publication short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Publication short title';
+    $expected_values['highlighted'] = 'Highlighted';
     $assert->assertPattern($expected_values, $html);
 
     // Add thumbnail.

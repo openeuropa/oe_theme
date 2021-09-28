@@ -8,6 +8,7 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_venue\Entity\Venue;
 use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
@@ -168,6 +169,7 @@ class EventRenderTest extends ContentRenderTestBase {
           ],
         ],
       ]),
+      'highlighted' => NULL,
       'meta' => 'Competitions and award ceremonies',
       'image' => NULL,
       'date' => [
@@ -180,11 +182,13 @@ class EventRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date', $html);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'Event short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'Event short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Event short title';
+    $expected_values['highlighted'] = 'Highlighted';
     $assert->assertPattern($expected_values, $html);
 
     // Set full address in venue.
@@ -249,6 +253,7 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'заглавието на моя възел';
+    $expected_values['highlighted'] = NULL;
     $expected_values['meta'] = 'Конкурси и церемонии по награждаване | Cancelled';
     $expected_values['url'] = '/bg/node/1';
     $expected_values['date']['month_name'] = 'Ян.';

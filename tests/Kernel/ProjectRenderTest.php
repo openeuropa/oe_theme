@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_organisation\Entity\Organisation;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
@@ -159,6 +160,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'title' => 'Project 1',
       'url' => '/en/node/1',
       'description' => 'The teaser text',
+      'highlighted' => NULL,
       'meta' => NULL,
       'image' => [
         'src' => 'example_1.jpeg',
@@ -179,11 +181,13 @@ class ProjectRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'Project short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'Project short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Project short title';
+    $expected_values['highlighted'] = 'Highlighted';
     $assert->assertPattern($expected_values, $html);
   }
 

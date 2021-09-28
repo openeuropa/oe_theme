@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 
@@ -70,6 +71,7 @@ class NewsRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Test news node',
+      'highlighted' => NULL,
       'url' => '/en/node/1',
       'description' => 'Teaser',
       'meta' => 'News article | 2 April 2019',
@@ -81,11 +83,13 @@ class NewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'News short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'News short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'News short title';
+    $expected_values['highlighted'] = 'Highlighted';
     $assert->assertPattern($expected_values, $html);
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -129,6 +133,7 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'News short title',
       'url' => '/en/node/1',
       'description' => 'Teaser',
+      'highlighted' => 'Highlighted',
       'meta' => 'Press release | 2 April 2019',
       'image' => [
         'src' => 'example_1.jpeg',
