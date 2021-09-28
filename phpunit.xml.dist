@@ -14,6 +14,8 @@
   </listeners>
   <testsuites>
     <testsuite>
+      <directory>./build/modules/contrib/oe_theme_content/tests/</directory>
+      <directory>./build/modules/contrib/oe_theme_content/modules/**/tests/</directory>
       <directory>./modules/**/tests/</directory>
       <directory>./tests/</directory>
     </testsuite>
