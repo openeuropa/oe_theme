@@ -296,3 +296,10 @@ function oe_theme_helper_post_update_20016() {
     'label' => 'OpenEuropa: Compact teaser',
   ])->save();
 }
+
+/**
+ * Flush all caches to apply new modules locations after upgrade.
+ */
+function oe_theme_helper_post_update_20017() {
+  drupal_flush_all_caches();
+}

@@ -10,6 +10,7 @@ Drupal 8 theme based on the [Europa Component Library][1] (ECL).
 - [Requirements](#requirements)
 - [Installation](#installation)
   - [Enable the theme](#enable-the-theme)
+  - [Upgrade to 2.21.0](#upgrade-to-2.21.0)
   - [Upgrade to 2.17.0](#upgrade-to-2.17.0)
   - [Upgrade to 2.15.0](#upgrade-to-2.15.0)
   - [Upgrade to 2.10.0](#upgrade-to-2.10.0)
@@ -113,6 +114,14 @@ users can access to the main navigation menu only on sites using standardised EC
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
 
+### Upgrade to 2.21.0
+
+#### Detaching of oe_theme_content_* modules
+
+In 2.21.0 we moved all existing companion submodules related to content theming in a separate project `oe_theme_content`.
+In order to continue to use theme and companion modules on upgrade should be executed `composer install` or `composer update` and
+`oe_theme_helper_post_update_20017()`.
+
 ### Upgrade to 2.17.0
 
 #### Dropdown UI pattern
@@ -183,16 +192,6 @@ In 2.9.0 we dropped support for the legacy ECL site header. To do so we had to m
 ## Companion sub-modules
 
 * [OpenEuropa Theme Contact Forms](./modules/oe_theme_contact_forms/README.md)
-* [OpenEuropa Content Call for tenders companion module](./modules/oe_theme_content_call_tenders/README.md)
-* [OpenEuropa Content Corporate Entity Contact companion module](./modules/oe_theme_content_entity_contact/README.md)
-* [OpenEuropa Content Corporate Entity Organisation companion module](./modules/oe_theme_content_entity_organisation/README.md)
-* [OpenEuropa Content Corporate Entity Venue companion module](./modules/oe_theme_content_entity_venue/README.md)
-* [OpenEuropa Content Event companion module](./modules/oe_theme_content_event/README.md)
-* [OpenEuropa Content News companion module](./modules/oe_theme_content_news/README.md)
-* [OpenEuropa Content Page companion module](./modules/oe_theme_content_page/README.md)
-* [OpenEuropa Content Policy companion module](./modules/oe_theme_content_policy/README.md)
-* [OpenEuropa Content Project companion module](./modules/oe_theme_content_project/README.md)
-* [OpenEuropa Content Publication companion module](./modules/oe_theme_content_publication/README.md)
 
 ## Corporate blocks
 
