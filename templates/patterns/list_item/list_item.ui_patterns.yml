@@ -101,3 +101,8 @@ list_item:
       description: "Define if the item should be labeled as highlighted."
       preview: true
       escape: false
+    status:
+      type: "text"
+      label: "Status"
+      description: "Status label accompanying the link item."
+      preview: "Status: Open"
