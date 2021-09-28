@@ -49,7 +49,7 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'meta' => [
         [$this, 'assertElementText'],
-        $base_selector . '__meta',
+        $base_selector . '__meta div.ecl-u-mt-xs',
       ],
       'date' => [
         [$this, 'assertDate'],
@@ -68,6 +68,14 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'icon' => [
         [$this, 'assertIcon'],
+      ],
+      'highlighted' => [
+        [$this, 'assertElementText'],
+        $base_selector . '__meta div.ecl-label.ecl-label--highlight.ecl-u-mr-xs',
+      ],
+      'status' => [
+        [$this, 'assertElementText'],
+        $base_selector . '__meta span#status',
       ],
     ];
   }
