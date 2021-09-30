@@ -515,3 +515,9 @@ msgstr "Час на проявата"
 
 msgid "Name"
 msgstr "Име"
+
+msgid "I have read and agree with the @link"
+msgstr "Прочетох и съм съгласен с условията за @link"
+
+msgid "data protection terms"
+msgstr "защита на данните"

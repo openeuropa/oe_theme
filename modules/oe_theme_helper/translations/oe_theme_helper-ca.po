@@ -36,7 +36,7 @@ msgid "Registration will open in @time_left. You can register from @start_date, 
 msgstr "El termini d'inscripció comença el  @time_left. Podeu inscriure-us del @start_date al @end_date."
 
 msgid "Registration period ended on @date"
-msgstr "El termini d'inscripció va finalitzar el @date"
+msgstr "El termini d'inscripció va finalitzar el passat @date"
 
 msgid "Postal address"
 msgstr "Adreça postal"
@@ -231,7 +231,7 @@ msgid "Permanent"
 msgstr "Permanent"
 
 msgid "Last updated on: @date"
-msgstr "Darrera actualització: @date "
+msgstr "Darrera actualització: @date"
 
 msgid "File"
 msgstr "Arxiu"
@@ -307,3 +307,224 @@ msgstr "Amagueu les dades de contacte"
 
 msgid "Leadership and organisation"
 msgstr "Direcció i organització"
+
+msgid "Contact us"
+msgstr "Contacteu amb nosaltres"
+
+msgid "Follow us"
+msgstr "Seguiu-nos"
+
+msgid "About us"
+msgstr "Coneixeu-nos"
+
+msgid "Related sites"
+msgstr "Webs relacionats"
+
+msgid "More information on:"
+msgstr "Més informació a:"
+
+msgid "Discover more on @link"
+msgstr "Podeu trobar més informació a @link"
+
+msgid "This site is managed by the @name"
+msgstr "Aquest web és gestionat per @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Aquest web és gestionat per la Comissió Europea, @name"
+
+msgid "Status: @label"
+msgstr "Estat: @label"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Reserveu la vostra plaça, queden @time_left per poder-vos inscriure; el termini d’inscripció finalitza el dia @end_date"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 dia"
+msgstr[1] "@count dies"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 setmana"
+msgstr[1] "@count setmanes"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 any"
+msgstr[1] "@count anys"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 mes"
+msgstr[1] "@count mesos"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 hora"
+msgstr[1] "@count hores"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 minut"
+msgstr[1] "@count minuts"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 segon"
+msgstr[1] "@count segons"
+
+msgid "Online link"
+msgstr "Enllaç en línia"
+
+msgid "Online time"
+msgstr "Horari de la transmissió en línia"
+
+msgid "Grants awarded"
+msgstr "Subvencions atorgades"
+
+msgid "Keywords"
+msgstr "Paraules clau"
+
+msgid "Subject"
+msgstr "Tema"
+
+msgid "General contact"
+msgstr "Contacte general"
+
+msgid "Overview"
+msgstr "Informació general"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Seguiu les últimes notícies i informeu-vos de com podeu participar."
+
+msgid "Open gallery"
+msgstr "Obre la galeria"
+
+msgid "media items"
+msgstr "elements multimèdia"
+
+msgid "(Acting) @role"
+msgstr "@role (en funcions)"
+
+msgid "Your name"
+msgstr "Nom"
+
+msgid "Your email address"
+msgstr "Adreça electrònica"
+
+msgid "Message"
+msgstr "Missatge"
+
+msgid "Country of residence"
+msgstr "País de residència"
+
+msgid "Phone"
+msgstr "Telèfon"
+
+msgid "Send yourself a copy"
+msgstr "Envia’m una còpia del missatge"
+
+msgid "Status message"
+msgstr "Estat del missatge"
+
+msgid "Close this message"
+msgstr "Tanca aquest missatge"
+
+msgid "The sender's name"
+msgstr "Nom del remitent"
+
+msgid "The sender's email"
+msgstr "Adreça electrònica del remitent"
+
+msgid "Topic"
+msgstr "Tema"
+
+msgid "Languages"
+msgstr "Llengües"
+
+msgid "No results have been found"
+msgstr "No s’ha trobat cap resultat"
+
+msgid "Event date"
+msgstr "Data de l'esdeveniment"
+
+msgid "Select"
+msgstr "Selecciona"
+
+msgid "After"
+msgstr "Després del dia"
+
+msgid "Before"
+msgstr "Abans del dia"
+
+msgid "In between"
+msgstr "Entre els dies"
+
+msgid "Select all"
+msgstr "Selecciona-ho tot"
+
+msgid "Upcoming and ongoing"
+msgstr "Propers i en curs"
+
+msgid "Past"
+msgstr "Anteriors"
+
+msgid "Event type"
+msgstr "Tipus d’esdeveniment"
+
+msgid "Venue"
+msgstr "Lloc"
+
+msgid "Online type"
+msgstr "Tipus d’esdeveniment en línia"
+
+msgid "Livestream"
+msgstr "Transmissió en directe per internet"
+
+msgid "Type"
+msgstr "Tipus"
+
+msgid "EU organisation type"
+msgstr "Tipus d’organització de la UE"
+
+msgid "Date"
+msgstr "Data"
+
+msgid "End Date"
+msgstr "Data de finalització"
+
+msgid "Responsible department"
+msgstr "Servei responsable"
+
+msgid "Upcoming and open"
+msgstr "Propers i oberts actualment"
+
+msgid "Closed"
+msgstr "Tancats"
+
+msgid "Content owner"
+msgstr "Propietari del contingut"
+
+msgid "Publication date"
+msgstr "Data de publicació"
+
+msgid "Publication type"
+msgstr "Tipus de publicació"
+
+msgid "Available translations"
+msgstr "Traduccions disponibles"
+
+msgid "Page contents"
+msgstr "Contingut de la pàgina"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "@date in"
+msgstr "@date en"
+
+msgid "I have read and agree with the @link"
+msgstr "He llegit la @link i accepto les condicions"
+
+msgid "data protection terms"
+msgstr "informació sobre protecció de dades"

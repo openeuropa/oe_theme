@@ -12,6 +12,7 @@
     - "image_position" (string) (default: ''): Image before of after the item.
     - "length" (int) (default: 0): Max length of detail field.
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
+    - "icon" (string) (default: ''): Icon used for the link item.
 #}
 
 {# Create macro #}
@@ -48,13 +49,23 @@
     {% block title %}
       <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
         {%- if url %}
-          {% include '@ecl-twig/link' with {
+          {% set _link = {
             link: {
               type: 'standalone',
               label: title,
-              path: url
+              path: url,
             }
-          } only %}
+          } %}
+          {% if icon %}
+            {% set _link = _link|merge({
+              icon: {
+                'path': ecl_icon_path,
+                'name': icon,
+                'size': 's',
+              }
+            }) %}
+          {% endif %}
+          {% include '@ecl-twig/link' with _link only %}
         {% else %}
           {{ title }}
         {%- endif -%}
@@ -62,7 +73,7 @@
     {% endblock %}
     {% block detail %}
       {% if detail is not empty %}
-        <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-type-color-grey-100 ecl-u-mb-s">{{ detail|smart_trim(length) }}</div>
+        <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-mb-s">{{ detail|smart_trim(length) }}</div>
       {% endif %}
     {% endblock %}
     {% block additional_information %}

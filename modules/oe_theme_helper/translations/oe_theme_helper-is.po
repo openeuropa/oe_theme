@@ -1,0 +1,529 @@
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Tegund fyrirtækis"
+
+msgid "Show @numb more items"
+msgstr "Sýna @numb fleiri niðurstöður"
+
+msgid "When"
+msgstr "Hvenær"
+
+msgid "Where"
+msgstr "Hvar"
+
+msgid "Organiser"
+msgstr "Skipuleggjandi"
+
+msgid "Website"
+msgstr "Heimasíða"
+
+msgid "Social media"
+msgstr "Samfélagsmiðlar"
+
+msgid "Number of seats"
+msgstr "Fjöldi sæta"
+
+msgid "Entrance fee"
+msgstr "Aðgangseyrir"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Bókaðu sæti þitt, bóka innan @time_left, skráning mun renna út þann @end_date"
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Skráning mun opnast eftir @time_left Þú getur skráð þig frá @start_date til @end_date."
+
+msgid "Registration period ended on @date"
+msgstr "Skráningartímabili lauk þann @date"
+
+msgid "Postal address"
+msgstr "Heimilisfang"
+
+msgid "Authors"
+msgstr "Höfundar"
+
+msgid "Department"
+msgstr "Deild"
+
+msgid "Project duration"
+msgstr "Líftími verkefnis"
+
+msgid "Project website"
+msgstr "Heimasíða verkefnis"
+
+msgid "Contact organisation"
+msgstr "Tengiliðafyrirtæki"
+
+msgid "Call status: @label"
+msgstr "Staða útboðs: @label"
+
+msgid "Press contacts"
+msgstr "Tengiliðir fjölmiðla"
+
+msgid "Call for tenders"
+msgstr "Lýst eftir útboðum"
+
+msgid "Related links"
+msgstr "Tengdar slóðir"
+
+msgid "Practical information"
+msgstr "Gagnlegar upplýsingar"
+
+msgid "Phone number"
+msgstr "Símanúmer"
+
+msgid "Opening date"
+msgstr "Dagsetning opnunar"
+
+msgid "Deadline date"
+msgstr "Skilafrestur"
+
+msgid "Deadline dates"
+msgstr "Skilafrestir"
+
+msgid "Publication date"
+msgstr "Útgáfudagsetning"
+
+msgid "Author"
+msgstr "Höfundur"
+
+msgid "Location"
+msgstr "Staðsetning"
+
+msgid "News type"
+msgstr "Tegund fréttar"
+
+msgid "Project locations"
+msgstr "Staðsetningar verkefnis"
+
+msgid "Overall budget"
+msgstr "Heildarfjárhagsáætlun"
+
+msgid "EU contribution"
+msgstr "Framlag ESB"
+
+msgid "Departments"
+msgstr "Deildir"
+
+msgid "Results"
+msgstr "Niðurstöður"
+
+msgid "Stakeholders"
+msgstr "Hagsmunaaðilar"
+
+msgid "Coordinators"
+msgstr "Samræmingaraðilar"
+
+msgid "Participants"
+msgstr "Þátttakendur"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Countries"
+msgstr "Lönd"
+
+msgid "EU Organisation"
+msgstr "Stofnun ESB"
+
+msgid "Non-EU organisation"
+msgstr "Ekki stofnun ESB"
+
+msgid "Reference"
+msgstr "Heimild"
+
+msgid "Upcoming"
+msgstr "Væntanlegt"
+
+msgid "Open"
+msgstr "Opið"
+
+msgid "Closed"
+msgstr "Lokað"
+
+msgid "Details"
+msgstr "Upplýsingar"
+
+msgid "Status"
+msgstr "Staða"
+
+msgid "Publication"
+msgstr "Útgáfa"
+
+msgid "Description"
+msgstr "Lýsing"
+
+msgid "Email"
+msgstr "Netfang"
+
+msgid "Contact"
+msgstr "Hafa samband"
+
+msgid "Contacts"
+msgstr "Tengiliðir"
+
+msgid "Organisation"
+msgstr "Fyrirtæki"
+
+msgid "Fax number"
+msgstr "Bréfasími"
+
+msgid "Mobile number"
+msgstr "Farsími"
+
+msgid "Office"
+msgstr "Skrifstofa"
+
+msgid "Documents"
+msgstr "Skjöl"
+
+msgid "Funding"
+msgstr "Fjármögnun"
+
+msgid "As planned"
+msgstr "Fylgir áætlun"
+
+msgid "Cancelled"
+msgstr "Hætt við"
+
+msgid "Rescheduled"
+msgstr "Endurskipulagt"
+
+msgid "Postponed"
+msgstr "Frestað"
+
+msgid "Address"
+msgstr "Heimilisfang"
+
+msgid "Live stream"
+msgstr "Bein útsending"
+
+msgid "Live streaming available"
+msgstr "Beint streymi í boði"
+
+msgid "Project"
+msgstr "Verkefni"
+
+msgid "Publication type"
+msgstr "Tegund birtingar"
+
+msgid "Call for proposals"
+msgstr "Lýst eftir tillögum"
+
+msgid "Funding programme"
+msgstr "Fjármögnunaráætlun"
+
+msgid "Deadline model"
+msgstr "Áætlun skilafrests"
+
+msgid "Single-stage"
+msgstr "Eins þrepa"
+
+msgid "Two-stage"
+msgstr "Tveggja þrepa"
+
+msgid "Multiple cut-off"
+msgstr "Margir lokunarfrestir"
+
+msgid "Permanent"
+msgstr "Varanlegt"
+
+msgid "Last updated on: @date"
+msgstr "Síðast uppfært: @date"
+
+msgid "File"
+msgstr "Skjal"
+
+msgid "Files"
+msgstr "Skjöl"
+
+msgid "Identification"
+msgstr "Auðkenni"
+
+msgid "Identifications"
+msgstr "Auðkenni"
+
+msgid "Related department"
+msgstr "Tengd deild"
+
+msgid "Related departments"
+msgstr "Tengdar deildir"
+
+msgid "Consultation"
+msgstr "Ráðgjöf"
+
+msgid "Deadline"
+msgstr "Frestur rennur út"
+
+msgid "Respond to the questionnaire"
+msgstr "Svara könnun"
+
+msgid "Respond to the consultation"
+msgstr "Viðbrögð við ráðgjöf"
+
+msgid "Target audience"
+msgstr "Markhópur"
+
+msgid "Why we are consulting"
+msgstr "Hvers vegna veitum við ráðgjöf?"
+
+msgid "Consultation outcome"
+msgstr "Niðurstaða ráðgjafar"
+
+msgid "Additional information"
+msgstr "Viðbótarupplýsingar"
+
+msgid "Reference documents"
+msgstr "Tilvísunarskjöl"
+
+msgid "Responsibilities"
+msgstr "Ábyrgðarhlutverk"
+
+msgid "Media"
+msgstr "Miðlar"
+
+msgid "Latest"
+msgstr "Síðast"
+
+msgid "Transparency"
+msgstr "Gagnsæi"
+
+msgid "Articles and presentations"
+msgstr "Greinar og kynningar"
+
+msgid "Biography"
+msgstr "Æviágrip"
+
+msgid "Declaration of interests"
+msgstr "Hagsmunayfirlýsing"
+
+msgid "Show contact details"
+msgstr "Sýna tengiliðaupplýsingar"
+
+msgid "Hide contact details"
+msgstr "Fela tengiliðaupplýsingar"
+
+msgid "Contact us"
+msgstr "Hafa samband"
+
+msgid "Follow us"
+msgstr "Fylgja okkur"
+
+msgid "About us"
+msgstr "Um okkur"
+
+msgid "Related sites"
+msgstr "Tengdar heimasíður"
+
+msgid "More information on:"
+msgstr "Nánari upplýsingar:"
+
+msgid "Discover more on @link"
+msgstr "Finndu meira á @link"
+
+msgid "This site is managed by the @name"
+msgstr "Þessari síðu er stjórnað af @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Þessari síðu er stjórnað af framkvæmdastjórn ESB, @name"
+
+msgid "Status: @label"
+msgstr "Staða: @label"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Bókaðu sæti þitt, bóka innan @time_left, skráning mun renna út þann @end_date"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "eins dags"
+msgstr[1] "@count daga"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "einnar viku"
+msgstr[1] "@count vikur"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "eins árs"
+msgstr[1] "@count ár"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "eins mánaðar"
+msgstr[1] "@count mánuði"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "einnar klukkustundar"
+msgstr[1] "@count tímar"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "einnar mínútu"
+msgstr[1] "@count mínútur"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "einnar sekúndu"
+msgstr[1] "@count sekúndur"
+
+msgid "Online link"
+msgstr "Slóð nettengingar"
+
+msgid "Online time"
+msgstr "Tími nettengingar"
+
+msgid "Grants awarded"
+msgstr "Veittir styrkir"
+
+msgid "Keywords"
+msgstr "Leitarorð"
+
+msgid "Subject"
+msgstr "Efni"
+
+msgid "General contact"
+msgstr "Almennur tengiliður"
+
+msgid "Overview"
+msgstr "Yfirlit"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Fylgjast með síðustu framförum og læra meira um hvernig taka þátt."
+
+msgid "Open gallery"
+msgstr "Opna safn"
+
+msgid "media items"
+msgstr "miðlunarefni"
+
+msgid "(Acting) @role"
+msgstr "(Sett/ur) @role"
+
+msgid "Your name"
+msgstr "Nafnið þitt"
+
+msgid "Your email address"
+msgstr "Netfangið þitt"
+
+msgid "Message"
+msgstr "Skilaboð"
+
+msgid "Country of residence"
+msgstr "Dvalarland"
+
+msgid "Phone"
+msgstr "Sími"
+
+msgid "Send yourself a copy"
+msgstr "Senda sjálfum/sjálfri mér afrit"
+
+msgid "Status message"
+msgstr "Skilaboð um stöðu"
+
+msgid "Close this message"
+msgstr "Loka skilaboðunum"
+
+msgid "The sender's name"
+msgstr "Nafn sendanda"
+
+msgid "The sender's email"
+msgstr "Netfang sendanda"
+
+msgid "Topic"
+msgstr "Viðfangsefni"
+
+msgid "Languages"
+msgstr "Tungumál"
+
+msgid "No results have been found"
+msgstr "Engar niðurstöður fundust"
+
+msgid "Event date"
+msgstr "Dagsetning viðburðar"
+
+msgid "Select"
+msgstr "Velja"
+
+msgid "After"
+msgstr "Eftir"
+
+msgid "Before"
+msgstr "Fyrir"
+
+msgid "In between"
+msgstr "Á milli"
+
+msgid "Select all"
+msgstr "Velja allt"
+
+msgid "Upcoming and ongoing"
+msgstr "Væntanlegt/í gangi"
+
+msgid "Past"
+msgstr "Liðið"
+
+msgid "Event type"
+msgstr "Tegund viðburðar"
+
+msgid "Venue"
+msgstr "Staður"
+
+msgid "Online type"
+msgstr "Tegund nettengingar"
+
+msgid "Livestream"
+msgstr "Streymi"
+
+msgid "Type"
+msgstr "Tegund"
+
+msgid "EU organisation type"
+msgstr "Tegund stofnunar ESB"
+
+msgid "Date"
+msgstr "Dagsetning"
+
+msgid "End Date"
+msgstr "Lokadagsetning"
+
+msgid "Responsible department"
+msgstr "Ábyrgðardeild"
+
+msgid "Upcoming and open"
+msgstr "Væntanlegt/opið"
+
+msgid "Closed"
+msgstr "Lokað"
+
+msgid "Content owner"
+msgstr "Eigandi efnis"
+
+msgid "Publication date"
+msgstr "Útgáfudagsetning"
+
+msgid "Publication type"
+msgstr "Tegund útgáfu"
+
+msgid "Available translations"
+msgstr "Tiltækar þýðingar"
+
+msgid "Page contents"
+msgstr "Innihald síðu"
+
+msgid "Name"
+msgstr "Heiti"
+
+msgid "@date in"
+msgstr "@date í"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Svarfrestur vegna þessarar ráðgjafar er liðinn. Takk fyrir þitt innlegg."
+
+msgid "I have read and agree with the @link"
+msgstr "Ég hef lesið og samþykki @link"
+
+msgid "data protection terms"
+msgstr "gagnaverndarskilmálanna"

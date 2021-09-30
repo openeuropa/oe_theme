@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Drupal\field\Entity\FieldConfig;
+use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -30,6 +31,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     'oe_theme_content_publication',
     'oe_theme_content_organisation',
     'oe_theme_content_organisation_reference',
+    'oe_multilingual',
   ];
 
   /**
@@ -50,6 +52,16 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $settings['target_bundles']['oe_organisation_reference'] = 'oe_organisation_reference';
     $field->setSetting('handler_settings', $settings);
     $field->save();
+
+    // Make publications translatable.
+    \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_publication', TRUE);
+
+    // Make node title translatable.
+    $fields = \Drupal::service('entity_field.manager')
+      ->getBaseFieldDefinitions('node', 'oe_publication');
+    $field_config = $fields['title']->getConfig('oe_publication');
+    $field_config->setTranslatable(TRUE);
+    $field_config->save();
   }
 
   /**
@@ -64,7 +76,9 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $node = $this->getStorage('node')->create([
       'type' => 'oe_publication',
       'title' => 'Test Publication node',
+      'oe_teaser' => 'Test teaser text.',
       'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_publication_collection' => 0,
       'oe_documents' => [$media_document],
       'oe_publication_date' => [
         'value' => '2020-04-15',
@@ -76,6 +90,7 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
       'status' => 1,
     ]);
     $node->save();
+    $node->addTranslation('es', ['title' => 'ES Test Publication node'])->save();
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
@@ -364,6 +379,121 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
+
+    // Create publication collections that will reference the original
+    // publication.
+    $collection = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Test Publication collection node 1',
+      'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_publication_collection' => 1,
+      'oe_publication_publications' => [
+        'target_id' => $node->id(),
+      ],
+      'oe_publication_date' => [
+        'value' => '2020-04-15',
+      ],
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $collection->save();
+    $this->drupalGet($collection->toUrl());
+
+    // Assert the referenced publication is rendered as teaser.
+    $inpage_nav_expected_values['list'] = [
+      ['label' => 'Details', 'href' => '#details'],
+      ['label' => 'Documents', 'href' => '#documents'],
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $assert = new ListItemAssert();
+    $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
+    $expected_values = [
+      'title' => 'Test Publication node',
+      'meta' => "Abstract, Legislative acts | 15 April 2020\n | Associated African States and Madagascar",
+      'description' => 'Test teaser text.',
+    ];
+    $assert->assertPattern($expected_values, $content->getOuterHtml());
+
+    // Assert the referenced publication page 'Part of collection' extra field.
+    $this->drupalGet($node->toUrl());
+    $details_expected_values['items'] = [
+      [
+        'label' => 'Identification',
+        'body' => 'ID 1, ID 2',
+      ],
+      [
+        'label' => 'Part of collection',
+        'body' => 'Test Publication collection node 1',
+      ],
+      [
+        'label' => 'Publication date',
+        'body' => '15 April 2020 (Last updated on: 17 June 2020)',
+      ],
+      [
+        'label' => 'Related departments',
+        'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+      ],
+      [
+        'label' => 'Countries',
+        'body' => 'United Kingdom, France',
+      ],
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Create a second collection and assert the 'Part of collection' extra
+    // field on the child publication page.
+    $collection2 = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Test Publication collection node 2',
+      'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_publication_collection' => 1,
+      'oe_publication_publications' => [
+        'target_id' => $node->id(),
+      ],
+      'oe_publication_date' => [
+        'value' => '2020-04-15',
+      ],
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $collection2->save();
+    $collection2->addTranslation('es', ['title' => 'ES Test Publication collection node 2'])->save();
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][1] = [
+      'label' => 'Part of collections',
+      'body' => 'Test Publication collection node 1 | Test Publication collection node 2',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Assert the translated collection label.
+    $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, 'es');
+    $this->drupalGet($node->toUrl());
+
+    $details_expected_values['items'][1] = [
+      'label' => 'Part of collections',
+      'body' => 'Test Publication collection node 1 | ES Test Publication collection node 2',
+    ];
+    $details_expected_values['items'][3]['body'] = 'Comisión de Control de las Comunidades Europeas | Estados africanos y malgache asociados';
+    $details_expected_values['items'][4]['body'] = 'Reino Unido, Francia';
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
+
+    // Now unpublish one of the collections and assert the 'Part of collection'.
+    $collection->set('status', 0)->save();
+    $this->getSession()->reload();
+
+    $details_expected_values['items'][1] = [
+      'label' => 'Part of collection',
+      'body' => 'ES Test Publication collection node 2',
+    ];
+    $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
   }
 
 }

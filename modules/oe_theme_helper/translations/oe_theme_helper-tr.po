@@ -30,13 +30,13 @@ msgid "Entrance fee"
 msgstr "Giriş ücreti"
 
 msgid "Book your seat, @time_left left to register, registration will end on @end_date"
-msgstr "Yerinizi ayırmak için rezervasyon yapın,  Kayıt için kalan süre: @time_left, Kayıtlar @end_date tarihinde sona erecek"
+msgstr "Yerinizi ayırmak için rezervasyon yapın, Kayıt için kalan süre: @time_left, Kayıtlar @end_date tarihinde sona erecek"
 
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "Kayıtlar @time_left içinde açılacaktır. @start_date tarihinden @end_date tarihine kadar kayıt yaptırabilirsiniz.yaptırabilirsiniz."
 
 msgid "Registration period ended on @date"
-msgstr "Kayıt dönemi @date tarihinde sona erdi"
+msgstr "Kayıt süresi @date tarihinde bitmiştir"
 
 msgid "Postal address"
 msgstr "Posta adresi"
@@ -66,7 +66,7 @@ msgid "Call for tenders"
 msgstr "İhale çağrısı"
 
 msgid "Related links"
-msgstr "İlgili linkler (bağlantılar)"
+msgstr "İlgili bağlantılar"
 
 msgid "Practical information"
 msgstr "Pratik bilgiler"
@@ -307,3 +307,224 @@ msgstr "İletişim bilgilerinizi gizle"
 
 msgid "Leadership and organisation"
 msgstr "Liderlik ve organizasyon"
+
+msgid "Contact us"
+msgstr "Bize ulaşın"
+
+msgid "Follow us"
+msgstr "Bizi takip edin"
+
+msgid "About us"
+msgstr "Hakkımızda"
+
+msgid "Related sites"
+msgstr "İlgili siteler"
+
+msgid "More information on:"
+msgstr "Daha fazla bilgi için:"
+
+msgid "Discover more on @link"
+msgstr "@link bağlantısından daha fazla keşfedin"
+
+msgid "This site is managed by the @name"
+msgstr "Bu site @name tarafından yönetilmektedir"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Bu site Avrupa Komisyonu tarafından yönetilmektedir, @name"
+
+msgid "Last updated on: @date"
+msgstr "Son güncelleme tarihi: @name"
+
+msgid "Status: @label"
+msgstr "Durum: @label"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Yerinizi ayırın, kayıtların açılmasına kalan süre @time_left, kayıtlar @end_date tarihinde bitecektir"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 gün"
+msgstr[1] "gün @count"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 hafta"
+msgstr[1] "hafta @count"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 yıl"
+msgstr[1] "yıl @count"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 ay"
+msgstr[1] "ay @count"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 saat"
+msgstr[1] "saat @count"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 dakika"
+msgstr[1] "dakika @count"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 saniye"
+msgstr[1] "saniye @count"
+
+msgid "Online link"
+msgstr "Çevrim içi bağlantı"
+
+msgid "Online time"
+msgstr "Çevrim içi zaman"
+
+msgid "Grants awarded"
+msgstr "Hibeler verildi"
+
+msgid "Keywords"
+msgstr "Anahtar sözcükler"
+
+msgid "Subject"
+msgstr "Konu"
+
+msgid "General contact"
+msgstr "Genel iletişim bilgileri"
+
+msgid "Overview"
+msgstr "Genel bakış"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Son gelişmeleri takip edin ve katılmak için daha fazla bilgi edinin."
+
+msgid "Open gallery"
+msgstr "Galeriyi aç"
+
+msgid "media items"
+msgstr "medya öğeleri"
+
+msgid "(Acting) @role"
+msgstr "@pozisyon (vekili)"
+
+msgid "Your name"
+msgstr "İsminiz"
+
+msgid "Your email address"
+msgstr "E-posta adresiniz"
+
+msgid "Message"
+msgstr "Mesaj"
+
+msgid "Country of residence"
+msgstr "İkamet edilen ülke"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Kendinize bir örneğini gönderin"
+
+msgid "Status message"
+msgstr "Durum mesajı"
+
+msgid "Close this message"
+msgstr "Bu mesajı kapat"
+
+msgid "The sender's name"
+msgstr "Gönderenin ismi"
+
+msgid "The sender's email"
+msgstr "Gönderenin e-postası"
+
+msgid "Topic"
+msgstr "Konu"
+
+msgid "Languages"
+msgstr "Diller"
+
+msgid "No results have been found"
+msgstr "Sonuç bulunamadı"
+
+msgid "Event date"
+msgstr "Etkinlik tarihi"
+
+msgid "Select"
+msgstr "Seç"
+
+msgid "After"
+msgstr "Sonrası"
+
+msgid "Before"
+msgstr "Öncesi"
+
+msgid "In between"
+msgstr "Arası"
+
+msgid "Select all"
+msgstr "Tümünü seç"
+
+msgid "Upcoming and ongoing"
+msgstr "Gelecek ve devam eden"
+
+msgid "Past"
+msgstr "Geçmiş"
+
+msgid "Event type"
+msgstr "Etkinlik türü"
+
+msgid "Venue"
+msgstr "Yer"
+
+msgid "Online type"
+msgstr "Çevrim içi türü"
+
+msgid "Livestream"
+msgstr "Canlı yayın"
+
+msgid "Type"
+msgstr "Türü"
+
+msgid "EU organisation type"
+msgstr "AB kurum türü"
+
+msgid "Date"
+msgstr "Tarih"
+
+msgid "End Date"
+msgstr "Bitiş Tarihi"
+
+msgid "Responsible department"
+msgstr "Sorumlu daire"
+
+msgid "Upcoming and open"
+msgstr "Gelecek ve açık"
+
+msgid "Closed"
+msgstr "Kapalı"
+
+msgid "Content owner"
+msgstr "İçerik sahibi"
+
+msgid "Publication date"
+msgstr "Yayın tarihi"
+
+msgid "Publication type"
+msgstr "Yayın türü"
+
+msgid "Available translations"
+msgstr "Mevcut tercümeler"
+
+msgid "Page contents"
+msgstr "Sayfa İçeriği"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "I have read and agree with the @link"
+msgstr "@link okudum ve kabul ediyorum"
+
+msgid "data protection terms"
+msgstr "Veri koruma şartlarını"

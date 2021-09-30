@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\PageHeaderMetadata;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -76,10 +77,18 @@ class EventContentType extends NodeViewRoutesBase {
     $metadata = parent::getMetadata();
 
     $node = $this->getNode();
-    $translated_value = $this->entityRepository->getTranslationFromContext($node->get('oe_event_type')->entity);
+    $type = $node->get('oe_event_type')->entity;
+    if (!$type) {
+      return $metadata;
+    }
+
+    $translated_value = $this->entityRepository->getTranslationFromContext($type);
     $metadata['metas'] = [
       $translated_value->label(),
     ];
+    CacheableMetadata::createFromRenderArray($metadata)
+      ->addCacheableDependency($translated_value)
+      ->applyTo($metadata);
 
     return $metadata;
   }

@@ -66,6 +66,9 @@ class ListItemAssert extends BasePatternAssert {
       'additional_information' => [
         [$this, 'assertAdditionalInformation'],
       ],
+      'icon' => [
+        [$this, 'assertIcon'],
+      ],
     ];
   }
 
@@ -254,6 +257,24 @@ class ListItemAssert extends BasePatternAssert {
       $expected_item->assert($additional_information_items->eq($index)->html());
 
     }
+  }
+
+  /**
+   * Asserts the icon of the list item link.
+   *
+   * @param string|null $expected
+   *   The expected icon.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertIcon($expected, Crawler $crawler): void {
+    $icon_selector = 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon use';
+    if (is_null($expected)) {
+      $this->assertElementNotExists($icon_selector, $crawler);
+      return;
+    }
+    $icon = $crawler->filter($icon_selector);
+    self::assertContains($expected, $icon->attr('xlink:href'));
   }
 
   /**

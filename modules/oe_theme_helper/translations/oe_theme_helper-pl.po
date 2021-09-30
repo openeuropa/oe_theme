@@ -515,3 +515,9 @@ msgstr "Data i godzina"
 
 msgid "Name"
 msgstr "Imię i nazwisko / Nazwa"
+
+msgid "I have read and agree with the @link"
+msgstr "Przeczytałem(-am) i akceptuję @link"
+
+msgid "data protection terms"
+msgstr "warunki ochrony danych"

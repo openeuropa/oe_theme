@@ -515,3 +515,9 @@ msgstr "Ħin online"
 
 msgid "Name"
 msgstr "Isem"
+
+msgid "I have read and agree with the @link"
+msgstr "Qrajt u naqbel @link"
+
+msgid "data protection terms"
+msgstr "mat-termini tal-protezzjoni tad-data"

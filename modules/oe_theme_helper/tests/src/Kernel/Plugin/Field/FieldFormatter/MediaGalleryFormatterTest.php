@@ -215,7 +215,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');
@@ -311,7 +311,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');

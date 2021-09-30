@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -79,8 +80,12 @@ class TeaserMetaExtraField extends ExtraFieldDisplayFormattedBase implements Con
     // Add the event type.
     /** @var \Drupal\rdf_skos\Entity\ConceptInterface $type */
     $type = $entity->get('oe_event_type')->entity;
-    $type = $this->entityRepository->getTranslationFromContext($type);
-    $elements[] = ['#markup' => $type->label()];
+    if ($type) {
+      $type = $this->entityRepository->getTranslationFromContext($type);
+      $elements[] = ['#markup' => $type->label()];
+      CacheableMetadata::createFromObject($type)
+        ->applyTo($elements);
+    }
 
     // Add the event status, only if it doesn't go as planned.
     $status = $entity->get('oe_event_status')->value;

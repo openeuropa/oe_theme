@@ -35,8 +35,8 @@ msgstr "احجز مقعدك، @time_left بقي للتسجيل، وسوف ينت
 msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
 msgstr "سيتم فتح التسجيل في @time_left. يمكنكم التسجيل من @start_date ، حتى @end_date."
 
-msgid "Registration period ended on @end_date."
-msgstr "انتهت فترة التسجيل في @end_date."
+msgid "Registration period ended on @date"
+msgstr "فترة التسجيل تنتهي في @end_date"
 
 msgid "Postal address"
 msgstr "العنوان البريدي"
@@ -231,7 +231,7 @@ msgid "Permanent"
 msgstr "دائم"
 
 msgid "Last updated on: @date"
-msgstr "آخر تحديث في: @date"
+msgstr "تاريخ آخر تحديث: @date"
 
 msgid "File"
 msgstr "ملف"
@@ -307,3 +307,221 @@ msgstr "إظهار تفاصيل الاتصال"
 
 msgid "Hide contact details"
 msgstr "إخفاء تفاصيل الاتصال"
+
+msgid "Contact us"
+msgstr "اتصل بنا"
+
+msgid "Follow us"
+msgstr "تابعنا"
+
+msgid "About us"
+msgstr "معلومات حولنا"
+
+msgid "Related sites"
+msgstr "مواقع ذات صلة"
+
+msgid "More information on:"
+msgstr "المزيد من المعلومات في:"
+
+msgid "Discover more on @link"
+msgstr "تعرف على المزيد في @link"
+
+msgid "This site is managed by the @name"
+msgstr "هذا الموقع يخضع لإدارة @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "هذا الموقع يخضع لإدارة المفوضية الأوروبية، @name"
+
+msgid "Status: @label"
+msgstr "الحالة: @label"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "احجز مقعدك، @time_left الوقت الباقي للتسجيل، سوف ينتهي التسجيل في @end_date"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "يوم"
+msgstr[1] "@count الأيام"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "أسبوع"
+msgstr[1] "@count الأسابيع"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "سنة"
+msgstr[1] "@count السنوات"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "شهر"
+msgstr[1] "@count الأشهر"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "ساعة"
+msgstr[1] "@count الساعات"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "دقيقة"
+msgstr[1] "@count الدقائق"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "ثانية"
+msgstr[1] "@count الثواني"
+
+msgid "Online link"
+msgstr "رابط على الخط"
+
+msgid "Online time"
+msgstr "توقيت على الخط"
+
+msgid "Grants awarded"
+msgstr "المنح الممنوحة"
+
+msgid "Keywords"
+msgstr "كلمات مفتاحية"
+
+msgid "Subject"
+msgstr "الموضوع"
+
+msgid "General contact"
+msgstr "اتصال عام"
+
+msgid "Overview"
+msgstr "نظرة عامة"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "تابع آخر التطورات واعرف المزيد حول المشاركة"
+
+msgid "Open gallery"
+msgstr "فتح الجاليري"
+
+msgid "media items"
+msgstr "مواد ميديا"
+
+msgid "(Acting) @role"
+msgstr "(العمل) @role"
+
+msgid "Your name"
+msgstr "اسمك"
+
+msgid "Your email address"
+msgstr "عنوان بريدك الالكتروني"
+
+msgid "Message"
+msgstr "رسالة"
+
+msgid "Country of residence"
+msgstr "بلد الإقامة"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Send yourself a copy"
+msgstr "أرسل نسخة إلي"
+
+msgid "Status message"
+msgstr "رسالة الحالة"
+
+msgid "Close this message"
+msgstr "اقفل هذه الرسالة"
+
+msgid "The sender's name"
+msgstr "اسم المرسل"
+
+msgid "The sender's email"
+msgstr "البريد الإلكتروني للمرسل"
+
+msgid "Topic"
+msgstr "الموضوع"
+
+msgid "Languages"
+msgstr "اللغات"
+
+msgid "No results have been found"
+msgstr "لم يتم العثور على نتائج"
+
+msgid "Event date"
+msgstr "تاريخ الحدث"
+
+msgid "Select"
+msgstr "اختر"
+
+msgid "After"
+msgstr "بعد"
+
+msgid "Before"
+msgstr "قبل"
+
+msgid "In between"
+msgstr "ما بين"
+
+msgid "Select all"
+msgstr "اختر الكل"
+
+msgid "Upcoming and ongoing"
+msgstr "القادم والمستمر"
+
+msgid "Past"
+msgstr "السابق"
+
+msgid "Event type"
+msgstr "نوع الحدث"
+
+msgid "Venue"
+msgstr "الموقع"
+
+msgid "Online type"
+msgstr "نوع على الخط"
+
+msgid "Livestream"
+msgstr "بث حي"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "EU organisation type"
+msgstr "نوع منظمة الاتحاد الأوروبي"
+
+msgid "Date"
+msgstr "التاريخ"
+
+msgid "End Date"
+msgstr "تاريخ الانتهاء"
+
+msgid "Responsible department"
+msgstr "القسم المسؤول"
+
+msgid "Upcoming and open"
+msgstr "القادم والمفتوح"
+
+msgid "Closed"
+msgstr "مقفل"
+
+msgid "Content owner"
+msgstr "مالك المحتوى"
+
+msgid "Publication date"
+msgstr "تاريخ النشر"
+
+msgid "Publication type"
+msgstr "نوع النشر"
+
+msgid "Available translations"
+msgstr "الترجمات المتاحة"
+
+msgid "Page contents"
+msgstr "محتويات الصفحة"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "I have read and agree with the @link"
+msgstr "قرأت شر @link وأوافق عليها"
+
+msgid "data protection terms"
+msgstr "وط حماية البيانات"
