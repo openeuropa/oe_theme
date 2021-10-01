@@ -577,6 +577,7 @@
             language_code: "hu"
       translation_toggle_label: "Other translations"
       more_info: "Looking for another language which is not on the list? Find out why."
+      highlighted: true
   assertions:
     count:
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -591,6 +592,7 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
@@ -616,6 +618,7 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - array:
     '#type': pattern
     '#id': file_teaser
@@ -645,6 +648,7 @@
             language_code: "fr"
       more_info: "Looking for another language which is not on the list? Find out why."
       length: 10
+      highlighted: false
   assertions:
     count:
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -657,6 +661,7 @@
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
@@ -803,7 +808,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
+      'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
       'article.ecl-content-item div.ecl-content-item__meta span#status': "Status: Open"
       'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
@@ -1146,7 +1151,7 @@
       'article.ecl-content-item-date div.ecl-content-item-date__date': 1
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
+      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
       'article.ecl-content-item-date div.ecl-content-item-date__meta span#status': "Status: Open"
       'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
       'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"

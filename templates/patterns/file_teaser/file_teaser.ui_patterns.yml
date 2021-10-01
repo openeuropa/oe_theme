@@ -85,3 +85,9 @@ file_teaser:
       description: "Used to trim the length of the 'Teaser' fields (optional)."
       preview: 10
       escape: false
+    highlighted:
+      type: "boolean"
+      label: "Highlighted"
+      description: "Define if the file should be labeled as highlighted."
+      preview: true
+      escape: false

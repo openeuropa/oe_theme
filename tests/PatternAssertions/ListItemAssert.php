@@ -71,7 +71,7 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'highlighted' => [
         [$this, 'assertElementText'],
-        $base_selector . '__meta div.ecl-label.ecl-label--highlight.ecl-u-mr-xs',
+        $base_selector . '__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs',
       ],
       'status' => [
         [$this, 'assertElementText'],

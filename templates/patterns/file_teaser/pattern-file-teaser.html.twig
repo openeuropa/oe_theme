@@ -38,6 +38,12 @@
 {% if file.size %}
   {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
 {% endif %}
+{% if highlighted %}
+  {% set _label = {
+    'label': 'Highlighted'|t,
+    'variant': 'highlight',
+  } %}
+{% endif %}
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(length),
@@ -72,5 +78,6 @@
     'items': _translations,
   },
   'detail_meta': _detail_meta,
-  'variant': 'thumbnail'
+  'variant': 'thumbnail',
+  'label': _label,
 } only %}

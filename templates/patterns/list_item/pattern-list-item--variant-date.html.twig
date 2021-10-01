@@ -31,7 +31,11 @@
       {% if meta is not empty or status is not empty or highlighted %}
         <div class="ecl-content-item-date__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">
           {% if highlighted %}
-            <div class="ecl-label ecl-label--highlight ecl-u-mr-xs">{{ 'Highlighted'|t }}</div>
+            {% include '@ecl-twig/label' with {
+              'label': 'Highlighted'|t,
+              'variant': 'highlight',
+              'extra_classes': 'ecl-u-mr-xs',
+            } only %}
           {% endif %}
           {% if status is not empty %}
             <span id="status">
