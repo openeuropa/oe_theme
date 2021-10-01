@@ -40,6 +40,7 @@
     "@ecl/twig-component-inpage-navigation": "3.1.2",
     "@ecl/twig-component-language-list": "3.1.2",
     "@ecl/twig-component-link": "3.1.2",
+    "@ecl/twig-component-label": "3.1.2",
     "@ecl/twig-component-media-container": "3.1.2",
     "@ecl/twig-component-menu": "3.1.2",
     "@ecl/twig-component-message": "3.1.2",
