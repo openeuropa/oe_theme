@@ -395,6 +395,14 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Document reference publication entity.
    */
   protected function createPublicationDocumentReferenceEntity(string $title, int $status = SubEntityInterface::PUBLISHED): DocumentReference {
+    $author = $this->getStorage('oe_author')->create([
+      'type' => 'oe_corporate_body',
+      'oe_skos_reference' => [
+        'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      ],
+    ]);
+    $author->save();
+
     $document = $this->createMediaDocument('document');
     /** @var \Drupal\node\Entity\Node $publication */
     $publication = $this->getStorage('node')->create([
@@ -407,7 +415,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
         'value' => '2020-04-15',
       ],
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
-      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_authors' => [$author],
       'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
       'status' => 1,
     ]);

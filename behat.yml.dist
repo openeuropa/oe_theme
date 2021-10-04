@@ -20,6 +20,7 @@ default:
         - Drupal\Tests\oe_content\Behat\Content\Venue\DefaultVenueContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\GeneralContactContext
         - Drupal\Tests\oe_content\Behat\Content\Contact\PressContactContext
+        - Drupal\Tests\oe_content\Behat\Content\SubEntityContext
         - OpenEuropa\Behat\TransformationContext:
             elements:
               about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"

@@ -63,6 +63,7 @@ class TimelineTest extends AbstractKernelTestBase {
     'oe_content_timeline_field',
     'sparql_entity_storage',
     'rdf_skos',
+    'oe_content_sub_entity',
   ];
 
   /**

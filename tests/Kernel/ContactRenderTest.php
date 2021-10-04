@@ -22,6 +22,7 @@ class ContactRenderTest extends ContentRenderTestBase {
   public static $modules = [
     'oe_content_entity',
     'oe_theme_content_entity_contact',
+    'oe_content_sub_entity',
   ];
 
   /**
