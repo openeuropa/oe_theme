@@ -23,6 +23,6 @@
     'detail': content.oe_teaser|field_value,
     'additional_information': additional_information,
     'image': content.portrait_image ? { 'src': content.portrait_image|render },
-    'highlighted': node.isSticky(),
+    'badges': badges,
   }) }}
 {% endblock %}

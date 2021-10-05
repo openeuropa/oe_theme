@@ -104,7 +104,7 @@ class PersonRenderTest extends ContentRenderTestBase {
     $html = $this->getRenderedNode($node);
     $expected_values = [
       'title' => 'Mick Jagger',
-      'highlighted' => NULL,
+      'badges' => NULL,
       'meta' => NULL,
       'image' => [
         'src' => 'user_icon.svg',
@@ -251,7 +251,12 @@ class PersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_contacts', NULL);
     $node->set('oe_person_jobs', $job_1);
     $node->set('sticky', NodeInterface::STICKY)->save();
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $expected_values['meta'] = '(Acting) Advisor';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
@@ -292,7 +297,10 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Jagger Mick',
-      'highlighted' => 'Highlighted',
+      'badges' => [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
       'meta' => 'Singer, Dancer',
       'image' => [
         'src' => 'person_portrait.png',

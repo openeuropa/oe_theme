@@ -71,7 +71,7 @@ class NewsRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Test news node',
-      'highlighted' => NULL,
+      'badges' => NULL,
       'url' => '/en/node/1',
       'description' => 'Teaser',
       'meta' => 'News article | 2 April 2019',
@@ -89,7 +89,12 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'News short title';
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -133,7 +138,12 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'News short title',
       'url' => '/en/node/1',
       'description' => 'Teaser',
-      'highlighted' => 'Highlighted',
+      'badges' => [
+        [
+          'label' => 'Highlighted',
+          'variant' => 'highlight',
+        ],
+      ],
       'meta' => 'Press release | 2 April 2019',
       'image' => [
         'src' => 'example_1.jpeg',

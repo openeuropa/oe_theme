@@ -169,7 +169,7 @@ class EventRenderTest extends ContentRenderTestBase {
           ],
         ],
       ]),
-      'highlighted' => NULL,
+      'badges' => NULL,
       'meta' => 'Competitions and award ceremonies',
       'image' => NULL,
       'date' => [
@@ -188,7 +188,12 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Event short title';
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Set full address in venue.
@@ -253,7 +258,7 @@ class EventRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser', 'bg');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'заглавието на моя възел';
-    $expected_values['highlighted'] = NULL;
+    $expected_values['badges'] = NULL;
     $expected_values['meta'] = 'Конкурси и церемонии по награждаване | Cancelled';
     $expected_values['url'] = '/bg/node/1';
     $expected_values['date']['month_name'] = 'Ян.';

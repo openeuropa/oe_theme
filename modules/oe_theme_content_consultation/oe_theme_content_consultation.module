@@ -75,3 +75,21 @@ function oe_theme_content_consultation_preprocess_oe_theme_helper_in_page_naviga
     }
   }
 }
+
+/**
+ * Implements template_preprocess_node() for the Consultation node type.
+ */
+function oe_theme_content_consultation_preprocess_node__oe_consultation__teaser(array &$variables): void {
+  if (!isset($variables['elements']['extra_field_oe_consultation_label_status'])) {
+    return;
+  }
+  $status = $variables['elements']['extra_field_oe_consultation_label_status'][0];
+  $variant = _oe_theme_helper_prepare_status_variant($status['#name']);
+  if (empty($variant)) {
+    return;
+  }
+  $variables['badges'][] = [
+    'label' => $status['#label']->render(),
+    'variant' => $variant,
+  ];
+}

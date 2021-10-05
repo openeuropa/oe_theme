@@ -160,7 +160,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'title' => 'Project 1',
       'url' => '/en/node/1',
       'description' => 'The teaser text',
-      'highlighted' => NULL,
+      'badges' => NULL,
       'meta' => NULL,
       'image' => [
         'src' => 'example_1.jpeg',
@@ -187,7 +187,12 @@ class ProjectRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Project short title';
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
   }
 

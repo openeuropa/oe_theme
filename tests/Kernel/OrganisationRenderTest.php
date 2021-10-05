@@ -108,7 +108,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'title' => 'Organisation name',
       'url' => '/en/node/1',
       'description' => 'The teaser text',
-      'highlighted' => NULL,
+      'badges' => NULL,
       'meta' => 'International organisation | Acronym',
       'image' => [
         'src' => 'placeholder_organisation_logo.png',
@@ -147,7 +147,12 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Organisation short title';
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Create another contact and add it to the node.

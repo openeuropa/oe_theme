@@ -47,7 +47,7 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Test Publication node',
-      'highlighted' => NULL,
+      'badges' => NULL,
       'meta' => "Delegated directive | 15 April 2020\n | Arab Common Market",
       'description' => 'Test teaser text.',
     ];
@@ -59,7 +59,12 @@ class PublicationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Publication short title';
-    $expected_values['highlighted'] = 'Highlighted';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Add thumbnail.
