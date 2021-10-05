@@ -69,13 +69,9 @@ class ListItemAssert extends BasePatternAssert {
       'icon' => [
         [$this, 'assertIcon'],
       ],
-      'highlighted' => [
-        [$this, 'assertElementText'],
-        $base_selector . '__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs',
-      ],
-      'status' => [
-        [$this, 'assertElementText'],
-        $base_selector . '__meta span#status',
+      'badges' => [
+        [$this, 'assertBadges'],
+        $variant,
       ],
     ];
   }
@@ -283,6 +279,31 @@ class ListItemAssert extends BasePatternAssert {
     }
     $icon = $crawler->filter($icon_selector);
     self::assertContains($expected, $icon->attr('xlink:href'));
+  }
+
+  /**
+   * Asserts the badge(s) of the list item link.
+   *
+   * @param array|null $expected_badges
+   *   The expected badges.
+   * @param string $variant
+   *   The variant of the pattern being checked.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertBadges(?array $expected_badges, string $variant, Crawler $crawler): void {
+    $base_selector = 'div' . $this->getBaseItemClass($variant) . '__meta';
+    if (is_null($expected_badges)) {
+      $this->assertElementNotExists('span.ecl-label', $crawler);
+      return;
+    }
+    foreach ($expected_badges as $badge) {
+      if (!isset($badge['label']) || !isset($badge['variant'])) {
+        continue;
+      }
+      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'] . '.ecl-u-mr-xs';
+      self::assertContains($badge['label'], $crawler->filter($selector)->text());
+    }
   }
 
   /**

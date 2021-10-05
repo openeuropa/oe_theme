@@ -42,22 +42,22 @@
   {% endif %}
   <div class="ecl-u-flex-grow-1">
     {% block meta %}
-      {% if meta is not empty or status is not empty or highlighted %}
+      {% if meta is not empty or badges is not empty %}
         <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">
-          {% if highlighted %}
-            {% include '@ecl-twig/label' with {
-              'label': 'Highlighted'|t,
-              'variant': 'highlight',
-              'extra_classes': 'ecl-u-mr-xs',
-            } only %}
-          {% endif %}
-          {% if status is not empty %}
-            <span id="status">
-              {{ status }}
-            </span>
+          {% if badges is iterable %}
+            {% set extra_classes = 'ecl-u-mr-xs' %}
+            {% for _badge in badges %}
+              {% if _badge.variant != 'highlight' %}
+                {% set _extra_classes = extra_classes ~ ' ecl-u-type-color-black' %}
+              {% endif %}
+              {% include '@ecl-twig/label' with {
+                'label': _badge.label|t,
+                'variant': _badge.variant,
+                'extra_classes': _extra_classes|default(extra_classes),
+              } only %}
+            {% endfor %}
           {% endif %}
           {% if meta is not empty %}
-            <br>
             <div class="ecl-u-mt-xs">
               {{ meta|filter_empty|safe_join(" | ") }}
             </div>
