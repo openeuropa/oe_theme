@@ -221,7 +221,7 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         'content' => 'This a string with the <a href="http://www.example.com">link</a>',
       ],
     ];
-    $result = $this->renderElements($render_string);
+    $result = $this->container->get('renderer')->renderRoot($render_string);
     $this->assertEquals('This a string with the &lt;a href=&quot;http://www.example.com&quot;&gt;link&lt;/a&gt;', $result);
 
     // Twig doesn't escape Markup object.
@@ -232,22 +232,8 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         'content' => 'This a string with the <a href="http://www.example.com">link</a>',
       ],
     ];
-    $result = $this->renderElements($render_markup);
+    $result = $this->container->get('renderer')->renderRoot($render_markup);
     $this->assertEquals('This a string with the <a href="http://www.example.com">link</a>', $result);
-  }
-
-  /**
-   * Renders HTML given a structured array tree.
-   *
-   * @param array $elements
-   *   The structured array describing the data to be rendered.
-   */
-  protected function renderElements(array $elements) {
-    $context = new RenderContext();
-    $renderer = $this->container->get('renderer');
-    return $renderer->executeInRenderContext($context, function () use (&$elements, $renderer) {
-      return (string) $renderer->render($elements);
-    });
   }
 
 }
