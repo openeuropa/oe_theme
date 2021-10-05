@@ -1,9 +1,0 @@
-{#
-/**
- * @file
- * Theme template for Publication collection extra field.
- *
- * @see \Drupal\oe_theme_content_publication\Plugin\ExtraField\Display\PublicationCollection::viewElements()
- */
-#}
-{% for item in items %}{{ item }}{% if not loop.last %} | {% endif %}{% endfor %}
