@@ -116,7 +116,7 @@ To learn more about EC/EU families and ECL branding visit the [ECL website](http
 
 #### Detaching of oe_theme_content_* modules
 
-In 2.21.0 we moved all existing companion submodules related to content theming in a separate project `oe_theme_content`.
+In 3.1.0 we moved all existing companion submodules related to content theming in a separate project `oe_theme_content`.
 In order to continue to use theme and companion modules on upgrade should be executed `composer install` or `composer update` and
 `oe_theme_helper_post_update_20017()`.
 
