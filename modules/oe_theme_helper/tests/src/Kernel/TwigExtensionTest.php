@@ -209,31 +209,4 @@ class TwigExtensionTest extends AbstractKernelTestBase {
     ];
   }
 
-  /**
-   * Test create_markup filter.
-   */
-  public function testCreateMarkup() {
-    // Twig escapes strings from the variable by default.
-    $render_string = [
-      '#type' => 'inline_template',
-      '#template' => '{{ content }}',
-      '#context' => [
-        'content' => 'This a string with the <a href="http://www.example.com">link</a>',
-      ],
-    ];
-    $result = $this->container->get('renderer')->renderRoot($render_string);
-    $this->assertEquals('This a string with the &lt;a href=&quot;http://www.example.com&quot;&gt;link&lt;/a&gt;', $result);
-
-    // Twig doesn't escape Markup object.
-    $render_markup = [
-      '#type' => 'inline_template',
-      '#template' => '{{ content|create_markup }}',
-      '#context' => [
-        'content' => 'This a string with the <a href="http://www.example.com">link</a>',
-      ],
-    ];
-    $result = $this->container->get('renderer')->renderRoot($render_markup);
-    $this->assertEquals('This a string with the <a href="http://www.example.com">link</a>', $result);
-  }
-
 }
