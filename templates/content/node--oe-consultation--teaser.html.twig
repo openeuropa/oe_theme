@@ -7,6 +7,8 @@
 {% set additional_information = [
   content.group_details,
 ] %}
+{# Add cache info from status field. #}
+{% set bubble_cache = content.extra_field_oe_consultation_label_status|render %}
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'default',
