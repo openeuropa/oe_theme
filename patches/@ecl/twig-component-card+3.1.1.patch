@@ -1,9 +1,9 @@
 patch-package
 --- a/node_modules/@ecl/twig-component-card/card.html.twig
 +++ b/node_modules/@ecl/twig-component-card/card.html.twig
-@@ -99,7 +99,7 @@
- 
-   <div class="ecl-card__body">
+@@ -112,7 +112,7 @@
+       </ul>
+     {% endif %}
      {% if _card.meta is not empty %}
 -      <div class="ecl-card__meta">{{ _card.meta|join(" | ") }}</div>
 +      <div class="ecl-card__meta">{{ _card.meta|safe_join(" | ") }}</div>
