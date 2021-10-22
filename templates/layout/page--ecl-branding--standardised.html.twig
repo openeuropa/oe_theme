@@ -18,7 +18,9 @@
 
 {% block navigation %}
   <div class="ecl-site-header-standardised__banner">
-    <div class="ecl-container">{{ site_name }}</div>
+    <div class="ecl-container">
+      <div class="ecl-site-header-standardised__site-name">{{ site_name }}</div>
+    </div>
   </div>
   {{ parent() }}
 {% endblock %}
