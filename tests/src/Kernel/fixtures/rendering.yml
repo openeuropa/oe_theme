@@ -1715,7 +1715,7 @@
   assertions:
     equals:
       '.ecl-blockquote__author': "Quote author"
-      '.ecl-blockquote__body': "Quote text"
+      '.ecl-blockquote__citation': "Quote text"
 - array:
     '#type': pattern
     '#id': context_nav
@@ -2029,7 +2029,7 @@
       length: 25
   assertions:
     equals:
-      'div.ecl-card__description': '<blockquote class="ecl-blockquote"><p class="ecl-blockquote__body">Lorem ipsum dolor sit...</p></blockquote>'
+      'div.ecl-card__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
 - array:
     '#type': pattern
     '#id': featured_item
@@ -2620,7 +2620,6 @@
   assertions:
     contains:
       '.ecl-menu__open': "Menu"
-      '.ecl-menu__site-name': "Site name"
       '.ecl-menu__inner-header button.ecl-menu__close .ecl-button__label': "Close"
       '.ecl-menu__inner-header button.ecl-menu__back .ecl-button__label': "Back"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
