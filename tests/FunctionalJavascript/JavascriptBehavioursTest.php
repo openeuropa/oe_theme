@@ -148,13 +148,13 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert days are present.
     $headers = $rows['0']->findAll('css', 'th');
     $expected = [
-      'Sun',
       'Mon',
       'Tue',
       'Wed',
       'Thu',
       'Fri',
       'Sat',
+      'Sun',
     ];
 
     foreach ($headers as $key => $column) {
