@@ -76,8 +76,12 @@
           {% include '@ecl-twig/link' with {
             link: _button|merge({
               'type': 'standalone',
-              'icon_position': 'after'
-            })
+            }),
+            icon: {
+              'name': _button.icon_name,
+              'size': 'xs',
+              'path': icon_path
+            }
           } only %}
         </div>
       </div>
