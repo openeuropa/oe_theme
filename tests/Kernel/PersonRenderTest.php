@@ -44,6 +44,7 @@ class PersonRenderTest extends ContentRenderTestBase {
     'oe_theme_content_organisation_reference',
     'oe_theme_content_person',
     'description_list_field',
+    'oe_content_sub_entity',
   ];
 
   /**
