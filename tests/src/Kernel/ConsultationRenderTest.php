@@ -36,6 +36,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     'oe_content_sub_entity_document_reference',
     'oe_theme_content_consultation',
     'datetime_testing',
+    'oe_content_sub_entity',
   ];
 
   /**
