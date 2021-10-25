@@ -14,7 +14,7 @@ msgid "Where"
 msgstr "Hvor"
 
 msgid "Organiser"
-msgstr "Arrangementsansvarlig"
+msgstr "Arrangør"
 
 msgid "Website"
 msgstr "Nettsted"
