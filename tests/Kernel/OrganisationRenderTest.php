@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
@@ -107,6 +108,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'title' => 'Organisation name',
       'url' => '/en/node/1',
       'description' => 'The teaser text',
+      'badges' => NULL,
       'meta' => 'International organisation | Acronym',
       'image' => [
         'src' => 'placeholder_organisation_logo.png',
@@ -139,11 +141,18 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
 
-    // Test short title fallback.
-    $node->set('oe_content_short_title', 'Organisation short title')->save();
+    // Test short title fallback and highlighted label.
+    $node->set('oe_content_short_title', 'Organisation short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'Organisation short title';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Create another contact and add it to the node.

@@ -521,3 +521,6 @@ msgstr "Prebral/-a sem pogoje o @link in se strinjam z njimi"
 
 msgid "data protection terms"
 msgstr "varstvu podatkov"
+
+msgid "Highlighted"
+msgstr "Izpostavljeno"

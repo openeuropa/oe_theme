@@ -521,3 +521,6 @@ msgstr "Διάβασα τους @link και συμφωνώ"
 
 msgid "data protection terms"
 msgstr "όρους προστασίας δεδομένων"
+
+msgid "Highlighted"
+msgstr "Με επισήμανση"

@@ -521,3 +521,6 @@ msgstr "Прочетох и съм съгласен с условията за @
 
 msgid "data protection terms"
 msgstr "защита на данните"
+
+msgid "Highlighted"
+msgstr "Акценти"

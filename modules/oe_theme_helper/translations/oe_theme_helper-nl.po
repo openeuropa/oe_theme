@@ -521,3 +521,6 @@ msgstr "Ik heb de @link gelezen en ga ermee akkoord"
 
 msgid "data protection terms"
 msgstr "privacyverklaring"
+
+msgid "Highlighted"
+msgstr "Actueel"

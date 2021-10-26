@@ -521,3 +521,6 @@ msgstr "Tá na @link léite agam agus glacaim leo"
 
 msgid "data protection terms"
 msgstr "téarmaí cosanta sonraí"
+
+msgid "Highlighted"
+msgstr "Aibhsithe"
