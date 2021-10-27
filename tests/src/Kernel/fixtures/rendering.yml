@@ -643,6 +643,11 @@
             size: "150000"
             name: "document.xls"
             language_code: "fr"
+      lists:
+        - term: "Keywords"
+          definition:
+            - label: 'Apple'
+            - label: 'Orange'
       more_info: "Looking for another language which is not on the list? Find out why."
       length: 10
   assertions:
@@ -657,6 +662,11 @@
       'ul.ecl-file__translation-list': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      'div.ecl-file__taxonomy': 1
+      'dl.ecl-description-list--taxonomy': 1
+      'dt.ecl-description-list__term': 1
+      'dd.ecl-description-list__definition': 1
+      'span.ecl-description-list__tag': 2
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
