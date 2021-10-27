@@ -31,6 +31,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
     'composite_reference',
     'oe_time_caching',
     'oe_content_departments_field',
+    'oe_content_sub_entity',
     'oe_content_consultation',
     'oe_content_sub_entity_document_reference',
     'oe_theme_content_consultation',

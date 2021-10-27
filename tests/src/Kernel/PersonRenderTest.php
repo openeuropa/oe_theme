@@ -39,6 +39,7 @@ class PersonRenderTest extends ContentRenderTestBase {
     'oe_content_organisation',
     'oe_content_organisation_reference',
     'oe_content_social_media_links_field',
+    'oe_content_sub_entity',
     'oe_content_sub_entity_document_reference',
     'oe_theme_content_organisation',
     'oe_theme_content_organisation_reference',
