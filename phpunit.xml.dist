@@ -10,7 +10,7 @@
     <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", null, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
   <extensions>
-    <extension class="Drupal\Tests\oe_theme\EnsurePHPUnitBatchingTestListener" />
+    <extension class="Drupal\Tests\oe_theme\EnsurePHPUnitBatchingTestExtension" />
   </extensions>
   <testsuites>
     <testsuite name="OE Theme Tests">
