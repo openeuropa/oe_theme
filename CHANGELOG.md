@@ -1,11 +1,22 @@
 # Changelog
 
+## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta5) (2021-10-29)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta4...3.0.0-beta5)
+
+**Merged pull requests:**
+
+- EWPP-1649: Update ECL version.  [\#968](https://github.com/openeuropa/oe_theme/pull/968) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1432: Update field_group module to 3.2.  [\#923](https://github.com/openeuropa/oe_theme/pull/923) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1579: Update to ECL 3.0.3. [\#953](https://github.com/openeuropa/oe_theme/pull/953) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta4) (2021-09-27)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta3...3.0.0-beta4)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta4. [\#961](https://github.com/openeuropa/oe_theme/pull/961) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - Epic ewpp 1360 news v3 [\#957](https://github.com/openeuropa/oe_theme/pull/957) ([22Alexandra](https://github.com/22Alexandra))
 - Update epic news [\#956](https://github.com/openeuropa/oe_theme/pull/956) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1486: Theme publication collection related fields. [\#945](https://github.com/openeuropa/oe_theme/pull/945) ([nagyad](https://github.com/nagyad))
