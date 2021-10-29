@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\views\Entity\View;
+
 /**
  * Tests that breadcrumbs are cached correctly.
  *
@@ -22,6 +24,20 @@ class BreadcrumbTest extends ContentRenderTestBase {
     'oe_theme_content_news',
     'block',
   ];
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function setUp(): void {
+    parent::setUp();
+
+    // Set the frontpage View title so it shows in the breadcrumb.
+    /** @var \Drupal\views\ViewEntityInterface $view */
+    $view = View::load('frontpage');
+    $options = &$view->getDisplay('default');
+    $options['display_options']['title'] = 'Node';
+    $view->save();
+  }
 
   /**
    * Tests that the breadcrumbs are cached correctly.
