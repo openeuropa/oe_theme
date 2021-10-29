@@ -218,9 +218,12 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
+
+    $expected_thumbnail_name = version_compare(\Drupal::VERSION, '9.2', '>=') ? 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg' : 'LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg';
+
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
-    $this->assertStringEndsWith('/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg', $image_node->attr('src'));
+    $this->assertStringEndsWith('/oembed_thumbnails/' . $expected_thumbnail_name, $image_node->attr('src'));
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
     $this->assertStringContainsString($video_media->label(), $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
@@ -317,7 +320,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
     $this->assertStringContainsString(
-      '/files/styles/medium/public/oembed_thumbnails/LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg?itok=',
+      '/files/styles/medium/public/oembed_thumbnails/' . $expected_thumbnail_name . '?itok=',
       $image_node->attr('src')
     );
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
