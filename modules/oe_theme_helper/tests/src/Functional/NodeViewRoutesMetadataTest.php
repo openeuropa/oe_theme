@@ -29,6 +29,11 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
   ];
 
   /**
+   * {@inheritdoc}
+   */
+  protected $defaultTheme = 'stark';
+
+  /**
    * A user with permission to see revisions.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -38,7 +43,7 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public function setUp() {
+  public function setUp(): void {
     parent::setUp();
 
     // Enable oe_theme and set it as default.

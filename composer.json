@@ -7,11 +7,11 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.3",
-        "drupal/core": "^8.9.14",
+        "drupal/core": "^8.9.14 || ^9.1",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
-        "openeuropa/ecl-twig-loader": "^3.0",
+        "openeuropa/ecl-twig-loader": "^3.1",
         "openeuropa/oe_time_caching": "~1.0",
         "ralouphie/mimey": "^2.1"
     },
@@ -20,7 +20,7 @@
         "consolidation/annotated-command": "^2.8.2",
         "consolidation/robo": "~1.4",
         "cweagans/composer-patches": "~1.6.7",
-        "drupal/core-composer-scaffold": "^8.8",
+        "drupal/core-composer-scaffold": "^8.9 || ^9.1",
         "drupal/address": "~1.9",
         "drupal/composite_reference": "~1.0-alpha1",
         "drupal/config_devel": "~1.2",
@@ -36,34 +36,36 @@
         "drupal/inline_entity_form": "~1.0-rc9",
         "drupal/json_field": "^1.0.0-rc2",
         "drupal/renderviz": "^1.0@alpha",
-        "drupal/styleguide": "~1.0-alpha3",
+        "drupal/styleguide": "~1.0@beta",
+        "drush/drush": "~10.3",
         "drupal/typed_link": "^2.0",
-        "drush/drush": "~9.0",
         "easyrdf/easyrdf": "1.0.0 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
-        "guzzlehttp/guzzle": "~6.3",
         "instaclick/php-webdriver": "^1.4.7",
         "nikic/php-parser": "~3.0",
         "openeuropa/behat-transformation-context": "~0.1",
-        "openeuropa/code-review": "~1.5",
-        "openeuropa/drupal-core-require-dev": "^8.9.14",
+        "openeuropa/code-review": "~1.6",
+        "openeuropa/drupal-core-require-dev": "^8.9 || ^9.1",
         "openeuropa/oe_content": "~2.5",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.12",
         "openeuropa/oe_multilingual": "~1.8",
         "openeuropa/oe_paragraphs": "~1.10",
-        "openeuropa/oe_search": "~1.0",
-        "openeuropa/oe_webtools": "~1.10",
+        "openeuropa/oe_search": "1.x-dev",
+        "openeuropa/oe_webtools": "~1.12",
         "openeuropa/oe_contact_forms": "~1.1",
         "openeuropa/rdf_skos": "~1.0",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
-        "phpunit/phpunit": "~6.0",
-        "symfony/dom-crawler": "~3.4"
+        "phpspec/prophecy-phpunit": "^1 || ^2",
+        "phpunit/phpunit": "^7.5 || ^8 || ^9"
     },
     "_readme": [
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully."
+        "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully.",
+        "We explicity require drupal/core to allow lower 'composer update --prefer-lowest' to complete successfully.",
+        "openeuropa/oe_search is used from a branch because of major upgrading is pending. Change again when it released.",
+        "openeuropa/ecl-twig-loader is used from a branch because it must be upgrade to be D9 compatible. Change again when it released."
     ],
     "conflict": {
         "openeuropa/oe_corporate_blocks": "<3.0.0",
@@ -80,7 +82,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_theme\\": "./tests/",
+            "Drupal\\Tests\\oe_theme\\": "./tests/src/",
             "Drupal\\Tests\\oe_content\\": "./build/modules/contrib/oe_content/tests/src/",
             "Drupal\\Tests\\oe_media\\": "./build/modules/contrib/oe_media/tests/src/"
         }
