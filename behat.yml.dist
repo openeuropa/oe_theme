@@ -37,7 +37,7 @@ default:
               priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
               search form: ".ecl-search-form"
               navigation menu: ".ecl-menu"
-              site name: ".ecl-menu__site-name"
+              site name: ".ecl-site-header-standardised__site-name"
             pages:
               content management: "/en/admin/content"
               ECL components overview: "/en/components"
