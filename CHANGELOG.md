@@ -1,11 +1,20 @@
 # Changelog
 
+## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta6) (2021-11-08)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta5...3.0.0-beta6)
+
+**Merged pull requests:**
+
+- OEL-60: Drupal 9 Compatibility fixes. [\#880](https://github.com/openeuropa/oe_theme/pull/880) ([escuriola](https://github.com/escuriola))
+
 ## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta5) (2021-10-29)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta4...3.0.0-beta5)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta5.  [\#975](https://github.com/openeuropa/oe_theme/pull/975) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1649: Update ECL version.  [\#968](https://github.com/openeuropa/oe_theme/pull/968) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1432: Update field_group module to 3.2.  [\#923](https://github.com/openeuropa/oe_theme/pull/923) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1579: Update to ECL 3.0.3. [\#953](https://github.com/openeuropa/oe_theme/pull/953) ([22Alexandra](https://github.com/22Alexandra))
