@@ -2,7 +2,7 @@ name: OpenEuropa Theme Organisation Reference
 type: module
 description: Companion module for the OE Organisation Reference module
 package: OpenEuropa
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 dependencies:
   - oe_content:oe_content_organisation_reference
 

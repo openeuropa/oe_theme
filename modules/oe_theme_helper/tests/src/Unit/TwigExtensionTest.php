@@ -9,7 +9,10 @@ use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Template\Loader\StringLoader;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\Tests\UnitTestCase;
+use Twig\Environment;
+use Twig\Error\RuntimeError;
 
 /**
  * Tests for the custom Twig filters and functions extension.
@@ -53,7 +56,7 @@ class TwigExtensionTest extends UnitTestCase {
   /**
    * {@inheritdoc}
    */
-  protected function setUp() {
+  protected function setUp(): void {
     parent::setUp();
 
     // It is expected that some filters will request the list of languages. In
@@ -81,7 +84,7 @@ class TwigExtensionTest extends UnitTestCase {
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
     $loader = new StringLoader();
-    $this->twig = new \Twig_Environment($loader);
+    $this->twig = new Environment($loader);
     $this->twig->addExtension($this->extension);
   }
 
@@ -213,7 +216,7 @@ class TwigExtensionTest extends UnitTestCase {
       $this->twig->render("{{ '$invalid_language_code'|to_native_language }}");
       $this->fail('The expected exception was not thrown.');
     }
-    catch (\Twig_Error_Runtime $e) {
+    catch (RuntimeError $e) {
       // Twig wraps any exception that occurs during rendering with its own
       // runtime exception. Rethrow the original exception so we can verify that
       // the correct one is being thrown.
@@ -256,7 +259,7 @@ class TwigExtensionTest extends UnitTestCase {
    *   names as values.
    */
   protected static function getEuropeanUnionLanguageList(): array {
-    return TwigExtension::getEuropeanUnionLanguageList();
+    return EuropeanUnionLanguages::getLanguageList();
   }
 
   /**
