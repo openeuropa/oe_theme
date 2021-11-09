@@ -278,7 +278,7 @@ class ListItemAssert extends BasePatternAssert {
       return;
     }
     $icon = $crawler->filter($icon_selector);
-    self::assertContains($expected, $icon->attr('xlink:href'));
+    self::assertStringContainsString($expected, $icon->attr('xlink:href'));
   }
 
   /**
@@ -302,7 +302,7 @@ class ListItemAssert extends BasePatternAssert {
         continue;
       }
       $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'] . '.ecl-u-mr-xs';
-      self::assertContains($badge['label'], $crawler->filter($selector)->text());
+      self::assertStringContainsString($badge['label'], $crawler->filter($selector)->text());
     }
   }
 
