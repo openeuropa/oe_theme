@@ -631,9 +631,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $items);
     $first_item = $items[0]->find('css', 'img');
     $this->assertEquals('Alternative text first_image', $first_item->getAttribute('alt'));
-    $this->assertContains('placeholder_first_image.png', $first_item->getAttribute('src'));
+    $this->assertStringContainsString('placeholder_first_image.png', $first_item->getAttribute('src'));
     $caption = $items[0]->find('css', '.ecl-gallery__description');
-    $this->assertContains('Test image first_image', $caption->getOuterHtml());
+    $this->assertStringContainsString('Test image first_image', $caption->getOuterHtml());
     $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
   }
 
