@@ -73,6 +73,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
       new TwigFilter('is_external_url', [UrlHelper::class, 'isExternal']),
       new TwigFilter('filter_empty', [$this, 'filterEmpty']),
+      new TwigFilter('create_markup', [$this, 'createMarkup']),
     ];
   }
 
@@ -701,6 +702,19 @@ class TwigExtension extends AbstractExtension {
     }
 
     return $ecl_links;
+  }
+
+  /**
+   * Creates a Markup object.
+   *
+   * @param mixed $string
+   *   The string to mark as safe. This value will be cast to a string.
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   A safe string.
+   */
+  public function createMarkup($string): MarkupInterface {
+    return Markup::create($string);
   }
 
 }

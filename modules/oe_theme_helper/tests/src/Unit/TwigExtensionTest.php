@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Unit;
 
+use Drupal\Component\Render\MarkupInterface;
 use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Renderer;
@@ -359,6 +360,14 @@ class TwigExtensionTest extends UnitTestCase {
         '',
       ],
     ];
+  }
+
+  /**
+   * Test that create_markup filter returns MarkupInterface object.
+   */
+  public function testCreateMarkup() {
+    $markup_object = $this->extension->createMarkup('Some string');
+    $this->assertInstanceOf(MarkupInterface::class, $markup_object);
   }
 
 }
