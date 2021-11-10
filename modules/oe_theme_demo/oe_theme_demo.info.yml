@@ -1,7 +1,7 @@
 name: OpenEuropa Theme Demo
 description: OpenEuropa Theme Demo
 type: module
-core: 8.x
+core_version_requirement: ^8.9 || ^9.1
 package: OpenEuropa
 dependencies:
   - drupal:block
