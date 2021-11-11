@@ -18,6 +18,10 @@ use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\smart_trim\Truncate\TruncateHTML;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
+use Twig\TwigFunction;
 
 /**
  * Collection of extra Twig extensions as filters and functions.
@@ -25,7 +29,7 @@ use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
  * We don't enforce any strict type checking on filters' arguments as they are
  * coming straight from Twig templates.
  */
-class TwigExtension extends \Twig_Extension {
+class TwigExtension extends AbstractExtension {
 
   /**
    * The language manager.
@@ -59,22 +63,17 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFilters(): array {
     return [
-      new \Twig_SimpleFilter('format_size', 'format_size'),
-      new \Twig_SimpleFilter('to_language', [$this, 'toLanguageName']),
-      new \Twig_SimpleFilter('to_native_language', [
-        $this,
-        'toNativeLanguageName',
-      ]),
-      new \Twig_SimpleFilter('to_internal_language_id', [
-        $this,
-        'toInternalLanguageId',
-      ]),
-      new \Twig_SimpleFilter('to_file_icon', [$this, 'toFileIcon']),
-      new \Twig_SimpleFilter('to_date_status', [$this, 'toDateStatus']),
-      new \Twig_SimpleFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
-      new \Twig_SimpleFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
-      new \Twig_SimpleFilter('is_external_url', [UrlHelper::class, 'isExternal']),
-      new \Twig_SimpleFilter('filter_empty', [$this, 'filterEmpty']),
+      new TwigFilter('format_size', 'format_size'),
+      new TwigFilter('to_language', [$this, 'toLanguageName']),
+      new TwigFilter('to_native_language', [$this, 'toNativeLanguageName']),
+      new TwigFilter('to_internal_language_id', [$this, 'toInternalLanguageId']),
+      new TwigFilter('to_file_icon', [$this, 'toFileIcon']),
+      new TwigFilter('to_date_status', [$this, 'toDateStatus']),
+      new TwigFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
+      new TwigFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
+      new TwigFilter('is_external_url', [UrlHelper::class, 'isExternal']),
+      new TwigFilter('filter_empty', [$this, 'filterEmpty']),
+      new TwigFilter('create_markup', [$this, 'createMarkup']),
     ];
   }
 
@@ -83,9 +82,9 @@ class TwigExtension extends \Twig_Extension {
    */
   public function getFunctions(): array {
     return [
-      new \Twig_SimpleFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
-      new \Twig_SimpleFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
-      new \Twig_SimpleFunction('ecl_footer_links', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
+      new TwigFunction('to_ecl_icon', [$this, 'toEclIcon'], ['needs_context' => TRUE]),
+      new TwigFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
+      new TwigFunction('ecl_footer_links', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -546,7 +545,7 @@ class TwigExtension extends \Twig_Extension {
   /**
    * Trim given input using smart_trim module heuristics.
    *
-   * @param \Twig_Environment $env
+   * @param \Twig\Environment $env
    *   Current Twig environment.
    * @param mixed $input
    *   Input to be trimmed, it can be a string, an object or a render array.
@@ -556,7 +555,7 @@ class TwigExtension extends \Twig_Extension {
    * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim(\Twig_Environment $env, $input, $limit) {
+  public function smartTrim(Environment $env, $input, $limit) {
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
     $truncate = new TruncateHTML();
@@ -703,6 +702,19 @@ class TwigExtension extends \Twig_Extension {
     }
 
     return $ecl_links;
+  }
+
+  /**
+   * Creates a Markup object.
+   *
+   * @param mixed $string
+   *   The string to mark as safe. This value will be cast to a string.
+   *
+   * @return \Drupal\Component\Render\MarkupInterface
+   *   A safe string.
+   */
+  public function createMarkup($string): MarkupInterface {
+    return Markup::create($string);
   }
 
 }

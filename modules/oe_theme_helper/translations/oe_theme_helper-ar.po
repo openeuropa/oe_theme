@@ -520,8 +520,12 @@ msgstr "محتويات الصفحة"
 msgid "Name"
 msgstr "الاسم"
 
+msgid "@date in @journal"
+msgstr "@journal في @date"
+
 msgid "I have read and agree with the @link"
 msgstr "قرأت شر @link وأوافق عليها"
 
 msgid "data protection terms"
 msgstr "وط حماية البيانات"
+

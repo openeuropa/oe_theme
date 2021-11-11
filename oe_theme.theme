@@ -440,13 +440,20 @@ function oe_theme_preprocess_field(&$variables, $hook): void {
  * Generates pagination items for ECL pagination component.
  */
 function oe_theme_preprocess_pager(array &$variables): void {
+  /** @var \Drupal\Core\Pager\PagerManagerInterface $pager_manager */
+  $pager_manager = \Drupal::service('pager.manager');
   $element = $variables['pager']['#element'];
   $parameters = $variables['pager']['#parameters'];
   $route_name = $variables['pager']['#route_name'];
   $route_parameters = $variables['pager']['#route_parameters'] ?? [];
+  $pager = $pager_manager->getPager($element);
   global $pager_page_array, $pager_total;
+  // Nothing to do if there is no pager.
+  if (!isset($pager)) {
+    return;
+  }
   // Maximum page number for this pager.
-  $pager_max = $pager_total[$element];
+  $pager_max = $pager->getTotalPages();
   // Nothing to do if there is only one page.
   if ($pager_max <= 1) {
     return;
@@ -455,7 +462,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   // The first and last page links are excluded from this count.
   $pager_offset = 2;
   // The page we are currently paged to.
-  $pager_current = $pager_page_array[$element] + 1;
+  $pager_current = $pager->getCurrentPage() + 1;
   // First page of the pagination calculated by offset from current.
   $pager_first = $pager_offset < $pager_current ? $pager_current - $pager_offset : 1;
   // Last page of the pagination calculated by offset from current.
@@ -490,7 +497,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   // Add 'Previous' navigation link.
   if ($pager_current > 1) {
     $options = [
-      'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] - 1),
+      'query' => $pager_manager->getUpdatedParameters($parameters, $element, $pager->getCurrentPage() - 1),
     ];
     $nav_link['link']['link'] = [
       'path' => Url::fromRoute($route_name, $route_parameters, $options),
@@ -505,7 +512,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   // Add first page link.
   if ($pager_first != $pager_current) {
     $options = [
-      'query' => pager_query_add_page($parameters, $element, 0),
+      'query' => $pager_manager->getUpdatedParameters($parameters, $element, 0),
     ];
     $ecl_items[] = [
       'type' => 'first',
@@ -540,7 +547,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
         continue;
       }
       $options = [
-        'query' => pager_query_add_page($parameters, $element, $i - 1),
+        'query' => $pager_manager->getUpdatedParameters($parameters, $element, $i - 1),
       ];
       $ecl_items[] = [
         'link' => [
@@ -562,7 +569,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   // Add last page link.
   if ($pager_max != $pager_current) {
     $options = [
-      'query' => pager_query_add_page($parameters, $element, $pager_max - 1),
+      'query' => $pager_manager->getUpdatedParameters($parameters, $element, $pager_max - 1),
     ];
     $ecl_items[] = [
       'type' => 'last',
@@ -579,7 +586,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
   // Add 'Next' navigation link.
   if ($pager_current < $pager_max) {
     $options = [
-      'query' => pager_query_add_page($parameters, $element, $pager_page_array[$element] + 1),
+      'query' => $pager_manager->getUpdatedParameters($parameters, $element, $pager->getCurrentPage() + 1),
     ];
     $nav_link['link']['link'] = [
       'path' => Url::fromRoute($route_name, $route_parameters, $options),

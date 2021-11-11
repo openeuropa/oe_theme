@@ -229,8 +229,8 @@ msgstr "Cu mai multe etape"
 msgid "Permanent"
 msgstr "Permanent(ă)"
 
-msgid "@date in"
-msgstr "@date în"
+msgid "@date in @journal"
+msgstr "@date în @journal"
 
 msgid "Contact us"
 msgstr "Contactați-ne"

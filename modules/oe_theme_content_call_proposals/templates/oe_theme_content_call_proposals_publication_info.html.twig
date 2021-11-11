@@ -10,7 +10,7 @@
   {{ date }}
 {% else %}
   {% set _link %}
-    {% include '@ecl-twig/link' with {
+    {%- include '@ecl-twig/link' with {
       link: {
         type: 'standalone',
         label: link.title,
@@ -18,7 +18,7 @@
         icon_position: 'after'
       },
       icon: get_link_icon(link.url)
-    } %}
+    } -%}
   {% endset %}
-  {{ '@date in'|t({'@date': date }) }} {{ _link  }}
+  {{ '@date in @journal'|t({'@date': date, '@journal': _link|create_markup}) }}
 {% endif %}

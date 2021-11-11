@@ -229,8 +229,8 @@ msgstr "Několik termínů"
 msgid "Permanent"
 msgstr "Stálý"
 
-msgid "@date in"
-msgstr "@date v"
+msgid "@date in @journal"
+msgstr "@date v @journal"
 
 msgid "Contact us"
 msgstr "Kontakt"
