@@ -12,6 +12,7 @@ use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\TimelineAssert;
 use Drupal\Tests\Traits\Core\CronRunTrait;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
@@ -635,6 +636,111 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $caption = $items[0]->find('css', '.ecl-gallery__description');
     $this->assertStringContainsString('Test image first_image', $caption->getOuterHtml());
     $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
+
+    $session1 = $this->createProgrammeItemEntity('Session 1');
+    $session2 = $this->createProgrammeItemEntity('Session 2');
+    $session3 = $this->createProgrammeItemEntity('Session 3');
+
+    // Assert Programme field.
+    $node->set('oe_event_programme', [$session1, $session2, $session3])->save();
+    $this->drupalGet($node->toUrl());
+
+    $timeline_assert = new TimelineAssert();
+    $timeline_expected_values = [
+      'items' => [
+        [
+          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'title' => 'Session 1',
+          'body' => 'Description Session 1',
+        ], [
+          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'title' => 'Session 2',
+          'body' => 'Description Session 2',
+        ], [
+          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'title' => 'Session 3',
+          'body' => 'Description Session 3',
+        ],
+      ],
+    ];
+    $timeline_content = $this->assertSession()->elementExists('css', 'article div');
+    $timeline_html = $timeline_content->getOuterHtml();
+    $timeline_assert->assertPattern($timeline_expected_values, $timeline_html);
+
+    $session3->set('oe_event_programme_dates', [
+      'value' => '2019-11-15T11:00:00',
+      'end_value' => '2019-11-15T15:00:00',
+    ]);
+    $session3->save();
+
+    $session1->set('oe_event_programme_dates', [
+      'value' => '2019-11-15T22:00:00',
+      'end_value' => '2019-11-15T23:00:00',
+    ]);
+    $session1->save();
+    $this->drupalGet($node->toUrl());
+
+    $timeline_assert = new TimelineAssert();
+    $timeline_expected_values = [
+      'items' => [
+        [
+          'label' => '15 Nov 2019, 10:00 PM - 16 Nov 2019, 02:00 AM',
+          'title' => 'Session 3',
+          'body' => 'Description Session 3',
+        ], [
+          'label' => '09:00 AM - 10:00 AM',
+          'title' => 'Session 1',
+          'body' => 'Description Session 1',
+        ], [
+          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'title' => 'Session 2',
+          'body' => 'Description Session 2',
+        ],
+      ],
+    ];
+    $timeline_content = $this->assertSession()->elementExists('css', 'article div');
+    $timeline_html = $timeline_content->getOuterHtml();
+    $timeline_assert->assertPattern($timeline_expected_values, $timeline_html);
+
+    $session3->set('oe_event_programme_dates', [
+      'value' => '2019-11-14T21:00:00',
+      'end_value' => '2019-11-14T22:00:00',
+    ]);
+    $session3->save();
+
+    $session1->set('oe_event_programme_dates', [
+      'value' => '2019-11-14T22:15:00',
+      'end_value' => '2019-11-14T23:15:00',
+    ]);
+    $session1->save();
+    $session2->set('oe_event_programme_dates', [
+      'value' => '2019-11-15T22:00:00',
+      'end_value' => '2019-11-15T23:00:00',
+    ]);
+    $session2->save();
+    $this->drupalGet($node->toUrl());
+
+    $timeline_assert = new TimelineAssert();
+    $timeline_expected_values = [
+      'items' => [
+        [
+          'label' => '15 Nov 2019,<br>08:00 AM - 09:00 AM',
+          'title' => 'Session 3',
+          'body' => 'Description Session 3',
+        ], [
+          'label' => '09:15 AM - 10:15 AM',
+          'title' => 'Session 1',
+          'body' => 'Description Session 1',
+        ], [
+          'label' => '16 Nov 2019,<br>09:00 AM - 10:00 AM',
+          'title' => 'Session 2',
+          'body' => 'Description Session 2',
+        ],
+      ],
+    ];
+    $timeline_content = $this->assertSession()->elementExists('css', 'article div');
+    $timeline_html = $timeline_content->getOuterHtml();
+    $timeline_assert->assertPattern($timeline_expected_values, $timeline_html);
   }
 
   /**
