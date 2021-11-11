@@ -516,8 +516,8 @@ msgstr "Innihald síðu"
 msgid "Name"
 msgstr "Heiti"
 
-msgid "@date in"
-msgstr "@date í"
+msgid "@date in @journal"
+msgstr "@date í @journal"
 
 msgid "The response period for this consultation has ended. Thank you for your input."
 msgstr "Svarfrestur vegna þessarar ráðgjafar er liðinn. Takk fyrir þitt innlegg."

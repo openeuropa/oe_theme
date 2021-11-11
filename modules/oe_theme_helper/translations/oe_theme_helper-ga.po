@@ -229,8 +229,8 @@ msgstr "Scoitheadh ilchéimneach"
 msgid "Permanent"
 msgstr "Buan"
 
-msgid "@date in"
-msgstr "@date sa"
+msgid "@date in @journal"
+msgstr "@date sa @journal"
 
 msgid "Contact us"
 msgstr "Sonraí teagmhála"

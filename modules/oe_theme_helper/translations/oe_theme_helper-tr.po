@@ -523,6 +523,9 @@ msgstr "Sayfa İçeriği"
 msgid "Name"
 msgstr "İsim"
 
+msgid "@date in @journal"
+msgstr "@date tarihli @journal yayını"
+
 msgid "I have read and agree with the @link"
 msgstr "@link okudum ve kabul ediyorum"
 

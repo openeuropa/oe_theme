@@ -229,8 +229,8 @@ msgstr "Няколко крайни срока"
 msgid "Permanent"
 msgstr "Постоянен"
 
-msgid "@date in"
-msgstr "@date в"
+msgid "@date in @journal"
+msgstr "@date в @journal"
 
 msgid "Contact us"
 msgstr "За контакти"

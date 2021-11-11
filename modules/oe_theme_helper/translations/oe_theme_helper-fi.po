@@ -229,8 +229,8 @@ msgstr "Monivaiheinen"
 msgid "Permanent"
 msgstr "Jatkuva"
 
-msgid "@date in"
-msgstr "@date julkaisu"
+msgid "@date in @journal"
+msgstr "@date julkaisu @journal"
 
 msgid "Contact us"
 msgstr "Yhteydenotot"

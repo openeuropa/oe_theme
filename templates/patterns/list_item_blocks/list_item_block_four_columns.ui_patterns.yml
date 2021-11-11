@@ -62,3 +62,13 @@ list_item_block_four_columns:
       label: "Button URL (A Drupal Url object)"
       description: "Call to action URL"
       preview: "#"
+    button_icon_name:
+      type: "text"
+      label: "Icon name"
+      description: "The name of the icon to place next to the link"
+      preview: 'list'
+    button_icon_position:
+      type: "text"
+      label: "Icon position"
+      description: "The position of the icon"
+      preview: 'after'

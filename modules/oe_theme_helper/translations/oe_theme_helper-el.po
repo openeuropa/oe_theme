@@ -229,8 +229,8 @@ msgstr "Πολλές ημερομηνίες λήξης"
 msgid "Permanent"
 msgstr "Μόνιμος"
 
-msgid "@date in"
-msgstr "@date στην"
+msgid "@date in @journal"
+msgstr "@date στην @journal"
 
 msgid "Contact us"
 msgstr "Επικοινωνήστε μαζί μας"

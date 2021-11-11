@@ -229,8 +229,8 @@ msgstr "Prazos múltiplos"
 msgid "Permanent"
 msgstr "Permanente"
 
-msgid "@date in"
-msgstr "@date no"
+msgid "@date in @journal"
+msgstr "@date no @journal"
 
 msgid "Contact us"
 msgstr "Contacte-nos"
