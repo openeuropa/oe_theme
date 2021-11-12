@@ -14,6 +14,7 @@ correctly access all event information.
 - `Venue: View any published entity`
 - `Organisation: View any published entity`
 - `Contact: View any published entity`
+- `Programme Item: View any published entity`
 - `View published SKOS Concept entities`
 
 ## Required contrib modules
@@ -53,15 +54,16 @@ You can reuse these extra fields in your own view modes.
 
 List of Extra field definitions:
 
-* [Contacts](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/ContactsExtraField.php) provides Contact
+* [Contacts](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/ContactsExtraField.php) provides Contact
   entities as renderable arrays divided by their bundles.
-* [Description](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DescriptionExtraField.php) conditionally
+* [Description](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DescriptionExtraField.php) conditionally
   renders the Description or Report title, with their respective content. This section is accompanied by the featured media and its legend.
-* [Details](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DetailsExtraField.php) provides event details
+* [Details](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/DetailsExtraField.php) provides event details
   including Topic, Location, Dates, and Livestreaming availability information.
-* [Organiser](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/OrganiserExtraField.php) provides
+* [Organiser](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/OrganiserExtraField.php) provides
   organiser information, whether a simple organiser name or a label to a department OP (SKOS vocabulary).
-* [RegistrationButton](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/RegistrationButtonExtraField.php)
+* [RegistrationButton](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/RegistrationButtonExtraField.php)
   provides the registration button and related text, changing depending on the event date.
-* [Summary](modules/oe_theme_content_event/src/Plugin/ExtraField/Display/SummaryExtraField.php) provides the event
+* [Summary](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/SummaryExtraField.php) provides the event
   short summary or the report short summary, depending on whether the event date is in the past or in the future.
+* [Programme](/modules/oe_theme_content_event/src/Plugin/ExtraField/Display/ProgrammeExtraField.php) provides timeline about event programme, such as title, a description and start/end dates.
