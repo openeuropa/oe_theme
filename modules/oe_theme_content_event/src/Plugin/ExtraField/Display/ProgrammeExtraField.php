@@ -144,16 +144,20 @@ class ProgrammeExtraField extends EventExtraFieldBase {
       $programme = $this->entityRepository->getTranslationFromContext($programme);
       $cache->addCacheableDependency($programme);
 
-      $items[] = [
+      $item = [
         'label' => $this->generateEventProgrammeLabel($programme, $previous_end_date),
         'title' => $programme->get('name')->getString(),
-        'body' => [
+      ];
+      if (!$programme->get('oe_description')->isEmpty()) {
+        $item['body'] = [
           '#type' => 'processed_text',
           '#text' => $programme->get('oe_description')->first()->getValue()['value'],
           '#format' => $programme->get('oe_description')->first()->getValue()['format'],
           '#langcode' => $entity->language(),
-        ],
-      ];
+        ];
+      }
+      $items[] = $item;
+
       // Keep day of previous event programme item for possible comparison.
       $previous_end_date = $this->dateFormatter->format($programme->get('oe_event_programme_dates')->end_date->getTimestamp(), 'custom', 'Ymd');
     }
