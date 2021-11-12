@@ -35,6 +35,9 @@ List of shipped date formats:
 * Event date with hour, e.g. `27 January 2020, 11:10`
 * Event date with hour and timezone, e.g. `27 January 2020, 11:10 CET`
 * Event long date with hour, e.g. `Monday 27 January 2020, 11:10`
+* Event programme date, e.g. `27 Jan 2020`
+* Event programme date with hour, e.g. `27 Jan 2020, 09:00 AM`
+* Event programme hour, e.g. `09:00 AM`
 
 ## Overridden configuration
 
