@@ -32,7 +32,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
   /**
    * Programme datetime format.
    */
-  const PROGRAMME_DATE_TIME_FORMAT = 'oe_event_programme_date_hour';
+  const PROGRAMME_DATETIME_FORMAT = 'oe_event_programme_date_hour';
 
   /**
    * Programme date format.
@@ -60,7 +60,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
   protected $entityRepository;
 
   /**
-   * RegistrationButtonExtraField constructor.
+   * ProgrammeExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -184,7 +184,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
    * @return array|null
    *   Render array or null.
    */
-  protected function generateEventProgrammeLabel(ProgrammeItemInterface $programme, ?string $previous_end_date): ?array {
+  protected function generateEventProgrammeLabel(ProgrammeItemInterface $programme, ?string $previous_end_date = NULL): ?array {
     $start_datetime = $programme->get('oe_event_programme_dates')->start_date;
     $end_datetime = $programme->get('oe_event_programme_dates')->end_date;
 
@@ -192,9 +192,9 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     $end_day = $this->dateFormatter->format($end_datetime->getTimestamp(), 'custom', 'Ymd');
     // If event program item running in same day as previous,
     // show only start time.
-    $start_date_format = $previous_end_date === $start_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATE_TIME_FORMAT;
+    $start_date_format = $previous_end_date === $start_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATETIME_FORMAT;
     // If event program item running in within day, show only end time.
-    $end_date_format = $start_day === $end_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATE_TIME_FORMAT;
+    $end_date_format = $start_day === $end_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATETIME_FORMAT;
     $template = '{% trans %}{{ start_date }} - {{ end_date }}{% endtrans %}';
     $context = [
       'start_date' => $this->dateFormatter->format($start_datetime->getTimestamp(), $start_date_format),
@@ -203,7 +203,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     // If the event program item running within 1 day and there are no
     // other event program items in the current day coming before,
     // show the date with time range within a day.
-    if ($start_date_format === self::PROGRAMME_DATE_TIME_FORMAT && $end_date_format === self::PROGRAMME_TIME_FORMAT) {
+    if ($start_date_format === self::PROGRAMME_DATETIME_FORMAT && $end_date_format === self::PROGRAMME_TIME_FORMAT) {
       $template = '{% trans %}{{ start_day }},<br>{{ start_date }} - {{ end_date }}{% endtrans %}';
       $context['start_day'] = $this->dateFormatter->format($start_datetime->getTimestamp(), self::PROGRAMME_DATE_FORMAT);
       $context['start_date'] = $this->dateFormatter->format($start_datetime->getTimestamp(), self::PROGRAMME_TIME_FORMAT);
