@@ -466,8 +466,8 @@ msgstr "Tal-passat"
 msgid "Upcoming and open"
 msgstr "Li ġejjin u miftuħin"
 
-msgid "This page is not available in @language_name."
-msgstr "Din il-paġna mhix disponibbli f’@language_name."
+msgid "This page is not available in English."
+msgstr "Din il-paġna mhix disponibbli bil-Malti."
 
 msgid "Choose another language"
 msgstr "Agħżel lingwa oħra"

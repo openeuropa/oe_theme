@@ -466,8 +466,8 @@ msgstr "Προηγούμενες"
 msgid "Upcoming and open"
 msgstr "Προσεχείς και ανοικτές"
 
-msgid "This page is not available in @language_name."
-msgstr "Η σελίδα αυτή δεν είναι διαθέσιμη στα @language_name."
+msgid "This page is not available in English."
+msgstr "Η σελίδα αυτή δεν είναι διαθέσιμη στα ελληνικά."
 
 msgid "Choose another language"
 msgstr "Επιλέξτε άλλη γλώσσα"
