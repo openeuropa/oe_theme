@@ -360,7 +360,6 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
         'value' => $start_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'end_value' => $end_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       ],
-      'oe_event_' => "Description $name",
       'oe_description' => "Description $name",
       'status' => $status,
       'uid' => 0,

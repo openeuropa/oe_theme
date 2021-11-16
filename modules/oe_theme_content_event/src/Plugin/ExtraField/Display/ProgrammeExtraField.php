@@ -44,7 +44,6 @@ class ProgrammeExtraField extends EventExtraFieldBase {
    */
   const PROGRAMME_TIME_FORMAT = 'oe_event_programme_hour';
 
-
   /**
    * Date formatter service.
    *
