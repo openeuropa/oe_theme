@@ -16,10 +16,6 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function getAssertions($variant): array {
     $assertions = parent::getAssertions($variant);
-    $assertions['thumbnail'] = [
-      [$this, 'assertImage'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image',
-    ];
     $assertions['teaser'] = [
       [$this, 'assertElementText'],
       'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__description',
