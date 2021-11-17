@@ -6,6 +6,7 @@ core_version_requirement: ^8.9 || ^9.1
 dependencies:
   - extra_field:extra_field
   - oe_content:oe_content_event
+  - oe_content:oe_content_event_event_programme
   - oe_theme:oe_theme_helper
   - oe_theme:oe_theme_content_entity_contact
   - oe_theme:oe_theme_content_entity_venue

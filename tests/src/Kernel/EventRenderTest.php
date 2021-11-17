@@ -39,6 +39,7 @@ class EventRenderTest extends ContentRenderTestBase {
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
     'oe_content_entity_venue',
+    'oe_content_event_event_programme',
     'oe_content_event',
     'composite_reference',
     'oe_theme_content_event',

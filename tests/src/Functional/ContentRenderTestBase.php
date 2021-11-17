@@ -6,11 +6,13 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_entity_venue\Entity\VenueInterface;
 use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\media\MediaInterface;
+use Drupal\oe_content_event_event_programme\Entity\ProgrammeItemInterface;
 use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\Tests\BrowserTestBase;
@@ -332,6 +334,38 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     ]);
     $venue->save();
     return $venue;
+  }
+
+  /**
+   * Creates Programme item entity based on provided settings.
+   *
+   * @param string $name
+   *   Entity name. Is used as a parameter for test data.
+   * @param string $bundle
+   *   Entity bundle.
+   * @param int $status
+   *   Entity status.
+   *
+   * @return \Drupal\oe_content_event_event_programme\Entity\ProgrammeItemInterface
+   *   Venue entity instance.
+   */
+  protected function createProgrammeItemEntity(string $name, string $bundle = 'oe_default', int $status = CorporateEntityInterface::PUBLISHED): ProgrammeItemInterface {
+    $start_datetime = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $end_datetime = (clone $start_datetime)->modify('+ 10 days');
+
+    $programme_item = $this->getStorage('oe_event_programme')->create([
+      'bundle' => 'oe_default',
+      'name' => $name,
+      'oe_event_programme_dates' => [
+        'value' => $start_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'end_value' => $end_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      ],
+      'oe_description' => "Description $name",
+      'status' => $status,
+      'uid' => 0,
+    ]);
+    $programme_item->save();
+    return $programme_item;
   }
 
   /**
