@@ -229,8 +229,8 @@ msgstr "Więcej dat zakończenia"
 msgid "Permanent"
 msgstr "Stały"
 
-msgid "@date in"
-msgstr "@date w"
+msgid "@date in @journal"
+msgstr "@date w @journal"
 
 msgid "Contact us"
 msgstr "Kontakt"

@@ -229,8 +229,8 @@ msgstr "Več končnih datumov"
 msgid "Permanent"
 msgstr "Stalno"
 
-msgid "@date in"
-msgstr "@date v"
+msgid "@date in @journal"
+msgstr "@date v @journal"
 
 msgid "Contact us"
 msgstr "Kontakt"

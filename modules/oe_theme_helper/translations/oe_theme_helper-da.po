@@ -229,8 +229,8 @@ msgstr "Flere faser"
 msgid "Permanent"
 msgstr "Permanent"
 
-msgid "@date in"
-msgstr "@date i"
+msgid "@date in @journal"
+msgstr "@date i @journal"
 
 msgid "Contact us"
 msgstr "Kontakt os"

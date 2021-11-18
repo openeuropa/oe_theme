@@ -229,8 +229,8 @@ msgstr "Mitme tähtajaga"
 msgid "Permanent"
 msgstr "Alaline"
 
-msgid "@date in"
-msgstr "@date väljaandes"
+msgid "@date in @journal"
+msgstr "@date väljaandes @journal"
 
 msgid "Contact us"
 msgstr "Võtke meiega ühendust"

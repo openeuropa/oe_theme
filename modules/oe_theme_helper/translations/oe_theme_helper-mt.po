@@ -229,8 +229,8 @@ msgstr "Fi stadji multipli"
 msgid "Permanent"
 msgstr "Permanenti"
 
-msgid "@date in"
-msgstr "@date fi"
+msgid "@date in @journal"
+msgstr "@date fi @journal"
 
 msgid "Contact us"
 msgstr "Ikkuntattjana"
