@@ -27,6 +27,9 @@ class FileTeaserAssert extends FileTranslationAssert {
     $assertions['meta'] = [
       [$this, 'assertMeta'],
     ];
+    $assertions['lists'] = [
+      [$this, 'assertLists'],
+    ];
     return $assertions;
   }
 
@@ -50,6 +53,30 @@ class FileTeaserAssert extends FileTranslationAssert {
     self::assertCount(count($expected_metas), $meta_items, 'The expected meta item number does not correspond with the found meta item number.');
     foreach ($expected_metas as $index => $expected_meta) {
       self::assertEquals($expected_meta, trim($meta_items->eq($index)->text()), \sprintf('The expected text of the meta number %s does not correspond to the found meta text.', $index));
+    }
+  }
+
+  /**
+   * Asserts the lists of the pattern.
+   *
+   * @param array|null $expected_lists
+   *   The expected lists items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertLists($expected_lists, Crawler $crawler): void {
+    if (is_null($expected_lists)) {
+      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__taxonomy', $crawler);
+      return;
+    }
+    $list_terms = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__taxonomy dl.ecl-description-list--taxonomy dt.ecl-description-list__term');
+    $list_definitions = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__taxonomy dl.ecl-description-list--taxonomy dd.ecl-description-list__definition');
+    self::assertCount(count($expected_lists), $list_terms, 'The expected list number does not correspond with the found list number.');
+    foreach ($expected_lists as $index => $expected_list) {
+      foreach ($expected_list as $term => $definitions) {
+        self::assertEquals($term, trim($list_terms->eq($index)->text()), \sprintf('The expected text of the term number %s does not correspond to the found term text.', $index));
+        self::assertEquals(implode($definitions), trim($list_definitions->eq($index)->text()), \sprintf('The expected text of the definition number %s does not correspond to the found definition text.', $index));
+      }
     }
   }
 

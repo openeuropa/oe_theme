@@ -4,6 +4,7 @@
  * List item block: three columns.
  */
 #}
+{% set _button_icon_position = button_icon_position|default('after') %}
 {% include '@oe_theme/compositions/ec-component-content-item-block/content-item-block.html.twig' with {
   type: 'three',
   title: title,
@@ -11,6 +12,8 @@
   icon_path: ecl_icon_path,
   button: {
     path: button_url,
-    label: button_label
+    label: button_label,
+    icon_name: button_icon_name,
+    icon_position: _button_icon_position
   }
 } only %}

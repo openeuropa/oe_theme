@@ -229,8 +229,8 @@ msgstr "Keli terminai"
 msgid "Permanent"
 msgstr "Nuolatinis"
 
-msgid "@date in"
-msgstr "@date"
+msgid "@date in @journal"
+msgstr "@date @journal"
 
 msgid "Contact us"
 msgstr "Susisiekite su mumis"
