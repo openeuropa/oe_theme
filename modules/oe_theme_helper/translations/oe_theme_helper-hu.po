@@ -466,8 +466,8 @@ msgstr "Korábbi"
 msgid "Upcoming and open"
 msgstr "Közelgő és aktuális"
 
-msgid "This page is not available in @language_name."
-msgstr "Ez az oldal nem érhető el @language_name nyelven."
+msgid "This page is not available in English."
+msgstr "Ez az oldal nem érhető el magyarul."
 
 msgid "Choose another language"
 msgstr "Válasszon másik nyelvet"

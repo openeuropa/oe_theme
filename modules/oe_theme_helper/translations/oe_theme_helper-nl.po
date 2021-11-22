@@ -466,8 +466,8 @@ msgstr "Voorbij"
 msgid "Upcoming and open"
 msgstr "Lopend en gepland"
 
-msgid "This page is not available in @language_name."
-msgstr "Deze pagina is niet beschikbaar in het @language_name."
+msgid "This page is not available in English."
+msgstr "Deze pagina is niet beschikbaar in het Nederlands."
 
 msgid "Choose another language"
 msgstr "Kies een andere taal"

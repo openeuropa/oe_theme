@@ -466,8 +466,8 @@ msgstr "Buvę"
 msgid "Upcoming and open"
 msgstr "Artėjantys ir vykstantys"
 
-msgid "This page is not available in @language_name."
-msgstr "Šio puslapio nėra @language_name."
+msgid "This page is not available in English."
+msgstr "Šio puslapio lietuvių kalba nėra."
 
 msgid "Choose another language"
 msgstr "Pasirinkite kitą kalbą"
