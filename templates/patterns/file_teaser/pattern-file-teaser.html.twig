@@ -46,11 +46,8 @@
 {% if file.size %}
   {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
 {% endif %}
-{% if highlighted %}
-  {% set _label = {
-    'label': 'Highlighted'|t,
-    'variant': 'highlight',
-  } %}
+{% if badges %}
+  {% set _label = badges|first %}
 {% endif %}
 {% include '@ecl-twig/file' with {
   'title': file.title,

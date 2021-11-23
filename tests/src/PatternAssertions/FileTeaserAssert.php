@@ -16,6 +16,10 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function getAssertions($variant): array {
     $assertions = parent::getAssertions($variant);
+    $assertions['thumbnail'] = [
+      [$this, 'assertImage'],
+      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image',
+    ];
     $assertions['teaser'] = [
       [$this, 'assertElementText'],
       'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__description',
@@ -25,6 +29,10 @@ class FileTeaserAssert extends FileTranslationAssert {
     ];
     $assertions['lists'] = [
       [$this, 'assertLists'],
+    ];
+    $assertions['badge'] = [
+      [$this, 'assertBadge'],
+      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__label',
     ];
     return $assertions;
   }
@@ -108,6 +116,26 @@ class FileTeaserAssert extends FileTranslationAssert {
 
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__translation-download', 'href', $crawler);
+  }
+
+  /**
+   * Asserts the badge of the file.
+   *
+   * @param array|null $badge
+   *   The expected badge.
+   * @param string $selector
+   *   The CSS selector to find the badge.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertBadge(?array $badge, string $selector, Crawler $crawler): void {
+    if (is_null($badge)) {
+      $this->assertElementNotExists($selector, $crawler);
+      return;
+    }
+    $this->assertElementExists($selector, $crawler);
+    $selector = $selector . ' span.ecl-label.ecl-label--' . $badge['variant'];
+    self::assertStringContainsString($badge['label'], $crawler->filter($selector)->text());
   }
 
 }

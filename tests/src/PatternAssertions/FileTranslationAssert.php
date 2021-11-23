@@ -19,14 +19,6 @@ class FileTranslationAssert extends FileAssert {
     $assertions['translations'] = [
       [$this, 'assertTranslations'],
     ];
-    $assertions['thumbnail'] = [
-      [$this, 'assertImage'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image',
-    ];
-    $assertions['highlighted'] = [
-      [$this, 'assertHighlighted'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__label span.ecl-label.ecl-label--highlight',
-    ];
     return $assertions;
   }
 
@@ -64,50 +56,12 @@ class FileTranslationAssert extends FileAssert {
    */
   protected function assertTranslation(array $expected_file, Crawler $crawler): void {
     // Assert information.
-    $this->assertElementText($expected_file['title'], 'div.ecl-file__translation-title', $crawler->filter('div.ecl-file__translation-detail'));
-    $this->assertElementText($expected_file['meta'], 'div.ecl-file__translation-meta', $crawler->filter('div.ecl-file__translation-info'));
+    $file_info_element = $crawler->filter('div.ecl-file__translation-info');
+    $this->assertElementText($expected_file['title'], 'div.ecl-file__translation-title', $file_info_element);
+    $this->assertElementText($expected_file['meta'], 'div.ecl-file__translation-meta', $file_info_element);
 
     // Assert download link.
     $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__translation-download', 'href', $crawler);
-  }
-
-  /**
-   * Asserts the file information on the pattern.
-   *
-   * @param array $expected_file
-   *   The expected file values.
-   * @param \Symfony\Component\DomCrawler\Crawler $crawler
-   *   The DomCrawler where to check the element.
-   */
-  protected function assertFile(array $expected_file, Crawler $crawler): void {
-    // Assert information.
-    $file_info_element = $crawler->filter('div.ecl-file.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info');
-    $this->assertElementText($expected_file['title'], 'div.ecl-file__detail-info div.ecl-file__title', $crawler->filter('div.ecl-file.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail'));
-    $this->assertElementText($expected_file['language'], 'div.ecl-file__language', $file_info_element);
-    $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_info_element);
-
-    // Assert download link.
-    $this->assertElementAttribute($expected_file['url'], 'div.ecl-file.ecl-file--thumbnail div.ecl-file__container a.ecl-file__download', 'href', $crawler);
-  }
-
-  /**
-   * Asserts the highlighted badge of the file.
-   *
-   * @param bool $expected
-   *   Whether the file is highlighted or not.
-   * @param string $selector
-   *   The CSS selector to find the element.
-   * @param \Symfony\Component\DomCrawler\Crawler $crawler
-   *   The DomCrawler where to check the element.
-   */
-  protected function assertHighlighted(bool $expected, string $selector, Crawler $crawler): void {
-    if (!$expected) {
-      $this->assertElementNotExists($selector, $crawler);
-      return;
-    }
-    $this->assertElementExists($selector, $crawler);
-    $element = $crawler->filter($selector);
-    self::assertStringContainsString('Highlighted', $element->text());
   }
 
 }

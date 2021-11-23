@@ -18,13 +18,6 @@ file_translation:
         size: "150000"
         name: "document.pdf"
         language_code: "en"
-    thumbnail:
-      type: "array"
-      label: "Thumbnail"
-      description: "Document thumbnail."
-      preview:
-        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
-        alt: "thumbnail alt"
     translations:
       type: "array"
       label: "Files"
@@ -55,9 +48,3 @@ file_translation:
       label: "More information"
       description: "Informative text about the available translations."
       preview: "Looking for another language which is not on the list? Find out why."
-    highlighted:
-      type: "boolean"
-      label: "Highlighted"
-      description: "Define if the file should be labeled as highlighted."
-      preview: true
-      escape: false
