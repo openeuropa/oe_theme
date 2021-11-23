@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -1703,4 +1704,45 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
     // with 'Core' ECL branding.
     unset($variables['site_name']);
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker(&$variables) {
+  if (empty($variables['items'])) {
+    return;
+  }
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $node_view_builder = \Drupal::service('entity_type.manager')->getViewBuilder('node');
+  foreach ($variables['items'] as &$item) {
+    $event_speaker = $item['content']['#oe_event_speaker'] ?? NULL;
+    $item['event_speaker'] = $event_speaker;
+    if ($event_speaker instanceof ContentEntityInterface && !$event_speaker->get('oe_person')->isEmpty()) {
+      $cacheability->addCacheableDependency($event_speaker);
+      if (!$event_speaker->get('oe_person')->isEmpty()) {
+        $person = $event_speaker->get('oe_person')->entity;
+        $cacheability->addCacheableDependency($person);
+        if (!$person->get('oe_person_photo')->isEmpty()) {
+          $renderable = $node_view_builder->viewField($person->get('oe_person_photo'), [
+            'type' => 'oe_theme_helper_media_thumbnail_url',
+            'settings' => [
+              'image_style' => 'oe_theme_medium_no_crop',
+            ],
+          ]);
+          $item['content']['portrait_image'] = $renderable[0];
+        }
+        else {
+          $item['content']['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+        }
+        $person_job_labels = [];
+        foreach ($person->get('oe_person_jobs')->referencedEntities() as $person_job) {
+          $cacheability->addCacheableDependency($person_job);
+          $person_job_labels[] = \Drupal::service('entity.repository')->getTranslationFromContext($person_job)->label();
+        }
+        $item['content']['person_jobs'] = implode(', ', $person_job_labels);
+      }
+    }
+  }
+  $cacheability->applyTo($variables);
 }

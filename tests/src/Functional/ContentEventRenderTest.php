@@ -6,7 +6,12 @@ namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\node\Entity\Node;
+use Drupal\oe_content_event_person_reference\Entity\EventSpeaker;
+use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
@@ -37,6 +42,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     'system',
     'oe_theme_helper',
     'oe_theme_content_event',
+    'oe_content_event_person_reference',
     'oe_multilingual',
     'path',
   ];
@@ -52,6 +58,25 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       ->grantPermission('view published oe_venue')
       ->grantPermission('view published oe_contact')
       ->save();
+
+    $field = FieldConfig::create([
+      'label' => 'Speakers',
+      'field_name' => 'oe_event_speakers',
+      'entity_type' => 'node',
+      'bundle' => 'oe_event',
+      'settings' => [],
+      'required' => FALSE,
+    ]);
+    $field->save();
+
+    $view_display = EntityViewDisplay::load('node.oe_event.full');
+    $view_display->setComponent('oe_event_speakers', [
+      'type' => 'entity_reference_revisions_entity_view',
+      'label' => 'hidden',
+      'settings' => [
+        'view_mode' => 'default',
+      ],
+    ])->save();
   }
 
   /**
@@ -741,6 +766,76 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_content = $this->assertSession()->elementExists('css', 'article div');
     $timeline_html = $timeline_content->getOuterHtml();
     $timeline_assert->assertPattern($timeline_expected_values, $timeline_html);
+
+    // Create jobs for person entity.
+    $person_job_1 = PersonJob::create([
+      'type' => 'oe_default',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS',
+    ]);
+    $person_job_1->save();
+    $person_job_2 = PersonJob::create([
+      'type' => 'oe_default',
+      'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF',
+    ]);
+    $person_job_2->save();
+
+    /** @var \Drupal\node\Entity\Node $person */
+    $values = [
+      'type' => 'oe_person',
+      'oe_person_first_name' => 'Mick',
+      'oe_person_last_name' => 'Jagger',
+      'oe_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
+      'uid' => 0,
+      'status' => 1,
+    ];
+    $person = Node::create($values);
+    $person->set('oe_person_jobs', [$person_job_1, $person_job_2]);
+    $person->save();
+
+    $event_speaker = EventSpeaker::create([
+      'oe_event_role' => 'event role 1',
+      'type' => 'oe_default',
+      'oe_person' => $person,
+    ]);
+    $event_speaker->save();
+
+    $node->set('oe_event_speakers', [$event_speaker]);
+    $node->save();
+
+    $this->drupalGet($node->toUrl());
+    $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $this->assertCount(1, $speakers_items);
+    $node->set('oe_event_speakers', [$event_speaker, $event_speaker]);
+    $node->save();
+
+    $this->drupalGet($node->toUrl());
+    $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $this->assertCount(2, $speakers_items);
+    $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
+    $this->assertStringContainsString('oe_theme/images/user_icon.svg', $portrait->getAttribute('style'));
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs.ecl-u-type-uppercase', $speakers_items[0]);
+    $this->assertEquals('event role 1', $meta->getText());
+    $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold.ecl-u-type-uppercase', $speakers_items[0]);
+    $this->assertStringContainsString($person->toUrl()->toString(), $link->getAttribute('href'));
+    $this->assertEquals($person->label(), $link->getText());
+    $person_jobs = $this->assertSession()->elementExists('css', '.field-person-jobs.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs', $speakers_items[0]);
+    $this->assertEquals('Advisor, Chief advisor', $person_jobs->getText());
+
+    $event_speaker->set('oe_event_role', 'event role 2');
+    $event_speaker->save();
+    $person_job_1->set('oe_role_reference', 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_COMMU');
+    $person_job_1->save();
+    $portrait_media = $this->createMediaImage('person_portrait');
+    $person->set('oe_person_photo', $portrait_media)->save();
+    $this->drupalGet($node->toUrl());
+    $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
+    $this->assertStringContainsString('placeholder_person_portrait.png', $portrait->getAttribute('style'));
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs.ecl-u-type-uppercase', $speakers_items[0]);
+    $this->assertEquals('event role 2', $meta->getText());
+    $person_jobs = $this->assertSession()->elementExists('css', '.field-person-jobs.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs', $speakers_items[0]);
+    $this->assertEquals('Communication Adviser, Chief advisor', $person_jobs->getText());
   }
 
   /**
