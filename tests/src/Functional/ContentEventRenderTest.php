@@ -779,6 +779,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ]);
     $person_job_2->save();
 
+    // Create Person node for assigning to Event speaker entity.
     /** @var \Drupal\node\Entity\Node $person */
     $values = [
       'type' => 'oe_person',
@@ -799,6 +800,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ]);
     $event_speaker->save();
 
+    // Add Event speakers for event node.
     $node->set('oe_event_speakers', [$event_speaker]);
     $node->save();
 
@@ -806,36 +808,49 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
     $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(1, $speakers_items);
+
+    // Make sure that adding of additional Event speakers
+    // is reflected on the full page.
     $node->set('oe_event_speakers', [$event_speaker, $event_speaker]);
     $node->save();
-
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
     $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(2, $speakers_items);
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
+    // Assert default image of speaker.
     $this->assertStringContainsString('oe_theme/images/user_icon.svg', $portrait->getAttribute('style'));
     $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs.ecl-u-type-uppercase', $speakers_items[0]);
+    // Assert event role of speaker.
     $this->assertEquals('event role 1', $meta->getText());
-    $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold.ecl-u-type-uppercase', $speakers_items[0]);
+    // Assert Person link.
+    $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold', $speakers_items[0]);
     $this->assertStringContainsString($person->toUrl()->toString(), $link->getAttribute('href'));
     $this->assertEquals($person->label(), $link->getText());
     $person_jobs = $this->assertSession()->elementExists('css', '.field-person-jobs.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs', $speakers_items[0]);
+    // Assert person jobs.
     $this->assertEquals('Advisor, Chief advisor', $person_jobs->getText());
 
+    // Assert that changes in Event role are applied.
     $event_speaker->set('oe_event_role', 'event role 2');
     $event_speaker->save();
+    $this->drupalGet($node->toUrl());
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs.ecl-u-type-uppercase', $speakers_items[0]);
+    $this->assertEquals('event role 2', $meta->getText());
+
+    // Assert that changes in person job are applied.
     $person_job_1->set('oe_role_reference', 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_COMMU');
     $person_job_1->save();
+    $this->drupalGet($node->toUrl());
+    $person_jobs = $this->assertSession()->elementExists('css', '.field-person-jobs.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs', $speakers_items[0]);
+    $this->assertEquals('Communication Adviser, Chief advisor', $person_jobs->getText());
+
+    // Assert that changes in person photo are applied.
     $portrait_media = $this->createMediaImage('person_portrait');
     $person->set('oe_person_photo', $portrait_media)->save();
     $this->drupalGet($node->toUrl());
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-s.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
     $this->assertStringContainsString('placeholder_person_portrait.png', $portrait->getAttribute('style'));
-    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs.ecl-u-type-uppercase', $speakers_items[0]);
-    $this->assertEquals('event role 2', $meta->getText());
-    $person_jobs = $this->assertSession()->elementExists('css', '.field-person-jobs.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs', $speakers_items[0]);
-    $this->assertEquals('Communication Adviser, Chief advisor', $person_jobs->getText());
   }
 
   /**

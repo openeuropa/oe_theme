@@ -1712,8 +1712,6 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
  */
 function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker(&$variables) {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
-  $node_view_builder = \Drupal::service('entity_type.manager')->getViewBuilder('node');
-
   foreach ($variables['items'] as $key => &$item) {
     $event_speaker = $item['content']['#oe_event_speaker'] ?? NULL;
     $item['event_speaker'] = $event_speaker;
@@ -1734,20 +1732,8 @@ function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker
     $cacheability->addCacheableDependency($person);
 
     // Set portrait image URL.
-    if (!$person->get('oe_person_photo')->isEmpty()) {
-
-      $renderable = $node_view_builder->viewField($person->get('oe_person_photo'), [
-        'type' => 'oe_theme_helper_media_thumbnail_url',
-        'settings' => [
-          'image_style' => 'oe_theme_medium_no_crop',
-        ],
-      ]);
-      $cacheability->addCacheableDependency(CacheableMetadata::createFromRenderArray($renderable));
-      $item['content']['portrait_image'] = $renderable[0];
-    }
-    else {
-      $item['content']['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
-    }
+    _oe_theme_helper_content_thumbnail_image($variables, $person, 'oe_person_photo', TRUE);
+    $item['content']['portrait_image'] = $variables['image'];
 
     // Set person jobs titles.
     $person_job_labels = [];

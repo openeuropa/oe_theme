@@ -1,3 +1,4 @@
+{% spaceless %}
 {#
 /**
  * @file
@@ -10,12 +11,12 @@
 <div class="ecl-row field-oe-event-speakers">
     {% for item in items %}
         <article class="ecl-u-d-flex ecl-u-pv-m ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-col-12 ecl-col-m-6 ecl-col-l-4">
-            <div role="img" class="ecl-u-flex-shrink-0 ecl-u-mr-s ecl-u-media-a-s ecl-u-media-bg-size-contain ecl-u-media-bg-repeat-none" style="background-image:url({{ item.content.portrait_image }})"></div>
+            <div role="img" class="ecl-u-flex-shrink-0 ecl-u-mr-s ecl-u-media-a-s ecl-u-media-bg-size-contain ecl-u-media-bg-repeat-none" style="background-image:url({{ item.content.portrait_image.src }})"></div>
             <div class="ecl-u-flex-grow-1">
                 {% if item.event_speaker.oe_event_role.value %}
                     <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs ecl-u-type-uppercase">{{ item.event_speaker.oe_event_role.value }}</div>
                 {% endif %}
-                <a href="{{ path('entity.node.canonical', {'node': item.event_speaker.oe_person.entity.id}) }}" class="ecl-link ecl-link--standalone ecl-u-type-bold ecl-u-type-uppercase">{{ item.event_speaker.label() }}</a>
+                <a href="{{ path('entity.node.canonical', {'node': item.event_speaker.oe_person.entity.id}) }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ item.event_speaker.label() }}</a>
                 {% if item.content.person_jobs %}
                     <div class="field-person-jobs ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">{{ item.content.person_jobs }}</div>
                 {% endif %}
@@ -23,3 +24,4 @@
         </article>
     {% endfor %}
 </div>
+{% endspaceless %}
