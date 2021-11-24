@@ -74,3 +74,16 @@ function oe_theme_content_event_post_update_00003(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Replace date fields separator.
+ */
+function oe_theme_content_event_post_update_30003(): void {
+  $view_display = EntityViewDisplay::load('node.oe_event.full');
+  foreach (['oe_event_dates', 'oe_event_online_dates'] as $field) {
+    $component = $view_display->getComponent($field);
+    $component['settings']['separator'] = '-';
+    $view_display->setComponent($field, $component);
+  }
+  $view_display->save();
+}

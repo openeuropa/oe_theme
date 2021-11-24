@@ -243,7 +243,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => "28 February 2020, 01:00\n to 9 March 2020, 01:00",
+          'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
         ],
       ],
     ];
@@ -253,7 +253,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
+          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -280,7 +280,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
         ], [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
+          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -356,7 +356,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $field_list_expected_values['items'][6] = [
       'label' => 'Online time',
-      'body' => "18 March 2020, 01:00 AEDT\n to 18 April 2020, 00:00 AEST",
+      'body' => "18 March 2020, 01:00 AEDT\n - 18 April 2020, 00:00 AEST",
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
@@ -587,7 +587,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $field_list_expected_values['items'][1] = [
       'label' => 'When',
-      'body' => "Friday 28 February 2020, 01:00\n to Monday 9 March 2020, 01:00",
+      'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
     ];
     unset($field_list_expected_values['items'][0]);
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
@@ -599,7 +599,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'text' => 'Financing',
         ], [
           'icon' => 'calendar',
-          'text' => "28 February 2020, 01:00\n to 9 March 2020, 01:00",
+          'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
         ], [
           'icon' => 'livestreaming',
           'text' => 'Live streaming available',
