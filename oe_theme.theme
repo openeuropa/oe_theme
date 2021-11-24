@@ -22,6 +22,7 @@ use Drupal\media\Plugin\media\Source\OEmbed;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
+use Drupal\node\NodeInterface;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -1710,39 +1711,52 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker(&$variables) {
-  if (empty($variables['items'])) {
-    return;
-  }
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
   $node_view_builder = \Drupal::service('entity_type.manager')->getViewBuilder('node');
-  foreach ($variables['items'] as &$item) {
+
+  foreach ($variables['items'] as $key => &$item) {
     $event_speaker = $item['content']['#oe_event_speaker'] ?? NULL;
     $item['event_speaker'] = $event_speaker;
-    if ($event_speaker instanceof ContentEntityInterface && !$event_speaker->get('oe_person')->isEmpty()) {
-      $cacheability->addCacheableDependency($event_speaker);
-      if (!$event_speaker->get('oe_person')->isEmpty()) {
-        $person = $event_speaker->get('oe_person')->entity;
-        $cacheability->addCacheableDependency($person);
-        if (!$person->get('oe_person_photo')->isEmpty()) {
-          $renderable = $node_view_builder->viewField($person->get('oe_person_photo'), [
-            'type' => 'oe_theme_helper_media_thumbnail_url',
-            'settings' => [
-              'image_style' => 'oe_theme_medium_no_crop',
-            ],
-          ]);
-          $item['content']['portrait_image'] = $renderable[0];
-        }
-        else {
-          $item['content']['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
-        }
-        $person_job_labels = [];
-        foreach ($person->get('oe_person_jobs')->referencedEntities() as $person_job) {
-          $cacheability->addCacheableDependency($person_job);
-          $person_job_labels[] = \Drupal::service('entity.repository')->getTranslationFromContext($person_job)->label();
-        }
-        $item['content']['person_jobs'] = implode(', ', $person_job_labels);
-      }
+
+    // Make sure that Event speaker entity is valid.
+    if (!$event_speaker instanceof ContentEntityInterface) {
+      unset($variables['items'][$key]);
+      continue;
     }
+    $cacheability->addCacheableDependency($event_speaker);
+
+    // Make sure that Person entity is present.
+    if ($event_speaker->get('oe_person')->isEmpty() || !$event_speaker->get('oe_person')->entity instanceof NodeInterface) {
+      unset($variables['items'][$key]);
+      continue;
+    }
+    $person = $event_speaker->get('oe_person')->entity;
+    $cacheability->addCacheableDependency($person);
+
+    // Set portrait image URL.
+    if (!$person->get('oe_person_photo')->isEmpty()) {
+
+      $renderable = $node_view_builder->viewField($person->get('oe_person_photo'), [
+        'type' => 'oe_theme_helper_media_thumbnail_url',
+        'settings' => [
+          'image_style' => 'oe_theme_medium_no_crop',
+        ],
+      ]);
+      $cacheability->addCacheableDependency(CacheableMetadata::createFromRenderArray($renderable));
+      $item['content']['portrait_image'] = $renderable[0];
+    }
+    else {
+      $item['content']['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    }
+
+    // Set person jobs titles.
+    $person_job_labels = [];
+    foreach ($person->get('oe_person_jobs')->referencedEntities() as $person_job) {
+      $cacheability->addCacheableDependency($person_job);
+      $person_job_labels[] = \Drupal::service('entity.repository')->getTranslationFromContext($person_job)->label();
+    }
+    $item['content']['person_jobs'] = implode(', ', $person_job_labels);
   }
+
   $cacheability->applyTo($variables);
 }
