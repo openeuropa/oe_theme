@@ -259,7 +259,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
+    ]);
+    // Add 'Who should attend' field value.
+    $node->set('oe_event_who_should_attend', 'Types of audiences that this event targets');
+    $node->save();
+
     $this->drupalGet($node->toUrl());
 
     $icons_text_expected_values = [
@@ -280,6 +284,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         [
           'label' => 'When',
           'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+        ], [
+          'label' => 'Who should attend',
+          'body' => 'Types of audiences that this event targets',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -307,6 +314,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         ], [
           'label' => 'When',
           'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+        ], [
+          'label' => 'Who should attend',
+          'body' => 'Types of audiences that this event targets',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -337,7 +347,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][3] = [
+    $field_list_expected_values['items'][4] = [
       'label' => 'Organiser',
       'body' => 'Associated African States and Madagascar',
     ];
@@ -348,7 +358,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_organiser_name', 'External organiser')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][3] = [
+    $field_list_expected_values['items'][4] = [
       'label' => 'Organiser',
       'body' => 'External organiser',
     ];
@@ -372,15 +382,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][4] = [
+    $field_list_expected_values['items'][5] = [
       'label' => 'Live stream',
       'body' => 'Facebook',
     ];
-    $field_list_expected_values['items'][5] = [
+    $field_list_expected_values['items'][6] = [
       'label' => 'Online link',
       'body' => 'Link to online event',
     ];
-    $field_list_expected_values['items'][6] = [
+    $field_list_expected_values['items'][7] = [
       'label' => 'Online time',
       'body' => "18 March 2020, 01:00 AEDT\n - 18 April 2020, 00:00 AEST",
     ];
@@ -396,7 +406,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_online_type', 'livestream')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][4] = [
+    $field_list_expected_values['items'][5] = [
       'label' => 'Live stream',
       'body' => 'Livestream',
     ];
@@ -409,7 +419,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][7] = [
+    $field_list_expected_values['items'][8] = [
       'label' => 'Website',
       'body' => 'Event website',
     ];
@@ -419,7 +429,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][8] = [
+    $field_list_expected_values['items'][9] = [
       'label' => 'Number of seats',
       'body' => 'event registration capacity',
     ];
@@ -429,7 +439,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_entrance_fee', 'entrance fee')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][9] = [
+    $field_list_expected_values['items'][10] = [
       'label' => 'Entrance fee',
       'body' => 'entrance fee',
     ];
