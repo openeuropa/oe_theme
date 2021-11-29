@@ -74,6 +74,19 @@ file_teaser:
       label: "Translation toggle label"
       description: "Toggle label used for collapsing or expanding the available translations."
       preview: "Other languages"
+    lists:
+      type: "array"
+      label: "Lists"
+      description: "Array of description lists (list items)."
+      preview:
+        - term: "Keywords"
+          definition:
+            - label: 'Apple'
+            - label: 'Orange'
+        - term: "Countries"
+          definition:
+            - label: 'Hungary'
+            - label: 'Germany'
     more_info:
       type: "text"
       label: "More information"
