@@ -466,8 +466,8 @@ msgstr "Päättynyt"
 msgid "Upcoming and open"
 msgstr "Tulossa tai meneillään"
 
-msgid "This page is not available in @language_name."
-msgstr "Tämä sivu ei ole saatavilla kielellä: @language_name."
+msgid "This page is not available in English."
+msgstr "Tätä sivua ei ole saatavilla suomen kielellä."
 
 msgid "Choose another language"
 msgstr "Valitse toinen kieli"

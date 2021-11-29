@@ -466,8 +466,8 @@ msgstr "Toimunud"
 msgid "Upcoming and open"
 msgstr "Eelseisvad ja käimasolevad"
 
-msgid "This page is not available in @language_name."
-msgstr "See lehekülg ei ole kättesaadav @language_name keeles."
+msgid "This page is not available in English."
+msgstr "See lehekülg ei ole eesti keeles kättesaadav."
 
 msgid "Choose another language"
 msgstr "Valige mõni teine keel"

@@ -147,7 +147,7 @@ class DetailsExtraField extends EventExtraFieldBase {
       'type' => 'daterange_default',
       'settings' => [
         'format_type' => 'oe_event_date_hour',
-        'separator' => $this->t('to'),
+        'separator' => '-',
       ],
     ]);
   }

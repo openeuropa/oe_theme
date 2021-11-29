@@ -34,6 +34,14 @@
   {% set _detail_meta = _detail_meta|merge([publication_date]) %}
 {% endif %}
 
+{% set _lists = [] %}
+{% if lists is not empty %}
+  {% set _lists = _lists|merge([{
+    'items': lists,
+    'variant': 'taxonomy'
+  }]) %}
+{% endif %}
+
 {% set _meta = '(' ~ file.extension|upper  ~ ')' %}
 {% if file.size %}
   {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
@@ -79,5 +87,6 @@
   },
   'detail_meta': _detail_meta,
   'variant': 'thumbnail',
+  'lists': _lists,
   'label': _label,
 } only %}
