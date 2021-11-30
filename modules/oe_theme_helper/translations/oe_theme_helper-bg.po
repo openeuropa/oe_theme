@@ -466,8 +466,8 @@ msgstr "Минали"
 msgid "Upcoming and open"
 msgstr "Предстоящи и текущи"
 
-msgid "This page is not available in @language_name."
-msgstr "Тази страница не е достъпна на @language_name."
+msgid "This page is not available in English."
+msgstr "Тази страница не е достъпна на български."
 
 msgid "Choose another language"
 msgstr "Изберете друг език"

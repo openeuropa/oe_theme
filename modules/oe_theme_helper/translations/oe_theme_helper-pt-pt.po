@@ -466,8 +466,8 @@ msgstr "Prévios"
 msgid "Upcoming and open"
 msgstr "Proximamente e abertos"
 
-msgid "This page is not available in @language_name."
-msgstr "Esta página não está disponível em @language_name."
+msgid "This page is not available in English."
+msgstr "Esta página não está disponível em português."
 
 msgid "Choose another language"
 msgstr "Escolha outra língua"

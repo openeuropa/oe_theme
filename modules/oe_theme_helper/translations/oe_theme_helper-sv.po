@@ -466,8 +466,8 @@ msgstr "Tidigare"
 msgid "Upcoming and open"
 msgstr "Kommande och öppna"
 
-msgid "This page is not available in @language_name."
-msgstr "Den här sidan finns inte på @language_name."
+msgid "This page is not available in English."
+msgstr "Den här sidan finns inte på svenska."
 
 msgid "Choose another language"
 msgstr "Välj ett annat språk"
