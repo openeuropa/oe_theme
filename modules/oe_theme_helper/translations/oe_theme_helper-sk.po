@@ -466,8 +466,8 @@ msgstr "Uskutočnené"
 msgid "Upcoming and open"
 msgstr "Pripravované a otvorené"
 
-msgid "This page is not available in @language_name."
-msgstr "Táto stránka nie je dostupná v @language_name."
+msgid "This page is not available in English."
+msgstr "Táto stránka nie je dostupná v slovenčine."
 
 msgid "Choose another language"
 msgstr "Vyberte iný jazyk"

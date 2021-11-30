@@ -77,6 +77,19 @@ function oe_theme_content_event_post_update_00003(): void {
 }
 
 /**
+ * Replace date fields separator.
+ */
+function oe_theme_content_event_post_update_30003(): void {
+  $view_display = EntityViewDisplay::load('node.oe_event.full');
+  foreach (['oe_event_dates', 'oe_event_online_dates'] as $field) {
+    $component = $view_display->getComponent($field);
+    $component['settings']['separator'] = '-';
+    $view_display->setComponent($field, $component);
+  }
+  $view_display->save();
+}
+
+/**
  * Update the 'full' entity view display on the event CT.
  */
 function oe_theme_content_event_post_update_30001() {
