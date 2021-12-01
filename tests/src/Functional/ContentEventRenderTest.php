@@ -532,7 +532,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $event_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts');
-    $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mt-m-3xl.ecl-u-mb-l', $event_contacts_content);
+    $event_contacts_header = $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mt-m-3xl.ecl-u-mb-l', $event_contacts_content);
     $this->assertEquals('Contacts', $event_contacts_header->getText());
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
@@ -658,7 +658,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    *   Expected title.
    */
   protected function assertContactHeader(NodeElement $rendered_element, string $title): void {
-    $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l', $rendered_element);
+    $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l', $rendered_element);
     $this->assertEquals($title, $rendered_header->getText());
   }
 
