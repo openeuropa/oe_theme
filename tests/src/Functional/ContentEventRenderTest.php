@@ -178,7 +178,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->freezeTime($static_time);
     $start_date = (clone $static_time)->modify('+ 10 days');
 
-    // Create a Event node with required fields only.
+    // Create an Event node with required fields only.
     $node = $this->getStorage('node')->create([
       'type' => 'oe_event',
       'title' => 'Test event node',
@@ -341,6 +341,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values['items'][2]['text'] = 'Mexico';
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
+    // Assert "Online only" field replaces the "Venue".
+    $node->set('oe_event_online_only', TRUE)->save();
+    $this->drupalGet($node->toUrl());
+    $field_list_expected_values['items'][0]['body'] = 'Online only';
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
+
+    $icons_text_expected_values['items'][2]['text'] = 'Online only';
+    $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
     // Assert "Internal organiser" field.
     $node->set('oe_event_organiser_is_internal', TRUE);
     $node->set('oe_event_organiser_internal', 'http://publications.europa.eu/resource/authority/corporate-body/AASM');
@@ -453,14 +462,26 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $registration_content = $this->assertSession()->elementExists('css', '#event-registration-block');
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
 
-    // Report isn't shown when event isn't completed yet.
+    // Report or media content are shown when event is still ongoing.
     $node->set('oe_event_report_summary', 'Event report summary');
     $node->set('oe_event_report_text', 'Event report text');
+    $node->set('oe_event_media', [
+      $this->createMediaImage('first_image')->id(),
+      $this->createMediaImage('second_image')->id(),
+    ])->save();
+    $node->set('oe_event_media_more_link', [
+      'uri' => 'http://www.example.com',
+      'title' => 'Main link for media items',
+    ]);
+    $node->set('oe_event_media_more_description', 'More media links');
     $node->save();
     $this->drupalGet($node->toUrl());
 
     $this->assertSession()->pageTextNotContains('Event report summary');
     $this->assertSession()->pageTextNotContains('Event report text');
+    $this->assertSession()->elementNotExists('css', 'section.ecl-gallery');
+    $this->assertSession()->linkNotExistsExact('Main link for media items');
+    $this->assertSession()->pageTextNotContains('More media links');
 
     // Assert "Full text", "Featured media", "Featured media legend" fields
     // (these fields have to be filled all together).
@@ -470,7 +491,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_featured_media', [$media_image])->save();
     $this->drupalGet($node->toUrl());
 
-    $description_content = $this->assertSession()->elementExists('css', 'article div div:nth-of-type(3)');
+    $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-child(3)');
     $text_featured = new TextFeaturedMediaAssert();
     $text_featured_expected_values = [
       'title' => 'Description',
@@ -553,6 +574,22 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $text_featured_expected_values['text'] = 'Event report text';
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
+    // Assert media gallery rendering.
+    $this->assertSession()->elementTextContains('css', 'div#event-media h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mb-l', 'Media');
+    $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
+    $items = $gallery->findAll('css', 'li.ecl-gallery__item');
+    $this->assertCount(2, $items);
+    $first_item = $items[0]->find('css', 'img');
+    $this->assertEquals('Alternative text first_image', $first_item->getAttribute('alt'));
+    $this->assertStringContainsString('placeholder_first_image.png', $first_item->getAttribute('src'));
+    $caption = $items[0]->find('css', '.ecl-gallery__description');
+    $this->assertStringContainsString('Test image first_image', $caption->getOuterHtml());
+    $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
+    // Assert media links.
+    $this->assertSession()->linkExistsExact('Main link for media items');
+    $this->assertSession()->pageTextContainsOnce('More media links');
+
+    // Assert that summary and description fields are not displayed anymore.
     $this->assertSession()->pageTextNotContains('Event description summary');
     $this->assertSession()->pageTextNotContains('Event full text');
     $this->assertSession()->pageTextNotContains('<h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-m-3xl ecl-u-mb-l">Description</h2>');
@@ -617,6 +654,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $contact_entity_general->setUnpublished()->save();
     $contact_entity_press->setUnpublished()->save();
     $venue_entity->setUnpublished()->save();
+    $node->set('oe_event_online_only', FALSE)->save();
 
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementNotExists('css', '#event-contacts');

@@ -215,6 +215,25 @@ class EventRenderTest extends ContentRenderTestBase {
     ]);
     $assert->assertPattern($expected_values, $html);
 
+    // Mark event as online only assert location is replaced.
+    $node->set('oe_event_online_only', TRUE)->save();
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
+      'items' => [
+        [
+          'icon' => 'location',
+          'text' => 'Online only',
+        ],
+        [
+          'icon' => 'livestreaming',
+          'text' => t('Live streaming available'),
+        ],
+      ],
+    ]);
+    $assert->assertPattern($expected_values, $html);
+
     // Move the current date so the event is ongoing and rebuild the teaser.
     $static_time = new DrupalDateTime('2022-01-03 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $time->setTime($static_time->getTimestamp());
@@ -242,6 +261,9 @@ class EventRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = 'Competitions and award ceremonies | Cancelled';
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_cancelled', $html);
+
+    // Unmark event online only.
+    $node->set('oe_event_online_only', FALSE)->save();
 
     // Assert bulgarian translation.
     $config_factory = \Drupal::configFactory();
