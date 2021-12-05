@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme for the status message extra field on event content type.
+ */
+#}
+{% if title %}
+  {% include '@ecl-twig/message' with {
+    'title': title,
+    'description': description|default(''),
+    'variant': variant,
+    'icon': {
+      'path': ecl_icon_path,
+      'name': icon,
+      'size': 'l',
+    },
+    'close': {
+      'label': 'Close'|t,
+      'icon' : {
+        'path': ecl_icon_path,
+        'name': 'close',
+        'size': 's',
+      }
+    },
+    'extra_classes': 'ecl-u-mb-2xl',
+  } only %}
+{% endif %}
