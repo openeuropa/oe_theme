@@ -47,7 +47,8 @@ class MediaExtraField extends DateAwareExtraFieldBase {
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
     if (!$event->isOver($this->requestDateTime)) {
-      return [];
+      $this->isEmpty = TRUE;
+      return $build;
     }
     if (!$entity->get('oe_event_media')->isEmpty()) {
       $build['#items']['media_gallery'] = $view_builder->viewField($entity->get('oe_event_media'), [
@@ -67,7 +68,8 @@ class MediaExtraField extends DateAwareExtraFieldBase {
       ]);
     }
     if (count($build['#items']) < 1) {
-      return [];
+      $this->isEmpty = TRUE;
+      return $build;
     }
 
     return $build;

@@ -98,12 +98,14 @@ class LocationExtraField extends EventExtraFieldBase {
       $venue = $this->entityRepository->getTranslationFromContext($venue);
       $access = $venue->access('view', NULL, TRUE);
       if (!$access->isAllowed()) {
-        return [];
+        $this->isEmpty = TRUE;
+        return $build;
       }
       $build['#location'] = $this->entityTypeManager->getViewBuilder('oe_venue')->view($venue);
       return $build;
     }
-    return [];
+    $this->isEmpty = TRUE;
+    return $build;
   }
 
 }
