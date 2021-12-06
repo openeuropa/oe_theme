@@ -1,11 +1,28 @@
 # Changelog
 
-## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta6) (2021-11-08)
+## [3.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta7) (2021-12-06)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta6...3.0.0-beta7)
+
+**Merged pull requests:**
+
+- EWPP-1606: Printing the CTA in the site header. [\#966](https://github.com/openeuropa/oe_theme/pull/966) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-685: Image caption and copyright not showing. [\#967](https://github.com/openeuropa/oe_theme/pull/967) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1725: Replace date separator. [\#986](https://github.com/openeuropa/oe_theme/pull/986) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1744: Change translation of page level language switcher. [\#985](https://github.com/openeuropa/oe_theme/pull/985) ([nagyad](https://github.com/nagyad))
+- EWPP-1587: Organiser string translated in Norwegian is not displayed correctly. [\#971](https://github.com/openeuropa/oe_theme/pull/971) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1630: Add lists property to file-teaser. [\#974](https://github.com/openeuropa/oe_theme/pull/974) ([nagyad](https://github.com/nagyad ))
+- EWPP-1597: Passing icon info to the list item block button link. [\#970](https://github.com/openeuropa/oe_theme/pull/970) ([upchuk](https://github.com/upchuk ))
+- EWPP-1557: Translate "@date in" to Arabic and Turkish languages. [\#958](https://github.com/openeuropa/oe_theme/pull/958) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1050: Show Turkey address correctly. [\#972](https://github.com/openeuropa/oe_theme/pull/972) ([yenyasinn](https://github.com/yenyasinn))
+
+## [3.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta6) (2021-11-08)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta5...3.0.0-beta6)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta6. [\#979](https://github.com/openeuropa/oe_theme/pull/979) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - OEL-60: Drupal 9 Compatibility fixes. [\#880](https://github.com/openeuropa/oe_theme/pull/880) ([escuriola](https://github.com/escuriola))
 
 ## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta5) (2021-10-29)
