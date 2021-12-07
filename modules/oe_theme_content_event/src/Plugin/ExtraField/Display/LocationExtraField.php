@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -97,6 +98,7 @@ class LocationExtraField extends EventExtraFieldBase {
       $venue = $entity->get('oe_event_venue')->entity;
       $venue = $this->entityRepository->getTranslationFromContext($venue);
       $access = $venue->access('view', NULL, TRUE);
+      CacheableMetadata::createFromObject($access)->applyTo($build);
       if (!$access->isAllowed()) {
         $this->isEmpty = TRUE;
         return $build;
