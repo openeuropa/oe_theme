@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme for the livestream extra field on event content type.
+ */
+#}
+<div>{{ date }}</div>
+
+{% include '@ecl-twig/link' with {
+  link: {
+    type: 'standalone',
+    label: label,
+    path:  url,
+    icon_position: 'after'
+  },
+  icon: {
+    name: 'livestreaming',
+    size: 's',
+    path: ecl_icon_path
+  }
+} %}

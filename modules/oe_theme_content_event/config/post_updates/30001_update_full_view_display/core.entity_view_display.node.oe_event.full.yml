@@ -41,6 +41,7 @@ dependencies:
     - node.type.oe_event
   module:
     - datetime_range
+    - entity_reference_revisions
     - field_group
     - link
     - oe_theme_helper
@@ -53,12 +54,10 @@ third_party_settings:
       children:
         - extra_field_oe_theme_content_event_location
         - oe_event_dates
+        - extra_field_oe_theme_content_event_livestream
         - oe_event_who_should_attend
         - oe_event_languages
         - extra_field_oe_theme_content_event_organiser
-        - oe_event_online_type
-        - oe_event_online_link
-        - oe_event_online_dates
         - oe_event_website
         - oe_event_registration_capacity
         - oe_event_entrance_fee
@@ -73,6 +72,7 @@ third_party_settings:
       region: content
     group_top:
       children:
+        - extra_field_oe_theme_content_event_online_description
         - extra_field_oe_theme_content_event_summary
         - extra_field_oe_theme_content_event_registration_button
         - extra_field_oe_theme_content_event_details
@@ -127,20 +127,30 @@ content:
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_details:
-    weight: 4
+    weight: 6
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_location:
     weight: 0
     region: content
-    settings: {  }
-    third_party_settings: {  }
+    settings: { }
+    third_party_settings: { }
   extra_field_oe_theme_content_event_media:
     weight: 5
     region: content
-    settings: {  }
-    third_party_settings: {  }
+    settings: { }
+    third_party_settings: { }
+  extra_field_oe_theme_content_event_livestream:
+    weight: 2
+    region: content
+    settings: { }
+    third_party_settings: { }
+  extra_field_oe_theme_content_event_online_description:
+    weight: 2
+    region: content
+    settings: { }
+    third_party_settings: { }
   extra_field_oe_theme_content_event_organiser:
     weight: 3
     region: content
@@ -152,12 +162,12 @@ content:
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_registration_button:
-    weight: 3
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_summary:
-    weight: 1
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -187,37 +197,8 @@ content:
     settings:
       link: false
     third_party_settings: {  }
-  oe_event_online_dates:
-    type: daterange_default
-    weight: 6
-    region: content
-    label: above
-    settings:
-      timezone_override: ''
-      format_type: oe_event_date_hour_timezone
-      separator: '-'
-    third_party_settings: {  }
-  oe_event_online_link:
-    type: link
-    weight: 5
-    region: content
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-  oe_event_online_type:
-    type: list_default
-    weight: 4
-    region: content
-    label: above
-    settings: {  }
-    third_party_settings: {  }
   oe_event_registration_capacity:
-    weight: 8
+    weight: 6
     label: above
     settings:
       link_to_entity: false
@@ -225,7 +206,7 @@ content:
     type: string
     region: content
   oe_event_website:
-    weight: 7
+    weight: 5
     label: above
     settings:
       trim_length: 80
@@ -278,8 +259,11 @@ hidden:
   oe_event_media: true
   oe_event_media_more_description: true
   oe_event_media_more_link: true
+  oe_event_online_dates: true
   oe_event_online_description: true
   oe_event_online_only: true
+  oe_event_online_link: true
+  oe_event_online_type: true
   oe_event_organiser_internal: true
   oe_event_organiser_is_internal: true
   oe_event_organiser_name: true

@@ -381,9 +381,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'uri' => 'http://www.example.com/online_link',
       'title' => 'Link to online event',
     ]);
-    // The "Online description" field is not currently displayed.
-    // @todo Assert its visibility as soon as the issue below will be fixed.
-    // @see https://citnet.tech.ec.europa.eu/CITnet/jira/browse/EWPP-1063
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
       'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -391,17 +388,29 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][5] = [
-      'label' => 'Live stream',
-      'body' => 'Facebook',
-    ];
-    $field_list_expected_values['items'][6] = [
-      'label' => 'Online link',
-      'body' => 'Link to online event',
-    ];
-    $field_list_expected_values['items'][7] = [
-      'label' => 'Online time',
-      'body' => "18 March 2020, 01:00 AEDT\n - 18 April 2020, 00:00 AEST",
+    $this->assertSession()->pageTextNotContains('Online event description');
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Where',
+          'body' => "event_venue\n  Mexico",
+        ], [
+          'label' => 'When',
+          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+        ], [
+          'label' => 'Livestream',
+          'body' => 'Starts on Wednesday 18 March 2020, 01:00Link to online event',
+        ], [
+          'label' => 'Who should attend',
+          'body' => 'Types of audiences that this event targets',
+        ], [
+          'label' => 'Languages',
+          'body' => 'Estonian, French',
+        ], [
+          'label' => 'Organiser',
+          'body' => 'External organiser',
+        ],
+      ],
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
@@ -415,12 +424,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_online_type', 'livestream')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][5] = [
-      'label' => 'Live stream',
-      'body' => 'Livestream',
-    ];
-    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
-
     // Assert "Event website" field.
     $node->set('oe_event_website', [
       'uri' => 'http://www.example.com/event',
@@ -428,7 +431,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][8] = [
+    $field_list_expected_values['items'][6] = [
       'label' => 'Website',
       'body' => 'Event website',
     ];
@@ -438,7 +441,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][9] = [
+    $field_list_expected_values['items'][7] = [
       'label' => 'Number of seats',
       'body' => 'event registration capacity',
     ];
@@ -448,7 +451,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_entrance_fee', 'entrance fee')->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][10] = [
+    $field_list_expected_values['items'][8] = [
       'label' => 'Entrance fee',
       'body' => 'entrance fee',
     ];
@@ -568,7 +571,16 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
-    $description_summary = $this->assertSession()->elementExists('css', '.ecl', $details_content);
+    // It is time when livestream is active.
+    $online_heading = $this->assertSession()->elementExists('css', 'h3', $details_content);
+    $this->assertEquals('Livestream', $online_heading->getText());
+    $online_description = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(1) > .ecl', $details_content);
+    $this->assertEquals('Online event description', $online_description->getText());
+    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-u-mt-l.ecl-u-mb-l.ecl-link.ecl-link--cta.ecl-u-d-inline-block', $details_content);
+    $this->assertEquals('Link to online event', $online_button->getText());
+    $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
+
+    $description_summary = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(2) .ecl', $details_content);
     $this->assertEquals('Event report summary', $description_summary->getText());
 
     $text_featured_expected_values['title'] = 'Report';
@@ -660,11 +672,33 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementNotExists('css', '#event-contacts');
 
-    $field_list_expected_values['items'][1] = [
-      'label' => 'When',
-      'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+    // Livestream row is absent since livestream is active.
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'When',
+          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+        ], [
+          'label' => 'Who should attend',
+          'body' => 'Types of audiences that this event targets',
+        ], [
+          'label' => 'Languages',
+          'body' => 'Estonian, French',
+        ], [
+          'label' => 'Organiser',
+          'body' => 'External organiser',
+        ], [
+          'label' => 'Website',
+          'body' => 'Event website',
+        ], [
+          'label' => 'Number of seats',
+          'body' => 'event registration capacity',
+        ], [
+          'label' => 'Entrance fee',
+          'body' => 'entrance fee',
+        ],
+      ],
     ];
-    unset($field_list_expected_values['items'][0]);
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values = [
