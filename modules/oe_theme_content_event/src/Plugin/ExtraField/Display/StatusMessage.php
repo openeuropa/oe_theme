@@ -35,7 +35,7 @@ class StatusMessage extends DateAwareExtraFieldBase {
   protected $dateFormatter;
 
   /**
-   * ProgrammeExtraField constructor.
+   * StatusMessage extra field constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -98,25 +98,23 @@ class StatusMessage extends DateAwareExtraFieldBase {
       $this->applyHourTag($build, $event->getEndDate());
     }
 
-    // If we have a link for livestream the livestream messages have priority
+    // If we have an online type set the livestream messages have priority
     // over the event status ones.
-    if (!$entity->get('oe_event_online_link')->isEmpty()) {
+    if ($event->hasOnlineType()) {
       // Use the 'warning' variant with the 'livestream' icon.
       $build['#variant'] = 'warning';
       $build['#icon'] = 'livestreaming';
 
       // The livestream is over, but the event is still ongoing.
-      if ($event->isOnlineOver($this->requestDateTime) && $this->requestDateTime >= $event->getStartDate()->getPhpDateTime()) {
+      if ($event->isOnlinePeriodOver($this->requestDateTime) && $event->isOngoing($this->requestDateTime)) {
         // Cache it by the event end date and add the timezone cache contexts.
         $build['#title'] = $this->t('The livestream has ended, but the event is ongoing.');
         $this->applyHourTag($build, $event->getEndDate());
-        $cacheable->addCacheContexts(['timezone']);
-        $cacheable->applyTo($build);
         return $build;
       }
 
       // The event is ongoing but the livestream is yet to start.
-      if ($this->requestDateTime >= $event->getStartDate()->getPhpDateTime() && $this->requestDateTime < $event->getOnlineStartDate()->getPhpDateTime()) {
+      if ($event->isOngoing($this->requestDateTime) && $event->isOnlinePeriodYetToCome($this->requestDateTime)) {
         // Cache it by the event end date and its livestream start date.
         $this->applyHourTag($build, $event->getEndDate());
         $this->applyHourTag($build, $event->getOnlineStartDate());
@@ -126,7 +124,7 @@ class StatusMessage extends DateAwareExtraFieldBase {
       }
 
       // If the livestream is ongoing, cache it by its end date.
-      if ($this->requestDateTime >= $event->getOnlineStartDate()->getPhpDateTime()) {
+      if ($event->isOnlinePeriodActive($this->requestDateTime)) {
         $this->applyHourTag($build, $event->getOnlineEndDate());
 
         // The event is over, apply timezone cache contexts.
@@ -145,7 +143,7 @@ class StatusMessage extends DateAwareExtraFieldBase {
         }
 
         // If event is ongoing, cache it by its end date.
-        if ($this->requestDateTime >= $event->getStartDate()->getPhpDateTime()) {
+        if ($event->isOngoing($this->requestDateTime)) {
           $build['#title'] = $this->t('This event has started. You can also watch it via livestream.');
           $this->applyHourTag($build, $event->getEndDate());
           return $build;
@@ -166,7 +164,7 @@ class StatusMessage extends DateAwareExtraFieldBase {
         return $build;
       }
       // If event is ongoing, cache it by its end date.
-      if (($this->requestDateTime >= $event->getStartDate()->getPhpDateTime())) {
+      if ($event->isOngoing($this->requestDateTime)) {
         $build['#title'] = $this->t('This event has started.');
         $this->applyHourTag($build, $event->getEndDate());
         return $build;
