@@ -8,11 +8,11 @@
 #}
 {% if general is not empty or press is not empty %}
   <div id="event-contacts">
-    <h2 class="ecl-u-type-heading-2 ecl-u-type-color-black ecl-u-mt-2xl ecl-u-mt-m-3xl ecl-u-mb-l">{{ 'Contacts'|t }}</h2>
+    <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mt-m-3xl ecl-u-mb-l">{{ 'Contacts'|t }}</h2>
     <div class="ecl-row">
       {% if general is not empty %}
         <div id="event-contacts-general" class="ecl-col-12 ecl-col-m-6">
-          <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'General contact'|t }}</h3>
+          <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'General contact'|t }}</h3>
           {% for contact in general %}
             <div{{ not loop.last ? ' class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom ecl-u-border-color-grey-20"'}}>
               {{ contact }}
@@ -22,7 +22,7 @@
       {% endif %}
       {% if press is not empty %}
         <div id="event-contacts-press" class="ecl-col-12 ecl-col-m-6{{ general is not empty ? ' ecl-u-mt-l ecl-u-mt-m-none'}}">
-          <h3 class="ecl-u-type-heading-3 ecl-u-type-color-black ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'Press contact'|t }}</h3>
+          <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'Press contact'|t }}</h3>
           {% for contact in press %}
             <div{{ not loop.last ? ' class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom ecl-u-border-color-grey-20"'}}>
               {{ contact }}
