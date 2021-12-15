@@ -588,7 +588,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $text_featured_expected_values['title'] = 'Report';
     $text_featured_expected_values['text'] = 'Event report text';
-    $description_content = $this->assertSession()->elementExists('css', 'article div div:nth-of-type(4)');
+    $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-of-type(4)');
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
     // Assert media gallery rendering.
@@ -990,30 +990,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // livestream messages.
     $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content p.ecl-message__description', 'Event status message.');
 
-    // Empty the online field group.
-    $node->set('oe_event_online_dates', [
-      'value' => NULL,
-      'end_value' => NULL,
-    ]);
-    $node->set('oe_event_online_type', '');
-    $node->set('oe_event_online_link', ['uri' => '', 'title' => '']);
-    $node->set('oe_event_online_description', '')->save();
-    $this->drupalGet($node->toUrl());
-    // Assert the message updated.
-    $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-message--warning.ecl-u-mb-2xl');
-    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-message.ecl-message--info.ecl-u-mb-2xl');
-    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-    // Assert that the 'Status description' field is not rendered for the
-    // 'As planned' messages.
-    $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content p.ecl-message__description', 'Event status message.');
-
-    // Set current time after the event ends.
-    $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
-    $this->freezeTime($static_time);
-    $this->cronRun();
-    $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-
     // Update the event status and assert the message updates correctly and the
     // 'Status description' field is displayed.
     $node->set('oe_event_status', 'postponed')->save();
@@ -1031,6 +1007,31 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertStringContainsString('This event has been rescheduled.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
     $this->assertSession()->elementTextContains('css', 'div.ecl-message__content p.ecl-message__description', 'Event status message.');
 
+    // Empty the online field group.
+    $node->set('oe_event_online_dates', [
+      'value' => NULL,
+      'end_value' => NULL,
+    ]);
+    $node->set('oe_event_online_type', '');
+    $node->set('oe_event_online_link', ['uri' => '', 'title' => '']);
+    $node->set('oe_event_online_description', '')->save();
+    // Update event status to "As planned".
+    $node->set('oe_event_status', 'as_planned')->save();
+    $this->drupalGet($node->toUrl());
+    // Assert the message updated.
+    $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-message--warning.ecl-u-mb-2xl');
+    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-message.ecl-message--info.ecl-u-mb-2xl');
+    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    // Assert that the 'Status description' field is not rendered for the
+    // 'As planned' messages.
+    $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content p.ecl-message__description', 'Event status message.');
+
+    // Set current time after the event ends.
+    $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
   }
 
   /**

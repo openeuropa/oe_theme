@@ -98,10 +98,25 @@ class StatusMessage extends DateAwareExtraFieldBase {
       $this->applyHourTag($build, $event->getEndDate());
     }
 
-    // If we have an online type set the livestream messages have priority
-    // over the event status ones.
+    // Display message based on current event status.
+    if (!$event->isAsPlanned()) {
+      $build['#variant'] = 'warning';
+      $build['#icon'] = 'warning';
+      $status = $entity->get('oe_event_status')->value;
+      $build['#title'] = $this->t('This event has been @status.', ['@status' => $status]);
+      // Add the 'Status description' field value if available.
+      if (!$entity->get('oe_event_status_description')->isEmpty()) {
+        $build['#description'] = $entity->get('oe_event_status_description')->value;
+      }
+      // Add timezone cache contexts.
+      $cacheable->addCacheContexts(['timezone']);
+      $cacheable->applyTo($build);
+      return $build;
+    }
+
+    // If we have an online type set, the livestream messages have priority
+    // over the "As planned" event messages.
     if ($event->hasOnlineType()) {
-      // Use the 'warning' variant with the 'livestream' icon.
       $build['#variant'] = 'warning';
       $build['#icon'] = 'livestreaming';
 
@@ -151,8 +166,8 @@ class StatusMessage extends DateAwareExtraFieldBase {
       }
     }
 
-    // If the event status is 'As planned', we'll use the 'info' variant and
-    // add the title based on the event state (ongoing or past).
+    // If the event status is 'As planned', we'll add the title based on the
+    // event state (ongoing or past).
     if ($event->isAsPlanned()) {
       $build['#variant'] = 'info';
       $build['#icon'] = 'information';
@@ -170,27 +185,6 @@ class StatusMessage extends DateAwareExtraFieldBase {
         return $build;
       }
     }
-
-    // If we reached this point, then the message will use the 'warning' variant
-    // and the title will reflect the event status.
-    $build['#variant'] = 'warning';
-    $build['#icon'] = 'warning';
-    if ($event->isPostponed()) {
-      $build['#title'] = $this->t('This event has been postponed.');
-    }
-    if ($event->isCancelled()) {
-      $build['#title'] = $this->t('This event has been cancelled.');
-    }
-    if ($event->isRescheduled()) {
-      $build['#title'] = $this->t('This event has been rescheduled.');
-    }
-
-    // Add the 'Status description' field value if available.
-    if (!$entity->get('oe_event_status_description')->isEmpty()) {
-      $build['#description'] = $entity->get('oe_event_status_description')->value;
-    }
-    $cacheable->addCacheContexts(['timezone']);
-    $cacheable->applyTo($build);
 
     // If we don't have a title set, we do not display any status message.
     if (!isset($build['#title'])) {
