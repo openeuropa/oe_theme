@@ -9,11 +9,15 @@ declare(strict_types = 1);
 
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
+use Drupal\media\Plugin\media\Source\OEmbed;
+use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
+use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 
 /**
@@ -73,6 +77,8 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'oe_theme_helper_featured_media' => [
       'variables' => [
         'params' => [],
+        'entity' => NULL,
+        'field_name' => NULL,
       ],
     ],
     'oe_theme_helper_social_media_icons_list' => [
@@ -141,6 +147,105 @@ function template_preprocess_oe_theme_helper_in_page_navigation(array &$variable
   foreach ($variables['items'] as $key => $item) {
     $variables['items'][$key]['id'] = strtolower(Html::cleanCssIdentifier($variables['items'][$key]['label']));
   }
+}
+
+/**
+ * Prepares variables for featured media template.
+ *
+ * Default template: oe-theme-helper-featured-media.html.twig.
+ *
+ * @param array $variables
+ *   An array of variables.
+ */
+function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
+  $field = $variables['field_name'];
+  $params = ['description' => $variables['entity']->get($field)->caption];
+  $media = $variables['entity']->get($field)->entity;
+
+  if (!$media instanceof MediaInterface) {
+    return $variables;
+  }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  // Run access checks on the media entity.
+  $access = $media->access('view', NULL, TRUE);
+  $cacheability->addCacheableDependency($access);
+  $cacheability->applyTo($variables);
+  if (!$access->isAllowed()) {
+    return $variables;
+  }
+  // Retrieve the correct media translation.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $variables['entity']->language()->getId());
+  $cacheability->addCacheableDependency($media);
+
+  // Get the media source.
+  $source = $media->getSource();
+
+  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
+    // Default video aspect ratio is set to 16:9.
+    $params['ratio'] = '16-9';
+
+    // Load information about the media and the display.
+    $media_type = \Drupal::service('entity_type.manager')->getStorage('media_type')->load($media->bundle());
+    $cacheability->addCacheableDependency($media_type);
+    $source_field = $source->getSourceFieldDefinition($media_type);
+    $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
+    $cacheability->addCacheableDependency($display);
+    $display_options = $display->getComponent($source_field->getName());
+    $oembed_type = $source->getMetadata($media, 'type');
+
+    // If it is an OEmbed resource, render it and pass it as embeddable data
+    // only if it is of type video or html.
+    if ($source instanceof OEmbed && in_array($oembed_type, ['video', 'html'])) {
+      $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
+      $variables['params'] = $params;
+      $cacheability->applyTo($variables);
+
+      return $variables;
+    }
+
+    // If its an AvPortal video or an iframe video, render it.
+    $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
+
+    // When dealing with iframe videos, also respect its given aspect ratio.
+    if ($media->bundle() === 'video_iframe') {
+      $ratio = $media->get('oe_media_iframe_ratio')->value;
+      $params['ratio'] = str_replace('_', '-', $ratio);
+    }
+
+    $variables['params'] = $params;
+    $cacheability->applyTo($variables);
+
+    return $variables;
+  }
+
+  // If it's an image media, render it and assign it to the image variable.
+  /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $thumbnail */
+  $thumbnail = $media->get('thumbnail')->first();
+  /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $file */
+  $file = $thumbnail->get('entity')->getTarget();
+
+  $image_url = '';
+  $image_style = $variables['entity']->get($field)->getFieldDefinition()->getSetting('image_style');
+  if ($image_style) {
+    $style = \Drupal::service('entity_type.manager')->getStorage('image_style')->load($image_style);
+    if ($style) {
+      // Use image style url if set.
+      $image_url = $style->buildUrl($file->get('uri')->getString());
+      $cacheability->addCacheableDependency($image_style);
+    }
+  }
+  if (empty($image_url)) {
+    // Use original file url if image style is absent.
+    $image_url = file_create_url($file->get('uri')->getString());
+  }
+
+  $params['alt'] = $thumbnail->get('alt')->getString();
+  $params['image'] = $image_url;
+  $variables['params'] = $params;
+  $cacheability->applyTo($variables);
+
+  return $variables;
 }
 
 /**
