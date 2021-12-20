@@ -5,8 +5,14 @@
  *
  * Available variables:
  *   - params: Array of parameters to send to ECL media-container.
+ *   - entity: The entity object.
+ *   - field_name: The field using the formatter.
+ *
+ * @see template_preprocess_oe_theme_helper_featured_media().
  *
  * @ingroup themeable
  */
 #}
-{% include '@ecl-twig/media-container' with params only %}
+{% if params.image or params.embedded_media %}
+  {% include '@ecl-twig/media-container' with params only %}
+{% endif %}

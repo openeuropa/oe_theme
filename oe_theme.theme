@@ -939,6 +939,12 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     ];
   }
 
+  // Set image caption.
+  $variables['caption'] = '';
+  if (!$paragraph->get('field_oe_plain_text_long')->isEmpty()) {
+    $variables['caption'] = $variables['elements']['field_oe_plain_text_long'];
+  }
+
   // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;
