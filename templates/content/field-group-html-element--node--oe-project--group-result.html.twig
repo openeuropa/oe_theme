@@ -12,8 +12,12 @@
   {% endif %}
   <div class="ecl-row ecl-u-mb-l">
     <div class="ecl-col-m-6">
-      {{ element.oe_project_results }}
+      {% block results %}
+        {{ element.oe_project_results }}
+      {% endblock %}
     </div>
   </div>
-  {{ element.oe_project_result_files }}
+  {% block files %}
+    {{ element.oe_project_result_files }}
+  {% endblock %}
 </div>
