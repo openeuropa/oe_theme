@@ -30,6 +30,7 @@ dependencies:
     - field.field.node.oe_event.oe_event_type
     - field.field.node.oe_event.oe_event_venue
     - field.field.node.oe_event.oe_event_website
+    - field.field.node.oe_event.oe_event_who_should_attend
     - field.field.node.oe_event.oe_social_media_links
     - field.field.node.oe_event.oe_subject
     - field.field.node.oe_event.oe_summary
@@ -50,6 +51,7 @@ third_party_settings:
       children:
         - oe_event_venue
         - oe_event_dates
+        - oe_event_who_should_attend
         - oe_event_languages
         - extra_field_oe_theme_content_event_organiser
         - oe_event_online_type
@@ -240,6 +242,14 @@ content:
     third_party_settings: {  }
     type: link
     region: content
+  oe_event_who_should_attend:
+    type: string
+    weight: 2
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   oe_social_media_links:
     type: oe_theme_helper_social_media_links_formatter
     weight: 3
