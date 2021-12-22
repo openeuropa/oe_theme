@@ -25,25 +25,31 @@ class OnlineDescriptionExtraField extends DateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
+    $build['#theme'] = 'oe_theme_content_event_online_description';
     $event = EventNodeWrapper::getInstance($entity);
 
     if (!$event->hasOnlineType() || !$event->hasOnlineLink() || !$event->hasOnlineDates()) {
       // All online fields have to be filled to show online information.
-      return [];
+      $this->isEmpty = TRUE;
+      return $build;
     }
 
-    $build = [];
+    // If the livestream is over, we don't display the livestream block.
+    if ($event->isOnlinePeriodOver($this->requestDateTime)) {
+      $this->isEmpty = TRUE;
+      return $build;
+    }
 
+    // If the livestream didn't start yet, we cache it by its start date.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
-      // Invalidate cache tags when livestream will be started.
       $this->applyHourTag($build, $event->getOnlineStartDate());
+      $this->isEmpty = TRUE;
+      return $build;
     }
 
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {
-      // Invalidate cache tags when livestream will be ended.
+      // Cache it by the livestream end date.
       $this->applyHourTag($build, $event->getOnlineEndDate());
-
-      $build['#theme'] = 'oe_theme_content_event_online_description';
       $view_builder = $this->entityTypeManager->getViewBuilder('node');
       $build['#description'] = $view_builder->viewField($entity->get('oe_event_online_description'), [
         'label' => 'hidden',

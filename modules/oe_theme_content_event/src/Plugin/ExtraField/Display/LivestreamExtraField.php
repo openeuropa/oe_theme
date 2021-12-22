@@ -82,31 +82,36 @@ class LivestreamExtraField extends DateAwareExtraFieldBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
+    $build = ['#theme' => 'oe_theme_content_event_livestream'];
     $event = EventNodeWrapper::getInstance($entity);
 
-    if (!$event->hasOnlineType()
-      || !$event->hasOnlineLink()
-      || !$event->hasOnlineDates()
-      || !$event->isOnlinePeriodYetToCome($this->requestDateTime)) {
-      // All online fields have to be filled to show online information.
-      // It will be shown for the livestream in the future.
-      return [];
+    // All the online fields have to be filled to show online information.
+    if (!$event->hasOnlineType() || !$event->hasOnlineLink() || !$event->hasOnlineDates()) {
+      $this->isEmpty = TRUE;
+      return $build;
     }
-
-    $link = $entity->get('oe_event_online_link')->first();
-    $value = $link->getValue();
-
-    $build = [
-      '#theme' => 'oe_theme_content_event_livestream',
-      '#url' => $link->getUrl(),
-      '#label' => $value['title'],
-      '#date' => $this->t('Starts on @date', [
-        '@date' => $this->dateFormatter->format($event->getOnlineStartDate()
-          ->getTimestamp(), 'oe_event_long_date_hour'),
-      ]),
-    ];
-
-    $this->applyHourTag($build, $event->getOnlineStartDate());
+    // If the livestream is over, we don't display any info.
+    if ($event->isOnlinePeriodOver($this->requestDateTime)) {
+      $this->isEmpty = TRUE;
+      return $build;
+    }
+    // If the livestream didn't start yet, we cache it by its start date and
+    // render the date only.
+    if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
+      $this->applyHourTag($build, $event->getOnlineStartDate());
+    }
+    $build['#date'] = $this->t('Starts on @date', [
+      '@date' => $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
+    ]);
+    // If the livestream is ongoing, we add the livestream link.
+    if ($event->isOnlinePeriodActive($this->requestDateTime)) {
+      $link = $entity->get('oe_event_online_link')->first();
+      $value = $link->getValue();
+      $build += [
+        '#url' => $link->getUrl(),
+        '#label' => $value['title'],
+      ];
+    }
 
     return $build;
   }
