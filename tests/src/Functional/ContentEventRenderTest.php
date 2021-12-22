@@ -225,9 +225,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'file',
           'text' => 'Financing',
+          'size' => 'm',
         ], [
           'icon' => 'calendar',
           'text' => '28 February 2020, 01:00',
+          'size' => 'm',
         ],
       ],
     ];
@@ -273,9 +275,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'file',
           'text' => 'Financing',
+          'size' => 'm',
         ], [
           'icon' => 'calendar',
           'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
+          'size' => 'm',
         ],
       ],
     ];
@@ -330,6 +334,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values['items'][2] = [
       'icon' => 'location',
       'text' => '<Brussels>, Belgium',
+      'size' => 'm',
     ];
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
@@ -420,6 +425,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icons_text_expected_values['items'][3] = [
       'icon' => 'livestreaming',
       'text' => 'Live streaming available',
+      'size' => 'm',
     ];
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
 
@@ -723,12 +729,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'file',
           'text' => 'Financing',
+          'size' => 'm',
         ], [
           'icon' => 'calendar',
           'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
+          'size' => 'm',
         ], [
           'icon' => 'livestreaming',
           'text' => 'Live streaming available',
+          'size' => 'm',
         ],
       ],
     ];
