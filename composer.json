@@ -46,7 +46,7 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "~1.6",
         "openeuropa/drupal-core-require-dev": "^8.9 || ^9.1",
-        "openeuropa/oe_content": "dev-EWPP-1802",
+        "openeuropa/oe_content": "dev-EPIC-EWPP-1539-Event-v2",
         "openeuropa/oe_corporate_blocks": "~4.0",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.12",
@@ -55,7 +55,7 @@
         "openeuropa/oe_search": "1.x-dev",
         "openeuropa/oe_webtools": "~1.12",
         "openeuropa/oe_contact_forms": "~1.1",
-        "openeuropa/rdf_skos": "~1.0",
+        "openeuropa/rdf_skos": "1.x-dev",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0",
         "phpspec/prophecy-phpunit": "^1 || ^2",
         "phpunit/phpunit": "^7.5 || ^8 || ^9"
@@ -111,6 +111,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "openeuropa/rdf_skos": {
+                "latest": "https://github.com/openeuropa/rdf_skos/compare/1.0.0-alpha4...EWPP-1883.diff"
             }
         },
         "drupal-scaffold": {

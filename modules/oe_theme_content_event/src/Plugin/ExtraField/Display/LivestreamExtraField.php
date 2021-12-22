@@ -105,6 +105,8 @@ class LivestreamExtraField extends DateAwareExtraFieldBase {
     ]);
     // If the livestream is ongoing, we add the livestream link.
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {
+      // Cache it by its end date.
+      $this->applyHourTag($build, $event->getOnlineEndDate());
       $link = $entity->get('oe_event_online_link')->first();
       $value = $link->getValue();
       $build += [

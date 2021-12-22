@@ -388,18 +388,19 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
 
+    // The livestream is upcoming so only the start date is available.
     $this->assertSession()->pageTextNotContains('Online event description');
     $field_list_expected_values = [
       'items' => [
         [
           'label' => 'Where',
-          'body' => "event_venue\n  Mexico",
+          'body' => 'Online only',
         ], [
           'label' => 'When',
           'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Livestream',
-          'body' => 'Starts on Wednesday 18 March 2020, 01:00Link to online event',
+          'body' => 'Starts on Wednesday 18 March 2020, 01:00',
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
@@ -571,7 +572,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->cronRun();
     $this->drupalGet($node->toUrl());
 
-    // It is time when livestream is active.
+    // Assert ongoing livestream block.
     $online_heading = $this->assertSession()->elementExists('css', 'h3', $details_content);
     $this->assertEquals('Livestream', $online_heading->getText());
     $online_description = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(1) > .ecl', $details_content);
@@ -672,12 +673,16 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $this->assertSession()->elementNotExists('css', '#event-contacts');
 
-    // Livestream row is absent since livestream is active.
+    // Livestream is ongoing so both the start date and livestream link are
+    // available.
     $field_list_expected_values = [
       'items' => [
         [
           'label' => 'When',
           'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+        ], [
+          'label' => 'Livestream',
+          'body' => 'Starts on Wednesday 18 March 2020, 01:00Link to online event',
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
