@@ -258,7 +258,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($project_stakeholders, 'Stakeholders');
 
     // Assert Coordinators field.
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
@@ -279,7 +279,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert Participants field.
-    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-type-color-black.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
+    $stakeholder_sub_headers = $project_stakeholders->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l');
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Participants');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'participant');
