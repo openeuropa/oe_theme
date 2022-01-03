@@ -462,7 +462,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $registration_content = $this->assertSession()->elementExists('css', '#event-registration-block');
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
 
-    // Report or media content are shown when event is still ongoing.
+    // Report or media content are not shown when event is still ongoing.
     $node->set('oe_event_report_summary', 'Event report summary');
     $node->set('oe_event_report_text', 'Event report text');
     $node->set('oe_event_media', [
@@ -480,6 +480,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->pageTextNotContains('Event report summary');
     $this->assertSession()->pageTextNotContains('Event report text');
     $this->assertSession()->elementNotExists('css', 'section.ecl-gallery');
+    $this->assertSession()->elementNotExists('css', 'div#event-details div.ecl-col-12 h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mb-l');
     $this->assertSession()->linkNotExistsExact('Main link for media items');
     $this->assertSession()->pageTextNotContains('More media links');
 
@@ -575,7 +576,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
     // Assert media gallery rendering.
-    $this->assertSession()->elementTextContains('css', 'div#event-media h2.ecl-u-type-heading-2.ecl-u-type-color-black.ecl-u-mt-2xl.ecl-u-mb-l', 'Media');
+    $this->assertSession()->elementTextContains('css', 'div#event-media h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mb-l', 'Media');
     $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
     $items = $gallery->findAll('css', 'li.ecl-gallery__item');
     $this->assertCount(2, $items);
@@ -692,12 +693,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
-    // Add media items.
-    $node->set('oe_event_media', [
-      $this->createMediaImage('first_image')->id(),
-      $this->createMediaImage('second_image')->id(),
-    ])->save();
-    $this->drupalGet($node->toUrl());
     // Assert gallery rendering.
     $this->assertSession()->elementTextContains('css', 'div#event-details div.ecl-col-12 h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mb-l', 'Media');
     $gallery = $this->assertSession()->elementExists('css', 'section.ecl-gallery');
