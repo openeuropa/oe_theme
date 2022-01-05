@@ -27,10 +27,11 @@
       {{ element.extra_field_oe_theme_content_event_details }}
     {% endblock %}
   </div>
-  {% if element.oe_event_media|render is not empty %}
+  {% if element.extra_field_oe_theme_content_event_media %}
     <div class="ecl-col-12">
-      <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mb-l">{{ 'Media'|t }}</h2>
-      {{ element.oe_event_media }}
+      {% block media_gallery %}
+        {{ element.extra_field_oe_theme_content_event_media }}
+      {% endblock %}
     </div>
   {% endif %}
 </div>

@@ -161,6 +161,15 @@ class DetailsExtraField extends EventExtraFieldBase {
    *   Content entity.
    */
   protected function addRenderableLocation(array &$build, ContentEntityInterface $entity): void {
+    if ($entity->get('oe_event_online_only')->value) {
+      $build['#fields']['items'][] = [
+        'icon' => 'location',
+        'text' => [
+          '#markup' => $this->t('Online only'),
+        ],
+      ];
+      return;
+    }
     if (!$entity->get('oe_event_venue')->isEmpty() && $entity->get('oe_event_venue')->entity instanceof VenueInterface) {
       $address = $this->getVenueInlineAddress($entity->get('oe_event_venue')->entity);
       if (!empty($address)) {

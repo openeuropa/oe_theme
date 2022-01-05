@@ -13,9 +13,12 @@ dependencies:
     - field.field.node.oe_event.oe_event_featured_media_legend
     - field.field.node.oe_event.oe_event_languages
     - field.field.node.oe_event.oe_event_media
+    - field.field.node.oe_event.oe_event_media_more_description
+    - field.field.node.oe_event.oe_event_media_more_link
     - field.field.node.oe_event.oe_event_online_dates
     - field.field.node.oe_event.oe_event_online_description
     - field.field.node.oe_event.oe_event_online_link
+    - field.field.node.oe_event.oe_event_online_only
     - field.field.node.oe_event.oe_event_online_type
     - field.field.node.oe_event.oe_event_organiser_internal
     - field.field.node.oe_event.oe_event_organiser_is_internal
@@ -38,7 +41,6 @@ dependencies:
     - node.type.oe_event
   module:
     - datetime_range
-    - entity_reference_revisions
     - field_group
     - link
     - oe_theme_helper
@@ -49,7 +51,7 @@ third_party_settings:
   field_group:
     group_practical_information:
       children:
-        - oe_event_venue
+        - extra_field_oe_theme_content_event_location
         - oe_event_dates
         - oe_event_who_should_attend
         - oe_event_languages
@@ -72,11 +74,11 @@ third_party_settings:
     group_top:
       children:
         - extra_field_oe_theme_content_event_summary
-        - oe_event_media
         - extra_field_oe_theme_content_event_registration_button
         - extra_field_oe_theme_content_event_details
+        - extra_field_oe_theme_content_event_media
       parent_name: ''
-      weight: 0
+      weight: 1
       format_type: html_element
       region: content
       format_settings:
@@ -95,7 +97,7 @@ third_party_settings:
         - group_practical_information
         - oe_social_media_links
       parent_name: ''
-      weight: 2
+      weight: 3
       format_type: html_element
       region: content
       format_settings:
@@ -115,12 +117,12 @@ bundle: oe_event
 mode: full
 content:
   extra_field_oe_theme_content_event_contacts:
-    weight: 4
+    weight: 5
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_description:
-    weight: 3
+    weight: 4
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -129,13 +131,23 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  extra_field_oe_theme_content_event_location:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  extra_field_oe_theme_content_event_media:
+    weight: 5
+    region: content
+    settings: {  }
+    third_party_settings: {  }
   extra_field_oe_theme_content_event_organiser:
-    weight: 4
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
   extra_field_oe_theme_content_event_programme:
-    weight: 1
+    weight: 2
     region: content
     settings: {  }
     third_party_settings: {  }
@@ -155,12 +167,12 @@ content:
     settings:
       timezone_override: ''
       format_type: oe_event_long_date_hour
-      separator: to
+      separator: '-'
     third_party_settings: {  }
     type: daterange_default
     region: content
   oe_event_entrance_fee:
-    weight: 10
+    weight: 9
     label: above
     settings:
       link_to_entity: false
@@ -169,34 +181,25 @@ content:
     region: content
   oe_event_languages:
     type: skos_concept_entity_reference_label
-    weight: 3
+    weight: 2
     region: content
     label: above
     settings:
       link: false
     third_party_settings: {  }
-  oe_event_media:
-    type: oe_theme_helper_media_gallery
-    weight: 2
-    region: content
-    label: above
-    settings:
-      image_style: ''
-      bundle_settings: {  }
-    third_party_settings: {  }
   oe_event_online_dates:
     type: daterange_default
-    weight: 7
+    weight: 6
     region: content
     label: above
     settings:
       timezone_override: ''
       format_type: oe_event_date_hour_timezone
-      separator: to
+      separator: '-'
     third_party_settings: {  }
   oe_event_online_link:
     type: link
-    weight: 6
+    weight: 5
     region: content
     label: above
     settings:
@@ -208,30 +211,21 @@ content:
     third_party_settings: {  }
   oe_event_online_type:
     type: list_default
-    weight: 5
+    weight: 4
     region: content
     label: above
     settings: {  }
     third_party_settings: {  }
   oe_event_registration_capacity:
-    weight: 9
+    weight: 8
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  oe_event_venue:
-    type: entity_reference_revisions_entity_view
-    weight: 0
-    region: content
-    label: above
-    settings:
-      view_mode: full
-      link: ''
-    third_party_settings: {  }
   oe_event_website:
-    weight: 8
+    weight: 7
     label: above
     settings:
       trim_length: 80
@@ -281,7 +275,11 @@ hidden:
   oe_event_description_summary: true
   oe_event_featured_media: true
   oe_event_featured_media_legend: true
+  oe_event_media: true
+  oe_event_media_more_description: true
+  oe_event_media_more_link: true
   oe_event_online_description: true
+  oe_event_online_only: true
   oe_event_organiser_internal: true
   oe_event_organiser_is_internal: true
   oe_event_organiser_name: true
@@ -293,6 +291,7 @@ hidden:
   oe_event_report_text: true
   oe_event_status: true
   oe_event_type: true
+  oe_event_venue: true
   oe_subject: true
   oe_summary: true
   oe_teaser: true

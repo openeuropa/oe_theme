@@ -10,6 +10,8 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 /**
  * Tests the inpage navigation block.
  *
+ * @group batch2
+ *
  * @group oe_theme_helper
  */
 class InPageNavigationBlockTest extends AbstractKernelTestBase {
