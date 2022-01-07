@@ -1,0 +1,11 @@
+{#
+/**
+ * @file
+ * Theme for the online description extra field on event content type.
+ */
+#}
+{% if description is not empty %}
+  <h3 class="ecl-u-type-heading-3">{{ 'Livestream'|t }}</h3>
+  {{ description }}
+  <a href="{{ url }}" class="ecl-u-mt-l ecl-u-mb-l ecl-link ecl-link--cta ecl-u-d-inline-block">{{ label }}</a>
+{% endif %}

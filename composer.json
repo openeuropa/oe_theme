@@ -39,6 +39,7 @@
         "drupal/styleguide": "~1.0@beta",
         "drush/drush": "~10.3",
         "drupal/typed_link": "^2.0",
+        "drupal/sparql_entity_storage": "1.0.0-alpha9",
         "easyrdf/easyrdf": "1.0.0 as 0.9.1",
         "friends-of-behat/service-container-extension": "^1.0",
         "instaclick/php-webdriver": "^1.4.7",

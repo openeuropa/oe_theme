@@ -46,6 +46,20 @@ function oe_theme_content_event_theme() {
         'location' => '',
       ],
     ],
+    'oe_theme_content_event_online_description' => [
+      'variables' => [
+        'label' => '',
+        'url' => '',
+        'description' => '',
+      ],
+    ],
+    'oe_theme_content_event_livestream' => [
+      'variables' => [
+        'label' => '',
+        'url' => '',
+        'date' => '',
+      ],
+    ],
   ];
 }
 

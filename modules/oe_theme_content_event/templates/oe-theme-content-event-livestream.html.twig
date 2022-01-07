@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme for the livestream extra field on event content type.
+ */
+#}
+{% if date is not empty %}
+  <div>{{ date }}</div>
+{% endif %}
+{% if label is not empty %}
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: label,
+      path:  url,
+      icon_position: 'after'
+    },
+    icon: {
+      name: 'livestreaming',
+      size: 's',
+      path: ecl_icon_path
+    }
+  } %}
+{% endif %}
