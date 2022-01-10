@@ -166,6 +166,7 @@ class EventRenderTest extends ContentRenderTestBase {
           [
             'icon' => 'location',
             'text' => 'Belgium',
+            'size' => 'xs',
           ],
         ],
       ]),
@@ -206,10 +207,12 @@ class EventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'location',
           'text' => '<Brussels>, Belgium',
+          'size' => 'xs',
         ],
         [
           'icon' => 'livestreaming',
           'text' => t('Live streaming available'),
+          'size' => 'xs',
         ],
       ],
     ]);
@@ -225,10 +228,12 @@ class EventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'location',
           'text' => 'Online only',
+          'size' => 'xs',
         ],
         [
           'icon' => 'livestreaming',
           'text' => t('Live streaming available'),
+          'size' => 'xs',
         ],
       ],
     ]);
@@ -280,10 +285,12 @@ class EventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'location',
           'text' => '<Brussels>, Белгия',
+          'size' => 'xs',
         ],
         [
           'icon' => 'livestreaming',
           'text' => t('Live streaming available'),
+          'size' => 'xs',
         ],
       ],
     ]);

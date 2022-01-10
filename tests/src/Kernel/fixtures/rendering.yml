@@ -2670,12 +2670,14 @@
           text: "Culture | Innovation"
         -
           icon: "calendar"
+          size: "s"
           text: "15-16 November 2019, 08:00 AM"
         -
           icon: "location"
           text: "Brussels, Belgium"
         -
           icon: "livestreaming"
+          size: "xs"
           text: "Live streaming available"
   assertions:
     count:
@@ -2684,9 +2686,9 @@
       'ul li.ecl-unordered-list__item svg': 4
     equals:
       'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
       'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg>Brussels, Belgium'
-      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--xs ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
