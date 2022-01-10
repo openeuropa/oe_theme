@@ -60,6 +60,14 @@ function oe_theme_content_event_theme() {
         'date' => '',
       ],
     ],
+    'oe_theme_content_event_status_message' => [
+      'variables' => [
+        'variant' => '',
+        'title' => '',
+        'description' => '',
+        'icon' => '',
+      ],
+    ],
   ];
 }
 
