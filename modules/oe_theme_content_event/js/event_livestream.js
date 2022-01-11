@@ -4,7 +4,7 @@
  */
 (function (Drupal, drupalSettings) {
     /**
-     * Shows link when livestream is active.
+     * Shows related description and link when livestream is active.
      *
      * @type {Drupal~behavior}
      *

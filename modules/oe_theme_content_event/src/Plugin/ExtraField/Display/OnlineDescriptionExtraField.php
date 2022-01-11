@@ -92,7 +92,7 @@ class OnlineDescriptionExtraField extends DateAwareExtraFieldBase {
 
     // If the livestream didn't start yet, we cache it by its start date.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
-      $this->applyMidnightTag($build, $event->getOnlineStartDate());
+      $this->applyHourTag($build, $event->getOnlineStartDate());
       $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd');
       $start_day = $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'custom', 'Ymd');
       // Do not send field value to browser if it is not yet day online

@@ -98,7 +98,7 @@ class LivestreamExtraField extends DateAwareExtraFieldBase {
     // If the livestream didn't start yet, we cache it by its start date and
     // render the date only.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
-      $this->applyMidnightTag($build, $event->getOnlineStartDate());
+      $this->applyHourTag($build, $event->getOnlineStartDate());
       $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd');
       $start_day = $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'custom', 'Ymd');
       if ($current_date === $start_day) {
