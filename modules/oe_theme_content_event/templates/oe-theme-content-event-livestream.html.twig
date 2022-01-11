@@ -8,6 +8,11 @@
   <div>{{ date }}</div>
 {% endif %}
 {% if label is not empty %}
+  {#
+    Use custom 'ecl-link--hidden' class in case we need to hide the link.
+    Usage of 'hidden' attribute is restricted by priorities of CSS rule.
+    Built-in classes of 'link' component have higher priority and override display rules.
+  #}
   {% include '@ecl-twig/link' with {
     link: {
       type: 'standalone',
@@ -19,6 +24,12 @@
       name: 'livestreaming',
       size: 's',
       path: ecl_icon_path
-    }
+    },
+    extra_attributes: [
+      {
+        name: 'data-livestream-element'
+      },
+    ],
+    extra_classes: hide_link ? 'ecl-link--hidden',
   } %}
 {% endif %}

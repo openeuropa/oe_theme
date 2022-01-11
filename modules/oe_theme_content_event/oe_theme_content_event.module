@@ -48,6 +48,7 @@ function oe_theme_content_event_theme() {
     ],
     'oe_theme_content_event_online_description' => [
       'variables' => [
+        'hidden' => FALSE,
         'label' => '',
         'url' => '',
         'description' => '',
@@ -58,6 +59,7 @@ function oe_theme_content_event_theme() {
         'label' => '',
         'url' => '',
         'date' => '',
+        'hide_link' => FALSE,
       ],
     ],
     'oe_theme_content_event_status_message' => [

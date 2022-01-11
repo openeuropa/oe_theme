@@ -98,7 +98,18 @@ class LivestreamExtraField extends DateAwareExtraFieldBase {
     // If the livestream didn't start yet, we cache it by its start date and
     // render the date only.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
-      $this->applyHourTag($build, $event->getOnlineStartDate());
+      $this->applyMidnightTag($build, $event->getOnlineStartDate());
+      $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd');
+      $start_day = $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'custom', 'Ymd');
+      if ($current_date === $start_day) {
+        $build['#hide_link'] = TRUE;
+        $build['#attached'] = [
+          'library' => 'oe_theme_content_event/livestream_link_disclosure',
+          'drupalSettings' => [
+            'livestream_starttime_timestamp' => $event->getOnlineStartDate()->getTimestamp() * 1000,
+          ],
+        ];
+      }
     }
     $build['#date'] = $this->t('Starts on @date', [
       '@date' => $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
@@ -107,13 +118,14 @@ class LivestreamExtraField extends DateAwareExtraFieldBase {
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {
       // Cache it by its end date.
       $this->applyHourTag($build, $event->getOnlineEndDate());
-      $link = $entity->get('oe_event_online_link')->first();
-      $value = $link->getValue();
-      $build += [
-        '#url' => $link->getUrl(),
-        '#label' => $value['title'],
-      ];
     }
+
+    $link = $entity->get('oe_event_online_link')->first();
+    $value = $link->getValue();
+    $build += [
+      '#url' => $link->getUrl(),
+      '#label' => $value['title'],
+    ];
 
     return $build;
   }
