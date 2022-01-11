@@ -577,6 +577,9 @@
             language_code: "hu"
       translation_toggle_label: "Other translations"
       more_info: "Looking for another language which is not on the list? Find out why."
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
   assertions:
     count:
       'img.ecl-file__image[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"]': 1
@@ -591,6 +594,7 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
@@ -616,6 +620,7 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - array:
     '#type': pattern
     '#id': file_teaser
@@ -667,6 +672,7 @@
       'dt.ecl-description-list__term': 1
       'dd.ecl-description-list__definition': 1
       'span.ecl-description-list__tag': 2
+      'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
       'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
@@ -807,14 +813,23 @@
       meta:
         - "Meta 1"
         - "Meta 2"
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
+      'span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
+      'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -834,7 +849,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
 - array:
@@ -890,8 +905,8 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#check"></use>'
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link span.ecl-link__label': "Item title"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail. It...</div>"
 - array:
     '#type': pattern
@@ -912,7 +927,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
 - array:
@@ -934,7 +949,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '&lt;div&gt;This is the detail...'
 - array:
@@ -958,7 +973,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
@@ -983,7 +998,7 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 0
       'article > div .ecl-description-list': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
@@ -1046,7 +1061,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 1
       'article.ecl-content-item div.ecl-content-item__image__after': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -1070,7 +1085,7 @@
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta': "Meta 1 | Meta 2"
+      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
       'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item text"
 - array:
@@ -1083,6 +1098,11 @@
       image:
         src: "http://via.placeholder.com/300x300"
         alt: "Alternate text for secondary image"
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"
   assertions:
     count:
       article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]: 1
@@ -1090,8 +1110,12 @@
       article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 0
+      article.ecl-card div.ecl-card__body ul.ecl-card__label-container: 1
+      ul.ecl-card__label-container li.ecl-card__label-item: 2
     equals:
       article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
+      ul.ecl-card__label-container li.ecl-card__label-item:nth-child(1) span.ecl-label.ecl-label--highlight.ecl-card__label: "Highlighted"
+      ul.ecl-card__label-container li.ecl-card__label-item:nth-child(2) span.ecl-label.ecl-label--high.ecl-card__label: "Status: Open"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1111,6 +1135,7 @@
       article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
       article.ecl-card div.ecl-card__body div.ecl-card__meta: 0
       article.ecl-card div.ecl-card__body div.ecl-card__description: 1
+      article.ecl-card div.ecl-card__body ul.ecl-card__label-container: 0
     equals:
       article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-card__description: "This is a very long description..."
@@ -1122,14 +1147,23 @@
       title: "Item title"
       url: "http://example.com"
       detail: "Item test"
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"
   assertions:
     count:
       'article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link--standalone[href="http://example.com"]': 1
       'article.ecl-card div.ecl-card__image': 0
       'article.ecl-card div.ecl-card__body div.ecl-card__meta': 0
+      'article.ecl-card div.ecl-card__body ul.ecl-card__label-container': 1
+      'ul.ecl-card__label-container li.ecl-card__label-item': 2
     equals:
       'article.ecl-card div.ecl-card__body h1.ecl-card__title .ecl-link': "Item title"
       'article.ecl-card div.ecl-card__body div.ecl-card__description': "Item test"
+      'ul.ecl-card__label-container li.ecl-card__label-item:nth-child(1) span.ecl-label.ecl-label--highlight.ecl-card__label': "Highlighted"
+      'ul.ecl-card__label-container li.ecl-card__label-item:nth-child(2) span.ecl-label.ecl-label--high.ecl-card__label': "Status: Open"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1147,13 +1181,22 @@
       meta:
         - "News article"
         - "6 July 2015"
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "medium"
   assertions:
     count:
       'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item-date div.ecl-content-item-date__date': 1
       'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
+      'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
+      'span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': 1
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
+      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
+      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
       'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
       'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
@@ -1195,7 +1238,7 @@
       'div.ecl-content-item__additional_information .ecl-description-list__term': 2
       'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta': "News article | 6 July 2015"
+      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
       'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
       'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
       'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
@@ -2132,6 +2175,7 @@
       'h1.ecl-card__title': 1
       'div.ecl-card__description': 0
       'ul.ecl-card__info-container': 0
+      'article.ecl-card div.ecl-card__body ul.ecl-card__label-container': 0
     equals:
       'h1.ecl-card__title': "Example title"
 - array:
@@ -2150,15 +2194,24 @@
       link:
         href: "https://example.com"
         label: "Link title"
+      badges:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"
   assertions:
     count:
       "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
       'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
+      'article.ecl-card div.ecl-card__body ul.ecl-card__label-container': 1
+      'ul.ecl-card__label-container li.ecl-card__label-item': 2
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description': "Example description"
+      'ul.ecl-card__label-container li.ecl-card__label-item:nth-child(1) span.ecl-label.ecl-label--highlight.ecl-card__label': "Highlighted"
+      'ul.ecl-card__label-container li.ecl-card__label-item:nth-child(2) span.ecl-label.ecl-label--high.ecl-card__label': "Status: Open"
 - array:
     '#type': pattern
     '#id': featured_item
@@ -2181,6 +2234,7 @@
       "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
       'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
+      'article.ecl-card div.ecl-card__body ul.ecl-card__label-container': 0
     equals:
       'div.ecl-card__meta': "Breaking news article | Brussels"
       'h1.ecl-card__title a': "Example title"
@@ -2245,6 +2299,7 @@
   assertions:
     count:
       "ul.ecl-card__info-container": 1
+      'article.ecl-card div.ecl-card__body ul.ecl-card__label-container': 0
     equals:
       'li.ecl-card__info-item:nth-child(1)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg><span class="ecl-card__info-label">15-16 November 2019, 08:00 AM</span>'
       'li.ecl-card__info-item:nth-child(2)' : '<svg class="ecl-icon ecl-icon--xs" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg><span class="ecl-card__info-label">Brussels, Belgium</span>'

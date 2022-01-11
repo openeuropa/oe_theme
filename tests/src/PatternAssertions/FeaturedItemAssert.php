@@ -39,6 +39,9 @@ class FeaturedItemAssert extends BasePatternAssert {
       'footer_items' => [
         [$this, 'assertFooterItems'],
       ],
+      'badges' => [
+        [$this, 'assertBadges'],
+      ],
     ];
   }
 
@@ -110,6 +113,29 @@ class FeaturedItemAssert extends BasePatternAssert {
       $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
       $this::assertStringContainsString('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
       $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
+    }
+  }
+
+  /**
+   * Asserts the badge(s) of a card.
+   *
+   * @param array|null $expected_badges
+   *   The expected badges.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertBadges(?array $expected_badges, Crawler $crawler): void {
+    $base_selector = 'article.ecl-card div.ecl-card__body ul.ecl-card__label-container li.ecl-card__label-item';
+    if (is_null($expected_badges)) {
+      $this->assertElementNotExists('span.ecl-label', $crawler);
+      return;
+    }
+    foreach ($expected_badges as $badge) {
+      if (!isset($badge['label']) || !isset($badge['variant'])) {
+        continue;
+      }
+      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'] . '.ecl-u-mr-xs';
+      self::assertStringContainsString($badge['label'], $crawler->filter($selector)->text());
     }
   }
 

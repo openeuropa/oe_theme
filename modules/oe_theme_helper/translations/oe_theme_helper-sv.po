@@ -521,3 +521,6 @@ msgstr "Jag har läst och godkänner villkoren för @link"
 
 msgid "data protection terms"
 msgstr "skydd av personuppgifter"
+
+msgid "Highlighted"
+msgstr "I fokus"

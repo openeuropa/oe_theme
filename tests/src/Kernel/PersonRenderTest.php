@@ -105,6 +105,7 @@ class PersonRenderTest extends ContentRenderTestBase {
     $html = $this->getRenderedNode($node);
     $expected_values = [
       'title' => 'Mick Jagger',
+      'badges' => NULL,
       'meta' => NULL,
       'image' => [
         'src' => 'user_icon.svg',
@@ -243,13 +244,20 @@ class PersonRenderTest extends ContentRenderTestBase {
     $second_contact_render = $crawler->filter('article .ecl-content-item__additional_information:nth-child(3) > div:nth-child(2)');
     $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->html());
 
-    // Assert Jobs field.
+    // Assert Jobs field and highlighted label.
     $job_1 = $this->createPersonJobEntity('job_1', [
       'oe_acting' => TRUE,
       'oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS',
     ]);
     $node->set('oe_person_contacts', NULL);
-    $node->set('oe_person_jobs', $job_1)->save();
+    $node->set('oe_person_jobs', $job_1);
+    $node->set('sticky', NodeInterface::STICKY)->save();
+    $expected_values['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $expected_values['meta'] = '(Acting) Advisor';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
@@ -290,6 +298,10 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $expected_values = [
       'title' => 'Jagger Mick',
+      'badges' => [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
       'meta' => 'Singer, Dancer',
       'image' => [
         'src' => 'person_portrait.png',
