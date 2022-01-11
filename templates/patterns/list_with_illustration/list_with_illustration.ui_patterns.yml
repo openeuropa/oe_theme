@@ -1,0 +1,52 @@
+list_with_illustration:
+  label: "List with illustration"
+  description: "A list of items with associated illustrations."
+  variants:
+    vertical_images_large:
+      label: "Vertical with images (large)"
+      description: "Vertical list with large images."
+    vertical_images_square:
+      label: "Vertical with images (square)"
+      description: "Vertical list with square images."
+    vertical_icons:
+      label: "Vertical with icons"
+      description: "Vertical list with icons."
+    horizontal_images_large:
+      label: "Horizontal with images (large)"
+      description: "Horizontal list with large images."
+    horizontal_images_square:
+      label: "Horizontal with images (square)"
+      description: "Horizontal list with square images."
+    horizontal_icons:
+      label: "Horizontal with icons"
+      description: "Horizontal list with icons."
+  fields:
+    column:
+      type: "numeric"
+      label: "Column number"
+      description: "Number of columns (only applies to horizontal variants). Maximum of 4 columns."
+      preview: 4
+      escape: false
+    zebra:
+      type: "boolean"
+      label: "Zebra"
+      description: "Use zebra background (only applies to vertical variants)."
+      preview: true
+    items:
+      type: "array"
+      label: "Items"
+      description: "Array of list items"
+      preview:
+        - title: "Business, Economy, Euro"
+          description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+          image:
+            src: "https://placeimg.com/1000/500/arch"
+            alt: "Alternative text for featured item image"
+          icon: "growth"
+        - title: "About the European Union"
+          description: "The EU and its institutions, how to visit and work at the EU."
+          image:
+            src: "https://placeimg.com/1000/500/arch"
+            alt: "Alternative text for featured item image"
+          icon: "budget"
+
