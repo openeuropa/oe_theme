@@ -136,6 +136,13 @@
         return false;
       }
 
+      if (!slug[0].match("^[a-zA-Z]*$")) {
+        // In case the slug doesn't start with letters, append a string to
+        // ensure that the resulting slug is always a valid query selector.
+        slug = 'ref-' + slug;
+        originalSlug = slug;
+      }
+
       // If an element with the generated slug as ID already exists, mark the slug as seen.
       if (!this.seenIds.hasOwnProperty(slug) && document.querySelector('#' + slug)) {
         this.seenIds[slug] = 0;
