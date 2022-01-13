@@ -2,7 +2,7 @@ list_with_illustration:
   label: "List with illustration"
   description: "A list of items with associated illustrations."
   variants:
-    vertical_images_large:
+    vertical_images_landscape:
       label: "Vertical with images (large)"
       description: "Vertical list with large images."
     vertical_images_square:
@@ -11,7 +11,7 @@ list_with_illustration:
     vertical_icons:
       label: "Vertical with icons"
       description: "Vertical list with icons."
-    horizontal_images_large:
+    horizontal_images_landscape:
       label: "Horizontal with images (large)"
       description: "Horizontal list with large images."
     horizontal_images_square:
