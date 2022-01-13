@@ -34,7 +34,7 @@ class OnlineDescriptionExtraField extends DateAwareExtraFieldBase {
   protected $dateFormatter;
 
   /**
-   * RegistrationButtonExtraField constructor.
+   * OnlineDescriptionExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.

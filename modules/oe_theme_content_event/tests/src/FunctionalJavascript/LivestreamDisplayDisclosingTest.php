@@ -59,7 +59,7 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
   /**
    * Tests that Event livestreaming link will be visible exactly on time.
    */
-  public function testContentWithoutInPageNav(): void {
+  public function testLivestreamDisplayDisclosing(): void {
     $static_time = new DrupalDateTime('now', DateTimeItemInterface::STORAGE_TIMEZONE);
     $start_date = (clone $static_time)->modify('+10 days');
     // Create an Event node with required fields only.
@@ -79,7 +79,7 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
         ],
         'oe_event_online_dates' => [
           'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-          'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         ],
         'oe_event_languages' => [
           ['target_id' => 'http://publications.europa.eu/resource/authority/language/EST'],
@@ -107,7 +107,7 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -119,11 +119,11 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
       $this->assertFalse($livetime_element->isVisible());
     }
 
-    // Set livestream start date in 20 seconds later.
-    $start_date = (clone $static_time)->modify('+20 seconds');
+    // Set livestream start date in 10 seconds later.
+    $start_date = (clone $static_time)->modify('+10 seconds');
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -131,10 +131,42 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     $this->assertCount(1, $livestream_js);
     $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
     $this->assertCount(2, $livetime_elements);
-    $this->getSession()->wait(20000);
+    $this->getSession()->wait(10000);
     foreach ($livetime_elements as $livetime_element) {
       $this->assertTrue($livetime_element->isVisible());
     }
+
+    // During livestream active period and cache tag invalidation,
+    // we as expected should see livestream information but don't have anymore
+    // javascript for disclosing.
+    $node->set('oe_event_online_dates', [
+      'value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $static_time)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
+    $this->assertCount(0, $livestream_js);
+    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(2, $livetime_elements);
+    foreach ($livetime_elements as $livetime_element) {
+      $this->assertTrue($livetime_element->isVisible());
+    }
+
+    // When livestream is over and after cache tag invalidation,
+    // we should not see livestream information and don't have
+    // javascript for disclosing.
+    $node->set('oe_event_online_dates', [
+      'value' => (clone $static_time)->modify('-4 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $node->save();
+    $this->drupalGet($node->toUrl());
+    $this->drupalGet($node->toUrl());
+    $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
+    $this->assertCount(0, $livestream_js);
+    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(0, $livetime_elements);
   }
 
 }
