@@ -20,6 +20,10 @@
   {% if 'icon' in variant %}
     {# Remove image information if an icon variant. #}
     {% set _item = item|merge({'image': {}}) %}
+    {# Transform icon into ecl array. #}
+    {% if _item.icon %}
+      {% set _item = _item|merge({'icon': to_ecl_icon(item.icon)}) %}
+    {% endif %}
   {% elseif 'image' in variant %}
     {# Remove icon information if an image variant. #}
     {% set _item = item|merge({'icon': {}}) %}

@@ -25,7 +25,7 @@ list_with_illustration:
       type: "numeric"
       label: "Column number"
       description: "Number of columns (only applies to horizontal variants). Maximum of 4 columns."
-      preview: 4
+      preview: 2
       escape: false
     zebra:
       type: "boolean"

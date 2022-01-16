@@ -36,14 +36,14 @@ class ListWithIllustrationAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    self::assertElementExists('ecl-list-illustration', $crawler);
+    self::assertElementExists('.ecl-list-illustration', $crawler);
   }
 
   /**
    * Asserts the columns of the list.
    *
    * @param int $column
-   *   The expected image values.
+   *   The expected number of columns.
    * @param string $variant
    *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
@@ -55,7 +55,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
   }
 
   /**
-   * Asserts the info block of a card.
+   * Asserts the item with an illustration from the list.
    *
    * @param array $expected_items
    *   The expected list items.
@@ -65,7 +65,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertItems(array $expected_items, string $variant, Crawler $crawler): void {
-    $item_elements = $crawler->filter('.ecl-list-illustration__item');
+    $item_elements = $crawler->filter('.ecl-list-illustration__image');
     self::assertCount(count($expected_items), $item_elements, 'The expected list items do not match the found list items.');
     foreach ($expected_items as $index => $expected_item) {
       $item_element = $item_elements->eq($index);
@@ -89,21 +89,19 @@ class ListWithIllustrationAssert extends BasePatternAssert {
 
   /**
    * {@inheritdoc}
-   *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   protected function getPatternVariant(string $html): string {
     $crawler = new Crawler($html);
-    // Check whether its horizontal or vertical.
+    // Check whether it's horizontal or vertical.
     $variant = 'vertical';
     $list = $crawler->filter('.ecl-list-illustration');
     if (strpos($list->attr('class'), 'ecl-list-illustration--col') !== FALSE) {
       $variant = 'horizontal';
     }
     // Check whether we have images or icons.
-    // If we have one image, we assume its an image variant.
+    // If we have one image, we assume it's an image variant.
     $image_element = $crawler->filter('.ecl-list-illustration__item');
-    if ($image_element) {
+    if ($image_element->count()) {
       $variant .= '_images';
       // Check whether it's square or not.
       if (strpos($image_element->attr('class'), 'ecl-list-illustration__image--square') !== FALSE) {

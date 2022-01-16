@@ -275,209 +275,18 @@ class TwigExtension extends AbstractExtension {
    *   Icon array for ECL components containing icon name, path and rotation.
    */
   public function toEclIcon(array $context, $icon, string $size = ''): array {
-    $path = $context['ecl_icon_path'];
-    $social_path = $context['ecl_icon_social_media_path'];
+    $path = $this->getIconPath($context, $icon);
 
-    // ECL supported icons naming and rotation.
-    $icons = [
-      'facebook' => [
-        'name' => 'facebook',
-        'social' => TRUE,
-      ],
-      'instagram' => [
-        'name' => 'instagram',
-        'social' => TRUE,
-      ],
-      'linkedin' => [
-        'name' => 'linkedin',
-        'social' => TRUE,
-      ],
-      'pinterest' => [
-        'name' => 'pinterest',
-        'social' => TRUE,
-      ],
-      'rss' => [
-        'name' => 'rss',
-      ],
-      'skype' => [
-        'name' => 'skype',
-        'social' => TRUE,
-      ],
-      'twitter' => [
-        'name' => 'twitter',
-        'social' => TRUE,
-      ],
-      'youtube' => [
-        'name' => 'youtube',
-        'social' => TRUE,
-      ],
-      'audio' => [
-        'name' => 'audio',
-      ],
-      'book' => [
-        'name' => 'book',
-      ],
-      'brochure' => [
-        'name' => 'brochure',
-      ],
-      'budget' => [
-        'name' => 'budget',
-      ],
-      'calendar' => [
-        'name' => 'calendar',
-      ],
-      'copy' => [
-        'name' => 'copy',
-      ],
-      'data' => [
-        'name' => 'data',
-      ],
-      'digital' => [
-        'name' => 'digital',
-      ],
-      'edit' => [
-        'name' => 'edit',
-      ],
-      'energy' => [
-        'name' => 'energy',
-      ],
-      'euro' => [
-        'name' => 'euro',
-      ],
-      'faq' => [
-        'name' => 'faq',
-      ],
-      'feedback' => [
-        'name' => 'feedback',
-      ],
-      'file' => [
-        'name' => 'file',
-      ],
-      'gear' => [
-        'name' => 'gear',
-      ],
-      'generic-lang' => [
-        'name' => 'generic-lang',
-      ],
-      'global' => [
-        'name' => 'global',
-      ],
+    // Icons that require transforming.
+    $transformed_icons = [
       'googleplus' => [
         'name' => 'digital',
-      ],
-      'growth' => [
-        'name' => 'growth',
-      ],
-      'hamburger' => [
-        'name' => 'hamburger',
-      ],
-      'image' => [
-        'name' => 'image',
-      ],
-      'infographic' => [
-        'name' => 'infographic',
-      ],
-      'language' => [
-        'name' => 'language',
-      ],
-      'livestreaming' => [
-        'name' => 'livestreaming',
-      ],
-      'location' => [
-        'name' => 'location',
-      ],
-      'log-in' => [
-        'name' => 'log-in',
-      ],
-      'logged-in' => [
-        'name' => 'logged-in',
-      ],
-      'multiple-files' => [
-        'name' => 'multiple-files',
-      ],
-      'organigram' => [
-        'name' => 'organigram',
-      ],
-      'package' => [
-        'name' => 'package',
-      ],
-      'presentation' => [
-        'name' => 'presentation',
-      ],
-      'print' => [
-        'name' => 'print',
-      ],
-      'regulation' => [
-        'name' => 'regulation',
-      ],
-      'search' => [
-        'name' => 'search',
-      ],
-      'share' => [
-        'name' => 'share',
       ],
       'slides' => [
         'name' => 'presentation',
       ],
-      'spinner' => [
-        'name' => 'spinner',
-      ],
-      'spreadsheet' => [
-        'name' => 'spreadsheet',
-      ],
-      'video' => [
-        'name' => 'video',
-      ],
-      'camera' => [
-        'name' => 'video',
-      ],
-      'error' => [
-        'name' => 'error',
-      ],
-      'information' => [
-        'name' => 'information',
-      ],
       'info' => [
         'name' => 'information',
-      ],
-      'success' => [
-        'name' => 'success',
-      ],
-      'warning' => [
-        'name' => 'warning',
-      ],
-      'check' => [
-        'name' => 'check',
-      ],
-      'check-filled' => [
-        'name' => 'check-filled',
-      ],
-      'close' => [
-        'name' => 'close',
-      ],
-      'close-filled' => [
-        'name' => 'close-filled',
-      ],
-      'corner-arrow' => [
-        'name' => 'corner-arrow',
-      ],
-      'download' => [
-        'name' => 'download',
-      ],
-      'external' => [
-        'name' => 'external',
-      ],
-      'fullscreen' => [
-        'name' => 'fullscreen',
-      ],
-      'minus' => [
-        'name' => 'minus',
-      ],
-      'plus' => [
-        'name' => 'plus',
-      ],
-      'solid-arrow' => [
-        'name' => 'solid-arrow',
       ],
       'close-dark' => [
         'name' => 'close-filled',
@@ -516,30 +325,108 @@ class TwigExtension extends AbstractExtension {
       ],
     ];
 
-    if (array_key_exists($icon, $icons)) {
+    // Check whether the icon needs any transformation.
+    if (array_key_exists($icon, $transformed_icons)) {
       $icons[$icon]['path'] = $path;
-      if (isset($icons[$icon]['social']) && $icons[$icon]['social']) {
-        $icons[$icon]['path'] = $social_path;
-      }
       if ($size) {
         $icons[$icon]['size'] = $size;
       }
-
       return $icons[$icon];
     }
 
-    if ($size) {
-      return [
-        'name' => 'digital',
-        'path' => $path,
-        'size' => $size,
-      ];
+    // We define a default icon if one is not provided.
+    if (!$icon) {
+      $icon = 'digital';
     }
-
-    return [
-      'name' => 'digital',
+    $icon = [
+      'name' => $icon,
       'path' => $path,
     ];
+    if ($size) {
+      $icon['size'] = $size;
+
+    }
+    return $icon;
+  }
+
+  /**
+   * Returns the file path for an ECL icon.
+   *
+   * @param array $context
+   *   The twig context.
+   * @param string $icon
+   *   The icon to be converted.
+   *
+   * @return string
+   *   ECL icon file path.
+   */
+  protected function getIconPath(array $context, string $icon): string {
+    // Flag icon names.
+    $flag_icons = [
+      'austria',
+      'belgium',
+      'bulgaria',
+      'croatia',
+      'cyprus',
+      'czech-republic',
+      'denmark',
+      'estonia',
+      'EU',
+      'finland',
+      'france',
+      'germany',
+      'greece',
+      'hungary',
+      'ireland',
+      'italy',
+      'latvia',
+      'lithuania',
+      'luxembourg',
+      'malta',
+      'netherlands',
+      'poland',
+      'portugal',
+      'romania',
+      'slovakia',
+      'slovenia',
+      'spain',
+      'sweden',
+    ];
+    $found_icon = array_filter($flag_icons, function ($var) use ($icon) {
+      if (strpos($icon, $var) === 0) {
+        return TRUE;
+      };
+      return FALSE;
+    });
+    if ($found_icon) {
+      return $context['ecl_icon_flag_path'];
+    }
+
+    // Social media icon names.
+    $social_icons = [
+      'blog',
+      'facebook',
+      'flickr',
+      'foursquare',
+      'instagram',
+      'linkedin',
+      'pinterest',
+      'reddit',
+      'skype',
+      'spotify',
+      'twitter',
+      'youtube',
+    ];
+    $found_icon = array_filter($social_icons, function ($var) use ($icon) {
+      if (strpos($icon, $var) === 0) {
+        return TRUE;
+      };
+      return FALSE;
+    });
+    if ($found_icon) {
+      return $context['ecl_icon_social_media_path'];
+    }
+    return $context['ecl_icon_path'];
   }
 
   /**
