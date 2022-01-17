@@ -280,6 +280,7 @@ class TwigExtensionTest extends UnitTestCase {
     $context = [
       'ecl_icon_path' => '/path/to/theme/resources/icons/',
       'ecl_icon_social_media_path' => '/path/to/theme/resources/social-media-icons/',
+      'ecl_icon_flag_path' => '/path/to/theme/resources/flag-icons/',
     ];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
@@ -317,9 +318,34 @@ class TwigExtensionTest extends UnitTestCase {
         'instagram',
         [
           'name' => 'instagram',
-          // A TRUE value is rendered as 1 by twig.
-          'social' => 1,
           'path' => '/path/to/theme/resources/social-media-icons/',
+          'size' => 'xs',
+        ],
+        'xs',
+      ],
+      [
+        'instagram-color',
+        [
+          'name' => 'instagram-color',
+          'path' => '/path/to/theme/resources/social-media-icons/',
+          'size' => 'xs',
+        ],
+        'xs',
+      ],
+      [
+        'spain',
+        [
+          'name' => 'spain',
+          'path' => '/path/to/theme/resources/flag-icons/',
+          'size' => 'xs',
+        ],
+        'xs',
+      ],
+      [
+        'spain-square',
+        [
+          'name' => 'spain-square',
+          'path' => '/path/to/theme/resources/flag-icons/',
           'size' => 'xs',
         ],
         'xs',
@@ -336,7 +362,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'not-supported-icon',
         [
-          'name' => 'digital',
+          'name' => 'not-supported-icon',
           'path' => '/path/to/theme/resources/icons/',
           'size' => 'm',
         ],
@@ -345,7 +371,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'no-size',
         [
-          'name' => 'digital',
+          'name' => 'no-size',
           'path' => '/path/to/theme/resources/icons/',
         ],
         NULL,
@@ -353,7 +379,7 @@ class TwigExtensionTest extends UnitTestCase {
       [
         'empty-size',
         [
-          'name' => 'digital',
+          'name' => 'empty-size',
           'path' => '/path/to/theme/resources/icons/',
           'size' => '',
         ],
