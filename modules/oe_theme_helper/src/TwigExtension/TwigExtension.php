@@ -327,11 +327,11 @@ class TwigExtension extends AbstractExtension {
 
     // Check whether the icon needs any transformation.
     if (array_key_exists($icon, $transformed_icons)) {
-      $icons[$icon]['path'] = $path;
+      $transformed_icons[$icon]['path'] = $path;
       if ($size) {
-        $icons[$icon]['size'] = $size;
+        $transformed_icons[$icon]['size'] = $size;
       }
-      return $icons[$icon];
+      return $transformed_icons[$icon];
     }
 
     // We define a default icon if one is not provided.
