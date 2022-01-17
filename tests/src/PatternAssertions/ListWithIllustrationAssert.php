@@ -81,17 +81,17 @@ class ListWithIllustrationAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertItems(array $expected_items, string $variant, Crawler $crawler): void {
-    $item_elements = $crawler->filter('.ecl-list-illustration__image');
+    $item_elements = $crawler->filter('.ecl-list-illustration__item');
     self::assertCount(count($expected_items), $item_elements, 'The expected list items do not match the found list items.');
     foreach ($expected_items as $index => $expected_item) {
       $item_element = $item_elements->eq($index);
-      if ($expected_item['title']) {
+      if (isset($expected_item['title'])) {
         self::assertElementText($expected_item['title'], '.ecl-list-illustration__title', $item_element);
       }
       else {
         self::assertElementNotExists('.ecl-list-illustration__title', $item_element);
       }
-      if ($expected_item['description']) {
+      if (isset($expected_item['description'])) {
         self::assertElementText($expected_item['description'], '.ecl-list-illustration__description', $item_element);
       }
       else {
@@ -121,7 +121,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     // Check whether it's horizontal or vertical.
     $variant = 'vertical';
     $list = $crawler->filter('.ecl-list-illustration');
-    if (strpos($list->attr('class'), '.ecl-list-illustration--col') !== FALSE) {
+    if (strpos($list->attr('class'), 'ecl-list-illustration--col') !== FALSE) {
       $variant = 'horizontal';
     }
     // Check whether we have images or icons.
@@ -130,7 +130,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     if ($image_element->count()) {
       $variant .= '_images';
       // Check whether it's square or not.
-      if (strpos($image_element->attr('class'), '.ecl-list-illustration__image--square') !== FALSE) {
+      if (strpos($image_element->attr('class'), 'ecl-list-illustration__image--square') !== FALSE) {
         $variant .= '_square';
       }
       else {
