@@ -126,7 +126,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     }
     // Check whether we have images or icons.
     // If we have one image, we assume it's an image variant.
-    $image_element = $crawler->filter('.ecl-list-illustration__item');
+    $image_element = $crawler->filter('.ecl-list-illustration__image');
     if ($image_element->count()) {
       $variant .= '_images';
       // Check whether it's square or not.
