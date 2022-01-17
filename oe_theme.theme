@@ -10,11 +10,13 @@ declare(strict_types = 1);
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -1710,4 +1712,154 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
     // with 'Core' ECL branding.
     unset($variables['site_name']);
   }
+}
+
+/**
+ * Process common fields of illustration list paragraphs.
+ *
+ * @param array $variables
+ *   Render array.
+ */
+function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables) {
+  $paragraph = $variables['paragraph'];
+  if (!$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['title'] = $paragraph->get('field_oe_title')->value;
+  }
+  $variables['zebra'] = (bool) $paragraph->get('field_oe_illustration_alternate')->value;
+  $variables['column'] = $paragraph->get('field_oe_illustration_columns')->value;
+
+  // First part of the variant. Second part should be added in the preprocess
+  // of the specific paragraph.
+  $variant_value = $paragraph->get('oe_paragraphs_variant')->first()->value;
+  $variables['variant'] = $variant_value === 'oe_illustration_vertical' ? 'vertical' : 'horizontal';
+}
+
+/**
+ * Validate and prepare media entity to be processed in theme preprocesses.
+ *
+ * @param mixed $media
+ *   MediaInterface entity will be processed only.
+ * @param \Drupal\Core\Session\AccountInterface $user
+ *   Active user.
+ * @param \Drupal\Core\Cache\CacheableDependencyInterface $cacheability
+ *   Object to collect cacheable dependencies.
+ * @param string $language_id
+ *   Language of the Media to return.
+ *
+ * @return \Drupal\media\MediaInterface|null
+ *   Media entity or null if media isn't accessible.
+ */
+function _oe_theme_prepare_media($media, AccountInterface $user, CacheableDependencyInterface $cacheability, string $language_id): ?MediaInterface {
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available.
+    return NULL;
+  }
+  $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $user, TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    // Media isn't accessible.
+    return NULL;
+  }
+  // Retrieve the correct media translation.
+  return \Drupal::service('entity.repository')->getTranslationFromContext($media, $language_id);
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+
+  $variables['variant'] .= '_icons';
+  $variables['items'] = [];
+
+  $paragraph = $variables['paragraph'];
+  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $description_list = $sub_paragraph->get('field_oe_illustration_text');
+    $icon = $sub_paragraph->get('field_oe_flag')->value;
+    $icon .= $ratio === 'square' ? '-square' : '';
+    $variables['items'][] = [
+      'title' => $description_list->term,
+      'description' => $description_list->description,
+      'icon' => $icon,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+
+  $variables['variant'] .= '_icons';
+  $variables['items'] = [];
+
+  $paragraph = $variables['paragraph'];
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $description_list = $sub_paragraph->get('field_oe_illustration_text');
+    $variables['items'][] = [
+      'title' => $description_list->term,
+      'description' => $description_list->description,
+      'icon' => $sub_paragraph->get('field_oe_icon')->value,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+
+  $paragraph = $variables['paragraph'];
+  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
+  $variables['variant'] = $variables['variant'] . '_images_' . $ratio;
+
+  $variables['items'] = [];
+
+  $entity_repository = \Drupal::service('entity.repository');
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $language_id = $paragraph->language()->getId();
+    $sub_paragraph = $entity_repository->getTranslationFromContext($sub_paragraph, $language_id);
+    // Get the image from attached media.
+    $image = [];
+    $media = _oe_theme_prepare_media($sub_paragraph->get('field_oe_media')->entity, $variables['user'], $cacheability, $language_id);
+    if ($media) {
+      $source = $media->getSource();
+      if ($source instanceof Image && ($file_entity = $media->get('oe_media_image')->entity)) {
+        $uri = $file_entity->getFileUri();
+        $cacheability->addCacheableDependency($file_entity);
+        $values = [
+          'src' => file_create_url($uri),
+          'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
+        ];
+        $image = ImageValueObject::fromArray($values);
+      }
+    }
+
+    $description_list = $sub_paragraph->get('field_oe_illustration_text');
+    $variables['items'][] = [
+      'title' => $description_list->term,
+      'description' => $description_list->description,
+      'image' => $image,
+    ];
+  }
+  $cacheability->applyTo($variables);
 }
