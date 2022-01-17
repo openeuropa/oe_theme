@@ -392,6 +392,8 @@ class TwigExtension extends AbstractExtension {
       'spain',
       'sweden',
     ];
+    // Flag icons can have a -square string appended, so check if the icon name
+    // starts with a country name.
     $found_icon = array_filter($flag_icons, function ($var) use ($icon) {
       if (strpos($icon, $var) === 0) {
         return TRUE;
@@ -417,6 +419,8 @@ class TwigExtension extends AbstractExtension {
       'twitter',
       'youtube',
     ];
+    // Social icons can have a -color or a -negative string appended,
+    // so check if the icon name starts with a social name.
     $found_icon = array_filter($social_icons, function ($var) use ($icon) {
       if (strpos($icon, $var) === 0) {
         return TRUE;

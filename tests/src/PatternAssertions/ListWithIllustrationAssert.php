@@ -21,8 +21,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
         $variant,
       ],
       'zebra' => [
-        [$this, 'assertElementExists'],
-        '.ecl-list-illustration--zebra',
+        [$this, 'assertZebra'],
       ],
       'items' => [
         [$this, 'assertItems'],
@@ -55,6 +54,23 @@ class ListWithIllustrationAssert extends BasePatternAssert {
   }
 
   /**
+   * Asserts if the list uses zebra pattern or not.
+   *
+   * @param bool $zebra
+   *   Whether the zebra pattern is enabled or not.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertZebra(bool $zebra, Crawler $crawler): void {
+    if ($zebra) {
+      self::assertElementExists('.ecl-list-illustration--zebra', $crawler);
+    }
+    else {
+      self::assertElementNotExists('.ecl-list-illustration--zebra', $crawler);
+    }
+  }
+
+  /**
    * Asserts the item with an illustration from the list.
    *
    * @param array $expected_items
@@ -69,8 +85,18 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     self::assertCount(count($expected_items), $item_elements, 'The expected list items do not match the found list items.');
     foreach ($expected_items as $index => $expected_item) {
       $item_element = $item_elements->eq($index);
-      self::assertElementText($expected_item['title'], 'ecl-list-illustration__title', $item_element);
-      self::assertElementText($expected_item['description'], 'ecl-list-illustration__description', $item_element);
+      if ($expected_item['title']) {
+        self::assertElementText($expected_item['title'], '.ecl-list-illustration__title', $item_element);
+      }
+      else {
+        self::assertElementNotExists('.ecl-list-illustration__title', $item_element);
+      }
+      if ($expected_item['description']) {
+        self::assertElementText($expected_item['description'], '.ecl-list-illustration__description', $item_element);
+      }
+      else {
+        self::assertElementNotExists('.ecl-list-illustration__description', $item_element);
+      }
       if (isset($expected_item['image'])) {
         self::assertElementExists('.ecl-list-illustration__image', $item_element);
         $image_element = $item_element->filter('.ecl-list-illustration__image');
@@ -95,7 +121,7 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     // Check whether it's horizontal or vertical.
     $variant = 'vertical';
     $list = $crawler->filter('.ecl-list-illustration');
-    if (strpos($list->attr('class'), 'ecl-list-illustration--col') !== FALSE) {
+    if (strpos($list->attr('class'), '.ecl-list-illustration--col') !== FALSE) {
       $variant = 'horizontal';
     }
     // Check whether we have images or icons.
@@ -104,11 +130,11 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     if ($image_element->count()) {
       $variant .= '_images';
       // Check whether it's square or not.
-      if (strpos($image_element->attr('class'), 'ecl-list-illustration__image--square') !== FALSE) {
+      if (strpos($image_element->attr('class'), '.ecl-list-illustration__image--square') !== FALSE) {
         $variant .= '_square';
       }
       else {
-        $variant .= '_large';
+        $variant .= '_landscape';
       }
       return $variant;
     }
