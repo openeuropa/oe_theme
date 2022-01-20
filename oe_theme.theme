@@ -1235,12 +1235,16 @@ function oe_theme_preprocess_block(&$variables) {
  * Add required variables to follow ECL guidelines.
  */
 function oe_theme_preprocess_block__system_branding_block(&$variables) {
-  $variables['site_logo_alt'] = !empty($variables['site_name']) ?
-    t('@site_name logo', ['@site_name' => $variables['site_name']]) :
-    '';
-
-  $route_options = ['absolute' => TRUE];
-  $variables['site_logo_href'] = Url::fromRoute('<front>', [], $route_options)->toString();
+  if ($variables['ecl_component_library'] === 'ec') {
+    $variables['logo_area_label'] = t('Home') . ' - ' . t('European Commission');
+    $variables['site_logo_alt'] = t('European Commission logo');
+    $site_logo_href = 'https://ec.europa.eu/info';
+  }
+  else {
+    $variables['logo_area_label'] = t('Home') . ' - ' . t('European Union');
+    $variables['site_logo_alt'] = t('European Union flag');
+    $site_logo_href = 'https://european-union.europa.eu';
+  }
 
   // Ensure the site logo falls back to english version if the language is
   // not EU language.
@@ -1248,6 +1252,10 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
     $variables['current_language_id'] = 'en';
   }
+  else {
+    $site_logo_href .= '/index_' . $variables['current_language_id'];
+  }
+  $variables['site_logo_href'] = $site_logo_href;
 }
 
 /**
