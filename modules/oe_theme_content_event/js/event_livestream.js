@@ -15,8 +15,7 @@
     attach: function attach(context) {
       setTimeout(function () {
         Array.prototype.forEach.call(document.querySelectorAll('[data-livestream-element]'), function (element) {
-          element.classList.remove('hidden');
-          element.classList.remove('ecl-link--hidden');
+          element.classList.remove('ecl-u-d-none');
         });
       }, drupalSettings.oe_theme_content_event.livestream_starttime_timestamp - Date.now())
     },

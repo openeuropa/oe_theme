@@ -63,15 +63,15 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
   /**
    * Is current day.
    *
-   * @param int $start_timestamp
+   * @param int $timestamp
    *   The timestamp of start date.
    *
    * @return bool
    *   True if timestamp is within current day.
    */
-  protected function isCurrentDay(int $start_timestamp): bool {
+  protected function isCurrentDay(int $timestamp): bool {
     $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd');
-    $start_day = $this->dateFormatter->format($start_timestamp, 'custom', 'Ymd');
+    $start_day = $this->dateFormatter->format($timestamp, 'custom', 'Ymd');
     return $current_date === $start_day;
   }
 
@@ -80,15 +80,15 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
    *
    * @param array $build
    *   The render array.
-   * @param int $start_timestamp
+   * @param int $timestamp
    *   The timestamp of start date.
    */
-  protected function addLivestreamDisclosure(array &$build, int $start_timestamp): void {
+  protected function addLivestreamDisclosure(array &$build, int $timestamp): void {
     $build['#attached'] = [
       'library' => 'oe_theme_content_event/livestream_link_disclosure',
       'drupalSettings' => [
         'oe_theme_content_event' => [
-          'livestream_starttime_timestamp' => $start_timestamp * 1000,
+          'livestream_starttime_timestamp' => $timestamp * 1000,
         ],
       ],
     ];
