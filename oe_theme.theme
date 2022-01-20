@@ -1686,13 +1686,17 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
   ]);
-
+  $site_logo_href = 'https://european-union.europa.eu';
   // Ensure the site logo falls back to english version if the language is
   // not EU language.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
     $variables['current_language_id'] = 'en';
   }
+  else {
+    $site_logo_href .= '/index_' . $variables['current_language_id'];
+  }
+  $variables['path'] = $site_logo_href;
 }
 
 /**

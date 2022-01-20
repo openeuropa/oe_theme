@@ -15,10 +15,11 @@
   [
     {
       'logo': {
-        'path': 'https://europa.eu/',
+        'path': path,
         'language': current_language_id,
         'src_mobile': ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
         'src_desktop': ecl_logo_path ~ '/standard-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+        'title': 'European Union'|t,
       },
       'description': site_owner ? 'This site is managed by the European Commission, @name'|t({'@name': site_owner}),
     },
