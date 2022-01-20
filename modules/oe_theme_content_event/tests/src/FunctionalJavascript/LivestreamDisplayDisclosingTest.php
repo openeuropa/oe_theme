@@ -97,8 +97,8 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
 
-    // Set livestream start date in 4 hours later.
-    $start_date = (clone $static_time)->modify('+4 hours');
+    // Set livestream start date in 10 minutes later.
+    $start_date = (clone $static_time)->modify('+10 minutes');
     $node->set('oe_event_online_type', 'livestream');
     $node->set('oe_event_online_link', [
       'uri' => 'http://www.example.com/online_link',
@@ -131,6 +131,9 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     $this->assertCount(1, $livestream_js);
     $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
     $this->assertCount(2, $livetime_elements);
+    foreach ($livetime_elements as $livetime_element) {
+      $this->assertFalse($livetime_element->isVisible());
+    }
     $this->getSession()->wait(10000);
     foreach ($livetime_elements as $livetime_element) {
       $this->assertTrue($livetime_element->isVisible());

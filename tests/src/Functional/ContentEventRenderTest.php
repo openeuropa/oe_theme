@@ -407,7 +407,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
         ], [
           'label' => 'Livestream',
-          'body' => 'Starts on Wednesday 18 March 2020, 01:00Link to online event',
+          'body' => 'Starts on Wednesday 18 March 2020, 01:00',
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
