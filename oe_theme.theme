@@ -1248,11 +1248,27 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     $site_logo_href = 'https://european-union.europa.eu';
   }
 
-  // Ensure the site logo falls back to english version if the language is
-  // not EU language.
+  // Provide correct icon for non-eu languages.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    $variables['current_language_id'] = 'en';
+    $language_icon_mapping = [
+      'nb' => 'no',
+      'tr' => 'tu',
+    ];
+    if (isset($language_icon_mapping[$language_code])) {
+      // Set correct icon for Norwegian and Turkish languages.
+      $variables['current_language_id'] = $language_icon_mapping[$language_code];
+    }
+    else {
+      // Check whether ECL provides a logo for the language.
+      $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
+      $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : '';
+      $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
+      if (!file_exists($ecl_logo)) {
+        // Provide fallback "en" icon if language logo doesn't exist.
+        $variables['current_language_id'] = 'en';
+      }
+    }
   }
   else {
     $site_logo_href .= '/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
