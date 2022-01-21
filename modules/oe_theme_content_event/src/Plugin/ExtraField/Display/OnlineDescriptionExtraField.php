@@ -52,7 +52,7 @@ class OnlineDescriptionExtraField extends InfoDisclosureExtraFieldBase {
       // But anyway keep information hidden from users till the time
       // of online streaming has started.
       $build['#hidden'] = TRUE;
-      $this->addLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
+      $this->attachLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
     }
 
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {

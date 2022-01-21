@@ -58,7 +58,7 @@ class LivestreamExtraField extends InfoDisclosureExtraFieldBase {
       if ($this->isCurrentDay($event->getOnlineStartDate()->getTimestamp())) {
         $build += $link;
         $build['#hide_link'] = TRUE;
-        $this->addLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
+        $this->attachLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
       }
     }
     $build['#date'] = $this->t('Starts on @date', [

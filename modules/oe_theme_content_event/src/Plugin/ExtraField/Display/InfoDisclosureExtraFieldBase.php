@@ -23,7 +23,7 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
   protected $dateFormatter;
 
   /**
-   * LivestreamExtraField constructor.
+   * InfoDisclosureExtraFieldBase constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -83,7 +83,7 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
    * @param int $timestamp
    *   The timestamp of start date.
    */
-  protected function addLivestreamDisclosure(array &$build, int $timestamp): void {
+  protected function attachLivestreamDisclosure(array &$build, int $timestamp): void {
     $build['#attached'] = [
       'library' => 'oe_theme_content_event/livestream_link_disclosure',
       'drupalSettings' => [
