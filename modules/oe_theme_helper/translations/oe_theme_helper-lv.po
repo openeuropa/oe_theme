@@ -524,3 +524,12 @@ msgstr "datu aizsardzības noteikumus"
 
 msgid "Highlighted"
 msgstr "Aktuāli"
+
+msgid "European Union flag"
+msgstr "Eiropas Savienības karogs"
+
+msgid "European Commission logo"
+msgstr "Eiropas Komisijas logotips"
+
+msgid "Home"
+msgstr "Sākumlapa"

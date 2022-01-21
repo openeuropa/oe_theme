@@ -524,3 +524,12 @@ msgstr "защита на данните"
 
 msgid "Highlighted"
 msgstr "Акценти"
+
+msgid "European Union flag"
+msgstr "Знаме на Европейския съюз"
+
+msgid "European Commission logo"
+msgstr "Лого на Европейската комисия"
+
+msgid "Home"
+msgstr "Начало"

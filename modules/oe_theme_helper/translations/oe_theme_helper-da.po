@@ -524,3 +524,12 @@ msgstr "databeskyttelse"
 
 msgid "Highlighted"
 msgstr "Fremhævet"
+
+msgid "European Union flag"
+msgstr "EU-flaget"
+
+msgid "European Commission logo"
+msgstr "Europa-Kommissionens logo"
+
+msgid "Home"
+msgstr "Forside"

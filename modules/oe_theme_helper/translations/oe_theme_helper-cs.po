@@ -524,3 +524,12 @@ msgstr "ochrany údajů"
 
 msgid "Highlighted"
 msgstr "Důležité"
+
+msgid "European Union flag"
+msgstr "Vlajka Evropské unie"
+
+msgid "European Commission logo"
+msgstr "Logo Evropské komise"
+
+msgid "Home"
+msgstr "Úvod"

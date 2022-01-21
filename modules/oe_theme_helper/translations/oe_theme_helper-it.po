@@ -524,3 +524,12 @@ msgstr "condizioni relative alla protezione dei dati"
 
 msgid "Highlighted"
 msgstr "Evidenziato"
+
+msgid "European Union flag"
+msgstr "Bandiera dell'Unione europea"
+
+msgid "European Commission logo"
+msgstr "Logo della Commissione europea"
+
+msgid "Home"
+msgstr "Homepage"
