@@ -7,5 +7,5 @@
  */
 #}
 {% for item in items %}
-  {{- item.content|render|capitalize -}}{{ not loop.last ? ' | ' }}
+  {{- item.content|render -}}{{ not loop.last ? ' | ' }}
 {% endfor %}
