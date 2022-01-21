@@ -10,7 +10,7 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
-use function PHPUnit\Framework\assertEquals;
+use PHPUnit\Framework\Assert;
 
 /**
  * Behat step definitions related to the oe_theme_test module.
@@ -368,11 +368,11 @@ class OeThemeTestContext extends RawDrupalContext {
 
     if ($logo && $presence) {
       $link = $page->find('css', '.ecl-footer-' . $this->getEclBranding() . '__logo-link');
-      assertEquals('https://european-union.europa.eu/index_en', $link->getAttribute('href'));
-      assertEquals(t('Home - European Union')->__toString(), $link->getAttribute('aria-label'));
+      Assert::assertEquals('https://european-union.europa.eu/index_en', $link->getAttribute('href'));
+      Assert::assertEquals(t('Home - European Union')->__toString(), $link->getAttribute('aria-label'));
       $img = $link->find('css', 'img');
-      assertEquals(t('European Union flag')->__toString(), $img->getAttribute('alt'));
-      assertEquals(t('European Union')->__toString(), $img->getAttribute('title'));
+      Assert::assertEquals(t('European Union flag')->__toString(), $img->getAttribute('alt'));
+      Assert::assertEquals(t('European Union')->__toString(), $img->getAttribute('title'));
     }
   }
 
@@ -462,11 +462,11 @@ class OeThemeTestContext extends RawDrupalContext {
       $img_alt = t('European Union flag')->__toString();
       $img_title = t('European Union')->__toString();
     }
-    assertEquals($href, $link->getAttribute('href'));
-    assertEquals($aria_label, $link->getAttribute('aria-label'));
+    Assert::assertEquals($href, $link->getAttribute('href'));
+    Assert::assertEquals($aria_label, $link->getAttribute('aria-label'));
     $img = $link->find('css', 'img');
-    assertEquals($img_alt, $img->getAttribute('alt'));
-    assertEquals($img_title, $img->getAttribute('title'));
+    Assert::assertEquals($img_alt, $img->getAttribute('alt'));
+    Assert::assertEquals($img_title, $img->getAttribute('title'));
   }
 
   /**
