@@ -10,6 +10,7 @@ use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
+use function PHPUnit\Framework\assertEquals;
 
 /**
  * Behat step definitions related to the oe_theme_test module.
@@ -364,6 +365,15 @@ class OeThemeTestContext extends RawDrupalContext {
       $expectation = $presence ? 'present' : 'absent';
       throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
     }
+
+    if ($logo && $presence) {
+      $link = $page->find('css', '.ecl-footer-' . $this->getEclBranding() . '__logo-link');
+      assertEquals('https://european-union.europa.eu/index_en', $link->getAttribute('href'));
+      assertEquals(t('Home - European Union')->__toString(), $link->getAttribute('aria-label'));
+      $img = $link->find('css', 'img');
+      assertEquals(t('European Union flag')->__toString(), $img->getAttribute('alt'));
+      assertEquals(t('European Union')->__toString(), $img->getAttribute('title'));
+    }
   }
 
   /**
@@ -398,8 +408,65 @@ class OeThemeTestContext extends RawDrupalContext {
       'Finnish' => 'fi',
       'Swedish' => 'sv',
     ];
+    $langcode = $lang_code[$language] ?? 'en';
     $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile');
-    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/' . $lang_code[$language] . '.svg');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
+  }
+
+  /**
+   * Asserts that the header logo contains all required attributes.
+   *
+   * @Then the :language header logo should contain accessibility attributes
+   */
+  public function assertHeaderLogoAccessibility(string $language): void {
+    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+    $component_library = \Drupal::config($theme_name . '.settings')->get('component_library');
+    $eu_official_languages = [
+      'Bulgarian' => 'bg',
+      'Czech' => 'cs',
+      'Danish' => 'da',
+      'German' => 'de',
+      'Estonian' => 'et',
+      'Greek' => 'el',
+      'English' => 'en',
+      'Spanish' => 'es',
+      'French' => 'fr',
+      'Irish' => 'ga',
+      'Croatian' => 'hr',
+      'Italian' => 'it',
+      'Latvian' => 'lv',
+      'Lithuanian' => 'lt',
+      'Hungarian' => 'hu',
+      'Maltese' => 'mt',
+      'Dutch' => 'nl',
+      'Polish' => 'pl',
+      'Portuguese' => 'pt',
+      'Romanian' => 'ro',
+      'Slovak' => 'sk',
+      'Slovenian' => 'sl',
+      'Finnish' => 'fi',
+      'Swedish' => 'sv',
+    ];
+
+    $link_selector = '.ecl-site-header-' . $this->getEclBranding() . '__logo-link';
+    $link = $this->getSession()->getPage()->find('css', $link_selector);
+    if ($component_library === 'ec') {
+      $href = !empty($eu_official_languages[$language]) ? 'https://ec.europa.eu/info/index_' . $eu_official_languages[$language] : 'https://ec.europa.eu/info';
+      $aria_label = t('Home - European Commission')->__toString();
+      $img_alt = t('European Commission logo')->__toString();
+      $img_title = t('European Commission')->__toString();
+    }
+    else {
+      $href = !empty($eu_official_languages[$language]) ? 'https://european-union.europa.eu/index_' . $eu_official_languages[$language] : 'https://european-union.europa.eu';
+      $aria_label = t('Home - European Union')->__toString();
+      $img_alt = t('European Union flag')->__toString();
+      $img_title = t('European Union')->__toString();
+    }
+    assertEquals($href, $link->getAttribute('href'));
+    assertEquals($aria_label, $link->getAttribute('aria-label'));
+    $img = $link->find('css', 'img');
+    assertEquals($img_alt, $img->getAttribute('alt'));
+    assertEquals($img_title, $img->getAttribute('title'));
   }
 
   /**
