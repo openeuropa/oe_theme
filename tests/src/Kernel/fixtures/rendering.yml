@@ -3008,9 +3008,10 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "vertical_images_large"
     '#fields':
+      squared: false
       zebra: true
+      column: 1
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -3041,9 +3042,10 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "vertical_images_square"
     '#fields':
+      squared: true
       zebra: true
+      column: 1
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
@@ -3076,16 +3078,14 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "vertical_icons"
     '#fields':
+      squared: false
       zebra: false
+      column: 1
       items:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
           icon: "growth"
-          image:
-            src: "https://placeimg.com/500/500/arch"
-            alt: "Alternative text for featured item image 2"
         - title: "About the European Union"
           description: "The EU and its institutions, how to visit and work at the EU."
           icon: "budget"
@@ -3106,9 +3106,9 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "horizontal_images_large"
     '#fields':
-      zebra: true
+      squared: false
+      zebra: false
       column: 2
       items:
         - title: "Business, Economy, Euro"
@@ -3141,8 +3141,8 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "horizontal_images_square"
     '#fields':
+      squared: true
       column: 3
       items:
         - title: "Business, Economy, Euro"
@@ -3174,8 +3174,8 @@
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
-    '#variant': "horizontal_icons"
     '#fields':
+      squared: false
       column: 2
       items:
         - title: "Business, Economy, Euro"

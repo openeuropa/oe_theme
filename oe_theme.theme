@@ -1726,12 +1726,10 @@ function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables) 
     $variables['title'] = $paragraph->get('field_oe_title')->value;
   }
   $variables['zebra'] = (bool) $paragraph->get('field_oe_illustration_alternate')->value;
-  $variables['column'] = $paragraph->get('field_oe_illustration_columns')->value;
 
-  // First part of the variant. Second part should be added in the preprocess
-  // of the specific paragraph.
+  // Set the column value based on the selected variant.
   $variant_value = $paragraph->get('oe_paragraphs_variant')->first()->value;
-  $variables['variant'] = $variant_value === 'oe_illustration_vertical' ? 'vertical' : 'horizontal';
+  $variables['column'] = $variant_value === 'oe_illustration_vertical' ? 1 : $paragraph->get('field_oe_illustration_columns')->value;
 }
 
 /**
@@ -1772,8 +1770,6 @@ function _oe_theme_prepare_media($media, AccountInterface $user, CacheableDepend
  */
 function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$variables): void {
   _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
-
-  $variables['variant'] .= '_icons';
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
@@ -1799,8 +1795,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
  */
 function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$variables): void {
   _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
-
-  $variables['variant'] .= '_icons';
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
@@ -1826,8 +1820,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
 
   $paragraph = $variables['paragraph'];
   $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
-  $variables['variant'] = $variables['variant'] . '_images_' . $ratio;
-
   $variables['items'] = [];
 
   $entity_repository = \Drupal::service('entity.repository');

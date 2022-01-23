@@ -4,36 +4,18 @@
  * List with illustration.
  */
 #}
-
-{# Set the columns to 1 if vertical variants. #}
-{% if 'vertical' in variant %}
-  {% set column = 1 %}
-{% endif %}
-
-{# Set the zebra to false if horizontal variants. #}
-{% if 'horizontal' in variant %}
-  {% set zebra = false %}
-{% endif %}
-
 {% set _items = [] %}
 {% for item in items %}
-  {% if 'icon' in variant %}
-    {# Remove image information if an icon variant. #}
-    {% set _item = item|merge({'image': {}}) %}
-    {# Transform icon into ecl array. #}
-    {% if _item.icon %}
-      {% set _item = _item|merge({'icon': to_ecl_icon(item.icon)}) %}
-    {% endif %}
-  {% elseif 'image' in variant %}
-    {# Remove icon information if an image variant. #}
-    {% set _item = item|merge({'icon': {}}) %}
-    {# Make images square if square variant. #}
-    {% if _item.image and 'square' in variant %}
-      {% set _image = _item.image|merge({'squared': true}) %}
-      {% set _item = _item|merge({'image': _image}) %}
-    {% endif %}
+  {# Transform icon into ecl array. #}
+  {% if item.icon %}
+    {% set item = item|merge({'icon': to_ecl_icon(item.icon)}) %}
   {% endif %}
-  {% set _items = _items|merge([_item]) %}
+  {# Add squared information to image. #}
+  {% if item.image %}
+    {% set _image = item.image|merge({'squared': squared}) %}
+    {% set item = item|merge({'image': _image}) %}
+  {% endif %}
+  {% set _items = _items|merge([item]) %}
 {% endfor %}
 {% include '@ecl-twig/list-illustration' with {
   'column': column,

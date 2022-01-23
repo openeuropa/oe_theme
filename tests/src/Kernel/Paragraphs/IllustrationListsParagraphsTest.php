@@ -131,7 +131,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('horizontal_icons', $html);
 
     // Assert number of columns and ratio.
     $list_paragraph->set('field_oe_illustration_columns', 4);
@@ -163,14 +162,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     unset($expected_values['column']);
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_icons', $html);
 
     // Assert vertical variant with zebra.
     $list_paragraph->set('field_oe_illustration_alternate', TRUE)->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_icons', $html);
   }
 
   /**
@@ -248,7 +245,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('horizontal_icons', $html);
 
     // Assert number of columns.
     $list_paragraph->set('field_oe_illustration_columns', 3)->save();
@@ -261,14 +257,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     unset($expected_values['column']);
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_icons', $html);
 
     // Assert vertical variant with zebra.
     $list_paragraph->set('field_oe_illustration_alternate', TRUE)->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_icons', $html);
   }
 
   /**
@@ -374,7 +368,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('horizontal_images_landscape', $html);
 
     // Assert number of columns and ratio.
     $list_paragraph->set('field_oe_illustration_columns', 3);
@@ -382,14 +375,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['column'] = 3;
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('horizontal_images_square', $html);
 
     // Assert vertical variant.
     $list_paragraph->set('oe_paragraphs_variant', 'oe_illustration_vertical')->save();
     $html = $this->renderParagraph($list_paragraph);
     unset($expected_values['column']);
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_images_square', $html);
 
     // Assert vertical variant with zebra and ratio.
     $list_paragraph->set('field_oe_illustration_alternate', TRUE);
@@ -397,7 +388,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('vertical_images_landscape', $html);
   }
 
 }
