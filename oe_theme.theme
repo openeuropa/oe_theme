@@ -1778,18 +1778,17 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
 
   $paragraph = $variables['paragraph'];
   $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
-
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
-    $description_list = $sub_paragraph->get('field_oe_illustration_text');
     $icon = $sub_paragraph->get('field_oe_flag')->value;
     $icon .= $ratio === 'square' ? '-square' : '';
     $variables['items'][] = [
-      'title' => $description_list->term,
-      'description' => $description_list->description,
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $icon,
     ];
   }
@@ -1805,15 +1804,15 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$varia
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
-    $description_list = $sub_paragraph->get('field_oe_illustration_text');
     $variables['items'][] = [
-      'title' => $description_list->term,
-      'description' => $description_list->description,
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $sub_paragraph->get('field_oe_icon')->value,
     ];
   }
@@ -1833,6 +1832,7 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
 
   $entity_repository = \Drupal::service('entity.repository');
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
     // Get sub-paragraph translation.
@@ -1853,11 +1853,9 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
         $image = ImageValueObject::fromArray($values);
       }
     }
-
-    $description_list = $sub_paragraph->get('field_oe_illustration_text');
     $variables['items'][] = [
-      'title' => $description_list->term,
-      'description' => $description_list->description,
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'image' => $image,
     ];
   }
