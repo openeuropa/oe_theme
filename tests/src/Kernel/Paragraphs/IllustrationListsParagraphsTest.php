@@ -59,12 +59,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 1',
-          'description' => 'Description 1',
-        ],
-      ],
+      'field_oe_title' => 'Term 1',
+      'field_oe_text_long' => 'Description 1',
       'field_oe_flag' => 'austria',
     ]);
     $paragraph->save();
@@ -72,11 +68,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 2',
-        ],
-      ],
+      'field_oe_title' => 'Term 2',
+      'field_oe_text_long' => '',
       'field_oe_flag' => 'belgium',
     ]);
     $paragraph->save();
@@ -84,11 +77,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_illustration_text' => [
-        [
-          'description' => 'Description 3',
-        ],
-      ],
+      'field_oe_title' => '',
+      'field_oe_text_long' => 'Description 3',
       'field_oe_flag' => 'france',
     ]);
     $paragraph->save();
@@ -96,7 +86,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_illustration_text' => [],
+      'field_oe_title' => '',
+      'field_oe_text_long' => '',
       'field_oe_flag' => 'finland',
     ]);
     $paragraph->save();
@@ -190,12 +181,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_icon',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 1',
-          'description' => 'Description 1',
-        ],
-      ],
+      'field_oe_title' => 'Term 1',
+      'field_oe_text_long' => 'Description 1',
       'field_oe_icon' => 'data',
     ]);
     $paragraph->save();
@@ -203,11 +190,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_icon',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 2',
-        ],
-      ],
+      'field_oe_title' => 'Term 2',
       'field_oe_icon' => 'facebook',
     ]);
     $paragraph->save();
@@ -215,11 +198,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_icon',
-      'field_oe_illustration_text' => [
-        [
-          'description' => 'Description 3',
-        ],
-      ],
+      'field_oe_text_long' => 'Description 3',
       'field_oe_icon' => 'global',
     ]);
     $paragraph->save();
@@ -227,7 +206,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_icon',
-      'field_oe_illustration_text' => [],
       'field_oe_icon' => 'package',
     ]);
     $paragraph->save();
@@ -316,12 +294,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $items = [];
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 1',
-          'description' => 'Description 1',
-        ],
-      ],
+      'field_oe_title' => 'Term 1',
+      'field_oe_text_long' => 'Description 1',
       'field_oe_media' => [$media],
     ]);
     $paragraph->save();
@@ -329,11 +303,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_illustration_text' => [
-        [
-          'term' => 'Term 2',
-        ],
-      ],
+      'field_oe_title' => 'Term 2',
       'field_oe_media' => [$media],
     ]);
     $paragraph->save();
@@ -341,11 +311,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_illustration_text' => [
-        [
-          'description' => 'Description 3',
-        ],
-      ],
+      'field_oe_text_long' => 'Description 3',
       'field_oe_media' => [$media],
     ]);
     $paragraph->save();
@@ -353,7 +319,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_illustration_text' => [],
       'field_oe_media' => [$media],
     ]);
     $paragraph->save();
