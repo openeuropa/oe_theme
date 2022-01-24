@@ -1720,7 +1720,7 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
  * @param array $variables
  *   Render array.
  */
-function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables) {
+function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables): void {
   $paragraph = $variables['paragraph'];
   if (!$paragraph->get('field_oe_title')->isEmpty()) {
     $variables['title'] = $paragraph->get('field_oe_title')->value;
@@ -1819,7 +1819,6 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
   _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
 
   $paragraph = $variables['paragraph'];
-  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
   $variables['items'] = [];
 
   $entity_repository = \Drupal::service('entity.repository');
@@ -1836,10 +1835,9 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
     if ($media) {
       $source = $media->getSource();
       if ($source instanceof Image && ($file_entity = $media->get('oe_media_image')->entity)) {
-        $uri = $file_entity->getFileUri();
         $cacheability->addCacheableDependency($file_entity);
         $values = [
-          'src' => file_create_url($uri),
+          'src' => $file_entity->createFileUrl(),
           'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
         ];
         $image = ImageValueObject::fromArray($values);
