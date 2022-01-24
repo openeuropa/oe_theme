@@ -2332,6 +2332,7 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
+      'div.ecl': 0
       'ol.ecl-timeline': 1
       'li.ecl-timeline__item': 7
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
@@ -2379,6 +2380,7 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
+      'div.ecl': 0
       'ol.ecl-timeline': 1
       'li.ecl-timeline__item': 6
       '.ecl-timeline__item.ecl-timeline__item--toggle': 0
@@ -2425,6 +2427,7 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 0
+      'div.ecl': 0
       'ol.ecl-timeline': 1
       'li.ecl-timeline__item': 7
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
@@ -2451,6 +2454,7 @@
     '#id': timeline
     '#fields':
       title: "Timeline heading"
+      introduction: "Timeline introduction"
       limit: 2
       items:
         -
@@ -2475,6 +2479,7 @@
   assertions:
     count:
       'h2.ecl-u-type-heading-2': 1
+      'div.ecl': 1
       'ol.ecl-timeline': 1
       'li.ecl-timeline__item': 7
       '.ecl-timeline__item.ecl-timeline__item--toggle': 1
@@ -2484,6 +2489,7 @@
       '.ecl-timeline__item:nth-child(5) .ecl-timeline__title': 0
     equals:
       'h2.ecl-u-type-heading-2': "Timeline heading"
+      'div.ecl': "Timeline introduction"
       '.ecl-timeline__item:nth-child(1) .ecl-timeline__title': "Item 1"
       '.ecl-timeline__item:nth-child(1) .ecl-timeline__label': "13 September 2017"
       '.ecl-timeline__item:nth-child(2) .ecl-timeline__title': "Item 2"
