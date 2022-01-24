@@ -52,7 +52,7 @@
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "^1.15",
         "openeuropa/oe_multilingual": "^1.10",
-        "openeuropa/oe_paragraphs": "^1.12",
+        "openeuropa/oe_paragraphs": "dev-EWPP-1563",
         "openeuropa/oe_search": "^1.9",
         "openeuropa/oe_webtools": "^1.15",
         "openeuropa/rdf_skos": "^1.0",

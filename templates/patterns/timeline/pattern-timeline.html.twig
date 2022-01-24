@@ -27,9 +27,7 @@
   </h2>
 {% endif %}
 {% if introduction %}
-  <div class="ecl">
-    {{ introduction }}
-  </div>
+  {{ introduction }}
 {% endif %}
 {% include '@ecl-twig/timeline' with {
   'toggle_collapsed': _toggle_collapsed,
