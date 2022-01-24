@@ -9,6 +9,7 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
 use Drupal\field\Entity\FieldConfig;
 use Drupal\node\NodeInterface;
+use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 use PHPUnit\Framework\Assert;
 
@@ -382,32 +383,7 @@ class OeThemeTestContext extends RawDrupalContext {
    * @Then the :language EU mobile logo should be available
    */
   public function assertEuMobileLogo(string $language): void {
-    $lang_code = [
-      'Bulgarian' => 'bg',
-      'Czech' => 'cs',
-      'Danish' => 'da',
-      'German' => 'de',
-      'Estonian' => 'et',
-      'Greek' => 'el',
-      'English' => 'en',
-      'Spanish' => 'es',
-      'French' => 'fr',
-      'Irish' => 'ga',
-      'Croatian' => 'hr',
-      'Italian' => 'it',
-      'Latvian' => 'lv',
-      'Lithuanian' => 'lt',
-      'Hungarian' => 'hu',
-      'Maltese' => 'mt',
-      'Dutch' => 'nl',
-      'Polish' => 'pl',
-      'Portuguese' => 'pt',
-      'Romanian' => 'ro',
-      'Slovak' => 'sk',
-      'Slovenian' => 'sl',
-      'Finnish' => 'fi',
-      'Swedish' => 'sv',
-    ];
+    $lang_code = $this->getEuLanguages();
     $langcode = $lang_code[$language] ?? 'en';
     $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile');
     $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
@@ -421,32 +397,7 @@ class OeThemeTestContext extends RawDrupalContext {
   public function assertHeaderLogoAccessibility(string $language): void {
     $theme_name = \Drupal::theme()->getActiveTheme()->getName();
     $component_library = \Drupal::config($theme_name . '.settings')->get('component_library');
-    $eu_official_languages = [
-      'Bulgarian' => 'bg',
-      'Czech' => 'cs',
-      'Danish' => 'da',
-      'German' => 'de',
-      'Estonian' => 'et',
-      'Greek' => 'el',
-      'English' => 'en',
-      'Spanish' => 'es',
-      'French' => 'fr',
-      'Irish' => 'ga',
-      'Croatian' => 'hr',
-      'Italian' => 'it',
-      'Latvian' => 'lv',
-      'Lithuanian' => 'lt',
-      'Hungarian' => 'hu',
-      'Maltese' => 'mt',
-      'Dutch' => 'nl',
-      'Polish' => 'pl',
-      'Portuguese' => 'pt',
-      'Romanian' => 'ro',
-      'Slovak' => 'sk',
-      'Slovenian' => 'sl',
-      'Finnish' => 'fi',
-      'Swedish' => 'sv',
-    ];
+    $eu_official_languages = $this->getEuLanguages();
 
     $link_selector = '.ecl-site-header-' . $this->getEclBranding() . '__logo-link';
     $link = $this->getSession()->getPage()->find('css', $link_selector);
@@ -538,6 +489,17 @@ class OeThemeTestContext extends RawDrupalContext {
     // to port this in our traits and remove it from here.
     // @todo reuse reset check sums once available as a trait.
     \Drupal::service('cache_tags.invalidator')->resetCheckSums();
+  }
+
+  /**
+   * Get the list of EU official language lang codes keyed by language name.
+   *
+   * @return array|false
+   *   Array of languages keyed by language name.
+   */
+  protected function getEuLanguages() {
+    $eu_languages = EuropeanUnionLanguages::getLanguageList();
+    return array_combine(array_column($eu_languages, 0), array_column($eu_languages, 2));
   }
 
 }
