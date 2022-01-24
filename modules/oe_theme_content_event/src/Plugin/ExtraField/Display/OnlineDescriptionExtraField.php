@@ -19,7 +19,7 @@ use Drupal\oe_content_event\EventNodeWrapper;
  *   visible = true
  * )
  */
-class OnlineDescriptionExtraField extends DateAwareExtraFieldBase {
+class OnlineDescriptionExtraField extends InfoDisclosureExtraFieldBase {
 
   /**
    * {@inheritdoc}
@@ -43,24 +43,31 @@ class OnlineDescriptionExtraField extends DateAwareExtraFieldBase {
     // If the livestream didn't start yet, we cache it by its start date.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getOnlineStartDate());
-      $this->isEmpty = TRUE;
-      return $build;
+      // Do not send field value to browser if it is not yet day online
+      // livestreaming should be started.
+      if (!$this->isCurrentDay($event->getOnlineStartDate()->getTimestamp())) {
+        $this->isEmpty = TRUE;
+        return $build;
+      }
+      // But anyway keep information hidden from users till the time
+      // of online streaming has started.
+      $build['#hidden'] = TRUE;
+      $this->attachLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
     }
 
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {
       // Cache it by the livestream end date.
       $this->applyHourTag($build, $event->getOnlineEndDate());
-      $view_builder = $this->entityTypeManager->getViewBuilder('node');
-      $build['#description'] = $view_builder->viewField($entity->get('oe_event_online_description'), [
-        'label' => 'hidden',
-      ]);
-
-      /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
-      $link = $entity->get('oe_event_online_link')->first();
-      $value = $link->getValue();
-      $build['#url'] = $link->getUrl();
-      $build['#label'] = $value['title'];
     }
+    $view_builder = $this->entityTypeManager->getViewBuilder('node');
+    $build['#description'] = $view_builder->viewField($entity->get('oe_event_online_description'), [
+      'label' => 'hidden',
+    ]);
+    /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link */
+    $link = $entity->get('oe_event_online_link')->first();
+    $value = $link->getValue();
+    $build['#url'] = $link->getUrl();
+    $build['#label'] = $value['title'];
 
     return $build;
   }
