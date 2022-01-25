@@ -184,7 +184,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'title' => 'Test event node',
       'oe_event_type' => 'http://publications.europa.eu/resource/authority/public-event-type/COMPETITION_AWARD_CEREMONY',
       'oe_teaser' => 'Event teaser',
-      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_subject' => 'http://data.europa.eu/uxp/114',
       'oe_event_status' => 'as_planned',
       'oe_event_dates' => [
         'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -224,7 +224,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'file',
-          'text' => 'Financing',
+          'text' => 'Council of the European Union',
           'size' => 'm',
         ], [
           'icon' => 'calendar',
@@ -274,7 +274,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'file',
-          'text' => 'Financing',
+          'text' => 'Council of the European Union',
           'size' => 'm',
         ], [
           'icon' => 'calendar',
@@ -728,7 +728,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'icon' => 'file',
-          'text' => 'Financing',
+          'text' => 'Council of the European Union',
           'size' => 'm',
         ], [
           'icon' => 'calendar',
