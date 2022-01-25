@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
@@ -110,7 +111,12 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Call for tenders node',
-      'meta' => 'Call status: Open',
+      'badges' => [
+        [
+          'label' => 'Call status: Open',
+          'variant' => 'high',
+        ],
+      ],
       'image' => NULL,
       'additional_information' => [
         new PatternAssertState(new FieldListAssert(), [
@@ -135,11 +141,12 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--high.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Test short title fallback.
-    $node->set('oe_content_short_title', 'CFT short title')->save();
+    $node->set('oe_content_short_title', 'CFT short title');
+    $node->set('sticky', NodeInterface::STICKY)->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'CFT short title';
@@ -170,12 +177,21 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
 
-    // Check status Closed label and background.
+    // Check status Closed and highlighted labels and background.
     $deadline_date = (clone $static_time)->modify('- 2 days');
     $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Closed';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Call status: Closed',
+        'variant' => 'low',
+      ],
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
@@ -199,7 +215,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--low.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--low.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check Deadline date is striked when Call for tenders is closed.
@@ -214,7 +230,10 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $expected_values['meta'] = 'Call status: Upcoming';
+    $expected_values['badges'][0] = [
+      'label' => 'Call status: Upcoming',
+      'variant' => 'medium',
+    ];
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
@@ -237,7 +256,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--medium.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status N/A.
@@ -251,7 +270,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
 
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $expected_values['meta'] = '';
+    $expected_values['badges'][0] = [];
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [

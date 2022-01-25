@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
+use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
@@ -92,6 +93,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       'oe_reference_code' => 'Call for proposals reference',
       'uid' => 0,
       'status' => 1,
+      'sticky' => NodeInterface::NOT_STICKY,
     ];
     $node = Node::create($values);
     $node->save();
@@ -104,7 +106,12 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values = [
       'title' => 'Test Call for proposals node',
-      'meta' => 'Call status: Open',
+      'badges' => [
+        [
+          'label' => 'Call status: Open',
+          'variant' => 'high',
+        ],
+      ],
       'image' => NULL,
       'additional_information' => [
         new PatternAssertState(new FieldListAssert(), [
@@ -132,7 +139,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--high.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Test short title fallback.
@@ -176,15 +183,25 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     ];
     $assert->assertPattern($expected_values, $html);
 
-    // Check status Closed label and background.
+    // Check status Closed and highlighted labels and background.
     $deadline_date->modify('- 4 days');
     $node->set('oe_call_proposals_deadline', [
       $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
+    $node->set('sticky', NodeInterface::STICKY);
     $node->set('oe_call_proposals_model', 'multiple_cut_off')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Closed';
+    $expected_values['badges'] = [
+      [
+        'label' => 'Call status: Closed',
+        'variant' => 'low',
+      ],
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
@@ -210,7 +227,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--low.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--low.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
@@ -223,7 +240,10 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_opening_date', $opening_date->format('Y-m-d'))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Call status: Upcoming';
+    $expected_values['badges'][0] = [
+      'label' => 'Call status: Upcoming',
+      'variant' => 'medium',
+    ];
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
@@ -249,7 +269,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.call-status.ecl-label.ecl-label--medium.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium.ecl-u-type-color-black');
     $this->assertCount(1, $actual);
 
     // Check status N/A.
@@ -262,7 +282,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_model', 'permanent')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = '';
+    $expected_values['badges'][0] = [];
     $expected_values['additional_information'] = [
       new PatternAssertState(new FieldListAssert(), [
         'items' => [
