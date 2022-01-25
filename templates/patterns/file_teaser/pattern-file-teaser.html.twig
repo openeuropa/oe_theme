@@ -46,6 +46,9 @@
 {% if file.size %}
   {% set _meta = '(' ~ file.size|format_size ~ ' - ' ~ file.extension|upper  ~ ')' %}
 {% endif %}
+{% if badges %}
+  {% set _label = badges|first %}
+{% endif %}
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(length),
@@ -82,4 +85,5 @@
   'detail_meta': _detail_meta,
   'variant': 'thumbnail',
   'lists': _lists,
+  'label': _label,
 } only %}

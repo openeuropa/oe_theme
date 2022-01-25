@@ -58,3 +58,12 @@ featured_item:
       preview:
         href: "http://example.com"
         label: "Read more"
+    badges:
+      type: array
+      label: "Badges"
+      description: "Adds different badges to the item."
+      preview:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"

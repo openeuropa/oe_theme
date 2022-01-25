@@ -521,3 +521,6 @@ msgstr "Olen tutvunud ja nõustun @link"
 
 msgid "data protection terms"
 msgstr "isikuandmete kaitse põhimõtetega"
+
+msgid "Highlighted"
+msgstr "Esiplaanil"

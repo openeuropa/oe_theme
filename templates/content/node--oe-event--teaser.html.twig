@@ -9,7 +9,6 @@
 {% if status == 'past' or status == 'cancelled' or status == 'ongoing' %}
   {% set variant = 'date_' ~ status %}
 {% endif %}
-{% set meta = content.extra_field_oe_theme_content_event_teaser_meta|field_value %}
 {% set detail = content.extra_field_oe_theme_content_event_teaser_details %}
 {% set additional_information = [] %}
 {% block content %}
@@ -18,8 +17,9 @@
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'date': pattern_date,
-    'meta': meta,
+    'meta': content.extra_field_oe_theme_content_event_teaser_meta|field_value,
     'detail': detail,
     'additional_information': additional_information,
+    'badges': badges,
   }) }}
 {% endblock %}

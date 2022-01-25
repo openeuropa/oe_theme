@@ -521,3 +521,6 @@ msgstr "Prečítal/a som si podmienky @link a súhlasím s nimi"
 
 msgid "data protection terms"
 msgstr "ochrany údajov"
+
+msgid "Highlighted"
+msgstr "Hlavné témy"

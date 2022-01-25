@@ -521,3 +521,6 @@ msgstr "Olen lukenut @link ja hyväksyn sen ehdot"
 
 msgid "data protection terms"
 msgstr "tietosuojaselosteen"
+
+msgid "Highlighted"
+msgstr "Valokeilassa"
