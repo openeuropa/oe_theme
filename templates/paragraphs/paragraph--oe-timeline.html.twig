@@ -4,12 +4,9 @@
  * Theme override to display the 'timeline' type paragraph.
  */
 #}
-{% if content.field_oe_text_long|field_value|render is not empty %}
-  {% set introduction = content.field_oe_text_long|field_value|render %}
-{% endif %}
 {{ pattern('timeline', {
   'title': heading,
-  'introduction': introduction,
+  'introduction': content.field_oe_text_long|field_value|render|default(''),
   'limit': limit,
   'button_label': show_more,
   'items': items,

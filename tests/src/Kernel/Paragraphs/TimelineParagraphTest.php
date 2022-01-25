@@ -111,8 +111,9 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    // No heading should be rendered if the paragraph has no heading set.
+    // No heading or introduction should be rendered.
     $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+    $this->assertCount(0, $crawler->filter('div#timeline-introduction'));
     $this->assertCount(1, $crawler->filter('ol.ecl-timeline'));
     $this->assertCount(7, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item'));
     $this->assertCount(3, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed'));
@@ -154,7 +155,7 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     // Assert rendering is updated.
     $this->assertCount(1, $crawler->filter('h2.ecl-u-type-heading-2'));
     $this->assertEquals('Timeline paragraph heading', trim($crawler->filter('h2.ecl-u-type-heading-2')->html()));
-    $this->assertEquals('Timeline paragraph introduction', trim($crawler->filter('div.ecl')->html()));
+    $this->assertEquals('Timeline paragraph introduction', trim($crawler->filter('div#timeline-introduction')->html()));
     $this->assertCount(6, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item'));
     $this->assertCount(0, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed'));
     $this->assertCount(0, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--toggle'));
