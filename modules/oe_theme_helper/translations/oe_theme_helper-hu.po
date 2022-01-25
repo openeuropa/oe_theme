@@ -521,3 +521,6 @@ msgstr "Elolvastam az @link és egyetértek vele"
 
 msgid "data protection terms"
 msgstr "adatvédelmi nyilatkozatot,"
+
+msgid "Highlighted"
+msgstr "Előtérben"
