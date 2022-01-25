@@ -521,3 +521,6 @@ msgstr "Jeg har læst og accepterer bestemmelserne om @link"
 
 msgid "data protection terms"
 msgstr "databeskyttelse"
+
+msgid "Highlighted"
+msgstr "Fremhævet"

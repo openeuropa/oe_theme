@@ -521,3 +521,6 @@ msgstr "Obeznámil(a) jsem se s podmínkami, které se týkají @link"
 
 msgid "data protection terms"
 msgstr "ochrany údajů"
+
+msgid "Highlighted"
+msgstr "Důležité"

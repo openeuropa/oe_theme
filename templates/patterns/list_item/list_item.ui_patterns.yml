@@ -95,3 +95,12 @@ list_item:
       label: "Icon"
       description: "An optional icon to be used with the link."
       preview: "external"
+    badges:
+      type: array
+      label: "Badges"
+      description: "Adds different badges to the item."
+      preview:
+        - label: "Highlighted"
+          variant: "highlight"
+        - label: "Status: Open"
+          variant: "high"

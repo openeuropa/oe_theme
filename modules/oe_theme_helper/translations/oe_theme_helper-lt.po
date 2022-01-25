@@ -521,3 +521,6 @@ msgstr "@link perskaičiau ir su jomis sutinku"
 
 msgid "data protection terms"
 msgstr "Duomenų apsaugos sąlygas"
+
+msgid "Highlighted"
+msgstr "Paryškinta"

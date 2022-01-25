@@ -412,3 +412,55 @@ function oe_theme_helper_form_entity_view_display_edit_form_alter(&$form, FormSt
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_helper_preprocess_node(&$variables): void {
+  $node_bundles = [
+    'oe_call_proposals',
+    'oe_call_tenders',
+    'oe_consultation',
+    'oe_event',
+    'oe_news',
+    'oe_organisation',
+    'oe_page',
+    'oe_person',
+    'oe_policy',
+    'oe_project',
+    'oe_publication',
+  ];
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  if (in_array($node->bundle(), $node_bundles) && $node->isSticky()) {
+    $variables['badges'] = [
+      [
+        'label' => 'Highlighted',
+        'variant' => 'highlight',
+      ],
+    ];
+  }
+}
+
+/**
+ * Retrieves the variant for the status badge.
+ *
+ * @param string $status
+ *   The status name.
+ *
+ * @return string
+ *   The variant.
+ */
+function _oe_theme_helper_prepare_status_variant(string $status): string {
+  switch ($status) {
+    case 'open':
+      return 'high';
+
+    case 'upcoming':
+      return 'medium';
+
+    case 'closed':
+      return 'low';
+  }
+  return '';
+}
