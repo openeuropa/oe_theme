@@ -108,6 +108,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $heading = $crawler->filter('h2.ecl-u-type-heading-2');
     $this->assertCount(1, $heading);
     $this->assertEquals('Illustration with flags test', trim($heading->text()));
+    $icon = $crawler->filter('.ecl-list-illustration__icon use');
+    $this->assertStringNotContainsString('-square', $icon->attr('xlink:href'));
 
     // Assert rendered items.
     $expected_values = [
@@ -156,6 +158,9 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       ],
     ];
     $assert->assertPattern($expected_values, $html);
+    $crawler = new Crawler($html);
+    $icon = $crawler->filter('.ecl-list-illustration__icon use');
+    $this->assertStringContainsString('-square', $icon->attr('xlink:href'));
 
     // Assert vertical variant.
     $list_paragraph->set('oe_paragraphs_variant', 'oe_illustration_vertical')->save();
@@ -338,6 +343,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $expected_values = [
       'column' => 2,
       'zebra' => FALSE,
+      'squared' => FALSE,
       'items' => [
         [
           'title' => 'Term 1',
@@ -374,6 +380,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph->set('field_oe_illustration_ratio', 'square')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['column'] = 3;
+    $expected_values['squared'] = TRUE;
     $assert->assertPattern($expected_values, $html);
 
     // Assert vertical variant.
@@ -387,6 +394,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph->set('field_oe_illustration_ratio', 'landscape')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
+    $expected_values['squared'] = FALSE;
     $assert->assertPattern($expected_values, $html);
   }
 
