@@ -132,6 +132,8 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertNull($input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertTrue($input->hasAttribute('required'));
+    $icon = $this->getSession()->getPage()->find('css', '.form-item-test-datepicker-one .ecl-datepicker .ecl-icon');
+    $this->assertStringContainsString('icons.svg#calendar', $icon->getHtml());
 
     // Click the input and assert the datepicker is visible. We can only check
     // the first datepicker because the actual element doesn't have any
@@ -180,6 +182,8 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertStringContainsString('2020-05-10', $input->getAttribute('value'));
     $this->assertTrue($input->hasAttribute('data-ecl-datepicker-toggle'));
     $this->assertFalse($input->hasAttribute('required'));
+    $icon = $this->getSession()->getPage()->find('css', '.form-item-test-datepicker-two .ecl-datepicker .ecl-icon');
+    $this->assertStringContainsString('icons.svg#calendar', $icon->getHtml());
 
     // Submit the form.
     $this->getSession()->getPage()->pressButton('Submit');
