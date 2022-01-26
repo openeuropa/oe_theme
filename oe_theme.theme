@@ -1849,5 +1849,10 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
       'image' => $image,
     ];
   }
+
+  // Set "Square" or "Landscape" view for an image.
+  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
+  $variables['squared'] = $ratio === 'square' ? TRUE : FALSE;
+
   $cacheability->applyTo($variables);
 }

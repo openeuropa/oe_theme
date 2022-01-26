@@ -18,14 +18,15 @@ class ListWithIllustrationAssert extends BasePatternAssert {
     return [
       'column' => [
         [$this, 'assertColumns'],
-        $variant,
       ],
       'zebra' => [
         [$this, 'assertZebra'],
       ],
+      'squared' => [
+        [$this, 'assertSquared'],
+      ],
       'items' => [
         [$this, 'assertItems'],
-        $variant,
       ],
     ];
   }
@@ -43,12 +44,10 @@ class ListWithIllustrationAssert extends BasePatternAssert {
    *
    * @param int $column
    *   The expected number of columns.
-   * @param string $variant
-   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertColumns(int $column, string $variant, Crawler $crawler): void {
+  protected function assertColumns(int $column, Crawler $crawler): void {
     $column_selector = '.ecl-list-illustration--col-' . $column;
     self::assertElementExists($column_selector, $crawler);
   }
@@ -71,16 +70,33 @@ class ListWithIllustrationAssert extends BasePatternAssert {
   }
 
   /**
+   * Asserts if the list uses square images or not.
+   *
+   * @param bool $squared
+   *   Whether the "squared" option is enabled or not.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertSquared(bool $squared, Crawler $crawler): void {
+    if ($squared) {
+      // Few square images can exist.
+      $element = $crawler->filter('.ecl-list-illustration__image--square');
+      self::assertTrue((bool) $element->count());
+    }
+    else {
+      self::assertElementNotExists('.ecl-list-illustration__image--square', $crawler);
+    }
+  }
+
+  /**
    * Asserts the item with an illustration from the list.
    *
    * @param array $expected_items
    *   The expected list items.
-   * @param string $variant
-   *   The variant of the pattern being checked.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertItems(array $expected_items, string $variant, Crawler $crawler): void {
+  protected function assertItems(array $expected_items, Crawler $crawler): void {
     $item_elements = $crawler->filter('.ecl-list-illustration__item');
     self::assertCount(count($expected_items), $item_elements, 'The expected list items do not match the found list items.');
     foreach ($expected_items as $index => $expected_item) {
@@ -102,9 +118,6 @@ class ListWithIllustrationAssert extends BasePatternAssert {
         $image_element = $item_element->filter('.ecl-list-illustration__image');
         self::assertEquals($expected_item['image']['alt'], $image_element->attr('aria-label'));
         self::assertStringContainsString($expected_item['image']['src'], $image_element->attr('style'));
-        if (strpos($variant, 'square') !== FALSE) {
-          self::assertElementExists('.ecl-list-illustration__image--square', $item_element);
-        }
       }
       if (isset($expected_item['icon'])) {
         $icon_element = $item_element->filter('svg.ecl-icon use');
