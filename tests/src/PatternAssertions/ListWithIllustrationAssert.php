@@ -22,8 +22,8 @@ class ListWithIllustrationAssert extends BasePatternAssert {
       'zebra' => [
         [$this, 'assertZebra'],
       ],
-      'squared' => [
-        [$this, 'assertSquared'],
+      'square_image' => [
+        [$this, 'assertSquareImage'],
       ],
       'items' => [
         [$this, 'assertItems'],
@@ -72,13 +72,13 @@ class ListWithIllustrationAssert extends BasePatternAssert {
   /**
    * Asserts if the list uses square images or not.
    *
-   * @param bool $squared
-   *   Whether the "squared" option is enabled or not.
+   * @param bool $square_image
+   *   Whether the "square_image" option is enabled or not.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertSquared(bool $squared, Crawler $crawler): void {
-    if ($squared) {
+  protected function assertSquareImage(bool $square_image, Crawler $crawler): void {
+    if ($square_image) {
       // Few square images can exist.
       $element = $crawler->filter('.ecl-list-illustration__image--square');
       self::assertTrue((bool) $element->count());

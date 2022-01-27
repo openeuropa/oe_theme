@@ -3009,7 +3009,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: false
+      square_image: false
       zebra: true
       column: 1
       items:
@@ -3043,7 +3043,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: true
+      square_image: true
       zebra: true
       column: 1
       items:
@@ -3057,7 +3057,6 @@
           image:
             src: "https://placeimg.com/500/500/arch"
             alt: "Alternative text for featured item image 2"
-          icon: "budget"
   assertions:
     count:
       div.ecl-list-illustration: 1
@@ -3079,7 +3078,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: false
+      square_image: false
       zebra: false
       column: 1
       items:
@@ -3107,7 +3106,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: false
+      square_image: false
       zebra: false
       column: 2
       items:
@@ -3142,7 +3141,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: true
+      square_image: true
       column: 3
       items:
         - title: "Business, Economy, Euro"
@@ -3175,7 +3174,7 @@
     '#type': 'pattern'
     '#id': 'list_with_illustration'
     '#fields':
-      squared: false
+      square_image: false
       column: 2
       items:
         - title: "Business, Economy, Euro"

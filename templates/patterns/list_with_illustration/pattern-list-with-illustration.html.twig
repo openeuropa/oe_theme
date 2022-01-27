@@ -10,9 +10,9 @@
   {% if item.icon %}
     {% set item = item|merge({'icon': to_ecl_icon(item.icon)}) %}
   {% endif %}
-  {# Add squared information to image. #}
+  {# Set square image if needed. #}
   {% if item.image %}
-    {% set _image = item.image|merge({'squared': squared}) %}
+    {% set _image = item.image|merge({'squared': square_image}) %}
     {% set item = item|merge({'image': _image}) %}
   {% endif %}
   {% set _items = _items|merge([item]) %}

@@ -13,9 +13,9 @@ list_with_illustration:
       label: "Zebra"
       description: "Use zebra background."
       preview: true
-    squared:
+    square_image:
       type: "boolean"
-      label: "Squared"
+      label: "Square image"
       description: "Whether the rendered image should be rendered in square or landscape mode (only applies to image)."
       preview: true
     items:

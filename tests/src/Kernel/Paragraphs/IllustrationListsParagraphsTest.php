@@ -343,7 +343,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $expected_values = [
       'column' => 2,
       'zebra' => FALSE,
-      'squared' => FALSE,
+      'square_image' => FALSE,
       'items' => [
         [
           'title' => 'Term 1',
@@ -380,7 +380,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph->set('field_oe_illustration_ratio', 'square')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['column'] = 3;
-    $expected_values['squared'] = TRUE;
+    $expected_values['square_image'] = TRUE;
     $assert->assertPattern($expected_values, $html);
 
     // Assert vertical variant.
@@ -394,7 +394,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph->set('field_oe_illustration_ratio', 'landscape')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
-    $expected_values['squared'] = FALSE;
+    $expected_values['square_image'] = FALSE;
     $assert->assertPattern($expected_values, $html);
   }
 
