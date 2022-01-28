@@ -524,3 +524,45 @@ msgstr "mat-termini tal-protezzjoni tad-data"
 
 msgid "Highlighted"
 msgstr "Enfasizzat"
+
+msgid "This event has been cancelled."
+msgstr "Dan l-avveniment ġie kkanċellat."
+
+msgid "This event has been rescheduled."
+msgstr "Dan l-avveniment ġie riskedat."
+
+msgid "This event has been postponed."
+msgstr "Dan l-avveniment ġie pospost."
+
+msgid "This event has started."
+msgstr "Dan l-avveniment beda."
+
+msgid "This event has ended."
+msgstr "Dan l-avveniment intemm."
+
+msgid "This livestream has started."
+msgstr "Din il-xandira diretta fuq l-internet bdiet."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dan l-avveniment beda. Tista’ wkoll tarah permezz ta’ xandira diretta fuq l-internet."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dan l-avveniment spiċċa, iżda x-xandira diretta għadha għaddejja."
+
+msgid "Who should attend"
+msgstr "Min għandu jattendi"
+
+msgid "Organisers"
+msgstr "Organizzaturi"
+
+msgid "Part of"
+msgstr "Parti minn"
+
+msgid "Online only"
+msgstr "Online biss"
+
+msgid "External event"
+msgstr "Avveniment estern"
+
+msgid "Report"
+msgstr "Rapport"

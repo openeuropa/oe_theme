@@ -524,3 +524,45 @@ msgstr "privacyverklaring"
 
 msgid "Highlighted"
 msgstr "Actueel"
+
+msgid "This event has been cancelled."
+msgstr "Dit evenement is geannuleerd."
+
+msgid "This event has been rescheduled."
+msgstr "Voor dit evenement is een nieuwe datum vastgesteld."
+
+msgid "This event has been postponed."
+msgstr "Dit evenement is uitgesteld."
+
+msgid "This event has started."
+msgstr "Dit evenement is begonnen."
+
+msgid "This event has ended."
+msgstr "Dit evenement is beëindigd."
+
+msgid "This livestream has started."
+msgstr "De livestream is begonnen."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dit evenement is begonnen. U kunt ook de livestream bekijken."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dit evenement is afgelopen, maar u kunt de livestream bekijken."
+
+msgid "Who should attend"
+msgstr "Doelgroep"
+
+msgid "Organisers"
+msgstr "Organisatoren"
+
+msgid "Part of"
+msgstr "Deel van"
+
+msgid "Online only"
+msgstr "Alleen online"
+
+msgid "External event"
+msgstr "Extern evenement"
+
+msgid "Report"
+msgstr "Verslag"

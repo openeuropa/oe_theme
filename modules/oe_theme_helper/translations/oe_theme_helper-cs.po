@@ -524,3 +524,45 @@ msgstr "ochrany údajů"
 
 msgid "Highlighted"
 msgstr "Důležité"
+
+msgid "This event has been cancelled."
+msgstr "Tato akce byla zrušena."
+
+msgid "This event has been rescheduled."
+msgstr "Termín akce byl pozměněn."
+
+msgid "This event has been postponed."
+msgstr "Termín akce byl odsunut na později."
+
+msgid "This event has started."
+msgstr "Tato akce již začala."
+
+msgid "This event has ended."
+msgstr "Tato akce již skončila."
+
+msgid "This livestream has started."
+msgstr "Živý přenos již začal."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Tato akce již začala. Můžete ji rovněž sledovat prostřednictvím živého přenosu."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Akce již skončila, živý přenos však stále probíhá."
+
+msgid "Who should attend"
+msgstr "Cílová skupina"
+
+msgid "Organisers"
+msgstr "Organizátoři"
+
+msgid "Part of"
+msgstr "Část"
+
+msgid "Online only"
+msgstr "Pouze online"
+
+msgid "External event"
+msgstr "Externí akce"
+
+msgid "Report"
+msgstr "Zpráva"

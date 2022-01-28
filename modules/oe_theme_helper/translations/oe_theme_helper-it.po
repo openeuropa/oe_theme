@@ -524,3 +524,45 @@ msgstr "condizioni relative alla protezione dei dati"
 
 msgid "Highlighted"
 msgstr "Evidenziato"
+
+msgid "This event has been cancelled."
+msgstr "L'evento è stato annullato."
+
+msgid "This event has been rescheduled."
+msgstr "L'evento è stato riprogrammato."
+
+msgid "This event has been postponed."
+msgstr "L'evento è stato rinviato."
+
+msgid "This event has started."
+msgstr "L'evento è iniziato."
+
+msgid "This event has ended."
+msgstr "L'evento è terminato."
+
+msgid "This livestream has started."
+msgstr "La diretta streaming è iniziata."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "L'evento è iniziato. È possibile guardarlo anche in diretta streaming."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "L'evento è terminato, ma la diretta streaming è in corso."
+
+msgid "Who should attend"
+msgstr "Chi dovrebbe partecipare"
+
+msgid "Organisers"
+msgstr "Organizzatori"
+
+msgid "Part of"
+msgstr "Parte di"
+
+msgid "Online only"
+msgstr "Soltanto online"
+
+msgid "External event"
+msgstr "Evento esterno"
+
+msgid "Report"
+msgstr "Relazione"

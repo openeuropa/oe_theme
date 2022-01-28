@@ -524,3 +524,45 @@ msgstr "varstvu podatkov"
 
 msgid "Highlighted"
 msgstr "Izpostavljeno"
+
+msgid "This event has been cancelled."
+msgstr "Dogodek je odpovedan."
+
+msgid "This event has been rescheduled."
+msgstr "Dogodek je prestavljen."
+
+msgid "This event has been postponed."
+msgstr "Dogodek je odložen."
+
+msgid "This event has started."
+msgstr "Dogodek se je začel."
+
+msgid "This event has ended."
+msgstr "Dogodek se je končal."
+
+msgid "This livestream has started."
+msgstr "Prenos v živo se je začel."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dogodek se je začel. Na voljo je tudi prenos v živo."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dogodek se je končal, vendar je prenos v živo na voljo"
+
+msgid "Who should attend"
+msgstr "Ciljna skupina"
+
+msgid "Organisers"
+msgstr "Organizatorji"
+
+msgid "Part of"
+msgstr "Del"
+
+msgid "Online only"
+msgstr "Samo na spletu"
+
+msgid "External event"
+msgstr "Zunanji dogodek"
+
+msgid "Report"
+msgstr "Poročilo"

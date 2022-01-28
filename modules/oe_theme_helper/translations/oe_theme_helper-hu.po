@@ -524,3 +524,45 @@ msgstr "adatvédelmi nyilatkozatot,"
 
 msgid "Highlighted"
 msgstr "Előtérben"
+
+msgid "This event has been cancelled."
+msgstr "Ezt a rendezvényt törölték."
+
+msgid "This event has been rescheduled."
+msgstr "Ez a rendezvényt áttették egy későbbi időpontra."
+
+msgid "This event has been postponed."
+msgstr "Ezt a rendezvényt elnapolták."
+
+msgid "This event has started."
+msgstr "Ez a rendezvény elkezdődött."
+
+msgid "This event has ended."
+msgstr "Ez a rendezvény véget ért."
+
+msgid "This livestream has started."
+msgstr "Ez az élő közvetítés elkezdődött."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Ez a rendezvény elkezdődött. Élőben is követhető."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Ez a rendezvény véget ért, de az élő közvetítés még tart."
+
+msgid "Who should attend"
+msgstr "Résztvevői profil"
+
+msgid "Organisers"
+msgstr "Szervezők"
+
+msgid "Part of"
+msgstr "Ennek a része"
+
+msgid "Online only"
+msgstr "Csak az interneten"
+
+msgid "External event"
+msgstr "Külső rendezvény"
+
+msgid "Report"
+msgstr "Jelentés"

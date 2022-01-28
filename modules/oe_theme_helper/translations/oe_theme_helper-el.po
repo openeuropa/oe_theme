@@ -524,3 +524,45 @@ msgstr "όρους προστασίας δεδομένων"
 
 msgid "Highlighted"
 msgstr "Με επισήμανση"
+
+msgid "This event has been cancelled."
+msgstr "Η εκδήλωση αυτή έχει ματαιωθεί."
+
+msgid "This event has been rescheduled."
+msgstr "Η εκδήλωση αυτή έχει αναπρογραμματιστεί."
+
+msgid "This event has been postponed."
+msgstr "Η εκδήλωση αυτή έχει αναβληθεί."
+
+msgid "This event has started."
+msgstr "Η εκδήλωση αυτή έχει αρχίσει."
+
+msgid "This event has ended."
+msgstr "Η εκδήλωση αυτή έληξε."
+
+msgid "This livestream has started."
+msgstr "Αυτή η ζωντανή μετάδοση έχει ξεκινήσει."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Η εκδήλωση αυτή έχει αρχίσει. Μπορείτε επίσης να την παρακολουθήσετε σε ζωντανή μετάδοση."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Η εκδήλωση αυτή έληξε, αλλά είναι διαθέσιμη η ζωντανή μετάδοση."
+
+msgid "Who should attend"
+msgstr "Ποιοι θα πρέπει να συμμετάσχουν"
+
+msgid "Organisers"
+msgstr "Διοργανωτές"
+
+msgid "Part of"
+msgstr "Μέρος"
+
+msgid "Online only"
+msgstr "Αποκλειστικά μέσω διαδικτύου"
+
+msgid "External event"
+msgstr "Εξωτερική εκδήλωση"
+
+msgid "Report"
+msgstr "Έκθεση"

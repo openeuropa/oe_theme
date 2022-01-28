@@ -524,3 +524,45 @@ msgstr "Datenschutzbestimmungen"
 
 msgid "Highlighted"
 msgstr "Hervorgehoben"
+
+msgid "This event has been cancelled."
+msgstr "Diese Veranstaltung wurde abgesagt."
+
+msgid "This event has been rescheduled."
+msgstr "Diese Veranstaltung wurde verlegt."
+
+msgid "This event has been postponed."
+msgstr "Diese Veranstaltung wurde verschoben."
+
+msgid "This event has started."
+msgstr "Diese Veranstaltung hat begonnen."
+
+msgid "This event has ended."
+msgstr "Diese Veranstaltung ist beendet."
+
+msgid "This livestream has started."
+msgstr "Dieser Livestream hat begonnen."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Diese Veranstaltung hat begonnen. Sie können sie über Livestream mitverfolgen."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Diese Veranstaltung ist beendet. Der Livestream läuft noch."
+
+msgid "Who should attend"
+msgstr "Zielgruppe"
+
+msgid "Organisers"
+msgstr "Organisatoren"
+
+msgid "Part of"
+msgstr "Teil von"
+
+msgid "Online only"
+msgstr "Nur online"
+
+msgid "External event"
+msgstr "Externe Veranstaltung"
+
+msgid "Report"
+msgstr "Bericht"

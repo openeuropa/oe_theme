@@ -524,3 +524,45 @@ msgstr "isikuandmete kaitse põhimõtetega"
 
 msgid "Highlighted"
 msgstr "Esiplaanil"
+
+msgid "This event has been cancelled."
+msgstr "See üritus on tühistatud."
+
+msgid "This event has been rescheduled."
+msgstr "Selle ürituse kuupäev on muutunud."
+
+msgid "This event has been postponed."
+msgstr "See üritus on edasi lükatud."
+
+msgid "This event has started."
+msgstr "See üritus on alanud."
+
+msgid "This event has ended."
+msgstr "See üritus on lõppenud."
+
+msgid "This livestream has started."
+msgstr "See otseülekanne on alanud."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "See üritus on alanud. Saate seda vaadata ka otseülekande kaudu."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "See üritus on lõppenud, kuid otseülekanne on käimas."
+
+msgid "Who should attend"
+msgstr "Kellele see on mõeldud?"
+
+msgid "Organisers"
+msgstr "Korraldajad"
+
+msgid "Part of"
+msgstr "Osa järgmisest:"
+
+msgid "Online only"
+msgstr "Ainult veebis"
+
+msgid "External event"
+msgstr "Välisüritus"
+
+msgid "Report"
+msgstr "Aruanne"
