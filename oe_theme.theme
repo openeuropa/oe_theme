@@ -1245,13 +1245,9 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
   // Provide correct icon for non-eu languages.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    $language_icon_mapping = [
-      'nb' => 'no',
-      'tr' => 'tu',
-    ];
-    if (isset($language_icon_mapping[$language_code])) {
-      // Set correct icon for Norwegian and Turkish languages.
-      $variables['current_language_id'] = $language_icon_mapping[$language_code];
+    if ($language_code === 'nb') {
+      // Set correct icon for Norwegian language.
+      $variables['current_language_id'] = 'no';
     }
     else {
       // Check whether ECL provides a logo for the language.
