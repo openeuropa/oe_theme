@@ -3107,7 +3107,7 @@
     '#id': 'list_with_illustration'
     '#fields':
       square_image: false
-      zebra: false
+      zebra: true
       column: 2
       items:
         - title: "Business, Economy, Euro"
