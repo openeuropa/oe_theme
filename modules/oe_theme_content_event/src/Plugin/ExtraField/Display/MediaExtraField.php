@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Url;
 use Drupal\oe_content_event\EventNodeWrapper;
 
 /**
@@ -58,7 +59,7 @@ class MediaExtraField extends DateAwareExtraFieldBase {
     }
     if (!$entity->get('oe_event_media_more_link')->isEmpty()) {
       $build['#items']['media_more_link'] = [
-        'url' => $entity->get('oe_event_media_more_link')->getValue()[0]['uri'],
+        'url' => Url::fromUri($entity->get('oe_event_media_more_link')->getValue()[0]['uri']),
         'title' => $entity->get('oe_event_media_more_link')->getValue()[0]['title'],
       ];
     }
