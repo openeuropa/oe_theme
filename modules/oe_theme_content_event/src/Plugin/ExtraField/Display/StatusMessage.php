@@ -103,7 +103,19 @@ class StatusMessage extends DateAwareExtraFieldBase {
       $build['#variant'] = 'warning';
       $build['#icon'] = 'warning';
       $status = $entity->get('oe_event_status')->value;
-      $build['#title'] = $this->t('This event has been @status.', ['@status' => $status]);
+      switch ($status) {
+        case 'cancelled':
+          $build['#title'] = $this->t('This event has been cancelled.');
+          break;
+
+        case 'rescheduled':
+          $build['#title'] = $this->t('This event has been rescheduled.');
+          break;
+
+        case 'postponed':
+          $build['#title'] = $this->t('This event has been postponed.');
+          break;
+      }
       // Add the 'Status description' field value if available.
       if (!$entity->get('oe_event_status_description')->isEmpty()) {
         $build['#description'] = $entity->get('oe_event_status_description')->value;
