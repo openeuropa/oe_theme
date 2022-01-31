@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
-use Drupal\media\Entity\Media;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\Tests\oe_theme\PatternAssertions\ListWithIllustrationAssert;
 use Symfony\Component\DomCrawler\Crawler;
@@ -23,6 +22,11 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     'composite_reference',
     'media',
     'file_link',
+    'views',
+    'entity_browser',
+    'media_avportal',
+    'media_avportal_mock',
+    'oe_media_avportal',
     'oe_media',
     'options',
     'oe_paragraphs_media_field_storage',
@@ -45,7 +49,9 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $this->installConfig([
       'media',
       'options',
+      'media_avportal',
       'oe_media',
+      'oe_media_avportal',
       'oe_paragraphs_illustrations_lists',
     ]);
   }
@@ -279,7 +285,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $file->setPermanent();
     $file->save();
 
-    $media = Media::create([
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
+    $media_image = $media_storage->create([
       'bundle' => 'image',
       'name' => 'test image',
       'oe_media_image' => [
@@ -287,7 +294,14 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         'alt' => 'Alt',
       ],
     ]);
-    $media->save();
+    $media_image->save();
+
+    $media_av_portal_photo = $media_storage->create([
+      'bundle' => 'av_portal_photo',
+      'oe_media_avportal_photo' => 'P-038924/00-15',
+      'uid' => 0,
+      'status' => 1,
+    ]);
 
     // Create Illustration list with images paragraph.
     $items = [];
@@ -295,7 +309,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_illustration_item_image',
       'field_oe_title' => 'Term 1',
       'field_oe_text_long' => 'Description 1',
-      'field_oe_media' => [$media],
+      'field_oe_media' => [$media_image],
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -303,7 +317,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
       'field_oe_title' => 'Term 2',
-      'field_oe_media' => [$media],
+      'field_oe_media' => [$media_av_portal_photo],
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -311,14 +325,14 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
       'field_oe_text_long' => 'Description 3',
-      'field_oe_media' => [$media],
+      'field_oe_media' => [$media_image],
     ]);
     $paragraph->save();
     $items[] = $paragraph;
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_media' => [$media],
+      'field_oe_media' => [$media_image],
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -355,8 +369,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         ], [
           'title' => 'Term 2',
           'image' => [
-            'src' => 'example_1.jpeg',
-            'alt' => 'Alt',
+            'src' => file_create_url('avportal://P-038924/00-15.jpg'),
+            'alt' => 'Euro with miniature figurines',
           ],
         ], [
           'description' => 'Description 3',
