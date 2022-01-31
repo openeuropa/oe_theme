@@ -52,7 +52,7 @@
         "openeuropa/oe_media": "~1.12",
         "openeuropa/oe_multilingual": "~1.8",
         "openeuropa/oe_paragraphs": "~1.10",
-        "openeuropa/oe_search": "1.x-dev",
+        "openeuropa/oe_search": "~1.8",
         "openeuropa/oe_webtools": "~1.12",
         "openeuropa/oe_contact_forms": "~1.1",
         "openeuropa/rdf_skos": "~1.0",
