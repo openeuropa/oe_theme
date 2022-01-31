@@ -566,3 +566,15 @@ msgstr "Külső rendezvény"
 
 msgid "Report"
 msgstr "Jelentés"
+
+msgid "Register here"
+msgstr "Regisztráció"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Ez a rendezvény elkezdődött. Az élő közvetítés kezdési időpontja: @date."
+
+msgid "See all"
+msgstr "Összes megtekintése"
+
+msgid "media items"
+msgstr "médiaanyag"

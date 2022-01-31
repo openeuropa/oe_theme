@@ -566,3 +566,15 @@ msgstr "Išorės renginys"
 
 msgid "Report"
 msgstr "Ataskaita"
+
+msgid "Register here"
+msgstr "Registruokitės čia"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Šis renginys prasidėjo. Tiesioginė transliacija prasidės @date."
+
+msgid "See all"
+msgstr "Žiūrėkite visus"
+
+msgid "media items"
+msgstr "medijos elementus"

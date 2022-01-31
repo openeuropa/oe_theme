@@ -566,3 +566,15 @@ msgstr "Externe Veranstaltung"
 
 msgid "Report"
 msgstr "Bericht"
+
+msgid "Register here"
+msgstr "Hier registrieren"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Die Veranstaltung hat begonnen. Livestream ab @date."
+
+msgid "See all"
+msgstr "Alle anzeigen"
+
+msgid "media items"
+msgstr "Medienbeiträge"

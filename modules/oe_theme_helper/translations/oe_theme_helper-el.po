@@ -566,3 +566,15 @@ msgstr "Εξωτερική εκδήλωση"
 
 msgid "Report"
 msgstr "Έκθεση"
+
+msgid "Register here"
+msgstr "Εγγραφείτε εδώ"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Η εκδήλωση αυτή έχει ξεκινήσει. Η ζωντανή μετάδοση θα ξεκινήσει στις @date."
+
+msgid "See all"
+msgstr "Δείτε τα όλα"
+
+msgid "media items"
+msgstr "στοιχεία πολυμέσων"

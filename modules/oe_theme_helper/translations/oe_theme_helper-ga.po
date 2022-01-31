@@ -566,3 +566,15 @@ msgstr "Imeacht seachtrach"
 
 msgid "Report"
 msgstr "Tuarascáil"
+
+msgid "Register here"
+msgstr "Cláraigh anseo"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Tá an t-imeacht seo tosaithe. Tosóidh an beoshruth ag @date."
+
+msgid "See all"
+msgstr "Féach na"
+
+msgid "media items"
+msgstr "míreanna meán uile"
