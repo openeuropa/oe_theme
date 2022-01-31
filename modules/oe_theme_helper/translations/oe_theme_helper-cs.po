@@ -533,3 +533,6 @@ msgstr "Logo Evropské komise"
 
 msgid "Home"
 msgstr "Úvod"
+
+msgid "European Union"
+msgstr "Evropská unie"

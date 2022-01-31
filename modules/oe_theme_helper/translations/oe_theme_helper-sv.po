@@ -533,3 +533,6 @@ msgstr "Europeiska kommissionens logotyp"
 
 msgid "Home"
 msgstr "Start"
+
+msgid "European Union"
+msgstr "Europeiska unionen"

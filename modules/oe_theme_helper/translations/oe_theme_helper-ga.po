@@ -533,3 +533,6 @@ msgstr "Lógó an Choimisiúin Eorpaigh"
 
 msgid "Home"
 msgstr "Baile"
+
+msgid "European Union"
+msgstr "Aontais Eorpaigh"

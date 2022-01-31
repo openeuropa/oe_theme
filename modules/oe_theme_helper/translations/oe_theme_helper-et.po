@@ -533,3 +533,6 @@ msgstr "Euroopa Komisjoni logo"
 
 msgid "Home"
 msgstr "Avaleht"
+
+msgid "European Union"
+msgstr "Euroopa Liit"

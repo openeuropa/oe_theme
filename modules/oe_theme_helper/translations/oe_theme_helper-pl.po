@@ -533,3 +533,6 @@ msgstr "Symbol graficzny Komisji Europejskiej"
 
 msgid "Home"
 msgstr "Strona główna"
+
+msgid "European Union"
+msgstr "Unia Europejska"

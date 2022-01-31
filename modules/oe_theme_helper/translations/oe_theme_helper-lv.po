@@ -533,3 +533,6 @@ msgstr "Eiropas Komisijas logotips"
 
 msgid "Home"
 msgstr "Sākumlapa"
+
+msgid "European Union"
+msgstr "Eiropas Savienība"

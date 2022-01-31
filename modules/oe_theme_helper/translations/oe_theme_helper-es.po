@@ -533,3 +533,6 @@ msgstr "Logotipo de la Comisión Europea"
 
 msgid "Home"
 msgstr "Inicio"
+
+msgid "European Union"
+msgstr "Unión Europea"

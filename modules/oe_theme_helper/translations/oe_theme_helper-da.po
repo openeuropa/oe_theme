@@ -533,3 +533,6 @@ msgstr "Europa-Kommissionens logo"
 
 msgid "Home"
 msgstr "Forside"
+
+msgid "European Union"
+msgstr "Europæiske Unions"

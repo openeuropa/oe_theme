@@ -533,3 +533,6 @@ msgstr "Logótipo da Comissão Europeia"
 
 msgid "Home"
 msgstr "Página principal"
+
+msgid "European Union"
+msgstr "União Europeia"

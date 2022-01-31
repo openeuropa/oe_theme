@@ -533,3 +533,6 @@ msgstr "Logo tal-Kummissjoni Ewropea"
 
 msgid "Home"
 msgstr "Paġna ewlenija"
+
+msgid "European Union"
+msgstr "L-Unjoni Ewropea"

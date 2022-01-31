@@ -533,3 +533,6 @@ msgstr "Λογότυπος της Ευρωπαϊκής Επιτροπής"
 
 msgid "Home"
 msgstr "Αρχική σελίδα"
+
+msgid "European Union"
+msgstr "Ευρωπαϊκή Ένωση"
