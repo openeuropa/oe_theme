@@ -1199,7 +1199,7 @@ function _oe_theme_preprocess_search_input_text(array $element): array {
   $ecl_array = [
     'id' => $element['#attributes']['id'],
     'name' => $element['#attributes']['name'],
-    'disabled' => isset($element['#attributes']['disabled']) ? $element['#attributes']['disabled'] : FALSE,
+    'disabled' => $element['#attributes']['disabled'] ?? FALSE,
     'type' => $element['#attributes']['type'],
     'class' => $element['#attributes']['class'],
   ];
@@ -1300,7 +1300,7 @@ function oe_theme_preprocess_table(array &$variables): void {
 
   // Assign data to table headers as ECL expects it.
   $ecl_table_header_data = [];
-  $variables['header'] = isset($variables['header']) ? $variables['header'] : [];
+  $variables['header'] = $variables['header'] ?? [];
   foreach ($variables['header'] as &$cell) {
     $cell['label'] = $cell['content'];
 
@@ -1324,7 +1324,7 @@ function oe_theme_preprocess_table(array &$variables): void {
     // Account for colspan values when counting the number of columns.
     // This ensures that header content is is displayed on related columns
     // when the table is displayed on small screen devices.
-    $columns_count = isset($cell['colspan']) ? $cell['colspan'] : 1;
+    $columns_count = $cell['colspan'] ?? 1;
     for ($i = 1; $i <= $columns_count; $i++) {
       $ecl_table_header_data[] = $cell_header_data;
     }
