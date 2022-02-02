@@ -524,3 +524,45 @@ msgstr "prevederile referitoare la protecția datelor"
 
 msgid "Highlighted"
 msgstr "În prim-plan"
+
+msgid "This event has been cancelled."
+msgstr "Acest eveniment a fost anulat."
+
+msgid "This event has been rescheduled."
+msgstr "Acest eveniment a fost reprogramat."
+
+msgid "This event has been postponed."
+msgstr "Acest eveniment a fost amânat."
+
+msgid "This event has started."
+msgstr "Evenimentul a început."
+
+msgid "This event has ended."
+msgstr "Evenimentul s-a încheiat."
+
+msgid "This livestream has started."
+msgstr "Transmisiunea online a început."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Evenimentul a început. Îl puteți urmări și în transmisiune online."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Evenimentul s-a încheiat, dar puteți urmări transmisiunea online."
+
+msgid "Who should attend"
+msgstr "Public-țintă"
+
+msgid "Organisers"
+msgstr "Organizatori"
+
+msgid "Part of"
+msgstr "Parte din"
+
+msgid "Online only"
+msgstr "Doar online"
+
+msgid "External event"
+msgstr "Eveniment extern"
+
+msgid "Report"
+msgstr "Raport"

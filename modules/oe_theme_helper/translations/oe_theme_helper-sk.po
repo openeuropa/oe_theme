@@ -524,3 +524,45 @@ msgstr "ochrany údajov"
 
 msgid "Highlighted"
 msgstr "Hlavné témy"
+
+msgid "This event has been cancelled."
+msgstr "Toto podujatie bolo zrušené."
+
+msgid "This event has been rescheduled."
+msgstr "Toto podujatie bolo presunuté."
+
+msgid "This event has been postponed."
+msgstr "Toto podujatie bolo odložené."
+
+msgid "This event has started."
+msgstr "Toto podujatie sa začalo."
+
+msgid "This event has ended."
+msgstr "Toto podujatie sa skončilo."
+
+msgid "This livestream has started."
+msgstr "Toto živé vysielanie sa začalo."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Toto podujatie sa začalo. Môžete ho sledovať prostredníctvom živého vysielania."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Toto podujatie sa skončilo, ale živé vysielanie pokračuje."
+
+msgid "Who should attend"
+msgstr "Kto by sa mal zúčastniť"
+
+msgid "Organisers"
+msgstr "Organizátori/organizátorky"
+
+msgid "Part of"
+msgstr "Časť"
+
+msgid "Online only"
+msgstr "Len online"
+
+msgid "External event"
+msgstr "Externé podujatie"
+
+msgid "Report"
+msgstr "Správa"

@@ -524,3 +524,45 @@ msgstr "uvjete zaštite podataka"
 
 msgid "Highlighted"
 msgstr "Istaknuto"
+
+msgid "This event has been cancelled."
+msgstr "Ovo je događanje otkazano."
+
+msgid "This event has been rescheduled."
+msgstr "Ovo je odgađanje odgođeno za drugi datum."
+
+msgid "This event has been postponed."
+msgstr "Ovo je odgađanje odgođeno."
+
+msgid "This event has started."
+msgstr "Ovo je događanje počelo."
+
+msgid "This event has ended."
+msgstr "Ovo je događanje završeno."
+
+msgid "This livestream has started."
+msgstr "Prijenos uživo na internetu počeo je."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Ovo je događanje počelo. Možete pogledati i prijenos uživo na internetu."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Ovo je događanje završilo, no prijenos uživo na internetu još je dostupan."
+
+msgid "Who should attend"
+msgstr "Tko bi trebao sudjelovati"
+
+msgid "Organisers"
+msgstr "Organizatori"
+
+msgid "Part of"
+msgstr "Dio"
+
+msgid "Online only"
+msgstr "Samo na internetu"
+
+msgid "External event"
+msgstr "Vanjsko događanje"
+
+msgid "Report"
+msgstr "Izvješće"

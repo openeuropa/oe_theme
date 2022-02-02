@@ -524,3 +524,45 @@ msgstr "téarmaí cosanta sonraí"
 
 msgid "Highlighted"
 msgstr "Aibhsithe"
+
+msgid "This event has been cancelled."
+msgstr "Cuireadh an imeacht seo ar ceal."
+
+msgid "This event has been rescheduled."
+msgstr "Rinneadh an imeacht seo a athsceidealú."
+
+msgid "This event has been postponed."
+msgstr "Cuireadh an imeacht seo ar athló."
+
+msgid "This event has started."
+msgstr "Cuireadh tús leis an imeacht seo."
+
+msgid "This event has ended."
+msgstr "Tá an imeacht sin thart."
+
+msgid "This livestream has started."
+msgstr "Cuireadh tús leis an beoshruthú seo."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Cuireadh tús leis an imeacht seo. Is féidir leat féachaint air freisin ar bheoshruthú."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Tá an imeacht sin thart, ach tá an beoshruthú fós ar siúl."
+
+msgid "Who should attend"
+msgstr "Cé ba cheart freastal air"
+
+msgid "Organisers"
+msgstr "Eagraithe"
+
+msgid "Part of"
+msgstr "Cuid de"
+
+msgid "Online only"
+msgstr "Ar líne amháin"
+
+msgid "External event"
+msgstr "Imeacht seachtrach"
+
+msgid "Report"
+msgstr "Tuarascáil"

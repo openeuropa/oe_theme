@@ -524,3 +524,45 @@ msgstr "tietosuojaselosteen"
 
 msgid "Highlighted"
 msgstr "Valokeilassa"
+
+msgid "This event has been cancelled."
+msgstr "Tämä tapahtuma on peruutettu."
+
+msgid "This event has been rescheduled."
+msgstr "Tämä tapahtuma on siirretty."
+
+msgid "This event has been postponed."
+msgstr "Tämä tapahtuma on peruttu toistaiseksi."
+
+msgid "This event has started."
+msgstr "Tämä tapahtuma on alkanut."
+
+msgid "This event has ended."
+msgstr "Tämä tapahtuma on päättynyt."
+
+msgid "This livestream has started."
+msgstr "Tämä suoratoisto on alkanut."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Tämä tapahtuma on alkanut. Voit myös katsoa sen suoratoistona."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Tämä tapahtuma on päättynyt, mutta sen suoratoisto jatkuu."
+
+msgid "Who should attend"
+msgstr "Kohderyhmä"
+
+msgid "Organisers"
+msgstr "Järjestäjät"
+
+msgid "Part of"
+msgstr "Kuuluu kokonaisuuteen"
+
+msgid "Online only"
+msgstr "Vain verkossa"
+
+msgid "External event"
+msgstr "Ulkoinen tapahtuma"
+
+msgid "Report"
+msgstr "Raportti"

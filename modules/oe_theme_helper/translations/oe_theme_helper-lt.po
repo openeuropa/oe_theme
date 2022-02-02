@@ -524,3 +524,45 @@ msgstr "Duomenų apsaugos sąlygas"
 
 msgid "Highlighted"
 msgstr "Paryškinta"
+
+msgid "This event has been cancelled."
+msgstr "Renginys buvo atšauktas."
+
+msgid "This event has been rescheduled."
+msgstr "Pakeistas renginio laikas."
+
+msgid "This event has been postponed."
+msgstr "Renginys buvo atidėtas."
+
+msgid "This event has started."
+msgstr "Renginys prasidėjo."
+
+msgid "This event has ended."
+msgstr "Renginys baigėsi."
+
+msgid "This livestream has started."
+msgstr "Tiesioginė transliacija prasidėjo."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Renginys prasidėjo. Taip pat galite jį stebėti per tiesioginę transliaciją."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Šis renginys baigėsi, tačiau vis dar vyksta tiesioginė transliacija."
+
+msgid "Who should attend"
+msgstr "Tikslinė grupė"
+
+msgid "Organisers"
+msgstr "Organizatoriai"
+
+msgid "Part of"
+msgstr "Dalis"
+
+msgid "Online only"
+msgstr "Tik internetu"
+
+msgid "External event"
+msgstr "Išorės renginys"
+
+msgid "Report"
+msgstr "Ataskaita"

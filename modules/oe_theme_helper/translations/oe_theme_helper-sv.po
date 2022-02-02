@@ -524,3 +524,45 @@ msgstr "skydd av personuppgifter"
 
 msgid "Highlighted"
 msgstr "I fokus"
+
+msgid "This event has been cancelled."
+msgstr "Evenemanget har ställts in."
+
+msgid "This event has been rescheduled."
+msgstr "Evenemanget har flyttats."
+
+msgid "This event has been postponed."
+msgstr "Evenemanget har skjutits upp."
+
+msgid "This event has started."
+msgstr "Evenemanget har börjat."
+
+msgid "This event has ended."
+msgstr "Evenemanget har slutat."
+
+msgid "This livestream has started."
+msgstr "Direktsändningen har börjat."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Evenemanget har börjat och direktsänds."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Evenemanget har slutat men direktsänds fortfarande."
+
+msgid "Who should attend"
+msgstr "Målgrupp"
+
+msgid "Organisers"
+msgstr "Organisatörer"
+
+msgid "Part of"
+msgstr "Ingår i"
+
+msgid "Online only"
+msgstr "Endast online"
+
+msgid "External event"
+msgstr "Externa evenemang"
+
+msgid "Report"
+msgstr "Rapport"
