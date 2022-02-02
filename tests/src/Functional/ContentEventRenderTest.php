@@ -932,7 +932,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals($person->label(), $link->getText());
     $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-grey-100.ecl-u-mt-s', $speakers_items[0]);
     // Assert person jobs.
-    $this->assertEquals('Advisor, Chief advisor', $person_jobs->getText());
+    $this->assertEquals('Adviser, Chief Adviser', $person_jobs->getText());
 
     // Assert that changes in Event role are applied.
     $event_speaker->set('oe_event_role', 'event role 2');
@@ -946,7 +946,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $person_job_1->save();
     $this->drupalGet($node->toUrl());
     $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-grey-100.ecl-u-mt-s', $speakers_items[0]);
-    $this->assertEquals('Communication Adviser, Chief advisor', $person_jobs->getText());
+    $this->assertEquals('Communication Adviser, Chief Adviser', $person_jobs->getText());
 
     // Assert that changes in person photo are applied.
     $portrait_media = $this->createMediaImage('person_portrait');
