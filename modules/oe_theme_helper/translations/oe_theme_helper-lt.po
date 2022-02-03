@@ -524,3 +524,15 @@ msgstr "Duomenų apsaugos sąlygas"
 
 msgid "Highlighted"
 msgstr "Paryškinta"
+
+msgid "European Union flag"
+msgstr "Europos Sąjungos vėliava"
+
+msgid "European Commission logo"
+msgstr "Europos Komisijos logotipas"
+
+msgid "Home"
+msgstr "Pradžios puslapis"
+
+msgid "European Union"
+msgstr "Europos Sąjunga"

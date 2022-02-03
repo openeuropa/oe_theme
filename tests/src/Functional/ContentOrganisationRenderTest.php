@@ -288,7 +288,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $person->save();
     $this->getSession()->reload();
     $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
-    $this->assertEquals('Advisor, Chief advisor', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
+    $this->assertEquals('Adviser, Chief Adviser', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
   }
 
 }

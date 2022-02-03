@@ -258,11 +258,11 @@ class PersonRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    $expected_values['meta'] = '(Acting) Advisor';
+    $expected_values['meta'] = '(Acting) Adviser';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Advisor',
+          'label' => '(Acting) Adviser',
           'body' => 'Description job_1',
         ],
       ],
@@ -271,14 +271,14 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
-    $expected_values['meta'] = '(Acting) Advisor, Chief advisor';
+    $expected_values['meta'] = '(Acting) Adviser, Chief Adviser';
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Advisor',
+          'label' => '(Acting) Adviser',
           'body' => 'Description job_1',
         ], [
-          'label' => 'Chief advisor',
+          'label' => 'Chief Adviser',
           'body' => 'Description job_2',
         ],
       ],

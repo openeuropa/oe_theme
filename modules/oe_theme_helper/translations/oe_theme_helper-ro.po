@@ -524,3 +524,15 @@ msgstr "prevederile referitoare la protecția datelor"
 
 msgid "Highlighted"
 msgstr "În prim-plan"
+
+msgid "European Union flag"
+msgstr "Drapelul Uniunii Europene"
+
+msgid "European Commission logo"
+msgstr "Logoul Comisiei Europene"
+
+msgid "Home"
+msgstr "Prima pagină"
+
+msgid "European Union"
+msgstr "Uniunea Europeană"

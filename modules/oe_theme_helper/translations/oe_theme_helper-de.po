@@ -524,3 +524,15 @@ msgstr "Datenschutzbestimmungen"
 
 msgid "Highlighted"
 msgstr "Hervorgehoben"
+
+msgid "European Union flag"
+msgstr "Flagge der Europäischen Union"
+
+msgid "European Commission logo"
+msgstr "Logo der Europäischen Kommission"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "European Union"
+msgstr "Europäische Union"
