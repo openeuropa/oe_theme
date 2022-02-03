@@ -566,3 +566,15 @@ msgstr "Avveniment estern"
 
 msgid "Report"
 msgstr "Rapport"
+
+msgid "Register here"
+msgstr "Irreġistra hawn"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dan l-avveniment beda. Data u ħin meta se tibda x-xandira diretta: @date."
+
+msgid "See all"
+msgstr "Ara kollox"
+
+msgid "media items"
+msgstr "Oġġetti tal-media"

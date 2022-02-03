@@ -566,3 +566,15 @@ msgstr "Външна проява"
 
 msgid "Report"
 msgstr "Доклад"
+
+msgid "Register here"
+msgstr "Регистрирайте се тук"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Проявата започна. Излъчването на живо ще започне на @date."
+
+msgid "See all"
+msgstr "Вижте всичко"
+
+msgid "media items"
+msgstr "media items"

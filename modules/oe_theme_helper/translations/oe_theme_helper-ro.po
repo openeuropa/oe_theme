@@ -566,3 +566,15 @@ msgstr "Eveniment extern"
 
 msgid "Report"
 msgstr "Raport"
+
+msgid "Register here"
+msgstr "Înscrieți-vă aici"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Evenimentul a început. Transmisia în direct pe internet va începe la @date."
+
+msgid "See all"
+msgstr "Vedeți tot"
+
+msgid "media items"
+msgstr "materiale multimedia"

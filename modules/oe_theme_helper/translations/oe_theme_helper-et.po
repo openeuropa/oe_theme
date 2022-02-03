@@ -566,3 +566,15 @@ msgstr "Välisüritus"
 
 msgid "Report"
 msgstr "Aruanne"
+
+msgid "Register here"
+msgstr "Registreerige end siin"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "See üritus on alanud. Otseülekanne algab kell @date."
+
+msgid "See all"
+msgstr "Vaadake kõiki"
+
+msgid "media items"
+msgstr "meediasalvestist"

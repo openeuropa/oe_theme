@@ -566,3 +566,15 @@ msgstr "Vanjsko događanje"
 
 msgid "Report"
 msgstr "Izvješće"
+
+msgid "Register here"
+msgstr "Prijavite se ovdje"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Događanje je počelo. Prijenos uživo započet će u @date."
+
+msgid "See all"
+msgstr "Prikaži sve"
+
+msgid "media items"
+msgstr "Broj medijskih zapisa"

@@ -566,3 +566,15 @@ msgstr "Ulkoinen tapahtuma"
 
 msgid "Report"
 msgstr "Raportti"
+
+msgid "Register here"
+msgstr "Ilmoittautumiset"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Tämä tapahtuma on alkanut. Suora lähetys alkaa @date."
+
+msgid "See all"
+msgstr "Katso kaikki"
+
+msgid "media items"
+msgstr "tallennetta"

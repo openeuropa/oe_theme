@@ -566,3 +566,15 @@ msgstr "Externé podujatie"
 
 msgid "Report"
 msgstr "Správa"
+
+msgid "Register here"
+msgstr "Tu sa môžete zaregistrovať"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Toto podujatie sa už začalo. Živý prenos začne o @date."
+
+msgid "See all"
+msgstr "Zobraziť všetky"
+
+msgid "media items"
+msgstr "mediálne príspevky"

@@ -566,3 +566,15 @@ msgstr "Ārējs pasākums"
 
 msgid "Report"
 msgstr "Ziņojums"
+
+msgid "Register here"
+msgstr "Reģistrēties šeit"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Šis pasākums ir sācies. Tiešraide sāksies @date."
+
+msgid "See all"
+msgstr "Skatīt visus"
+
+msgid "media items"
+msgstr "audiovizuālie materiāli"
