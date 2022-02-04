@@ -19,7 +19,7 @@ use Drupal\oe_content_event\EventNodeWrapper;
  *   visible = true
  * )
  */
-class OnlineDescriptionExtraField extends InfoDisclosureExtraFieldBase {
+class OnlineDescriptionExtraField extends OnlineDisplayExtraFieldBase {
 
   /**
    * {@inheritdoc}
@@ -52,7 +52,7 @@ class OnlineDescriptionExtraField extends InfoDisclosureExtraFieldBase {
       // But anyway keep information hidden from users till the time
       // of online streaming has started.
       $build['#hidden'] = TRUE;
-      $this->attachLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
+      $this->attachDisclosureScript($build, $event->getOnlineStartDate()->getTimestamp());
     }
 
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {

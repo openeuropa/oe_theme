@@ -21,6 +21,8 @@ function oe_theme_content_event_theme() {
         'label' => '',
         'url' => '',
         'description' => '',
+        'approaching_time_description' => '',
+        'approaching_time' => FALSE,
         'enabled' => FALSE,
         'show_button' => TRUE,
       ],

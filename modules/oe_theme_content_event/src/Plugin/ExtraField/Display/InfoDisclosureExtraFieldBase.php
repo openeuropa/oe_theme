@@ -76,22 +76,13 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
   }
 
   /**
-   * Add livestream information disclosure.
+   * Add disclosure script.
    *
    * @param array $build
    *   The render array.
    * @param int $timestamp
    *   The timestamp of start date.
    */
-  protected function attachLivestreamDisclosure(array &$build, int $timestamp): void {
-    $build['#attached'] = [
-      'library' => 'oe_theme_content_event/livestream_link_disclosure',
-      'drupalSettings' => [
-        'oe_theme_content_event' => [
-          'livestream_starttime_timestamp' => $timestamp * 1000,
-        ],
-      ],
-    ];
-  }
+  abstract protected function attachDisclosureScript(array &$build, int $timestamp): void;
 
 }

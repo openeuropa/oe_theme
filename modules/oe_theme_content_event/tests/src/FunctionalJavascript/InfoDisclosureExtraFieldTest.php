@@ -10,13 +10,13 @@ use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 
 /**
- * Test livestream description and link disclosing.
+ * Test information disclosing for time-sensitive fields.
  *
  * @group batch3
  *
  * @group oe_theme_content_event
  */
-class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
+class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
 
   /**
    * {@inheritdoc}
@@ -57,9 +57,12 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
   }
 
   /**
-   * Tests that Event livestreaming link will be visible exactly on time.
+   * Tests that Event Online and Registration link are appeared exactly on time.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
-  public function testLivestreamDisplayDisclosing(): void {
+  public function testTimeSensitiveFieldsDisplay(): void {
     $static_time = new DrupalDateTime('now', DateTimeItemInterface::STORAGE_TIMEZONE);
     $start_date = (clone $static_time)->modify('+10 days');
     // Create an Event node with required fields only.
@@ -80,7 +83,15 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
         ],
         'oe_event_online_dates' => [
           'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-          'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'timezone' => 'Europe/Brussels',
+        ],
+        'oe_event_registration_url' => [
+          'uri' => 'http://example.com/registration',
+        ],
+        'oe_event_registration_dates' => [
+          'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
           'timezone' => 'Europe/Brussels',
         ],
         'oe_event_languages' => [
@@ -94,12 +105,18 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
       ]);
     $node->save();
     $this->drupalGet($node->toUrl());
+    // Check that livestream link is not prepared for disclosing.
     $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
     $this->assertCount(0, $livetime_elements);
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
+    // Check that registration link is not prepared for disclosing.
+    $registration_elements = $this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element],[data-registration-active-element]');
+    $this->assertCount(0, $registration_elements);
+    $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
+    $this->assertCount(0, $registration_js);
 
-    // Set livestream start date in 10 minutes later.
+    // Set start datetime in 10 minutes later.
     $start_date = (clone $static_time)->modify('+10 minutes');
     $node->set('oe_event_online_type', 'livestream');
     $node->set('oe_event_online_link', [
@@ -109,23 +126,43 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     $node->set('oe_event_online_description', 'Online event description');
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $node->set('oe_event_registration_dates', [
+      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
+    // Script for disclosing livestream information is available.
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(1, $livestream_js);
     $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
     $this->assertCount(2, $livetime_elements);
     foreach ($livetime_elements as $livetime_element) {
       $this->assertFalse($livetime_element->isVisible());
+    }
+    // Script for disclosing registration link information is available.
+    $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
+    $this->assertCount(1, $registration_js);
+    $registration_elements = $this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element],[data-registration-active-element]');
+    $this->assertCount(4, $registration_elements);
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-active-element]') as $registration_element) {
+      $this->assertFalse($registration_element->isVisible());
+    }
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element]') as $registration_element) {
+      $this->assertTrue($registration_element->isVisible());
     }
 
     // Set livestream start date in 10 seconds later.
     $start_date = (clone $static_time)->modify('+10 seconds');
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $node->set('oe_event_registration_dates', [
+      'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -136,15 +173,38 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     foreach ($livetime_elements as $livetime_element) {
       $this->assertFalse($livetime_element->isVisible());
     }
+    // Script for disclosing registration link information is available.
+    $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
+    $this->assertCount(1, $registration_js);
+    $registration_elements = $this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element],[data-registration-active-element]');
+    $this->assertCount(4, $registration_elements);
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-active-element]') as $registration_element) {
+      $this->assertFalse($registration_element->isVisible());
+    }
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element]') as $registration_element) {
+      $this->assertTrue($registration_element->isVisible());
+    }
+    // After 10 seconds livestream link should be visible.
     $this->getSession()->wait(10000);
     foreach ($livetime_elements as $livetime_element) {
       $this->assertTrue($livetime_element->isVisible());
+    }
+    // Registration link should be visible.
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-active-element]') as $registration_element) {
+      $this->assertTrue($registration_element->isVisible());
+    }
+    foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element]') as $registration_element) {
+      $this->assertFalse($registration_element->isVisible());
     }
 
     // During livestream active period and cache tag invalidation,
     // we as expected should see livestream information but don't have anymore
     // javascript for disclosing.
     $node->set('oe_event_online_dates', [
+      'value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $static_time)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $node->set('oe_event_registration_dates', [
       'value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
@@ -157,6 +217,12 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
     foreach ($livetime_elements as $livetime_element) {
       $this->assertTrue($livetime_element->isVisible());
     }
+    // Registration script should not be available and registration link should
+    // be hidden.
+    $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
+    $this->assertCount(0, $registration_js);
+    $registration_elements = $this->getSession()->getPage()->findAll('css', '[data-registration-active-element],[data-registration-upcoming-element]');
+    $this->assertCount(0, $registration_elements);
 
     // When livestream is over and after cache tag invalidation,
     // we should not see livestream information and don't have
@@ -165,13 +231,21 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
       'value' => (clone $static_time)->modify('-4 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ]);
+    $node->set('oe_event_registration_dates', [
+      'value' => (clone $static_time)->modify('-4 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
     $node->save();
-    $this->drupalGet($node->toUrl());
     $this->drupalGet($node->toUrl());
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
     $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
     $this->assertCount(0, $livetime_elements);
+    // Registration information should be hidden if registration time is over.
+    $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
+    $this->assertCount(0, $registration_js);
+    $registration_elements = $this->getSession()->getPage()->findAll('css', '[data-registration-active-element],[data-registration-upcoming-element]');
+    $this->assertCount(0, $registration_elements);
   }
 
 }
