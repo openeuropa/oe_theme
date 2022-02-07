@@ -14,9 +14,20 @@ parameters:
 
   extra_tasks:
     phpparser:
-      ignore_patterns: '%tasks.phpcs.ignore_patterns%'
+      ignore_patterns:
+        - vendor/
+        - node_modules/
+        - build/
       visitors:
         declare_strict_types: ~
-      triggered_by: '%tasks.phpcs.triggered_by%'
+      triggered_by:
+        - php
+        - module
+        - inc
+        - theme
+        - install
+grumphp:
   extensions:
     - OpenEuropa\CodeReview\ExtraTasksExtension
+  git_hook_variables:
+    EXEC_GRUMPHP_COMMAND: 'docker-compose exec -T web'
