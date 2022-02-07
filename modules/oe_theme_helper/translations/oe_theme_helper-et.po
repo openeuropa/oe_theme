@@ -536,3 +536,6 @@ msgstr "Avaleht"
 
 msgid "European Union"
 msgstr "Euroopa Liit"
+
+msgid "Sources"
+msgstr "Allikad"

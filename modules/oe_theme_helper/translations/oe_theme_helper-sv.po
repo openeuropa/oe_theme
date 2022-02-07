@@ -536,3 +536,6 @@ msgstr "Start"
 
 msgid "European Union"
 msgstr "Europeiska unionen"
+
+msgid "Sources"
+msgstr "Källor"

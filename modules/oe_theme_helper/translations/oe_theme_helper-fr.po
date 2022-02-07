@@ -536,3 +536,6 @@ msgstr "Accueil"
 
 msgid "European Union"
 msgstr "Union européenne"
+
+msgid "Sources"
+msgstr "Sources"

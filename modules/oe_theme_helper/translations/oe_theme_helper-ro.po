@@ -536,3 +536,6 @@ msgstr "Prima pagină"
 
 msgid "European Union"
 msgstr "Uniunea Europeană"
+
+msgid "Sources"
+msgstr "Surse"

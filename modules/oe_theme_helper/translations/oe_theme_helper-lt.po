@@ -536,3 +536,6 @@ msgstr "Pradžios puslapis"
 
 msgid "European Union"
 msgstr "Europos Sąjunga"
+
+msgid "Sources"
+msgstr "Šaltiniai"
