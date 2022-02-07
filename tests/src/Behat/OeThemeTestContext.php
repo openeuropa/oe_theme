@@ -384,6 +384,14 @@ class OeThemeTestContext extends RawDrupalContext {
    */
   public function assertEuMobileLogo(string $language): void {
     $lang_code = $this->getEuLanguages();
+    $available_non_eu_logos = [
+      'Turkish' => 'tr',
+      'Icelandic' => 'is',
+      'Catalan' => 'ca',
+      'Arabic' => 'ar',
+      'Norwegian' => 'no',
+    ];
+    $lang_code = array_merge($lang_code, $available_non_eu_logos);
     $langcode = $lang_code[$language] ?? 'en';
     $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile');
     $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
