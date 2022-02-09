@@ -67,6 +67,7 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
+      - composer self-update --2
       - composer update --prefer-lowest --ansi --no-progress
     when:
       event:
@@ -126,6 +127,9 @@ pipeline:
     when:
       event:
         include: tag
+      matrix:
+        COMPOSER_BOUNDARY: highest
+        PHP_VERSION: 7.4
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -136,6 +140,7 @@ pipeline:
         include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
+        PHP_VERSION: 7.4
 
 matrix:
   include:
