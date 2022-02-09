@@ -50,7 +50,7 @@ pipeline:
       - NODE_ENV=production npm run build
 
   composer-install-highest:
-    group: prepare
+    group: post-prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
@@ -62,7 +62,7 @@ pipeline:
         COMPOSER_BOUNDARY: highest
 
   composer-update-lowest:
-    group: prepare
+    group: post-prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
