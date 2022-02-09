@@ -31,7 +31,7 @@ Drupal 8 and 9 theme based on the [Europa Component Library][1] (ECL).
 
 This depends on the following software:
 
-* [PHP 7.2 or 7.3](http://php.net/)
+* [PHP 7.4 or 8.0](http://php.net/)
 
 ## Installation
 
