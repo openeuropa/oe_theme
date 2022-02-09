@@ -51,8 +51,8 @@
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "~1.12",
         "openeuropa/oe_multilingual": "~1.8",
-        "openeuropa/oe_paragraphs": "~1.10",
-        "openeuropa/oe_search": "1.x-dev",
+        "openeuropa/oe_paragraphs": "dev-EWPP-1865",
+        "openeuropa/oe_search": "~1.8",
         "openeuropa/oe_webtools": "~1.12",
         "openeuropa/oe_contact_forms": "~1.1",
         "openeuropa/rdf_skos": "~1.0",
@@ -64,7 +64,6 @@
         "We explicitly require consolidation/robo to allow lower 'composer update --prefer-lowest' to complete successfully.",
         "We explicitly require consolidation/annotated-command to allow lower 'composer update --prefer-lowest' to complete successfully.",
         "We explicity require drupal/core to allow lower 'composer update --prefer-lowest' to complete successfully.",
-        "openeuropa/oe_search is used from a branch because of major upgrading is pending. Change again when it released.",
         "openeuropa/ecl-twig-loader is used from a branch because it must be upgrade to be D9 compatible. Change again when it released."
     ],
     "conflict": {

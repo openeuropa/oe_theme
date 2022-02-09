@@ -1,36 +1,22 @@
 list_with_illustration:
   label: "List with illustration"
   description: "A list of items with associated illustrations."
-  variants:
-    vertical_images_landscape:
-      label: "Vertical with images (large)"
-      description: "Vertical list with large images."
-    vertical_images_square:
-      label: "Vertical with images (square)"
-      description: "Vertical list with square images."
-    vertical_icons:
-      label: "Vertical with icons"
-      description: "Vertical list with icons."
-    horizontal_images_landscape:
-      label: "Horizontal with images (large)"
-      description: "Horizontal list with large images."
-    horizontal_images_square:
-      label: "Horizontal with images (square)"
-      description: "Horizontal list with square images."
-    horizontal_icons:
-      label: "Horizontal with icons"
-      description: "Horizontal list with icons."
   fields:
     column:
       type: "numeric"
       label: "Column number"
-      description: "Number of columns (only applies to horizontal variants). Maximum of 4 columns."
-      preview: 2
+      description: "Number of columns. Maximum of 4 columns."
+      preview: 1
       escape: false
     zebra:
       type: "boolean"
       label: "Zebra"
-      description: "Use zebra background (only applies to vertical variants)."
+      description: "Use zebra background."
+      preview: true
+    square_image:
+      type: "boolean"
+      label: "Square image"
+      description: "Whether the rendered image should be rendered in square or landscape mode (only applies to image)."
       preview: true
     items:
       type: "array"
@@ -42,7 +28,7 @@ list_with_illustration:
           image:
             src: "https://placeimg.com/1000/500/arch"
             alt: "Alternative text for featured item image"
-          icon: "growth"
+          icon: "italy"
         - title: "About the European Union"
           description: "The EU and its institutions, how to visit and work at the EU."
           image:
