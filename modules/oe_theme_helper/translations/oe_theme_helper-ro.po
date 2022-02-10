@@ -590,3 +590,21 @@ msgstr "Vedeți tot"
 
 msgid "media items"
 msgstr "materiale multimedia"
+
+msgid "Close"
+msgstr "Încheiat(ă)"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Rețele sociale"
+
+msgid "Speakers"
+msgstr "Vorbitori"
+
+msgid "Starts on @date"
+msgstr "Începe la @date"
+
+msgid "The livestream has started."
+msgstr "Transmisiunea online a început."

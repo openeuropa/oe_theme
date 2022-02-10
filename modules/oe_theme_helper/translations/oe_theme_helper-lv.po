@@ -590,3 +590,21 @@ msgstr "Skatīt visus"
 
 msgid "media items"
 msgstr "audiovizuālie materiāli"
+
+msgid "Close"
+msgstr "Aizvērt"
+
+msgid "Programme"
+msgstr "Programma"
+
+msgid "Social media"
+msgstr "Sociālie plašsaziņas līdzekļi"
+
+msgid "Speakers"
+msgstr "Referenti"
+
+msgid "Starts on @date"
+msgstr "Sākas @date"
+
+msgid "The livestream has started."
+msgstr "Šis tiešraides straumējums ir sācies."

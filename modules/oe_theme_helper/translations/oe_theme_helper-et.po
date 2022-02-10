@@ -590,3 +590,21 @@ msgstr "Vaadake kõiki"
 
 msgid "media items"
 msgstr "meediasalvestist"
+
+msgid "Close"
+msgstr "Sulge"
+
+msgid "Programme"
+msgstr "Programm"
+
+msgid "Social media"
+msgstr "Sotsiaalmeedia"
+
+msgid "Speakers"
+msgstr "Esinejad"
+
+msgid "Starts on @date"
+msgstr "Algab: @date"
+
+msgid "The livestream has started."
+msgstr "See otseülekanne on alanud."

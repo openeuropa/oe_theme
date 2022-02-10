@@ -590,3 +590,21 @@ msgstr "Prikaži sve"
 
 msgid "media items"
 msgstr "Broj medijskih zapisa"
+
+msgid "Close"
+msgstr "Zatvoreno"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Društvene mreže"
+
+msgid "Speakers"
+msgstr "Govornici"
+
+msgid "Starts on @date"
+msgstr "Počinje u @date"
+
+msgid "The livestream has started."
+msgstr "Prijenos uživo na internetu počeo je."

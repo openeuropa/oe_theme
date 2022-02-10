@@ -590,3 +590,21 @@ msgstr "Δείτε τα όλα"
 
 msgid "media items"
 msgstr "στοιχεία πολυμέσων"
+
+msgid "Close"
+msgstr "Έχει κλείσει"
+
+msgid "Programme"
+msgstr "Πρόγραμμα"
+
+msgid "Social media"
+msgstr "Μέσα κοινωνικής δικτύωσης"
+
+msgid "Speakers"
+msgstr "Ομιλητές"
+
+msgid "Starts on @date"
+msgstr "Αρχίζει στις @date"
+
+msgid "The livestream has started."
+msgstr "Αυτή η ζωντανή μετάδοση έχει ξεκινήσει."

@@ -590,3 +590,21 @@ msgstr "Tout afficher"
 
 msgid "media items"
 msgstr "éléments médias"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Programme"
+msgstr "Programme"
+
+msgid "Social media"
+msgstr "Réseaux sociaux"
+
+msgid "Speakers"
+msgstr "Orateurs"
+
+msgid "Starts on @date"
+msgstr "Début: @date"
+
+msgid "The livestream has started."
+msgstr "Cette retransmission en direct a commencé."

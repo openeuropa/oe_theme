@@ -590,3 +590,21 @@ msgstr "Katso kaikki"
 
 msgid "media items"
 msgstr "tallennetta"
+
+msgid "Close"
+msgstr "Päättynyt"
+
+msgid "Programme"
+msgstr "Ohjelma"
+
+msgid "Social media"
+msgstr "Sosiaalinen media"
+
+msgid "Speakers"
+msgstr "Puhujat"
+
+msgid "Starts on @date"
+msgstr "Alkaa @date"
+
+msgid "The livestream has started."
+msgstr "Tämä suoratoisto on alkanut."
