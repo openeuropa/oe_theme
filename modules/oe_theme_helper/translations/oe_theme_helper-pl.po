@@ -525,6 +525,18 @@ msgstr "warunki ochrony danych"
 msgid "Highlighted"
 msgstr "Na pierwszym planie"
 
+msgid "European Union flag"
+msgstr "Flaga Unii Europejskiej"
+
+msgid "European Commission logo"
+msgstr "Symbol graficzny Komisji Europejskiej"
+
+msgid "Home"
+msgstr "Strona główna"
+
+msgid "European Union"
+msgstr "Unia Europejska"
+
 msgid "This event has been cancelled."
 msgstr "To wydarzenie zostało odwołane."
 
