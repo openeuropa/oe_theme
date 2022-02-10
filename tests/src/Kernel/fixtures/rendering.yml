@@ -1925,6 +1925,18 @@
     '#fields':
       body: "Quote text"
       author: "Quote author"
+  assertions:
+    count:
+      'img.ecl-blockquote__image': 0
+    equals:
+      '.ecl-blockquote__author': "Quote author"
+      '.ecl-blockquote__citation': "Quote text"
+- array:
+    '#type': pattern
+    '#id': blockquote
+    '#fields':
+      body: "Quote text"
+      author: "Quote author"
       image:
         src: "http://via.placeholder.com/120x80"
         alt: "Alternative of image"
