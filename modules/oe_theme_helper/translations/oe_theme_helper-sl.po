@@ -525,6 +525,18 @@ msgstr "varstvu podatkov"
 msgid "Highlighted"
 msgstr "Izpostavljeno"
 
+msgid "European Union flag"
+msgstr "Zastava Evropske unije"
+
+msgid "European Commission logo"
+msgstr "Logotip Evropske komisije"
+
+msgid "Home"
+msgstr "Domača stran"
+
+msgid "European Union"
+msgstr "Evropska unija"
+
 msgid "This event has been cancelled."
 msgstr "Dogodek je odpovedan."
 

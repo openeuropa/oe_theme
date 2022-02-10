@@ -66,7 +66,7 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // container.
     // CSS selector uses "descendent-or-self" as prefix, so we need to use
     // XPath to exclude the container from the selection.
-    $this->assertCount(10, $container->findAll('xpath', '//*[@id]'));
+    $this->assertCount(11, $container->findAll('xpath', '//*[@id]'));
 
     $inner = $container->find('xpath', '/div[@data-inpage-navigation-source-area="h3"]');
     // Since an element with ID "details" already exists in the page, the
@@ -91,10 +91,12 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // easier to assert the content.
     $this->assertEquals('Title with <strong>HTML tags</strong>', $container->find('xpath', '/h3[@id="title-with-html-tags"]')->getHtml());
 
-    // Last 3 assertions for the ID generation.
+    // Last 4 assertions for the ID generation.
     $this->assertEquals('strip--unwanted-characters', $container->find('css', '.strip')->getAttribute('id'));
     $this->assertEquals('constructor', $container->find('xpath', '/h3[@class="heading"][text()="Reserved keyword"]')->getAttribute('id'));
     $this->assertEquals('length', $container->find('xpath', '/h3[@class="heading"][text()="Length"]')->getAttribute('id'));
+    // The heading starting with a non-alpha character gets a ref- prepended.
+    $this->assertEquals('ref-2022-a-new-year', $container->find('xpath', '/h3[@class="heading"][text()="2022, a new year"]')->getAttribute('id'));
 
     $navigation = $assert_session->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
     $assert = new InPageNavigationAssert();
@@ -136,6 +138,10 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
         [
           'label' => 'Length',
           'href' => '#length',
+        ],
+        [
+          'label' => '2022, a new year',
+          'href' => '#ref-2022-a-new-year',
         ],
       ],
     ];

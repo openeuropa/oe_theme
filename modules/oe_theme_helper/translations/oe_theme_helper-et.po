@@ -525,6 +525,18 @@ msgstr "isikuandmete kaitse põhimõtetega"
 msgid "Highlighted"
 msgstr "Esiplaanil"
 
+msgid "European Union flag"
+msgstr "Euroopa Liidu lipp"
+
+msgid "European Commission logo"
+msgstr "Euroopa Komisjoni logo"
+
+msgid "Home"
+msgstr "Avaleht"
+
+msgid "European Union"
+msgstr "Euroopa Liit"
+
 msgid "This event has been cancelled."
 msgstr "See üritus on tühistatud."
 

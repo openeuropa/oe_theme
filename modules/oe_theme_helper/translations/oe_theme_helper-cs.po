@@ -525,6 +525,18 @@ msgstr "ochrany údajů"
 msgid "Highlighted"
 msgstr "Důležité"
 
+msgid "European Union flag"
+msgstr "Vlajka Evropské unie"
+
+msgid "European Commission logo"
+msgstr "Logo Evropské komise"
+
+msgid "Home"
+msgstr "Úvod"
+
+msgid "European Union"
+msgstr "Evropská unie"
+
 msgid "This event has been cancelled."
 msgstr "Tato akce byla zrušena."
 

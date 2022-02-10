@@ -525,6 +525,18 @@ msgstr "tietosuojaselosteen"
 msgid "Highlighted"
 msgstr "Valokeilassa"
 
+msgid "European Union flag"
+msgstr "Euroopan unionin lippu"
+
+msgid "European Commission logo"
+msgstr "Euroopan komission logo"
+
+msgid "Home"
+msgstr "Etusivu"
+
+msgid "European Union"
+msgstr "Euroopan unioni"
+
 msgid "This event has been cancelled."
 msgstr "Tämä tapahtuma on peruutettu."
 

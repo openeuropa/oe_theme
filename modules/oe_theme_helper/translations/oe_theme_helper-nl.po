@@ -525,6 +525,18 @@ msgstr "privacyverklaring"
 msgid "Highlighted"
 msgstr "Actueel"
 
+msgid "European Union flag"
+msgstr "Vlag van de Europese Unie"
+
+msgid "European Commission logo"
+msgstr "Logo van de Europese Commissie"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "European Union"
+msgstr "Europese Unie"
+
 msgid "This event has been cancelled."
 msgstr "Dit evenement is geannuleerd."
 

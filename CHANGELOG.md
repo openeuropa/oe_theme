@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta8) (2022-02-07)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta7...3.0.0-beta8)
+
+**Closed issues:**
+
+- Navigation is displayed above the breadcrumb [\#1002](https://github.com/openeuropa/oe_theme/issues/1002)
+
+**Merged pull requests:**
+
+- EWPP-1888: Handle non-eu logos provided by ECL 3.2. [\#1011](https://github.com/openeuropa/oe_theme/pull/1011) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1860: Prepending inpage nav ids with ref-. [\#1004](https://github.com/openeuropa/oe_theme/pull/1004) ([upchuk](https://github.com/upchuk))
+- EWPP-1854: Adapt HTML attributes to improve accessibility and behavior of the Logo link in header and footer. [\#1012](https://github.com/openeuropa/oe_theme/pull/1012) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1585: Show calendar icon on the datepicker. [\#1010](https://github.com/openeuropa/oe_theme/pull/1010) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1890: Update to ECL 3.2.0. [\#1008](https://github.com/openeuropa/oe_theme/pull/1008) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1631: Contact "name" field should remain optional. [\#984](https://github.com/openeuropa/oe_theme/pull/984) ([yenyasinn](https://github.com/yenyasinn))
+- EPIC-EWPP-755-Highlighted [\#1005](https://github.com/openeuropa/oe_theme/pull/1005) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1728: Define blocks for project results field group template. [\#992](https://github.com/openeuropa/oe_theme/pull/992) ([nagyad](https://github.com/nagyad))
+
 ## [3.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta7) (2021-12-06)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta6...3.0.0-beta7)

@@ -525,6 +525,18 @@ msgstr "skydd av personuppgifter"
 msgid "Highlighted"
 msgstr "I fokus"
 
+msgid "European Union flag"
+msgstr "EU-flaggan"
+
+msgid "European Commission logo"
+msgstr "Europeiska kommissionens logotyp"
+
+msgid "Home"
+msgstr "Start"
+
+msgid "European Union"
+msgstr "Europeiska unionen"
+
 msgid "This event has been cancelled."
 msgstr "Evenemanget har ställts in."
 

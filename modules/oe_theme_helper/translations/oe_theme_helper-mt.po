@@ -525,6 +525,18 @@ msgstr "mat-termini tal-protezzjoni tad-data"
 msgid "Highlighted"
 msgstr "Enfasizzat"
 
+msgid "European Union flag"
+msgstr "Bandiera tal-Unjoni Ewropea"
+
+msgid "European Commission logo"
+msgstr "Logo tal-Kummissjoni Ewropea"
+
+msgid "Home"
+msgstr "Paġna ewlenija"
+
+msgid "European Union"
+msgstr "L-Unjoni Ewropea"
+
 msgid "This event has been cancelled."
 msgstr "Dan l-avveniment ġie kkanċellat."
 

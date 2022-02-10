@@ -525,6 +525,18 @@ msgstr "adatvédelmi nyilatkozatot,"
 msgid "Highlighted"
 msgstr "Előtérben"
 
+msgid "European Union flag"
+msgstr "Az Európai Unió zászlaja"
+
+msgid "European Commission logo"
+msgstr "Az Európai Bizottság logója"
+
+msgid "Home"
+msgstr "Kezdőlap"
+
+msgid "European Union"
+msgstr "Európai Unió"
+
 msgid "This event has been cancelled."
 msgstr "Ezt a rendezvényt törölték."
 
