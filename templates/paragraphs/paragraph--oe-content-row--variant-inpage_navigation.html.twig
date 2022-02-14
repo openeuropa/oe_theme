@@ -8,11 +8,7 @@
 #}
 <div class="ecl-row">
   <div class="ecl-col-l-3 ecl-u-z-navigation">
-    {% include '@ecl-twig/inpage-navigation' with {
-      'title': title,
-      'links': links,
-      'icon_path': ecl_icon_path
-    } %}
+    {{ inpage }}
   </div>
   <div class="ecl-col-l-9">
     {{ content.field_oe_paragraphs }}

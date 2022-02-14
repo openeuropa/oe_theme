@@ -103,11 +103,6 @@ class ContentRowTest extends ParagraphsTestBase {
     $this->assertStringContainsString('Rich text without title.', $html);
     $this->assertStringContainsString('Rich text with title.', $html);
 
-    // No page navigation should be shown.
-    $this->assertCount(0, $crawler->filter('.ecl-inpage-navigation'));
-    // Neither the title.
-    $this->assertStringNotContainsString('Page navigation', $html);
-
     // Change variant to the inpage navigation.
     $paragraph->get('oe_paragraphs_variant')->setValue('inpage_navigation');
     $paragraph->save();
@@ -130,15 +125,6 @@ class ContentRowTest extends ParagraphsTestBase {
     // Verify that the inpage navigation title has been rendered.
     $this->assertEquals('Page navigation', trim($left_column->filter('.ecl-inpage-navigation__title')->text()));
 
-    // Verify that only the direct children paragraphs that have a title have
-    // been included as links.
-    $navigation_items = $left_column->filter('ul.ecl-inpage-navigation__list li');
-    $this->assertCount(3, $navigation_items);
-    // Check the order, text and anchor of each item.
-    $this->assertNavigationItem($navigation_items->eq(0), 'List item title', $right_column);
-    $this->assertNavigationItem($navigation_items->eq(1), 'List block title', $right_column);
-    $this->assertNavigationItem($navigation_items->eq(2), 'Rich text title', $right_column);
-
     // Verify that the inpage navigation default title has been rendered.
     $paragraph->get('field_oe_title')->setValue('');
     $paragraph->save();
@@ -147,55 +133,9 @@ class ContentRowTest extends ParagraphsTestBase {
     // Assert that side-menu is correctly rendered with the default title.
     $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
     $this->assertStringContainsString('Page contents', $left_column->html());
-  }
 
-  /**
-   * Tests that side menu title translations are rendered correctly.
-   */
-  public function testSideMenuTranslation(): void {
-    // Create child paragraph with "French" translation.
-    $child = Paragraph::create([
-      'type' => 'oe_rich_text',
-      'field_oe_title' => 'English rich text title',
-    ]);
-    $child->save();
-
-    $child->addTranslation('fr', [
-      'type' => 'oe_rich_text',
-      'field_oe_title' => 'French rich text title',
-    ])->save();
-
-    // Create the main content row paragraph with "French" translation.
-    $paragraph = Paragraph::create([
-      'type' => 'oe_content_row',
-      'field_oe_title' => 'English page navigation',
-      'oe_paragraphs_variant' => 'inpage_navigation',
-      'field_oe_paragraphs' => [$child],
-    ]);
-    $paragraph->save();
-
-    $paragraph->addTranslation('fr', [
-      'type' => 'oe_content_row',
-      'field_oe_title' => 'French page navigation',
-      'oe_paragraphs_variant' => 'inpage_navigation',
-      'field_oe_paragraphs' => [$child],
-    ])->save();
-
-    $html = $this->renderParagraph($paragraph, 'en');
-    $crawler = new Crawler($html);
-
-    // Assert that side-menu "English" translation is correctly rendered.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
-    $this->assertStringContainsString('English page navigation', $left_column->html());
-    $this->assertStringContainsString('English rich text title', $left_column->html());
-
-    $html = $this->renderParagraph($paragraph, 'fr');
-    $crawler = new Crawler($html);
-
-    // Assert that side-menu "French" translation is correctly rendered.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
-    $this->assertStringContainsString('French page navigation', $left_column->html());
-    $this->assertStringContainsString('French rich text title', $left_column->html());
+    // The actual inpage navigation links are tested in the
+    // InPageNavigationParagraphTest since they are rendered via JS.
   }
 
   /**
