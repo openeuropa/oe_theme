@@ -43,7 +43,7 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
       '#url' => $link->getUrl(),
       '#enabled' => TRUE,
       '#show_button' => TRUE,
-      '#approaching_time' => FALSE,
+      '#registration_day' => FALSE,
     ];
 
     // Current request happens after the registration has ended.
@@ -74,10 +74,10 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
       // If the request time is on the same day as the start day we need to
       // show different message.
       if ($this->isCurrentDay($datetime_start->getTimestamp())) {
-        $build['#approaching_time_description'] = $this->t('Registration will open today, @start_date.', [
+        $build['#registration_day_description'] = $this->t('Registration will open today, @start_date.', [
           '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
         ]);
-        $build['#approaching_time'] = TRUE;
+        $build['#registration_day'] = TRUE;
         $this->attachDisclosureScript($build, $datetime_start->getTimestamp());
       }
       else {

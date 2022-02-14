@@ -6,7 +6,7 @@
 #}
 <div id="event-registration-block">
   {% if show_button %}
-    {% if approaching_time %}
+    {% if registration_day %}
       <a href="{{ url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta{% if not enabled %} ecl-u-d-none{% else %} ecl-u-d-inline-block{% endif %}" data-registration-active-element="true">{{ label }}</a>
       <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta{% if enabled %} ecl-u-d-none{% endif %}" disabled="" data-registration-upcoming-element="true">{{ label }}</button>
     {% else %}
@@ -17,8 +17,8 @@
       {% endif %}
     {% endif %}
   {% endif %}
-  {% if approaching_time %}
-    <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75{% if enabled %} ecl-u-d-none{% endif %}" data-registration-upcoming-element="true">{{ approaching_time_description }}</p>
+  {% if registration_day %}
+    <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75{% if enabled %} ecl-u-d-none{% endif %}" data-registration-upcoming-element="true">{{ registration_day_description }}</p>
     <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75{% if not enabled %} ecl-u-d-none{% endif %}" data-registration-active-element="true">{{ description }}</p>
   {% elseif description %}
     <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75">{{ description }}</p>

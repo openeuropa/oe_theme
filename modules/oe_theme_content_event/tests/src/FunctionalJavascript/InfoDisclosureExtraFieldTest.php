@@ -57,7 +57,7 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
   }
 
   /**
-   * Tests that Event Online and Registration link are appeared exactly on time.
+   * Tests that Livestream and Registration links are displayed exactly on time.
    *
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    * @SuppressWarnings(PHPMD.NPathComplexity)
@@ -106,8 +106,8 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     // Check that livestream link is not prepared for disclosing.
-    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
-    $this->assertCount(0, $livetime_elements);
+    $livestream_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(0, $livestream_elements);
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
     // Check that registration link is not prepared for disclosing.
@@ -116,7 +116,7 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
     $this->assertCount(0, $registration_js);
 
-    // Set start datetime in 10 minutes later.
+    // Set start datetime 10 minutes later.
     $start_date = (clone $static_time)->modify('+10 minutes');
     $node->set('oe_event_online_type', 'livestream');
     $node->set('oe_event_online_link', [
@@ -137,10 +137,10 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     // Script for disclosing livestream information is available.
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(1, $livestream_js);
-    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
-    $this->assertCount(2, $livetime_elements);
-    foreach ($livetime_elements as $livetime_element) {
-      $this->assertFalse($livetime_element->isVisible());
+    $livestream_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(2, $livestream_elements);
+    foreach ($livestream_elements as $livestream_element) {
+      $this->assertFalse($livestream_element->isVisible());
     }
     // Script for disclosing registration link information is available.
     $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
@@ -168,10 +168,10 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(1, $livestream_js);
-    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
-    $this->assertCount(2, $livetime_elements);
-    foreach ($livetime_elements as $livetime_element) {
-      $this->assertFalse($livetime_element->isVisible());
+    $livestream_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(2, $livestream_elements);
+    foreach ($livestream_elements as $livestream_element) {
+      $this->assertFalse($livestream_element->isVisible());
     }
     // Script for disclosing registration link information is available.
     $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
@@ -186,8 +186,8 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     }
     // After 10 seconds livestream link should be visible.
     $this->getSession()->wait(10000);
-    foreach ($livetime_elements as $livetime_element) {
-      $this->assertTrue($livetime_element->isVisible());
+    foreach ($livestream_elements as $livestream_element) {
+      $this->assertTrue($livestream_element->isVisible());
     }
     // Registration link should be visible.
     foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-active-element]') as $registration_element) {
@@ -212,10 +212,10 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
-    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
-    $this->assertCount(2, $livetime_elements);
-    foreach ($livetime_elements as $livetime_element) {
-      $this->assertTrue($livetime_element->isVisible());
+    $livestream_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(2, $livestream_elements);
+    foreach ($livestream_elements as $livestream_element) {
+      $this->assertTrue($livestream_element->isVisible());
     }
     // Registration script should not be available and registration link should
     // be hidden.
@@ -239,8 +239,8 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $this->drupalGet($node->toUrl());
     $livestream_js = $this->xpath("//script[contains(@src, 'js/event_livestream.js')]");
     $this->assertCount(0, $livestream_js);
-    $livetime_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
-    $this->assertCount(0, $livetime_elements);
+    $livestream_elements = $this->getSession()->getPage()->findAll('css', '[data-livestream-element]');
+    $this->assertCount(0, $livestream_elements);
     // Registration information should be hidden if registration time is over.
     $registration_js = $this->xpath("//script[contains(@src, 'js/event_registration.js')]");
     $this->assertCount(0, $registration_js);

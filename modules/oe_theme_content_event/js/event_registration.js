@@ -4,7 +4,7 @@
  */
 (function (Drupal, drupalSettings) {
   /**
-   * Shows related information when registration is active.
+   * Shows registration information when the registration period is open.
    *
    * @type {Drupal~behavior}
    *

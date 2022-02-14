@@ -61,7 +61,7 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
   }
 
   /**
-   * Is current day.
+   * Asserts if a given timestamp matches to the same day of the current time.
    *
    * @param int $timestamp
    *   The timestamp of start date.

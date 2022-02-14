@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 /**
- * Base class for fields that require display livestream link in exact time.
+ * Base class for fields rendering livestream information.
  */
 abstract class OnlineDisplayExtraFieldBase extends InfoDisclosureExtraFieldBase {
 
