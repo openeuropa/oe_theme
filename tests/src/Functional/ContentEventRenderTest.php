@@ -136,6 +136,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'oe_event_dates' => [
         'value' => '2030-05-10T12:00:00',
         'end_value' => '2030-05-15T12:00:00',
+        'timezone' => 'Europe/Brussels',
       ],
       'oe_event_featured_media' => [
         'target_id' => (int) $media->id(),
@@ -189,6 +190,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'oe_event_dates' => [
         'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'timezone' => DateTimeItemInterface::STORAGE_TIMEZONE,
       ],
       'oe_event_languages' => [
         ['target_id' => 'http://publications.europa.eu/resource/authority/language/EST'],
@@ -228,7 +230,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'size' => 'm',
         ], [
           'icon' => 'calendar',
-          'text' => '28 February 2020, 01:00',
+          'text' => '27 February 2020, 14:00 UTC - 27 February 2020, 14:00 UTC',
           'size' => 'm',
         ],
       ],
@@ -245,7 +247,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => 'Friday 28 February 2020, 01:00',
+          'body' => 'Thursday 27 February 2020, 14:00 UTC - Thursday 27 February 2020, 14:00 UTC',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
@@ -258,11 +260,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // The event didn't start yet so no status message should be displayed.
     $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-u-mb-2xl');
 
-    // Check case when start and end dates are different.
+    // Check case when start and end dates are different in another timezone.
     $end_date = (clone $static_time)->modify('+ 20 days');
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     // Add 'Who should attend' field value.
     $node->set('oe_event_who_should_attend', 'Types of audiences that this event targets');
@@ -278,7 +281,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'size' => 'm',
         ], [
           'icon' => 'calendar',
-          'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
+          'text' => "27 February 2020, 15:00 CET - 8 March 2020, 15:00 CET",
           'size' => 'm',
         ],
       ],
@@ -289,7 +292,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+          'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
@@ -319,7 +322,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
         ], [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+          'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
@@ -392,6 +395,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_online_dates', [
       'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
 
@@ -404,10 +408,10 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'body' => 'Online only',
         ], [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+          'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
         ], [
           'label' => 'Livestream',
-          'body' => 'Starts on Wednesday 18 March 2020, 01:00',
+          'body' => 'Starts on Tuesday 17 March 2020, 15:00 CET',
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
@@ -528,12 +532,13 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_registration_dates', [
       'value' => $registration_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $registration_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
     $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
-    $this->assertEquals('Registration will open in 1 day. You can register from 19 February 2020, 01:00, until 22 February 2020, 01:00.', $registration_info_content->getText());
+    $this->assertEquals('Registration will open in 1 day. You can register from 18 February 2020, 15:00 CET, until 21 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start today in
     // one hour.
@@ -543,7 +548,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
-    $this->assertEquals('Registration will open today, 19 February 2020, 01:00.', $registration_info_content->getText());
+    $this->assertEquals('Registration will open today, 18 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration is in progress.
     $static_time = new DrupalDateTime('2020-02-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -552,7 +557,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
-    $this->assertEquals('Book your seat, 1 day left to register, registration will end on 22 February 2020, 01:00', $registration_info_content->getText());
+    $this->assertEquals('Book your seat, 1 day left to register, registration will end on 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will finish today in
     // one hour.
@@ -562,7 +567,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
-    $this->assertEquals('Book your seat, the registration will end today, 22 February 2020, 01:00', $registration_info_content->getText());
+    $this->assertEquals('Book your seat, the registration will end today, 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field in the past.
     $static_time = new DrupalDateTime('2020-02-24 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
@@ -571,7 +576,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertSession()->elementNotExists('css', 'a.ecl-u-mt-2xl.ecl-link.ecl-link--cta', $registration_content);
-    $this->assertEquals('Registration period ended on Saturday 22 February 2020, 01:00', $registration_info_content->getText());
+    $this->assertEquals('Registration period ended on Friday 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Report text" and "Summary for report" fields when event is
     // finished.
@@ -697,10 +702,10 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => "Friday 28 February 2020, 01:00\n - Monday 9 March 2020, 01:00",
+          'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
         ], [
           'label' => 'Livestream',
-          'body' => 'Starts on Wednesday 18 March 2020, 01:00Link to online event',
+          'body' => 'Starts on Tuesday 17 March 2020, 15:00 CETLink to online event',
         ], [
           'label' => 'Who should attend',
           'body' => 'Types of audiences that this event targets',
@@ -732,7 +737,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'size' => 'm',
         ], [
           'icon' => 'calendar',
-          'text' => "28 February 2020, 01:00\n - 9 March 2020, 01:00",
+          'text' => "27 February 2020, 15:00 CET - 8 March 2020, 15:00 CET",
           'size' => 'm',
         ], [
           'icon' => 'livestreaming',
@@ -777,15 +782,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ], [
-          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ],
@@ -798,12 +803,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $session3->set('oe_event_programme_dates', [
       'value' => '2019-11-15T11:00:00',
       'end_value' => '2019-11-15T15:00:00',
+      'timezone' => 'UTC',
     ]);
     $session3->save();
 
     $session1->set('oe_event_programme_dates', [
       'value' => '2019-11-15T22:00:00',
       'end_value' => '2019-11-15T23:00:00',
+      'timezone' => 'UTC',
     ]);
     $session1->save();
     $this->drupalGet($node->toUrl());
@@ -812,15 +819,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '15 Nov 2019, 10:00 PM - 16 Nov 2019, 02:00 AM',
+          'label' => '15 Nov 2019, 11:00 AM UTC - 15 Nov 2019, 03:00 PM UTC',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ], [
-          'label' => '09:00 AM - 10:00 AM',
+          'label' => '10:00 PM - 11:00 PM',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '18 Feb 2020, 01:00 AM - 28 Feb 2020, 01:00 AM',
+          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ],
@@ -833,17 +840,20 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $session3->set('oe_event_programme_dates', [
       'value' => '2019-11-14T21:00:00',
       'end_value' => '2019-11-14T22:00:00',
+      'timezone' => 'UTC',
     ]);
     $session3->save();
 
     $session1->set('oe_event_programme_dates', [
       'value' => '2019-11-14T22:15:00',
       'end_value' => '2019-11-14T23:15:00',
+      'timezone' => 'UTC',
     ]);
     $session1->save();
     $session2->set('oe_event_programme_dates', [
       'value' => '2019-11-15T22:00:00',
       'end_value' => '2019-11-15T23:00:00',
+      'timezone' => 'UTC',
     ]);
     $session2->save();
     $this->drupalGet($node->toUrl());
@@ -852,15 +862,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '15 Nov 2019,<br>08:00 AM - 09:00 AM',
+          'label' => '14 Nov 2019 UTC,<br>09:00 PM - 10:00 PM',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ], [
-          'label' => '09:15 AM - 10:15 AM',
+          'label' => '10:15 PM - 11:15 PM',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '16 Nov 2019,<br>09:00 AM - 10:00 AM',
+          'label' => '15 Nov 2019 UTC,<br>10:00 PM - 11:00 PM',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ],
@@ -961,12 +971,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $online_start_date = (clone $static_time)->modify('- 2 hours');
     $online_end_date = (clone $static_time)->modify('+ 2 hours');
     $node->set('oe_event_online_dates', [
       'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
@@ -978,12 +990,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $online_start_date = (clone $static_time)->modify('+ 3 days');
     $online_end_date = (clone $static_time)->modify('+ 5 days');
     $node->set('oe_event_online_dates', [
       'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
     // By default, message doesn't exist and the 'Status description' field is

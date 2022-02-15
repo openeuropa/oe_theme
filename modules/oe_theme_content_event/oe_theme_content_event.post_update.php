@@ -108,6 +108,9 @@ function oe_theme_content_event_post_update_30001() {
     'core.date_format.oe_event_programme_date',
     'core.date_format.oe_event_programme_date_hour',
     'core.date_format.oe_event_programme_hour',
+    'core.date_format.oe_event_programme_date_timezone',
+    'core.date_format.oe_event_programme_date_hour_timezone',
+    'core.date_format.oe_event_long_date_hour_timezone',
   ];
   foreach ($date_formats as $date_format_name) {
     $config = $storage->read($date_format_name);

@@ -62,7 +62,7 @@ class LivestreamExtraField extends InfoDisclosureExtraFieldBase {
       }
     }
     $build['#date'] = $this->t('Starts on @date', [
-      '@date' => $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'oe_event_long_date_hour'),
+      '@date' => $this->dateFormatter->format($event->getOnlineStartDate()->getTimestamp(), 'oe_event_long_date_hour_timezone', '', $event->getOnlineTimezone()),
     ]);
     // If the livestream is ongoing, we add the livestream link.
     if ($event->isOnlinePeriodActive($this->requestDateTime)) {

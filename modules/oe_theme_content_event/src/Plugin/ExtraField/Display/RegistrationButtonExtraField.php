@@ -110,15 +110,15 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       // show different message.
       if ($datetime_start->format('Ymd') === $request_datetime->format('Ymd')) {
         $build['#description'] = $this->t('Registration will open today, @start_date.', [
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
       }
       else {
         $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
         $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
           '@time_left' => $date_diff_formatted,
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour'),
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
       }
 
@@ -144,14 +144,14 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       // show different message.
       if ($datetime_end->format('Ymd') === $request_datetime->format('Ymd')) {
         $build['#description'] = $this->t('Book your seat, the registration will end today, @end_date', [
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour'),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
       }
       else {
         $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_end->getTimestamp(), ['granularity' => 1]);
         $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
           '@time_left' => $date_diff_formatted,
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour'),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
       }
 
@@ -167,7 +167,7 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
       $datetime_end = $event->getRegistrationEndDate();
       $build['#description'] = $this->t('Registration period ended on @date', [
-        '@date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_long_date_hour'),
+        '@date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_long_date_hour_timezone', '', $event->getRegistrationTimezone()),
       ]);
       $build['#show_button'] = FALSE;
 

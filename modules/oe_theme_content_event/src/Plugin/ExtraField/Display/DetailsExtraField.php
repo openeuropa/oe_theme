@@ -144,10 +144,11 @@ class DetailsExtraField extends EventExtraFieldBase {
   protected function getRenderableDates(ContentEntityInterface $entity): array {
     return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_event_dates'), [
       'label' => 'hidden',
-      'type' => 'daterange_default',
+      'type' => 'daterange_timezone',
       'settings' => [
-        'format_type' => 'oe_event_date_hour',
+        'format_type' => 'oe_event_date_hour_timezone',
         'separator' => '-',
+        'display_timezone' => FALSE,
       ],
     ]);
   }

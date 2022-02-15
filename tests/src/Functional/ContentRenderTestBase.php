@@ -359,6 +359,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
       'oe_event_programme_dates' => [
         'value' => $start_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
         'end_value' => $end_datetime->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+        'timezone' => 'UTC',
       ],
       'oe_description' => "Description $name",
       'status' => $status,
