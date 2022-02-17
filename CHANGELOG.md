@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta9) (2022-02-17)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta8...3.0.0-beta9)
+
+**Merged pull requests:**
+
+- EWPP-1920: Upgrade to PHP8 and Composer v2. [\#1029](https://github.com/openeuropa/oe_theme/pull/1029) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta8) (2022-02-07)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta7...3.0.0-beta8)
