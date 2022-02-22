@@ -537,6 +537,9 @@ msgstr "Home"
 msgid "European Union"
 msgstr "Europese Unie"
 
+msgid "Sources"
+msgstr "Bronnen"
+
 msgid "This event has been cancelled."
 msgstr "Dit evenement is geannuleerd."
 

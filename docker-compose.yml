@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: fpfis/httpd-php-dev:7.3
+    image: fpfis/httpd-php-dev:8.0
     working_dir: /var/www/html
     ports:
       - 8080:8080
@@ -9,6 +9,7 @@ services:
       - .:/var/www/html # Non Mac users.
       # - nfsmount:/var/www/html # Mac Users with the nfsmount volume.
     environment:
+      COMPOSERVER: "--2"
       XDEBUG_CONFIG: "client_host=172.17.0.1" # Non-Mac users.
       # XDEBUG_CONFIG: "client_host=host.docker.internal" # Mac users.
       XDEBUG_MODE: "develop, debug"

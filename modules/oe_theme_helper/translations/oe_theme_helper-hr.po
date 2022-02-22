@@ -537,6 +537,9 @@ msgstr "Početak"
 msgid "European Union"
 msgstr "Europske unije"
 
+msgid "Sources"
+msgstr "Izvori"
+
 msgid "This event has been cancelled."
 msgstr "Ovo je događanje otkazano."
 

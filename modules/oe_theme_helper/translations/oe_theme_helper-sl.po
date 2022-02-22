@@ -537,6 +537,9 @@ msgstr "Domača stran"
 msgid "European Union"
 msgstr "Evropska unija"
 
+msgid "Sources"
+msgstr "Viri"
+
 msgid "This event has been cancelled."
 msgstr "Dogodek je odpovedan."
 
