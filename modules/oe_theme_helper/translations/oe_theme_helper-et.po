@@ -537,6 +537,9 @@ msgstr "Avaleht"
 msgid "European Union"
 msgstr "Euroopa Liit"
 
+msgid "Sources"
+msgstr "Allikad"
+
 msgid "This event has been cancelled."
 msgstr "See üritus on tühistatud."
 

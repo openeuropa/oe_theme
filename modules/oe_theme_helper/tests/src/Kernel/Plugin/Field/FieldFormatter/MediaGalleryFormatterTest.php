@@ -219,7 +219,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
 
-    $expected_thumbnail_name = version_compare(\Drupal::VERSION, '9.2', '>=') ? 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg' : 'LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg';
+    $expected_thumbnail_name = version_compare(\Drupal::VERSION, '9.2.0', '>') ? 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg' : 'LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg';
 
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
@@ -241,7 +241,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test that all the cache tags have present and bubbled up.
-    $this->assertEquals([
+    $this->assertEqualsCanonicalizing([
       'file:1',
       'file:2',
       'file:3',

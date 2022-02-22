@@ -537,6 +537,9 @@ msgstr "Forside"
 msgid "European Union"
 msgstr "Europæiske Unions"
 
+msgid "Sources"
+msgstr "Kilder"
+
 msgid "This event has been cancelled."
 msgstr "Dette arrangement er aflyst."
 

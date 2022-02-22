@@ -537,6 +537,9 @@ msgstr "Domovská stránka"
 msgid "European Union"
 msgstr "Európska únia"
 
+msgid "Sources"
+msgstr "Zdroje"
+
 msgid "This event has been cancelled."
 msgstr "Toto podujatie bolo zrušené."
 

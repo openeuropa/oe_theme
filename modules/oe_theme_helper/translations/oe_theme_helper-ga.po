@@ -537,6 +537,9 @@ msgstr "Baile"
 msgid "European Union"
 msgstr "Aontais Eorpaigh"
 
+msgid "Sources"
+msgstr "Foinsí"
+
 msgid "This event has been cancelled."
 msgstr "Cuireadh an imeacht seo ar ceal."
 

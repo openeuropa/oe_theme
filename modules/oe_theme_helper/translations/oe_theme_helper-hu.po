@@ -537,6 +537,9 @@ msgstr "Kezdőlap"
 msgid "European Union"
 msgstr "Európai Unió"
 
+msgid "Sources"
+msgstr "Források"
+
 msgid "This event has been cancelled."
 msgstr "Ezt a rendezvényt törölték."
 

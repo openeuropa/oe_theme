@@ -537,6 +537,9 @@ msgstr "Prima pagină"
 msgid "European Union"
 msgstr "Uniunea Europeană"
 
+msgid "Sources"
+msgstr "Surse"
+
 msgid "This event has been cancelled."
 msgstr "Acest eveniment a fost anulat."
 

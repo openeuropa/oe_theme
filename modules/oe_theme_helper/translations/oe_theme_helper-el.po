@@ -537,6 +537,9 @@ msgstr "Αρχική σελίδα"
 msgid "European Union"
 msgstr "Ευρωπαϊκή Ένωση"
 
+msgid "Sources"
+msgstr "Πηγές"
+
 msgid "This event has been cancelled."
 msgstr "Η εκδήλωση αυτή έχει ματαιωθεί."
 

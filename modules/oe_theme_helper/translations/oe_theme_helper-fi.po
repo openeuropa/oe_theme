@@ -537,6 +537,9 @@ msgstr "Etusivu"
 msgid "European Union"
 msgstr "Euroopan unioni"
 
+msgid "Sources"
+msgstr "Lähteet"
+
 msgid "This event has been cancelled."
 msgstr "Tämä tapahtuma on peruutettu."
 

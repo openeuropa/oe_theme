@@ -537,6 +537,9 @@ msgstr "Accueil"
 msgid "European Union"
 msgstr "Union européenne"
 
+msgid "Sources"
+msgstr "Sources"
+
 msgid "This event has been cancelled."
 msgstr "Cet événement a été annulé."
 

@@ -2,7 +2,7 @@ name: OpenEuropa Theme Document reference
 type: module
 description: Companion module for the OE Content Entity Document reference module
 package: OpenEuropa
-core_version_requirement: ^8.9 || ^9.1
+core_version_requirement: ^9.2
 dependencies:
   - oe_content:oe_content_sub_entity_document_reference
   - oe_theme:oe_theme_content_publication
