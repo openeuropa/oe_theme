@@ -590,3 +590,21 @@ msgstr "Féach na"
 
 msgid "media items"
 msgstr "míreanna meán uile"
+
+msgid "Close"
+msgstr "Dún"
+
+msgid "Programme"
+msgstr "Clár"
+
+msgid "Social media"
+msgstr "Na meáin shóisialta"
+
+msgid "Speakers"
+msgstr "Cainteoirí"
+
+msgid "Starts on @date"
+msgstr "Cuirfear tús leis ar @date"
+
+msgid "The livestream has started."
+msgstr "Cuireadh tús leis an beoshruthú seo."

@@ -590,3 +590,21 @@ msgstr "Ara kollox"
 
 msgid "media items"
 msgstr "Oġġetti tal-media"
+
+msgid "Close"
+msgstr "Agħlaq"
+
+msgid "Programme"
+msgstr "Programm"
+
+msgid "Social media"
+msgstr "Media soċjali"
+
+msgid "Speakers"
+msgstr "Kelliema"
+
+msgid "Starts on @date"
+msgstr "Jibda fi @date"
+
+msgid "The livestream has started."
+msgstr "Din il-xandira diretta fuq l-internet bdiet."

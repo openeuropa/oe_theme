@@ -590,3 +590,21 @@ msgstr "Žiūrėkite visus"
 
 msgid "media items"
 msgstr "medijos elementus"
+
+msgid "Close"
+msgstr "Uždaryti"
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Social media"
+msgstr "Socialiniai tinklai"
+
+msgid "Speakers"
+msgstr "Pranešėjai"
+
+msgid "Starts on @date"
+msgstr "Prasideda @date"
+
+msgid "The livestream has started."
+msgstr "Tiesioginė transliacija prasidėjo."

@@ -25,7 +25,7 @@
         "drupal/composite_reference": "~1.0-alpha1",
         "drupal/config_devel": "~1.2",
         "drupal/datetime_testing": "1.x-dev",
-        "drupal/description_list_field": "1.0.x-dev",
+        "drupal/description_list_field": "1.0.0-alpha2",
         "drupal/drupal-driver": "^2.1.1",
         "drupal/drupal-extension": "~4.0",
         "drupal/emr": "~1.0-beta9",
@@ -67,7 +67,8 @@
         "We explicity require drupal/core to allow lower 'composer update --prefer-lowest' to complete successfully.",
         "openeuropa/oe_search is used from a branch because of major upgrading is pending. Change again when it released.",
         "openeuropa/ecl-twig-loader is used from a branch because it must be upgrade to be D9 compatible. Change again when it released.",
-        "Explicit requirement of openeuropa/oe_paragraphs master branch until new release is available."
+        "Explicit requirement of openeuropa/oe_paragraphs master branch until new release is available.",
+        "Temporary lock drupal/description_list_field version until oe_theme supports PHP8."
     ],
     "conflict": {
         "openeuropa/oe_corporate_blocks": "<3.0.0",

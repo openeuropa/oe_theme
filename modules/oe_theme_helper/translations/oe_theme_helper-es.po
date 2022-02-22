@@ -590,3 +590,21 @@ msgstr "Ver todo"
 
 msgid "media items"
 msgstr "elementos multimedia"
+
+msgid "Close"
+msgstr "Cerrado"
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Social media"
+msgstr "Redes sociales"
+
+msgid "Speakers"
+msgstr "Oradores"
+
+msgid "Starts on @date"
+msgstr "Empieza el @date"
+
+msgid "The livestream has started."
+msgstr "El streaming ha empezado."

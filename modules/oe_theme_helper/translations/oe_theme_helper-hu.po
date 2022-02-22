@@ -590,3 +590,21 @@ msgstr "Összes megtekintése"
 
 msgid "media items"
 msgstr "médiaanyag"
+
+msgid "Close"
+msgstr "Lezárva"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Közösségi média"
+
+msgid "Speakers"
+msgstr "Előadók"
+
+msgid "Starts on @date"
+msgstr "Ebben az időpontban kezdődik: @date"
+
+msgid "The livestream has started."
+msgstr "Ez az élő közvetítés elkezdődött."

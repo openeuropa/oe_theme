@@ -590,3 +590,21 @@ msgstr "Вижте всичко"
 
 msgid "media items"
 msgstr "media items"
+
+msgid "Close"
+msgstr "приключило"
+
+msgid "Programme"
+msgstr "Програма"
+
+msgid "Social media"
+msgstr "Социални медии"
+
+msgid "Speakers"
+msgstr "Говорители"
+
+msgid "Starts on @date"
+msgstr "Започва в @date"
+
+msgid "The livestream has started."
+msgstr "Излъчването на живо е започнало."

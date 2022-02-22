@@ -590,3 +590,21 @@ msgstr "Zobrazit vše"
 
 msgid "media items"
 msgstr "Počet mediálních materiálů"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Sociální média"
+
+msgid "Speakers"
+msgstr "Řečníci"
+
+msgid "Starts on @date"
+msgstr "Začíná @date"
+
+msgid "The livestream has started."
+msgstr "Živý přenos již začal."

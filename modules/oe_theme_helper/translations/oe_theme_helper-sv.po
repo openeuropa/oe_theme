@@ -590,3 +590,21 @@ msgstr "Visa alla"
 
 msgid "media items"
 msgstr "poster"
+
+msgid "Close"
+msgstr "Avslutad"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Sociala medier"
+
+msgid "Speakers"
+msgstr "Talare"
+
+msgid "Starts on @date"
+msgstr "Börjar kl. @date"
+
+msgid "The livestream has started."
+msgstr "Direktsändningen har börjat."
