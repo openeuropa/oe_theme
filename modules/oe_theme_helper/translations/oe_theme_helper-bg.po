@@ -536,3 +536,6 @@ msgstr "Начало"
 
 msgid "European Union"
 msgstr "Европейски съюз"
+
+msgid "Sources"
+msgstr "Източници"

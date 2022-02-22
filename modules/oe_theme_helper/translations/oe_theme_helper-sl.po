@@ -536,3 +536,6 @@ msgstr "Domača stran"
 
 msgid "European Union"
 msgstr "Evropska unija"
+
+msgid "Sources"
+msgstr "Viri"

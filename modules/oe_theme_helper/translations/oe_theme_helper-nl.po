@@ -536,3 +536,6 @@ msgstr "Home"
 
 msgid "European Union"
 msgstr "Europese Unie"
+
+msgid "Sources"
+msgstr "Bronnen"

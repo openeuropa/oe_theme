@@ -536,3 +536,6 @@ msgstr "Αρχική σελίδα"
 
 msgid "European Union"
 msgstr "Ευρωπαϊκή Ένωση"
+
+msgid "Sources"
+msgstr "Πηγές"

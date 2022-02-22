@@ -536,3 +536,6 @@ msgstr "Baile"
 
 msgid "European Union"
 msgstr "Aontais Eorpaigh"
+
+msgid "Sources"
+msgstr "Foinsí"

@@ -536,3 +536,6 @@ msgstr "Kezdőlap"
 
 msgid "European Union"
 msgstr "Európai Unió"
+
+msgid "Sources"
+msgstr "Források"

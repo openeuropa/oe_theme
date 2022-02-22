@@ -536,3 +536,6 @@ msgstr "Paġna ewlenija"
 
 msgid "European Union"
 msgstr "L-Unjoni Ewropea"
+
+msgid "Sources"
+msgstr "Sorsi"

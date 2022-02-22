@@ -536,3 +536,6 @@ msgstr "Početak"
 
 msgid "European Union"
 msgstr "Europske unije"
+
+msgid "Sources"
+msgstr "Izvori"

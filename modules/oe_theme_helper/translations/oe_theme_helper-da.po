@@ -536,3 +536,6 @@ msgstr "Forside"
 
 msgid "European Union"
 msgstr "Europæiske Unions"
+
+msgid "Sources"
+msgstr "Kilder"

@@ -536,3 +536,6 @@ msgstr "Etusivu"
 
 msgid "European Union"
 msgstr "Euroopan unioni"
+
+msgid "Sources"
+msgstr "Lähteet"

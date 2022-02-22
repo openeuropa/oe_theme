@@ -536,3 +536,6 @@ msgstr "Úvod"
 
 msgid "European Union"
 msgstr "Evropská unie"
+
+msgid "Sources"
+msgstr "Zdroje"
