@@ -1260,7 +1260,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     else {
       // Check whether ECL provides a logo for the language.
       $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
-      $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : '';
+      $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'positive/';
       $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
       if (!file_exists($ecl_logo)) {
         // Provide fallback "en" icon if language logo doesn't exist.
