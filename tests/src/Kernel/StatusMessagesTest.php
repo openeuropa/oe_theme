@@ -73,12 +73,9 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       $this->assertCount(1, $title, sprintf('Wrong number of headings found for "%s" messages.', $type));
       $this->assertEquals($heading, trim($title->first()->text()));
 
-      $list_items = $wrapper->filter('p.ecl-message__description span');
-      $this->assertSameSize($messages, $list_items, sprintf('Wrong number of "%s" messages found.', $type));
-
-      foreach ($messages as $delta => $message) {
-        $this->assertEquals($message, trim($list_items->eq($delta)->text()));
-      }
+      $description = $wrapper->filter('div.ecl-message__description');
+      $this->assertCount(1, $description, sprintf('Wrong number of "%s" messages found.', $type));
+      $this->assertEquals(implode($messages), trim($description->text()));
     }
 
     // Verify that no message types other than the ones present in the test data
@@ -124,8 +121,8 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_STATUS => [
-            'Status message 1.',
-            'Status message 2.',
+            '<p>Status message 1.</p><br>',
+            'Status message <strong>2</strong>.',
           ],
         ],
       ],
@@ -133,7 +130,7 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_WARNING => [
-            'Warning message 1.',
+            '<div>Warning message 1.</div>',
           ],
         ],
       ],
@@ -141,8 +138,8 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_WARNING => [
-            'Warning message 1.',
-            'Warning message 2.',
+            '<p>Warning message 1.</p><br>',
+            'Warning message 2.<br>',
             'Warning message 3.',
           ],
         ],
@@ -159,9 +156,9 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_ERROR => [
-            'Error message 1.',
-            'Error message 2.',
-            'Error message 3.',
+            '<h3>Error message 1.</h3><br>',
+            '<p>Error message 2.</p><br>',
+            'Error message 3.<br>',
             'Error message 4.',
           ],
         ],
@@ -170,10 +167,10 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_STATUS => [
-            'Status message 1.',
+            '<p>Status message 1.</p><br>',
           ],
           MessengerInterface::TYPE_WARNING => [
-            'Warning message 1.',
+            '<p>Warning message 1.</p>',
           ],
         ],
       ],
@@ -181,12 +178,12 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_ERROR => [
-            'Error message 1.',
+            'Error message 1.<br>',
             'Error message 2.',
           ],
           MessengerInterface::TYPE_WARNING => [
-            'Warning message 1.',
-            'Warning message 2.',
+            'Warning message 1.<br>',
+            'Warning message 2.<br>',
             'Warning message 3.',
           ],
         ],
@@ -195,13 +192,13 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       [
         [
           MessengerInterface::TYPE_STATUS => [
-            'Status message 1.',
+            'Status message <strong>1</strong>.',
           ],
           MessengerInterface::TYPE_WARNING => [
-            'Warning message 1.',
+            'Warning message <strong>1</strong>.',
           ],
           MessengerInterface::TYPE_ERROR => [
-            'Error message 1.',
+            'Error message 1.<br>',
             'Error message 2.',
           ],
         ],
