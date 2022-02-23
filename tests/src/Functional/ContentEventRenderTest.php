@@ -955,49 +955,61 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-m.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
     $this->assertStringContainsString('placeholder_person_portrait.png', $portrait->getAttribute('style'));
 
-    // Assert Event status messages.
-    $start_date = (clone $static_time)->modify('+ 1 days');
-    $end_date = (clone $static_time)->modify('+ 10 days');
-    // Set event start and end date in the future.
+    // Event isn't started but livestream is ongoing.
+    $start_date = (clone $static_time)->modify('+ 10 days');
+    $end_date = (clone $static_time)->modify('+ 20 days');
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $online_start_date = (clone $static_time)->modify('- 2 hours');
+    $online_end_date = (clone $static_time)->modify('+ 2 hours');
+    $node->set('oe_event_online_dates', [
+      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ])->save();
     $this->drupalGet($node->toUrl());
-    // Assert the message is updated.
     $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
-    // Set the event start date in the past.
-    $start_date = (clone $static_time)->modify('- 3 days');
+    // Set event and online dates to assert event status message.
+    $node->set('oe_event_status_description', 'Event status message.');
+    $start_date = (clone $static_time)->modify('+ 1 day');
+    $end_date = (clone $static_time)->modify('+ 10 days');
     $node->set('oe_event_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => $end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+    ]);
+    $online_start_date = (clone $static_time)->modify('+ 3 days');
+    $online_end_date = (clone $static_time)->modify('+ 5 days');
+    $node->set('oe_event_online_dates', [
+      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
     ])->save();
+    $this->drupalGet($node->toUrl());
+    // By default, message doesn't exist and the 'Status description' field is
+    // not rendered for the livestream messages.
+    $this->assertEmpty($status_container->find('css', 'div.ecl-message__content div.ecl-message__title'));
+
+    // Event is ongoing, but livestream is not.
+    $static_time = new DrupalDateTime('2020-04-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
+    $this->drupalGet($node->toUrl());
+    $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+
+    // Event is ongoing and livestream also.
+    $static_time = new DrupalDateTime('2020-04-18 20:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
-    // Set the online event start date after the event start date.
-    $online_start_date = (clone $static_time)->modify('+ 2 months');
-    $node->set('oe_event_online_dates', [
-      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ])->save();
-    $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has started. The livestream will start at 15 June 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-
-    // Set the online event dates to be in the past.
-    $online_start_date = (clone $static_time)->modify('- 10 days');
-    $online_end_date = (clone $static_time)->modify('- 5 days');
-    $node->set('oe_event_online_dates', [
-      'value' => $online_start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-      'end_value' => $online_end_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
-    ]);
-    $node->set('oe_event_status_description', 'Event status message.')->save();
+    // Event is ongoing but livestream is finished.
+    $static_time = new DrupalDateTime('2020-04-20 22:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
+    $this->freezeTime($static_time);
+    $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('The livestream has ended, but the event is ongoing.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-    // Assert that the 'Status description' field is not rendered for the
-    // livestream messages.
-    $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
 
     // Update the event status and assert the message updates correctly and the
     // 'Status description' field is displayed.

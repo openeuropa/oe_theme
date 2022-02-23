@@ -12,7 +12,7 @@
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
         "openeuropa/ecl-twig-loader": "^3.1",
-        "openeuropa/oe_time_caching": "~1.0"
+        "openeuropa/oe_time_caching": "dev-EWPP-1948"
     },
     "require-dev": {
         "behat/behat": "^3.10",
