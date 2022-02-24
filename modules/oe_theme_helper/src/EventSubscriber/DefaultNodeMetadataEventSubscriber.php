@@ -74,7 +74,7 @@ class DefaultNodeMetadataEventSubscriber implements EventSubscriberInterface {
     }
 
     if ($this->currentRouteMatch->getRouteName() === 'entity.node.revision') {
-      $node_revision = $this->currentRouteMatch->getParameter('node_revision');
+      $node_revision = $this->currentRouteMatch->getRawParameter('node_revision');
       $node = $this->entityTypeManager->getStorage('node')->loadRevision($node_revision);
       $translated_node = $node ? $this->entityRepository->getTranslationFromContext($node) : NULL;
 

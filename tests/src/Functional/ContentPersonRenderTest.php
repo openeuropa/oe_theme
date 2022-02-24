@@ -220,7 +220,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', $job_1)->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = ['(Acting) Advisor'];
+    $page_header_expected_values['meta'] = ['(Acting) Adviser'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $inpage_nav_expected_values['list'][] = [
@@ -233,7 +233,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertCount(3, $content_items);
     $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
     $job_role_content = $content_items[2]->find('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
-    $this->assertEquals('(Acting) Advisor', $job_role_content->getText());
+    $this->assertEquals('(Acting) Adviser', $job_role_content->getText());
     $job_description_content = $content_items[2]->find('css', 'div.ecl-u-mb-l.ecl');
     $this->assertEquals('Description job_1', $job_description_content->getText());
 
@@ -242,12 +242,12 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
     $this->drupalGet($node->toUrl());
 
-    $page_header_expected_values['meta'] = ['(Acting) Advisor, Chief advisor'];
+    $page_header_expected_values['meta'] = ['(Acting) Adviser, Chief Adviser'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
     $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
-    $this->assertEquals('Chief advisor', $job_role_items[1]->getText());
+    $this->assertEquals('Chief Adviser', $job_role_items[1]->getText());
     $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl');
     $this->assertEquals('Description job_2', $job_description_items[1]->getText());
 

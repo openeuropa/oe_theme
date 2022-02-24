@@ -16,6 +16,7 @@ services:
   web:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     environment:
+      - COMPOSERVER=--2
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
     image: registry.fpfis.eu/fpfis/sql:percona-5.7
@@ -48,13 +49,17 @@ pipeline:
       - npm install --unsafe-perm
       - NODE_ENV=production npm run build
 
-  composer-install:
-    group: prepare
+  composer-install-highest:
+    group: post-prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
     commands:
-      - composer install --ansi --no-suggest --no-progress
+      - composer self-update --2
+      - composer install --ansi --no-progress
+    when:
+      matrix:
+        COMPOSER_BOUNDARY: highest
 
   composer-update-lowest:
     group: post-prepare
@@ -62,7 +67,8 @@ pipeline:
     volumes:
       - /cache:/cache
     commands:
-      - composer update --prefer-lowest --ansi --no-suggest --no-progress
+      - composer self-update --2
+      - composer update --prefer-lowest --ansi --no-progress
     when:
       event:
         exclude: tag
@@ -72,6 +78,7 @@ pipeline:
   site-install:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     commands:
+      - while ! mysqladmin ping -h mysql --silent; do sleep 1; done
       - ./vendor/bin/run drupal:site-install
     when:
       event:
@@ -116,29 +123,46 @@ pipeline:
   before-release:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-dev
     commands:
+      - apt-get update
+      - apt-get install zip
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
-    when:
-      event:
-        include: tag
-
-  github-release:
-    image: registry.fpfis.eu/drone-plugins/github-release
-    secrets: [ github_token ]
-    files: oe_theme-${DRONE_TAG}.tar.gz
+      - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG} --zip
     when:
       event:
         include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
+        PHP_VERSION: 7.4
+
+  github-release:
+    image: registry.fpfis.eu/drone-plugins/github-release
+    secrets: [ github_token ]
+    files:
+      - oe_theme-${DRONE_TAG}.tar.gz
+      - oe_theme-${DRONE_TAG}.zip
+    when:
+      event:
+        include: tag
+      matrix:
+        COMPOSER_BOUNDARY: highest
+        PHP_VERSION: 7.4
 
 matrix:
   include:
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: behat }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
 
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.3, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }

@@ -2,7 +2,7 @@ name: OpenEuropa Theme Organisation Content
 type: module
 description: Companion module for the OE Organisation Content module
 package: OpenEuropa
-core_version_requirement: ^8.9 || ^9.1
+core_version_requirement: ^9.2
 dependencies:
   - oe_content:oe_content_organisation
   - oe_content:oe_content_organisation_person_reference
