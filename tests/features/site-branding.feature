@@ -4,24 +4,27 @@ Feature: Site branding
   As a product owner
   I want to make sure that all necessary site branding features are provided by the OpenEuropa Theme.
 
-  @javascript @enable-non-eu-language @wip
+  @javascript @enable-non-eu-language
   Scenario Outline: The European Commission logo is available throughout the site.
     Given I am on the homepage
     When the theme is configured to use the "European Union" style
     And I reload the page
     Then I should see the "logo" element in the "header"
-    And the "English" EU mobile logo should be available
     When I open the language switcher dialog
     And I click "<language_selector>"
     Then the "<language>" EU mobile logo should be available
+    And the "<language>" header logo should contain accessibility attributes
     When the theme is configured to use the "European Commission" style
     And I reload the page
     Then I should see the "logo" element in the "header"
+    And the "<language>" header logo should contain accessibility attributes
     When I am on "the user registration page"
     Then I should see the "logo" element in the "header"
+    And the "English" header logo should contain accessibility attributes
 
     Examples:
       | language_selector       | language   |
+      | English                 | English    |
       | български               | Bulgarian  |
       | español                 | Spanish    |
       | čeština                 | Czech      |
@@ -46,7 +49,7 @@ Feature: Site branding
       | suomi                   | Finnish    |
       | svenska                 | Swedish    |
       # Non-EU language.
-      | Icelandic               | English    |
+      | Icelandic               | Icelandic  |
 
   @javascript @enable-non-eu-language
   Scenario: The European Union logo is available in the footer when non-EU language is selected.

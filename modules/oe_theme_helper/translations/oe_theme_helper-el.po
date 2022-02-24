@@ -524,3 +524,18 @@ msgstr "όρους προστασίας δεδομένων"
 
 msgid "Highlighted"
 msgstr "Με επισήμανση"
+
+msgid "European Union flag"
+msgstr "Σημαία της Ευρωπαϊκής Ένωσης"
+
+msgid "European Commission logo"
+msgstr "Λογότυπος της Ευρωπαϊκής Επιτροπής"
+
+msgid "Home"
+msgstr "Αρχική σελίδα"
+
+msgid "European Union"
+msgstr "Ευρωπαϊκή Ένωση"
+
+msgid "Sources"
+msgstr "Πηγές"

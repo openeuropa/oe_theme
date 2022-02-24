@@ -1,0 +1,29 @@
+patch-package
+--- a/node_modules/@ecl/twig-component-footer-standardised/footer-standardised.html.twig
++++ b/node_modules/@ecl/twig-component-footer-standardised/footer-standardised.html.twig
+@@ -6,6 +6,8 @@
+     - "section_class_name" (string) (default: '')
+     - "logo" (EU only)
+       - "alt" (string) alt attribute for the logo link
++      - "aria_label" (string) aria-label attribute for the logo link
++      - "title" (string) title attribute for the logo img
+       - "path" (string) logo link path
+       - "language" (string) Language code
+       - "src_mobile" (string) Path the mobile logo
+@@ -88,7 +90,7 @@
+                 path: _sections.logo.path,
+                 label: _label,
+                 type: 'standalone',
+-                aria_label: _sections.logo.title
++                aria_label: _sections.logo.aria_label,
+               },
+               extra_classes: 'ecl-footer-standardised__logo-link'
+             } only %}
+@@ -133,6 +135,7 @@
+                   {% endif %}
+                   {% include '@ecl/link/link.html.twig' with _item|merge({
+                     link: _item.link|default({})|merge({ type: 'standalone' }),
++                    icon: _item.icon|default({})|merge({ size: 'xs' }),
+                     extra_classes: 'ecl-footer-standardised__link',
+                   }) only %}
+                   {% if _item.content_after is defined and _item.content_after is not empty %}

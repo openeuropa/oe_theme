@@ -524,3 +524,18 @@ msgstr "téarmaí cosanta sonraí"
 
 msgid "Highlighted"
 msgstr "Aibhsithe"
+
+msgid "European Union flag"
+msgstr "Bratach an Aontais Eorpaigh"
+
+msgid "European Commission logo"
+msgstr "Lógó an Choimisiúin Eorpaigh"
+
+msgid "Home"
+msgstr "Baile"
+
+msgid "European Union"
+msgstr "Aontais Eorpaigh"
+
+msgid "Sources"
+msgstr "Foinsí"
