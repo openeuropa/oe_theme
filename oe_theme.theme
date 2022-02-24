@@ -10,11 +10,13 @@ declare(strict_types = 1);
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -75,6 +77,7 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
   $variables['ecl_social_icon_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
   $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
+  $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 
@@ -1735,4 +1738,160 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
     // with 'Core' ECL branding.
     unset($variables['site_name']);
   }
+}
+
+/**
+ * Process common fields of illustration list paragraphs.
+ *
+ * @param array $variables
+ *   Render array.
+ */
+function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables): void {
+  $paragraph = $variables['paragraph'];
+  if (!$paragraph->get('field_oe_title')->isEmpty()) {
+    $variables['title'] = $paragraph->get('field_oe_title')->value;
+  }
+  $variables['zebra'] = (bool) $paragraph->get('field_oe_illustration_alternate')->value;
+
+  // Set the column value based on the selected variant.
+  $variant_value = $paragraph->get('oe_paragraphs_variant')->first()->value;
+  $variables['column'] = $variant_value === 'oe_illustration_vertical' ? 1 : $paragraph->get('field_oe_illustration_columns')->value;
+}
+
+/**
+ * Validate and prepare media entity to be processed in theme preprocesses.
+ *
+ * @param mixed $media
+ *   MediaInterface entity will be processed only.
+ * @param \Drupal\Core\Session\AccountInterface $user
+ *   Active user.
+ * @param \Drupal\Core\Cache\CacheableDependencyInterface $cacheability
+ *   Object to collect cacheable dependencies.
+ * @param string $language_id
+ *   Language of the Media to return.
+ *
+ * @return \Drupal\media\MediaInterface|null
+ *   Media entity or null if media isn't accessible.
+ */
+function _oe_theme_prepare_media($media, AccountInterface $user, CacheableDependencyInterface $cacheability, string $language_id): ?MediaInterface {
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available.
+    return NULL;
+  }
+  $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $user, TRUE);
+  $cacheability->addCacheableDependency($access);
+  if (!$access->isAllowed()) {
+    // Media isn't accessible.
+    return NULL;
+  }
+  // Retrieve the correct media translation.
+  return \Drupal::service('entity.repository')->getTranslationFromContext($media, $language_id);
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+  $variables['items'] = [];
+
+  $paragraph = $variables['paragraph'];
+  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $icon = $sub_paragraph->get('field_oe_flag')->value;
+    $icon .= $ratio === 'square' ? '-square' : '';
+    $variables['items'][] = [
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
+      'icon' => $icon,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+  $variables['items'] = [];
+
+  $paragraph = $variables['paragraph'];
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $variables['items'][] = [
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
+      'icon' => $sub_paragraph->get('field_oe_icon')->value,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$variables): void {
+  _oe_theme_preprocess_paragraph_oe_illustration_list($variables);
+
+  $paragraph = $variables['paragraph'];
+  $variables['items'] = [];
+
+  $entity_repository = \Drupal::service('entity.repository');
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $language_id = $paragraph->language()->getId();
+    $sub_paragraph = $entity_repository->getTranslationFromContext($sub_paragraph, $language_id);
+    // Get the image from attached media.
+    $image = [];
+    $media = _oe_theme_prepare_media($sub_paragraph->get('field_oe_media')->entity, $variables['user'], $cacheability, $language_id);
+    if ($media) {
+      $url = '';
+      $source = $media->getSource();
+      $field_name = $source->getConfiguration()['source_field'];
+      if ($source instanceof Image && ($file_entity = $media->get($field_name)->entity)) {
+        // Media Image.
+        $cacheability->addCacheableDependency($file_entity);
+        $url = $file_entity->createFileUrl();
+      }
+      elseif ($source instanceof MediaAvPortalSourceInterface) {
+        // Media AV Portal Photo.
+        $resource_ref = $media->get($field_name)->value;
+        $url = file_create_url('avportal://' . $resource_ref . '.jpg');
+      }
+
+      if ($url) {
+        // Generate image object for the template.
+        $values = [
+          'src' => $url,
+          'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
+        ];
+        $image = ImageValueObject::fromArray($values);
+      }
+    }
+    $variables['items'][] = [
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
+      'image' => $image,
+    ];
+  }
+
+  // Set "Square" or "Landscape" view for an image.
+  $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
+  $variables['square_image'] = $ratio === 'square' ? TRUE : FALSE;
+
+  $cacheability->applyTo($variables);
 }
