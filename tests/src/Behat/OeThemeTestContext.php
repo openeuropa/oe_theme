@@ -321,7 +321,7 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Assert given corporate footer absence on page.
    *
-   * @Then I should not see the :component_library footer
+   * @Then I should not see the :component_library footer( instead)
    */
   public function assertMissingFooterBlockOnPage(string $component_library): void {
     // Make sure a corporate footer is present on the page.
