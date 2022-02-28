@@ -17,7 +17,7 @@ Feature: Corporate blocks feature
   Scenario Outline: By default the European Commission footer is displayed.
     Given I am an anonymous user
     When I am on "<page>"
-    Then I should see the "European Commission" footer
+    Then I should see the European Commission footer with link "https://ec.europa.eu/info/index_en"
 
     Examples:
       | page                        |
