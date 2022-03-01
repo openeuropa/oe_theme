@@ -19,3 +19,10 @@ oe_theme_js_test.datepicker_test_form:
     _title: 'DatePicker test form'
   requirements:
     _access: 'TRUE'
+oe_theme_js_test.contextual_navigation_ui_pattern:
+  path: '/oe_theme_js_test/ui_patterns/context_nav'
+  defaults:
+    _title: 'Contextual navigation page'
+    _controller: '\Drupal\oe_theme_js_test\Controller\UiPatterns::contextNav'
+  requirements:
+    _access: 'TRUE'

@@ -191,4 +191,34 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('Date 1 is 10 May 2020');
   }
 
+  /**
+   * Tests that contextual navigation pattern is rendered properly.
+   */
+  public function testContextNavPattern(): void {
+    $this->drupalGet('/oe_theme_js_test/ui_patterns/context_nav');
+    $script = <<<EndOfScript
+(function(){
+if (typeof(window.collectedErrors) == 'undefined') {
+  return;
+}
+var result = '';
+window.collectedErrors.forEach(function(value) {
+   result += value.data + '[NLS]';
+});
+return result;
+})()
+EndOfScript;
+    $errors = $this->getSession()->evaluateScript($script);
+    if ($errors) {
+      throw new \RuntimeException('Javascript error: ' . str_replace('[NLS]', PHP_EOL, $errors));
+    }
+
+    $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
+    $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
+
+    $this->getSession()->getPage()->pressButton('More label');
+    $this->assertCount(0, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
+    $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
+  }
+
 }
