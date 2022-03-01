@@ -58,6 +58,9 @@ msgstr "Sazināties ar organizāciju"
 msgid "Call status: @label"
 msgstr "Uzaicinājuma statuss: @label"
 
+msgid "Press contact"
+msgstr "Kontaktpersona presei"
+
 msgid "Press contacts"
 msgstr "Kontaktpersonas presei"
 
@@ -611,3 +614,6 @@ msgstr "Sākas @date"
 
 msgid "The livestream has started."
 msgstr "Šis tiešraides straumējums ir sācies."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Tiešraide ir beigusies, bet pasākums turpinās."

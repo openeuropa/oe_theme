@@ -58,6 +58,9 @@ msgstr "Επικοινωνία με τον φορέα"
 msgid "Call status: @label"
 msgstr "Κατάσταση της πρόσκλησης: @label"
 
+msgid "Press contact"
+msgstr "Υπεύθυνος/-η Τύπου"
+
 msgid "Press contacts"
 msgstr "Υπεύθυνοι επικοινωνίας με τα ΜΜΕ"
 
@@ -611,3 +614,6 @@ msgstr "Αρχίζει στις @date"
 
 msgid "The livestream has started."
 msgstr "Αυτή η ζωντανή μετάδοση έχει ξεκινήσει."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Η ζωντανή μετάδοση έληξε, αλλά η εκδήλωση συνεχίζεται."

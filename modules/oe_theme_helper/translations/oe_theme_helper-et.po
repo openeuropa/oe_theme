@@ -58,6 +58,9 @@ msgstr "Kontaktorganisatsioon"
 msgid "Call status: @label"
 msgstr "Olek: @label"
 
+msgid "Press contact"
+msgstr "Pressikontakt"
+
 msgid "Press contacts"
 msgstr "Pressikontaktid"
 
@@ -611,3 +614,6 @@ msgstr "Algab: @date"
 
 msgid "The livestream has started."
 msgstr "See otseülekanne on alanud."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Otseülekanne on lõppenud, kuid üritus jätkub."

@@ -58,6 +58,9 @@ msgstr "Kontaktní organizace"
 msgid "Call status: @label"
 msgstr "Status výzvy: @label"
 
+msgid "Press contact"
+msgstr "Kontakt pro média"
+
 msgid "Press contacts"
 msgstr "Kontakty pro tisk a média"
 
@@ -611,3 +614,6 @@ msgstr "Začíná @date"
 
 msgid "The livestream has started."
 msgstr "Živý přenos již začal."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Živé vysílání bylo ukončeno, nicméně akce stále probíhá."

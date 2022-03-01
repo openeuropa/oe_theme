@@ -58,6 +58,9 @@ msgstr "Ota yhteyttä organisaatioon"
 msgid "Call status: @label"
 msgstr "Pyynnön tila: @label"
 
+msgid "Press contact"
+msgstr "Median yhteydenotot"
+
 msgid "Press contacts"
 msgstr "Median yhteydenotot"
 
@@ -611,3 +614,6 @@ msgstr "Alkaa @date"
 
 msgid "The livestream has started."
 msgstr "Tämä suoratoisto on alkanut."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Suora lähetys on päättynyt, mutta tapahtuma jatkuu edelleen."
