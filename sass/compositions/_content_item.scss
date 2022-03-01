@@ -5,6 +5,7 @@
 .ecl-content-item {
   &__meta {
     text-transform: uppercase;
+    line-height: 1.25rem!important;
   }
   &__description {
     p {
@@ -18,7 +19,7 @@
   a {
     color: map.get(theme.$color, 'blue-100');
     font-weight: map.get(theme.$font-weight, 'bold')!important;
-    font: map.get(theme.$font-prolonged, 'm');
+    font: map.get(theme.$font-prolonged, 'xl');
   }
 }
 
