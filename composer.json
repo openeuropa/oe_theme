@@ -18,6 +18,7 @@
         "behat/behat": "^3.10",
         "behat/mink-extension": "^2.3.1",
         "composer/installers": "~1.5",
+        "composer/xdebug-handler": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/address": "~1.9",
         "drupal/composite_reference": "^2.1",
@@ -112,7 +113,8 @@
             "Explicit minimum version requirement of drupal/ctools module due to D9.2 compatability.",
             "Explicit minimum version requirement of behat library due to PHP compatibility.",
             "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
-            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8."
+            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8.",
+            "Requiring composer/xdebug-handler until PHPMD 2.12 is released"
         ]
     },
     "config": {
