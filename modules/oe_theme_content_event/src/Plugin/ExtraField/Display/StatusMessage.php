@@ -132,6 +132,11 @@ class StatusMessage extends DateAwareExtraFieldBase {
       $build['#variant'] = 'warning';
       $build['#icon'] = 'livestreaming';
 
+      // If event is not started, cache it by its start date.
+      if ($this->requestDateTime < $event->getStartDate()->getPhpDateTime()) {
+        $this->applyHourTag($build, $event->getStartDate());
+      }
+
       // The livestream is over, but the event is still ongoing.
       if ($event->isOnlinePeriodOver($this->requestDateTime) && $event->isOngoing($this->requestDateTime)) {
         // Cache it by the event end date and add the timezone cache contexts.
@@ -162,10 +167,9 @@ class StatusMessage extends DateAwareExtraFieldBase {
           return $build;
         }
 
-        // If event is not started, cache it by its start date.
+        // If event is not started, but livestream was started.
         if ($this->requestDateTime < $event->getStartDate()->getPhpDateTime()) {
           $build['#title'] = $this->t('The livestream has started.');
-          $this->applyHourTag($build, $event->getStartDate());
           return $build;
         }
 

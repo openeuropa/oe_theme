@@ -101,6 +101,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "openeuropa/oe_time_caching": {
+                "master": "https://github.com/openeuropa/oe_time_caching/compare/1.2.0...master.diff"
             }
         },
         "drupal-scaffold": {
