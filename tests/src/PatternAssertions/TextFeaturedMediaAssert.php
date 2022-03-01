@@ -59,9 +59,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
   /**
    * {@inheritdoc}
    */
-  protected function assertBaseElements(string $html, string $variant): void {
-
-  }
+  protected function assertBaseElements(string $html, string $variant): void {}
 
   /**
    * Asserts the video ratio of the pattern.

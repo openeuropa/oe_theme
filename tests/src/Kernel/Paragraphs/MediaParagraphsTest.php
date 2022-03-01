@@ -195,6 +195,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // need to reset manually.
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
+    // Set the paragraph highlighted.
+    $paragraph->set('field_oe_highlighted', TRUE);
     // Remove the text and assert the element is no longer rendered.
     $paragraph->set('field_oe_text_long', '');
     $paragraph->save();
@@ -208,6 +210,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         'src' => 'example_1_en.jpeg',
         'alt' => 'Alt en',
       ],
+      'highlighted' => TRUE,
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
