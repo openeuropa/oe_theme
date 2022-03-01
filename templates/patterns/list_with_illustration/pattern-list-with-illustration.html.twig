@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * List with illustration.
+ */
+#}
+{% if column > 1 %}
+  {# Do not show zebra style for horizontal view. #}
+  {% set zebra = false %}
+{% endif %}
+
+{% set _items = [] %}
+{% for item in items %}
+  {# Transform icon into ecl array. #}
+  {% if item.icon %}
+    {% set item = item|merge({'icon': to_ecl_icon(item.icon)}) %}
+  {% endif %}
+  {# Set square image if needed. #}
+  {% if item.image %}
+    {% set _image = item.image|merge({'squared': square_image}) %}
+    {% set item = item|merge({'image': _image}) %}
+  {% endif %}
+  {% set _items = _items|merge([item]) %}
+{% endfor %}
+{% include '@ecl-twig/list-illustration' with {
+  'column': column,
+  'zebra': zebra,
+  'items': _items,
+} only %}

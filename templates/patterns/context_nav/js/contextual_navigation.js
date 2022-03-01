@@ -35,31 +35,37 @@
    * @namespace
    */
   Drupal.contextualNavigation = {
-
     // Selector for list navigation element.
     listSelector: '[data-ecl-contextual-navigation-list]',
     // Selector for more item element.
     moreItemSelector: '[data-ecl-contextual-navigation-more]',
-
+    // Selector for wrapper of more item element.
+    moreItemWrapperSelector: '.ecl-contextual-navigation__item--more',
 
     initialize: function (element) {
       var list = element.querySelector(this.listSelector);
       if (list) {
-        list
-          .querySelector(this.moreItemSelector)
-          .addEventListener('click', this.handleClickOnMore);
+        var moreItem = list.querySelector(this.moreItemSelector);
+        if (moreItem) {
+          moreItem.addEventListener('click', this.handleClickOnMore);
+          moreItem.list = list;
+          moreItem.wrapper = list.querySelector(this.moreItemWrapperSelector);
+        }
       }
     },
     handleClickOnMore: function () {
-      if (this.parentNode && this.parentNode.parentNode) {
-        this.parentNode.parentNode.setAttribute('aria-expanded', 'true');
-        this.parentNode.parentNode.removeChild(this.parentNode);
+      if (this.list) {
+        this.list.setAttribute('aria-expanded', 'true');
+        if (this.wrapper) {
+          this.wrapper.parentNode.removeChild(this.wrapper);
+        }
       }
     },
     destroy: function (element) {
-      element
-        .querySelector(this.moreItemSelector)
-        .removeEventListener('click', this.handleClickOnMore);
+      var moreItem = element.querySelector(this.moreItemSelector);
+      if (moreItem) {
+        moreItem.removeEventListener('click', this.handleClickOnMore);
+      }
     }
   }
 })(Drupal);
