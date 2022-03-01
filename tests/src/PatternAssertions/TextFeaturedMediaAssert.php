@@ -21,34 +21,37 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'h2.ecl-u-type-heading-2.ecl-u-mt-2xl.ecl-u-mt-m-3xl.ecl-u-mb-l',
+        'h2.ecl-featured-item__heading',
       ],
       'text_title' => [
         [$this, 'assertElementText'],
-        'div.ecl-u-type-prolonged-m.ecl-u-type-bold.ecl-u-type-color-grey',
+        'div.ecl-featured-item__title',
       ],
       'image' => [
         [$this, 'assertImage'],
-        'div.ecl-row figure.ecl-media-container img',
+        'article.ecl-featured-item__container figure.ecl-media-container img',
       ],
       'video' => [
         [$this, 'assertElementHtml'],
-        'div.ecl-row figure.ecl-media-container div.ecl-media-container__media',
+        'article.ecl-featured-item__container figure.ecl-media-container div.ecl-media-container__media',
       ],
       'caption' => [
         [$this, 'assertElementText'],
-        'div.ecl-row figure figcaption.ecl-media-container__caption',
+        'article.ecl-featured-item__container figure figcaption.ecl-media-container__caption',
       ],
       'text' => [
         [$this, 'assertElementText'],
-        'div.ecl-row div.ecl div.ecl',
+        'article.ecl-featured-item__container div.ecl div.ecl',
       ],
       'video_ratio' => [
         [$this, 'assertVideoRatio'],
-        'div.ecl-row figure.ecl-media-container div.ecl-media-container__media',
+        'article.ecl-featured-item__container figure.ecl-media-container div.ecl-media-container__media',
       ],
       'link' => [
         [$this, 'assertLink'],
+      ],
+      'highlighted' => [
+        [$this, 'assertHighlighted'],
       ],
     ];
   }
@@ -56,7 +59,9 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
   /**
    * {@inheritdoc}
    */
-  protected function assertBaseElements(string $html, string $variant): void {}
+  protected function assertBaseElements(string $html, string $variant): void {
+
+  }
 
   /**
    * Asserts the video ratio of the pattern.
@@ -99,6 +104,23 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
 
     $svg = $link_element->filter('svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon use');
     self::assertStringContainsString('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
+  }
+
+  /**
+   * Asserts the highlighted value of the pattern.
+   *
+   * @param bool $highlighted
+   *   Whether the item is highlighted or not.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertHighlighted(bool $highlighted, Crawler $crawler) {
+    if (!$highlighted) {
+      $this->assertElementNotExists('div.ecl-featured-item.ecl-featured-item--extended', $crawler);
+      $this->assertElementExists('div.ecl-featured-item', $crawler);
+      return;
+    }
+    $this->assertElementExists('div.ecl-featured-item.ecl-featured-item--extended', $crawler);
   }
 
   /**
