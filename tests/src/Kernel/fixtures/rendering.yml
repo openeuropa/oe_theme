@@ -2532,7 +2532,7 @@
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
-      'h2.ecl-featured-item__heading': "Heading"
+      'div.ecl-featured-item__heading': "Heading"
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-col-m-6 > div.ecl': "Some more text"
@@ -2554,7 +2554,7 @@
   assertions:
     count:
       'div.ecl-featured-item.ecl-featured-item--extended': 1
-      'h2.ecl-featured-item__heading': 0
+      'div.ecl-featured-item__heading': 0
       'article.ecl-featured-item__container': 1
       'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 0
       'div.ecl-featured-item__title': 1
@@ -2585,7 +2585,7 @@
   assertions:
     count:
       'div.ecl-featured-item.ecl-featured-item--extended': 1
-      'h2.ecl-featured-item__heading': 1
+      'div.ecl-featured-item__heading': 1
       'article.ecl-featured-item__container': 1
       'div.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none.ecl-u-order-m-last': 0
       'div.ecl-featured-item__title': 0
@@ -2595,7 +2595,7 @@
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
-      'h2.ecl-featured-item__heading': "Heading"
+      'div.ecl-featured-item__heading': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-col-m-6 > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
@@ -2621,7 +2621,7 @@
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
     equals:
-      'h2.ecl-featured-item__heading': "Heading"
+      'div.ecl-featured-item__heading': "Heading"
       'div.ecl-featured-item__title': "Title"
       'div.ecl-col-12 > div.ecl': "Some more text"
 - array:
@@ -2650,7 +2650,7 @@
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
-      'h2.ecl-featured-item__heading': "Heading"
+      'div.ecl-featured-item__heading': "Heading"
       'div.ecl-featured-item__title': "Title"
       'div.ecl-col-m-6 div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
@@ -2670,7 +2670,7 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
-      'h2.ecl-featured-item__heading': 0
+      'div.ecl-featured-item__heading': 0
       'a.ecl-link': 0
     equals: {}
 - array:
@@ -2701,7 +2701,7 @@
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
-      'h2.ecl-featured-item__heading': "Heading"
+      'div.ecl-featured-item__heading': "Heading"
       'div.ecl-col-m-6 div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:

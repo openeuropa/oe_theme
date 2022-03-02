@@ -39,7 +39,7 @@
 {% if image or video or text or call_to_action_link or text_title %}
   <div class="ecl-featured-item{{ highlighted == true ? ' ecl-featured-item--extended' : '' }}">
     {% if title %}
-      <h2 class="ecl-featured-item__heading">{{ title }}</h2>
+      <div class="ecl-featured-item__heading">{{ title }}</div>
     {% endif %}
     <article class="ecl-featured-item__container">
       {% if image or video %}

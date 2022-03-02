@@ -21,7 +21,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'h2.ecl-featured-item__heading',
+        'div.ecl-featured-item__heading',
       ],
       'text_title' => [
         [$this, 'assertElementText'],
