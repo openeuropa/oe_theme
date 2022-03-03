@@ -1,6 +1,20 @@
-# Changelog
+# Change Log
 
-## [3.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta9) (2022-02-17)
+## [3.0.0-beta10](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta10) (2022-03-03)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta9...3.0.0-beta10)
+
+**Closed issues:**
+
+- Node revisions canonical page crashing [\#1023](https://github.com/openeuropa/oe_theme/issues/1023)
+
+**Merged pull requests:**
+
+- EWPP-2006: Use --zip format for the theme package release. [\#1043](https://github.com/openeuropa/oe_theme/pull/1043) ([hernani](https://github.com/hernani))
+- EWPP-1996: Fix DefaultNodeMetadataEventSubscriber. [\#1042](https://github.com/openeuropa/oe_theme/pull/1042) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1997: Upgrade to ECL 3.2.3. [\#1040](https://github.com/openeuropa/oe_theme/pull/1040) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1861: List with illustrations [\#1032](https://github.com/openeuropa/oe_theme/pull/1032) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1849: Fix js for contextual navigation pattern. [\#1030](https://github.com/openeuropa/oe_theme/pull/1030) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1781: Add translations for 'Sources' string. [\#1028](https://github.com/openeuropa/oe_theme/pull/1028) ([22Alexandra](https://github.com/22Alexandra))
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta8...3.0.0-beta9)
 
