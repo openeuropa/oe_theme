@@ -58,6 +58,9 @@ msgstr "Kontaktorganisation"
 msgid "Call status: @label"
 msgstr "Status: @label"
 
+msgid "Press contact"
+msgstr "Presskontakt"
+
 msgid "Press contacts"
 msgstr "Presskontakter"
 
@@ -611,3 +614,6 @@ msgstr "Börjar kl. @date"
 
 msgid "The livestream has started."
 msgstr "Direktsändningen har börjat."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."

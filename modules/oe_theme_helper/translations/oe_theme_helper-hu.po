@@ -58,6 +58,9 @@ msgstr "Kapcsolattartó szervezet"
 msgid "Call status: @label"
 msgstr "A felhívás státusza: @label"
 
+msgid "Press contact"
+msgstr "Sajtókapcsolat"
+
 msgid "Press contacts"
 msgstr "Sajtókapcsolatok"
 
@@ -611,3 +614,6 @@ msgstr "Ebben az időpontban kezdődik: @date"
 
 msgid "The livestream has started."
 msgstr "Ez az élő közvetítés elkezdődött."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Az élő közvetítés befejeződött, de a rendezvény még tart."

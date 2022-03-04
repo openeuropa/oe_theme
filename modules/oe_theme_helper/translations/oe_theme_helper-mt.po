@@ -58,6 +58,9 @@ msgstr "Organizzazzjoni ta’ kuntatt"
 msgid "Call status: @label"
 msgstr "Status tas-sejħa: @label"
 
+msgid "Press contact"
+msgstr "Kuntatt tal-istampa"
+
 msgid "Press contacts"
 msgstr "Kuntatti għall-istampa"
 
@@ -611,3 +614,6 @@ msgstr "Jibda fi @date"
 
 msgid "The livestream has started."
 msgstr "Din il-xandira diretta fuq l-internet bdiet."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Ix-xandira diretta fuq l-internet intemmet, iżda l-avveniment għadu għaddej."

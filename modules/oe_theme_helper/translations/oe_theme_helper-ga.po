@@ -58,6 +58,9 @@ msgstr "Eagraíocht teagmhála"
 msgid "Call status: @label"
 msgstr "Stádas an ghlao: @label"
 
+msgid "Press contact"
+msgstr "Teagmhálaí do lucht an phreasa"
+
 msgid "Press contacts"
 msgstr "Teagmhálaithe do lucht an phreasa"
 
@@ -611,3 +614,6 @@ msgstr "Cuirfear tús leis ar @date"
 
 msgid "The livestream has started."
 msgstr "Cuireadh tús leis an beoshruthú seo."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Tá an beoshruthú thart ach tá an imeacht fós ar siúl."

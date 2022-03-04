@@ -58,6 +58,9 @@ msgstr "Връзка с организацията"
 msgid "Call status: @label"
 msgstr "Статус на поканата: @label"
 
+msgid "Press contact"
+msgstr "Контакти с медиите"
+
 msgid "Press contacts"
 msgstr "Лица за контакти с медиите"
 
@@ -611,3 +614,6 @@ msgstr "Започва в @date"
 
 msgid "The livestream has started."
 msgstr "Излъчването на живо е започнало."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Излъчването на живо приключи, но проявата продължава."

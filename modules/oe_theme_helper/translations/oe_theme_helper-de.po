@@ -58,6 +58,9 @@ msgstr "Organisation kontaktieren"
 msgid "Call status: @label"
 msgstr "Status der Aufforderung: @label"
 
+msgid "Press contact"
+msgstr "Pressekontakt"
+
 msgid "Press contacts"
 msgstr "Pressekontakte"
 
@@ -611,3 +614,6 @@ msgstr "Beginnt um @date"
 
 msgid "The livestream has started."
 msgstr "Dieser Livestream hat begonnen."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Der Livestream ist beendet, aber die Veranstaltung läuft noch."
