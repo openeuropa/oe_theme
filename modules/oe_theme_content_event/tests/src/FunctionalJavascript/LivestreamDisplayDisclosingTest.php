@@ -76,10 +76,12 @@ class LivestreamDisplayDisclosingTest extends WebDriverTestBase {
         'oe_event_dates' => [
           'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
           'end_value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'timezone' => 'Europe/Brussels',
         ],
         'oe_event_online_dates' => [
           'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
           'end_value' => $start_date->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+          'timezone' => 'Europe/Brussels',
         ],
         'oe_event_languages' => [
           ['target_id' => 'http://publications.europa.eu/resource/authority/language/EST'],

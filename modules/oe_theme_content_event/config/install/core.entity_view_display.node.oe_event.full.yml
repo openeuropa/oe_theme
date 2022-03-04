@@ -175,11 +175,11 @@ content:
     weight: 1
     label: above
     settings:
-      timezone_override: ''
-      format_type: oe_event_long_date_hour
+      display_timezone: false
+      format_type: oe_event_long_date_hour_timezone
       separator: '-'
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_timezone
     region: content
   oe_event_entrance_fee:
     weight: 9

@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_event_programme_date
-label: 'Event programme date'
-locked: false
-pattern: 'j M Y'

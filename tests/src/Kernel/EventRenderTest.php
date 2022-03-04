@@ -31,6 +31,7 @@ class EventRenderTest extends ContentRenderTestBase {
   public static $modules = [
     'address',
     'datetime_range',
+    'datetime_range_timezone',
     'entity_reference_revisions',
     'link',
     'image',
