@@ -41,7 +41,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       ],
       'text' => [
         [$this, 'assertElementText'],
-        'article.ecl-featured-item__container div.ecl div.ecl',
+        'div.ecl-featured-item__item > div.ecl',
       ],
       'video_ratio' => [
         [$this, 'assertVideoRatio'],
@@ -125,30 +125,27 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    * {@inheritdoc}
    */
   protected function getPatternVariant(string $html): string {
-    // The variant is extracted by checking the presence and properties
-    // of the media and link.
-    // If the link is not present then we return "left_simple" or "right_simple"
-    // based on the media position.
-    // If the media is not present then "left simple" or "left featured"
-    // will be returned based on the link style.
-    // If neither media nor image are present then "left_simple" will be
-    // returned.
+    // The variant is extracted by checking the presence and properties of the
+    // media and link.
+    // The default variant is "left_simple".
     $crawler = new Crawler($html);
 
     $position_variant = 'left';
-    $media_wrapper = $crawler->filter('.ecl-col-m-6.ecl-u-mb-m.ecl-u-mb-m-none');
+    $items = $crawler->filter('article.ecl-featured-item__container div.ecl-featured-item__item');
     $media_position = $crawler->filter('.ecl-u-order-m-last');
-    if ($media_wrapper->count() && !$media_position->count()) {
-      // Media exists but media position class doesn't exist.
+    if ($items->count() === 2 && !$media_position->count()) {
+      // If we have 2 items rendered but the media position class is not set,
+      // then we have one of the right variants.
       $position_variant = 'right';
     }
 
     $link_variant = 'simple';
     $link_element = $crawler->filter('a.ecl-link.ecl-link--icon');
     if ($link_element->count()) {
-      // Link exists.
       $link_class = $link_element->attr('class');
       if (strpos($link_class, 'ecl-link--cta') !== FALSE) {
+        // If we have a link set and the "ecl-link--cta" class is present, then
+        // we have a featured variant.
         $link_variant = 'featured';
       }
     }
