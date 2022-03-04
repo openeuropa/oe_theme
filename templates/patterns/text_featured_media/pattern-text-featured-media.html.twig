@@ -43,7 +43,7 @@
     {% endif %}
     <article class="ecl-featured-item__container">
       {% if image or video %}
-        <div class="ecl-col-m-6 ecl-u-mb-m ecl-u-mb-m-none{{ media_position_class }}">
+        <div class="ecl-featured-item__item{{ media_position_class }}">
           {% if image %}
             {% include '@ecl-twig/media-container' with {
               'image': image.src,
@@ -61,15 +61,13 @@
       {% endif %}
       {% if text_title or text or call_to_action_link %}
         <div class="ecl-featured-item__item">
-          <div class="{{ image or video ? 'ecl-col-m-6' : 'ecl-col-12' }}">
-            {% if text_title %}
-              <div class="ecl-featured-item__title">{{ text_title }}</div>
-            {% endif %}
-            {% if text %}
-              <div class="ecl">{{ text }}</div>
-            {% endif %}
-            {{ call_to_action_link }}
-          </div>
+          {% if text_title %}
+            <div class="ecl-featured-item__title">{{ text_title }}</div>
+          {% endif %}
+          {% if text %}
+            <div class="ecl">{{ text }}</div>
+          {% endif %}
+          {{ call_to_action_link }}
         </div>
       {% endif %}
     </article>
