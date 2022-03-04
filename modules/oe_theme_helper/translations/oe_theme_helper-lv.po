@@ -58,6 +58,9 @@ msgstr "Sazināties ar organizāciju"
 msgid "Call status: @label"
 msgstr "Uzaicinājuma statuss: @label"
 
+msgid "Press contact"
+msgstr "Kontaktpersona presei"
+
 msgid "Press contacts"
 msgstr "Kontaktpersonas presei"
 
@@ -539,3 +542,78 @@ msgstr "Eiropas Savienība"
 
 msgid "Sources"
 msgstr "Avoti"
+
+msgid "This event has been cancelled."
+msgstr "Šis pasākums ir atcelts."
+
+msgid "This event has been rescheduled."
+msgstr "Šis pasākums ir pārcelts uz citu datumu."
+
+msgid "This event has been postponed."
+msgstr "Šis pasākums ir atlikts."
+
+msgid "This event has started."
+msgstr "Šis pasākums ir sācies."
+
+msgid "This event has ended."
+msgstr "Šis pasākums ir beidzies."
+
+msgid "This livestream has started."
+msgstr "Šis tiešraides straumējums ir sācies."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Šis pasākums ir sācies. Varat arī skatīties tā tiešraides straumējumu."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Šis pasākums ir beidzies, bet tiešraides straumējums turpinās."
+
+msgid "Who should attend"
+msgstr "Mērķgrupa"
+
+msgid "Organisers"
+msgstr "Organizatori"
+
+msgid "Part of"
+msgstr "Daļa no"
+
+msgid "Online only"
+msgstr "Tikai tiešsaistē"
+
+msgid "External event"
+msgstr "Ārējs pasākums"
+
+msgid "Report"
+msgstr "Ziņojums"
+
+msgid "Register here"
+msgstr "Reģistrēties šeit"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Šis pasākums ir sācies. Tiešraide sāksies @date."
+
+msgid "See all"
+msgstr "Skatīt visus"
+
+msgid "media items"
+msgstr "audiovizuālie materiāli"
+
+msgid "Close"
+msgstr "Aizvērt"
+
+msgid "Programme"
+msgstr "Programma"
+
+msgid "Social media"
+msgstr "Sociālie plašsaziņas līdzekļi"
+
+msgid "Speakers"
+msgstr "Referenti"
+
+msgid "Starts on @date"
+msgstr "Sākas @date"
+
+msgid "The livestream has started."
+msgstr "Šis tiešraides straumējums ir sācies."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Tiešraide ir beigusies, bet pasākums turpinās."

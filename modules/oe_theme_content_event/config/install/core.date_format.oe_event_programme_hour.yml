@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: oe_event_programme_hour
+label: 'Event programme hour'
+locked: false
+pattern: 'h:i A'

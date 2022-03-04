@@ -36,6 +36,40 @@ function oe_theme_content_event_theme() {
         'press' => [],
       ],
     ],
+    'oe_theme_content_event_media' => [
+      'variables' => [
+        'items' => [],
+      ],
+    ],
+    'oe_theme_content_event_location' => [
+      'variables' => [
+        'location' => '',
+      ],
+    ],
+    'oe_theme_content_event_online_description' => [
+      'variables' => [
+        'hidden' => FALSE,
+        'label' => '',
+        'url' => '',
+        'description' => '',
+      ],
+    ],
+    'oe_theme_content_event_livestream' => [
+      'variables' => [
+        'label' => '',
+        'url' => '',
+        'date' => '',
+        'hide_link' => FALSE,
+      ],
+    ],
+    'oe_theme_content_event_status_message' => [
+      'variables' => [
+        'variant' => '',
+        'title' => '',
+        'description' => '',
+        'icon' => '',
+      ],
+    ],
   ];
 }
 
@@ -58,7 +92,6 @@ function oe_theme_content_event_node_view_alter(array &$build, EntityInterface $
       'oe_event_website' => t('Website'),
       'oe_event_registration_capacity' => t('Number of seats'),
       'oe_event_entrance_fee' => t('Entrance fee'),
-      'oe_event_venue' => t('Where'),
     ];
 
     foreach ($label_overrides as $name => $label_override) {

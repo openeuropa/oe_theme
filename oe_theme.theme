@@ -11,6 +11,7 @@ use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableDependencyInterface;
+use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
@@ -23,6 +24,7 @@ use Drupal\media\Plugin\media\Source\OEmbed;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
+use Drupal\node\NodeInterface;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -1892,6 +1894,46 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
   // Set "Square" or "Landscape" view for an image.
   $ratio = $paragraph->get('field_oe_illustration_ratio')->first()->value;
   $variables['square_image'] = $ratio === 'square' ? TRUE : FALSE;
+
+  $cacheability->applyTo($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker(&$variables) {
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  foreach ($variables['items'] as $key => &$item) {
+    $event_speaker = $item['content']['#oe_event_speaker'] ?? NULL;
+    $item['event_speaker'] = $event_speaker;
+
+    // Make sure that Event speaker entity is valid.
+    if (!$event_speaker instanceof ContentEntityInterface) {
+      unset($variables['items'][$key]);
+      continue;
+    }
+    $cacheability->addCacheableDependency($event_speaker);
+
+    // Make sure that Person entity is present.
+    if ($event_speaker->get('oe_person')->isEmpty() || !$event_speaker->get('oe_person')->entity instanceof NodeInterface) {
+      unset($variables['items'][$key]);
+      continue;
+    }
+    $person = $event_speaker->get('oe_person')->entity;
+    $cacheability->addCacheableDependency($person);
+
+    // Set portrait image URL.
+    _oe_theme_helper_content_thumbnail_image($variables, $person, 'oe_person_photo', TRUE);
+    $item['content']['portrait_image'] = $variables['image'];
+
+    // Set person jobs titles.
+    $person_job_labels = [];
+    foreach ($person->get('oe_person_jobs')->referencedEntities() as $person_job) {
+      $cacheability->addCacheableDependency($person_job);
+      $person_job_labels[] = \Drupal::service('entity.repository')->getTranslationFromContext($person_job)->label();
+    }
+    $item['content']['person_jobs'] = implode(', ', $person_job_labels);
+  }
 
   $cacheability->applyTo($variables);
 }

@@ -1,0 +1,6 @@
+livestream_link_disclosure:
+  js:
+    js/event_livestream.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

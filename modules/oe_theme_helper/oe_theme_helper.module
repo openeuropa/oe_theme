@@ -327,7 +327,7 @@ function oe_theme_helper_locale_translation_projects_alter(&$projects) {
 }
 
 /**
- * Prepares "image" variable from Media Image to be used in In-page navigation.
+ * Prepares "image" variable from Media Image which contains ImageValueObject.
  *
  * @param array $variables
  *   An array of variables.
@@ -335,8 +335,16 @@ function oe_theme_helper_locale_translation_projects_alter(&$projects) {
  *   Entity to be used to get media.
  * @param string $field_name
  *   Field name.
+ * @param bool|null $fallback
+ *   Provide default image.
  */
-function _oe_theme_helper_inpage_nav_prepare_image(array &$variables, EntityInterface $entity, string $field_name): void {
+function _oe_theme_helper_content_thumbnail_image(array &$variables, EntityInterface $entity, string $field_name, ?bool $fallback = FALSE): void {
+  if ($fallback) {
+    // Set default image.
+    $image_path = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    $variables['image'] = ImageValueObject::fromArray(['src' => $image_path]);
+  }
+
   if ($entity->get($field_name)->isEmpty()) {
     return;
   }

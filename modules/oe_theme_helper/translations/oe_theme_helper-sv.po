@@ -58,6 +58,9 @@ msgstr "Kontaktorganisation"
 msgid "Call status: @label"
 msgstr "Status: @label"
 
+msgid "Press contact"
+msgstr "Presskontakt"
+
 msgid "Press contacts"
 msgstr "Presskontakter"
 
@@ -539,3 +542,78 @@ msgstr "Europeiska unionen"
 
 msgid "Sources"
 msgstr "Källor"
+
+msgid "This event has been cancelled."
+msgstr "Evenemanget har ställts in."
+
+msgid "This event has been rescheduled."
+msgstr "Evenemanget har flyttats."
+
+msgid "This event has been postponed."
+msgstr "Evenemanget har skjutits upp."
+
+msgid "This event has started."
+msgstr "Evenemanget har börjat."
+
+msgid "This event has ended."
+msgstr "Evenemanget har slutat."
+
+msgid "This livestream has started."
+msgstr "Direktsändningen har börjat."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Evenemanget har börjat och direktsänds."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Evenemanget har slutat men direktsänds fortfarande."
+
+msgid "Who should attend"
+msgstr "Målgrupp"
+
+msgid "Organisers"
+msgstr "Organisatörer"
+
+msgid "Part of"
+msgstr "Ingår i"
+
+msgid "Online only"
+msgstr "Endast online"
+
+msgid "External event"
+msgstr "Externa evenemang"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Register here"
+msgstr "Anmäl dig här"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Evenemanget har börjat. Direktsändningen börjar kl. @date."
+
+msgid "See all"
+msgstr "Visa alla"
+
+msgid "media items"
+msgstr "poster"
+
+msgid "Close"
+msgstr "Avslutad"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Sociala medier"
+
+msgid "Speakers"
+msgstr "Talare"
+
+msgid "Starts on @date"
+msgstr "Börjar kl. @date"
+
+msgid "The livestream has started."
+msgstr "Direktsändningen har börjat."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."

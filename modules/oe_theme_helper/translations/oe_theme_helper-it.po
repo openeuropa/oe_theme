@@ -58,6 +58,9 @@ msgstr "Organizzazione da contattare"
 msgid "Call status: @label"
 msgstr "Stato: @label"
 
+msgid "Press contact"
+msgstr "Contatti per la stampa"
+
 msgid "Press contacts"
 msgstr "Contatti per la stampa"
 
@@ -539,3 +542,78 @@ msgstr "Unione europea"
 
 msgid "Sources"
 msgstr "Fonti"
+
+msgid "This event has been cancelled."
+msgstr "L'evento è stato annullato."
+
+msgid "This event has been rescheduled."
+msgstr "L'evento è stato riprogrammato."
+
+msgid "This event has been postponed."
+msgstr "L'evento è stato rinviato."
+
+msgid "This event has started."
+msgstr "L'evento è iniziato."
+
+msgid "This event has ended."
+msgstr "L'evento è terminato."
+
+msgid "This livestream has started."
+msgstr "La diretta streaming è iniziata."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "L'evento è iniziato. È possibile guardarlo anche in diretta streaming."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "L'evento è terminato, ma la diretta streaming è in corso."
+
+msgid "Who should attend"
+msgstr "Chi dovrebbe partecipare"
+
+msgid "Organisers"
+msgstr "Organizzatori"
+
+msgid "Part of"
+msgstr "Parte di"
+
+msgid "Online only"
+msgstr "Soltanto online"
+
+msgid "External event"
+msgstr "Evento esterno"
+
+msgid "Report"
+msgstr "Relazione"
+
+msgid "Register here"
+msgstr "Registrati qui"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "L'evento è iniziato. La diretta streaming inizierà alle ore @date."
+
+msgid "See all"
+msgstr "Mostra tutto"
+
+msgid "media items"
+msgstr "contenuti multimediali"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Programme"
+msgstr "Programma"
+
+msgid "Social media"
+msgstr "Social media"
+
+msgid "Speakers"
+msgstr "Oratori"
+
+msgid "Starts on @date"
+msgstr "Inizia alle @date"
+
+msgid "The livestream has started."
+msgstr "La diretta streaming è iniziata."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "La trasmissione livestream è terminata, ma l'evento è ancora in corso."

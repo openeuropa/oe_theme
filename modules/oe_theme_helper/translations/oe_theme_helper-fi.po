@@ -58,6 +58,9 @@ msgstr "Ota yhteyttä organisaatioon"
 msgid "Call status: @label"
 msgstr "Pyynnön tila: @label"
 
+msgid "Press contact"
+msgstr "Median yhteydenotot"
+
 msgid "Press contacts"
 msgstr "Median yhteydenotot"
 
@@ -539,3 +542,78 @@ msgstr "Euroopan unioni"
 
 msgid "Sources"
 msgstr "Lähteet"
+
+msgid "This event has been cancelled."
+msgstr "Tämä tapahtuma on peruutettu."
+
+msgid "This event has been rescheduled."
+msgstr "Tämä tapahtuma on siirretty."
+
+msgid "This event has been postponed."
+msgstr "Tämä tapahtuma on peruttu toistaiseksi."
+
+msgid "This event has started."
+msgstr "Tämä tapahtuma on alkanut."
+
+msgid "This event has ended."
+msgstr "Tämä tapahtuma on päättynyt."
+
+msgid "This livestream has started."
+msgstr "Tämä suoratoisto on alkanut."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Tämä tapahtuma on alkanut. Voit myös katsoa sen suoratoistona."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Tämä tapahtuma on päättynyt, mutta sen suoratoisto jatkuu."
+
+msgid "Who should attend"
+msgstr "Kohderyhmä"
+
+msgid "Organisers"
+msgstr "Järjestäjät"
+
+msgid "Part of"
+msgstr "Kuuluu kokonaisuuteen"
+
+msgid "Online only"
+msgstr "Vain verkossa"
+
+msgid "External event"
+msgstr "Ulkoinen tapahtuma"
+
+msgid "Report"
+msgstr "Raportti"
+
+msgid "Register here"
+msgstr "Ilmoittautumiset"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Tämä tapahtuma on alkanut. Suora lähetys alkaa @date."
+
+msgid "See all"
+msgstr "Katso kaikki"
+
+msgid "media items"
+msgstr "tallennetta"
+
+msgid "Close"
+msgstr "Päättynyt"
+
+msgid "Programme"
+msgstr "Ohjelma"
+
+msgid "Social media"
+msgstr "Sosiaalinen media"
+
+msgid "Speakers"
+msgstr "Puhujat"
+
+msgid "Starts on @date"
+msgstr "Alkaa @date"
+
+msgid "The livestream has started."
+msgstr "Tämä suoratoisto on alkanut."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Suora lähetys on päättynyt, mutta tapahtuma jatkuu edelleen."

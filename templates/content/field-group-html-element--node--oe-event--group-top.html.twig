@@ -18,6 +18,7 @@
 <div id="event-details" class="ecl-row">
   <div class="ecl-col-12 ecl-col-m-6">
     {% block primary_details %}
+      {{ element.extra_field_oe_theme_content_event_online_description }}
       {{ element.extra_field_oe_theme_content_event_summary }}
       {{ element.extra_field_oe_theme_content_event_registration_button }}
     {% endblock %}
@@ -27,4 +28,11 @@
       {{ element.extra_field_oe_theme_content_event_details }}
     {% endblock %}
   </div>
+  {% if element.extra_field_oe_theme_content_event_media %}
+    <div class="ecl-col-12">
+      {% block media_gallery %}
+        {{ element.extra_field_oe_theme_content_event_media }}
+      {% endblock %}
+    </div>
+  {% endif %}
 </div>

@@ -58,6 +58,9 @@ msgstr "Organizzazzjoni ta’ kuntatt"
 msgid "Call status: @label"
 msgstr "Status tas-sejħa: @label"
 
+msgid "Press contact"
+msgstr "Kuntatt tal-istampa"
+
 msgid "Press contacts"
 msgstr "Kuntatti għall-istampa"
 
@@ -539,3 +542,78 @@ msgstr "L-Unjoni Ewropea"
 
 msgid "Sources"
 msgstr "Sorsi"
+
+msgid "This event has been cancelled."
+msgstr "Dan l-avveniment ġie kkanċellat."
+
+msgid "This event has been rescheduled."
+msgstr "Dan l-avveniment ġie riskedat."
+
+msgid "This event has been postponed."
+msgstr "Dan l-avveniment ġie pospost."
+
+msgid "This event has started."
+msgstr "Dan l-avveniment beda."
+
+msgid "This event has ended."
+msgstr "Dan l-avveniment intemm."
+
+msgid "This livestream has started."
+msgstr "Din il-xandira diretta fuq l-internet bdiet."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dan l-avveniment beda. Tista’ wkoll tarah permezz ta’ xandira diretta fuq l-internet."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dan l-avveniment spiċċa, iżda x-xandira diretta għadha għaddejja."
+
+msgid "Who should attend"
+msgstr "Min għandu jattendi"
+
+msgid "Organisers"
+msgstr "Organizzaturi"
+
+msgid "Part of"
+msgstr "Parti minn"
+
+msgid "Online only"
+msgstr "Online biss"
+
+msgid "External event"
+msgstr "Avveniment estern"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Register here"
+msgstr "Irreġistra hawn"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dan l-avveniment beda. Data u ħin meta se tibda x-xandira diretta: @date."
+
+msgid "See all"
+msgstr "Ara kollox"
+
+msgid "media items"
+msgstr "Oġġetti tal-media"
+
+msgid "Close"
+msgstr "Agħlaq"
+
+msgid "Programme"
+msgstr "Programm"
+
+msgid "Social media"
+msgstr "Media soċjali"
+
+msgid "Speakers"
+msgstr "Kelliema"
+
+msgid "Starts on @date"
+msgstr "Jibda fi @date"
+
+msgid "The livestream has started."
+msgstr "Din il-xandira diretta fuq l-internet bdiet."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Ix-xandira diretta fuq l-internet intemmet, iżda l-avveniment għadu għaddej."

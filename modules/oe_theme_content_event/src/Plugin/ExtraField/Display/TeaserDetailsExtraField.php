@@ -42,6 +42,10 @@ class TeaserDetailsExtraField extends DetailsExtraField {
 
     $this->addRenderableLocation($build, $entity);
     $this->addRenderableOnlineType($build, $entity);
+    // Override default icon size.
+    foreach ($build['#fields']['items'] as $key => $item) {
+      $build['#fields']['items'][$key]['size'] = 'xs';
+    }
 
     return $build;
   }

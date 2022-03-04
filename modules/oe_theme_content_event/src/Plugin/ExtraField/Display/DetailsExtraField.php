@@ -144,10 +144,11 @@ class DetailsExtraField extends EventExtraFieldBase {
   protected function getRenderableDates(ContentEntityInterface $entity): array {
     return $this->entityTypeManager->getViewBuilder('node')->viewField($entity->get('oe_event_dates'), [
       'label' => 'hidden',
-      'type' => 'daterange_default',
+      'type' => 'daterange_timezone',
       'settings' => [
-        'format_type' => 'oe_event_date_hour',
+        'format_type' => 'oe_event_date_hour_timezone',
         'separator' => '-',
+        'display_timezone' => FALSE,
       ],
     ]);
   }
@@ -161,6 +162,15 @@ class DetailsExtraField extends EventExtraFieldBase {
    *   Content entity.
    */
   protected function addRenderableLocation(array &$build, ContentEntityInterface $entity): void {
+    if ($entity->get('oe_event_online_only')->value) {
+      $build['#fields']['items'][] = [
+        'icon' => 'location',
+        'text' => [
+          '#markup' => $this->t('Online only'),
+        ],
+      ];
+      return;
+    }
     if (!$entity->get('oe_event_venue')->isEmpty() && $entity->get('oe_event_venue')->entity instanceof VenueInterface) {
       $address = $this->getVenueInlineAddress($entity->get('oe_event_venue')->entity);
       if (!empty($address)) {

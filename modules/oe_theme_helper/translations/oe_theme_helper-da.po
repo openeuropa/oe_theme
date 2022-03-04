@@ -58,6 +58,9 @@ msgstr "Kontaktorganisation"
 msgid "Call status: @label"
 msgstr "Status for indkaldelse: @label"
 
+msgid "Press contact"
+msgstr "Pressekontakt"
+
 msgid "Press contacts"
 msgstr "Pressehenvendelser"
 
@@ -539,3 +542,78 @@ msgstr "Europæiske Unions"
 
 msgid "Sources"
 msgstr "Kilder"
+
+msgid "This event has been cancelled."
+msgstr "Dette arrangement er aflyst."
+
+msgid "This event has been rescheduled."
+msgstr "Dette arrangement er flyttet."
+
+msgid "This event has been postponed."
+msgstr "Dette arrangement er udsat."
+
+msgid "This event has started."
+msgstr "Dette arrangement er begyndt."
+
+msgid "This event has ended."
+msgstr "Dette arrangement er slut."
+
+msgid "This livestream has started."
+msgstr "Denne livestreaming er begyndt."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dette arrangement er begyndt. Du kan også se det via livestreaming."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dette arrangement er slut, men livestreamingen er i gang."
+
+msgid "Who should attend"
+msgstr "Hvem kan deltage"
+
+msgid "Organisers"
+msgstr "Organisatorer"
+
+msgid "Part of"
+msgstr "Del af"
+
+msgid "Online only"
+msgstr "Kun online"
+
+msgid "External event"
+msgstr "Eksternt arrangement"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Register here"
+msgstr "Tilmeld dig her"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dette arrangement er begyndt. Livestreaming starter kl @date."
+
+msgid "See all"
+msgstr "Se alle"
+
+msgid "media items"
+msgstr "medieartikler"
+
+msgid "Close"
+msgstr "Luk"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Sociale medier"
+
+msgid "Speakers"
+msgstr "Talere"
+
+msgid "Starts on @date"
+msgstr "Starter den @date"
+
+msgid "The livestream has started."
+msgstr "Denne livestreaming er begyndt."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Livestreamingen er slut, men eventet kører stadig."

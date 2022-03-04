@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme for the media gallery extra field on event content type.
+ */
+#}
+<div id="event-media">
+  {% if items.media_gallery %}
+    <h2 class="ecl-u-type-heading-2 ecl-u-mt-2xl ecl-u-mb-l">{{ 'Media'|t }}</h2>
+   {{ items.media_gallery }}
+  {% endif %}
+  {% if items.media_more_link %}
+    {% set _link = {
+      link: {
+        type: 'standalone',
+        label: items.media_more_link.title,
+        path: items.media_more_link.url,
+      },
+      icon: {
+        'path': ecl_icon_path,
+        'name': 'external',
+        'size': 's',
+      }
+    } %}
+    {% include '@ecl-twig/link' with _link only %}
+  {% endif %}
+  {% if items.media_more_description %}
+    <div class="ecl">
+      {{ items.media_more_description }}
+    </div>
+  {% endif %}
+</div>

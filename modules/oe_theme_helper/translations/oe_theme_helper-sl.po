@@ -58,6 +58,9 @@ msgstr "Kontaktna organizacija"
 msgid "Call status: @label"
 msgstr "Status razpisa: @label"
 
+msgid "Press contact"
+msgstr "Kontakt za medije"
+
 msgid "Press contacts"
 msgstr "Kontakti za medije"
 
@@ -539,3 +542,78 @@ msgstr "Evropska unija"
 
 msgid "Sources"
 msgstr "Viri"
+
+msgid "This event has been cancelled."
+msgstr "Dogodek je odpovedan."
+
+msgid "This event has been rescheduled."
+msgstr "Dogodek je prestavljen."
+
+msgid "This event has been postponed."
+msgstr "Dogodek je odložen."
+
+msgid "This event has started."
+msgstr "Dogodek se je začel."
+
+msgid "This event has ended."
+msgstr "Dogodek se je končal."
+
+msgid "This livestream has started."
+msgstr "Prenos v živo se je začel."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dogodek se je začel. Na voljo je tudi prenos v živo."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dogodek se je končal, vendar je prenos v živo na voljo"
+
+msgid "Who should attend"
+msgstr "Ciljna skupina"
+
+msgid "Organisers"
+msgstr "Organizatorji"
+
+msgid "Part of"
+msgstr "Del"
+
+msgid "Online only"
+msgstr "Samo na spletu"
+
+msgid "External event"
+msgstr "Zunanji dogodek"
+
+msgid "Report"
+msgstr "Poročilo"
+
+msgid "Register here"
+msgstr "Registracija"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dogodek se je začel. Prenos v živo se bo začel ob @date."
+
+msgid "See all"
+msgstr "Oglejte si vse"
+
+msgid "media items"
+msgstr "medijske prispevke"
+
+msgid "Close"
+msgstr "Končano"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Družbeni mediji"
+
+msgid "Speakers"
+msgstr "Govorniki"
+
+msgid "Starts on @date"
+msgstr "Začetek pred @date"
+
+msgid "The livestream has started."
+msgstr "Prenos v živo se je začel."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Prenos v živo se je končal, vendar dogodek še poteka."

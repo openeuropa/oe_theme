@@ -58,6 +58,9 @@ msgstr "Organização de contacto"
 msgid "Call status: @label"
 msgstr "Estado: @label"
 
+msgid "Press contact"
+msgstr "Contacto para a imprensa"
+
 msgid "Press contacts"
 msgstr "Contactos para a imprensa"
 
@@ -539,3 +542,78 @@ msgstr "União Europeia"
 
 msgid "Sources"
 msgstr "Fontes"
+
+msgid "This event has been cancelled."
+msgstr "Este evento foi anulado."
+
+msgid "This event has been rescheduled."
+msgstr "Este evento foi reprogramado."
+
+msgid "This event has been postponed."
+msgstr "Este evento foi adiado."
+
+msgid "This event has started."
+msgstr "Este evento começou."
+
+msgid "This event has ended."
+msgstr "Este evento terminou."
+
+msgid "This livestream has started."
+msgstr "A transmissão em direto via Internet já começou."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Este evento começou. Pode também assistir através da transmissão em direto via Internet."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Este evento terminou, mas a transmissão em direto via Internet continua."
+
+msgid "Who should attend"
+msgstr "Destinatários/Destinatárias"
+
+msgid "Organisers"
+msgstr "Organizadores/Organizadoras"
+
+msgid "Part of"
+msgstr "Parte de"
+
+msgid "Online only"
+msgstr "Apenas em linha"
+
+msgid "External event"
+msgstr "Evento externo"
+
+msgid "Report"
+msgstr "Relatório"
+
+msgid "Register here"
+msgstr "Registe-se aqui"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Este evento já começou. Início da transmissão em direto: @date."
+
+msgid "See all"
+msgstr "Ver tudo"
+
+msgid "media items"
+msgstr "elementos multimédia"
+
+msgid "Close"
+msgstr "Encerrado"
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Social media"
+msgstr "Redes sociais"
+
+msgid "Speakers"
+msgstr "Oradores/Oradoras"
+
+msgid "Starts on @date"
+msgstr "Início em @date"
+
+msgid "The livestream has started."
+msgstr "A transmissão em direto via Internet já começou."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "A transmissão em direto terminou, mas o evento prossegue."

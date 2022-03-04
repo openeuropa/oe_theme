@@ -8,6 +8,7 @@
 declare(strict_types = 1);
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Config\FileStorage;
 
@@ -86,4 +87,39 @@ function oe_theme_content_event_post_update_30003(): void {
     $view_display->setComponent($field, $component);
   }
   $view_display->save();
+}
+
+/**
+ * Update the 'full' entity view display on the event CT.
+ */
+function oe_theme_content_event_post_update_30001() {
+  \Drupal::service('module_installer')->install(['oe_content_event_event_programme']);
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30001_update_full_view_display');
+  $view_display_values = $storage->read('core.entity_view_display.node.oe_event.full');
+  $view_display = EntityViewDisplay::load($view_display_values['id']);
+  if ($view_display) {
+    $updated_view_display = \Drupal::entityTypeManager()
+      ->getStorage($view_display->getEntityTypeId())
+      ->updateFromStorageRecord($view_display, $view_display_values);
+    $updated_view_display->save();
+  }
+
+  $date_formats = [
+    'core.date_format.oe_event_programme_date',
+    'core.date_format.oe_event_programme_date_hour',
+    'core.date_format.oe_event_programme_hour',
+    'core.date_format.oe_event_programme_date_timezone',
+    'core.date_format.oe_event_programme_date_hour_timezone',
+    'core.date_format.oe_event_long_date_hour_timezone',
+  ];
+  foreach ($date_formats as $date_format_name) {
+    $config = $storage->read($date_format_name);
+    // We are creating the config which means that we are also shipping
+    // it in the config/install folder so we want to make sure it gets the hash
+    // so Drupal treats it as a shipped config. This means that it gets exposed
+    // to be translated via the locale system as well.
+    $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+    $date_format = DateFormat::create($config);
+    $date_format->save();
+  }
 }

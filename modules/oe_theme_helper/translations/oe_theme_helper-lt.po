@@ -58,6 +58,9 @@ msgstr "Organizacija ryšiams"
 msgid "Call status: @label"
 msgstr "Kvietimo būsena @label"
 
+msgid "Press contact"
+msgstr "Kontaktai spaudai"
+
 msgid "Press contacts"
 msgstr "Kontaktiniai asmenys žiniasklaidai"
 
@@ -539,3 +542,78 @@ msgstr "Europos Sąjunga"
 
 msgid "Sources"
 msgstr "Šaltiniai"
+
+msgid "This event has been cancelled."
+msgstr "Renginys buvo atšauktas."
+
+msgid "This event has been rescheduled."
+msgstr "Pakeistas renginio laikas."
+
+msgid "This event has been postponed."
+msgstr "Renginys buvo atidėtas."
+
+msgid "This event has started."
+msgstr "Renginys prasidėjo."
+
+msgid "This event has ended."
+msgstr "Renginys baigėsi."
+
+msgid "This livestream has started."
+msgstr "Tiesioginė transliacija prasidėjo."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Renginys prasidėjo. Taip pat galite jį stebėti per tiesioginę transliaciją."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Šis renginys baigėsi, tačiau vis dar vyksta tiesioginė transliacija."
+
+msgid "Who should attend"
+msgstr "Tikslinė grupė"
+
+msgid "Organisers"
+msgstr "Organizatoriai"
+
+msgid "Part of"
+msgstr "Dalis"
+
+msgid "Online only"
+msgstr "Tik internetu"
+
+msgid "External event"
+msgstr "Išorės renginys"
+
+msgid "Report"
+msgstr "Ataskaita"
+
+msgid "Register here"
+msgstr "Registruokitės čia"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Šis renginys prasidėjo. Tiesioginė transliacija prasidės @date."
+
+msgid "See all"
+msgstr "Žiūrėkite visus"
+
+msgid "media items"
+msgstr "medijos elementus"
+
+msgid "Close"
+msgstr "Uždaryti"
+
+msgid "Programme"
+msgstr "Programa"
+
+msgid "Social media"
+msgstr "Socialiniai tinklai"
+
+msgid "Speakers"
+msgstr "Pranešėjai"
+
+msgid "Starts on @date"
+msgstr "Prasideda @date"
+
+msgid "The livestream has started."
+msgstr "Tiesioginė transliacija prasidėjo."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Tiesioginė transliacija baigėsi, tačiau renginys tęsiasi."

@@ -58,6 +58,9 @@ msgstr "Organisation à contacter"
 msgid "Call status: @label"
 msgstr "Statut de l’appel: @label"
 
+msgid "Press contact"
+msgstr "Contact presse"
+
 msgid "Press contacts"
 msgstr "Contacts presse"
 
@@ -539,3 +542,78 @@ msgstr "Union européenne"
 
 msgid "Sources"
 msgstr "Sources"
+
+msgid "This event has been cancelled."
+msgstr "Cet événement a été annulé."
+
+msgid "This event has been rescheduled."
+msgstr "Cet événement a été reprogrammé."
+
+msgid "This event has been postponed."
+msgstr "Cet événement a été reporté."
+
+msgid "This event has started."
+msgstr "Cet événement a commencé."
+
+msgid "This event has ended."
+msgstr "Cet événement est terminé."
+
+msgid "This livestream has started."
+msgstr "Cette retransmission en direct a commencé."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Cet événement a commencé. Vous pouvez également regarder sa retransmission en direct."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Cet événement est terminé, mais sa retransmission en direct se poursuit."
+
+msgid "Who should attend"
+msgstr "Public cible"
+
+msgid "Organisers"
+msgstr "Organisateurs"
+
+msgid "Part of"
+msgstr "Fait partie de"
+
+msgid "Online only"
+msgstr "En ligne uniquement"
+
+msgid "External event"
+msgstr "Événement extérieur"
+
+msgid "Report"
+msgstr "Rapport"
+
+msgid "Register here"
+msgstr "S'incrire ici"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Cet événement a commencé. La retransmission en direct débutera à @date."
+
+msgid "See all"
+msgstr "Tout afficher"
+
+msgid "media items"
+msgstr "éléments médias"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "Programme"
+msgstr "Programme"
+
+msgid "Social media"
+msgstr "Réseaux sociaux"
+
+msgid "Speakers"
+msgstr "Orateurs"
+
+msgid "Starts on @date"
+msgstr "Début: @date"
+
+msgid "The livestream has started."
+msgstr "Cette retransmission en direct a commencé."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "La retransmission en direct est terminée, mais l’événement se poursuit."

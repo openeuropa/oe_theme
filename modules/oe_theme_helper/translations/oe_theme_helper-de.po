@@ -58,6 +58,9 @@ msgstr "Organisation kontaktieren"
 msgid "Call status: @label"
 msgstr "Status der Aufforderung: @label"
 
+msgid "Press contact"
+msgstr "Pressekontakt"
+
 msgid "Press contacts"
 msgstr "Pressekontakte"
 
@@ -539,3 +542,78 @@ msgstr "Europäische Union"
 
 msgid "Sources"
 msgstr "Quellen"
+
+msgid "This event has been cancelled."
+msgstr "Diese Veranstaltung wurde abgesagt."
+
+msgid "This event has been rescheduled."
+msgstr "Diese Veranstaltung wurde verlegt."
+
+msgid "This event has been postponed."
+msgstr "Diese Veranstaltung wurde verschoben."
+
+msgid "This event has started."
+msgstr "Diese Veranstaltung hat begonnen."
+
+msgid "This event has ended."
+msgstr "Diese Veranstaltung ist beendet."
+
+msgid "This livestream has started."
+msgstr "Dieser Livestream hat begonnen."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Diese Veranstaltung hat begonnen. Sie können sie über Livestream mitverfolgen."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Diese Veranstaltung ist beendet. Der Livestream läuft noch."
+
+msgid "Who should attend"
+msgstr "Zielgruppe"
+
+msgid "Organisers"
+msgstr "Organisatoren"
+
+msgid "Part of"
+msgstr "Teil von"
+
+msgid "Online only"
+msgstr "Nur online"
+
+msgid "External event"
+msgstr "Externe Veranstaltung"
+
+msgid "Report"
+msgstr "Bericht"
+
+msgid "Register here"
+msgstr "Hier registrieren"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Die Veranstaltung hat begonnen. Livestream ab @date."
+
+msgid "See all"
+msgstr "Alle anzeigen"
+
+msgid "media items"
+msgstr "Medienbeiträge"
+
+msgid "Close"
+msgstr "Beendet"
+
+msgid "Programme"
+msgstr "Programm"
+
+msgid "Social media"
+msgstr "Soziale Medien"
+
+msgid "Speakers"
+msgstr "Redner"
+
+msgid "Starts on @date"
+msgstr "Beginnt um @date"
+
+msgid "The livestream has started."
+msgstr "Dieser Livestream hat begonnen."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Der Livestream ist beendet, aber die Veranstaltung läuft noch."

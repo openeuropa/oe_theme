@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * Theme override for the datetime-range-timezone template.
+ *
+ * @see \Drupal\datetime_range_timezone\Plugin\Field\FieldFormatter\DateRangeTimezone::viewElements()
+ */
+#}
+<div class='daterange'>
+    <span class='daterange__date daterange__start-date'>{{ start_date }}</span>
+    <span class='daterange__separtor'> {{ separator }} </span>
+    <span class='daterange__date daterange__end-date'>{{ end_date }}</span>
+
+    {% if timezone %}
+        <span class='daterange__timezone'> {{ timezone }}</span>
+    {% endif %}
+</div>

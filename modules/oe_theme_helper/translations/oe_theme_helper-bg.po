@@ -58,6 +58,9 @@ msgstr "Връзка с организацията"
 msgid "Call status: @label"
 msgstr "Статус на поканата: @label"
 
+msgid "Press contact"
+msgstr "Контакти с медиите"
+
 msgid "Press contacts"
 msgstr "Лица за контакти с медиите"
 
@@ -539,3 +542,78 @@ msgstr "Европейски съюз"
 
 msgid "Sources"
 msgstr "Източници"
+
+msgid "This event has been cancelled."
+msgstr "Тази проява е отменена."
+
+msgid "This event has been rescheduled."
+msgstr "Тази проява е с променена дата или час."
+
+msgid "This event has been postponed."
+msgstr "Тази проява е отложена."
+
+msgid "This event has started."
+msgstr "Тази проява е започнала."
+
+msgid "This event has ended."
+msgstr "Тази проява е приключила."
+
+msgid "This livestream has started."
+msgstr "Излъчването на живо е започнало."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Тази проява е започнала. Можете също така да гледате чрез излъчване на живо."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Тази проява е приключила, но излъчването на живо продължава."
+
+msgid "Who should attend"
+msgstr "Целева група"
+
+msgid "Organisers"
+msgstr "Организатори"
+
+msgid "Part of"
+msgstr "Част от"
+
+msgid "Online only"
+msgstr "Само в интернет"
+
+msgid "External event"
+msgstr "Външна проява"
+
+msgid "Report"
+msgstr "Доклад"
+
+msgid "Register here"
+msgstr "Регистрирайте се тук"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Проявата започна. Излъчването на живо ще започне на @date."
+
+msgid "See all"
+msgstr "Вижте всичко"
+
+msgid "media items"
+msgstr "media items"
+
+msgid "Close"
+msgstr "приключило"
+
+msgid "Programme"
+msgstr "Програма"
+
+msgid "Social media"
+msgstr "Социални медии"
+
+msgid "Speakers"
+msgstr "Говорители"
+
+msgid "Starts on @date"
+msgstr "Започва в @date"
+
+msgid "The livestream has started."
+msgstr "Излъчването на живо е започнало."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Излъчването на живо приключи, но проявата продължава."

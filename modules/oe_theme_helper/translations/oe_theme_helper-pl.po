@@ -58,6 +58,9 @@ msgstr "Skontaktuj się z organizacją"
 msgid "Call status: @label"
 msgstr "Status zaproszenia: @label"
 
+msgid "Press contact"
+msgstr "Kontakty z prasą"
+
 msgid "Press contacts"
 msgstr "Kontakt dla prasy"
 
@@ -539,3 +542,78 @@ msgstr "Unia Europejska"
 
 msgid "Sources"
 msgstr "Źródła"
+
+msgid "This event has been cancelled."
+msgstr "To wydarzenie zostało odwołane."
+
+msgid "This event has been rescheduled."
+msgstr "To wydarzenie zostało przełożone."
+
+msgid "This event has been postponed."
+msgstr "To wydarzenie zostało odroczone."
+
+msgid "This event has started."
+msgstr "To wydarzenie już się rozpoczęło."
+
+msgid "This event has ended."
+msgstr "To wydarzenie już się zakończyło."
+
+msgid "This livestream has started."
+msgstr "Transmisja na żywo już się rozpoczęła."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "To wydarzenie już się rozpoczęło. Można również oglądać transmisję na żywo."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Wydarzenie się zakończyło, ale transmisja na żywo jest nadal dostępna."
+
+msgid "Who should attend"
+msgstr "Kto powinien wziąć udział"
+
+msgid "Organisers"
+msgstr "Organizatorzy"
+
+msgid "Part of"
+msgstr "W ramach"
+
+msgid "Online only"
+msgstr "Tylko online"
+
+msgid "External event"
+msgstr "Wydarzenie zewnętrzne"
+
+msgid "Report"
+msgstr "Sprawozdanie"
+
+msgid "Register here"
+msgstr "Zarejestruj się tutaj"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "To wydarzenie już się rozpoczęło. Relacja na żywo rozpocznie się @date."
+
+msgid "See all"
+msgstr "Zobacz wszystko"
+
+msgid "media items"
+msgstr "Liczba elementów"
+
+msgid "Close"
+msgstr "Zakończono"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Media społecznościowe"
+
+msgid "Speakers"
+msgstr "Prelegenci"
+
+msgid "Starts on @date"
+msgstr "Godzina i data rozpoczęcia: @date"
+
+msgid "The livestream has started."
+msgstr "Transmisja na żywo już się rozpoczęła."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Wydarzenie nadal trwa, ale nie jest już transmitowane na żywo."

@@ -31,6 +31,7 @@ class EventRenderTest extends ContentRenderTestBase {
   public static $modules = [
     'address',
     'datetime_range',
+    'datetime_range_timezone',
     'entity_reference_revisions',
     'link',
     'image',
@@ -40,6 +41,7 @@ class EventRenderTest extends ContentRenderTestBase {
     'oe_content_entity_contact',
     'oe_content_entity_organisation',
     'oe_content_entity_venue',
+    'oe_content_event_event_programme',
     'oe_content_event',
     'composite_reference',
     'oe_theme_content_event',
@@ -166,6 +168,7 @@ class EventRenderTest extends ContentRenderTestBase {
           [
             'icon' => 'location',
             'text' => 'Belgium',
+            'size' => 'xs',
           ],
         ],
       ]),
@@ -214,10 +217,33 @@ class EventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'location',
           'text' => '<Brussels>, Belgium',
+          'size' => 'xs',
         ],
         [
           'icon' => 'livestreaming',
           'text' => t('Live streaming available'),
+          'size' => 'xs',
+        ],
+      ],
+    ]);
+    $assert->assertPattern($expected_values, $html);
+
+    // Mark event as online only assert location is replaced.
+    $node->set('oe_event_online_only', TRUE)->save();
+    $this->nodeViewBuilder->resetCache();
+    $build = $this->nodeViewBuilder->view($node, 'teaser');
+    $html = $this->renderRoot($build);
+    $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [
+      'items' => [
+        [
+          'icon' => 'location',
+          'text' => 'Online only',
+          'size' => 'xs',
+        ],
+        [
+          'icon' => 'livestreaming',
+          'text' => t('Live streaming available'),
+          'size' => 'xs',
         ],
       ],
     ]);
@@ -251,6 +277,9 @@ class EventRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_cancelled', $html);
 
+    // Unmark event online only.
+    $node->set('oe_event_online_only', FALSE)->save();
+
     // Assert bulgarian translation.
     $config_factory = \Drupal::configFactory();
     $config_factory->getEditable('system.site')->set('default_langcode', 'bg')->save();
@@ -267,10 +296,12 @@ class EventRenderTest extends ContentRenderTestBase {
         [
           'icon' => 'location',
           'text' => '<Brussels>, Белгия',
+          'size' => 'xs',
         ],
         [
           'icon' => 'livestreaming',
           'text' => t('Live streaming available'),
+          'size' => 'xs',
         ],
       ],
     ]);

@@ -58,6 +58,9 @@ msgstr "Kontaktní organizace"
 msgid "Call status: @label"
 msgstr "Status výzvy: @label"
 
+msgid "Press contact"
+msgstr "Kontakt pro média"
+
 msgid "Press contacts"
 msgstr "Kontakty pro tisk a média"
 
@@ -539,3 +542,78 @@ msgstr "Evropská unie"
 
 msgid "Sources"
 msgstr "Zdroje"
+
+msgid "This event has been cancelled."
+msgstr "Tato akce byla zrušena."
+
+msgid "This event has been rescheduled."
+msgstr "Termín akce byl pozměněn."
+
+msgid "This event has been postponed."
+msgstr "Termín akce byl odsunut na později."
+
+msgid "This event has started."
+msgstr "Tato akce již začala."
+
+msgid "This event has ended."
+msgstr "Tato akce již skončila."
+
+msgid "This livestream has started."
+msgstr "Živý přenos již začal."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Tato akce již začala. Můžete ji rovněž sledovat prostřednictvím živého přenosu."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Akce již skončila, živý přenos však stále probíhá."
+
+msgid "Who should attend"
+msgstr "Cílová skupina"
+
+msgid "Organisers"
+msgstr "Organizátoři"
+
+msgid "Part of"
+msgstr "Část"
+
+msgid "Online only"
+msgstr "Pouze online"
+
+msgid "External event"
+msgstr "Externí akce"
+
+msgid "Report"
+msgstr "Zpráva"
+
+msgid "Register here"
+msgstr "Zaregistrovat se můžete zde"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Tato akce již začala. Živý přenos bude zahájen v @date."
+
+msgid "See all"
+msgstr "Zobrazit vše"
+
+msgid "media items"
+msgstr "Počet mediálních materiálů"
+
+msgid "Close"
+msgstr "Zavřít"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Sociální média"
+
+msgid "Speakers"
+msgstr "Řečníci"
+
+msgid "Starts on @date"
+msgstr "Začíná @date"
+
+msgid "The livestream has started."
+msgstr "Živý přenos již začal."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Živé vysílání bylo ukončeno, nicméně akce stále probíhá."

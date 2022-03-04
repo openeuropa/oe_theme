@@ -58,6 +58,9 @@ msgstr "Kapcsolattartó szervezet"
 msgid "Call status: @label"
 msgstr "A felhívás státusza: @label"
 
+msgid "Press contact"
+msgstr "Sajtókapcsolat"
+
 msgid "Press contacts"
 msgstr "Sajtókapcsolatok"
 
@@ -539,3 +542,78 @@ msgstr "Európai Unió"
 
 msgid "Sources"
 msgstr "Források"
+
+msgid "This event has been cancelled."
+msgstr "Ezt a rendezvényt törölték."
+
+msgid "This event has been rescheduled."
+msgstr "Ez a rendezvényt áttették egy későbbi időpontra."
+
+msgid "This event has been postponed."
+msgstr "Ezt a rendezvényt elnapolták."
+
+msgid "This event has started."
+msgstr "Ez a rendezvény elkezdődött."
+
+msgid "This event has ended."
+msgstr "Ez a rendezvény véget ért."
+
+msgid "This livestream has started."
+msgstr "Ez az élő közvetítés elkezdődött."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Ez a rendezvény elkezdődött. Élőben is követhető."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Ez a rendezvény véget ért, de az élő közvetítés még tart."
+
+msgid "Who should attend"
+msgstr "Résztvevői profil"
+
+msgid "Organisers"
+msgstr "Szervezők"
+
+msgid "Part of"
+msgstr "Ennek a része"
+
+msgid "Online only"
+msgstr "Csak az interneten"
+
+msgid "External event"
+msgstr "Külső rendezvény"
+
+msgid "Report"
+msgstr "Jelentés"
+
+msgid "Register here"
+msgstr "Regisztráció"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Ez a rendezvény elkezdődött. Az élő közvetítés kezdési időpontja: @date."
+
+msgid "See all"
+msgstr "Összes megtekintése"
+
+msgid "media items"
+msgstr "médiaanyag"
+
+msgid "Close"
+msgstr "Lezárva"
+
+msgid "Programme"
+msgstr "Program"
+
+msgid "Social media"
+msgstr "Közösségi média"
+
+msgid "Speakers"
+msgstr "Előadók"
+
+msgid "Starts on @date"
+msgstr "Ebben az időpontban kezdődik: @date"
+
+msgid "The livestream has started."
+msgstr "Ez az élő közvetítés elkezdődött."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Az élő közvetítés befejeződött, de a rendezvény még tart."
