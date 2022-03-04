@@ -117,7 +117,7 @@
             "Explicit minimum version requirement of behat library due to PHP compatibility.",
             "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
             "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8.",
-            "Requiring composer/xdebug-handler until PHPMD 2.12 is released"
+            "Requiring composer/xdebug-handler until PHPMD 2.12 is released."
         ]
     },
     "config": {
