@@ -18,7 +18,6 @@
         "behat/behat": "^3.10",
         "behat/mink-extension": "^2.3.1",
         "composer/installers": "~1.5",
-        "composer/xdebug-handler": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/address": "~1.9",
         "drupal/composite_reference": "^2.1",
@@ -48,12 +47,12 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_contact_forms": "^1.2",
-        "openeuropa/oe_content": "2.x-dev",
+        "openeuropa/oe_content": "^2.9",
         "openeuropa/oe_corporate_blocks": "^4.4",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "^1.15",
         "openeuropa/oe_multilingual": "^1.10",
-        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/oe_paragraphs": "^1.12",
         "openeuropa/oe_search": "^1.9",
         "openeuropa/oe_webtools": "^1.15",
         "openeuropa/rdf_skos": "^1.0",
@@ -101,9 +100,6 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
-            },
-            "openeuropa/oe_time_caching": {
-                "master": "https://github.com/openeuropa/oe_time_caching/compare/1.2.0...master.diff"
             }
         },
         "drupal-scaffold": {
@@ -116,8 +112,7 @@
             "Explicit minimum version requirement of drupal/ctools module due to D9.2 compatability.",
             "Explicit minimum version requirement of behat library due to PHP compatibility.",
             "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
-            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8.",
-            "Requiring composer/xdebug-handler until PHPMD 2.12 is released."
+            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8."
         ]
     },
     "config": {

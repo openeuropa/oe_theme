@@ -1,5 +1,45 @@
 # Change Log
 
+## [3.0.0-beta11](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta11) (2022-03-07)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta10...3.0.0-beta11)
+
+**Merged pull requests:**
+
+- EWPP-1539: Event v2. [\#1055](https://github.com/openeuropa/oe_theme/pull/1055) ([nagyad](https://github.com/nagyad))
+- EWPP-1539: Update epic with 3.x. [\#1054](https://github.com/openeuropa/oe_theme/pull/1054) ([nagyad](https://github.com/nagyad))
+- EWPP-1947: Missing interface translations. [\#1052](https://github.com/openeuropa/oe_theme/pull/1052) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic event v2 [\#1050](https://github.com/openeuropa/oe_theme/pull/1050) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic event v2 [\#1047](https://github.com/openeuropa/oe_theme/pull/1047) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1948: Event status sets the wrong cache tags. [\#1046](https://github.com/openeuropa/oe_theme/pull/1046) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic event v2 [\#1045](https://github.com/openeuropa/oe_theme/pull/1045) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic event v2 [\#1044](https://github.com/openeuropa/oe_theme/pull/1044) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1983: Replace event date fields with timezone ones. [\#1039](https://github.com/openeuropa/oe_theme/pull/1039) ([nagyad](https://github.com/nagyad))
+- EWPP-1942: Add Event related string translations. [\#1035](https://github.com/openeuropa/oe_theme/pull/1035) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic event v2 [\#1033](https://github.com/openeuropa/oe_theme/pull/1033) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic ewpp event v2 [\#1024](https://github.com/openeuropa/oe_theme/pull/1024) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1942: Adds Event CT string translations. [\#1022](https://github.com/openeuropa/oe_theme/pull/1022) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1691: Add string translations. [\#1020](https://github.com/openeuropa/oe_theme/pull/1020) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1934: Do not render Event's Subject field content within template. [\#1018](https://github.com/openeuropa/oe_theme/pull/1018) ([22Alexandra](https://github.com/22Alexandra))
+- Update Epic Event v2 EWPP-1539 [\#1015](https://github.com/openeuropa/oe_theme/pull/1015) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1924: Fixes Event Subject field rendering. [\#1013](https://github.com/openeuropa/oe_theme/pull/1013) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1822: Display live stream information at the exact time. [\#1007](https://github.com/openeuropa/oe_theme/pull/1007) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1830: Added optional 'size' field for items of icons\_with\_text p… [\#1003](https://github.com/openeuropa/oe_theme/pull/1003) ([mferran-europe](https://github.com/mferran-europe))
+- EWPP-1779: Remove black color from h2 and h3 titles. [\#1000](https://github.com/openeuropa/oe_theme/pull/1000) ([nagyad](https://github.com/nagyad))
+- EWPP-1802: Improve live stream display. [\#999](https://github.com/openeuropa/oe_theme/pull/999) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1787: Add extra field displaying event status messages. [\#997](https://github.com/openeuropa/oe_theme/pull/997) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1539\] EWPP-1756: Fix marging and fonts for event speakers field. [\#996](https://github.com/openeuropa/oe_theme/pull/996) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1803: Theme extra fields. [\#995](https://github.com/openeuropa/oe_theme/pull/995) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic 1539 [\#991](https://github.com/openeuropa/oe_theme/pull/991) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-1539\] EWPP-1765: Theme 'Who should attend' field. [\#989](https://github.com/openeuropa/oe_theme/pull/989) ([sergepavle](https://github.com/sergepavle))
+- \[EWPP-1539\] EWPP-1756: Theming of Event Speaker field. [\#988](https://github.com/openeuropa/oe_theme/pull/988) ([sergepavle](https://github.com/sergepavle))
+- Update epic event v2 2021-11-18 [\#987](https://github.com/openeuropa/oe_theme/pull/987) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-1539\] EWPP-1662: Theme event progrmme by using the timeline pattern. [\#983](https://github.com/openeuropa/oe_theme/pull/983) ([sergepavle](https://github.com/sergepavle))
+- Update Epic Event v2 [\#981](https://github.com/openeuropa/oe_theme/pull/981) ([yenyasinn](https://github.com/yenyasinn))
+- Update event v2 [\#977](https://github.com/openeuropa/oe_theme/pull/977) ([22Alexandra](https://github.com/22Alexandra))
+- Update epic event v2 [\#963](https://github.com/openeuropa/oe_theme/pull/963) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1540: Render the Media field of Event CT using the Media gallery formatter. [\#948](https://github.com/openeuropa/oe_theme/pull/948) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta10](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta10) (2022-03-03)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta9...3.0.0-beta10)
 
