@@ -37,7 +37,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
   /**
    * Programme datetime with timezone format.
    */
-  const PROGRAMME_DATETIME_TIMEZONE_FORMAT = 'oe_event_programme_date_with_hour_with_timezone';
+  const PROGRAMME_DATETIME_TIMEZONE_FORMAT = 'oe_event_programme_date_hour_timezone';
 
   /**
    * Programme date format.
