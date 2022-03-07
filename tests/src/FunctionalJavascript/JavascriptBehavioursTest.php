@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
+use Drupal\Tests\oe_theme\Traits\FunctionalJavascriptTrait;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -13,6 +14,8 @@ use PHPUnit\Framework\Assert;
  * @group batch3
  */
 class JavascriptBehavioursTest extends WebDriverTestBase {
+
+  use FunctionalJavascriptTrait;
 
   /**
    * {@inheritdoc}
@@ -24,12 +27,22 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     'oe_multilingual',
     'oe_theme_helper',
     'oe_theme_js_test',
+    'js_testing_log_test',
   ];
 
   /**
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function tearDown(): void {
+    $this->failOnJavascriptErrors();
+
+    parent::tearDown();
+  }
 
   /**
    * {@inheritdoc}
@@ -196,23 +209,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    */
   public function testContextNavPattern(): void {
     $this->drupalGet('/oe_theme_js_test/ui_patterns/context_nav');
-    $script = <<<EndOfScript
-(function(){
-if (typeof(window.collectedErrors) == 'undefined') {
-  return;
-}
-var result = '';
-window.collectedErrors.forEach(function(value) {
-   result += value.data + '[NLS]';
-});
-return result;
-})()
-EndOfScript;
-    $errors = $this->getSession()->evaluateScript($script);
-    if ($errors) {
-      throw new \RuntimeException('Javascript error: ' . str_replace('[NLS]', PHP_EOL, $errors));
-    }
-
+    $this->failOnJavascriptErrors();
     $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
     $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
 

@@ -76,15 +76,6 @@ class UiPatterns extends ControllerBase {
       ],
     ];
 
-    $script = <<<EndOfScript
-window.onerror = function(error, url, line) {
-  if (typeof(window.collectedErrors) != 'object') {
-    window.collectedErrors = [];
-  }
-  window.collectedErrors.push({type:'error', data:'ERR:'+error+' URL:'+url+' L:'+line});
-}
-EndOfScript;
-
     $build['#attached']['html_head'][] = [
       [
         '#tag' => 'script',
