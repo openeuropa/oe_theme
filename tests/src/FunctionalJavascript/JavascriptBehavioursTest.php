@@ -27,7 +27,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     'oe_multilingual',
     'oe_theme_helper',
     'oe_theme_js_test',
-    'js_testing_log_test',
   ];
 
   /**
