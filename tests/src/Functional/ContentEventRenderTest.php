@@ -782,15 +782,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
+          'label' => '17 Feb 2020, 02:00 PM - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
+          'label' => '17 Feb 2020, 02:00 PM - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ], [
-          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
+          'label' => '17 Feb 2020, 02:00 PM - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ],
@@ -819,15 +819,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '15 Nov 2019, 11:00 AM UTC - 15 Nov 2019, 03:00 PM UTC',
+          'label' => '15 Nov 2019, 11:00 AM - 15 Nov 2019, 03:00 PM UTC',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ], [
-          'label' => '10:00 PM - 11:00 PM',
+          'label' => '10:00 PM - 11:00 PM UTC',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '17 Feb 2020, 02:00 PM UTC - 27 Feb 2020, 02:00 PM UTC',
+          'label' => '17 Feb 2020, 02:00 PM - 27 Feb 2020, 02:00 PM UTC',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ],
@@ -862,15 +862,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $timeline_expected_values = [
       'items' => [
         [
-          'label' => '14 Nov 2019 UTC,<br>09:00 PM - 10:00 PM',
+          'label' => '14 Nov 2019,<br>09:00 PM - 10:00 PM UTC',
           'title' => 'Session 3',
           'body' => 'Description Session 3',
         ], [
-          'label' => '10:15 PM - 11:15 PM',
+          'label' => '10:15 PM - 11:15 PM UTC',
           'title' => 'Session 1',
           'body' => 'Description Session 1',
         ], [
-          'label' => '15 Nov 2019 UTC,<br>10:00 PM - 11:00 PM',
+          'label' => '15 Nov 2019,<br>10:00 PM - 11:00 PM UTC',
           'title' => 'Session 2',
           'body' => 'Description Session 2',
         ],
