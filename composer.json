@@ -100,6 +100,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "drupal/datetime_range_timezone": {
+                "https://www.drupal.org/project/datetime_range_timezone/issues/3268321": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/7.diff"
             }
         },
         "drupal-scaffold": {

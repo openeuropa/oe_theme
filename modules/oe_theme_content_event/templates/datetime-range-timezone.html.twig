@@ -7,11 +7,17 @@
  */
 #}
 <div class='daterange'>
-    <span class='daterange__date daterange__start-date'>{{ start_date }}</span>
-    <span class='daterange__separtor'> {{ separator }} </span>
-    <span class='daterange__date daterange__end-date'>{{ end_date }}</span>
+  <span class='daterange__date daterange__start-date'><time datetime="{{ iso_start_date }}">{{ start_date }}</time></span>
 
-    {% if timezone %}
-        <span class='daterange__timezone'> {{ timezone }}</span>
-    {% endif %}
+  {% if separator is not empty %}
+    <span class='daterange__separtor'> {{ separator }} </span>
+  {% endif %}
+
+  {% if end_date is not empty %}
+    <span class='daterange__date daterange__end-date'><time datetime="{{ iso_end_date }}">{{ end_date }}</time></span>
+  {% endif %}
+
+  {% if timezone %}
+    <span class='daterange__timezone'>{{ timezone }}</span>
+  {% endif %}
 </div>

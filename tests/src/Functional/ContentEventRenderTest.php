@@ -230,7 +230,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
           'size' => 'm',
         ], [
           'icon' => 'calendar',
-          'text' => '27 February 2020, 14:00 UTC - 27 February 2020, 14:00 UTC',
+          'text' => '27 February 2020, 14:00 UTC',
           'size' => 'm',
         ],
       ],
@@ -247,7 +247,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'When',
-          'body' => 'Thursday 27 February 2020, 14:00 UTC - Thursday 27 February 2020, 14:00 UTC',
+          'body' => 'Thursday 27 February 2020, 14:00 UTC',
         ], [
           'label' => 'Languages',
           'body' => 'Estonian, French',
