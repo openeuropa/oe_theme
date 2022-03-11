@@ -94,7 +94,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLink(array $expected_link, Crawler $crawler): void {
-    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-m.ecl-u-mt-m-l.ecl-u-type-bold');
+    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-featured-item__link.ecl-u-mt-m.ecl-u-type-bold');
     self::assertEquals($expected_link['path'], $link_element->attr('href'));
 
     $label_element = $link_element->filter('span.ecl-link__label');
