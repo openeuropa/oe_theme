@@ -13,7 +13,7 @@ use Drupal\Core\Entity\EntityInterface;
 /**
  * Implements hook_theme().
  */
-function oe_theme_content_person_theme() {
+function oe_theme_content_person_theme(): array {
   return [
     'oe_theme_content_person_job_list' => [
       'variables' => [
