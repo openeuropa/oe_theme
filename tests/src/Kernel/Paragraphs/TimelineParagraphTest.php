@@ -111,8 +111,9 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    // No heading should be rendered if the paragraph has no heading set.
+    // No heading or introduction should be rendered.
     $this->assertCount(0, $crawler->filter('h2.ecl-u-type-heading-2'));
+    $this->assertCount(0, $crawler->filter('div.ecl.ecl-u-mb-m'));
     $this->assertCount(1, $crawler->filter('ol.ecl-timeline'));
     $this->assertCount(7, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item'));
     $this->assertCount(3, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed'));
@@ -143,9 +144,13 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     $this->assertEquals('Description 6', trim($crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed:nth-child(6) div.ecl-timeline__content')->html()));
     $this->assertEquals('Show 3 more items', trim($crawler->filter('button.ecl-button.ecl-button--secondary.ecl-timeline__toggle span.ecl-button__container span.ecl-button__label')->html()));
 
-    // Increase limit to print all the items and set timeline heading.
+    // Increase limit to print all the items and fill in optional fields.
     $paragraph->set('field_oe_timeline_expand', '6');
     $paragraph->set('field_oe_title', 'Timeline paragraph heading');
+    $paragraph->set('field_oe_text_long', [
+      'value' => "<strong>Timeline paragraph introduction</strong>",
+      'format' => 'full_html',
+    ]);
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
@@ -153,6 +158,7 @@ class TimelineParagraphTest extends ParagraphsTestBase {
     // Assert rendering is updated.
     $this->assertCount(1, $crawler->filter('h2.ecl-u-type-heading-2'));
     $this->assertEquals('Timeline paragraph heading', trim($crawler->filter('h2.ecl-u-type-heading-2')->html()));
+    $this->assertEquals('<strong>Timeline paragraph introduction</strong>', trim($crawler->filter('div.ecl.ecl-u-mb-m')->html()));
     $this->assertCount(6, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item'));
     $this->assertCount(0, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--collapsed'));
     $this->assertCount(0, $crawler->filter('ol.ecl-timeline li.ecl-timeline__item.ecl-timeline__item--toggle'));

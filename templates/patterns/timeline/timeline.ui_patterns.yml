@@ -7,6 +7,11 @@ timeline:
       label: "Title"
       description: "Timeline title."
       preview: "Timeline heading"
+    introduction:
+      type: "text"
+      label: "Introduction"
+      description: "Optional Timeline introduction text."
+      preview: "Timeline introduction"
     limit:
       type: "numeric"
       label: "Timeline index for starting hiding"

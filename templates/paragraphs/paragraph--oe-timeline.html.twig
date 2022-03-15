@@ -6,6 +6,7 @@
 #}
 {{ pattern('timeline', {
   'title': heading,
+  'introduction': content.field_oe_text_long|field_value|render|default(''),
   'limit': limit,
   'button_label': show_more,
   'items': items,
