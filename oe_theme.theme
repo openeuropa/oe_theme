@@ -733,12 +733,16 @@ function oe_theme_preprocess_links__oe_multilingual_content_language_block(array
   $entity = $multilingual_helper->getEntityFromCurrentRoute();
   /** @var \Drupal\Core\Entity\EntityInterface $translation */
   $translation = $multilingual_helper->getCurrentLanguageEntityTranslation($entity);
-  $variables['languages'][] = [
-    'href' => $translation->toUrl()->setAbsolute(TRUE)->toString(),
-    'hreflang' => $translation->language()->getId(),
-    'label' => $languages[$translation->language()->getId()]->getName(),
-    'current' => TRUE,
-  ];
+  // If we don't have a language id defined yet, the current translation wasn't
+  // saved, so we don't add it to the list.
+  if ($translation->language()->getId() !== 'und') {
+    $variables['languages'][] = [
+      'href' => $translation->toUrl()->setAbsolute(TRUE)->toString(),
+      'hreflang' => $translation->language()->getId(),
+      'label' => $languages[$translation->language()->getId()]->getName(),
+      'current' => TRUE,
+    ];
+  }
 
   // Generate required ids.
   $variables['expandable_id'] = Html::getUniqueId('ecl-expandable');
