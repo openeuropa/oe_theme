@@ -32,12 +32,22 @@ class ProgrammeExtraField extends EventExtraFieldBase {
   /**
    * Programme datetime format.
    */
-  const PROGRAMME_DATETIME_FORMAT = 'oe_event_programme_date_hour_timezone';
+  const PROGRAMME_DATETIME_FORMAT = 'oe_event_programme_date_hour';
+
+  /**
+   * Programme datetime with timezone format.
+   */
+  const PROGRAMME_DATETIME_TIMEZONE_FORMAT = 'oe_event_programme_date_hour_timezone';
 
   /**
    * Programme date format.
    */
-  const PROGRAMME_DATE_FORMAT = 'oe_event_programme_date_timezone';
+  const PROGRAMME_DATE_FORMAT = 'oe_event_programme_date';
+
+  /**
+   * Programme time with timezone format.
+   */
+  const PROGRAMME_TIME_TIMEZONE_FORMAT = 'oe_event_programme_hour_timezone';
 
   /**
    * Programme time format.
@@ -194,7 +204,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     // show only start time.
     $start_date_format = $previous_end_date === $start_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATETIME_FORMAT;
     // If event program item running in within day, show only end time.
-    $end_date_format = $start_day === $end_day ? self::PROGRAMME_TIME_FORMAT : self::PROGRAMME_DATETIME_FORMAT;
+    $end_date_format = $start_day === $end_day ? self::PROGRAMME_TIME_TIMEZONE_FORMAT : self::PROGRAMME_DATETIME_TIMEZONE_FORMAT;
     $template = '{% trans %}{{ start_date }} - {{ end_date }}{% endtrans %}';
     $context = [
       'start_date' => $this->dateFormatter->format($start_datetime->getTimestamp(), $start_date_format, '', $timezone),
@@ -203,7 +213,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     // If the event program item running within 1 day and there are no
     // other event program items in the current day coming before,
     // show the date with time range within a day.
-    if ($start_date_format === self::PROGRAMME_DATETIME_FORMAT && $end_date_format === self::PROGRAMME_TIME_FORMAT) {
+    if ($start_date_format === self::PROGRAMME_DATETIME_FORMAT && $end_date_format === self::PROGRAMME_TIME_TIMEZONE_FORMAT) {
       $template = '{% trans %}{{ start_day }},<br>{{ start_date }} - {{ end_date }}{% endtrans %}';
       $context['start_day'] = $this->dateFormatter->format($start_datetime->getTimestamp(), self::PROGRAMME_DATE_FORMAT, '', $timezone);
       $context['start_date'] = $this->dateFormatter->format($start_datetime->getTimestamp(), self::PROGRAMME_TIME_FORMAT, '', $timezone);

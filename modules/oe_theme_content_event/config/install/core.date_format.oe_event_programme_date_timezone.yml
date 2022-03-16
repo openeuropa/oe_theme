@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: oe_event_programme_date_timezone
-label: 'Event programme date with timezone'
-locked: false
-pattern: 'j M Y T'

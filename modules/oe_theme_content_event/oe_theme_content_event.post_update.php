@@ -123,3 +123,19 @@ function oe_theme_content_event_post_update_30001() {
     $date_format->save();
   }
 }
+
+/**
+ * Update Event programme date formats.
+ */
+function oe_theme_content_event_post_update_30002(): void {
+  // Remove "Event programme date with timezone" as it's not used anymore.
+  $date_timezone = DateFormat::load('oe_event_programme_date_timezone');
+  $date_timezone->delete();
+
+  // Create new time format with timezone.
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30002_event_programme_date_format');
+  $config = $storage->read('core.date_format.oe_event_programme_hour_timezone');
+  $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+  $date_format = DateFormat::create($config);
+  $date_format->save();
+}
