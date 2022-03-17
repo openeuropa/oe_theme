@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Drupal\oe_theme_js_test\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\Core\Render\Markup;
 
 /**
  * Returns responses for UI Patterns test routes.
@@ -74,16 +73,6 @@ class UiPatterns extends ControllerBase {
         'limit' => 4,
         'more_label' => $this->t('More label'),
       ],
-    ];
-
-    $build['#attached']['html_head'][] = [
-      [
-        '#tag' => 'script',
-        '#attributes' => [
-          'type' => 'text/javascript',
-        ],
-        '#value' => Markup::create($script),
-      ], 'js_errors_collector',
     ];
 
     return $build;
