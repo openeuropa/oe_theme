@@ -65,18 +65,3 @@ Feature: Page header block component.
     Then I should see the text "http://www.example.org is a web page" in the "page header intro"
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
-
-  Scenario: The page header block shows the content language switcher.
-    Given the following "Spanish" translation for the "Robots are everywhere" demo page:
-      | Title | Los robots estan en todas partes |
-    And  I am an anonymous user
-    When I visit the "Spanish" translation page for the "Robots are everywhere" demo page
-    Then I should see the heading "Los robots estan en todas partes" in the "page header"
-    And I should not see the link "español" in the "page header" region
-
-    When I visit the "French" translation page for the "Robots are everywhere" demo page
-    Then I should see the heading "Robots are everywhere" in the "page header"
-    # @todo Will be tested on OPENEUROPA-2013.
-    # And I should see "français" in the "unavailable languages in the language page switcher"
-    # And I should see "English" in the "selected language in the language page switcher"
-    # And I should see the link "español" in the "language page switcher"
