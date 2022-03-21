@@ -75,7 +75,7 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
       // show different message.
       if ($this->isCurrentDay($datetime_start->getTimestamp())) {
         $build['#registration_day_description'] = $this->t('Registration will open today, @start_date.', [
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour'),
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
         $build['#registration_day'] = TRUE;
         $this->attachDisclosureScript($build, $datetime_start->getTimestamp());
