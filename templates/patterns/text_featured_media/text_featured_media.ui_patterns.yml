@@ -60,3 +60,8 @@ text_featured_media:
       preview:
         label: "View all"
         path: "#"
+    highlighted:
+      type: "boolean"
+      label: "Highlighted"
+      description: "Whether the item is highlighted or not."
+      preview: true

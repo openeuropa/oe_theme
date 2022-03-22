@@ -934,6 +934,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     $variables['caption'] = $variables['elements']['field_oe_plain_text_long'];
   }
 
+  if ($paragraph->hasField('field_oe_highlighted')) {
+    $variables['highlighted'] = (boolean) $paragraph->get('field_oe_highlighted')->value;
+  }
+
   // Bail out if there is no media present.
   if ($paragraph->get('field_oe_media')->isEmpty()) {
     return;
