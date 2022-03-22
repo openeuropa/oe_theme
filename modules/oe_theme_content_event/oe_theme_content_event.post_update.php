@@ -139,3 +139,20 @@ function oe_theme_content_event_post_update_30002(): void {
   $date_format = DateFormat::create($config);
   $date_format->save();
 }
+
+/**
+ * Create missing Event programme date formats.
+ */
+function oe_theme_content_event_post_update_30004(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30004_event_programme_missing_date_formats');
+  $date_formats = [
+    'core.date_format.oe_event_programme_date',
+    'core.date_format.oe_event_programme_date_hour',
+  ];
+  foreach ($date_formats as $date_format_name) {
+    $config = $storage->read($date_format_name);
+    $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
+    $date_format = DateFormat::create($config);
+    $date_format->save();
+  }
+}
