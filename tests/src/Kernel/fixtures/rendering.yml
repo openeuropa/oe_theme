@@ -826,6 +826,7 @@
       'article.ecl-content-item div.ecl-content-item__image__after': 0
       'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
       'span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
       'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
@@ -842,16 +843,19 @@
       length: 6
       meta:
         - "Meta 1"
+      external_link: true
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
       'article.ecl-content-item div.ecl-content-item__image__before': 0
       'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link span.ecl-link__label': "Item title"
       'article.ecl-content-item div.ecl-content-item__description': "Item..."
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -868,6 +872,8 @@
                 body: "Thursday 15 November, 08:00 AM to Friday 16 November"
               - label: "Where"
                 body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      icon: "check"
+      external_link: true
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
@@ -877,13 +883,14 @@
       'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
       'div.ecl-content-item__additional_information .ecl-description-list__term': 2
       'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
-      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 0
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__title .ecl-link span.ecl-link__label': "Item title"
       'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
       'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
       'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
       'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1017,9 +1024,13 @@
     '#fields':
       detail: "This is a very long description. Better to trim it off."
       length: 32
+      external_link: true
   assertions:
+    count:
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1028,6 +1039,8 @@
       detail: "This is a very long description. Better to trim it off."
       length: 32
   assertions:
+    count:
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 0
     equals:
       'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
 - array:

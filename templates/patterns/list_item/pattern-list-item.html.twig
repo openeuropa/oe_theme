@@ -13,6 +13,7 @@
     - "length" (int) (default: 0): Max length of detail field.
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
     - "icon" (string) (default: ''): Icon used for the link item.
+    - "external_link" (bool) (default: false): Whether the link is external or not.
 #}
 
 {# Create macro #}
@@ -76,14 +77,28 @@
             }
           } %}
           {% if icon %}
-            {% set _link = _link|merge({
-              icon: {
-                'path': ecl_icon_path,
-                'name': icon,
-                'size': 's',
-              }
-            }) %}
+            {% set _icon = {
+              'path': ecl_icon_path,
+              'name': icon,
+              'size': 's',
+            } %}
           {% endif %}
+          {% if external_link %}
+            {% if _icon %}
+              {% set _icon = _icon|merge({
+                'name': 'external'
+              }) %}
+            {% else %}
+              {% set _icon = {
+                'path': ecl_icon_path,
+                'name': 'external',
+                'size': 's',
+              } %}
+            {% endif %}
+          {% endif %}
+          {% set _link = _link|merge({
+            icon: _icon
+          }) %}
           {% include '@ecl-twig/link' with _link only %}
         {% else %}
           {{ title }}
