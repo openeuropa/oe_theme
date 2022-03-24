@@ -1734,7 +1734,7 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
     }
 
     foreach ($links['links'] as $index => $link) {
-      if (empty($link['href'])) {
+      if (!$link['href'] instanceof Url) {
         continue;
       }
 

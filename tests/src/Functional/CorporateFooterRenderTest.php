@@ -663,8 +663,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'href' => '/build/',
     ];
     $this->assertListLink($actual, 'standardised', $expected);
-    // We should not have the external icon present.
-    $this->assertEmpty($actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
+    // We should not have any icon present.
+    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     // Assert updating a section also changes the footer content.
     $this->updateSection('section_1', [
@@ -754,8 +754,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'href' => '/build/',
     ];
     $this->assertListLink($actual, 'standardised', $expected);
-    // We should not have the external icon present.
-    $this->assertEmpty($actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
+    // We should not have any icon present.
+    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
