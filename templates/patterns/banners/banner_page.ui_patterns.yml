@@ -52,3 +52,8 @@ banner_page:
       description: "Define if the banner should be extended to full width."
       preview: true
       escape: false
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the URL of the item is external or not."
+      preview: true

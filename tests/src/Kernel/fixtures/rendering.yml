@@ -165,6 +165,7 @@
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': pattern
     '#id': banner_hero
@@ -178,16 +179,19 @@
       description: "Banner description"
       centered: false
       full_width: true
+      external_link: true
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--full-width': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 0
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': banner_hero
@@ -329,6 +333,7 @@
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': pattern
     '#id': banner_page
@@ -342,17 +347,20 @@
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
       full_width: true
+      external_link: true
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 0
       'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--full-width': 1
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
-      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 0
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
     equals:
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': banner_page
@@ -1024,13 +1032,9 @@
     '#fields':
       detail: "This is a very long description. Better to trim it off."
       length: 32
-      external_link: true
   assertions:
-    count:
-      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 1
     equals:
       'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
-      'svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item
