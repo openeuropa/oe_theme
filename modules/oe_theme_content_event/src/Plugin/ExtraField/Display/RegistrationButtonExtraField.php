@@ -4,15 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
-use Drupal\Component\Datetime\TimeInterface;
-use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Entity\ContentEntityInterface;
-use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
-use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Extra field displaying the event registration button.
@@ -26,52 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   visible = true
  * )
  */
-class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
-
-  /**
-   * Date formatter service.
-   *
-   * @var \Drupal\Core\Datetime\DateFormatterInterface
-   */
-  protected $dateFormatter;
-
-  /**
-   * RegistrationButtonExtraField constructor.
-   *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager.
-   * @param \Drupal\Component\Datetime\TimeInterface $time
-   *   The time service.
-   * @param \Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface $cache_tag_generator
-   *   Time based cache tag generator service.
-   * @param \Drupal\Core\Datetime\DateFormatterInterface $date_formatter
-   *   The date formatter.
-   */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, TimeInterface $time, TimeBasedCacheTagGeneratorInterface $cache_tag_generator, DateFormatterInterface $date_formatter) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $time, $cache_tag_generator);
-    $this->dateFormatter = $date_formatter;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('datetime.time'),
-      $container->get('oe_time_caching.time_based_cache_tag_generator'),
-      $container->get('date.formatter')
-    );
-  }
+class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
 
   /**
    * {@inheritdoc}
@@ -95,73 +43,8 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       '#url' => $link->getUrl(),
       '#enabled' => TRUE,
       '#show_button' => TRUE,
+      '#registration_day' => FALSE,
     ];
-
-    // Current request happens before the registration starts.
-    if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
-      $datetime_start = $event->getRegistrationStartDate();
-      $datetime_end = $event->getRegistrationEndDate();
-      $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
-      // Field value is stored in UTC timezone. So set proper timezone for the
-      // request date.
-      $request_datetime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-
-      // If the request time is on the same day as the start day we need to
-      // show different message.
-      if ($datetime_start->format('Ymd') === $request_datetime->format('Ymd')) {
-        $build['#description'] = $this->t('Registration will open today, @start_date.', [
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-        ]);
-      }
-      else {
-        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
-        $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
-          '@time_left' => $date_diff_formatted,
-          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-        ]);
-      }
-
-      $build['#enabled'] = FALSE;
-
-      // We invalidate this message every day at midnight.
-      $this->applyMidnightTag($build, $datetime_start);
-
-      // We invalidate this message when the registration period starts.
-      $this->applyHourTag($build, $datetime_start);
-      return $build;
-    }
-
-    // Current request happens within the registration period.
-    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
-      $datetime_end = $event->getRegistrationEndDate();
-      $request_datetime = DrupalDateTime::createFromTimestamp($this->requestTime);
-      // Field value is stored in UTC timezone. So set proper timezone for the
-      // request date.
-      $request_datetime->setTimezone(new \DateTimeZone(DateTimeItemInterface::STORAGE_TIMEZONE));
-
-      // If the request time is on the same day as the end day we need to
-      // show different message.
-      if ($datetime_end->format('Ymd') === $request_datetime->format('Ymd')) {
-        $build['#description'] = $this->t('Book your seat, the registration will end today, @end_date', [
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-        ]);
-      }
-      else {
-        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_end->getTimestamp(), ['granularity' => 1]);
-        $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
-          '@time_left' => $date_diff_formatted,
-          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
-        ]);
-      }
-
-      // We invalidate this message every day at midnight.
-      $this->applyMidnightTag($build, $datetime_end);
-
-      // We invalidate this message when the registration period ends.
-      $this->applyHourTag($build, $datetime_end);
-      return $build;
-    }
 
     // Current request happens after the registration has ended.
     if ($event->isRegistrationPeriodOver($this->requestDateTime)) {
@@ -174,7 +57,82 @@ class RegistrationButtonExtraField extends DateAwareExtraFieldBase {
       return $build;
     }
 
+    $datetime_end = $event->getRegistrationEndDate();
+
+    // Current request happens before the registration starts.
+    if ($event->isRegistrationPeriodYetToCome($this->requestDateTime)) {
+      $datetime_start = $event->getRegistrationStartDate();
+
+      // We invalidate this message every day at midnight.
+      $this->applyMidnightTag($build, $datetime_start);
+
+      // We invalidate this message when the registration period starts.
+      $this->applyHourTag($build, $datetime_start);
+
+      $build['#enabled'] = FALSE;
+
+      // If the request time is on the same day as the start day we need to
+      // show different message.
+      if ($this->isCurrentDay($datetime_start->getTimestamp())) {
+        $build['#registration_day_description'] = $this->t('Registration will open today, @start_date.', [
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+        ]);
+        $build['#registration_day'] = TRUE;
+        $this->attachDisclosureScript($build, $datetime_start->getTimestamp());
+      }
+      else {
+        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_start->getTimestamp(), ['granularity' => 1]);
+        $build['#description'] = $this->t('Registration will open in @time_left. You can register from @start_date, until @end_date.', [
+          '@time_left' => $date_diff_formatted,
+          '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+        ]);
+        return $build;
+      }
+    }
+
+    // Current request happens within the registration period.
+    if ($event->isRegistrationPeriodActive($this->requestDateTime)) {
+      // We invalidate this message every day at midnight.
+      $this->applyMidnightTag($build, $datetime_end);
+
+      // We invalidate this message when the registration period ends.
+      $this->applyHourTag($build, $datetime_end);
+    }
+
+    if ($event->hasRegistrationDates()) {
+      // If the request time is on the same day as the end day we need to
+      // show different message.
+      if ($this->isCurrentDay($datetime_end->getTimestamp())) {
+        $build['#description'] = $this->t('Book your seat, the registration will end today, @end_date', [
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+        ]);
+      }
+      else {
+        $date_diff_formatted = $this->dateFormatter->formatDiff($this->requestTime, $datetime_end->getTimestamp(), ['granularity' => 1]);
+        $build['#description'] = $this->t('Book your seat, @time_left left to register, registration will end on @end_date', [
+          '@time_left' => $date_diff_formatted,
+          '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
+        ]);
+      }
+    }
     return $build;
+  }
+
+  /**
+   * Add registration information disclosure script.
+   *
+   * {@inheritdoc}
+   */
+  protected function attachDisclosureScript(array &$build, int $timestamp): void {
+    $build['#attached'] = [
+      'library' => 'oe_theme_content_event/registration_link_disclosure',
+      'drupalSettings' => [
+        'oe_theme_content_event' => [
+          'registration_start_timestamp' => $timestamp * 1000,
+        ],
+      ],
+    ];
   }
 
 }

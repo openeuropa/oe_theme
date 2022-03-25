@@ -19,7 +19,7 @@ use Drupal\oe_content_event\EventNodeWrapper;
  *   visible = true
  * )
  */
-class LivestreamExtraField extends InfoDisclosureExtraFieldBase {
+class LivestreamExtraField extends OnlineDescriptionExtraField {
 
   /**
    * {@inheritdoc}
@@ -58,7 +58,7 @@ class LivestreamExtraField extends InfoDisclosureExtraFieldBase {
       if ($this->isCurrentDay($event->getOnlineStartDate()->getTimestamp())) {
         $build += $link;
         $build['#hide_link'] = TRUE;
-        $this->attachLivestreamDisclosure($build, $event->getOnlineStartDate()->getTimestamp());
+        $this->attachDisclosureScript($build, $event->getOnlineStartDate()->getTimestamp());
       }
     }
     $build['#date'] = $this->t('Starts on @date', [

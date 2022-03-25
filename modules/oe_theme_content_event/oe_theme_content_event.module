@@ -21,6 +21,8 @@ function oe_theme_content_event_theme() {
         'label' => '',
         'url' => '',
         'description' => '',
+        'registration_day_description' => '',
+        'registration_day' => FALSE,
         'enabled' => FALSE,
         'show_button' => TRUE,
       ],
