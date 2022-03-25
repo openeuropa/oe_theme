@@ -2318,10 +2318,34 @@
       "div.ecl-card__image": 0
       'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-button__icon.ecl-button__icon--after': 1
     equals:
       'h1.ecl-card__title a': "Example title"
       'div.ecl-card__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
+      'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "extended"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+      external_link: true
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-card__title a.ecl-link--standalone[href="https://example.com"]': 1
+      'a.ecl-button[href="https://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': 1
+    equals:
+      'h1.ecl-card__title a': "Example title"
+      'div.ecl-card__description .ecl-paragraph': "Example description"
+      'a.ecl-button .ecl-button__label': "Link title"
+      'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': featured_item
