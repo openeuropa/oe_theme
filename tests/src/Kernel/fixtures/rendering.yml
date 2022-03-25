@@ -1881,8 +1881,10 @@
       links:
         - label: 'Link 1'
           url: 'http://link-1.com'
+          is_external: true
         - label: 'Link 2'
           url: 'http://link-2.com'
+          is_external: true
         - label: 'Link 3'
           url: 'http://link-3.com'
   assertions:
@@ -1892,10 +1894,13 @@
       'a.ecl-link-block__link[href="http://link-1.com"]': 1
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="http://link-3.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': 2
     equals:
       '.ecl-link-block__title h5': "Link block title"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link .ecl-link__label': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link .ecl-link__label': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - array:
     '#type': pattern
