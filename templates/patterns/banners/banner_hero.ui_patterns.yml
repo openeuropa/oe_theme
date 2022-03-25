@@ -66,5 +66,5 @@ banner_hero:
     external_link:
       type: "boolean"
       label: "External link"
-      description: "Whether the URL of the item is external or not."
+      description: "Whether the banner link is external or not."
       preview: false
