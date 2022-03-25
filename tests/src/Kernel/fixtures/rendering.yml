@@ -2598,12 +2598,14 @@
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
     equals:
       'div.ecl-featured-item__heading': "Heading"
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2616,7 +2618,7 @@
       text: "Some more text"
       link:
         label: "Call to action"
-        path: "http://example.com"
+        path: "https://european-union.europa.eu/index_en"
       highlighted: true
   assertions:
     count:
@@ -2630,12 +2632,14 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
-      'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
     equals:
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
