@@ -63,7 +63,7 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testTimeSensitiveFieldsDisplay(): void {
-    $static_time = new DrupalDateTime('now', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('now', DateTimeItemInterface::STORAGE_TIMEZONE);
     $start_date = (clone $static_time)->modify('+10 days');
     // Create an Event node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */

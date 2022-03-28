@@ -803,14 +803,14 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $session3->set('oe_event_programme_dates', [
       'value' => '2019-11-15T11:00:00',
       'end_value' => '2019-11-15T15:00:00',
-      'timezone' => 'Europe/Brussels',
+      'timezone' => 'UTC',
     ]);
     $session3->save();
 
     $session1->set('oe_event_programme_dates', [
       'value' => '2019-11-15T22:00:00',
       'end_value' => '2019-11-15T23:00:00',
-      'timezone' => 'Europe/Brussels',
+      'timezone' => 'UTC',
     ]);
     $session1->save();
     $this->drupalGet($node->toUrl());
@@ -840,20 +840,20 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $session3->set('oe_event_programme_dates', [
       'value' => '2019-11-14T21:00:00',
       'end_value' => '2019-11-14T22:00:00',
-      'timezone' => 'Europe/Brussels',
+      'timezone' => 'UTC',
     ]);
     $session3->save();
 
     $session1->set('oe_event_programme_dates', [
       'value' => '2019-11-14T22:15:00',
       'end_value' => '2019-11-14T23:15:00',
-      'timezone' => 'Europe/Brussels',
+      'timezone' => 'UTC',
     ]);
     $session1->save();
     $session2->set('oe_event_programme_dates', [
       'value' => '2019-11-15T22:00:00',
       'end_value' => '2019-11-15T23:00:00',
-      'timezone' => 'Europe/Brussels',
+      'timezone' => 'UTC',
     ]);
     $session2->save();
     $this->drupalGet($node->toUrl());
