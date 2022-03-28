@@ -433,7 +433,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'field_oe_title' => 'Banner',
       'field_oe_text' => 'Description',
       'field_oe_link' => [
-        'uri' => 'http://www.example.com/',
+        'uri' => 'https://european-union.europa.eu/index_en',
         'title' => 'Example',
       ],
       'field_oe_media' => [
@@ -461,6 +461,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-hero-banner__content p.ecl-hero-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html());
     $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-hero-banner--full-width'));
 
@@ -476,6 +477,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Variant - image / Modifier - hero_left / Full width - No.
     $paragraph->get('field_oe_banner_type')->setValue('hero_left');
+    $paragraph->set('field_oe_link', [
+      'uri' => 'https://example.com',
+      'title' => 'Example',
+    ]);
     $paragraph->save();
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -489,6 +494,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     $this->assertCount(0, $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html());
 
     // Publish the media.
     $media->set('status', 1);

@@ -213,9 +213,11 @@ function oe_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $
 function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void {
   // Massage data to be compliant with ECL links block component data structure.
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
+    $url = $variables['content']['field_oe_links'][$index]['#url'];
     $variables['links'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'url' => $variables['content']['field_oe_links'][$index]['#url'],
+      'url' => $url,
+      'is_external' => ($url->isExternal() && !str_contains($url->getUri(), 'europa.eu')),
     ];
   }
 }
@@ -1496,7 +1498,9 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $link = $paragraph->get('field_oe_link')->first();
     $variables['url'] = $link->getUrl();
     $variables['label'] = $link->get('title')->getValue();
-    ;
+    if ($link->getUrl()->isExternal() && !str_contains($link->getUrl()->getUri(), 'europa.eu')) {
+      $variables['external_link'] = TRUE;
+    }
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
