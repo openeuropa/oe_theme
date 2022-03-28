@@ -151,6 +151,11 @@ function oe_theme_content_event_post_update_30004(): void {
   ];
   foreach ($date_formats as $date_format_name) {
     $config = $storage->read($date_format_name);
+    $date_format = DateFormat::load($config['id']);
+    // If the date format already exists, we skip it.
+    if ($date_format) {
+      continue;
+    }
     $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
     $date_format = DateFormat::create($config);
     $date_format->save();
