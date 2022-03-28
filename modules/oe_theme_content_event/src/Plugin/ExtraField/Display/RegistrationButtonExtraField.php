@@ -73,7 +73,7 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
 
       // If the request time is on the same day as the start day we need to
       // show different message.
-      if ($this->isCurrentDay($datetime_start->getTimestamp())) {
+      if ($this->isCurrentDay($datetime_start->getTimestamp(), $event->getRegistrationTimezone())) {
         $build['#registration_day_description'] = $this->t('Registration will open today, @start_date.', [
           '@start_date' => $this->dateFormatter->format($datetime_start->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);
@@ -103,7 +103,7 @@ class RegistrationButtonExtraField extends InfoDisclosureExtraFieldBase {
     if ($event->hasRegistrationDates()) {
       // If the request time is on the same day as the end day we need to
       // show different message.
-      if ($this->isCurrentDay($datetime_end->getTimestamp())) {
+      if ($this->isCurrentDay($datetime_end->getTimestamp(), $event->getRegistrationTimezone())) {
         $build['#description'] = $this->t('Book your seat, the registration will end today, @end_date', [
           '@end_date' => $this->dateFormatter->format($datetime_end->getTimestamp(), 'oe_event_date_hour_timezone', '', $event->getRegistrationTimezone()),
         ]);

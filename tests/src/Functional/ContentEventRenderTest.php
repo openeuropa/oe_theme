@@ -567,7 +567,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonEnabled($registration_content, 'Register here', 'http://www.example.com/registation');
-    $this->assertEquals('Book your seat, 2 hours left to register, registration will end on 21 February 2020, 15:00 CET', $registration_info_content->getText());
+    $this->assertEquals('Book your seat, the registration will end today, 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field in the past.
     $static_time = new DrupalDateTime('2020-02-24 13:00:00', 'Europe/Brussels');

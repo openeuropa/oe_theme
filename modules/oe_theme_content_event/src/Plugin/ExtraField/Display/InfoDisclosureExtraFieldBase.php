@@ -65,13 +65,15 @@ abstract class InfoDisclosureExtraFieldBase extends DateAwareExtraFieldBase {
    *
    * @param int $timestamp
    *   The timestamp of start date.
+   * @param string|null $timezone
+   *   The timezone id.
    *
    * @return bool
    *   True if timestamp is within current day.
    */
-  protected function isCurrentDay(int $timestamp): bool {
-    $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd');
-    $start_day = $this->dateFormatter->format($timestamp, 'custom', 'Ymd');
+  protected function isCurrentDay(int $timestamp, string $timezone = NULL): bool {
+    $current_date = $this->dateFormatter->format($this->requestDateTime->getTimestamp(), 'custom', 'Ymd', $timezone);
+    $start_day = $this->dateFormatter->format($timestamp, 'custom', 'Ymd', $timezone);
     return $current_date === $start_day;
   }
 
