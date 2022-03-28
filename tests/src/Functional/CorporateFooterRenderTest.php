@@ -817,6 +817,25 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
+    // Update the link with europa.eu path, so the external icon won't be
+    // present.
+    $this->updateGeneralLink('custom-link-1', [
+      'label' => 'Custom link altered',
+      'url' => 'http://ec.europa.eu/info',
+    ]);
+    $this->drupalGet('<front>');
+
+    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
+    $expected = [
+      'label' => 'Custom link altered',
+      'href' => 'http://ec.europa.eu/info',
+    ];
+    $this->assertListLink($actual, 'standardised', $expected);
+    // We should not have any icon present.
+    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
+
     // Assert deleting sections in backend is reflected in the footer.
     $this->deleteEntity('footer_link_section', 'about_us');
     $this->deleteEntity('footer_link_section', 'contact_us');
