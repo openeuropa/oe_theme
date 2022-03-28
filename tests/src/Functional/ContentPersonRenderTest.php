@@ -150,7 +150,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Departments',
-          'body' => 'Audit Board of the European Communities | Arab Common Market',
+          'body' => 'Audit Board of the European Communities, Arab Common Market',
         ],
       ],
     ];
