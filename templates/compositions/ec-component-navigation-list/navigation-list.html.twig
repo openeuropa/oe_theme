@@ -17,13 +17,23 @@
 <div class="ecl-u-mv-l">
   <h2 class="ecl-u-ma-none ecl-u-type-prolonged-xl ecl-u-type-bold">
     {% if title_url %}
-      {% include '@ecl-twig/link' with {
+      {% set _link = {
         'link': {
           'type': 'standalone',
           'label': title,
           'path': title_url
         }
-      } only %}
+      } %}
+      {% if external_link %}
+        {% set _link = _link|merge({
+          icon: {
+            'path': icon_path,
+            'name': 'external',
+            'size': 's',
+          }
+        }) %}
+      {% endif %}
+      {% include '@ecl-twig/link' with _link only %}
     {% else %}
       {{ title }}
     {% endif %}
@@ -38,7 +48,23 @@
       {% for link in links %}
         <li class="ecl-unordered-list__item">
           {% if link.link.path %}
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% set _link = {
+              'link': {
+                'type': 'standalone',
+                'label': link.link.label,
+                'path': link.link.path
+              }
+            } %}
+            {% if link.link.is_external %}
+              {% set _link = _link|merge({
+                icon: {
+                  'path': icon_path,
+                  'name': 'external',
+                  'size': 'xs',
+                }
+              }) %}
+            {% endif %}
+            {% include '@ecl-twig/link' with _link only %}
           {% else %}
             {{ link.link.label }}
           {% endif %}
@@ -51,7 +77,27 @@
       <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
         {% for link in secondary_links %}
           <li class="ecl-unordered-list__item">
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% if link.link.path %}
+              {% set _link = {
+                'link': {
+                  'type': 'standalone',
+                  'label': link.link.label,
+                  'path': link.link.path
+                }
+              } %}
+              {% if link.link.is_external %}
+                {% set _link = _link|merge({
+                  icon: {
+                    'path': icon_path,
+                    'name': 'external',
+                    'size': 'xs',
+                  }
+                }) %}
+              {% endif %}
+              {% include '@ecl-twig/link' with _link only %}
+            {% else %}
+              {{ link.link.label }}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>

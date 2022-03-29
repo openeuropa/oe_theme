@@ -1320,6 +1320,7 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
       button_url: "http://example.com"
+      external_link: true
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
@@ -1333,13 +1334,13 @@
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
-      'div.ecl-content-item-block__button a.ecl-link-icon': 0
-      'div.ecl-content-item-block__button a.ecl-link--standalone svg': 0
+      'div.ecl-content-item-block__button a.ecl-link--icon.ecl-link--standalone svg': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1352,6 +1353,9 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
       button_url: "http://example.com"
+      button_icon_position: 'before'
+      button_icon_name: 'list'
+      external_link: true
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
@@ -1365,11 +1369,12 @@
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
-      'div.ecl-content-item-block__button a.ecl-link--standalone svg': 0
+      'div.ecl-content-item-block__button a.ecl-link--standalone.ecl-link--icon-after svg': 1
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1381,6 +1386,11 @@
           '#fields':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+      external_link: false
+      button_icon_name: 'list'
+      button_icon_position: 'before'
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
@@ -1392,12 +1402,15 @@
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
       'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
-      'div.ecl-content-item-block__button': 0
-      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__button': 1
+      'div.ecl-content-item-block__button a.ecl-link--standalone.ecl-link--icon-before svg': 1
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column

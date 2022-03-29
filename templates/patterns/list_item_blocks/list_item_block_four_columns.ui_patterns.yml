@@ -71,4 +71,9 @@ list_item_block_four_columns:
       type: "text"
       label: "Icon position"
       description: "The position of the icon"
-      preview: 'after'
+      preview: 'before'
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the Button URL is external or not."
+      preview: false

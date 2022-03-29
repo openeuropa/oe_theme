@@ -404,6 +404,13 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($this->renderParagraph($paragraph));
     $this->assertEquals('List block title', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
+    // Assert that the external icon is rendered for each list item paragraph.
+    $this->assertCount(3, $crawler->filter('svg.ecl-icon.ecl-icon--s.ecl-link__icon'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--s.ecl-link__icon')->html());
+
+    // Assert the external icon is rendered for the list item block.
+    $this->assertCount(1, $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html());
 
     // Verify that the referenced paragraphs are being rendered.
     $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item'));

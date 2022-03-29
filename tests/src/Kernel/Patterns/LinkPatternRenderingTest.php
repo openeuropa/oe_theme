@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel\Patterns;
 
 use Drupal\Core\Url;
 use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Test link pattern rendering.
@@ -15,7 +16,7 @@ use Drupal\Tests\oe_theme\Kernel\AbstractKernelTestBase;
 class LinkPatternRenderingTest extends AbstractKernelTestBase {
 
   /**
-   * Test that link patterns are correctly rendered when passing an URL object.
+   * Test that link patterns are correctly rendered when passing a URL object.
    *
    * @throws \Exception
    */
@@ -25,16 +26,36 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
       '#id' => 'link',
       '#fields' => [
         'text' => 'Link text',
-        'url' => Url::fromUserInput('/', [
+        'url' => Url::fromUserInput('/example.com', [
           'attributes' => [
             'class' => ['foo'],
+            'foo' => 'bar',
           ],
         ]),
       ],
     ];
 
     $html = $this->renderRoot($pattern);
-    $this->assertEquals('<a href="/" class="foo ecl-link ecl-link--standalone">Link text</a>', trim($html));
+    $crawler = new Crawler($html);
+    $this->assertEquals('Link text', $crawler->filter('a.ecl-link.ecl-link--standalone.foo')->text());
+    $this->assertEquals('/example.com', $crawler->filter('a.ecl-link.ecl-link--standalone.foo')->attr('href'));
+    $this->assertEquals('bar', $crawler->filter('a.ecl-link.ecl-link--standalone.foo')->attr('foo'));
+
+    $pattern = [
+      '#type' => 'pattern',
+      '#id' => 'link',
+      '#fields' => [
+        'text' => 'Link text',
+        'url' => Url::fromUserInput('/example.com'),
+        'external_link' => TRUE,
+      ],
+    ];
+
+    $html = $this->renderRoot($pattern);
+    $crawler = new Crawler($html);
+    $this->assertEquals('Link text', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text());
+    $this->assertEquals('/example.com', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after')->attr('href'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--s.ecl-link__icon')->html());
   }
 
 }

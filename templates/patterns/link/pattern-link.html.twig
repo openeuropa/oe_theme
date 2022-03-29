@@ -4,4 +4,24 @@
  * Link pattern.
  */
 #}
-{{ link(text, url, attributes) }}
+{% set _link = {
+  link: {
+    type: variant|default('standalone'),
+    label: text,
+    path: url,
+  },
+  extra_attributes: extra_attributes,
+  extra_classes: classes
+} %}
+{% if external_link %}
+  {% set _link = _link|merge({
+    icon: {
+      'path': ecl_icon_path,
+      'name': 'external',
+      'size': 's',
+    }
+  }) %}
+{% endif %}
+{% apply spaceless %}
+  {%- include '@ecl-twig/link' with _link only -%}
+{% endapply %}

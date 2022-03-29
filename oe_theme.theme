@@ -806,7 +806,11 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   $variables['variant'] = $list_item_variant ?? 'default';
-  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
+  $url = $paragraph->get('field_oe_link')->first()->getUrl();
+  $variables['url'] = $url;
+  if ($url->isExternal() && !strpos(UrlHelper::parse($url->toString())['path'], 'europa.eu')) {
+    $variables['external_link'] = TRUE;
+  }
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
@@ -869,8 +873,12 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
   $link_item = $paragraph->get('field_oe_link')->first();
-  $variables['button_url'] = $link_item->getUrl();
+  $url = $link_item->getUrl();
+  $variables['button_url'] = $url;
   $variables['button_label'] = $link_item->get('title')->getValue();
+  if ($url->isExternal() && !strpos(UrlHelper::parse($url->toString())['path'], 'europa.eu')) {
+    $variables['external_link'] = TRUE;
+  }
 }
 
 /**
@@ -1417,11 +1425,17 @@ function oe_theme_preprocess_pattern_link(array &$variables): void {
   // Extract attributes from the URL object and set them as default.
   if ($variables['url'] instanceof Url) {
     $attributes = (array) $variables['url']->getOption('attributes');
+    if (isset($attributes['class'])) {
+      $variables['classes'] = implode(' ', $attributes['class']);
+      unset($attributes['class']);
+    }
+    foreach ($attributes as $name => $value) {
+      $variables['extra_attributes'][] = [
+        'name' => $name,
+        'value' => $value,
+      ];
+    }
   }
-
-  // Add ECL link classes to attributes.
-  $variables['attributes'] = new Attribute($attributes);
-  $variables['attributes']->addClass('ecl-link', 'ecl-link--' . $variables['variant']);
 }
 
 /**
