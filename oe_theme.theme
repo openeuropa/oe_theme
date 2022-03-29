@@ -217,7 +217,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
     $variables['links'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
       'url' => $url,
-      'is_external' => ($url->isExternal() && !str_contains($url->getUri(), 'europa.eu')),
+      'is_external' => ($url->isExternal() && !strpos(UrlHelper::parse($url->toString())['path'], 'europa.eu')),
     ];
   }
 }
@@ -1496,9 +1496,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $link = $paragraph->get('field_oe_link')->first();
-    $variables['url'] = $link->getUrl();
+    $url = $link->getUrl();
+    $variables['url'] = $url;
     $variables['label'] = $link->get('title')->getValue();
-    if ($link->getUrl()->isExternal() && !str_contains($link->getUrl()->getUri(), 'europa.eu')) {
+    if ($url->isExternal() && !strpos(UrlHelper::parse($url->toString())['path'], 'europa.eu')) {
       $variables['external_link'] = TRUE;
     }
   }

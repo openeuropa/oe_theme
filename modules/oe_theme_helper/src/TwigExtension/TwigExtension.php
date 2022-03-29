@@ -535,7 +535,7 @@ class TwigExtension extends AbstractExtension {
       'size' => $size,
       'color' => 'primary',
     ];
-    if (UrlHelper::isExternal($path) && !str_contains($path, 'europa.eu')) {
+    if (UrlHelper::isExternal($path) && !strpos(UrlHelper::parse($path)['path'], 'europa.eu')) {
       $icon['name'] = 'external';
     }
     else {
