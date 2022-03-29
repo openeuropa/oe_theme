@@ -127,10 +127,12 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -159,10 +161,12 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -203,10 +207,12 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $node->set('oe_event_online_dates', [
       'value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
       'value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());
@@ -230,10 +236,12 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     $node->set('oe_event_online_dates', [
       'value' => (clone $static_time)->modify('-4 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->set('oe_event_registration_dates', [
       'value' => (clone $static_time)->modify('-4 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $static_time)->modify('-1 hour')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
+      'timezone' => 'Europe/Brussels',
     ]);
     $node->save();
     $this->drupalGet($node->toUrl());

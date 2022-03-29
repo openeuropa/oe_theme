@@ -55,7 +55,7 @@ class LivestreamExtraField extends OnlineDescriptionExtraField {
     // render the date only.
     if ($event->isOnlinePeriodYetToCome($this->requestDateTime)) {
       $this->applyHourTag($build, $event->getOnlineStartDate());
-      if ($this->isCurrentDay($event->getOnlineStartDate()->getTimestamp())) {
+      if ($this->isCurrentDay($event->getOnlineStartDate()->getTimestamp(), $event->getOnlineTimezone())) {
         $build += $link;
         $build['#hide_link'] = TRUE;
         $this->attachDisclosureScript($build, $event->getOnlineStartDate()->getTimestamp());

@@ -45,7 +45,7 @@ class OnlineDescriptionExtraField extends OnlineDisplayExtraFieldBase {
       $this->applyHourTag($build, $event->getOnlineStartDate());
       // Do not send field value to browser if it is not yet day online
       // livestreaming should be started.
-      if (!$this->isCurrentDay($event->getOnlineStartDate()->getTimestamp())) {
+      if (!$this->isCurrentDay($event->getOnlineStartDate()->getTimestamp(), $event->getOnlineTimezone())) {
         $this->isEmpty = TRUE;
         return $build;
       }
