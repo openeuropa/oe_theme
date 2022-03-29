@@ -56,6 +56,17 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
   }
 
   /**
+   * {@inheritdoc}
+   *
+   * @todo Should be removed after Drupal 10.0.
+   */
+  protected function drupalGet($path, array $options = [], array $headers = []) {
+    $out = parent::drupalGet($path, $options, $headers);
+    $this->failOnJavascriptErrors();
+    return $out;
+  }
+
+  /**
    * Tests that ECL auto init is invoked and applied correctly.
    */
   public function testEclAutoInit(): void {
