@@ -219,7 +219,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    */
   public function testContextNavPattern(): void {
     $this->drupalGet('/oe_theme_js_test/ui_patterns/context_nav');
-    $this->failOnJavascriptErrors();
     $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
     $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));
 
