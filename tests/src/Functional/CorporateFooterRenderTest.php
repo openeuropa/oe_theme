@@ -339,7 +339,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'standardised', $expected);
     }
 
-    // Add a few custom footer links, one by one to assert section distribution.
+    // Add a few custom footer links, one by one to assert section distripution.
     $this->createGeneralLink('Custom contact 1', 'contact_us');
     $this->drupalGet('<front>');
 
@@ -356,10 +356,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external svg icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $assert->elementNotExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3) div.ecl-footer-standardised__section:nth-child(1)');
 
@@ -378,10 +375,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
@@ -394,10 +388,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Add one more, assert odd goes into column 2, even goes into column 3.
     $this->createGeneralLink('Custom related 1', 'related_sites');
@@ -414,10 +405,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -429,10 +417,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
@@ -445,10 +430,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Add the follow us, assert it goes last, into the centre column.
     // We have 3 sub-sections plus follow, distribution should be 2 and 2.
@@ -467,10 +449,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -506,10 +485,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert previous last in section 2 moved to the right into section 3.
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
@@ -522,10 +498,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert adding a custom section in backend appears,
     // and is placed in the footer on the right column.
@@ -544,10 +517,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Since we have an even number there is no switch,
     // assert Related is back in section 2.
@@ -561,10 +531,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Here we assert Follow us is still on the left in section 2.
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $column);
@@ -601,10 +568,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -616,10 +580,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom link 1',
       'href' => 'http://example.com/custom-link-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert updating a general link also changes the footer content.
     $this->updateGeneralLink('custom-link-1', [
@@ -639,32 +600,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom link altered',
       'href' => 'http://example.com/custom-link-altered',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
-
-    // Update the link with local path, so the external icon won't be present.
-    $this->updateGeneralLink('custom-link-1', [
-      'label' => 'Custom link altered',
-      'url' => '<front>',
-    ]);
-    $this->drupalGet('<front>');
-
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
-
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
-    $this->assertEquals('Section 1', $actual->getText());
-
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = [
-      'label' => 'Custom link altered',
-      'href' => '/build/',
-    ];
     $this->assertListLink($actual, 'standardised', $expected);
-    // We should not have any icon present.
-    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     // Assert updating a section also changes the footer content.
     $this->updateSection('section_1', [
@@ -699,10 +635,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -714,10 +647,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom about 1',
       'href' => 'http://example.com/custom-about-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $column);
 
@@ -751,11 +681,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
-      'href' => '/build/',
+      'href' => 'http://example.com/custom-link-altered',
     ];
     $this->assertListLink($actual, 'standardised', $expected);
-    // We should not have any icon present.
-    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -767,10 +695,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom related 1',
       'href' => 'http://example.com/custom-related-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     // Assert deleting links removes the section.
     $this->deleteEntity('footer_link_general', 'custom-about-1');
@@ -787,10 +712,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'label' => 'Custom contact 1',
       'href' => 'http://example.com/custom-contact-1',
     ];
-    $this->assertListLink($actual, 'standardised', $expected, TRUE);
-    // We should have the external icon present.
-    $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
-    $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
+    $this->assertListLink($actual, 'standardised', $expected);
 
     $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
 
@@ -816,25 +738,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       'icon_name' => 'instagram-negative',
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
-
-    // Update the link with europa.eu path, so the external icon won't be
-    // present.
-    $this->updateGeneralLink('custom-link-1', [
-      'label' => 'Custom link altered',
-      'url' => 'http://ec.europa.eu/info',
-    ]);
-    $this->drupalGet('<front>');
-
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
-    $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = [
-      'label' => 'Custom link altered',
-      'href' => 'http://ec.europa.eu/info',
-    ];
-    $this->assertListLink($actual, 'standardised', $expected);
-    // We should not have any icon present.
-    $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
     // Assert deleting sections in backend is reflected in the footer.
     $this->deleteEntity('footer_link_section', 'about_us');
@@ -899,14 +802,11 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   Ecl branding, core/standardised.
    * @param array $expected
    *   The expected data.
-   * @param bool $icon
-   *   If the link should have an icon, defaults to FALSE.
    */
-  protected function assertListLink(NodeElement $actual, string $branding, array $expected, bool $icon = FALSE): void {
+  protected function assertListLink(NodeElement $actual, string $branding, array $expected): void {
     $this->assertEquals($expected['label'], $actual->getText());
     $this->assertEquals($expected['href'], $actual->getAttribute('href'));
-    $icon_class = $icon ? 'ecl-link--icon ecl-link--icon-after ' : '';
-    $this->assertEquals("ecl-link ecl-link--standalone {$icon_class}ecl-footer-{$branding}__link", $actual->getAttribute('class'));
+    $this->assertEquals("ecl-link ecl-link--standalone ecl-footer-{$branding}__link", $actual->getAttribute('class'));
   }
 
   /**
@@ -968,7 +868,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    */
   protected function createGeneralLink(string $label, string $section = ''): void {
     $id = Html::getId($label);
-    \Drupal::entityTypeManager()->getStorage('footer_link_general')->create([
+    $link = \Drupal::entityTypeManager()->getStorage('footer_link_general')->create([
       'id' => $id,
       'label' => $label,
       'url' => 'http://example.com/' . $id,
@@ -1005,7 +905,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    */
   protected function createSocialLink(string $label, string $network): void {
     $id = Html::getId($label);
-    \Drupal::entityTypeManager()->getStorage('footer_link_social')->create([
+    $link = \Drupal::entityTypeManager()->getStorage('footer_link_social')->create([
       'id' => $id,
       'label' => $label,
       'url' => 'http://example.com/' . $id,
@@ -1023,7 +923,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   The section label.
    */
   protected function createSection(string $id, string $label): void {
-    \Drupal::entityTypeManager()->getStorage('footer_link_section')->create([
+    $section = \Drupal::entityTypeManager()->getStorage('footer_link_section')->create([
       'id' => $id,
       'label' => $label,
       'weight' => 0,
