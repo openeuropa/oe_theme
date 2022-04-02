@@ -1973,14 +1973,17 @@
       items:
         - href: "http://link-1.com"
           label: "Item one"
+          is_external: true
         - href: "http://link-2.com"
           label: "Item two"
         - href: "http://link-3.com"
           label: "Item three"
+          is_external: true
         - href: "http://link-4.com"
           label: "Item four"
         - href: "http://link-5.com"
           label: "Item five"
+          is_external: true
       limit: 4
       more_label: "More label"
   assertions:
@@ -1988,12 +1991,16 @@
       'li.ecl-contextual-navigation__item': 6
       'li.ecl-contextual-navigation__item--collapsed': 1
       'li.ecl-contextual-navigation__item--more': 1
+      'span.ecl-link__label': 3
     equals:
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"]': "Item one"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] span.ecl-link__label': "Item one"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-2.com"]': "Item two"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"]': "Item three"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] span.ecl-link__label': "Item three"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"]': "Item five"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - array:

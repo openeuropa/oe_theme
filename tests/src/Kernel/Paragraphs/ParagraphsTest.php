@@ -539,6 +539,14 @@ class ParagraphsTest extends ParagraphsTestBase {
           'title' => 'Link 2',
           'uri' => 'http://example.com/page-two',
         ],
+        [
+          'title' => 'Internal link under eu domain',
+          'uri' => 'http://ec.europa.eu/info',
+        ],
+        [
+          'title' => 'Internal link',
+          'uri' => 'internal:/',
+        ],
       ],
       'field_oe_limit' => 1,
       'field_oe_text' => 'More links',
@@ -552,19 +560,35 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Contextual navigation', trim($actual));
 
     $link1 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(0);
-    $actual = $link1->text();
+    $actual = $link1->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 1', trim($actual));
     $actual = $link1->attr('href');
     $this->assertEquals('http://example.com/page-one', trim($actual));
+    $icon = $link1->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html();
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon);
 
     $link2 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(1);
-    $actual = $link2->text();
+    $actual = $link2->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 2', trim($actual));
     $actual = $link2->attr('href');
     $this->assertEquals('http://example.com/page-two', trim($actual));
+    $icon = $link2->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html();
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon);
 
     $actual = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list li.ecl-contextual-navigation__item--collapsed a.ecl-contextual-navigation__link')->eq(0)->text();
     $this->assertEquals('Link 2', trim($actual));
+
+    $link3 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(2);
+    $actual = $link3->text();
+    $this->assertEquals('Internal link under eu domain', trim($actual));
+    $actual = $link3->attr('href');
+    $this->assertEquals('http://ec.europa.eu/info', trim($actual));
+
+    $link4 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(3);
+    $actual = $link4->text();
+    $this->assertEquals('Internal link', trim($actual));
+    $actual = $link4->attr('href');
+    $this->assertEquals('/', trim($actual));
 
     $actual = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list button.ecl-contextual-navigation__more')->text();
     $this->assertEquals('More links', trim($actual));
