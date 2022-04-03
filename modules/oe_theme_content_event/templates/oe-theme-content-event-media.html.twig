@@ -22,7 +22,15 @@
         'size': 's',
       }
     } %}
-    {% include '@ecl-twig/link' with _link only %}
+    {% include '@ecl-twig/link' with {
+      link: {
+        type: 'standalone',
+        label: items.media_more_link.title,
+        path: items.media_more_link.url,
+        icon_position: 'after'
+      },
+      icon: get_link_icon(items.media_more_link.url.toString())
+    } %}
   {% endif %}
   {% if items.media_more_description %}
     <div class="ecl">

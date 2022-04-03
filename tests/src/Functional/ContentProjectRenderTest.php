@@ -377,10 +377,10 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('horizontal', $field_list_html);
 
     // Assert contact link.
-    $contact_links = $rendered_stakeholder_element->findAll('css', '.ecl-link');
+    $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link');
     $this->assertCount(1, $contact_links);
     $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
-    $contact_link_labels = $rendered_stakeholder_element->findAll('css', '.ecl-link__label');
+    $contact_link_labels = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold span.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
   }
