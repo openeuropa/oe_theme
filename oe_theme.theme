@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -1426,6 +1427,7 @@ function oe_theme_preprocess_pattern_link(array &$variables): void {
 
   // Extract attributes from the URL object and set them as default.
   if ($variables['url'] instanceof Url) {
+    $variables['external_link'] = ($variables['url']->isExternal() && !strpos(UrlHelper::parse($variables['url']->toString())['path'], 'europa.eu'));
     $attributes = (array) $variables['url']->getOption('attributes');
     if (isset($attributes['class'])) {
       $variables['classes'] = implode(' ', $attributes['class']);

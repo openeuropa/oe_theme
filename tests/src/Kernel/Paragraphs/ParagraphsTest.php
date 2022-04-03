@@ -583,12 +583,14 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Internal link under eu domain', trim($actual));
     $actual = $link3->attr('href');
     $this->assertEquals('http://ec.europa.eu/info', trim($actual));
+    $this->assertCount(0, $link3->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
 
     $link4 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(3);
     $actual = $link4->text();
     $this->assertEquals('Internal link', trim($actual));
     $actual = $link4->attr('href');
     $this->assertEquals('/', trim($actual));
+    $this->assertCount(0, $link4->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
 
     $actual = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list button.ecl-contextual-navigation__more')->text();
     $this->assertEquals('More links', trim($actual));
