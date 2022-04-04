@@ -7,11 +7,23 @@
 <div id="event-registration-block">
   {% if show_button %}
     {% if registration_day %}
-      <a href="{{ url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta{% if not enabled %} ecl-u-d-none{% else %} ecl-u-d-inline-block{% endif %}" data-registration-active-element="true">{{ label }}</a>
+      <span class="ecl-u-mt-2xl{% if not enabled %} ecl-u-d-none{% else %} ecl-u-d-inline-block{% endif %}" data-registration-active-element="true">
+        {{ pattern('link', {
+          variant: 'cta',
+          text: label,
+          url: url
+        }) }}
+      </span>
       <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta{% if enabled %} ecl-u-d-none{% endif %}" disabled="" data-registration-upcoming-element="true">{{ label }}</button>
     {% else %}
       {% if enabled %}
-        <a href="{{ url }}" class="ecl-u-mt-2xl ecl-link ecl-link--cta ecl-u-d-inline-block">{{ label }}</a>
+        <span class="ecl-u-mt-2xl ecl-u-d-inline-block">
+          {{ pattern('link', {
+            variant: 'cta',
+            text: label,
+            url: url
+          }) }}
+        </span>
       {% else %}
         <button type="submit" class="ecl-button ecl-button--call ecl-u-mt-2xl ecl-link ecl-link--cta" disabled="">{{ label }}</button>
       {% endif %}
