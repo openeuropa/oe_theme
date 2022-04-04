@@ -11,35 +11,35 @@
  */
 #}
 
-{% set _row = [
-  [
-    {
-      'title': {
-        'link': {
-          'label': corporate_footer.corporate_site_link.label,
-          'path': corporate_footer.corporate_site_link.href,
-        },
-      },
-      'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+{% set _first_column = [
+  {
+    'title': {
+    'link': {
+      'label': corporate_footer.corporate_site_link.label,
+      'path': corporate_footer.corporate_site_link.href,
     },
-  ],
-  [
-    {
-      'content_before': 'More information on:'|t,
-      'links': ecl_footer_links(corporate_footer.class_navigation),
-      'links_columns': true,
-      'section_with_separator': true,
-    },
-    {
-      'links': ecl_footer_links(corporate_footer.service_navigation),
-    },
-    {
-      'links': ecl_footer_links(corporate_footer.legal_navigation),
-    },
-  ]
+  },
+    'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+  },
+] %}
+{% set _second_column = [
+  {
+    'content_before': 'More information on:'|t,
+    'links': ecl_footer_links(corporate_footer.class_navigation),
+    'links_columns': true,
+    'section_with_separator': true,
+  },
+  {
+    'links': ecl_footer_links(corporate_footer.service_navigation),
+  },
+  {
+    'links': ecl_footer_links(corporate_footer.legal_navigation),
+  },
 ]
- %}
+%}
 
-{% include '@ecl-twig/footer-core' with {
-  'rows': [_row],
-} %}
+{% block content %}
+  {% include '@ecl-twig/footer-core' with {
+    'rows': [[_first_column, _second_column]],
+  } %}
+{% endblock %}
