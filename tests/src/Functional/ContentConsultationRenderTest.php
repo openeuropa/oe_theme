@@ -554,8 +554,11 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
+    $icon = $respond_button->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-90.ecl-icon--primary.ecl-link__icon');
+    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>', $icon->getHtml());
     $this->assertEquals('Respond to the questionnaire', $respond_button->getText());
-    // Add a link to respond button and assert default label.
+    // Add a link with title to respond button and assert the label is updated
+    // and the external icon is rendered.
     $node->set('oe_consultation_response_button', [
       'uri' => 'https://example.com',
       'title' => 'Link text',
@@ -563,6 +566,8 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
     $this->assertEquals('Link text', $respond_button->getText());
+    $icon = $respond_button->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon->getHtml());
 
     // Assert status "Closed".
     $static_time = new DrupalDateTime('2020-04-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
