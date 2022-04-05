@@ -12,3 +12,10 @@ blockquote:
       label: "Author"
       description: "Quote author"
       preview: "Lorem ipsum"
+    image:
+      type: "array"
+      label: "Image"
+      description: "Blockquote image"
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for featured item image"
