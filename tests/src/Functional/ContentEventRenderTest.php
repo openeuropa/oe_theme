@@ -175,7 +175,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    */
   public function testEventRendering(): void {
     // Freeze the time at a specific point.
-    $static_time = new DrupalDateTime('2020-02-17 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $start_date = (clone $static_time)->modify('+ 10 days');
 
@@ -542,7 +542,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Registration date" field when registration will start today in
     // one hour.
-    $static_time = new DrupalDateTime('2020-02-18 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-18 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -551,7 +551,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Registration will open today, 18 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration is in progress.
-    $static_time = new DrupalDateTime('2020-02-20 15:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -561,7 +561,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Registration date" field when registration will finish today in
     // one hour.
-    $static_time = new DrupalDateTime('2020-02-21 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-21 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -570,7 +570,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Book your seat, the registration will end today, 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field in the past.
-    $static_time = new DrupalDateTime('2020-02-24 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-24 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -580,7 +580,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Report text" and "Summary for report" fields when event is
     // finished.
-    $static_time = new DrupalDateTime('2020-04-15 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -1005,21 +1005,21 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($status_container->find('css', 'div.ecl-message__content div.ecl-message__title'));
 
     // Event is ongoing, but livestream is not.
-    $static_time = new DrupalDateTime('2020-04-17 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
     // Event is ongoing and livestream also.
-    $static_time = new DrupalDateTime('2020-04-18 20:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-18 20:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
     // Event is ongoing but livestream is finished.
-    $static_time = new DrupalDateTime('2020-04-20 22:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-20 22:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -1062,7 +1062,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
 
     // Set current time after the event ends.
-    $static_time = new DrupalDateTime('2020-05-15 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
