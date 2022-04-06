@@ -332,7 +332,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
 
     $info_expected_values['items'][1] = [
       'label' => 'Departments',
-      'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+      'body' => 'Audit Board of the European Communities, Associated African States and Madagascar',
     ];
     $field_list_assert->assertPattern($info_expected_values, $info_field_group->getHtml());
 

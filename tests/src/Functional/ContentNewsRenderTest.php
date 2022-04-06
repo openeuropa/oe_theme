@@ -173,7 +173,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     $details_expected_values['items'][3]['label'] = 'Departments';
-    $details_expected_values['items'][3]['body'] = 'Associated African States and Madagascar | Audit Board of the European Communities';
+    $details_expected_values['items'][3]['body'] = 'Associated African States and Madagascar, Audit Board of the European Communities';
     $details_html = $details->getHtml();
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 

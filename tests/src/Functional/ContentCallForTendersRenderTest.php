@@ -254,7 +254,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 
     $details_expected_values['items'][5] = [
       'label' => 'Departments',
-      'body' => 'Audit Board of the European Communities | Associated African States and Madagascar',
+      'body' => 'Audit Board of the European Communities, Associated African States and Madagascar',
     ];
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
 

@@ -91,39 +91,45 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
       return [];
     }
 
-    $pattern = [
-      '#type' => 'pattern',
-      '#id' => 'field_list',
-      '#variant' => 'horizontal',
-      '#fields' => [
-        'items' => [],
-      ],
-    ];
-
-    $cacheable_metadata = CacheableMetadata::createFromRenderArray($pattern);
+    $cacheable_metadata = new CacheableMetadata();
     $cacheable_metadata->addCacheableDependency($entity);
-
+    $job_list = [
+      '#theme' => 'oe_theme_content_person_job_list',
+      '#items' => [],
+    ];
     // Prepare person jobs to be shown in the field list pattern.
     $view_builder = $this->entityTypeManager->getViewBuilder('oe_person_job');
     foreach ($entity->get('oe_person_jobs')->referencedEntities() as $person_job) {
       // Retrieve the translation of the person job entity.
       $person_job = $this->entityRepository->getTranslationFromContext($person_job);
 
-      // Body has to be filled with at least empty space. Otherwise whole line
-      // will be hidden.
-      $body = ' ';
+      $body = '';
       if (!$person_job->get('oe_description')->isEmpty()) {
         $body = $view_builder->viewField($person_job->get('oe_description'), [
           'label' => 'hidden',
         ]);
+        $job_list['#simple'] = FALSE;
       }
-      $pattern['#fields']['items'][] = [
+      $job_list['#items'][] = [
         'label' => $person_job->label(),
         'body' => $body,
       ];
       $cacheable_metadata->addCacheableDependency($person_job);
     }
 
+    $pattern = [
+      '#type' => 'pattern',
+      '#id' => 'field_list',
+      '#variant' => 'horizontal',
+      '#fields' => [
+        'items' => [
+          [
+            'label' => $this->t('Responsibilities'),
+            'body' => $job_list,
+          ],
+        ],
+      ],
+    ];
     $cacheable_metadata->applyTo($pattern);
     return $pattern;
   }
