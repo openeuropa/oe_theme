@@ -131,11 +131,11 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $crawler = new Crawler($html);
 
     $position_variant = 'left';
-    $items = $crawler->filter('article.ecl-featured-item__container div.ecl-featured-item__item');
-    $media_position = $crawler->filter('.ecl-u-order-m-last');
-    if ($items->count() === 2 && !$media_position->count()) {
-      // If we have 2 items rendered but the media position class is not set,
-      // then we have one of the right variants.
+    $media_wrapper = $crawler->filter('.ecl-col-m-6');
+    $media_position = $media_wrapper->filter('.ecl-u-order-m-last');
+    if ($media_wrapper->count() && !$media_position->count()) {
+      // If the media item is rendered but the position class is not set, then
+      // we have one of the right variants.
       $position_variant = 'right';
     }
 
