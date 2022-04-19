@@ -1,0 +1,619 @@
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Тип організації"
+
+msgid "Show @numb more items"
+msgstr "Показати ще @numb об'єктів"
+
+msgid "When"
+msgstr "Коли"
+
+msgid "Where"
+msgstr "Де"
+
+msgid "Organiser"
+msgstr "Організатор"
+
+msgid "Website"
+msgstr "Вебсайт"
+
+msgid "Social media"
+msgstr "Соціальні мережі"
+
+msgid "Number of seats"
+msgstr "Кількість місць"
+
+msgid "Entrance fee"
+msgstr "Вхідна плата"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Забронюйте місця, для реєстрації залишилося @time_left, реєстрацію буде закрито @end_date"
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Реєстрацію буде відкрито через @time_left. Ви зможете зареєструватися починаючи з @start_date до @end_date."
+
+msgid "Registration period ended on @date"
+msgstr "Період реєстрації закінчується @date"
+
+msgid "Postal address"
+msgstr "Поштова адреса"
+
+msgid "Authors"
+msgstr "Автори"
+
+msgid "Department"
+msgstr "Департамент"
+
+msgid "Project duration"
+msgstr "Тривалість проєкту"
+
+msgid "Project website"
+msgstr "Вебсайт проєкту"
+
+msgid "Contact organisation"
+msgstr "Контактна організація"
+
+msgid "Call status: @label"
+msgstr "Конкурс заявок: @label"
+
+msgid "Press contact"
+msgstr "Контакти для преси"
+
+msgid "Press contacts"
+msgstr "Контактна інформація для преси"
+
+msgid "Call for tenders"
+msgstr "Конкурс заявок"
+
+msgid "Related links"
+msgstr "Пов'язані посилання"
+
+msgid "Practical information"
+msgstr "Практична інформація"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Opening date"
+msgstr "Дата відкриття"
+
+msgid "Deadline date"
+msgstr "Дата закінчення"
+
+msgid "Deadline dates"
+msgstr "Дати завершення"
+
+msgid "Publication date"
+msgstr "Дата публікації"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Location"
+msgstr "Місце"
+
+msgid "News type"
+msgstr "Тип новин"
+
+msgid "Project locations"
+msgstr "Місце проєкту"
+
+msgid "Overall budget"
+msgstr "Загальний бюджет"
+
+msgid "EU contribution"
+msgstr "Внесок ЄС"
+
+msgid "Departments"
+msgstr "Департаменти"
+
+msgid "Results"
+msgstr "Результати"
+
+msgid "Stakeholders"
+msgstr "Зацікавлені сторони"
+
+msgid "Coordinators"
+msgstr "Координатори"
+
+msgid "Participants"
+msgstr "Учасники"
+
+msgid "Country"
+msgstr "Країна"
+
+msgid "Countries"
+msgstr "Країни"
+
+msgid "EU Organisation"
+msgstr "Організація, резидент ЄС"
+
+msgid "Non-EU organisation"
+msgstr "Організація, нерезидент ЄС"
+
+msgid "Reference"
+msgstr "Посилання"
+
+msgid "Upcoming"
+msgstr "Заплановані"
+
+msgid "Open"
+msgstr "Відкриті"
+
+msgid "Closed"
+msgstr "Закритий"
+
+msgid "Details"
+msgstr "Докладна інформація"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Publication"
+msgstr "Публікація"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Email"
+msgstr "Електронна пошта"
+
+msgid "Contact"
+msgstr "Контактна інформація"
+
+msgid "Contacts"
+msgstr "Контактні дані"
+
+msgid "Organisation"
+msgstr "Організація"
+
+msgid "Fax number"
+msgstr "Номер факсу"
+
+msgid "Mobile number"
+msgstr "Номер мобільного телефону"
+
+msgid "Office"
+msgstr "Офіс"
+
+msgid "Documents"
+msgstr "Документи"
+
+msgid "Funding"
+msgstr "Фінансування"
+
+msgid "As planned"
+msgstr "Як заплановано"
+
+msgid "Cancelled"
+msgstr "Скасовано"
+
+msgid "Rescheduled"
+msgstr "Перенесено"
+
+msgid "Postponed"
+msgstr "Відкладено"
+
+msgid "Address"
+msgstr "Адреса"
+
+msgid "Live stream"
+msgstr "Пряма трансляція"
+
+msgid "Live streaming available"
+msgstr "Пряма трансляція доступна"
+
+msgid "Project"
+msgstr "Проєкт"
+
+msgid "Publication type"
+msgstr "Тип публікації"
+
+msgid "Call for proposals"
+msgstr "Конкурс заявок"
+
+msgid "Funding programme"
+msgstr "Програма фінансування"
+
+msgid "Deadline model"
+msgstr "Модель закінчення"
+
+msgid "Single-stage"
+msgstr "Одноетапний"
+
+msgid "Two-stage"
+msgstr "Двоетапний"
+
+msgid "Multiple cut-off"
+msgstr "Багатоступеневе закінчення"
+
+msgid "Permanent"
+msgstr "Постійний"
+
+msgid "@date in @journal"
+msgstr "@date в @journal"
+
+msgid "Contact us"
+msgstr "Зв'яжіться з нами"
+
+msgid "Follow us"
+msgstr "Слідкуйте за нами"
+
+msgid "About us"
+msgstr "Про нас"
+
+msgid "Related sites"
+msgstr "Пов'язані сайти"
+
+msgid "More information on:"
+msgstr "Більше інформації на:"
+
+msgid "Discover more on @link"
+msgstr "Дізнайтеся більше на @link"
+
+msgid "This site is managed by the @name"
+msgstr "Цей сайт знаходиться під управлінням @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Цей сайт знаходиться під управлінням Європейської комісії, @name"
+
+msgid "Last updated on: @date"
+msgstr "Останнє оновлення: @date"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Files"
+msgstr "Файли"
+
+msgid "Identification"
+msgstr "Ідентифікація"
+
+msgid "Identifications"
+msgstr "Ідентифікації"
+
+msgid "Related department"
+msgstr "Пов'язаний департамент"
+
+msgid "Related departments"
+msgstr "Пов'язані департаменти"
+
+msgid "Consultation"
+msgstr "Консультації"
+
+msgid "Deadline"
+msgstr "Дата закінчення"
+
+msgid "Respond to the questionnaire"
+msgstr "Відповідь на анкету"
+
+msgid "Respond to the consultation"
+msgstr "Відповідь на консультацію"
+
+msgid "Target audience"
+msgstr "Цільова аудиторія"
+
+msgid "Why we are consulting"
+msgstr "Чому ми консультуємо"
+
+msgid "Consultation outcome"
+msgstr "Резільтат консультації"
+
+msgid "Additional information"
+msgstr "Додаткова інформація"
+
+msgid "Reference documents"
+msgstr "Нормативні документи"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Період відповіді на цю консультацію закінчився. Дякуємо за участь."
+
+msgid "Status: @label"
+msgstr "Статус: @label"
+
+msgid "Responsibilities"
+msgstr "Обов'язки"
+
+msgid "Media"
+msgstr "Медіа"
+
+msgid "Latest"
+msgstr "Останні новини"
+
+msgid "Transparency"
+msgstr "Прозорість"
+
+msgid "Articles and presentations"
+msgstr "Статті та презентації"
+
+msgid "Biography"
+msgstr "Біографія"
+
+msgid "Declaration of interests"
+msgstr "Декларація про інтереси"
+
+msgid "Show contact details"
+msgstr "Показати контактну інформацію"
+
+msgid "Hide contact details"
+msgstr "Сховати контактну інформацію"
+
+msgid "Leadership and organisation"
+msgstr "Керівництво та організація"
+
+msgid "Available translations"
+msgstr "Доступні переклади"
+
+msgid "General contact"
+msgstr "Загальні контактні дані"
+
+msgid "Grants awarded"
+msgstr "Надані гранти"
+
+msgid "Page contents"
+msgstr "Зміст сторінки"
+
+msgid "Your name"
+msgstr "Ваше ім'я"
+
+msgid "Your email address"
+msgstr "Ваша електронна пошта"
+
+msgid "Subject"
+msgstr "Предмет"
+
+msgid "Message"
+msgstr "Повідомлення"
+
+msgid "Country of residence"
+msgstr "Країна проживання"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Send yourself a copy"
+msgstr "Відправити копію повідомлення собі"
+
+msgid "Status message"
+msgstr "Статус повідомлення"
+
+msgid "Close this message"
+msgstr "Закрити це повідомлення"
+
+msgid "The sender's name"
+msgstr "Ім'я відправника"
+
+msgid "The sender's email"
+msgstr "Електронна пошта відправника"
+
+msgid "Topic"
+msgstr "Тема"
+
+msgid "Languages"
+msgstr "Мови"
+
+msgid "Keywords"
+msgstr "Ключові слова"
+
+msgid "No results have been found"
+msgstr "Результатів не знайдено"
+
+msgid "Event date"
+msgstr "Дата заходу"
+
+msgid "Select"
+msgstr "Обрати"
+
+msgid "After"
+msgstr "Після"
+
+msgid "Before"
+msgstr "До"
+
+msgid "In between"
+msgstr "За період"
+
+msgid "Select all"
+msgstr "Обрати все"
+
+msgid "Event type"
+msgstr "Тип заходу"
+
+msgid "Venue"
+msgstr "Місце"
+
+msgid "Online type"
+msgstr "Тип онлайн"
+
+msgid "Livestream"
+msgstr "Пряма трансляція"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "EU organisation type"
+msgstr "Тип організації, резидента ЄС"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "End Date"
+msgstr "Дата закінчення"
+
+msgid "Responsible department"
+msgstr "Відповідальний департамент"
+
+msgid "Content owner"
+msgstr "Власник контента"
+
+msgid "Overview"
+msgstr "Огляд"
+
+msgid "Open gallery"
+msgstr "Відкрити галерею"
+
+msgid "(Acting) @role"
+msgstr "(Діючий/а) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Слідкуйте за останніми подіями та дізнайтеся більше про те, як долучитися."
+
+msgid "Upcoming and ongoing"
+msgstr "Заплановані та поточні"
+
+msgid "Past"
+msgstr "Минулі"
+
+msgid "Upcoming and open"
+msgstr "Заплановані та відкриті"
+
+msgid "This page is not available in English."
+msgstr "Ця сторінка не доступна українською мовою."
+
+msgid "Choose another language"
+msgstr "Оберіть іншу мову"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 день"
+msgstr[1] "@count днів"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 тиждень"
+msgstr[1] "@count тижнів"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 рік"
+msgstr[1] "@count років"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 місяць"
+msgstr[1] "@count місяців"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 година"
+msgstr[1] "@count годин"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 хвилина"
+msgstr[1] "@count хвилин"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 секунда"
+msgstr[1] "@count секунд"
+
+msgid "Online link"
+msgstr "Посилання онлайн"
+
+msgid "Online time"
+msgstr "Час онлайн"
+
+msgid "Name"
+msgstr "Ім'я"
+
+msgid "I have read and agree with the @link"
+msgstr "Я ознайомився та згоден з @link"
+
+msgid "data protection terms"
+msgstr "умовами захисту даних"
+
+msgid "Highlighted"
+msgstr "Виділений"
+
+msgid "European Union flag"
+msgstr "Прапор Європейського Союзу"
+
+msgid "European Commission logo"
+msgstr "Логотип Європейської Комісії"
+
+msgid "Home"
+msgstr "Домашня сторінка"
+
+msgid "European Union"
+msgstr "Європейський Союз"
+
+msgid "Sources"
+msgstr "Джерела"
+
+msgid "This event has been cancelled."
+msgstr "Цей захід скасовано."
+
+msgid "This event has been rescheduled."
+msgstr "Цей захід перенесено."
+
+msgid "This event has been postponed."
+msgstr "Цей захід відкладено."
+
+msgid "This event has started."
+msgstr "Цей захід розпочався."
+
+msgid "This event has ended."
+msgstr "Цей захід закінчився."
+
+msgid "This livestream has started."
+msgstr "Ця пряма трансляція вже розпочалася."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Цей захід розпочався. Ви також можете подивитися його у прямій транляції."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Цей захід закінчився, але пряма трансляція ще триває."
+
+msgid "Who should attend"
+msgstr "Кому варто відвідати"
+
+msgid "Organisers"
+msgstr "Організатори"
+
+msgid "Part of"
+msgstr "Частина"
+
+msgid "Online only"
+msgstr "Тільки онлайн"
+
+msgid "External event"
+msgstr "Зовнішній захід"
+
+msgid "Report"
+msgstr "Доклад"
+
+msgid "Register here"
+msgstr "Зареєструйтеся тут"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Цей захід розпочався. Пряма трансляція розпочнеться @date."
+
+msgid "See all"
+msgstr "Дивитися все"
+
+msgid "media items"
+msgstr "Медіа файли"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Programme"
+msgstr "Програма"
+
+msgid "Social media"
+msgstr "Соціальні мережі"
+
+msgid "Speakers"
+msgstr "Спікери"
+
+msgid "Starts on @date"
+msgstr "Початок @date"
+
+msgid "The livestream has started."
+msgstr "Пряма трансляція вже розпочалася."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Ця пряма трансляція вже закінчилася, але захід ще триває."

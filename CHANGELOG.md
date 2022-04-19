@@ -1,5 +1,32 @@
 # Change Log
 
+## [3.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta12) (2022-04-1)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta11...3.0.0-beta12)
+
+**Merged pull requests:**
+
+- EWPP-2125: Add translation for ru language. [\#1078](https://github.com/openeuropa/oe_theme/pull/1078) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2101: Add translation for chinese and ukrainian languages. [\#1075](https://github.com/openeuropa/oe_theme/pull/1075) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2126: Fix text with featured media spacing issue between items. [\#1079](https://github.com/openeuropa/oe_theme/pull/1079) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2023: Copyright and caption on Video media. [\#1056](https://github.com/openeuropa/oe_theme/pull/1056) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2128: Use storage timezone for DrupalDateTime object in Event rendering test. [\#1077](https://github.com/openeuropa/oe_theme/pull/1077) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2016: Improve display of person teaser. [\#1051](https://github.com/openeuropa/oe_theme/pull/1051) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1980: Render contacts in full view mode within ContactsExtraField. [\#1036](https://github.com/openeuropa/oe_theme/pull/1036) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1790: Allow images for blockquote ui pattern. [\#1034](https://github.com/openeuropa/oe_theme/pull/1034) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1875: Make footer templates more extendable. [\#1064](https://github.com/openeuropa/oe_theme/pull/1064) ([nagyad](https://github.com/nagyad))
+- Revert "EWPP-2071: Add external icon to external custom footer links." [\#1071](https://github.com/openeuropa/oe_theme/pull/1071) ([nagyad](https://github.com/nagyad))
+- EWPP-2071: Add external icon to external custom footer links. [\#1066](https://github.com/openeuropa/oe_theme/pull/1066) ([nagyad](https://github.com/nagyad))
+- EWPP-2099: Fix event date formats. [\#1070](https://github.com/openeuropa/oe_theme/pull/1070) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1901: Update registration button information at the exact time. [\#1026](https://github.com/openeuropa/oe_theme/pull/1026) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2018: Create the missing Event programe date format on update path. [\#1065](https://github.com/openeuropa/oe_theme/pull/1065) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2018: Style highlighted Text with featured media paragraph. [\#1049](https://github.com/openeuropa/oe_theme/pull/1049) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1157: In page nav library on content row paragraph. [\#1038](https://github.com/openeuropa/oe_theme/pull/1038) ([upchuk](https://github.com/upchuk))
+- EWPP-2076: Make sure the current translation is saved before adding the language to the language switcher. [\#1063](https://github.com/openeuropa/oe_theme/pull/1063) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2033: Display Event programme timezone after the time. [\#1058](https://github.com/openeuropa/oe_theme/pull/1058) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2034: Hide end date if same as start date and render time html elements. [\#1061](https://github.com/openeuropa/oe_theme/pull/1061) ([nagyad](https://github.com/nagyad))
+- EWPP-1564: Theme Timeline's paragraph introduction field. [\#1014](https://github.com/openeuropa/oe_theme/pull/1014) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta11](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta11) (2022-03-07)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta10...3.0.0-beta11)

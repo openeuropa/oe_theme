@@ -305,6 +305,56 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   }
 
   /**
+   * Asserts rendering of Contact entity using Details view mode.
+   *
+   * @param \Behat\Mink\Element\NodeElement $element
+   *   Rendered element.
+   * @param string $name
+   *   Name of the Contact entity.
+   */
+  protected function assertContactDetailsRender(NodeElement $element, string $name): void {
+    $field_list_assert = new FieldListAssert();
+    $field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Name',
+          'body' => $name,
+        ], [
+          'label' => 'Email',
+          'body' => "$name@example.com",
+        ], [
+          'label' => 'Phone number',
+          'body' => "Phone number $name",
+        ], [
+          'label' => 'Address',
+          'body' => "Address $name, 1001 Brussels, Belgium",
+        ],
+      ],
+    ];
+    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
+    $field_list_html = $content->getOuterHtml();
+    $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
+    $field_list_assert->assertVariant('horizontal', $field_list_html);
+
+    // Assert "Social media links" links.
+    $social_links_assert = new SocialMediaLinksAssert();
+    $social_links_expected_values = [
+      'title' => 'Social media',
+      'links' => [
+        [
+          'service' => 'facebook',
+          'label' => "Social media $name",
+          'url' => "http://www.example.com/social_media_$name",
+        ],
+      ],
+    ];
+    $social_links_content = $this->assertSession()->elementExists('css', '.ecl-u-mt-l', $element);
+    $social_links_html = $social_links_content->getHtml();
+    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
+    $social_links_assert->assertVariant('horizontal', $social_links_html);
+  }
+
+  /**
    * Creates Venue entity based on provided settings.
    *
    * @param string $name

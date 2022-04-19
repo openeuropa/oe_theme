@@ -16,7 +16,15 @@
 {% endif %}
 {% set text = text|render %}
 
-{% set media_position_class = 'right' in variant ? '' : ' ecl-u-order-m-last' %}
+{% if 'right' in variant %}
+  {% if highlighted == true %}
+    {% set media_class = 'ecl-u-pr-l ecl-u-pl-none' %}
+  {% else %}
+    {% set media_class = 'ecl-u-pl-none' %}
+  {% endif %}
+{% else %}
+  {% set media_class = 'ecl-u-order-m-last ecl-u-pr-none' %}
+{% endif %}
 
 {% set call_to_action_link = '' %}
 {% if link %}
@@ -43,7 +51,7 @@
     {% endif %}
     <article class="ecl-featured-item__container">
       {% if image or video %}
-        <div class="ecl-featured-item__item{{ media_position_class }}">
+        <div class="ecl-col-m-6 {{ media_class }}">
           {% if image %}
             {% include '@ecl-twig/media-container' with {
               'image': image.src,

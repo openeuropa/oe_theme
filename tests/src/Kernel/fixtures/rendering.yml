@@ -1926,6 +1926,24 @@
       body: "Quote text"
       author: "Quote author"
   assertions:
+    count:
+      'img.ecl-blockquote__image': 0
+    equals:
+      '.ecl-blockquote__author': "Quote author"
+      '.ecl-blockquote__citation': "Quote text"
+- array:
+    '#type': pattern
+    '#id': blockquote
+    '#fields':
+      body: "Quote text"
+      author: "Quote author"
+      image:
+        src: "http://via.placeholder.com/120x80"
+        alt: "Alternative of image"
+  assertions:
+    count:
+      'img.ecl-blockquote__image[src="http://via.placeholder.com/120x80"]': 1
+      'img.ecl-blockquote__image[alt="Alternative of image"]': 1
     equals:
       '.ecl-blockquote__author': "Quote author"
       '.ecl-blockquote__citation': "Quote text"
@@ -2523,8 +2541,8 @@
       'div.ecl-featured-item': 1
       'div.ecl-featured-item.ecl-featured-item--extended': 0
       'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item': 2
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 1
+      'div.ecl-featured-item__item': 1
+      'div.ecl-col-m-6.ecl-u-order-m-last': 1
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2556,7 +2574,8 @@
       'div.ecl-featured-item.ecl-featured-item--extended': 1
       'div.ecl-featured-item__heading': 0
       'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-pr-l.ecl-u-pl-none': 1
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2587,7 +2606,8 @@
       'div.ecl-featured-item.ecl-featured-item--extended': 1
       'div.ecl-featured-item__heading': 1
       'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-pr-l.ecl-u-pl-none': 1
       'div.ecl-featured-item__title': 0
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2612,7 +2632,7 @@
       'div.ecl-featured-item': 1
       'div.ecl-featured-item.ecl-featured-item--extended': 0
       'article.ecl-featured-item__container': 1
-      'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
+      'div.ecl-col-md-6': 0
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container': 0
       'div.ecl-featured-item__item.ecl': 0
@@ -2642,7 +2662,8 @@
       'div.ecl-featured-item': 1
       'div.ecl-featured-item.ecl-featured-item--extended': 0
       'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-order-m-last': 0
+      'div.ecl-col-m-6.ecl-u-pl-none': 1
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
@@ -2665,6 +2686,7 @@
       'div.ecl-featured-item': 0
       'div.ecl-featured-item.ecl-featured-item--extended': 0
       'article.ecl-featured-item__container': 0
+      'div.ecl-col-m-6': 0
       'figure.ecl-media-container': 0
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
@@ -2694,7 +2716,7 @@
       'div.ecl-featured-item': 1
       'div.ecl-featured-item.ecl-featured-item--extended': 0
       'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 1
+      'div.ecl-col-m-6.ecl-u-order-m-last': 1
       'figure.ecl-media-container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
@@ -2735,7 +2757,7 @@
   assertions:
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-      'div.ecl-featured-item__item.ecl-u-order-m-last': 1
+      'div.ecl-col-m-6.ecl-u-order-m-last': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
 - array:
     '#type': pattern

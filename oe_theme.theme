@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -1692,13 +1691,6 @@ function oe_theme_theme_suggestions_oe_corporate_blocks_eu_footer_alter(array &$
 /**
  * Implements hook_preprocess_HOOK().
  */
-function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
-  _oe_theme_preprocess_site_specific_footer_links($variables);
-}
-
-/**
- * Implements hook_preprocess_HOOK().
- */
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
@@ -1714,41 +1706,6 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
     $site_logo_href .= '/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
   $variables['path'] = $site_logo_href;
-
-  _oe_theme_preprocess_site_specific_footer_links($variables);
-}
-
-/**
- * Helper function to preprocess footer links and set external flag to them.
- *
- * @param array $variables
- *   The variables array from the preprocess hook.
- */
-function _oe_theme_preprocess_site_specific_footer_links(array &$variables): void {
-  if (empty($variables['site_specific_footer']['other_links'])) {
-    return;
-  }
-
-  foreach ($variables['site_specific_footer']['other_links'] as $section => $links) {
-    if (empty($links['links'])) {
-      continue;
-    }
-
-    foreach ($links['links'] as $index => $link) {
-      if (!$link['href'] instanceof Url) {
-        continue;
-      }
-
-      if ($link['href']->isExternal()) {
-        $parts = UrlHelper::parse($link['href']->toString());
-        if (strpos($parts['path'], 'europa.eu')) {
-          // We consider links with europa.eu domains as internal.
-          continue;
-        }
-        $variables['site_specific_footer']['other_links'][$section]['links'][$index]['external'] = TRUE;
-      }
-    }
-  }
 }
 
 /**

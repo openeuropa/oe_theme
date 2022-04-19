@@ -4,6 +4,12 @@
  * Link block.
  */
 #}
+{% if image %}
+  {% set image = {
+    'path': image.src,
+    'alt': image.alt
+  } %}
+{% endif %}
 {% include '@ecl-twig/blockquote' with {
   'author': author,
   'citation': body,
