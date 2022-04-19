@@ -26,6 +26,7 @@
     "@ecl/twig-component-breadcrumb": "3.3.3",
     "@ecl/twig-component-button": "3.3.3",
     "@ecl/twig-component-card": "3.3.3",
+    "@ecl/twig-component-carousel": "3.3.3",
     "@ecl/twig-component-datepicker": "3.3.3",
     "@ecl/twig-component-description-list": "3.3.3",
     "@ecl/twig-component-expandable": "3.3.3",
