@@ -132,7 +132,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
               'body' => $deadline_date->format('d F Y, H:i (T)'),
             ], [
               'label' => 'Departments',
-              'body' => 'Audit Board of the European Communities | Arab Common Market',
+              'body' => 'Audit Board of the European Communities, Arab Common Market',
             ],
           ],
         ]),

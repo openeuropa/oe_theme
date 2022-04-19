@@ -11,6 +11,20 @@ use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
+ * Implements hook_theme().
+ */
+function oe_theme_content_person_theme(): array {
+  return [
+    'oe_theme_content_person_job_list' => [
+      'variables' => [
+        'simple' => TRUE,
+        'items' => [],
+      ],
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_HOOK().
  *
  * Prepares variables for in-page navigation.

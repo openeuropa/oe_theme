@@ -1,0 +1,619 @@
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "组织类别"
+
+msgid "Show @numb more items"
+msgstr "再多显示 @numb 项"
+
+msgid "When"
+msgstr "时间"
+
+msgid "Where"
+msgstr "地点"
+
+msgid "Organiser"
+msgstr "主办方"
+
+msgid "Website"
+msgstr "网站"
+
+msgid "Social media"
+msgstr "社交媒体"
+
+msgid "Number of seats"
+msgstr "座位数目"
+
+msgid "Entrance fee"
+msgstr "入场费"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "预订您的座位，请在 @time_left 内注册，注册将于 @end_date 结束"
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "注册将在 @time_left 后开始。您可以从 @start_date 开始注册，注册截止日期为 @end_date 。"
+
+msgid "Registration period ended on @date"
+msgstr "注册期于 @date 结束"
+
+msgid "Postal address"
+msgstr "邮寄地址"
+
+msgid "Authors"
+msgstr "撰文者"
+
+msgid "Department"
+msgstr "部门"
+
+msgid "Project duration"
+msgstr "项目工期"
+
+msgid "Project website"
+msgstr "项目网站"
+
+msgid "Contact organisation"
+msgstr "联系机构"
+
+msgid "Call status: @label"
+msgstr "招标状态：@label"
+
+msgid "Press contact"
+msgstr "媒体联络"
+
+msgid "Press contacts"
+msgstr "媒体联系"
+
+msgid "Call for tenders"
+msgstr "招标"
+
+msgid "Related links"
+msgstr "相关链接"
+
+msgid "Practical information"
+msgstr "实用信息"
+
+msgid "Phone number"
+msgstr "电话号码"
+
+msgid "Opening date"
+msgstr "起始日期"
+
+msgid "Deadline date"
+msgstr "截止日期"
+
+msgid "Deadline dates"
+msgstr "截止日期"
+
+msgid "Publication date"
+msgstr "发布日期"
+
+msgid "Author"
+msgstr "撰文者"
+
+msgid "Location"
+msgstr "地点"
+
+msgid "News type"
+msgstr "新闻类别"
+
+msgid "Project locations"
+msgstr "项目地点"
+
+msgid "Overall budget"
+msgstr "总预算"
+
+msgid "EU contribution"
+msgstr "欧盟贡献"
+
+msgid "Departments"
+msgstr "部门"
+
+msgid "Results"
+msgstr "结果"
+
+msgid "Stakeholders"
+msgstr "利益相关者"
+
+msgid "Coordinators"
+msgstr "协调员"
+
+msgid "Participants"
+msgstr "参与者"
+
+msgid "Country"
+msgstr "国家"
+
+msgid "Countries"
+msgstr "国家"
+
+msgid "EU Organisation"
+msgstr "欧盟组织"
+
+msgid "Non-EU organisation"
+msgstr "非欧盟组织"
+
+msgid "Reference"
+msgstr "参考"
+
+msgid "Upcoming"
+msgstr "将开放"
+
+msgid "Open"
+msgstr "已开放"
+
+msgid "Closed"
+msgstr "已关闭"
+
+msgid "Details"
+msgstr "详情"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Publication"
+msgstr "出版物"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Email"
+msgstr "电邮地址"
+
+msgid "Contact"
+msgstr "联系方式"
+
+msgid "Contacts"
+msgstr "联系方式"
+
+msgid "Organisation"
+msgstr "组织"
+
+msgid "Fax number"
+msgstr "传真号码"
+
+msgid "Mobile number"
+msgstr "手机号码"
+
+msgid "Office"
+msgstr "办公室"
+
+msgid "Documents"
+msgstr "文件"
+
+msgid "Funding"
+msgstr "资金资助"
+
+msgid "As planned"
+msgstr "按计划进行"
+
+msgid "Cancelled"
+msgstr "取消"
+
+msgid "Rescheduled"
+msgstr "改期"
+
+msgid "Postponed"
+msgstr "延期"
+
+msgid "Address"
+msgstr "地址"
+
+msgid "Live stream"
+msgstr "实时直播"
+
+msgid "Live streaming available"
+msgstr "提供实时直播"
+
+msgid "Project"
+msgstr "项目"
+
+msgid "Publication type"
+msgstr "出版物类别"
+
+msgid "Call for proposals"
+msgstr "征求提案"
+
+msgid "Funding programme"
+msgstr "资助项目"
+
+msgid "Deadline model"
+msgstr "截止模式"
+
+msgid "Single-stage"
+msgstr "单阶段"
+
+msgid "Two-stage"
+msgstr "双阶段"
+
+msgid "Multiple cut-off"
+msgstr "多个截止期"
+
+msgid "Permanent"
+msgstr "常久"
+
+msgid "@date in @journal"
+msgstr "@date 登于 @journal"
+
+msgid "Contact us"
+msgstr "联系我们"
+
+msgid "Follow us"
+msgstr "关注我们"
+
+msgid "About us"
+msgstr "关于我们"
+
+msgid "Related sites"
+msgstr "相关网站"
+
+msgid "More information on:"
+msgstr "更多信息："
+
+msgid "Discover more on @link"
+msgstr "点击 @link 获取更多信息"
+
+msgid "本网站由 @name 管理"
+msgstr "Този уебсайт се поддържа от @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "本网站由欧盟委员会管理，@name"
+
+msgid "Last updated on: @date"
+msgstr "最后更新时间：@date"
+
+msgid "File"
+msgstr "文档"
+
+msgid "Files"
+msgstr "文档"
+
+msgid "Identification"
+msgstr "识别号"
+
+msgid "Identifications"
+msgstr "识别号"
+
+msgid "Related department"
+msgstr "相关部门"
+
+msgid "Related departments"
+msgstr "相关部门"
+
+msgid "Consultation"
+msgstr "咨询"
+
+msgid "Deadline"
+msgstr "截止日期"
+
+msgid "Respond to the questionnaire"
+msgstr "问卷回答"
+
+msgid "Respond to the consultation"
+msgstr "咨询回复"
+
+msgid "Target audience"
+msgstr "目标群体"
+
+msgid "Why we are consulting"
+msgstr "我们征求咨询的原因"
+
+msgid "Consultation outcome"
+msgstr "谘询结果"
+
+msgid "Additional information"
+msgstr "附加信息"
+
+msgid "Reference documents"
+msgstr "参考文件"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "本次咨询回复期已结束。感谢您的回馈。"
+
+msgid "Status: @label"
+msgstr "状态：@label"
+
+msgid "Responsibilities"
+msgstr "部门职责"
+
+msgid "Media"
+msgstr "媒体"
+
+msgid "Latest"
+msgstr "最新消息"
+
+msgid "Transparency"
+msgstr "透明度"
+
+msgid "Articles and presentations"
+msgstr "发布文章和演示文稿"
+
+msgid "Biography"
+msgstr "履历"
+
+msgid "Declaration of interests"
+msgstr "利益申报"
+
+msgid "Show contact details"
+msgstr "显示联系方式"
+
+msgid "Hide contact details"
+msgstr "隐藏联系方式"
+
+msgid "Leadership and organisation"
+msgstr "领导和组织"
+
+msgid "Available translations"
+msgstr "现有翻译"
+
+msgid "General contact"
+msgstr "一般联系方式"
+
+msgid "Grants awarded"
+msgstr "授予资助"
+
+msgid "Page contents"
+msgstr "页面内容"
+
+msgid "Your name"
+msgstr "您的姓名"
+
+msgid "Your email address"
+msgstr "您的电邮地址"
+
+msgid "Subject"
+msgstr "主题"
+
+msgid "Message"
+msgstr "信息内容"
+
+msgid "Country of residence"
+msgstr "居住国"
+
+msgid "Phone"
+msgstr "电话号码"
+
+msgid "Send yourself a copy"
+msgstr "自我抄送一份"
+
+msgid "Status message"
+msgstr "状态信息"
+
+msgid "Close this message"
+msgstr "关闭此信息"
+
+msgid "The sender's name"
+msgstr "发件人姓名"
+
+msgid "The sender's email"
+msgstr "发件人电邮地址"
+
+msgid "Topic"
+msgstr "信息属性"
+
+msgid "Languages"
+msgstr "语言"
+
+msgid "Keywords"
+msgstr "关键词"
+
+msgid "No results have been found"
+msgstr "未搜索到相关结果"
+
+msgid "Event date"
+msgstr "活动日期"
+
+msgid "Select"
+msgstr "选择"
+
+msgid "After"
+msgstr "在此日期之后"
+
+msgid "Before"
+msgstr "在此日期之前"
+
+msgid "In between"
+msgstr "介于两者之间"
+
+msgid "Select all"
+msgstr "全选"
+
+msgid "Event type"
+msgstr "活动类别"
+
+msgid "Venue"
+msgstr "地点"
+
+msgid "Online type"
+msgstr "在线类别"
+
+msgid "Livestream"
+msgstr "实时直播"
+
+msgid "Type"
+msgstr "类别"
+
+msgid "EU organisation type"
+msgstr "欧盟组织类别"
+
+msgid "Date"
+msgstr "日期"
+
+msgid "End Date"
+msgstr "结束日期"
+
+msgid "Responsible department"
+msgstr "负责部门"
+
+msgid "Content owner"
+msgstr "内容所有者"
+
+msgid "Overview"
+msgstr "概述"
+
+msgid "Open gallery"
+msgstr "打开图像画廊"
+
+msgid "(Acting) @role"
+msgstr "(代理) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "关注最新进展并了解有关参与的更多信息"
+
+msgid "Upcoming and ongoing"
+msgstr "将开放和正在进行的"
+
+msgid "Past"
+msgstr "以往的"
+
+msgid "Upcoming and open"
+msgstr "将开放和已开放"
+
+msgid "This page is not available in English."
+msgstr "此页面无中文版。"
+
+msgid "Choose another language"
+msgstr "请选择其他语言"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 日"
+msgstr[1] "@count 日"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 星期"
+msgstr[1] "@count 星期"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 年"
+msgstr[1] "@count 年"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 个月"
+msgstr[1] "@count 个月"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 小时"
+msgstr[1] "@count 小时"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 分钟"
+msgstr[1] "@count 分钟"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 秒"
+msgstr[1] "@count 秒"
+
+msgid "Online link"
+msgstr "在线链接"
+
+msgid "Online time"
+msgstr "在线时间"
+
+msgid "Name"
+msgstr "姓名"
+
+msgid "I have read and agree with the @link"
+msgstr "本人已阅读并同意接受 @link"
+
+msgid "data protection terms"
+msgstr "数据保护条款"
+
+msgid "Highlighted"
+msgstr "聚焦亮点"
+
+msgid "European Union flag"
+msgstr "欧洲联盟旗帜"
+
+msgid "European Commission logo"
+msgstr "欧盟委员会标识"
+
+msgid "Home"
+msgstr "主页"
+
+msgid "European Union"
+msgstr "欧洲联盟"
+
+msgid "Sources"
+msgstr "来源"
+
+msgid "This event has been cancelled."
+msgstr "本项活动已取消。"
+
+msgid "This event has been rescheduled."
+msgstr "本项活动已改期。"
+
+msgid "This event has been postponed."
+msgstr "本项活动已延期。"
+
+msgid "This event has started."
+msgstr "本项活动已开始。"
+
+msgid "This event has ended."
+msgstr "本项活动已结束。"
+
+msgid "This livestream has started."
+msgstr "本次直播已开始。"
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "本项活动已开始。您也可以通过实时直播观看。"
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "本项活动已结束，但实时直播仍在进行中。"
+
+msgid "Who should attend"
+msgstr "与会者"
+
+msgid "Organisers"
+msgstr "主办方"
+
+msgid "Part of"
+msgstr "组成部分"
+
+msgid "Online only"
+msgstr "仅限在线"
+
+msgid "External event"
+msgstr "外部活动"
+
+msgid "Report"
+msgstr "报告"
+
+msgid "Register here"
+msgstr "在此处注册"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "本项活动已开始。实时直播将于 @date 开始。"
+
+msgid "See all"
+msgstr "查看全部"
+
+msgid "media items"
+msgstr "个媒体条目"
+
+msgid "Close"
+msgstr "关闭"
+
+msgid "Programme"
+msgstr "章程"
+
+msgid "Social media"
+msgstr "社交媒体"
+
+msgid "Speakers"
+msgstr "发言人"
+
+msgid "Starts on @date"
+msgstr "从 @date 开始"
+
+msgid "The livestream has started."
+msgstr "实时直播已开始。"
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "实时直播已结束，但活动仍在进行中。"

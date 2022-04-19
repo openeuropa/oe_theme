@@ -1,0 +1,619 @@
+msgid ""
+msgstr ""
+
+msgid "Organisation type"
+msgstr "Тип организации"
+
+msgid "Show @numb more items"
+msgstr "Показать @numb больше результатов"
+
+msgid "When"
+msgstr "Когда"
+
+msgid "Where"
+msgstr "Где"
+
+msgid "Organiser"
+msgstr "Организатор"
+
+msgid "Website"
+msgstr "Сайт"
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "Number of seats"
+msgstr "Количество мест"
+
+msgid "Entrance fee"
+msgstr "Плата за вход"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Бронировать свое место, @time_left осталось для регистрации, регистрация закончится @end_date"
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "Регистрация откроется через @time_left. Вы можете зарегистрироваться с @start_date по @end_date."
+
+msgid "Registration period ended on @date"
+msgstr "Период регистрации закончился @date"
+
+msgid "Postal address"
+msgstr "Почтовый адрес"
+
+msgid "Authors"
+msgstr "Авторы"
+
+msgid "Department"
+msgstr "Департамент"
+
+msgid "Project duration"
+msgstr "Продолжительность проекта"
+
+msgid "Project website"
+msgstr "Сайт проекта"
+
+msgid "Contact organisation"
+msgstr "Связаться с организацией"
+
+msgid "Call status: @label"
+msgstr "Статус приглашения: @label"
+
+msgid "Press contact"
+msgstr "Контакты для прессы"
+
+msgid "Press contacts"
+msgstr "Контакты для прессы"
+
+msgid "Call for tenders"
+msgstr "Приглашение к участию в торгах"
+
+msgid "Related links"
+msgstr "Соответствующие ссылки"
+
+msgid "Practical information"
+msgstr "Практическая информация"
+
+msgid "Phone number"
+msgstr "Номер телефона"
+
+msgid "Opening date"
+msgstr "Дата открытия"
+
+msgid "Deadline date"
+msgstr "Дата срока"
+
+msgid "Deadline dates"
+msgstr "Даты срока"
+
+msgid "Publication date"
+msgstr "Дата публикации"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Location"
+msgstr "Местоположение"
+
+msgid "News type"
+msgstr "Тип новости"
+
+msgid "Project locations"
+msgstr "Расположения проектов"
+
+msgid "Overall budget"
+msgstr "Общий бюджет"
+
+msgid "EU contribution"
+msgstr "Взнос ЕС"
+
+msgid "Departments"
+msgstr "Департаменты"
+
+msgid "Results"
+msgstr "Результаты"
+
+msgid "Stakeholders"
+msgstr "Заинтересованные стороны"
+
+msgid "Coordinators"
+msgstr "Координаторы"
+
+msgid "Participants"
+msgstr "Участники"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Countries"
+msgstr "Страны"
+
+msgid "EU Organisation"
+msgstr "Организация ЕС"
+
+msgid "Non-EU organisation"
+msgstr "Организация извне ЕС"
+
+msgid "Reference"
+msgstr "Индекс"
+
+msgid "Upcoming"
+msgstr "Предстоящие"
+
+msgid "Open"
+msgstr "Открытые"
+
+msgid "Closed"
+msgstr "Закрыто"
+
+msgid "Details"
+msgstr "Подробности"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Publication"
+msgstr "Публикация"
+
+msgid "Description"
+msgstr "Описание"
+
+msgid "Email"
+msgstr "Адрес эл. почты"
+
+msgid "Contact"
+msgstr "Контактная информация"
+
+msgid "Contacts"
+msgstr "Контакты"
+
+msgid "Organisation"
+msgstr "Организация"
+
+msgid "Fax number"
+msgstr "Номер факса"
+
+msgid "Mobile number"
+msgstr "Номер мобильного телефона"
+
+msgid "Office"
+msgstr "Офис"
+
+msgid "Documents"
+msgstr "Документы"
+
+msgid "Funding"
+msgstr "Финансирование"
+
+msgid "As planned"
+msgstr "По плану"
+
+msgid "Cancelled"
+msgstr "Отменено"
+
+msgid "Rescheduled"
+msgstr "Перенесено"
+
+msgid "Postponed"
+msgstr "Отложено"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Live stream"
+msgstr "Прямая трансляция"
+
+msgid "Live streaming available"
+msgstr "Прямая трансляция доступна"
+
+msgid "Project"
+msgstr "Проект"
+
+msgid "Publication type"
+msgstr "Тип публикации"
+
+msgid "Call for proposals"
+msgstr "Приём заявок"
+
+msgid "Funding programme"
+msgstr "Программа финансирования"
+
+msgid "Deadline model"
+msgstr "Модель срока"
+
+msgid "Single-stage"
+msgstr "Одноэтапный"
+
+msgid "Two-stage"
+msgstr "Двухэтапный"
+
+msgid "Multiple cut-off"
+msgstr "Различные сроки"
+
+msgid "Permanent"
+msgstr "Постоянный"
+
+msgid "@date in @journal"
+msgstr "@date в @journal"
+
+msgid "Contact us"
+msgstr "Связаться с нами"
+
+msgid "Follow us"
+msgstr "Следить за нами"
+
+msgid "About us"
+msgstr "О нас"
+
+msgid "Related sites"
+msgstr "Смежные сайты"
+
+msgid "More information on:"
+msgstr "Дополнительная информация на:"
+
+msgid "Discover more on @link"
+msgstr "Узнать больше на @link"
+
+msgid "This site is managed by the @name"
+msgstr "Этот сайт администрируется @name"
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Этот сайт администрируется Европейской комиссией, @name"
+
+msgid "Last updated on: @date"
+msgstr "Последнее обновление: @date"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Files"
+msgstr "Файлы"
+
+msgid "Identification"
+msgstr "Идентификация"
+
+msgid "Identifications"
+msgstr "Идентификации"
+
+msgid "Related department"
+msgstr "Смежный департамент"
+
+msgid "Related departments"
+msgstr "Смежные департаменты"
+
+msgid "Consultation"
+msgstr "Консультация"
+
+msgid "Deadline"
+msgstr "Срок"
+
+msgid "Respond to the questionnaire"
+msgstr "Ответить на анкету"
+
+msgid "Respond to the consultation"
+msgstr "Ответить на консультацию"
+
+msgid "Target audience"
+msgstr "Целевая аудитория"
+
+msgid "Why we are consulting"
+msgstr "Почему мы консультируемся"
+
+msgid "Consultation outcome"
+msgstr "Результаты консультаций"
+
+msgid "Additional information"
+msgstr "Дополнительная информация"
+
+msgid "Reference documents"
+msgstr "Справочные документы"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "Срок для ответа на эту консультацию истек. Спасибо за Ваше участие."
+
+msgid "Status: @label"
+msgstr "Статус: @label"
+
+msgid "Responsibilities"
+msgstr "Сферы ответственности"
+
+msgid "Media"
+msgstr "Медиа"
+
+msgid "Latest"
+msgstr "Последние новости"
+
+msgid "Transparency"
+msgstr "Прозрачность"
+
+msgid "Articles and presentations"
+msgstr "Статьи и презентации"
+
+msgid "Biography"
+msgstr "Биография"
+
+msgid "Declaration of interests"
+msgstr "Декларация интересов"
+
+msgid "Show contact details"
+msgstr "Показать контактные данные"
+
+msgid "Hide contact details"
+msgstr "Скрыть контактные данные"
+
+msgid "Leadership and organisation"
+msgstr "Руководство и организация"
+
+msgid "Available translations"
+msgstr "Доступные переводы"
+
+msgid "General contact"
+msgstr "Общий контакт"
+
+msgid "Grants awarded"
+msgstr "Предоставленные гранты"
+
+msgid "Page contents"
+msgstr "Содержание страницы"
+
+msgid "Your name"
+msgstr "Ваше имя"
+
+msgid "Your email address"
+msgstr "Ваш адрес электронной почты"
+
+msgid "Subject"
+msgstr "Тема"
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Country of residence"
+msgstr "Страна проживания"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Send yourself a copy"
+msgstr "Отправить себе копию"
+
+msgid "Status message"
+msgstr "Статус сообщения"
+
+msgid "Close this message"
+msgstr "Закрыть это сообщение"
+
+msgid "The sender's name"
+msgstr "Имя отправителя"
+
+msgid "The sender's email"
+msgstr "Электронная почта отправителя"
+
+msgid "Topic"
+msgstr "Тема"
+
+msgid "Languages"
+msgstr "Языки"
+
+msgid "Keywords"
+msgstr "Ключевые слова"
+
+msgid "No results have been found"
+msgstr "Нет результатов"
+
+msgid "Event date"
+msgstr "Дата мероприятия"
+
+msgid "Select"
+msgstr "Выбрать"
+
+msgid "After"
+msgstr "После"
+
+msgid "Before"
+msgstr "До"
+
+msgid "In between"
+msgstr "Между"
+
+msgid "Select all"
+msgstr "Выбрать все"
+
+msgid "Event type"
+msgstr "Тип мероприятия"
+
+msgid "Venue"
+msgstr "Место проведения"
+
+msgid "Online type"
+msgstr "Онлайн тип"
+
+msgid "Livestream"
+msgstr "Прямая трансляция"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "EU organisation type"
+msgstr "Тип организации ЕС"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "End Date"
+msgstr "Дата окончания"
+
+msgid "Responsible department"
+msgstr "Ответственный департамент"
+
+msgid "Content owner"
+msgstr "Владелец контента"
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Open gallery"
+msgstr "Открыть галерею"
+
+msgid "(Acting) @role"
+msgstr "(Исполняющий обязанности) @role"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Следить за новейшими достижениями и узнать больше об участии."
+
+msgid "Upcoming and ongoing"
+msgstr "Предстоящие и текущие"
+
+msgid "Past"
+msgstr "Прошедшие"
+
+msgid "Upcoming and open"
+msgstr "Предстоящие и открытые"
+
+msgid "This page is not available in English."
+msgstr "Эта страница недоступна на русском."
+
+msgid "Choose another language"
+msgstr "Выбрать другой язык"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 день"
+msgstr[1] "@count дня"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 неделя"
+msgstr[1] "@count недели"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 год"
+msgstr[1] "@count года"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 месяц"
+msgstr[1] "@count месяца"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 час"
+msgstr[1] "@count часа"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 минута"
+msgstr[1] "@count минут"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 секунда"
+msgstr[1] "@count секунд"
+
+msgid "Online link"
+msgstr "Онлайн-ссылка"
+
+msgid "Online time"
+msgstr "Онлайн время"
+
+msgid "Name"
+msgstr "Название /// Ф.И.О"
+
+msgid "I have read and agree with the @link"
+msgstr "Я прочитал(а) и согласен(а) с @link"
+
+msgid "data protection terms"
+msgstr "Условия защиты данных"
+
+msgid "Highlighted"
+msgstr "Выделенное содержимое"
+
+msgid "European Union flag"
+msgstr "Флаг Европейского союза"
+
+msgid "European Commission logo"
+msgstr "Логотип Европейской комиссии"
+
+msgid "Home"
+msgstr "Главная страница"
+
+msgid "European Union"
+msgstr "Европейский союз"
+
+msgid "Sources"
+msgstr "Источники"
+
+msgid "This event has been cancelled."
+msgstr "Это мероприятие было отменено."
+
+msgid "This event has been rescheduled."
+msgstr "Это мероприятие было перенесено."
+
+msgid "This event has been postponed."
+msgstr "Это мероприятие было отложено."
+
+msgid "This event has started."
+msgstr "Это мероприятие началось."
+
+msgid "This event has ended."
+msgstr "Это мероприятие завершилось."
+
+msgid "This livestream has started."
+msgstr "Эта прямая трансляция началась."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Это мероприятие началось. Вы также можете смотреть его в прямой трансляции."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Это мероприятие закончилось, но трансляция продолжается."
+
+msgid "Who should attend"
+msgstr "Кто должен принять участие"
+
+msgid "Organisers"
+msgstr "Организаторы"
+
+msgid "Part of"
+msgstr "Часть"
+
+msgid "Online only"
+msgstr "Только онлайн"
+
+msgid "External event"
+msgstr "Внешнее мероприятие"
+
+msgid "Report"
+msgstr "Отчет"
+
+msgid "Register here"
+msgstr "Зарегистрироваться здесь"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Это мероприятие началось. Прямая трансляция начнётся @date."
+
+msgid "See all"
+msgstr "Просмотреть все"
+
+msgid "media items"
+msgstr "медиа файла"
+
+msgid "Close"
+msgstr "Закрыто"
+
+msgid "Programme"
+msgstr "Программа"
+
+msgid "Social media"
+msgstr "Социальные сети"
+
+msgid "Speakers"
+msgstr "Ораторы"
+
+msgid "Starts on @date"
+msgstr "Начнётся @date"
+
+msgid "The livestream has started."
+msgstr "Прямая трансляция началась."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "Прямая трансляция закончилась, но мероприятие продолжается."

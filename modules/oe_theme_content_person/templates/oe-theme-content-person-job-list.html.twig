@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme template for Person job list extra field.
+ *
+ * @see \Drupal\oe_theme_content_person\Plugin\ExtraField\Display\PersonJobListExtraField::viewElements()
+ */
+#}
+{% if simple %}
+  <ul class="ecl-unordered-list">
+    {% for item in items %}
+      <li class="ecl-unordered-list__item">
+        {{ item.label}}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  {% for item in items %}
+    <div class="ecl-u-type-m ecl-u-type-bold ecl-u-mb-xs">{{ item.label }}</div>
+    {% if item.body %}
+      <div class="ecl-u-mb-xs">{{ item.body }}</div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+

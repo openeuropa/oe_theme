@@ -25,6 +25,7 @@
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-dev": "^9.2",
         "drupal/ctools": "^3.7",
+        "drupal/datetime_range_timezone": "~1.0.0-alpha2",
         "drupal/datetime_testing": "^1.0",
         "drupal/description_list_field": "^1.0",
         "drupal/drupal-driver": "^2.1.1",
@@ -47,12 +48,12 @@
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_contact_forms": "^1.2",
-        "openeuropa/oe_content": "^2.9",
+        "openeuropa/oe_content": "^3.0.0",
         "openeuropa/oe_corporate_blocks": "^4.4",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "^1.15",
         "openeuropa/oe_multilingual": "^1.10",
-        "openeuropa/oe_paragraphs": "dev-master",
+        "openeuropa/oe_paragraphs": "^1.13",
         "openeuropa/oe_search": "^1.9",
         "openeuropa/oe_webtools": "^1.15",
         "openeuropa/rdf_skos": "^1.0",
@@ -100,9 +101,6 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
-            },
-            "drupal/datetime_range_timezone": {
-                "https://www.drupal.org/project/datetime_range_timezone/issues/3268321": "https://git.drupalcode.org/project/datetime_range_timezone/-/merge_requests/7.diff"
             }
         },
         "drupal-scaffold": {

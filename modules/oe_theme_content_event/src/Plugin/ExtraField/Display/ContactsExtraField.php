@@ -64,7 +64,7 @@ class ContactsExtraField extends EventExtraFieldBase {
       }
 
       $key = ($bundle === 'oe_general') ? '#general' : '#press';
-      $build[$key][] = $this->entityTypeManager->getViewBuilder('oe_contact')->view($contact, 'oe_details');
+      $build[$key][] = $this->entityTypeManager->getViewBuilder('oe_contact')->view($contact);
       $cacheability->addCacheableDependency($contact);
     }
 

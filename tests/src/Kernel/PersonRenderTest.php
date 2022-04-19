@@ -152,7 +152,7 @@ class PersonRenderTest extends ContentRenderTestBase {
         'items' => [
           [
             'label' => 'Departments',
-            'body' => 'Audit Board of the European Communities | Arab Common Market',
+            'body' => 'Audit Board of the European Communities, Arab Common Market',
           ],
         ],
       ]),
@@ -262,8 +262,8 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Adviser',
-          'body' => 'Description job_1',
+          'label' => 'Responsibilities',
+          'body' => '(Acting) AdviserDescription job_1',
         ],
       ],
     ]);
@@ -275,11 +275,8 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
       'items' => [
         [
-          'label' => '(Acting) Adviser',
-          'body' => 'Description job_1',
-        ], [
-          'label' => 'Chief Adviser',
-          'body' => 'Description job_2',
+          'label' => 'Responsibilities',
+          'body' => '(Acting) AdviserDescription job_1Chief AdviserDescription job_2',
         ],
       ],
     ]);
@@ -345,11 +342,8 @@ class PersonRenderTest extends ContentRenderTestBase {
         new PatternAssertState(new FieldListAssert(), [
           'items' => [
             [
-              'label' => 'Singer',
-              'body' => 'Description job_1',
-            ], [
-              'label' => 'Dancer',
-              'body' => 'Description job_2',
+              'label' => 'Responsibilities',
+              'body' => 'SingerDescription job_1DancerDescription job_2',
             ],
           ],
         ]),

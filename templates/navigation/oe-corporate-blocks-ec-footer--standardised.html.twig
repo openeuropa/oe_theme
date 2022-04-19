@@ -57,47 +57,48 @@
   }]) %}
 {% endif %}
 
-{% block content %}
-  {# Populate the top row with the site identity and the custom links. #}
-  {% set _top_row = [
-    [
-      {
-        'title': {
-        'link': {
-          'label': site_specific_footer.site_identity,
-          'path': url('<front>'),
-        }
-      },
-        'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+{# Populate the top row with the site identity and the custom links. #}
+{% set _top_row = [
+  [
+    {
+      'title': {
+      'link': {
+        'label': site_specific_footer.site_identity,
+        'path': url('<front>'),
       }
-    ],
-    _top_left_column,
-    _top_right_column
-  ] %}
+    },
+      'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
+    }
+  ],
+  _top_left_column,
+  _top_right_column
+] %}
 
-  {# Populate the bottom row with the corporate links. #}
-  {% set _bottom_row = [
-    [
-      {
-        'title': {
-        'link': {
-          'label': corporate_footer.corporate_site_link.label,
-          'path': corporate_footer.corporate_site_link.href,
-        },
+{# Populate the bottom row with the corporate links. #}
+{% set _bottom_row = [
+  [
+    {
+      'title': {
+      'link': {
+        'label': corporate_footer.corporate_site_link.label,
+        'path': corporate_footer.corporate_site_link.href,
       },
-      }
-    ],
-    [
-      {
-        'links': ecl_footer_links(corporate_footer.service_navigation),
-      }
-    ],
-    [
-      {
-        'links': ecl_footer_links(corporate_footer.legal_navigation),
-      }
-    ],
-  ] %}
+    },
+    }
+  ],
+  [
+    {
+      'links': corporate_footer.service_navigation ? ecl_footer_links(corporate_footer.service_navigation) : '',
+    }
+  ],
+  [
+    {
+      'links': corporate_footer.legal_navigation ? ecl_footer_links(corporate_footer.legal_navigation) : '',
+    }
+  ],
+] %}
+
+{% block content %}
   {% include '@ecl-twig/footer-standardised' with {
     'rows': [ _top_row, _bottom_row],
   } %}

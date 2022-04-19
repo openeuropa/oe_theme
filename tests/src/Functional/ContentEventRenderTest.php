@@ -175,7 +175,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    */
   public function testEventRendering(): void {
     // Freeze the time at a specific point.
-    $static_time = new DrupalDateTime('2020-02-17 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $start_date = (clone $static_time)->modify('+ 10 days');
 
@@ -542,7 +542,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Registration date" field when registration will start today in
     // one hour.
-    $static_time = new DrupalDateTime('2020-02-18 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-18 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -551,7 +551,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Registration will open today, 18 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration is in progress.
-    $static_time = new DrupalDateTime('2020-02-20 15:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -561,7 +561,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Registration date" field when registration will finish today in
     // one hour.
-    $static_time = new DrupalDateTime('2020-02-21 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-21 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -570,7 +570,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Book your seat, the registration will end today, 21 February 2020, 15:00 CET', $registration_info_content->getText());
 
     // Assert "Registration date" field in the past.
-    $static_time = new DrupalDateTime('2020-02-24 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-02-24 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -580,7 +580,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Report text" and "Summary for report" fields when event is
     // finished.
-    $static_time = new DrupalDateTime('2020-04-15 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -647,11 +647,11 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
     $this->assertContactHeader($general_contacts_content, 'General contact');
-    $this->assertContactDetailsRender($general_contacts_content, 'general_contact');
+    $this->assertContactDefaultRender($this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mv-xl', $general_contacts_content), 'general_contact');
 
     $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
     $this->assertContactHeader($press_contacts_content, 'Press contact');
-    $this->assertContactDetailsRender($press_contacts_content, 'press_contact');
+    $this->assertContactDefaultRender($this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mv-xl', $press_contacts_content), 'press_contact');
 
     // Assert "Social media links" links.
     $node->set('oe_social_media_links', [
@@ -1005,21 +1005,21 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($status_container->find('css', 'div.ecl-message__content div.ecl-message__title'));
 
     // Event is ongoing, but livestream is not.
-    $static_time = new DrupalDateTime('2020-04-17 14:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
     // Event is ongoing and livestream also.
-    $static_time = new DrupalDateTime('2020-04-18 20:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-18 20:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
     $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
 
     // Event is ongoing but livestream is finished.
-    $static_time = new DrupalDateTime('2020-04-20 22:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-04-20 22:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -1062,7 +1062,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
 
     // Set current time after the event ends.
-    $static_time = new DrupalDateTime('2020-05-15 13:00:00', 'Europe/Brussels');
+    $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
@@ -1110,56 +1110,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   protected function assertContactHeader(NodeElement $rendered_element, string $title): void {
     $rendered_header = $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-m.ecl-u-mb-m-l', $rendered_element);
     $this->assertEquals($title, $rendered_header->getText());
-  }
-
-  /**
-   * Asserts rendering of Contact entity using Details view mode.
-   *
-   * @param \Behat\Mink\Element\NodeElement $element
-   *   Rendered element.
-   * @param string $name
-   *   Name of the Contact entity.
-   */
-  protected function assertContactDetailsRender(NodeElement $element, string $name): void {
-    $field_list_assert = new FieldListAssert();
-    $field_list_expected_values = [
-      'items' => [
-        [
-          'label' => 'Name',
-          'body' => $name,
-        ], [
-          'label' => 'Email',
-          'body' => "$name@example.com",
-        ], [
-          'label' => 'Phone number',
-          'body' => "Phone number $name",
-        ], [
-          'label' => 'Address',
-          'body' => "Address $name, 1001 Brussels, Belgium",
-        ],
-      ],
-    ];
-    $content = $this->assertSession()->elementExists('css', 'dl.ecl-description-list', $element);
-    $field_list_html = $content->getOuterHtml();
-    $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
-    $field_list_assert->assertVariant('horizontal', $field_list_html);
-
-    // Assert "Social media links" links.
-    $social_links_assert = new SocialMediaLinksAssert();
-    $social_links_expected_values = [
-      'title' => 'Social media',
-      'links' => [
-        [
-          'service' => 'facebook',
-          'label' => "Social media $name",
-          'url' => "http://www.example.com/social_media_$name",
-        ],
-      ],
-    ];
-    $social_links_content = $this->assertSession()->elementExists('css', '.ecl-u-mt-l', $element);
-    $social_links_html = $social_links_content->getHtml();
-    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
-    $social_links_assert->assertVariant('horizontal', $social_links_html);
   }
 
 }
