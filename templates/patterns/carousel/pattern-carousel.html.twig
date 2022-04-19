@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Carousel component.
+ */
+#}
+{% set _items = [] %}
+{% for item in items %}
+  {% if item.url is not empty and item.url_text is not empty %}
+    {% set _link = {
+      'link': {
+        'path': item.url,
+        'label': item.url_text,
+        'icon_position': 'after'
+      },
+      'icon': get_link_icon(item.url)
+    } -%}
+  {% endif %}
+  {% set _items = _items|merge([{
+    title: item.title,
+    description: item.description,
+    link: _link,
+    image: item.image|default(''),
+    variant: item.variant|default('primary'),
+    centered: item.centered is defined and item.centered == false ? false : true,
+  }]) %}
+  {% set _link = {} %}
+{% endfor %}
+{% include '@ecl-twig/carousel' with {
+  'items': _items,
+  'counter_label': counter_label|default('of'),
+  'full_width': full_width|default(false),
+  'icon_path': ecl_icon_path
+} %}
