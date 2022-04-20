@@ -1988,3 +1988,80 @@ function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker
 
   $cacheability->applyTo($variables);
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for oe_carousel paragraph.
+ */
+function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+  $variables['items'] = [];
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
+  foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {
+    // Get sub-paragraph translation.
+    $sub_paragraph = \Drupal::service('entity.repository')
+      ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    /** @var \Drupal\media\Entity\Media $media */
+    $media = $sub_paragraph->get('field_oe_media')->entity;
+    if (!$media instanceof MediaInterface) {
+      // The media entity is not available anymore, skip the item.
+      continue;
+    }
+    // Retrieve the correct media translation.
+    $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+    // Caches are handled by the formatter usually. Since we are not rendering
+    // the original render arrays, we need to propagate our caches to the
+    // paragraph template.
+    $cacheability->addCacheableDependency($media);
+    // Run access checks on the media entity.
+    $access = $media->access('view', $variables['user'], TRUE);
+    $cacheability->addCacheableDependency($access);
+    if (!$access->isAllowed()) {
+      $cacheability->applyTo($variables);
+      continue;
+    }
+    $source = $media->getSource();
+    // We only support images and AV Portal photos for now.
+    if (!$source instanceof MediaAvPortalSourceInterface && !$source instanceof Image) {
+      $cacheability->applyTo($variables);
+      continue;
+    }
+    $field_name = $source->getConfiguration()['source_field'];
+    if ($source instanceof Image && ($file_entity = $media->get($field_name)->entity)) {
+      $uri = $file_entity->getFileUri();
+      $cacheability->addCacheableDependency($file_entity);
+    }
+    elseif ($source instanceof MediaAvPortalSourceInterface) {
+      $resource_ref = $media->get($field_name)->value;
+      $uri = 'avportal://' . $resource_ref . '.jpg';
+    }
+    // The uri might be empty if the source is of type Image and the file entity
+    // was deleted.
+    if (empty($uri)) {
+      $cacheability->applyTo($variables);
+      continue;
+    }
+    $link_item = '';
+    $link = '';
+    $link_text = '';
+    if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
+      /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
+      $link_item = $sub_paragraph->get('field_oe_link')->first();
+      $link = $link_item->get('uri')->getValue();
+      $link_text = $link_item->get('title')->getValue();
+    }
+    $variables['items'][] = [
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => !$sub_paragraph->get('field_oe_text_long')->isEmpty() ? $sub_paragraph->get('field_oe_text_long')->value : '',
+      'url' => $link ?? '',
+      'url_text' => $link_text ?? '',
+      'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
+      // The paragraph has a required image field, so we need to set a default
+      // image variant in order to render the image.
+      'variant' => 'image',
+    ];
+    $cacheability->applyTo($variables);
+  }
+}
