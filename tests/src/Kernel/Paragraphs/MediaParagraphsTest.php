@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel\Paragraphs;
 
+use Drupal\paragraphs\Entity\Paragraph;
+use Drupal\Tests\oe_theme\PatternAssertions\CarouselAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
 use Drupal\Core\Url;
 use Symfony\Component\DomCrawler\Crawler;
@@ -35,6 +37,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'options',
     'oe_media_iframe',
     'file_link',
+    'oe_paragraphs_carousel',
+    'composite_reference',
   ];
 
   /**
@@ -56,6 +60,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_paragraphs_iframe_media',
       'options',
       'oe_media_iframe',
+      'oe_paragraphs_carousel',
     ]);
     // Call the install hook of the Media module.
     module_load_include('install', 'media');
@@ -926,6 +931,154 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertStringContainsString('Iframe paragraph title bg', $title->text());
     $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
     $this->assertStringContainsString('http://example.com/iframe_bg', $iframe->attr('src'));
+  }
+
+  /**
+   * Test Carousel paragraph rendering.
+   */
+  public function testCarousel(): void {
+    // Set image media translatable.
+    $this->container->get('content_translation.manager')
+      ->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')
+      ->getStorage('field_config')
+      ->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
+    $this->container->get('router.builder')->rebuild();
+
+    // Create English files.
+    $en_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file_1->setPermanent();
+    $en_file_1->save();
+    $en_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
+    $en_file_2->setPermanent();
+    $en_file_2->save();
+
+    // Create Bulgarian files.
+    $bg_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file_1->setPermanent();
+    $bg_file_1->save();
+    $bg_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
+    $bg_file_2->setPermanent();
+    $bg_file_2->save();
+
+    // Create a couple of media items with Bulgarian translation.
+    $media_storage = $this->container->get('entity_type.manager')
+      ->getStorage('media');
+    $first_media = $media_storage->create([
+      'bundle' => 'image',
+      'name' => 'First image en',
+      'oe_media_image' => [
+        'target_id' => $en_file_1->id(),
+      ],
+    ]);
+    $first_media->save();
+    $first_media_bg = $first_media->addTranslation('bg', [
+      'name' => 'First image bg',
+      'oe_media_image' => [
+        'target_id' => $bg_file_1->id(),
+      ],
+    ]);
+    $first_media_bg->save();
+    $second_media = $media_storage->create([
+      'bundle' => 'image',
+      'name' => 'Second image en',
+      'oe_media_image' => [
+        'target_id' => $en_file_2->id(),
+      ],
+    ]);
+    $second_media->save();
+    $second_media_bg = $second_media->addTranslation('bg', [
+      'name' => 'Second image bg',
+      'oe_media_image' => [
+        'target_id' => $bg_file_2->id(),
+      ],
+    ]);
+    $second_media_bg->save();
+
+    // Create a few Carousel items paragraphs with Bulgarian translation.
+    $items = [];
+    for ($i = 1; $i <= 4; $i++) {
+      $paragraph = Paragraph::create([
+        'type' => 'oe_carousel_item',
+        'field_oe_title' => 'Item ' . $i,
+        'field_oe_text_long' => $i % 2 === 0 ? 'Item description ' . $i : '',
+        'field_oe_link' => $i % 2 === 0 ? [
+          'uri' => 'http://www.example.com/',
+          'title' => 'CTA ' . $i,
+        ] : [],
+        'field_oe_media' => $i % 2 !== 0 ? $first_media : $second_media,
+      ]);
+      $paragraph->save();
+      $paragraph->addTranslation('bg', [
+        'field_oe_title' => 'BG Item ' . $i,
+        'field_oe_text_long' => $i % 2 === 0 ? 'BG Item description ' . $i : '',
+        'field_oe_link' => $i % 2 === 0 ? [
+          'uri' => 'http://www.example.com/',
+          'title' => 'BG CTA ' . $i,
+        ] : [],
+      ])->save();
+      $items[$i] = $paragraph;
+    }
+    // Create a Carousel paragraph with Bulgarian translation.
+    $paragraph = Paragraph::create([
+      'type' => 'oe_carousel',
+      'field_oe_carousel_items' => $items,
+    ]);
+    $paragraph->save();
+    $paragraph->addTranslation('bg', $paragraph->toArray())->save();
+
+    // Assert paragraph rendering for English version.
+    $html = $this->renderParagraph($paragraph);
+    $assert = new CarouselAssert();
+    $expected_values = [
+      'items' => [
+        [
+          'title' => 'Item 1',
+          'image' => file_create_url($en_file_1->getFileUri()),
+          'variant' => 'image',
+        ],
+        [
+          'title' => 'Item 2',
+          'description' => 'Item description 2',
+          'url' => 'http://www.example.com/',
+          'url_text' => 'CTA 2',
+          'image' => file_create_url($en_file_2->getFileUri()),
+          'variant' => 'image',
+        ],
+        [
+          'title' => 'Item 3',
+          'image' => file_create_url($en_file_1->getFileUri()),
+          'variant' => 'image',
+        ],
+        [
+          'title' => 'Item 4',
+          'description' => 'Item description 4',
+          'url' => 'http://www.example.com/',
+          'url_text' => 'CTA 4',
+          'image' => file_create_url($en_file_2->getFileUri()),
+          'variant' => 'image',
+        ],
+      ],
+    ];
+    $assert->assertPattern($expected_values, $html);
+
+    // Assert paragraph rendering for Bulgarian version.
+    $html = $this->renderParagraph($paragraph, 'bg');
+    $expected_values['items'][0]['title'] = 'BG Item 1';
+    $expected_values['items'][0]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][1]['title'] = 'BG Item 2';
+    $expected_values['items'][1]['description'] = 'BG Item description 2';
+    $expected_values['items'][1]['url_text'] = 'BG CTA 2';
+    $expected_values['items'][1]['image'] = file_create_url($bg_file_2->getFileUri());
+    $expected_values['items'][2]['title'] = 'BG Item 3';
+    $expected_values['items'][2]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][3]['title'] = 'BG Item 4';
+    $expected_values['items'][3]['description'] = 'BG Item description 4';
+    $expected_values['items'][3]['url_text'] = 'BG CTA 4';
+    $expected_values['items'][3]['image'] = file_create_url($bg_file_2->getFileUri());
+    $assert->assertPattern($expected_values, $html);
   }
 
 }
