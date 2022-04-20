@@ -1982,7 +1982,6 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       $cacheability->applyTo($variables);
       continue;
     }
-    $link_item = '';
     $link = '';
     $link_text = '';
     if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
@@ -1996,7 +1995,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'description' => !$sub_paragraph->get('field_oe_text_long')->isEmpty() ? $sub_paragraph->get('field_oe_text_long')->value : '',
       'url' => $link ?? '',
       'url_text' => $link_text ?? '',
-      'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
+      'image' => file_create_url($uri),
       // The paragraph has a required image field, so we need to set a default
       // image variant in order to render the image.
       'variant' => 'image',
