@@ -28,7 +28,7 @@
 {% endfor %}
 {% include '@ecl-twig/carousel' with {
   'items': _items,
-  'counter_label': counter_label|default('of'),
+  'counter_label': counter_label|default('of'|t),
   'full_width': full_width|default(false),
   'icon_path': ecl_icon_path
 } %}
