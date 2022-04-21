@@ -3265,19 +3265,39 @@
           description: "Integer quis lorem tellus."
           url: "https://example.com"
           url_text: "CTA 3"
+        - title: "Donec maximus pharetra ex a ultricies"
+          image: "https://placeimg.com/640/480/tech"
+          variant: "image-shade"
+        - title: "Lorem ipsum dolor sit amet"
+          description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          variant: "secondary"
+          centered: false
+        - title: "Duis vitae pulvinar turpis"
+          url: "https://example.com"
+          url_text: "CTA 4"
+          variant: "white"
+          centered: false
   assertions:
     count:
       div.ecl-carousel.ecl-carousel--full-width: 0
       div.ecl-carousel: 1
       div.ecl-carousel__container: 1
       div.ecl-carousel__slides: 1
-      div.ecl-carousel__slide: 3
+      div.ecl-carousel__slide: 6
       div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image: 1
       div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered: 1
       div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered: 1
       div.ecl-carousel__controls: 1
       section.ecl-page-banner--image div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
       section.ecl-page-banner--image-gradient div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
+      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--secondary: 1
+      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner.ecl-page-banner--white: 1
+      section.ecl-page-banner--image-shade div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content p.ecl-page-banner__description: 0
+      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content p.ecl-page-banner__description: 0
     contains:
       div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
@@ -3288,6 +3308,12 @@
       div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
       div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered p.ecl-page-banner__description: 'Integer quis lorem tellus.'
       div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 4'
+      div.ecl-carousel__pagination: 'of 6'
 - array:
     '#type': 'pattern'
     '#id': 'carousel'
@@ -3311,6 +3337,7 @@
           url_text: "CTA 3"
           variant: "white"
           centered: false
+      counter_label: 'in'
       full_width: true
   assertions:
     count:
@@ -3330,38 +3357,4 @@
       div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content p.ecl-page-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 'CTA 3'
-- array:
-    '#type': 'pattern'
-    '#id': 'carousel'
-    '#fields':
-      items:
-        - title: "Donec maximus pharetra ex a ultricies"
-          image: "https://placeimg.com/640/480/tech"
-          variant: "image-shade"
-        - title: "Lorem ipsum dolor sit amet"
-          description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
-          variant: "secondary"
-          centered: false
-        - title: "Duis vitae pulvinar turpis"
-          url: "https://example.com"
-          url_text: "CTA 3"
-          variant: "white"
-          centered: false
-  assertions:
-    count:
-      div.ecl-carousel: 1
-      div.ecl-carousel__slide: 3
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--secondary: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner.ecl-page-banner--white: 1
-      section.ecl-page-banner--image-shade div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content p.ecl-page-banner__description: 0
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content p.ecl-page-banner__description: 0
-    contains:
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__pagination: 'in 3'
