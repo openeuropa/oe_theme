@@ -1,0 +1,6 @@
+javascript_log:
+  version: VERSION
+  js:
+    js/oe_theme_js_testing_log.js: {}
+  dependencies:
+    - core/drupal
