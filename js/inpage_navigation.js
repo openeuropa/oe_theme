@@ -19,9 +19,16 @@
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
+      var items_markup = {};
       // Loop through all the elements marked as source areas.
       Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-area]'), function (area) {
         var selectors = area.getAttribute('data-inpage-navigation-source-area');
+        // Prepare items_markup variable for future grouping of source elements by target inpage navigation block.
+        var target_id = '';
+        if (area.hasAttribute('data-inpage-navigation-target-block')) {
+          target_id = area.getAttribute('data-inpage-navigation-target-block');
+        }
+        items_markup[target_id] = '';
 
         // Loop through all the elements that are referenced by the specified selector(s), and mark them as source
         // elements. We cannot collect the elements at this stage, as multiple nested areas can be present in the page.
@@ -30,11 +37,13 @@
         // The :scope pseudo-class is needed to make sure that the selectors are applied inside the parent.
         // @see https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll#user_notes
         Array.prototype.forEach.call(area.querySelectorAll(':scope ' + selectors), function (element) {
+          if (target_id) {
+            element.setAttribute('data-inpage-navigation-target-block', target_id)
+          }
           element.setAttribute('data-inpage-navigation-source-element', '');
         });
       });
 
-      var items_markup = '';
       // Collect all the elements marked as source. Now the elements will be unique and ordered correctly.
       Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-element]'), function (element) {
         var title = element.textContent.trim();
@@ -58,20 +67,34 @@
         // Cleanup the markup from the helper attribute added above.
         element.removeAttribute('data-inpage-navigation-source-element');
 
-        items_markup += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
+        if (element.hasAttribute('data-inpage-navigation-target-block')) {
+          items_markup[element.getAttribute('data-inpage-navigation-target-block')] += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
+        }
+        else {
+          items_markup[''] += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
+        }
       });
 
       // Loop through all the inpage navigation marked with our special class. The auto-initialisation is disabled on
       // them, as initialisation should be run only after the items are added. Otherwise JS callbacks won't be applied
       // correctly.
       Array.prototype.forEach.call(document.querySelectorAll('.oe-theme-ecl-inpage-navigation'), function (block) {
-        if (items_markup.length === 0) {
+        var block_items = '';
+        // Get block items from collected links by block ID.
+        if (block.hasAttribute('id')) {
+          block_items = items_markup[block.getAttribute('id')];
+        }
+        else {
+          block_items = items_markup[''];
+        }
+
+        if (block_items.length === 0) {
           // When there are no items, execute the callback to handle the block.
           Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
           return;
         }
 
-        block.querySelector('ul').innerHTML = items_markup;
+        block.querySelector('ul').innerHTML = block_items;
         var instance = new ECL.InpageNavigation(block);
         instance.init();
         Drupal.eclInPageNavigation.instances.push(instance);

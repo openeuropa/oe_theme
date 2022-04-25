@@ -112,6 +112,7 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
     'oe_theme_helper_inpage_navigation_block' => [
       'variables' => [
         'title' => NULL,
+        'id' => NULL,
       ],
     ],
   ];
