@@ -67,7 +67,7 @@ class ImageValueObjectTest extends UnitTestCase {
     $this->imageFile->get('uri')->willReturn($this->imageUri->reveal());
 
     $this->imageEntity = $this->prophesize(EntityReference::class);
-    $this->imageEntity->getTarget()->willReturn($this->imageFile->reveal());
+    $this->imageEntity->getValue()->willReturn($this->imageFile->reveal());
 
     $this->imageReferenceItem = $this->prophesize(ImageItem::class);
     $this->imageReferenceItem->get('entity')->willReturn($this->imageEntity->reveal());
@@ -84,7 +84,7 @@ class ImageValueObjectTest extends UnitTestCase {
   }
 
   /**
-   * Test constructing a image value object from an array.
+   * Test constructing an image value object from an array.
    */
   public function testFromArray() {
     $data = [
@@ -104,7 +104,7 @@ class ImageValueObjectTest extends UnitTestCase {
   }
 
   /**
-   * Test constructing a image value object from an image item.
+   * Test constructing an image value object from an image item.
    */
   public function testFromImageItem() {
     /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $object */
