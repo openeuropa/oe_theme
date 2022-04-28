@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * News ticker pattern.
+ */
+#}
+{% set _items = [] %}
+{% for _item in items %}
+  {% set _items = _items|merge([{
+    content: _item.content,
+    link: _item.link
+  }]) %}
+{% endfor %}
+
+{% include '@ecl-twig/news-ticker' with {
+  'id': identifier|default(''),
+  'items': _items,
+  'counter_label': counter_label|default('of'),
+  'icon_path': ecl_icon_path
+} only %}
