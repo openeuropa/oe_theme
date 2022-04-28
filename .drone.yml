@@ -125,6 +125,7 @@ pipeline:
     commands:
       - apt-get update
       - apt-get install zip
+      - git config --global --add safe.directory /test/oe_theme
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG}
       - ./vendor/bin/run release:create-archive --tag=${DRONE_TAG} --zip
     when:
