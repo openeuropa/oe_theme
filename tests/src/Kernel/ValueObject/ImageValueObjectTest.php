@@ -96,7 +96,7 @@ class ImageValueObjectTest extends KernelTestBase {
     $this->assertEquals('This is an alternative title', $object->getAlt());
     $this->assertStringContainsString('/styles/main_style/public/example_1.jpg', $object->getSource());
 
-    // Test that all the cache tags have present and bubbled up.
+    // Test that all the cache tags are present and have bubbled up.
     $this->assertEqualsCanonicalizing([
       'config:image.style.main_style',
       'file:1',
@@ -116,7 +116,7 @@ class ImageValueObjectTest extends KernelTestBase {
     $this->assertEquals('This is an alternative title', $object->getAlt());
     $this->assertStringContainsString('/files/example_1.jpg', $object->getSource());
 
-    // Test that all the cache tags have present and bubbled up.
+    // Test that all the cache tags are present and have bubbled up.
     $this->assertEqualsCanonicalizing([
       'file:1',
     ], $object->getCacheTags());

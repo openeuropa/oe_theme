@@ -240,7 +240,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertStringContainsString('Test video iframe title', $caption->html());
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
-    // Test that all the cache tags have present and bubbled up.
+    // Test that all the cache tags are present and have bubbled up.
     $this->assertEqualsCanonicalizing([
       'file:1',
       'file:2',
