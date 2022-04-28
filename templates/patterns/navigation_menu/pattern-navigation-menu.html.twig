@@ -20,6 +20,12 @@
         is_current: child.is_current,
       }) %}
     {% endif %}
+    {% if child.external is defined and child.external == true %}
+      {% set _child = _child|merge({
+        external: child.external,
+        icon_path: ecl_icon_path
+      }) %}
+    {% endif %}
     {% set _children = _children|merge([_child]) %}
   {% endfor %}
 

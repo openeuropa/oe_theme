@@ -2945,10 +2945,12 @@
             - href: '#'
               label: 'Child 1.1'
               is_current: true
+              external: true
             - href: '#'
               label: 'Child 1.2'
             - href: '#'
               label: 'Child 1.3'
+              external: true
             - href: '#'
               label: 'Child 1.4'
         - href: "#"
@@ -2960,6 +2962,7 @@
               label: 'Child 2.2'
             - href: '#'
               label: 'Child 2.3'
+              external: true
         - href: "#"
           label: "Link"
   assertions:
@@ -2969,14 +2972,17 @@
       '.ecl-menu__inner-header button.ecl-menu__back .ecl-button__label': "Back"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
       'li.ecl-menu__item:nth-child(2) a.ecl-menu__link': "Parent 2"
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon-after': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink.ecl-link--icon-after': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink.ecl-link--icon-after': 'Child 2.3'
     equals:
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 1.2'
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(4) a.ecl-menu__sublink': 'Child 1.4'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(1) a.ecl-menu__sublink': 'Child 2.1'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 2.2'
-      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 2.3'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
 - array:
     '#type': "pattern"
