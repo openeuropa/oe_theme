@@ -61,7 +61,7 @@
             extra_classes: 'ecl-contextual-navigation__link',
             link: item|merge({
               type: 'standalone',
-              external: is_external,
+              external: item.is_external,
               icon_path: ecl_icon_path,
             }),
           }) only %}

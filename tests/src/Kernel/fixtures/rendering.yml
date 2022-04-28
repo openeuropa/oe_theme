@@ -1994,13 +1994,13 @@
       'span.ecl-link__label': 3
     equals:
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] span.ecl-link__label': "Item one"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-2.com"]': "Item two"
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] span.ecl-link__label': "Item three"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - array:
@@ -2037,7 +2037,7 @@
       'a.ecl-link--icon-before svg': 0
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
-      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': button
@@ -2049,10 +2049,10 @@
       external_link: true
   assertions:
     count:
-      'a.ecl-link--standalone': 1
-      'a.ecl-link--icon': 0
+      'a.ecl-link--icon': 1
     equals:
-      'a.ecl-link--standalone[href="http://example.com"]': "Button label"
+      'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
+      'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': button
