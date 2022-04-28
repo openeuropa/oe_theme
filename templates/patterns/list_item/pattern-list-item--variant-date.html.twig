@@ -54,23 +54,15 @@
     {% block title %}
       <div class="ecl-content-item-date__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
         {%- if url %}
-          {% set _link = {
+          {% include '@ecl-twig/link' with {
             link: {
               type: 'standalone',
               label: title,
               path: url,
+              external: external_link,
+              icon_path: ecl_icon_path
             }
-          } %}
-          {% if external_link %}
-            {% set _link = _link|merge({
-              icon: {
-                'path': ecl_icon_path,
-                'name': 'external',
-                'size': 's',
-              }
-            }) %}
-          {% endif %}
-          {% include '@ecl-twig/link' with _link only %}
+          } only %}
         {% else %}
           {{ title }}
         {%- endif -%}

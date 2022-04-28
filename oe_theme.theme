@@ -1468,8 +1468,12 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
     $variables['title'] = $paragraph->get('field_oe_title')->value;
   }
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $url = $paragraph->get('field_oe_link')->first()->getUrl();
     $variables['view_all']['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
     $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
+    if ($url->isExternal() && !strpos(UrlHelper::parse($url->toString())['path'], 'europa.eu')) {
+      $variables['external_link'] = TRUE;
+    }
   }
   $variables['items'] = [];
 

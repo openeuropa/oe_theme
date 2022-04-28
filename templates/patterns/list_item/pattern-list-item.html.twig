@@ -74,31 +74,19 @@
               type: 'standalone',
               label: title,
               path: url,
+              external: external_link,
+              icon_path: ecl_icon_path
             }
           } %}
           {% if icon %}
-            {% set _icon = {
-              'path': ecl_icon_path,
-              'name': icon,
-              'size': 's',
-            } %}
-          {% endif %}
-          {% if external_link %}
-            {% if _icon %}
-              {% set _icon = _icon|merge({
-                'name': 'external'
-              }) %}
-            {% else %}
-              {% set _icon = {
+            {% set _link = _link|merge({
+              icon: {
                 'path': ecl_icon_path,
-                'name': 'external',
+                'name': icon,
                 'size': 's',
-              } %}
-            {% endif %}
+              }
+            }) %}
           {% endif %}
-          {% set _link = _link|merge({
-            icon: _icon
-          }) %}
           {% include '@ecl-twig/link' with _link only %}
         {% else %}
           {{ title }}

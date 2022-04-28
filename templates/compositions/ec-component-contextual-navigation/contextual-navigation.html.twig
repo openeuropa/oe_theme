@@ -57,21 +57,14 @@
           {% set _item_classes = _item_classes ~ ' ' ~ 'ecl-contextual-navigation__item--collapsed' %}
         {% endif %}
         <li class="{{ _item_classes }}">
-          {% if item.is_external %}
-            {% set icon = {
-                'path': ecl_icon_path,
-                'name': 'external',
-                'size': 'xs',
-            } %}
-          {% endif %}
           {% include '@ecl-twig/link' with item|merge({
             extra_classes: 'ecl-contextual-navigation__link',
             link: item|merge({
-              type: 'standalone'
+              type: 'standalone',
+              external: is_external,
+              icon_path: ecl_icon_path,
             }),
-            icon: icon ?: {},
           }) only %}
-          {% set icon = {} %}
         </li>
         {% if _item_more is not empty and loop.last and _items|length > _items_limit %}
           {% set _item_classes = _item_classes|replace({

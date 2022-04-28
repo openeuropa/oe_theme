@@ -4,33 +4,32 @@
  * Button.
  */
 #}
-{% if icon %}
-  {% set _icon = {
-    'path': ecl_icon_path,
-    'name': external_link ? 'external' : icon,
-    'size': 's'
-  } %}
-{% endif %}
-{% if external_link %}
-  {% set icon_position = 'after' %}
-{% endif %}
-
 {% if variant == 'default' %}
   {% include '@ecl-twig/link' with {
     'link': {
       'type': 'standalone',
       'label': label,
       'path': href,
-      'icon_position': icon_position|default('after')
+      'icon_position': icon_position|default('after'),
+      'external': external_link,
+      'icon_path': ecl_icon_path
     },
-    'icon': _icon
+    'icon': {
+      'path': ecl_icon_path,
+      'name': icon,
+      'size': 's'
+    }
   } only %}
 {% else %}
   {% include '@ecl-twig/button' with {
     'label': label,
     'variant': variant|replace({'_':'-'}),
     'type': type_attribute,
-    'icon': _icon,
+    'icon': {
+      'path': ecl_icon_path,
+      'name': external_link ? 'external' : icon,
+      'size': 's'
+    },
     'icon_position': icon_position|default('after'),
     'disabled': disabled
   } only %}
