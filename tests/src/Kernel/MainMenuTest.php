@@ -87,6 +87,7 @@ class MainMenuTest extends AbstractKernelTestBase {
     $html = $this->renderRoot($build);
 
     $crawler = new Crawler($html);
+    file_put_contents('test.html', $html);
 
     // Assert wrapper contains ECL class.
     $actual = $crawler->filter('nav.ecl-menu');
@@ -97,6 +98,11 @@ class MainMenuTest extends AbstractKernelTestBase {
     $this->assertEquals(2, $links->count());
     $active_link = $crawler->filter('nav.ecl-menu li.ecl-menu__item.ecl-menu__item--current a.ecl-menu__link');
     $this->assertEquals(1, $active_link->count());
+    // Assert that the leaf item has the external icon rendered.
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $links->eq(0)->filter('svg.ecl-icon.ecl-icon--xs.ecl-menu__link-icon--external.ecl-menu__link-icon')->html());
+    // Assert that the parent item renders the corner arrow icon because it has
+    // children, although it's an external link.
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>', $links->eq(1)->filter('svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-menu__link-icon')->html());
 
     // Assert that parent link is correctly rendered.
     // Remove all non-printable characters.
@@ -106,9 +112,10 @@ class MainMenuTest extends AbstractKernelTestBase {
     // Assert children are rendered correctly.
     $position = 0;
     foreach ($children as $title => $url) {
-      $link = $crawler->filter('.ecl-menu__mega li.ecl-menu__subitem a.ecl-menu__sublink')->eq($position);
+      $link = $crawler->filter('.ecl-menu__mega li.ecl-menu__subitem a.ecl-menu__sublink.ecl-link--icon-after')->eq($position);
       $this->assertEquals($title, trim($link->text()));
       $this->assertEquals($url, trim($link->extract(['href'])[0]));
+      $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $link->filter('svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon')->html());
       $position++;
     }
 

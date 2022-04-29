@@ -129,6 +129,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
       'label' => $item['title'],
       'href' => $item['url'],
       'is_current' => $item['in_active_trail'],
+      'external' => ($item['url']->isExternal() && !strpos(UrlHelper::parse($item['url']->toString())['path'], 'europa.eu')),
     ];
   }, $variables['items']);
 
@@ -138,6 +139,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
         'label' => $item['title'],
         'href' => $item['url'],
         'is_current' => $item['in_active_trail'],
+        'external' => ($item['url']->isExternal() && !strpos(UrlHelper::parse($item['url']->toString())['path'], 'europa.eu')),
       ];
     }, $variables['items'][$name]['below']);
   }

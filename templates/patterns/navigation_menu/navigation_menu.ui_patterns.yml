@@ -45,6 +45,7 @@ navigation_menu:
               external: true
         - href: "#"
           label: "EU law"
+          external: true
           is_current: TRUE
           children:
             - href: '#'
@@ -65,3 +66,4 @@ navigation_menu:
               external: true
         - href: "#"
           label: "Contact"
+          external: true
