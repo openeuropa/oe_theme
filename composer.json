@@ -7,6 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
+        "cweagans/composer-patches": "~1.4",
         "drupal/core": "^9.2",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
@@ -18,7 +19,6 @@
         "behat/behat": "^3.10",
         "behat/mink-extension": "^2.3.1",
         "composer/installers": "~1.5",
-        "cweagans/composer-patches": "^1.7",
         "drupal/address": "~1.9",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "~1.2",

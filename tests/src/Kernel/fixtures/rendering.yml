@@ -3243,3 +3243,67 @@
     equals:
       'div.ecl-list-illustration__item:nth-child(1) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#growth"></use>'
       'div.ecl-list-illustration__item:nth-child(2) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#budget"></use>'
+- array:
+    '#type': 'pattern'
+    '#id': 'news_ticker'
+    '#fields':
+      identifier: "news-ticker-example"
+      items:
+        - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          link: "http://example.com"
+        - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+        - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+          link: "http://example.com"
+        - content: "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
+        - content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
+          link: "http://example.com"
+        - content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
+          link: "http://example.com"
+  assertions:
+    count:
+      div.ecl-news-ticker: 1
+      div.ecl-news-ticker__container: 1
+      div.ecl-news-ticker__content: 1
+      ul#news-ticker-example-content.ecl-news-ticker__slides: 1
+      li.ecl-news-ticker__slide: 6
+      a.ecl-link.ecl-news-ticker__slide-text: 4
+      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: 1
+      div.ecl-news-ticker__controls: 1
+    contains:
+      li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+      li.ecl-news-ticker__slide:nth-child(3) a.ecl-linkecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+      li.ecl-news-ticker__slide:nth-child(4): "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
+      li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
+      li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
+    equals:
+      svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> of 6'
+- array:
+    '#type': 'pattern'
+    '#id': 'news_ticker'
+    '#fields':
+      items:
+        - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          link: "http://example.com"
+        - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+        - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+          link: "http://example.com"
+      counter_label: "in"
+  assertions:
+    count:
+      div.ecl-news-ticker: 1
+      div.ecl-news-ticker__container: 1
+      div.ecl-news-ticker__content: 1
+      ul.ecl-news-ticker__slides: 1
+      li.ecl-news-ticker__slide: 3
+      a.ecl-link.ecl-news-ticker__slide-text: 2
+      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: 1
+      div.ecl-news-ticker__controls: 1
+    contains:
+      li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+      li.ecl-news-ticker__slide:nth-child(3) a.ecl-link.ecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+    equals:
+      svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in 3'
