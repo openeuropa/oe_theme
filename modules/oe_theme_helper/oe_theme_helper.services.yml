@@ -40,3 +40,5 @@ services:
     class: Drupal\oe_theme_helper\MediaDataExtractorPluginManager
     parent: default_plugin_manager
     arguments: ['@entity_type.bundle.info']
+  oe_theme_helper.external_links:
+    class: Drupal\oe_theme_helper\ExternalLinks

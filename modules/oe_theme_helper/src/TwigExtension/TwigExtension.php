@@ -535,7 +535,7 @@ class TwigExtension extends AbstractExtension {
       'size' => $size,
       'color' => 'primary',
     ];
-    if (UrlHelper::isExternal($path) && !strpos(UrlHelper::parse($path)['path'], 'europa.eu')) {
+    if (\Drupal::service('oe_theme_helper.external_links')->isExternalLink($path)) {
       $icon['name'] = 'external';
     }
     else {

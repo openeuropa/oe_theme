@@ -23,7 +23,7 @@
           'label': title,
           'path': title_url,
           'external': external_link,
-          'icon_path': ecl_icon_path
+          'icon_path': icon_path
         }
       } only %}
     {% else %}
@@ -43,7 +43,7 @@
             {% include '@ecl-twig/link' with { link: link.link|merge({
               'type': 'standalone',
               'external': link.link.is_external,
-              'icon_path': ecl_icon_path
+              'icon_path': icon_path
             }) } only %}
           {% else %}
             {{ link.link.label }}
@@ -61,7 +61,7 @@
               {% include '@ecl-twig/link' with { link: link.link|merge({
                 'type': 'standalone',
                 'external': link.link.is_external,
-                'icon_path': ecl_icon_path
+                'icon_path': icon_path
               }) } only %}
             {% else %}
               {{ link.link.label }}
