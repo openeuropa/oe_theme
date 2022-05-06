@@ -42,3 +42,4 @@ services:
     arguments: ['@entity_type.bundle.info']
   oe_theme_helper.external_links:
     class: Drupal\oe_theme_helper\ExternalLinks
+    arguments: ['@config.factory']
