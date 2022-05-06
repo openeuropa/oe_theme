@@ -5,12 +5,31 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper;
 
 use Drupal\Component\Utility\UrlHelper;
+use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Url;
 
 /**
  * Verifies if a URL is considered external or internal.
  */
 class ExternalLinks implements ExternalLinksInterface {
+
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * Constructs a ExternalLinks object.
+   *
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The configuration factory.
+   */
+  public function __construct(ConfigFactoryInterface $config_factory) {
+    $this->configFactory = $config_factory;
+  }
 
   /**
    * {@inheritdoc}
@@ -43,13 +62,12 @@ class ExternalLinks implements ExternalLinksInterface {
   /**
    * Defines a list of domain considered internal.
    *
-   * @return array|null
+   * @return array
    *   The list of internal domains or NULL if there is none.
    */
   protected function internalDomains(): ?array {
-    return [
-      'europa.eu',
-    ];
+    $internal_domains = $this->configFactory->get('oe_theme_helper.internal_domains')->get('domains');
+    return $internal_domains ?? [];
   }
 
 }
