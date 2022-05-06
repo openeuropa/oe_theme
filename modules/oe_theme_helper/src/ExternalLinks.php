@@ -48,26 +48,8 @@ class ExternalLinks implements ExternalLinksInterface {
     }
 
     // If it's external link, make sure its domain is not considered internal.
-    $internal_domains = $this->internalDomains();
-    foreach ($internal_domains as $internal_domain) {
-      if (strpos($path, $internal_domain)) {
-        $external = FALSE;
-        break;
-      }
-    }
-
-    return $external;
-  }
-
-  /**
-   * Defines a list of domain considered internal.
-   *
-   * @return array
-   *   The list of internal domains or NULL if there is none.
-   */
-  protected function internalDomains(): ?array {
-    $internal_domains = $this->configFactory->get('oe_theme_helper.internal_domains')->get('domains');
-    return $internal_domains ?? [];
+    $internal_domain_expression = $this->configFactory->get('oe_theme_helper.internal_domains')->get('internal_domain');
+    return !preg_match($internal_domain_expression, $path);
   }
 
 }
