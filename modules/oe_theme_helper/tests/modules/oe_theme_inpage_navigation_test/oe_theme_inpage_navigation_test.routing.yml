@@ -15,3 +15,12 @@ oe_theme_inpage_navigation_test.no_entries:
     variation: 'no_elements'
   requirements:
     _access: 'TRUE'
+
+oe_theme_inpage_navigation_test.multiple:
+  path: '/oe-theme-inpage-navigation-test/multiple'
+  defaults:
+    _title: 'In-page navigation multiple containers page'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::renderTemplate'
+    variation: 'multiple'
+  requirements:
+    _access: 'TRUE'
