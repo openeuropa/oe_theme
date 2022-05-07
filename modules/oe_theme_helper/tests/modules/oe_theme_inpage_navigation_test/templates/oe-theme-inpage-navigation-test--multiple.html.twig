@@ -1,0 +1,69 @@
+{#
+/**
+ * @file
+ * Test template with multiple in-page navigation sections.
+ */
+#}
+{% macro inpage_navigation(title) %}
+  {% set build = {
+    '#theme': 'oe_theme_helper_inpage_navigation_block',
+    '#title': title|default('Page contents'),
+    '#attached': {
+      'library': [
+        'oe_theme/inpage_navigation'
+      ]
+    }
+  } %}
+  {{ build }}
+{% endmacro %}
+
+<div id="inpage-navigation-test-container">
+  <div class="inpage-navigation-container first-container">
+    {{ _self.inpage_navigation('First nav') }}
+
+    <div data-inpage-navigation-source-area="h3">
+      <h3>Area 1 title 1</h3>
+      <p>Lorem ipsum dolor sit.</p>
+      <h3>Area 1 title 2</h3>
+      <p>Cum eveniet itaque veniam?</p>
+      {# First occurrence of an heading with "Details" as text. #}
+      <h3>Details</h3>
+      <p>Beatae ducimus laborum sapiente?</p>
+      {# A title that should be ignored in this container. #}
+      <h2>Area 1 unused title</h2>
+    </div>
+  </div>
+
+  {# A div that contains elements that should be ignored. #}
+  <div>
+    <h2>Lorem ipsum dolor.</h2>
+    <h2>Adipisci, alias, expedita.</h2>
+    <h3>Lorem ipsum dolor.</h3>
+    <h3>Ab alias, iusto.</h3>
+  </div>
+
+  <div class="inpage-navigation-container second-container">
+    {{ _self.inpage_navigation('Second nav') }}
+
+    <div data-inpage-navigation-source-area="h2,h3">
+      <h2>Area 2 title 1</h2>
+      <p>Beatae ducimus laborum sapiente?</p>
+      <h3>Area 2 title 2</h3>
+      <p>Perspiciatis quo repellendus voluptate!</p>
+      {# Second occurrence of an heading with "Details" as text. #}
+      <h2>Details</h2>
+      <p>Ab dolor earum placeat!</p>
+      <h3>Area 2 title 4</h3>
+      <p>Nulla pariatur quaerat reprehenderit.</p>
+
+      {#
+        A "deeply" nested area, to simulate a standalone component with his own source area selectors.
+        For example, we are rendering a paragraphs entity reference field.
+      #}
+      <div class="rendered-paragraph-field" data-inpage-navigation-source-area="strong.title-like">
+        <strong class="title-like">Special title element</strong>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, tempora?</p>
+      </div>
+    </div>
+  </div>
+</div>
