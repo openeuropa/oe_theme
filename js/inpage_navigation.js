@@ -50,7 +50,7 @@
 
         nav.querySelector('ul').innerHTML = items_markup;
 
-        let instance = new ECL.InpageNavigation(nav);
+        const instance = new ECL.InpageNavigation(nav);
         instance.init();
         Drupal.eclInPageNavigation.instances.push(instance);
       });
