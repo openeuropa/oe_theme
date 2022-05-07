@@ -19,7 +19,18 @@
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
-      Array.prototype.forEach.call(document.querySelectorAll('.inpage-navigation-container'), function (container) {
+      const inpage_navigations = document.querySelectorAll('.oe-theme-ecl-inpage-navigation');
+      if (inpage_navigations.length === 0) {
+        return;
+      }
+
+      let containers = [].slice.call(document.querySelectorAll('.inpage-navigation-container'));
+      // If no specifically defined containers are present, we use the main content as one.
+      if (containers.length === 0) {
+        containers.push(document.querySelector('#main-content'));
+      }
+
+      containers.forEach(function (container) {
         const nav = container.querySelector(':scope .oe-theme-ecl-inpage-navigation');
 
         // Bail out if no inpage navigation element is present.
