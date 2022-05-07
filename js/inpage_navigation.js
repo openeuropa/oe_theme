@@ -20,11 +20,17 @@
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
       Array.prototype.forEach.call(document.querySelectorAll('.inpage-navigation-container'), function (container) {
+        const nav = container.querySelector(':scope .oe-theme-ecl-inpage-navigation');
+
+        // Bail out if no inpage navigation element is present.
+        if (nav === null) {
+          return;
+        }
+
         let items_markup = Drupal.eclInPageNavigation.generateItems(container, function (id, text) {
           return Drupal.theme('oe_theme_inpage_navigation_item', id, text);
         });
 
-        const nav = container.querySelector(':scope .oe-theme-ecl-inpage-navigation');
         if (items_markup.length === 0) {
           // When there are no items, execute the callback to handle the block.
           Drupal.eclInPageNavigation.handleEmptyInpageNavigation(nav);
