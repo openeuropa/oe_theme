@@ -111,3 +111,10 @@ condition.plugin.oe_theme_helper_current_component_library:
   mapping:
     component_library:
       type: string
+
+oe_theme_helper.internal_domains:
+  type: config_object
+  mapping:
+    internal_domain:
+      type: string
+      label: 'Regular expression to identify internal domains.'
