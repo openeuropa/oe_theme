@@ -77,11 +77,23 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
     ]);
     $content_row->save();
 
+    // Create standalone a rich text paragraph with headings not used
+    // by inpage navigation block.
+    $paragraph2 = Paragraph::create([
+      'type' => 'oe_rich_text',
+      'field_oe_title' => 'Rich text title',
+      'field_oe_text_long' => [
+        'value' => 'The rich text body. <h2>Here is a heading</h2>',
+        'format' => 'full_html',
+      ],
+    ]);
+    $paragraph2->save();
+
     // Create a landing page that uses this paragraph.
     $node = $this->drupalCreateNode([
       'title' => 'The node title',
       'type' => 'oe_demo_landing_page',
-      'field_oe_demo_body' => [$content_row],
+      'field_oe_demo_body' => [$content_row, $paragraph2],
     ]);
 
     $this->drupalGet($node->toUrl());
