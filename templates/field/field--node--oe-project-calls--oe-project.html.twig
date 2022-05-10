@@ -12,12 +12,11 @@
 <ul class="ecl-unordered-list ecl-unordered-list--divider">
   {% for item in items %}
     <li class="ecl-unordered-list__item ecl-u-pb-none ecl-u-mb-l">
-      {% set _external = (item.content['#url'].external and 'europa.eu' not in item.content['#url'].toString()) %}
       {{ pattern('list_item', {
         meta: [ uppercase_label ],
         url: item.content['#url'],
         title: item.content['#title'],
-        external_link: _external
+        external_link: item.content['#url'].toString()|is_external_url
       }) }}
     </li>
   {% endfor %}

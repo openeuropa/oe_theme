@@ -31,12 +31,6 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'config',
-    'block',
-    'system',
-    'path',
-    'field_group',
-    'oe_theme_helper',
     'oe_theme_content_person',
   ];
 
@@ -347,11 +341,11 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
-    $first_link_icon = $transparency_links_items[0]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $first_link_icon = $transparency_links_items[0]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
     $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $first_link_icon->getHtml());
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getAttribute('href'));
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getText());
-    $second_link_icon = $transparency_links_items[1]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $second_link_icon = $transparency_links_items[1]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
     $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $second_link_icon->getHtml());
 
     // Assert Biography introduction field.

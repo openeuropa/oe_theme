@@ -35,16 +35,9 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    * {@inheritdoc}
    */
   public static $modules = [
-    'config',
-    'content_translation',
-    'datetime_testing',
-    'block',
-    'system',
-    'oe_theme_helper',
     'oe_theme_content_event',
     'oe_content_event_person_reference',
     'oe_multilingual',
-    'path',
   ];
 
   /**
@@ -449,7 +442,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'body' => 'Event website',
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
-    $event_website_link_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $event_website_link_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
     $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $event_website_link_icon->getHtml());
 
     // Assert "Registration capacity" field.
@@ -595,7 +588,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Livestream', $online_heading->getText());
     $online_description = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(1) > .ecl', $details_content);
     $this->assertEquals('Online event description', $online_description->getText());
-    $online_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after', $details_content);
+    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
     $this->assertEquals('Link to online event', $online_button->find('css', 'span.ecl-link__label')->getText());
     $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
     $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $online_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
@@ -621,7 +614,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($caption->find('css', '.ecl-gallery__meta')->getText());
     // Assert media links.
     $this->assertSession()->linkExistsExact('Main link for media items');
-    $more_media_link_icon = $this->assertSession()->elementExists('css', 'div#event-media a.ecl-link svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon');
+    $more_media_link_icon = $this->assertSession()->elementExists('css', 'div#event-media a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
     $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $more_media_link_icon->getHtml());
     $this->assertSession()->pageTextContainsOnce('More media links');
 
@@ -1087,7 +1080,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    * @param string $link
    *   Button link.
    * @param bool $external
-   *   Whether the registration link is external or not.
+   *   Whether the registration link is external.
    */
   protected function assertRegistrationButtonEnabled(NodeElement $parent_element, string $text, string $link, bool $external): void {
     if ($external) {

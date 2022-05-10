@@ -8,12 +8,12 @@
   <div {% if hidden %}class="ecl-u-d-none"{% endif %} data-livestream-element="true">
     <h3 class="ecl-u-type-heading-3">{{ 'Livestream'|t }}</h3>
     {{ description }}
-    <span class="ecl-u-mt-l ecl-u-mb-l ecl-u-d-inline-block">
-      {{ pattern('link', {
-        variant: 'cta',
-        text: label,
-        url: url
-      }) }}
-    </span>
+    {{ pattern('link', {
+      variant: 'cta',
+      text: label,
+      url: url,
+      external_link: url.toString()|is_external_url,
+      icon_path: ecl_icon_path
+    }) }}
   </div>
 {% endif %}

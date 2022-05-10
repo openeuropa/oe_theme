@@ -13,8 +13,8 @@
       type: 'standalone',
       label: item.content['#url'].toString(),
       path: item.content['#url'],
-      icon_position: 'after'
-    },
-    icon: get_link_icon(item.content['#url'].toString())
+      external: item.content['#url'].toString()|is_external_url,
+      icon_path: ecl_icon_path
+    }
   } %}
 {% endfor %}
