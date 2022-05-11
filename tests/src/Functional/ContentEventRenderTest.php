@@ -50,6 +50,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published oe_venue')
       ->grantPermission('view published oe_contact')
+      ->grantPermission('view published oe_event_programme')
       ->save();
 
     $field = FieldConfig::create([
