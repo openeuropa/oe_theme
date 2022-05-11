@@ -150,6 +150,12 @@ class ProgrammeExtraField extends EventExtraFieldBase {
         continue;
       }
 
+      $access = $programme->access('view', NULL, TRUE);
+      $cache->addCacheableDependency($access);
+      if (!$access->isAllowed()) {
+        continue;
+      }
+
       $programme = $this->entityRepository->getTranslationFromContext($programme);
       $cache->addCacheableDependency($programme);
 
