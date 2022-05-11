@@ -113,6 +113,9 @@ class ProgrammeExtraField extends EventExtraFieldBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function viewElements(ContentEntityInterface $entity) {
     if ($entity->get('oe_event_programme')->isEmpty()) {
