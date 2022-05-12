@@ -5,7 +5,12 @@
  */
 #}
 {% if view_all is not empty %}
-  {% set _link = {'path' : view_all.path, 'label' : view_all.label} %}
+  {% set _link = {
+    'path': view_all.path,
+    'label': view_all.label,
+    'external': external_link|default(false),
+    'icon_path': ecl_icon_path,
+  } %}
   {% set view_all_icon = {
     path: ecl_icon_path,
     name: "corner-arrow",

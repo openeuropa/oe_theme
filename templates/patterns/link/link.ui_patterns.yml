@@ -20,3 +20,8 @@ link:
       description: 'A Drupal URL object. Strings will be passed to Url::fromUserInput().'
       preview: '#'
       escape: true
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the URL is external or not."
+      preview: true

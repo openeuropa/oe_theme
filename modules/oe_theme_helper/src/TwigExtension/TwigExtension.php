@@ -16,6 +16,7 @@ use Drupal\Core\Render\RenderableInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
+use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\smart_trim\Truncate\TruncateHTML;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Twig\Environment;
@@ -46,16 +47,26 @@ class TwigExtension extends AbstractExtension {
   protected $renderer;
 
   /**
+   * The external links service.
+   *
+   * @var \Drupal\oe_theme_helper\ExternalLinksInterface
+   */
+  protected $externalLinks;
+
+  /**
    * Constructs a new TwigExtension object.
    *
    * @param \Drupal\Core\Language\LanguageManagerInterface $languageManager
    *   The language manager.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer service.
+   * @param \Drupal\oe_theme_helper\ExternalLinksInterface $external_links
+   *   The external links service.
    */
-  public function __construct(LanguageManagerInterface $languageManager, RendererInterface $renderer) {
+  public function __construct(LanguageManagerInterface $languageManager, RendererInterface $renderer, ExternalLinksInterface $external_links) {
     $this->languageManager = $languageManager;
     $this->renderer = $renderer;
+    $this->externalLinks = $external_links;
   }
 
   /**
@@ -535,7 +546,7 @@ class TwigExtension extends AbstractExtension {
       'size' => $size,
       'color' => 'primary',
     ];
-    if (UrlHelper::isExternal($path)) {
+    if ($this->externalLinks->isExternalLink($path)) {
       $icon['name'] = 'external';
     }
     else {

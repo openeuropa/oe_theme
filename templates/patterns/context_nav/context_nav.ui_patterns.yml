@@ -14,14 +14,19 @@ context_nav:
       preview:
         - href: "#"
           label: "Item one"
+          is_external: true
         - href: "#"
           label: "Item two"
+          is_external: false
         - href: "#"
           label: "Item three"
+          is_external: false
         - href: "#"
           label: "Item four"
+          is_external: false
         - href: "#"
           label: "Item five"
+          is_external: true
     limit:
       type: "numeric"
       label: "Limit"

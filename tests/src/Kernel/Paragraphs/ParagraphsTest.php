@@ -404,6 +404,13 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $crawler = new Crawler($this->renderParagraph($paragraph));
     $this->assertEquals('List block title', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
+    // Assert that the external icon is rendered for each list item paragraph.
+    $this->assertCount(3, $crawler->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html());
+
+    // Assert the external icon is rendered for the list item block.
+    $this->assertCount(1, $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html());
 
     // Verify that the referenced paragraphs are being rendered.
     $this->assertCount(3, $crawler->filter('div.ecl-content-item-block__item'));
@@ -532,6 +539,14 @@ class ParagraphsTest extends ParagraphsTestBase {
           'title' => 'Link 2',
           'uri' => 'http://example.com/page-two',
         ],
+        [
+          'title' => 'Internal link under eu domain',
+          'uri' => 'http://ec.europa.eu/info',
+        ],
+        [
+          'title' => 'Internal link',
+          'uri' => 'internal:/',
+        ],
       ],
       'field_oe_limit' => 1,
       'field_oe_text' => 'More links',
@@ -545,19 +560,37 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Contextual navigation', trim($actual));
 
     $link1 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(0);
-    $actual = $link1->text();
+    $actual = $link1->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 1', trim($actual));
     $actual = $link1->attr('href');
     $this->assertEquals('http://example.com/page-one', trim($actual));
+    $icon = $link1->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html();
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon);
 
     $link2 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(1);
-    $actual = $link2->text();
+    $actual = $link2->filter('span.ecl-link__label')->text();
     $this->assertEquals('Link 2', trim($actual));
     $actual = $link2->attr('href');
     $this->assertEquals('http://example.com/page-two', trim($actual));
+    $icon = $link2->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html();
+    $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon);
 
     $actual = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list li.ecl-contextual-navigation__item--collapsed a.ecl-contextual-navigation__link')->eq(0)->text();
     $this->assertEquals('Link 2', trim($actual));
+
+    $link3 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(2);
+    $actual = $link3->text();
+    $this->assertEquals('Internal link under eu domain', trim($actual));
+    $actual = $link3->attr('href');
+    $this->assertEquals('http://ec.europa.eu/info', trim($actual));
+    $this->assertCount(0, $link3->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
+
+    $link4 = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list a.ecl-contextual-navigation__link')->eq(3);
+    $actual = $link4->text();
+    $this->assertEquals('Internal link', trim($actual));
+    $actual = $link4->attr('href');
+    $this->assertEquals('/', trim($actual));
+    $this->assertCount(0, $link4->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon'));
 
     $actual = $crawler->filter('nav.ecl-contextual-navigation ul.ecl-contextual-navigation__list button.ecl-contextual-navigation__more')->text();
     $this->assertEquals('More links', trim($actual));
@@ -591,11 +624,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $test_cases = [
       'eu' => [
         'fact_icon_size' => 'l',
-        'view_all_icon_size' => 'm',
       ],
       'ec' => [
         'fact_icon_size' => 'm',
-        'view_all_icon_size' => 'xs',
       ],
     ];
     foreach ($test_cases as $component_library => $icon_sizes) {
@@ -618,7 +649,7 @@ class ParagraphsTest extends ParagraphsTestBase {
 
       $html = $this->renderParagraph($paragraph);
       $crawler = new Crawler($html);
-      $this->assertFactsFigures($crawler, $component_library, $icon_sizes['fact_icon_size'], $icon_sizes['view_all_icon_size']);
+      $this->assertFactsFigures($crawler, $component_library, $icon_sizes['fact_icon_size']);
 
       // Assert paragraph with empty Title and Link fields.
       $paragraph = Paragraph::create([
@@ -643,22 +674,18 @@ class ParagraphsTest extends ParagraphsTestBase {
    *   Component library.
    * @param string $fact_icon_size
    *   Size of the icon in facts.
-   * @param string $view_all_icon_size
-   *   Size of the icon of view all link.
    */
-  protected function assertFactsFigures(Crawler $crawler, string $component_library, string $fact_icon_size, string $view_all_icon_size): void {
+  protected function assertFactsFigures(Crawler $crawler, string $component_library, string $fact_icon_size): void {
     $this->assertCount(1, $crawler->filter('div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items'));
 
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"), $component_library);
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
-    $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__view-all svg.ecl-icon.ecl-icon--$view_all_icon_size.ecl-icon--rotate-90.ecl-link__icon"));
 
     $this->assertEquals('Facts and figures', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#infographic\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#spreadsheet\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#digital\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
-    $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#corner-arrow\"></use>", $crawler->filter("div.ecl-fact-figures__view-all svg.ecl-icon.ecl-icon--$view_all_icon_size.ecl-icon--rotate-90.ecl-link__icon")->html());
     $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
@@ -669,11 +696,13 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')->text()));
     $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')->text()));
 
-    $link = $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link');
+    $link = $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after.ecl-fact-figures__view-all-link');
     $actual = $link->text();
     $this->assertEquals('View all metrics', trim($actual));
     $actual = $link->attr('href');
     $this->assertEquals('http://www.example.com/', trim($actual));
+    $icon = $link->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html();
+    $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#external\"></use>", $icon);
   }
 
   /**

@@ -8,7 +8,8 @@
 {% for _item in items %}
   {% set _items = _items|merge([{
     label: _item.label,
-    path: _item.href
+    path: _item.href,
+    is_external: _item.is_external|default(false)
   }]) %}
 {% endfor %}
 {% include '@oe_theme/compositions/ec-component-contextual-navigation/contextual-navigation.html.twig' with {

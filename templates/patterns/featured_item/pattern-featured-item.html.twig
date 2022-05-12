@@ -22,9 +22,9 @@
         {% include '@ecl-twig/icon' with {
           icon: {
             path: ecl_icon_path,
-            name: "corner-arrow",
+            name: external_link ? "external" : "corner-arrow",
             size: "xs",
-            transform: "rotate-90"
+            transform: external_link ? "" : "rotate-90"
           },
           extra_classes: "ecl-button__icon ecl-button__icon--after"
         } only %}
@@ -52,7 +52,9 @@
   'title': {
     'label': title,
     'path': link.href,
-    'type': "standalone"
+    'type': "standalone",
+    'external': external_link,
+    'icon_path': ecl_icon_path
   },
   'infos': _footer_items,
   'image': image,

@@ -26,6 +26,7 @@ navigation_menu:
           children:
             - href: '#'
               label: 'Child 1.1'
+              external: true
             - href: '#'
               label: 'Child 1.2'
             - href: '#'
@@ -34,19 +35,23 @@ navigation_menu:
               label: 'Child 1.4'
             - href: '#'
               label: 'Child 1.5'
+              external: true
             - href: '#'
               label: 'Child 1.6'
             - href: '#'
               label: 'Child 1.7'
             - href: '#'
               label: 'Child 1.8'
+              external: true
         - href: "#"
           label: "EU law"
+          external: true
           is_current: TRUE
           children:
             - href: '#'
               label: 'Eu Treaties'
               is_current: TRUE
+              external: true
             - href: '#'
               label: 'Application of EU law'
             - href: '#'
@@ -55,7 +60,10 @@ navigation_menu:
               label: 'Priorities'
             - href: '#'
               label: 'Funding'
+              external: true
             - href: '#'
               label: 'HORIZON2020'
+              external: true
         - href: "#"
           label: "Contact"
+          external: true
