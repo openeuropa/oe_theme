@@ -668,10 +668,10 @@
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'div.ecl-file__taxonomy': 1
-      'dl.ecl-description-list--taxonomy': 1
+      'dl.ecl-description-list': 1
       'dt.ecl-description-list__term': 1
-      'dd.ecl-description-list__definition': 1
-      'span.ecl-description-list__tag': 2
+      'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 1
+      'span.ecl-description-list__definition-item': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
@@ -689,8 +689,8 @@
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'dt.ecl-description-list__term': 'Keywords'
-      'span.ecl-description-list__tag:nth-child(1)': 'Apple'
-      'span.ecl-description-list__tag:nth-child(2)': 'Orange'
+      'span.ecl-description-list__definition-item:nth-child(1)': 'Apple'
+      'span.ecl-description-list__definition-item:nth-child(2)': 'Orange'
 - array:
     '#type': pattern
     '#id': file_image
