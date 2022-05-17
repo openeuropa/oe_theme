@@ -13,6 +13,8 @@
         type: 'cta',
         label: item.content['#title']|default('Respond to the questionnaire'|t),
         path: item.content['#url'],
+        external: item.content['#url'].toString()|is_external_url,
+        icon_path: ecl_icon_path
       }
     } %}
   </div>

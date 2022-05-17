@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\TwigExtension;
 
 use Drupal\Component\Render\MarkupInterface;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Language\LanguageManager;
 use Drupal\Core\Language\LanguageManagerInterface;
@@ -82,7 +81,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFilter('to_date_status', [$this, 'toDateStatus']),
       new TwigFilter('to_ecl_attributes', [$this, 'toEclAttributes']),
       new TwigFilter('smart_trim', [$this, 'smartTrim'], ['needs_environment' => TRUE]),
-      new TwigFilter('is_external_url', [UrlHelper::class, 'isExternal']),
+      new TwigFilter('is_external_url', [$this, 'isExternal']),
       new TwigFilter('filter_empty', [$this, 'filterEmpty']),
       new TwigFilter('create_markup', [$this, 'createMarkup']),
     ];
@@ -604,6 +603,19 @@ class TwigExtension extends AbstractExtension {
     }
 
     return $ecl_links;
+  }
+
+  /**
+   * Checks if a given path is external or not.
+   *
+   * @param string $path
+   *   The path to be checked.
+   *
+   * @return bool
+   *   Whether the path is external.
+   */
+  public function isExternal(string $path): bool {
+    return $this->externalLinks->isExternalLink($path);
   }
 
   /**

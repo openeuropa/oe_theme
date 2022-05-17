@@ -15,7 +15,8 @@
       {{ pattern('list_item', {
         meta: [ uppercase_label ],
         url: item.content['#url'],
-        title: item.content['#title']
+        title: item.content['#title'],
+        external_link: item.content['#url'].toString()|is_external_url
       }) }}
     </li>
   {% endfor %}
