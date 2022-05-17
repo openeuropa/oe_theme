@@ -46,19 +46,15 @@
   }]) %}
 {% endfor %}
 
-{% set card = {
+{% include '@ecl-twig/card' with {
   'description': _description|default(description|smart_trim(length)),
-  'meta': metas,
+  'primary_meta': metas,
   'title': {
     'label': title,
     'path': link.href,
     'type': "standalone"
   },
-  'infos': _footer_items,
+  'secondary_meta': _footer_items,
   'image': image,
   'labels': badges,
-} %}
-
-{% include '@ecl-twig/card' with {
-  'card': card,
 } %}
