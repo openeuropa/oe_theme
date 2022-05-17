@@ -208,7 +208,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
 
     // Neither the metas.
-    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+    $this->assertCount(0, $crawler->filter('.ecl-content-block__primary-meta-container'));
 
     $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link');
     $this->assertCount(1, $link_element);
@@ -240,7 +240,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
 
     // Neither the metas.
-    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+    $this->assertCount(0, $crawler->filter('.ecl-content-block__primary-meta-container'));
 
     $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link');
     $this->assertCount(1, $link_element);
