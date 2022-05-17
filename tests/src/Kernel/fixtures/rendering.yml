@@ -3272,7 +3272,7 @@
       ul#news-ticker-example-content.ecl-news-ticker__slides: 1
       li.ecl-news-ticker__slide: 6
       a.ecl-link.ecl-news-ticker__slide-text: 4
-      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: 1
+      div.ecl-news-ticker__counter: 1
       div.ecl-news-ticker__controls: 1
     contains:
       li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
@@ -3283,7 +3283,8 @@
       li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
     equals:
       svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> of 6'
+      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
+      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
 - array:
     '#type': 'pattern'
     '#id': 'news_ticker'
@@ -3309,6 +3310,7 @@
       li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
       li.ecl-news-ticker__slide:nth-child(3) a.ecl-link.ecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in'
     equals:
       svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      div.ecl-news-ticker__counter: '<span class="ecl-news-ticker__counter--current">1</span> in 3'
+      div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '3'
