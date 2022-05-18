@@ -9,7 +9,6 @@ declare(strict_types = 1);
 
 use Drupal\block\BlockInterface;
 use Drupal\Component\Utility\Html;
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -1751,6 +1750,8 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
     return;
   }
 
+  $external_link_service = \Drupal::service('oe_theme_helper.external_links');
+
   foreach ($variables['site_specific_footer']['other_links'] as $section => $links) {
     if (empty($links['links'])) {
       continue;
@@ -1761,12 +1762,7 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
         continue;
       }
 
-      if ($link['href']->isExternal()) {
-        $parts = UrlHelper::parse($link['href']->toString());
-        if (strpos($parts['path'], 'europa.eu')) {
-          // We consider links with europa.eu domains as internal.
-          continue;
-        }
+      if ($external_link_service->isExternalLink($link['href'])) {
         $variables['site_specific_footer']['other_links'][$section]['links'][$index]['external'] = TRUE;
       }
     }
