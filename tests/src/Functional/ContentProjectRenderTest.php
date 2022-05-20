@@ -190,7 +190,8 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Change EU contribution and assert percentage field change.
-    $node->set('oe_project_budget_eu', 50);
+    $node->set('oe_project_budget', 1000);
+    $node->set('oe_project_budget_eu', 1);
     // Change Project duration to test label when start date equals end date.
     $node->set('oe_project_dates', [
       'value' => '2020-05-10',
@@ -207,7 +208,9 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($first_field_list_expected_values, $description_lists[0]->getHtml());
 
     // Assert the second description list block's labels and values.
-    $second_field_list_expected_values['items'][1]['body'] = "€5050% of the overall budget";
+    // Only one decimal appears after changing the budget: €1 with 0.1%.
+    $second_field_list_expected_values['items'][1]['body'] = '€10.1% of the overall budget';
+    $second_field_list_expected_values['items'][0]['body'] = '€1 000';
     $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.

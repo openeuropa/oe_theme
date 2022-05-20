@@ -196,7 +196,7 @@ content:
     region: content
     label: above
     settings:
-      thousand_separator: .
+      thousand_separator: ' '
       decimal_separator: .
       scale: 0
       prefix_suffix: true

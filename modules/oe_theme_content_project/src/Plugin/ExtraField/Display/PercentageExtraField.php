@@ -82,7 +82,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
       'label' => 'hidden',
       'type' => 'number_decimal',
       'settings' => [
-        'thousand_separator' => '.',
+        'thousand_separator' => ' ',
         'decimal_separator' => '.',
         'scale' => 0,
         'prefix_suffix' => TRUE,

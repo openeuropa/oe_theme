@@ -54,3 +54,13 @@ function oe_theme_content_project_post_update_00002(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Updates the budget field's 'thousand' separator to space.
+ */
+function oe_theme_content_project_post_update_00003(): void {
+  $view_display = EntityViewDisplay::load('node.oe_project.full');
+  $view_display->getComponent('oe_project_budget');
+  $component['settings']['thousand_separator'] = ' ';
+  $view_display->setComponent('oe_call_proposals_contact', $component)->save();
+}
