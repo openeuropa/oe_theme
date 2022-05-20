@@ -60,6 +60,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->container->get('plugin.manager.ui_patterns')->clearCachedDefinitions();
     $this->configFactory = $this->container->get('config.factory');
     $this->linkManager = $this->container->get('oe_corporate_blocks.footer_link_manager');
+
+    // Set the internal domain config to detect external links properly.
+    $this->config('oe_theme_helper.internal_domains')->set('internal_domain', '/(^|^[^:]+:\/\/|[^\.]+\.)europa\.eu/m')->save();
   }
 
   /**
