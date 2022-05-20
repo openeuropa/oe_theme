@@ -162,7 +162,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
           '#type' => 'processed_text',
           '#text' => $programme->get('oe_description')->first()->getValue()['value'],
           '#format' => $programme->get('oe_description')->first()->getValue()['format'],
-          '#langcode' => $entity->language(),
+          '#langcode' => $entity->language()->getId(),
         ];
       }
       $items[] = $item;

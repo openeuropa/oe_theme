@@ -1,0 +1,29 @@
+news_ticker:
+  label: "News ticker"
+  description: "The News ticker pattern allows to display pieces of information."
+  fields:
+    identifier:
+      type: "text"
+      label: "Id"
+      description: "Optional unique machine readable name."
+      preview: "news-ticker-example"
+    items:
+      type: "array"
+      label: "Items"
+      description: "List of news items containing the information and an optional link."
+      preview:
+        - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+          link: "http://example.com"
+        - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+          link: "http://example.com"
+        - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
+          link: "http://example.com"
+        - content: "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
+          link: "http://example.com"
+        - content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
+          link: "http://example.com"
+        - content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
+    counter_label:
+      type: "text"
+      label: "Counter label"
+      description: "The counter label defaults to 'of'. For e.g. '1 of 6'."
