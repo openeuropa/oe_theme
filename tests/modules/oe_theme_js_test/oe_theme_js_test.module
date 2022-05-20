@@ -1,0 +1,16 @@
+<?php
+
+/**
+ * @file
+ * Support module for Javascript related tests.
+ */
+
+declare(strict_types = 1);
+
+/**
+ * Implements hook_page_attachments().
+ */
+function oe_theme_js_test_page_attachments(array &$attachments) {
+  // Unconditionally attach an asset to the page.
+  $attachments['#attached']['library'][] = 'oe_theme_js_test/javascript_log';
+}
