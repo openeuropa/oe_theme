@@ -1003,7 +1003,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $paragraph = Paragraph::create([
         'type' => 'oe_carousel_item',
         'field_oe_title' => 'Item ' . $i,
-        'field_oe_text_long' => $i % 2 === 0 ? 'Item description ' . $i : '',
+        'field_oe_text' => $i % 2 === 0 ? 'Item description ' . $i : '',
         'field_oe_link' => $i % 2 === 0 ? [
           'uri' => 'http://www.example.com/',
           'title' => 'CTA ' . $i,
@@ -1013,7 +1013,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $paragraph->save();
       $paragraph->addTranslation('bg', [
         'field_oe_title' => 'BG Item ' . $i,
-        'field_oe_text_long' => $i % 2 === 0 ? 'BG Item description ' . $i : '',
+        'field_oe_text' => $i % 2 === 0 ? 'BG Item description ' . $i : '',
         'field_oe_link' => $i % 2 === 0 ? [
           'uri' => 'http://www.example.com/',
           'title' => 'BG CTA ' . $i,
