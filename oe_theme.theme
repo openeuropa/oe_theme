@@ -1992,7 +1992,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     }
     $variables['items'][] = [
       'title' => $sub_paragraph->get('field_oe_title')->value,
-      'description' => !$sub_paragraph->get('field_oe_text_long')->isEmpty() ? $sub_paragraph->get('field_oe_text_long')->value : '',
+      'description' => !$sub_paragraph->get('field_oe_text')->isEmpty() ? $sub_paragraph->get('field_oe_text')->value : '',
       'url' => $link ?? '',
       'url_text' => $link_text ?? '',
       'image' => file_create_url($uri),
