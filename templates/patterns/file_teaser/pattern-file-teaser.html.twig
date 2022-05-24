@@ -35,25 +35,31 @@
 {% endif %}
 
 {% set _lists = [] %}
-{% set _items = [] %}
-{# @todo Proper fix should be provided in EWPP-2275. #}
 {% if lists is not empty %}
+  {% set _items = [] %}
   {% for item in lists %}
-    {% set _definition = [] %}
-    {% if item.definition is not empty and item.definition is iterable %}
-      {% for definition in item.definition %}
-        {% set _definition = _definition|merge([definition['label']]) %}
+
+    {# We can expect 'label' as key for a definition item (backwards compatibility). #}
+    {% set _definitions = [] %}
+    {% if item.definition is iterable %}
+      {% for _definition in item.definition %}
+        {% if _definition.label is defined %}
+          {% set _definitions = _definitions|merge([_definition.label]) %}
+        {% else %}
+          {% set _definitions = _definitions|merge([_definition]) %}
+        {% endif %}
       {% endfor %}
     {% endif %}
-    {% set _items = _items|merge([{
-      term: item.term,
-      definition: _definition,
-      type: 'taxonomy'
-    }]) %}
+
+    {# Taxonomy variant is depracated, taxonomy type has to be set for each item. #}
+    {% set item = item|merge({
+      definition: _definitions,
+      type: 'taxonomy',
+    }) %}
+    {% set _items = _items|merge([item]) %}
   {% endfor %}
-  {% set _lists = _lists|merge([{
-    'items': _items,
-  }]) %}
+
+  {% set _lists = _lists|merge([{ 'items': _items }]) %}
 {% endif %}
 
 {% set _meta = '(' ~ file.extension|upper  ~ ')' %}
