@@ -115,22 +115,17 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    * @param float $part
    *   The contribution part of the total value.
    *
-   * @return string
+   * @return float
    *   Percentage value.
    */
-  protected function getPercentage(float $total, float $part): string {
+  protected function getPercentage(float $total, float $part): float {
     $percentage = 0;
 
     if ($total > 0 && $part > 0) {
       $percentage = 100 * $part / $total;
     }
 
-    // If our number is not round we will limit the decimals to one.
-    if (intval($percentage) != $percentage) {
-      return number_format($percentage, 1, '.', ' ');
-    }
-
-    return (string) $percentage;
+    return round($percentage, 1);
   }
 
 }

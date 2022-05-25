@@ -59,8 +59,10 @@ function oe_theme_content_project_post_update_00002(): void {
  * Updates the budget field's 'thousand' separator to space.
  */
 function oe_theme_content_project_post_update_00003(): void {
-  $view_display = EntityViewDisplay::load('node.oe_project.full');
-  $view_display->getComponent('oe_project_budget');
-  $component['settings']['thousand_separator'] = ' ';
-  $view_display->setComponent('oe_project_budget', $component)->save();
+  foreach (['teaser', 'full'] as $display) {
+    $view_display = EntityViewDisplay::load("node.oe_project.$display");
+    $view_display->getComponent('oe_project_budget');
+    $component['settings']['thousand_separator'] = ' ';
+    $view_display->setComponent('oe_project_budget', $component)->save();
+  }
 }
