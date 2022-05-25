@@ -2195,8 +2195,26 @@
       'div.ecl-content-block__description': 0
       'ul.ecl-content-block__secondary-meta-container': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
+      'h1.ecl-content-block__title a.ecl-link.ecl-link--standalone': 0
     equals:
-      'h1.ecl-content-block__title a.ecl-link.ecl-link--standalone': "Example title"
+      'h1.ecl-content-block__title': "Example title"
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "extended"
+    '#fields':
+      title: "Example title"
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-content-block__title': 1
+      'div.ecl-content-block__description': 0
+      'ul.ecl-content-block__secondary-meta-container': 0
+      'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
+      'span.ecl-button__container a.ecl-button .ecl-button__label': 0
+      'h1.ecl-content-block__title a.ecl-link.ecl-link--standalone': 0
+    equals:
+      'h1.ecl-content-block__title': "Example title"
 - array:
     '#type': pattern
     '#id': featured_item
