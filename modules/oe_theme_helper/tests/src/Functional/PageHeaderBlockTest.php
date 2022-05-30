@@ -66,8 +66,8 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $assert_session = $this->assertSession();
 
     // Only one page header should be rendered.
-    $assert_session->elementsCount('css', '.ecl-page-header', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header');
+    $assert_session->elementsCount('css', '.ecl-page-header.ecl-page-header--negative', 1);
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header.ecl-page-header--negative');
     // Test that the page title is rendered in the page header.
     $this->assertEquals($entity->label(), trim($header->find('css', '.ecl-page-header__title')->getText()));
     // Intro and meta items are empty.
@@ -76,8 +76,8 @@ class PageHeaderBlockTest extends BrowserTestBase {
 
     // Test another route.
     $this->drupalGet('/user/login');
-    $assert_session->elementsCount('css', '.ecl-page-header', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header');
+    $assert_session->elementsCount('css', '.ecl-page-header.ecl-page-header--negative', 1);
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header.ecl-page-header--negative');
     $this->assertEquals('Log in', trim($header->find('css', '.ecl-page-header__title')->getText()));
     $assert_session->elementsCount('css', '.ecl-page-header__description', 0);
     $assert_session->elementsCount('css', '.ecl-page-header__meta-list', 0);
@@ -103,10 +103,10 @@ class PageHeaderBlockTest extends BrowserTestBase {
     $this->drupalGet('/user/login');
     // The test plugin metadata is shown as it has higher priority than the
     // default one.
-    $assert_session->elementsCount('css', '.ecl-page-header', 1);
+    $assert_session->elementsCount('css', '.ecl-page-header.ecl-page-header--negative', 1);
     $assert_session->elementsCount('css', '.ecl-page-header__description', 1);
     $assert_session->elementsCount('css', '.ecl-page-header__meta', 1);
-    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header');
+    $header = $this->getSession()->getPage()->find('css', '.ecl-page-header.ecl-page-header--negative');
     $this->assertEquals($test_data['title'], trim($header->find('css', '.ecl-page-header__title')->getText()));
     $this->assertEquals($test_data['introduction'], trim($header->find('css', '.ecl-page-header__description')->getText()));
 
