@@ -67,7 +67,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'Test news node',
