@@ -123,7 +123,7 @@ class ImageValueObject extends ValueObjectBase implements ImageValueObjectInterf
    * @return $this
    */
   public static function fromImageItem(ImageItem $image_item): ValueObjectInterface {
-    $image_file = $image_item->get('entity')->getTarget();
+    $image_file = $image_item->get('entity')->getValue();
 
     $image_object = new static(
       file_create_url($image_file->get('uri')->getString()),
@@ -145,13 +145,13 @@ class ImageValueObject extends ValueObjectBase implements ImageValueObjectInterf
    *   The image style name.
    *
    * @return $this
-   *   A image value object instance.
+   *   An image value object instance.
    *
    * @throws \InvalidArgumentException
    *   Thrown when the image style is not found.
    */
   public static function fromStyledImageItem(ImageItem $image_item, string $style_name): ValueObjectInterface {
-    $image_file = $image_item->get('entity')->getTarget();
+    $image_file = $image_item->get('entity')->getValue();
 
     $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style_name);
     if (!$style) {
