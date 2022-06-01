@@ -24,8 +24,6 @@
     "@ecl/twig-component-accordion": "3.3.2",
     "@ecl/twig-component-blockquote": "3.3.2",
     "@ecl/twig-component-breadcrumb": "3.3.2",
-    "@ecl/twig-component-breadcrumb-core": "3.3.2",
-    "@ecl/twig-component-breadcrumb-standardised": "3.3.2",
     "@ecl/twig-component-button": "3.3.2",
     "@ecl/twig-component-card": "3.3.2",
     "@ecl/twig-component-datepicker": "3.3.2",
