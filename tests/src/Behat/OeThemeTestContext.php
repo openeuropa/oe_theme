@@ -393,8 +393,8 @@ class OeThemeTestContext extends RawDrupalContext {
     ];
     $lang_code = array_merge($lang_code, $available_non_eu_logos);
     $langcode = $lang_code[$language] ?? 'en';
-    $this->assertSession()->elementExists('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile');
-    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header-' . $this->getEclBranding() . '__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
+    $this->assertSession()->elementExists('css', 'img.ecl-site-header__logo-image-mobile');
+    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
   }
 
   /**
@@ -407,7 +407,7 @@ class OeThemeTestContext extends RawDrupalContext {
     $component_library = \Drupal::config($theme_name . '.settings')->get('component_library');
     $eu_official_languages = $this->getEuLanguages();
 
-    $link_selector = '.ecl-site-header-' . $this->getEclBranding() . '__logo-link';
+    $link_selector = '.ecl-site-header__logo-link';
     $link = $this->getSession()->getPage()->find('css', $link_selector);
     if ($component_library === 'ec') {
       $href = !empty($eu_official_languages[$language]) ? 'https://ec.europa.eu/info/index_' . $eu_official_languages[$language] : 'https://ec.europa.eu/info';
@@ -437,25 +437,18 @@ class OeThemeTestContext extends RawDrupalContext {
    * @Then I should see the :ecl_branding site header
    */
   public function iShouldSeeTheSiteHeader(string $ecl_branding): void {
-    $brandings = [
-      'Core' => 'core',
-      'Standardised' => 'standardised',
-    ];
-
-    if (empty($brandings[$ecl_branding])) {
-      throw new \Exception("Theme do not support '$ecl_branding' ECL branding.");
+    if (!in_array($ecl_branding, ['Core', 'Standardised'])) {
+      throw new \Exception("Theme does not support '$ecl_branding' ECL branding. The only supported brandings and 'Core' and 'Standardised'");
     }
 
-    $ecl_branding_code = $brandings[$ecl_branding];
-
-    $this->assertSession()->elementExists('css', 'a.ecl-site-header-' . $ecl_branding_code . '__logo-link .ecl-site-header-' . $ecl_branding_code . '__logo-image');
-    $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__language-selector');
-    $this->assertSession()->elementExists('css', '.ecl-site-header-' . $ecl_branding_code . '__top .ecl-site-header-' . $ecl_branding_code . '__action .ecl-site-header-' . $ecl_branding_code . '__search-container');
+    $this->assertSession()->elementExists('css', 'a.ecl-site-header__logo-link .ecl-site-header__logo-image');
+    $this->assertSession()->elementExists('css', '.ecl-site-header__top .ecl-site-header__action .ecl-site-header__language-selector');
+    $this->assertSession()->elementExists('css', '.ecl-site-header__top .ecl-site-header__action .ecl-site-header__search-container');
     $site_name_method = 'elementExists';
-    if ($ecl_branding_code == 'core') {
+    if ($ecl_branding == 'Core') {
       $site_name_method = 'elementNotExists';
     }
-    $this->assertSession()->{$site_name_method}('css', '.ecl-site-header-' . $ecl_branding_code . '__banner');
+    $this->assertSession()->{$site_name_method}('css', '.ecl-site-header__banner');
 
   }
 

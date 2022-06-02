@@ -184,12 +184,12 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Make sure that classes for Core template is present.
-      $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top');
-      $assert_session->elementExists('css', 'header.ecl-site-header-core div.ecl-site-header-core__top div.ecl-site-header-core__action');
+      $assert_session->elementExists('css', 'header.ecl-site-header div.ecl-site-header__top');
+      $assert_session->elementExists('css', 'header.ecl-site-header div.ecl-site-header__top div.ecl-site-header__action');
 
       // Make sure that 'Site name' banner is not present in the site header
       // for Core template.
-      $assert_session->elementNotExists('css', 'header.ecl-site-header-core .ecl-site-header-standardised__banner .ecl-container');
+      $assert_session->elementNotExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
@@ -202,11 +202,11 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Make sure that classes for Standardised branding is present.
-      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__header div.ecl-site-header-standardised__top');
-      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__header div.ecl-site-header-standardised__top div.ecl-site-header-standardised__action');
+      $assert_session->elementExists('css', 'header.ecl-site-header .ecl-site-header__header div.ecl-site-header__top');
+      $assert_session->elementExists('css', 'header.ecl-site-header .ecl-site-header__header div.ecl-site-header__top div.ecl-site-header__action');
       // Make sure that 'Site name' banner is present in the site header
       // for Standardised template.
-      $assert_session->elementExists('css', 'header.ecl-site-header-standardised .ecl-site-header-standardised__banner .ecl-container');
+      $assert_session->elementExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
     }
   }
 
