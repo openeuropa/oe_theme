@@ -505,6 +505,13 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     // The gallery is not rendered on non_eu persons.
     $this->assertSession()->elementNotExists('css', 'section.ecl-gallery');
+
+    // Assert Description field.
+    $node->set('oe_person_description', 'Person description text')->save();
+    $this->drupalGet($node->toUrl());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(5, $content_items);
+    $this->assertEquals('Person description text', $content_items[3]->find('css', '.ecl p')->getText());
   }
 
   /**
