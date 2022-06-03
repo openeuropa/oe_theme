@@ -35,10 +35,24 @@
 {% endif %}
 
 {% set _lists = [] %}
+{% set _items = [] %}
+{# @todo Proper fix should be provided in EWPP-2275. #}
 {% if lists is not empty %}
+  {% for item in lists %}
+    {% set _definition = [] %}
+    {% if item.definition is not empty and item.definition is iterable %}
+      {% for definition in item.definition %}
+        {% set _definition = _definition|merge([definition['label']]) %}
+      {% endfor %}
+    {% endif %}
+    {% set _items = _items|merge([{
+      term: item.term,
+      definition: _definition,
+      type: 'taxonomy'
+    }]) %}
+  {% endfor %}
   {% set _lists = _lists|merge([{
-    'items': lists,
-    'variant': 'taxonomy'
+    'items': _items,
   }]) %}
 {% endif %}
 

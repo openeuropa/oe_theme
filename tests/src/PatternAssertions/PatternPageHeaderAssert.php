@@ -21,11 +21,11 @@ class PatternPageHeaderAssert extends BasePatternAssert {
       ],
       'title' => [
         [$this, 'assertElementText'],
-        '.ecl-page-header-core h1.ecl-page-header-core__title',
+        '.ecl-page-header h1.ecl-page-header__title',
       ],
       'description' => [
         [$this, 'assertElementText'],
-        '.ecl-page-header-core .ecl-page-header-core__description',
+        '.ecl-page-header .ecl-page-header__description',
       ],
     ];
   }
@@ -35,7 +35,7 @@ class PatternPageHeaderAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    $page_header = $crawler->filter('.ecl-page-header-core');
+    $page_header = $crawler->filter('.ecl-page-header');
     self::assertCount(1, $page_header);
   }
 
@@ -49,10 +49,10 @@ class PatternPageHeaderAssert extends BasePatternAssert {
    */
   protected function assertMetaElements(array $metas, Crawler $crawler): void {
     if (empty($metas)) {
-      $this->assertElementNotExists('.ecl-page-header-core .ecl-page-header-core__meta', $crawler);
+      $this->assertElementNotExists('.ecl-page-header .ecl-page-header__meta', $crawler);
       return;
     }
-    $meta_items = $crawler->filter('.ecl-page-header-core .ecl-page-header-core__meta .ecl-page-header-core__meta-item');
+    $meta_items = $crawler->filter('.ecl-page-header .ecl-page-header__meta .ecl-page-header__meta-item');
     self::assertCount(count($metas), $meta_items);
     foreach ($metas as $index => $meta) {
       self::assertEquals($meta, trim($meta_items->eq($index)->text()));

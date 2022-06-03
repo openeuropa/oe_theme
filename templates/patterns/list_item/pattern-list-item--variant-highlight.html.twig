@@ -5,14 +5,12 @@
  */
 #}
 {% include '@ecl-twig/card' with {
-  card: {
-    title: {
-      label: title,
-      path: url,
-      type: "standalone"
-    },
-    image: image,
-    description: detail|smart_trim(length),
-    labels: badges,
-  }
+  title: {
+    label: title,
+    path: url,
+    type: "standalone"
+  },
+  image: image,
+  description: detail|smart_trim(length),
+  labels: badges,
 } only %}

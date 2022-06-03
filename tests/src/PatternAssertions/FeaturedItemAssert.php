@@ -18,7 +18,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link',
+        'article.ecl-card .ecl-card__body h1.ecl-content-block__title a.ecl-link',
       ],
       'link' => [
         [$this, 'assertLink'],
@@ -26,15 +26,14 @@ class FeaturedItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertElementText'],
-        $variant == 'extended' ? 'article.ecl-card div.ecl-card__body div.ecl-card__description p.ecl-paragraph' : 'article.ecl-card div.ecl-card__body div.ecl-card__description',
+        $variant == 'extended' ? 'article.ecl-card div.ecl-card__body div.ecl-content-block__description p.ecl-paragraph' : 'article.ecl-card div.ecl-card__body div.ecl-content-block__description',
       ],
       'image' => [
         [$this, 'assertFeaturedItemImage'],
         $variant,
       ],
       'meta' => [
-        [$this, 'assertElementText'],
-        'article.ecl-card .ecl-card__body div.ecl-card__meta',
+        [$this, 'assertPrimaryMeta'],
       ],
       'footer_items' => [
         [$this, 'assertFooterItems'],
@@ -88,12 +87,12 @@ class FeaturedItemAssert extends BasePatternAssert {
    */
   protected function assertLink($expected_link, string $variant, Crawler $crawler): void {
     // Assert the title url points to the correct direction.
-    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card .ecl-card__body h1.ecl-card__title a.ecl-link', 'href', $crawler);
+    $this->assertElementAttribute($expected_link['href'], 'article.ecl-card .ecl-card__body h1.ecl-content-block__title a.ecl-link', 'href', $crawler);
 
     // If the variant is extended, assert that the button is correct.
     if ($variant == 'extended') {
-      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call', 'href', $crawler);
-      $this->assertElementText($expected_link['label'], 'article.ecl-card div.ecl-card__body div.ecl-card__description a.ecl-button--call span.ecl-button__container span.ecl-button__label', $crawler);
+      $this->assertElementAttribute($expected_link['href'], 'article.ecl-card div.ecl-card__body div.ecl-content-block__description a.ecl-button--call', 'href', $crawler);
+      $this->assertElementText($expected_link['label'], 'article.ecl-card div.ecl-card__body div.ecl-content-block__description a.ecl-button--call span.ecl-button__container span.ecl-button__label', $crawler);
     }
   }
 
@@ -105,14 +104,18 @@ class FeaturedItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertFooterItems($expected_info_items, Crawler $crawler): void {
-    $info_elements = $crawler->filter('article.ecl-card div.ecl-card__body ul.ecl-card__info-container li.ecl-card__info-item');
+  protected function assertFooterItems(?array $expected_info_items, Crawler $crawler): void {
+    if (is_null($expected_info_items)) {
+      $this->assertElementNotExists('article.ecl-card .ecl-card__body ul.ecl-content-block__secondary-meta-container', $crawler);
+      return;
+    }
+    $info_elements = $crawler->filter('article.ecl-card div.ecl-card__body ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item');
     self::assertCount(count($expected_info_items), $info_elements, 'The expected info items do not match the found info items.');
     foreach ($expected_info_items as $index => $expected_info_item) {
       $info_element = $info_elements->eq($index);
-      $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--xs use');
+      $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon use');
       $this::assertStringContainsString('#' . $expected_info_item['icon'], $icon_element->attr('xlink:href'));
-      $this->assertElementText($expected_info_item['text'], 'span.ecl-card__info-label', $info_element);
+      $this->assertElementText($expected_info_item['text'], 'span.ecl-content-block__secondary-meta-label', $info_element);
     }
   }
 
@@ -125,7 +128,7 @@ class FeaturedItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertBadges(?array $expected_badges, Crawler $crawler): void {
-    $base_selector = 'article.ecl-card div.ecl-card__body ul.ecl-card__label-container li.ecl-card__label-item';
+    $base_selector = 'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container li.ecl-content-block__label-item';
     if (is_null($expected_badges)) {
       $this->assertElementNotExists('span.ecl-label', $crawler);
       return;
@@ -140,9 +143,28 @@ class FeaturedItemAssert extends BasePatternAssert {
   }
 
   /**
-   * {@inheritdoc}
+   * Asserts the primary meta items of a card.
    *
-   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @param aray|null $expected_items
+   *   The expected items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertPrimaryMeta(?array $expected_items, Crawler $crawler): void {
+    if (is_null($expected_items)) {
+      $this->assertElementNotExists('article.ecl-card .ecl-card__body ul.ecl-content-block__primary-meta-container', $crawler);
+      return;
+    }
+    $primary_meta_items = $crawler->filter('article.ecl-card .ecl-card__body ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item');
+    self::assertCount(count($expected_items), $primary_meta_items, 'The expected primary meta items do not match the found meta items.');
+    foreach ($expected_items as $index => $expected_item) {
+      $primary_item = $primary_meta_items->eq($index);
+      $this->assertEquals($expected_item, $primary_item->text());
+    }
+  }
+
+  /**
+   * {@inheritdoc}
    */
   protected function getPatternVariant(string $html): string {
     $crawler = new Crawler($html);
