@@ -4,11 +4,9 @@
 // TODO: The help form component is not available on ECL v3.
 //@use '@ecl/ec-component-form-help-block/ec-component-form-help-block';
 @use "./compositions/content_item";
-@use "./compositions/content_language_switcher";
 @use "./components/form";
 @use "./components/toolbar";
 @use "./components/wysiwyg";
-@use "./components/page_header";
 @use "./components/global";
 @use "./components/description_list";
 @use "./components/media_iframe";

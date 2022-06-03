@@ -75,3 +75,8 @@ page_header:
       label: "Overlay"
       description: "Optional overlay on top of background image (can be 'light', 'dark'). Only used on EC sites"
       preview: "dark"
+    hide_title:
+      type: "boolean"
+      label: "Hide title"
+      description: "Hide the h1 title, for screen reader only. Defaults to 'false'"
+      preview: false
