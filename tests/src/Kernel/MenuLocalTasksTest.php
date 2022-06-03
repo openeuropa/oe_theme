@@ -57,30 +57,30 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
     $crawler = new Crawler($html);
 
     // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-navigation-list');
+    $actual = $crawler->filter('nav.ecl-navigation');
     $this->assertCount(1, $actual);
 
     // Assert list contains ECL classes.
-    $actual = $crawler->filter('ul.ecl-navigation-list');
+    $actual = $crawler->filter('ul.ecl-navigation');
     $this->assertCount(1, $actual);
 
     // Assert active link contains ECL classes.
-    $actual = $crawler->filter('li.ecl-navigation-list__item--active')->text();
+    $actual = $crawler->filter('li.ecl-navigation__item--active')->text();
     $this->assertEquals('Third link - Active', trim($actual));
 
     // Assert regular link contains ECL classes and the links are ordered by
     // weight.
-    $actual = $crawler->filter('li.ecl-navigation-list__item > a')
+    $actual = $crawler->filter('li.ecl-navigation__item > a')
       ->eq(0)
       ->text();
     $this->assertEquals('First link - Inactive', trim($actual));
 
-    $actual = $crawler->filter('li.ecl-navigation-list__item > a')
+    $actual = $crawler->filter('li.ecl-navigation__item > a')
       ->eq(1)
       ->text();
     $this->assertEquals('Second link', trim($actual));
 
-    $actual = $crawler->filter('li.ecl-navigation-list__item > a')
+    $actual = $crawler->filter('li.ecl-navigation__item > a')
       ->eq(2)
       ->text();
     $this->assertEquals('Third link - Active', trim($actual));
