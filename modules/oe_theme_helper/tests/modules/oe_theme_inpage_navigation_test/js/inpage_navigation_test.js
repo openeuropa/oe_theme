@@ -7,7 +7,7 @@
    * Override behaviour for empty navigation list.
    */
   Drupal.eclInPageNavigation.handleEmptyInpageNavigation = function(element) {
-    document.querySelector('h1.ecl-page-header-core__title').classList.add('empty-inpage-nav-test');
+    document.querySelector('h1.ecl-page-header__title').classList.add('empty-inpage-nav-test');
     element.remove();
   }
 
