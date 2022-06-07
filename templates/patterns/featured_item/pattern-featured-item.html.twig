@@ -9,28 +9,36 @@
   In order to replicate the extended functionality we add a button
   at the end of the description if the variant is set to "extended".
  #}
-{% if variant == 'extended' %}
-  {% set _description %}
-    {% if description %}
-      <p class="ecl-paragraph">
-        {{ description|smart_trim(length) }}
-      </p>
-    {% endif %}
-    <a href="{{ link.href }}" class="ecl-button ecl-button--call">
-      <span class="ecl-button__container">
-        <span class="ecl-button__label">{{ link.label }}</span>
-        {% include '@ecl-twig/icon' with {
-          icon: {
-            path: ecl_icon_path,
-            name: "corner-arrow",
-            size: "xs",
-            transform: "rotate-90"
-          },
-          extra_classes: "ecl-button__icon ecl-button__icon--after"
-        } only %}
-      </span>
-    </a>
-  {% endset %}
+{% if link.href is not empty %}
+  {% set _title = {
+    'label': title,
+    'path': link.href
+  } %}
+  {% if variant == 'extended' %}
+    {% set _description %}
+      {% if description %}
+        <p class="ecl-paragraph">
+          {{ description|smart_trim(length) }}
+        </p>
+      {% endif %}
+      <a href="{{ link.href }}" class="ecl-button ecl-button--call">
+        <span class="ecl-button__container">
+          <span class="ecl-button__label">{{ link.label }}</span>
+          {% include '@ecl-twig/icon' with {
+            icon: {
+              path: ecl_icon_path,
+              name: "corner-arrow",
+              size: "xs",
+              transform: "rotate-90"
+            },
+            extra_classes: "ecl-button__icon ecl-button__icon--after"
+          } only %}
+        </span>
+      </a>
+    {% endset %}
+  {% endif %}
+{% else %}
+  {% set _title = title %}
 {% endif %}
 
 {% if ecl_component_library == 'eu' %}
@@ -46,19 +54,11 @@
   }]) %}
 {% endfor %}
 
-{% set card = {
+{% include '@ecl-twig/card' with {
   'description': _description|default(description|smart_trim(length)),
-  'meta': metas,
-  'title': {
-    'label': title,
-    'path': link.href,
-    'type': "standalone"
-  },
-  'infos': _footer_items,
+  'primary_meta': metas,
+  'title': _title,
+  'secondary_meta': _footer_items,
   'image': image,
   'labels': badges,
-} %}
-
-{% include '@ecl-twig/card' with {
-  'card': card,
 } %}

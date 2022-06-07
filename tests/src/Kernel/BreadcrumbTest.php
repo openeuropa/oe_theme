@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Breadcrumb\Breadcrumb;
 use Drupal\Core\Link;
+use Drupal\Core\Site\Settings;
 use Drupal\entity_test\Entity\EntityTest;
 use Drupal\KernelTests\Core\Entity\EntityKernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
@@ -34,7 +35,6 @@ class BreadcrumbTest extends EntityKernelTestBase {
     'image',
     'breakpoint',
     'responsive_image',
-    'oe_theme_helper',
   ];
 
   /**
@@ -49,6 +49,16 @@ class BreadcrumbTest extends EntityKernelTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
+
+    // @todo Drupal 9 ignores settings in settings.testing.php in kernel tests.
+    // See https://www.drupal.org/project/drupal/issues/3190974. Need to
+    // skip node_modules directory during template scanning because wrong
+    // template files are found (for example,
+    // node_modules/@ecl/twig-component-description-list/description-list.html.twig
+    // instead of templates/field/description-list.html.twig
+    $settings = Settings::getAll();
+    $settings['file_scan_ignore_directories'] = ['node_modules'];
+    new Settings($settings);
 
     // Call the install hook of the User module which creates the Anonymous user
     // and User 1. This is needed because the Anonymous user is loaded to

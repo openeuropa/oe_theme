@@ -22,11 +22,11 @@ class ListItemAssert extends BasePatternAssert {
       return [
         'title' => [
           [$this, 'assertElementText'],
-          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+          'article.ecl-card header.ecl-card__header h1.ecl-content-block__title a.ecl-link',
         ],
         'url' => [
           [$this, 'assertElementAttribute'],
-          'article.ecl-card header.ecl-card__header h1.ecl-card__title a.ecl-link',
+          'article.ecl-card header.ecl-card__header h1.ecl-content-block__title a.ecl-link',
           'href',
         ],
         'image' => [

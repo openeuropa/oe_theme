@@ -4,13 +4,13 @@
  * Default implementation for the page header component.
  */
 #}
+{% set variant = ecl_component_library == 'ec' and ecl_branding == 'core' ? 'negative' : '' %}
 
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
   {% set _links = {
     'label' : breadcrumb_item.label,
     'path' : breadcrumb_item.href,
-    'negative' : ecl_component_library == 'ec' and ecl_branding == 'core'
   } %}
   {% set _breadcrumb_links = _breadcrumb_links|merge([_links]) %}
 {% endfor %}
@@ -24,13 +24,7 @@
   } %}
 {% endif %}
 
-{%
-  set _extra_classes = [
-  not _breadcrumb_links and background_image_url is empty ? 'ecl-u-pt-m'
-]
-%}
-
-{% include '@ecl-twig/page-header-' ~ ecl_branding ~ '/page-header-' ~ ecl_branding with {
+{% include '@ecl-twig/page-header' with {
   'title': title,
   'thumbnail': thumbnail,
   'description': introduction,
@@ -39,4 +33,6 @@
   'background_image_url': background_image_url,
   'extra_classes': _extra_classes|join(' '),
   'overlay': overlay|default(''),
+  'hide_title': hide_title|default(false),
+  'variant': variant,
 } %}

@@ -67,7 +67,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header-core');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'Test news node',
@@ -81,7 +81,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $assert->assertPattern($expected_values, $page_header->getOuterHtml());
 
     // The default text format should be applied, converting URLs into links.
-    $header_link = $this->assertSession()->elementExists('css', '.ecl-page-header-core__description a');
+    $header_link = $this->assertSession()->elementExists('css', '.ecl-page-header__description a');
     $this->assertEquals('http://www.example.org', $header_link->getAttribute('href'));
     $this->assertEquals('http://www.example.org', $header_link->getText());
 
