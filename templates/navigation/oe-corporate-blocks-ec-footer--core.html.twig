@@ -39,7 +39,8 @@
 %}
 
 {% block content %}
-  {% include '@ecl-twig/footer-core' with {
+  {% include '@ecl-twig/site-footer' with {
     'rows': [[_first_column, _second_column]],
+    'split_columns': true,
   } %}
 {% endblock %}
