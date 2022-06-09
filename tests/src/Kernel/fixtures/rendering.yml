@@ -2386,15 +2386,15 @@
   assertions:
     count:
       "div.ecl-card__image": 0
-      'h1.ecl-card__title a.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="https://example.com"]': 1
+      'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': 1
     equals:
-      'h1.ecl-card__title a span.ecl-link__label': "Example title"
-      'div.ecl-card__description .ecl-paragraph': "Example description"
+      'h1.ecl-content-block__title a span.ecl-link__label': "Example title"
+      'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
-      'h1.ecl-card__title a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      '.ecl-card__description svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'h1.ecl-content-block__title a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      '.ecl-content-block__description svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': featured_item
