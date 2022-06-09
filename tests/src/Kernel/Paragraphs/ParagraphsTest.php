@@ -197,9 +197,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title')->text()));
-    $this->assertCount(1, $crawler->filter('.ecl-card__description'));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title')->text()));
+    $this->assertCount(1, $crawler->filter('.ecl-content-block__description'));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-content-block__description')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
@@ -208,9 +208,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
 
     // Neither the metas.
-    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+    $this->assertCount(0, $crawler->filter('.ecl-content-block__primary-meta-container'));
 
-    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
@@ -230,8 +230,8 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-card__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-card div.ecl-card__body div.ecl-content-block__description')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
@@ -240,9 +240,9 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('.ecl-date-block__year'));
 
     // Neither the metas.
-    $this->assertCount(0, $crawler->filter('.ecl-card__meta'));
+    $this->assertCount(0, $crawler->filter('.ecl-content-block__primary-meta-container'));
 
-    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-card__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
