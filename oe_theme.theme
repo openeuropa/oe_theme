@@ -890,10 +890,13 @@ function oe_theme_preprocess_paragraph__oe_content_row__variant_inpage_navigatio
     $title = $paragraph->get('field_oe_title')->value;
   }
 
+  $variables['inpage_id'] = Html::getUniqueId('inpage-navigation-target-block');
+
   // Add the inpage nav library.
   $variables['inpage'] = [
     '#theme' => 'oe_theme_helper_inpage_navigation_block',
     '#title' => $title,
+    '#id' => $variables['inpage_id'],
     '#attached' => [
       'library' => [
         'oe_theme/inpage_navigation',
