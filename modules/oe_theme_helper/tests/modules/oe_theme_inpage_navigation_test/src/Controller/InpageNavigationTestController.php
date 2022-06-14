@@ -12,26 +12,17 @@ use Drupal\Core\Controller\ControllerBase;
 class InpageNavigationTestController extends ControllerBase {
 
   /**
-   * Generates a page with test content for the inpage navigation.
+   * Renders a test page using a specific variation of the test template.
+   *
+   * @param string $variation
+   *   The template variation to render.
    *
    * @return array
    *   The response render array.
    */
-  public function contentPage(): array {
+  public function renderTemplate(string $variation): array {
     return [
-      '#theme' => 'oe_theme_inpage_navigation_test_content',
-    ];
-  }
-
-  /**
-   * Returns content that doesn't generate any entries for inpage navigation.
-   *
-   * @return array
-   *   The response render array.
-   */
-  public function noEntriesPage(): array {
-    return [
-      '#theme' => 'oe_theme_inpage_navigation_test_no_elements',
+      '#theme' => 'oe_theme_inpage_navigation_test__' . $variation,
     ];
   }
 
