@@ -19,63 +19,41 @@
    */
   Drupal.behaviors.eclInPageNavigation = {
     attach: function attach(context, settings) {
-      // Loop through all the elements marked as source areas.
-      Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-area]'), function (area) {
-        var selectors = area.getAttribute('data-inpage-navigation-source-area');
+      const inpage_navigations = document.querySelectorAll('.oe-theme-ecl-inpage-navigation');
+      if (inpage_navigations.length === 0) {
+        return;
+      }
 
-        // Loop through all the elements that are referenced by the specified selector(s), and mark them as source
-        // elements. We cannot collect the elements at this stage, as multiple nested areas can be present in the page.
-        // This could lead to scenarios where elements are collected multiple times, or not collected following the
-        // order of appearance in the page.
-        // The :scope pseudo-class is needed to make sure that the selectors are applied inside the parent.
-        // @see https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll#user_notes
-        Array.prototype.forEach.call(area.querySelectorAll(':scope ' + selectors), function (element) {
-          element.setAttribute('data-inpage-navigation-source-element', '');
-        });
-      });
+      let containers = [].slice.call(document.querySelectorAll('.inpage-navigation-container'));
+      // If no specifically defined containers are present, we use the main content as one.
+      if (containers.length === 0) {
+        containers.push(document.querySelector('#main-content'));
+      }
 
-      var items_markup = '';
-      // Collect all the elements marked as source. Now the elements will be unique and ordered correctly.
-      Array.prototype.forEach.call(document.querySelectorAll('[data-inpage-navigation-source-element]'), function (element) {
-        var title = element.textContent.trim();
+      containers.forEach(function (container) {
+        const nav = container.querySelector(':scope .oe-theme-ecl-inpage-navigation');
 
-        // Skip elements with empty content.
-        if (title.length === 0) {
+        // Bail out if no inpage navigation element is present.
+        if (nav === null) {
           return;
         }
 
-        // Generate an unique ID if not present.
-        if (!element.hasAttribute('id')) {
-          var id = Drupal.eclInPageNavigation.slug(title);
-          // If an empty ID is generated, skip this element.
-          if (id === false) {
-            return;
-          }
+        let items_markup = Drupal.eclInPageNavigation.generateItems(container, function (id, text) {
+          return Drupal.theme('oe_theme_inpage_navigation_item', id, text);
+        });
 
-          element.setAttribute('id', id);
-        }
-
-        // Cleanup the markup from the helper attribute added above.
-        element.removeAttribute('data-inpage-navigation-source-element');
-
-        items_markup += Drupal.theme('oe_theme_inpage_navigation_item', element.getAttribute('id'), title);
-      });
-
-      // Loop through all the inpage navigation marked with our special class. The auto-initialisation is disabled on
-      // them, as initialisation should be run only after the items are added. Otherwise JS callbacks won't be applied
-      // correctly.
-      Array.prototype.forEach.call(document.querySelectorAll('.oe-theme-ecl-inpage-navigation'), function (block) {
         if (items_markup.length === 0) {
           // When there are no items, execute the callback to handle the block.
-          Drupal.eclInPageNavigation.handleEmptyInpageNavigation(block);
+          Drupal.eclInPageNavigation.handleEmptyInpageNavigation(nav);
           return;
         }
 
-        block.querySelector('ul').innerHTML = items_markup;
-        var instance = new ECL.InpageNavigation(block);
+        nav.querySelector('ul').innerHTML = items_markup;
+
+        const instance = new ECL.InpageNavigation(nav);
         instance.init();
         Drupal.eclInPageNavigation.instances.push(instance);
-      })
+      });
     },
     detach: function detach(context, settings, trigger) {
       Drupal.eclInPageNavigation.instances.forEach(function (instance){
@@ -106,6 +84,73 @@
     instances: [],
 
     /**
+     * @callback ItemRenderCallback
+     * @param {string} id
+     *   The ID of the element this item points to.
+     * @param {string} text
+     *   The text of the link.
+     *
+     * @return {string}
+     *   The HTML of the item.
+     */
+
+    /**
+     * Generates the inpage navigation items.
+     *
+     * @param {HTMLElement} container
+     *   The element where to search for elements composing the inpage navigation.
+     * @param {ItemRenderCallback} item_cb
+     *   The single item render callback.
+     *
+     * @returns {string}
+     *   The HTML of the generated items.
+     */
+    generateItems: function(container, item_cb) {
+      Array.prototype.forEach.call(container.querySelectorAll(':scope [data-inpage-navigation-source-area]'), function (area) {
+        let selectors = area.getAttribute('data-inpage-navigation-source-area');
+
+        // Loop through all the elements that are referenced by the specified selector(s), and mark them as source
+        // elements. We cannot collect the elements at this stage, as multiple nested areas can be present in the page.
+        // This could lead to scenarios where elements are collected multiple times, or not collected following the
+        // order of appearance in the page.
+        // The :scope pseudo-class is needed to make sure that the selectors are applied inside the parent.
+        // @see https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll#user_notes
+        Array.prototype.forEach.call(area.querySelectorAll(':scope ' + selectors), function (element) {
+          element.setAttribute('data-inpage-navigation-source-element', '');
+        });
+      });
+
+      let items_markup = '';
+      // Collect all the elements marked as source. Now the elements will be unique and ordered correctly.
+      Array.prototype.forEach.call(container.querySelectorAll(':scope [data-inpage-navigation-source-element]'), function (element) {
+        let title = element.textContent.trim();
+
+        // Skip elements with empty content.
+        if (title.length === 0) {
+          return;
+        }
+
+        // Generate an unique ID if not present.
+        if (!element.hasAttribute('id')) {
+          let id = Drupal.eclInPageNavigation.slug(title);
+          // If an empty ID is generated, skip this element.
+          if (id === false) {
+            return;
+          }
+
+          element.setAttribute('id', id);
+        }
+
+        // Cleanup the markup from the helper attribute added above.
+        element.removeAttribute('data-inpage-navigation-source-element');
+
+        items_markup += item_cb(element.getAttribute('id'), title);
+      });
+
+      return items_markup;
+    },
+
+    /**
      * Generates a unique slug from a text string.
      *
      * The following code is an adaptation from https://github.com/markedjs/marked/blob/master/src/Slugger.js.
@@ -119,7 +164,7 @@
      *   A unique slug, safe to use as ID for an element. False when the generated slug is empty.
      */
     slug: function(value) {
-      var originalSlug = value
+      let originalSlug = value
         .toLowerCase()
         .trim()
         // Remove html tags.
@@ -128,8 +173,8 @@
         .replace(/[\u2000-\u206F\u2E00-\u2E7F\\'!"#$%&()*+,./:;<=>?@[\]^`{|}~]/g, '')
         .replace(/\s/g, '-');
 
-      var slug = originalSlug;
-      var occurrenceAccumulator = 0;
+      let slug = originalSlug;
+      let occurrenceAccumulator = 0;
 
       // If the slug string is empty, quit.
       if (slug.length === 0) {

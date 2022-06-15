@@ -2,7 +2,8 @@ oe_theme_inpage_navigation_test.content:
   path: '/oe-theme-inpage-navigation-test/content'
   defaults:
     _title: 'In-page navigation content page'
-    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::contentPage'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::renderTemplate'
+    variation: 'content'
   requirements:
     _access: 'TRUE'
 
@@ -10,6 +11,16 @@ oe_theme_inpage_navigation_test.no_entries:
   path: '/oe-theme-inpage-navigation-test/no-entries'
   defaults:
     _title: 'In-page navigation no entries page'
-    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::noEntriesPage'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::renderTemplate'
+    variation: 'no_elements'
+  requirements:
+    _access: 'TRUE'
+
+oe_theme_inpage_navigation_test.multiple:
+  path: '/oe-theme-inpage-navigation-test/multiple'
+  defaults:
+    _title: 'In-page navigation multiple containers page'
+    _controller: '\Drupal\oe_theme_inpage_navigation_test\Controller\InpageNavigationTestController::renderTemplate'
+    variation: 'multiple'
   requirements:
     _access: 'TRUE'
