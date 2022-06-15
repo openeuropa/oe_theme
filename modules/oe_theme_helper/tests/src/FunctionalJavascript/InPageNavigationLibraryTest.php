@@ -154,4 +154,70 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $assert_session->elementExists('css', 'h1.ecl-page-header__title.empty-inpage-nav-test');
   }
 
+  /**
+   * Tests when multiple inpage navigation containers are present in the page.
+   */
+  public function testMultipleContainers(): void {
+    $this->drupalGet('/oe-theme-inpage-navigation-test/multiple');
+    $assert_session = $this->assertSession();
+
+    $main_content = $assert_session->elementExists('css', '#inpage-navigation-test-container');
+    // Each inpage navigation adds two extra IDs, one for a button and one for
+    // the ul itself. This means that we actually are expecting 8 IDs generated
+    // in total by the library.
+    $this->assertCount(12, $main_content->findAll('xpath', '//*[@id]'));
+
+    $first_container = $main_content->find('css', '.first-container');
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation', $first_container);
+    $assert = new InPageNavigationAssert();
+    $expected = [
+      'title' => 'First nav',
+      'list' => [
+        [
+          'label' => 'Area 1 title 1',
+          'href' => '#area-1-title-1',
+        ],
+        [
+          'label' => 'Area 1 title 2',
+          'href' => '#area-1-title-2',
+        ],
+        [
+          'label' => 'Details',
+          'href' => '#details',
+        ],
+      ],
+    ];
+    $assert->assertPattern($expected, $navigation->getOuterHtml());
+
+    $second_container = $main_content->find('css', '.second-container');
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation', $second_container);
+    $assert = new InPageNavigationAssert();
+    $expected = [
+      'title' => 'Second nav',
+      'list' => [
+        [
+          'label' => 'Area 2 title 1',
+          'href' => '#area-2-title-1',
+        ],
+        [
+          'label' => 'Area 2 title 2',
+          'href' => '#area-2-title-2',
+        ],
+        [
+          'label' => 'Details',
+          'href' => '#details-1',
+        ],
+        [
+          'label' => 'Area 2 title 4',
+          'href' => '#area-2-title-4',
+        ],
+        [
+          'label' => 'Special title element',
+          'href' => '#special-title-element',
+        ],
+      ],
+    ];
+    $assert->assertPattern($expected, $navigation->getOuterHtml());
+  }
+
 }
