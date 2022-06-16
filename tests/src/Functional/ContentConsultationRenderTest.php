@@ -202,7 +202,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 
     // Assert 2nd inpage navigation item content.
-    $content_second_group = $content_items[1]->find('css', '.ecl p');
+    $content_second_group = $content_items[1]->find('css', '.ecl');
     $this->assertEquals('Target audience text', $content_second_group->getText());
 
     // Set Consultation aim and assert navigation and content is updated.
@@ -220,7 +220,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
-    $content_second_group = $content_items[2]->find('css', '.ecl p');
+    $content_second_group = $content_items[2]->find('css', '.ecl');
     $this->assertEquals('Consultation aim text', $content_second_group->getText());
 
     // Set Consultation guidelines and assert navigation and content is updated.
@@ -251,7 +251,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(4, $content_items);
-    $content_second_group = $content_items[3]->find('css', '.ecl p');
+    $content_second_group = $content_items[3]->find('css', '.ecl');
     $this->assertEquals('Consultation guidelines text', $content_second_group->getText());
     $this->assertSession()->elementNotExists('css', '.ecl-link.ecl-link--cta');
 
@@ -290,7 +290,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(5, $content_items);
-    $content_second_group = $content_items[4]->find('css', '.ecl p');
+    $content_second_group = $content_items[4]->find('css', '.ecl');
     $this->assertEquals('Consultation outcome text', $content_second_group->getText());
     $this->assertMediaDocumentDefaultRender($content_items[4], 'consultation_document', 'English', '2.96 KB - PDF', "sample_consultation_document.pdf", 'Download');
 
@@ -383,7 +383,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(7, $content_items);
-    $content_second_group = $content_items[6]->find('css', '.ecl p');
+    $content_second_group = $content_items[6]->find('css', '.ecl');
     $this->assertEquals('Additional information text', $content_second_group->getText());
 
     // Set legal notice and assert content is updated.
@@ -430,7 +430,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
-    $content_second_group = $content_items[7]->find('css', '.ecl p');
+    $content_second_group = $content_items[7]->find('css', '.ecl');
     $this->assertEquals('Legal info text', $content_second_group->getText());
 
     // Set contact and assert content is updated.

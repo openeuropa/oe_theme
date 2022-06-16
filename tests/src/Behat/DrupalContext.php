@@ -11,6 +11,7 @@ use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Testwork\Hook\Scope\AfterSuiteScope;
 use Behat\Testwork\Hook\Scope\BeforeSuiteScope;
 use Drupal\DrupalExtension\Context\RawDrupalContext;
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\oe_content\Traits\EntityLoadingTrait;
 
@@ -151,6 +152,42 @@ class DrupalContext extends RawDrupalContext {
    */
   public static function deleteNonEuLanguage(AfterScenarioScope $scope): void {
     ConfigurableLanguage::load('is')->delete();
+  }
+
+  /**
+   * Removes the auto-paragraph filter from plain text format.
+   *
+   * @param \Behat\Behat\Hook\Scope\BeforeScenarioScope $scope
+   *   The scope.
+   *
+   * @BeforeScenario @remove-autop-plain-text
+   */
+  public function removeAutoPtag(BeforeScenarioScope $scope): void {
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load('plain_text');
+    $format->filters();
+    $format->removeFilter('filter_autop');
+    $format->save();
+  }
+
+  /**
+   * Restores the auto-paragraph filter to plain text format.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterScenarioScope $scope
+   *   The scope.
+   *
+   * @AfterScenario @remove-autop-plain-text
+   */
+  public function restoreAutoPtag(AfterScenarioScope $scope): void {
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load('plain_text');
+    $format->setFilterConfig('filter_autop', [
+      'status' => 1,
+      'settings' => [
+        'filter_url_length' => 72,
+      ],
+    ]);
+    $format->save();
   }
 
 }

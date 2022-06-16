@@ -235,7 +235,7 @@ class ListItemAssert extends BasePatternAssert {
       $expected->assert($description_element->html());
       return;
     }
-    self::assertEquals($expected, $description_element->filter('p')->html());
+    self::assertEquals($expected, $description_element->filter('.ecl-u-type-paragraph')->html());
   }
 
   /**

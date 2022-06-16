@@ -271,7 +271,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(2, $content_items);
     $this->assertContentHeader($content_items[1], 'Description', 'description');
-    $content_second_group = $content_items[1]->find('css', '.ecl p');
+    $content_second_group = $content_items[1]->find('css', '.ecl');
     $this->assertEquals('Call for tenders body', $content_second_group->getText());
 
     // Assert Documents field.

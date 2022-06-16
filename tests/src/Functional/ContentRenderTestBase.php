@@ -7,6 +7,7 @@ namespace Drupal\Tests\oe_theme\Functional;
 use Behat\Mink\Element\NodeElement;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_entity_venue\Entity\VenueInterface;
@@ -51,6 +52,13 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->save();
+
+    // Remove the auto-paragraph filter from the plain text.
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load('plain_text');
+    $format->filters();
+    $format->removeFilter('filter_autop');
+    $format->save();
   }
 
   /**

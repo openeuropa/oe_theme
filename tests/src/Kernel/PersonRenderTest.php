@@ -263,7 +263,7 @@ class PersonRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Responsibilities',
-          'body' => '(Acting) AdviserDescription job_1',
+          'body' => "(Acting) Adviser\n    Description job_1",
         ],
       ],
     ]);
@@ -276,7 +276,7 @@ class PersonRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Responsibilities',
-          'body' => '(Acting) AdviserDescription job_1Chief AdviserDescription job_2',
+          'body' => "(Acting) Adviser\n    Description job_1\n  Chief Adviser\n    Description job_2",
         ],
       ],
     ]);
@@ -343,7 +343,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'items' => [
             [
               'label' => 'Responsibilities',
-              'body' => 'SingerDescription job_1DancerDescription job_2',
+              'body' => "Singer\n    Description job_1\n  Dancer\n    Description job_2",
             ],
           ],
         ]),

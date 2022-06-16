@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\Functional;
 
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\content_moderation\Traits\ContentModerationTestTrait;
 
@@ -68,6 +69,13 @@ class NodeViewRoutesMetadataTest extends BrowserTestBase {
       'view latest version',
       'view any unpublished content',
     ]);
+
+    // Remove the auto-paragraph filter from the plain text.
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load('plain_text');
+    $format->filters();
+    $format->removeFilter('filter_autop');
+    $format->save();
   }
 
   /**

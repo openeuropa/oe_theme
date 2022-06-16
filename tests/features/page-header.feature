@@ -46,6 +46,7 @@ Feature: Page header block component.
     And the breadcrumb trail should be "Home"
     And the breadcrumb active element should be "Robots are everywhere nowadays"
 
+  @remove-autop-plain-text
   Scenario: Page content type has custom metadata shown in the page header.
     Given "oe_page" content:
       | title   | oe_summary                           | oe_content_content_owner                                                |
@@ -56,6 +57,7 @@ Feature: Page header block component.
     # The default text format should be applied, converting URLs into links.
     And I should see the link "http://www.example.org" in the "page header intro"
 
+  @remove-autop-plain-text
   Scenario: Policy content type has custom metadata shown in the page header.
     Given "oe_policy" content:
       | title     | oe_summary                           | oe_content_content_owner                                                |

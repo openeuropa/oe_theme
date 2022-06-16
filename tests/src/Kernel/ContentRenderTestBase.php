@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\filter\Entity\FilterFormat;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\Contact;
@@ -149,6 +150,13 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
 
     $this->nodeStorage = $this->container->get('entity_type.manager')->getStorage('node');
     $this->nodeViewBuilder = $this->container->get('entity_type.manager')->getViewBuilder('node');
+
+    // Remove the auto-paragraph filter from the plain text.
+    /** @var \Drupal\filter\Entity\FilterFormat $format */
+    $format = FilterFormat::load('plain_text');
+    $format->filters();
+    $format->removeFilter('filter_autop');
+    $format->save();
   }
 
   /**
