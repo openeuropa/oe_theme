@@ -14,11 +14,11 @@ use Drupal\Core\Url;
 class ExternalLinks implements ExternalLinksInterface {
 
   /**
-   * The configuration factory.
+   * The internal domain regex.
    *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   * @var string
    */
-  protected $configFactory;
+  protected string $internalDomainExpression;
 
   /**
    * Constructs an ExternalLinks object.
@@ -27,13 +27,18 @@ class ExternalLinks implements ExternalLinksInterface {
    *   The configuration factory.
    */
   public function __construct(ConfigFactoryInterface $config_factory) {
-    $this->configFactory = $config_factory;
+    $this->internalDomainExpression = $config_factory->get('oe_theme_helper.internal_domains')->get('internal_domain') ?? '';
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isExternalLink($url): bool {
+  public function isExternalLink($url = NULL): bool {
+    // If no value is provided or the value si not a proper link, we'll
+    // return FALSE as it can't be evaluated.
+    if (!$url) {
+      return FALSE;
+    }
     if ($url instanceof Url) {
       $external = $url->isExternal();
       $path = UrlHelper::parse($url->toString())['path'];
@@ -47,11 +52,10 @@ class ExternalLinks implements ExternalLinksInterface {
     }
 
     // If it's an external link, make sure its domain is not internal.
-    $internal_domain_expression = $this->configFactory->get('oe_theme_helper.internal_domains')->get('internal_domain');
-    if (!$internal_domain_expression) {
+    if (!$this->internalDomainExpression) {
       return $external;
     }
-    return !preg_match_all($internal_domain_expression, $path);
+    return !preg_match_all($this->internalDomainExpression, $path);
   }
 
 }
