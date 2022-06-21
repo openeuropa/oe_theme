@@ -113,6 +113,9 @@ class ProgrammeExtraField extends EventExtraFieldBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function viewElements(ContentEntityInterface $entity) {
     if ($entity->get('oe_event_programme')->isEmpty()) {
@@ -147,6 +150,12 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     foreach ($programmes as $programme) {
       // Skip invalid items.
       if (!$programme instanceof ProgrammeItemInterface || $programme->get('oe_event_programme_dates')->isEmpty()) {
+        continue;
+      }
+
+      $access = $programme->access('view', NULL, TRUE);
+      $cache->addCacheableDependency($access);
+      if (!$access->isAllowed()) {
         continue;
       }
 
