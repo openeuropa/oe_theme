@@ -28,6 +28,20 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
+  protected static $modules = [
+    'content_translation',
+    'config',
+    'datetime_testing',
+    'block',
+    'system',
+    'path',
+    'field_group',
+    'oe_theme_helper',
+  ];
+
+  /**
+   * {@inheritdoc}
+   */
   protected $defaultTheme = 'stark';
 
   /**
@@ -51,6 +65,8 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     Role::load(RoleInterface::ANONYMOUS_ID)
       ->grantPermission('view published skos concept entities')
       ->save();
+
+    $this->config('oe_theme_helper.internal_domains')->set('internal_domain', '/(^|^[^:]+:\/\/|[^\.]+\.)europa\.eu/m')->save();
   }
 
   /**

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for the Event website link field of Event CT.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: item.content['#title'],
+      path: item.content['#url'],
+      external: item.content['#url'].toString()|is_external_url,
+      icon_path: ecl_icon_path
+    }
+  } %}
+{% endfor %}

@@ -60,7 +60,9 @@
           {% include '@ecl-twig/link' with item|merge({
             extra_classes: 'ecl-contextual-navigation__link',
             link: item|merge({
-              type: 'standalone'
+              type: 'standalone',
+              external: item.is_external,
+              icon_path: ecl_icon_path,
             }),
           }) only %}
         </li>

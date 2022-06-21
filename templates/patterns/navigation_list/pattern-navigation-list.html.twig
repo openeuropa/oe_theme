@@ -10,7 +10,8 @@
   {% set _link = {
     link: {
       label : link.label,
-      path : link.url
+      path : link.url,
+      is_external: link.is_external|default(false)
     }
   } %}
   {% set _links = _links|merge([_link]) %}
@@ -21,7 +22,8 @@
   {% set _secondary_link = {
     link: {
       label : secondary_link.label,
-      path : secondary_link.url
+      path : secondary_link.url,
+      is_external: secondary_link.is_external|default(false)
     }
   } %}
   {% set _secondary_links = _secondary_links|merge([_secondary_link]) %}
@@ -30,7 +32,9 @@
 {% include '@oe_theme/compositions/ec-component-navigation-list/navigation-list.html.twig' with {
   title: title,
   title_url: title_url,
+  external_link: external_link|default(false),
   description: description,
   links: _links,
   secondary_links: _secondary_links,
+  icon_path: ecl_icon_path
 } only %}

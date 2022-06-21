@@ -63,3 +63,10 @@
       a.ecl-link[href="mailto:me@example.com"]: 1
     equals:
       a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+- fields:
+    contact_page_url: "https://european-union.europa.eu/index_en"
+  assertions:
+    count:
+      a.ecl-link[href="https://european-union.europa.eu/index_en"]: 1
+    equals:
+      a.ecl-link svg.ecl-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'

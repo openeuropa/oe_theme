@@ -128,6 +128,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
       'label' => $item['title'],
       'href' => $item['url'],
       'is_current' => $item['in_active_trail'],
+      'external' => \Drupal::service('oe_theme_helper.external_links')->isExternalLink($item['url']),
     ];
   }, $variables['items']);
 
@@ -137,6 +138,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
         'label' => $item['title'],
         'href' => $item['url'],
         'is_current' => $item['in_active_trail'],
+        'external' => \Drupal::service('oe_theme_helper.external_links')->isExternalLink($item['url']),
       ];
     }, $variables['items'][$name]['below']);
   }
@@ -211,11 +213,14 @@ function oe_theme_theme_suggestions_paragraph_alter(array &$suggestions, array $
  * Implements hook_preprocess_paragraph().
  */
 function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void {
+  $external_links_service = \Drupal::service('oe_theme_helper.external_links');
   // Massage data to be compliant with ECL links block component data structure.
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
+    $url = $variables['content']['field_oe_links'][$index]['#url'];
     $variables['links'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'url' => $variables['content']['field_oe_links'][$index]['#url'],
+      'url' => $url,
+      'is_external' => $external_links_service->isExternalLink($url),
     ];
   }
 }
@@ -251,10 +256,13 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
   $variables['more_label'] = $paragraph->get('field_oe_text')->value;
 
   $variables['items'] = [];
+  $external_links_service = \Drupal::service('oe_theme_helper.external_links');
   foreach (Element::children($variables['content']['field_oe_links']) as $index) {
+    $url = $variables['content']['field_oe_links'][$index]['#url'];
     $variables['items'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'href' => $variables['content']['field_oe_links'][$index]['#url'],
+      'href' => $url,
+      'is_external' => $external_links_service->isExternalLink($url),
     ];
   }
 }
@@ -804,7 +812,9 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   $variables['variant'] = $list_item_variant ?? 'default';
-  $variables['url'] = $paragraph->get('field_oe_link')->first()->getUrl();
+  $url = $paragraph->get('field_oe_link')->first()->getUrl();
+  $variables['url'] = $url;
+  $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
@@ -867,8 +877,10 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
 
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
   $link_item = $paragraph->get('field_oe_link')->first();
-  $variables['button_url'] = $link_item->getUrl();
+  $url = $link_item->getUrl();
+  $variables['button_url'] = $url;
   $variables['button_label'] = $link_item->get('title')->getValue();
+  $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
 }
 
 /**
@@ -1414,12 +1426,19 @@ function oe_theme_preprocess_pattern_link(array &$variables): void {
 
   // Extract attributes from the URL object and set them as default.
   if ($variables['url'] instanceof Url) {
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($variables['url']);
     $attributes = (array) $variables['url']->getOption('attributes');
+    if (isset($attributes['class'])) {
+      $variables['classes'] = implode(' ', $attributes['class']);
+      unset($attributes['class']);
+    }
+    foreach ($attributes as $name => $value) {
+      $variables['extra_attributes'][] = [
+        'name' => $name,
+        'value' => $value,
+      ];
+    }
   }
-
-  // Add ECL link classes to attributes.
-  $variables['attributes'] = new Attribute($attributes);
-  $variables['attributes']->addClass('ecl-link', 'ecl-link--' . $variables['variant']);
 }
 
 /**
@@ -1448,8 +1467,10 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
     $variables['title'] = $paragraph->get('field_oe_title')->value;
   }
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $url = $paragraph->get('field_oe_link')->first()->getUrl();
     $variables['view_all']['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
     $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
   }
   $variables['items'] = [];
 
@@ -1494,9 +1515,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $link = $paragraph->get('field_oe_link')->first();
-    $variables['url'] = $link->getUrl();
+    $url = $link->getUrl();
+    $variables['url'] = $url;
     $variables['label'] = $link->get('title')->getValue();
-    ;
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
   }
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
@@ -1691,6 +1713,13 @@ function oe_theme_theme_suggestions_oe_corporate_blocks_eu_footer_alter(array &$
 /**
  * Implements hook_preprocess_HOOK().
  */
+function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
+  _oe_theme_preprocess_site_specific_footer_links($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
 function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
@@ -1706,6 +1735,38 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
     $site_logo_href .= '/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
   $variables['path'] = $site_logo_href;
+
+  _oe_theme_preprocess_site_specific_footer_links($variables);
+}
+
+/**
+ * Helper function to preprocess footer links and set external flag to them.
+ *
+ * @param array $variables
+ *   The variables array from the preprocess hook.
+ */
+function _oe_theme_preprocess_site_specific_footer_links(array &$variables): void {
+  if (empty($variables['site_specific_footer']['other_links'])) {
+    return;
+  }
+
+  $external_link_service = \Drupal::service('oe_theme_helper.external_links');
+
+  foreach ($variables['site_specific_footer']['other_links'] as $section => $links) {
+    if (empty($links['links'])) {
+      continue;
+    }
+
+    foreach ($links['links'] as $index => $link) {
+      if (!$link['href'] instanceof Url) {
+        continue;
+      }
+
+      if ($external_link_service->isExternalLink($link['href'])) {
+        $variables['site_specific_footer']['other_links'][$section]['links'][$index]['external'] = TRUE;
+      }
+    }
+  }
 }
 
 /**

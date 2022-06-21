@@ -28,7 +28,7 @@ services:
     parent: default_plugin_manager
   oe_theme_helper.twig_extension.twig_extension:
     class: Drupal\oe_theme_helper\TwigExtension\TwigExtension
-    arguments: ['@language_manager', '@renderer']
+    arguments: ['@language_manager', '@renderer', '@oe_theme_helper.external_links']
     tags:
     - { name: twig.extension }
   oe_theme_helper.node_metadata_event_subscriber:
@@ -40,3 +40,6 @@ services:
     class: Drupal\oe_theme_helper\MediaDataExtractorPluginManager
     parent: default_plugin_manager
     arguments: ['@entity_type.bundle.info']
+  oe_theme_helper.external_links:
+    class: Drupal\oe_theme_helper\ExternalLinks
+    arguments: ['@config.factory']
