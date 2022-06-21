@@ -229,6 +229,10 @@ class ListItemAssert extends BasePatternAssert {
   protected function assertDescription($expected, string $variant, Crawler $crawler): void {
     $base_selector = $this->getBaseItemClass($variant);
     $description_selector = 'div' . $base_selector . '__description';
+    if (is_null($expected)) {
+      $this->assertElementNotExists($description_selector, $crawler);
+      return;
+    }
     $this->assertElementExists($description_selector, $crawler);
     $description_element = $crawler->filter($description_selector);
     if ($expected instanceof PatternAssertStateInterface) {
