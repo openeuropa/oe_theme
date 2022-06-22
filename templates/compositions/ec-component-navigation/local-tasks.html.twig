@@ -18,7 +18,7 @@
 {% set _title = title|default('Navigation') %}
 {% set _links = links|default([]) %}
 {% set _variant = variant|default('primary') %}
-{% set _css_class = 'ecl-navigation-list' %}
+{% set _css_class = 'ecl-navigation' %}
 {% set _extra_attributes = '' %}
 
 {# Internal logic - Process properties #}
@@ -46,10 +46,10 @@
 {% if _links is not empty %}
   <nav class="{{ _css_class }}"{{ _extra_attributes|raw }}>
     <h2 hidden>{{ _title }}</h2>
-    <ul class="ecl-navigation-list ecl-unordered-list--no-bullet ecl-u-border-bottom ecl-u-border-color-grey-25{{ _list_class }}">
+    <ul class="ecl-navigation ecl-unordered-list--no-bullet ecl-u-border-bottom ecl-u-border-color-grey-25{{ _list_class }}">
       {% for _link in _links %}
-        {% set _active_class = _link.is_active == true ? ' ecl-navigation-list__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
-        <li class="ecl-navigation-list__item ecl-unordered-list__item ecl-u-d-inline{{ _list_item_class }}{{ _active_class }}">
+        {% set _active_class = _link.is_active == true ? ' ecl-navigation__item--active ecl-u-border-bottom ecl-u-border-color-blue' : '' %}
+        <li class="ecl-navigation__item ecl-unordered-list__item ecl-u-d-inline{{ _list_item_class }}{{ _active_class }}">
           {% include '@ecl-twig/link' with _link only %}
         </li>
       {% endfor %}
