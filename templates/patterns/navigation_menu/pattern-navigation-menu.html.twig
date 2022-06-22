@@ -20,6 +20,12 @@
         is_current: child.is_current,
       }) %}
     {% endif %}
+    {% if child.external is defined and child.external == true %}
+      {% set _child = _child|merge({
+        external: child.external,
+        icon_path: ecl_icon_path
+      }) %}
+    {% endif %}
     {% set _children = _children|merge([_child]) %}
   {% endfor %}
 
@@ -29,6 +35,12 @@
     label: item.label,
     children: _children,
   } %}
+  {% if _children is empty and item.external is defined and item.external == true %}
+    {% set _item = _item|merge({
+      external: item.external,
+      icon_path: ecl_icon_path
+    }) %}
+  {% endif %}
   {% if item.is_current is defined and item.is_current == true %}
     {% set _item = _item|merge({
       is_current: item.is_current,

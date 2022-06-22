@@ -15,11 +15,8 @@
         type: 'standalone',
         label: items.media_more_link.title,
         path: items.media_more_link.url,
-      },
-      icon: {
-        'path': ecl_icon_path,
-        'name': 'external',
-        'size': 's',
+        external: items.media_more_link.url.toString()|is_external_url,
+        icon_path: ecl_icon_path
       }
     } %}
     {% include '@ecl-twig/link' with _link only %}

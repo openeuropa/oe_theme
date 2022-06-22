@@ -65,3 +65,8 @@ button:
       label: "Disabled status"
       description: "Define if button should be disabled."
       preview: false
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether button link is external or not."
+      preview: false

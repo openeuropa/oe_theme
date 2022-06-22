@@ -9,6 +9,7 @@ use Drupal\Core\Language\LanguageInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Render\Renderer;
 use Drupal\Core\Template\Loader\StringLoader;
+use Drupal\oe_theme_helper\ExternalLinksInterface;
 use Drupal\oe_theme_helper\TwigExtension\TwigExtension;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\Tests\UnitTestCase;
@@ -55,6 +56,13 @@ class TwigExtensionTest extends UnitTestCase {
   protected $twig;
 
   /**
+   * The external links service.
+   *
+   * @var \Drupal\oe_theme_helper\ExternalLinksInterface
+   */
+  protected $externalLinks;
+
+  /**
    * {@inheritdoc}
    */
   protected function setUp(): void {
@@ -79,8 +87,11 @@ class TwigExtensionTest extends UnitTestCase {
     // Create Renderer service mock.
     $this->renderer = $this->prophesize(Renderer::class);
 
+    // Create the external link service mock.
+    $this->externalLinks = $this->prophesize(ExternalLinksInterface::class);
+
     // Instantiate the system under test.
-    $this->extension = new TwigExtension($this->languageManager->reveal(), $this->renderer->reveal());
+    $this->extension = new TwigExtension($this->languageManager->reveal(), $this->renderer->reveal(), $this->externalLinks->reveal());
 
     // For convenience, make a version of the Twig environment available that
     // has the tested extension preloaded.
