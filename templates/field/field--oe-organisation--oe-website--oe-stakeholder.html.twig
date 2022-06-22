@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for the Website field of the Organisation entity.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+ */
+#}
+{% for item in items %}
+  {% set bubble_cache = item.content|render %}
+  {% include '@ecl-twig/link' with {
+    link: {
+      type: 'standalone',
+      label: item.content['#url'].toString(),
+      path: item.content['#url'],
+      external: item.content['#url'].toString()|is_external_url,
+      icon_path: ecl_icon_path
+    }
+  } %}
+{% endfor %}

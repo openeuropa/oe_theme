@@ -47,3 +47,8 @@ list_item_block_one_column:
       label: "Icon position"
       description: "The position of the icon"
       preview: 'after'
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the Button URL is external or not."
+      preview: true

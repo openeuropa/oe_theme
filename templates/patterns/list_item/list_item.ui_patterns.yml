@@ -94,7 +94,7 @@ list_item:
       type: "text"
       label: "Icon"
       description: "An optional icon to be used with the link."
-      preview: "external"
+      preview: "list"
     badges:
       type: array
       label: "Badges"
@@ -104,3 +104,8 @@ list_item:
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the URL of the item is external or not."
+      preview: true

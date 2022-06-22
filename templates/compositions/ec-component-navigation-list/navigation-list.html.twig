@@ -21,7 +21,9 @@
         'link': {
           'type': 'standalone',
           'label': title,
-          'path': title_url
+          'path': title_url,
+          'external': external_link,
+          'icon_path': icon_path
         }
       } only %}
     {% else %}
@@ -38,7 +40,11 @@
       {% for link in links %}
         <li class="ecl-unordered-list__item">
           {% if link.link.path %}
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% include '@ecl-twig/link' with { link: link.link|merge({
+              'type': 'standalone',
+              'external': link.link.is_external,
+              'icon_path': icon_path
+            }) } only %}
           {% else %}
             {{ link.link.label }}
           {% endif %}
@@ -51,7 +57,15 @@
       <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
         {% for link in secondary_links %}
           <li class="ecl-unordered-list__item">
-            {% include '@ecl-twig/link' with { link: link.link|merge({type: 'standalone'}) } only %}
+            {% if link.link.path %}
+              {% include '@ecl-twig/link' with { link: link.link|merge({
+                'type': 'standalone',
+                'external': link.link.is_external,
+                'icon_path': icon_path
+              }) } only %}
+            {% else %}
+              {{ link.link.label }}
+            {% endif %}
           </li>
         {% endfor %}
       </ul>

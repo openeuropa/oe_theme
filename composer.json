@@ -47,7 +47,7 @@
         "nikic/php-parser": "^4.12.0",
         "openeuropa/behat-transformation-context": "~0.1",
         "openeuropa/code-review": "^2.0",
-        "openeuropa/oe_contact_forms": "^1.2",
+        "openeuropa/oe_contact_forms": "dev-master",
         "openeuropa/oe_content": "^3.0.0",
         "openeuropa/oe_corporate_blocks": "^4.4",
         "openeuropa/oe_corporate_countries": "~2.0",

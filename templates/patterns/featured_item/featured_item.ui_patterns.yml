@@ -67,3 +67,8 @@ featured_item:
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether item's link is external or not."
+      preview: false

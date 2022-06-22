@@ -38,3 +38,8 @@ facts_figures:
       preview:
         label: "View all metrics"
         path: "/example"
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the view all URL is external or not."
+      preview: true

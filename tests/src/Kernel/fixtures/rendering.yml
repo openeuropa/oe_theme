@@ -1321,6 +1321,7 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
       button_url: "http://example.com"
+      external_link: true
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
@@ -1334,13 +1335,13 @@
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
-      'div.ecl-content-item-block__button a.ecl-link-icon': 0
-      'div.ecl-content-item-block__button a.ecl-link--standalone svg': 0
+      'div.ecl-content-item-block__button a.ecl-link--icon.ecl-link--standalone svg': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1353,6 +1354,9 @@
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       button_label: "View all"
       button_url: "http://example.com"
+      button_icon_position: 'before'
+      button_icon_name: 'list'
+      external_link: true
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
@@ -1366,11 +1370,12 @@
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
-      'div.ecl-content-item-block__button a.ecl-link--standalone svg': 0
+      'div.ecl-content-item-block__button a.ecl-link--standalone.ecl-link--icon-after svg': 1
     equals:
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
-      'a.ecl-link': "View all"
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1382,6 +1387,11 @@
           '#fields':
             title: "Business, Economy, Euro"
             detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      button_label: "View all"
+      button_url: "http://example.com"
+      external_link: false
+      button_icon_name: 'list'
+      button_icon_position: 'before'
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
@@ -1393,12 +1403,15 @@
       'div.ecl-content-item-block__item.ecl-col-12 article.ecl-content-item': 1
       'div.ecl-content-item-block__item.ecl-col-m-6 article.ecl-content-item': 0
       'div.ecl-content-item-block__item.ecl-col-m-4 article.ecl-content-item': 0
-      'div.ecl-content-item-block__button': 0
-      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
+      'div.ecl-content-item-block__button': 1
+      'div.ecl-content-item-block__button a.ecl-link--standalone.ecl-link--icon-before svg': 1
+      'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'a.ecl-link span.ecl-link__label': "View all"
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1882,8 +1895,10 @@
       links:
         - label: 'Link 1'
           url: 'http://link-1.com'
+          is_external: true
         - label: 'Link 2'
           url: 'http://link-2.com'
+          is_external: true
         - label: 'Link 3'
           url: 'http://link-3.com'
   assertions:
@@ -1893,10 +1908,13 @@
       'a.ecl-link-block__link[href="http://link-1.com"]': 1
       'a.ecl-link-block__link[href="http://link-2.com"]': 1
       'a.ecl-link-block__link[href="http://link-3.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': 2
     equals:
       '.ecl-link-block__title h5': "Link block title"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link': "Link 1"
-      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link .ecl-link__label': "Link 1"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(1) .ecl-link svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link .ecl-link__label': "Link 2"
+      '.ecl-link-block__list .ecl-link-block__item:nth-child(2) .ecl-link svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       '.ecl-link-block__list .ecl-link-block__item:nth-child(3) .ecl-link': "Link 3"
 - array:
     '#type': pattern
@@ -1956,14 +1974,17 @@
       items:
         - href: "http://link-1.com"
           label: "Item one"
+          is_external: true
         - href: "http://link-2.com"
           label: "Item two"
         - href: "http://link-3.com"
           label: "Item three"
+          is_external: true
         - href: "http://link-4.com"
           label: "Item four"
         - href: "http://link-5.com"
           label: "Item five"
+          is_external: true
       limit: 4
       more_label: "More label"
   assertions:
@@ -1971,12 +1992,16 @@
       'li.ecl-contextual-navigation__item': 6
       'li.ecl-contextual-navigation__item--collapsed': 1
       'li.ecl-contextual-navigation__item--more': 1
+      'span.ecl-link__label': 3
     equals:
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"]': "Item one"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] span.ecl-link__label': "Item one"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-1.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-2.com"]': "Item two"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"]': "Item three"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] span.ecl-link__label': "Item three"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-3.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
-      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"]': "Item five"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
+      'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - array:
@@ -1995,6 +2020,25 @@
       'a.ecl-link--icon-before svg': 1
     equals:
       'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
+      'svg.ecl-icon.ecl-icon--s.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#caret-right"></use>'
+- array:
+    '#type': pattern
+    '#id': button
+    '#variant': default
+    '#fields':
+      label: "Button label"
+      href: "http://example.com"
+      icon: "caret-right"
+      icon_position: "before"
+      type_attribute: "default"
+      external_link: true
+  assertions:
+    count:
+      'a.ecl-link--icon-after svg': 1
+      'a.ecl-link--icon-before svg': 0
+    equals:
+      'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
+      'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': button
@@ -2003,12 +2047,13 @@
       label: "Button label"
       href: "http://example.com"
       type_attribute: "standalone"
+      external_link: true
   assertions:
     count:
-      'a.ecl-link--standalone': 1
-      'a.ecl-link--icon': 0
+      'a.ecl-link--icon': 1
     equals:
-      'a.ecl-link--standalone[href="http://example.com"]': "Button label"
+      'a.ecl-link--standalone[href="http://example.com"] .ecl-link__label': "Button label"
+      'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': button
@@ -2321,10 +2366,35 @@
       "div.ecl-card__image": 0
       'h1.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button[href="https://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-button__icon.ecl-button__icon--after': 1
     equals:
       'h1.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description .ecl-paragraph': "Example description"
       'a.ecl-button .ecl-button__label': "Link title"
+      'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "extended"
+    '#fields':
+      title: "Example title"
+      description: "Example description"
+      link:
+        href: "https://example.com"
+        label: "Link title"
+      external_link: true
+  assertions:
+    count:
+      "div.ecl-card__image": 0
+      'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="https://example.com"]': 1
+      'a.ecl-button[href="https://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': 1
+    equals:
+      'h1.ecl-content-block__title a span.ecl-link__label': "Example title"
+      'div.ecl-content-block__description .ecl-paragraph': "Example description"
+      'a.ecl-button .ecl-button__label': "Link title"
+      'h1.ecl-content-block__title a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      '.ecl-content-block__description svg.ecl-icon.ecl-icon--xs.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': featured_item
@@ -2572,12 +2642,14 @@
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
     equals:
       'div.ecl-featured-item__heading': "Heading"
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2590,7 +2662,7 @@
       text: "Some more text"
       link:
         label: "Call to action"
-        path: "http://example.com"
+        path: "https://european-union.europa.eu/index_en"
       highlighted: true
   assertions:
     count:
@@ -2604,12 +2676,14 @@
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
-      'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
     equals:
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item > div.ecl': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2894,10 +2968,12 @@
             - href: '#'
               label: 'Child 1.1'
               is_current: true
+              external: true
             - href: '#'
               label: 'Child 1.2'
             - href: '#'
               label: 'Child 1.3'
+              external: true
             - href: '#'
               label: 'Child 1.4'
         - href: "#"
@@ -2909,6 +2985,7 @@
               label: 'Child 2.2'
             - href: '#'
               label: 'Child 2.3'
+              external: true
         - href: "#"
           label: "Link"
   assertions:
@@ -2918,14 +2995,17 @@
       '.ecl-menu__inner-header button.ecl-menu__back .ecl-button__label': "Back"
       'li.ecl-menu__item:nth-child(1) a.ecl-menu__link': "Parent 1"
       'li.ecl-menu__item:nth-child(2) a.ecl-menu__link': "Parent 2"
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon-after': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink.ecl-link--icon-after': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink.ecl-link--icon-after': 'Child 2.3'
     equals:
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 1.2'
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 1.3'
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(4) a.ecl-menu__sublink': 'Child 1.4'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(1) a.ecl-menu__sublink': 'Child 2.1'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 2.2'
-      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a.ecl-menu__sublink': 'Child 2.3'
+      'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-menu__sublink-icon.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
 - array:
     '#type': "pattern"
@@ -3015,6 +3095,7 @@
       view_all:
         label: 'View all metrics'
         path: 'https://example.com'
+      external_link: true
   assertions:
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
@@ -3030,7 +3111,8 @@
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value': '10.0 millions'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title': 'Nam lacinia nisl eget diam mattis'
       'div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description': 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
-      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
+      'div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after.ecl-fact-figures__view-all-link[href="https://example.com"] span.ecl-link__label': 'View all metrics'
+      'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': 'pattern'
     '#id': 'facts_figures'

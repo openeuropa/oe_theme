@@ -10,7 +10,9 @@
       'type': 'standalone',
       'label': label,
       'path': href,
-      'icon_position': icon_position|default('after')
+      'icon_position': icon_position|default('after'),
+      'external': external_link,
+      'icon_path': ecl_icon_path
     },
     'icon': {
       'path': ecl_icon_path,
@@ -25,7 +27,7 @@
     'type': type_attribute,
     'icon': {
       'path': ecl_icon_path,
-      'name': icon,
+      'name': external_link ? 'external' : icon,
       'size': 's'
     },
     'icon_position': icon_position|default('after'),

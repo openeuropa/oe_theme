@@ -13,6 +13,7 @@
     - "length" (int) (default: 0): Max length of detail field.
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
     - "icon" (string) (default: ''): Icon used for the link item.
+    - "external_link" (bool) (default: false): Whether the link is external or not.
 #}
 
 {# Create macro #}
@@ -73,6 +74,8 @@
               type: 'standalone',
               label: title,
               path: url,
+              external: external_link,
+              icon_path: ecl_icon_path
             }
           } %}
           {% if icon %}

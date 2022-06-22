@@ -52,6 +52,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
+    $this->config('oe_theme_helper.internal_domains')->set('internal_domain', '/(^|^[^:]+:\/\/|[^\.]+\.)europa\.eu/m')->save();
 
     // @todo Drupal 9 ignores settings in settings.testing.php in kernel tests.
     // See https://www.drupal.org/project/drupal/issues/3190974. Need to
