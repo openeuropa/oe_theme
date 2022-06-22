@@ -1,5 +1,26 @@
 # Change Log
 
+## [3.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta13) (2022-06-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta12...3.0.0-beta13)
+
+**Merged pull requests:**
+
+- EWPP-2296: Rename .ecl-navigation-list to .ecl-navigation to avoid conflict with ECL. [\#1112](https://github.com/openeuropa/oe_theme/pull/1112) ([yenyasinn](https://github.com/yenyasinn))
+- EPIC-EWPP-2022-External-links [\#1119](https://github.com/openeuropa/oe_theme/pull/1119) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2204: Simple teaser epic. [\#1108](https://github.com/openeuropa/oe_theme/pull/1108) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2166: Fix access check for event programme items. [\#1096](https://github.com/openeuropa/oe_theme/pull/1096) ([nagyad](https://github.com/nagyad))
+- EWPP-2149: Allow inpage navigation generation to support multiple instances. [\#1094](https://github.com/openeuropa/oe_theme/pull/1094) ([brummbar](https://github.com/brummbar))
+- EWPP-2283: Integrate new ECL Page header component. [\#1105](https://github.com/openeuropa/oe_theme/pull/1105) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2048: Upgrade to ECL 3.3.0. [\#1097](https://github.com/openeuropa/oe_theme/pull/1097) ([22Alexandra](https://github.com/22Alexandra))
+- OEL-1362: ImageValueObject doesn't inherit cache information from image file. [\#1089](https://github.com/openeuropa/oe_theme/pull/1089) ([escuriola](https://github.com/escuriola))
+- EWPP-2164: Using langcode instead of language object in programme rendering. [\#1092](https://github.com/openeuropa/oe_theme/pull/1092) ([upchuk](https://github.com/upchuk))
+- EWPP-2191: Fix dependency from composer patches. [\#1090](https://github.com/openeuropa/oe_theme/pull/1090) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2176: Update ECL version to 3.2.4. [\#1088](https://github.com/openeuropa/oe_theme/pull/1088) ([sergepavle](https://github.com/sergepavle))
+- EWPP-0000: Adding safe directory for git. [\#1087](https://github.com/openeuropa/oe_theme/pull/1087) ([upchuk](https://github.com/upchuk))
+- EWPP-2044: Adds the News ticker pattern. [\#1067](https://github.com/openeuropa/oe_theme/pull/1067) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1978: Enable failure of tests on javascript errors. [\#1059](https://github.com/openeuropa/oe_theme/pull/1059) ([sergepavle](https://github.com/sergepavle))
+
 ## [3.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta12) (2022-04-1)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta11...3.0.0-beta12)
