@@ -8,7 +8,8 @@
 {% for _item in items %}
   {% set _items = _items|merge([{
     content: _item.content,
-    link: _item.link
+    link: _item.link,
+    external: _item.external_link|default(false),
   }]) %}
 {% endfor %}
 
