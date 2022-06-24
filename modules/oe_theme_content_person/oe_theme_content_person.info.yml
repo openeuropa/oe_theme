@@ -2,7 +2,7 @@ name: OpenEuropa Theme Person Content
 type: module
 description: Companion module for the OE Content Person module
 package: OpenEuropa
-core_version_requirement: ^9.2
+core_version_requirement: ^9.3
 
 dependencies:
   - extra_field:extra_field

@@ -38,6 +38,7 @@ ecl_datepicker:
     js/ecl_datepicker.js: {}
   dependencies:
     - core/drupal
+    - core/jquery
 
 print:
   css:
