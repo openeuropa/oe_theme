@@ -1,0 +1,610 @@
+msgid ""
+msgstr ""
+
+msgid "European Union flag"
+msgstr "Fändel vun der Europäescher Unioun"
+
+msgid "European Commission logo"
+msgstr "Logo vun der Europäescher Kommissioun"
+
+msgid "European Union"
+msgstr "Europäesch Unioun"
+
+msgid "Documents"
+msgstr "Dokumenter"
+
+msgid "Deadline date"
+msgstr "Stéchdag"
+
+msgid "Funding programme"
+msgstr "Fërderprogramm"
+
+msgid "Opening date"
+msgstr "Erëffnungsdatum"
+
+msgid "Department"
+msgstr "Departement"
+
+msgid "Call for proposals"
+msgstr "Opfuerderung zur Areechung vu Virschléi"
+
+msgid "Description"
+msgstr "Beschreiwung"
+
+msgid "Results"
+msgstr "Resultater"
+
+msgid "Deadline model"
+msgstr "Stéchdagmodell"
+
+msgid "Reference"
+msgstr "Referenz"
+
+msgid "Departments"
+msgstr "Departementer"
+
+msgid "Details"
+msgstr "Detailer"
+
+msgid "Deadline dates"
+msgstr "Stéchdatumer"
+
+msgid "Upcoming"
+msgstr "Deemnächst"
+
+msgid "Open"
+msgstr "oppen"
+
+msgid "Single-stage"
+msgstr "Eestufeg"
+
+msgid "Two-stage"
+msgstr "Zweestufeg"
+
+msgid "Multiple cut-off"
+msgstr "Multipel Héchstgrenzen"
+
+msgid "@date in @journal"
+msgstr "@date a(m) @journal"
+
+msgid "Available translations"
+msgstr "Disponibel Iwwersetzungen"
+
+msgid "Deadline date"
+msgstr "Stéchdag"
+
+msgid "Call for tenders"
+msgstr "Ausschreiwungen"
+
+msgid "Call status: @label"
+msgstr "Ausschreiwungsstatus: @label"
+
+msgid "Grants awarded"
+msgstr "Accordéiert Subventiounen"
+
+msgid "Highlighted"
+msgstr "am Fokus"
+
+msgid "Home"
+msgstr "Startsäit"
+
+msgid "Page contents"
+msgstr "Säiteninhalter"
+
+msgid "1 day"
+msgid_plural "@count days"
+msgstr[0] "1 Dag"
+msgstr[1] "@count Deeg"
+
+msgid "1 week"
+msgid_plural "@count weeks"
+msgstr[0] "1 Woch"
+msgstr[1] "@count Wochen"
+
+msgid "1 year"
+msgid_plural "@count years"
+msgstr[0] "1 Joer"
+msgstr[1] "@count Joer"
+
+msgid "1 month"
+msgid_plural "@count months"
+msgstr[0] "1 Mount"
+msgstr[1] "@count Méint"
+
+msgid "1 hour"
+msgid_plural "@count hours"
+msgstr[0] "1 Stonn"
+msgstr[1] "@count Stonnen"
+
+msgid "1 minute"
+msgid_plural "@count minutes"
+msgstr[0] "1 Minutt"
+msgstr[1] "@count Minutten"
+
+msgid "1 second"
+msgid_plural "@count seconds"
+msgstr[0] "1 Sekonn"
+msgstr[1] "@count Sekonnen"
+
+msgid "Additional information"
+msgstr "Zousätzlech Informatiounen"
+
+msgid "Why we are consulting"
+msgstr "Firwat mir Consultatioune maachen"
+
+msgid "Respond to the consultation"
+msgstr "Op Consultatiounen äntweren"
+
+msgid "Legal notice"
+msgstr "Impressum"
+
+msgid "Consultation outcome"
+msgstr "Resultat vun der Consultatioun"
+
+msgid "Target audience"
+msgstr "Zilgrupp"
+
+msgid "Related links"
+msgstr "Änlech Linken"
+
+msgid "Deadline"
+msgstr "Stéchdatum"
+
+msgid "Consultation"
+msgstr "Consultatioun"
+
+msgid "Respond to the questionnaire"
+msgstr "De Froebou beäntweren"
+
+msgid "Reference documents"
+msgstr "Referenzdokumenter"
+
+msgid "The response period for this consultation has ended. Thank you for your input."
+msgstr "D’Reaktiounszäit fir dës Consultatioun ass ofgelaf. Merci fir Ären Input."
+
+msgid "General contact"
+msgstr "Allgemenge Kontakt"
+
+msgid "Name"
+msgstr "Numm"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Contacts"
+msgstr "Kontakter"
+
+msgid "Organisation"
+msgstr "Organisatioun"
+
+msgid "Website"
+msgstr "Site"
+
+msgid "Email"
+msgstr "E‑Mail"
+
+msgid "Fax number"
+msgstr "Faxnummer"
+
+msgid "Mobile number"
+msgstr "Handysnummer"
+
+msgid "Phone number"
+msgstr "Telefonsnummer"
+
+msgid "Press contacts"
+msgstr "Kontakt fir d'Press"
+
+msgid "Office"
+msgstr "Büro"
+
+msgid "Social media"
+msgstr "Sozial Medien"
+
+msgid "Postal address"
+msgstr "Postadress"
+
+msgid "Subject"
+msgstr "Betreff"
+
+msgid "Message"
+msgstr "Noriicht"
+
+msgid "Your email address"
+msgstr "Är E‑Mail-Adress"
+
+msgid "Country of residence"
+msgstr "Wunnsëtzland"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Send yourself a copy"
+msgstr "Eng Kopie un Iech selwer schécken"
+
+msgid "Status message"
+msgstr "Statusmeldung"
+
+msgid "Close this message"
+msgstr "Dës Noriicht zoumaachen"
+
+msgid "The sender's name"
+msgstr "Den Numm vum Absender"
+
+msgid "The sender's email"
+msgstr "D’E‑Mail-Adress vum Absender"
+
+msgid "Topic"
+msgstr "Theema"
+
+msgid "Your name"
+msgstr "Ären Numm"
+
+msgid "I have read and agree with the @link"
+msgstr "Ech hunn d’@link gelies a stëmmen zou"
+
+msgid "data protection terms"
+msgstr "Dateschutzerklärung"
+
+msgid "Responsibilities"
+msgstr "Responsabilitéiten"
+
+msgid "Latest"
+msgstr "Aktuell"
+
+msgid "This page is not available in English."
+msgstr "Dës Säit ass net op Englesch verfügbar."
+
+msgid "Choose another language"
+msgstr "Wielt w.e.g. eng aner Sprooch"
+
+msgid "Location"
+msgstr "Uert"
+
+msgid "Media"
+msgstr "Medien"
+
+msgid "File"
+msgstr "Datei"
+
+msgid "Entrance fee"
+msgstr "Entréespräis"
+
+msgid "Online link"
+msgstr "Online Link"
+
+msgid "Languages"
+msgstr "Sproochen"
+
+msgid "Online time"
+msgstr "Online Zäit"
+
+msgid "As planned"
+msgstr "Ewéi geplangt"
+
+msgid "Cancelled"
+msgstr "Ofgesot"
+
+msgid "Rescheduled"
+msgstr "Verluecht"
+
+msgid "Postponed"
+msgstr "No hanne verréckelt"
+
+msgid "Files"
+msgstr "Dateien"
+
+msgid "Publication"
+msgstr "Verëffentlechung"
+
+msgid "When"
+msgstr "Wéini"
+
+msgid "Where"
+msgstr "Wou"
+
+msgid "Organiser"
+msgstr "Organisateur"
+
+msgid "Number of seats"
+msgstr "Zuel vun de Plazen"
+
+msgid "Book your seat, @time_left left to register, registration will end on @end_date"
+msgstr "Bucht Är Plaz, @time_left iwwereg fir Iech ze registréieren. D’Registréierung geet bis de(n) @end_date."
+
+msgid "Registration will open in @time_left. You can register from @start_date, until @end_date."
+msgstr "D’Registréierung geet a(n) @time_left lass. Dir kënnt Iech vum @start_date bis de(n) @end_date umellen."
+
+msgid "Practical information"
+msgstr "Praktesch Informatiounen"
+
+msgid "Live stream"
+msgstr "Livestream"
+
+msgid "Live streaming available"
+msgstr "Livestreaming disponibel"
+
+msgid "External event"
+msgstr "Extern Veranstaltungen"
+
+msgid "Online only"
+msgstr "Nëmmen online"
+
+msgid "Organisers"
+msgstr "Organisateuren"
+
+msgid "Speakers"
+msgstr "Riedner"
+
+msgid "Who should attend"
+msgstr "Wien deelhuele soll"
+
+msgid "Programme"
+msgstr "Programm"
+
+msgid "Registration period ended on @date"
+msgstr "De Registréierungszäitraum ass de(n) @date zu Enn gaangen."
+
+msgid "Press contact"
+msgstr "Kontakt fir d'Press"
+
+msgid "This event has been cancelled."
+msgstr "Dës Veranstaltung gouf ofgesot."
+
+msgid "This event has been rescheduled."
+msgstr "Dës Veranstaltung gouf verréckelt."
+
+msgid "This event has been postponed."
+msgstr "Dës Veranstaltung gouf no hanne verréckelt."
+
+msgid "This event has started."
+msgstr "Dës Veranstaltung huet ugefaangen."
+
+msgid "This event has ended."
+msgstr "Dës Veranstaltung ass eriwwer."
+
+msgid "This livestream has started."
+msgstr "Dëse Livestream huet ugefaangen."
+
+msgid "This event has started. You can also watch it via livestream."
+msgstr "Dës Veranstaltung huet ugefaangen. Dir kënnt se och via Livestream kucken."
+
+msgid "This event has ended, but the livestream is ongoing."
+msgstr "Dës Veranstaltung ass eriwwer,  de Livestream leeft awer nach."
+
+msgid "Report"
+msgstr "Mellen"
+
+msgid "Register here"
+msgstr "Hei aschreiwen"
+
+msgid "This event has started. The livestream will start at @date."
+msgstr "Dës Veranstaltung huet ugefaangen. De Livestream fänkt de(n) @date un."
+
+msgid "Starts on @date"
+msgstr "Fänkt de(n) @date un"
+
+msgid "The livestream has started."
+msgstr "De Livestream huet ugefaangen."
+
+msgid "The livestream has ended, but the event is ongoing."
+msgstr "De Livestream ass eriwwer, mee d’Veranstaltung leeft nach."
+
+msgid "Publication date"
+msgstr "Verëffentlechungsdatum"
+
+msgid "Keywords"
+msgstr "Stéchwierder"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Content owner"
+msgstr "Eegentemer vum Inhalt"
+
+msgid "Responsible department"
+msgstr "Verantwortleche Service"
+
+msgid "Event date"
+msgstr "Veranstaltungsdatum"
+
+msgid "Online type"
+msgstr "Onlinetyp"
+
+msgid "Event type"
+msgstr "Veranstaltungstyp"
+
+msgid "Venue"
+msgstr "Veranstaltungsuert"
+
+msgid "EU organisation type"
+msgstr "EU-Organisatiounstyp"
+
+msgid "Publication type"
+msgstr "Verëffentlechungstyp"
+
+msgid "After"
+msgstr "No"
+
+msgid "Before"
+msgstr "Viru(n)"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Closed"
+msgstr "Zou"
+
+msgid "No results have been found"
+msgstr "Et goufe keng Resultater fonnt."
+
+msgid "Select"
+msgstr "Auswielen"
+
+msgid "In between"
+msgstr "Tëschent"
+
+msgid "Select all"
+msgstr "All auswielen"
+
+msgid "End Date"
+msgstr "Enddatum"
+
+msgid "Upcoming and ongoing"
+msgstr "Deemnächst an am gaangen"
+
+msgid "Past"
+msgstr "Vergaangen"
+
+msgid "Upcoming and open"
+msgstr "Deemnächst an oppen"
+
+msgid "External event"
+msgstr "Extern Veranstaltungen"
+
+msgid "See all"
+msgstr "Alles uweisen"
+
+msgid "media items"
+msgstr "Medienartikel"
+
+msgid "Close"
+msgstr "Zoumaachen"
+
+msgid "Author"
+msgstr "Auteur"
+
+msgid "Authors"
+msgstr "Auteuren"
+
+msgid "News type"
+msgstr "Noriichtentyp"
+
+msgid "Sources"
+msgstr "Quellen"
+
+msgid "Organisation type"
+msgstr "Organisatiounstyp"
+
+msgid "Overview"
+msgstr "Iwwersiicht"
+
+msgid "Non-EU organisation"
+msgstr "Net-EU-Organisatioun"
+
+msgid "EU Organisation"
+msgstr "EU-Organisatioun"
+
+msgid "Leadership and organisation"
+msgstr "Leedung an Organisatioun"
+
+msgid "Show @numb more items"
+msgstr "@numb weider Elementer uweisen"
+
+msgid "Biography"
+msgstr "Biographie"
+
+msgid "Transparency"
+msgstr "Transparenz"
+
+msgid "Articles and presentations"
+msgstr "Artikelen a Presentatiounen"
+
+msgid "Declaration of interests"
+msgstr "Interessenerklärung"
+
+msgid "Show contact details"
+msgstr "Kontaktdetailer uweisen"
+
+msgid "Hide contact details"
+msgstr "Kontaktdetailer verstoppen"
+
+msgid "Open gallery"
+msgstr "Galerie opmaachen"
+
+msgid "(Acting) @role"
+msgstr "@role (ad interim)"
+
+msgid "Follow the latest progress and learn more about getting involved."
+msgstr "Suivéiert déi neisten Entwécklungen a gitt méi doriwwer gewuer, wéi Dir Iech bedeelege kënnt."
+
+msgid "Related department"
+msgstr "Änlechen Departement"
+
+msgid "Funding"
+msgstr "Finanzéierung"
+
+msgid "Related departments"
+msgstr "Änlech Departementer"
+
+msgid "Project locations"
+msgstr "Projetsstanduerter"
+
+msgid "Address"
+msgstr "Adress"
+
+msgid "Overall budget"
+msgstr "Gesamtbudget"
+
+msgid "EU contribution"
+msgstr "EU-Bäitrag"
+
+msgid "Coordinators"
+msgstr "Koordinatoren"
+
+msgid "Participants"
+msgstr "Participanten"
+
+msgid "Project"
+msgstr "Projet"
+
+msgid "Project duration"
+msgstr "Projetsdauer"
+
+msgid "Project website"
+msgstr "Projetssite"
+
+msgid "Contact organisation"
+msgstr "Kontaktorganisatioun"
+
+msgid "Stakeholders"
+msgstr "Interessensvertrieder"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Consultation"
+msgstr "Informatiounsgespréich"
+
+msgid "Countries"
+msgstr "Länner"
+
+msgid "Identification"
+msgstr "Identifikatioun"
+
+msgid "About us"
+msgstr "Iwwer eis"
+
+msgid "Contact us"
+msgstr "Kontaktéiert eis"
+
+msgid "Related sites"
+msgstr "Änlech Sitten"
+
+msgid "Follow us"
+msgstr "Suivéiert eis"
+
+msgid "More information on:"
+msgstr "Méi Informatiounen iwwer:"
+
+msgid "Discover more on @link"
+msgstr "Op @link méi gewuer ginn"
+
+msgid "This site is managed by the @name"
+msgstr "Dëse Site gëtt vu(n/m) @name geréiert."
+
+msgid "This site is managed by the European Commission, @name"
+msgstr "Dëse Site gëtt vun der Europäescher Kommissioun verwalt, @name"
+
+msgid "Last updated on: @date"
+msgstr "Fir d’lescht aktualiséiert den: @date"
