@@ -8,7 +8,7 @@
     "require": {
         "php": ">=7.4",
         "cweagans/composer-patches": "~1.4",
-        "drupal/core": "^9.2",
+        "drupal/core": "^9.3",
         "drupal/smart_trim": "^1.2",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.0",
@@ -22,8 +22,8 @@
         "drupal/address": "~1.9",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "~1.2",
-        "drupal/core-composer-scaffold": "^9.2",
-        "drupal/core-dev": "^9.2",
+        "drupal/core-composer-scaffold": "^9.3",
+        "drupal/core-dev": "^9.3",
         "drupal/ctools": "^3.7",
         "drupal/datetime_range_timezone": "~1.0.0-alpha2",
         "drupal/datetime_testing": "^1.0",
@@ -41,7 +41,7 @@
         "drupal/styleguide": "~1.0@beta",
         "drupal/typed_link": "^2.0",
         "drush/drush": "~10.3",
-        "egulias/email-validator": "^2.1.22 || ^3.0",
+        "fabpot/goutte": "^3.3",
         "friends-of-behat/service-container-extension": "^1.0",
         "instaclick/php-webdriver": "^1.4.7",
         "nikic/php-parser": "^4.12.0",
@@ -109,10 +109,9 @@
             }
         },
         "_readme": [
-            "openeuropa/oe_search is used from a branch because of major upgrading is pending. Change again when it released.",
-            "Explicit minimum version requirement of drupal/ctools module due to D9.2 compatability.",
+            "Explicit minimum version requirement of drupal/ctools module due to D9.3 compatability.",
             "Explicit minimum version requirement of behat library due to PHP compatibility.",
-            "Explicit requirement for egulias/email-validator due to https://www.drupal.org/project/drupal/issues/3061074#comment-14300579. It can be removed when Drupal core 9.2 support is droppped.",
+            "Explicit minimum version requirement of fabpot/goutte due to Drupal 9.3 compatability.",
             "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8."
         ]
     },
