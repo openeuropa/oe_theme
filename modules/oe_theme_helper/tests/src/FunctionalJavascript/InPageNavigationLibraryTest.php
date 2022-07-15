@@ -50,13 +50,6 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
    * Test the inpage navigation JS library functionality.
    */
   public function testLibrary(): void {
-    // Place the block so there's an element that will host the generated items.
-    $this->drupalPlaceBlock('oe_theme_helper_inpage_navigation', [
-      'region' => 'content',
-      'weight' => -10,
-      'label_display' => FALSE,
-      'id' => 'inpage_navigation',
-    ]);
 
     $this->drupalGet('/oe-theme-inpage-navigation-test/content');
     $assert_session = $this->assertSession();
@@ -98,7 +91,8 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     // The heading starting with a non-alpha character gets a ref- prepended.
     $this->assertEquals('ref-2022-a-new-year', $container->find('xpath', '/h3[@class="heading"][text()="2022, a new year"]')->getAttribute('id'));
 
-    $navigation = $assert_session->elementExists('css', '#block-inpage-navigation nav[data-ecl-inpage-navigation]');
+    $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation');
+
     $assert = new InPageNavigationAssert();
     $expected = [
       'title' => 'Page contents',
