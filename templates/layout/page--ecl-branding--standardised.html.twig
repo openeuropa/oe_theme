@@ -11,16 +11,16 @@
 {% extends "page.html.twig" %}
 
 {% block site_header_container %}
-  <div class="ecl-site-header-standardised__header">
+  <div class="ecl-site-header__header">
     {{ parent() }}
   </div>
 {% endblock %}
 
 {% block navigation %}
-  <div class="ecl-site-header-standardised__banner">
+  <div class="ecl-site-header__banner">
     <div class="ecl-container">
       {% if site_name is not empty %}
-        <div class="ecl-site-header-standardised__site-name">{{ site_name }}</div>
+        <div class="ecl-site-header__site-name">{{ site_name }}</div>
       {% endif %}
       {% if cta_link is not empty %}
         {% include '@ecl-twig/link' with {
@@ -31,7 +31,7 @@
             icon_position: 'after'
           },
           icon: get_link_icon(cta_link.path),
-          extra_classes: 'ecl-standardised__cta',
+          extra_classes: 'ecl-site-header__cta',
         } only %}
       {% endif %}
     </div>
