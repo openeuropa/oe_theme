@@ -156,8 +156,8 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
       $this->assertTrue($registration_element->isVisible());
     }
 
-    // Set livestream start date in 10 seconds later.
-    $start_date = (clone $static_time)->modify('+10 seconds');
+    // Set livestream start date in 20 seconds later.
+    $start_date = (clone $static_time)->modify('+20 seconds');
     $node->set('oe_event_online_dates', [
       'value' => $start_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
       'end_value' => (clone $start_date)->modify('+3 hours')->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT),
@@ -188,8 +188,8 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
     foreach ($this->getSession()->getPage()->findAll('css', '[data-registration-upcoming-element]') as $registration_element) {
       $this->assertTrue($registration_element->isVisible());
     }
-    // After 10 seconds livestream link should be visible.
-    $this->getSession()->wait(10000);
+    // After 20 seconds livestream link should be visible.
+    $this->getSession()->wait(20000);
     foreach ($livestream_elements as $livestream_element) {
       $this->assertTrue($livestream_element->isVisible());
     }
