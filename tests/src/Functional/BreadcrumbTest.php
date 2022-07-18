@@ -113,7 +113,7 @@ class BreadcrumbTest extends ContentRenderTestBase {
   protected function assertSystemBreadcrumbs(array $expected): void {
     // Get the last segment title and the link titles.
     $last_segment_title = array_pop($expected);
-    $page_breadcrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb-core"]');
+    $page_breadcrumb = $this->assertSession()->elementExists('css', '[class="ecl-breadcrumb"]');
 
     // Assert the link titles.
     $links = $page_breadcrumb->findAll('css', 'a');
