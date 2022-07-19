@@ -27,16 +27,22 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
         'a.ecl-link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-link[href="http://facebook.com"]' => 1,
         'a.ecl-link[href="http://twitter.com"]' => 1,
+        'a.ecl-link[href="http://t.me/example"]' => 1,
+        'a.ecl-link[href="http://mastodon.social/@example"]' => 1,
       ],
       'equals' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-link[href="http://facebook.com"] span' => "Facebook",
         'a.ecl-link[href="http://twitter.com"] span' => "Twitter",
+        'a.ecl-link[href="http://t.me/example"] span' => "Telegram",
+        'a.ecl-link[href="http://mastodon.social/@example"] span' => "Mastodon",
       ],
       'contains' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#twitter',
         'a.ecl-link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
         'a.ecl-link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
+        'a.ecl-link[href="http://t.me/example"] use' => 'icons-social.svg#telegram',
+        'a.ecl-link[href="http://mastodon.social/@example"] use' => 'icons-social.svg#mastodon',
       ],
     ]);
 
@@ -52,16 +58,22 @@ class SocialMediaIconsListFormatterTest extends SocialMediaLinksFormatterTestBas
         'a.ecl-link[href="mailto:socialmedialink@example.com"]' => 1,
         'a.ecl-link[href="http://facebook.com"]' => 1,
         'a.ecl-link[href="http://twitter.com"]' => 1,
+        'a.ecl-link[href="http://t.me/example"]' => 1,
+        'a.ecl-link[href="http://mastodon.social/@example"]' => 1,
       ],
       'equals' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] span' => "Email",
         'a.ecl-link[href="http://facebook.com"] span' => "Face…",
         'a.ecl-link[href="http://twitter.com"] span' => "Twit…",
+        'a.ecl-link[href="http://t.me/example"] span' => "Tele…",
+        'a.ecl-link[href="http://mastodon.social/@example"] span' => "Mast…",
       ],
       'contains' => [
         'a.ecl-link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
         'a.ecl-link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
         'a.ecl-link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
+        'a.ecl-link[href="http://t.me/example"] use' => 'icons-social.svg#telegram',
+        'a.ecl-link[href="http://mastodon.social/@example"] use' => 'icons-social.svg#mastodon',
       ],
     ]);
   }

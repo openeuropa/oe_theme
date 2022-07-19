@@ -52,6 +52,7 @@ class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
           'email' => 'Email',
           'facebook' => 'Facebook',
           'twitter' => 'Twitter',
+          'telegram' => 'Telegram',
         ],
       ],
     ]);
@@ -80,6 +81,16 @@ class SocialMediaLinksFormatterTestBase extends AbstractKernelTestBase {
           'link_type' => 'twitter',
           'uri' => 'http://twitter.com',
           'title' => 'Twitter',
+        ],
+        [
+          'link_type' => 'telegram',
+          'uri' => 'http://t.me/example',
+          'title' => 'Telegram',
+        ],
+        [
+          'link_type' => 'mastodon',
+          'uri' => 'http://mastodon.social/@example',
+          'title' => 'Mastodon',
         ],
       ],
     ]);
