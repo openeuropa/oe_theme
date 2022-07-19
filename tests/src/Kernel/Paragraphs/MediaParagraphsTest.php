@@ -1037,7 +1037,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Item 1',
           'image' => file_create_url($en_file_1->getFileUri()),
-          'variant' => 'image',
+          'variant' => 'image-gradient',
         ],
         [
           'title' => 'Item 2',
@@ -1045,12 +1045,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
           'image' => file_create_url($en_file_2->getFileUri()),
-          'variant' => 'image',
+          'variant' => 'image-gradient',
         ],
         [
           'title' => 'Item 3',
           'image' => file_create_url($en_file_1->getFileUri()),
-          'variant' => 'image',
+          'variant' => 'image-gradient',
         ],
         [
           'title' => 'Item 4',
@@ -1058,7 +1058,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 4',
           'image' => file_create_url($en_file_2->getFileUri()),
-          'variant' => 'image',
+          'variant' => 'image-gradient',
         ],
       ],
     ];
