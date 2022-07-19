@@ -657,6 +657,15 @@
           definition:
             - 'Belgium'
             - 'Hungary'
+        - term: "External links"
+          definition:
+            - label: 'First external link'
+              path: 'https://example.com/1'
+            - label: 'Second external link'
+              path: 'https://example.com/2'
+              external_link: TRUE
+            - path: 'https://example.com/3'
+              external_link: TRUE
       more_info: "Looking for another language which is not on the list? Find out why."
       length: 10
   assertions:
@@ -673,9 +682,11 @@
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'div.ecl-file__taxonomy': 1
       'dl.ecl-description-list': 1
-      'dt.ecl-description-list__term': 2
-      'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 2
-      'span.ecl-description-list__definition-item': 4
+      'dt.ecl-description-list__term': 3
+      'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
+      'span.ecl-description-list__definition-item': 7
+      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
+      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
@@ -694,10 +705,16 @@
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
+      'dt.ecl-description-list__term:nth-of-type(3)': 'External links'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
       'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': file_image
@@ -3363,12 +3380,14 @@
       items:
         - content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
           link: "http://example.com"
+          external_link: TRUE
         - content: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
         - content: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
           link: "http://example.com"
         - content: "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
         - content: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
           link: "http://example.com"
+          external_link: TRUE
         - content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
           link: "http://example.com"
   assertions:
@@ -3382,13 +3401,15 @@
       div.ecl-news-ticker__counter: 1
       div.ecl-news-ticker__controls: 1
     contains:
-      li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+      li.ecl-news-ticker__slide:nth-child(1) a.ecl-link.ecl-news-ticker__slide-text span.ecl-link__label: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
       li.ecl-news-ticker__slide:nth-child(2): "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
       li.ecl-news-ticker__slide:nth-child(3) a.ecl-linkecl-news-ticker__slide-text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur"
       li.ecl-news-ticker__slide:nth-child(4): "Excepteur sint occaecat cupidatat officia deserunt mollit anim id est laborum"
-      li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
+      li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text span.ecl-link__label: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
       li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
     equals:
+      li.ecl-news-ticker__slide:nth-child(1) a svg.ecl-link__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      li.ecl-news-ticker__slide:nth-child(5) a svg.ecl-link__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'

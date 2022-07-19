@@ -43,9 +43,18 @@
     {% set _definitions = [] %}
     {% if item.definition is iterable %}
       {% for _definition in item.definition %}
-        {% if _definition.label is defined %}
+        {% if _definition.path is defined %}
+          {% set link = {
+            'type': 'standalone',
+            'label': _definition.label|default(_definition.path),
+            'path': _definition.path,
+            'external': _definition.external_link|default(false),
+            'icon_path': ecl_icon_path,
+          } %}
+          {% set _definitions = _definitions|merge([link]) %}
+        {% elseif _definition.label is defined and _definition.path is not defined %}
           {% set _definitions = _definitions|merge([_definition.label]) %}
-        {% else %}
+        {% elseif _definition.label is not defined and _definition.path is not defined %}
           {% set _definitions = _definitions|merge([_definition]) %}
         {% endif %}
       {% endfor %}

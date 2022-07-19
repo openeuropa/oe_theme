@@ -87,6 +87,14 @@ file_teaser:
           definition:
             - label: 'Hungary'
             - label: 'Germany'
+        - term: "External links"
+          definition:
+            - label: 'First external link'
+              path: 'https://example.com/1'
+            - label: 'Second external link'
+              path: 'https://example.com/2'
+            - path: 'https://example.com/3'
+              external_link: TRUE
     more_info:
       type: "text"
       label: "More information"
