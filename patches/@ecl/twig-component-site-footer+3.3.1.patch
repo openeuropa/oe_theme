@@ -1,6 +1,6 @@
 patch-package
---- a/node_modules/@ecl/twig-component-footer-standardised/footer-standardised.html.twig
-+++ b/node_modules/@ecl/twig-component-footer-standardised/footer-standardised.html.twig
+--- a/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig
++++ b/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig
 @@ -6,6 +6,8 @@
      - "section_class_name" (string) (default: '')
      - "logo" (EU only)
@@ -10,20 +10,20 @@ patch-package
        - "path" (string) logo link path
        - "language" (string) Language code
        - "src_mobile" (string) Path the mobile logo
-@@ -88,7 +90,7 @@
+@@ -97,7 +99,7 @@
                  path: _sections.logo.path,
                  label: _label,
                  type: 'standalone',
 -                aria_label: _sections.logo.title
 +                aria_label: _sections.logo.aria_label,
                },
-               extra_classes: 'ecl-footer-standardised__logo-link'
+               extra_classes: 'ecl-site-footer__logo-link'
              } only %}
-@@ -133,6 +135,7 @@
+@@ -145,6 +147,7 @@
                    {% endif %}
                    {% include '@ecl/link/link.html.twig' with _item|merge({
                      link: _item.link|default({})|merge({ type: 'standalone' }),
 +                    icon: _item.icon|default({})|merge({ size: 'xs' }),
-                     extra_classes: 'ecl-footer-standardised__link',
+                     extra_classes: 'ecl-site-footer__link',
                    }) only %}
                    {% if _item.content_after is defined and _item.content_after is not empty %}

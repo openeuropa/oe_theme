@@ -354,10 +354,10 @@ class OeThemeTestContext extends RawDrupalContext {
     ];
 
     // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-footer-' . $this->getEclBranding());
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
 
     $page = $this->getSession()->getPage();
-    $logo = $page->findAll('css', 'footer.ecl-footer-' . $this->getEclBranding() . ' img.ecl-footer-' . $this->getEclBranding() . '__logo-image-desktop');
+    $logo = $page->findAll('css', 'footer.ecl-site-footer img.ecl-site-footer__logo-image-desktop');
 
     // Assert presence or absence of given footer block.
     $logo_found = count($logo) === $expected[$component_library];
@@ -368,7 +368,7 @@ class OeThemeTestContext extends RawDrupalContext {
     }
 
     if ($logo && $presence) {
-      $link = $page->find('css', '.ecl-footer-' . $this->getEclBranding() . '__logo-link');
+      $link = $page->find('css', '.ecl-site-footer__logo-link');
       Assert::assertEquals('https://european-union.europa.eu/index_en', $link->getAttribute('href'));
       Assert::assertEquals(t('Home - European Union')->__toString(), $link->getAttribute('aria-label'));
       $img = $link->find('css', 'img');

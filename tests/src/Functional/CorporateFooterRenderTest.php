@@ -82,16 +82,16 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Make sure that footer block is present.
     $this->assertFooterPresence('core', 4);
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(1) div.ecl-footer-core__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-footer-core__title a');
+    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
     $this->assertEquals($data['corporate_site_link']['label'], $actual->getText());
     $this->assertEquals($data['corporate_site_link']['href'], $actual->getAttribute('href'));
 
     // Site owner is not set yet, lets make sure we don't have a description.
-    $assert->elementNotExists('css', 'div.ecl-footer-core__description');
+    $assert->elementNotExists('css', 'div.ecl-site-footer__description');
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(2) div.ecl-footer-core__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['class_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -100,7 +100,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'core', $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(2) div.ecl-footer-core__section:nth-child(2)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(2)');
     $items = $data['service_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -109,7 +109,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'core', $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(2) div.ecl-footer-core__section:nth-child(3)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(3)');
     $items = $data['legal_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -122,7 +122,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/ACP-EU_JA', 'EC Site Name');
     $this->drupalGet('<front>');
 
-    $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
+    $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
 
     // Test European Commission footer standardised block rendering.
@@ -136,21 +136,21 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Make sure that footer block is present.
     $this->assertFooterPresence('standardised', 4);
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(1) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-footer-standardised__title a');
+    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
     $this->assertEquals('EC Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(1) div.ecl-footer-standardised__section:nth-child(1)');
-    $actual = $section->find('css', 'h2.ecl-footer-standardised__title a');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
+    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
     $this->assertEquals($data['corporate_site_link']['label'], $actual->getText());
     $this->assertEquals($data['corporate_site_link']['href'], $actual->getAttribute('href'));
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(2) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['service_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -159,7 +159,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'standardised', $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(3) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['legal_navigation'];
 
     foreach ($items as $key => $expected) {
@@ -172,13 +172,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/DG11', 'EC Standardised Site Name');
     $this->drupalGet('<front>');
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(1) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-footer-standardised__title a');
+    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
     $this->assertEquals('EC Standardised Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the DG XI – Internal Market', $actual->getText());
 
     // Test European Union footer core block rendering.
@@ -194,18 +194,18 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Make sure that footer block is present.
     $this->assertFooterPresence('core', 5);
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(1) div.ecl-footer-core__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
+    $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the European Commission, DG XI – Internal Market', $actual->getText());
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'core');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-core__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-core__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Contact title', $actual->getText());
 
     $items = $data['contact'];
@@ -216,9 +216,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'core', $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-core__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-core__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Social media title', $actual->getText());
 
     foreach ($data['social_media'] as $key => $expected) {
@@ -227,9 +227,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'core', $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-core__section:nth-child(3)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-core__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Legal links title', $actual->getText());
 
     $items = $data['legal_links'];
@@ -240,9 +240,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'core', $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-core div.ecl-footer-core__column:nth-child(3) div.ecl-footer-core__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', '.ecl-footer-core__title');
+    $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Institution links title', $actual->getText());
 
     $items = $data['institution_links'];
@@ -257,7 +257,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->updateSiteSettings('http://publications.europa.eu/resource/authority/corporate-body/BUDG', 'EU Site Name');
     $this->drupalGet('<front>');
 
-    $actual = $assert->elementExists('css', 'div.ecl-footer-core__description');
+    $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the European Commission, Directorate-General for Budget', $actual->getText());
 
     // Test European Union footer standardised block rendering.
@@ -272,27 +272,27 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // Make sure that footer block is present.
     $this->assertFooterPresence('standardised', 6);
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(1) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-footer-standardised__title a');
+    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
     $this->assertEquals('EU Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
-    $actual = $assert->elementExists('css', 'div.ecl-footer-standardised__description');
+    $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the European Commission, Directorate-General for Budget', $actual->getText());
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(1) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'div.ecl-footer-standardised__description');
+    $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('Discover more on <a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', trim($actual->getHtml()));
 
     // Assert presence of ecl logo in footer.
     $this->assertEclLogoPresence($section, 'standardised');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-standardised__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Contact title', $actual->getText());
 
     $items = $data['contact'];
@@ -303,9 +303,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'standardised', $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-standardised__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Social media title', $actual->getText());
 
     $items = $data['social_media'];
@@ -316,9 +316,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'standardised', $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-    $actual = $subsection->find('css', '.ecl-footer-standardised__title');
+    $actual = $subsection->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Legal links title', $actual->getText());
 
     $items = $data['legal_links'];
@@ -329,9 +329,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, 'standardised', $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(2) div.ecl-footer-standardised__column:nth-child(3) div.ecl-footer-standardised__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', '.ecl-footer-standardised__title');
+    $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Institution links title', $actual->getText());
 
     $items = $data['institution_links'];
@@ -348,10 +348,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     // Assert column 2 (centre column) has the item,
     // and column 3 (right column) is empty.
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -364,16 +364,16 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $assert->elementNotExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3) div.ecl-footer-standardised__section:nth-child(1)');
+    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
     // Assert each column 2 and 3 each have 1 item.
     $this->createGeneralLink('Custom about 1', 'about_us');
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -386,10 +386,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -406,10 +406,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->createGeneralLink('Custom related 1', 'related_sites');
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -422,9 +422,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -437,10 +437,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -459,10 +459,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->createSocialLink('Social 2', 'instagram');
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -475,9 +475,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -498,10 +498,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -515,9 +515,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
     // Assert previous last in section 2 moved to the right into section 3.
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -536,10 +536,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->createGeneralLink('Custom link 1', 'section_1');
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -554,9 +554,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     // Since we have an even number there is no switch,
     // assert Related is back in section 2.
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -570,9 +570,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
     // Here we assert Follow us is still on the left in section 2.
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -593,10 +593,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -609,9 +609,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -631,10 +631,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -654,10 +654,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section 1', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -676,25 +676,25 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section altered', $actual->getText());
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related sites', $actual->getText());
 
     // Change component library to ec, assert other links structure.
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'ec')->save();
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -707,9 +707,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('About us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -722,9 +722,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(3)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Follow us', $actual->getText());
 
     $social_link = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -745,10 +745,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ];
     $this->assertSocialLink($social_label, $social_link, $expected);
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Section altered', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -760,9 +760,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     // We should not have any icon present.
     $assert->elementNotExists('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon', $actual);
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Related sites', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -779,10 +779,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->deleteEntity('footer_link_general', 'custom-about-1');
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
@@ -795,9 +795,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('external', $icon->getAttribute('xlink:href'));
 
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(2)', $column);
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(2)', $column);
 
-    $actual = $assert->elementExists('css', '.ecl-footer-standardised__title', $subsection);
+    $actual = $assert->elementExists('css', '.ecl-site-footer__title', $subsection);
     $this->assertNotEquals('About us', $actual->getText());
     $this->assertEquals('Follow us', $actual->getText());
 
@@ -828,8 +828,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     ]);
     $this->drupalGet('<front>');
 
-    $column = $assert->elementExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3)');
-    $subsection = $assert->elementExists('css', '.ecl-footer-standardised__section:nth-child(1)', $column);
+    $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3)');
+    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
     $expected = [
       'label' => 'Custom link altered',
@@ -848,8 +848,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->deleteEntity('footer_link_social', 'social-2');
     $this->drupalGet('<front>');
 
-    $assert->elementNotExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(2) div.ecl-footer-standardised__section:nth-child(1)');
-    $assert->elementNotExists('css', 'footer.ecl-footer-standardised div.ecl-footer-standardised__row:nth-child(1) div.ecl-footer-standardised__column:nth-child(3) div.ecl-footer-standardised__section:nth-child(1)');
+    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
+    $assert->elementNotExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
   }
 
   /**
@@ -889,8 +889,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   The number of expected sections.
    */
   protected function assertFooterPresence(string $branding, int $expected_section_count): void {
-    $this->assertSession()->elementExists('css', "footer.ecl-footer-{$branding}");
-    $this->assertSession()->elementsCount('css', "footer.ecl-footer-{$branding} .ecl-footer-{$branding}__container .ecl-footer-{$branding}__section", $expected_section_count);
+    $this->assertSession()->elementsCount('css', "footer.ecl-site-footer .ecl-site-footer__container .ecl-site-footer__section", $expected_section_count);
   }
 
   /**
@@ -909,7 +908,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals($expected['label'], $actual->getText());
     $this->assertEquals($expected['href'], $actual->getAttribute('href'));
     $icon_class = $icon ? 'ecl-link--icon ecl-link--icon-after ' : '';
-    $this->assertEquals("ecl-link ecl-link--standalone {$icon_class}ecl-footer-{$branding}__link", $actual->getAttribute('class'));
+    $this->assertEquals("ecl-link ecl-link--standalone {$icon_class}ecl-site-footer__link", $actual->getAttribute('class'));
   }
 
   /**
@@ -927,7 +926,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals($expected['href'], $link->getAttribute('href'));
     $icon = $link->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     $this->assertStringContainsString('icons-social-media.svg#' . $expected['icon_name'], $icon->getAttribute('xlink:href'));
-    $this->assertEquals('ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-before ecl-footer-standardised__link', $link->getAttribute('class'));
+    $this->assertEquals('ecl-link ecl-link--standalone ecl-link--icon ecl-link--icon-before ecl-site-footer__link', $link->getAttribute('class'));
   }
 
   /**
@@ -939,8 +938,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   Ecl branding, core/standardised.
    */
   protected function assertEclLogoPresence(NodeElement $section, string $branding): void {
-    $this->assertSession()->elementsCount('css', "a img.ecl-footer-{$branding}__logo-image-mobile", 1, $section);
-    $this->assertSession()->elementsCount('css', "a img.ecl-footer-{$branding}__logo-image-desktop", 1, $section);
+    $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-mobile", 1, $section);
+    $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
   }
 
   /**
