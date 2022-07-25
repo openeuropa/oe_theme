@@ -54,3 +54,27 @@ function oe_theme_content_project_post_update_00002(): void {
   $display = $storage->createFromStorageRecord($display_values);
   $display->save();
 }
+
+/**
+ * Update project displays.
+ */
+function oe_theme_content_project_post_update_00003(): void {
+  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/post_updates/00003_update_view_displays');
+  $config_names = [
+    'core.entity_view_display.node.oe_project.full',
+    'core.entity_view_display.node.oe_project.teaser',
+  ];
+  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
+  $entity_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
+  foreach ($config_names as $config_name) {
+    $display_values = $storage->read($config_name);
+    $view_display = EntityViewDisplay::load($display_values['id']);
+    if ($view_display) {
+      $display = $entity_storage->updateFromStorageRecord($view_display, $display_values);
+      $display->save();
+      continue;
+    }
+    $display = $entity_storage->createFromStorageRecord($display_values);
+    $display->save();
+  }
+}

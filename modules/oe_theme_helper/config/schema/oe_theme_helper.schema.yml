@@ -14,6 +14,14 @@ field.formatter.settings.oe_theme_helper_address_inline:
       type: string
       label: 'Delimiter for address items.'
 
+field.formatter.settings.oe_theme_helper_address_country_inline:
+  type: mapping
+  label: 'Address country inline formatter settings'
+  mapping:
+    delimiter:
+      type: string
+      label: 'Delimiter for address country items.'
+
 field.formatter.settings.oe_theme_helper_media_thumbnail_url:
   type: mapping
   label: 'Media thumbnail URL formatter settings'
