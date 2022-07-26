@@ -288,12 +288,12 @@ class OeThemeTestContext extends RawDrupalContext {
    */
   public function assertEuropeanCommissionFooterBlockOnPage(string $link): void {
     // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-footer-' . $this->getEclBranding());
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
     // European Commission footer is presented.
     Assert::assertEquals('European Commission', $this->getFooterType(), 'European Commission footer is not presented on the page.');
 
     // Assert footer data.
-    $title_link = $this->getSession()->getPage()->find('css', '.ecl-footer-' . $this->getEclBranding() . '__title-link[href="' . $link . '"]');
+    $title_link = $this->getSession()->getPage()->find('css', '.ecl-site-footer__title-link[href="' . $link . '"]');
     Assert::assertNotEmpty($title_link, 'European Commission footer link is not found.');
   }
 
@@ -304,13 +304,13 @@ class OeThemeTestContext extends RawDrupalContext {
    */
   public function assertEuropeanUnionFooterBlockOnPage(string $link, string $label, string $img_alt, string $img_title): void {
     // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-footer-' . $this->getEclBranding());
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
     // European Union footer is presented.
     Assert::assertEquals('European Union', $this->getFooterType(), 'European Union footer is not presented on the page.');
 
     // Assert footer data.
     $page = $this->getSession()->getPage();
-    $logo_link = $page->find('css', '.ecl-footer-' . $this->getEclBranding() . '__logo-link');
+    $logo_link = $page->find('css', '.ecl-site-footer__logo-link');
     Assert::assertEquals($link, $logo_link->getAttribute('href'));
     Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
     $img = $logo_link->find('css', 'img');
@@ -325,7 +325,7 @@ class OeThemeTestContext extends RawDrupalContext {
    */
   public function assertMissingFooterBlockOnPage(string $component_library): void {
     // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-footer-' . $this->getEclBranding());
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
     // Chosen footer has to be absent.
     Assert::assertNotEquals($component_library, $this->getFooterType());
   }
