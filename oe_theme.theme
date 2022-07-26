@@ -1729,7 +1729,20 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   // not EU language.
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    $variables['current_language_id'] = 'en';
+    if ($language_code === 'nb') {
+      // Set correct icon for Norwegian language.
+      $variables['current_language_id'] = 'no';
+    }
+    else {
+      // Check whether ECL provides a logo for the language.
+      $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
+      $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'positive/';
+      $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
+      if (!file_exists($ecl_logo)) {
+        // Provide fallback "en" icon if language logo doesn't exist.
+        $variables['current_language_id'] = 'en';
+      }
+    }
   }
   else {
     $site_logo_href .= '/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);

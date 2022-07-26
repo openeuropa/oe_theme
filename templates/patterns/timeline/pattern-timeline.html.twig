@@ -18,8 +18,8 @@
 {% set hide_from = limit_to == 0 ? total_num : limit_to %}
 {% set hidden_num = total_num - (items|slice(0, limit)|length + items|slice(hide_from)|length) %}
 
-{% set _toggle_collapsed = button_label|default('Show @numb more items'|trans({'@numb': hidden_num})) %}
-{% set _toggle_expanded = button_label_hidden|default('Hide @numb items'|trans({'@numb': hidden_num})) %}
+{% set _toggle_collapsed = button_label ? button_label|t : 'Show @numb more items'|trans({'@numb': hidden_num}) %}
+{% set _toggle_expanded = button_label_hidden ? button_label_hidden| t : 'Hide @numb items'|trans({'@numb': hidden_num}) %}
 
 {% if title %}
   <h2 class="ecl-u-type-heading-2">
