@@ -82,7 +82,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
       'label' => 'hidden',
       'type' => 'number_decimal',
       'settings' => [
-        'thousand_separator' => '.',
+        'thousand_separator' => ' ',
         'decimal_separator' => '.',
         'scale' => 0,
         'prefix_suffix' => TRUE,
@@ -106,14 +106,14 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
   }
 
   /**
-   * Gets the percentage of total, without decimals.
+   * Gets the percentage of total.
    *
-   * If input values are not greater that 0, returns 0.
+   * If input values are not greater than 0, returns 0.
    *
    * @param float $total
    *   The total value.
    * @param float $part
-   *   The percentage value.
+   *   The contribution part of the total value.
    *
    * @return float
    *   Percentage value.
@@ -122,10 +122,10 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
     $percentage = 0;
 
     if ($total > 0 && $part > 0) {
-      $percentage = round(100 * $part / $total, 0);
+      $percentage = 100 * $part / $total;
     }
 
-    return $percentage;
+    return round($percentage, 1);
   }
 
 }
