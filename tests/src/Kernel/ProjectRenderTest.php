@@ -172,7 +172,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
           'items' => [
             [
               'label' => 'Project locations',
-              'body' => '1000 Brussels, Belgium',
+              'body' => 'Belgium',
             ],
           ],
         ]),
