@@ -1,0 +1,54 @@
+carousel:
+  label: "Carousel"
+  description: "The Carousel component renders multiple banner slides."
+  fields:
+    items:
+      type: "array"
+      label: "Carousel items"
+      description: "List of items compatible with the Page banner structure."
+      preview:
+        - title: "Lorem ipsum dolor sit amet"
+          description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          url: "https://example.com"
+          url_text: "CTA"
+          image: "https://placeimg.com/640/480/tech"
+          variant: "image"
+          centered: false
+        - title: "Duis vitae pulvinar turpis"
+          description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          url: "https://example.com"
+          url_text: "CTA"
+          image: "https://placeimg.com/640/480/arch"
+          variant: "image-gradient"
+        - title: "Donec maximus pharetra ex a ultricies"
+          description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
+          url: "https://example.com"
+          url_text: "CTA"
+        - title: "Donec maximus pharetra ex a ultricies"
+          description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
+          url: "https://example.com"
+          url_text: "CTA"
+          image: "https://placeimg.com/640/480/tech"
+          variant: "image-shade"
+        - title: "Lorem ipsum dolor sit amet"
+          description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          url: "https://example.com"
+          url_text: "CTA"
+          variant: "secondary"
+          centered: false
+        - title: "Duis vitae pulvinar turpis"
+          description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
+          url: "https://example.com"
+          url_text: "CTA"
+          variant: "white"
+          centered: false
+    counter_label:
+      type: "string"
+      label: "Counter label"
+      description: "The counter label. Defaults to 'of'."
+      preview: ""
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Whether the Carousel should be extended to full width."
+      preview: true
