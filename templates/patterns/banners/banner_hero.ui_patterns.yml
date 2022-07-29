@@ -68,3 +68,8 @@ banner_hero:
       label: "External link"
       description: "Whether the banner link is external or not."
       preview: false
+    credit:
+      type: "text"
+      label: "Credit"
+      description: "Credit for the image."
+      preview: "© Copyright or credit"

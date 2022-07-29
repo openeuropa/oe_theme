@@ -57,3 +57,8 @@ banner_page:
       label: "External link"
       description: "Whether the banner link is external or not."
       preview: true
+    credit:
+      type: "text"
+      label: "Credit"
+      description: "Credit for the image."
+      preview: "© Copyright or credit"

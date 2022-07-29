@@ -154,6 +154,7 @@
       label: "Subscribe"
       description: "Banner description"
       centered: true
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered': 1
@@ -161,10 +162,12 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       '.ecl-hero-banner--full-width': 0
+      'div.ecl-hero-banner__credit': 1
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Subscribe
+      'div.ecl-hero-banner__credit': © Copyright or credit
 - array:
     '#type': pattern
     '#id': banner_hero
@@ -178,12 +181,14 @@
       description: "Banner description"
       centered: false
       full_width: true
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--full-width': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-hero-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
@@ -206,6 +211,7 @@
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       '.ecl-hero-banner--full-width': 0
+      'div.ecl-hero-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': "Backwards compatibility test"
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': "Banner description"
@@ -230,6 +236,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       '.ecl-hero-banner--full-width': 0
+      'div.ecl-hero-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
@@ -255,6 +262,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       '.ecl-hero-banner--full-width': 0
+      'div.ecl-hero-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
@@ -272,16 +280,19 @@
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
       full_width: true
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered.ecl-hero-banner--full-width': 1
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'div.ecl-hero-banner__credit': 1
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
+      'div.ecl-hero-banner__credit': © Copyright or credit
 - array:
     '#type': pattern
     '#id': banner_hero
@@ -295,6 +306,7 @@
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
       full_width: true
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-hero-banner.ecl-hero-banner--primary.ecl-hero-banner--centered': 0
@@ -302,6 +314,7 @@
       'div.ecl-hero-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-hero-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-hero-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content div.ecl-hero-banner__title': Banner title
       'div.ecl-container div.ecl-hero-banner__container div.ecl-hero-banner__content p.ecl-hero-banner__description span.ecl-hero-banner__description-text': Banner description
@@ -318,6 +331,7 @@
       image:
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 1
@@ -325,6 +339,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
       '.ecl-page-banner--full-width': 0
+      'div.ecl-page-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description span.ecl-page-banner__description-text': Banner description
@@ -342,6 +357,7 @@
         src: "http://via.placeholder.com/150x150"
       alignment: "left"
       full_width: true
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered': 0
@@ -349,6 +365,7 @@
       'div.ecl-page-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'div.ecl-page-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description span.ecl-page-banner__description-text': Banner description
@@ -366,6 +383,7 @@
         src: "http://via.placeholder.com/150x150"
       alignment: "center"
       full_width: false
+      credit: "© Copyright or credit"
   assertions:
     count:
       'section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered': 1
@@ -373,10 +391,12 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       '.ecl-page-banner--full-width': 0
+      'div.ecl-page-banner__credit': 1
     equals:
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description span.ecl-page-banner__description-text': Banner description
       'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after[href="http://example.com"] span.ecl-link__label': Example
+      'div.ecl-page-banner__credit': © Copyright or credit
 - array:
     '#type': pattern
     '#id': banner_page
@@ -398,6 +418,7 @@
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'div.ecl-page-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
       '.ecl-page-banner--full-width': 0
+      'div.ecl-page-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content div.ecl-page-banner__title': Banner title
       'div.ecl-container div.ecl-page-banner__container div.ecl-page-banner__content p.ecl-page-banner__description span.ecl-page-banner__description-text': Banner description
@@ -3454,6 +3475,7 @@
           image: "https://placeimg.com/640/480/tech"
           variant: "image"
           centered: false
+          credit: "© Copyright first item"
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
@@ -3467,6 +3489,7 @@
         - title: "Donec maximus pharetra ex a ultricies"
           image: "https://placeimg.com/640/480/tech"
           variant: "image-shade"
+          credit: "© Copyright fourth item"
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           variant: "secondary"
@@ -3501,6 +3524,7 @@
       div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 1'
+      div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__credit: '© Copyright first item'
       div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered p.ecl-page-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 2'
@@ -3508,6 +3532,7 @@
       div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered p.ecl-page-banner__description: 'Integer quis lorem tellus.'
       div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__credit: '© Copyright fourth item'
       div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'

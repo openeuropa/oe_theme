@@ -23,6 +23,7 @@
     image: item.image|default(''),
     variant: item.variant|default('primary'),
     centered: item.centered is defined and item.centered == false ? false : true,
+    credit: item.credit|default('')
   }]) %}
   {% set _link = {} %}
 {% endfor %}
