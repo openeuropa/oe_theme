@@ -30,7 +30,6 @@
           label: "News"
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header.ecl-page-header--negative': 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background': 0
@@ -86,7 +85,6 @@
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header.ecl-page-header--negative': 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
@@ -123,7 +121,6 @@
       hide_title: true
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header.ecl-page-header--negative': 1
       '.ecl-page-header__background': 0
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -169,7 +166,6 @@
           label: "News"
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header': 1
       '.ecl-page-header--negative': 0
       '.ecl-breadcrumb__segment': 7
@@ -225,7 +221,6 @@
       overlay: 'light'
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header': 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
@@ -275,7 +270,6 @@
       hide_title: true
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header': 1
       '.ecl-page-header__background': 0
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -304,7 +298,6 @@
       overlay: 'dark'
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header': 1
       '.ecl-page-header__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -333,7 +326,6 @@
       overlay: 'light'
   assertions:
     count:
-      '.ecl-page-header.ecl-u-mb-m': 0
       '.ecl-page-header.ecl-page-header--negative': 1
       '.ecl-page-header__background[style="background-image: url(https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg)"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -344,47 +336,6 @@
     equals:
       'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header__description': "EU economy, finance and the euro, and practical information for EU businesses and entrepreneurs on product safety, environmental regulations, trade with non-EU countries and competition rules.&lt;cc&gt;&amp;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
-- branding: core
-  pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      metas:
-        - "News article>"
-        - "6 July 2015&"
-        - "Brussels<"
-  assertions:
-    count:
-      '.ecl-page-header.ecl-page-header--negative.ecl-u-mb-m': 1
-      '.ecl-page-header__meta .ecl-page-header__meta-item': 3
-    equals:
-      'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
-      '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
-- branding: standardised
-  pattern:
-    '#type': pattern
-    '#id': page_header
-    '#fields':
-      title: "Business, Economy, Euro<"
-      metas:
-        - "News article>"
-        - "6 July 2015&"
-        - "Brussels<"
-  assertions:
-    count:
-      '.ecl-page-header.ecl-u-mb-m': 1
-      '.ecl-page-header__meta .ecl-page-header__meta-item': 3
-      '.ecl-page-header__info-list': 0
-      '.ecl-page-header__info-item': 0
-      '.ecl-breadcrumb__container': 0
-    equals:
-      'h1.ecl-page-header__title': "Business, Economy, Euro&lt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(1)': "News article&gt;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(2)': "6 July 2015&amp;"
       '.ecl-page-header__meta .ecl-page-header__meta-item:nth-child(3)': "Brussels&lt;"
