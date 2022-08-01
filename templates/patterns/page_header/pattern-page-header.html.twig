@@ -24,10 +24,6 @@
   } %}
 {% endif %}
 
-{% if introduction is empty %}
-  {% set extra_classes = 'ecl-u-mb-m' %}
-{% endif %}
-
 {% include '@ecl-twig/page-header' with {
   'title': title,
   'thumbnail': thumbnail,
@@ -38,6 +34,5 @@
   'extra_classes': _extra_classes|join(' '),
   'overlay': overlay|default(''),
   'hide_title': hide_title|default(false),
-  'variant': variant,
-  'extra_classes': extra_classes|default('')
+  'variant': variant
 } %}
