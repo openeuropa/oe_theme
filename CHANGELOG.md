@@ -1,51 +1,104 @@
-# Change Log
+# Changelog
 
-## [3.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta13) (2022-06-21)
+## [3.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta14) (2022-08-01)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta13...3.0.0-beta14)
+
+**Merged pull requests:**
+
+- EWPP-2028: Revert page header bottom margin. [\#1152](https://github.com/openeuropa/oe_theme/pull/1152) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2106: Update oe\_paragraphs version in composer.json. [\#1148](https://github.com/openeuropa/oe_theme/pull/1148) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2106: Update Carousel epic branch. [\#1147](https://github.com/openeuropa/oe_theme/pull/1147) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2106: Update Carousel epic. [\#1145](https://github.com/openeuropa/oe_theme/pull/1145) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2106: Update Carousel epic branch. [\#1143](https://github.com/openeuropa/oe_theme/pull/1143) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2106: Change default variant for carousel paragraph. [\#1141](https://github.com/openeuropa/oe_theme/pull/1141) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2231: Include text with featured media headings on the inpage navigation. [\#1136](https://github.com/openeuropa/oe_theme/pull/1136) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-2400: Upgrade to ECL 3.3.3. [\#1135](https://github.com/openeuropa/oe_theme/pull/1135) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2375: Add Luxembourgish string translations. [\#1134](https://github.com/openeuropa/oe_theme/pull/1134) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2330: Render external icon for links in file\_teaser and news\_ticker patterns. [\#1133](https://github.com/openeuropa/oe_theme/pull/1133) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2327: Add test coverage for Social media links formatters supporting new icons. [\#1132](https://github.com/openeuropa/oe_theme/pull/1132) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2358: Drupal 9.4 support. [\#1131](https://github.com/openeuropa/oe_theme/pull/1131) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2028: Add page header margin bottom when no introduction is provided. [\#1124](https://github.com/openeuropa/oe_theme/pull/1124) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2320: Update to ECL 3.3.2. [\#1118](https://github.com/openeuropa/oe_theme/pull/1118) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2301: Replace deprecated ECL site footer components. [\#1116](https://github.com/openeuropa/oe_theme/pull/1116) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2286: Add Description field in full view mode. [\#1111](https://github.com/openeuropa/oe_theme/pull/1111) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2098: Remove usage of ecl\_branding in site header templates. [\#1110](https://github.com/openeuropa/oe_theme/pull/1110) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2291: Replace deprecated ECL Breadcrumb components. [\#1109](https://github.com/openeuropa/oe_theme/pull/1109) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2275: Fix file teaser with description list taxonomy variant. [\#1106](https://github.com/openeuropa/oe_theme/pull/1106) ([nagyad](https://github.com/nagyad))
+- EWPP-2225: Project content type fixes. [\#1103](https://github.com/openeuropa/oe_theme/pull/1103) ([nagyad](https://github.com/nagyad))
+- EWPP-2106: Page banner & carousel for page header. [\#1100](https://github.com/openeuropa/oe_theme/pull/1100) ([sergepavle](https://github.com/sergepavle))
+
+## [3.0.0-beta13](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta13) (2022-06-22)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta12...3.0.0-beta13)
 
 **Merged pull requests:**
 
-- EWPP-2296: Rename .ecl-navigation-list to .ecl-navigation to avoid conflict with ECL. [\#1112](https://github.com/openeuropa/oe_theme/pull/1112) ([yenyasinn](https://github.com/yenyasinn))
+- Prepare release 3.0.0-beta13. [\#1129](https://github.com/openeuropa/oe_theme/pull/1129) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-2022: Update EPIC-EWPP-2022. [\#1128](https://github.com/openeuropa/oe_theme/pull/1128) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2204: Update Simple Teaser epic branch. [\#1127](https://github.com/openeuropa/oe_theme/pull/1127) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2022: Update epic branch. [\#1126](https://github.com/openeuropa/oe_theme/pull/1126) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2022: Provide test coverage for the external links service. [\#1125](https://github.com/openeuropa/oe_theme/pull/1125) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2022: Update External links epic branch. [\#1122](https://github.com/openeuropa/oe_theme/pull/1122) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2204: Update epic branch for Simple teaser. [\#1120](https://github.com/openeuropa/oe_theme/pull/1120) ([sergepavle](https://github.com/sergepavle))
 - EPIC-EWPP-2022-External-links [\#1119](https://github.com/openeuropa/oe_theme/pull/1119) ([22Alexandra](https://github.com/22Alexandra))
+- Update EPIC-EWPP-2022 [\#1117](https://github.com/openeuropa/oe_theme/pull/1117) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2204: Update epic branch for Simple Teaser. [\#1115](https://github.com/openeuropa/oe_theme/pull/1115) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2307: Add external\_link parameter to node teaser templates. [\#1114](https://github.com/openeuropa/oe_theme/pull/1114) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2296: Rename .ecl-navigation-list to .ecl-navigation to avoid conflict with ECL. [\#1112](https://github.com/openeuropa/oe_theme/pull/1112) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-2204: Simple teaser epic. [\#1108](https://github.com/openeuropa/oe_theme/pull/1108) ([sergepavle](https://github.com/sergepavle))
-- EWPP-2166: Fix access check for event programme items. [\#1096](https://github.com/openeuropa/oe_theme/pull/1096) ([nagyad](https://github.com/nagyad))
-- EWPP-2149: Allow inpage navigation generation to support multiple instances. [\#1094](https://github.com/openeuropa/oe_theme/pull/1094) ([brummbar](https://github.com/brummbar))
+- Update EPIC-EWPP-2022-External-links. [\#1107](https://github.com/openeuropa/oe_theme/pull/1107) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2283: Integrate new ECL Page header component. [\#1105](https://github.com/openeuropa/oe_theme/pull/1105) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2274: Use external link service. [\#1099](https://github.com/openeuropa/oe_theme/pull/1099) ([nagyad](https://github.com/nagyad))
+- EWPP-2071: Add external icon to external custom footer links. [\#1098](https://github.com/openeuropa/oe_theme/pull/1098) ([nagyad](https://github.com/nagyad))
 - EWPP-2048: Upgrade to ECL 3.3.0. [\#1097](https://github.com/openeuropa/oe_theme/pull/1097) ([22Alexandra](https://github.com/22Alexandra))
-- OEL-1362: ImageValueObject doesn't inherit cache information from image file. [\#1089](https://github.com/openeuropa/oe_theme/pull/1089) ([escuriola](https://github.com/escuriola))
+- EWPP-2166: Fix access check for event programme items. [\#1096](https://github.com/openeuropa/oe_theme/pull/1096) ([nagyad](https://github.com/nagyad))
+- \[EWPP-2204\] EWPP-2205: Allow description to be nullable in ListItemAssert. [\#1095](https://github.com/openeuropa/oe_theme/pull/1095) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2149: Allow inpage navigation generation to support multiple instances. [\#1094](https://github.com/openeuropa/oe_theme/pull/1094) ([brummbar](https://github.com/brummbar))
 - EWPP-2164: Using langcode instead of language object in programme rendering. [\#1092](https://github.com/openeuropa/oe_theme/pull/1092) ([upchuk](https://github.com/upchuk))
+- Update EPIC-EWPP-2022 [\#1091](https://github.com/openeuropa/oe_theme/pull/1091) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2191: Fix dependency from composer patches. [\#1090](https://github.com/openeuropa/oe_theme/pull/1090) ([yenyasinn](https://github.com/yenyasinn))
+- OEL-1362: ImageValueObject doesn't inherit cache information from image file. [\#1089](https://github.com/openeuropa/oe_theme/pull/1089) ([escuriola](https://github.com/escuriola))
 - EWPP-2176: Update ECL version to 3.2.4. [\#1088](https://github.com/openeuropa/oe_theme/pull/1088) ([sergepavle](https://github.com/sergepavle))
 - EWPP-0000: Adding safe directory for git. [\#1087](https://github.com/openeuropa/oe_theme/pull/1087) ([upchuk](https://github.com/upchuk))
+- EWPP-2022: Update epic with 3.x. [\#1083](https://github.com/openeuropa/oe_theme/pull/1083) ([nagyad](https://github.com/nagyad))
+- EWPP-2070: Allow \<svg\> and \<use\> in introduction fileds. [\#1080](https://github.com/openeuropa/oe_theme/pull/1080) ([nagyad](https://github.com/nagyad))
+- EWPP-2072: Update link fields to render external icon. [\#1074](https://github.com/openeuropa/oe_theme/pull/1074) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2071: Add external icon to external custom footer links. [\#1072](https://github.com/openeuropa/oe_theme/pull/1072) ([nagyad](https://github.com/nagyad))
+- EWPP-2069: External link icon for patterns rendering links. [\#1069](https://github.com/openeuropa/oe_theme/pull/1069) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2044: Adds the News ticker pattern. [\#1067](https://github.com/openeuropa/oe_theme/pull/1067) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1978: Enable failure of tests on javascript errors. [\#1059](https://github.com/openeuropa/oe_theme/pull/1059) ([sergepavle](https://github.com/sergepavle))
 
-## [3.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta12) (2022-04-1)
+## [3.0.0-beta12](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta12) (2022-04-11)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta11...3.0.0-beta12)
 
+**Closed issues:**
+
+- inpage navigation [\#417](https://github.com/openeuropa/oe_theme/issues/417)
+
 **Merged pull requests:**
 
-- EWPP-2125: Add translation for ru language. [\#1078](https://github.com/openeuropa/oe_theme/pull/1078) ([sergepavle](https://github.com/sergepavle))
-- EWPP-2101: Add translation for chinese and ukrainian languages. [\#1075](https://github.com/openeuropa/oe_theme/pull/1075) ([sergepavle](https://github.com/sergepavle))
+- Prepare release 3.0.0-beta12. [\#1081](https://github.com/openeuropa/oe_theme/pull/1081) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2126: Fix text with featured media spacing issue between items. [\#1079](https://github.com/openeuropa/oe_theme/pull/1079) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-2023: Copyright and caption on Video media. [\#1056](https://github.com/openeuropa/oe_theme/pull/1056) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2125: Add translation for ru language. [\#1078](https://github.com/openeuropa/oe_theme/pull/1078) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2128: Use storage timezone for DrupalDateTime object in Event rendering test. [\#1077](https://github.com/openeuropa/oe_theme/pull/1077) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-2016: Improve display of person teaser. [\#1051](https://github.com/openeuropa/oe_theme/pull/1051) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- EWPP-1980: Render contacts in full view mode within ContactsExtraField. [\#1036](https://github.com/openeuropa/oe_theme/pull/1036) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-1790: Allow images for blockquote ui pattern. [\#1034](https://github.com/openeuropa/oe_theme/pull/1034) ([sergepavle](https://github.com/sergepavle))
-- EWPP-1875: Make footer templates more extendable. [\#1064](https://github.com/openeuropa/oe_theme/pull/1064) ([nagyad](https://github.com/nagyad))
+- EWPP-2101: Add translation for chinese and ukrainian languages. [\#1075](https://github.com/openeuropa/oe_theme/pull/1075) ([sergepavle](https://github.com/sergepavle))
 - Revert "EWPP-2071: Add external icon to external custom footer links." [\#1071](https://github.com/openeuropa/oe_theme/pull/1071) ([nagyad](https://github.com/nagyad))
-- EWPP-2071: Add external icon to external custom footer links. [\#1066](https://github.com/openeuropa/oe_theme/pull/1066) ([nagyad](https://github.com/nagyad))
 - EWPP-2099: Fix event date formats. [\#1070](https://github.com/openeuropa/oe_theme/pull/1070) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-1901: Update registration button information at the exact time. [\#1026](https://github.com/openeuropa/oe_theme/pull/1026) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2071: Add external icon to external custom footer links. [\#1066](https://github.com/openeuropa/oe_theme/pull/1066) ([nagyad](https://github.com/nagyad))
 - EWPP-2018: Create the missing Event programe date format on update path. [\#1065](https://github.com/openeuropa/oe_theme/pull/1065) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1875: Make footer templates more extendable. [\#1064](https://github.com/openeuropa/oe_theme/pull/1064) ([nagyad](https://github.com/nagyad))
+- EWPP-2076: Make sure the current translation is saved before adding the language to the language switcher. [\#1063](https://github.com/openeuropa/oe_theme/pull/1063) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2034: Hide end date if same as start date and render time html e… [\#1061](https://github.com/openeuropa/oe_theme/pull/1061) ([nagyad](https://github.com/nagyad))
+- EWPP-2033: Display Event programme timezone after the time. [\#1058](https://github.com/openeuropa/oe_theme/pull/1058) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2023: Copyright and caption on Video media. [\#1056](https://github.com/openeuropa/oe_theme/pull/1056) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2016: Improve display of person teaser. [\#1051](https://github.com/openeuropa/oe_theme/pull/1051) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2018: Style highlighted Text with featured media paragraph. [\#1049](https://github.com/openeuropa/oe_theme/pull/1049) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1157: In page nav library on content row paragraph. [\#1038](https://github.com/openeuropa/oe_theme/pull/1038) ([upchuk](https://github.com/upchuk))
-- EWPP-2076: Make sure the current translation is saved before adding the language to the language switcher. [\#1063](https://github.com/openeuropa/oe_theme/pull/1063) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-2033: Display Event programme timezone after the time. [\#1058](https://github.com/openeuropa/oe_theme/pull/1058) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-2034: Hide end date if same as start date and render time html elements. [\#1061](https://github.com/openeuropa/oe_theme/pull/1061) ([nagyad](https://github.com/nagyad))
+- EWPP-1980: Render contacts in full view mode within ContactsExtraField. [\#1036](https://github.com/openeuropa/oe_theme/pull/1036) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1790: Allow images for blockquote ui pattern. [\#1034](https://github.com/openeuropa/oe_theme/pull/1034) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1901: Update registration button information at the exact time. [\#1026](https://github.com/openeuropa/oe_theme/pull/1026) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1564: Theme Timeline's paragraph introduction field. [\#1014](https://github.com/openeuropa/oe_theme/pull/1014) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta11](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta11) (2022-03-07)
@@ -54,6 +107,7 @@
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta11. [\#1057](https://github.com/openeuropa/oe_theme/pull/1057) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1539: Event v2. [\#1055](https://github.com/openeuropa/oe_theme/pull/1055) ([nagyad](https://github.com/nagyad))
 - EWPP-1539: Update epic with 3.x. [\#1054](https://github.com/openeuropa/oe_theme/pull/1054) ([nagyad](https://github.com/nagyad))
 - EWPP-1947: Missing interface translations. [\#1052](https://github.com/openeuropa/oe_theme/pull/1052) ([yenyasinn](https://github.com/yenyasinn))
@@ -89,6 +143,7 @@
 - EWPP-1540: Render the Media field of Event CT using the Media gallery formatter. [\#948](https://github.com/openeuropa/oe_theme/pull/948) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta10](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta10) (2022-03-03)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta9...3.0.0-beta10)
 
 **Closed issues:**
@@ -97,20 +152,32 @@
 
 **Merged pull requests:**
 
+- EWPP-0000: Prepare release 3.0.0-beta10. [\#1053](https://github.com/openeuropa/oe_theme/pull/1053) ([22Alexandra](https://github.com/22Alexandra))
+- Update Epic list with illustrations [\#1048](https://github.com/openeuropa/oe_theme/pull/1048) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-2006: Use --zip format for the theme package release. [\#1043](https://github.com/openeuropa/oe_theme/pull/1043) ([hernani](https://github.com/hernani))
 - EWPP-1996: Fix DefaultNodeMetadataEventSubscriber. [\#1042](https://github.com/openeuropa/oe_theme/pull/1042) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1997: Upgrade to ECL 3.2.3. [\#1040](https://github.com/openeuropa/oe_theme/pull/1040) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1861: List with illustrations [\#1032](https://github.com/openeuropa/oe_theme/pull/1032) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1849: Fix js for contextual navigation pattern. [\#1030](https://github.com/openeuropa/oe_theme/pull/1030) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1781: Add translations for 'Sources' string. [\#1028](https://github.com/openeuropa/oe_theme/pull/1028) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1864: Style the lists with illustrations paragraphs [\#1017](https://github.com/openeuropa/oe_theme/pull/1017) ([yenyasinn](https://github.com/yenyasinn))
+- Update List with illustrations 2022-01-25 [\#1016](https://github.com/openeuropa/oe_theme/pull/1016) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1863: Add list with illustrations pattern. [\#1006](https://github.com/openeuropa/oe_theme/pull/1006) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
+## [3.0.0-beta9](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta9) (2022-02-17)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta8...3.0.0-beta9)
 
+**Closed issues:**
+
+- Release 3.0.0-beta8 with ECL 3.2.0? [\#1025](https://github.com/openeuropa/oe_theme/issues/1025)
+
 **Merged pull requests:**
 
+- EWPP-0000: Prepare for 3.0.0-beta9 release. [\#1041](https://github.com/openeuropa/oe_theme/pull/1041) ([hernani](https://github.com/hernani))
 - EWPP-1920: Upgrade to PHP8 and Composer v2. [\#1029](https://github.com/openeuropa/oe_theme/pull/1029) ([22Alexandra](https://github.com/22Alexandra))
 
-## [3.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta8) (2022-02-07)
+## [3.0.0-beta8](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta8) (2022-02-08)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta7...3.0.0-beta8)
 
@@ -120,14 +187,20 @@
 
 **Merged pull requests:**
 
-- EWPP-1888: Handle non-eu logos provided by ECL 3.2. [\#1011](https://github.com/openeuropa/oe_theme/pull/1011) ([yenyasinn](https://github.com/yenyasinn))
-- EWPP-1860: Prepending inpage nav ids with ref-. [\#1004](https://github.com/openeuropa/oe_theme/pull/1004) ([upchuk](https://github.com/upchuk))
+- Prepare release 3.0.0-beta8. [\#1027](https://github.com/openeuropa/oe_theme/pull/1027) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1854: Adapt HTML attributes to improve accessibility and behavior of the Logo link in header and footer. [\#1012](https://github.com/openeuropa/oe_theme/pull/1012) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1888: Handle non-eu logos provided by ECL 3.2. [\#1011](https://github.com/openeuropa/oe_theme/pull/1011) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1585: Show calendar icon on the datepicker. [\#1010](https://github.com/openeuropa/oe_theme/pull/1010) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1890: Update to ECL 3.2.0. [\#1008](https://github.com/openeuropa/oe_theme/pull/1008) ([22Alexandra](https://github.com/22Alexandra))
-- EWPP-1631: Contact "name" field should remain optional. [\#984](https://github.com/openeuropa/oe_theme/pull/984) ([yenyasinn](https://github.com/yenyasinn))
 - EPIC-EWPP-755-Highlighted [\#1005](https://github.com/openeuropa/oe_theme/pull/1005) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1860: Prepending inpage nav ids with ref-. [\#1004](https://github.com/openeuropa/oe_theme/pull/1004) ([upchuk](https://github.com/upchuk))
+- Update epic EWPP-755. [\#1001](https://github.com/openeuropa/oe_theme/pull/1001) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-1728: Define blocks for project results field group template. [\#992](https://github.com/openeuropa/oe_theme/pull/992) ([nagyad](https://github.com/nagyad))
+- Epic ewpp 755 update [\#990](https://github.com/openeuropa/oe_theme/pull/990) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1631: Contact "name" field should remain optional. [\#984](https://github.com/openeuropa/oe_theme/pull/984) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic highlighted [\#982](https://github.com/openeuropa/oe_theme/pull/982) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1609: Add badges paramater to list\_item and featured\_item patterns. [\#973](https://github.com/openeuropa/oe_theme/pull/973) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-756: Add highlighted label to nodes teaser view mode. [\#955](https://github.com/openeuropa/oe_theme/pull/955) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta7](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta7) (2021-12-06)
 
@@ -135,15 +208,16 @@
 
 **Merged pull requests:**
 
-- EWPP-1606: Printing the CTA in the site header. [\#966](https://github.com/openeuropa/oe_theme/pull/966) ([yenyasinn](https://github.com/yenyasinn))
-- EWPP-685: Image caption and copyright not showing. [\#967](https://github.com/openeuropa/oe_theme/pull/967) ([yenyasinn](https://github.com/yenyasinn))
+- Prepare release 3.0.0-beta7. [\#998](https://github.com/openeuropa/oe_theme/pull/998) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-1725: Replace date separator. [\#986](https://github.com/openeuropa/oe_theme/pull/986) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1744: Change translation of page level language switcher. [\#985](https://github.com/openeuropa/oe_theme/pull/985) ([nagyad](https://github.com/nagyad))
-- EWPP-1587: Organiser string translated in Norwegian is not displayed correctly. [\#971](https://github.com/openeuropa/oe_theme/pull/971) ([yenyasinn](https://github.com/yenyasinn))
-- EWPP-1630: Add lists property to file-teaser. [\#974](https://github.com/openeuropa/oe_theme/pull/974) ([nagyad](https://github.com/nagyad ))
-- EWPP-1597: Passing icon info to the list item block button link. [\#970](https://github.com/openeuropa/oe_theme/pull/970) ([upchuk](https://github.com/upchuk ))
-- EWPP-1557: Translate "@date in" to Arabic and Turkish languages. [\#958](https://github.com/openeuropa/oe_theme/pull/958) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1630: Add lists property to file-teaser. [\#974](https://github.com/openeuropa/oe_theme/pull/974) ([nagyad](https://github.com/nagyad))
 - EWPP-1050: Show Turkey address correctly. [\#972](https://github.com/openeuropa/oe_theme/pull/972) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1587: Organiser string translated in Norwegian is not displayed … [\#971](https://github.com/openeuropa/oe_theme/pull/971) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1597: Passing icon info to the list item block button link. [\#970](https://github.com/openeuropa/oe_theme/pull/970) ([upchuk](https://github.com/upchuk))
+- EWPP-685: Image caption and copyright not showing [\#967](https://github.com/openeuropa/oe_theme/pull/967) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1606: Printing the CTA in the site header. [\#966](https://github.com/openeuropa/oe_theme/pull/966) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1557: Translate "@date in" to Arabic and Turkish languages. [\#958](https://github.com/openeuropa/oe_theme/pull/958) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-beta6](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta6) (2021-11-08)
 
@@ -151,19 +225,15 @@
 
 **Merged pull requests:**
 
-- Prepare release 3.0.0-beta6. [\#979](https://github.com/openeuropa/oe_theme/pull/979) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Prepare release 3.0.0-alpha6. [\#979](https://github.com/openeuropa/oe_theme/pull/979) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- Updating 3.x [\#978](https://github.com/openeuropa/oe_theme/pull/978) ([upchuk](https://github.com/upchuk))
+- EWPP-1579: Update to ECL 3.0.3. [\#953](https://github.com/openeuropa/oe_theme/pull/953) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-1432: Update field\_group module to 3.2. [\#923](https://github.com/openeuropa/oe_theme/pull/923) ([yenyasinn](https://github.com/yenyasinn))
 - OEL-60: Drupal 9 Compatibility fixes. [\#880](https://github.com/openeuropa/oe_theme/pull/880) ([escuriola](https://github.com/escuriola))
 
 ## [3.0.0-beta5](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta5) (2021-10-29)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta4...3.0.0-beta5)
-
-**Merged pull requests:**
-
-- Prepare release 3.0.0-beta5.  [\#975](https://github.com/openeuropa/oe_theme/pull/975) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- EWPP-1649: Update ECL version.  [\#968](https://github.com/openeuropa/oe_theme/pull/968) ([sergepavle](https://github.com/sergepavle))
-- EWPP-1432: Update field_group module to 3.2.  [\#923](https://github.com/openeuropa/oe_theme/pull/923) ([yenyasinn](https://github.com/yenyasinn))
-- EWPP-1579: Update to ECL 3.0.3. [\#953](https://github.com/openeuropa/oe_theme/pull/953) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta4) (2021-09-27)
 
@@ -196,25 +266,37 @@
 - Prepare changelog for version 3.0.0-beta3. [\#954](https://github.com/openeuropa/oe_theme/pull/954) ([yenyasinn](https://github.com/yenyasinn))
 - Update epic ewpp 873 text media 2 20210917 2 [\#951](https://github.com/openeuropa/oe_theme/pull/951) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1495: Make sure that event registration button is displayed as an inline block. [\#950](https://github.com/openeuropa/oe_theme/pull/950) ([ademarco](https://github.com/ademarco))
+- Update epic ewpp 873 text media 2 20210917 [\#949](https://github.com/openeuropa/oe_theme/pull/949) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1514: Wrong Irish translation in language switcher. [\#947](https://github.com/openeuropa/oe_theme/pull/947) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1467: Fix font name issue. [\#946](https://github.com/openeuropa/oe_theme/pull/946) ([sergepavle](https://github.com/sergepavle))
+- EWPP-873: Align epic with 3.x [\#944](https://github.com/openeuropa/oe_theme/pull/944) ([ademarco](https://github.com/ademarco))
 - EWPP-1458: Events render correctly when a non-existing event type is specified. [\#943](https://github.com/openeuropa/oe_theme/pull/943) ([brummbar](https://github.com/brummbar))
 - EWPP-1472: Fix output of image \(avportal\) inside news content type. [\#942](https://github.com/openeuropa/oe_theme/pull/942) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-0000: Version 2.0 of typed\_link is required by oe\_paragraphs. [\#941](https://github.com/openeuropa/oe_theme/pull/941) ([brummbar](https://github.com/brummbar))
+- EWPP-873: Add cache info from the Link field to the page. [\#940](https://github.com/openeuropa/oe_theme/pull/940) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-873: Text with featured media paragraph type V2 [\#939](https://github.com/openeuropa/oe_theme/pull/939) ([yenyasinn](https://github.com/yenyasinn))
+- Update epic ewpp 873 text media 2 [\#938](https://github.com/openeuropa/oe_theme/pull/938) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1470: Content item title styling is not consistent. [\#934](https://github.com/openeuropa/oe_theme/pull/934) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1312: Translate "I have read and agree with the data protection terms" string [\#932](https://github.com/openeuropa/oe_theme/pull/932) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-1209: Ensure that Link field exist. [\#914](https://github.com/openeuropa/oe_theme/pull/914) ([yenyasinn](https://github.com/yenyasinn))
+- Merge 3.x into EPIC EWPP-874 Text with featured media v2 [\#908](https://github.com/openeuropa/oe_theme/pull/908) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-873\] EWPP-1318: Port new "Featured media with text" pattern to ECL v3. [\#898](https://github.com/openeuropa/oe_theme/pull/898) ([sergepavle](https://github.com/sergepavle))
 - EWPP-847: Add optional oe\_theme\_main\_content view display for JS asset media [\#896](https://github.com/openeuropa/oe_theme/pull/896) ([brummbar](https://github.com/brummbar))
+- EWPP-873: Update epic branch. [\#895](https://github.com/openeuropa/oe_theme/pull/895) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1206: Update grid classes for list item block pattern. [\#882](https://github.com/openeuropa/oe_theme/pull/882) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1046: Change label from "Open gallery" to "See all" in the gallery [\#881](https://github.com/openeuropa/oe_theme/pull/881) ([yenyasinn](https://github.com/yenyasinn))
+- \[EWPP-873\] EWPP-1327: Theme text with featured media title. [\#878](https://github.com/openeuropa/oe_theme/pull/878) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1162: Update event rendering test. [\#866](https://github.com/openeuropa/oe_theme/pull/866) ([22Alexandra](https://github.com/22Alexandra))
+- \[EWPP-873\] EWPP-876: Theme the link and new variants on text with featued media paragraphs. [\#839](https://github.com/openeuropa/oe_theme/pull/839) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-866: Use extend in list-item templates. [\#817](https://github.com/openeuropa/oe_theme/pull/817) ([nagyad](https://github.com/nagyad))
 
 ## [3.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta2) (2021-08-25)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta1...3.0.0-beta2)
 
 **Merged pull requests:**
 
+- Update CHANGELOG.md for release 3.0.0-beta2. [\#931](https://github.com/openeuropa/oe_theme/pull/931) ([ademarco](https://github.com/ademarco))
 - EWPP-1096: Fix bottom margin class on contact body field [\#930](https://github.com/openeuropa/oe_theme/pull/930) ([ademarco](https://github.com/ademarco))
 - EWPP-1460: Update ECL version. [\#929](https://github.com/openeuropa/oe_theme/pull/929) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1449: Setting negative option for links in breadcrumbs. [\#928](https://github.com/openeuropa/oe_theme/pull/928) ([sergepavle](https://github.com/sergepavle))
@@ -226,10 +308,16 @@
 - EWPP-1345: Translations for facets. [\#905](https://github.com/openeuropa/oe_theme/pull/905) ([yenyasinn](https://github.com/yenyasinn))
 
 ## [3.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta1) (2021-08-16)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-alpha1...3.0.0-beta1)
+
+**Closed issues:**
+
+- Update patches on ECL Component [\#170](https://github.com/openeuropa/oe_theme/issues/170)
 
 **Merged pull requests:**
 
+- Update changelog for 3.0.0-beta1 release. [\#921](https://github.com/openeuropa/oe_theme/pull/921) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1324: Add missing person string translations. [\#917](https://github.com/openeuropa/oe_theme/pull/917) ([yenyasinn](https://github.com/yenyasinn))
 - EWPP-1409: Change string in language switcher. [\#915](https://github.com/openeuropa/oe_theme/pull/915) ([sergepavle](https://github.com/sergepavle))
 - EWPP-1391: Remove deprecated ecl classes [\#912](https://github.com/openeuropa/oe_theme/pull/912) ([yenyasinn](https://github.com/yenyasinn))
