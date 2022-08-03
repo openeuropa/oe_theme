@@ -50,3 +50,10 @@ navigation_list:
       label: "Border"
       description: "Whether the border should be used."
       preview: true
+    image:
+      type: "array"
+      label: "Image"
+      description: "Item image"
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for image"

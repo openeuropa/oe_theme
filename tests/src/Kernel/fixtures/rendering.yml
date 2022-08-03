@@ -1763,6 +1763,9 @@
         - label: 'Secondary Link 2'
           url: 'http://example.com/secondary2'
       border: true
+      image:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for image"
   assertions:
     equals:
       'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"] .ecl-link__label': 'Navigation list title'
@@ -1779,8 +1782,10 @@
       '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(2) a.ecl-link .ecl-icon': 0
       '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link .ecl-link__label': 1
       '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(2) a.ecl-link .ecl-link__label': 0
-      ul.ecl-content-block__link-list: 2
-      li.ecl-content-block__link-item: 5
+      'ul.ecl-content-block__link-list': 2
+      'li.ecl-content-block__link-item': 5
+      "div.ecl-navigation-list__image[style=\"background-image:url('https://placeimg.com/1000/500/arch')\"]": 1
+      'div.ecl-navigation-list__image[aria-label="Alternative text for image"]': 1
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -1793,10 +1798,11 @@
       'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
       'div.ecl-content-block__description': 'Navigation list description'
     count:
-      'h1.ecl-content-block__title a.ecl-link .ecl-icon': 0
-      '.ecl-navigation-list__item.ecl-navigation-list__item--no-border': 1
+      h1.ecl-content-block__title a.ecl-link .ecl-icon: 0
+      .ecl-navigation-list__item.ecl-navigation-list__item--no-border: 1
       ul.ecl-content-block__link-list: 0
       li.ecl-content-block__link-item: 0
+      div.ecl-navigation-list__image: 0
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -1816,10 +1822,11 @@
       'li.ecl-content-block__link-item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
       'li.ecl-content-block__link-item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
     count:
-      'h1.ecl-content-block__title a': 0
+      h1.ecl-content-block__title a: 0
       ul.ecl-content-block__link-list: 1
       li.ecl-content-block__link-item: 3
       div.ecl-content-block__description: 0
+      div.ecl-navigation-list__image: 0
 - array:
     '#type': pattern
     '#id': accordion

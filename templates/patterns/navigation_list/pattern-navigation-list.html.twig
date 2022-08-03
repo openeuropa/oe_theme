@@ -46,10 +46,17 @@
   {% endfor %}
   {% set _links = _links|merge([_secondary_links]) %}
 {% endif %}
+{% if image %}
+  {% set image = {
+    'src': image.src,
+    'alt': image.alt
+  } %}
+{% endif %}
 
 {% include '@ecl-twig/navigation-list/navigation-list-item.html.twig' with {
   'title': title|default({}),
   'description': description|default(''),
   'links': _links,
-  'border': border|default(false)
+  'border': border|default(false),
+  'image': image
 } only %}
