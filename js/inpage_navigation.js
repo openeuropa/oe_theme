@@ -120,6 +120,14 @@
         });
       });
 
+      // The container might define its own selector so loop through those elements as well.
+      if (container.hasAttribute('data-inpage-navigation-source-area')) {
+        let selectors = container.getAttribute('data-inpage-navigation-source-area');
+        Array.prototype.forEach.call(container.querySelectorAll(':scope ' + selectors), function (element) {
+          element.setAttribute('data-inpage-navigation-source-element', '');
+        });
+      }
+
       let items_markup = '';
       // Collect all the elements marked as source. Now the elements will be unique and ordered correctly.
       Array.prototype.forEach.call(container.querySelectorAll(':scope [data-inpage-navigation-source-element]'), function (element) {

@@ -5,6 +5,16 @@
  */
 #}
 {{ attach_library('oe_theme_inpage_navigation_test/inpage_navigation_test') }}
+{% set build = {
+  '#theme': 'oe_theme_helper_inpage_navigation_block',
+  '#title': title|default('Page contents'),
+  '#attached': {
+    'library': [
+      'oe_theme/inpage_navigation'
+    ]
+  }
+} %}
+{{ build }}
 <div id="inpage-navigation-test-container" data-inpage-navigation-source-area="h1">
 
   <h3>Lorem ipsum dolor sit.</h3>
