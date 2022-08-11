@@ -156,10 +156,10 @@ class InPageNavigationLibraryTest extends WebDriverTestBase {
     $assert_session = $this->assertSession();
 
     $main_content = $assert_session->elementExists('css', '#inpage-navigation-test-container');
-    // Each inpage navigation adds two extra IDs, one for a button and one for
-    // the ul itself. This means that we actually are expecting 8 IDs generated
-    // in total by the library.
-    $this->assertCount(12, $main_content->findAll('xpath', '//*[@id]'));
+    // Each inpage navigation adds three extra IDs, one for the title, one for
+    // a button and one for the ul itself. This means that we are actually
+    // expecting 10 IDs generated in total by the library.
+    $this->assertCount(14, $main_content->findAll('xpath', '//*[@id]'));
 
     $first_container = $main_content->find('css', '.first-container');
     $navigation = $assert_session->elementExists('css', '.oe-theme-ecl-inpage-navigation', $first_container);
