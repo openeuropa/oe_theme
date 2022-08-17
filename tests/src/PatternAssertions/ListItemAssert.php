@@ -4,7 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
-use PHPUnit\Framework\Exception;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -36,20 +35,19 @@ class ListItemAssert extends BasePatternAssert {
       ];
     }
 
-    $base_selector = 'div' . $this->getBaseItemClass($variant);
+    $base_selector = 'article' . $this->getBaseItemClass();
     return [
       'title' => [
         [$this, 'assertElementText'],
-        $base_selector . '__title',
+        $base_selector . ' div.ecl-content-item__content-block h1.ecl-content-block__title',
       ],
       'url' => [
         [$this, 'assertElementAttribute'],
-        $base_selector . '__title a.ecl-link.ecl-link--standalone',
+        $base_selector . ' div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'meta' => [
-        [$this, 'assertElementText'],
-        $base_selector . '__meta div.ecl-u-mt-xs',
+        [$this, 'assertPrimaryMeta'],
       ],
       'date' => [
         [$this, 'assertDate'],
@@ -57,14 +55,14 @@ class ListItemAssert extends BasePatternAssert {
       ],
       'description' => [
         [$this, 'assertDescription'],
-        $base_selector . '__description',
+        $base_selector,
       ],
       'image' => [
         [$this, 'assertThumbnailImage'],
         $variant,
       ],
-      'additional_information' => [
-        [$this, 'assertAdditionalInformation'],
+      'lists' => [
+        [$this, 'assertLists'],
       ],
       'icon' => [
         [$this, 'assertIcon'],
@@ -81,7 +79,7 @@ class ListItemAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    $base_selector = 'article' . $this->getBaseItemClass($variant);
+    $base_selector = 'article' . $this->getBaseItemClass();
     $list_item = $crawler->filter($base_selector);
     self::assertCount(1, $list_item);
   }
@@ -122,12 +120,12 @@ class ListItemAssert extends BasePatternAssert {
       return 'block';
     }
 
-    // Check whether it is a primary or secondaty thumbnail.
-    $primary_thumbnail = $crawler->filter('div.ecl-content-item__image__before');
+    // Check whether it is a primary or secondary thumbnail.
+    $primary_thumbnail = $crawler->filter('picture.ecl-content-item__picture--left');
     if ($primary_thumbnail->count()) {
       return 'thumbnail_primary';
     }
-    $primary_secondary = $crawler->filter('div.ecl-content-item__image__after');
+    $primary_secondary = $crawler->filter('picture.ecl-content-item__picture--right');
     if ($primary_secondary->count()) {
       return 'thumbnail_secondary';
     }
@@ -188,16 +186,16 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertThumbnailImage($expected_image, string $variant, Crawler $crawler): void {
-    $variant_class = $variant === 'thumbnail_primary' ? 'ecl-content-item__image__before' : 'ecl-content-item__image__after';
-    $image_div_selector = 'div.' . $variant_class;
+    $variant_class = $variant === 'thumbnail_primary' ? 'picture.ecl-content-item__picture--large.ecl-content-item__picture--left' : 'picture.ecl-content-item__picture--large.ecl-content-item__picture--right';
+    $image_div_selector = $variant_class . ' img.ecl-content-item__image';
     if (is_null($expected_image)) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
     }
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
-    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
+    self::assertEquals($expected_image['alt'], $image_div->attr('alt'));
+    self::assertStringContainsString($expected_image['src'], $image_div->attr('src'));
   }
 
   /**
@@ -227,8 +225,8 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertDescription($expected, string $variant, Crawler $crawler): void {
-    $base_selector = $this->getBaseItemClass($variant);
-    $description_selector = 'div' . $base_selector . '__description';
+    $base_selector = $this->getBaseItemClass();
+    $description_selector = $base_selector . ' div.ecl-content-item__content-block div.ecl-content-block__description';
     if (is_null($expected)) {
       $this->assertElementNotExists($description_selector, $crawler);
       return;
@@ -250,20 +248,20 @@ class ListItemAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertAdditionalInformation($expected, Crawler $crawler): void {
-    $additional_information_item_selector = 'div.ecl-content-item__additional_information';
+  protected function assertLists($expected, Crawler $crawler): void {
+    $list_container_selector = 'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list';
     if (is_null($expected)) {
-      $this->assertElementNotExists($additional_information_item_selector, $crawler);
+      $this->assertElementNotExists($list_container_selector, $crawler);
       return;
     }
-    $additional_information_items = $crawler->filter($additional_information_item_selector);
-    self::assertCount(count($expected), $additional_information_items);
-    foreach ($expected as $index => $expected_item) {
-      if (!$expected_item instanceof PatternAssertStateInterface) {
-        throw new Exception('All expected additional items must implement PatternAssertStateInterface');
+    $list_terms = $crawler->filter($list_container_selector . ' dt.ecl-description-list__term');
+    $list_definitions = $crawler->filter($list_container_selector . ' dd.ecl-description-list__definition');
+    self::assertCount(count($expected), $list_terms);
+    foreach ($expected as $index => $expected_list) {
+      foreach ($expected_list as $term => $definitions) {
+        self::assertEquals($term, trim($list_terms->eq($index)->text()), \sprintf('The expected text of the term number %s does not correspond to the found term text.', $index));
+        self::assertEquals(implode($definitions), trim($list_definitions->eq($index)->text()), \sprintf('The expected text of the definition number %s does not correspond to the found definition text.', $index));
       }
-      $expected_item->assert($additional_information_items->eq($index)->html());
-
     }
   }
 
@@ -296,33 +294,47 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertBadges(?array $expected_badges, string $variant, Crawler $crawler): void {
-    $base_selector = 'div' . $this->getBaseItemClass($variant) . '__meta';
+    $base_selector = 'article' . $this->getBaseItemClass() . ' .ecl-content-block__label-container';
     if (is_null($expected_badges)) {
-      $this->assertElementNotExists('span.ecl-label', $crawler);
+      $this->assertElementNotExists($base_selector, $crawler);
       return;
     }
     foreach ($expected_badges as $badge) {
       if (!isset($badge['label']) || !isset($badge['variant'])) {
         continue;
       }
-      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'] . '.ecl-u-mr-xs';
+      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'];
       self::assertStringContainsString($badge['label'], $crawler->filter($selector)->text());
+    }
+  }
+
+  /**
+   * Asserts the primary meta items of the list item.
+   *
+   * @param array|null $expected_items
+   *   The expected primary meta items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertPrimaryMeta(?array $expected_items, Crawler $crawler): void {
+    if (is_null($expected_items)) {
+      $this->assertElementNotExists('.ecl-content-block__primary-meta-container', $crawler);
+      return;
+    }
+    $actual_items = $crawler->filter('li.ecl-content-block__primary-meta-item');
+    self::assertCount(count($expected_items), $actual_items);
+    foreach ($expected_items as $index => $expected_item) {
+      self::assertEquals($expected_item, trim($actual_items->eq($index)->text()));
     }
   }
 
   /**
    * Returns the base CSS selector for a list item depending on the variant.
    *
-   * @param string $variant
-   *   The variant being checked.
-   *
    * @return string
    *   The base selector for the variant.
    */
-  protected function getBaseItemClass(string $variant): string {
-    if (strpos($variant, 'date') !== FALSE) {
-      return '.ecl-content-item-date';
-    }
+  protected function getBaseItemClass(): string {
     return '.ecl-content-item';
   }
 
