@@ -9,10 +9,7 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
-use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests consultation rendering.
@@ -106,26 +103,9 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         ],
       ],
       'image' => NULL,
-      'additional_information' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Opening date',
-              'body' => '14 February 2020',
-            ],
-            [
-              'label' => 'Deadline',
-              'body' => '21 February 2020, 01:00 (AEDT)',
-            ],
-          ],
-        ]),
-      ],
+      // @todo Replace additional_information assertion with lists in EWPP-2508.
     ];
     $assert->assertPattern($expected_values, $html);
-
-    $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--high.ecl-u-type-color-black');
-    $this->assertCount(1, $actual);
 
     // Test short title fallback.
     $node->set('oe_content_short_title', 'Consultation short title');
@@ -152,24 +132,8 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '14 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '17 February 2020, 12:00 (AEDT)',
-          ],
-        ],
-      ]),
-    ];
+    // @todo Replace additional_information assertion with lists in EWPP-2508.
     $assert->assertPattern($expected_values, $html);
-
-    $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--low.ecl-u-type-color-black');
-    $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
     $opening_date->modify('+ 10 days');
@@ -184,24 +148,8 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'label' => 'Status: Upcoming',
       'variant' => 'medium',
     ];
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '24 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '21 February 2020, 12:00 (AEDT)',
-          ],
-        ],
-      ]),
-    ];
+    // @todo Replace additional_information assertion with lists in EWPP-2508.
     $assert->assertPattern($expected_values, $html);
-
-    $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--medium.ecl-u-type-color-black');
-    $this->assertCount(1, $actual);
   }
 
 }

@@ -168,21 +168,24 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
+    file_put_contents('test.html', $html);
 
     $this->assertCount(1, $crawler->filter('article.ecl-content-item'));
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description')->text()));
 
-    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+    $this->assertEquals('Meta 1', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)')->text()));
+    $this->assertEquals('Meta 2', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)')->text()));
+    $this->assertEquals('Meta 3', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(3)')->text()));
 
     // No images should be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
@@ -256,26 +259,26 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description')->text()));
 
-    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(2, $crawler->filter('article.ecl-content-item > div'));
-
-    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
-    $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-l-block');
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
+    $image_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left img.ecl-content-item__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
-      $image_element->attr('style')
+      $image_element->attr('src')
     );
-    $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
-    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+    $this->assertEquals('Meta 1', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)')->text()));
+    $this->assertEquals('Meta 2', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)')->text()));
+    $this->assertEquals('Meta 3', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(3)')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
@@ -290,26 +293,26 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description')->text()));
 
-    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(2, $crawler->filter('article.ecl-content-item > div'));
-
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
-    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
-    $image_element = $crawler->filter('article.ecl-content-item > div[role="img"].ecl-u-d-l-block');
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
+    $this->assertCount(1, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
+    $image_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right img.ecl-content-item__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
-      $image_element->attr('style')
+      $image_element->attr('src')
     );
-    $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
+    $this->assertEquals('Druplicon', $image_element->attr('alt'));
 
-    $this->assertEquals('Meta 1 | Meta 2 | Meta 3', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__meta')->text()));
+    $this->assertEquals('Meta 1', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)')->text()));
+    $this->assertEquals('Meta 2', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)')->text()));
+    $this->assertEquals('Meta 3', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(3)')->text()));
 
     // No date should be rendered neither.
     $this->assertCount(0, $crawler->filter('time.ecl-date-block'));
@@ -324,22 +327,19 @@ class ParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__title')->text()));
-    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__description')->text()));
+    $this->assertEquals('Item title', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title')->text()));
+    $this->assertEquals('Item description', trim($crawler->filter('article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description')->text()));
 
-    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__title a.ecl-link');
+    $link_element = $crawler->filter('article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone');
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $this->assertCount(1, $crawler->filter('article.ecl-content-item > div'));
-
     // No images should be rendered in this variant.
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div[role="img"]'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__before'));
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item > div.ecl-content-item__image__after'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
+    $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
 
     // Neither the metas.
-    $this->assertCount(0, $crawler->filter('article.ecl-content-item div.ecl-content-item__meta'));
+    $this->assertCount(0, $crawler->filter('.ecl-content-block__primary-meta-container'));
 
     // Change the variant to date.
     $paragraph->get('oe_paragraphs_variant')->setValue('date');

@@ -413,7 +413,11 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $content = $this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mt-l .ecl-col-l-9');
     $expected_values = [
       'title' => 'Test Publication node',
-      'meta' => "Abstract, Legislative acts | 15 April 2020\n | Associated African States and Madagascar",
+      'meta' => [
+        'Abstract, Legislative acts',
+        '15 April 2020',
+        'Associated African States and Madagascar',
+      ],
       'description' => 'Test teaser text.',
     ];
     $assert->assertPattern($expected_values, $content->getOuterHtml());

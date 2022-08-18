@@ -74,7 +74,10 @@ class NewsRenderTest extends ContentRenderTestBase {
       'badges' => NULL,
       'url' => '/en/node/1',
       'description' => 'Teaser',
-      'meta' => 'News article | 2 April 2019',
+      'meta' => [
+        'News article',
+        '2 April 2019',
+      ],
       'image' => [
         'src' => 'example_1.jpeg',
         'alt' => '',
@@ -113,7 +116,10 @@ class NewsRenderTest extends ContentRenderTestBase {
       'title' => 'News short title',
       'url' => '/en/node/1',
       'description' => 'Teaser',
-      'meta' => 'News article | 2 April 2019',
+      'meta' => [
+        'News article',
+        '2 April 2019',
+      ],
       'image' => NULL,
     ];
     $assert->assertPattern($expected_values, $html);
@@ -144,7 +150,10 @@ class NewsRenderTest extends ContentRenderTestBase {
           'variant' => 'highlight',
         ],
       ],
-      'meta' => 'Press release | 2 April 2019',
+      'meta' => [
+        'Press release',
+        '2 April 2019',
+      ],
       'image' => [
         'src' => 'example_1.jpeg',
         'alt' => '',
@@ -163,7 +172,10 @@ class NewsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['meta'] = 'Factsheet, General publications | 2 April 2019';
+    $expected_values['meta'] = [
+      'Factsheet, General publications',
+      '2 April 2019',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_primary', $html);
   }

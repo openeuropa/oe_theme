@@ -327,11 +327,15 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(6, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[5], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser = $content_items[5]->find('css', '.ecl-content-item.ecl-u-d-s-flex.ecl-u-pb-m');
+    $publication_teaser = $content_items[5]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15');
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Publication node',
-      'meta' => "Abstract | 15 April 2020\n | Associated African States and Madagascar",
+      'meta' => [
+        'Abstract',
+        '15 April 2020',
+        'Associated African States and Madagascar',
+      ],
       'description' => 'Teaser text',
     ];
     $assert->assertPattern($expected_values, $publication_teaser->getOuterHtml());
