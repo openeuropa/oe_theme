@@ -1266,20 +1266,19 @@
           variant: "medium"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
-      'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
-      'span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': 1
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
-      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
-      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--highlight': "Highlighted"
+      'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--medium': "Status: Open"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1297,35 +1296,30 @@
       meta:
         - "News article"
         - "6 July 2015"
-      additional_information:
-        - '#type': pattern
-          '#id': field_list
-          '#variant': horizontal
-          '#fields':
-            items:
-              - label: "When"
-                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
-              - label: "Where"
-                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      lists:
+        - term: "When"
+          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+        - term: "Where"
+          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
-      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
-      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
-      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.ecl-content-block__list-container .ecl-description-list__term': 2
+      'div.ecl-content-block__list-container .ecl-description-list__definition': 2
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1339,7 +1333,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--canceled': 1
+      'time.ecl-date-block.ecl-date-block--cancelled.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
@@ -1353,7 +1347,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--ongoing': 1
+      'time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
@@ -1367,7 +1361,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--past': 1
+      'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
