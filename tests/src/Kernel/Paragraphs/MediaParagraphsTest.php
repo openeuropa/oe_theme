@@ -1005,7 +1005,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         'field_oe_title' => 'Item ' . $i,
         'field_oe_text' => $i % 2 === 0 ? 'Item description ' . $i : '',
         'field_oe_link' => $i % 2 === 0 ? [
-          'uri' => 'http://www.example.com/',
+          // Make sure that URI properly handled.
+          'uri' => $i === 4 ? 'route:<front>' : 'http://www.example.com/',
           'title' => 'CTA ' . $i,
         ] : [],
         'field_oe_media' => $i % 2 !== 0 ? $first_media : $second_media,
@@ -1055,7 +1056,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Item 4',
           'description' => 'Item description 4',
-          'url' => 'http://www.example.com/',
+          'url' => '/',
           'url_text' => 'CTA 4',
           'image' => file_create_url($en_file_2->getFileUri()),
           'variant' => 'image-gradient',
@@ -1076,6 +1077,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][2]['image'] = file_create_url($bg_file_1->getFileUri());
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
+    $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = file_create_url($bg_file_2->getFileUri());
     $assert->assertPattern($expected_values, $html);

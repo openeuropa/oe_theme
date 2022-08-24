@@ -2061,7 +2061,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
       /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
       $link_item = $sub_paragraph->get('field_oe_link')->first();
-      $link = $link_item->get('uri')->getValue();
+      $link = Url::fromUri($link_item->get('uri')->getValue())->toString();
       $link_text = $link_item->get('title')->getValue();
     }
     $variables['items'][] = [
