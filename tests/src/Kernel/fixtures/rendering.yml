@@ -493,6 +493,11 @@
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+        - mime: "application/doc"
+          url: "http://example.com/document_pt.doc"
+          size: "180000"
+          name: "document.doc"
+          language_code: "pt-pt"
       translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
   assertions:
@@ -500,22 +505,29 @@
       'svg.ecl-file__icon': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file__translation-container': 1
-      'li.ecl-file__translation-item a.ecl-file__translation-download': 3
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 4
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_pt.doc"]': 1
+      'a.ecl-file__translation-download[hreflang="fr"]': 1
+      'a.ecl-file__translation-download[hreflang="it"]': 1
+      'a.ecl-file__translation-download[hreflang="hu"]': 1
+      'a.ecl-file__translation-download[hreflang="pt"]': 1
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "italiano"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "português"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-description': "Custom information snippet."
 - array:
     '#type': pattern
@@ -596,6 +608,14 @@
             size: "170000"
             name: "document.pdf"
             language_code: "hu"
+        - teaser: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
+          file:
+            title: "Portugies translation"
+            mime: "application/doc"
+            url: "http://example.com/document_pt.doc"
+            size: "180000"
+            name: "document.doc"
+            language_code: "pt-pt"
       translation_toggle_label: "Other translations"
       more_info: "Looking for another language which is not on the list? Find out why."
       badges:
@@ -611,10 +631,11 @@
       'div.ecl-file__container div.ecl-file__info': 1
       'div.ecl-file__translation-container': 1
       'ul.ecl-file__translation-list': 1
-      'li.ecl-file__translation-item a.ecl-file__translation-download': 3
+      'li.ecl-file__translation-item a.ecl-file__translation-download': 4
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_it.ppt"]': 1
       'a.ecl-file__translation-download[href="http://example.com/document_hu.pdf"]': 1
+      'a.ecl-file__translation-download[href="http://example.com/document_pt.doc"]': 1
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
     equals:
       'div.ecl-file__detail-info div.ecl-file__title': "Example document"
@@ -624,7 +645,7 @@
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (3)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
@@ -640,6 +661,11 @@
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "Portugies translation"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-description': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-language': "português"
+      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
+      '.ecl-file__translation-item:nth-child(4) .ecl-link__label': "Download"
       'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - array:

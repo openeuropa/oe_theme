@@ -38,6 +38,11 @@ file_translation:
           size: "170000"
           name: "document.pdf"
           language_code: "hu"
+        - mime: "application/pdf"
+          url: "http://example.com/document_pt.pdf"
+          size: "180000"
+          name: "document.pdf"
+          language_code: "pt-pt"
     translation_toggle_label:
       type: "text"
       label: "Translation toggle label"
