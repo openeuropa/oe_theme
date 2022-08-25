@@ -39,11 +39,11 @@ class SocialMediaLinksFormatterTest extends SocialMediaLinksFormatterTestBase {
         'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] span' => "Mastodon",
       ],
       'contains' => [
-        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
-        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
-        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
-        'a.ecl-social-media-follow__link[href="http://t.me/example"] use' => 'icons-social.svg#telegram',
-        'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] use' => 'icons-social.svg#mastodon',
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social-media.svg#email-color',
+        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social-media.svg#facebook-color',
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social-media.svg#twitter-color',
+        'a.ecl-social-media-follow__link[href="http://t.me/example"] use' => 'icons-social-media.svg#telegram-color',
+        'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] use' => 'icons-social-media.svg#mastodon-color',
       ],
     ]);
 
@@ -72,11 +72,11 @@ class SocialMediaLinksFormatterTest extends SocialMediaLinksFormatterTestBase {
         'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] span' => "Mastodon",
       ],
       'contains' => [
-        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social.svg#email',
-        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social.svg#facebook',
-        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social.svg#twitter',
-        'a.ecl-social-media-follow__link[href="http://t.me/example"] use' => 'icons-social.svg#telegram',
-        'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] use' => 'icons-social.svg#mastodon',
+        'a.ecl-social-media-follow__link[href="mailto:socialmedialink@example.com"] use' => 'icons-social-media.svg#email-color',
+        'a.ecl-social-media-follow__link[href="http://facebook.com"] use' => 'icons-social-media.svg#facebook-color',
+        'a.ecl-social-media-follow__link[href="http://twitter.com"] use' => 'icons-social-media.svg#twitter-color',
+        'a.ecl-social-media-follow__link[href="http://t.me/example"] use' => 'icons-social-media.svg#telegram-color',
+        'a.ecl-social-media-follow__link[href="http://mastodon.social/@example"] use' => 'icons-social-media.svg#mastodon-color',
       ],
     ]);
   }

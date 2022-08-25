@@ -93,10 +93,8 @@ class SocialMediaLinksAssert extends BasePatternAssert {
         // Service icon exists.
         $link_element = $li_item->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before.ecl-social-media-follow__link');
         $label_element = $link_element->filter('span.ecl-link__label');
-        $svg = $link_element->filter('svg.ecl-icon.ecl-icon--xl.ecl-link__icon.ecl-social-media-follow__icon use');
-        self::assertStringContainsString('icons-social.svg#' . $expected_item['service'], $svg->attr('xlink:href'));
-        $svg_hover = $link_element->filter('svg.ecl-icon.ecl-icon--xl.ecl-link__icon.ecl-social-media-follow__icon-hover use');
-        self::assertStringContainsString('icons-social.svg#' . $expected_item['service'] . '_hover', $svg_hover->attr('xlink:href'));
+        $svg = $link_element->filter('svg.ecl-icon.ecl-icon--l.ecl-link__icon use');
+        self::assertStringContainsString('icons-social-media.svg#' . $expected_item['service'], $svg->attr('xlink:href'));
       }
 
       self::assertEquals($expected_item['label'], trim($label_element->text()));
