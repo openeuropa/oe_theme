@@ -284,10 +284,38 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Assert given corporate footer presence on page.
    *
-   * @Then I should see the :component_library footer( instead)
+   * @Then I should see the European Commission footer with link :link
    */
-  public function assertFooterBlockOnPage(string $component_library): void {
-    $this->assertFooter($component_library, TRUE);
+  public function assertEuropeanCommissionFooterBlockOnPage(string $link): void {
+    // Make sure a corporate footer is present on the page.
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
+    // European Commission footer is presented.
+    Assert::assertEquals('European Commission', $this->getFooterType(), 'European Commission footer is not presented on the page.');
+
+    // Assert footer data.
+    $title_link = $this->getSession()->getPage()->find('css', '.ecl-site-footer__title-link[href="' . $link . '"]');
+    Assert::assertNotEmpty($title_link, 'European Commission footer link is not found.');
+  }
+
+  /**
+   * Assert given corporate footer presence on page.
+   *
+   * @Then I should see the European Union footer with link :link label :label image alt :img_alt title :img_title
+   */
+  public function assertEuropeanUnionFooterBlockOnPage(string $link, string $label, string $img_alt, string $img_title): void {
+    // Make sure a corporate footer is present on the page.
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
+    // European Union footer is presented.
+    Assert::assertEquals('European Union', $this->getFooterType(), 'European Union footer is not presented on the page.');
+
+    // Assert footer data.
+    $page = $this->getSession()->getPage();
+    $logo_link = $page->find('css', '.ecl-site-footer__logo-link');
+    Assert::assertEquals($link, $logo_link->getAttribute('href'));
+    Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
+    $img = $logo_link->find('css', 'img');
+    Assert::assertEquals($img_alt, $img->getAttribute('alt'));
+    Assert::assertEquals($img_title, $img->getAttribute('title'));
   }
 
   /**
@@ -296,7 +324,10 @@ class OeThemeTestContext extends RawDrupalContext {
    * @Then I should not see the :component_library footer( instead)
    */
   public function assertMissingFooterBlockOnPage(string $component_library): void {
-    $this->assertFooter($component_library, FALSE);
+    // Make sure a corporate footer is present on the page.
+    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
+    // Chosen footer has to be absent.
+    Assert::assertNotEquals($component_library, $this->getFooterType());
   }
 
   /**
@@ -337,44 +368,20 @@ class OeThemeTestContext extends RawDrupalContext {
   }
 
   /**
-   * Assert presence or absence of footer blocks.
+   * Determines footer type.
    *
-   * @param string $component_library
-   *   Component library name: either 'European Commission' or 'European Union'.
-   * @param bool $presence
-   *   Wheres presence (TRUE) or absence (FALSE) should be asserted.
+   * The ECL doesn't provide a way to determine type of the footer except as
+   * to check the existence of the logo.
+   * 'European Union' has logo, 'European Commission' doesn't.
+   *
+   * @return string
+   *   'European Union' or 'European Commission'.
    */
-  public function assertFooter(string $component_library, bool $presence): void {
-    // Map component library with the expected logo count from markup.
-    // This is necessary as the ECL gives us no other ways of determining
-    // which footer is which.
-    $expected = [
-      'European Commission' => 0,
-      'European Union' => 1,
-    ];
-
-    // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
-
-    $page = $this->getSession()->getPage();
-    $logo = $page->findAll('css', 'footer.ecl-site-footer img.ecl-site-footer__logo-image-desktop');
-
-    // Assert presence or absence of given footer block.
-    $logo_found = count($logo) === $expected[$component_library];
-
-    if ($logo_found !== $presence) {
-      $expectation = $presence ? 'present' : 'absent';
-      throw new \Exception("The {$component_library} corporate footer block was expected to be {$expectation} but it is not.");
-    }
-
-    if ($logo && $presence) {
-      $link = $page->find('css', '.ecl-site-footer__logo-link');
-      Assert::assertEquals('https://european-union.europa.eu/index_en', $link->getAttribute('href'));
-      Assert::assertEquals(t('Home - European Union')->__toString(), $link->getAttribute('aria-label'));
-      $img = $link->find('css', 'img');
-      Assert::assertEquals(t('European Union flag')->__toString(), $img->getAttribute('alt'));
-      Assert::assertEquals(t('European Union')->__toString(), $img->getAttribute('title'));
-    }
+  protected function getFooterType(): string {
+    $logo = $this->getSession()
+      ->getPage()
+      ->find('css', 'footer.ecl-site-footer img.ecl-site-footer__logo-image-desktop');
+    return empty($logo) ? 'European Commission' : 'European Union';
   }
 
   /**
@@ -400,32 +407,17 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Asserts that the header logo contains all required attributes.
    *
-   * @Then the :language header logo should contain accessibility attributes
+   * @Then the header logo should contain accessibility attributes with link :link label :label alt :alt title :title
    */
-  public function assertHeaderLogoAccessibility(string $language): void {
-    $theme_name = \Drupal::theme()->getActiveTheme()->getName();
-    $component_library = \Drupal::config($theme_name . '.settings')->get('component_library');
-    $eu_official_languages = $this->getEuLanguages();
-
+  public function assertHeaderLogoAccessibility(string $link, string $label, string $alt, string $title): void {
     $link_selector = '.ecl-site-header__logo-link';
-    $link = $this->getSession()->getPage()->find('css', $link_selector);
-    if ($component_library === 'ec') {
-      $href = !empty($eu_official_languages[$language]) ? 'https://ec.europa.eu/info/index_' . $eu_official_languages[$language] : 'https://ec.europa.eu/info';
-      $aria_label = t('Home - European Commission')->__toString();
-      $img_alt = t('European Commission logo')->__toString();
-      $img_title = t('European Commission')->__toString();
-    }
-    else {
-      $href = !empty($eu_official_languages[$language]) ? 'https://european-union.europa.eu/index_' . $eu_official_languages[$language] : 'https://european-union.europa.eu';
-      $aria_label = t('Home - European Union')->__toString();
-      $img_alt = t('European Union flag')->__toString();
-      $img_title = t('European Union')->__toString();
-    }
-    Assert::assertEquals($href, $link->getAttribute('href'));
-    Assert::assertEquals($aria_label, $link->getAttribute('aria-label'));
-    $img = $link->find('css', 'img');
-    Assert::assertEquals($img_alt, $img->getAttribute('alt'));
-    Assert::assertEquals($img_title, $img->getAttribute('title'));
+    $logo_link = $this->getSession()->getPage()->find('css', $link_selector);
+
+    Assert::assertEquals($link, $logo_link->getAttribute('href'));
+    Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
+    $img = $logo_link->find('css', 'img');
+    Assert::assertEquals($alt, $img->getAttribute('alt'));
+    Assert::assertEquals($title, $img->getAttribute('title'));
   }
 
   /**
@@ -445,7 +437,7 @@ class OeThemeTestContext extends RawDrupalContext {
     $this->assertSession()->elementExists('css', '.ecl-site-header__top .ecl-site-header__action .ecl-site-header__language-selector');
     $this->assertSession()->elementExists('css', '.ecl-site-header__top .ecl-site-header__action .ecl-site-header__search-container');
     $site_name_method = 'elementExists';
-    if ($ecl_branding == 'Core') {
+    if ($ecl_branding === 'Core') {
       $site_name_method = 'elementNotExists';
     }
     $this->assertSession()->{$site_name_method}('css', '.ecl-site-header__banner');
