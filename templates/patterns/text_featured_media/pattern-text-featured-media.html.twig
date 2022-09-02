@@ -9,6 +9,11 @@
 
 {% set variant = variant|default('left_simple') %}
 {% set text = text|render %}
+{% set video_ratio = video_ratio|replace({':': '-'}) %}
+{% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
+{% if video_ratio not in allowed_values %}
+  {% set video_ratio = '16-9' %}
+{% endif %}
 
 {# We consider the text position while ECL needs the media position, so we need to reverse the values. #}
 {% if 'right' in variant %}

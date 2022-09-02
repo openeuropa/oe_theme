@@ -252,7 +252,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     // Assert remote video is rendered properly.
-    $video_iframe = $crawler->filter('div.ecl-media-container__media--ratio-16-9 iframe');
+    $media_container = $crawler->filter('div.ecl-media-container__media');
+    $existing_classes = $media_container->attr('class');
+    $existing_classes = explode(' ', $existing_classes);
+    $this->assertContains('ecl-media-container__media--ratio-16-9', $existing_classes);
+    $video_iframe = $media_container->filter('iframe');
     $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
         'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
@@ -269,7 +273,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
     $paragraph->save();
 
-    // Assert remote video is rendered properly.
+    // Assert AV video is rendered properly.
     $html = $this->renderParagraph($paragraph);
     $expected_values = [
       'title' => NULL,
@@ -281,7 +285,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
 
-    // Create iframe video with aspect ration 16:9 and add it to the paragraph.
+    // Create iframe video with aspect ratio 16:9 and add it to the paragraph.
     $media = $media_storage->create([
       'bundle' => 'video_iframe',
       'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
