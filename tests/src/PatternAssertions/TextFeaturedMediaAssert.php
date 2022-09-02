@@ -21,31 +21,31 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'div.ecl-featured-item__heading',
+        'h2.ecl-u-type-heading-2',
       ],
       'text_title' => [
         [$this, 'assertElementText'],
-        'div.ecl-featured-item__title',
+        'div.ecl-featured-item__item div.ecl-featured-item__title',
       ],
       'image' => [
         [$this, 'assertImage'],
-        'article.ecl-featured-item__container figure.ecl-media-container img',
+        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container img.ecl-media-container__media',
       ],
       'video' => [
         [$this, 'assertElementHtml'],
-        'article.ecl-featured-item__container figure.ecl-media-container div.ecl-media-container__media',
+        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container div.ecl-media-container__media',
       ],
       'caption' => [
         [$this, 'assertElementText'],
-        'article.ecl-featured-item__container figure figcaption.ecl-media-container__caption',
+        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container figcaption.ecl-media-container__caption',
       ],
       'text' => [
         [$this, 'assertElementText'],
-        'div.ecl-featured-item__item > div.ecl',
+        'div.ecl-featured-item__item div.ecl-featured-item__description',
       ],
       'video_ratio' => [
         [$this, 'assertVideoRatio'],
-        'article.ecl-featured-item__container figure.ecl-media-container div.ecl-media-container__media',
+        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container div.ecl-media-container__media',
       ],
       'link' => [
         [$this, 'assertLink'],
@@ -94,7 +94,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLink(array $expected_link, Crawler $crawler): void {
-    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-featured-item__link.ecl-u-mt-m.ecl-u-type-bold');
+    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-featured-item__link');
     self::assertEquals($expected_link['path'], $link_element->attr('href'));
 
     $label_element = $link_element->filter('span.ecl-link__label');
@@ -114,11 +114,11 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    */
   protected function assertHighlighted(bool $highlighted, Crawler $crawler) {
     if (!$highlighted) {
-      $this->assertElementNotExists('div.ecl-featured-item.ecl-featured-item--extended', $crawler);
-      $this->assertElementExists('div.ecl-featured-item', $crawler);
+      $this->assertElementNotExists('article.ecl-featured-item.ecl-featured-item--extended', $crawler);
+      $this->assertElementExists('article.ecl-featured-item', $crawler);
       return;
     }
-    $this->assertElementExists('div.ecl-featured-item.ecl-featured-item--extended', $crawler);
+    $this->assertElementExists('article.ecl-featured-item.ecl-featured-item--extended', $crawler);
   }
 
   /**
@@ -131,11 +131,12 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     $crawler = new Crawler($html);
 
     $position_variant = 'left';
-    $media_wrapper = $crawler->filter('.ecl-col-m-6');
-    $media_position = $media_wrapper->filter('.ecl-u-order-m-last');
-    if ($media_wrapper->count() && !$media_position->count()) {
-      // If the media item is rendered but the position class is not set, then
-      // we have one of the right variants.
+    $items = $crawler->filter('div.ecl-featured-item__item');
+    $items_wrapper = $crawler->filter('div.ecl-featured-item__container.ecl-featured-item__container--right');
+    if ($items->count() === 2 && !$items_wrapper->count()) {
+      // If we have 2 items render but the "right" class is not set, we have
+      // one of the rights variants because we consider the text position,
+      // while ECL considers the media position, so the values are reverted.
       $position_variant = 'right';
     }
 

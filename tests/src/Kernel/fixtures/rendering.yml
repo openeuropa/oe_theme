@@ -2719,23 +2719,21 @@
       highlighted: false
   assertions:
     count:
-      'div.ecl-featured-item': 1
-      'div.ecl-featured-item.ecl-featured-item--extended': 0
-      'article.ecl-featured-item__container': 1
-      'div.ecl-featured-item__item': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
+      'div.ecl-featured-item__item': 2
       'div.ecl-featured-item__title': 1
-      'figure.ecl-media-container': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
     equals:
-      'div.ecl-featured-item__heading': "Heading"
+      'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-featured-item__item > div.ecl': "Some more text"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
@@ -2754,13 +2752,11 @@
       highlighted: true
   assertions:
     count:
-      'div.ecl-featured-item.ecl-featured-item--extended': 1
-      'div.ecl-featured-item__heading': 0
-      'article.ecl-featured-item__container': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 0
-      'div.ecl-col-m-6.ecl-u-pr-l.ecl-u-pl-none': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 1
+      'h2.ecl-u-type-heading-2': 0
+      'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 1
-      'figure.ecl-media-container': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
@@ -2769,7 +2765,7 @@
     equals:
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-featured-item__item > div.ecl': "Some more text"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
@@ -2788,21 +2784,19 @@
       highlighted: true
   assertions:
     count:
-      'div.ecl-featured-item.ecl-featured-item--extended': 1
-      'div.ecl-featured-item__heading': 1
-      'article.ecl-featured-item__container': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 0
-      'div.ecl-col-m-6.ecl-u-pr-l.ecl-u-pl-none': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 1
+      'h2.ecl-u-type-heading-2': 1
+      'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 0
-      'figure.ecl-media-container': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
-      'div.ecl-featured-item__heading': "Heading"
+      'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
-      'div.ecl-featured-item__item > div.ecl': "Some more text"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2814,21 +2808,20 @@
       text: "Some more text"
   assertions:
     count:
-      'div.ecl-featured-item': 1
-      'div.ecl-featured-item.ecl-featured-item--extended': 0
-      'article.ecl-featured-item__container': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'div.ecl-featured-item__container': 1
       'div.ecl-col-md-6': 0
       'div.ecl-featured-item__title': 1
-      'figure.ecl-media-container': 0
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-featured-item__item.ecl': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
     equals:
-      'div.ecl-featured-item__heading': "Heading"
+      'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
-      'div.ecl-featured-item__item > div.ecl': "Some more text"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2844,21 +2837,18 @@
         path: "http://example.com"
   assertions:
     count:
-      'div.ecl-featured-item': 1
-      'div.ecl-featured-item.ecl-featured-item--extended': 0
-      'article.ecl-featured-item__container': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 0
-      'div.ecl-col-m-6.ecl-u-pl-none': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 1
-      'figure.ecl-media-container': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
-      'div.ecl-featured-item__heading': "Heading"
+      'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
-      'div.ecl-featured-item__item div.ecl': "Some more text"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2868,18 +2858,18 @@
       caption: "Some caption"
   assertions:
     count:
-      'div.ecl-featured-item': 0
-      'div.ecl-featured-item.ecl-featured-item--extended': 0
-      'article.ecl-featured-item__container': 0
-      'div.ecl-col-m-6': 0
-      'figure.ecl-media-container': 0
+      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item': 1
+      'div.ecl-featured-item__container': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
-      'div.ecl-featured-item__heading': 0
+      'h2.ecl-u-type-heading-2': 1
       'a.ecl-link': 0
-    equals: {}
+    equals:
+      'h2.ecl-u-type-heading-2': "Heading"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2898,18 +2888,16 @@
         path: "http://example.com"
   assertions:
     count:
-      'div.ecl-featured-item': 1
-      'div.ecl-featured-item.ecl-featured-item--extended': 0
-      'article.ecl-featured-item__container': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 1
-      'figure.ecl-media-container': 1
+      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
+      'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
-      'div.ecl-featured-item__heading': "Heading"
-      'div.ecl-featured-item__item div.ecl': "Some more text"
+      'h2.ecl-u-type-heading-2': "Heading"
+      'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
     '#type': pattern
@@ -2942,7 +2930,6 @@
   assertions:
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
-      'div.ecl-col-m-6.ecl-u-order-m-last': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
 - array:
     '#type': pattern
