@@ -8,76 +8,53 @@
 #}
 
 {% set variant = variant|default('left_simple') %}
-
-{% set video_ratio = video_ratio|replace({':': '-'}) %}
-{% set allowed_values = ['16-9','4-3','3-2','1-1'] %}
-{% if video_ratio not in allowed_values %}
-  {% set video_ratio = '16-9' %}
-{% endif %}
 {% set text = text|render %}
 
+{# We consider the text position while ECL needs the media position, so we need to reverse the values. #}
 {% if 'right' in variant %}
-  {% if highlighted == true %}
-    {% set media_class = 'ecl-u-pr-l ecl-u-pl-none' %}
-  {% else %}
-    {% set media_class = 'ecl-u-pl-none' %}
-  {% endif %}
+  {% set _position = 'left' %}
 {% else %}
-  {% set media_class = 'ecl-u-order-m-last ecl-u-pr-none' %}
+  {% set _position = 'right' %}
 {% endif %}
 
-{% set call_to_action_link = '' %}
 {% if link %}
   {% set link_type = 'featured' in variant ? 'cta' : 'standalone' %}
-
-  {% set call_to_action_link %}
-    {% include '@ecl-twig/link' with {
-      link: {
-        type: link_type,
-        label: link.label,
-        path: link.path,
-        icon_position: 'after'
-      },
-      extra_classes: 'ecl-featured-item__link ecl-u-mt-m ecl-u-type-bold',
-      icon: get_link_icon(link.path)
-    } %}
-  {% endset %}
+  {% set call_to_action_link = {
+    link: {
+      type: link_type,
+      label: link.label,
+      path: link.path,
+      icon_position: 'after'
+    },
+    icon: get_link_icon(link.path)
+  }%}
 {% endif %}
 
-{% if image or video or text or call_to_action_link or text_title %}
-  <div class="ecl-featured-item{{ highlighted == true ? ' ecl-featured-item--extended' : '' }}">
-    {% if title %}
-      <div class="ecl-featured-item__heading">{{ title }}</div>
+{% if image or video %}
+    {% if image %}
+      {% set _media_container = {
+        'image': image.src,
+        'alt': image.alt,
+        'description': caption,
+      } %}
+    {% elseif video %}
+      {% set _media_container = {
+        'embedded_media': video,
+        'ratio': video_ratio,
+        'description': caption,
+      } %}
     {% endif %}
-    <article class="ecl-featured-item__container">
-      {% if image or video %}
-        <div class="ecl-col-m-6 {{ media_class }}">
-          {% if image %}
-            {% include '@ecl-twig/media-container' with {
-              'image': image.src,
-              'alt': image.alt,
-              'description': caption,
-            } %}
-          {% elseif video %}
-            {% include '@ecl-twig/media-container' with {
-              'embedded_media': video,
-              'ratio': video_ratio,
-              'description': caption,
-            } %}
-          {% endif %}
-        </div>
-      {% endif %}
-      {% if text_title or text or call_to_action_link %}
-        <div class="ecl-featured-item__item">
-          {% if text_title %}
-            <div class="ecl-featured-item__title">{{ text_title }}</div>
-          {% endif %}
-          {% if text %}
-            <div class="ecl">{{ text }}</div>
-          {% endif %}
-          {{ call_to_action_link }}
-        </div>
-      {% endif %}
-    </article>
-  </div>
 {% endif %}
+
+{% if title %}
+  <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
+{% endif %}
+
+{% include '@ecl-twig/featured-item' with {
+  type: highlighted == true ? 'extended' : '',
+  title: text_title|default(''),
+  description: text|default(''),
+  link: call_to_action_link,
+  media_container: _media_container|default([]),
+  position: _position,
+} %}

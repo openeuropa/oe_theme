@@ -19,7 +19,7 @@ text_featured_media:
       type: "text"
       label: "Heading"
       description: "The heading, displayed on the top."
-      preview: "Lorem ipsum"
+      preview: "Text with Featured media"
     text_title:
       type: "text"
       label: "Title"
