@@ -31,13 +31,11 @@ services:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-3.141.59-oxygen
+    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-4.1.3-20220405
     environment:
       - DISPLAY=:99
-      - SE_OPTS=-debug
-      - DISPLAY=:99
-      - SCREEN_WIDTH=1280
-      - SCREEN_HEIGHT=800
+      - SCREEN_WIDTH=1600
+      - SCREEN_HEIGHT=1200
       - NODE_MAX_INSTANCES=5
       - NODE_MAX_SESSION=5
 
