@@ -1746,10 +1746,12 @@
     '#fields':
       title: 'Navigation list title'
       title_url: 'http://example.com'
+      external_link: true
       description: 'Navigation list description'
       links:
         - label: 'Child 1'
           url: 'http://example.com/child1'
+          is_external: true
         - label: 'Child 2'
           url: 'http://example.com/child2'
         - label: 'Child 3'
@@ -1757,20 +1759,33 @@
       secondary_links:
         - label: 'Secondary Link 1'
           url: 'http://example.com/secondary1'
+          is_external: true
         - label: 'Secondary Link 2'
           url: 'http://example.com/secondary2'
+      border: true
+      image:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for image"
   assertions:
     equals:
-      'h2.ecl-u-ma-none.ecl-u-type-prolonged-xl.ecl-u-type-bold a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
-      'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 'Navigation list description'
-      'li.ecl-unordered-list__item:nth-child(1) a.ecl-link[href="http://example.com/child1"]': 'Child 1'
-      'li.ecl-unordered-list__item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
-      'li.ecl-unordered-list__item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
-      'div.ecl-u-border-top li.ecl-unordered-list__item:nth-child(1) a.ecl-link[href="http://example.com/secondary1"]': 'Secondary Link 1'
-      'div.ecl-u-border-top li.ecl-unordered-list__item:nth-child(2) a.ecl-link[href="http://example.com/secondary2"]': 'Secondary Link 2'
+      'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"] .ecl-link__label': 'Navigation list title'
+      'div.ecl-content-block__description': 'Navigation list description'
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[href="http://example.com/child1"] .ecl-link__label': 'Child 1'
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
+      '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[href="http://example.com/secondary1"] .ecl-link__label': 'Secondary Link 1'
+      '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(2) a.ecl-link[href="http://example.com/secondary2"]': 'Secondary Link 2'
     count:
-      ul.ecl-u-mt-m.ecl-unordered-list.ecl-unordered-list--no-bullet: 2
-      li.ecl-unordered-list__item: 5
+      .ecl-content-block.ecl-navigation-list__content-block: 1
+      'h1.ecl-content-block__title a.ecl-link .ecl-icon': 1
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(1) a.ecl-link .ecl-icon': 1
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(2) a.ecl-link .ecl-icon': 0
+      '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link .ecl-link__label': 1
+      '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(2) a.ecl-link .ecl-link__label': 0
+      'ul.ecl-content-block__link-list': 2
+      'li.ecl-content-block__link-item': 5
+      "div.ecl-navigation-list__image[style=\"background-image:url('https://placeimg.com/1000/500/arch')\"]": 1
+      'div.ecl-navigation-list__image[aria-label="Alternative text for image"]': 1
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -1780,18 +1795,19 @@
       description: 'Navigation list description'
   assertions:
     equals:
-      'h2.ecl-u-ma-none.ecl-u-type-prolonged-xl.ecl-u-type-bold a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
-      'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 'Navigation list description'
+      'h1.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
+      'div.ecl-content-block__description': 'Navigation list description'
     count:
-      ul.ecl-u-mt-m.ecl-unordered-list.ecl-unordered-list--no-bullet: 0
-      li.ecl-unordered-list__item: 0
-      div.ecl-u-border-top: 0
+      h1.ecl-content-block__title a.ecl-link .ecl-icon: 0
+      .ecl-navigation-list__item.ecl-navigation-list__item--no-border: 1
+      ul.ecl-content-block__link-list: 0
+      li.ecl-content-block__link-item: 0
+      div.ecl-navigation-list__image: 0
 - array:
     '#type': pattern
     '#id': navigation_list
     '#fields':
       title: 'Navigation list title'
-      title_url: 'http://example.com'
       links:
         - label: 'Child 1'
           url: 'http://example.com/child1'
@@ -1801,15 +1817,16 @@
           url: 'http://example.com/child3'
   assertions:
     equals:
-      'h2.ecl-u-ma-none.ecl-u-type-prolonged-xl.ecl-u-type-bold a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
-      'li.ecl-unordered-list__item:nth-child(1) a.ecl-link[href="http://example.com/child1"]': 'Child 1'
-      'li.ecl-unordered-list__item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
-      'li.ecl-unordered-list__item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
+      'h1.ecl-content-block__title': 'Navigation list title'
+      'li.ecl-content-block__link-item:nth-child(1) a.ecl-link[href="http://example.com/child1"]': 'Child 1'
+      'li.ecl-content-block__link-item:nth-child(2) a.ecl-link[href="http://example.com/child2"]': 'Child 2'
+      'li.ecl-content-block__link-item:nth-child(3) a.ecl-link[href="http://example.com/child3"]': 'Child 3'
     count:
-      ul.ecl-u-mt-m.ecl-unordered-list.ecl-unordered-list--no-bullet: 1
-      li.ecl-unordered-list__item: 3
-      'p.ecl-u-mb-none.ecl-u-mt-m.ecl-u-type-color-grey.ecl-u-type-paragraph': 0
-      div.ecl-u-border-top: 0
+      h1.ecl-content-block__title a: 0
+      ul.ecl-content-block__link-list: 1
+      li.ecl-content-block__link-item: 3
+      div.ecl-content-block__description: 0
+      div.ecl-navigation-list__image: 0
 - array:
     '#type': pattern
     '#id': accordion

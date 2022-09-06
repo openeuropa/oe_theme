@@ -45,3 +45,15 @@ navigation_list:
         - label: 'Early school leaving'
           url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training/early-school-leaving_en'
           is_external: true
+    border:
+      type: "boolean"
+      label: "Border"
+      description: "Whether the border should be used."
+      preview: true
+    image:
+      type: "array"
+      label: "Image"
+      description: "Item image"
+      preview:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for image"
