@@ -40,11 +40,12 @@ Feature: Theme showcase
     Then I should not visibly see the link "Democratic change"
 
     When I hover over the link "About"
+    And the overlay "about dropdown menu" is visible
     Then I should see the link "Commission at work"
     But I should not visibly see the link "Democratic change"
 
-    When I click "Priorities" in the "navigation"
     When I hover over the link "Priorities"
+    And the overlay "priorities dropdown menu" is visible
     Then I should not visibly see the link "Commission at work"
     But I should see the link "Democratic change"
 
