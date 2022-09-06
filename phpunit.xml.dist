@@ -7,7 +7,7 @@
     <env name="SIMPLETEST_BASE_URL" value="${drupal.base_url}"/>
     <env name="SIMPLETEST_DB" value="mysql://${drupal.database.user}:${drupal.database.password}@${drupal.database.host}:${drupal.database.port}/${drupal.database.name}"/>
     <env name="SIMPLETEST_SPARQL_DB" value="sparql://${drupal.sparql.host}:${drupal.sparql.port}/?module=sparql_entity_storage"/>
-    <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", null, "${selenium.host}:${selenium.port}/wd/hub"]'/>
+    <env name="MINK_DRIVER_ARGS_WEBDRIVER" value='["${selenium.browser}", {"browserName":"chrome","chromeOptions":{"w3c": false}, "${selenium.host}:${selenium.port}/wd/hub"]'/>
   </php>
   <extensions>
     <extension class="Drupal\Tests\oe_theme\EnsurePHPUnitBatchingTestExtension" />
