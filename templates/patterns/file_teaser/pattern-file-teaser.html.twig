@@ -16,7 +16,7 @@
     'title': item.file.title,
     'description': item.teaser|smart_trim(length),
     'meta': _translation_meta,
-    'lang': item.file.language_code,
+    'lang': item.file.language_code|to_internal_language_id,
     'download': {
       'link': {
         'label': button_label|default('Download'|t),
