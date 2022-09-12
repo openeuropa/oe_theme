@@ -123,40 +123,41 @@ list_item:
     lists:
       type: "array"
       label: "Additional information"
-      description: "Array of items compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
+      description: "Array of lists compatible with the ECL Description list component. For 'link', 'link-inline' and 'taxonomy' variants of the list, the list_type is mandatory. If an iterable definition has at least one path provided, all the other items need to provide a path as well."
       preview:
-        - term: "When"
-          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - term: "Where"
-          definition:
-            - "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-            - "Rue Belliard 28, 1000 Brussels, Belgium"
-        - term: "Standalone links"
-          list_type: "link"
-          definition:
-            - label: "First link"
-              path: "https://example.com/1"
-              icon: "copy"
-            - path: "https://example.com/2"
-              icon: "download"
-            - label: "Third link"
-              path: "https://example.com/3"
-              external_link: TRUE
-        - term: "Inline links"
-          definition:
-            - label: "First inline-link"
-              path: "https://example.com/1"
-              external_link: TRUE
-            - label: "Second inline-link"
-              path: "https://example.com/2"
-            - path: "https://example.com/3"
-          list_type: "link-inline"
-        - term: "Taxonomy list"
-          list_type: "taxonomy"
-          definition:
-            - label: "Taxonomy item 1"
-            - "Taxonomy item 2"
-            - "Taxonomy item 3"
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition:
+              - "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+              - "Rue Belliard 28, 1000 Brussels, Belgium"
+          - term: "Standalone links"
+            list_type: "link"
+            definition:
+              - label: "First link"
+                path: "https://example.com/1"
+                icon: "copy"
+              - path: "https://example.com/2"
+                icon: "download"
+              - label: "Third link"
+                path: "https://example.com/3"
+                external_link: TRUE
+          - term: "Inline links"
+            definition:
+              - label: "First inline-link"
+                path: "https://example.com/1"
+                external_link: TRUE
+              - label: "Second inline-link"
+                path: "https://example.com/2"
+              - path: "https://example.com/3"
+            list_type: "link-inline"
+          - term: "Taxonomy list"
+            list_type: "taxonomy"
+            definition:
+              - label: "Taxonomy item 1"
+              - "Taxonomy item 2"
+              - "Taxonomy item 3"
     divider:
       type: "boolean"
       label: "Divider"
