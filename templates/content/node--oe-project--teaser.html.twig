@@ -5,16 +5,25 @@
  */
 #}
 {% set image_url = content.oe_featured_media|field_value|render %}
-{% set additional_information = [
-  content.group_details,
-] %}
+{% set additional_information = [] %}
+{% if content.group_details %}
+  {% set additional_information_items = [] %}
+  {% for item in content.group_details.pattern['#fields'].items %}
+    {% set additional_information_items = additional_information_items|merge([{
+      'term': item.label,
+      'definition': item.body|render,
+    }]) %}
+  {% endfor %}
+  {% set additional_information = additional_information|merge([additional_information_items]) %}
+{% endif %}
+
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'thumbnail_secondary',
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'detail': content.oe_teaser|field_value,
-    'additional_information': additional_information,
+    'lists': additional_information,
     'image': image_url ? { 'src': image_url },
     'badges': badges,
     'external_link': external_link
