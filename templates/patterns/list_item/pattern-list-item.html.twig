@@ -104,57 +104,59 @@
 {# Prepare the lists array. #}
 {% if lists is not empty %}
   {% set _lists = [] %}
-  {% set items = [] %}
-  {% for item in lists %}
-    {# Item definition can be either an array or a simple string. #}
-    {% if item.definition is iterable %}
-      {% set _definitions = [] %}
-      {% for _definition in item.definition %}
-        {% if _definition.path is defined %}
-          {% set link = {
-            link: {
-              'type': 'standalone',
-              'label': _definition.label|default(_definition.path),
-              'path': _definition.path,
-              'external': _definition.external_link|default(false),
-              'icon_path': ecl_icon_path,
-            }
-          } %}
-          {% if _definition.icon is defined %}
-            {% set link = link|merge({
-              icon: {
-                name: _definition.icon,
-                path: ecl_icon_path,
-                size: "xs",
+  {% for list in lists %}
+    {% set items = [] %}
+    {% for item in list %}
+      {# Item definition can be either an array or a simple string. #}
+      {% if item.definition is iterable %}
+        {% set _definitions = [] %}
+        {% for _definition in item.definition %}
+          {% if _definition.path is defined %}
+            {% set link = {
+              link: {
+                'type': 'standalone',
+                'label': _definition.label|default(_definition.path),
+                'path': _definition.path,
+                'external': _definition.external_link|default(false),
+                'icon_path': ecl_icon_path,
               }
-            }) %}
+            } %}
+            {% if _definition.icon is defined %}
+              {% set link = link|merge({
+                icon: {
+                  name: _definition.icon,
+                  path: ecl_icon_path,
+                  size: "xs",
+                }
+              }) %}
+            {% endif %}
+            {# For arrays we need to consider separatly which parameters have been provided. #}
+            {% set _definitions = _definitions|merge([link]) %}
+          {% elseif _definition.label is defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition.label]) %}
+          {% elseif _definition.label is not defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition]) %}
           {% endif %}
-          {# For arrays we need to consider separatly which parameters have been provided. #}
-          {% set _definitions = _definitions|merge([link]) %}
-        {% elseif _definition.label is defined and _definition.path is not defined %}
-          {% set _definitions = _definitions|merge([_definition.label]) %}
-        {% elseif _definition.label is not defined and _definition.path is not defined %}
-          {% set _definitions = _definitions|merge([_definition]) %}
-        {% endif %}
-      {% endfor %}
-      {% set items = items|merge([{
-        term: item.term,
-        definition: _definitions,
-        type: item.list_type|default(''),
-      }]) %}
-    {% elseif item.definition|render is not empty %}
-      {% set items = items|merge([{
-        term: item.term,
-        definition: item.definition|render,
-        type: item.list_type|default(''),
-      }]) %}
-    {% endif %}
+        {% endfor %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: _definitions,
+          type: item.list_type|default(''),
+        }]) %}
+      {% elseif item.definition|render is not empty %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: item.definition|render,
+          type: item.list_type|default(''),
+        }]) %}
+      {% endif %}
+    {% endfor %}
+    {# Always use the horizontal variant of ECL Description list component for this pattern. #}
+    {% set _lists = _lists|merge([{
+      variant: "horizontal",
+      items: items,
+    }]) %}
   {% endfor %}
-  {# Always use the horizontal variant of ECL Description list component for this pattern. #}
-  {% set _lists = _lists|merge([{
-    variant: "horizontal",
-    items: items,
-  }]) %}
 {% endif %}
 
 {% include '@ecl-twig/content-item' with {

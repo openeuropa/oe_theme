@@ -931,10 +931,11 @@
       url: "http://example.com"
       title: "Item title"
       lists:
-        - term: "When"
-          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - term: "Where"
-          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
@@ -1297,10 +1298,11 @@
         - "News article"
         - "6 July 2015"
       lists:
-        - term: "When"
-          definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-        - term: "Where"
-          definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
