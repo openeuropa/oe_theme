@@ -143,10 +143,10 @@
           definition: _definitions,
           type: item.list_type|default(''),
         }]) %}
-      {% elseif item.definition|render is not empty %}
+      {% elseif item.definition is not empty %}
         {% set items = items|merge([{
           term: item.term,
-          definition: item.definition|render,
+          definition: item.definition,
           type: item.list_type|default(''),
         }]) %}
       {% endif %}
