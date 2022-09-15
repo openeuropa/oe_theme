@@ -819,7 +819,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
   // Extract the image if present.
-  if (!$paragraph->get('field_oe_image')->isEmpty()) {
+  if (!$paragraph->get('field_oe_image')->isEmpty() && $variables['variant'] !== 'default') {
     /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $image_item */
     $image_item = $paragraph->get('field_oe_image')->first();
     $file = $image_item->get('entity')->getValue();
