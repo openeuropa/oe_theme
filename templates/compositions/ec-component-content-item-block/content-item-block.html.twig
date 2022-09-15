@@ -42,14 +42,14 @@
 {% endif %}
 
 {% set _extra_classes_item = 'ecl-col-12' %}
-{% if _type == 'two' %}
-  {% set _extra_classes_item = 'ecl-col-12 ecl-col-l-6' %}
-{% elseif _type == 'three' %}
-  {% set _extra_classes_item = 'ecl-col-12 ecl-col-l-4' %}
-{% elseif _type == 'four' %}
-  {% set _extra_classes_item = 'ecl-col-12 ecl-col-l-3' %}
-{% elseif _type == 'six' %}
-  {% set _extra_classes_item = 'ecl-col-12 ecl-col-l-2' %}
+{% if _type == 2 %}
+  {% set _extra_classes_item = _extra_classes_item ~ ' ecl-col-l-6' %}
+{% elseif _type == 3 %}
+  {% set _extra_classes_item = _extra_classes_item ~ ' ecl-col-l-4' %}
+{% elseif _type == 4 %}
+  {% set _extra_classes_item = _extra_classes_item ~ ' ecl-col-l-3' %}
+{% elseif _type == 6 %}
+  {% set _extra_classes_item = _extra_classes_item ~ ' ecl-col-l-2' %}
 {% endif %}
 
 <div class="{{ _css_class }}"{{ _extra_attributes|raw }}>
@@ -62,11 +62,24 @@
   {% endif %}
 
   <div class="ecl-row">
-    {% for _item in _items %}
-      <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
-        {{ _item }}
-      </div>
-    {% endfor %}
+    {% if vertical %}
+      {% set items_per_column = _items|length/_type %}
+      {% for column in _items|batch(items_per_column) %}
+        <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
+          {% for _item in column %}
+            <div class="ecl-content-item-block__item ecl-u-mb-s">
+              {{ _item }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    {% else %}
+      {% for _item in _items %}
+        <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
+          {{ _item }}
+        </div>
+      {% endfor %}
+    {% endif %}
   </div>
 
   {% if _button.path %}
