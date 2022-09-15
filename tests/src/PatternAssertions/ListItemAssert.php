@@ -244,7 +244,7 @@ class ListItemAssert extends BasePatternAssert {
     }
     $list_terms = $crawler->filter($list_container_selector . ' dt.ecl-description-list__term');
     $list_definitions = $crawler->filter($list_container_selector . ' dd.ecl-description-list__definition');
-    self::assertCount(count($expected), $list_terms);
+    self::assertCount(count($expected), $crawler->filter($list_container_selector));
     foreach ($expected as $index => $expected_list) {
       foreach ($expected_list as $term => $definitions) {
         self::assertEquals($term, trim($list_terms->eq($index)->text()), \sprintf('The expected text of the term number %s does not correspond to the found term text.', $index));

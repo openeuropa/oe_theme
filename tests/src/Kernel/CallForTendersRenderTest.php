@@ -9,8 +9,11 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests call for tenders rendering.
@@ -115,9 +118,31 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
         ],
       ],
       'image' => NULL,
-      // @todo Replace additional_information assertion with lists in EWPP-2508.
+      'lists' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Reference',
+              'body' => 'Call for tenders reference',
+            ], [
+              'label' => 'Opening date',
+              'body' => $opening_date->format('d F Y'),
+            ], [
+              'label' => 'Deadline date',
+              'body' => $deadline_date->format('d F Y, H:i (T)'),
+            ], [
+              'label' => 'Departments',
+              'body' => 'Audit Board of the European Communities, Arab Common Market',
+            ],
+          ],
+        ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high');
+    $this->assertCount(1, $actual);
 
     // Test short title fallback.
     $node->set('oe_content_short_title', 'CFT short title');
@@ -131,7 +156,25 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Check status Closed and highlighted labels and background.
@@ -150,10 +193,35 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       ],
     ];
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
-    // @todo Restore Deadline date assert in EWPP-2508.
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--low');
+    $this->assertCount(1, $actual);
+
+    // Check Deadline date is striked when Call for tenders is closed.
+    $actual = $crawler->filter('dd.ecl-description-list__definition > .ecl-u-type-strike');
+    $this->assertCount(1, $actual);
+
     // Check status Upcoming label and background.
     $opening_date = (clone $static_time)->modify('+ 10 days');
     $deadline_date = (clone $static_time)->modify('+ 5 days');
@@ -166,8 +234,30 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'label' => 'Call status: Upcoming',
       'variant' => 'medium',
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium');
+    $this->assertCount(1, $actual);
 
     // Check status N/A.
     $publication_date = (clone $static_time)->modify('+ 5 days');
@@ -181,7 +271,22 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
 
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['badges'][0] = [];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
   }
 

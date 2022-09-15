@@ -9,7 +9,10 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests call for proposals rendering.
@@ -110,9 +113,34 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
         ],
       ],
       'image' => NULL,
-      // @todo Replace additional_information assertion with lists in EWPP-2508.
+      'lists' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Reference',
+              'body' => 'Call for proposals reference',
+            ], [
+              'label' => 'Opening date',
+              'body' => '14 February 2020',
+            ], [
+              'label' => 'Deadline model',
+              'body' => 'Single-stage',
+            ], [
+              'label' => 'Deadline date',
+              'body' => '21 February 2020',
+            ], [
+              'label' => 'Funding programme',
+              'body' => 'Arab Common Market',
+            ],
+          ],
+        ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high');
+    $this->assertCount(1, $actual);
 
     // Test short title fallback.
     $node->set('oe_content_short_title', 'CFP short title')->save();
@@ -131,7 +159,28 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $node->set('oe_call_proposals_model', 'two_stage')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for proposals reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
+          ], [
+            'label' => 'Deadline model',
+            'body' => 'Two-stage',
+          ], [
+            'label' => 'Deadline dates',
+            'body' => "21 February 2020\n | 22 February 2020",
+          ], [
+            'label' => 'Funding programme',
+            'body' => 'Arab Common Market',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Check status Closed and highlighted labels and background.
@@ -153,8 +202,33 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for proposals reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
+          ], [
+            'label' => 'Deadline model',
+            'body' => 'Multiple cut-off',
+          ], [
+            'label' => 'Deadline date',
+            'body' => '17 February 2020',
+          ], [
+            'label' => 'Funding programme',
+            'body' => 'Arab Common Market',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--low');
+    $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
     $opening_date->modify('+ 10 days');
@@ -170,8 +244,33 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       'label' => 'Call status: Upcoming',
       'variant' => 'medium',
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for proposals reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => '24 February 2020',
+          ], [
+            'label' => 'Deadline model',
+            'body' => 'Single-stage',
+          ], [
+            'label' => 'Deadline date',
+            'body' => '21 February 2020',
+          ], [
+            'label' => 'Funding programme',
+            'body' => 'Arab Common Market',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium');
+    $this->assertCount(1, $actual);
 
     // Check status N/A.
     $publication_date->modify('+ 5 days');
@@ -184,7 +283,22 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['badges'][0] = [];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for proposals reference',
+          ], [
+            'label' => 'Deadline model',
+            'body' => 'Permanent',
+          ], [
+            'label' => 'Funding programme',
+            'body' => 'Arab Common Market',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
   }
 

@@ -9,7 +9,10 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests consultation rendering.
@@ -103,9 +106,26 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         ],
       ],
       'image' => NULL,
-      // @todo Replace additional_information assertion with lists in EWPP-2508.
+      'lists' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Opening date',
+              'body' => '14 February 2020',
+            ],
+            [
+              'label' => 'Deadline',
+              'body' => '21 February 2020, 01:00 (AEDT)',
+            ],
+          ],
+        ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high');
+    $this->assertCount(1, $actual);
 
     // Test short title fallback.
     $node->set('oe_content_short_title', 'Consultation short title');
@@ -132,7 +152,19 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
+          ], [
+            'label' => 'Deadline',
+            'body' => '17 February 2020, 12:00 (AEDT)',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Check status Upcoming label and background.
@@ -148,8 +180,24 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'label' => 'Status: Upcoming',
       'variant' => 'medium',
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Opening date',
+            'body' => '24 February 2020',
+          ], [
+            'label' => 'Deadline',
+            'body' => '21 February 2020, 12:00 (AEDT)',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $html);
+
+    $crawler = new Crawler($html);
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium');
+    $this->assertCount(1, $actual);
   }
 
 }

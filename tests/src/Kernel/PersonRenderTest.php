@@ -12,10 +12,13 @@ use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests consultation rendering.
+ * Tests person rendering.
  *
  * @group batch2
  */
@@ -127,7 +130,16 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     // Assert Departments field.
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Department',
+            'body' => 'Audit Board of the European Communities',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert multiple values in Departments field.
@@ -135,7 +147,16 @@ class PersonRenderTest extends ContentRenderTestBase {
       'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
       'http://publications.europa.eu/resource/authority/corporate-body/ACM',
     ])->save();
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'] = [
+      new PatternAssertState(new FieldListAssert(), [
+        'items' => [
+          [
+            'label' => 'Departments',
+            'body' => 'Audit Board of the European Communities, Arab Common Market',
+          ],
+        ],
+      ]),
+    ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert Contact field with Organisation reference Contact entity with
@@ -152,7 +173,32 @@ class PersonRenderTest extends ContentRenderTestBase {
       $organisation_reference_empty_contact,
       $general_contact,
     ])->save();
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'][] = new PatternAssertState(new FieldListAssert(), [
+      'items' => [
+        [
+          'label' => 'Email',
+          'body' => 'direct_contact@example.com',
+        ], [
+          'label' => 'Phone number',
+          'body' => 'Phone number direct_contact',
+        ], [
+          'label' => 'Mobile number',
+          'body' => 'Mobile number direct_contact',
+        ], [
+          'label' => 'Fax number',
+          'body' => 'Fax number direct_contact',
+        ], [
+          'label' => 'Address',
+          'body' => 'Address direct_contact, 1001 Brussels, Belgium',
+        ], [
+          'label' => 'Office',
+          'body' => 'Office direct_contact',
+        ], [
+          'label' => 'Social media links',
+          'body' => 'Social media direct_contact',
+        ],
+      ],
+    ]);
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert Contacts field with an organisation as contact.
@@ -163,7 +209,40 @@ class PersonRenderTest extends ContentRenderTestBase {
       $organisation_reference_contact,
     ])->save();
 
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $html = $this->getRenderedNode($node);
+    $crawler = new Crawler($html);
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $this->assertCount(3, $contacts_render);
+
+    $field_assert = new FieldListAssert();
+    $second_contact_expected_values = [
+      'items' => [
+        [
+          'label' => 'Email',
+          'body' => 'organisation_reference_contact@example.com',
+        ], [
+          'label' => 'Phone number',
+          'body' => 'Phone number organisation_reference_contact',
+        ], [
+          'label' => 'Mobile number',
+          'body' => 'Mobile number organisation_reference_contact',
+        ], [
+          'label' => 'Fax number',
+          'body' => 'Fax number organisation_reference_contact',
+        ], [
+          'label' => 'Address',
+          'body' => 'Address organisation_reference_contact, 1001 Brussels, Belgium',
+        ], [
+          'label' => 'Office',
+          'body' => 'Office organisation_reference_contact',
+        ], [
+          'label' => 'Social media links',
+          'body' => 'Social media organisation_reference_contact',
+        ],
+      ],
+    ];
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
+    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Assert Jobs field and highlighted label.
     $job_1 = $this->createPersonJobEntity('job_1', [
       'oe_acting' => TRUE,
@@ -181,7 +260,14 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = [
       '(Acting) Adviser',
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'][1] = new PatternAssertState(new FieldListAssert(), [
+      'items' => [
+        [
+          'label' => 'Responsibilities',
+          'body' => '(Acting) AdviserDescription job_1',
+        ],
+      ],
+    ]);
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
@@ -189,7 +275,14 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = [
       '(Acting) Adviser, Chief Adviser',
     ];
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $expected_values['lists'][1] = new PatternAssertState(new FieldListAssert(), [
+      'items' => [
+        [
+          'label' => 'Responsibilities',
+          'body' => '(Acting) AdviserDescription job_1Chief AdviserDescription job_2',
+        ],
+      ],
+    ]);
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert non-eu person.
@@ -216,11 +309,56 @@ class PersonRenderTest extends ContentRenderTestBase {
         'src' => 'person_portrait.png',
         'alt' => '',
       ],
-      // @todo Replace additional_information assertion with lists in EWPP-2508.
+      'lists' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Organisation',
+              'body' => 'Organisation node non_eu',
+            ],
+          ],
+        ]),
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Email',
+              'body' => 'direct_contact@example.com',
+            ], [
+              'label' => 'Phone number',
+              'body' => 'Phone number direct_contact',
+            ], [
+              'label' => 'Mobile number',
+              'body' => 'Mobile number direct_contact',
+            ], [
+              'label' => 'Fax number',
+              'body' => 'Fax number direct_contact',
+            ], [
+              'label' => 'Address',
+              'body' => 'Address direct_contact, 1001 Brussels, Belgium',
+            ], [
+              'label' => 'Office',
+              'body' => 'Office direct_contact',
+            ], [
+              'label' => 'Social media links',
+              'body' => 'Social media direct_contact',
+            ],
+          ],
+        ]),
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Responsibilities',
+              'body' => 'SingerDescription job_1DancerDescription job_2',
+            ],
+          ],
+        ]),
+      ],
     ];
     $html = $this->getRenderedNode($node);
     $assert->assertPattern($expected_values, $html);
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $crawler = new Crawler($html);
+    $jobs_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
+    $this->assertCount(1, $jobs_render);
   }
 
   /**

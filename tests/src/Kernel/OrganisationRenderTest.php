@@ -7,9 +7,12 @@ namespace Drupal\Tests\oe_theme\Kernel;
 use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
+use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Tests the organisation rendering.
@@ -115,7 +118,28 @@ class OrganisationRenderTest extends ContentRenderTestBase {
         'alt' => '',
       ],
       'date' => NULL,
-      // @todo Replace additional_information assertion with lists in EWPP-2508.
+      'lists' => [
+        new PatternAssertState(new FieldListAssert(), [
+          'items' => [
+            [
+              'label' => 'Website',
+              'body' => 'http://www.example.com/website_first_contact',
+            ],
+            [
+              'label' => 'Email',
+              'body' => 'first_contact@example.com',
+            ],
+            [
+              'label' => 'Phone number',
+              'body' => 'Phone number first_contact',
+            ],
+            [
+              'label' => 'Address',
+              'body' => 'Address first_contact, 1001 Brussels, Belgium',
+            ],
+          ],
+        ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
@@ -140,7 +164,34 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $node->save();
 
     $build = $this->nodeViewBuilder->view($node, 'teaser');
-    // @todo Replace additional_information assertion with lists in EWPP-2508.
+    $html = $this->renderRoot($build);
+    $crawler = new Crawler($html);
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $this->assertCount(2, $contacts_render);
+
+    $field_assert = new FieldListAssert();
+    $second_contact_expected_values = [
+      'items' => [
+        [
+          'label' => 'Website',
+          'body' => 'http://www.example.com/website_second_contact',
+        ],
+        [
+          'label' => 'Email',
+          'body' => 'second_contact@example.com',
+        ],
+        [
+          'label' => 'Phone number',
+          'body' => 'Phone number second_contact',
+        ],
+        [
+          'label' => 'Address',
+          'body' => 'Address second_contact, 1001 Brussels, Belgium',
+        ],
+      ],
+    ];
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(2)');
+    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Change organisation type to non eu.
     $node->set('oe_organisation_contact', NULL);
     $node->set('oe_organisation_org_type', 'non_eu');
