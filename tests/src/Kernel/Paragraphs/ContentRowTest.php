@@ -109,7 +109,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph));
 
     // Verify the layout.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3');
     $right_column = $crawler->filter('.ecl-row .ecl-col-l-9');
     $this->assertCount(1, $left_column);
     $this->assertCount(1, $right_column);
@@ -131,7 +131,7 @@ class ContentRowTest extends ParagraphsTestBase {
     $crawler = new Crawler($this->renderParagraph($paragraph, 'en'));
 
     // Assert that side-menu is correctly rendered with the default title.
-    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3.ecl-u-z-navigation');
+    $left_column = $crawler->filter('.ecl-row .ecl-col-l-3');
     $this->assertStringContainsString('Page contents', $left_column->html());
 
     // The actual inpage navigation links are tested in the
