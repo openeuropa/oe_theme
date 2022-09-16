@@ -1,12 +1,36 @@
 # Changelog
 
-## [3.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta14) (2022-08-01)
+## [3.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta15) (2022-09-16)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta14...3.0.0-beta15)
+
+**Closed issues:**
+
+- check the oe\_theme version  [\#1154](https://github.com/openeuropa/oe_theme/issues/1154)
+
+**Merged pull requests:**
+
+- EWPP-2594: Use selenium 4. [\#1161](https://github.com/openeuropa/oe_theme/pull/1161) ([nagyad](https://github.com/nagyad))
+- EWPP-2577: Upgrade to ECL 3.4.1 and update Text with Featured media pattern. [\#1160](https://github.com/openeuropa/oe_theme/pull/1160) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2539: Fix hreflang attribute in file\_translation and file\_teaser patterns. [\#1159](https://github.com/openeuropa/oe_theme/pull/1159) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2469: Rename the video iframe media field template. [\#1157](https://github.com/openeuropa/oe_theme/pull/1157) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2511: ECL 3.4.0 upgrade. [\#1155](https://github.com/openeuropa/oe_theme/pull/1155) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2496: Fix usage of internal links in Carousel paragraph. [\#1153](https://github.com/openeuropa/oe_theme/pull/1153) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2446: Add credit field to banners and carousel patterns. [\#1149](https://github.com/openeuropa/oe_theme/pull/1149) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2433: Update navigation list pattern to use ecl component. [\#1146](https://github.com/openeuropa/oe_theme/pull/1146) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2451: Update ECL to 3.3.4. [\#1144](https://github.com/openeuropa/oe_theme/pull/1144) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2455: Allow list item block pattern to order items vertically. [\#1142](https://github.com/openeuropa/oe_theme/pull/1142) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2422: Fix inpage navigation containers not looking for sources. [\#1137](https://github.com/openeuropa/oe_theme/pull/1137) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-1973: Remove usage of t\(\) in test assertions. [\#1031](https://github.com/openeuropa/oe_theme/pull/1031) ([yenyasinn](https://github.com/yenyasinn))
+
+## [3.0.0-beta14](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta14) (2022-08-02)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta13...3.0.0-beta14)
 
 **Merged pull requests:**
 
 - EWPP-2028: Revert page header bottom margin. [\#1152](https://github.com/openeuropa/oe_theme/pull/1152) ([22Alexandra](https://github.com/22Alexandra))
+- Prepare release 3.0.0-beta14. [\#1150](https://github.com/openeuropa/oe_theme/pull/1150) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2106: Update oe\_paragraphs version in composer.json. [\#1148](https://github.com/openeuropa/oe_theme/pull/1148) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2106: Update Carousel epic branch. [\#1147](https://github.com/openeuropa/oe_theme/pull/1147) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2106: Update Carousel epic. [\#1145](https://github.com/openeuropa/oe_theme/pull/1145) ([sergepavle](https://github.com/sergepavle))
