@@ -52,3 +52,8 @@ list_item_block_one_column:
       label: "External link"
       description: "Whether the Button URL is external or not."
       preview: true
+    vertical:
+      type: "boolean"
+      label: "Vertical order"
+      description: "Whether the items to be ordered from top to bottom instead of left to right."
+      preview: true

@@ -1663,24 +1663,40 @@
           '#fields':
             title: "List item 3"
             detail: "Description for list item 3."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 4"
+            detail: "Description for list item 4."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 5"
+            detail: "Description for list item 5."
+      vertical: true
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
-      'div.ecl-content-item-block__item': 3
+      'div.ecl-content-item-block__item': 8
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
-      'div.ecl-content-item-block__item.ecl-col-l-4': 3
+      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4': 3
       'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4 div.ecl-content-item-block__item.ecl-u-mb-s': 5
+      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 5
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 3"
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-block__description': "Description for list item 2."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 3"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article h1.ecl-content-block__title': "List item 4"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-block__description': "Description for list item 4."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 5"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -1701,6 +1717,16 @@
           '#fields':
             title: "List item 3"
             detail: "Description for list item 3."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 4"
+            detail: "Description for list item 4."
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#fields':
+            title: "List item 5"
+            detail: "Description for list item 5."
       button_label: "View all"
       button_url: "http://example.com"
       button_icon_name: "language"
@@ -1709,11 +1735,11 @@
     count:
       'div.ecl-content-item-block__title': 0
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
-      'div.ecl-content-item-block__item': 3
+      'div.ecl-content-item-block__item': 5
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
-      'div.ecl-content-item-block__item.ecl-col-l-4': 3
+      'div.ecl-content-item-block__item.ecl-col-l-4': 5
       'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 3
+      'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 5
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
     equals:
@@ -1723,6 +1749,10 @@
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
       'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 3"
       'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 4"
+      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-block__description': "Description for list item 4."
+      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 5"
+      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-block__description': "Description for list item 5."
       'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#language"></use></svg>'
 - array:
     '#type': pattern
