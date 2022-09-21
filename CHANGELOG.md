@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta16) (2022-09-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta15...3.0.0-beta16)
+
+**Merged pull requests:**
+
+- EWPP-2645: Upgrade ECL version to 3.4.2. [\#1166](https://github.com/openeuropa/oe_theme/pull/1166) ([sergepavle](https://github.com/sergepavle))
+
 ## [3.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta15) (2022-09-16)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta14...3.0.0-beta15)
@@ -10,6 +18,7 @@
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta15. [\#1163](https://github.com/openeuropa/oe_theme/pull/1163) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2594: Use selenium 4. [\#1161](https://github.com/openeuropa/oe_theme/pull/1161) ([nagyad](https://github.com/nagyad))
 - EWPP-2577: Upgrade to ECL 3.4.1 and update Text with Featured media pattern. [\#1160](https://github.com/openeuropa/oe_theme/pull/1160) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2539: Fix hreflang attribute in file\_translation and file\_teaser patterns. [\#1159](https://github.com/openeuropa/oe_theme/pull/1159) ([sergepavle](https://github.com/sergepavle))
