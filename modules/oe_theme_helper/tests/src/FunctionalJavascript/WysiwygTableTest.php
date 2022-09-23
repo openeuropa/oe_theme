@@ -101,12 +101,14 @@ class WysiwygTableTest extends WebDriverTestBase {
     $web_assert = $this->assertSession();
     $page = $this->getSession()->getPage();
     $this->drupalLogin($this->webUser);
+    // "Zebra striping" checkbox should be visible in Table properties dialog.
     $this->drupalGet('node/add/oe_page');
     $this->waitOnCkeditorInstance('edit-body-0-value');
     $this->pressEditorButton('table');
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $web_assert->elementContains('css', '.cke_editor_edit-body-0-value_dialog .cke_dialog_ui_checkbox', 'Zebra striping');
-
+    // "Zebra striping" checkbox should not be visible in Table properties
+    // dialog with disabled ECL table filter.
     FilterFormat::load('full_html')
       ->setFilterConfig('filter_ecl_table', ['status' => FALSE])
       ->save();
@@ -115,7 +117,8 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->pressEditorButton('table');
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $web_assert->elementNotExists('css', '.cke_editor_edit-body-0-value_dialog .cke_dialog_ui_checkbox');
-
+    // "Zebra striping" checkbox should be visible in Table properties dialog
+    // after enabling ECL table filter.
     FilterFormat::load('full_html')
       ->setFilterConfig('filter_ecl_table', ['status' => TRUE])
       ->save();
@@ -125,12 +128,12 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $this->click('.cke_editor_edit-body-0-value_dialog .cke_dialog_ui_checkbox');
     $page->pressButton('OK');
-
+    // Data attribute should be present after enabling "Zebra striping" option.
     $this->pressEditorButton('source');
     $this->assertStringContainsString('<table border="1" cellpadding="1" cellspacing="1" data-striped="true"', $page->find('css', 'textarea.cke_source')
       ->getValue());
     $this->pressEditorButton('source');
-
+    // Assert enabled "Zebra striping" checkbox in Table properties dialog.
     $this->assignNameToCkeditorIframe('edit-body-0-value-instance-id');
     $this->getSession()->switchToIFrame('edit-body-0-value-instance-id');
     $page->find('css', 'table > tbody > tr > td')->rightClick();
@@ -141,14 +144,15 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $this->assertTrue($page->findField('Zebra striping')->isChecked());
     $page->find('css', '.cke_editor_edit-body-0-value_dialog[style~="flex;"] .cke_dialog_ui_button_ok')->click();
-
+    // Assert presence of classes in table related to "Zebra striping" option.
     $page->fillField('Page title', 'test');
     $this->click('#cke_edit-oe-teaser-0-value .cke_button__source');
     $page->find('css', 'textarea.cke_source')->setValue('test');
     $page->fillField('Content owner (value 1)', 'Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)');
     $page->pressButton('Save');
     $web_assert->elementExists('css', 'article .ecl table.ecl-table.ecl-table--zebra');
-
+    // Assert absence of classes in table related to "Zebra striping" with
+    // disabled option.
     $this->drupalGet('node/1/edit');
     $this->assignNameToCkeditorIframe('edit-body-0-value-instance-id');
     $this->getSession()->switchToIFrame('edit-body-0-value-instance-id');

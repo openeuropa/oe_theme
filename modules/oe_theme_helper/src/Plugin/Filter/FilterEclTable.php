@@ -77,6 +77,7 @@ class FilterEclTable extends FilterBase {
       }
     }
 
+    // Add related to "Zebra striping" classes.
     foreach ($xpath->query('//table[@data-striped="true"]') as $table) {
       $classes = $table->getAttribute('class');
       $table->setAttribute('class', ltrim($classes . ' ecl-table ecl-table--zebra'));

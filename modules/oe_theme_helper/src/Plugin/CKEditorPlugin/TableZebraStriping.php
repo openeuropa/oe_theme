@@ -49,6 +49,8 @@ class TableZebraStriping extends CKEditorPluginBase implements CKEditorPluginCon
       return FALSE;
     }
 
+    // "Zebra striping" option should be available only when the ECL table
+    // filter is enabled and the table button is present in the WYSIWYG toolbar.
     $enabled = FALSE;
     $format = $editor->getFilterFormat();
     if ($format->filters('filter_ecl_table')->status) {
