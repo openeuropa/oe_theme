@@ -24,6 +24,7 @@ class FilterEclTable extends FilterBase {
    * {@inheritdoc}
    *
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function process($text, $langcode) {
     $result = new FilterProcessResult($text);
@@ -74,6 +75,12 @@ class FilterEclTable extends FilterBase {
           }
         }
       }
+    }
+
+    foreach ($xpath->query('//table[@data-striped="true"]') as $table) {
+      $classes = $table->getAttribute('class');
+      $table->setAttribute('class', ltrim($classes . ' ecl-table ecl-table--zebra'));
+      $table->removeAttribute('data-striped');
     }
 
     $result->setProcessedText(Html::serialize($dom));
