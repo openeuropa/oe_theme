@@ -812,9 +812,11 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   $variables['variant'] = $list_item_variant ?? 'default';
-  $url = $paragraph->get('field_oe_link')->first()->getUrl();
-  $variables['url'] = $url;
-  $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $url = $paragraph->get('field_oe_link')->first()->getUrl();
+    $variables['url'] = $url;
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+  }
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
