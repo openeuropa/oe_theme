@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme_helper\FunctionalJavascript;
 
@@ -45,9 +45,6 @@ class WysiwygTableTest extends WebDriverTestBase {
     // Enable and set OpenEuropa Theme as default.
     $this->container->get('theme_installer')->install(['oe_theme', 'seven']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
-    $this->config('system.theme')->set('admin', 'seven')->save();
-    $this->config('node.settings')->set('use_admin_theme', TRUE)->save();
-    $this->container->get('router.builder')->rebuild();
 
     // Rebuild the ui_pattern definitions to collect the ones provided by
     // oe_theme itself.
