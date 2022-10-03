@@ -37,11 +37,39 @@ class FilterEclTable extends FilterBase {
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
 
-    foreach ($xpath->query('//table[.//th]') as $table) {
-      // Skip the table if any cell spans over multiple columns or rows.
-      $span_cells = $xpath->query('.//*[self::th or self::td][(@colspan and @colspan > 1) or (@rowspan and @rowspan > 1)]', $table);
-      if ($span_cells->count() !== 0) {
+    foreach ($xpath->query('//table') as $table) {
+      // Put ECL related classes for table tag.
+      $this->elementAddClass($table, 'ecl-table');
+      // Add classes related to "Zebra striping".
+      if ($table->getAttribute('data-striped') === 'true') {
+        $this->elementAddClass($table, 'ecl-table--zebra');
+        $table->removeAttribute('data-striped');
+      }
+
+      // Put ECL related classes for thead tag.
+      foreach ($xpath->query('./thead', $table) as $thead) {
+        $this->elementAddClass($thead, 'ecl-table__head');
+      }
+
+      // Put ECL related classes for tbody tag.
+      foreach ($xpath->query('./tbody', $table) as $tbody) {
+        $this->elementAddClass($tbody, 'ecl-table__body');
+      }
+
+      // Put ECL related classes for tr tags.
+      foreach ($xpath->query('.//tr', $table) as $trow) {
+        $this->elementAddClass($trow, 'ecl-table__row');
+      }
+
+      // Skip further processing of the table if table without headers.
+      $ths = $xpath->query('.//th', $table);
+      if ($ths->count() === 0) {
         continue;
+      }
+      else {
+        foreach ($xpath->query('.//thead/tr[1]/th', $table) as $th) {
+          $this->elementAddClass($th, 'ecl-table__header');
+        }
       }
 
       // Do not process tables that use th cells anywhere but in the first
@@ -51,30 +79,6 @@ class FilterEclTable extends FilterBase {
         continue;
       }
 
-      // Put ECL related classes for table tag.
-      $table_classes = ltrim($table->getAttribute('class') . ' ecl-table');
-      // Add related to "Zebra striping" classes.
-      if ($table->getAttribute('data-striped') === 'true') {
-        $table_classes .= ' ecl-table--zebra';
-        $table->removeAttribute('data-striped');
-      }
-      $table->setAttribute('class', $table_classes);
-
-      // Put ECL related classes for thead tag.
-      foreach ($xpath->query('./thead', $table) as $thead) {
-        $thead->setAttribute('class', ltrim($thead->getAttribute('class') . ' ecl-table__head'));
-      }
-
-      // Put ECL related classes for tbody tag.
-      foreach ($xpath->query('./tbody', $table) as $tbody) {
-        $tbody->setAttribute('class', ltrim($tbody->getAttribute('class') . ' ecl-table__body'));
-      }
-
-      // Put ECL related classes for tr tags.
-      foreach ($xpath->query('.//tr', $table) as $trow) {
-        $trow->setAttribute('class', ltrim($trow->getAttribute('class') . ' ecl-table__row'));
-      }
-
       $headers = [];
       // Collect the first header row, validating that is composed only of
       // th elements.
@@ -82,8 +86,8 @@ class FilterEclTable extends FilterBase {
       if ($has_header_row->count()) {
         $header_row = $has_header_row[0];
         foreach ($xpath->query('./th', $header_row) as $thead_cell) {
-          $thead_cell->setAttribute('class', ltrim($thead_cell->getAttribute('class') . ' ecl-table__header'));
-          // Add related to "Sort" data attribute.
+          $this->elementAddClass($thead_cell, 'ecl-table__header');
+          // Add data attribute related to "Sort".
           if ($thead_cell->getAttribute('data-sortable') === 'true') {
             $thead_cell->setAttribute('data-ecl-table-sort-toggle', '');
             $thead_cell->removeAttribute('data-sortable');
@@ -96,11 +100,18 @@ class FilterEclTable extends FilterBase {
         }
       }
 
+      // Skip further processing of the table if any cell spans
+      // over multiple columns or rows.
+      $span_cells = $xpath->query('.//*[self::th or self::td][(@colspan and @colspan > 1) or (@rowspan and @rowspan > 1)]', $table);
+      if ($span_cells->count() !== 0) {
+        continue;
+      }
+
       // Loop through all the table rows, aside from header ones.
       foreach ($xpath->query('.//tr[not(parent::thead)]', $table) as $row) {
         // Fetch all the cells inside the row.
         foreach ($xpath->query('./*[self::th or self::td]', $row) as $cell_index => $cell) {
-          $cell->setAttribute('class', ltrim($cell->getAttribute('class') . ' ecl-table__cell'));
+          $this->elementAddClass($cell, 'ecl-table__cell');
           if (array_key_exists($cell_index, $headers)) {
             $cell->setAttribute('data-ecl-table-header', $headers[$cell_index]);
           }
@@ -111,6 +122,22 @@ class FilterEclTable extends FilterBase {
     $result->setProcessedText(Html::serialize($dom));
 
     return $result;
+  }
+
+  /**
+   * Adds class to element.
+   *
+   * @param \DOMNode $element
+   *   Element.
+   * @param string $class
+   *   Class that should be added.
+   */
+  public function elementAddClass(\DOMNode $element, string $class): void {
+    $classes = $element->getAttribute('class');
+    $classes_array = array_filter(array_map('trim', explode(' ', $classes)));
+    $classes_array[] = $class;
+    $classes = implode(' ', array_unique($classes_array));
+    $element->setAttribute('class', $classes);
   }
 
 }

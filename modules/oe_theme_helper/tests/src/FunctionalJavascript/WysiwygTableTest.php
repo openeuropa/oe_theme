@@ -144,7 +144,19 @@ class WysiwygTableTest extends WebDriverTestBase {
     $this->getSession()->switchToIFrame();
     $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog'));
     $this->assertTrue($page->findField('Zebra striping')->isChecked());
+    // Enable first row headers for table.
+    $this->getOpenedDialogElement()->selectFieldOption('Headers', 'First Row');
     $this->getOpenedDialogElement()->getParent()->getParent()->pressButton('OK');
+    // Put content for table headers.
+    $javascript = <<<JS
+(function(){
+  var editor = CKEDITOR.instances['edit-body-0-value'];
+  var header_cols = editor.document.find('table > thead > tr > th');
+  header_cols.getItem(0).setHtml('<i>Header text 1</i>');
+  header_cols.getItem(1).setHtml('<i>Header text 2</i>');
+})()
+JS;
+    $this->getSession()->evaluateScript($javascript);
     // Assert presence of classes in table related to "Zebra striping" option.
     $page->fillField('Page title', 'test');
     $this->click('#cke_edit-oe-teaser-0-value .cke_button__source');
@@ -175,31 +187,6 @@ class WysiwygTableTest extends WebDriverTestBase {
     FilterFormat::load('full_html')
       ->setFilterConfig('filter_ecl_table', ['status' => FALSE])
       ->save();
-    $this->drupalGet('node/1/edit');
-    $this->waitForEditor();
-    $this->assignNameToCkeditorIframe('edit-body-0-value-instance-id');
-    $this->getSession()->switchToIFrame('edit-body-0-value-instance-id');
-    // Enable first row headers for table.
-    $page->find('css', 'table > tbody > tr > td')->rightClick();
-    $this->getSession()->switchToIFrame();
-    $this->getSession()->switchToIFrame($page->find('css', '.cke_menu_panel iframe')->getAttribute('id'));
-    $this->clickLink('Table Properties');
-    $this->getSession()->switchToIFrame();
-    $this->assertNotEmpty($web_assert->waitForElement('css', '.cke_editor_edit-body-0-value_dialog[style~="flex;"]'));
-    $this->getOpenedDialogElement()->selectFieldOption('Headers', 'First Row');
-    $this->getOpenedDialogElement()->getParent()->getParent()->pressButton('OK');
-    $this->getSession()->switchToIFrame();
-    // Put content for table headers.
-    $javascript = <<<JS
-(function(){
-  var editor = CKEDITOR.instances['edit-body-0-value'];
-  var header_cols = editor.document.find('table > thead > tr > th');
-  header_cols.getItem(0).setHtml('<i>Header text 1</i>');
-  header_cols.getItem(1).setHtml('<i>Header text 2</i>');
-})()
-JS;
-    $this->getSession()->evaluateScript($javascript);
-    $page->pressButton('Save');
     // Sortable field select box is not available as
     // "ECL Table" plugin is disabled.
     $this->drupalGet('node/1/edit');
