@@ -51,14 +51,48 @@ class FilterEclTable extends FilterBase {
         continue;
       }
 
+      // Put ECL related classes for table tag.
+      $table_classes = ltrim($table->getAttribute('class') . ' ecl-table');
+      // Add related to "Zebra striping" classes.
+      if ($table->getAttribute('data-striped') === 'true') {
+        $table_classes .= ' ecl-table--zebra';
+        $table->removeAttribute('data-striped');
+      }
+      $table->setAttribute('class', $table_classes);
+
+      // Put ECL related classes for thead tag.
+      foreach ($xpath->query('./thead', $table) as $thead) {
+        $thead->setAttribute('class', ltrim($thead->getAttribute('class') . ' ecl-table__head'));
+      }
+
+      // Put ECL related classes for tbody tag.
+      foreach ($xpath->query('./tbody', $table) as $tbody) {
+        $tbody->setAttribute('class', ltrim($tbody->getAttribute('class') . ' ecl-table__body'));
+      }
+
+      // Put ECL related classes for tr tags.
+      foreach ($xpath->query('.//tr', $table) as $trow) {
+        $trow->setAttribute('class', ltrim($trow->getAttribute('class') . ' ecl-table__row'));
+      }
+
       $headers = [];
       // Collect the first header row, validating that is composed only of
       // th elements.
       $has_header_row = $xpath->query('(./thead/tr[1])[count(./*[not(self::th)]) = 0]', $table);
       if ($has_header_row->count()) {
         $header_row = $has_header_row[0];
-        foreach ($xpath->query('./th', $header_row) as $cell) {
-          $headers[] = $cell->nodeValue;
+        foreach ($xpath->query('./th', $header_row) as $thead_cell) {
+          $thead_cell->setAttribute('class', ltrim($thead_cell->getAttribute('class') . ' ecl-table__header'));
+          // Add related to "Sort" data attribute.
+          if ($thead_cell->getAttribute('data-sortable') === 'true') {
+            $thead_cell->setAttribute('data-ecl-table-sort-toggle', '');
+            $thead_cell->removeAttribute('data-sortable');
+
+            // Add additional attributes to enable sorting for table.
+            $table->setAttribute('data-ecl-table', '');
+            $table->setAttribute('data-ecl-auto-init', 'Table');
+          }
+          $headers[] = $thead_cell->nodeValue;
         }
       }
 
@@ -66,28 +100,12 @@ class FilterEclTable extends FilterBase {
       foreach ($xpath->query('.//tr[not(parent::thead)]', $table) as $row) {
         // Fetch all the cells inside the row.
         foreach ($xpath->query('./*[self::th or self::td]', $row) as $cell_index => $cell) {
-          $existing_class = $cell->getAttribute('class');
-          $new_class = $existing_class ? "$existing_class ecl-table__cell" : 'ecl-table__cell';
-          $cell->setAttribute('class', $new_class);
-
+          $cell->setAttribute('class', ltrim($cell->getAttribute('class') . ' ecl-table__cell'));
           if (array_key_exists($cell_index, $headers)) {
             $cell->setAttribute('data-ecl-table-header', $headers[$cell_index]);
           }
         }
       }
-    }
-
-    // Add related to "Zebra striping" classes.
-    foreach ($xpath->query('//table[@data-striped="true"]') as $table) {
-      $classes = $table->getAttribute('class');
-      $table->setAttribute('class', ltrim($classes . ' ecl-table ecl-table--zebra'));
-      $table->removeAttribute('data-striped');
-    }
-
-    // Add related to "Sort" data attribute.
-    foreach ($xpath->query('//table/thead/tr/th[@data-sortable="true"]') as $column) {
-      $column->setAttribute('data-ecl-table-sort-toggle', '');
-      $column->removeAttribute('data-sortable');
     }
 
     $result->setProcessedText(Html::serialize($dom));
