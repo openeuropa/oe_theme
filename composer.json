@@ -112,7 +112,8 @@
             "Explicit minimum version requirement of drupal/ctools module due to D9.3 compatability.",
             "Explicit minimum version requirement of behat library due to PHP compatibility.",
             "Explicit minimum version requirement of fabpot/goutte due to Drupal 9.3 compatability.",
-            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8."
+            "Explicit minimum version requirement for symfony/dom-crawler due to its lower versions using the deprecated function libxml_disable_entity_loader() in PHP8.",
+            "Locking json_field until https://www.drupal.org/project/json_field/issues/3314641 is fixed and released."
         ]
     },
     "config": {
