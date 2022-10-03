@@ -46,7 +46,9 @@
 {% if meta is not empty and meta is iterable %}
   {% set primary_meta = [] %}
   {% for item in meta %}
-    {% set primary_meta = primary_meta|merge([item]) %}
+    {% if item is not empty %}
+      {% set primary_meta = primary_meta|merge([item]) %}
+    {% endif %}
   {% endfor %}
 {% endif %}
 
