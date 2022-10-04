@@ -51,7 +51,7 @@
         "openeuropa/oe_content": "^3.0.0-alpha4",
         "openeuropa/oe_corporate_blocks": "^4.4",
         "openeuropa/oe_corporate_countries": "~2.0",
-        "openeuropa/oe_media": "^1.15",
+        "openeuropa/oe_media": "^1.19",
         "openeuropa/oe_multilingual": "^1.10",
         "openeuropa/oe_paragraphs": "^1.14",
         "openeuropa/oe_search": "^1.9",
