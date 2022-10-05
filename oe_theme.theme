@@ -155,6 +155,14 @@ function oe_theme_theme_suggestions_input_alter(array &$suggestions, array $vari
   if ($element['#type'] === 'date' && $element['#attributes']['type'] === 'time') {
     $suggestions[] = 'input__time';
   }
+
+  if ($element['#type'] === 'search' && $element['#id'] === 'admin-toolbar-search-input') {
+    // Don't use the `input--search.html.twig` because it does not work here.
+    $suggestions = array_diff($suggestions, ['input__search']);
+    // Add the base theme hook as a suggestion.
+    // Don't remove other suggestions that might be added by modules.
+    array_unshift($suggestions, 'input');
+  }
 }
 
 /**
