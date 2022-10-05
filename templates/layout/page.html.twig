@@ -25,6 +25,12 @@
     </div>
   {% endblock %}
   {% block navigation %}
+    {% set header_banner %}
+      <div class="ecl-site-header__banner">
+        <div class="ecl-container"></div>
+      </div>
+    {% endset %}
+    {{ header_banner }}
     {{ page.navigation }}
   {% endblock %}
 </header>
