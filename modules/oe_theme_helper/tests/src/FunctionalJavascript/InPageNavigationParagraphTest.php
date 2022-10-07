@@ -164,7 +164,7 @@ class InPageNavigationParagraphTest extends WebDriverTestBase {
    *   The inpage navigation container.
    */
   protected function assertInPageNavigation(array $expected, NodeElement $container): void {
-    $navigation = $this->assertSession()->elementExists('css', '.ecl-col-l-3.ecl-u-z-navigation .ecl-inpage-navigation', $container);
+    $navigation = $this->assertSession()->elementExists('css', '.ecl-col-l-3 .ecl-inpage-navigation', $container);
     $inpage_nav_assert = new InPageNavigationAssert();
     $inpage_nav_assert->assertPattern($expected, $navigation->getOuterHtml());
   }
