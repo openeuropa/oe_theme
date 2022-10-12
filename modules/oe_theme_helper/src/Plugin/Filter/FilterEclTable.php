@@ -84,6 +84,12 @@ class FilterEclTable extends FilterBase {
       $table->removeAttribute('data-striped');
     }
 
+    // Add related to "Sort" data attribute.
+    foreach ($xpath->query('//table/thead/tr/th[@data-sortable="true"]') as $column) {
+      $column->setAttribute('data-ecl-table-sort-toggle', '');
+      $column->removeAttribute('data-sortable');
+    }
+
     $result->setProcessedText(Html::serialize($dom));
 
     return $result;
