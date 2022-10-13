@@ -1,21 +1,11 @@
 # Changelog
 
-## [3.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta17) (2022-10-11)
-
-[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta16...3.0.0-beta17)
-
-**Merged pull requests:**
-
-- EWPP-2625: Fix json field until classnames are fixed. [\#1181](https://github.com/openeuropa/oe_theme/pull/1181) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- EWPP-2680: Fix site-header for Core ecl branding. [\#1175](https://github.com/openeuropa/oe_theme/pull/1175) ([upchuk](https://github.com/upchuk))
-
 ## [3.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta16) (2022-09-21)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta15...3.0.0-beta16)
 
 **Merged pull requests:**
 
-- Update CHANGELOG.md for release 3.0.0-beta16. [\#1168](https://github.com/openeuropa/oe_theme/pull/1168) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2645: Upgrade ECL version to 3.4.2. [\#1166](https://github.com/openeuropa/oe_theme/pull/1166) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta15](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta15) (2022-09-16)
