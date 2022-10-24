@@ -9,8 +9,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
@@ -119,23 +117,21 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       ],
       'image' => NULL,
       'lists' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Reference',
-              'body' => 'Call for tenders reference',
-            ], [
-              'label' => 'Opening date',
-              'body' => $opening_date->format('d F Y'),
-            ], [
-              'label' => 'Deadline date',
-              'body' => $deadline_date->format('d F Y, H:i (T)'),
-            ], [
-              'label' => 'Departments',
-              'body' => 'Audit Board of the European Communities, Arab Common Market',
-            ],
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for tenders reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => $opening_date->format('d F Y'),
+          ], [
+            'label' => 'Deadline date',
+            'body' => $deadline_date->format('d F Y, H:i (T)'),
+          ], [
+            'label' => 'Departments',
+            'body' => 'Audit Board of the European Communities, Arab Common Market',
           ],
-        ]),
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -157,23 +153,21 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for tenders reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
-          ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('d F Y, H:i (T)'),
-          ], [
-            'label' => 'Department',
-            'body' => 'Audit Board of the European Communities',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => $opening_date->format('d F Y'),
+        ], [
+          'label' => 'Deadline date',
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -194,23 +188,21 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     ];
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for tenders reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
-          ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('d F Y, H:i (T)'),
-          ], [
-            'label' => 'Department',
-            'body' => 'Audit Board of the European Communities',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => $opening_date->format('d F Y'),
+        ], [
+          'label' => 'Deadline date',
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -235,23 +227,21 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'variant' => 'medium',
     ];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for tenders reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => $opening_date->format('d F Y'),
-          ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('d F Y, H:i (T)'),
-          ], [
-            'label' => 'Department',
-            'body' => 'Audit Board of the European Communities',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => $opening_date->format('d F Y'),
+        ], [
+          'label' => 'Deadline date',
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -272,20 +262,18 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
     $expected_values['badges'][0] = [];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for tenders reference',
-          ], [
-            'label' => 'Deadline date',
-            'body' => $deadline_date->format('d F Y, H:i (T)'),
-          ], [
-            'label' => 'Department',
-            'body' => 'Audit Board of the European Communities',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for tenders reference',
+        ], [
+          'label' => 'Deadline date',
+          'body' => $deadline_date->format('d F Y, H:i (T)'),
+        ], [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
   }
