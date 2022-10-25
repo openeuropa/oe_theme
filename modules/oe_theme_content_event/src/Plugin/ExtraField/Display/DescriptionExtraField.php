@@ -88,16 +88,25 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    // Display event description using "text_featured_media" pattern.
     $build = [
       '#type' => 'pattern',
       '#id' => 'text_featured_media',
-      '#fields' => [
-        'title' => $this->getRenderableTitle($entity),
-        'text' => $this->getRenderableText($entity),
-      ],
     ];
+    // If we have no renderable text and image we don't need a title.
+    $text = $this->getRenderableText($entity);
+    $this->addFeaturedMediaThumbnail($build, $entity);
+    $title = !empty($text[0]['#text']) || isset($build['#fields']['image']) ? $this->getRenderableTitle($entity) : '';
 
+    // If we don't have a title we do not render anything because there is
+    // no text and no image.
+    if (empty($title)) {
+      return [];
+    }
+
+    $build['#fields'] = [
+      'title' => $title,
+      'text' => $text,
+    ];
     $this->addFeaturedMediaThumbnail($build, $entity);
 
     return $build;
