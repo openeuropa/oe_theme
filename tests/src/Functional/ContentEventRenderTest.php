@@ -498,36 +498,41 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert "Description" title is not rendered unless there is a body text.
     $this->assertSession()->pageTextNotContains('Description');
-
-    // Assert "Full text", "Featured media", "Featured media legend" fields.
-    $node->set('body', 'Event full text');
-    $node->save();
-    $this->drupalGet($node->toUrl());
-
-    $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-child(3)');
-    $text_featured = new TextFeaturedMediaAssert();
-    $text_featured_expected_values = [
-      'title' => 'Description',
-      'text' => 'Event full text',
-    ];
-    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
-
-    $node->set('oe_event_featured_media_legend', 'Event featured media legend');
+    // Fill in "Featured media" field.
     $media_image = $this->createMediaImage('event_featured_media');
     $node->set('oe_event_featured_media', [$media_image])->save();
     $this->drupalGet($node->toUrl());
-
+    // Assert "Description" field group contains only the heading and media.
     $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-child(3)');
     $text_featured = new TextFeaturedMediaAssert();
+    // Caption should not be rendered if the legend is not provided.
     $text_featured_expected_values = [
       'title' => 'Description',
-      'caption' => 'Event featured media legend',
-      'text' => 'Event full text',
+      'text' => NULL,
+      'caption' => NULL,
       'image' => [
         'alt' => 'Alternative text event_featured_media',
         'src' => 'event_featured_media.png',
       ],
     ];
+    // If the "Full text" field is not filled in, we render using the
+    // "right_simple" variant with the image on the left.
+    $text_featured->assertVariant('right_simple', $description_content->getHtml());
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+    // Fill in "Featured media legend" field.
+    $node->set('oe_event_featured_media_legend', 'Event featured media legend')->save();
+    $this->drupalGet($node->toUrl());
+    // Assert caption is rendered.
+    $text_featured_expected_values['caption'] = 'Event featured media legend';
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    // Fill in the "Full text" field too.
+    $node->set('body', 'Event full text')->save();
+    $this->drupalGet($node->toUrl());
+    $text_featured_expected_values['text'] = 'Event full text';
+    // Assert we render using the "left_simple" variant when "Full text" is
+    // provided.
+    $text_featured->assertVariant('left_simple', $description_content->getHtml());
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
     // Assert "Description summary" field value.
