@@ -309,7 +309,7 @@ JS;
     $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)]/iframe")->getAttribute('id'));
     $this->clickLink('Cell');
     $this->getSession()->switchToIFrame();
-    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ')][last()]");
+    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ')][last()]/iframe");
     $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)][last()]/iframe")->getAttribute('id'));
     $this->clickLink('Cell Properties');
     $this->getSession()->switchToIFrame();
