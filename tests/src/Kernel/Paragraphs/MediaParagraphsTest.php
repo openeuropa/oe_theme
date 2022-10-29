@@ -255,7 +255,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $existing_classes = $media_container->attr('class');
     $existing_classes = explode(' ', $existing_classes);
-    $this->assertContains('ecl-media-container__media--ratio-16-9', $existing_classes);
+    // Assert remote videos use 1-1 ratio.
+    $this->assertContains('ecl-media-container__media--ratio-1-1', $existing_classes);
     $video_iframe = $media_container->filter('iframe');
     $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
@@ -273,7 +274,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
     $paragraph->save();
 
-    // Assert AV video is rendered properly.
+    // Assert AV Portal video is rendered properly.
     $html = $this->renderParagraph($paragraph);
     $expected_values = [
       'title' => NULL,
