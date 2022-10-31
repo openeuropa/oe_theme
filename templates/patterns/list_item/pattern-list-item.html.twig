@@ -153,9 +153,9 @@
         }]) %}
       {% endif %}
     {% endfor %}
-    {# Always use the horizontal variant of ECL Description list component for this pattern. #}
+    {# Use the horizontal variant of ECL Description list component by default. #}
     {% set _lists = _lists|merge([{
-      variant: "horizontal",
+      variant: lists_variant|default("horizontal"),
       items: items,
     }]) %}
   {% endfor %}

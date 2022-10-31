@@ -8,9 +8,7 @@ use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_organisation\Entity\Organisation;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 
@@ -168,14 +166,12 @@ class ProjectRenderTest extends ContentRenderTestBase {
       ],
       'date' => NULL,
       'lists' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Project locations',
-              'body' => 'Belgium',
-            ],
+        'items' => [
+          [
+            'label' => 'Project locations',
+            'body' => 'Belgium',
           ],
-        ]),
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);

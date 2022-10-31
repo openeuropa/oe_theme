@@ -123,7 +123,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
 
     // Assert all options are visible.
     $options = [
-      'Select all',
+      'Select all (4)',
       'One',
       'Two point one',
       'Two point two',

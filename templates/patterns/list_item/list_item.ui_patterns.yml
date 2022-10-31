@@ -163,3 +163,8 @@ list_item:
       label: "Divider"
       description: "Optional divider below the item."
       preview: true
+    lists_variant:
+      type: "string"
+      label: "Lists variant"
+      description: "An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal."
+      preview: "vertical"
