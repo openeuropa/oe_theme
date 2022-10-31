@@ -4,9 +4,18 @@
  * Teaser template implementation for "Call for proposals" content type.
  */
 #}
-{% set additional_information = [
-  content.group_details,
-] %}
+{% set additional_information = [] %}
+{% if content.group_details %}
+  {% set additional_information_items = [] %}
+  {% for item in content.group_details.pattern['#fields'].items %}
+    {% set additional_information_items = additional_information_items|merge([{
+      'term': item.label,
+      'definition': item.body|render,
+    }]) %}
+  {% endfor %}
+  {% set additional_information = additional_information|merge([additional_information_items]) %}
+{% endif %}
+
 {# Add cache info from status field. #}
 {% set bubble_cache = content.extra_field_oe_call_proposals_label_status|render %}
 {% block content %}
@@ -14,7 +23,7 @@
     'variant': 'default',
     'url': url,
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
-    'additional_information': additional_information,
+    'lists': additional_information,
     'badges': badges,
     'external_link': external_link
   }) }}

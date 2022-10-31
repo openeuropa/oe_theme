@@ -1,10 +1,10 @@
-{% spaceless %}
 {#
   @file
   Default item list component.
 
   Parameters:
     - "meta" (array) (default: []): Meta information for the Content Item.
+    - "secondary_meta" (array) (default: []): Secondary metadata information for the Content Item.
     - "title" (string) (default: ''): Title for the list Content Item.
     - "url" (string) (default: ''): url path for the title Content Item.
     - "detail" (string) (default: ''): Description of Content Item.
@@ -14,102 +14,161 @@
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
     - "icon" (string) (default: ''): Icon used for the link item.
     - "external_link" (bool) (default: false): Whether the link is external or not.
+    - "lists" (array) (default: []): Array of lists compatible with ECL Description list component.
+    - "divider" (bool) (default: false): Whether to set a divider below the item.
 #}
 
-{# Create macro #}
+{# Prepare the picture array. #}
+{% if image %}
+  {% set picture = {
+    position: image_position|default('left'),
+    size: image.size|default('large'),
+    img: {
+      src: image.src,
+      alt: image.alt,
+    },
+    sources: [],
+  } %}
+{% endif %}
 
-{% macro image(src, alt, position) %}
-<div role="img"
-     aria-label="{{ alt }}"
-     class="ecl-u-ratio-3-2
-      ecl-u-flex-shrink-0
-      ecl-u-d-l-block
-      ecl-content-item__image__{{ position }}
-      ecl-u-{{ position == 'before' ? 'mr' : 'ml' }}-s-l
-      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-l
-      ecl-u-{{ position == 'before' ? 'mb' : 'mt' }}-s-none"
-     style="background-image: url('{{ src }}');
-       background-size: contain;
-       background-position: center;
-       background-repeat: no-repeat;
-       height:8.75rem;
-       width:13.125rem"
-></div>
-{% endmacro %}
+{# Prepare the labels array. #}
+{% if badges is iterable %}
+  {% set labels = [] %}
+  {% for _badge in badges %}
+    {% set labels = labels|merge([{
+      'label': _badge.label|t,
+      'variant': _badge.variant,
+    }]) %}
+  {% endfor %}
+{% endif %}
 
-<article class="ecl-content-item ecl-u-d-s-flex ecl-u-pb-m">
-  {% if image and image_position == 'before' %}
-    {{ _self.image(image.src, image.alt, image_position) }}
+{# Prepare the Primary meta items. #}
+{% if meta is not empty and meta is iterable %}
+  {% set primary_meta = [] %}
+  {% for item in meta %}
+    {% if item is not empty %}
+      {% set primary_meta = primary_meta|merge([item]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Prepare the Secondary meta items. #}
+{% if secondary_meta is not empty and secondary_meta is iterable %}
+  {% set _secondary_meta = [] %}
+  {% for meta in secondary_meta %}
+    {% if meta.label is defined %}
+      {% set item = {
+        label: meta.label
+      } %}
+      {% if meta.icon is defined %}
+        {% set item = item|merge({
+          icon: {
+            name: meta.icon,
+            path: ecl_icon_path,
+          }
+        }) %}
+      {% endif %}
+    {% else %}
+      {% set item = {
+        label: meta
+      } %}
+    {% endif %}
+    {% set _secondary_meta = _secondary_meta|merge([item]) %}
+  {% endfor %}
+{% endif %}
+
+{# Prepare the title as a link or simple string and the description. #}
+{%- if url %}
+  {% set _title = {
+    type: 'standalone',
+    label: title,
+    path: url,
+    external: external_link,
+    icon_path: ecl_icon_path
+  } %}
+  {# Icon is not applied until FRONT-3726 is fixed. #}
+  {% if icon %}
+    {% set _title = _title|merge({
+      icon: {
+        'path': ecl_icon_path,
+        'name': icon,
+        'size': 's',
+      }
+    }) %}
   {% endif %}
-  <div class="ecl-u-flex-grow-1">
-    {% block meta %}
-      {% if meta is not empty or badges is not empty %}
-        <div class="ecl-content-item__meta ecl-u-type-s ecl-u-type-color-grey-75 ecl-u-mb-xs">
-          {% if badges is iterable %}
-            {% set extra_classes = 'ecl-u-mr-xs' %}
-            {% for _badge in badges %}
-              {% if _badge.variant != 'highlight' %}
-                {% set _extra_classes = extra_classes ~ ' ecl-u-type-color-black' %}
-              {% endif %}
-              {% include '@ecl-twig/label' with {
-                'label': _badge.label|t,
-                'variant': _badge.variant,
-                'extra_classes': _extra_classes|default(extra_classes),
-              } only %}
-            {% endfor %}
-          {% endif %}
-          {% if meta is not empty %}
-            <div class="ecl-u-mt-xs">
-              {{ meta|filter_empty|safe_join(" | ") }}
-            </div>
-          {% endif %}
-        </div>
-      {% endif %}
-    {% endblock %}
-    {% block title %}
-      <div class="ecl-content-item__title ecl-u-type-heading-5 ecl-u-mb-xs ecl-u-mt-none">
-        {%- if url %}
-          {% set _link = {
-            link: {
-              type: 'standalone',
-              label: title,
-              path: url,
-              external: external_link,
-              icon_path: ecl_icon_path
-            }
-          } %}
-          {% if icon %}
-            {% set _link = _link|merge({
-              icon: {
-                'path': ecl_icon_path,
-                'name': icon,
-                'size': 's',
+{% else %}
+  {% set _title = title %}
+{%- endif -%}
+{% if detail is not empty %}
+  {% set description = detail|smart_trim(length) %}
+{% endif %}
+
+{# Prepare the lists array. #}
+{% if lists is not empty %}
+  {% set _lists = [] %}
+  {% for list in lists %}
+    {% set items = [] %}
+    {% for item in list %}
+      {# Item definition can be either an array or a simple string. #}
+      {% if item.definition is iterable %}
+        {% set _definitions = [] %}
+        {% for _definition in item.definition %}
+          {% if _definition.path is defined %}
+            {% set link = {
+              link: {
+                'type': 'standalone',
+                'label': _definition.label|default(_definition.path),
+                'path': _definition.path,
+                'external': _definition.external_link|default(false),
+                'icon_path': ecl_icon_path,
               }
-            }) %}
-          {% endif %}
-          {% include '@ecl-twig/link' with _link only %}
-        {% else %}
-          {{ title }}
-        {%- endif -%}
-      </div>
-    {% endblock %}
-    {% block detail %}
-      {% if detail is not empty %}
-        <div class="ecl-content-item__description ecl-u-type-paragraph ecl-u-mb-s">{{ detail|smart_trim(length) }}</div>
-      {% endif %}
-    {% endblock %}
-    {% block additional_information %}
-      {% if additional_information is not empty %}
-        {% for item in additional_information %}
-          {% if item|render|trim is not empty %}
-            <div class="ecl-content-item__additional_information ecl-u-mb-s">{{ item }}</div>
+            } %}
+            {% if _definition.icon is defined %}
+              {% set link = link|merge({
+                icon: {
+                  name: _definition.icon,
+                  path: ecl_icon_path,
+                  size: "xs",
+                }
+              }) %}
+            {% endif %}
+            {# For arrays we need to consider separatly which parameters have been provided. #}
+            {% set _definitions = _definitions|merge([link]) %}
+          {% elseif _definition.label is defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition.label]) %}
+          {% elseif _definition.label is not defined and _definition.path is not defined %}
+            {% set _definitions = _definitions|merge([_definition]) %}
           {% endif %}
         {% endfor %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: _definitions,
+          type: item.list_type|default(''),
+        }]) %}
+      {% elseif item.definition is not empty %}
+        {% set items = items|merge([{
+          term: item.term,
+          definition: item.definition,
+          type: item.list_type|default(''),
+        }]) %}
       {% endif %}
-    {% endblock %}
-  </div>
-  {% if image and image_position == 'after' %}
-    {{ _self.image(image.src, image.alt, image_position) }}
-  {% endif %}
-</article>
-{% endspaceless %}
+    {% endfor %}
+    {# Use the horizontal variant of ECL Description list component by default. #}
+    {% set _lists = _lists|merge([{
+      variant: lists_variant|default("horizontal"),
+      items: items,
+    }]) %}
+  {% endfor %}
+{% endif %}
+
+{% include '@ecl-twig/content-item' with {
+  picture: picture|default([]),
+  labels: labels|default([]),
+  primary_meta: primary_meta|default([]),
+  title: _title|default([]),
+  description: description|default(''),
+  lists: _lists|default([]),
+  divider: divider|default(false),
+  secondary_meta: _secondary_meta|default([]),
+  date: _date|default([]),
+} only %}

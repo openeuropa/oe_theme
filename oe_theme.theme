@@ -819,7 +819,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
   // Extract the image if present.
-  if (!$paragraph->get('field_oe_image')->isEmpty()) {
+  if (!$paragraph->get('field_oe_image')->isEmpty() && $variables['variant'] !== 'default') {
     /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $image_item */
     $image_item = $paragraph->get('field_oe_image')->first();
     $file = $image_item->get('entity')->getValue();
@@ -2076,5 +2076,58 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'variant' => 'image-gradient',
     ];
     $cacheability->applyTo($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node() for oe_person node.
+ */
+function oe_theme_preprocess_node__oe_person__teaser(array &$variables): void {
+  $builder_oe_contact = \Drupal::entityTypeManager()->getViewBuilder('oe_contact');
+  $builder_node = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $variables['contacts'] = [];
+  if (!empty($variables['content']['oe_person_contacts'])) {
+    foreach (Element::children($variables['content']['oe_person_contacts']) as $index) {
+      $items = [];
+      $item = $variables['content']['oe_person_contacts'][$index];
+      if ($item['#oe_contact']->bundle() === 'oe_general') {
+        $item_build = $builder_oe_contact->build($item);
+        field_group_build_entity_groups($item_build);
+        if (!empty($item_build['group_contact_information']['pattern']['#fields']['items'])) {
+          $items = $item_build['group_contact_information']['pattern']['#fields']['items'];
+        }
+      }
+      elseif ($item['#oe_contact']->bundle() === 'oe_organisation_reference') {
+        $item_build = $builder_oe_contact->build($item);
+        if (!empty($item_build['oe_node_reference'])) {
+          foreach (Element::children($item_build['oe_node_reference']) as $reference_index) {
+            $item_build = $builder_node->build($item_build['oe_node_reference'][$reference_index]);
+            if (!empty($item_build['oe_organisation_contact'])) {
+              foreach (Element::children($item_build['oe_organisation_contact']) as $contact_index) {
+                $contact_item = $item_build['oe_organisation_contact'][$contact_index];
+                $contact_item_build = $builder_oe_contact->build($contact_item);
+                field_group_build_entity_groups($contact_item_build);
+                if (!empty($contact_item_build['group_contact_information']['pattern']['#fields']['items'])) {
+                  $items = $contact_item_build['group_contact_information']['pattern']['#fields']['items'];
+                }
+              }
+            }
+          }
+        }
+      }
+      $variables['contacts'][] = $items;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node() for oe_organisation node.
+ */
+function oe_theme_preprocess_node__oe_organisation__teaser(array &$variables): void {
+  if (!empty($variables['content']['extra_field_oe_theme_content_organisation_teaser_details'])) {
+    $variables['teaser_details'] = [];
+    foreach (Element::children($variables['content']['extra_field_oe_theme_content_organisation_teaser_details']) as $index) {
+      $variables['teaser_details'][] = $variables['content']['extra_field_oe_theme_content_organisation_teaser_details'][$index]['#fields']['items'];
+    }
   }
 }

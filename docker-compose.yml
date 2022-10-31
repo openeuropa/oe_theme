@@ -28,8 +28,6 @@ services:
     image: selenium/standalone-chrome:4.1.3
     environment:
       - DISPLAY=:99
-      - SCREEN_WIDTH=1440
-      - SCREEN_HEIGHT=900
       - VNC_NO_PASSWORD=1
     ports:
       - "5900:5900"

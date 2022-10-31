@@ -13,12 +13,11 @@ use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
- * Tests consultation rendering.
+ * Tests person rendering.
  *
  * @group batch2
  */
@@ -111,7 +110,7 @@ class PersonRenderTest extends ContentRenderTestBase {
         'src' => 'user_icon.svg',
         'alt' => '',
       ],
-      'additional_information' => NULL,
+      'lists' => NULL,
     ];
     $assert = new ListItemAssert();
     $assert->assertPattern($expected_values, $html);
@@ -130,15 +129,13 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     // Assert Departments field.
     $node->set('oe_departments', 'http://publications.europa.eu/resource/authority/corporate-body/ABEC')->save();
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Department',
-            'body' => 'Audit Board of the European Communities',
-          ],
+    $expected_values['lists'] = [
+      'items' => [
+        [
+          'label' => 'Department',
+          'body' => 'Audit Board of the European Communities',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
@@ -147,15 +144,13 @@ class PersonRenderTest extends ContentRenderTestBase {
       'http://publications.europa.eu/resource/authority/corporate-body/ABEC',
       'http://publications.europa.eu/resource/authority/corporate-body/ACM',
     ])->save();
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Departments',
-            'body' => 'Audit Board of the European Communities, Arab Common Market',
-          ],
+    $expected_values['lists'] = [
+      'items' => [
+        [
+          'label' => 'Departments',
+          'body' => 'Audit Board of the European Communities, Arab Common Market',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
@@ -173,7 +168,7 @@ class PersonRenderTest extends ContentRenderTestBase {
       $organisation_reference_empty_contact,
       $general_contact,
     ])->save();
-    $expected_values['additional_information'][] = new PatternAssertState(new FieldListAssert(), [
+    $expected_values['lists'][] = [
       'items' => [
         [
           'label' => 'Email',
@@ -198,7 +193,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Social media direct_contact',
         ],
       ],
-    ]);
+    ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert Contacts field with an organisation as contact.
@@ -211,8 +206,8 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $html = $this->getRenderedNode($node);
     $crawler = new Crawler($html);
-    $first_contact_render = $crawler->filter('article .ecl-content-item__additional_information:nth-child(3) div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mb-m.ecl-u-pb-m');
-    $this->assertCount(1, $first_contact_render);
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $this->assertCount(3, $contacts_render);
 
     $field_assert = new FieldListAssert();
     $second_contact_expected_values = [
@@ -241,9 +236,8 @@ class PersonRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $second_contact_render = $crawler->filter('article .ecl-content-item__additional_information:nth-child(3) > div:nth-child(2)');
-    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->html());
-
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
+    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Assert Jobs field and highlighted label.
     $job_1 = $this->createPersonJobEntity('job_1', [
       'oe_acting' => TRUE,
@@ -258,28 +252,32 @@ class PersonRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    $expected_values['meta'] = '(Acting) Adviser';
-    $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
+    $expected_values['meta'] = [
+      '(Acting) Adviser',
+    ];
+    $expected_values['lists'][1] = [
       'items' => [
         [
           'label' => 'Responsibilities',
           'body' => '(Acting) AdviserDescription job_1',
         ],
       ],
-    ]);
+    ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
     $node->set('oe_person_jobs', [$job_1, $job_2])->save();
-    $expected_values['meta'] = '(Acting) Adviser, Chief Adviser';
-    $expected_values['additional_information'][1] = new PatternAssertState(new FieldListAssert(), [
+    $expected_values['meta'] = [
+      '(Acting) Adviser, Chief Adviser',
+    ];
+    $expected_values['lists'][1] = [
       'items' => [
         [
           'label' => 'Responsibilities',
           'body' => '(Acting) AdviserDescription job_1Chief AdviserDescription job_2',
         ],
       ],
-    ]);
+    ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert non-eu person.
@@ -299,60 +297,52 @@ class PersonRenderTest extends ContentRenderTestBase {
         'label' => 'Highlighted',
         'variant' => 'highlight',
       ],
-      'meta' => 'Singer, Dancer',
+      'meta' => [
+        'Singer, Dancer',
+      ],
       'image' => [
         'src' => 'person_portrait.png',
         'alt' => '',
       ],
-      'additional_information' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Organisation',
-              'body' => 'Organisation node non_eu',
-            ],
+      'lists' => [
+        'items' => [
+          [
+            'label' => 'Organisation',
+            'body' => 'Organisation node non_eu',
           ],
-        ]),
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Email',
-              'body' => 'direct_contact@example.com',
-            ], [
-              'label' => 'Phone number',
-              'body' => 'Phone number direct_contact',
-            ], [
-              'label' => 'Mobile number',
-              'body' => 'Mobile number direct_contact',
-            ], [
-              'label' => 'Fax number',
-              'body' => 'Fax number direct_contact',
-            ], [
-              'label' => 'Address',
-              'body' => 'Address direct_contact, 1001 Brussels, Belgium',
-            ], [
-              'label' => 'Office',
-              'body' => 'Office direct_contact',
-            ], [
-              'label' => 'Social media links',
-              'body' => 'Social media direct_contact',
-            ],
+          [
+            'label' => 'Email',
+            'body' => 'direct_contact@example.com',
+          ], [
+            'label' => 'Phone number',
+            'body' => 'Phone number direct_contact',
+          ], [
+            'label' => 'Mobile number',
+            'body' => 'Mobile number direct_contact',
+          ], [
+            'label' => 'Fax number',
+            'body' => 'Fax number direct_contact',
+          ], [
+            'label' => 'Address',
+            'body' => 'Address direct_contact, 1001 Brussels, Belgium',
+          ], [
+            'label' => 'Office',
+            'body' => 'Office direct_contact',
+          ], [
+            'label' => 'Social media links',
+            'body' => 'Social media direct_contact',
           ],
-        ]),
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Responsibilities',
-              'body' => 'SingerDescription job_1DancerDescription job_2',
-            ],
+          [
+            'label' => 'Responsibilities',
+            'body' => 'SingerDescription job_1DancerDescription job_2',
           ],
-        ]),
+        ],
       ],
     ];
     $html = $this->getRenderedNode($node);
     $assert->assertPattern($expected_values, $html);
     $crawler = new Crawler($html);
-    $jobs_render = $crawler->filter('article .ecl-content-item__additional_information:nth-child(5) div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-pt-m');
+    $jobs_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(3)');
     $this->assertCount(1, $jobs_render);
   }
 

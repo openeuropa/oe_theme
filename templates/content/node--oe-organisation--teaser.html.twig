@@ -5,9 +5,21 @@
  */
 #}
 {% set image_url = content.oe_organisation_logo|field_value|render %}
-{% set additional_information = [
-  content.extra_field_oe_theme_content_organisation_teaser_details,
-] %}
+
+{% set additional_information = [] %}
+{% if teaser_details %}
+  {% for list in teaser_details %}
+    {% set additional_information_items = [] %}
+    {% for item in list %}
+      {% set additional_information_items = additional_information_items|merge([{
+        'term': item.label,
+        'definition': item.body|render,
+      }]) %}
+    {% endfor %}
+    {% set additional_information = additional_information|merge([additional_information_items]) %}
+  {% endfor %}
+{% endif %}
+
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'thumbnail_secondary',
@@ -18,7 +30,7 @@
     ],
     'title': content.extra_field_oe_theme_helper_short_title_with_fallback|field_value,
     'detail': content.oe_teaser|field_value,
-    'additional_information': additional_information,
+    'lists': additional_information,
     'image': image_url ? { 'src': image_url },
     'badges': badges,
     'external_link': external_link

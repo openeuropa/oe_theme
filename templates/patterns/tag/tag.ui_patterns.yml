@@ -21,3 +21,8 @@ tag:
       label: "Label"
       description: "Tag label"
       preview: "Tag 1"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''

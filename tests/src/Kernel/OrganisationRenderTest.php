@@ -9,7 +9,6 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
@@ -109,33 +108,34 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'url' => '/en/node/1',
       'description' => 'The teaser text',
       'badges' => NULL,
-      'meta' => 'International organisation | Acronym',
+      'meta' => [
+        'International organisation',
+        'Acronym',
+      ],
       'image' => [
         'src' => 'placeholder_organisation_logo.png',
         'alt' => '',
       ],
       'date' => NULL,
-      'additional_information' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Website',
-              'body' => 'http://www.example.com/website_first_contact',
-            ],
-            [
-              'label' => 'Email',
-              'body' => 'first_contact@example.com',
-            ],
-            [
-              'label' => 'Phone number',
-              'body' => 'Phone number first_contact',
-            ],
-            [
-              'label' => 'Address',
-              'body' => 'Address first_contact, 1001 Brussels, Belgium',
-            ],
+      'lists' => [
+        'items' => [
+          [
+            'label' => 'Website',
+            'body' => 'http://www.example.com/website_first_contact',
           ],
-        ]),
+          [
+            'label' => 'Email',
+            'body' => 'first_contact@example.com',
+          ],
+          [
+            'label' => 'Phone number',
+            'body' => 'Phone number first_contact',
+          ],
+          [
+            'label' => 'Address',
+            'body' => 'Address first_contact, 1001 Brussels, Belgium',
+          ],
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -163,8 +163,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $first_contact_render = $crawler->filter('article .ecl-content-item__additional_information.ecl-u-mb-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mb-m.ecl-u-pb-m');
-    $this->assertCount(1, $first_contact_render);
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $this->assertCount(2, $contacts_render);
 
     $field_assert = new FieldListAssert();
     $second_contact_expected_values = [
@@ -187,9 +187,8 @@ class OrganisationRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $second_contact_render = $crawler->filter('article div.ecl-content-item__additional_information.ecl-u-mb-s div:nth-child(2)');
-    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->html());
-
+    $second_contact_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-content-block__list-container dl:nth-child(2)');
+    $field_assert->assertPattern($second_contact_expected_values, $second_contact_render->outerHtml());
     // Change organisation type to non eu.
     $node->set('oe_organisation_contact', NULL);
     $node->set('oe_organisation_org_type', 'non_eu');
@@ -199,8 +198,11 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
 
-    $expected_values['additional_information'] = NULL;
-    $expected_values['meta'] = 'embassy | Acronym';
+    $expected_values['lists'] = NULL;
+    $expected_values['meta'] = [
+      'embassy',
+      'Acronym',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('thumbnail_secondary', $html);
 

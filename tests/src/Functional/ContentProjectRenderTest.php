@@ -250,13 +250,13 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     $funding_items = $unordered_list_items[0]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(1, $funding_items);
-    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', 'Funding programme');
+    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', ['Funding programme']);
 
     $proposal_items = $unordered_list_items[1]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(3, $proposal_items);
-    $this->assertListItem($proposal_items[0], 'Test call for proposal', 'Call for proposals', 'http://proposal-call.com', TRUE);
-    $this->assertListItem($proposal_items[1], 'http://proposal-call-no-title.com', 'Call for proposals', 'http://proposal-call-no-title.com', TRUE);
-    $this->assertListItem($proposal_items[2], 'Internal Call for proposal', 'Call for proposals', 'http://ec.europa.eu/info');
+    $this->assertListItem($proposal_items[0], 'Test call for proposal', ['Call for proposals'], 'http://proposal-call.com', TRUE);
+    $this->assertListItem($proposal_items[1], 'http://proposal-call-no-title.com', ['Call for proposals'], 'http://proposal-call-no-title.com', TRUE);
+    $this->assertListItem($proposal_items[2], 'Internal Call for proposal', ['Call for proposals'], 'http://ec.europa.eu/info');
 
     // Assert bottom region - Stakeholders.
     $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
@@ -402,7 +402,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    *   Rendered element.
    * @param string $title
    *   Title of the list item.
-   * @param string $meta
+   * @param array $meta
    *   Meta value of the list item.
    * @param string $link
    *   Link that is used.
@@ -411,7 +411,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    *
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  protected function assertListItem(NodeElement $rendered_element, string $title, string $meta, $link = '', bool $external_link = FALSE): void {
+  protected function assertListItem(NodeElement $rendered_element, string $title, array $meta, $link = '', bool $external_link = FALSE): void {
     $list_item_assert = new ListItemAssert();
     $expected_values = [
       'meta' => $meta,
@@ -423,7 +423,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert css class for meta.
     $field_meta = $this->assertSession()->elementExists('css', 'span.ecl-u-type-uppercase', $rendered_element);
-    $this->assertEquals($meta, $field_meta->getText());
+    $this->assertEquals($meta[0], $field_meta->getText());
 
     if (!empty($link)) {
       if ($external_link) {
