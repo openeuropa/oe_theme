@@ -240,19 +240,22 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLists($expected, Crawler $crawler): void {
-    $list_container_selector = 'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list';
-    if (is_null($expected)) {
+    $list_container_selector = 'div.ecl-content-block__list-container dl.ecl-description-list.ecl-content-block__list';
+    if (!isset($expected['variant'])) {
+      $list_container_selector = $list_container_selector . '.ecl-description-list--horizontal';
+    }
+    else {
+      $list_container_selector = $list_container_selector . '.ecl-description-list--' . $expected['variant'];
+    }
+    if (empty($expected)) {
       $this->assertElementNotExists($list_container_selector, $crawler);
       return;
     }
     $list_terms = $crawler->filter($list_container_selector . ' dt.ecl-description-list__term');
     $list_definitions = $crawler->filter($list_container_selector . ' dd.ecl-description-list__definition');
-    self::assertCount(count($expected), $crawler->filter($list_container_selector));
-    foreach ($expected as $index => $expected_list) {
-      foreach ($expected_list as $term => $definitions) {
-        self::assertEquals($term, trim($list_terms->eq($index)->text()), \sprintf('The expected text of the term number %s does not correspond to the found term text.', $index));
-        self::assertEquals(implode($definitions), trim($list_definitions->eq($index)->text()), \sprintf('The expected text of the definition number %s does not correspond to the found definition text.', $index));
-      }
+    foreach ($expected['items'] as $index => $item) {
+      self::assertEquals($item['label'], trim($list_terms->eq($index)->text()), \sprintf('The expected text of the term number %s does not correspond to the found term text.', $index));
+      self::assertEquals($item['body'], trim($list_definitions->eq($index)->text()), \sprintf('The expected text of the definition number %s does not correspond to the found definition text.', $index));
     }
   }
 
