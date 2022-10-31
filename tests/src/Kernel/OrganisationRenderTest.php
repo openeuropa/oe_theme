@@ -9,7 +9,6 @@ use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 use Symfony\Component\DomCrawler\Crawler;
@@ -119,26 +118,24 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       ],
       'date' => NULL,
       'lists' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Website',
-              'body' => 'http://www.example.com/website_first_contact',
-            ],
-            [
-              'label' => 'Email',
-              'body' => 'first_contact@example.com',
-            ],
-            [
-              'label' => 'Phone number',
-              'body' => 'Phone number first_contact',
-            ],
-            [
-              'label' => 'Address',
-              'body' => 'Address first_contact, 1001 Brussels, Belgium',
-            ],
+        'items' => [
+          [
+            'label' => 'Website',
+            'body' => 'http://www.example.com/website_first_contact',
           ],
-        ]),
+          [
+            'label' => 'Email',
+            'body' => 'first_contact@example.com',
+          ],
+          [
+            'label' => 'Phone number',
+            'body' => 'Phone number first_contact',
+          ],
+          [
+            'label' => 'Address',
+            'body' => 'Address first_contact, 1001 Brussels, Belgium',
+          ],
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);

@@ -1680,23 +1680,23 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 8
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
-      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4': 3
+      'div.ecl-content-item-block__item.ecl-u-mb-l.ecl-col-12.ecl-col-l-4': 3
       'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4 div.ecl-content-item-block__item.ecl-u-mb-s': 5
+      'div.ecl-content-item-block__item.ecl-u-mb-l.ecl-col-12.ecl-col-l-4 div.ecl-content-item-block__item.ecl-u-mb-l': 5
       'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 5
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 1"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 1."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article h1.ecl-content-block__title': "List item 2"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-block__description': "Description for list item 2."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 3"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 3."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article h1.ecl-content-block__title': "List item 4"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-block__description': "Description for list item 4."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article h1.ecl-content-block__title': "List item 5"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article div.ecl-content-block__description': "Description for list item 2."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 3"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article h1.ecl-content-block__title': "List item 4"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article div.ecl-content-block__description': "Description for list item 4."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 5"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns

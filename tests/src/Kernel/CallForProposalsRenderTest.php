@@ -9,8 +9,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -114,26 +112,24 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       ],
       'image' => NULL,
       'lists' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Reference',
-              'body' => 'Call for proposals reference',
-            ], [
-              'label' => 'Opening date',
-              'body' => '14 February 2020',
-            ], [
-              'label' => 'Deadline model',
-              'body' => 'Single-stage',
-            ], [
-              'label' => 'Deadline date',
-              'body' => '21 February 2020',
-            ], [
-              'label' => 'Funding programme',
-              'body' => 'Arab Common Market',
-            ],
+        'items' => [
+          [
+            'label' => 'Reference',
+            'body' => 'Call for proposals reference',
+          ], [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
+          ], [
+            'label' => 'Deadline model',
+            'body' => 'Single-stage',
+          ], [
+            'label' => 'Deadline date',
+            'body' => '21 February 2020',
+          ], [
+            'label' => 'Funding programme',
+            'body' => 'Arab Common Market',
           ],
-        ]),
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -160,26 +156,24 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for proposals reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => '14 February 2020',
-          ], [
-            'label' => 'Deadline model',
-            'body' => 'Two-stage',
-          ], [
-            'label' => 'Deadline dates',
-            'body' => "21 February 2020\n | 22 February 2020",
-          ], [
-            'label' => 'Funding programme',
-            'body' => 'Arab Common Market',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for proposals reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => '14 February 2020',
+        ], [
+          'label' => 'Deadline model',
+          'body' => 'Two-stage',
+        ], [
+          'label' => 'Deadline dates',
+          'body' => "21 February 2020\n | 22 February 2020",
+        ], [
+          'label' => 'Funding programme',
+          'body' => 'Arab Common Market',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -203,26 +197,24 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       ],
     ];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for proposals reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => '14 February 2020',
-          ], [
-            'label' => 'Deadline model',
-            'body' => 'Multiple cut-off',
-          ], [
-            'label' => 'Deadline date',
-            'body' => '17 February 2020',
-          ], [
-            'label' => 'Funding programme',
-            'body' => 'Arab Common Market',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for proposals reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => '14 February 2020',
+        ], [
+          'label' => 'Deadline model',
+          'body' => 'Multiple cut-off',
+        ], [
+          'label' => 'Deadline date',
+          'body' => '17 February 2020',
+        ], [
+          'label' => 'Funding programme',
+          'body' => 'Arab Common Market',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -245,26 +237,24 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       'variant' => 'medium',
     ];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for proposals reference',
-          ], [
-            'label' => 'Opening date',
-            'body' => '24 February 2020',
-          ], [
-            'label' => 'Deadline model',
-            'body' => 'Single-stage',
-          ], [
-            'label' => 'Deadline date',
-            'body' => '21 February 2020',
-          ], [
-            'label' => 'Funding programme',
-            'body' => 'Arab Common Market',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for proposals reference',
+        ], [
+          'label' => 'Opening date',
+          'body' => '24 February 2020',
+        ], [
+          'label' => 'Deadline model',
+          'body' => 'Single-stage',
+        ], [
+          'label' => 'Deadline date',
+          'body' => '21 February 2020',
+        ], [
+          'label' => 'Funding programme',
+          'body' => 'Arab Common Market',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -284,20 +274,18 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $expected_values['badges'][0] = [];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Reference',
-            'body' => 'Call for proposals reference',
-          ], [
-            'label' => 'Deadline model',
-            'body' => 'Permanent',
-          ], [
-            'label' => 'Funding programme',
-            'body' => 'Arab Common Market',
-          ],
+      'items' => [
+        [
+          'label' => 'Reference',
+          'body' => 'Call for proposals reference',
+        ], [
+          'label' => 'Deadline model',
+          'body' => 'Permanent',
+        ], [
+          'label' => 'Funding programme',
+          'body' => 'Arab Common Market',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
   }

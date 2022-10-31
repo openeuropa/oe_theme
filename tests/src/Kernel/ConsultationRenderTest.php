@@ -9,8 +9,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -107,18 +105,16 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       ],
       'image' => NULL,
       'lists' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Opening date',
-              'body' => '14 February 2020',
-            ],
-            [
-              'label' => 'Deadline',
-              'body' => '21 February 2020, 01:00 (AEDT)',
-            ],
+        'items' => [
+          [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
           ],
-        ]),
+          [
+            'label' => 'Deadline',
+            'body' => '21 February 2020, 01:00 (AEDT)',
+          ],
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -153,17 +149,15 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       ],
     ];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '14 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '17 February 2020, 12:00 (AEDT)',
-          ],
+      'items' => [
+        [
+          'label' => 'Opening date',
+          'body' => '14 February 2020',
+        ], [
+          'label' => 'Deadline',
+          'body' => '17 February 2020, 12:00 (AEDT)',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -181,17 +175,15 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'variant' => 'medium',
     ];
     $expected_values['lists'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '24 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '21 February 2020, 12:00 (AEDT)',
-          ],
+      'items' => [
+        [
+          'label' => 'Opening date',
+          'body' => '24 February 2020',
+        ], [
+          'label' => 'Deadline',
+          'body' => '21 February 2020, 12:00 (AEDT)',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
