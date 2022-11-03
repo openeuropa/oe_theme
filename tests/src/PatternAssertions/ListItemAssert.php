@@ -47,6 +47,9 @@ class ListItemAssert extends BasePatternAssert {
       'meta' => [
         [$this, 'assertPrimaryMeta'],
       ],
+      'secondary_meta' => [
+        [$this, 'assertSecondaryMeta'],
+      ],
       'date' => [
         [$this, 'assertDate'],
         $variant,
@@ -314,6 +317,29 @@ class ListItemAssert extends BasePatternAssert {
     self::assertCount(count($expected_items), $actual_items);
     foreach ($expected_items as $index => $expected_item) {
       self::assertEquals($expected_item, trim($actual_items->eq($index)->text()));
+    }
+  }
+
+  /**
+   * Asserts the secondary meta items of the list item.
+   *
+   * @param array|null $expected_items
+   *   The expected secondary meta items.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertSecondaryMeta($expected_items, Crawler $crawler): void {
+    if (is_null($expected_items)) {
+      $this->assertElementNotExists('.ecl-content-block__secondary-meta-container', $crawler);
+      return;
+    }
+    $actual_items = $crawler->filter('div.ecl-content-item__content-block ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item');
+    self::assertCount(count($expected_items), $actual_items, 'The expected secondary meta items do not match the found items.');
+    foreach ($expected_items as $index => $expected_item) {
+      $info_element = $actual_items->eq($index);
+      $icon_element = $info_element->filter('svg.ecl-icon.ecl-icon--s.ecl-content-block__secondary-meta-icon use');
+      $this::assertStringContainsString('#' . $expected_item['icon'], $icon_element->attr('xlink:href'));
+      $this->assertElementText($expected_item['text'], 'span.ecl-content-block__secondary-meta-label', $info_element);
     }
   }
 
