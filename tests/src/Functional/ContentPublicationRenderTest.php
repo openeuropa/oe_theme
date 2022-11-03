@@ -500,4 +500,86 @@ class ContentPublicationRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $content_items[0]->getHtml());
   }
 
+  /**
+   * Tests that the Publication thumbnail media renders the translated media.
+   */
+  public function testPublicationThumbnailMediaTranslation(): void {
+    // Make image media translatable.
+    \Drupal::service('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
+    \Drupal::service('router.builder')->rebuild();
+
+    // Create image media that we will use for the English translation.
+    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file->setPermanent();
+    $en_file->save();
+
+    // Create Bulgarian file.
+    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file->setPermanent();
+    $bg_file->save();
+
+    // Create a media entity of image media type.
+    /** @var \Drupal\media\Entity\Media $media */
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'image',
+      'name' => 'Test image',
+      'oe_media_image' => [
+        'target_id' => $en_file->id(),
+        'alt' => 'default en alt',
+      ],
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $media->save();
+
+    // Add a Bulgarian translation.
+    $media->addTranslation('bg', [
+      'name' => 'Test image bg',
+      'oe_media_image' => [
+        'target_id' => $bg_file->id(),
+        'alt' => 'default bg alt',
+      ],
+    ]);
+    $media->save();
+
+    // Create a publication node in English translation.
+    $node = $this->getStorage('node')->create([
+      'type' => 'oe_publication',
+      'title' => 'Test Publication node',
+      'oe_teaser' => 'Test teaser text.',
+      'oe_publication_type' => 'http://publications.europa.eu/resource/authority/resource-type/ABSTRACT_JUR',
+      'oe_publication_collection' => 0,
+      'oe_publication_thumbnail' => [
+        'target_id' => (int) $media->id(),
+      ],
+      'oe_publication_date' => [
+        'value' => '2020-04-15',
+      ],
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/AASM',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'uid' => 0,
+      'status' => 1,
+    ]);
+    $node->save();
+    $node->addTranslation('bg', ['title' => 'Test publication bg']);
+    $node->save();
+
+    foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
+      $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, $node_langcode);
+      $this->drupalGet($node->toUrl());
+      $this->assertSession()->elementExists('css', 'figure[class*="ecl-media-container"] img[class="ecl-media-container__media"][src*="example_1_' . $node_langcode . '.jpeg"][alt="default ' . $node_langcode . ' alt"]');
+    }
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'figure[class*="ecl-media-container"] img[class="ecl-media-container__media"][src*="example_1_en.jpeg"][alt="default en alt"]');
+  }
+
 }
