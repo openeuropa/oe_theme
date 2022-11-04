@@ -1,5 +1,36 @@
 # Changelog
 
+## [3.0.0-beta18](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta18) (2022-11-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta17...3.0.0-beta18)
+
+**Merged pull requests:**
+
+- EWPP-2575: Calendar item epic. [\#1206](https://github.com/openeuropa/oe_theme/pull/1206) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2575: Update Calendar item epic. [\#1205](https://github.com/openeuropa/oe_theme/pull/1205) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2575: Update Calendar item epic branch. [\#1204](https://github.com/openeuropa/oe_theme/pull/1204) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2506: Content item epic. [\#1203](https://github.com/openeuropa/oe_theme/pull/1203) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2506: Update epic 2506. [\#1202](https://github.com/openeuropa/oe_theme/pull/1202) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2575: Fix featured item pattern assertions for badges. [\#1200](https://github.com/openeuropa/oe_theme/pull/1200) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2556: Add workaround for context submenu appearance in wysiwyg. [\#1198](https://github.com/openeuropa/oe_theme/pull/1198) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2556: Fix phpunit test. [\#1197](https://github.com/openeuropa/oe_theme/pull/1197) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2718: Update ECL to 3.5.0 version. [\#1192](https://github.com/openeuropa/oe_theme/pull/1192) ([nagyad](https://github.com/nagyad))
+- EWPP-2506: Add classes to identify the last item per column. [\#1191](https://github.com/openeuropa/oe_theme/pull/1191) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2556: Update epic branch. [\#1190](https://github.com/openeuropa/oe_theme/pull/1190) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2506: Update epic branch. [\#1189](https://github.com/openeuropa/oe_theme/pull/1189) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2556: Table in WYSIWYG. [\#1182](https://github.com/openeuropa/oe_theme/pull/1182) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2506: Update epic branch. [\#1177](https://github.com/openeuropa/oe_theme/pull/1177) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2646: Fix publication thumbnail translation render. [\#1174](https://github.com/openeuropa/oe_theme/pull/1174) ([nagyad](https://github.com/nagyad))
+- EWPP-2576: Add secondary meta assertions for list item pattern. [\#1173](https://github.com/openeuropa/oe_theme/pull/1173) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2559: ECL table style cleanup. [\#1172](https://github.com/openeuropa/oe_theme/pull/1172) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2558: Add table column sort support in CKEditor. [\#1171](https://github.com/openeuropa/oe_theme/pull/1171) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2557: Add zebra striping support in CKEditor. [\#1169](https://github.com/openeuropa/oe_theme/pull/1169) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2510: Do not print empty primary meta items. [\#1167](https://github.com/openeuropa/oe_theme/pull/1167) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2506: Update epic branch. [\#1165](https://github.com/openeuropa/oe_theme/pull/1165) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2444: Inpage navigation is popping up on language switcher. [\#1164](https://github.com/openeuropa/oe_theme/pull/1164) ([yenyasinn](https://github.com/yenyasinn))
+- EWPP-2508: Update teaser templates to use the updated list item pattern. [\#1162](https://github.com/openeuropa/oe_theme/pull/1162) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2507: Update the list\_item pattern to use the ECL Content item component. [\#1156](https://github.com/openeuropa/oe_theme/pull/1156) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.0.0-beta17](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta17) (2022-10-11)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta16...3.0.0-beta17)
@@ -7,7 +38,8 @@
 **Merged pull requests:**
 
 - EWPP-2625: Fix json field until classnames are fixed. [\#1181](https://github.com/openeuropa/oe_theme/pull/1181) ([imanoleguskiza](https://github.com/imanoleguskiza))
-- EWPP-2680: Fix site-header for Core ecl branding. [\#1175](https://github.com/openeuropa/oe_theme/pull/1175) ([upchuk](https://github.com/upchuk))
+- Prepare release 3.0.0-beta17. [\#1180](https://github.com/openeuropa/oe_theme/pull/1180) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-2680: Fix site-header for Core ecl branding. [\#1175](https://github.com/openeuropa/oe_theme/pull/1175) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta16](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta16) (2022-09-21)
 
