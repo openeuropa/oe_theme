@@ -94,20 +94,22 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     ];
     // If we have no renderable text and image we don't need a title.
     $text = $this->getRenderableText($entity);
+    $title = $this->getRenderableTitle($entity);
     $this->addFeaturedMediaThumbnail($build, $entity);
-    $title = !empty($text[0]['#text']) || isset($build['#fields']['image']) ? $this->getRenderableTitle($entity) : '';
+    $title = !empty($text[0]['#text']) || isset($build['#fields']['image']) ? $title : '';
 
     // If we don't have a title we do not render anything because there is
     // no text and no image.
     if (empty($title)) {
-      return [];
+      // Make sure we continue to carry over the cache tags.
+      CacheableMetadata::createFromRenderArray($build)
+        ->merge(CacheableMetadata::createFromRenderArray($text))
+        ->applyTo($build);
+      return $build;
     }
 
-    $build['#fields'] = [
-      'title' => $title,
-      'text' => $text,
-    ];
-    $this->addFeaturedMediaThumbnail($build, $entity);
+    $build['#fields']['title'] = $title;
+    $build['#fields']['text'] = $text;
 
     return $build;
   }
