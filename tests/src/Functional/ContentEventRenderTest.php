@@ -496,9 +496,22 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->linkNotExistsExact('Main link for media items');
     $this->assertSession()->pageTextNotContains('More media links');
 
-    // Assert "Full text", "Featured media", "Featured media legend" fields
-    // (these fields have to be filled all together).
+    // Assert "Description" title is not rendered unless there is a body text.
+    $this->assertSession()->pageTextNotContains('Description');
+
+    // Assert "Full text", "Featured media", "Featured media legend" fields.
     $node->set('body', 'Event full text');
+    $node->save();
+    $this->drupalGet($node->toUrl());
+
+    $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-child(3)');
+    $text_featured = new TextFeaturedMediaAssert();
+    $text_featured_expected_values = [
+      'title' => 'Description',
+      'text' => 'Event full text',
+    ];
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
     $node->set('oe_event_featured_media_legend', 'Event featured media legend');
     $media_image = $this->createMediaImage('event_featured_media');
     $node->set('oe_event_featured_media', [$media_image])->save();
