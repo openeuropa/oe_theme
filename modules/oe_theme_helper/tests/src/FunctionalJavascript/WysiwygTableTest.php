@@ -305,13 +305,12 @@ JS;
     $this->getSession()->switchToIFrame('edit-body-0-value-instance-id');
     $page->find('css', $right_click_selector)->rightClick();
     $this->getSession()->switchToIFrame();
-    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ')]");
+    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and @hidden]/iframe");
     $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)]/iframe")->getAttribute('id'));
     $this->clickLink('Cell');
     $this->getSession()->switchToIFrame();
     // @todo Fix in EWPP-2734 the way for waiting for the showing of the context submenu.
-    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ')][last()]/iframe");
-    $this->getSession()->wait(1000);
+    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and @hidden][last()]/iframe");
     $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)][last()]/iframe")->getAttribute('id'));
     $this->clickLink('Cell Properties');
     $this->getSession()->switchToIFrame();
