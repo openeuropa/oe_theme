@@ -23,6 +23,7 @@ class ExternalLinksTest extends AbstractKernelTestBase {
     $this->assertFalse($external_links->isExternalLink(Url::fromUserInput('/user')));
     // Assert external string path.
     $this->assertTrue($external_links->isExternalLink('https://example.com'));
+    $this->assertTrue($external_links->isExternalLink('https://example'));
     // Assert external string path under EU domain.
     $this->assertFalse($external_links->isExternalLink('https://example.europa.eu'));
     $this->assertFalse($external_links->isExternalLink('www.ec.europa.eu/info'));
@@ -32,6 +33,10 @@ class ExternalLinksTest extends AbstractKernelTestBase {
     // Assert incorrect paths.
     $this->assertFalse($external_links->isExternalLink('www. incorrect . com'));
     $this->assertFalse($external_links->isExternalLink('www. ec . europa . eu'));
+    $this->assertFalse($external_links->isExternalLink('https://'));
+    $this->assertFalse($external_links->isExternalLink('internal:/'));
+    $this->assertFalse($external_links->isExternalLink('route:<front>'));
+    $this->assertFalse($external_links->isExternalLink('entity:node/1'));
   }
 
 }

@@ -34,21 +34,32 @@ class ExternalLinks implements ExternalLinksInterface {
    * {@inheritdoc}
    */
   public function isExternalLink($url = NULL): bool {
-    // If no value is provided or the value si not a proper link, we'll
+    // If no value is provided or the value is not a proper link, we'll
     // return FALSE as it can't be evaluated.
     if (!$url) {
       return FALSE;
     }
     if ($url instanceof Url) {
       $external = $url->isExternal();
-      $path = UrlHelper::parse($url->toString())['path'];
+      $url = $url->toString();
     }
     else {
+      // If syntax of URL is invalid, and we cannot evaluate it.
+      if (!UrlHelper::isValid($url)) {
+        return FALSE;
+      }
       $external = UrlHelper::isExternal($url);
-      $path = UrlHelper::parse($url)['path'];
     }
+
     if (!$external) {
       return $external;
+    }
+
+    $path = UrlHelper::parse($url)['path'];
+    // If the path is empty it could mean that URL is not valid, and we
+    // cannot evaluate it.
+    if (!$path) {
+      return FALSE;
     }
 
     // If it's an external link, make sure its domain is not internal.
