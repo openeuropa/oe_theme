@@ -225,8 +225,19 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
 
+    $paragraph->set('field_oe_link', ['uri' => 'route:<nolink>']);
+    $paragraph->save();
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $link_element = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link');
+    $this->assertCount(0, $link_element);
+    $title = $crawler->filter('article.ecl-card div.ecl-card__body h1.ecl-content-block__title');
+    $this->assertEquals('Item title', $title->text());
+
     // Change the variant and test that the markup changed.
     $paragraph->get('oe_paragraphs_variant')->setValue('block');
+    $paragraph->set('field_oe_link', ['uri' => 'http://www.example.com/']);
     $paragraph->save();
 
     $html = $this->renderParagraph($paragraph);
