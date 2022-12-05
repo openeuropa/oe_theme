@@ -105,8 +105,8 @@ Feature: Site branding
     Then the header logo should contain accessibility attributes with link "<link>" label "<label>" alt "<alt>" title "<title>"
 
     Examples:
-      | language_selector | link                                      | label                 | alt                 | title          |
-      | English           | https://ec.europa.eu/info/index_en | Home - European Commission | European Commission logo | European Commission |
-      | български         | https://ec.europa.eu/info/index_bg | Home - European Commission | European Commission logo | European Commission |
+      | language_selector | link                                  | label                      | alt                      | title               |
+      | English           | https://commission.europa.eu/index_en | Home - European Commission | European Commission logo | European Commission |
+      | български         | https://commission.europa.eu/index_bg | Home - European Commission | European Commission logo | European Commission |
       # Non-EU language.
-      | Icelandic         | https://ec.europa.eu/info          | Home - European Commission | European Commission logo | European Commission |
+      | Icelandic         | https://commission.europa.eu          | Home - European Commission | European Commission logo | European Commission |

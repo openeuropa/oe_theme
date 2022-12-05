@@ -49,7 +49,7 @@
         "openeuropa/code-review": "^2.0",
         "openeuropa/oe_contact_forms": "^1.5",
         "openeuropa/oe_content": "3.x-dev",
-        "openeuropa/oe_corporate_blocks": "^4.10",
+        "openeuropa/oe_corporate_blocks": "4.x-dev",
         "openeuropa/oe_corporate_countries": "~2.0",
         "openeuropa/oe_media": "^1.19",
         "openeuropa/oe_multilingual": "^1.10",
