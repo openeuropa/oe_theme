@@ -1,11 +1,21 @@
 # Changelog
 
+## [3.0.0](https://github.com/openeuropa/oe_theme/tree/3.0.0) (2022-12-0)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta18...3.0.0)
+
+**Merged pull requests:**
+
+- EWPP-2831: Update behavior for ecl_footer_links twig function. [\#1219](https://github.com/openeuropa/oe_theme/pull/1219) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2835: Update ECL version. [\#1217](https://github.com/openeuropa/oe_theme/pull/1217) ([sergepavle](https://github.com/sergepavle))
+
 ## [3.0.0-beta18](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta18) (2022-11-04)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta17...3.0.0-beta18)
 
 **Merged pull requests:**
 
+- Prepare release 3.0.0-beta18. [\#1207](https://github.com/openeuropa/oe_theme/pull/1207) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2575: Calendar item epic. [\#1206](https://github.com/openeuropa/oe_theme/pull/1206) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2575: Update Calendar item epic. [\#1205](https://github.com/openeuropa/oe_theme/pull/1205) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2575: Update Calendar item epic branch. [\#1204](https://github.com/openeuropa/oe_theme/pull/1204) ([22Alexandra](https://github.com/22Alexandra))
