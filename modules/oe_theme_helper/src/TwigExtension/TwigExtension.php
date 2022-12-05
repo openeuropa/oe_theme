@@ -28,6 +28,8 @@ use Twig\TwigFunction;
  *
  * We don't enforce any strict type checking on filters' arguments as they are
  * coming straight from Twig templates.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class TwigExtension extends AbstractExtension {
 
@@ -571,6 +573,11 @@ class TwigExtension extends AbstractExtension {
     $ecl_links = [];
 
     foreach ($links as $link) {
+      // Skip if the link is limited to some ECL branding and the current
+      // ECL branding does not match.
+      if (!empty($link['branding']) && $context['ecl_branding'] !== $link['branding']) {
+        continue;
+      }
       $ecl_link = [
         'link' => [
           'label' => $link['label'],
