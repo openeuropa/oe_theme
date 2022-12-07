@@ -83,12 +83,10 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertFooterPresence('core', 4);
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
+    // Assert presence of ecl logo in the core footer.
+    $this->assertEclLogoPresence($section, 'European Commission');
 
-    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
-    $this->assertEquals($data['corporate_site_link']['label'], $actual->getText());
-    $this->assertEquals($data['corporate_site_link']['href'], $actual->getAttribute('href'));
-
-    // Site owner is not set yet, lets make sure we don't have a description.
+    // Site owner is not set yet, let's make sure we don't have a description.
     $assert->elementNotExists('css', 'div.ecl-site-footer__description');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
@@ -146,9 +144,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
-    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
-    $this->assertEquals($data['corporate_site_link']['label'], $actual->getText());
-    $this->assertEquals($data['corporate_site_link']['href'], $actual->getAttribute('href'));
+    // Assert presence of ecl logo in the standardised footer.
+    $this->assertEclLogoPresence($section, 'European Commission');
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2) div.ecl-site-footer__section:nth-child(1)');
     $items = $data['service_navigation'];
@@ -199,8 +196,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by the European Commission, DG XI – Internal Market', $actual->getText());
 
-    // Assert presence of ecl logo in footer.
-    $this->assertEclLogoPresence($section, 'core');
+    // Assert presence of ecl logo in the core footer.
+    $this->assertEclLogoPresence($section, 'European Union');
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(2)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -286,8 +283,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('Discover more on <a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', trim($actual->getHtml()));
 
-    // Assert presence of ecl logo in footer.
-    $this->assertEclLogoPresence($section, 'standardised');
+    // Assert presence of ecl logo in the standardised footer.
+    $this->assertEclLogoPresence($section, 'European Union');
 
     $column = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(2)');
     $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(1)', $column);
@@ -934,12 +931,17 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *
    * @param \Behat\Mink\Element\NodeElement $section
    *   The footer section.
-   * @param string $branding
-   *   Ecl branding, core/standardised.
+   * @param string $component_library
+   *   The component library: 'European Commission' or 'European Union'.
    */
-  protected function assertEclLogoPresence(NodeElement $section, string $branding): void {
-    $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-mobile", 1, $section);
-    $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
+  protected function assertEclLogoPresence(NodeElement $section, string $component_library): void {
+    if ($component_library === 'European Union') {
+      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-mobile", 1, $section);
+      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
+    }
+    else {
+      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
+    }
   }
 
   /**

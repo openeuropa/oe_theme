@@ -13,12 +13,14 @@
 
 {% set _first_column = [
   {
-    'title': {
-    'link': {
-      'label': corporate_footer.corporate_site_link.label,
-      'path': corporate_footer.corporate_site_link.href,
+    'logo': {
+      'aria_label': 'Home'|t ~ ' - ' ~ 'European Commission'|t,
+      'alt': 'European Commission logo'|t,
+      'title': 'European Commission'|t,
+      'language': current_language_id,
+      'path': path,
+      'src_desktop': ecl_logo_path ~ '/negative/logo-ec--' ~ current_language_id|to_internal_language_id ~ '.svg',
     },
-  },
     'description': site_owner ? 'This site is managed by the @name'|t({'@name': site_owner}),
   },
 ] %}
@@ -36,7 +38,6 @@
   },
 ]
 %}
-
 {% block content %}
   {% include '@ecl-twig/site-footer' with {
     'rows': [[_first_column, _second_column]],
