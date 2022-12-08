@@ -187,9 +187,9 @@ class ConfigurationTest extends BrowserTestBase {
       $assert_session->elementExists('css', 'header.ecl-site-header div.ecl-site-header__top');
       $assert_session->elementExists('css', 'header.ecl-site-header div.ecl-site-header__top div.ecl-site-header__action');
 
-      // Make sure that 'Site name' banner is present in the site header
-      // for Core template.
-      $assert_session->elementExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
+      // Make sure that banner is not present in the site header for
+      // the Core template, if the site name and menu are not shown.
+      $assert_session->elementNotExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
