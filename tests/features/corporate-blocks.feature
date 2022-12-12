@@ -17,7 +17,7 @@ Feature: Corporate blocks feature
   Scenario Outline: By default the European Commission footer is displayed.
     Given I am an anonymous user
     When I am on "<page>"
-    Then I should see the European Commission footer with link "https://ec.europa.eu/info/index_en"
+    Then I should see the European Commission footer with link "https://commission.europa.eu/index_en"
 
     Examples:
       | page                        |
@@ -27,7 +27,7 @@ Feature: Corporate blocks feature
   Scenario Outline: Changing the site's style will display either the European Commission or the European Union footer.
     Given I am an anonymous user
     When I am on "<page>"
-    Then I should see the European Commission footer with link "https://ec.europa.eu/info/index_en"
+    Then I should see the European Commission footer with link "https://commission.europa.eu/index_en"
     And I should not see the "European Union" footer
 
     When the theme is configured to use the "European Union" style
@@ -38,7 +38,7 @@ Feature: Corporate blocks feature
     When the theme is configured to use the "European Commission" style
     And I reload the page
     Then I should not see the "European Union" footer
-    But I should see the European Commission footer with link "https://ec.europa.eu/info/index_en"
+    But I should see the European Commission footer with link "https://commission.europa.eu/index_en"
 
     Examples:
       | page                        |

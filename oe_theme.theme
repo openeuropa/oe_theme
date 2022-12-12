@@ -1253,7 +1253,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     $variables['logo_aria_label'] = t('Home') . ' - ' . t('European Commission');
     $variables['site_logo_alt'] = t('European Commission logo');
     $variables['site_logo_title'] = t('European Commission');
-    $site_logo_href = 'https://ec.europa.eu/info';
+    $site_logo_href = 'https://commission.europa.eu';
   }
   else {
     $variables['logo_aria_label'] = t('Home') . ' - ' . t('European Union');
