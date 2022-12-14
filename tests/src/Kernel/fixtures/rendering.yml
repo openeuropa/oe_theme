@@ -500,6 +500,7 @@
           language_code: "pt-pt"
       translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
+      publication_date: "31 August 2020"
   assertions:
     count:
       'svg.ecl-file__icon': 1
@@ -514,6 +515,7 @@
       'a.ecl-file__translation-download[hreflang="it"]': 1
       'a.ecl-file__translation-download[hreflang="hu"]': 1
       'a.ecl-file__translation-download[hreflang="pt"]': 1
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item': 1
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
@@ -529,6 +531,7 @@
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-description': "Custom information snippet."
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
 - array:
     '#type': pattern
     '#id': file_translation
@@ -556,6 +559,7 @@
       'div.ecl-file__translation-container': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item': 0
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"

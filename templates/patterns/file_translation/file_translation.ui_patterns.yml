@@ -53,3 +53,8 @@ file_translation:
       label: "More information"
       description: "Informative text about the available translations."
       preview: "Looking for another language which is not on the list? Find out why."
+    publication_date:
+      type: "text"
+      label: "Publication date"
+      description: "Document publication date"
+      preview: "31 August 2020"
