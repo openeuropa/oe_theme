@@ -17,24 +17,26 @@
 {% endblock %}
 
 {% block navigation %}
-  <div class="ecl-site-header__banner">
-    <div class="ecl-container">
-      {% if site_name is not empty %}
-        <div class="ecl-site-header__site-name">{{ site_name }}</div>
-      {% endif %}
-      {% if cta_link is not empty %}
-        {% include '@ecl-twig/link' with {
-          link: {
-            type: 'cta',
-            label: cta_link.label,
-            path: cta_link.path,
-            icon_position: 'after'
-          },
-          icon: get_link_icon(cta_link.path),
-          extra_classes: 'ecl-site-header__cta',
-        } only %}
-      {% endif %}
+  {% if has_menu or site_name is not empty or cta_link is not empty %}
+    <div class="ecl-site-header__banner">
+      <div class="ecl-container">
+        {% if site_name is not empty %}
+          <div class="ecl-site-header__site-name">{{ site_name }}</div>
+        {% endif %}
+        {% if cta_link is not empty %}
+          {% include '@ecl-twig/link' with {
+            link: {
+              type: 'cta',
+              label: cta_link.label,
+              path: cta_link.path,
+              icon_position: 'after'
+            },
+            icon: get_link_icon(cta_link.path),
+            extra_classes: 'ecl-site-header__cta',
+          } only %}
+        {% endif %}
+      </div>
     </div>
-  </div>
+  {% endif %}
   {{ page.navigation }}
 {% endblock %}

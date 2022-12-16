@@ -25,9 +25,11 @@
     </div>
   {% endblock %}
   {% block navigation %}
-    <div class="ecl-site-header__banner">
-      <div class="ecl-container"></div>
-    </div>
+    {% if has_menu %}
+      <div class="ecl-site-header__banner">
+        <div class="ecl-container"></div>
+      </div>
+    {% endif %}
     {{ page.navigation }}
   {% endblock %}
 </header>
