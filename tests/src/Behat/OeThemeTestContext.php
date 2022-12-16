@@ -284,29 +284,13 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Assert given corporate footer presence on page.
    *
-   * @Then I should see the European Commission footer with link :link
+   * @Then I should see the :component_library footer with link :link label :label image alt :img_alt title :img_title
    */
-  public function assertEuropeanCommissionFooterBlockOnPage(string $link): void {
-    // Make sure a corporate footer is present on the page.
-    $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
-    // European Commission footer is presented.
-    Assert::assertEquals('European Commission', $this->getFooterType(), 'European Commission footer is not presented on the page.');
-
-    // Assert footer data.
-    $title_link = $this->getSession()->getPage()->find('css', '.ecl-site-footer__title-link[href="' . $link . '"]');
-    Assert::assertNotEmpty($title_link, 'European Commission footer link is not found.');
-  }
-
-  /**
-   * Assert given corporate footer presence on page.
-   *
-   * @Then I should see the European Union footer with link :link label :label image alt :img_alt title :img_title
-   */
-  public function assertEuropeanUnionFooterBlockOnPage(string $link, string $label, string $img_alt, string $img_title): void {
+  public function assertEuropeanFooterBlockOnPage(string $component_library, string $link, string $label, string $img_alt, string $img_title): void {
     // Make sure a corporate footer is present on the page.
     $this->assertSession()->elementExists('css', 'footer.ecl-site-footer');
     // European Union footer is presented.
-    Assert::assertEquals('European Union', $this->getFooterType(), 'European Union footer is not presented on the page.');
+    Assert::assertEquals($component_library, $this->getFooterType(), 'European Union footer is not presented on the page.');
 
     // Assert footer data.
     $page = $this->getSession()->getPage();
@@ -371,17 +355,17 @@ class OeThemeTestContext extends RawDrupalContext {
    * Determines footer type.
    *
    * The ECL doesn't provide a way to determine type of the footer except as
-   * to check the existence of the logo.
-   * 'European Union' has logo, 'European Commission' doesn't.
+   * to check the attributes of the logo.
    *
    * @return string
    *   'European Union' or 'European Commission'.
    */
   protected function getFooterType(): string {
-    $logo = $this->getSession()
-      ->getPage()
-      ->find('css', 'footer.ecl-site-footer img.ecl-site-footer__logo-image-desktop');
-    return empty($logo) ? 'European Commission' : 'European Union';
+    $logo = $this->getSession()->getPage()->find('css', 'footer.ecl-site-footer .ecl-site-footer__logo-link');
+    if ($logo->getAttribute('aria-label') === 'Home - European Union') {
+      return 'European Union';
+    }
+    return 'European Commission';
   }
 
   /**
