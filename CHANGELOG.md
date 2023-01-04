@@ -1,12 +1,33 @@
 # Changelog
 
-## [3.0.0](https://github.com/openeuropa/oe_theme/tree/3.0.0) (2022-12-0)
+## [3.1.0](https://github.com/openeuropa/oe_theme/tree/3.1.0) (2023-01-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0...3.1.0)
+
+**Merged pull requests:**
+
+- EWPP-2881: Fix visibility of ecl-site-header\_\_banner element in site-header. [\#1225](https://github.com/openeuropa/oe_theme/pull/1225) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2875: Add EC logo and remove the title from EC footers. [\#1224](https://github.com/openeuropa/oe_theme/pull/1224) ([22Alexandra](https://github.com/22Alexandra))
+- Update 3.x [\#1223](https://github.com/openeuropa/oe_theme/pull/1223) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-2827: Change core site URL. [\#1221](https://github.com/openeuropa/oe_theme/pull/1221) ([nagyad](https://github.com/nagyad))
+- EWPP-2861: Add publication date field to file translation pattern. [\#1220](https://github.com/openeuropa/oe_theme/pull/1220) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2860: Update ECL version to 3.6.0. [\#1218](https://github.com/openeuropa/oe_theme/pull/1218) ([sergepavle](https://github.com/sergepavle))
+- EWPP-1573: Show title as not link when url parameter is not available. [\#1214](https://github.com/openeuropa/oe_theme/pull/1214) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2790: Fix Core footer according to ECL core configuration. [\#1213](https://github.com/openeuropa/oe_theme/pull/1213) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2788: Add validation of path in \Drupal\oe\_theme\_helper\ExternalLinks::isExternalLink and update test coverage. [\#1212](https://github.com/openeuropa/oe_theme/pull/1212) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2734: Fix WysiwygTableTest with removing workaround. [\#1210](https://github.com/openeuropa/oe_theme/pull/1210) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2711: Set remote video iframe ratio 1-1 and auto height. [\#1201](https://github.com/openeuropa/oe_theme/pull/1201) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2714: Adapt Event Description extra field rendering. [\#1196](https://github.com/openeuropa/oe_theme/pull/1196) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2706: Make sure featured media title is not printed when field is empty. [\#1194](https://github.com/openeuropa/oe_theme/pull/1194) ([nagyad](https://github.com/nagyad))
+
+## [3.0.0](https://github.com/openeuropa/oe_theme/tree/3.0.0) (2022-12-06)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0-beta18...3.0.0)
 
 **Merged pull requests:**
 
-- EWPP-2831: Update behavior for ecl_footer_links twig function. [\#1219](https://github.com/openeuropa/oe_theme/pull/1219) ([sergepavle](https://github.com/sergepavle))
+- Prepare release 3.0.0. [\#1222](https://github.com/openeuropa/oe_theme/pull/1222) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-2831: Update behavior for ecl\_footer\_links twig function. [\#1219](https://github.com/openeuropa/oe_theme/pull/1219) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2835: Update ECL version. [\#1217](https://github.com/openeuropa/oe_theme/pull/1217) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.0.0-beta18](https://github.com/openeuropa/oe_theme/tree/3.0.0-beta18) (2022-11-04)
