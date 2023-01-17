@@ -282,7 +282,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
    */
   public function testIllustrationListImagesRendering(): void {
     // Create media image.
-    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 
@@ -370,7 +370,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         ], [
           'title' => 'Term 2',
           'image' => [
-            'src' => \Drupal::service('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg'),
+            'src' => $this->container->get('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg'),
             'alt' => 'Euro with miniature figurines',
           ],
         ], [
