@@ -19,13 +19,14 @@ abstract class ValueObjectBase implements ValueObjectInterface {
   /**
    * {@inheritdoc}
    */
-  public function offsetExists($offset) {
+  public function offsetExists(mixed $offset): bool {
     return array_key_exists($offset, $this->getArray());
   }
 
   /**
    * {@inheritdoc}
    */
+  #[\ReturnTypeWillChange]
   public function getIterator() {
     return new \ArrayIterator($this->getArray());
   }
@@ -33,21 +34,21 @@ abstract class ValueObjectBase implements ValueObjectInterface {
   /**
    * {@inheritdoc}
    */
-  public function offsetGet($offset) {
+  public function offsetGet(mixed $offset): mixed {
     return $this->getArray()[$offset];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function offsetSet($offset, $value) {
+  public function offsetSet(mixed $offset, mixed $value): void {
     // Does nothing as a value object array access is meant to be read-only.
   }
 
   /**
    * {@inheritdoc}
    */
-  public function offsetUnset($offset) {
+  public function offsetUnset(mixed $offset): void {
     // Does nothing as a value object array access is meant to be read-only.
   }
 
