@@ -373,15 +373,22 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       ], [
         'label' => 'Timeline label 2',
         'title' => 'Timeline title 2',
+        'body' => '',
       ], [
         'label' => 'Timeline label 3',
+        'title' => '',
         'body' => 'Timeline body 3',
       ], [
+        'label' => '',
         'title' => 'Timeline title 4',
         'body' => 'Timeline body 4',
       ], [
+        'label' => '',
         'title' => 'Timeline title 5',
+        'body' => '',
       ], [
+        'label' => '',
+        'title' => '',
         'body' => 'Timeline body 6',
       ],
     ])->save();
