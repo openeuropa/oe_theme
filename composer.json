@@ -13,7 +13,7 @@
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.4",
         "openeuropa/ecl-twig-loader": "^3.1",
-        "openeuropa/oe_time_caching": "dev-EWPP-2969"
+        "openeuropa/oe_time_caching": "dev-master"
     },
     "require-dev": {
         "behat/behat": "^3.10",
@@ -52,7 +52,7 @@
         "openeuropa/behat-transformation-context": "dev-master",
         "openeuropa/code-review": "2.x-dev",
         "openeuropa/oe_contact_forms": "dev-master",
-        "openeuropa/oe_content": "dev-EWPP-2902",
+        "openeuropa/oe_content": "3.x-dev",
         "openeuropa/oe_corporate_blocks": "4.x-dev",
         "openeuropa/oe_corporate_countries": "2.x-dev",
         "openeuropa/oe_media": "dev-master",
@@ -89,13 +89,13 @@
         }
     },
     "repositories": {
-        "media_avportal": {
-            "type": "git",
-            "url": "https://github.com/openeuropa/media_avportal"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "media_avportal": {
+            "type": "git",
+            "url": "https://github.com/openeuropa/media_avportal"
         }
     },
     "extra": {
