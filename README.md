@@ -55,8 +55,10 @@ Then add the following section, in your project's `composer.json`:
         "artifacts": {
             "openeuropa/oe_theme": {
                 "dist": {
-                    "url": "https://github.com/{name}/releases/download/{pretty-version}/{project-name}-{pretty-version}.tar.gz",
-                    "type": "tar"
+                    "url": "https://github.com/{pretty-name}/releases/download/{pretty-version}/{project-name}-{pretty-version}.tar.gz",
+                    "type": "tar",
+                    "url": "https://github.com/{pretty-name}/releases/download/{pretty-version}/{project-name}-{pretty-version}.zip",
+                    "type": "zip"
                 }
             }
         },
