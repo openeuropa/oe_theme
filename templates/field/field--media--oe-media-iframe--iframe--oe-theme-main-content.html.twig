@@ -8,6 +8,5 @@
   {% include '@ecl-twig/media-container' with {
     'embedded_media': item.content,
     'ratio': ratio,
-    'extra_classes': (ratio == 'custom') ? 'ecl-media-container--custom-ratio' : '',
   } %}
 {% endfor %}

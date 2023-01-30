@@ -330,7 +330,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $build = $this->mediaViewBuilder->view($media, 'oe_theme_main_content');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('.ecl-media-container .ecl-media-container__media--ratio-custom iframe');
+    $iframe = $crawler->filter('.ecl-media-container iframe');
     $this->assertEquals('http://example.com/iframe_media', $iframe->attr('src'));
 
     // Assert iframe media with aspect ratio 3:2.
