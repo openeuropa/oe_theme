@@ -1,11 +1,20 @@
 # Changelog
 
-## [3.1.0](https://github.com/openeuropa/oe_theme/tree/3.1.0) (2023-01-04)
+## [3.1.1](https://github.com/openeuropa/oe_theme/tree/3.1.1) (2023-02-01)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.0...3.1.1)
+
+**Merged pull requests:**
+
+- EWPP-3048: Do not apply custom ratio class on iframes. [\#1237](https://github.com/openeuropa/oe_theme/pull/1237) ([nagyad](https://github.com/nagyad))
+
+## [3.1.0](https://github.com/openeuropa/oe_theme/tree/3.1.0) (2023-01-05)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.0.0...3.1.0)
 
 **Merged pull requests:**
 
+- Prepare release 3.1.0. [\#1228](https://github.com/openeuropa/oe_theme/pull/1228) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-2881: Fix visibility of ecl-site-header\_\_banner element in site-header. [\#1225](https://github.com/openeuropa/oe_theme/pull/1225) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2875: Add EC logo and remove the title from EC footers. [\#1224](https://github.com/openeuropa/oe_theme/pull/1224) ([22Alexandra](https://github.com/22Alexandra))
 - Update 3.x [\#1223](https://github.com/openeuropa/oe_theme/pull/1223) ([imanoleguskiza](https://github.com/imanoleguskiza))
