@@ -13,10 +13,6 @@
   {% set extra_classes = ['ecl-media-container--fullwidth'] %}
 {% endif %}
 
-{% if ratio == 'custom' %}
-  {% set extra_classes = extra_classes|merge(['ecl-media-container--custom-ratio']) %}
-{% endif %}
-
 {% if not paragraph.field_oe_title.isEmpty() %}
   <h2 class="ecl-u-type-heading-2">{{ content.field_oe_title }}</h2>
 {% endif %}

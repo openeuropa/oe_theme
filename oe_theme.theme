@@ -1668,8 +1668,7 @@ function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_the
  *   Prepared ratio to be used in templates.
  */
 function _oe_theme_get_oe_media_iframe_ratio(MediaInterface $media): string {
-  $ratio = $media->get('oe_media_iframe_ratio')->value ?? 'custom';
-  return str_replace('_', '-', $ratio);
+  return $media->get('oe_media_iframe_ratio')->isEmpty() ? '' : str_replace('_', '-', $media->get('oe_media_iframe_ratio')->value);
 }
 
 /**

@@ -891,7 +891,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
     $this->assertStringNotContainsString('ecl-u-type-heading-2', $html);
 
@@ -899,7 +899,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_iframe_media_full_width', TRUE)->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth.ecl-media-container--custom-ratio div.ecl-media-container__media.ecl-media-container__media--ratio-custom iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth div.ecl-media-container__media iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
 
     // Assert ratio.
