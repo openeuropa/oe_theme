@@ -64,10 +64,13 @@
         "openeuropa/task-runner-drupal-project-symlink": "1.x-dev",
         "phpspec/prophecy-phpunit": "^2",
         "symfony/browser-kit": "^4.4.37",
+        "symfony/console": "^4.4.30",
         "symfony/css-selector": "^4.4.24",
         "symfony/dom-crawler": "^4.4.44",
+        "symfony/finder": "^4.4.30",
         "symfony/http-foundation": "^4.4.30",
         "symfony/phpunit-bridge": "^6.0",
+        "symfony/process": "^4.4.30",
         "symfony/routing": "^4.4.30",
         "symfony/validator": "^4.4.30",
         "symfony/yaml": "^4.4.29"
@@ -132,6 +135,7 @@
             "Explicit minimum version requirement of mikey179/vfsstream due to lower versions missing return type on vfsStreamDirectory::getIterator() method.",
             "Explicit minimum version requirement of masterminds/html5 due to lower versions passing NULL parameters instead of string when calling DOMImplementation::createDocument() method.",
             "Explicit minimum version requirement of guzzlehttp/guzzle due to lower versions missing return type on CookieJar::getIterator() and CookieJar::count() methods.",
+            "Explicit minimum version requirement of doctrine/collections due to lower versions missing return type on ArrayCollection::count() methods.",
             "Explicit requirement of token module due to lower versions declaring optional parameters before the require one on token_tokens() function."
         ]
     },
