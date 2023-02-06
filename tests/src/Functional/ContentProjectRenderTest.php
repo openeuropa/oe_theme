@@ -226,7 +226,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($third_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
     $project_website_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $project_website_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $project_website_icon->getHtml());
 
     // Assert documents file.
     $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
@@ -382,14 +382,14 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('horizontal', $field_list_html);
     // Assert contact website's icon.
     $website_icon = $field_list_wrapper->find('css', 'dl.ecl-description-list dd a.ecl-link');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $website_icon->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $website_icon->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
 
     // Assert contact link.
     $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
     $this->assertCount(1, $contact_links);
     $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
     // Assert contact link's icon.
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $contact_links[0]->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon')->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $contact_links[0]->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon')->getHtml());
     $contact_link_labels = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold span.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
@@ -428,7 +428,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     if (!empty($link)) {
       if ($external_link) {
         $link_tag = $rendered_element->find('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
-        $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $link_tag->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+        $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $link_tag->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
       }
       else {
         $this->assertSession()->elementNotExists('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon', $rendered_element);

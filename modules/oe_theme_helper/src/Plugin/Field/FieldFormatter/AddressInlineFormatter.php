@@ -136,7 +136,9 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
    */
   protected function extractAddressItems(string $string, array $replacements): array {
     // Make sure the replacements don't have any unneeded newlines.
-    $replacements = array_map('trim', $replacements);
+    array_walk($replacements, function (&$value) {
+      $value = trim($value ?? '');
+    });
     $string = strtr($string, $replacements);
     // Remove noise caused by empty placeholders.
     $lines = explode("\n", $string);
@@ -147,9 +149,7 @@ class AddressInlineFormatter extends AddressDefaultFormatter {
       $lines[$index] = $line;
     }
     // Remove empty lines.
-    $lines = array_filter($lines);
-
-    return $lines;
+    return array_filter($lines);
   }
 
 }

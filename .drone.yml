@@ -131,7 +131,7 @@ pipeline:
         include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
-        PHP_VERSION: 7.4
+        PHP_VERSION: "8.0"
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -144,24 +144,24 @@ pipeline:
         include: tag
       matrix:
         COMPOSER_BOUNDARY: highest
-        PHP_VERSION: 7.4
+        PHP_VERSION: "8.0"
 
 matrix:
   include:
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: behat }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
 
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }

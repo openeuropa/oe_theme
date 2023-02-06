@@ -342,11 +342,11 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
     $first_link_icon = $transparency_links_items[0]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $first_link_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $first_link_icon->getHtml());
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getAttribute('href'));
     $this->assertEquals('http://example.com/link_2', $transparency_links_items[1]->getText());
     $second_link_icon = $transparency_links_items[1]->find('css', 'a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $second_link_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $second_link_icon->getHtml());
 
     // Assert Biography introduction field.
     $node->set('oe_person_biography_intro', 'Biography introduction text')->save();
@@ -373,15 +373,22 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
       ], [
         'label' => 'Timeline label 2',
         'title' => 'Timeline title 2',
+        'body' => '',
       ], [
         'label' => 'Timeline label 3',
+        'title' => '',
         'body' => 'Timeline body 3',
       ], [
+        'label' => '',
         'title' => 'Timeline title 4',
         'body' => 'Timeline body 4',
       ], [
+        'label' => '',
         'title' => 'Timeline title 5',
+        'body' => '',
       ], [
+        'label' => '',
+        'title' => '',
         'body' => 'Timeline body 6',
       ],
     ])->save();
