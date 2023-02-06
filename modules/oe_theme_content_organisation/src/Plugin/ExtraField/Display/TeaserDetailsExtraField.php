@@ -6,6 +6,7 @@ namespace Drupal\oe_theme_content_organisation\Plugin\ExtraField\Display;
 
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
@@ -33,6 +34,13 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
   protected $entityTypeManager;
 
   /**
+   * The entity repository.
+   *
+   * @var \Drupal\Core\Entity\EntityRepositoryInterface
+   */
+  protected $entityRepository;
+
+  /**
    * TeaserDetailsExtraField constructor.
    *
    * @param array $configuration
@@ -43,10 +51,13 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
+   * @param \Drupal\Core\Entity\EntityRepositoryInterface $entity_repository
+   *   The entity repository service.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, EntityRepositoryInterface $entity_repository) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->entityTypeManager = $entity_type_manager;
+    $this->entityRepository = $entity_repository;
   }
 
   /**
@@ -57,7 +68,8 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('entity.repository')
     );
   }
 
@@ -78,6 +90,7 @@ class TeaserDetailsExtraField extends ExtraFieldDisplayFormattedBase implements 
       if (!$contact) {
         continue;
       }
+      $contact = $this->entityRepository->getTranslationFromContext($contact);
       $contact_access = $contact->access('view', NULL, TRUE);
       $cache->addCacheableDependency($contact);
       $cache->addCacheableDependency($contact_access);
