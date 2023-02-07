@@ -1504,6 +1504,8 @@ function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
     $variables['heading'] = $paragraph->get('field_oe_title')->value;
   }
   $variables['limit'] = $paragraph->get('field_oe_timeline_expand')->value;
+  // Show the last item of the timeline.
+  $variables['limit_to'] = count($variables['content']['field_oe_timeline']['#items']) - 1;
   $variables['items'] = $variables['content']['field_oe_timeline']['#items'];
 }
 
