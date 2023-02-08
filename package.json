@@ -22,6 +22,7 @@
     "@ecl/theme-ec": "3.7.0",
     "@ecl/theme-eu": "3.7.0",
     "@ecl/twig-component-accordion": "3.7.0",
+    "@ecl/twig-component-banner": "3.7.0",
     "@ecl/twig-component-blockquote": "3.7.0",
     "@ecl/twig-component-breadcrumb": "3.7.0",
     "@ecl/twig-component-button": "3.7.0",
