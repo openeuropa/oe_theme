@@ -2108,7 +2108,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'centered' => FALSE,
       // The paragraph has a required image field, so we need to set a default
       // image variant in order to render the image.
-      'variant' => 'image-gradient',
+      'variant' => 'text-highlight',
     ];
     $cacheability->applyTo($variables);
   }
