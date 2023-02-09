@@ -5,14 +5,14 @@ carousel:
     items:
       type: "array"
       label: "Carousel items"
-      description: "List of items compatible with the Page banner structure."
+      description: "List of items compatible with the ECL Banner component structure."
       preview:
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
           image: "https://placeimg.com/640/480/tech"
-          variant: "image"
+          variant: "text-box"
           centered: false
           credit: "© Copyright first item"
         - title: "Duis vitae pulvinar turpis"
@@ -20,7 +20,7 @@ carousel:
           url: "https://example.com"
           url_text: "CTA"
           image: "https://placeimg.com/640/480/arch"
-          variant: "image-gradient"
+          variant: "text-highlight"
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
           url: "https://example.com"
@@ -30,19 +30,19 @@ carousel:
           url: "https://example.com"
           url_text: "CTA"
           image: "https://placeimg.com/640/480/tech"
-          variant: "image-shade"
+          variant: "image-overlay"
           credit: "© Copyright fourth item"
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          variant: "secondary"
+          variant: "text-highlight"
           centered: false
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          variant: "white"
+          variant: "text-box"
           centered: false
     counter_label:
       type: "string"
