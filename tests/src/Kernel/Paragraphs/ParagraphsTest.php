@@ -612,14 +612,16 @@ class ParagraphsTest extends ParagraphsTestBase {
    * Test 'Facts and figures' paragraph rendering.
    */
   public function testFactsFigures(): void {
-    // Create three Facts to be referenced from the Facts and figures paragraph.
+    // Create some Facts to be referenced from the Facts and figures paragraph.
     $items = [];
     $icons = [
       1 => 'infographic',
       2 => 'spreadsheet',
       3 => 'digital',
+      4 => 'log-in',
+      5 => 'logged-in',
     ];
-    for ($i = 1; $i < 4; $i++) {
+    for ($i = 1; $i < 6; $i++) {
       $paragraph = Paragraph::create([
         'type' => 'oe_fact',
         'field_oe_icon' => $icons[$i],
@@ -693,20 +695,30 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"), $component_library);
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
     $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
+    $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(4) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
+    $this->assertCount(1, $crawler->filter("div.ecl-fact-figures__item:nth-child(5) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon"));
 
     $this->assertEquals('Facts and figures', trim($crawler->filter('h2.ecl-u-type-heading-2')->text()));
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#infographic\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#spreadsheet\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
     $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#digital\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(3) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
+    $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#log-in\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(4) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
+    $this->assertEquals("<use xlink:href=\"/themes/custom/oe_theme/dist/$component_library/images/icons/sprites/icons.svg#logged-in\"></use>", $crawler->filter("div.ecl-fact-figures__item:nth-child(5) svg.ecl-icon.ecl-icon--$fact_icon_size.ecl-fact-figures__icon")->html());
     $this->assertEquals('10 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('20 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('30 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__value')->text()));
+    $this->assertEquals('40 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) div.ecl-fact-figures__value')->text()));
+    $this->assertEquals('50 millions', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) div.ecl-fact-figures__value')->text()));
     $this->assertEquals('Fact 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__title')->text()));
     $this->assertEquals('Fact 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__title')->text()));
     $this->assertEquals('Fact 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 4', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) div.ecl-fact-figures__title')->text()));
+    $this->assertEquals('Fact 5', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) div.ecl-fact-figures__title')->text()));
     $this->assertEquals('Fact description 1', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(1) div.ecl-fact-figures__description')->text()));
     $this->assertEquals('Fact description 2', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(2) div.ecl-fact-figures__description')->text()));
     $this->assertEquals('Fact description 3', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(3) div.ecl-fact-figures__description')->text()));
+    $this->assertEquals('Fact description 4', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(4) div.ecl-fact-figures__description')->text()));
+    $this->assertEquals('Fact description 5', trim($crawler->filter('div.ecl-fact-figures__item:nth-child(5) div.ecl-fact-figures__description')->text()));
 
     $link = $crawler->filter('div.ecl-fact-figures__view-all a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after.ecl-fact-figures__view-all-link');
     $actual = $link->text();
