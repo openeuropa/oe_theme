@@ -469,8 +469,8 @@ msgstr "Již proběhlo"
 msgid "Upcoming and open"
 msgstr "Nadcházející a probíhající"
 
-msgid "This page is not available in English."
-msgstr "Tato stránka není v češtině k dispozici."
+msgid "English is available via machine translation – please use the link below."
+msgstr "V češtině si obsah stránky můžete zobrazit ve strojovém překladu – použijte níže uvedený odkaz."
 
 msgid "Choose another language"
 msgstr "Zvolte prosím jiný jazyk"

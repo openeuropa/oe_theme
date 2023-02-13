@@ -469,8 +469,8 @@ msgstr "Trecute"
 msgid "Upcoming and open"
 msgstr "Viitoare și deschise"
 
-msgid "This page is not available in English."
-msgstr "Această pagină nu este disponibilă în limba română."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Pagina în română este disponibilă doar în traducere automată. O puteți solicita prin linkul de mai jos."
 
 msgid "Choose another language"
 msgstr "Selectați altă limbă"

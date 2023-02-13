@@ -469,8 +469,8 @@ msgstr "Tidligere"
 msgid "Upcoming and open"
 msgstr "Kommende og åbne"
 
-msgid "This page is not available in English."
-msgstr "Denne side er ikke tilgængelig på dansk."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Du kan få teksten oversat til dansk ved hjælp af maskinoversættelse – klik på linket nedenfor."
 
 msgid "Choose another language"
 msgstr "Vælg et andet sprog"

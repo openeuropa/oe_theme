@@ -469,8 +469,8 @@ msgstr "Prošli"
 msgid "Upcoming and open"
 msgstr "Budući i otvoreni"
 
-msgid "This page is not available in English."
-msgstr "Ova stranica nije dostupna na hrvatskom jeziku."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Na hrvatskom je dostupan strojni prijevod – upotrijebite poveznicu u nastavku."
 
 msgid "Choose another language"
 msgstr "Odaberite drugi jezik"

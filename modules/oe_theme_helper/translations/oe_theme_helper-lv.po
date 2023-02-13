@@ -469,8 +469,8 @@ msgstr "Iepriekšējs(-ie)"
 msgid "Upcoming and open"
 msgstr "Gaidāms(-ie) un atklāts(-ie)"
 
-msgid "This page is not available in English."
-msgstr "Šī lapa nav pieejama latviešu valodā."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Teksts latviešu valodā ir pieejams mašīntulkojumā. Lūdzu, izmantojiet zemāk redzamo saiti!"
 
 msgid "Choose another language"
 msgstr "Izvēlieties citu valodu"

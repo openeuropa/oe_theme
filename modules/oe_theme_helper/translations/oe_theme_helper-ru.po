@@ -469,7 +469,7 @@ msgstr "Прошедшие"
 msgid "Upcoming and open"
 msgstr "Предстоящие и открытые"
 
-msgid "This page is not available in English."
+msgid "English is available via machine translation – please use the link below."
 msgstr "Эта страница недоступна на русском."
 
 msgid "Choose another language"

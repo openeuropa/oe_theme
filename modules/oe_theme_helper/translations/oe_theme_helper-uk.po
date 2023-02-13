@@ -469,7 +469,7 @@ msgstr "Минулі"
 msgid "Upcoming and open"
 msgstr "Заплановані та відкриті"
 
-msgid "This page is not available in English."
+msgid "English is available via machine translation – please use the link below."
 msgstr "Ця сторінка не доступна українською мовою."
 
 msgid "Choose another language"
