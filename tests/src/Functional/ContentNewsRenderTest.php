@@ -221,6 +221,8 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
       ],
     ])->toString();
     $this->assertStringContainsString($partial_video_url, $video->getAttribute('src'));
+    $this->assertStringContainsString('200', $video->getAttribute('width'));
+    $this->assertStringContainsString('150', $video->getAttribute('height'));
 
     // Unpublish the media and assert it is not rendered anymore.
     $media->set('status', 0);

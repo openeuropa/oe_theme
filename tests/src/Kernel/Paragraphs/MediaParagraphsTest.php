@@ -263,6 +263,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ],
     ])->toString();
     $this->assertStringContainsString($partial_iframe_url, $video_iframe->attr('src'));
+    $this->assertStringContainsString('459', $video_iframe->attr('width'));
+    $this->assertStringContainsString('344', $video_iframe->attr('height'));
 
     // Create an avportal video and add it to the paragraph.
     $media = $media_storage->create([
