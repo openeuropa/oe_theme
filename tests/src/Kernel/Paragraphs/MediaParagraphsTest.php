@@ -255,7 +255,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $existing_classes = $media_container->attr('class');
     $existing_classes = explode(' ', $existing_classes);
-    $this->assertContains('ecl-media-container__media--ratio-16-9', $existing_classes);
+    $this->assertNotContains('ecl-media-container__media--ratio-16-9', $existing_classes);
     $video_iframe = $media_container->filter('iframe');
     $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
@@ -310,7 +310,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Since link doesn't exist variant is recognized as "left_simple".
     $assert->assertVariant('left_simple', $html);
 
-    // Create iframe video with aspect ration 1:1 and add it to the paragraph.
+    // Create iframe video with aspect ratio 1:1 and add it to the paragraph.
     $media = $media_storage->create([
       'bundle' => 'video_iframe',
       'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',

@@ -2761,7 +2761,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
@@ -2794,7 +2794,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
@@ -2826,7 +2826,7 @@
       'div.ecl-featured-item__title': 0
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
@@ -2851,7 +2851,7 @@
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-featured-item__item.ecl': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
     equals:
@@ -2878,7 +2878,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
@@ -2900,7 +2900,7 @@
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'h2.ecl-u-type-heading-2': 1
       'a.ecl-link': 0
@@ -2928,7 +2928,7 @@
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
@@ -2948,7 +2948,7 @@
       video_ratio: "invalid"
   assertions:
     count:
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
 - array:
     '#type': pattern
     '#id': text_featured_media
