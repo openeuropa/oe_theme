@@ -2851,7 +2851,7 @@
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-featured-item__item.ecl': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-1-1 iframe': 0
+      'div.ecl-media-container__media--ratio-16-9 iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
     equals:

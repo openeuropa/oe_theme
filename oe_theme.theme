@@ -1006,8 +1006,6 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
     // If it is an OEmbed resource, render it and pass it as embeddable data
     // only if it is of type video or html.
     if ($source instanceof OEmbed) {
-      // Use 1-1 ratio for OEmbed.
-      $variables['ratio'] = '1:1';
       $oembed_type = $source->getMetadata($media, 'type');
       if (in_array($oembed_type, ['video', 'html'])) {
         $variables['video'] = $media->{$source_field->getName()}->view($display_options);
