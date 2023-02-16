@@ -8,47 +8,51 @@
   {% set patterns = patterns|sort %}
 
   {# List of available patterns with anchor links. #}
-  {% set _links = {} %}
-  {% for pattern_name, pattern in patterns %}
-    {% set _link = {
-      link: {
-        label : pattern.label,
-        path : '#' ~ pattern_name,
-        type: 'standalone'
-      }
+  {% for group_name, group_patterns in patterns %}
+    {% set _links = {} %}
+    {% for pattern_name, pattern in group_patterns %}
+      {% set _link = {
+        link: {
+          label : pattern.label,
+          path : '#' ~ pattern_name,
+          type: 'standalone'
+        }
+      } %}
+      {% set _links = _links|merge([_link]) %}
+    {% endfor %}
+    {% include '@oe_theme/compositions/ec-component-link-block/link-block.html.twig' with {
+      links: _links,
     } %}
-    {% set _links = _links|merge([_link]) %}
   {% endfor %}
-  {% include '@oe_theme/compositions/ec-component-link-block/link-block.html.twig' with {
-    links: _links,
-  } %}
 
-  {% for pattern_name, pattern in patterns %}
-  <div class="ecl-u-clearfix ecl-u-pv-4xl ecl-u-border-bottom ecl-u-border-color-grey-50">
-    {# Pattern name and desciption. #}
-    <a name="{{ pattern_name }}"></a>
-    {% include '@ecl-twig/link' with {
-      'link': {
-        'type': 'standalone',
-        'path': url('ui_patterns.patterns.single', {name: pattern_name }),
-        'label': "View as standalone"|t,
-        'icon_position': 'after'
-      },
-      'icon': {
-        'path': ecl_icon_path,
-        'name': 'fullscreen',
-        'size': 'xs',
-      },
-      extra_classes: 'ecl-u-f-r'
-    } %}
-    <h2 class="ecl-u-mt-none ecl-u-type-heading-2">{{ pattern.label }}</h2>
-    {{ pattern.meta }}
+  {% for group_patterns in patterns %}
+    {% for pattern_name, pattern in group_patterns %}
+    <div class="ecl-u-clearfix ecl-u-pv-4xl ecl-u-border-bottom ecl-u-border-color-grey-50">
+      {# Pattern name and desciption. #}
+      <a id="{{ pattern_name }}"></a>
+      {% include '@ecl-twig/link' with {
+        'link': {
+          'type': 'standalone',
+          'path': url('ui_patterns.patterns.single', {name: pattern_name }),
+          'label': "View as standalone"|t,
+          'icon_position': 'after'
+        },
+        'icon': {
+          'path': ecl_icon_path,
+          'name': 'fullscreen',
+          'size': 'xs',
+        },
+        extra_classes: 'ecl-u-f-r'
+      } %}
+      <h2 class="ecl-u-mt-none ecl-u-type-heading-2">{{ pattern.label }}</h2>
+      {{ pattern.meta }}
 
-    {# Rendered pattern preview. #}
-    {% set style = pattern.meta['#pattern'].additional.style %}
-    <div class="ecl-u-clearfix ecl-u-pt-4xl" style="{{ style }}">
-      {{ pattern.rendered }}
+      {# Rendered pattern preview. #}
+      {% set style = pattern.meta['#pattern'].additional.style %}
+      <div class="ecl-u-clearfix ecl-u-pt-4xl" style="{{ style }}">
+        {{ pattern.rendered }}
+      </div>
     </div>
-  </div>
+    {% endfor %}
   {% endfor %}
 {% endif %}
