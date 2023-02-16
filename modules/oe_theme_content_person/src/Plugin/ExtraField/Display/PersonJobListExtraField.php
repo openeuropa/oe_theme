@@ -99,6 +99,7 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
     ];
     // Prepare person jobs to be shown in the field list pattern.
     $view_builder = $this->entityTypeManager->getViewBuilder('oe_person_job');
+    $single_person_job = count($entity->get('oe_person_jobs')->referencedEntities()) === 1;
     foreach ($entity->get('oe_person_jobs')->referencedEntities() as $person_job) {
       // Retrieve the translation of the person job entity.
       $person_job = $this->entityRepository->getTranslationFromContext($person_job);
@@ -108,15 +109,22 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
         $body = $view_builder->viewField($person_job->get('oe_description'), [
           'label' => 'hidden',
         ]);
-        $job_list['#simple'] = FALSE;
+      }
+      else {
+        // Don't add an item if Person Job has an empty description field.
+        $cacheable_metadata->addCacheableDependency($person_job);
+        continue;
       }
       $job_list['#items'][] = [
-        'label' => $person_job->label(),
+        'label' => $single_person_job ? NULL : $person_job->label(),
         'body' => $body,
       ];
       $cacheable_metadata->addCacheableDependency($person_job);
     }
-
+    // Hide the job list if there are no items.
+    if (empty($job_list['#items'])) {
+      return [];
+    }
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'field_list',
