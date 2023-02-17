@@ -12,7 +12,7 @@
     {% endif %}
     <a href="{{ url }}" class="ecl-link ecl-link--standalone ecl-u-type-bold">{{ label }}</a>
     {% if not node.oe_teaser.isEmpty() %}
-      <div class="ecl-content-block__description">{{ content.oe_teaser|field_value }}</div>
+      <div class="ecl-content-block__description">{{ content.oe_teaser|field_value|render|striptags }}</div>
     {% endif %}
   </div>
 </article>

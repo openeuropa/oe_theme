@@ -123,7 +123,9 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
     }
     // Hide the job list if there are no items.
     if (empty($job_list['#items'])) {
-      return [];
+      $build = [];
+      $cacheable_metadata->applyTo($build);
+      return $build;
     }
     $pattern = [
       '#type' => 'pattern',
