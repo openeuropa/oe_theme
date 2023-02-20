@@ -104,7 +104,6 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
       // Retrieve the translation of the person job entity.
       $person_job = $this->entityRepository->getTranslationFromContext($person_job);
 
-      $body = '';
       if (!$person_job->get('oe_description')->isEmpty()) {
         $body = $view_builder->viewField($person_job->get('oe_description'), [
           'label' => 'hidden',
@@ -123,9 +122,7 @@ class PersonJobListExtraField extends ExtraFieldDisplayFormattedBase implements 
     }
     // Hide the job list if there are no items.
     if (empty($job_list['#items'])) {
-      $build = [];
-      $cacheable_metadata->applyTo($build);
-      return $build;
+      $this->isEmpty = TRUE;
     }
     $pattern = [
       '#type' => 'pattern',

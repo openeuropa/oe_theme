@@ -86,7 +86,7 @@ function oe_theme_content_person_post_update_30001() {
 /**
  * Create the 'description only' view display for the PersonJob entity type.
  */
-function oe_theme_content_person_post_update_30002() {
+function oe_theme_content_person_post_update_30002(): void {
   // Create the 'Description only' view mode if it doesn't exist yet.
   if (!EntityViewMode::load('oe_person_job.description_only')) {
     EntityViewMode::create([
@@ -97,7 +97,7 @@ function oe_theme_content_person_post_update_30002() {
       'label' => 'Description only',
     ])->save();
   }
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_person') . '/config/post_updates/30002_update_view_displays');
+  $storage = new FileStorage(\Drupal::service('extension.path.resolver')->getPath('module', 'oe_theme_content_person') . '/config/post_updates/30002_update_view_displays');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.oe_person_job.oe_default.description_only');
@@ -112,11 +112,9 @@ function oe_theme_content_person_post_update_30002() {
   $entity->save();
 
   $display_values = $storage->read('core.entity_view_display.node.oe_person.oe_compact_teaser');
-  /** @var \Drupal\Core\Config\Entity\ConfigEntityStorageInterface $entity_storage */
-  $entity_storage = $entity_type_manager->getStorage('entity_view_display');
-  $existing_display = EntityViewDisplay::load($display_values['id']);
+  $existing_display = $entity_storage->load($display_values['id']);
   if ($existing_display) {
-    // We are creating the config which means that we are also shipping
+    // We are updating the config which means that we are also shipping
     // it in the config/install folder so we want to make sure it gets the hash
     // so Drupal treats it as a shipped config. This means that it gets exposed
     // to be translated via the locale system as well.
