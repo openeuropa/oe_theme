@@ -194,7 +194,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the European Commission, DG XI – Internal Market', $actual->getText());
+    $this->assertEquals('This site is managed by DG XI – Internal Market and is an official website of the European Union', $actual->getText());
 
     // Assert presence of ecl logo in the core footer.
     $this->assertEclLogoPresence($section, 'European Union');
@@ -255,7 +255,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the European Commission, Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is managed by Directorate-General for Budget and is an official website of the European Union', $actual->getText());
 
     // Test European Union footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
@@ -276,7 +276,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the European Commission, Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is managed by Directorate-General for Budget and is an official website of the European Union', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
