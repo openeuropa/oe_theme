@@ -528,5 +528,5 @@ msgstr "Høringsfristen har utløpt. Takk for ditt bidrag."
 msgid "I have read and agree with the @link"
 msgstr "Jeg har lest og samtykker til @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "vilkårene for personvern"

@@ -526,5 +526,5 @@ msgstr "@date en @journal"
 msgid "I have read and agree with the @link"
 msgstr "He llegit la @link i accepto les condicions"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "informació sobre protecció de dades"

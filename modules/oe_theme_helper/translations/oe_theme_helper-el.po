@@ -522,8 +522,8 @@ msgstr "Όνομα"
 msgid "I have read and agree with the @link"
 msgstr "Διάβασα τους @link και συμφωνώ"
 
-msgid "data protection terms"
-msgstr "όρους προστασίας δεδομένων"
+msgid "personal data protection terms"
+msgstr "όρους προστασίας των δεδομένων προσωπικού χαρακτήρα"
 
 msgid "Highlighted"
 msgstr "Με επισήμανση"

@@ -522,8 +522,8 @@ msgstr "Név"
 msgid "I have read and agree with the @link"
 msgstr "Elolvastam az @link és egyetértek vele"
 
-msgid "data protection terms"
-msgstr "adatvédelmi nyilatkozatot,"
+msgid "personal data protection terms"
+msgstr "adatvédelmi nyilatkozatot, és egyetértek a benne foglaltakkal"
 
 msgid "Highlighted"
 msgstr "Előtérben"

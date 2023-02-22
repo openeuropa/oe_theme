@@ -522,8 +522,8 @@ msgstr "Vardas, pavardė (pavadinimas)"
 msgid "I have read and agree with the @link"
 msgstr "@link perskaičiau ir su jomis sutinku"
 
-msgid "data protection terms"
-msgstr "Duomenų apsaugos sąlygas"
+msgid "personal data protection terms"
+msgstr "Asmens duomenų apsaugos sąlygas"
 
 msgid "Highlighted"
 msgstr "Paryškinta"

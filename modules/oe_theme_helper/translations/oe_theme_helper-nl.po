@@ -522,7 +522,7 @@ msgstr "Naam"
 msgid "I have read and agree with the @link"
 msgstr "Ik heb de @link gelezen en ga ermee akkoord"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "privacyverklaring"
 
 msgid "Highlighted"

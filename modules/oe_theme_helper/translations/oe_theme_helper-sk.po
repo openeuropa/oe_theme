@@ -522,8 +522,8 @@ msgstr "Meno/Názov"
 msgid "I have read and agree with the @link"
 msgstr "Prečítal/a som si podmienky @link a súhlasím s nimi"
 
-msgid "data protection terms"
-msgstr "ochrany údajov"
+msgid "personal data protection terms"
+msgstr "podmienkami ochrany osobných údajov a súhlasím s nimi"
 
 msgid "Highlighted"
 msgstr "Hlavné témy"

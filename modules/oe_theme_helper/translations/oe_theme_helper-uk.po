@@ -522,7 +522,7 @@ msgstr "Ім'я"
 msgid "I have read and agree with the @link"
 msgstr "Я ознайомився та згоден з @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "умовами захисту даних"
 
 msgid "Highlighted"

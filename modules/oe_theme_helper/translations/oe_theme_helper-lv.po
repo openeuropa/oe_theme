@@ -522,8 +522,8 @@ msgstr "Nosaukums"
 msgid "I have read and agree with the @link"
 msgstr "Esmu izlasījis @link un tiem piekrītu"
 
-msgid "data protection terms"
-msgstr "datu aizsardzības noteikumus"
+msgid "personal data protection terms"
+msgstr "persondatu aizsardzības noteikumus"
 
 msgid "Highlighted"
 msgstr "Aktuāli"

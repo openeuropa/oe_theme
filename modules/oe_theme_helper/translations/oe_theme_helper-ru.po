@@ -522,7 +522,7 @@ msgstr "Название /// Ф.И.О"
 msgid "I have read and agree with the @link"
 msgstr "Я прочитал(а) и согласен(а) с @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "Условия защиты данных"
 
 msgid "Highlighted"
