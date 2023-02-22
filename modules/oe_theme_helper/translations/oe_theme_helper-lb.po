@@ -252,7 +252,7 @@ msgstr "Responsabilitéiten"
 msgid "Latest"
 msgstr "Aktuell"
 
-msgid "This page is not available in English."
+msgid "English is available via machine translation – please use the link below."
 msgstr "Dës Säit ass net op Englesch verfügbar."
 
 msgid "Choose another language"

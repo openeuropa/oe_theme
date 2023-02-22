@@ -469,8 +469,8 @@ msgstr "Voorbij"
 msgid "Upcoming and open"
 msgstr "Lopend en gepland"
 
-msgid "This page is not available in English."
-msgstr "Deze pagina is niet beschikbaar in het Nederlands."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Via onderstaande link krijgt u een Nederlandse machinevertaling."
 
 msgid "Choose another language"
 msgstr "Kies een andere taal"

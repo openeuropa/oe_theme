@@ -469,8 +469,8 @@ msgstr "Precedenti"
 msgid "Upcoming and open"
 msgstr "In programma e aperti"
 
-msgid "This page is not available in English."
-msgstr "Questa pagina non è disponibile in italiano."
+msgid "English is available via machine translation – please use the link below."
+msgstr "È possibile ottenere la traduzione automatica in italiano cliccando sul link qui sotto."
 
 msgid "Choose another language"
 msgstr "Scegliere un’altra lingua"

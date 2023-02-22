@@ -469,8 +469,8 @@ msgstr "Tal-passat"
 msgid "Upcoming and open"
 msgstr "Li ġejjin u miftuħin"
 
-msgid "This page is not available in English."
-msgstr "Din il-paġna mhix disponibbli bil-Malti."
+msgid "English is available via machine translation – please use the link below."
+msgstr "L-Malti huwa disponibbli permezz tat-traduzzjoni awtomatika – jekk jogħġbok uża l-link ta’ hawn taħt."
 
 msgid "Choose another language"
 msgstr "Agħżel lingwa oħra"

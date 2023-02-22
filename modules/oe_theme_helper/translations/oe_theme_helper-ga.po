@@ -469,8 +469,8 @@ msgstr "Roimhe seo"
 msgid "Upcoming and open"
 msgstr "Le teacht agus ar oscailt"
 
-msgid "This page is not available in English."
-msgstr "Níl an leathanach seo ar fáil i nGaeilge."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Tá leagan Gaeilge ar fáil tríd an tseirbhís meaisínaistriúcháin – bain úsáid as an nasc thíos le do thoil."
 
 msgid "Choose another language"
 msgstr "Roghnaigh teanga eile"
