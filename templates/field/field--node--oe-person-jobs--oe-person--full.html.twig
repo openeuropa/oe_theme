@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Theme override for the Person jobs field on full view mode template.
+ *
+ * @see ./core/themes/stable/templates/field/field.html.twig
+#}
+{% for item in items %}
+  {% if item.content|render %}
+    <div{{ item.attributes }}>{{ item.content }}</div>
+  {% endif %}
+{% endfor %}

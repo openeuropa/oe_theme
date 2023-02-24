@@ -2191,7 +2191,7 @@ function oe_theme_preprocess_oe_theme_helper_in_page_navigation__node__oe_person
           $empty = FALSE;
           continue;
         }
-        unset($item['content']['oe_person_jobs'][$delta]);
+        $variables['items'][$key]['content']['oe_person_jobs'][$delta]['#access'] = FALSE;
       }
       $cacheability->applyTo($variables);
       if ($empty) {
