@@ -79,6 +79,7 @@ content:
     region: content
 hidden:
   body: true
+  extra_field_oe_theme_content_project_budget: true
   extra_field_oe_theme_content_project_percentage: true
   langcode: true
   links: true

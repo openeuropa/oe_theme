@@ -78,3 +78,26 @@ function oe_theme_content_project_post_update_00003(): void {
     $display->save();
   }
 }
+
+/**
+ * Update project displays.
+ */
+function oe_theme_content_project_post_update_30001(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_project') . '/config/post_updates/30001_decimal_budget_fields');
+  $display_values = $storage->read('core.entity_view_display.node.oe_project.full');
+  $view_display = EntityViewDisplay::load($display_values['id']);
+  if ($view_display) {
+    $display = \Drupal::entityTypeManager()->getStorage('entity_view_display')->updateFromStorageRecord($view_display, $display_values);
+    $display->save();
+  }
+
+  // Ensure new extra field is hidden on teaser display.
+  $view_display = EntityViewDisplay::load('node.oe_project.teaser');
+  if ($view_display) {
+    $properties = $view_display->get('hidden');
+    $properties['extra_field_oe_theme_content_project_budget'] = TRUE;
+    $view_display->set('hidden', $properties);
+    $view_display->save();
+  }
+
+}
