@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Név"
 
 msgid "I have read and agree with the @link"
-msgstr "Elolvastam az @link és egyetértek vele"
+msgstr "Elolvastam az @link"
 
 msgid "personal data protection terms"
-msgstr "adatvédelmi nyilatkozatot, és egyetértek a benne foglaltakkal"
+msgstr "adatvédelmi nyilatkozatot, és egyetértek a benne foglaltakkal."
 
 msgid "Highlighted"
 msgstr "Előtérben"

@@ -520,7 +520,7 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "I have read and agree with the @link"
-msgstr "Ho letto e accetto le @link"
+msgstr "Dichiaro di aver letto e di accettare le @link"
 
 msgid "personal data protection terms"
 msgstr "condizioni relative alla protezione dei dati personali"

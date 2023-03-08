@@ -520,7 +520,7 @@ msgid "Name"
 msgstr "Nosaukums"
 
 msgid "I have read and agree with the @link"
-msgstr "Esmu izlasījis @link un tiem piekrītu"
+msgstr "Esmu izlasījis(-usi) @link un tiem piekrītu."
 
 msgid "personal data protection terms"
 msgstr "persondatu aizsardzības noteikumus"
