@@ -255,14 +255,15 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = [
       '(Acting) Adviser',
     ];
-    $expected_values['lists'][1] = [
-      'items' => [
-        [
-          'label' => 'Responsibilities',
-          'body' => '(Acting) AdviserDescription job_1',
-        ],
-      ],
+    $expected_values['lists']['items'][1] = [
+      'label' => 'Responsibilities',
+      'body' => 'Description job_1',
     ];
+    $assert->assertPattern($expected_values, $this->getRenderedNode($node));
+
+    $job_1->set('oe_description', NULL);
+    $job_1->save();
+    array_pop($expected_values['lists']['items']);
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
@@ -270,21 +271,19 @@ class PersonRenderTest extends ContentRenderTestBase {
     $expected_values['meta'] = [
       '(Acting) Adviser, Chief Adviser',
     ];
-    $expected_values['lists'][1] = [
-      'items' => [
-        [
-          'label' => 'Responsibilities',
-          'body' => '(Acting) AdviserDescription job_1Chief AdviserDescription job_2',
-        ],
-      ],
+    $expected_values['lists']['items'][1] = [
+      'label' => 'Responsibilities',
+      'body' => 'Chief AdviserDescription job_2',
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
     // Assert non-eu person.
     $job_1->set('oe_role_name', 'Singer');
     $job_1->set('oe_role_reference', NULL);
+    $job_1->set('oe_description', 'Description job_1');
     $job_1->set('oe_acting', NULL)->save();
     $job_2->set('oe_role_reference', NULL);
+    $job_2->set('oe_description', 'Description job_2');
     $job_2->set('oe_role_name', 'Dancer')->save();
     $node->set('oe_person_type', 'non_eu');
     $node->set('oe_person_contacts', $general_contact);

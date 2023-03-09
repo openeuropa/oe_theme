@@ -25,6 +25,7 @@ use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\node\NodeInterface;
+use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -2163,6 +2164,43 @@ function oe_theme_preprocess_node__oe_organisation__teaser(array &$variables): v
     $variables['teaser_details'] = [];
     foreach (Element::children($variables['content']['extra_field_oe_theme_content_organisation_teaser_details']) as $index) {
       $variables['teaser_details'][] = $variables['content']['extra_field_oe_theme_content_organisation_teaser_details'][$index]['#fields']['items'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_oe_theme_helper_in_page_navigation() for oe_person node.
+ */
+function oe_theme_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
+  if (empty($variables['items'])) {
+    return;
+  }
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  foreach ($variables['items'] as $key => $item) {
+    if ($item['id'] === 'responsibilities' && !empty($item['content']['oe_person_jobs']['#items'])) {
+      $empty = TRUE;
+      $single_role = count(Element::children($item['content']['oe_person_jobs'])) === 1;
+      foreach (Element::children($item['content']['oe_person_jobs']) as $delta) {
+        if (!$item['content']['oe_person_jobs'][$delta]['#oe_person_job'] instanceof PersonJobInterface) {
+          continue;
+        }
+        $person_job = $item['content']['oe_person_jobs'][$delta]['#oe_person_job'];
+        $cacheability->addCacheableDependency($person_job);
+
+        if (!$person_job->get('oe_description')->isEmpty()) {
+          $empty = FALSE;
+          continue;
+        }
+        $variables['items'][$key]['content']['oe_person_jobs'][$delta]['#access'] = FALSE;
+      }
+      $cacheability->applyTo($variables);
+      if ($empty) {
+        unset($variables['items'][$key]);
+        break;
+      }
+      if ($single_role) {
+        $variables['items'][$key]['content']['oe_person_jobs'][Element::children($item['content']['oe_person_jobs'])[0]]['#view_mode'] = 'description_only';
+      }
     }
   }
 }

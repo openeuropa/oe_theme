@@ -223,13 +223,31 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     ];
     $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
+    // Singe Person Job with description should be shown without label.
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(3, $content_items);
     $this->assertContentHeader($content_items[2], 'Responsibilities', 'responsibilities');
     $job_role_content = $content_items[2]->find('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
-    $this->assertEquals('(Acting) Adviser', $job_role_content->getText());
-    $job_description_content = $content_items[2]->find('css', 'div.ecl-u-mb-l.ecl');
+    $this->assertNull($job_role_content);
+    $job_description_content = $content_items[2]->find('css', 'div.ecl');
     $this->assertEquals('Description job_1', $job_description_content->getText());
+
+    // Singe Person Job without description should not be shown
+    // and Responsibilities section is hidden.
+    $job_1->set('oe_description', NULL);
+    $job_1->save();
+    $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = ['(Acting) Adviser'];
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+    array_pop($inpage_nav_expected_values['list']);
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(2, $content_items);
+    $this->assertNull($content->findById('responsibilities'));
+    $this->assertStringNotContainsString('Responsibilities', $content->getOuterHtml());
+    $this->assertStringNotContainsString('(Acting) Adviser', $content->getOuterHtml());
+    $this->assertStringNotContainsString('Description job_1', $content->getOuterHtml());
 
     // Assert Jobs field with multiple values.
     $job_2 = $this->createPersonJobEntity('job_2', ['oe_role_reference' => 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_CHIEF']);
@@ -238,11 +256,59 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
 
     $page_header_expected_values['meta'] = ['(Acting) Adviser, Chief Adviser'];
     $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Responsibilities',
+      'href' => '#responsibilities',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
 
     $content_items = $content->findAll('xpath', '/div');
     $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertEquals('Chief Adviser', $job_role_items[0]->getText());
+    $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl');
+    $this->assertEquals('Description job_2', $job_description_items[0]->getText());
+
+    // Both Person Job without description should not be shown
+    // and Responsibilities section is hidden.
+    $job_2->set('oe_description', NULL);
+    $job_2->save();
+    $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = ['(Acting) Adviser, Chief Adviser'];
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+    array_pop($inpage_nav_expected_values['list']);
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+    $content_items = $content->findAll('xpath', '/div');
+    $this->assertCount(2, $content_items);
+    $this->assertNull($content->findById('responsibilities'));
+    $this->assertStringNotContainsString('Responsibilities', $content->getOuterHtml());
+    $this->assertStringNotContainsString('(Acting) Adviser', $content->getOuterHtml());
+    $this->assertStringNotContainsString('Description job_1', $content->getOuterHtml());
+    $this->assertStringNotContainsString('Chief Adviser', $content->getOuterHtml());
+    $this->assertStringNotContainsString('Description job_2', $content->getOuterHtml());
+
+    // Both Person Job with description should be shown
+    // and Responsibilities section is visible.
+    $job_1->set('oe_description', 'Description job_1');
+    $job_1->save();
+    $job_2->set('oe_description', 'Description job_2');
+    $job_2->save();
+    $this->drupalGet($node->toUrl());
+
+    $page_header_expected_values['meta'] = ['(Acting) Adviser, Chief Adviser'];
+    $assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
+    $inpage_nav_expected_values['list'][] = [
+      'label' => 'Responsibilities',
+      'href' => '#responsibilities',
+    ];
+    $inpage_nav_assert->assertPattern($inpage_nav_expected_values, $navigation->getOuterHtml());
+
+    $content_items = $content->findAll('xpath', '/div');
+    $job_role_items = $content_items[2]->findAll('css', 'h3.ecl-u-type-heading-3.ecl-u-mt-none.ecl-u-mb-s');
+    $this->assertEquals('(Acting) Adviser', $job_role_items[0]->getText());
     $this->assertEquals('Chief Adviser', $job_role_items[1]->getText());
     $job_description_items = $content_items[2]->findAll('css', 'div.ecl-u-mb-l.ecl');
+    $this->assertEquals('Description job_1', $job_description_items[0]->getText());
     $this->assertEquals('Description job_2', $job_description_items[1]->getText());
 
     // Assert Social media links field.

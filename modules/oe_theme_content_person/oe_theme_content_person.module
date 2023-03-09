@@ -17,7 +17,6 @@ function oe_theme_content_person_theme(): array {
   return [
     'oe_theme_content_person_job_list' => [
       'variables' => [
-        'simple' => TRUE,
         'items' => [],
       ],
     ],
