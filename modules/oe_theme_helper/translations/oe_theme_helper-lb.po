@@ -243,7 +243,7 @@ msgstr "Ären Numm"
 msgid "I have read and agree with the @link"
 msgstr "Ech hunn d’@link gelies a stëmmen zou"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "Dateschutzerklärung"
 
 msgid "Responsibilities"

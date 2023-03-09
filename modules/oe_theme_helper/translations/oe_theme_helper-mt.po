@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Isem"
 
 msgid "I have read and agree with the @link"
-msgstr "Qrajt u naqbel @link"
+msgstr "Qrajt u naqbel mat-@link"
 
-msgid "data protection terms"
-msgstr "mat-termini tal-protezzjoni tad-data"
+msgid "personal data protection terms"
+msgstr "termini tal-protezzjoni tal-privatezza tad-data"
 
 msgid "Highlighted"
 msgstr "Enfasizzat"

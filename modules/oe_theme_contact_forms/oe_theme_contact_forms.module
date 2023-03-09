@@ -43,7 +43,7 @@ function oe_theme_contact_forms_form_contact_message_form_alter(&$form, FormStat
 
   // Add ecl link classes to the privacy link.
   $privacy_policy = $contact_form->getThirdPartySetting('oe_contact_forms', 'privacy_policy');
-  $privacy_link = Link::fromTextAndUrl(t('data protection terms'), Url::fromUri($privacy_policy, [
+  $privacy_link = Link::fromTextAndUrl(t('personal data protection terms'), Url::fromUri($privacy_policy, [
     'absolute' => TRUE,
     'attributes' => [
       'target' => '_blank',

@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Jméno/Název"
 
 msgid "I have read and agree with the @link"
-msgstr "Obeznámil(a) jsem se s podmínkami, které se týkají @link"
+msgstr "Obeznámil(a) jsem se a souhlasím s @link"
 
-msgid "data protection terms"
-msgstr "ochrany údajů"
+msgid "personal data protection terms"
+msgstr "podmínkami ochrany osobních údajů."
 
 msgid "Highlighted"
 msgstr "Důležité"

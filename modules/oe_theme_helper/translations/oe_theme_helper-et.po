@@ -522,8 +522,8 @@ msgstr "Nimi"
 msgid "I have read and agree with the @link"
 msgstr "Olen tutvunud ja nõustun @link"
 
-msgid "data protection terms"
-msgstr "isikuandmete kaitse põhimõtetega"
+msgid "personal data protection terms"
+msgstr "isikuandmete kaitse tingimustega"
 
 msgid "Highlighted"
 msgstr "Esiplaanil"

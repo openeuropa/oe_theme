@@ -522,8 +522,8 @@ msgstr "Nombre"
 msgid "I have read and agree with the @link"
 msgstr "He leído y acepto las @link"
 
-msgid "data protection terms"
-msgstr "condiciones de protección de datos"
+msgid "personal data protection terms"
+msgstr "condiciones de protección de los datos de carácter personal"
 
 msgid "Highlighted"
 msgstr "Destacado"

@@ -525,5 +525,5 @@ msgstr "Svarfrestur vegna þessarar ráðgjafar er liðinn. Takk fyrir þitt inn
 msgid "I have read and agree with the @link"
 msgstr "Ég hef lesið og samþykki @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "gagnaverndarskilmálanna"
