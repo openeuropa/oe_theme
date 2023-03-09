@@ -17,8 +17,8 @@ content:
     weight: 0
     label: hidden
     settings:
-      max_width: 576
-      max_height: 400
+      max_width: 0
+      max_height: 0
     third_party_settings: {  }
     region: content
 hidden:

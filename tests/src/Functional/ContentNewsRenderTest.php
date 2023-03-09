@@ -214,14 +214,15 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $node->set('oe_news_featured_media', [$media])->save();
     $this->drupalGet($node->toUrl());
     $media_container = $this->assertSession()->elementExists('css', 'article.ecl-u-type-paragraph.ecl-u-mb-l figure.ecl-media-container');
-    // Assert the media container uses 1-1 ratio.
-    $video = $this->assertSession()->elementExists('css', 'div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe', $media_container);
+    $video = $this->assertSession()->elementExists('css', 'div.ecl-media-container__media iframe', $media_container);
     $partial_video_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
         'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
       ],
     ])->toString();
     $this->assertStringContainsString($partial_video_url, $video->getAttribute('src'));
+    $this->assertStringContainsString('200', $video->getAttribute('width'));
+    $this->assertStringContainsString('150', $video->getAttribute('height'));
 
     // Unpublish the media and assert it is not rendered anymore.
     $media->set('status', 0);

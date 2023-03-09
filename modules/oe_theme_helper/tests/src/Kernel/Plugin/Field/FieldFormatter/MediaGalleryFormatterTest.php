@@ -215,11 +215,11 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
 
-    $expected_thumbnail_name = version_compare(\Drupal::VERSION, '9.2.0', '>') ? 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg' : 'LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg';
+    $expected_thumbnail_name = 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg';
 
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
@@ -314,7 +314,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');

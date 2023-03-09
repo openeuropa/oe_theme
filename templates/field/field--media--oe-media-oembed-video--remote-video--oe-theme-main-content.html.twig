@@ -7,6 +7,5 @@
 {% for item in items %}
   {% include '@ecl-twig/media-container' with {
     'embedded_media': item.content,
-    'ratio': '1-1',
   } %}
 {% endfor %}
