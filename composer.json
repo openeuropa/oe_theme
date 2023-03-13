@@ -60,7 +60,7 @@
         "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "^1.9",
         "openeuropa/oe_webtools": "dev-master",
-        "openeuropa/rdf_skos": "1.x-dev",
+        "openeuropa/rdf_skos": "^1.0.0-alpha9",
         "openeuropa/task-runner-drupal-project-symlink": "1.x-dev",
         "phpspec/prophecy-phpunit": "^2",
         "symfony/browser-kit": "^4.4.37",
