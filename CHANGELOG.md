@@ -1,11 +1,38 @@
 # Changelog
 
+## [3.2.0](https://github.com/openeuropa/oe_theme/tree/3.2.0) (2023-03-13)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.1...3.2.0)
+
+**Closed issues:**
+
+- Navigation menu plugin does not exist [\#1254](https://github.com/openeuropa/oe_theme/issues/1254)
+
+**Merged pull requests:**
+
+- EWPP-2994: Fix rdf\_skos version. [\#1255](https://github.com/openeuropa/oe_theme/pull/1255) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3137: Update to ECL 3.7.1. [\#1249](https://github.com/openeuropa/oe_theme/pull/1249) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3129: Update the privacy policy string translations. [\#1247](https://github.com/openeuropa/oe_theme/pull/1247) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3065: Update patterns overview page for ui\_patterns v1.5. [\#1246](https://github.com/openeuropa/oe_theme/pull/1246) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3108: Improve view modes for Person content type. [\#1245](https://github.com/openeuropa/oe_theme/pull/1245) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3055: Remove hardcoded 1-1 ratio of remote videos. [\#1243](https://github.com/openeuropa/oe_theme/pull/1243) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3066: Update eTrans message and its translations. [\#1242](https://github.com/openeuropa/oe_theme/pull/1242) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3102: Allow 2 new icons to be used in field\_oe\_icon of paragraphs. [\#1241](https://github.com/openeuropa/oe_theme/pull/1241) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3069: Update to ECL 3.7.0. [\#1240](https://github.com/openeuropa/oe_theme/pull/1240) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2880: Rename 'Available translations' to 'Other languages'. [\#1235](https://github.com/openeuropa/oe_theme/pull/1235) ([nagyad](https://github.com/nagyad))
+- EWPP-2928: Make sure that field\_oe\_link in oe\_theme\_preprocess\_paragraph\_\_oe\_list\_item is not empty. [\#1234](https://github.com/openeuropa/oe_theme/pull/1234) ([sergepavle](https://github.com/sergepavle))
+- EWPP-2903: Update to PHP8.1 and D9.4. [\#1233](https://github.com/openeuropa/oe_theme/pull/1233) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2893: Update site owner message of EU footer. [\#1231](https://github.com/openeuropa/oe_theme/pull/1231) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2842: Show the last item of the Timeline paragraph. [\#1230](https://github.com/openeuropa/oe_theme/pull/1230) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2937: Add translation from context for contact entity. [\#1229](https://github.com/openeuropa/oe_theme/pull/1229) ([sergepavle](https://github.com/sergepavle))
+
 ## [3.1.1](https://github.com/openeuropa/oe_theme/tree/3.1.1) (2023-02-01)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.0...3.1.1)
 
 **Merged pull requests:**
 
+- Release-3.1.1: Update changelog. [\#1238](https://github.com/openeuropa/oe_theme/pull/1238) ([nagyad](https://github.com/nagyad))
 - EWPP-3048: Do not apply custom ratio class on iframes. [\#1237](https://github.com/openeuropa/oe_theme/pull/1237) ([nagyad](https://github.com/nagyad))
 
 ## [3.1.0](https://github.com/openeuropa/oe_theme/tree/3.1.0) (2023-01-05)
