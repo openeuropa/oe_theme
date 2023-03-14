@@ -6,58 +6,63 @@
  * @see ./core/themes/stable/templates/form/select.html.twig
  */
 #}
-{% set extra_classes = ['ecl-select'] %}
 {% if attributes.hasClass('error') %}
-  {% set extra_classes = extra_classes|merge(['ecl-select--invalid']) %}
+  {% set _invalid = true %}
 {% endif %}
-
-{# Set default wrapper classes. #}
-{# This also allows overriding templates to take control of classes like width modifiers. #}
-{% set wrapper_classes = wrapper_classes|default([
-  'ecl-select__container',
-  'ecl-select__container--m',
-]) %}
 
 {% if attributes.multiple is not empty %}
-  {% set attributes = attributes.setAttribute('data-ecl-auto-init', 'Select') %}
-  {% set attributes = attributes.setAttribute('multiple', '') %}
-  {% set attributes = attributes.setAttribute('data-ecl-select-multiple', 'true') %}
-  {% set attributes = attributes.setAttribute('data-ecl-select-default', 'Select'|t) %}
-  {% set attributes = attributes.setAttribute('data-ecl-select-search', 'Search'|t) %}
-  {% set attributes = attributes.setAttribute('data-ecl-select-all', 'Select all'|t) %}
+  {% set _multiple = true %}
+  {% set _multiple_placeholder = 'Select'|t %}
+  {% set _multiple_search_text = 'Search'|t %}
+  {% set _multiple_all_text = 'Select all'|t %}
+  {% set _multiple_search_no_results_text = 'No results'|t %}
+  {% set _multiple_clear_all_text = 'Clear all'|t %}
+  {% set _multiple_close_text = 'Close'|t %}
 {% endif %}
-
-{% set wrapper_attributes = create_attribute({'class': wrapper_classes}) %}
 
 {% if disabled %}
-  {% set wrapper_attributes = wrapper_attributes.addClass('ecl-select__container--disabled') %}
+  {% set _disabled = true %}
 {% endif %}
 
-{% spaceless %}
-  <div{{ wrapper_attributes }}>
-    <select{{ attributes.addClass(extra_classes) }}>
-      {% for option in options %}
-        {% if option.type == 'optgroup' %}
-          <optgroup label="{{ option.label }}">
-            {% for sub_option in option.options %}
-              <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
-            {% endfor %}
-          </optgroup>
-        {% elseif option.type == 'option' %}
-          <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
-        {% endif %}
-      {% endfor %}
-    </select>
-    <div class="ecl-select__icon">
-      {% include '@ecl-twig/icon' with {
-        icon: {
-          path: ecl_icon_path,
-          name: "corner-arrow",
-          size: "s",
-          transform: "rotate-180"
-        },
-        extra_classes: "ecl-select__icon-shape"
-      } only %}
-    </div>
-  </div>
-{% endspaceless %}
+{% set _options = [] %}
+
+{% for option in options %}
+  {% set optgroup = [] %}
+  {% if option.type == 'optgroup' %}
+    {% set optgroup = optgroup|merge({
+      label: option.label
+    }) %}
+    {% set group_options = [] %}
+    {% for sub_option in option.options %}
+      {% set group_options = group_options|merge([{
+        value: sub_option.value,
+        label: sub_option.label,
+        selected: sub_option.selected|default(false),
+        disabled: sub_option.disabled|default(false),
+      }]) %}
+    {% endfor %}
+    {% set optgroup = optgroup|merge([group_options]) %}
+    {% set _options = _options|merge([optgroup]) %}
+  {% elseif option.type == 'option' %}
+    {% set _options = _options|merge([{
+      value: option.value,
+      label: option.label,
+      selected: option.selected|default(false),
+      disabled: option.disabled|default(false),
+    }]) %}
+  {% endif %}
+{% endfor %}
+
+{{ dump(_options) }}
+
+{% include '@ecl-twig/select' with {
+  invalid: _invalid|default(false),
+  disabled: _disabled|default(false),
+  multiple: _multiple|default(false),
+  options: _options|default([]),
+  multiple_placeholder: _multiple_placeholder|default(''),
+  multiple_search_text: _multiple_search_text|default(''),
+  multiple_all_text: _multiple_all_text|default(''),
+  multiple_clear_all_text: _multiple_clear_all_text|default(''),
+  multiple_close_text: _multiple_close_text|default(''),
+} %}

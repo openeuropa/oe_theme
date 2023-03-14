@@ -53,14 +53,18 @@
       2: Two
       3: Three
   assert:
+    count:
+      'div.ecl-form-group ecl-select__container.ecl-select__container--m': 1
+      'select.ecl-select': 1
+      'div.ecl-select__icon': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-select__icon-shape': 1
+    equals:
+      'svg.ecl-link__icon': '<use xlink:href="#corner-arrow"></use>'
     contains:
       - 'Select element'
-      - '<option value="1">One</option>'
-      - '<option value="2">Two</option>'
-      - '<option value="3">Three</option>'
-    count:
-      'div.ecl-select__container.ecl-select__container--m': 1
-      'select.form-select.ecl-select': 1
+      - "<option\n            value=\"1\"\n                              >One</option\n>"
+      - "<option\n            value=\"2\"\n                              >Two</option\n>"
+      - "<option\n            value=\"3\"\n                              >Three</option\n>"
 - array:
     '#type': radios
     '#title': Radios
