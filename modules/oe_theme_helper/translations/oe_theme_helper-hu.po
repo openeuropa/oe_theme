@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "médiaanyag"
 
 msgid "Close"
-msgstr "Lezárva"
+msgstr "Bezárás"
+
+msgid "Clear all"
+msgstr "Összes törlése"
+
+msgid "Filter results"
+msgstr "Találatok szűrése"
 
 msgid "Programme"
 msgstr "Program"

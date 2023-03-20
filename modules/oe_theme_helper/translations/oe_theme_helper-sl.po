@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "medijske prispevke"
 
 msgid "Close"
-msgstr "Končano"
+msgstr "Zapri"
+
+msgid "Clear all"
+msgstr "Izbriši vse"
+
+msgid "Filter results"
+msgstr "Filtriraj rezultate"
 
 msgid "Programme"
 msgstr "Program"
