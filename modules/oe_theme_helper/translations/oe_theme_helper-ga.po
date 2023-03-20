@@ -600,6 +600,12 @@ msgstr "míreanna meán uile"
 msgid "Close"
 msgstr "Dún"
 
+msgid "Clear all"
+msgstr "Glan gach rud"
+
+msgid "Filter results"
+msgstr "Torthaí a scagadh"
+
 msgid "Programme"
 msgstr "Clár"
 

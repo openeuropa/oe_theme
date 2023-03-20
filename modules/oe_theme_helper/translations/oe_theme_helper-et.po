@@ -600,6 +600,12 @@ msgstr "meediasalvestist"
 msgid "Close"
 msgstr "Sulge"
 
+msgid "Clear all"
+msgstr "Tühjenda kõik"
+
+msgid "Filter results"
+msgstr "Filtreeri tulemusi"
+
 msgid "Programme"
 msgstr "Programm"
 

@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "elementos multimedia"
 
 msgid "Close"
-msgstr "Cerrado"
+msgstr "Cerrar"
+
+msgid "Clear all"
+msgstr "Borrar todo"
+
+msgid "Filter results"
+msgstr "Filtrar resultados"
 
 msgid "Programme"
 msgstr "Programa"

@@ -600,6 +600,12 @@ msgstr "Počet mediálních materiálů"
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Clear all"
+msgstr "Vymazat vše"
+
+msgid "Filter results"
+msgstr "Filtrovat výsledky"
+
 msgid "Programme"
 msgstr "Program"
 

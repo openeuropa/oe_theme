@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "στοιχεία πολυμέσων"
 
 msgid "Close"
-msgstr "Έχει κλείσει"
+msgstr "Κλείσιμο"
+
+msgid "Clear all"
+msgstr "Εκκαθάριση όλων"
+
+msgid "Filter results"
+msgstr "Φιλτράρισμα αποτελεσμάτων"
 
 msgid "Programme"
 msgstr "Πρόγραμμα"

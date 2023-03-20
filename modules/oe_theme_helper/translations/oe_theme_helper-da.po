@@ -600,6 +600,12 @@ msgstr "medieartikler"
 msgid "Close"
 msgstr "Luk"
 
+msgid "Clear all"
+msgstr "Ryd alle"
+
+msgid "Filter results"
+msgstr "Filtrér resultaterne"
+
 msgid "Programme"
 msgstr "Program"
 

@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "poster"
 
 msgid "Close"
-msgstr "Avslutad"
+msgstr "Stäng"
+
+msgid "Clear all"
+msgstr "Rensa allt"
+
+msgid "Filter results"
+msgstr "Filtrera resultat"
 
 msgid "Programme"
 msgstr "Program"

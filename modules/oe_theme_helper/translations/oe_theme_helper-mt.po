@@ -600,6 +600,12 @@ msgstr "Oġġetti tal-media"
 msgid "Close"
 msgstr "Agħlaq"
 
+msgid "Clear all"
+msgstr "Ħassar kollox"
+
+msgid "Filter results"
+msgstr "Iffiltra r-riżultati"
+
 msgid "Programme"
 msgstr "Programm"
 

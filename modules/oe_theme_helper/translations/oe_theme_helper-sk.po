@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "mediálne príspevky"
 
 msgid "Close"
-msgstr "Uzavreté"
+msgstr "Zatvoriť"
+
+msgid "Clear all"
+msgstr "Vymazať všetko"
+
+msgid "Filter results"
+msgstr "Filtrovať výsledky"
 
 msgid "Programme"
 msgstr "Program"

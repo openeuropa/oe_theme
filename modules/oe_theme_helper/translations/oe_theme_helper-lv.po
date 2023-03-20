@@ -600,6 +600,12 @@ msgstr "audiovizuālie materiāli"
 msgid "Close"
 msgstr "Aizvērt"
 
+msgid "Clear all"
+msgstr "Notīrīt visu"
+
+msgid "Filter results"
+msgstr "Filtrēt rezultātus"
+
 msgid "Programme"
 msgstr "Programma"
 

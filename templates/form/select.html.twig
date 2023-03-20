@@ -13,7 +13,7 @@
 {% if attributes.multiple is not empty %}
   {% set _multiple = true %}
   {% set _multiple_placeholder = 'Select'|t %}
-  {% set _multiple_search_text = 'Search'|t %}
+  {% set _multiple_search_text = 'Filter results'|t %}
   {% set _multiple_all_text = 'Select all'|t %}
   {% set _multiple_search_no_results_text = 'No results'|t %}
   {% set _multiple_clear_all_text = 'Clear all'|t %}
@@ -29,9 +29,6 @@
 {% for option in options %}
   {% set optgroup = [] %}
   {% if option.type == 'optgroup' %}
-    {% set optgroup = optgroup|merge({
-      label: option.label
-    }) %}
     {% set group_options = [] %}
     {% for sub_option in option.options %}
       {% set group_options = group_options|merge([{
@@ -41,8 +38,13 @@
         disabled: sub_option.disabled|default(false),
       }]) %}
     {% endfor %}
-    {% set optgroup = optgroup|merge([group_options]) %}
-    {% set _options = _options|merge([optgroup]) %}
+    {% set optgroup = optgroup|merge({
+      'label': option.label,
+      'options': group_options,
+    }) %}
+    {% set _options = _options|merge([{
+      'optgroup': optgroup,
+    }]) %}
   {% elseif option.type == 'option' %}
     {% set _options = _options|merge([{
       value: option.value,
@@ -52,8 +54,6 @@
     }]) %}
   {% endif %}
 {% endfor %}
-
-{{ dump(_options) }}
 
 {% include '@ecl-twig/select' with {
   invalid: _invalid|default(false),
