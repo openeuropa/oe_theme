@@ -6,6 +6,7 @@ namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\node\Entity\Node;
 use Drupal\Tests\oe_theme\Traits\RequestTrait;
+use Drupal\Tests\user\Traits\UserCreationTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
 /**
@@ -16,6 +17,7 @@ use Symfony\Component\DomCrawler\Crawler;
 class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
   use RequestTrait;
+  use UserCreationTrait;
 
   /**
    * Modules to enable.
@@ -34,6 +36,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     $this->installEntitySchema('node');
     $this->installSchema('node', 'node_access');
+    $this->container->get('current_user')->setAccount($this->createUser(['access content']));
   }
 
   /**
@@ -43,6 +46,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $node = Node::create([
       'title' => 'Hello, world!',
       'type' => 'oe_demo_translatable_page',
+      'status' => 1,
     ]);
     /** @var \Drupal\Core\Entity\EntityInterface $translation */
     $node->addTranslation('es', ['title' => '¡Hola mundo!'])->save();
