@@ -55,7 +55,15 @@
   {% endif %}
 {% endfor %}
 
+{% set _extra_attributes = [] %}
+{% for name,value in attributes %}
+  {% set _extra_attributes = _extra_attributes|merge([{'name': name, 'value': value}]) %}
+{% endfor %}
+
 {% include '@ecl-twig/select' with {
+  id: attributes.id,
+  name: attributes.name,
+  extra_group_classes: 'ecl-u-mt-none',
   invalid: _invalid|default(false),
   disabled: _disabled|default(false),
   multiple: _multiple|default(false),
@@ -65,4 +73,6 @@
   multiple_all_text: _multiple_all_text|default(''),
   multiple_clear_all_text: _multiple_clear_all_text|default(''),
   multiple_close_text: _multiple_close_text|default(''),
+  extra_attributes: _extra_attributes,
+  icon_path: ecl_icon_path,
 } %}

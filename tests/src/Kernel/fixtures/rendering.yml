@@ -64,7 +64,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="#corner-arrow"></use></svg>'
+      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
 - array:
     '#type': select
     '#title': Select element
@@ -85,7 +85,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="#corner-arrow"></use></svg>'
+      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
 - array:
     '#type': select
     '#title': Select element
@@ -108,7 +108,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="#corner-arrow"></use></svg>'
+      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
 - array:
     '#type': select
     '#title': Select element
@@ -132,7 +132,7 @@
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="#corner-arrow"></use></svg>'
+      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
 - array:
     '#type': radios
     '#title': Radios
