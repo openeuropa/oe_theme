@@ -190,8 +190,8 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Change EU contribution and assert percentage field change.
-    $node->set('oe_project_budget', 1000);
-    $node->set('oe_project_budget_eu', 1);
+    $node->set('oe_project_eu_budget', 1000.00);
+    $node->set('oe_project_eu_contrib', 1.00);
     // Change Project duration to test label when start date equals end date.
     $node->set('oe_project_dates', [
       'value' => '2020-05-10',

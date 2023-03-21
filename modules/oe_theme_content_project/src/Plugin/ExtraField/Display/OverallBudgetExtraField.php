@@ -12,18 +12,18 @@ use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Display EU contribution and its percentage of the total budget.
+ * Display overall budget.
  *
  * @ExtraFieldDisplay(
- *   id = "oe_theme_content_project_percentage",
- *   label = @Translation("EU contribution percentage"),
+ *   id = "oe_theme_content_project_budget",
+ *   label = @Translation("Overall budget"),
  *   bundles = {
  *     "node.oe_project",
  *   },
  *   visible = true
  * )
  */
-class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
+class OverallBudgetExtraField extends ExtraFieldDisplayFormattedBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
 
@@ -35,7 +35,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
   protected $viewBuilder;
 
   /**
-   * PercentageExtraField constructor.
+   * OverallBudgetExtraField constructor.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -67,14 +67,14 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    * {@inheritdoc}
    */
   public function getLabel() {
-    return $this->t('EU contribution');
+    return $this->t('Overall budget');
   }
 
   /**
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    if ($entity->get('oe_project_budget_eu')->isEmpty() && $entity->get('oe_project_eu_contrib')->isEmpty()) {
+    if ($entity->get('oe_project_budget')->isEmpty() && $entity->get('oe_project_eu_budget')->isEmpty()) {
       return [];
     }
     $build = [];
@@ -91,51 +91,14 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
     ];
     if ($entity->get('oe_project_eu_contrib')->isEmpty()) {
       // Fallback to old field.
-      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget_eu'), $display_options);
-      $budget_eu = $entity->get('oe_project_budget')->value;
+      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget'), $display_options);
     }
     else {
       // Render new field value.
-      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_contrib'), $display_options);
-      $budget_eu = $entity->get('oe_project_eu_contrib')->value;
+      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_budget'), $display_options);
     }
-
-    // Return only EU contribution if budget is empty.
-    if ($entity->get('oe_project_budget')->isEmpty() && $entity->get('oe_project_eu_budget')->isEmpty()) {
-      return $build;
-    }
-
-    // Compute budget percentage field value.
-    $budget = $entity->get('oe_project_eu_budget')->isEmpty() ? $entity->get('oe_project_budget_eu')->value : $entity->get('oe_project_eu_budget')->value;
-    $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
-    $build[] = [
-      '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
-    ];
 
     return $build;
-  }
-
-  /**
-   * Gets the percentage of total.
-   *
-   * If input values are not greater than 0, returns 0.
-   *
-   * @param int|float $total
-   *   The total value.
-   * @param int|float $part
-   *   The contribution part of the total value.
-   *
-   * @return float
-   *   Percentage value.
-   */
-  protected function getPercentage(int|float $total, int|float $part): float {
-    $percentage = 0;
-
-    if ($total > 0 && $part > 0) {
-      $percentage = 100 * $part / $total;
-    }
-
-    return round($percentage, 1);
   }
 
 }
