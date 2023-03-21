@@ -17,7 +17,7 @@ content:
     label: hidden
     settings:
       max_width: 576
-      max_height: 400
+      max_height: 324
     third_party_settings: {  }
     type: avportal_video
     region: content
