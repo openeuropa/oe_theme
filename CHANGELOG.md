@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.3.0](https://github.com/openeuropa/oe_theme/tree/3.3.0) (2023-03-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.2.0...3.3.0)
+
+**Merged pull requests:**
+
+- EWPP-3180: Fix translatability of field labels in FieldListPattern field\_group formatter. [\#1260](https://github.com/openeuropa/oe_theme/pull/1260) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3056: Change project budget fields to decimal. [\#1251](https://github.com/openeuropa/oe_theme/pull/1251) ([nagyad](https://github.com/nagyad))
+
 ## [3.2.0](https://github.com/openeuropa/oe_theme/tree/3.2.0) (2023-03-13)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.1.1...3.2.0)
@@ -10,6 +19,7 @@
 
 **Merged pull requests:**
 
+- Prepare release 3.2.0. [\#1258](https://github.com/openeuropa/oe_theme/pull/1258) ([sergepavle](https://github.com/sergepavle))
 - EWPP-2994: Fix rdf\_skos version. [\#1255](https://github.com/openeuropa/oe_theme/pull/1255) ([sergepavle](https://github.com/sergepavle))
 - EWPP-3137: Update to ECL 3.7.1. [\#1249](https://github.com/openeuropa/oe_theme/pull/1249) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3129: Update the privacy policy string translations. [\#1247](https://github.com/openeuropa/oe_theme/pull/1247) ([22Alexandra](https://github.com/22Alexandra))
