@@ -100,13 +100,6 @@ class FilterEclTable extends FilterBase {
         }
       }
 
-      // Skip further processing of the table if any cell spans
-      // over multiple columns or rows.
-      $span_cells = $xpath->query('.//*[self::th or self::td][(@colspan and @colspan > 1) or (@rowspan and @rowspan > 1)]', $table);
-      if ($span_cells->count() !== 0) {
-        continue;
-      }
-
       // Loop through all the table rows, aside from header ones.
       foreach ($xpath->query('.//tr[not(parent::thead)]', $table) as $row) {
         // Fetch all the cells inside the row.
