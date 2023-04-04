@@ -16,7 +16,7 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
-use Drupal\smart_trim\Truncate\TruncateHTML;
+use Drupal\smart_trim\TruncateHTML;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
@@ -459,6 +459,9 @@ class TwigExtension extends AbstractExtension {
    *   The trimmed output.
    */
   public function smartTrim(Environment $env, $input, $limit) {
+    // Ensure that $limit is always a integer.
+    $limit = intval($limit);
+
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
     $truncate = new TruncateHTML();
