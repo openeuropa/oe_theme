@@ -617,3 +617,6 @@ msgstr "Tiesioginė transliacija prasidėjo."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Tiesioginė transliacija baigėsi, tačiau renginys tęsiasi."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % bendro biudžeto"

@@ -617,3 +617,6 @@ msgstr "Prenos v živo se je začel."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Prenos v živo se je končal, vendar dogodek še poteka."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % celotnega proračuna"

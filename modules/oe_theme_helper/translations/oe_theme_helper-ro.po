@@ -617,3 +617,6 @@ msgstr "Transmisiunea online a început."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Transmisia în direct s-a încheiat, dar evenimentul este în curs de desfășurare."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% din bugetul total"

@@ -617,3 +617,6 @@ msgstr "Tämä suoratoisto on alkanut."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Suora lähetys on päättynyt, mutta tapahtuma jatkuu edelleen."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % kokonaisbudjetista"
