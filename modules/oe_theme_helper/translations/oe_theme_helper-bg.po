@@ -598,7 +598,7 @@ msgid "media items"
 msgstr "media items"
 
 msgid "Close"
-msgstr "приключило"
+msgstr "Затваряне"
 
 msgid "Clear all"
 msgstr "Изчистване на всички"
