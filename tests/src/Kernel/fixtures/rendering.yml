@@ -3452,31 +3452,31 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-highlight.ecl-banner--centered: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--primary.ecl-banner--m.ecl-banner--centered: 1
       div.ecl-carousel__controls: 1
-      section.ecl-banner--text-box div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      section.ecl-banner--text-highlight div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
+      section.ecl-banner--text-box.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      section.ecl-banner--text-highlight.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--image-overlay.ecl-banner--centered: 1
-      section.ecl-banner--image-overlay div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 0
-      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content p.ecl-banner__description: 0
+      section.ecl-banner--image-overlay.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 0
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-banner--secondary.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-banner--white.ecl-banner--m div.ecl-banner__content p.ecl-banner__description: 0
     contains:
-      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__credit: '© Copyright first item'
+      div.ecl-carousel__slide section.ecl-banner--image.ecl-banner--m div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--image.ecl-banner--m div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--image.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 1'
+      div.ecl-carousel__slide section.ecl-banner--image.ecl-banner--m div.ecl-banner__credit: '© Copyright first item'
       div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered div.ecl-banner__title: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered p.ecl-banner__description: 'Integer quis lorem tellus.'
-      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
-      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__credit: '© Copyright fourth item'
-      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 4'
+      div.ecl-carousel__slide section.ecl-banner--primary.ecl-banner--m div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--primary.ecl-banner--m div.ecl-banner.ecl-banner--primary.ecl-banner--centered p.ecl-banner__description: 'Integer quis lorem tellus.'
+      div.ecl-carousel__slide section.ecl-banner--primary.ecl-banner--m div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__credit: '© Copyright fourth item'
+      div.ecl-carousel__slide section.ecl-banner--secondary.ecl-banner--m div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--secondary.ecl-banner--m div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--white.ecl-banner--m div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-banner--white.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 4'
       div.ecl-carousel__pagination: 'of 6'
 - array:
     '#type': 'pattern'
@@ -3503,21 +3503,22 @@
           centered: false
       counter_label: 'in'
       full_width: true
+      size: 'l'
   assertions:
     count:
       div.ecl-carousel.ecl-carousel--full-width: 1
       div.ecl-carousel__slide: 3
-      div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-box.ecl-banner--centered: 1
-      div.ecl-carousel__slide section.ecl-banner.ecl-banner--plain-background: 2
-      section.ecl-banner--text-box div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--text-box.ecl-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--plain-background: 2
+      section.ecl-banner--text-box.ecl-banner--l div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
     contains:
-      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 1'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 2'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2).ecl-banner--l div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2).ecl-banner--l div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'
