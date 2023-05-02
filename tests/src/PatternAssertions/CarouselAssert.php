@@ -79,7 +79,11 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertElementNotExists('div.ecl-banner__image', $item);
       }
       else {
-        $this->assertElementAttribute('background-image:url(' . $expected_item['image'] . ')', 'div.ecl-banner__image', 'style', $item);
+        $image_element = $item->filter('section.ecl-banner--l div.ecl-banner__image');
+        $this->assertStringContainsString(
+          'background-image:url(' . $expected_item['image'],
+          $image_element->attr('style')
+        );
       }
     }
   }

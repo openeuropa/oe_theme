@@ -944,20 +944,31 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English files.
-    $en_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file_1->setPermanent();
     $en_file_1->save();
-    $en_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
+    // Get first english file styled URI.
+    $style = ImageStyle::load('oe_theme_full_width');
+    $en_file_1_uri = $style->buildUri($en_file_1->getFileUri());
+
+    $en_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
     $en_file_2->setPermanent();
     $en_file_2->save();
+    // Get second english file styled URI.
+    $en_file_2_uri = $style->buildUri($en_file_2->getFileUri());
 
     // Create Bulgarian files.
-    $bg_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file_1 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file_1->setPermanent();
     $bg_file_1->save();
-    $bg_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
+    // Get first bulgarian file styled URI.
+    $bg_file_1_uri = $style->buildUri($bg_file_1->getFileUri());
+
+    $bg_file_2 = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
     $bg_file_2->setPermanent();
     $bg_file_2->save();
+    // Get second bulgarian file styled URI.
+    $bg_file_2_uri = $style->buildUri($bg_file_2->getFileUri());
 
     // Create a couple of media items with Bulgarian translation.
     $media_storage = $this->container->get('entity_type.manager')
@@ -1022,18 +1033,23 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_carousel',
       'field_oe_carousel_items' => $items,
+      'field_oe_carousel_size' => 'large',
     ]);
     $paragraph->save();
     $paragraph->addTranslation('bg', $paragraph->toArray())->save();
 
     // Assert paragraph rendering for English version.
     $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert the carousel size.
+    $carousel_size = $crawler->filter('section.ecl-banner--l');
+    $this->assertCount(4, $carousel_size);
     $assert = new CarouselAssert();
     $expected_values = [
       'items' => [
         [
           'title' => 'Item 1',
-          'image' => file_create_url($en_file_1->getFileUri()),
+          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'variant' => 'text-highlight',
         ],
         [
@@ -1041,12 +1057,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 2',
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
-          'image' => file_create_url($en_file_2->getFileUri()),
+          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
           'variant' => 'text-highlight',
         ],
         [
           'title' => 'Item 3',
-          'image' => file_create_url($en_file_1->getFileUri()),
+          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'variant' => 'text-highlight',
         ],
         [
@@ -1054,7 +1070,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 4',
           'url' => '/',
           'url_text' => 'CTA 4',
-          'image' => file_create_url($en_file_2->getFileUri()),
+          'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
           'variant' => 'text-highlight',
         ],
       ],
@@ -1063,19 +1079,23 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     // Assert paragraph rendering for Bulgarian version.
     $html = $this->renderParagraph($paragraph, 'bg');
+    $crawler = new Crawler($html);
+    // Assert the carousel size.
+    $carousel_size = $crawler->filter('section.ecl-banner--l');
+    $this->assertCount(4, $carousel_size);
     $expected_values['items'][0]['title'] = 'BG Item 1';
-    $expected_values['items'][0]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
-    $expected_values['items'][1]['image'] = file_create_url($bg_file_2->getFileUri());
+    $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
     $expected_values['items'][2]['title'] = 'BG Item 3';
-    $expected_values['items'][2]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
-    $expected_values['items'][3]['image'] = file_create_url($bg_file_2->getFileUri());
+    $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
     $assert->assertPattern($expected_values, $html);
   }
 
