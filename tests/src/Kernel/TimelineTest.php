@@ -160,6 +160,12 @@ class TimelineTest extends AbstractKernelTestBase {
           'body' => 'Item 3 body',
           'format' => 'my_text_format',
         ],
+        [
+          'label' => '16/07/2019',
+          'title' => 'Item 4',
+          'body' => 'Item 4 body',
+          'format' => 'my_text_format',
+        ],
       ],
     ];
 
@@ -176,16 +182,16 @@ class TimelineTest extends AbstractKernelTestBase {
     // Assert the timeline items are the number of entries plus one for the
     // "See more" button.
     $timeline_item = $crawler->filter('.ecl-timeline__item');
-    $this->assertCount(4, $timeline_item);
+    $this->assertCount(5, $timeline_item);
 
     $timeline_body = $crawler->filter('.ecl-timeline__label');
-    $this->assertCount(3, $timeline_body);
+    $this->assertCount(4, $timeline_body);
 
     $timeline_title = $crawler->filter('.ecl-timeline__title');
-    $this->assertCount(3, $timeline_title);
+    $this->assertCount(4, $timeline_title);
 
     $timeline_body = $crawler->filter('.ecl-timeline__content');
-    $this->assertCount(3, $timeline_body);
+    $this->assertCount(4, $timeline_body);
 
     $hidden_timeline_item = $crawler->filter('.ecl-timeline__item--collapsed');
     $this->assertCount(1, $hidden_timeline_item);
