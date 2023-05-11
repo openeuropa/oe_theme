@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override to display the 'Media' type paragraph.
+ *
+ * @see ./modules/contrib/paragraphs/templates/paragraph.html.twig
+ */
+#}
+{% if image %}
+  {% set media_container = {
+    'image': image.src,
+    'alt': image.alt,
+  } %}
+{% elseif video %}
+  {% set media_container = {
+    'embedded_media': video,
+    'ratio': ratio,
+  } %}
+{% endif %}
+{% if media_container %}
+  {% include '@ecl/media-container/media-container.html.twig' with media_container only %}
+{% endif %}

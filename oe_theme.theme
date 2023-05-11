@@ -2204,3 +2204,88 @@ function oe_theme_preprocess_oe_theme_helper_in_page_navigation__node__oe_person
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_paragraph() for paragraph--oe-av-media.html.twig.
+ */
+function oe_theme_preprocess_paragraph__oe_av_media(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Bail out if there is no media present.
+  if ($paragraph->get('field_oe_media')->isEmpty()) {
+    return;
+  }
+
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+
+  /** @var \Drupal\media\Entity\Media $media */
+  $media = $paragraph->get('field_oe_media')->entity;
+  if (!$media instanceof MediaInterface) {
+    // The media entity is not available anymore, bail out.
+    return;
+  }
+
+  // Retrieve the correct media translation.
+  $media = \Drupal::service('entity.repository')->getTranslationFromContext($media, $paragraph->language()->getId());
+
+  // Caches are handled by the formatter usually. Since we are not rendering
+  // the original render arrays, we need to propagate our caches to the
+  // paragraph template.
+  $cacheability->addCacheableDependency($media);
+
+  // Run access checks on the media entity.
+  $access = $media->access('view', $variables['user'], TRUE);
+  $cacheability->addCacheableDependency($access);
+  $cacheability->applyTo($variables);
+  if (!$access->isAllowed()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+
+  // Get the media source.
+  $source = $media->getSource();
+
+  if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
+    if ($source instanceof MediaAvPortalVideoSource) {
+      // Default video aspect ratio is set to 16:9 for AV Portal Video.
+      $variables['ratio'] = '16:9';
+    }
+
+    // Load information about the media and the display.
+    $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
+    $cacheability->addCacheableDependency($media_type);
+    $source_field = $source->getSourceFieldDefinition($media_type);
+    $display = EntityViewDisplay::collectRenderDisplay($media, 'oe_theme_main_content');
+    $cacheability->addCacheableDependency($display);
+    $display_options = $display->getComponent($source_field->getName());
+
+    // If it is an OEmbed resource, render it and pass it as embeddable data
+    // only if it is of type video or html.
+    if ($source instanceof OEmbed) {
+      $oembed_type = $source->getMetadata($media, 'type');
+      if (in_array($oembed_type, ['video', 'html'])) {
+        $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+        $cacheability->applyTo($variables);
+        return;
+      }
+    }
+
+    // If it's an AV Portal video or a Video iframe, render it.
+    $variables['video'] = $media->{$source_field->getName()}->view($display_options);
+    $cacheability->applyTo($variables);
+
+    // When dealing with iframe videos, also respect its given aspect ratio.
+    if ($media->bundle() === 'video_iframe') {
+      $ratio = $media->get('oe_media_iframe_ratio')->value;
+      $variables['ratio'] = str_replace('_', '-', $ratio);
+    }
+    return;
+  }
+
+  // If it's an image media, render it and assign it to the image variable.
+  if ($source instanceof MediaAvPortalPhotoSource || $source instanceof Image) {
+    $thumbnail = $media->get('thumbnail')->first();
+    $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
+  }
+}
