@@ -47,9 +47,11 @@
   {% set _links = _links|merge([_secondary_links]) %}
 {% endif %}
 {% if image %}
-  {% set image = {
-    'src': image.src,
-    'alt': image.alt
+  {% set _image = {
+    'img': {
+      'src': image.src,
+      'alt': image.alt
+    }
   } %}
 {% endif %}
 
@@ -58,5 +60,5 @@
   'description': description|default(''),
   'links': _links,
   'border': border|default(false),
-  'image': image
+  'picture': _image
 } only %}
