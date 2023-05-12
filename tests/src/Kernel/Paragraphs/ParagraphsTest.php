@@ -216,14 +216,14 @@ class ParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(1, $link_element);
     $this->assertEquals('http://www.example.com/', $link_element->attr('href'));
 
-    $image_element = $crawler->filter('article.ecl-card div.ecl-card__image');
-    $this->assertCount(1, $image_element);
+    $picture_element = $crawler->filter('article.ecl-card picture.ecl-card__picture');
+    $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
-      $image_element->attr('style')
+      $picture_element->filter('img.ecl-card__image')->attr('src')
     );
 
-    $this->assertEquals('Druplicon', $image_element->attr('aria-label'));
+    $this->assertEquals('Druplicon', $picture_element->attr('aria-label'));
 
     $paragraph->set('field_oe_link', ['uri' => 'route:<nolink>']);
     $paragraph->save();
@@ -278,13 +278,13 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
-    $image_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left img.ecl-content-item__image');
-    $this->assertCount(1, $image_element);
+    $picture_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left img.ecl-content-item__image');
+    $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
-      $image_element->attr('src')
+      $picture_element->attr('src')
     );
-    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+    $this->assertEquals('Druplicon', $picture_element->attr('alt'));
 
     $this->assertEquals('Meta 1', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)')->text()));
     $this->assertEquals('Meta 2', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)')->text()));
@@ -312,13 +312,13 @@ class ParagraphsTest extends ParagraphsTestBase {
 
     $this->assertCount(0, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left'));
     $this->assertCount(1, $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right'));
-    $image_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right img.ecl-content-item__image');
-    $this->assertCount(1, $image_element);
+    $picture_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right img.ecl-content-item__image');
+    $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
       file_url_transform_relative(file_create_url($image->getFileUri())),
-      $image_element->attr('src')
+      $picture_element->attr('src')
     );
-    $this->assertEquals('Druplicon', $image_element->attr('alt'));
+    $this->assertEquals('Druplicon', $picture_element->attr('alt'));
 
     $this->assertEquals('Meta 1', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)')->text()));
     $this->assertEquals('Meta 2', trim($crawler->filter('.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)')->text()));
