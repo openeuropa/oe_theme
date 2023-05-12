@@ -42,7 +42,7 @@ services:
 pipeline:
   npm-build:
     group: prepare
-    image: registry.fpfis.eu/fpfis/node:12.21.0
+    image: registry.fpfis.eu/fpfis/node:16
     commands:
       - npm install --unsafe-perm
       - NODE_ENV=production npm run build
@@ -162,6 +162,6 @@ matrix:
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARYf: highest, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
