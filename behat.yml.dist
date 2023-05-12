@@ -31,7 +31,7 @@ default:
               list item: ".ecl-content-item"
               list item image: ".ecl-content-item__image__before"
               logo: "a.ecl-site-header__logo-link .ecl-site-header__logo-image"
-              footer logo: "a.ecl-site-footer__logo-link .ecl-site-footer__logo-image-desktop"
+              footer logo: "a.ecl-site-footer__logo-link .ecl-site-footer__logo-image"
               media container: ".ecl-media-container"
               page header: ".ecl-page-header"
               priorities dropdown menu: ".ecl-menu__item:nth-child(3) .ecl-menu__mega"
