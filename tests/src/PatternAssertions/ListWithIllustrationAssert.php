@@ -116,8 +116,8 @@ class ListWithIllustrationAssert extends BasePatternAssert {
       if (isset($expected_item['image'])) {
         self::assertElementExists('.ecl-list-illustration__image', $item_element);
         $image_element = $item_element->filter('.ecl-list-illustration__image');
-        self::assertEquals($expected_item['image']['alt'], $image_element->attr('aria-label'));
-        self::assertStringContainsString($expected_item['image']['src'], $image_element->attr('style'));
+        self::assertEquals($expected_item['image']['alt'], $image_element->attr('alt'));
+        self::assertStringContainsString($expected_item['image']['src'], $image_element->attr('src'));
       }
       if (isset($expected_item['icon'])) {
         $icon_element = $item_element->filter('svg.ecl-icon use');

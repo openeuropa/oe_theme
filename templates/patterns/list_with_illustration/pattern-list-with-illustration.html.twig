@@ -17,8 +17,13 @@
   {% endif %}
   {# Set square image if needed. #}
   {% if item.image %}
-    {% set _image = item.image|merge({'squared': square_image}) %}
-    {% set item = item|merge({'image': _image}) %}
+    {% set item = item|merge({
+      'picture': {
+        'img': item.image
+      },
+      'square': square_image,
+      'img': null,
+    }) %}
   {% endif %}
   {% set _items = _items|merge([item]) %}
 {% endfor %}

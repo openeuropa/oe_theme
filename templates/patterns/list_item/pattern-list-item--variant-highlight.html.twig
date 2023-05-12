@@ -13,9 +13,14 @@
     icon_path: ecl_icon_path
   } %}
 {% endif %}
+{% if image %}
+  {% set _image = {
+    img: image
+  } %}
+{% endif %}
 {% include '@ecl-twig/card' with {
   title: title,
-  image: image,
+  picture: _image,
   description: detail|smart_trim(length),
   labels: badges,
 } only %}
