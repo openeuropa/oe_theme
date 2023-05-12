@@ -219,7 +219,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $picture_element = $crawler->filter('article.ecl-card picture.ecl-card__picture');
     $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
-      \Drupal::service('file_url_generator')->generateString($image->getFileUri()),
+      file_url_transform_relative(file_create_url($image->getFileUri())),
       $picture_element->filter('img.ecl-card__image')->attr('src')
     );
 
@@ -281,7 +281,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $picture_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--left img.ecl-content-item__image');
     $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
-      \Drupal::service('file_url_generator')->generateString($image->getFileUri()),
+      file_url_transform_relative(file_create_url($image->getFileUri())),
       $picture_element->attr('src')
     );
     $this->assertEquals('Druplicon', $picture_element->attr('alt'));
@@ -315,7 +315,7 @@ class ParagraphsTest extends ParagraphsTestBase {
     $picture_element = $crawler->filter('article.ecl-content-item > picture.ecl-content-item__picture--right img.ecl-content-item__image');
     $this->assertCount(1, $picture_element);
     $this->assertStringContainsString(
-      \Drupal::service('file_url_generator')->generateString($image->getFileUri()),
+      file_url_transform_relative(file_create_url($image->getFileUri())),
       $picture_element->attr('src')
     );
     $this->assertEquals('Druplicon', $picture_element->attr('alt'));
