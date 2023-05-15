@@ -162,6 +162,6 @@ matrix:
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARYf: highest, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.1, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
