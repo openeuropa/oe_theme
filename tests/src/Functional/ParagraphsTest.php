@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\Core\Url;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -23,6 +24,8 @@ class ParagraphsTest extends BrowserTestBase {
     'oe_theme_helper',
     'oe_paragraphs_demo',
     'oe_content_timeline_field',
+    'oe_paragraphs_media',
+    'oe_multilingual',
   ];
 
   /**
@@ -78,6 +81,105 @@ class ParagraphsTest extends BrowserTestBase {
     // Assert paragraph values are displayed.
     $this->assertSession()->pageTextContains('Accordion item title');
     $this->assertSession()->pageTextContains('Accordion item body');
+  }
+
+  /**
+   * Tests the Media paragraph cache invalidation.
+   */
+  public function testMediaParagraphCaching(): void {
+    // Set image media translatable.
+    $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
+    $this->container->get('router.builder')->rebuild();
+
+    // Create English file.
+    $en_file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file->setPermanent();
+    $en_file->save();
+
+    // Create Bulgarian file.
+    $bg_file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file->setPermanent();
+    $bg_file->save();
+
+    // Create a media.
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
+    $media = $media_storage->create([
+      'bundle' => 'image',
+      'name' => 'test image en',
+      'oe_media_image' => [
+        'target_id' => $en_file->id(),
+        'alt' => 'Alt en',
+      ],
+    ]);
+    $media->save();
+    // Translate the media to Bulgarian.
+    $media_bg = $media->addTranslation('bg', [
+      'name' => 'test image bg',
+      'oe_media_image' => [
+        'target_id' => $bg_file->id(),
+        'alt' => 'Alt bg',
+      ],
+    ]);
+    $media_bg->save();
+
+    // Create a Media paragraph.
+    $paragraph = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('paragraph')->create([
+        'type' => 'oe_av_media',
+        'field_oe_media' => [
+          'target_id' => $media->id(),
+        ],
+      ]);
+    $paragraph->save();
+
+    // Add Bulgarian translation.
+    $paragraph->addTranslation('bg', $paragraph->toArray())->save();
+
+    // Create a Demo page node referencing the paragraph.
+    $node = $this->container->get('entity_type.manager')->getStorage('node')->create([
+      'type' => 'oe_demo_landing_page',
+      'title' => 'Demo Media paragraph',
+      'field_oe_demo_body' => [$paragraph],
+    ]);
+    $node->save();
+    // Add Bulgarian translation.
+    $node->addTranslation('bg', $node->toArray())->save();
+
+    // Assert the english translation.
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container img.ecl-media-container__media', 'src', 'example_1_en.jpeg');
+    // Assert the bulgarian translation.
+    $this->drupalGet('/bg/node/' . $node->id(), ['external' => FALSE]);
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container img.ecl-media-container__media', 'src', 'example_1_bg.jpeg');
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+    $this->drupalGet($node->toUrl());
+    $this->assertSession()->elementNotExists('css', 'figure.ecl-media-container');
+
+    // Create a remote video and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'remote_video',
+      'oe_media_oembed_video' => [
+        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $this->getSession()->reload();
+    $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
+      'query' => [
+        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ])->toString();
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container div.ecl-media-container__media iframe', 'src', $partial_iframe_url);
   }
 
 }

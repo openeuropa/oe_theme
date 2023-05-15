@@ -2247,10 +2247,6 @@ function oe_theme_preprocess_paragraph__oe_av_media(array &$variables): void {
   $source = $media->getSource();
 
   if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-    if ($source instanceof MediaAvPortalVideoSource) {
-      // Default video aspect ratio is set to 16:9 for AV Portal Video.
-      $variables['ratio'] = '16:9';
-    }
 
     // Load information about the media and the display.
     $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
