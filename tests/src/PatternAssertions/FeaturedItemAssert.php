@@ -65,14 +65,14 @@ class FeaturedItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertFeaturedItemImage($expected_image, string $variant, Crawler $crawler): void {
-    $image_div_selector = 'article.ecl-card div.ecl-card__image';
+    $image_div_selector = 'article.ecl-card img.ecl-card__image';
     if (is_null($expected_image)) {
       $this->assertElementNotExists($image_div_selector, $crawler);
       return;
     }
     $image_div = $crawler->filter($image_div_selector);
-    self::assertEquals($expected_image['alt'], $image_div->attr('aria-label'));
-    self::assertStringContainsString($expected_image['src'], $image_div->attr('style'));
+    self::assertEquals($expected_image['alt'], $image_div->attr('alt'));
+    self::assertStringContainsString($expected_image['src'], $image_div->attr('src'));
   }
 
   /**
