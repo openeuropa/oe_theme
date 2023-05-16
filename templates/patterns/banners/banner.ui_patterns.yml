@@ -1,0 +1,71 @@
+banner:
+  label: "Banner"
+  description: "The Banner consists of a title, description, and CTA with an optional image."
+  variants:
+    plain_background:
+      label: "Plain background"
+      description: "Plain background contains title, description and CTA with blue background."
+    text_box:
+      label: "Text box"
+      description: "Wraps the title, description and CTA inside a white text box with a background image."
+    text_highlight:
+      label: "Text highlight"
+      description: "Highlights the title and description with the CTA below them with a background image."
+    image_overlay:
+      label: "Image overlay"
+      description: "Image overlay contains title, description and CTA with an overlay effect on the background image."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Title of the banner."
+      preview: "Headline sed elit lorem. Donec dictum."
+    description:
+      type: "text"
+      label: "Description"
+      description: "Description of the banner."
+      preview: "Pellentesque tempor tincidunt quam, finibus vulputate eros iaculis pharetra orci arcu, dictum maximus arcu pellentesque eget. Cras massa nunc."
+    url:
+      type: "Url"
+      label: "URL"
+      description: "Banner link url."
+      preview: "http://example.com"
+    label:
+      type: "text"
+      label: "Link text"
+      description: "Banner link text."
+      preview: "Subscribe"
+    image:
+      type: "array"
+      label: "Image"
+      description: "The image of the banner is required for the variants which include an image."
+      preview:
+        src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+    size:
+      type: "text"
+      label: "Size"
+      description: "Size of the banner (can be 's', 'm', 'l'). Defaults to 'm'."
+      preview: "l"
+    centered:
+      type: "boolean"
+      label: "Centered"
+      description: "Define if the banner should be centered."
+      preview: false
+      escape: false
+    full_width:
+      type: "boolean"
+      label: "Full width"
+      description: "Extends the banner to whole viewport when used inside the grid."
+      preview: true
+      escape: false
+    external_link:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the banner link is external or not."
+      preview: true
+      escape: false
+    credit:
+      type: "text"
+      label: "Credit"
+      description: "Credit for the image (only displayed for image variants)."
+      preview: "© Copyright or credit"

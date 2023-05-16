@@ -1516,6 +1516,7 @@ function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
  * Implements hook_preprocess_paragraph() for oe_banner paragraph.
  */
 function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
+  $variables['pattern'] = 'banner';
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
 
@@ -1535,24 +1536,29 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   $variables['full_width'] = (bool) $paragraph->get('field_oe_banner_full_width')->value;
 
-  // The alignment field value contains the information regarding the pattern
-  // type and centering.
-  $alignment = $paragraph->get('field_oe_banner_type')->value;
-  [$banner_type, $banner_alignment] = explode('_', $alignment);
-  // The beginning of the string determines the pattern.
-  $variables['pattern'] = 'banner_' . $banner_type;
-  // The end of the string determines the position.
-  $variables['alignment'] = $banner_alignment;
+  // Extract the first character of the size field value.
+  if ($paragraph->hasField('field_oe_banner_size') && !$paragraph->get('field_oe_banner_size')->isEmpty()) {
+    $variables['size'] = substr($paragraph->get('field_oe_banner_size')->value, 0, 1);
+  }
+  // Get the alignment value.
+  if ($paragraph->hasField('field_oe_banner_alignment') && !$paragraph->get('field_oe_banner_alignment')->isEmpty()) {
+    $variables['centered'] = $paragraph->get('field_oe_banner_alignment')->value === 'centered';
+  }
 
+  // Map the deprecated variants from oe_paragraphs to Banner pattern variants.
+  $deprecated_paragraph_variants_mapping = [
+    'default' => 'plain_background',
+    'primary' => 'plain_background',
+    'image' => 'text_box',
+    'image_shade' => 'image_overlay',
+  ];
   $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   if ($variant) {
-    $variables['variant'] = str_replace('oe_banner_', '', $variant);
-  }
-  else {
-    $variables['variant'] = 'default';
+    $variant = str_replace('oe_banner_', '', $variant);
+    $variables['variant'] = $deprecated_paragraph_variants_mapping[$variant] ?? $variant;
   }
 
-  if ($variables['variant'] === 'default' || $variables['variant'] === 'primary') {
+  if ($variables['variant'] === 'plain_background') {
     return;
   }
 
@@ -1608,9 +1614,10 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $cacheability->applyTo($variables);
     return;
   }
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
 
   $values = [
-    'src' => file_create_url($uri),
+    'src' => $style->buildUrl($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
     'name' => $media->getName(),
   ];

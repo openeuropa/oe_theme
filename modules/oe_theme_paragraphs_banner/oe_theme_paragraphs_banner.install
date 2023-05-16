@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for OpenEuropa Theme Paragraphs Banner module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Entity\EntityFormMode;
+
+/**
+ * Implements hook_install().
+ *
+ * Updates the form mode labels provided by OE Paragraphs Banner.
+ */
+function oe_theme_paragraphs_banner_install($is_syncing) {
+  // If we are installing from config, we bail out.
+  if ($is_syncing) {
+    return;
+  }
+  $form_modes_labels = [
+    'paragraph.oe_banner_primary' => 'Plain background banner',
+    'paragraph.oe_banner_image' => 'Text box banner',
+    'paragraph.oe_banner_image_shade' => 'Image overlay banner',
+  ];
+  foreach ($form_modes_labels as $id => $label) {
+    $form_mode = EntityFormMode::load($id);
+    $form_mode->set('label', $label);
+    $form_mode->save();
+  }
+  $text_highlight = EntityFormMode::load('paragraph.oe_banner_text_highlight');
+  $text_highlight->set('enabled', TRUE);
+  $text_highlight->save();
+}
