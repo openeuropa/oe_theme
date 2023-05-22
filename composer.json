@@ -9,7 +9,7 @@
         "php": ">=8.0",
         "cweagans/composer-patches": "~1.4",
         "drupal/core": "^9.4",
-        "drupal/smart_trim": "^1.2",
+        "drupal/smart_trim": "^2.0",
         "drupal/twig_field_value": "^2.0",
         "drupal/ui_patterns": "^1.5",
         "openeuropa/ecl-twig-loader": "^3.1",
