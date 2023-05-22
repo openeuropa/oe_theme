@@ -6,14 +6,14 @@
    * Theme implementation for a ECL Language List Selector.
    */
   Parameters:
-    - "eu_category" (string) (default: '');
-    - "non_eu_category" (string) (default: '')
-    - "items" (array) (default: [])
+    - "eu_category" (string) (default: '') Label for EU languages;
+    - "non_eu_category" (string) (default: ''): Label for non-EU languages
+    - "items" (array) (default: []): List of EU Languages
       - "lang" (string) (default: '')
       - "label" (string) (default: '')
       - "path" (string) (default: '')
       - "active (boolean) (default: false)
-    - non_eu_items (array) (default: [])
+    - non_eu_items (array) (default: []): List of Non-EU Languages
       - "lang" (string) (default: '')
       - "label" (string) (default: '')
       - "path" (string) (default: '')
@@ -22,25 +22,7 @@
     - "code" (string): Language code of Language List Button
     - "path" (string) (Link url): URL of Language List Button
     - "icon_path" (string) (Link url): Icon Path
-    - "extra_classes" (string) (default: '')
-    - "extra_attributes" (array) (default: []): format: [
-        {
-          "name" (string) (default: ''),
-          "value" (string) (default: '')
-        },
-        ...
-      ]
 #}
-
-{# Internal properties #}
-
-{% set _label = label|default('') %}
-{% set _code = code|default('') %}
-{% set _path = path|default('') %}
-{% set _icon_path = icon_path|default('') %}
-
-{% set _css_class = 'ecl-site-header__selector' %}
-{% set _extra_attributes = [] %}
 
 {# Internal logic - Process properties #}
 
@@ -53,49 +35,25 @@
   {% endif %}
 {% endif %}
 
-{% if extra_classes is defined and extra_classes is not empty %}
-  {% set _css_class = _css_class ~ ' ' ~ extra_classes %}
-{% endif %}
+{% set _aria_label = 'Change language, current language is '|t ~ label %}
 
-{% if extra_attributes is defined and extra_attributes is not empty and extra_attributes is iterable %}
-  {% for attr in extra_attributes %}
-    {% set _extra_attributes = _extra_attributes ~ ' ' ~ attr.name ~ '="' ~ attr.value ~ '"' %}
-  {% endfor %}
-{% endif %}
-
-<a
-  class="ecl-button ecl-button--ghost  ecl-site-header__language-selector"
-  href="{{ _path }}"
-  data-ecl-language-selector
-  aria-controls="language-list-overlay"
-  aria-expanded="false"
->
-  <span class="ecl-site-header__language-icon">
-    {% include '@ecl-twig/icon' with {
-      icon: {
-        path: _icon_path,
-        name: 'language',
-        size: 's'
-      },
-      extra_classes: 'ecl-site-header__icon'
-    } only %}
-    <span class="ecl-site-header__language-code">{{ _code }}</span>
-  </span>
-  {{- _label -}}
- </a>
-{% include '@ecl-twig/language-list' with {
+{% set _language_selector = {
+  href: path|default(''),
+  label: label|default(''),
+  aria_label: _aria_label|default(''),
+  code: code|default(''),
   eu_category: eu_category,
   non_eu_category: non_eu_category,
-  items: items,
-  non_eu_items: non_eu_languages,
-  icon_path: _icon_path,
-  overlay: true,
-  title: 'Select your language'|t,
-  close_label: 'Close'|t,
-  extra_attributes: [
-    { name: 'aria-labelledby', value: 'ecl-language-list__title' },
-    { name: 'role', value: 'dialog' },
-    { name: 'hidden' }
-  ]
+  overlay: {
+    close_label: 'Close'|t,
+    title: 'Select your language'|t,
+    items: items,
+    non_eu_items: non_eu_languages,
+  }
+} %}
+
+{% include '@ecl-twig/site-header/site-header-language-switcher.html.twig' with {
+  icon_file_path: icon_path|default(''),
+  language_selector: _language_selector,
 } only %}
 {% endapply %}
