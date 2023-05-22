@@ -101,19 +101,19 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $crawler = $this->renderLanguageBlock();
 
     // Make sure that language switcher overlay is present.
-    $actual = $crawler->filter('.ecl-language-list--overlay');
+    $actual = $crawler->filter('div#language-list-overlay');
     $this->assertCount(1, $actual);
 
     // Make sure that language switcher overlay title is set.
-    $actual = $crawler->filter('.ecl-language-list--overlay .ecl-language-list__title')->text();
+    $actual = $crawler->filter('div#language-list-overlay .ecl-site-header__language-title')->text();
     $this->assertEquals('Select your language', trim($actual));
 
     // Check for EU languages category title is not present if there are no
     // non-EU languages.
-    $this->assertEmpty($crawler->filter('.ecl-language-list__eu .ecl-language-list__category')->text());
+    $this->assertCount(0, $crawler->filter('div.ecl-site-header__language-category[data-ecl-language-list-eu] .ecl-site-header__language-category-title'));
 
     // Check that non-EU category is not visible by default.
-    $this->assertEmpty($crawler->filter('.ecl-language-list__non-eu'));
+    $this->assertEmpty($crawler->filter('div.ecl-site-header__language-category[data-ecl-language-list-non-eu]'));
 
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
@@ -124,7 +124,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       $lang_id = $language->getId();
       $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
 
-      $actual = $crawler->filter(".ecl-language-list--overlay a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link[lang={$lang_prefix}]")->text();
       // Remove all non printable characters in $actual.
       $this->assertEquals(
         $languages[$lang_id]->getName(),
@@ -162,7 +162,7 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     $this->assertEquals($lang_prefix, $actual);
 
     // Make sure that the actual language link is set as active.
-    $actual = $crawler->filter(".ecl-language-list--overlay .ecl-language-list__item--is-active a.ecl-language-list__link[lang={$lang_prefix}]")->text();
+    $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$lang_prefix}]")->text();
     $this->assertEquals($language_name, trim($actual));
   }
 
