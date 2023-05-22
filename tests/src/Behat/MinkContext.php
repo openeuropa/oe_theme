@@ -99,7 +99,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    * @Then the active language switcher link in the dialog is :label
    */
   public function assertActiveLanguageSwitcherLink($label): void {
-    $selector = '.ecl-language-list__item--is-active a.ecl-language-list__link';
+    $selector = 'li.ecl-site-header__language-item a.ecl-site-header__language-link.ecl-site-header__language-link--active';
     $overlay = $this->getLanguageSwitcherOverlay();
     $this->assertSession()->elementsCount('css', $selector, 1, $overlay);
     $this->assertSession()->elementTextContains('css', $selector, $label);
@@ -162,7 +162,7 @@ class MinkContext extends DrupalExtensionMinkContext {
    */
   protected function getLanguageSwitcherOverlay(): NodeElement {
     return $this->assertSession()
-      ->elementExists('css', 'div.ecl-language-list--overlay');
+      ->elementExists('css', 'div#language-list-overlay');
   }
 
   /**

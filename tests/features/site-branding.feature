@@ -14,7 +14,7 @@ Feature: Site branding
     Then I should see the "logo" element in the "header"
     When I open the language switcher dialog
     And I click "<language_selector>"
-    Then the "<language>" EU mobile logo should be available
+    Then the "<language>" EU mobile and desktop logos should be available
     When the theme is configured to use the "European Commission" style
     And I reload the page
     Then I should see the "logo" element in the "header"
@@ -77,6 +77,7 @@ Feature: Site branding
   Scenario Outline: The European Union header logo has accessibility attributes.
     Given I am on the homepage
     And the theme is configured to use the "European Union" style
+    And I reload the page
     When I open the language switcher dialog
     And I click "<language_selector>"
     Then the header logo should contain accessibility attributes with link "<link>" label "<label>" alt "<alt>" title "<title>"
@@ -96,6 +97,7 @@ Feature: Site branding
   Scenario Outline: The European Commission header logo has accessibility attributes.
     Given I am on the homepage
     And the theme is configured to use the "European Commission" style
+    And I reload the page
     When I open the language switcher dialog
     And I click "<language_selector>"
     Then the header logo should contain accessibility attributes with link "<link>" label "<label>" alt "<alt>" title "<title>"
