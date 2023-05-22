@@ -617,3 +617,6 @@ msgstr "Denne livestreaming er begyndt."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Livestreamingen er slut, men eventet kører stadig."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % af det samlede budget"

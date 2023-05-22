@@ -617,3 +617,6 @@ msgstr "Αυτή η ζωντανή μετάδοση έχει ξεκινήσει.
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Η ζωντανή μετάδοση έληξε, αλλά η εκδήλωση συνεχίζεται."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % του συνολικού προϋπολογισμού"

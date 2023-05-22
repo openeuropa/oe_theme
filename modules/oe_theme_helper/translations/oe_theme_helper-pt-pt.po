@@ -617,3 +617,6 @@ msgstr "A transmissão em direto via Internet já começou."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "A transmissão em direto terminou, mas o evento prossegue."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% do orçamento global"

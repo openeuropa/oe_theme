@@ -617,3 +617,6 @@ msgstr "See otseülekanne on alanud."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Otseülekanne on lõppenud, kuid üritus jätkub."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% kogueelarvest"

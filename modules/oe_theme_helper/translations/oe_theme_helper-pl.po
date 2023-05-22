@@ -617,3 +617,6 @@ msgstr "Transmisja na żywo już się rozpoczęła."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Wydarzenie nadal trwa, ale nie jest już transmitowane na żywo."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% łącznego budżetu"

@@ -617,3 +617,6 @@ msgstr "Din il-xandira diretta fuq l-internet bdiet."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Ix-xandira diretta fuq l-internet intemmet, iżda l-avveniment għadu għaddej."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% tal-baġit globali"
