@@ -54,3 +54,8 @@ carousel:
       label: "Full width"
       description: "Whether the Carousel should be extended to full width."
       preview: true
+    size:
+      type: "string"
+      label: "Size"
+      description: "Size of the carousel (can be 's', 'm', 'l')."
+      preview: "s"
