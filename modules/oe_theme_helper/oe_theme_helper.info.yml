@@ -2,7 +2,7 @@ name: OpenEuropa Theme Helper
 type: module
 description: OpenEuropa theme helpers and tools.
 package: OpenEuropa
-core_version_requirement: ^9.4
+core_version_requirement: ^9.4 || ^10
 dependencies:
   - drupal:node
   - ui_patterns:ui_patterns_library
