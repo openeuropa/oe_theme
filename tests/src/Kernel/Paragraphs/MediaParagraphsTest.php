@@ -25,7 +25,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'media',
     'oe_media',
     'oe_media_oembed_mock',
+    'oe_media_webtools',
     'oe_paragraphs_media',
+    'oe_webtools',
+    'oe_webtools_media',
+    'json_field',
     'allowed_formats',
     'oe_paragraphs_media_field_storage',
     'oe_paragraphs_iframe_media',
@@ -54,20 +58,23 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     oe_paragraphs_media_field_storage_install(FALSE);
     $this->installEntitySchema('media');
     $this->installConfig([
+      'json_field',
       'media',
       'oe_media',
       'oe_paragraphs_media',
       'media_avportal',
       'oe_media_avportal',
+      'oe_media_webtools',
       'oe_paragraphs_banner',
       'oe_theme_paragraphs_banner',
       'oe_paragraphs_iframe_media',
+      'oe_webtools_media',
       'options',
       'oe_media_iframe',
       'oe_paragraphs_carousel',
       'oe_paragraphs_av_media',
     ]);
-    // Call the install hook of the Media module.
+    // Call the installation hook of the Media module.
     \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
   }
@@ -314,6 +321,21 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     // Since link doesn't exist variant is recognized as "left_simple".
     $assert->assertVariant('left_simple', $html);
+
+    // Create a webtools chart and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'webtools_chart',
+      'name' => 'Chart',
+      'oe_media_webtools' => '{"service":"charts","data":{"series":[{"name":"Y","data":[{"name":"1","y":0.5}]}]},"provider":"highcharts"}',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $assert->assertVariant('left_simple', $html);
+    $crawler = new Crawler($html);
+    $this->assertEquals('{"service":"charts","data":{"series":[{"name":"Y","data":[{"name":"1","y":0.5}]}]},"provider":"highcharts"}', $crawler->filter('script')->text());
 
     // Create iframe video with aspect ratio 1:1 and add it to the paragraph.
     $media = $media_storage->create([
