@@ -28,7 +28,6 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'entity_reference',
     'entity_test',
     'field',
     'file',

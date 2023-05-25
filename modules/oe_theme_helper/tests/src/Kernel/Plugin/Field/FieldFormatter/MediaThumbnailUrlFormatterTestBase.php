@@ -21,7 +21,6 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'entity_reference',
     'entity_test',
     'field',
     'file',
@@ -42,7 +41,6 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
     $this->installConfig([
       'file',
       'field',
-      'entity_reference',
       'media',
     ]);
 

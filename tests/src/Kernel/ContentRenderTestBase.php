@@ -45,7 +45,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     'text',
     'typed_link',
     'maxlength',
-    'entity_reference',
     'entity_reference_revisions',
     'composite_reference',
     'inline_entity_form',
@@ -99,7 +98,6 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
     $this->installConfig([
       'file',
       'field',
-      'entity_reference',
       'entity_reference_revisions',
       'composite_reference',
       'node',
