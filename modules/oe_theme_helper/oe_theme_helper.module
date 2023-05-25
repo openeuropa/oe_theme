@@ -118,9 +118,9 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter() for Accordion item.
+ * Implements hook_field_widget_single_element_WIDGET_TYPE_form_alter() for Accordion item.
  */
-function oe_theme_helper_field_widget_oe_paragraphs_variants_form_alter(&$element, &$form_state, $context) {
+function oe_theme_helper_field_widget_single_element_oe_paragraphs_variants_form_alter(&$element, &$form_state, $context) {
   if ($element['#paragraph_type'] !== 'oe_accordion_item') {
     return;
   }
