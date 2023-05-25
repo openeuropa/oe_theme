@@ -162,10 +162,10 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => 'Project reference',
         ], [
           'label' => 'Project duration',
-          'body' => "10.05.2020\n - 15.05.2025",
+          'body' => '10.05.2020 - 15.05.2025',
         ], [
           'label' => 'Project locations',
-          'body' => "09199 Ages Burgos, Spain\n\n  Munich, Germany",
+          'body' => '09199 Ages Burgos, Spain Munich, Germany',
         ],
       ],
     ];

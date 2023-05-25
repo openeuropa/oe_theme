@@ -168,7 +168,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Two-stage',
         ], [
           'label' => 'Deadline dates',
-          'body' => "21 February 2020\n | 22 February 2020",
+          'body' => '21 February 2020 | 22 February 2020',
         ], [
           'label' => 'Funding programme',
           'body' => 'Arab Common Market',

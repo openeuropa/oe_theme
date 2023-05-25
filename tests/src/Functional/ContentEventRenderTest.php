@@ -313,7 +313,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
+          'body' => 'event_venue Address event_venue, 1001 <Brussels>, Belgium',
         ], [
           'label' => 'When',
           'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
@@ -339,7 +339,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $venue_entity->set('oe_address', ['country_code' => 'MX'])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][0]['body'] = "event_venue\n  Mexico";
+    $field_list_expected_values['items'][0]['body'] = 'event_venue Mexico';
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values['items'][2]['text'] = 'Mexico';
