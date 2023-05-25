@@ -63,7 +63,7 @@ class MediaThumbnailUrlFormatterTestBase extends AbstractKernelTestBase {
   protected function createMediaImage(string $filepath): Media {
     $media_type = $this->createMediaType('image');
 
-    $file = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents($filepath), 'public://' . basename($filepath));
     $file->setPermanent();
     $file->save();
 

@@ -126,8 +126,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
    * Test the formatter rendering.
    */
   public function testFormatter(): void {
-    $filepath = drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg';
-    $file = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $filepath = \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg';
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents($filepath), 'public://' . basename($filepath));
     $file->setPermanent();
     $file->save();
 
@@ -155,8 +155,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Create a video iframe media. Video iframes render the markup as string
     // and not as html tag, so with this test we fully cover the iframe plugin.
-    $filepath = drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png';
-    $thumbnail = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $filepath = \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/placeholder.png';
+    $thumbnail = \Drupal::service('file.repository')->writeData(file_get_contents($filepath), 'public://' . basename($filepath));
     $thumbnail->setPermanent();
     $thumbnail->save();
     $iframe_media = Media::create([

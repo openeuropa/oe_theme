@@ -25,7 +25,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field_group',
     'composite_reference',
     'oe_time_caching',
@@ -52,7 +52,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'oe_theme_content_call_tenders',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.

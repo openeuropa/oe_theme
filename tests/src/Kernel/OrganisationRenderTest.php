@@ -25,7 +25,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'address',
     'field_group',
     'entity_reference_revisions',
@@ -61,7 +61,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
       'oe_theme_content_organisation',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.

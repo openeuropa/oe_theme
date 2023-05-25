@@ -22,7 +22,7 @@ class ImageValueObjectTest extends KernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'image',
     'file',
     'entity_test',

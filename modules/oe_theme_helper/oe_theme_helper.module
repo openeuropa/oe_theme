@@ -237,7 +237,7 @@ function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
   }
   if (empty($image_url)) {
     // Use original file url if image style is absent.
-    $image_url = file_create_url($file->get('uri')->getString());
+    $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->get('uri')->getString());
   }
 
   $params['alt'] = $thumbnail->get('alt')->getString();
@@ -323,7 +323,7 @@ function template_preprocess_oe_theme_helper_call_status(array &$variables) {
  * Implements hook_locale_translation_projects_alter().
  */
 function oe_theme_helper_locale_translation_projects_alter(&$projects) {
-  $projects['oe_theme_helper']['info']['interface translation server pattern'] = drupal_get_path('module', 'oe_theme_helper') . '/translations/%project-%language.po';
+  $projects['oe_theme_helper']['info']['interface translation server pattern'] = \Drupal::service('extension.list.module')->getPath('oe_theme_helper') . '/translations/%project-%language.po';
 }
 
 /**
@@ -341,7 +341,7 @@ function oe_theme_helper_locale_translation_projects_alter(&$projects) {
 function _oe_theme_helper_content_thumbnail_image(array &$variables, EntityInterface $entity, string $field_name, ?bool $fallback = FALSE): void {
   if ($fallback) {
     // Set default image.
-    $image_path = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    $image_path = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/images/user_icon.svg';
     $variables['image'] = ImageValueObject::fromArray(['src' => $image_path]);
   }
 

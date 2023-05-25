@@ -18,7 +18,7 @@ class TimelineParagraphTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_paragraphs_timeline',
     'oe_content_timeline_field',
     'node',

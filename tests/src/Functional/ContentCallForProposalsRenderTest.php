@@ -25,7 +25,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'datetime_testing',
     'block',

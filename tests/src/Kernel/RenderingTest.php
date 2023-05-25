@@ -19,7 +19,7 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_patterns_render_test',
     'text',
     'filter',

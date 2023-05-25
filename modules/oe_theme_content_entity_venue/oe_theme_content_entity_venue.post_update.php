@@ -14,7 +14,7 @@ use Drupal\Core\Config\FileStorage;
  * Create the oe_venue 'full' view mode.
  */
 function oe_theme_content_entity_venue_post_update_00001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_venue') . '/config/post_updates/00001_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_entity_venue') . '/config/post_updates/00001_create_full_view_display');
 
   $config_manager = \Drupal::service('config.manager');
   $entity_type_manager = \Drupal::entityTypeManager();

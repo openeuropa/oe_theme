@@ -24,7 +24,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'options',
     'field_group',
     'composite_reference',
@@ -51,7 +51,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'oe_theme_content_consultation',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     $this->setUpCurrentUser([], [], TRUE);

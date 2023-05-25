@@ -36,7 +36,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'address',
     'field',
     'field_group',
@@ -141,7 +141,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
       ->grantPermission('view media')
       ->save();
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     $this->installEntitySchema('skos_concept');
@@ -162,7 +162,7 @@ abstract class ContentRenderTestBase extends MultilingualAbstractKernelTestBase 
    */
   protected function createMediaImage(string $name): MediaInterface {
     // Create file instance.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
     $file->setPermanent();
     $file->save();
 

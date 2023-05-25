@@ -18,7 +18,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',

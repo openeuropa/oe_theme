@@ -6,7 +6,7 @@ namespace Drupal\oe_theme_helper\Event;
 
 use Drupal\Core\Cache\RefinableCacheableDependencyTrait;
 use Drupal\node\NodeInterface;
-use Symfony\Component\EventDispatcher\Event;
+use Symfony\Contracts\EventDispatcher\Event;
 
 /**
  * Event used for retrieving the node entity for the page header metadata.

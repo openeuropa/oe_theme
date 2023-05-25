@@ -35,7 +35,7 @@ function oe_theme_content_news_post_update_00002(): void {
  * Override news teaser view display.
  */
 function oe_theme_content_news_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00002_override_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_news') . '/config/post_updates/00002_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_news.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
@@ -62,7 +62,7 @@ function oe_theme_content_news_post_update_00004(): void {
  * Override news view displays.
  */
 function oe_theme_content_news_post_update_00005(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00005_override_view_displays');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_news') . '/config/post_updates/00005_override_view_displays');
 
   // View displays configurations to update.
   $displays = [
@@ -92,7 +92,7 @@ function oe_theme_content_news_post_update_00006(): void {
  * Create the 'full' entity view display on the news CT.
  */
 function oe_theme_content_news_post_update_00007() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00007_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_news') . '/config/post_updates/00007_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_news.full');
@@ -116,7 +116,7 @@ function oe_theme_content_news_post_update_00007() {
  * Updates the teaser view display.
  */
 function oe_theme_content_news_post_update_00008(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00008_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_news') . '/config/post_updates/00008_update_teaser_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_news.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
@@ -136,7 +136,7 @@ function oe_theme_content_news_post_update_00008(): void {
  * Updates the full view display.
  */
 function oe_theme_content_news_post_update_00009(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_news') . '/config/post_updates/00009_update_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_news') . '/config/post_updates/00009_update_full_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_news.full');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');

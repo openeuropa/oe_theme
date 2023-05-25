@@ -23,7 +23,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_content_entity_contact',
     'oe_theme_content_project',
     'options',
