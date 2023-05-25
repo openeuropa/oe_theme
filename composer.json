@@ -16,21 +16,17 @@
         "openeuropa/oe_time_caching": "^1.5"
     },
     "require-dev": {
-        "behat/behat": "^3.10",
         "behat/mink-selenium2-driver": "^1.5",
         "composer/installers": "~1.5",
-        "doctrine/collections": "^1.8",
         "drupal/address": "~1.11",
         "drupal/composite_reference": "^2.1",
         "drupal/config_devel": "^1.9",
         "drupal/core-composer-scaffold": "^9.4 || ^10",
         "drupal/core-utility": "^9.4 || ^10",
-        "drupal/ctools": "^3.7",
         "drupal/datetime_range_timezone": "^1.0.0-alpha4",
         "drupal/datetime_testing": "^1.0",
         "drupal/description_list_field": "^1.0",
-        "drupal/drupal-driver": "^2.1.1",
-        "drupal/drupal-extension": "dev-master as 4.0",
+        "drupal/drupal-extension": "^5.0",
         "drupal/emr": "^1.3",
         "drupal/entity_browser": "^2.5",
         "drupal/entity_reference_revisions": "~1.3",
@@ -39,16 +35,11 @@
         "drupal/inline_entity_form": "~1.0-rc15",
         "drupal/json_field": "^1.2",
         "drupal/renderviz": "^1.0@alpha",
-        "drupal/styleguide": "~1.0@beta",
-        "drupal/token": "^1.10",
+        "drupal/styleguide": "^2.1.1",
         "drupal/typed_link": "^2.0",
         "drush/drush": "~11.1",
         "friends-of-behat/service-container-extension": "^1.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "instaclick/php-webdriver": "^1.4.7",
-        "masterminds/html5": "^2.7.6",
         "mikey179/vfsstream": "^1.6.10",
-        "nikic/php-parser": "^4.12.0",
         "openeuropa/behat-transformation-context": "^0.2",
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/oe_contact_forms": "^1.11",
@@ -63,17 +54,7 @@
         "openeuropa/rdf_skos": "^1.0.0-alpha10",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "phpspec/prophecy-phpunit": "^2",
-        "symfony/browser-kit": "^4.4.37",
-        "symfony/console": "^4.4.30",
-        "symfony/css-selector": "^4.4.24",
-        "symfony/dom-crawler": "^4.4.44",
-        "symfony/finder": "^4.4.30",
-        "symfony/http-foundation": "^4.4.30",
-        "symfony/phpunit-bridge": "^6.0",
-        "symfony/process": "^4.4.30",
-        "symfony/routing": "^4.4.30",
-        "symfony/validator": "^4.4.30",
-        "symfony/yaml": "^4.4.29"
+        "symfony/phpunit-bridge": "^6.0"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -125,19 +106,7 @@
             "locations": {
                 "web-root": "./build"
             }
-        },
-        "_readme": [
-            "Explicit minimum version requirement of drupal/ctools module due to D9.4 compatability.",
-            "Explicit minimum version requirement of behat library due to PHP compatibility.",
-            "Explicit minimum version requirement of symfony packages due to lower versions missing return type on various methods being incompatible with PHP 8.1 parent methods.",
-            "Use master branch of drupal/drupal-extension to replace fabpot/goutte with behat/mink-browserkit-driver and the rest of the behat required dependencies.",
-            "Explicit minimum version requirement of symfony/phpunit-bridge to replace drupal/core-dev testing classes and traits.",
-            "Explicit minimum version requirement of mikey179/vfsstream due to lower versions missing return type on vfsStreamDirectory::getIterator() method.",
-            "Explicit minimum version requirement of masterminds/html5 due to lower versions passing NULL parameters instead of string when calling DOMImplementation::createDocument() method.",
-            "Explicit minimum version requirement of guzzlehttp/guzzle due to lower versions missing return type on CookieJar::getIterator() and CookieJar::count() methods.",
-            "Explicit minimum version requirement of doctrine/collections due to lower versions missing return type on ArrayCollection::count() methods.",
-            "Explicit requirement of token module due to lower versions declaring optional parameters before the require one on token_tokens() function."
-        ]
+        }
     },
     "config": {
         "sort-packages": true,
