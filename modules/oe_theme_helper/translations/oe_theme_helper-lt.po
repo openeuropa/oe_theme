@@ -620,3 +620,6 @@ msgstr "Tiesioginė transliacija baigėsi, tačiau renginys tęsiasi."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % bendro biudžeto"
+
+msgid "Collapse"
+msgstr "Suskleisti"

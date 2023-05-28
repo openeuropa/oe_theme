@@ -620,3 +620,6 @@ msgstr "Tá an beoshruthú thart ach tá an imeacht fós ar siúl."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% den bhuiséad foriomlán"
+
+msgid "Collapse"
+msgstr "Leacaigh"

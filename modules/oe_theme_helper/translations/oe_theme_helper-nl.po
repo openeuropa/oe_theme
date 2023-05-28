@@ -620,3 +620,6 @@ msgstr "De livestream is beëindigd, maar het evenement is nog gaande."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% van de totale begroting"
+
+msgid "Collapse"
+msgstr "Inklappen"

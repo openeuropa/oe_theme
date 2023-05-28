@@ -620,3 +620,6 @@ msgstr "Az élő közvetítés befejeződött, de a rendezvény még tart."
 
 msgid "@percentage% of the overall budget"
 msgstr "A teljes költségvetés @percentage%-a"
+
+msgid "Collapse"
+msgstr "Elrejtés"
