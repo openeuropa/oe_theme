@@ -626,3 +626,6 @@ msgstr "@percentage% do orçamento global"
 
 msgid "Access item's children"
 msgstr "Aceder a sub-elementos"
+
+msgid "Collapse"
+msgstr "Fechar"

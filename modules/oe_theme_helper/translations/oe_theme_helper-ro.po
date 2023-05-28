@@ -626,3 +626,6 @@ msgstr "@percentage% din bugetul total"
 
 msgid "Access item's children"
 msgstr "Accesați submeniul"
+
+msgid "Collapse"
+msgstr "Restrângeți"

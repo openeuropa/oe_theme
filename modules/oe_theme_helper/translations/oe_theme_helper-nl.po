@@ -626,3 +626,6 @@ msgstr "@percentage% van de totale begroting"
 
 msgid "Access item's children"
 msgstr "Onderliggende elementen tonen"
+
+msgid "Collapse"
+msgstr "Inklappen"

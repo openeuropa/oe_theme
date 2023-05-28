@@ -935,8 +935,8 @@
           meta: 'Copyright © 2021, Author and Licence'
           source: 'https://loremflickr.com/800/600/lisbon'
           media_type: 'image'
-      url: 'http://example.com'
-      label: 'Further media items'
+      footer_link_url: 'http://example.com'
+      footer_link_label: 'Further media items'
       visible_items: 1
   assertions:
     count:

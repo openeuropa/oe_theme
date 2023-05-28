@@ -626,3 +626,6 @@ msgstr "@percentage% kogueelarvest"
 
 msgid "Access item's children"
 msgstr "Juurdepääs alamelementidele"
+
+msgid "Collapse"
+msgstr "Ahenda"

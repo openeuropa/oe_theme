@@ -626,3 +626,6 @@ msgstr "@percentage% łącznego budżetu"
 
 msgid "Access item's children"
 msgstr "Rozwiń podpunkty"
+
+msgid "Collapse"
+msgstr "Zwiń"

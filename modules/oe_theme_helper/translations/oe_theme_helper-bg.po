@@ -626,3 +626,6 @@ msgstr "@percentage% от общия бюджет"
 
 msgid "Access item's children"
 msgstr "Достъп до поделементите"
+
+msgid "Collapse"
+msgstr "Свиване"
