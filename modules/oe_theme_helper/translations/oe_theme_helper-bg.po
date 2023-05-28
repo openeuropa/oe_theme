@@ -620,3 +620,6 @@ msgstr "Излъчването на живо приключи, но проява
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% от общия бюджет"
+
+msgid "Collapse"
+msgstr "Свиване"

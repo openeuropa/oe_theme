@@ -18,11 +18,11 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
-{% if url is not empty %}
+{% if footer_link_url is not empty %}
   {% set footer_link = {
     'link': {
-      'label': label|default('Further media items'|t),
-      'path': url,
+      'label': footer_link_label|default('Further media items'|t),
+      'path': footer_link_url,
     },
     'icon': {
       'path': ecl_icon_path,

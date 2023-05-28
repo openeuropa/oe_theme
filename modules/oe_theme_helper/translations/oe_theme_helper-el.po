@@ -620,3 +620,6 @@ msgstr "Η ζωντανή μετάδοση έληξε, αλλά η εκδήλω�
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % του συνολικού προϋπολογισμού"
+
+msgid "Collapse"
+msgstr "Σύμπτυξη"
