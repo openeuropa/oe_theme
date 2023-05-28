@@ -109,3 +109,31 @@ gallery:
           meta: 'Copyright © 2021, Author and Licence'
           source: 'https://loremflickr.com/800/600/vilnius'
           media_type: 'image'
+    disable_overlay:
+      type: "boolean"
+      label: "Disable overlay"
+      description: "Disables the overlay functionality."
+      preview: true
+      escape: false
+    expandable:
+      type: "boolean"
+      label: "Expandable"
+      description: "Whether the 'See all' link is shown or all items are shown."
+      preview: true
+      escape: false
+    url:
+      type: "Url"
+      label: "URL"
+      description: "Footer link url."
+      preview: "http://example.com"
+    label:
+      type: "text"
+      label: "Link text"
+      description: "Footer link text."
+      preview: "Further media items"
+    visible_items:
+      type: "numeric"
+      label: "Visible items"
+      description: "Number of visible items in an expandable gallery."
+      preview: 3
+      escape: false
