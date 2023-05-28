@@ -620,3 +620,6 @@ msgstr "Livestreamingen er slut, men eventet kører stadig."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % af det samlede budget"
+
+msgid "Collapse"
+msgstr "Skjul"

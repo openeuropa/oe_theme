@@ -620,3 +620,6 @@ msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % av den totala budgeten"
+
+msgid "Collapse"
+msgstr "Dölj"

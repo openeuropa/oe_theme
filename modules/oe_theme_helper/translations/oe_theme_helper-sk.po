@@ -620,3 +620,6 @@ msgstr "Živé vysielanie sa skončilo, ale podujatie prebieha."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% celkového rozpočtu"
+
+msgid "Collapse"
+msgstr "Zbaliť"

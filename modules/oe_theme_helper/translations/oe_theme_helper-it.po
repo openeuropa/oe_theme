@@ -620,3 +620,6 @@ msgstr "La trasmissione livestream è terminata, ma l'evento è ancora in corso.
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% del bilancio complessivo"
+
+msgid "Collapse"
+msgstr "Comprimi"

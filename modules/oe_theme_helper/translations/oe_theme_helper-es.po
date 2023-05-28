@@ -620,3 +620,6 @@ msgstr "Ha finalizado la transmisión en directo, pero el acto está en marcha."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% de la dotación presupuestaria global"
+
+msgid "Collapse"
+msgstr "Contraer"
