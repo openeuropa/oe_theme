@@ -617,3 +617,6 @@ msgstr "Direktsändningen har börjat."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % av den totala budgeten"

@@ -617,3 +617,6 @@ msgstr "De livestream is begonnen."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "De livestream is beëindigd, maar het evenement is nog gaande."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% van de totale begroting"

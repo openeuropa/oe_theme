@@ -617,3 +617,6 @@ msgstr "Živý přenos již začal."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Živé vysílání bylo ukončeno, nicméně akce stále probíhá."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % celkového rozpočtu"
