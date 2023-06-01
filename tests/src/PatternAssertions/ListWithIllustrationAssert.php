@@ -28,6 +28,9 @@ class ListWithIllustrationAssert extends BasePatternAssert {
       'items' => [
         [$this, 'assertItems'],
       ],
+      'centered' => [
+        [$this, 'assertCentered'],
+      ],
     ];
   }
 
@@ -118,11 +121,34 @@ class ListWithIllustrationAssert extends BasePatternAssert {
         $image_element = $item_element->filter('.ecl-list-illustration__image');
         self::assertEquals($expected_item['image']['alt'], $image_element->attr('alt'));
         self::assertStringContainsString($expected_item['image']['src'], $image_element->attr('src'));
+        if (isset($expected_item['media_size'])) {
+          self::assertCount(count($expected_items), $crawler->filter('.ecl-list-illustration__image--' . $expected_item['media_size']));
+        }
       }
       if (isset($expected_item['icon'])) {
         $icon_element = $item_element->filter('svg.ecl-icon use');
         $this::assertStringContainsString('#' . $expected_item['icon'], $icon_element->attr('xlink:href'));
+        if (isset($expected_item['media_size'])) {
+          self::assertCount(count($expected_items), $crawler->filter('.ecl-icon--' . $expected_item['media_size']));
+        }
       }
+    }
+  }
+
+  /**
+   * Asserts if the list is centered or not.
+   *
+   * @param bool $centered
+   *   Whether the list is centered or not.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertCentered(bool $centered, Crawler $crawler): void {
+    if ($centered) {
+      self::assertElementExists('.ecl-list-illustration--centered', $crawler);
+    }
+    else {
+      self::assertElementNotExists('.ecl-list-illustration--centered', $crawler);
     }
   }
 

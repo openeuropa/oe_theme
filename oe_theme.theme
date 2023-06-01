@@ -1858,6 +1858,13 @@ function _oe_theme_preprocess_paragraph_oe_illustration_list(array &$variables):
   // Set the column value based on the selected variant.
   $variant_value = $paragraph->get('oe_paragraphs_variant')->first()->value;
   $variables['column'] = $variant_value === 'oe_illustration_vertical' ? 1 : $paragraph->get('field_oe_illustration_columns')->value;
+
+  if ($paragraph->hasField('field_oe_subtitle') && !$paragraph->get('field_oe_subtitle')->isEmpty()) {
+    $variables['value'] = $paragraph->get('field_oe_subtitle')->value;
+  }
+  if ($paragraph->hasField('field_oe_center') && !$paragraph->get('field_oe_center')->isEmpty()) {
+    $variables['centered'] = $paragraph->get('field_oe_center')->value;
+  }
 }
 
 /**
@@ -1914,6 +1921,7 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $icon,
+      'value' => $variables['value'] ?? '',
     ];
   }
 }
@@ -1926,6 +1934,9 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$varia
   $variables['items'] = [];
 
   $paragraph = $variables['paragraph'];
+  if ($paragraph->hasField('field_oe_size') && !$paragraph->get('field_oe_size')->isEmpty()) {
+    $size = substr($paragraph->get('field_oe_size')->value, 0, 1);
+  }
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_paragraphs')->referencedEntities() as $sub_paragraph) {
@@ -1936,6 +1947,8 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$varia
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $sub_paragraph->get('field_oe_icon')->value,
+      'media_size' => $size ?? 'm',
+      'value' => $variables['value'] ?? '',
     ];
   }
 }
@@ -1949,6 +1962,9 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
   $paragraph = $variables['paragraph'];
   $variables['items'] = [];
 
+  if ($paragraph->hasField('field_oe_size') && !$paragraph->get('field_oe_size')->isEmpty()) {
+    $size = substr($paragraph->get('field_oe_size')->value, 0, 1);
+  }
   $entity_repository = \Drupal::service('entity.repository');
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
   $builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
@@ -1988,6 +2004,8 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'image' => $image,
+      'media_size' => $size ?? 'm',
+      'value' => $variables['value'] ?? '',
     ];
   }
 
