@@ -103,10 +103,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph = Paragraph::create([
       'type' => 'oe_illustration_list_flags',
       'oe_paragraphs_variant' => 'default',
+      'field_oe_subtitle' => 'Highlighted Illustration list with flags',
       'field_oe_title' => 'Illustration with flags test',
       'field_oe_paragraphs' => $items,
       'field_oe_illustration_columns' => 2,
       'field_oe_illustration_ratio' => 'landscape',
+      'field_oe_center' => FALSE,
     ]);
     $html = $this->renderParagraph($list_paragraph);
 
@@ -127,16 +129,21 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'title' => 'Term 1',
           'description' => 'Description 1',
           'icon' => 'austria',
+          'value' => 'Highlighted Illustration list with flags',
         ], [
           'title' => 'Term 2',
           'icon' => 'belgium',
+          'value' => 'Highlighted Illustration list with flags',
         ], [
           'description' => 'Description 3',
           'icon' => 'france',
+          'value' => 'Highlighted Illustration list with flags',
         ], [
           'icon' => 'finland',
+          'value' => 'Highlighted Illustration list with flags',
         ],
       ],
+      'centered' => FALSE,
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
@@ -175,10 +182,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     unset($expected_values['column']);
     $assert->assertPattern($expected_values, $html);
 
-    // Assert vertical variant with zebra.
+    // Assert vertical variant with zebra and centered.
+    $list_paragraph->set('field_oe_center', TRUE);
     $list_paragraph->set('field_oe_illustration_alternate', TRUE)->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
+    $expected_values['centered'] = TRUE;
     $assert->assertPattern($expected_values, $html);
   }
 
@@ -223,9 +232,12 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph = Paragraph::create([
       'type' => 'oe_illustration_list_icons',
       'oe_paragraphs_variant' => 'default',
+      'field_oe_subtitle' => 'Highlighted Illustration list with icons',
       'field_oe_title' => 'Illustration with icons test',
       'field_oe_paragraphs' => $items,
       'field_oe_illustration_columns' => 2,
+      'field_oe_size' => 'small',
+      'field_oe_center' => FALSE,
     ]);
     $html = $this->renderParagraph($list_paragraph);
 
@@ -244,16 +256,25 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'title' => 'Term 1',
           'description' => 'Description 1',
           'icon' => 'data',
+          'value' => 'Highlighted Illustration list with icons',
+          'media_size' => 'l',
         ], [
           'title' => 'Term 2',
           'icon' => 'facebook',
+          'value' => 'Highlighted Illustration list with icons',
+          'media_size' => 'l',
         ], [
           'description' => 'Description 3',
           'icon' => 'global',
+          'value' => 'Highlighted Illustration list with icons',
+          'media_size' => 'l',
         ], [
           'icon' => 'package',
+          'value' => 'Highlighted Illustration list with icons',
+          'media_size' => 'l',
         ],
       ],
+      'centered' => FALSE,
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
@@ -270,10 +291,18 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     unset($expected_values['column']);
     $assert->assertPattern($expected_values, $html);
 
-    // Assert vertical variant with zebra.
-    $list_paragraph->set('field_oe_illustration_alternate', TRUE)->save();
+    // Assert vertical variant with zebra and centered.
+    $list_paragraph->set('field_oe_illustration_alternate', TRUE);
+    $list_paragraph->set('field_oe_center', TRUE);
+    // Update the icon size to Large.
+    $list_paragraph->set('field_oe_size', 'large')->save();
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
+    $expected_values['centered'] = TRUE;
+    $expected_values['items'][0]['media_size'] = '2xl';
+    $expected_values['items'][1]['media_size'] = '2xl';
+    $expected_values['items'][2]['media_size'] = '2xl';
+    $expected_values['items'][3]['media_size'] = '2xl';
     $assert->assertPattern($expected_values, $html);
   }
 
@@ -341,10 +370,14 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $list_paragraph = Paragraph::create([
       'type' => 'oe_illustration_list_images',
       'oe_paragraphs_variant' => 'default',
+      'field_oe_subtitle' => 'Highlighted Illustration list with images',
       'field_oe_title' => 'Illustration with images test',
       'field_oe_paragraphs' => $items,
       'field_oe_illustration_columns' => 2,
       'field_oe_illustration_ratio' => 'landscape',
+      // Size value will take action only for "Square" ratio.
+      'field_oe_size' => 'small',
+      'field_oe_center' => FALSE,
     ]);
     $html = $this->renderParagraph($list_paragraph);
 
@@ -367,25 +400,30 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
             'src' => 'example_1.jpeg',
             'alt' => 'Alt',
           ],
+          'value' => 'Highlighted Illustration list with images',
         ], [
           'title' => 'Term 2',
           'image' => [
             'src' => $this->container->get('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg'),
             'alt' => 'Euro with miniature figurines',
           ],
+          'value' => 'Highlighted Illustration list with images',
         ], [
           'description' => 'Description 3',
           'image' => [
             'src' => 'example_1.jpeg',
             'alt' => 'Alt',
           ],
+          'value' => 'Highlighted Illustration list with images',
         ], [
           'image' => [
             'src' => 'example_1.jpeg',
             'alt' => 'Alt',
           ],
+          'value' => 'Highlighted Illustration list with images',
         ],
       ],
+      'centered' => FALSE,
     ];
     $assert = new ListWithIllustrationAssert();
     $assert->assertPattern($expected_values, $html);
@@ -396,6 +434,28 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['column'] = 3;
     $expected_values['square_image'] = TRUE;
+    $expected_values['items'][0]['media_size'] = 's';
+    $expected_values['items'][1]['media_size'] = 's';
+    $expected_values['items'][2]['media_size'] = 's';
+    $expected_values['items'][3]['media_size'] = 's';
+    $assert->assertPattern($expected_values, $html);
+
+    // Assert centered with medium and large size.
+    $list_paragraph->set('field_oe_center', TRUE);
+    $list_paragraph->set('field_oe_size', 'medium')->save();
+    $html = $this->renderParagraph($list_paragraph);
+    $expected_values['centered'] = TRUE;
+    $expected_values['items'][0]['media_size'] = 'm';
+    $expected_values['items'][1]['media_size'] = 'm';
+    $expected_values['items'][2]['media_size'] = 'm';
+    $expected_values['items'][3]['media_size'] = 'm';
+    $assert->assertPattern($expected_values, $html);
+    $list_paragraph->set('field_oe_size', 'large')->save();
+    $html = $this->renderParagraph($list_paragraph);
+    $expected_values['items'][0]['media_size'] = 'l';
+    $expected_values['items'][1]['media_size'] = 'l';
+    $expected_values['items'][2]['media_size'] = 'l';
+    $expected_values['items'][3]['media_size'] = 'l';
     $assert->assertPattern($expected_values, $html);
 
     // Assert vertical variant.
@@ -410,6 +470,10 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($list_paragraph);
     $expected_values['zebra'] = TRUE;
     $expected_values['square_image'] = FALSE;
+    $expected_values['items'][0]['media_size'] = NULL;
+    $expected_values['items'][1]['media_size'] = NULL;
+    $expected_values['items'][2]['media_size'] = NULL;
+    $expected_values['items'][3]['media_size'] = NULL;
     $assert->assertPattern($expected_values, $html);
   }
 
