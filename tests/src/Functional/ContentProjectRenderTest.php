@@ -95,8 +95,8 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         'value' => '2020-05-10',
         'end_value' => '2025-05-15',
       ],
-      'oe_project_budget' => '100',
-      'oe_project_budget_eu' => '100',
+      'oe_project_eu_budget' => '100',
+      'oe_project_eu_contrib' => '100',
       'oe_project_website' => [
         [
           'uri' => 'http://example.com',
