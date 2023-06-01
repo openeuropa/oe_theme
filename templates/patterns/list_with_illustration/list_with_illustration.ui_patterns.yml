@@ -6,7 +6,7 @@ list_with_illustration:
       type: "numeric"
       label: "Column number"
       description: "Number of columns. Maximum of 4 columns."
-      preview: 1
+      preview: 2
       escape: false
     zebra:
       type: "boolean"
@@ -18,6 +18,12 @@ list_with_illustration:
       label: "Square image"
       description: "Whether the rendered image should be rendered in square or landscape mode (only applies to image)."
       preview: true
+    centered:
+      type: "boolean"
+      label: "Centered"
+      description: "Define if the items should be centered."
+      preview: true
+      escape: false
     items:
       type: "array"
       label: "Items"
@@ -29,10 +35,13 @@ list_with_illustration:
             src: "https://placeimg.com/1000/500/arch"
             alt: "Alternative text for featured item image"
           icon: "italy"
+          value: "3.2 millions"
+          media_size: "s"
         - title: "About the European Union"
           description: "The EU and its institutions, how to visit and work at the EU."
           image:
             src: "https://placeimg.com/1000/500/arch"
             alt: "Alternative text for featured item image"
           icon: "budget"
-
+          value: "3.2 millions"
+          media_size: "m"
