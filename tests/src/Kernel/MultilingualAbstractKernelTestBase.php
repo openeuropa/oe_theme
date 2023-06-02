@@ -19,7 +19,7 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'content_translation',
     'locale',
     'language',

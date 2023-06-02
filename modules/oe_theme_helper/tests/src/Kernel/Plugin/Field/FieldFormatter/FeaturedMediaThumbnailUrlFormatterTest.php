@@ -28,7 +28,7 @@ class FeaturedMediaThumbnailUrlFormatterTest extends MediaThumbnailUrlFormatterT
    * Test featured media thumbnail url formatter.
    */
   public function testFormatter() {
-    $media = $this->createMediaImage(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg');
+    $media = $this->createMediaImage(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg');
 
     // Create an entity_reference field to test the widget.
     $field_storage = FieldStorageConfig::create([

@@ -21,7 +21,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field_group',
     'address',
     'composite_reference',
@@ -56,7 +56,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
       'oe_paragraphs_contact',
     ]);
 
-    module_load_include('install', 'media');
+    \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
     $this->container->get('module_handler')->loadInclude('oe_theme_paragraphs_contact', 'install');
     oe_theme_paragraphs_contact_install(FALSE);
@@ -73,7 +73,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
    */
   public function testContact(): void {
     // Create a media entity for contact.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
     $media = $this->container->get('entity_type.manager')->getStorage('media')->create([

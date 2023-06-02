@@ -95,7 +95,7 @@ class CleanupContext extends RawDrupalContext {
    *   An array of entity IDs.
    */
   protected function getAllEntityIdsOfType(string $entity_type): array {
-    return \Drupal::entityTypeManager()->getStorage($entity_type)->getQuery()->execute();
+    return \Drupal::entityTypeManager()->getStorage($entity_type)->getQuery()->accessCheck(FALSE)->execute();
   }
 
 }

@@ -19,7 +19,7 @@ class FilePatternRenderingTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'file',
   ];
 

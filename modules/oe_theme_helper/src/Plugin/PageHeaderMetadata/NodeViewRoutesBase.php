@@ -85,7 +85,7 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
   protected function getNode(): ?NodeInterface {
 
     $event = new NodeMetadataEvent();
-    $this->eventDispatcher->dispatch(PageHeaderMetadataEvents::NODE, $event);
+    $this->eventDispatcher->dispatch($event, PageHeaderMetadataEvents::NODE);
 
     return $event->getNode();
   }

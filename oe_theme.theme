@@ -75,10 +75,10 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
 function oe_theme_preprocess(&$variables) {
   $variables['ecl_component_library'] = theme_get_setting('component_library');
   $variables['ecl_branding'] = theme_get_setting('branding') ?? 'core';
-  $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
+  $variables['ecl_images_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
-  $variables['ecl_social_icon_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
+  $variables['ecl_social_icon_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
   $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -331,7 +331,7 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
  * Implements template_preprocess_input__date().
  */
 function oe_theme_preprocess_input__date(array &$variables): void {
-  $php_date_format = !empty($variables['attributes']['data-drupal-date-format'] && is_array($variables['attributes']['data-drupal-date-format'])) ? reset($variables['attributes']['data-drupal-date-format']) : 'Y-m-d';
+  $php_date_format = $variables['element']['#date_date_format'] ?? 'Y-m-d';
   $format_map = [
     // @todo find a cleverer way of mapping PHP date formats to the expected
     // ECL ones.
@@ -832,7 +832,7 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
     $image_item = $paragraph->get('field_oe_image')->first();
     $file = $image_item->get('entity')->getValue();
     $variables['image'] = [
-      'src' => file_url_transform_relative(file_create_url($file->getFileUri())),
+      'src' => \Drupal::service('file_url_generator')->generateString($file->getFileUri()),
       'alt' => $image_item->get('alt')->getValue(),
     ];
 
@@ -1274,7 +1274,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     }
     else {
       // Check whether ECL provides a logo for the language.
-      $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
+      $ecl_logo = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
       $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'positive/';
       $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
       if (!file_exists($ecl_logo)) {
@@ -1465,7 +1465,7 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_page_header__preview(array &$variables): void {
   // We are going to accept only local images for the background image
   // of the preview.
-  $variables['background_image_url'] = base_path() . drupal_get_path('module', 'oe_theme_helper') . '/images/' . $variables['background_image_url'];
+  $variables['background_image_url'] = base_path() . \Drupal::service('extension.list.module')->getPath('oe_theme_helper') . '/images/' . $variables['background_image_url'];
 }
 
 /**
@@ -1610,7 +1610,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
 
   $values = [
-    'src' => file_create_url($uri),
+    'src' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
     'name' => $media->getName(),
   ];
@@ -1972,7 +1972,7 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
       elseif ($source instanceof MediaAvPortalSourceInterface) {
         // Media AV Portal Photo.
         $resource_ref = $media->get($field_name)->value;
-        $url = file_create_url('avportal://' . $resource_ref . '.jpg');
+        $url = \Drupal::service('file_url_generator')->generateAbsoluteString('avportal://' . $resource_ref . '.jpg');
       }
 
       if ($url) {
@@ -2105,7 +2105,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'description' => !$sub_paragraph->get('field_oe_text')->isEmpty() ? $sub_paragraph->get('field_oe_text')->value : '',
       'url' => $link ?? '',
       'url_text' => $link_text ?? '',
-      'image' => file_create_url($uri),
+      'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
       'centered' => FALSE,
       // The paragraph has a required image field, so we need to set a default
       // image variant in order to render the image.

@@ -1,5 +1,5 @@
 name: 'OpenEuropa Theme Javascript Test'
 description: 'Support module for Javascript related tests.'
 type: module
-core_version_requirement: ^9.4
+core_version_requirement: ^9.4 || ^10
 package: Testing

@@ -19,7 +19,7 @@ class ContactRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_content_entity',
     'oe_theme_content_entity_contact',
   ];

@@ -24,7 +24,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'options',
     'field_group',
     'composite_reference',
@@ -50,7 +50,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
       'oe_theme_content_call_proposals',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     $this->setUpCurrentUser([], [], TRUE);
@@ -168,7 +168,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Two-stage',
         ], [
           'label' => 'Deadline dates',
-          'body' => "21 February 2020\n | 22 February 2020",
+          'body' => '21 February 2020 | 22 February 2020',
         ], [
           'label' => 'Funding programme',
           'body' => 'Arab Common Market',

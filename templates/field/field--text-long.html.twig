@@ -6,7 +6,7 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% spaceless %}
+{% apply spaceless %}
   {% if not label_hidden %}
     {%
       set title_classes = [
@@ -20,4 +20,4 @@
   <div class="ecl">
     {%- include 'field--bare.html.twig' -%}
   </div>
-{% endspaceless %}
+{% endapply %}

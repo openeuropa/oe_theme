@@ -17,7 +17,7 @@ class AddressCountryInlineFormatterTest extends FormatterTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_helper',
   ];
 

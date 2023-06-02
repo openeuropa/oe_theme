@@ -85,7 +85,8 @@ class MediaGalleryFormatter extends MediaThumbnailUrlFormatter {
    * @SuppressWarnings(PHPMD.ExcessiveParameterList)
    */
   public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, $label, $view_mode, array $third_party_settings, AccountInterface $current_user, EntityStorageInterface $image_style_storage, EntityFieldManagerInterface $entityFieldManager, EntityTypeBundleInfoInterface $entityTypeBundleInfo, MediaDataExtractorPluginManagerInterface $mediaDataExtractorManager) {
-    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings, $current_user, $image_style_storage);
+    // @deprecated File url generator should be added to the signature and properly injected, as per \Drupal\image\Plugin\Field\FieldFormatter\ImageFormatter.
+    parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $label, $view_mode, $third_party_settings, $current_user, $image_style_storage, \Drupal::service('file_url_generator'));
 
     $this->entityFieldManager = $entityFieldManager;
     $this->entityTypeBundleInfo = $entityTypeBundleInfo;

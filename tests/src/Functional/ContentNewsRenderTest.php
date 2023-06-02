@@ -20,7 +20,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'system',
     'oe_theme_helper',

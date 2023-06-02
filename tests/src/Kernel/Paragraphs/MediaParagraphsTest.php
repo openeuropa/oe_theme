@@ -20,7 +20,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'media',
     'oe_media',
     'oe_media_oembed_mock',
@@ -63,7 +63,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_paragraphs_carousel',
     ]);
     // Call the install hook of the Media module.
-    module_load_include('install', 'media');
+    \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
   }
 
@@ -104,12 +104,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
-    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
 
     // Create Bulgarian file.
-    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
@@ -406,12 +406,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
-    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
 
     // Create Bulgarian file.
-    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
@@ -466,7 +466,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
@@ -482,7 +482,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     // Bulgarian media should be rendered.
     $this->assertStringContainsString(
-      'url(' . file_create_url($bg_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($bg_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
 
@@ -523,7 +523,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
@@ -542,7 +542,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
@@ -563,7 +563,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
@@ -582,7 +582,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
@@ -601,7 +601,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image-shade div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-hero-banner__content div.ecl-hero-banner__title')->text()));
@@ -620,7 +620,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
@@ -640,7 +640,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-page-banner.ecl-page-banner--image-shade div.ecl-page-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . file_create_url($en_file->getFileUri()) . ')',
+      'url(' . \Drupal::service('file_url_generator')->generateAbsoluteString($en_file->getFileUri()) . ')',
       $image_element->attr('style')
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-page-banner__content div.ecl-page-banner__title')->text()));
@@ -841,7 +841,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $image_element = $crawler->filter('section.ecl-hero-banner.ecl-hero-banner--image.ecl-hero-banner--centered div.ecl-hero-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
-      'url(' . (file_create_url('avportal://P-038924/00-15.jpg')) . ')',
+      'url(' . (\Drupal::service('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg')) . ')',
       $image_element->attr('style')
     );
   }
@@ -954,18 +954,18 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English files.
-    $en_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file_1 = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file_1->setPermanent();
     $en_file_1->save();
-    $en_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
+    $en_file_2 = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_en.jpeg');
     $en_file_2->setPermanent();
     $en_file_2->save();
 
     // Create Bulgarian files.
-    $bg_file_1 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file_1 = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file_1->setPermanent();
     $bg_file_1->save();
-    $bg_file_2 = file_save_data(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
+    $bg_file_2 = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_2_bg.jpeg');
     $bg_file_2->setPermanent();
     $bg_file_2->save();
 
@@ -1043,7 +1043,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'items' => [
         [
           'title' => 'Item 1',
-          'image' => file_create_url($en_file_1->getFileUri()),
+          'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($en_file_1->getFileUri()),
           'variant' => 'text-highlight',
         ],
         [
@@ -1051,12 +1051,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 2',
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
-          'image' => file_create_url($en_file_2->getFileUri()),
+          'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($en_file_2->getFileUri()),
           'variant' => 'text-highlight',
         ],
         [
           'title' => 'Item 3',
-          'image' => file_create_url($en_file_1->getFileUri()),
+          'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($en_file_1->getFileUri()),
           'variant' => 'text-highlight',
         ],
         [
@@ -1064,7 +1064,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'description' => 'Item description 4',
           'url' => '/',
           'url_text' => 'CTA 4',
-          'image' => file_create_url($en_file_2->getFileUri()),
+          'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($en_file_2->getFileUri()),
           'variant' => 'text-highlight',
         ],
       ],
@@ -1074,18 +1074,18 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert paragraph rendering for Bulgarian version.
     $html = $this->renderParagraph($paragraph, 'bg');
     $expected_values['items'][0]['title'] = 'BG Item 1';
-    $expected_values['items'][0]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][0]['image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($bg_file_1->getFileUri());
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
-    $expected_values['items'][1]['image'] = file_create_url($bg_file_2->getFileUri());
+    $expected_values['items'][1]['image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($bg_file_2->getFileUri());
     $expected_values['items'][2]['title'] = 'BG Item 3';
-    $expected_values['items'][2]['image'] = file_create_url($bg_file_1->getFileUri());
+    $expected_values['items'][2]['image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($bg_file_1->getFileUri());
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
-    $expected_values['items'][3]['image'] = file_create_url($bg_file_2->getFileUri());
+    $expected_values['items'][3]['image'] = \Drupal::service('file_url_generator')->generateAbsoluteString($bg_file_2->getFileUri());
     $assert->assertPattern($expected_values, $html);
   }
 

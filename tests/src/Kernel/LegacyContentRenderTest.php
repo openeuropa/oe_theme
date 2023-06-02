@@ -107,7 +107,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Publication node is rendered with the correct ECL markup.
    */
   public function testPublication(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
     $file->setPermanent();
     $file->save();
 

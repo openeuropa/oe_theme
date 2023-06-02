@@ -22,7 +22,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'node',
     'media',
@@ -162,7 +162,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        '.ecl-media-container .ecl-media-container__media[alt="default alt"][src="' . file_create_url('public://example.jpg') . '"]' => 1,
+        '.ecl-media-container .ecl-media-container__media[alt="default alt"][src="' . \Drupal::service('file_url_generator')->generateAbsoluteString('public://example.jpg') . '"]' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [
@@ -251,7 +251,7 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
 
     $this->assertRendering($this->renderRoot($build), [
       'count' => [
-        '.ecl-media-container .ecl-media-container__media[alt="' . $thumbnail->get('alt')->getString() . '"][src="' . file_create_url($file->get('uri')->getString()) . '"]' => 1,
+        '.ecl-media-container .ecl-media-container__media[alt="' . $thumbnail->get('alt')->getString() . '"][src="' . \Drupal::service('file_url_generator')->generateAbsoluteString($file->get('uri')->getString()) . '"]' => 1,
         '.ecl-media-container .ecl-media-container__caption' => 1,
       ],
       'equals' => [

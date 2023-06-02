@@ -26,7 +26,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'system',
     'user',
     'ui_patterns',
@@ -66,7 +66,7 @@ class BreadcrumbTest extends EntityKernelTestBase {
     // enhancers.
     // @see CurrentUserContext::getRuntimeContexts().
     // @see EntityConverter::convert().
-    module_load_include('install', 'user');
+    \Drupal::moduleHandler()->loadInclude('user', 'install');
     user_install();
   }
 

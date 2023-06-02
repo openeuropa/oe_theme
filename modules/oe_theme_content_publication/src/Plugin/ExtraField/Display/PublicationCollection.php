@@ -163,7 +163,7 @@ class PublicationCollection extends ExtraFieldDisplayFormattedBase implements Co
     $query = $entity_type_storage->getQuery();
     $query->condition('oe_publication_publications.target_id', $entity->id());
 
-    $ids = $query->execute();
+    $ids = $query->accessCheck()->execute();
     if ($ids) {
       return $entity_type_storage->loadMultiple($ids);
     }
