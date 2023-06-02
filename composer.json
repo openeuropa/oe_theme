@@ -56,7 +56,8 @@
         "openeuropa/rdf_skos": "^1.0.0-alpha10",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
         "phpspec/prophecy-phpunit": "^2",
-        "symfony/phpunit-bridge": "^6.0"
+        "symfony/phpunit-bridge": "^6.0",
+        "symfony/validator": "~v4.4.48 || ~v6.2.5"
     },
     "scripts": {
         "post-install-cmd": "./vendor/bin/run drupal:site-setup",
@@ -108,7 +109,10 @@
             "locations": {
                 "web-root": "./build"
             }
-        }
+        },
+        "_readme": [
+            "Using symfony/validator v6.2.5 for D10 like core-recommended does because 6.3 breaks BC with the signature changes to the ExecutionContextInterface."
+        ]
     },
     "config": {
         "sort-packages": true,
