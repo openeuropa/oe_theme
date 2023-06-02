@@ -1,6 +1,16 @@
-# Changelog
+# Change Log
 
-## [3.3.0](https://github.com/openeuropa/oe_theme/tree/3.3.0) (2023-03-21)
+## [3.4.0](https://github.com/openeuropa/oe_theme/tree/3.4.0) (2023-06-02)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.3.0...3.4.0)
+
+**Merged pull requests:**
+
+- EWPP-0000: Lock symfony/validator to avoid BC incompatibility with D10. [\#1280](https://github.com/openeuropa/oe_theme/pull/1280) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3025: Drupal 10 compatibility. [\#1273](https://github.com/openeuropa/oe_theme/pull/1273) ([brummbar](https://github.com/brummbar))
+- EWPP-3229: Add EU languages translation for Project extrafield string. [\#1266](https://github.com/openeuropa/oe_theme/pull/1266) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2735: Row Header in Tables - Inconsistent text alignment. [\#1264](https://github.com/openeuropa/oe_theme/pull/1264) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3083: Make timeline field always show the last item. [\#1263](https://github.com/openeuropa/oe_theme/pull/1263) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3123: Adjust max\_height value for avportal field formatter. [\#1262](https://github.com/openeuropa/oe_theme/pull/1262) ([sergepavle](https://github.com/sergepavle))
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.2.0...3.3.0)
 
