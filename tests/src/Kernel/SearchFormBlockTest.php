@@ -18,7 +18,7 @@ class SearchFormBlockTest extends AbstractKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_search',
   ];
 

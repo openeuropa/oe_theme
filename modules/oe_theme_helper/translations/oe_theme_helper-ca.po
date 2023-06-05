@@ -528,3 +528,6 @@ msgstr "He llegit la @link i accepto les condicions"
 
 msgid "personal data protection terms"
 msgstr "informació sobre protecció de dades"
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% del pressupost total"

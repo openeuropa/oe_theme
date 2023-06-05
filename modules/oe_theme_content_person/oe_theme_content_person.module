@@ -49,7 +49,7 @@ function oe_theme_content_person_node_view_alter(array &$build, EntityInterface 
 
   if ($build['#view_mode'] === 'teaser' || $build['#view_mode'] === 'oe_compact_teaser') {
     // Set default image for Portrait.
-    $build['portrait_image']['#markup'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/images/user_icon.svg';
+    $build['portrait_image']['#markup'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/images/user_icon.svg';
     if (!empty($build['oe_person_photo'][0]['#markup'])) {
       $build['portrait_image'] = $build['oe_person_photo'][0];
     }

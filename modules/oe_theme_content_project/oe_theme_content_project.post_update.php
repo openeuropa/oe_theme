@@ -15,7 +15,7 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
  * Create the 'full' entity view display on the project CT.
  */
 function oe_theme_content_project_post_update_00001() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/post_updates/00001_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_project') . '/config/post_updates/00001_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_project.full');
@@ -39,7 +39,7 @@ function oe_theme_content_project_post_update_00001() {
  * Updates the teaser view display.
  */
 function oe_theme_content_project_post_update_00002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/post_updates/00002_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_project') . '/config/post_updates/00002_update_teaser_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_project.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
@@ -59,7 +59,7 @@ function oe_theme_content_project_post_update_00002(): void {
  * Update project displays.
  */
 function oe_theme_content_project_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_project') . '/config/post_updates/00003_update_view_displays');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_project') . '/config/post_updates/00003_update_view_displays');
   $config_names = [
     'core.entity_view_display.node.oe_project.full',
     'core.entity_view_display.node.oe_project.teaser',

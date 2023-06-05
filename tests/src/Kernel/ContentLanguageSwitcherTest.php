@@ -24,7 +24,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'node',
   ];
 

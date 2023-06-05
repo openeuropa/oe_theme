@@ -80,7 +80,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    */
   protected function createMediaDocument(string $name): MediaInterface {
     // Create file instance.
-    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), "public://sample_$name.pdf");
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), "public://sample_$name.pdf");
     $file->setPermanent();
     $file->save();
 
@@ -154,7 +154,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    */
   protected function createMediaImage(string $name): MediaInterface {
     // Create file instance.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/placeholder.png'), "public://placeholder_$name.png");
     $file->setPermanent();
     $file->save();
 

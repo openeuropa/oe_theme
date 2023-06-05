@@ -44,7 +44,7 @@ class WysiwygTableTest extends WebDriverTestBase {
     parent::setUp();
 
     // Enable and set OpenEuropa Theme as default.
-    $this->container->get('theme_installer')->install(['oe_theme', 'seven']);
+    $this->container->get('theme_installer')->install(['oe_theme', 'claro']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
 
     // Rebuild the ui_pattern definitions to collect the ones provided by

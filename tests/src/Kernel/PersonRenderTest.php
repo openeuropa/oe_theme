@@ -28,7 +28,7 @@ class PersonRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'options',
     'field_group',
     'composite_reference',
@@ -72,9 +72,9 @@ class PersonRenderTest extends ContentRenderTestBase {
       'oe_theme_content_person',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
-    module_load_include('install', 'oe_content_person');
+    \Drupal::moduleHandler()->loadInclude('oe_content_person', 'install');
     oe_content_person_install(FALSE);
 
     $this->setUpCurrentUser([], [], TRUE);

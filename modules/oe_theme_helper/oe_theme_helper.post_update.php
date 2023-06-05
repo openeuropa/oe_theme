@@ -122,7 +122,7 @@ function oe_theme_helper_post_update_20005() {
  * Add EC and EU corporate blocks to active configuration storage.
  */
 function oe_theme_helper_post_update_20006() {
-  $config_path = drupal_get_path('theme', 'oe_theme') . '/config/optional';
+  $config_path = \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/config/optional';
   $source = new FileStorage($config_path);
   $config_storage = \Drupal::service('config.storage');
   $config_factory = \Drupal::configFactory();
@@ -270,7 +270,7 @@ function oe_theme_helper_post_update_20015() {
     return t('Skipping since the oe_media_iframe module is not enabled.');
   }
 
-  $file_storage = new FileStorage(drupal_get_path('theme', 'oe_theme') . '/config/post_updates/20015_create_view_display_media_iframe');
+  $file_storage = new FileStorage(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/config/post_updates/20015_create_view_display_media_iframe');
   $view_display_values = $file_storage->read('core.entity_view_display.media.iframe.oe_theme_main_content');
   $entity_view_display_storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
   $view_display = $entity_view_display_storage->load($view_display_values['id']);

@@ -14,7 +14,7 @@ use Drupal\Core\Entity\Entity\EntityViewDisplay;
  * Updates the teaser view display.
  */
 function oe_theme_content_call_proposals_post_update_00001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_call_proposals') . '/config/post_updates/00001_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_call_proposals') . '/config/post_updates/00001_update_teaser_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_call_proposals.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');

@@ -7,7 +7,7 @@ services:
     class: Drupal\oe_theme_helper\Loader\ComponentLibraryLoader
     arguments:
       - '%oe_theme_helper.twig_loader.namespaces%'
-      - '@app.root'
+      - '%app.root%'
       - '%oe_theme_helper.twig_loader.theme%'
       - '%oe_theme_helper.twig_loader.directory%'
       - '@theme_handler'

@@ -54,7 +54,7 @@ function oe_theme_content_publication_post_update_00003(): void {
  * Override publication teaser view display.
  */
 function oe_theme_content_publication_post_update_00004(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00003_override_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_publication') . '/config/post_updates/00003_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
@@ -113,7 +113,7 @@ function oe_theme_content_publication_post_update_00006() {
  * Create the 'full' entity view display on the publication CT.
  */
 function oe_theme_content_publication_post_update_00007() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00007_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_publication') . '/config/post_updates/00007_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_publication.full');
@@ -137,7 +137,7 @@ function oe_theme_content_publication_post_update_00007() {
  * Update publication teaser view display.
  */
 function oe_theme_content_publication_post_update_00008(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00008_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_publication') . '/config/post_updates/00008_update_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.teaser');
   // We are creating the config which means that we are also shipping
   // it in the config/install folder so we want to make sure it gets the hash
@@ -191,7 +191,7 @@ function oe_theme_content_publication_post_update_00009() {
  * Updates the teaser view display.
  */
 function oe_theme_content_publication_post_update_00010(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/00010_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_publication') . '/config/post_updates/00010_update_teaser_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
@@ -211,7 +211,7 @@ function oe_theme_content_publication_post_update_00010(): void {
  * Updates the full view display.
  */
 function oe_theme_content_publication_post_update_30001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_publication') . '/config/post_updates/30001_publication_collection');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_publication') . '/config/post_updates/30001_publication_collection');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_publication.full');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');

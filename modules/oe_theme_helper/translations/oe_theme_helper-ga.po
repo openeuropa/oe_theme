@@ -617,3 +617,6 @@ msgstr "Cuireadh tús leis an beoshruthú seo."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Tá an beoshruthú thart ach tá an imeacht fós ar siúl."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% den bhuiséad foriomlán"

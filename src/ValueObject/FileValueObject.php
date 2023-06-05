@@ -92,7 +92,7 @@ class FileValueObject extends ValueObjectBase {
   public static function fromFileEntity(FileInterface $file_entity): ValueObjectInterface {
     $file = new static(
       $file_entity->getFilename(),
-      file_create_url($file_entity->getFileUri()),
+      \Drupal::service('file_url_generator')->generateAbsoluteString($file_entity->getFileUri()),
       $file_entity->getMimeType(),
       (string) $file_entity->getSize()
     );

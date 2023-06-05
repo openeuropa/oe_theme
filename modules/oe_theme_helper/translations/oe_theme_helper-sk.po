@@ -617,3 +617,6 @@ msgstr "Toto živé vysielanie sa začalo."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Živé vysielanie sa skončilo, ale podujatie prebieha."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% celkového rozpočtu"
