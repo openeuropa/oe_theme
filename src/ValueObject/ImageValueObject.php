@@ -126,7 +126,7 @@ class ImageValueObject extends ValueObjectBase implements ImageValueObjectInterf
     $image_file = $image_item->get('entity')->getValue();
 
     $image_object = new static(
-      file_create_url($image_file->get('uri')->getString()),
+      \Drupal::service('file_url_generator')->generateAbsoluteString($image_file->get('uri')->getString()),
       $image_item->get('alt')->getString(),
       $image_item->get('title')->getString()
     );

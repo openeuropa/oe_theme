@@ -31,7 +31,7 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'field',
     'file',
     'filter',
@@ -90,12 +90,12 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
-    $english_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
+    $english_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_en.pdf');
     $english_file->setPermanent();
     $english_file->save();
 
     // Create Spanish file.
-    $spanish_file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_es.pdf');
+    $spanish_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), 'public://test_es.pdf');
     $spanish_file->setPermanent();
     $spanish_file->save();
 
@@ -118,11 +118,11 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'en' => [
         'language' => 'English',
         'meta' => '(2.96 KB - PDF)',
-        'url' => file_create_url('public://test_en.pdf'),
+        'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_en.pdf'),
         'translations' => [
           [
             'title' => 'español',
-            'url' => file_create_url('public://test_es.pdf'),
+            'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_es.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],
@@ -137,11 +137,11 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
       'es' => [
         'language' => 'Spanish',
         'meta' => '(2.96 KB - PDF)',
-        'url' => file_create_url('public://test_es.pdf'),
+        'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_es.pdf'),
         'translations' => [
           [
             'title' => 'English',
-            'url' => file_create_url('public://test_en.pdf'),
+            'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_en.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],
@@ -160,13 +160,13 @@ class MediaRenderTest extends MultilingualAbstractKernelTestBase {
         'translations' => [
           [
             'title' => 'español',
-            'url' => file_create_url('public://test_es.pdf'),
+            'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_es.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],
           [
             'title' => 'English',
-            'url' => file_create_url('public://test_en.pdf'),
+            'url' => \Drupal::service('file_url_generator')->generateAbsoluteString('public://test_en.pdf'),
             'meta' => '(2.96 KB - PDF)',
             'icon' => 'file',
           ],

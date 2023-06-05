@@ -24,7 +24,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'block',
     'system',

@@ -24,7 +24,7 @@ class NewsRenderTest extends ContentRenderTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
   }
 
@@ -32,7 +32,7 @@ class NewsRenderTest extends ContentRenderTestBase {
    * Tests News node type rendered as teaser.
    */
   public function testNewsTeaser(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 

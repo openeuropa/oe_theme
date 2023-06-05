@@ -28,7 +28,7 @@ class EventRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'address',
     'datetime_range',
     'datetime_range_timezone',
@@ -69,7 +69,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'address',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.
@@ -81,7 +81,7 @@ class EventRenderTest extends ContentRenderTestBase {
    * Test an event being rendered as a teaser.
    */
   public function testEventTeaser(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 

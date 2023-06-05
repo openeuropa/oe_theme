@@ -33,7 +33,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'block',
     'oe_theme_helper',
     'oe_corporate_blocks',

@@ -18,7 +18,7 @@ class MainMenuTest extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'system',
     'user',
     'menu_link_content',

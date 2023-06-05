@@ -34,7 +34,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_content_event',
     'oe_content_event_person_reference',
     'oe_multilingual',
@@ -86,12 +86,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     \Drupal::service('router.builder')->rebuild();
 
     // Create image media that we will use for the English translation.
-    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
 
     // Create Bulgarian file.
-    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
@@ -313,7 +313,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
+          'body' => 'event_venue Address event_venue, 1001 <Brussels>, Belgium',
         ], [
           'label' => 'When',
           'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
@@ -339,7 +339,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $venue_entity->set('oe_address', ['country_code' => 'MX'])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][0]['body'] = "event_venue\n  Mexico";
+    $field_list_expected_values['items'][0]['body'] = 'event_venue Mexico';
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values['items'][2]['text'] = 'Mexico';

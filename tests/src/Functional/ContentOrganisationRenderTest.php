@@ -23,7 +23,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'block',
     'system',
     'path',
@@ -53,7 +53,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
    * Tests that the Organisation page renders correctly.
    */
   public function testOrganisationRendering(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 

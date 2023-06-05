@@ -15,7 +15,7 @@ use Drupal\Core\Config\FileStorage;
  * Update "Default" and "Details" Contact entity view displays.
  */
 function oe_theme_content_entity_contact_post_update_00001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/post_updates/00001_update_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_entity_contact') . '/config/post_updates/00001_update_view_display');
 
   // View display configurations to update.
   $displays = [
@@ -40,7 +40,7 @@ function oe_theme_content_entity_contact_post_update_00001(): void {
  * Create the oe_contact 'full' view mode.
  */
 function oe_theme_content_entity_contact_post_update_00002(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/post_updates/00002_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_entity_contact') . '/config/post_updates/00002_create_full_view_display');
 
   $config_manager = \Drupal::service('config.manager');
   $entity_type_manager = \Drupal::entityTypeManager();
@@ -70,7 +70,7 @@ function oe_theme_content_entity_contact_post_update_00002(): void {
  * Add Link field to the "Full" and "Details" Contact entity view displays.
  */
 function oe_theme_content_entity_contact_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_entity_contact') . '/config/post_updates/00003_full_view_display_link_field');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_entity_contact') . '/config/post_updates/00003_full_view_display_link_field');
 
   // View display configurations to update.
   $displays = [

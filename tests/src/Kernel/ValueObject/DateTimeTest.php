@@ -32,7 +32,7 @@ class DateTimeTest extends DateTimeTestBase {
    *
    * @var array
    */
-  public static $modules = ['datetime'];
+  protected static $modules = ['datetime'];
 
   /**
    * {@inheritdoc}

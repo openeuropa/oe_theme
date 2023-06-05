@@ -21,7 +21,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'media',
     'oe_media',
     'oe_media_oembed_mock',
@@ -66,7 +66,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'oe_paragraphs_carousel',
     ]);
     // Call the install hook of the Media module.
-    module_load_include('install', 'media');
+    \Drupal::moduleHandler()->loadInclude('media', 'install');
     media_install();
   }
 
@@ -107,12 +107,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('router.builder')->rebuild();
 
     // Create English file.
-    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
 
     // Create Bulgarian file.
-    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 

@@ -18,7 +18,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'composite_reference',
     'media',
     'file_link',
