@@ -99,13 +99,13 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
       return $build;
     }
 
-    // Compute budget percentage field value.
-    $budget = $entity->get('oe_project_eu_budget')->value;
-    $budget_eu = $entity->get('oe_project_eu_contrib')->value;
-    $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
-    $build[] = [
-      '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
-    ];
+    if (!$entity->get('oe_project_eu_contrib')->isEmpty() && !$entity->get('oe_project_eu_contrib')->isEmpty()) {
+      // Compute budget percentage field value.
+      $percentage = $this->getPercentage((float) $entity->get('oe_project_eu_budget')->value, (float) $entity->get('oe_project_eu_contrib')->value);
+      $build[] = [
+        '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
+      ];
+    }
 
     return $build;
   }

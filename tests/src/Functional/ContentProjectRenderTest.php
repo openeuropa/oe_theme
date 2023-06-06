@@ -96,7 +96,6 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         'end_value' => '2025-05-15',
       ],
       'oe_project_eu_budget' => '100',
-      'oe_project_eu_contrib' => '100',
       'oe_project_website' => [
         [
           'uri' => 'http://example.com',
@@ -179,9 +178,6 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         [
           'label' => 'Overall budget',
           'body' => '€100',
-        ], [
-          'label' => 'EU contribution',
-          'body' => "€100100% of the overall budget",
         ],
       ],
     ];
@@ -209,8 +205,17 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert the second description list block's labels and values.
     // Only one decimal appears after changing the budget: €1 with 0.1%.
-    $second_field_list_expected_values['items'][1]['body'] = '€10.1% of the overall budget';
-    $second_field_list_expected_values['items'][0]['body'] = '€1 000';
+    $second_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Overall budget',
+          'body' => '€1 000',
+        ], [
+          'label' => 'EU contribution',
+          'body' => "€10.1% of the overall budget",
+        ],
+      ],
+    ];
     $field_list_assert->assertPattern($second_field_list_expected_values, $description_lists[1]->getHtml());
 
     // Assert the third description list block's labels and values.
