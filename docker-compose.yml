@@ -34,7 +34,7 @@ services:
     expose:
       - '4444'
   node:
-    image: node:12.21.0
+    image: node:14.17.3
     user: "node"
     working_dir: /home/node/app
     environment:
