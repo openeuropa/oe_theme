@@ -28,7 +28,6 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'entity_reference',
     'entity_test',
     'field',
     'file',
@@ -126,8 +125,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
    * Test the formatter rendering.
    */
   public function testFormatter(): void {
-    $filepath = drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg';
-    $file = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $filepath = \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg';
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents($filepath), 'public://' . basename($filepath));
     $file->setPermanent();
     $file->save();
 
@@ -155,8 +154,8 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Create a video iframe media. Video iframes render the markup as string
     // and not as html tag, so with this test we fully cover the iframe plugin.
-    $filepath = drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/placeholder.png';
-    $thumbnail = file_save_data(file_get_contents($filepath), 'public://' . basename($filepath));
+    $filepath = \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/placeholder.png';
+    $thumbnail = \Drupal::service('file.repository')->writeData(file_get_contents($filepath), 'public://' . basename($filepath));
     $thumbnail->setPermanent();
     $thumbnail->save();
     $iframe_media = Media::create([
@@ -215,11 +214,11 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
 
-    $expected_thumbnail_name = version_compare(\Drupal::VERSION, '9.2.0', '>') ? 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg' : 'LQU9BWkA66xEaKfV_f74OO3Uyu1KMVLOsIi9WQYTjSg.jpg';
+    $expected_thumbnail_name = 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg';
 
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
@@ -314,7 +313,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
 
     // Test the second gallery item.
     $this->assertStringStartsWith(
-      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=576&max_height=400&hash=',
+      '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
       $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
     );
     $image_node = $items->eq(1)->filter('img');

@@ -9,11 +9,43 @@
     content.oe_person_jobs
   ] %}
 {% endif %}
-{% set additional_information = [
-  content.group_organisation,
-  content.oe_person_contacts,
-  content.extra_field_oe_theme_content_person_job_list,
-] %}
+{% set additional_information = [] %}
+{% if content.group_organisation %}
+  {% set additional_information_items = [] %}
+  {% for item in content.group_organisation.pattern['#fields'].items %}
+    {% set additional_information_items = additional_information_items|merge([{
+      'term': item.label,
+      'definition': item.body|render,
+    }]) %}
+  {% endfor %}
+  {% set additional_information = additional_information|merge([additional_information_items]) %}
+{% endif %}
+
+{% if contacts %}
+  {% for items in contacts %}
+    {% set additional_information_items = [] %}
+    {% for item in items %}
+      {% set additional_information_items = additional_information_items|merge([{
+        'term': item.label,
+        'definition': item.body|render,
+      }]) %}
+    {% endfor %}
+    {% set additional_information = additional_information|merge([additional_information_items]) %}
+  {% endfor %}
+{% endif %}
+
+{% if content.extra_field_oe_theme_content_person_job_list %}
+  {% set additional_information_items = [] %}
+  {% for item in content.extra_field_oe_theme_content_person_job_list.0['#fields'].items %}
+    {% set additional_information_items = additional_information_items|merge([{
+      'term': item.label,
+      'definition': item.body|render,
+    }]) %}
+  {% endfor %}
+  {% set additional_information = additional_information|merge([additional_information_items]) %}
+{% endif %}
+
+
 {% block content %}
   {{ pattern('list_item', {
     'variant': 'thumbnail_secondary',
@@ -21,7 +53,7 @@
     'meta': meta|default([]),
     'title': label,
     'detail': content.oe_teaser|field_value,
-    'additional_information': additional_information,
+    'lists': additional_information,
     'image': content.portrait_image ? { 'src': content.portrait_image|render },
     'badges': badges,
     'external_link': external_link

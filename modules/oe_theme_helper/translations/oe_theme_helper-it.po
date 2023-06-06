@@ -469,8 +469,8 @@ msgstr "Precedenti"
 msgid "Upcoming and open"
 msgstr "In programma e aperti"
 
-msgid "This page is not available in English."
-msgstr "Questa pagina non è disponibile in italiano."
+msgid "English is available via machine translation – please use the link below."
+msgstr "È possibile ottenere la traduzione automatica in italiano cliccando sul link qui sotto."
 
 msgid "Choose another language"
 msgstr "Scegliere un’altra lingua"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Nome"
 
 msgid "I have read and agree with the @link"
-msgstr "Ho letto e accetto le @link"
+msgstr "Dichiaro di aver letto e di accettare le @link"
 
-msgid "data protection terms"
-msgstr "condizioni relative alla protezione dei dati"
+msgid "personal data protection terms"
+msgstr "condizioni relative alla protezione dei dati personali"
 
 msgid "Highlighted"
 msgstr "Evidenziato"
@@ -617,3 +617,6 @@ msgstr "La diretta streaming è iniziata."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "La trasmissione livestream è terminata, ma l'evento è ancora in corso."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% del bilancio complessivo"

@@ -78,12 +78,14 @@
 {% set _bottom_row = [
   [
     {
-      'title': {
-      'link': {
-        'label': corporate_footer.corporate_site_link.label,
-        'path': corporate_footer.corporate_site_link.href,
+      'logo': {
+        'aria_label': 'Home'|t ~ ' - ' ~ 'European Commission'|t,
+        'alt': 'European Commission logo'|t,
+        'title': 'European Commission'|t,
+        'language': current_language_id,
+        'path': path,
+        'src_desktop': desktop_logo_path,
       },
-    },
     }
   ],
   [

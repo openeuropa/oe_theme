@@ -469,8 +469,8 @@ msgstr "Buvę"
 msgid "Upcoming and open"
 msgstr "Artėjantys ir vykstantys"
 
-msgid "This page is not available in English."
-msgstr "Šio puslapio lietuvių kalba nėra."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Galima gauti mašininį vertimą į lietuvių kalbą – spustelėkite toliau pateiktą nuorodą."
 
 msgid "Choose another language"
 msgstr "Pasirinkite kitą kalbą"
@@ -522,8 +522,8 @@ msgstr "Vardas, pavardė (pavadinimas)"
 msgid "I have read and agree with the @link"
 msgstr "@link perskaičiau ir su jomis sutinku"
 
-msgid "data protection terms"
-msgstr "Duomenų apsaugos sąlygas"
+msgid "personal data protection terms"
+msgstr "Asmens duomenų apsaugos sąlygas"
 
 msgid "Highlighted"
 msgstr "Paryškinta"
@@ -617,3 +617,6 @@ msgstr "Tiesioginė transliacija prasidėjo."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Tiesioginė transliacija baigėsi, tačiau renginys tęsiasi."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % bendro biudžeto"

@@ -469,8 +469,8 @@ msgstr "Tidigare"
 msgid "Upcoming and open"
 msgstr "Kommande och öppna"
 
-msgid "This page is not available in English."
-msgstr "Den här sidan finns inte på svenska."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Svenska finns som maskinöversättning via länken nedan"
 
 msgid "Choose another language"
 msgstr "Välj ett annat språk"
@@ -522,7 +522,7 @@ msgstr "Namn"
 msgid "I have read and agree with the @link"
 msgstr "Jag har läst och godkänner villkoren för @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "skydd av personuppgifter"
 
 msgid "Highlighted"
@@ -617,3 +617,6 @@ msgstr "Direktsändningen har börjat."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % av den totala budgeten"

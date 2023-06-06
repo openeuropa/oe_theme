@@ -469,8 +469,8 @@ msgstr "Tidligere"
 msgid "Upcoming and open"
 msgstr "Kommende og åbne"
 
-msgid "This page is not available in English."
-msgstr "Denne side er ikke tilgængelig på dansk."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Du kan få teksten oversat til dansk ved hjælp af maskinoversættelse – klik på linket nedenfor."
 
 msgid "Choose another language"
 msgstr "Vælg et andet sprog"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Navn"
 
 msgid "I have read and agree with the @link"
-msgstr "Jeg har læst og accepterer bestemmelserne om @link"
+msgstr "Jeg har læst og er indforstået med @link"
 
-msgid "data protection terms"
-msgstr "databeskyttelse"
+msgid "personal data protection terms"
+msgstr "betingelserne for databeskyttelse"
 
 msgid "Highlighted"
 msgstr "Fremhævet"
@@ -617,3 +617,6 @@ msgstr "Denne livestreaming er begyndt."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Livestreamingen er slut, men eventet kører stadig."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % af det samlede budget"

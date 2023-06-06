@@ -469,8 +469,8 @@ msgstr "Минали"
 msgid "Upcoming and open"
 msgstr "Предстоящи и текущи"
 
-msgid "This page is not available in English."
-msgstr "Тази страница не е достъпна на български."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Възможно е да се получи машинен превод на български — моля, използвайте връзката по-долу."
 
 msgid "Choose another language"
 msgstr "Изберете друг език"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Име"
 
 msgid "I have read and agree with the @link"
-msgstr "Прочетох и съм съгласен с условията за @link"
+msgstr "Прочетох и приемам @link"
 
-msgid "data protection terms"
-msgstr "защита на данните"
+msgid "personal data protection terms"
+msgstr "условията във връзка със защитата на личните данни"
 
 msgid "Highlighted"
 msgstr "Акценти"
@@ -617,3 +617,6 @@ msgstr "Излъчването на живо е започнало."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Излъчването на живо приключи, но проявата продължава."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% от общия бюджет"

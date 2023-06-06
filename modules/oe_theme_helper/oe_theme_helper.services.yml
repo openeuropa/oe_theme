@@ -7,7 +7,7 @@ services:
     class: Drupal\oe_theme_helper\Loader\ComponentLibraryLoader
     arguments:
       - '%oe_theme_helper.twig_loader.namespaces%'
-      - '@app.root'
+      - '%app.root%'
       - '%oe_theme_helper.twig_loader.theme%'
       - '%oe_theme_helper.twig_loader.directory%'
       - '@theme_handler'
@@ -34,6 +34,10 @@ services:
   oe_theme_helper.node_metadata_event_subscriber:
     class: Drupal\oe_theme_helper\EventSubscriber\DefaultNodeMetadataEventSubscriber
     arguments: ['@current_route_match', '@entity_type.manager', '@entity.repository']
+    tags:
+      - { name: event_subscriber }
+  oe_theme_helper.icon_options_subscriber:
+    class: Drupal\oe_theme_helper\EventSubscriber\IconOptionsEventSubscriber
     tags:
       - { name: event_subscriber }
   plugin.manager.oe_theme.media_data_extractor:

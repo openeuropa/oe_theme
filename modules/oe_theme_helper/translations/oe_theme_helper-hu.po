@@ -469,8 +469,8 @@ msgstr "Korábbi"
 msgid "Upcoming and open"
 msgstr "Közelgő és aktuális"
 
-msgid "This page is not available in English."
-msgstr "Ez az oldal nem érhető el magyarul."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Ez az oldal gépi fordításban magyarul is elérhető – a felület nyelvét a lenti gombbal változtathatja meg."
 
 msgid "Choose another language"
 msgstr "Válasszon másik nyelvet"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Név"
 
 msgid "I have read and agree with the @link"
-msgstr "Elolvastam az @link és egyetértek vele"
+msgstr "Elolvastam az @link"
 
-msgid "data protection terms"
-msgstr "adatvédelmi nyilatkozatot,"
+msgid "personal data protection terms"
+msgstr "adatvédelmi nyilatkozatot, és egyetértek a benne foglaltakkal."
 
 msgid "Highlighted"
 msgstr "Előtérben"
@@ -617,3 +617,6 @@ msgstr "Ez az élő közvetítés elkezdődött."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Az élő közvetítés befejeződött, de a rendezvény még tart."
+
+msgid "@percentage% of the overall budget"
+msgstr "A teljes költségvetés @percentage%-a"

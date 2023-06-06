@@ -34,7 +34,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_content_event',
     'oe_content_event_person_reference',
     'oe_multilingual',
@@ -86,12 +86,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     \Drupal::service('router.builder')->rebuild();
 
     // Create image media that we will use for the English translation.
-    $en_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
     $en_file->setPermanent();
     $en_file->save();
 
     // Create Bulgarian file.
-    $bg_file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
     $bg_file->setPermanent();
     $bg_file->save();
 
@@ -313,7 +313,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Where',
-          'body' => "event_venue\n  Address event_venue, 1001 <Brussels>, Belgium",
+          'body' => 'event_venue Address event_venue, 1001 <Brussels>, Belgium',
         ], [
           'label' => 'When',
           'body' => "Thursday 27 February 2020, 15:00 CET - Sunday 8 March 2020, 15:00 CET",
@@ -339,7 +339,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $venue_entity->set('oe_address', ['country_code' => 'MX'])->save();
     $this->drupalGet($node->toUrl());
 
-    $field_list_expected_values['items'][0]['body'] = "event_venue\n  Mexico";
+    $field_list_expected_values['items'][0]['body'] = 'event_venue Mexico';
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     $icons_text_expected_values['items'][2]['text'] = 'Mexico';
@@ -444,7 +444,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     ];
     $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
     $event_website_link_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $event_website_link_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $event_website_link_icon->getHtml());
 
     // Assert "Registration capacity" field.
     $node->set('oe_event_registration_capacity', 'event registration capacity')->save();
@@ -496,25 +496,43 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertSession()->linkNotExistsExact('Main link for media items');
     $this->assertSession()->pageTextNotContains('More media links');
 
-    // Assert "Full text", "Featured media", "Featured media legend" fields
-    // (these fields have to be filled all together).
-    $node->set('body', 'Event full text');
-    $node->set('oe_event_featured_media_legend', 'Event featured media legend');
+    // Assert "Description" title is not rendered unless there is a body text.
+    $this->assertSession()->pageTextNotContains('Description');
+    // Fill in "Featured media" field.
     $media_image = $this->createMediaImage('event_featured_media');
     $node->set('oe_event_featured_media', [$media_image])->save();
     $this->drupalGet($node->toUrl());
-
+    // Assert "Description" field group contains only the heading and media.
     $description_content = $this->assertSession()->elementExists('css', 'article > div > div:nth-child(3)');
     $text_featured = new TextFeaturedMediaAssert();
+    // Caption should not be rendered if the legend is not provided.
     $text_featured_expected_values = [
       'title' => 'Description',
-      'caption' => 'Event featured media legend',
-      'text' => 'Event full text',
+      'text' => NULL,
+      'caption' => NULL,
       'image' => [
         'alt' => 'Alternative text event_featured_media',
         'src' => 'event_featured_media.png',
       ],
     ];
+    // If the "Full text" field is not filled in, we render using the
+    // "right_simple" variant with the image on the left.
+    $text_featured->assertVariant('right_simple', $description_content->getHtml());
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+    // Fill in "Featured media legend" field.
+    $node->set('oe_event_featured_media_legend', 'Event featured media legend')->save();
+    $this->drupalGet($node->toUrl());
+    // Assert caption is rendered.
+    $text_featured_expected_values['caption'] = 'Event featured media legend';
+    $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
+
+    // Fill in the "Full text" field too.
+    $node->set('body', 'Event full text')->save();
+    $this->drupalGet($node->toUrl());
+    $text_featured_expected_values['text'] = 'Event full text';
+    // Assert we render using the "left_simple" variant when "Full text" is
+    // provided.
+    $text_featured->assertVariant('left_simple', $description_content->getHtml());
     $text_featured->assertPattern($text_featured_expected_values, $description_content->getHtml());
 
     // Assert "Description summary" field value.
@@ -592,7 +610,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
     $this->assertEquals('Link to online event', $online_button->find('css', 'span.ecl-link__label')->getText());
     $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $online_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $online_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
 
     $description_summary = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(2) .ecl', $details_content);
     $this->assertEquals('Event report summary', $description_summary->getText());
@@ -616,7 +634,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert media links.
     $this->assertSession()->linkExistsExact('Main link for media items');
     $more_media_link_icon = $this->assertSession()->elementExists('css', 'div#event-media a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $more_media_link_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $more_media_link_icon->getHtml());
     $this->assertSession()->pageTextContainsOnce('More media links');
 
     // Assert that summary and description fields are not displayed anymore.
@@ -1087,7 +1105,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     if ($external) {
       $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after', $parent_element);
       $this->assertEquals($text, $rendered_button->find('css', 'span.ecl-link__label')->getText());
-      $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $rendered_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $rendered_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
     }
     else {
       $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after', $parent_element);

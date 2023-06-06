@@ -2,7 +2,7 @@ name: OpenEuropa Theme Consultation Content
 type: module
 description: Companion module for the OE Content Consultation module
 package: OpenEuropa
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4 || ^10
 
 dependencies:
   - drupal:datetime

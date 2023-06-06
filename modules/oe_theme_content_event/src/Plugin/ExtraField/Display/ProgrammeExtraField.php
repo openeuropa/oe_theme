@@ -185,6 +185,7 @@ class ProgrammeExtraField extends EventExtraFieldBase {
     }
 
     $build['#fields']['items'] = $items;
+    $build['#fields']['limit_to'] = count($items) - 1;
     $cache->addCacheContexts(['timezone']);
     $cache->applyTo($build);
 

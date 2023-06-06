@@ -14,7 +14,7 @@
 ] %}
 {% set detail = content.oe_teaser|field_value %}
 {% set additional_information = [] %}
-{% spaceless %}
+{% apply spaceless %}
   {% block content %}
     {{ pattern('list_item', {
       'variant': 'thumbnail_primary',
@@ -23,9 +23,9 @@
       'meta': meta,
       'detail': detail,
       'image': image_url ? { 'src': image_url },
-      'additional_information': additional_information,
+      'lists': additional_information,
       'badges': badges,
       'external_link': external_link
     }) }}
   {% endblock %}
-{% endspaceless %}
+{% endapply %}

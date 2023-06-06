@@ -469,8 +469,8 @@ msgstr "Toimunud"
 msgid "Upcoming and open"
 msgstr "Eelseisvad ja käimasolevad"
 
-msgid "This page is not available in English."
-msgstr "See lehekülg ei ole eesti keeles kättesaadav."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Eestikeelne leht on kättesaadav masintõlke teel – palun kasutage allolevat linki."
 
 msgid "Choose another language"
 msgstr "Valige mõni teine keel"
@@ -522,8 +522,8 @@ msgstr "Nimi"
 msgid "I have read and agree with the @link"
 msgstr "Olen tutvunud ja nõustun @link"
 
-msgid "data protection terms"
-msgstr "isikuandmete kaitse põhimõtetega"
+msgid "personal data protection terms"
+msgstr "isikuandmete kaitse tingimustega"
 
 msgid "Highlighted"
 msgstr "Esiplaanil"
@@ -617,3 +617,6 @@ msgstr "See otseülekanne on alanud."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Otseülekanne on lõppenud, kuid üritus jätkub."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% kogueelarvest"

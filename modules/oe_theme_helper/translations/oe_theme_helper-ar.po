@@ -526,6 +526,6 @@ msgstr "@journal في @date"
 msgid "I have read and agree with the @link"
 msgstr "قرأت شر @link وأوافق عليها"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "وط حماية البيانات"
 

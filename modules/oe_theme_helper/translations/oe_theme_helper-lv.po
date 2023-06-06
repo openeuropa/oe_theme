@@ -469,8 +469,8 @@ msgstr "Iepriekšējs(-ie)"
 msgid "Upcoming and open"
 msgstr "Gaidāms(-ie) un atklāts(-ie)"
 
-msgid "This page is not available in English."
-msgstr "Šī lapa nav pieejama latviešu valodā."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Teksts latviešu valodā ir pieejams mašīntulkojumā. Lūdzu, izmantojiet zemāk redzamo saiti!"
 
 msgid "Choose another language"
 msgstr "Izvēlieties citu valodu"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Nosaukums"
 
 msgid "I have read and agree with the @link"
-msgstr "Esmu izlasījis @link un tiem piekrītu"
+msgstr "Esmu izlasījis(-usi) @link un tiem piekrītu."
 
-msgid "data protection terms"
-msgstr "datu aizsardzības noteikumus"
+msgid "personal data protection terms"
+msgstr "persondatu aizsardzības noteikumus"
 
 msgid "Highlighted"
 msgstr "Aktuāli"
@@ -617,3 +617,6 @@ msgstr "Šis tiešraides straumējums ir sācies."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Tiešraide ir beigusies, bet pasākums turpinās."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % no kopējā budžeta"

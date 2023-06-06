@@ -4,7 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\Core\Routing\RouteObjectInterface;
 use Drupal\locale\SourceString;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Route;
 
 /**
  * Base class for multilingual tests.
@@ -16,7 +19,7 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
    *
    * @var array
    */
-  public static $modules = [
+  protected static $modules = [
     'content_translation',
     'locale',
     'language',
@@ -55,6 +58,13 @@ abstract class MultilingualAbstractKernelTestBase extends AbstractKernelTestBase
 
     $this->container->get('module_handler')->loadInclude('oe_multilingual', 'install');
     oe_multilingual_install(FALSE);
+
+    // In order to make it possible correctly render the language switcher block
+    // we have to provide the current route explicitly.
+    $request = Request::create('/');
+    $request->attributes->set(RouteObjectInterface::ROUTE_NAME, '<front>');
+    $request->attributes->set(RouteObjectInterface::ROUTE_OBJECT, new Route('/'));
+    $this->container->get('request_stack')->push($request);
 
     // Rebuild the container in order to make sure tests pass.
     // @todo fix test setup so that we can get rid of this line.

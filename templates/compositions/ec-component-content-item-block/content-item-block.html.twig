@@ -1,4 +1,4 @@
-{% spaceless %}
+{% apply spaceless %}
 
 {#
   /**
@@ -65,9 +65,20 @@
     {% if vertical %}
       {% set items_per_column = _items|length/_type %}
       {% for column in _items|batch(items_per_column) %}
-        <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
+        {% set last_item_column_css = "" %}
+        {% set last_item_css = "" %}
+        {% if loop.last %}
+          {% set last_item_css = "last-item" %}
+        {% endif %}
+        <div class="ecl-content-item-block__item ecl-u-mb-l {{ _extra_classes_item }} vertical">
           {% for _item in column %}
-            <div class="ecl-content-item-block__item ecl-u-mb-s">
+            {% if loop.last %}
+              {% set last_item_column_css = "last-item-column" %}
+              {% if last_item_css is not empty %}
+                {% set last_item_column_css = last_item_column_css ~ " " ~ last_item_css %}
+              {% endif %}
+            {% endif %}
+            <div class="ecl-content-item-block__item ecl-u-mb-l {{ last_item_column_css }}">
               {{ _item }}
             </div>
           {% endfor %}
@@ -75,7 +86,14 @@
       {% endfor %}
     {% else %}
       {% for _item in _items %}
-        <div class="ecl-content-item-block__item ecl-u-mb-s {{ _extra_classes_item }}">
+        {% set last_item_column_css = "" %}
+        {% if loop.index > _items|length - _type %}
+          {% set last_item_column_css = "last-item-column" %}
+        {% endif %}
+        {% if loop.last %}
+          {% set last_item_column_css = last_item_column_css ~ " last-item" %}
+        {% endif %}
+        <div class="ecl-content-item-block__item ecl-u-mb-l {{ _extra_classes_item }} {{ last_item_column_css }}">
           {{ _item }}
         </div>
       {% endfor %}
@@ -101,4 +119,4 @@
     </div>
   {% endif %}
 </div>
-{% endspaceless %}
+{% endapply %}

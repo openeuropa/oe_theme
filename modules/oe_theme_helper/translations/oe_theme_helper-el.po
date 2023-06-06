@@ -469,8 +469,8 @@ msgstr "Προηγούμενες"
 msgid "Upcoming and open"
 msgstr "Προσεχείς και ανοικτές"
 
-msgid "This page is not available in English."
-msgstr "Η σελίδα αυτή δεν είναι διαθέσιμη στα ελληνικά."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Τα ελληνικά είναι διαθέσιμα μέσω αυτόματης μετάφρασης — χρησιμοποιήστε τον παρακάτω σύνδεσμο."
 
 msgid "Choose another language"
 msgstr "Επιλέξτε άλλη γλώσσα"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Όνομα"
 
 msgid "I have read and agree with the @link"
-msgstr "Διάβασα τους @link και συμφωνώ"
+msgstr "Διάβασα και συμφωνώ με τους @link"
 
-msgid "data protection terms"
-msgstr "όρους προστασίας δεδομένων"
+msgid "personal data protection terms"
+msgstr "όρους προστασίας των δεδομένων προσωπικού χαρακτήρα"
 
 msgid "Highlighted"
 msgstr "Με επισήμανση"
@@ -617,3 +617,6 @@ msgstr "Αυτή η ζωντανή μετάδοση έχει ξεκινήσει.
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Η ζωντανή μετάδοση έληξε, αλλά η εκδήλωση συνεχίζεται."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % του συνολικού προϋπολογισμού"

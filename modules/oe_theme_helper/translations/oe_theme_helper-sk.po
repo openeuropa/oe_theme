@@ -1,4 +1,4 @@
-msgid ""
+  msgid ""
 msgstr ""
 
 msgid "Organisation type"
@@ -469,8 +469,8 @@ msgstr "Uskutočnené"
 msgid "Upcoming and open"
 msgstr "Pripravované a otvorené"
 
-msgid "This page is not available in English."
-msgstr "Táto stránka nie je dostupná v slovenčine."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Slovenčina je k dispozícii cez strojový preklad – použite nasledujúci odkaz."
 
 msgid "Choose another language"
 msgstr "Vyberte iný jazyk"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Meno/Názov"
 
 msgid "I have read and agree with the @link"
-msgstr "Prečítal/a som si podmienky @link a súhlasím s nimi"
+msgstr "Oboznámil som sa s @link"
 
-msgid "data protection terms"
-msgstr "ochrany údajov"
+msgid "personal data protection terms"
+msgstr "podmienkami ochrany osobných údajov a súhlasím s nimi"
 
 msgid "Highlighted"
 msgstr "Hlavné témy"
@@ -617,3 +617,6 @@ msgstr "Toto živé vysielanie sa začalo."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Živé vysielanie sa skončilo, ale podujatie prebieha."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% celkového rozpočtu"

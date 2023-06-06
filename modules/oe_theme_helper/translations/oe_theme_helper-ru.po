@@ -469,7 +469,7 @@ msgstr "Прошедшие"
 msgid "Upcoming and open"
 msgstr "Предстоящие и открытые"
 
-msgid "This page is not available in English."
+msgid "English is available via machine translation – please use the link below."
 msgstr "Эта страница недоступна на русском."
 
 msgid "Choose another language"
@@ -522,7 +522,7 @@ msgstr "Название /// Ф.И.О"
 msgid "I have read and agree with the @link"
 msgstr "Я прочитал(а) и согласен(а) с @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "Условия защиты данных"
 
 msgid "Highlighted"

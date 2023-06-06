@@ -18,7 +18,7 @@ class ContactFormRenderTest extends ContactFormTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'ui_patterns',
     'ui_patterns_library',
     'oe_theme_helper',
@@ -79,8 +79,12 @@ class ContactFormRenderTest extends ContactFormTestBase {
 
     $actual = $crawler->filter('p.ecl-u-type-paragraph');
     $this->assertCount(1, $actual);
-    $actual = $crawler->filter('.ecl-u-ml-2xs.ecl-link.ecl-link--default');
-    $this->assertCount(1, $actual);
+    $privacy_label = $crawler->filter('label.ecl-checkbox__label.form-required');
+    $this->assertCount(1, $privacy_label);
+    $this->assertEquals('I have read and agree with the personal data protection terms', $privacy_label->text());
+    $privacy_link = $crawler->filter('.ecl-u-ml-2xs.ecl-link.ecl-link--default');
+    $this->assertCount(1, $privacy_link);
+    $this->assertEquals('personal data protection terms', $privacy_link->text());
     $actual = $crawler->filter('.ecl-u-mv-m');
     $this->assertCount(7, $actual);
     $telephone = $crawler->filter('.field--name-oe-telephone input');

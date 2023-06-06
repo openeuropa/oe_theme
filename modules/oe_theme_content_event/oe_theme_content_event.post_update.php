@@ -16,7 +16,7 @@ use Drupal\Core\Config\FileStorage;
  * Override event teaser view display.
  */
 function oe_theme_content_event_post_update_00001(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/00001_override_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/00001_override_teaser_view_display');
   $display_values = $storage->read('core.entity_view_display.node.oe_event.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
 
@@ -36,7 +36,7 @@ function oe_theme_content_event_post_update_00001(): void {
  * Create the 'full' entity view display on the event CT.
  */
 function oe_theme_content_event_post_update_00002() {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/00002_create_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/00002_create_full_view_display');
 
   $entity_type_manager = \Drupal::entityTypeManager();
   $config = $storage->read('core.entity_view_display.node.oe_event.full');
@@ -60,7 +60,7 @@ function oe_theme_content_event_post_update_00002() {
  * Updates the teaser view display.
  */
 function oe_theme_content_event_post_update_00003(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/00003_update_teaser_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/00003_update_teaser_view_display');
 
   $display_values = $storage->read('core.entity_view_display.node.oe_event.teaser');
   $storage = \Drupal::entityTypeManager()->getStorage('entity_view_display');
@@ -94,7 +94,7 @@ function oe_theme_content_event_post_update_30003(): void {
  */
 function oe_theme_content_event_post_update_30001() {
   \Drupal::service('module_installer')->install(['oe_content_event_event_programme']);
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30001_update_full_view_display');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/30001_update_full_view_display');
   $view_display_values = $storage->read('core.entity_view_display.node.oe_event.full');
   $view_display = EntityViewDisplay::load($view_display_values['id']);
   if ($view_display) {
@@ -133,7 +133,7 @@ function oe_theme_content_event_post_update_30002(): void {
   $date_timezone->delete();
 
   // Create new time format with timezone.
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30002_event_programme_date_format');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/30002_event_programme_date_format');
   $config = $storage->read('core.date_format.oe_event_programme_hour_timezone');
   $config['_core']['default_config_hash'] = Crypt::hashBase64(serialize($config));
   $date_format = DateFormat::create($config);
@@ -144,7 +144,7 @@ function oe_theme_content_event_post_update_30002(): void {
  * Create missing Event programme date formats.
  */
 function oe_theme_content_event_post_update_30004(): void {
-  $storage = new FileStorage(drupal_get_path('module', 'oe_theme_content_event') . '/config/post_updates/30004_event_programme_missing_date_formats');
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/30004_event_programme_missing_date_formats');
   $date_formats = [
     'core.date_format.oe_event_programme_date',
     'core.date_format.oe_event_programme_date_hour',

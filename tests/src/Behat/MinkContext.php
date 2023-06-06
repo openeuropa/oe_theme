@@ -190,6 +190,9 @@ class MinkContext extends DrupalExtensionMinkContext {
       throw new \InvalidArgumentException(sprintf('Could not not find link: "%s"', $link));
     }
     $link->mouseOver();
+    // Add wait on showing menu sub-items implemented in ECL CSS:
+    // https://github.com/ec-europa/europa-component-library/blob/v3-dev/src/implementations/vanilla/components/menu/_menu.scss#L850.
+    $this->getSession()->wait(1000);
   }
 
 }

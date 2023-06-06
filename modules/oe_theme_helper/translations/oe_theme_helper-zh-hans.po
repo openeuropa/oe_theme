@@ -469,7 +469,7 @@ msgstr "以往的"
 msgid "Upcoming and open"
 msgstr "将开放和已开放"
 
-msgid "This page is not available in English."
+msgid "English is available via machine translation – please use the link below."
 msgstr "此页面无中文版。"
 
 msgid "Choose another language"
@@ -522,7 +522,7 @@ msgstr "姓名"
 msgid "I have read and agree with the @link"
 msgstr "本人已阅读并同意接受 @link"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "数据保护条款"
 
 msgid "Highlighted"

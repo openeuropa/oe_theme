@@ -2,7 +2,7 @@ name: OpenEuropa Theme Publication Content
 type: module
 description: Companion module for the OE Content Publication module
 package: OpenEuropa
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4 || ^10
 dependencies:
   - extra_field:extra_field
   - oe_content:oe_content_publication

@@ -469,8 +469,8 @@ msgstr "Tal-passat"
 msgid "Upcoming and open"
 msgstr "Li ġejjin u miftuħin"
 
-msgid "This page is not available in English."
-msgstr "Din il-paġna mhix disponibbli bil-Malti."
+msgid "English is available via machine translation – please use the link below."
+msgstr "L-Malti huwa disponibbli permezz tat-traduzzjoni awtomatika – jekk jogħġbok uża l-link ta’ hawn taħt."
 
 msgid "Choose another language"
 msgstr "Agħżel lingwa oħra"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Isem"
 
 msgid "I have read and agree with the @link"
-msgstr "Qrajt u naqbel @link"
+msgstr "Qrajt u naqbel mat-@link"
 
-msgid "data protection terms"
-msgstr "mat-termini tal-protezzjoni tad-data"
+msgid "personal data protection terms"
+msgstr "termini tal-protezzjoni tal-privatezza tad-data"
 
 msgid "Highlighted"
 msgstr "Enfasizzat"
@@ -617,3 +617,6 @@ msgstr "Din il-xandira diretta fuq l-internet bdiet."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Ix-xandira diretta fuq l-internet intemmet, iżda l-avveniment għadu għaddej."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% tal-baġit globali"

@@ -63,7 +63,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $title = $crawler->filter('.ecl-content-item__title.ecl-u-type-heading-5.ecl-u-mb-xs.ecl-u-mt-none');
+    $title = $crawler->filter('div.ecl-content-item__content-block h1.ecl-content-block__title');
     $this->assertEquals('Page short title', $title->text());
   }
 
@@ -99,7 +99,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $title = $crawler->filter('.ecl-content-item__title.ecl-u-type-heading-5.ecl-u-mb-xs.ecl-u-mt-none');
+    $title = $crawler->filter('div.ecl-content-item__content-block h1.ecl-content-block__title');
     $this->assertEquals('Policy short title', $title->text());
   }
 
@@ -107,7 +107,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Publication node is rendered with the correct ECL markup.
    */
   public function testPublication(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('module', 'oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
     $file->setPermanent();
     $file->save();
 

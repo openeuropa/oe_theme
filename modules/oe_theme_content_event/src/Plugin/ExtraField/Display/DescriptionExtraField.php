@@ -88,17 +88,34 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    // Display event description using "text_featured_media" pattern.
     $build = [
       '#type' => 'pattern',
       '#id' => 'text_featured_media',
-      '#fields' => [
-        'title' => $this->getRenderableTitle($entity),
-        'text' => $this->getRenderableText($entity),
-      ],
     ];
-
+    // If we have no renderable text and image we don't need a title.
+    $text = $this->getRenderableText($entity);
+    $title = $this->getRenderableTitle($entity);
     $this->addFeaturedMediaThumbnail($build, $entity);
+    $title = !empty($text[0]['#text']) || isset($build['#fields']['image']) ? $title : '';
+
+    // If we don't have a title we do not render anything because there is
+    // no text and no image.
+    if (empty($title)) {
+      // Make sure we continue to carry over the cache tags.
+      CacheableMetadata::createFromRenderArray($build)
+        ->merge(CacheableMetadata::createFromRenderArray($text))
+        ->applyTo($build);
+      return $build;
+    }
+
+    $build['#fields']['title'] = $title;
+    $build['#fields']['text'] = $text;
+
+    // If we have a media but no description text, we use the 'right_simple'
+    // variant of the pattern to render the media on the left side.
+    if (empty($build['#fields']['text']) && isset($build['#fields']['image'])) {
+      $build['#variant'] = 'right_simple';
+    }
 
     return $build;
   }
@@ -148,11 +165,16 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
   public function getRenderableText(ContentEntityInterface $entity): array {
     $event = EventNodeWrapper::getInstance($entity);
 
-    // By default 'body' is the event description field.
-    // If the event is over and we have a report, we use 'oe_event_report_text'.
+    // By default, 'body' is the event description field. If the event is over,
+    // and we have a report, we use 'oe_event_report_text'.
     $field_name = 'body';
     if ($event->isOver($this->requestDateTime) && !$entity->get('oe_event_report_text')->isEmpty()) {
       $field_name = 'oe_event_report_text';
+    }
+
+    // If the field we're using is empty, we don't have a description text.
+    if ($entity->get($field_name)->isEmpty()) {
+      return [];
     }
 
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
@@ -211,7 +233,12 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     $cache->addCacheableDependency($thumbnail->entity);
     $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
 
-    // Only display a caption if we have an image to be captioned by.
+    // Only display a caption if we have an image to be captioned by and there
+    // is a caption set.
+    if ($entity->get('oe_event_featured_media_legend')->isEmpty()) {
+      $cache->applyTo($build);
+      return;
+    }
     /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $view_builder */
     $view_builder = $this->entityTypeManager->getViewBuilder('node');
     $build['#fields']['caption'] = $view_builder->viewField($entity->get('oe_event_featured_media_legend'), [

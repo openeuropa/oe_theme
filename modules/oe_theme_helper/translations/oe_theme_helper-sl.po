@@ -469,8 +469,8 @@ msgstr "Pretekli"
 msgid "Upcoming and open"
 msgstr "Prihodnji in odprti"
 
-msgid "This page is not available in English."
-msgstr "Ta stran ni na voljo v slovenščini."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Slovenščina je na voljo kot strojni prevod – kliknite na spodnjo povezavo."
 
 msgid "Choose another language"
 msgstr "Izberi drug jezik"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Ime"
 
 msgid "I have read and agree with the @link"
-msgstr "Prebral/-a sem pogoje o @link in se strinjam z njimi"
+msgstr "Prebral/-a sem pogoje o varstvu @link"
 
-msgid "data protection terms"
-msgstr "varstvu podatkov"
+msgid "personal data protection terms"
+msgstr "osebnih podatkov in se strinjam z njimi"
 
 msgid "Highlighted"
 msgstr "Izpostavljeno"
@@ -617,3 +617,6 @@ msgstr "Prenos v živo se je začel."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Prenos v živo se je končal, vendar dogodek še poteka."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % celotnega proračuna"

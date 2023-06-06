@@ -74,11 +74,12 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    if ($entity->get('oe_project_budget_eu')->isEmpty()) {
+    if ($entity->get('oe_project_budget_eu')->isEmpty() && $entity->get('oe_project_eu_contrib')->isEmpty()) {
       return [];
     }
     $build = [];
-    $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget_eu'), [
+
+    $display_options = [
       'label' => 'hidden',
       'type' => 'number_decimal',
       'settings' => [
@@ -87,16 +88,25 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
         'scale' => 0,
         'prefix_suffix' => TRUE,
       ],
-    ]);
+    ];
+    if ($entity->get('oe_project_eu_contrib')->isEmpty()) {
+      // Fallback to old field.
+      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget_eu'), $display_options);
+      $budget_eu = $entity->get('oe_project_budget')->value;
+    }
+    else {
+      // Render new field value.
+      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_contrib'), $display_options);
+      $budget_eu = $entity->get('oe_project_eu_contrib')->value;
+    }
 
     // Return only EU contribution if budget is empty.
-    if ($entity->get('oe_project_budget')->isEmpty()) {
+    if ($entity->get('oe_project_budget')->isEmpty() && $entity->get('oe_project_eu_budget')->isEmpty()) {
       return $build;
     }
 
     // Compute budget percentage field value.
-    $budget = $entity->get('oe_project_budget')->value;
-    $budget_eu = $entity->get('oe_project_budget_eu')->value;
+    $budget = $entity->get('oe_project_eu_budget')->isEmpty() ? $entity->get('oe_project_budget_eu')->value : $entity->get('oe_project_eu_budget')->value;
     $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
     $build[] = [
       '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
@@ -110,15 +120,15 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    *
    * If input values are not greater than 0, returns 0.
    *
-   * @param float $total
+   * @param int|float $total
    *   The total value.
-   * @param float $part
+   * @param int|float $part
    *   The contribution part of the total value.
    *
    * @return float
    *   Percentage value.
    */
-  protected function getPercentage(float $total, float $part): float {
+  protected function getPercentage(int|float $total, int|float $part): float {
     $percentage = 0;
 
     if ($total > 0 && $part > 0) {

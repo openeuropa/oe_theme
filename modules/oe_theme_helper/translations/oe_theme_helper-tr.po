@@ -529,5 +529,5 @@ msgstr "@date tarihli @journal yayını"
 msgid "I have read and agree with the @link"
 msgstr "@link okudum ve kabul ediyorum"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "Veri koruma şartlarını"

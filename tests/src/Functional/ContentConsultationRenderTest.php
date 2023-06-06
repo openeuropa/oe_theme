@@ -327,11 +327,15 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(6, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[5], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser = $content_items[5]->find('css', '.ecl-content-item.ecl-u-d-s-flex.ecl-u-pb-m');
+    $publication_teaser = $content_items[5]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15');
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Publication node',
-      'meta' => "Abstract | 15 April 2020\n | Associated African States and Madagascar",
+      'meta' => [
+        'Abstract',
+        '15 April 2020',
+        'Associated African States and Madagascar',
+      ],
       'description' => 'Teaser text',
     ];
     $assert->assertPattern($expected_values, $publication_teaser->getOuterHtml());
@@ -558,7 +562,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $respond_button = $content_items[3]->find('css', '.ecl-link.ecl-link--cta');
     $this->assertEquals('Link text', $respond_button->getText());
     $icon = $respond_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
 
     // Assert status "Closed".
     $static_time = new DrupalDateTime('2020-04-20 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);

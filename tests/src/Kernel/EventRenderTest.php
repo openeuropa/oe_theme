@@ -28,7 +28,7 @@ class EventRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'address',
     'datetime_range',
     'datetime_range_timezone',
@@ -69,7 +69,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'address',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.
@@ -81,7 +81,7 @@ class EventRenderTest extends ContentRenderTestBase {
    * Test an event being rendered as a teaser.
    */
   public function testEventTeaser(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 
@@ -173,7 +173,7 @@ class EventRenderTest extends ContentRenderTestBase {
         ],
       ]),
       'badges' => NULL,
-      'meta' => 'Competitions and award ceremonies',
+      'meta' => ['Competitions and award ceremonies'],
       'image' => NULL,
       'date' => [
         'day' => '02-04',
@@ -255,7 +255,7 @@ class EventRenderTest extends ContentRenderTestBase {
     $this->nodeViewBuilder->resetCache();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Competitions and award ceremonies';
+    $expected_values['meta'] = ['Competitions and award ceremonies'];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_ongoing', $html);
 
@@ -265,7 +265,7 @@ class EventRenderTest extends ContentRenderTestBase {
     $this->nodeViewBuilder->resetCache();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Competitions and award ceremonies';
+    $expected_values['meta'] = ['Competitions and award ceremonies'];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_past', $html);
 
@@ -273,7 +273,10 @@ class EventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_status', 'cancelled')->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
-    $expected_values['meta'] = 'Competitions and award ceremonies | Cancelled';
+    $expected_values['meta'] = [
+      'Competitions and award ceremonies',
+      'Cancelled',
+    ];
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('date_cancelled', $html);
 
@@ -288,7 +291,10 @@ class EventRenderTest extends ContentRenderTestBase {
     $html = $this->renderRoot($build);
     $expected_values['title'] = 'заглавието на моя възел';
     $expected_values['badges'] = NULL;
-    $expected_values['meta'] = 'Конкурси и церемонии по награждаване | Cancelled';
+    $expected_values['meta'] = [
+      'Конкурси и церемонии по награждаване',
+      'Cancelled',
+    ];
     $expected_values['url'] = '/bg/node/1';
     $expected_values['date']['month_name'] = 'Ян.';
     $expected_values['description'] = new PatternAssertState(new IconsTextAssert(), [

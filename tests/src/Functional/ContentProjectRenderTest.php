@@ -23,7 +23,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'oe_theme_content_entity_contact',
     'oe_theme_content_project',
     'options',
@@ -162,10 +162,10 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
           'body' => 'Project reference',
         ], [
           'label' => 'Project duration',
-          'body' => "10.05.2020\n - 15.05.2025",
+          'body' => '10.05.2020 - 15.05.2025',
         ], [
           'label' => 'Project locations',
-          'body' => "09199 Ages Burgos, Spain\n\n  Munich, Germany",
+          'body' => '09199 Ages Burgos, Spain Munich, Germany',
         ],
       ],
     ];
@@ -190,8 +190,8 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
 
     // Change EU contribution and assert percentage field change.
-    $node->set('oe_project_budget', 1000);
-    $node->set('oe_project_budget_eu', 1);
+    $node->set('oe_project_eu_budget', 1000.00);
+    $node->set('oe_project_eu_contrib', 1.00);
     // Change Project duration to test label when start date equals end date.
     $node->set('oe_project_dates', [
       'value' => '2020-05-10',
@@ -226,7 +226,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($third_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('featured_horizontal', $field_list_html);
     $project_website_icon = $this->assertSession()->elementExists('css', 'dl.ecl-description-list dd a.ecl-link svg.ecl-icon.ecl-icon--2xs.ecl-link__icon');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $project_website_icon->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $project_website_icon->getHtml());
 
     // Assert documents file.
     $file_wrapper = $this->assertSession()->elementExists('css', 'div#project-documents');
@@ -250,13 +250,13 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     $funding_items = $unordered_list_items[0]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(1, $funding_items);
-    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', 'Funding programme');
+    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', ['Funding programme']);
 
     $proposal_items = $unordered_list_items[1]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(3, $proposal_items);
-    $this->assertListItem($proposal_items[0], 'Test call for proposal', 'Call for proposals', 'http://proposal-call.com', TRUE);
-    $this->assertListItem($proposal_items[1], 'http://proposal-call-no-title.com', 'Call for proposals', 'http://proposal-call-no-title.com', TRUE);
-    $this->assertListItem($proposal_items[2], 'Internal Call for proposal', 'Call for proposals', 'http://ec.europa.eu/info');
+    $this->assertListItem($proposal_items[0], 'Test call for proposal', ['Call for proposals'], 'http://proposal-call.com', TRUE);
+    $this->assertListItem($proposal_items[1], 'http://proposal-call-no-title.com', ['Call for proposals'], 'http://proposal-call-no-title.com', TRUE);
+    $this->assertListItem($proposal_items[2], 'Internal Call for proposal', ['Call for proposals'], 'http://ec.europa.eu/info');
 
     // Assert bottom region - Stakeholders.
     $project_stakeholders = $this->assertSession()->elementExists('css', 'div#project-stakeholders');
@@ -382,14 +382,14 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertVariant('horizontal', $field_list_html);
     // Assert contact website's icon.
     $website_icon = $field_list_wrapper->find('css', 'dl.ecl-description-list dd a.ecl-link');
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $website_icon->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $website_icon->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
 
     // Assert contact link.
     $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
     $this->assertCount(1, $contact_links);
     $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
     // Assert contact link's icon.
-    $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $contact_links[0]->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon')->getHtml());
+    $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $contact_links[0]->find('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon')->getHtml());
     $contact_link_labels = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold span.ecl-link__label');
     $this->assertCount(1, $contact_link_labels);
     $this->assertEquals('Contact organisation', $contact_link_labels[0]->getText());
@@ -402,7 +402,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    *   Rendered element.
    * @param string $title
    *   Title of the list item.
-   * @param string $meta
+   * @param array $meta
    *   Meta value of the list item.
    * @param string $link
    *   Link that is used.
@@ -411,7 +411,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    *
    * @throws \Behat\Mink\Exception\ElementNotFoundException
    */
-  protected function assertListItem(NodeElement $rendered_element, string $title, string $meta, $link = '', bool $external_link = FALSE): void {
+  protected function assertListItem(NodeElement $rendered_element, string $title, array $meta, $link = '', bool $external_link = FALSE): void {
     $list_item_assert = new ListItemAssert();
     $expected_values = [
       'meta' => $meta,
@@ -423,12 +423,12 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     // Assert css class for meta.
     $field_meta = $this->assertSession()->elementExists('css', 'span.ecl-u-type-uppercase', $rendered_element);
-    $this->assertEquals($meta, $field_meta->getText());
+    $this->assertEquals($meta[0], $field_meta->getText());
 
     if (!empty($link)) {
       if ($external_link) {
         $link_tag = $rendered_element->find('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
-        $this->assertEquals('<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $link_tag->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
+        $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $link_tag->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
       }
       else {
         $this->assertSession()->elementNotExists('css', 'svg.ecl-icon.ecl-icon--s.ecl-link__icon', $rendered_element);

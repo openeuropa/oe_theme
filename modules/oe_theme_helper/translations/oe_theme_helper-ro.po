@@ -469,8 +469,8 @@ msgstr "Trecute"
 msgid "Upcoming and open"
 msgstr "Viitoare și deschise"
 
-msgid "This page is not available in English."
-msgstr "Această pagină nu este disponibilă în limba română."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Pagina în română este disponibilă doar în traducere automată. O puteți solicita prin linkul de mai jos."
 
 msgid "Choose another language"
 msgstr "Selectați altă limbă"
@@ -522,8 +522,8 @@ msgstr "Nume"
 msgid "I have read and agree with the @link"
 msgstr "Am citit și sunt de acord cu @link"
 
-msgid "data protection terms"
-msgstr "prevederile referitoare la protecția datelor"
+msgid "personal data protection terms"
+msgstr "prevederile referitoare la protecția datelor cu caracter personal"
 
 msgid "Highlighted"
 msgstr "În prim-plan"
@@ -617,3 +617,6 @@ msgstr "Transmisiunea online a început."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Transmisia în direct s-a încheiat, dar evenimentul este în curs de desfășurare."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% din bugetul total"

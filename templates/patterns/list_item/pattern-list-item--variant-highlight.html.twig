@@ -4,14 +4,17 @@
  * Default implementation for the highlight list item component.
  */
 #}
-{% include '@ecl-twig/card' with {
-  title: {
+{% if url %}
+  {% set title = {
     label: title,
     path: url,
     type: "standalone",
     external: external_link,
     icon_path: ecl_icon_path
-  },
+  } %}
+{% endif %}
+{% include '@ecl-twig/card' with {
+  title: title,
   image: image,
   description: detail|smart_trim(length),
   labels: badges,

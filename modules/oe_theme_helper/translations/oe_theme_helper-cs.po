@@ -469,8 +469,8 @@ msgstr "Již proběhlo"
 msgid "Upcoming and open"
 msgstr "Nadcházející a probíhající"
 
-msgid "This page is not available in English."
-msgstr "Tato stránka není v češtině k dispozici."
+msgid "English is available via machine translation – please use the link below."
+msgstr "V češtině si obsah stránky můžete zobrazit ve strojovém překladu – použijte níže uvedený odkaz."
 
 msgid "Choose another language"
 msgstr "Zvolte prosím jiný jazyk"
@@ -520,10 +520,10 @@ msgid "Name"
 msgstr "Jméno/Název"
 
 msgid "I have read and agree with the @link"
-msgstr "Obeznámil(a) jsem se s podmínkami, které se týkají @link"
+msgstr "Obeznámil(a) jsem se a souhlasím s @link"
 
-msgid "data protection terms"
-msgstr "ochrany údajů"
+msgid "personal data protection terms"
+msgstr "podmínkami ochrany osobních údajů."
 
 msgid "Highlighted"
 msgstr "Důležité"
@@ -617,3 +617,6 @@ msgstr "Živý přenos již začal."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Živé vysílání bylo ukončeno, nicméně akce stále probíhá."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % celkového rozpočtu"

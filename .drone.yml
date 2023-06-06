@@ -47,31 +47,14 @@ pipeline:
       - npm install --unsafe-perm
       - NODE_ENV=production npm run build
 
-  composer-install-highest:
+  composer-install:
     group: post-prepare
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
     volumes:
       - /cache:/cache
     commands:
       - composer self-update --2
-      - composer install --ansi --no-progress
-    when:
-      matrix:
-        COMPOSER_BOUNDARY: highest
-
-  composer-update-lowest:
-    group: post-prepare
-    image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
-    volumes:
-      - /cache:/cache
-    commands:
-      - composer self-update --2
-      - composer update --prefer-lowest --ansi --no-progress
-    when:
-      event:
-        exclude: tag
-      matrix:
-        COMPOSER_BOUNDARY: lowest
+      - composer require drupal/core:~${CORE_VERSION} drupal/core-composer-scaffold:~${CORE_VERSION} --update-with-all-dependencies --ansi --no-progress --no-interaction
 
   site-install:
     image: registry.fpfis.eu/fpfis/httpd-php:${PHP_VERSION}-ci
@@ -92,8 +75,6 @@ pipeline:
     when:
       event:
         exclude: tag
-      matrix:
-        COMPOSER_BOUNDARY: highest
 
   phpunit:
     group: test
@@ -130,8 +111,8 @@ pipeline:
       event:
         include: tag
       matrix:
-        COMPOSER_BOUNDARY: highest
-        PHP_VERSION: 7.4
+        CORE_VERSION: "9.4.0"
+        PHP_VERSION: "8.0"
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -143,25 +124,22 @@ pipeline:
       event:
         include: tag
       matrix:
-        COMPOSER_BOUNDARY: highest
-        PHP_VERSION: 7.4
+        CORE_VERSION: "9.4.0"
+        PHP_VERSION: "8.0"
 
 matrix:
   include:
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: behat }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: behat }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: lowest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: behat }
+    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch3 }
 
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 7.4, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: behat }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.0, COMPOSER_BOUNDARY: highest, TYPE: phpunit, BATCH: batch3 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: behat }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch3 }

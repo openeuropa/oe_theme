@@ -15,7 +15,7 @@ abstract class ParagraphsTestBase extends AbstractKernelTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'language',
     'content_translation',
     'paragraphs',

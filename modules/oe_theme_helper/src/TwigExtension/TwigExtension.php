@@ -16,8 +16,8 @@ use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
 use Drupal\oe_theme_helper\ExternalLinksInterface;
-use Drupal\smart_trim\Truncate\TruncateHTML;
 use Drupal\Core\Template\TwigExtension as CoreTwigExtension;
+use Drupal\smart_trim\TruncateHTML;
 use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
@@ -28,6 +28,8 @@ use Twig\TwigFunction;
  *
  * We don't enforce any strict type checking on filters' arguments as they are
  * coming straight from Twig templates.
+ *
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 class TwigExtension extends AbstractExtension {
 
@@ -456,7 +458,14 @@ class TwigExtension extends AbstractExtension {
    * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim(Environment $env, $input, $limit) {
+  public function smartTrim(Environment $env, $input, $limit = 0) {
+    if ($limit === NULL) {
+      // phpcs:disable Drupal.Semantics.FunctionTriggerError
+      @trigger_error('Using the smart_trim filter with a null limit value is deprecated in oe_theme:3.x and will be removed in oe_theme:4.x releases.', E_USER_DEPRECATED);
+      // phpcs:enable
+      $limit = 0;
+    }
+
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
     $truncate = new TruncateHTML();
@@ -571,6 +580,11 @@ class TwigExtension extends AbstractExtension {
     $ecl_links = [];
 
     foreach ($links as $link) {
+      // Skip if the link is limited to some ECL branding and the current
+      // ECL branding does not match.
+      if (!empty($link['branding']) && $context['ecl_branding'] !== $link['branding']) {
+        continue;
+      }
       $ecl_link = [
         'link' => [
           'label' => $link['label'],

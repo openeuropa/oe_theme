@@ -11,7 +11,7 @@ navigation_list:
       type: "text"
       label: "Title URL"
       description: "URL to link the title of the navigation list."
-      preview: "https://ec.europa.eu/info/education/policy-educational-issues_en"
+      preview: "https://commission.europa.eu/education/policy-educational-issues_en"
     external_link:
       type: "boolean"
       label: "External link"
@@ -28,12 +28,12 @@ navigation_list:
       description: "Array of links that form the navigation list."
       preview:
         - label: 'Addressing shared challenges'
-          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training_en'
+          url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training_en'
           is_external: true
         - label: 'Setting objectives and measuring progress'
-          url: 'https://ec.europa.eu/info/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
+          url: 'https://commission.europa.eu/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
         - label: 'International cooperation'
-          url: 'https://ec.europa.eu/info/education/policy-educational-issues/international-cooperation_en'
+          url: 'https://commission.europa.eu/education/policy-educational-issues/international-cooperation_en'
           is_external: true
     secondary_links:
       type: "array"
@@ -41,9 +41,9 @@ navigation_list:
       description: "Secondary array of links that form the navigation list."
       preview:
         - label: 'Integrating migrants and refugees'
-          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training/integrating-migrants-and-refugees_en'
+          url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training/integrating-migrants-and-refugees_en'
         - label: 'Early school leaving'
-          url: 'https://ec.europa.eu/info/education/policy-educational-issues/shared-challenges-education-and-training/early-school-leaving_en'
+          url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training/early-school-leaving_en'
           is_external: true
     border:
       type: "boolean"

@@ -29,7 +29,7 @@ class DateTimeRangeTest extends DateTimeTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'datetime',
     'datetime_range',
   ];

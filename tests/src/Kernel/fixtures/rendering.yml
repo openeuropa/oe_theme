@@ -500,6 +500,7 @@
           language_code: "pt-pt"
       translation_toggle_label: "Other translations"
       more_info: "Custom information snippet."
+      publication_date: "31 August 2020"
   assertions:
     count:
       'svg.ecl-file__icon': 1
@@ -514,6 +515,7 @@
       'a.ecl-file__translation-download[hreflang="it"]': 1
       'a.ecl-file__translation-download[hreflang="hu"]': 1
       'a.ecl-file__translation-download[hreflang="pt"]': 1
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item': 1
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
@@ -529,6 +531,7 @@
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-description': "Custom information snippet."
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': '31 AUGUST 2020'
 - array:
     '#type': pattern
     '#id': file_translation
@@ -556,12 +559,13 @@
       'div.ecl-file__translation-container': 1
       'li.ecl-file__translation-item a.ecl-file__translation-download': 1
       'a.ecl-file__translation-download[href="http://example.com/document_fr.xls"]': 1
+      '.ecl-file__info .ecl-file__detail-meta span.ecl-file__detail-meta-item': 0
     equals:
       'div.ecl-file__title': "File title example"
       'div.ecl-file__language': "English"
       'div.ecl-file__meta': "(9.77 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-description': "Custom information snippet."
@@ -743,7 +747,7 @@
       'div.ecl-file__info div.ecl-file__language': "English"
       'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
       'a.ecl-file__download .ecl-link__label': "Download"
-      'button.ecl-file__translation-toggle .ecl-button__label': "Available translations (1)"
+      'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
@@ -891,18 +895,19 @@
           variant: "high"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
-      'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
-      'span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': 1
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'span.ecl-label.ecl-label--highlight': 1
+      'span.ecl-label.ecl-label--high': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
-      'article.ecl-content-item div.ecl-content-item__meta span.ecl-label.ecl-label--high.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.ecl-content-item ul.ecl-content-block__label-container span.ecl-label.ecl-label--highlight': "Highlighted"
+      'article.ecl-content-item ul.ecl-content-block__label-container span.ecl-label.ecl-label--high': "Status: Open"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -915,46 +920,42 @@
         - "Meta 1"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item..."
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item': "Meta 1"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item..."
 - array:
     '#type': pattern
     '#id': list_item
     '#fields':
       url: "http://example.com"
       title: "Item title"
-      additional_information:
-        - '#type': pattern
-          '#id': field_list
-          '#variant': horizontal
-          '#fields':
-            items:
-              - label: "When"
-                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
-              - label: "Where"
-                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      lists:
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
-      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
-      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
-      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list': 1
+      'div.ecl-content-block__list-container .ecl-description-list__term': 2
+      'div.ecl-content-block__list-container .ecl-description-list__definition': 2
       'svg.ecl-icon.ecl-icon--s.ecl-link__icon': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -970,15 +971,17 @@
       icon: "check"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#check"></use>'
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link span.ecl-link__label': "Item title"
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__description': "<div>This is the detail. It...</div>"
+      # @todo Restore when FRONT-3726 is fixed.
+#      'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after svg.ecl-icon.ecl-icon--s.ecl-link__icon' : '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#check"></use>'
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-block__description': "<div>This is the detail. It...</div>"
 - array:
     '#type': pattern
     '#id': list_item
@@ -993,14 +996,15 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': '<div>This <a href="https://example.com">is the detail</a> with a link...</div>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1015,14 +1019,15 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '&lt;div&gt;This is the detail...'
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': '&lt;div&gt;This is the detail...'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1039,14 +1044,15 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1063,15 +1069,16 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
       'article > div .ecl-description-list': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': '<p>&lt;div&gt;This is the detail...</p>'
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': '<p>&lt;div&gt;This is the detail...</p>'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1080,7 +1087,7 @@
       length: 32
   assertions:
     equals:
-      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+      'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1090,7 +1097,7 @@
       length: 32
   assertions:
     equals:
-      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+      'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1100,7 +1107,7 @@
       length: 32
   assertions:
     equals:
-      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+      'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1110,7 +1117,7 @@
       length: 32
   assertions:
     equals:
-      'article.ecl-content-item div.ecl-content-item__description': "This is a very long description..."
+      'article.ecl-content-item div.ecl-content-block__description': "This is a very long description..."
 - array:
     '#type': pattern
     '#id': list_item
@@ -1127,14 +1134,16 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for primary image"].ecl-u-d-l-block': 1
-      'article.ecl-content-item div.ecl-content-item__image__before': 1
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for primary image"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/150x150"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1151,14 +1160,16 @@
         - "Meta 2"
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[aria-label="Alternate text for secondary image"].ecl-u-d-l-block': 1
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 1
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
+      'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--right': 1
     equals:
-      'article.ecl-content-item div.ecl-content-item__meta div.ecl-u-mt-xs': "Meta 1 | Meta 2"
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "Item text"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "Meta 1"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "Meta 2"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1260,20 +1271,19 @@
           variant: "medium"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
-      'span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': 1
-      'span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': 1
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--highlight.ecl-u-mr-xs': "Highlighted"
-      'article.ecl-content-item-date div.ecl-content-item-date__meta span.ecl-label.ecl-label--medium.ecl-u-mr-xs.ecl-u-type-color-black': "Status: Open"
-      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
+      'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--highlight': "Highlighted"
+      'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--medium': "Status: Open"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
 - array:
     '#type': pattern
     '#id': list_item
@@ -1291,35 +1301,31 @@
       meta:
         - "News article"
         - "6 July 2015"
-      additional_information:
-        - '#type': pattern
-          '#id': field_list
-          '#variant': horizontal
-          '#fields':
-            items:
-              - label: "When"
-                body: "Thursday 15 November, 08:00 AM to Friday 16 November"
-              - label: "Where"
-                body: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      lists:
+        -
+          - term: "When"
+            definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+          - term: "Where"
+            definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
   assertions:
     count:
-      'article.ecl-content-item-date div.ecl-content-item-date__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date': 1
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month[title="July"]': 1
-      'div.ecl-content-item__additional_information .ecl-description-list.ecl-description-list--horizontal': 1
-      'div.ecl-content-item__additional_information .ecl-description-list__term': 2
-      'div.ecl-content-item__additional_information .ecl-description-list__definition': 2
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
+      'div.ecl-content-block__list-container .ecl-description-list__term': 2
+      'div.ecl-content-block__list-container .ecl-description-list__definition': 2
     equals:
-      'article.ecl-content-item-date div.ecl-content-item-date__meta div.ecl-u-mt-xs': "News article | 6 July 2015"
-      'article.ecl-content-item-date div.ecl-content-item-date__title .ecl-link': "Item title"
-      'article.ecl-content-item-date div.ecl-content-item-date__description': "Item text"
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__day': '14'
-      'article.ecl-content-item-date div.ecl-content-item-date__date abbr.ecl-date-block__month': 'Jul'
-      'article.ecl-content-item-date div.ecl-content-item-date__date span.ecl-date-block__year': '2021'
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(1)': "When"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__term:nth-child(3)': "Where"
-      'div.ecl-content-item__additional_information .ecl-description-list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': "News article"
+      'article.ecl-content-item ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': "6 July 2015"
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-block__description': "Item text"
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__day': '14'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month': 'Jul'
+      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date span.ecl-date-block__year': '2021'
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(1)': "When"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(2)': "Thursday 15 November, 08:00 AM to Friday 16 November"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__term:nth-child(3)': "Where"
+      'div.ecl-content-block__list-container dl.ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list .ecl-description-list__definition:nth-child(4)': "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1333,7 +1339,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--canceled': 1
+      'time.ecl-date-block.ecl-date-block--cancelled.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
@@ -1347,7 +1353,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--ongoing': 1
+      'time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
@@ -1361,7 +1367,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--past': 1
+      'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item
@@ -1372,13 +1378,13 @@
       detail: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
   assertions:
     count:
-      'article.ecl-content-item div.ecl-content-item__title a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item div[role="img"].ecl-u-d-l-block': 0
-      'article.ecl-content-item div.ecl-content-item__image__before': 0
-      'article.ecl-content-item div.ecl-content-item__image__after': 0
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link[href="http://example.com"]': 1
+      'article.ecl-content-item picture.ecl-content-item__picture--large img.ecl-content-item__image': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--large.ecl-content-item__picture--left': 0
+      'article.ecl-content-item picture.ecl-content-item__picture--large.ecl-content-item__picture--right': 0
     equals:
-      'article.ecl-content-item div.ecl-content-item__title .ecl-link': "Item title"
-      'article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title .ecl-link': "Item title"
+      'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1409,8 +1415,8 @@
       'div.ecl-content-item-block__button a.ecl-link--icon.ecl-link--standalone svg': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
       'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
@@ -1443,8 +1449,8 @@
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
       'div.ecl-content-item-block__button a.ecl-link--standalone.ecl-link--icon-after svg': 1
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
       'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
@@ -1479,8 +1485,8 @@
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
       'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use>'
 - array:
@@ -1507,8 +1513,8 @@
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1538,8 +1544,8 @@
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use></svg>'
 - array:
     '#type': pattern
@@ -1571,8 +1577,8 @@
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before[href="http://example.com"]': 1
     equals:
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': "Block title"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "Business, Economy, Euro"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "Business, Economy, Euro"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link': '<svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use></svg><span class="ecl-link__label">View all</span>'
 - array:
     '#type': pattern
@@ -1601,10 +1607,10 @@
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
 - array:
     '#type': pattern
     '#id': list_item_block_two_columns
@@ -1636,10 +1642,10 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-before[href="http://example.com"]': 1
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
       'a.ecl-link': '<svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use></svg><span class="ecl-link__label">View all</span>'
 - array:
     '#type': pattern
@@ -1678,23 +1684,23 @@
       'div.ecl-content-item-block__title h2.ecl-u-type-heading-2': 0
       'div.ecl-content-item-block__item': 8
       'div.ecl-content-item-block__item.ecl-col-l-6': 0
-      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4': 3
+      'div.ecl-content-item-block__item.ecl-u-mb-l.ecl-col-12.ecl-col-l-4': 3
       'div.ecl-content-item-block__item.ecl-col-l-6 article.ecl-content-item': 0
-      'div.ecl-content-item-block__item.ecl-u-mb-s.ecl-col-12.ecl-col-l-4 div.ecl-content-item-block__item.ecl-u-mb-s': 5
+      'div.ecl-content-item-block__item.ecl-u-mb-l.ecl-col-12.ecl-col-l-4 div.ecl-content-item-block__item.ecl-u-mb-l': 5
       'div.ecl-content-item-block__item.ecl-col-l-4 article.ecl-content-item': 5
       'div.ecl-content-item-block__button': 0
       'div.ecl-content-item-block__button a.ecl-link[href="http://example.com"]': 0
     equals:
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-item__description': "Description for list item 2."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__title': "List item 3"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__description': "Description for list item 3."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-item__title': "List item 4"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(2) article div.ecl-content-item__description': "Description for list item 4."
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__title': "List item 5"
-      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-s:nth-child(1) article div.ecl-content-item__description': "Description for list item 5."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(1) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article div.ecl-content-block__description': "Description for list item 2."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 3"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article h1.ecl-content-block__title': "List item 4"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(2) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(2) article div.ecl-content-block__description': "Description for list item 4."
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article h1.ecl-content-block__title': "List item 5"
+      'div.ecl-content-item-block__item.ecl-col-12.ecl-col-l-4:nth-child(3) div.ecl-content-item-block__item.ecl-u-mb-l:nth-child(1) article div.ecl-content-block__description': "Description for list item 5."
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -1741,16 +1747,16 @@
       'div.ecl-content-item-block__button': 1
       'div.ecl-content-item-block__button a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after[href="http://example.com"]': 1
     equals:
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__title': "List item 1"
-      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__description': "Description for list item 1."
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__title': "List item 2"
-      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__description': "Description for list item 2."
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__title': "List item 3"
-      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__description': "Description for list item 3."
-      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-item__title': "List item 4"
-      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-item__description': "Description for list item 4."
-      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__title': "List item 5"
-      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__description': "Description for list item 5."
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 1"
+      'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 2"
+      'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
+      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 3"
+      'div.ecl-content-item-block__item:nth-child(3) article.ecl-content-item div.ecl-content-block__description': "Description for list item 3."
+      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 4"
+      'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-block__description': "Description for list item 4."
+      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title': "List item 5"
+      'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-block__description': "Description for list item 5."
       'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#language"></use></svg>'
 - array:
     '#type': pattern
@@ -2755,7 +2761,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
@@ -2788,7 +2794,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
@@ -2820,7 +2826,7 @@
       'div.ecl-featured-item__title': 0
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
     equals:
@@ -2845,7 +2851,7 @@
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-featured-item__item.ecl': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
     equals:
@@ -2872,7 +2878,7 @@
       'div.ecl-featured-item__title': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
@@ -2894,7 +2900,7 @@
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 0
       'div.ecl-col-md-6.ecl-u-mb-m.ecl-u-mb-md-none': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe': 0
+      'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'h2.ecl-u-type-heading-2': 1
       'a.ecl-link': 0
@@ -2922,7 +2928,7 @@
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       'figure.ecl-media-container.ecl-featured-item__media_container.ecl-featured-item__media_container': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
     equals:
@@ -2942,7 +2948,7 @@
       video_ratio: "invalid"
   assertions:
     count:
-      'div.ecl-media-container__media--ratio-16-9 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -3533,7 +3539,7 @@
           url: "https://example.com"
           url_text: "CTA 1"
           image: "https://placeimg.com/640/480/tech"
-          variant: "image"
+          variant: "text-box"
           centered: false
           credit: "© Copyright first item"
         - title: "Duis vitae pulvinar turpis"
@@ -3541,24 +3547,23 @@
           url: "https://example.com"
           url_text: "CTA 2"
           image: "https://placeimg.com/640/480/arch"
-          variant: "image-gradient"
+          variant: "text-highlight"
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus."
           url: "https://example.com"
           url_text: "CTA 3"
         - title: "Donec maximus pharetra ex a ultricies"
           image: "https://placeimg.com/640/480/tech"
-          variant: "image-shade"
+          variant: "image-overlay"
           credit: "© Copyright fourth item"
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
-          variant: "secondary"
+          variant: "text-highlight"
           centered: false
         - title: "Duis vitae pulvinar turpis"
           url: "https://example.com"
           url_text: "CTA 4"
-          variant: "white"
-          centered: false
+          variant: "text-box"
   assertions:
     count:
       div.ecl-carousel.ecl-carousel--full-width: 0
@@ -3566,37 +3571,37 @@
       div.ecl-carousel__container: 1
       div.ecl-carousel__slides: 1
       div.ecl-carousel__slide: 6
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-box: 2
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner.ecl-banner--text-box.ecl-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-highlight: 2
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-highlight.ecl-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--primary.ecl-banner--m.ecl-banner--centered: 1
       div.ecl-carousel__controls: 1
-      section.ecl-page-banner--image div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      section.ecl-page-banner--image-gradient div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--secondary: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner.ecl-page-banner--white: 1
-      section.ecl-page-banner--image-shade div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content p.ecl-page-banner__description: 0
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 0
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content p.ecl-page-banner__description: 0
+      section.ecl-banner--text-box div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      section.ecl-banner--text-highlight div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--image-overlay.ecl-banner--centered: 1
+      section.ecl-banner--image-overlay div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 0
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
+      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content p.ecl-banner__description: 0
     contains:
-      div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__content div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-page-banner--image div.ecl-page-banner__credit: '© Copyright first item'
-      div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered p.ecl-page-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide div.ecl-page-banner.ecl-page-banner--image-gradient.ecl-page-banner--centered div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered p.ecl-page-banner__description: 'Integer quis lorem tellus.'
-      div.ecl-carousel__slide section.ecl-page-banner--primary div.ecl-page-banner.ecl-page-banner--primary.ecl-page-banner--centered div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__credit: '© Copyright fourth item'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 4'
+      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 1'
+      div.ecl-carousel__slide section.ecl-banner--image div.ecl-banner__credit: '© Copyright first item'
+      div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide div.ecl-banner.ecl-banner--image-gradient.ecl-banner--centered div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 2'
+      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered p.ecl-banner__description: 'Integer quis lorem tellus.'
+      div.ecl-carousel__slide section.ecl-banner--primary div.ecl-banner.ecl-banner--primary.ecl-banner--centered div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--centered div.ecl-banner__credit: '© Copyright fourth item'
+      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--secondary div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-banner--white div.ecl-banner__content div.ecl-banner__cta a[href="http://example.com"] span.ecl-link__label: 'CTA 4'
       div.ecl-carousel__pagination: 'of 6'
 - array:
     '#type': 'pattern'
@@ -3608,18 +3613,18 @@
           url: "https://example.com"
           url_text: "CTA 1"
           image: "https://placeimg.com/640/480/tech"
-          variant: "image-shade"
+          variant: "text-box"
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA 2"
-          variant: "secondary"
+          variant: "plain-background"
           centered: false
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA 3"
-          variant: "white"
+          variant: "plain-background"
           centered: false
       counter_label: 'in'
       full_width: true
@@ -3627,18 +3632,17 @@
     count:
       div.ecl-carousel.ecl-carousel--full-width: 1
       div.ecl-carousel__slide: 3
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--image-shade.ecl-page-banner--centered: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner--secondary: 1
-      div.ecl-carousel__slide section.ecl-page-banner.ecl-page-banner.ecl-page-banner--white: 1
-      section.ecl-page-banner--image-shade div.ecl-page-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-box.ecl-banner--centered: 1
+      div.ecl-carousel__slide section.ecl-banner.ecl-banner--plain-background: 2
+      section.ecl-banner--text-box div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
     contains:
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__title: 'Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content p.ecl-page-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'
-      div.ecl-carousel__slide section.ecl-page-banner--image-shade.ecl-page-banner--centered div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 'CTA 1'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__title: 'Lorem ipsum dolor sit amet'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content p.ecl-page-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-page-banner--secondary div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 'CTA 2'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__title: 'Duis vitae pulvinar turpis'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content p.ecl-page-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
-      div.ecl-carousel__slide section.ecl-page-banner--white div.ecl-page-banner__content div.ecl-page-banner__cta a span.ecl-link__label: 'CTA 3'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'
+      div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 1'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content div.ecl-banner__title: 'Lorem ipsum dolor sit amet'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content p.ecl-banner__description: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(1) div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 2'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content div.ecl-banner__title: 'Duis vitae pulvinar turpis'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
+      div.ecl-carousel__slide section.ecl-banner--plain-background:nth-child(2) div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 'CTA 3'
       div.ecl-carousel__pagination: 'in 3'

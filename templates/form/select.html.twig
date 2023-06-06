@@ -33,7 +33,7 @@
   {% set wrapper_attributes = wrapper_attributes.addClass('ecl-select__container--disabled') %}
 {% endif %}
 
-{% spaceless %}
+{% apply spaceless %}
   <div{{ wrapper_attributes }}>
     <select{{ attributes.addClass(extra_classes) }}>
       {% for option in options %}
@@ -60,4 +60,4 @@
       } only %}
     </div>
   </div>
-{% endspaceless %}
+{% endapply %}

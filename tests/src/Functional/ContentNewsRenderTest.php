@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\Core\Url;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
@@ -19,7 +20,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'config',
     'system',
     'oe_theme_helper',
@@ -202,14 +203,26 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     // Assert Featured media field.
     $this->assertSession()->elementNotExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l');
 
-    $media = $this->createMediaImage('news_featured_media');
+    // Create a remote video and add it to the node.
+    $media = $this->getStorage('media')->create([
+      'bundle' => 'remote_video',
+      'oe_media_oembed_video' => [
+        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ]);
+    $media->save();
     $node->set('oe_news_featured_media', [$media])->save();
     $this->drupalGet($node->toUrl());
-
-    $picture = $this->assertSession()->elementExists('css', 'article[role=article] article.ecl-u-type-paragraph.ecl-u-mb-l picture');
-    $image = $this->assertSession()->elementExists('css', 'img.ecl-u-width-100.ecl-u-height-auto', $picture);
-    $this->assertStringContainsString('files/styles/oe_theme_medium_no_crop/public/placeholder_news_featured_media.png', $image->getAttribute('src'));
-    $this->assertEquals('Alternative text news_featured_media', $image->getAttribute('alt'));
+    $media_container = $this->assertSession()->elementExists('css', 'article.ecl-u-type-paragraph.ecl-u-mb-l figure.ecl-media-container');
+    $video = $this->assertSession()->elementExists('css', 'div.ecl-media-container__media iframe', $media_container);
+    $partial_video_url = Url::fromRoute('media.oembed_iframe', [], [
+      'query' => [
+        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ])->toString();
+    $this->assertStringContainsString($partial_video_url, $video->getAttribute('src'));
+    $this->assertStringContainsString('200', $video->getAttribute('width'));
+    $this->assertStringContainsString('150', $video->getAttribute('height'));
 
     // Unpublish the media and assert it is not rendered anymore.
     $media->set('status', 0);

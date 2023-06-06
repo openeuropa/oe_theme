@@ -137,7 +137,7 @@ class FeaturedItemAssert extends BasePatternAssert {
       if (!isset($badge['label']) || !isset($badge['variant'])) {
         continue;
       }
-      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'] . '.ecl-u-mr-xs';
+      $selector = $base_selector . ' span.ecl-label.ecl-label--' . $badge['variant'];
       self::assertStringContainsString($badge['label'], $crawler->filter($selector)->text());
     }
   }

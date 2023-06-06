@@ -35,6 +35,10 @@ class PersonJobLabelExtraField extends ExtraFieldDisplayFormattedBase {
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
+    // Do not show Person job label at all if the description field is empty.
+    if ($entity->get('oe_description')->isEmpty()) {
+      $this->isEmpty = TRUE;
+    }
     return ['#markup' => $entity->label()];
   }
 

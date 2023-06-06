@@ -2,7 +2,7 @@ name: OpenEuropa Theme
 type: theme
 description: OpenEuropa base theme.
 package: OpenEuropa
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4 || ^10
 
 base theme: stable
 

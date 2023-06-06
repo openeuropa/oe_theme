@@ -25,6 +25,7 @@ use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalPhotoSource;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\node\NodeInterface;
+use Drupal\oe_content_person\Entity\PersonJobInterface;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -74,10 +75,10 @@ function oe_theme_form_system_theme_settings_alter(&$form, FormStateInterface &$
 function oe_theme_preprocess(&$variables) {
   $variables['ecl_component_library'] = theme_get_setting('component_library');
   $variables['ecl_branding'] = theme_get_setting('branding') ?? 'core';
-  $variables['ecl_images_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
+  $variables['ecl_images_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images';
   $variables['ecl_icon_path'] = $variables['ecl_images_path'] . '/icons/sprites/icons.svg';
   $variables['ecl_logo_path'] = $variables['ecl_images_path'] . '/logo';
-  $variables['ecl_social_icon_path'] = base_path() . drupal_get_path('theme', 'oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
+  $variables['ecl_social_icon_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
   $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -330,7 +331,7 @@ function oe_theme_preprocess_input__checkbox(array &$variables): void {
  * Implements template_preprocess_input__date().
  */
 function oe_theme_preprocess_input__date(array &$variables): void {
-  $php_date_format = !empty($variables['attributes']['data-drupal-date-format'] && is_array($variables['attributes']['data-drupal-date-format'])) ? reset($variables['attributes']['data-drupal-date-format']) : 'Y-m-d';
+  $php_date_format = $variables['element']['#date_date_format'] ?? 'Y-m-d';
   $format_map = [
     // @todo find a cleverer way of mapping PHP date formats to the expected
     // ECL ones.
@@ -812,19 +813,26 @@ function oe_theme_preprocess_paragraph__oe_list_item(array &$variables): void {
 
   $list_item_variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   $variables['variant'] = $list_item_variant ?? 'default';
-  $url = $paragraph->get('field_oe_link')->first()->getUrl();
-  $variables['url'] = $url;
-  $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+  if (!$paragraph->get('field_oe_link')->isEmpty()) {
+    $url = $paragraph->get('field_oe_link')->first()->getUrl();
+    if (!$url->isRouted() || !in_array($url->getRouteName(), [
+      '<nolink>',
+      '<button>',
+    ])) {
+      $variables['url'] = $url;
+      $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+    }
+  }
 
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
   // Extract the image if present.
-  if (!$paragraph->get('field_oe_image')->isEmpty()) {
+  if (!$paragraph->get('field_oe_image')->isEmpty() && $variables['variant'] !== 'default') {
     /** @var \Drupal\file\Plugin\Field\FieldType\FileItem $image_item */
     $image_item = $paragraph->get('field_oe_image')->first();
     $file = $image_item->get('entity')->getValue();
     $variables['image'] = [
-      'src' => file_url_transform_relative(file_create_url($file->getFileUri())),
+      'src' => \Drupal::service('file_url_generator')->generateString($file->getFileUri()),
       'alt' => $image_item->get('alt')->getValue(),
     ];
 
@@ -984,8 +992,10 @@ function oe_theme_preprocess_paragraph__oe_text_feature_media(array &$variables)
   $source = $media->getSource();
 
   if ($source instanceof MediaAvPortalVideoSource || $source instanceof OEmbed || $source instanceof Iframe) {
-    // Default video aspect ratio is set to 16:9.
-    $variables['ratio'] = '16:9';
+    if ($source instanceof MediaAvPortalVideoSource) {
+      // Default video aspect ratio is set to 16:9 for AV Portal Video.
+      $variables['ratio'] = '16:9';
+    }
 
     // Load information about the media and the display.
     $media_type = \Drupal::entityTypeManager()->getStorage('media_type')->load($media->bundle());
@@ -1246,7 +1256,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     $variables['logo_aria_label'] = t('Home') . ' - ' . t('European Commission');
     $variables['site_logo_alt'] = t('European Commission logo');
     $variables['site_logo_title'] = t('European Commission');
-    $site_logo_href = 'https://ec.europa.eu/info';
+    $site_logo_href = 'https://commission.europa.eu';
   }
   else {
     $variables['logo_aria_label'] = t('Home') . ' - ' . t('European Union');
@@ -1264,7 +1274,7 @@ function oe_theme_preprocess_block__system_branding_block(&$variables) {
     }
     else {
       // Check whether ECL provides a logo for the language.
-      $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
+      $ecl_logo = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
       $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'positive/';
       $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
       if (!file_exists($ecl_logo)) {
@@ -1455,7 +1465,7 @@ function oe_theme_preprocess_pattern_link__preview(array &$variables): void {
 function oe_theme_preprocess_pattern_page_header__preview(array &$variables): void {
   // We are going to accept only local images for the background image
   // of the preview.
-  $variables['background_image_url'] = base_path() . drupal_get_path('module', 'oe_theme_helper') . '/images/' . $variables['background_image_url'];
+  $variables['background_image_url'] = base_path() . \Drupal::service('extension.list.module')->getPath('oe_theme_helper') . '/images/' . $variables['background_image_url'];
 }
 
 /**
@@ -1497,6 +1507,8 @@ function oe_theme_preprocess_paragraph__oe_timeline(array &$variables): void {
     $variables['heading'] = $paragraph->get('field_oe_title')->value;
   }
   $variables['limit'] = $paragraph->get('field_oe_timeline_expand')->value;
+  // Show the last item of the timeline.
+  $variables['limit_to'] = count($variables['content']['field_oe_timeline']['#items']) - 1;
   $variables['items'] = $variables['content']['field_oe_timeline']['#items'];
 }
 
@@ -1598,7 +1610,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
   }
 
   $values = [
-    'src' => file_create_url($uri),
+    'src' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
     'name' => $media->getName(),
   ];
@@ -1661,8 +1673,7 @@ function oe_theme_preprocess_field__media__oe_media_iframe__video_iframe__oe_the
  *   Prepared ratio to be used in templates.
  */
 function _oe_theme_get_oe_media_iframe_ratio(MediaInterface $media): string {
-  $ratio = $media->get('oe_media_iframe_ratio')->value ?? 'custom';
-  return str_replace('_', '-', $ratio);
+  return $media->get('oe_media_iframe_ratio')->isEmpty() ? '' : str_replace('_', '-', $media->get('oe_media_iframe_ratio')->value);
 }
 
 /**
@@ -1714,6 +1725,14 @@ function oe_theme_theme_suggestions_oe_corporate_blocks_eu_footer_alter(array &$
  * Implements hook_preprocess_HOOK().
  */
 function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
+  _oe_theme_preprocess_footer_logo($variables);
+  $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
+  if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
+    $variables['path'] = 'https://commission.europa.eu/index_en';
+  }
+  else {
+    $variables['path'] = 'https://commission.europa.eu/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
+  }
   _oe_theme_preprocess_site_specific_footer_links($variables);
 }
 
@@ -1724,32 +1743,49 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['logo_description'] = t('Discover more on @link', [
     '@link' => new FormattableMarkup('<a href="https://europa.eu/" class="ecl-link ecl-link--standalone">europa.eu</a>', []),
   ]);
-  $site_logo_href = 'https://european-union.europa.eu';
-  // Ensure the site logo falls back to english version if the language is
-  // not EU language.
+  _oe_theme_preprocess_footer_logo($variables);
   $language_code = \Drupal::languageManager()->getCurrentLanguage()->getId();
   if (!EuropeanUnionLanguages::hasLanguage($language_code)) {
-    if ($language_code === 'nb') {
-      // Set correct icon for Norwegian language.
-      $variables['current_language_id'] = 'no';
-    }
-    else {
-      // Check whether ECL provides a logo for the language.
-      $ecl_logo = DRUPAL_ROOT . '/' . drupal_get_path('theme', 'oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
-      $ecl_logo .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'positive/';
-      $ecl_logo .= 'logo-' . $variables['ecl_component_library'] . '--' . $language_code . '.svg';
-      if (!file_exists($ecl_logo)) {
-        // Provide fallback "en" icon if language logo doesn't exist.
-        $variables['current_language_id'] = 'en';
-      }
-    }
+    $variables['path'] = 'https://european-union.europa.eu/index_en';
   }
   else {
-    $site_logo_href .= '/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
+    $variables['path'] = 'https://european-union.europa.eu/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
-  $variables['path'] = $site_logo_href;
+  $variables['mobile_logo_path'] = str_replace('standard', 'condensed', $variables['desktop_logo_path']);
 
   _oe_theme_preprocess_site_specific_footer_links($variables);
+}
+
+/**
+ * Sets the correct footer desktop logo path.
+ */
+function _oe_theme_preprocess_footer_logo(array &$variables): void {
+  // Ensure the site logo falls back to English version if the language is
+  // not EU language.
+  $footer_logo_path = $variables['ecl_logo_path'];
+  $footer_logo_path .= $variables['ecl_component_library'] === 'eu' ? '/standard-version/positive/' : '/negative/';
+  if (EuropeanUnionLanguages::hasLanguage($variables['current_language_id'])) {
+    $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']) . '.svg';
+  }
+  else {
+    if ($variables['current_language_id'] === 'nb') {
+      // Set correct icon for Norwegian language.
+      $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--no.svg';
+      return;
+    }
+    // Check whether ECL provides a logo for the language.
+    $logo_file = DRUPAL_ROOT . '/' . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/' . $variables['ecl_component_library'] . '/images/logo/';
+    $logo_file .= $variables['ecl_component_library'] === 'eu' ? 'standard-version/positive/' : 'negative/';
+    $logo_file .= 'logo-' . $variables['ecl_component_library'] . '--' . $variables['current_language_id'] . '.svg';
+    if (!file_exists($logo_file)) {
+      // Provide "en" logo as default, if a logo for the current language
+      // doesn't exist.
+      $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--en.svg';
+      return;
+    }
+    // If there is a logo file for the current language, we use it.
+    $variables['desktop_logo_path'] = $footer_logo_path . 'logo-' . $variables['ecl_component_library'] . '--' . $variables['current_language_id'] . '.svg';
+  }
 }
 
 /**
@@ -1936,7 +1972,7 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
       elseif ($source instanceof MediaAvPortalSourceInterface) {
         // Media AV Portal Photo.
         $resource_ref = $media->get($field_name)->value;
-        $url = file_create_url('avportal://' . $resource_ref . '.jpg');
+        $url = \Drupal::service('file_url_generator')->generateAbsoluteString('avportal://' . $resource_ref . '.jpg');
       }
 
       if ($url) {
@@ -2069,12 +2105,102 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'description' => !$sub_paragraph->get('field_oe_text')->isEmpty() ? $sub_paragraph->get('field_oe_text')->value : '',
       'url' => $link ?? '',
       'url_text' => $link_text ?? '',
-      'image' => file_create_url($uri),
+      'image' => \Drupal::service('file_url_generator')->generateAbsoluteString($uri),
       'centered' => FALSE,
       // The paragraph has a required image field, so we need to set a default
       // image variant in order to render the image.
-      'variant' => 'image-gradient',
+      'variant' => 'text-highlight',
     ];
     $cacheability->applyTo($variables);
+  }
+}
+
+/**
+ * Implements hook_preprocess_node() for oe_person node.
+ */
+function oe_theme_preprocess_node__oe_person__teaser(array &$variables): void {
+  $builder_oe_contact = \Drupal::entityTypeManager()->getViewBuilder('oe_contact');
+  $builder_node = \Drupal::entityTypeManager()->getViewBuilder('node');
+  $variables['contacts'] = [];
+  if (!empty($variables['content']['oe_person_contacts'])) {
+    foreach (Element::children($variables['content']['oe_person_contacts']) as $index) {
+      $items = [];
+      $item = $variables['content']['oe_person_contacts'][$index];
+      if ($item['#oe_contact']->bundle() === 'oe_general') {
+        $item_build = $builder_oe_contact->build($item);
+        field_group_build_entity_groups($item_build);
+        if (!empty($item_build['group_contact_information']['pattern']['#fields']['items'])) {
+          $items = $item_build['group_contact_information']['pattern']['#fields']['items'];
+        }
+      }
+      elseif ($item['#oe_contact']->bundle() === 'oe_organisation_reference') {
+        $item_build = $builder_oe_contact->build($item);
+        if (!empty($item_build['oe_node_reference'])) {
+          foreach (Element::children($item_build['oe_node_reference']) as $reference_index) {
+            $item_build = $builder_node->build($item_build['oe_node_reference'][$reference_index]);
+            if (!empty($item_build['oe_organisation_contact'])) {
+              foreach (Element::children($item_build['oe_organisation_contact']) as $contact_index) {
+                $contact_item = $item_build['oe_organisation_contact'][$contact_index];
+                $contact_item_build = $builder_oe_contact->build($contact_item);
+                field_group_build_entity_groups($contact_item_build);
+                if (!empty($contact_item_build['group_contact_information']['pattern']['#fields']['items'])) {
+                  $items = $contact_item_build['group_contact_information']['pattern']['#fields']['items'];
+                }
+              }
+            }
+          }
+        }
+      }
+      $variables['contacts'][] = $items;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node() for oe_organisation node.
+ */
+function oe_theme_preprocess_node__oe_organisation__teaser(array &$variables): void {
+  if (!empty($variables['content']['extra_field_oe_theme_content_organisation_teaser_details'])) {
+    $variables['teaser_details'] = [];
+    foreach (Element::children($variables['content']['extra_field_oe_theme_content_organisation_teaser_details']) as $index) {
+      $variables['teaser_details'][] = $variables['content']['extra_field_oe_theme_content_organisation_teaser_details'][$index]['#fields']['items'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_oe_theme_helper_in_page_navigation() for oe_person node.
+ */
+function oe_theme_preprocess_oe_theme_helper_in_page_navigation__node__oe_person(array &$variables): void {
+  if (empty($variables['items'])) {
+    return;
+  }
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  foreach ($variables['items'] as $key => $item) {
+    if ($item['id'] === 'responsibilities' && !empty($item['content']['oe_person_jobs']['#items'])) {
+      $empty = TRUE;
+      $single_role = count(Element::children($item['content']['oe_person_jobs'])) === 1;
+      foreach (Element::children($item['content']['oe_person_jobs']) as $delta) {
+        if (!$item['content']['oe_person_jobs'][$delta]['#oe_person_job'] instanceof PersonJobInterface) {
+          continue;
+        }
+        $person_job = $item['content']['oe_person_jobs'][$delta]['#oe_person_job'];
+        $cacheability->addCacheableDependency($person_job);
+
+        if (!$person_job->get('oe_description')->isEmpty()) {
+          $empty = FALSE;
+          continue;
+        }
+        $variables['items'][$key]['content']['oe_person_jobs'][$delta]['#access'] = FALSE;
+      }
+      $cacheability->applyTo($variables);
+      if ($empty) {
+        unset($variables['items'][$key]);
+        break;
+      }
+      if ($single_role) {
+        $variables['items'][$key]['content']['oe_person_jobs'][Element::children($item['content']['oe_person_jobs'])[0]]['#view_mode'] = 'description_only';
+      }
+    }
   }
 }

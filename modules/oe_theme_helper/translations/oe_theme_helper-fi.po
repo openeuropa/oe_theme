@@ -469,8 +469,8 @@ msgstr "Päättynyt"
 msgid "Upcoming and open"
 msgstr "Tulossa tai meneillään"
 
-msgid "This page is not available in English."
-msgstr "Tätä sivua ei ole saatavilla suomen kielellä."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Sivua ei ole suomeksi – voit tilata konekäännöksen seuraavasta linkistä."
 
 msgid "Choose another language"
 msgstr "Valitse toinen kieli"
@@ -522,7 +522,7 @@ msgstr "Nimi"
 msgid "I have read and agree with the @link"
 msgstr "Olen lukenut @link ja hyväksyn sen ehdot"
 
-msgid "data protection terms"
+msgid "personal data protection terms"
 msgstr "tietosuojaselosteen"
 
 msgid "Highlighted"
@@ -617,3 +617,6 @@ msgstr "Tämä suoratoisto on alkanut."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "Suora lähetys on päättynyt, mutta tapahtuma jatkuu edelleen."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage % kokonaisbudjetista"

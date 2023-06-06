@@ -6,6 +6,7 @@
 #}
 {{ pattern('timeline', {
   'limit': limit,
+  'limit_to': items | length - 1,
   'button_label': show_more,
   'items': items,
 }) }}

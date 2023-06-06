@@ -9,8 +9,6 @@ use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -26,7 +24,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'options',
     'field_group',
     'composite_reference',
@@ -53,7 +51,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'oe_theme_content_consultation',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     $this->setUpCurrentUser([], [], TRUE);
@@ -106,25 +104,23 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         ],
       ],
       'image' => NULL,
-      'additional_information' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Opening date',
-              'body' => '14 February 2020',
-            ],
-            [
-              'label' => 'Deadline',
-              'body' => '21 February 2020, 01:00 (AEDT)',
-            ],
+      'lists' => [
+        'items' => [
+          [
+            'label' => 'Opening date',
+            'body' => '14 February 2020',
           ],
-        ]),
+          [
+            'label' => 'Deadline',
+            'body' => '21 February 2020, 01:00 (AEDT)',
+          ],
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--high.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--high');
     $this->assertCount(1, $actual);
 
     // Test short title fallback.
@@ -152,24 +148,18 @@ class ConsultationRenderTest extends ContentRenderTestBase {
         'variant' => 'highlight',
       ],
     ];
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '14 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '17 February 2020, 12:00 (AEDT)',
-          ],
+    $expected_values['lists'] = [
+      'items' => [
+        [
+          'label' => 'Opening date',
+          'body' => '14 February 2020',
+        ], [
+          'label' => 'Deadline',
+          'body' => '17 February 2020, 12:00 (AEDT)',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
-
-    $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--low.ecl-u-type-color-black');
-    $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
     $opening_date->modify('+ 10 days');
@@ -184,23 +174,21 @@ class ConsultationRenderTest extends ContentRenderTestBase {
       'label' => 'Status: Upcoming',
       'variant' => 'medium',
     ];
-    $expected_values['additional_information'] = [
-      new PatternAssertState(new FieldListAssert(), [
-        'items' => [
-          [
-            'label' => 'Opening date',
-            'body' => '24 February 2020',
-          ], [
-            'label' => 'Deadline',
-            'body' => '21 February 2020, 12:00 (AEDT)',
-          ],
+    $expected_values['lists'] = [
+      'items' => [
+        [
+          'label' => 'Opening date',
+          'body' => '24 February 2020',
+        ], [
+          'label' => 'Deadline',
+          'body' => '21 February 2020, 12:00 (AEDT)',
         ],
-      ]),
+      ],
     ];
     $assert->assertPattern($expected_values, $html);
 
     $crawler = new Crawler($html);
-    $actual = $crawler->filter('span.ecl-label.ecl-label--medium.ecl-u-type-color-black');
+    $actual = $crawler->filter('span.ecl-label.ecl-label--medium');
     $this->assertCount(1, $actual);
   }
 

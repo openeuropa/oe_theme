@@ -2,7 +2,7 @@ name: OpenEuropa Theme Person Content
 type: module
 description: Companion module for the OE Content Person module
 package: OpenEuropa
-core_version_requirement: ^9.3
+core_version_requirement: ^9.4 || ^10
 
 dependencies:
   - extra_field:extra_field
@@ -21,7 +21,9 @@ config_devel:
     - core.entity_view_display.node.oe_organisation.oe_person_oe_contact
     - core.entity_view_display.oe_contact.oe_general.oe_person
     - core.entity_view_display.oe_contact.oe_organisation_reference.oe_person
+    - core.entity_view_display.oe_person_job.oe_default.description_only
     - core.entity_view_display.oe_person_job.oe_default.full
     - core.entity_view_mode.node.oe_person_oe_contact
     - core.entity_view_mode.oe_contact.oe_person
+    - core.entity_view_mode.oe_person_job.description_only
     - core.entity_view_mode.oe_person_job.full

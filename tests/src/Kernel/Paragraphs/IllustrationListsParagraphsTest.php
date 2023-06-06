@@ -18,7 +18,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'composite_reference',
     'media',
     'file_link',
@@ -39,17 +39,18 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installEntitySchema('media');
-
-    module_load_include('install', 'media');
-    media_install();
-    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
-    oe_paragraphs_media_field_storage_install(FALSE);
-
     $this->installConfig([
       'media',
       'options',
       'media_avportal',
+    ]);
+    $this->installEntitySchema('media');
+
+    $this->container->get('module_handler')->loadInclude('media', 'install');
+    media_install();
+    $this->container->get('module_handler')->loadInclude('oe_paragraphs_media_field_storage', 'install');
+    oe_paragraphs_media_field_storage_install(FALSE);
+    $this->installConfig([
       'oe_media',
       'oe_media_avportal',
       'oe_paragraphs_illustrations_lists',
@@ -281,7 +282,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
    */
   public function testIllustrationListImagesRendering(): void {
     // Create media image.
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 
@@ -369,7 +370,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         ], [
           'title' => 'Term 2',
           'image' => [
-            'src' => file_create_url('avportal://P-038924/00-15.jpg'),
+            'src' => $this->container->get('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg'),
             'alt' => 'Euro with miniature figurines',
           ],
         ], [

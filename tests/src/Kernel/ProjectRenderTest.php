@@ -8,9 +8,7 @@ use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_entity_organisation\Entity\Organisation;
-use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\ListItemAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternAssertState;
 use Drupal\Tests\user\Traits\UserCreationTrait;
 use Drupal\user\Entity\User;
 
@@ -26,7 +24,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
   /**
    * {@inheritdoc}
    */
-  public static $modules = [
+  protected static $modules = [
     'address',
     'datetime_range',
     'entity_reference_revisions',
@@ -64,7 +62,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
       'oe_theme_content_project',
     ]);
 
-    module_load_include('install', 'oe_content');
+    \Drupal::moduleHandler()->loadInclude('oe_content', 'install');
     oe_content_install(FALSE);
 
     // Set current user to UID 1, so that by default we can access everything.
@@ -76,7 +74,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
    * Test a project being rendered as a teaser.
    */
   public function testProjectTeaser(): void {
-    $file = file_save_data(file_get_contents(drupal_get_path('theme', 'oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
+    $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
 
@@ -167,15 +165,13 @@ class ProjectRenderTest extends ContentRenderTestBase {
         'alt' => '',
       ],
       'date' => NULL,
-      'additional_information' => [
-        new PatternAssertState(new FieldListAssert(), [
-          'items' => [
-            [
-              'label' => 'Project locations',
-              'body' => 'Belgium',
-            ],
+      'lists' => [
+        'items' => [
+          [
+            'label' => 'Project locations',
+            'body' => 'Belgium',
           ],
-        ]),
+        ],
       ],
     ];
     $assert->assertPattern($expected_values, $html);

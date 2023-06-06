@@ -469,8 +469,8 @@ msgstr "Prévios"
 msgid "Upcoming and open"
 msgstr "Proximamente e abertos"
 
-msgid "This page is not available in English."
-msgstr "Esta página não está disponível em português."
+msgid "English is available via machine translation – please use the link below."
+msgstr "Para obter uma tradução automática em português, clique na ligação abaixo."
 
 msgid "Choose another language"
 msgstr "Escolha outra língua"
@@ -522,8 +522,8 @@ msgstr "Nome"
 msgid "I have read and agree with the @link"
 msgstr "Li e concordo com as @link"
 
-msgid "data protection terms"
-msgstr "condições aplicáveis em matéria de proteção de dados"
+msgid "personal data protection terms"
+msgstr "condições de proteção de dados pessoais"
 
 msgid "Highlighted"
 msgstr "Em destaque"
@@ -617,3 +617,6 @@ msgstr "A transmissão em direto via Internet já começou."
 
 msgid "The livestream has ended, but the event is ongoing."
 msgstr "A transmissão em direto terminou, mas o evento prossegue."
+
+msgid "@percentage% of the overall budget"
+msgstr "@percentage% do orçamento global"
