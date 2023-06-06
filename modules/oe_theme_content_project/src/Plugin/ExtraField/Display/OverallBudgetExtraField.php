@@ -75,7 +75,7 @@ class OverallBudgetExtraField extends ExtraFieldDisplayFormattedBase implements 
    */
   public function viewElements(ContentEntityInterface $entity) {
     if ($entity->get('oe_project_eu_budget')->isEmpty()) {
-      return [];
+      $this->isEmpty = TRUE;
     }
     $build = [];
 

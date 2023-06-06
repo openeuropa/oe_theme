@@ -75,7 +75,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    */
   public function viewElements(ContentEntityInterface $entity) {
     if ($entity->get('oe_project_eu_budget')->isEmpty() && $entity->get('oe_project_eu_contrib')->isEmpty()) {
-      return [];
+      $this->isEmpty = TRUE;
     }
     $build = [];
 
@@ -99,7 +99,7 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
       return $build;
     }
 
-    if (!$entity->get('oe_project_eu_contrib')->isEmpty() && !$entity->get('oe_project_eu_contrib')->isEmpty()) {
+    if (!$entity->get('oe_project_eu_budget')->isEmpty() && !$entity->get('oe_project_eu_contrib')->isEmpty()) {
       // Compute budget percentage field value.
       $percentage = $this->getPercentage((float) $entity->get('oe_project_eu_budget')->value, (float) $entity->get('oe_project_eu_contrib')->value);
       $build[] = [
