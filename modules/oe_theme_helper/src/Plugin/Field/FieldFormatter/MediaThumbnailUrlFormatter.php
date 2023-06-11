@@ -5,12 +5,12 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_helper\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
+use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\file\FileInterface;
 use Drupal\image\Plugin\Field\FieldFormatter\ImageFormatter;
-use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
-use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
  * Plugin implementation of the 'media_thumbnail_url' formatter.

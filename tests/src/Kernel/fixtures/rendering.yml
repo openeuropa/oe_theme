@@ -161,7 +161,7 @@
       'section.ecl-banner.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'div.ecl-banner__credit': 1
     equals:
@@ -187,7 +187,7 @@
       'section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
@@ -212,7 +212,7 @@
       'section.ecl-banner.ecl-banner--text-highlight.ecl-banner--s.ecl-banner--centered': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'div.ecl-banner__credit': 0
     equals:
@@ -239,7 +239,7 @@
       'section.ecl-banner.ecl-banner--image-overlay.ecl-banner--l': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
       'div.ecl-banner__credit': 0
     equals:
@@ -266,7 +266,7 @@
       'section.ecl-banner.ecl-banner--image-overlay.ecl-banner--l.ecl-banner--centered.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 1
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       'div.ecl-banner__credit': 1
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
@@ -292,7 +292,7 @@
       'section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
-      'div.ecl-banner__image[style="background-image:url(http://via.placeholder.com/150x150)"]': 0
+      'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-banner__credit': 0
     equals:
       'div.ecl-container div.ecl-banner__container div.ecl-banner__content div.ecl-banner__title span.ecl-banner__title-text': Banner title
@@ -1064,8 +1064,8 @@
     count:
       article.ecl-card div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
       article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
+      article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 0
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 1
@@ -1089,8 +1089,8 @@
   assertions:
     count:
       article.ecl-card div.ecl-card__body h1.ecl-content-block__title a.ecl-link--standalone[href="http://example.com"]: 1
-      article.ecl-card div.ecl-card__image[aria-label="Alternate text for secondary image"]: 1
-      article.ecl-card div.ecl-card__image[style="background-image:url('http://via.placeholder.com/300x300')"]: 1
+      article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
+      article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 0
@@ -1721,8 +1721,8 @@
       '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(2) a.ecl-link .ecl-link__label': 0
       'ul.ecl-content-block__link-list': 2
       'li.ecl-content-block__link-item': 5
-      "div.ecl-navigation-list__image[style=\"background-image:url('https://placeimg.com/1000/500/arch')\"]": 1
-      'div.ecl-navigation-list__image[aria-label="Alternative text for image"]': 1
+      "img.ecl-navigation-list__image[src=\"https://placeimg.com/1000/500/arch\"]": 1
+      'img.ecl-navigation-list__image[alt="Alternative text for image"]': 1
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -2234,7 +2234,7 @@
       title: "Example title"
   assertions:
     count:
-      "div.ecl-card__image": 0
+      "img.ecl-card__image": 0
       'h1.ecl-content-block__title': 1
       'div.ecl-content-block__description': 0
       'ul.ecl-content-block__secondary-meta-container': 0
@@ -2282,7 +2282,7 @@
           variant: "high"
   assertions:
     count:
-      "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
+      "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'h1.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
@@ -2314,7 +2314,7 @@
         label: "Link title"
   assertions:
     count:
-      "div.ecl-card__image[style=\"background-image:url('http://via.placeholder.com/120x80')\"]": 1
+      "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'h1.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
@@ -3165,12 +3165,12 @@
       div.ecl-list-illustration: 1
       div.ecl-list-illustration.ecl-list-illustration--zebra: 1
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 2
-      div.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 1"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/1000/500/arch')"]: 1
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 2"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/500/500/arch')"]: 1
+      img.ecl-list-illustration__image: 2
+      img.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 1"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/1000/500/arch"]: 1
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -3199,12 +3199,12 @@
       div.ecl-list-illustration: 1
       div.ecl-list-illustration.ecl-list-illustration--zebra: 1
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 2
-      div.ecl-list-illustration__image.ecl-list-illustration__image--square: 2
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 1"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/1000/500/arch')"]: 1
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 2"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/500/500/arch')"]: 1
+      img.ecl-list-illustration__image: 2
+      img.ecl-list-illustration__image.ecl-list-illustration__image--square: 2
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 1"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/1000/500/arch"]: 1
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
       'div.ecl-list-illustration__item svg.ecl-icon': 0
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
@@ -3230,7 +3230,7 @@
       div.ecl-list-illustration: 1
       div.ecl-list-illustration.ecl-list-illustration--zebra: 0
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 0
+      img.ecl-list-illustration__image: 0
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -3263,12 +3263,12 @@
       div.ecl-list-illustration.ecl-list-illustration--zebra: 0
       div.ecl-list-illustration.ecl-list-illustration--col-2: 1
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 2
-      div.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 1"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/1000/500/arch')"]: 1
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 2"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/500/500/arch')"]: 1
+      img.ecl-list-illustration__image: 2
+      img.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 1"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/1000/500/arch"]: 1
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -3296,12 +3296,12 @@
       div.ecl-list-illustration: 1
       div.ecl-list-illustration.ecl-list-illustration--col-3: 1
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 2
-      div.ecl-list-illustration__image.ecl-list-illustration__image--square: 2
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 1"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/1000/500/arch')"]: 1
-      div.ecl-list-illustration__image[aria-label="Alternative text for featured item image 2"]: 1
-      div.ecl-list-illustration__image[style="background-image:url('https://placeimg.com/500/500/arch')"]: 1
+      img.ecl-list-illustration__image: 2
+      img.ecl-list-illustration__image.ecl-list-illustration__image--square: 2
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 1"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/1000/500/arch"]: 1
+      img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
+      img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -3325,7 +3325,7 @@
       div.ecl-list-illustration: 1
       div.ecl-list-illustration.ecl-list-illustration--col-2: 1
       div.ecl-list-illustration__item: 2
-      div.ecl-list-illustration__image: 0
+      img.ecl-list-illustration__image: 0
     contains:
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
       'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
@@ -3452,10 +3452,10 @@
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--text-highlight.ecl-banner--centered: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--primary.ecl-banner--m.ecl-banner--centered: 1
       div.ecl-carousel__controls: 1
-      section.ecl-banner--text-box.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
-      section.ecl-banner--text-highlight.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/arch)"]: 1
+      section.ecl-banner--text-box.ecl-banner--m picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://placeimg.com/640/480/tech"]: 1
+      section.ecl-banner--text-highlight.ecl-banner--m picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://placeimg.com/640/480/arch"]: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--image-overlay.ecl-banner--centered: 1
-      section.ecl-banner--image-overlay.ecl-banner--m div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      section.ecl-banner--image-overlay.ecl-banner--m picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://placeimg.com/640/480/tech"]: 1
       div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 0
       div.ecl-carousel__slide section.ecl-banner--image-shade.ecl-banner--m.ecl-banner--centered div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
       div.ecl-carousel__slide section.ecl-banner--secondary.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta a span.ecl-link__label: 0
@@ -3510,7 +3510,7 @@
       div.ecl-carousel__slide: 3
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--text-box.ecl-banner--centered: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--plain-background: 2
-      section.ecl-banner--text-box.ecl-banner--l div.ecl-banner__image[style="background-image:url(https://placeimg.com/640/480/tech)"]: 1
+      section.ecl-banner--text-box.ecl-banner--l picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="https://placeimg.com/640/480/tech"]: 1
     contains:
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered div.ecl-banner__content div.ecl-banner__title: 'Donec maximus pharetra ex a ultricies'
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description: 'Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies'

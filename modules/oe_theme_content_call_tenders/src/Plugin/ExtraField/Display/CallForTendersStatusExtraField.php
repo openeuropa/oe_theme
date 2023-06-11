@@ -9,9 +9,9 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\extra_field\Plugin\ExtraFieldDisplayFormattedBase;
-use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
-use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
 use Drupal\oe_content\CallEntityWrapperInterface;
+use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
+use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

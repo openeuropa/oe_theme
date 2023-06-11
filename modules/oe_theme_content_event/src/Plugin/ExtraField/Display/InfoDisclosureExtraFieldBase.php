@@ -6,8 +6,8 @@ namespace Drupal\oe_theme_content_event\Plugin\ExtraField\Display;
 
 use Drupal\Component\Datetime\TimeInterface;
 use Drupal\Core\Datetime\DateFormatterInterface;
-use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**

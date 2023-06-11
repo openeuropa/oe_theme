@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Unit;
 
-use Symfony\Component\Yaml\Yaml;
 use Drupal\Tests\UnitTestCase;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Base class for theme's unit tests.

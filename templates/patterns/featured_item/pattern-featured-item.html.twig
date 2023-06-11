@@ -57,11 +57,17 @@
   }]) %}
 {% endfor %}
 
+{% if image %}
+  {% set _image = {
+    img: image
+  } %}
+{% endif %}
+
 {% include '@ecl-twig/card' with {
   'description': _description|default(description|smart_trim(length)),
   'primary_meta': metas,
   'title': _title,
   'secondary_meta': _footer_items,
-  'image': image,
+  'picture': _image,
   'labels': badges,
 } %}
