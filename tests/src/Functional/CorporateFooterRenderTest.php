@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Test footer block rendering.
  *
- * @group batch3
+ * @group batch1
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
 
