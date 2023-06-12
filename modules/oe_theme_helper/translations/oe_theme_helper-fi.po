@@ -626,3 +626,6 @@ msgstr "Suora lähetys on päättynyt, mutta tapahtuma jatkuu edelleen."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % kokonaisbudjetista"
+
+msgid "Access item's children"
+msgstr "Avaa alivalinnat"

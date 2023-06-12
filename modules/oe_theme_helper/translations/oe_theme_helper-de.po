@@ -626,3 +626,6 @@ msgstr "Der Livestream ist beendet, aber die Veranstaltung läuft noch."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % der Gesamtmittel"
+
+msgid "Access item's children"
+msgstr "Zu den Unterkategorien"

@@ -626,3 +626,6 @@ msgstr "Prenos v živo se je končal, vendar dogodek še poteka."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % celotnega proračuna"
+
+msgid "Access item's children"
+msgstr "Dostop do podelementov"

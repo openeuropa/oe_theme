@@ -626,3 +626,6 @@ msgstr "Otseülekanne on lõppenud, kuid üritus jätkub."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% kogueelarvest"
+
+msgid "Access item's children"
+msgstr "Juurdepääs alamelementidele"

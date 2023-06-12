@@ -626,3 +626,6 @@ msgstr "Ix-xandira diretta fuq l-internet intemmet, iżda l-avveniment għadu g�
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% tal-baġit globali"
+
+msgid "Access item's children"
+msgstr "Aċċessa s-sottoelement tat-tfal"
