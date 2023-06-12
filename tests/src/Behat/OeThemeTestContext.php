@@ -297,9 +297,9 @@ class OeThemeTestContext extends RawDrupalContext {
     $logo_link = $page->find('css', '.ecl-site-footer__logo-link');
     Assert::assertEquals($link, $logo_link->getAttribute('href'));
     Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
-    $img = $logo_link->find('css', 'img');
-    Assert::assertEquals($img_alt, $img->getAttribute('alt'));
-    Assert::assertEquals($img_title, $img->getAttribute('title'));
+    $picture = $logo_link->find('css', 'picture');
+    Assert::assertEquals($img_alt, $picture->find('css', 'img')->getAttribute('alt'));
+    Assert::assertEquals($img_title, $picture->getAttribute('title'));
   }
 
   /**

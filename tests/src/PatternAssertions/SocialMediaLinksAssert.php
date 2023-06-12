@@ -4,8 +4,8 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
-use Symfony\Component\DomCrawler\Crawler;
 use PHPUnit\Framework\Exception;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Assertions for the social media link pattern.

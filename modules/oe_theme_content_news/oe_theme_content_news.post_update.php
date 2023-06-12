@@ -8,9 +8,9 @@
 declare(strict_types = 1);
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
-use Drupal\Core\Config\FileStorage;
 
 /**
  * Add a date format for the News page header metadata.

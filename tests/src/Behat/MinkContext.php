@@ -4,9 +4,9 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Behat;
 
+use Behat\Gherkin\Node\TableNode;
 use Behat\Mink\Element\NodeElement;
 use Drupal\DrupalExtension\Context\MinkContext as DrupalExtensionMinkContext;
-use Behat\Gherkin\Node\TableNode;
 use Drupal\Tests\oe_theme\Behat\Traits\UtilityTrait;
 use PHPUnit\Framework\Assert;
 

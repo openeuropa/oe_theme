@@ -4,14 +4,14 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
+use Drupal\media\Entity\Media;
 use Drupal\node\Entity\Node;
+use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_person\Entity\PersonJob;
+use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
-use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
-use Drupal\media\Entity\Media;
 
 /**
  * Tests organisation (oe_organisation) content type render.

@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\Tests\BrowserTestBase;
-use Symfony\Component\Yaml\Yaml;
 use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Utility\Html;
+use Drupal\Tests\BrowserTestBase;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Test footer block rendering.
@@ -935,13 +935,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    *   The component library: 'European Commission' or 'European Union'.
    */
   protected function assertEclLogoPresence(NodeElement $section, string $component_library): void {
-    if ($component_library === 'European Union') {
-      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-mobile", 1, $section);
-      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
-    }
-    else {
-      $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image-desktop", 1, $section);
-    }
+    $this->assertSession()->elementsCount('css', "a img.ecl-site-footer__logo-image", 1, $section);
   }
 
   /**
