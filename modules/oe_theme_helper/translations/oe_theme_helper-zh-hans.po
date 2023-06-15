@@ -256,7 +256,7 @@ msgstr "点击 @link 获取更多信息"
 msgid "本网站由 @name 管理"
 msgstr "Този уебсайт се поддържа от @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "本网站由欧盟委员会管理，@name"
 
 msgid "Last updated on: @date"

@@ -326,10 +326,10 @@ msgstr "Daha fazla bilgi için:"
 msgid "Discover more on @link"
 msgstr "@link bağlantısından daha fazla keşfedin"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Bu site @name tarafından yönetilmektedir"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Bu site Avrupa Komisyonu tarafından yönetilmektedir, @name"
 
 msgid "Last updated on: @date"

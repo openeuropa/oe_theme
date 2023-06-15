@@ -253,10 +253,10 @@ msgstr "Viac informácií:"
 msgid "Discover more on @link"
 msgstr "Viac informácií @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Toto webové sídlo spravuje @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Toto webové sídlo spravuje Európska komisia, @name"
 
 msgid "Last updated on: @date"

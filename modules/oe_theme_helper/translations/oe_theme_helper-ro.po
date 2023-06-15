@@ -253,10 +253,10 @@ msgstr "Pentru detalii:"
 msgid "Discover more on @link"
 msgstr "Aflați mai multe @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Acest site este administrat de @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Acest site este administrat de Comisia Europeană, @name"
 
 msgid "Last updated on: @date"

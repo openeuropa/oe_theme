@@ -600,10 +600,10 @@ msgstr "Méi Informatiounen iwwer:"
 msgid "Discover more on @link"
 msgstr "Op @link méi gewuer ginn"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Dëse Site gëtt vu(n/m) @name geréiert."
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Dëse Site gëtt vun der Europäescher Kommissioun verwalt, @name"
 
 msgid "Last updated on: @date"

@@ -253,10 +253,10 @@ msgstr "En savoir plus sur:"
 msgid "Discover more on @link"
 msgstr "En savoir plus @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Ce site est géré par @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Ce site est géré par Commission européenne, @name"
 
 msgid "Last updated on: @date"

@@ -322,10 +322,10 @@ msgstr "Nánari upplýsingar:"
 msgid "Discover more on @link"
 msgstr "Finndu meira á @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Þessari síðu er stjórnað af @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "Þessari síðu er stjórnað af framkvæmdastjórn ESB, @name"
 
 msgid "Status: @label"

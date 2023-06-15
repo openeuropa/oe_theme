@@ -253,10 +253,10 @@ msgstr "További információk:"
 msgid "Discover more on @link"
 msgstr "Bővebb tudnivalók: @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "A webhely üzemeltetője: @name"
 
-msgid "This site is managed by the European Commission, @name"
+msgid "This site is managed by: @name"
 msgstr "A webhely üzemeltetője: Európai Bizottság, @name"
 
 msgid "Last updated on: @date"
