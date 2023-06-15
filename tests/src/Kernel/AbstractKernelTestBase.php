@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Plugin\ContextAwarePluginInterface;
+use Drupal\Core\Site\Settings;
 use Drupal\KernelTests\KernelTestBase;
 use Drupal\Tests\oe_theme\Traits\RenderTrait;
-use Drupal\Core\Site\Settings;
 use Symfony\Component\Yaml\Yaml;
 
 /**
