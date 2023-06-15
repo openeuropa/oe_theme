@@ -50,7 +50,7 @@
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha8",
         "openeuropa/oe_media": "^1.23.1",
         "openeuropa/oe_multilingual": "^1.13",
-        "openeuropa/oe_paragraphs": "^1.19",
+        "openeuropa/oe_paragraphs": "dev-master",
         "openeuropa/oe_search": "^2.0@beta",
         "openeuropa/oe_webtools": "^1.23",
         "openeuropa/rdf_skos": "^1.0.0-alpha10",

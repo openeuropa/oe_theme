@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Drupal\oe_theme_content_call_tenders\Plugin\PageHeaderMetadata;
 
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 use Drupal\oe_content_call_tenders\CallForTendersNodeWrapper;
+use Drupal\oe_theme_helper\Plugin\PageHeaderMetadata\NodeViewRoutesBase;
 
 /**
  * Page header metadata for the OpenEuropa "Call for tenders" content type.
