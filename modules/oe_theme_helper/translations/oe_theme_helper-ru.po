@@ -253,12 +253,6 @@ msgstr "Дополнительная информация на:"
 msgid "Discover more on @link"
 msgstr "Узнать больше на @link"
 
-msgid "This site is managed by: @name"
-msgstr "Этот сайт администрируется @name"
-
-msgid "This site is managed by: @name"
-msgstr "Этот сайт администрируется Европейской комиссией, @name"
-
 msgid "Last updated on: @date"
 msgstr "Последнее обновление: @date"
 

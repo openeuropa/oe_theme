@@ -326,12 +326,6 @@ msgstr "Més informació a:"
 msgid "Discover more on @link"
 msgstr "Podeu trobar més informació a @link"
 
-msgid "This site is managed by: @name"
-msgstr "Aquest web és gestionat per @name"
-
-msgid "This site is managed by: @name"
-msgstr "Aquest web és gestionat per la Comissió Europea, @name"
-
 msgid "Status: @label"
 msgstr "Estat: @label"
 

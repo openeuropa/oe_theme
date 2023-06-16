@@ -254,10 +254,7 @@ msgid "Discover more on @link"
 msgstr "Lisateavet leiate aadressil @link"
 
 msgid "This site is managed by: @name"
-msgstr "Seda veebisaiti haldab @name"
-
-msgid "This site is managed by: @name"
-msgstr "Seda veebisaiti haldab Euroopa Komisjon, @name"
+msgstr "Seda veebisaiti haldab: @name"
 
 msgid "Last updated on: @date"
 msgstr "Viimati ajakohastatud: @date"

@@ -254,10 +254,7 @@ msgid "Discover more on @link"
 msgstr "Další informace @link"
 
 msgid "This site is managed by: @name"
-msgstr "Tento web spravuje @name"
-
-msgid "This site is managed by: @name"
-msgstr "Tento web spravuje Evropská komise, @name"
+msgstr "Tyto stránky spravuje: @name"
 
 msgid "Last updated on: @date"
 msgstr "Poslední aktualizace: @date"

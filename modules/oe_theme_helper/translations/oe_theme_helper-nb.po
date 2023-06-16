@@ -322,12 +322,6 @@ msgstr "Mer informasjon om:"
 msgid "Discover more on @link"
 msgstr "Finn ut mer på @link"
 
-msgid "This site is managed by: @name"
-msgstr "Dette nettstedet administreres av @name"
-
-msgid "This site is managed by: @name"
-msgstr "Dette nettstedet administreres av Europakommisjonen, @name"
-
 msgid "Last updated on: @date"
 msgstr "Sist oppdatert: @date"
 

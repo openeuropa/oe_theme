@@ -254,10 +254,7 @@ msgid "Discover more on @link"
 msgstr "Μάθετε περισσότερα: @link"
 
 msgid "This site is managed by: @name"
-msgstr "Διαχειριστής του ιστότοπου: @name"
-
-msgid "This site is managed by: @name"
-msgstr "Διαχειριστής του ιστότοπου: Ευρωπαϊκή Επιτροπή, @name"
+msgstr "Διαχειριστής ιστότοπου: @name"
 
 msgid "Last updated on: @date"
 msgstr "Τελευταία επικαιροποίηση την/στις: @date"

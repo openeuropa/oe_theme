@@ -254,10 +254,7 @@ msgid "Discover more on @link"
 msgstr "Tuilleadh eolais @link"
 
 msgid "This site is managed by: @name"
-msgstr "Tá an suíomh seo á bhainistiú ag @name"
-
-msgid "This site is managed by: @name"
-msgstr "Tá an suíomh seo á bhainistiú ag An Coimisiún Eorpach, @name"
+msgstr "Tá an suíomh seo á bhainistiú ag: @name"
 
 msgid "Last updated on: @date"
 msgstr "An uair dheiridh a nuashonraíodh: @date"

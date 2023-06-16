@@ -256,9 +256,6 @@ msgstr "Bővebb tudnivalók: @link"
 msgid "This site is managed by: @name"
 msgstr "A webhely üzemeltetője: @name"
 
-msgid "This site is managed by: @name"
-msgstr "A webhely üzemeltetője: Európai Bizottság, @name"
-
 msgid "Last updated on: @date"
 msgstr "Legutóbbi frissítés: @date"
 

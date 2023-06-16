@@ -326,9 +326,6 @@ msgstr "المزيد من المعلومات في:"
 msgid "Discover more on @link"
 msgstr "تعرف على المزيد في @link"
 
-msgid "This site is managed by: @name"
-msgstr "هذا الموقع يخضع لإدارة @name"
-
 msgid "Status: @label"
 msgstr "الحالة: @label"
 

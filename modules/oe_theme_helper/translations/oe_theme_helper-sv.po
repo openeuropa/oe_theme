@@ -256,9 +256,6 @@ msgstr "Upptäck mer på @link"
 msgid "This site is managed by: @name"
 msgstr "Den här webbplatsen sköts av @name"
 
-msgid "This site is managed by: @name"
-msgstr "Den här webbplatsen sköts av Europeiska kommissionen, @name"
-
 msgid "Last updated on: @date"
 msgstr "Senaste uppdatering: @date"
 
