@@ -600,6 +600,12 @@ msgstr "contenuti multimediali"
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Clear all"
+msgstr "Cancella tutto"
+
+msgid "Filter results"
+msgstr "Filtra i risultati"
+
 msgid "Programme"
 msgstr "Programma"
 

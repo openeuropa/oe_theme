@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "media-items"
 
 msgid "Close"
-msgstr "Gesloten"
+msgstr "Sluiten"
+
+msgid "Clear all"
+msgstr "Alles wissen"
+
+msgid "Filter results"
+msgstr "Resultaten filteren"
 
 msgid "Programme"
 msgstr "Programma"

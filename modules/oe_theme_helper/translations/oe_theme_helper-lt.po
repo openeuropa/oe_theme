@@ -600,6 +600,12 @@ msgstr "medijos elementus"
 msgid "Close"
 msgstr "Uždaryti"
 
+msgid "Clear all"
+msgstr "Išvalyti viską"
+
+msgid "Filter results"
+msgstr "Filtruoti rezultatus"
+
 msgid "Programme"
 msgstr "Programa"
 

@@ -53,6 +53,7 @@
     "@ecl/twig-component-pagination": "3.8.1",
     "@ecl/twig-component-radio": "3.8.1",
     "@ecl/twig-component-search-form": "3.8.1",
+    "@ecl/twig-component-select": "3.7.1",
     "@ecl/twig-component-site-footer": "3.8.1",
     "@ecl/twig-component-site-header": "3.8.1",
     "@ecl/twig-component-skip-link": "3.8.1",
