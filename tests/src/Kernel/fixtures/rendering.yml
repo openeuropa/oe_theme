@@ -937,6 +937,7 @@
           media_type: 'image'
       footer_link_url: 'http://example.com'
       footer_link_label: 'Further media items'
+      footer_link_external: true
       visible_items: 1
   assertions:
     count:

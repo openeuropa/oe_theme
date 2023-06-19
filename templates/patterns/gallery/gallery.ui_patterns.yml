@@ -124,13 +124,18 @@ gallery:
     footer_link_url:
       type: "Url"
       label: "URL"
-      description: "Footer link url."
+      description: "Footer link URL."
       preview: "http://example.com"
     footer_link_label:
       type: "text"
       label: "Link text"
       description: "Footer link text."
       preview: "Further media items"
+    footer_link_external:
+      type: "boolean"
+      label: "External link"
+      description: "Whether the footer URL is external or not."
+      preview: true
     visible_items:
       type: "numeric"
       label: "Visible items"
