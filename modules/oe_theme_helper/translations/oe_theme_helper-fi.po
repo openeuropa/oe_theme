@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "tallennetta"
 
 msgid "Close"
-msgstr "Päättynyt"
+msgstr "Sulje"
+
+msgid "Clear all"
+msgstr "Poista valinnat"
+
+msgid "Filter results"
+msgstr "Rajaa hakua"
 
 msgid "Programme"
 msgstr "Ohjelma"
