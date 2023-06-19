@@ -41,6 +41,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'file_link',
     'oe_paragraphs_carousel',
     'composite_reference',
+    'oe_paragraphs_av_media',
   ];
 
   /**
@@ -64,6 +65,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'options',
       'oe_media_iframe',
       'oe_paragraphs_carousel',
+      'oe_paragraphs_av_media',
     ]);
     // Call the install hook of the Media module.
     \Drupal::moduleHandler()->loadInclude('media', 'install');
@@ -1097,6 +1099,170 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
     $assert->assertPattern($expected_values, $html);
+  }
+
+  /**
+   * Test Media paragraph rendering.
+   */
+  public function testMediaParagraph(): void {
+    // Set image media translatable.
+    $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
+    // Make the image field translatable.
+    $field_config = $this->container->get('entity_type.manager')->getStorage('field_config')->load('media.image.oe_media_image');
+    $field_config->set('translatable', TRUE)->save();
+    $this->container->get('router.builder')->rebuild();
+
+    // Create English file.
+    $en_file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_en.jpeg');
+    $en_file->setPermanent();
+    $en_file->save();
+
+    // Create Bulgarian file.
+    $bg_file = $this->container->get('file.repository')->writeData(file_get_contents($this->container->get('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1_bg.jpeg');
+    $bg_file->setPermanent();
+    $bg_file->save();
+
+    // Create a media.
+    $media_storage = $this->container->get('entity_type.manager')->getStorage('media');
+    $media = $media_storage->create([
+      'bundle' => 'image',
+      'name' => 'test image en',
+      'oe_media_image' => [
+        'target_id' => $en_file->id(),
+        'alt' => 'Alt en',
+      ],
+    ]);
+    $media->save();
+    // Translate the media to Bulgarian.
+    $media_bg = $media->addTranslation('bg', [
+      'name' => 'test image bg',
+      'oe_media_image' => [
+        'target_id' => $bg_file->id(),
+        'alt' => 'Alt bg',
+      ],
+    ]);
+    $media_bg->save();
+
+    // Create a Media paragraph.
+    $paragraph = $this->container
+      ->get('entity_type.manager')
+      ->getStorage('paragraph')->create([
+        'type' => 'oe_av_media',
+        'field_oe_media' => [
+          'target_id' => $media->id(),
+        ],
+      ]);
+    $paragraph->save();
+
+    // Add Bulgarian translation.
+    $paragraph->addTranslation('bg', $paragraph->toArray())->save();
+
+    // Test the translated media is rendered with the translated paragraph.
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container img.ecl-media-container__media'));
+    $image_element = $crawler->filter('figure.ecl-media-container img.ecl-media-container__media');
+    $this->assertStringContainsString('example_1_en.jpeg', $image_element->attr('src'));
+
+    // Assert bulgarian rendering.
+    $html = $this->renderParagraph($paragraph, 'bg');
+    $crawler = new Crawler($html);
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container img.ecl-media-container__media'));
+    $image_element = $crawler->filter('figure.ecl-media-container img.ecl-media-container__media');
+    $this->assertStringContainsString('example_1_bg.jpeg', $image_element->attr('src'));
+
+    // Unpublish the media and assert it is not rendered anymore.
+    $media->set('status', 0);
+    $media->save();
+
+    // Since static cache is not cleared due to lack of requests in the test we
+    // need to reset manually.
+    $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(0, $crawler->filter('figure.ecl-media-container'));
+
+    // Create a remote video and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'remote_video',
+      'oe_media_oembed_video' => [
+        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    // Assert remote video is rendered properly.
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $media_container = $crawler->filter('div.ecl-media-container__media');
+    $existing_classes = $media_container->attr('class');
+    $existing_classes = explode(' ', $existing_classes);
+    $this->assertNotContains('ecl-media-container__media--ratio-16-9', $existing_classes);
+    $video_iframe = $media_container->filter('iframe');
+    $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
+      'query' => [
+        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+      ],
+    ])->toString();
+    $this->assertStringContainsString($partial_iframe_url, $video_iframe->attr('src'));
+    $this->assertStringContainsString('459', $video_iframe->attr('width'));
+    $this->assertStringContainsString('344', $video_iframe->attr('height'));
+
+    // Create an avportal video and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'av_portal_video',
+      'oe_media_avportal_video' => 'I-163162',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    // Assert AV Portal video is rendered properly.
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $media_container = $crawler->filter('div.ecl-media-container__media');
+    $this->assertEquals('<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>', $media_container->html());
+
+    // Create Video iframe with ratio 16:9 and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'video_iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+      'oe_media_iframe_ratio' => '16_9',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $media_container = $crawler->filter('div.ecl-media-container__media');
+    $this->assertEquals('<iframe src="http://example.com"></iframe>', $media_container->html());
+
+    // Create iframe video with aspect ratio 1:1 and add it to the paragraph.
+    $media = $media_storage->create([
+      'bundle' => 'video_iframe',
+      'oe_media_iframe' => '<iframe src="http://example.com"></iframe>',
+      'oe_media_iframe_ratio' => '1_1',
+    ]);
+    $media->save();
+    $paragraph->set('field_oe_media', ['target_id' => $media->id()]);
+    $paragraph->save();
+
+    $html = $this->renderParagraph($paragraph);
+    $crawler = new Crawler($html);
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $media_container = $crawler->filter('div.ecl-media-container__media');
+    $this->assertEquals('<iframe src="http://example.com"></iframe>', $media_container->html());
+    $existing_classes = $media_container->attr('class');
+    $existing_classes = explode(' ', $existing_classes);
+    $this->assertTrue(in_array('ecl-media-container__media--ratio-1-1', $existing_classes));
   }
 
 }

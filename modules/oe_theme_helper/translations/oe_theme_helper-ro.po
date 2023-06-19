@@ -598,7 +598,13 @@ msgid "media items"
 msgstr "materiale multimedia"
 
 msgid "Close"
-msgstr "Încheiat(ă)"
+msgstr "Închideți"
+
+msgid "Clear all"
+msgstr "Deselectați tot"
+
+msgid "Filter results"
+msgstr "Filtrați rezultatele"
 
 msgid "Programme"
 msgstr "Program"
