@@ -326,12 +326,6 @@ msgstr "المزيد من المعلومات في:"
 msgid "Discover more on @link"
 msgstr "تعرف على المزيد في @link"
 
-msgid "This site is managed by the @name"
-msgstr "هذا الموقع يخضع لإدارة @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "هذا الموقع يخضع لإدارة المفوضية الأوروبية، @name"
-
 msgid "Status: @label"
 msgstr "الحالة: @label"
 

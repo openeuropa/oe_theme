@@ -253,11 +253,8 @@ msgstr "További információk:"
 msgid "Discover more on @link"
 msgstr "Bővebb tudnivalók: @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "A webhely üzemeltetője: @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "A webhely üzemeltetője: Európai Bizottság, @name"
 
 msgid "Last updated on: @date"
 msgstr "Legutóbbi frissítés: @date"
@@ -626,3 +623,6 @@ msgstr "Az élő közvetítés befejeződött, de a rendezvény még tart."
 
 msgid "@percentage% of the overall budget"
 msgstr "A teljes költségvetés @percentage%-a"
+
+msgid "Access item's children"
+msgstr "Hozzáférés az alelemekhez"

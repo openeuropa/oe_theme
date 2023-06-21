@@ -253,11 +253,8 @@ msgstr "Více informací na:"
 msgid "Discover more on @link"
 msgstr "Další informace @link"
 
-msgid "This site is managed by the @name"
-msgstr "Tento web spravuje @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Tento web spravuje Evropská komise, @name"
+msgid "This site is managed by: @name"
+msgstr "Tyto stránky spravuje: @name"
 
 msgid "Last updated on: @date"
 msgstr "Poslední aktualizace: @date"
@@ -626,3 +623,6 @@ msgstr "Živé vysílání bylo ukončeno, nicméně akce stále probíhá."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % celkového rozpočtu"
+
+msgid "Access item's children"
+msgstr "Rozbalit podkapitoly"

@@ -253,11 +253,8 @@ msgstr "Tuilleadh Eolais:"
 msgid "Discover more on @link"
 msgstr "Tuilleadh eolais @link"
 
-msgid "This site is managed by the @name"
-msgstr "Tá an suíomh seo á bhainistiú ag @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Tá an suíomh seo á bhainistiú ag An Coimisiún Eorpach, @name"
+msgid "This site is managed by: @name"
+msgstr "Tá an suíomh seo á bhainistiú ag: @name"
 
 msgid "Last updated on: @date"
 msgstr "An uair dheiridh a nuashonraíodh: @date"
@@ -626,3 +623,6 @@ msgstr "Tá an beoshruthú thart ach tá an imeacht fós ar siúl."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% den bhuiséad foriomlán"
+
+msgid "Access item's children"
+msgstr "Fo-ábhair an phríomhábhair"

@@ -34,6 +34,7 @@
     path: item.href,
     label: item.label,
     children: _children,
+    trigger_aria_label: "Access item's children"|t,
   } %}
   {% if _children is empty and item.external is defined and item.external == true %}
     {% set _item = _item|merge({

@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Test footer block rendering.
  *
- * @group batch3
+ * @group batch1
  */
 class CorporateFooterRenderTest extends BrowserTestBase {
 
@@ -121,7 +121,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
+    $this->assertEquals('This site is managed by: ACP–EU Joint Assembly', $actual->getText());
 
     // Test European Commission footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
@@ -141,7 +141,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the ACP–EU Joint Assembly', $actual->getText());
+    $this->assertEquals('This site is managed by: ACP–EU Joint Assembly', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
     // Assert presence of ecl logo in the standardised footer.
@@ -176,7 +176,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by the DG XI – Internal Market', $actual->getText());
+    $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
 
     // Test European Union footer core block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('component_library', 'eu')->save();
@@ -194,7 +194,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by DG XI – Internal Market and is an official website of the European Union', $actual->getText());
+    $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
 
     // Assert presence of ecl logo in the core footer.
     $this->assertEclLogoPresence($section, 'European Union');
@@ -255,7 +255,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by Directorate-General for Budget and is an official website of the European Union', $actual->getText());
+    $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
 
     // Test European Union footer standardised block rendering.
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
@@ -276,7 +276,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by Directorate-General for Budget and is an official website of the European Union', $actual->getText());
+    $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
