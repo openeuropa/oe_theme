@@ -253,11 +253,8 @@ msgstr "Plašāka informācija:"
 msgid "Discover more on @link"
 msgstr "Plašāka informācija @link"
 
-msgid "This site is managed by the @name"
-msgstr "Šo vietni pārvalda @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Šo vietni pārvalda Eiropas Komisija, @name"
+msgid "This site is managed by: @name"
+msgstr "Šo vietni pārvalda: @name"
 
 msgid "Last updated on: @date"
 msgstr "Pēdējoreiz atjaunināts: @date"

@@ -253,11 +253,8 @@ msgstr "Aktar informazzjoni:"
 msgid "Discover more on @link"
 msgstr "Skopri aktar @link"
 
-msgid "This site is managed by the @name"
-msgstr "Dan is-sit huwa mmaniġġjat minn @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Dan is-sit hu mmaniġġjat minn Il-Kummissjoni Ewropea, @name"
+msgid "This site is managed by: @name"
+msgstr "Dan is-sit hu mmaniġġjat minn: @name"
 
 msgid "Last updated on: @date"
 msgstr "L-aħħar aġġornament: @date"
