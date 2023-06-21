@@ -253,12 +253,6 @@ msgstr "Більше інформації на:"
 msgid "Discover more on @link"
 msgstr "Дізнайтеся більше на @link"
 
-msgid "This site is managed by the @name"
-msgstr "Цей сайт знаходиться під управлінням @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Цей сайт знаходиться під управлінням Європейської комісії, @name"
-
 msgid "Last updated on: @date"
 msgstr "Останнє оновлення: @date"
 

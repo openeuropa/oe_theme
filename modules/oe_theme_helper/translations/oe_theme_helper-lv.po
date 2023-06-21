@@ -253,11 +253,8 @@ msgstr "Plašāka informācija:"
 msgid "Discover more on @link"
 msgstr "Plašāka informācija @link"
 
-msgid "This site is managed by the @name"
-msgstr "Šo vietni pārvalda @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Šo vietni pārvalda Eiropas Komisija, @name"
+msgid "This site is managed by: @name"
+msgstr "Šo vietni pārvalda: @name"
 
 msgid "Last updated on: @date"
 msgstr "Pēdējoreiz atjaunināts: @date"
@@ -626,3 +623,6 @@ msgstr "Tiešraide ir beigusies, bet pasākums turpinās."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % no kopējā budžeta"
+
+msgid "Access item's children"
+msgstr "Piekļūt pakārtotajiem elementiem"

@@ -253,11 +253,8 @@ msgstr "Daugiau informacijos apie:"
 msgid "Discover more on @link"
 msgstr "Daugiau informacijos @link"
 
-msgid "This site is managed by the @name"
-msgstr "Šią svetainę tvarko @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Šią svetainę tvarko Europos Komisija, @name"
+msgid "This site is managed by: @name"
+msgstr "Šią svetainę tvarko: @name"
 
 msgid "Last updated on: @date"
 msgstr "Paskutinį kartą atnaujinta: @date"
@@ -626,3 +623,6 @@ msgstr "Tiesioginė transliacija baigėsi, tačiau renginys tęsiasi."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % bendro biudžeto"
+
+msgid "Access item's children"
+msgstr "Prieiga prie poskyrių"

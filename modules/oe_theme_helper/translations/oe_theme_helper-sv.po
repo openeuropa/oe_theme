@@ -253,11 +253,8 @@ msgstr "Läs mer på:"
 msgid "Discover more on @link"
 msgstr "Upptäck mer på @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Den här webbplatsen sköts av @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Den här webbplatsen sköts av Europeiska kommissionen, @name"
 
 msgid "Last updated on: @date"
 msgstr "Senaste uppdatering: @date"
@@ -626,3 +623,6 @@ msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % av den totala budgeten"
+
+msgid "Access item's children"
+msgstr "Gå till undersidorna"

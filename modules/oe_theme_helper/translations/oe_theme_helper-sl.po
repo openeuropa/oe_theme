@@ -253,11 +253,8 @@ msgstr "Več informacij:"
 msgid "Discover more on @link"
 msgstr "Več informacij @link"
 
-msgid "This site is managed by the @name"
-msgstr "Spletišče upravlja @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Spletišče upravlja Evropska komisija, @name"
+msgid "This site is managed by: @name"
+msgstr "Spletišče upravlja: @name"
 
 msgid "Last updated on: @date"
 msgstr "Zadnja posodobitev: @date"
@@ -626,3 +623,6 @@ msgstr "Prenos v živo se je končal, vendar dogodek še poteka."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % celotnega proračuna"
+
+msgid "Access item's children"
+msgstr "Dostop do podelementov"

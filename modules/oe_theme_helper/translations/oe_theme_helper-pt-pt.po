@@ -253,11 +253,8 @@ msgstr "Mais informações:"
 msgid "Discover more on @link"
 msgstr "Para saber mais @link"
 
-msgid "This site is managed by the @name"
-msgstr "Este sítio é gerido por @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Este sítio é gerido por Comissão Europeia, @name"
+msgid "This site is managed by: @name"
+msgstr "Este sítio Web é gerido por: @name"
 
 msgid "Last updated on: @date"
 msgstr "Última atualização em: @date"
@@ -626,3 +623,6 @@ msgstr "A transmissão em direto terminou, mas o evento prossegue."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% do orçamento global"
+
+msgid "Access item's children"
+msgstr "Aceder a sub-elementos"

@@ -253,11 +253,8 @@ msgstr "Pentru detalii:"
 msgid "Discover more on @link"
 msgstr "Aflați mai multe @link"
 
-msgid "This site is managed by the @name"
-msgstr "Acest site este administrat de @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Acest site este administrat de Comisia Europeană, @name"
+msgid "This site is managed by: @name"
+msgstr "Acest site este administrat de: @name"
 
 msgid "Last updated on: @date"
 msgstr "Ultima actualizare: @date"
@@ -626,3 +623,6 @@ msgstr "Transmisia în direct s-a încheiat, dar evenimentul este în curs de de
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% din bugetul total"
+
+msgid "Access item's children"
+msgstr "Accesați submeniul"

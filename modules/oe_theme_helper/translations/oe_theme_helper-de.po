@@ -253,11 +253,8 @@ msgstr "Weitere Informationen:"
 msgid "Discover more on @link"
 msgstr "Weitere Informationen @link"
 
-msgid "This site is managed by the @name"
+msgid "This site is managed by: @name"
 msgstr "Betreiber der Website: @name"
-
-msgid "This site is managed by the European Commission, @name"
-msgstr "Betreiber der Website: Europäische Kommission, @name"
 
 msgid "Last updated on: @date"
 msgstr "Letzte Aktualisierung: @date"
@@ -626,3 +623,6 @@ msgstr "Der Livestream ist beendet, aber die Veranstaltung läuft noch."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % der Gesamtmittel"
+
+msgid "Access item's children"
+msgstr "Zu den Unterkategorien"
