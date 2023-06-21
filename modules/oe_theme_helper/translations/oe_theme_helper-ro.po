@@ -626,3 +626,6 @@ msgstr "Transmisia în direct s-a încheiat, dar evenimentul este în curs de de
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% din bugetul total"
+
+msgid "Access item's children"
+msgstr "Accesați submeniul"

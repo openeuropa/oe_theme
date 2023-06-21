@@ -3172,6 +3172,9 @@
         - href: "#"
           label: "Link"
   assertions:
+    count:
+      "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
+      "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
     contains:
       '.ecl-menu__open': "Menu"
       '.ecl-menu__inner-header button.ecl-menu__close .ecl-button__label': "Close"
@@ -3217,6 +3220,8 @@
             - href: '#'
               label: 'Child 1.8'
   assertions:
+    count:
+      "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
     contains:
       '.ecl-menu__open': "Custom Menu"
       '.ecl-menu__inner-header button.ecl-menu__close .ecl-button__label': "Close"

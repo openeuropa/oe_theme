@@ -626,3 +626,6 @@ msgstr "Direktsändningen är slut, men evenemanget pågår fortfarande."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % av den totala budgeten"
+
+msgid "Access item's children"
+msgstr "Gå till undersidorna"

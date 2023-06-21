@@ -626,3 +626,6 @@ msgstr "Prijenos uživo je završio, ali događaj još traje."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % ukupnog proračuna"
+
+msgid "Access item's children"
+msgstr "Pristup podelementima"

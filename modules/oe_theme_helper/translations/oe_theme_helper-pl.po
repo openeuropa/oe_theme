@@ -626,3 +626,6 @@ msgstr "Wydarzenie nadal trwa, ale nie jest już transmitowane na żywo."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage% łącznego budżetu"
+
+msgid "Access item's children"
+msgstr "Rozwiń podpunkty"

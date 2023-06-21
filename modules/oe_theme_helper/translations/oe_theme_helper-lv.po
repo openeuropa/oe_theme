@@ -626,3 +626,6 @@ msgstr "Tiešraide ir beigusies, bet pasākums turpinās."
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % no kopējā budžeta"
+
+msgid "Access item's children"
+msgstr "Piekļūt pakārtotajiem elementiem"

@@ -626,3 +626,6 @@ msgstr "La retransmission en direct est terminée, mais l’événement se pours
 
 msgid "@percentage% of the overall budget"
 msgstr "@percentage % du budget global"
+
+msgid "Access item's children"
+msgstr "Accéder aux sous-éléments"
