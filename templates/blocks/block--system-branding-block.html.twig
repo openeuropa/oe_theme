@@ -12,26 +12,39 @@
     href="{{ site_logo_href }}"
     aria-label="{{ logo_aria_label }}"
   >
+    {% set _picture = [] %}
     {% if ecl_component_library == 'eu' %}
-      <img
-        alt="{{ site_logo_alt }}"
-        title="{{ site_logo_title }}"
-        class="ecl-site-header__logo-image-mobile"
-        src="{{ ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg'}}"
-      />
-      <img
-        alt="{{ site_logo_alt }}"
-        title="{{ site_logo_title }}"
-        class="ecl-site-header__logo-image ecl-site-header__logo-image-desktop"
-        src="{{ ecl_logo_path ~ '/standard-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg'}}"
-      />
+      {% set _picture = _picture|merge({
+        sources: [{
+          src: ecl_logo_path ~ '/standard-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+          media: 'l'
+        }]
+      }) %}
+      {% set _picture = _picture|merge({
+        img: {
+          src: ecl_logo_path ~ '/condensed-version/positive/logo-eu--' ~ current_language_id|to_internal_language_id ~ '.svg',
+          alt: site_logo_alt,
+        },
+      }) %}
     {% else %}
-      <img
-        alt="{{ site_logo_alt }}"
-        title="{{ site_logo_title }}"
-        class="ecl-site-header__logo-image ecl-site-header__logo-image-desktop"
-        src="{{ ecl_logo_path ~ '/positive/logo-ec--' ~ current_language_id|to_internal_language_id ~ '.svg'}}"
-      />
+      {% set _picture = _picture|merge({
+        sources: [{
+          src: ecl_logo_path ~ '/positive/logo-ec--' ~ current_language_id|to_internal_language_id ~ '.svg',
+          media: 'l'
+        }]
+      }) %}
+      {% set _picture = _picture|merge({
+        img: {
+          src: ecl_logo_path ~ '/positive/logo-ec--' ~ current_language_id|to_internal_language_id ~ '.svg',
+          alt: site_logo_alt,
+        },
+      }) %}
     {% endif %}
+    {% include '@ecl-twig/picture' with {
+      picture: _picture,
+      extra_classes: "ecl-site-header__picture",
+      extra_image_classes: 'ecl-site-header__logo-image',
+      extra_attributes: [{ name: 'title', value: site_logo_title }],
+    } only %}
   </a>
 {% endblock %}

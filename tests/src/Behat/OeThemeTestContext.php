@@ -371,7 +371,7 @@ class OeThemeTestContext extends RawDrupalContext {
   /**
    * Asserts that the mobile logo img tag is printed for eu component library.
    *
-   * @Then the :language EU mobile logo should be available
+   * @Then the :language EU mobile and desktop logos should be available
    */
   public function assertEuMobileLogo(string $language): void {
     $lang_code = $this->getEuLanguages();
@@ -384,8 +384,13 @@ class OeThemeTestContext extends RawDrupalContext {
     ];
     $lang_code = array_merge($lang_code, $available_non_eu_logos);
     $langcode = $lang_code[$language] ?? 'en';
-    $this->assertSession()->elementExists('css', 'img.ecl-site-header__logo-image-mobile');
-    $this->assertSession()->elementAttributeContains('css', 'img.ecl-site-header__logo-image-mobile', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
+    // Assert the logos' wrapper.
+    $this->assertSession()->elementExists('css', 'picture.ecl-picture.ecl-site-header__picture');
+    // Assert the desktop logo.
+    $this->assertSession()->elementAttributeContains('css', 'picture source', 'srcset', 'oe_theme/dist/eu/images/logo/standard-version/positive/logo-eu--' . $langcode . '.svg');
+    $this->assertSession()->elementAttributeContains('css', 'picture source', 'media', '(min-width: 996px)');
+    // Assert the mobile logo.
+    $this->assertSession()->elementAttributeContains('css', 'picture img.ecl-site-header__logo-image', 'src', 'oe_theme/dist/eu/images/logo/condensed-version/positive/logo-eu--' . $langcode . '.svg');
   }
 
   /**
@@ -399,9 +404,10 @@ class OeThemeTestContext extends RawDrupalContext {
 
     Assert::assertEquals($link, $logo_link->getAttribute('href'));
     Assert::assertEquals($label, $logo_link->getAttribute('aria-label'));
+    $picture = $logo_link->find('css', 'picture');
     $img = $logo_link->find('css', 'img');
     Assert::assertEquals($alt, $img->getAttribute('alt'));
-    Assert::assertEquals($title, $img->getAttribute('title'));
+    Assert::assertEquals($title, $picture->getAttribute('title'));
   }
 
   /**
