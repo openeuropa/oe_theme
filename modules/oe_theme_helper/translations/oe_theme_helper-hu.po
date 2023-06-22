@@ -626,3 +626,6 @@ msgstr "A teljes költségvetés @percentage%-a"
 
 msgid "Access item's children"
 msgstr "Hozzáférés az alelemekhez"
+
+msgid "Collapse"
+msgstr "Elrejtés"

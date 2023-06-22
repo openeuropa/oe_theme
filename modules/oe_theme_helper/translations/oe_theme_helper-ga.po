@@ -626,3 +626,6 @@ msgstr "@percentage% den bhuiséad foriomlán"
 
 msgid "Access item's children"
 msgstr "Fo-ábhair an phríomhábhair"
+
+msgid "Collapse"
+msgstr "Leacaigh"

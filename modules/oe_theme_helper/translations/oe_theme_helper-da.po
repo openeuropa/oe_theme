@@ -626,3 +626,6 @@ msgstr "@percentage % af det samlede budget"
 
 msgid "Access item's children"
 msgstr "Gå til fanens underemner"
+
+msgid "Collapse"
+msgstr "Skjul"

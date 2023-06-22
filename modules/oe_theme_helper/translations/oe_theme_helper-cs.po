@@ -626,3 +626,6 @@ msgstr "@percentage % celkového rozpočtu"
 
 msgid "Access item's children"
 msgstr "Rozbalit podkapitoly"
+
+msgid "Collapse"
+msgstr "Sbalit"

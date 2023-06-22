@@ -626,3 +626,6 @@ msgstr "@percentage % der Gesamtmittel"
 
 msgid "Access item's children"
 msgstr "Zu den Unterkategorien"
+
+msgid "Collapse"
+msgstr "Einklappen"
