@@ -1,0 +1,7 @@
+name: OpenEuropa Theme Paragraphs Banner
+type: module
+description: Companion module for the OE Paragraphs Banner module
+package: OpenEuropa
+core_version_requirement: ^9.4 || ^10
+dependencies:
+  - oe_paragraphs:oe_paragraphs_banner

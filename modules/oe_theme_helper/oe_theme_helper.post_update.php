@@ -296,3 +296,33 @@ function oe_theme_helper_post_update_20016() {
     'label' => 'OpenEuropa: Compact teaser',
   ])->save();
 }
+
+/**
+ * Add Full width image style.
+ */
+function oe_theme_helper_post_update_20017() {
+  // If the image style already exists, we bail out.
+  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
+  if ($style) {
+    return 'The image style was previously created.';
+  }
+
+  // Create image style.
+  $image_style = ImageStyle::create([
+    'name' => 'oe_theme_full_width',
+    'label' => 'Full width (3840)',
+  ]);
+
+  // Create scale effect and add it to the image style.
+  $effect = [
+    'id' => 'image_scale',
+    'weight' => 1,
+    'data' => [
+      'upscale' => FALSE,
+      'width' => '3840',
+      'height' => '3840',
+    ],
+  ];
+  $image_style->addImageEffect($effect);
+  $image_style->save();
+}

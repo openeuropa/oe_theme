@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.oe_banner_text_highlight
+label: 'Text highlight banner'
+targetEntityType: paragraph
+cache: true

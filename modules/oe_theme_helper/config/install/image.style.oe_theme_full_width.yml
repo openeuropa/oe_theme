@@ -1,0 +1,14 @@
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_full_width
+label: 'Full width (3840)'
+effects:
+  128cf659-7dd0-408b-9425-f0084c3a3aa1:
+    uuid: 128cf659-7dd0-408b-9425-f0084c3a3aa1
+    id: image_scale
+    weight: 1
+    data:
+      width: 3840
+      height: 3840
+      upscale: false

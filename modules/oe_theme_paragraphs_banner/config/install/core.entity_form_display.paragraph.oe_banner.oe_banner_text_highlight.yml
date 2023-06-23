@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.paragraph.oe_banner_text_highlight
+    - field.field.paragraph.oe_banner.field_oe_banner_alignment
+    - field.field.paragraph.oe_banner.field_oe_banner_full_width
+    - field.field.paragraph.oe_banner.field_oe_banner_size
+    - field.field.paragraph.oe_banner.field_oe_banner_type
+    - field.field.paragraph.oe_banner.field_oe_link
+    - field.field.paragraph.oe_banner.field_oe_media
+    - field.field.paragraph.oe_banner.field_oe_text
+    - field.field.paragraph.oe_banner.field_oe_title
+    - paragraphs.paragraphs_type.oe_banner
+  module:
+    - link
+id: paragraph.oe_banner.oe_banner_text_highlight
+targetEntityType: paragraph
+bundle: oe_banner
+mode: oe_banner_text_highlight
+content:
+  field_oe_banner_alignment:
+    type: options_select
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_oe_banner_full_width:
+    type: boolean_checkbox
+    weight: 0
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  field_oe_banner_size:
+    type: options_select
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_oe_link:
+    type: link_default
+    weight: 5
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_oe_media:
+    type: entity_reference_autocomplete
+    weight: 6
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_oe_text:
+    type: string_textfield
+    weight: 4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_oe_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  translation:
+    weight: 7
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  field_oe_banner_type: true
+  status: true

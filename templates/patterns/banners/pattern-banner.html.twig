@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Banner pattern template.
+ */
+#}
+
+{% if url is not empty and label is not empty %}
+  {% set _link = {
+    'link': {
+      'path': url,
+      'label': label,
+      'icon_position': 'after'
+    },
+    'icon': {
+      'path': ecl_icon_path,
+      'name': external_link ? "external" : "corner-arrow",
+      'transform': external_link ? "" : "rotate-90",
+      'size': "xs"
+    }
+  } -%}
+{% endif %}
+
+{% set _variant = variant|replace({'_': '-'}) %}
+
+<div{{ container_attributes }}>
+  {% include '@ecl-twig/banner' with {
+    variant: _variant,
+    title: title,
+    description: description,
+    link: _link,
+    image: image.src,
+    size: size,
+    centered: centered,
+    full_width: full_width,
+    credit: credit|default('')
+  } only %}
+
+</div>
