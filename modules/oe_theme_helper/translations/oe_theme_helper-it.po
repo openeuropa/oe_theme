@@ -626,3 +626,6 @@ msgstr "@percentage% del bilancio complessivo"
 
 msgid "Access item's children"
 msgstr "Accedi agli elementi figlio"
+
+msgid "Collapse"
+msgstr "Comprimi"

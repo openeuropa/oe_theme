@@ -626,3 +626,6 @@ msgstr "@percentage% de la dotación presupuestaria global"
 
 msgid "Access item's children"
 msgstr "Acceder a subelementos"
+
+msgid "Collapse"
+msgstr "Contraer"

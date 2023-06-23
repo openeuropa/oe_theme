@@ -626,3 +626,6 @@ msgstr "@percentage % bendro biudžeto"
 
 msgid "Access item's children"
 msgstr "Prieiga prie poskyrių"
+
+msgid "Collapse"
+msgstr "Suskleisti"

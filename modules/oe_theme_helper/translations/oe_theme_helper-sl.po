@@ -626,3 +626,6 @@ msgstr "@percentage % celotnega proračuna"
 
 msgid "Access item's children"
 msgstr "Dostop do podelementov"
+
+msgid "Collapse"
+msgstr "Skrči"

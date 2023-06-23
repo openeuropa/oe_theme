@@ -18,6 +18,17 @@
   {% set _items = _items|merge([_item]) %}
 {% endfor %}
 
+{% if footer_link_url is not empty %}
+  {% set footer_link = {
+    'link': {
+      'label': footer_link_label|default('Further media items'|t),
+      'path': footer_link_url,
+      'icon_path': ecl_icon_path,
+      'external': footer_link_external,
+    },
+  } %}
+{% endif %}
+
 {% set _gallery = {
   'overlay': {
     'counter_separator': ' / ',
@@ -56,9 +67,13 @@
     },
   },
   'view_all_label': "See all"|t,
-  'view_all_expanded_label': "Back"|t,
+  'view_all_expanded_label': "Collapse"|t,
   'counter_label': "media items"|t,
-  'items': _items
+  'items': _items,
+  'disable_overlay': disable_overlay ?? false,
+  'expandable': expandable ?? true,
+  'visible_items': visible_items|default(8),
+  'footer': footer_link|default([]),
 } %}
 
 {% if _items|length > 1 %}
