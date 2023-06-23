@@ -626,3 +626,6 @@ msgstr "@percentage% tal-baġit globali"
 
 msgid "Access item's children"
 msgstr "Aċċessa s-sottoelement tat-tfal"
+
+msgid "Collapse"
+msgstr "Ikkollassa"

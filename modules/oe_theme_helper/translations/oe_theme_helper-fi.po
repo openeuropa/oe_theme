@@ -626,3 +626,6 @@ msgstr "@percentage % kokonaisbudjetista"
 
 msgid "Access item's children"
 msgstr "Avaa alivalinnat"
+
+msgid "Collapse"
+msgstr "Supista"

@@ -626,3 +626,6 @@ msgstr "@percentage % no kopējā budžeta"
 
 msgid "Access item's children"
 msgstr "Piekļūt pakārtotajiem elementiem"
+
+msgid "Collapse"
+msgstr "Sakļaut"

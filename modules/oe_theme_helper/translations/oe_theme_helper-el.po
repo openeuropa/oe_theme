@@ -626,3 +626,6 @@ msgstr "@percentage % του συνολικού προϋπολογισμού"
 
 msgid "Access item's children"
 msgstr "Πρόσβαση στις υποκατηγορίες του θέματος"
+
+msgid "Collapse"
+msgstr "Σύμπτυξη"
