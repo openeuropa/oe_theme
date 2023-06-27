@@ -20,8 +20,12 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
   public function testLanguageSwitcherLinkListRendering(): void {
     $this->assertDefaultLanguageBlock();
 
-    // Create the Icelandic language.
+    // Create a few other languages than European ones.
     $language = ConfigurableLanguage::createFromLangcode('is');
+    $language->save();
+    $language = ConfigurableLanguage::createFromLangcode('nb');
+    $language->save();
+    $language = ConfigurableLanguage::createFromLangcode('zh-hans');
     $language->save();
 
     // Assert that Icelandic language without category won't show up by default
@@ -46,8 +50,14 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     // The Icelandic link is not rendered.
     $this->assertEmpty($crawler->filter('div#language-list-overlay a.ecl-site-header__language-link[lang=is]'));
 
-    // Set the category for Icelandic language.
+    // Set the non eu category for the other languages.
     $language = ConfigurableLanguage::load('is');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
+    $language = ConfigurableLanguage::load('nb');
+    $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
+    $language->save();
+    $language = ConfigurableLanguage::load('zh-hans');
     $language->setThirdPartySetting('oe_multilingual', 'category', 'non_eu');
     $language->save();
 
@@ -72,12 +82,24 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 
     // Assert there is only one link in the non-EU category.
     $actual = $crawler->filter('div#language-list-overlay .ecl-site-header__language-category[data-ecl-language-list-non-eu] a');
-    $this->assertCount(1, $actual);
+    $this->assertCount(3, $actual);
 
-    // Assert the Icelandic language link.
+    // Assert the other languages links.
     $actual = $crawler->filter("div#language-list-overlay .ecl-site-header__language-category[data-ecl-language-list-non-eu] a.ecl-site-header__language-link[lang=is] span.ecl-site-header__language-link-label")->text();
     $this->assertEquals(
       'Icelandic',
+      // Remove any non-printable characters from actual.
+      preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
+    );
+    $actual = $crawler->filter("div#language-list-overlay .ecl-site-header__language-category[data-ecl-language-list-non-eu] a.ecl-site-header__language-link[lang=no] span.ecl-site-header__language-link-label")->text();
+    $this->assertEquals(
+      'Norwegian Bokmål',
+      // Remove any non-printable characters from actual.
+      preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
+    );
+    $actual = $crawler->filter("div#language-list-overlay .ecl-site-header__language-category[data-ecl-language-list-non-eu] a.ecl-site-header__language-link[lang=zh] span.ecl-site-header__language-link-label")->text();
+    $this->assertEquals(
+      'Chinese, Simplified',
       // Remove any non-printable characters from actual.
       preg_replace('/[\x00-\x1F\x7F\xA0]/u', '', $actual)
     );
@@ -118,11 +140,16 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
     $languages = $this->container->get('language_manager')->getNativeLanguages();
     $lang_config = $this->container->get('config.factory')->get('language.negotiation');
+    // Language codes mapping for Norwegian Bokmål and Chinese, Simplified.
+    $map_other_language_codes = [
+      'nb' => 'no',
+      'zh-hans' => 'zh',
+    ];
 
     // Make sure that language links are properly rendered.
     foreach ($this->container->get('language_manager')->getLanguages() as $language) {
       $lang_id = $language->getId();
-      $lang_prefix = $lang_config->get('url.prefixes.' . $lang_id);
+      $lang_prefix = $map_other_language_codes[$lang_id] ?? $lang_config->get('url.prefixes.' . $lang_id);
 
       $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link[lang={$lang_prefix}] span.ecl-site-header__language-link-label")->text();
       // Remove all non printable characters in $actual.

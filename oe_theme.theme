@@ -646,6 +646,11 @@ function oe_theme_preprocess_language_selection_page_content(&$variables) {
 function _oe_theme_preprocess_languages(array $link_items, string $current_language_id = ''): array {
   $variables = [];
   $language_config_storage = \Drupal::entityTypeManager()->getStorage('configurable_language');
+  // Map Norwegian Bokmål and Chinese language codes.
+  $map_other_language_codes = [
+    'nb' => 'no',
+    'zh-hans' => 'zh',
+  ];
   foreach ($link_items as $language_code => $link) {
     // Handle both cases (block, page) when the link array structure differ.
     if (isset($link['link'])) {
@@ -662,9 +667,11 @@ function _oe_theme_preprocess_languages(array $link_items, string $current_langu
       $label = $link['#title'];
     }
 
-    $language_internal = $language_code;
     if (EuropeanUnionLanguages::hasLanguage($language_code)) {
       $language_internal = EuropeanUnionLanguages::getInternalLanguageCode($language_code);
+    }
+    else {
+      $language_internal = $map_other_language_codes[$language_code] ?? $language_code;
     }
 
     $language = [
