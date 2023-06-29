@@ -74,8 +74,8 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    if ($entity->get('oe_project_budget_eu')->isEmpty() && $entity->get('oe_project_eu_contrib')->isEmpty()) {
-      return [];
+    if ($entity->get('oe_project_eu_budget')->isEmpty() && $entity->get('oe_project_eu_contrib')->isEmpty()) {
+      $this->isEmpty = TRUE;
     }
     $build = [];
 
@@ -89,28 +89,23 @@ class PercentageExtraField extends ExtraFieldDisplayFormattedBase implements Con
         'prefix_suffix' => TRUE,
       ],
     ];
-    if ($entity->get('oe_project_eu_contrib')->isEmpty()) {
-      // Fallback to old field.
-      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget_eu'), $display_options);
-      $budget_eu = $entity->get('oe_project_budget')->value;
-    }
-    else {
+    if (!$entity->get('oe_project_eu_contrib')->isEmpty()) {
       // Render new field value.
       $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_contrib'), $display_options);
-      $budget_eu = $entity->get('oe_project_eu_contrib')->value;
     }
 
     // Return only EU contribution if budget is empty.
-    if ($entity->get('oe_project_budget')->isEmpty() && $entity->get('oe_project_eu_budget')->isEmpty()) {
+    if ($entity->get('oe_project_eu_budget')->isEmpty()) {
       return $build;
     }
 
-    // Compute budget percentage field value.
-    $budget = $entity->get('oe_project_eu_budget')->isEmpty() ? $entity->get('oe_project_budget_eu')->value : $entity->get('oe_project_eu_budget')->value;
-    $percentage = $this->getPercentage((float) $budget, (float) $budget_eu);
-    $build[] = [
-      '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
-    ];
+    if (!$entity->get('oe_project_eu_budget')->isEmpty() && !$entity->get('oe_project_eu_contrib')->isEmpty()) {
+      // Compute budget percentage field value.
+      $percentage = $this->getPercentage((float) $entity->get('oe_project_eu_budget')->value, (float) $entity->get('oe_project_eu_contrib')->value);
+      $build[] = [
+        '#markup' => '<div class="ecl-u-mt-m">' . $this->t("@percentage% of the overall budget", ["@percentage" => $percentage]) . '</div>',
+      ];
+    }
 
     return $build;
   }

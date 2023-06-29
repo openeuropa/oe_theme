@@ -74,8 +74,8 @@ class OverallBudgetExtraField extends ExtraFieldDisplayFormattedBase implements 
    * {@inheritdoc}
    */
   public function viewElements(ContentEntityInterface $entity) {
-    if ($entity->get('oe_project_budget')->isEmpty() && $entity->get('oe_project_eu_budget')->isEmpty()) {
-      return [];
+    if ($entity->get('oe_project_eu_budget')->isEmpty()) {
+      $this->isEmpty = TRUE;
     }
     $build = [];
 
@@ -89,14 +89,7 @@ class OverallBudgetExtraField extends ExtraFieldDisplayFormattedBase implements 
         'prefix_suffix' => TRUE,
       ],
     ];
-    if ($entity->get('oe_project_eu_contrib')->isEmpty()) {
-      // Fallback to old field.
-      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_budget'), $display_options);
-    }
-    else {
-      // Render new field value.
-      $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_budget'), $display_options);
-    }
+    $build[] = $this->viewBuilder->viewField($entity->get('oe_project_eu_budget'), $display_options);
 
     return $build;
   }
