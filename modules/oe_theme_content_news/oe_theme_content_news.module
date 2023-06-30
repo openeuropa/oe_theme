@@ -8,9 +8,9 @@
 declare(strict_types = 1);
 
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\media\MediaInterface;
-use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\media\MediaInterface;
 
 /**
  * Implements template_preprocess_node() for the News node type.

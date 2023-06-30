@@ -8,16 +8,17 @@
 declare(strict_types = 1);
 
 use Drupal\block\BlockInterface;
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableDependencyInterface;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Url;
-use Drupal\Core\Session\AccountInterface;
 use Drupal\media\MediaInterface;
 use Drupal\media\Plugin\media\Source\Image;
 use Drupal\media\Plugin\media\Source\OEmbed;
@@ -26,14 +27,13 @@ use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
+use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
-use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\DateValueObject;
+use Drupal\oe_theme\ValueObject\FileValueObject;
 use Drupal\oe_theme\ValueObject\GalleryItemValueObject;
 use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_theme_helper\EuropeanUnionLanguages;
-use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
-use Drupal\Component\Render\FormattableMarkup;
 
 /**
  * Implements hook_form_FORM_ID_alter().

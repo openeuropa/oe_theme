@@ -6,8 +6,8 @@ namespace Drupal\oe_theme_helper\Loader;
 
 use Drupal\Core\Extension\ThemeHandlerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
-use OpenEuropa\Twig\Loader\EuropaComponentLibraryLoader;
 use Drupal\Core\Messenger\MessengerTrait;
+use OpenEuropa\Twig\Loader\EuropaComponentLibraryLoader;
 
 /**
  * Load ECL components Twig templates.
