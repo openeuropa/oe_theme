@@ -1,28 +1,66 @@
-# Change Log
+# Changelog
+
+## [3.5.0](https://github.com/openeuropa/oe_theme/tree/3.5.0) (2023-06-30)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.1...3.5.0)
+
+**Merged pull requests:**
+
+- Update 3.x branch [\#1296](https://github.com/openeuropa/oe_theme/pull/1296) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3269: Theming banner & carousel new fields. [\#1289](https://github.com/openeuropa/oe_theme/pull/1289) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3269: Update epic branch. [\#1288](https://github.com/openeuropa/oe_theme/pull/1288) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3269: Update epic branch. [\#1287](https://github.com/openeuropa/oe_theme/pull/1287) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3269: Update epic branch. [\#1286](https://github.com/openeuropa/oe_theme/pull/1286) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3264: Change site footer string and translations. [\#1285](https://github.com/openeuropa/oe_theme/pull/1285) ([nagyad](https://github.com/nagyad))
+- EWPP-3337: Add aria-label on dropdown naviagtion menu. [\#1284](https://github.com/openeuropa/oe_theme/pull/1284) ([nagyad](https://github.com/nagyad))
+- EWPP-3269: Update epic branch. [\#1283](https://github.com/openeuropa/oe_theme/pull/1283) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3347: Update ECL to 3.8.4 version. [\#1282](https://github.com/openeuropa/oe_theme/pull/1282) ([nagyad](https://github.com/nagyad))
+- EWPP-3321: Update List with illustrations pattern and paragraphs rendering. [\#1278](https://github.com/openeuropa/oe_theme/pull/1278) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3315: Remove projecy budget fallback logic. [\#1277](https://github.com/openeuropa/oe_theme/pull/1277) ([nagyad](https://github.com/nagyad))
+- EWPP-3269: Update epic branch. [\#1276](https://github.com/openeuropa/oe_theme/pull/1276) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3324: Add new fields to gallery pattern. [\#1275](https://github.com/openeuropa/oe_theme/pull/1275) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3318: Adapt text with featured media rendering to accommodate wwebtools. [\#1274](https://github.com/openeuropa/oe_theme/pull/1274) ([nagyad](https://github.com/nagyad))
+- EWPP-3240: Adapt the Site header container to new ECL Site header component. [\#1272](https://github.com/openeuropa/oe_theme/pull/1272) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3310: Update ECL to 3.8.1 version. [\#1271](https://github.com/openeuropa/oe_theme/pull/1271) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3296: Theme the Media paragraph. [\#1270](https://github.com/openeuropa/oe_theme/pull/1270) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3273: Update Carousel pattern and paragraph rendering. [\#1269](https://github.com/openeuropa/oe_theme/pull/1269) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3271: Theme Banner paragraph using the new ECL Banner component. [\#1267](https://github.com/openeuropa/oe_theme/pull/1267) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-2792: Use the ECL Select component for select forms. [\#1259](https://github.com/openeuropa/oe_theme/pull/1259) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.4.1](https://github.com/openeuropa/oe_theme/tree/3.4.1) (2023-06-30)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.0...3.4.1)
 
 **Merged pull requests:**
 
+- Prepare release 3.4.1 [\#1295](https://github.com/openeuropa/oe_theme/pull/1295) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3421: Use D10 compatible release of ecl-twig-loader. [\#1291](https://github.com/openeuropa/oe_theme/pull/1291) ([brummbar](https://github.com/brummbar))
 
 ## [3.4.0](https://github.com/openeuropa/oe_theme/tree/3.4.0) (2023-06-02)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.3.0...3.4.0)
+
+**Closed issues:**
+
+- Enable optional block like search\_form [\#1257](https://github.com/openeuropa/oe_theme/issues/1257)
 
 **Merged pull requests:**
 
 - EWPP-0000: Lock symfony/validator to avoid BC incompatibility with D10. [\#1280](https://github.com/openeuropa/oe_theme/pull/1280) ([22Alexandra](https://github.com/22Alexandra))
+- Release 3.4.0 changelog. [\#1279](https://github.com/openeuropa/oe_theme/pull/1279) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3025: Drupal 10 compatibility. [\#1273](https://github.com/openeuropa/oe_theme/pull/1273) ([brummbar](https://github.com/brummbar))
 - EWPP-3229: Add EU languages translation for Project extrafield string. [\#1266](https://github.com/openeuropa/oe_theme/pull/1266) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-2735: Row Header in Tables - Inconsistent text alignment. [\#1264](https://github.com/openeuropa/oe_theme/pull/1264) ([sergepavle](https://github.com/sergepavle))
 - EWPP-3083: Make timeline field always show the last item. [\#1263](https://github.com/openeuropa/oe_theme/pull/1263) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3123: Adjust max\_height value for avportal field formatter. [\#1262](https://github.com/openeuropa/oe_theme/pull/1262) ([sergepavle](https://github.com/sergepavle))
 
+## [3.3.0](https://github.com/openeuropa/oe_theme/tree/3.3.0) (2023-03-21)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.2.0...3.3.0)
 
 **Merged pull requests:**
 
+- Release-3.3.0: Update changelog. [\#1261](https://github.com/openeuropa/oe_theme/pull/1261) ([nagyad](https://github.com/nagyad))
 - EWPP-3180: Fix translatability of field labels in FieldListPattern field\_group formatter. [\#1260](https://github.com/openeuropa/oe_theme/pull/1260) ([sergepavle](https://github.com/sergepavle))
 - EWPP-3056: Change project budget fields to decimal. [\#1251](https://github.com/openeuropa/oe_theme/pull/1251) ([nagyad](https://github.com/nagyad))
 
