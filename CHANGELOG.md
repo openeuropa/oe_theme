@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.4.1](https://github.com/openeuropa/oe_theme/tree/3.4.1) (2023-06-30)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.0...3.4.1)
+
+**Merged pull requests:**
+
+- EWPP-3421: Use D10 compatible release of ecl-twig-loader. [\#1291](https://github.com/openeuropa/oe_theme/pull/1291) ([brummbar](https://github.com/brummbar))
+
 ## [3.4.0](https://github.com/openeuropa/oe_theme/tree/3.4.0) (2023-06-02)
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.3.0...3.4.0)
 
