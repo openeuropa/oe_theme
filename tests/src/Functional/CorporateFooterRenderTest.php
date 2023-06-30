@@ -4,10 +4,10 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
-use Drupal\Tests\BrowserTestBase;
-use Symfony\Component\Yaml\Yaml;
 use Behat\Mink\Element\NodeElement;
 use Drupal\Component\Utility\Html;
+use Drupal\Tests\BrowserTestBase;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Test footer block rendering.

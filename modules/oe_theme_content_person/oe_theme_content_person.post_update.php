@@ -7,9 +7,9 @@
 
 declare(strict_types = 1);
 
+use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;
 use Drupal\Core\Entity\Entity\EntityViewDisplay;
-use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Entity\Entity\EntityViewMode;
 
 /**
