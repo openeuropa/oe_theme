@@ -40,6 +40,11 @@ class FilterEclTable extends FilterBase {
     foreach ($xpath->query('//table') as $table) {
       // Put ECL related classes for table tag.
       $this->elementAddClass($table, 'ecl-table');
+      // Add classes related to "Simple" table mode.
+      if ($table->getAttribute('data-simple') === 'true') {
+        $this->elementAddClass($table, 'ecl-table--simple');
+        $table->removeAttribute('data-simple');
+      }
       // Add classes related to "Zebra striping".
       if ($table->getAttribute('data-striped') === 'true') {
         $this->elementAddClass($table, 'ecl-table--zebra');
