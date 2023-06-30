@@ -2002,27 +2002,22 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
     $image = [];
     $media = _oe_theme_prepare_media($sub_paragraph->get('field_oe_media')->entity, $variables['user'], $cacheability, $language_id);
     if ($media) {
-      $url = '';
+      $thumbnail = '';
       $source = $media->getSource();
       $field_name = $source->getConfiguration()['source_field'];
       if ($source instanceof Image && ($file_entity = $media->get($field_name)->entity)) {
         // Media Image.
         $cacheability->addCacheableDependency($file_entity);
-        $url = $file_entity->createFileUrl();
+        $thumbnail = $media->get('thumbnail')->first();
       }
       elseif ($source instanceof MediaAvPortalSourceInterface) {
         // Media AV Portal Photo.
-        $resource_ref = $media->get($field_name)->value;
-        $url = \Drupal::service('file_url_generator')->generateAbsoluteString('avportal://' . $resource_ref . '.jpg');
+        $thumbnail = $media->get('thumbnail')->first();
       }
 
-      if ($url) {
+      if ($thumbnail) {
         // Generate image object for the template.
-        $values = [
-          'src' => $url,
-          'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
-        ];
-        $image = ImageValueObject::fromArray($values);
+        $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
       }
     }
     if ($sub_paragraph->hasField('field_oe_subtitle') && !$sub_paragraph->get('field_oe_subtitle')->isEmpty()) {
@@ -2031,7 +2026,7 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
     $variables['items'][] = [
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
-      'image' => $image,
+      'image' => $image ?? '',
       'media_size' => $size ?? 'm',
       'value' => $highlight ?? '',
     ];

@@ -334,6 +334,8 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'uid' => 0,
       'status' => 1,
     ]);
+    $media_av_portal_photo->save();
+    $av_portal_photo_file = $media_av_portal_photo->get('thumbnail')->entity;
 
     // Create Illustration list with images paragraph.
     $items = [];
@@ -407,19 +409,19 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         ], [
           'title' => 'Term 2',
           'image' => [
-            'src' => $this->container->get('file_url_generator')->generateAbsoluteString('avportal://P-038924/00-15.jpg'),
+            'src' => 'files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $av_portal_photo_file->getFilename(),
             'alt' => 'Euro with miniature figurines',
           ],
           'value' => 'Highlighted Term 2',
         ], [
           'description' => 'Description 3',
           'image' => [
-            'src' => 'example_1.jpeg',
+            'src' => 'styles/oe_theme_medium_no_crop/public/example_1.jpeg',
             'alt' => 'Alt',
           ],
         ], [
           'image' => [
-            'src' => 'example_1.jpeg',
+            'src' => 'styles/oe_theme_medium_no_crop/public/example_1.jpeg',
             'alt' => 'Alt',
           ],
           'value' => 'Highlighted Illustration list with images',
