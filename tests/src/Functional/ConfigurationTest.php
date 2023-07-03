@@ -191,6 +191,9 @@ class ConfigurationTest extends BrowserTestBase {
       // the Core template, if the site name and menu are not shown.
       $assert_session->elementNotExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
 
+      // Assert main content block classes.
+      $assert_session->elementExists('css', 'main.ecl-u-pb-xl.ecl-u-pt-m');
+
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
 

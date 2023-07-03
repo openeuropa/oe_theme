@@ -1665,7 +1665,7 @@ function oe_theme_theme_suggestions_page_alter(array &$suggestions, array $varia
 function oe_theme_preprocess_page(array &$variables): void {
   $variables['site_name'] = \Drupal::config('system.site')->get('name');
   $variables['main_attributes'] = new Attribute([
-    'class' => ['ecl-u-pb-xl'],
+    'class' => ['ecl-u-pb-xl ecl-u-pt-m'],
     'id' => ['main-content'],
   ]);
 }
