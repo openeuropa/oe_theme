@@ -12,3 +12,12 @@
 @use "./components/media_iframe";
 @use "./components/expandable";
 @use "./components/contextual_navigation";
+
+// TODO: Remove after updating to ECL 3.9.1
+.ecl-list-illustration__image {
+  object-fit: contain;
+}
+// TODO: Remove after updating to ECL 3.9.1
+.ecl-list-illustration__image--square {
+  object-fit: cover;
+}
