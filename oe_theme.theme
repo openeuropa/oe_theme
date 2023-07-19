@@ -886,9 +886,14 @@ function oe_theme_preprocess_paragraph__oe_list_item_block(array &$variables): v
   /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
   $link_item = $paragraph->get('field_oe_link')->first();
   $url = $link_item->getUrl();
-  $variables['button_url'] = $url;
+  if (!$url->isRouted() || !in_array($url->getRouteName(), [
+    '<nolink>',
+    '<button>',
+  ])) {
+    $variables['button_url'] = $url;
+    $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
+  }
   $variables['button_label'] = $link_item->get('title')->getValue();
-  $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
 }
 
 /**

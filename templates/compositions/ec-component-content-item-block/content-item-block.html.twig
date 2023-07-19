@@ -100,20 +100,24 @@
     {% endif %}
   </div>
 
-  {% if _button.path %}
+  {% if _button.label %}
     <div class="ecl-row">
       <div class="ecl-content-item-block__button ecl-col-12">
         <div class="ecl-u-clearfix ecl-u-pv-m">
-          {% include '@ecl-twig/link' with {
-            link: _button|merge({
-              'type': 'standalone',
-            }),
-            icon: {
-              'name': _button.icon_name,
-              'size': 'xs',
-              'path': icon_path
-            }
-          } only %}
+          {% if _button.path %}
+            {% include '@ecl-twig/link' with {
+              link: _button|merge({
+                'type': 'standalone',
+              }),
+              icon: {
+                'name': _button.icon_name,
+                'size': 'xs',
+                'path': icon_path
+              }
+            } only %}
+          {% else %}
+            {{- _button.label -}}
+          {% endif %}
         </div>
       </div>
     </div>
