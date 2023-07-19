@@ -1,11 +1,21 @@
 # Changelog
 
+## [3.5.1](https://github.com/openeuropa/oe_theme/tree/3.5.1) (2023-07-19)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.0...3.5.1)
+
+**Merged pull requests:**
+
+- EWPP-3486: Support empty button link for Listing item blocks. [\#1302](https://github.com/openeuropa/oe_theme/pull/1302) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3481: Temporarily override list with illustration css rules. [\#1301](https://github.com/openeuropa/oe_theme/pull/1301) ([imanoleguskiza](https://github.com/imanoleguskiza))
+
 ## [3.5.0](https://github.com/openeuropa/oe_theme/tree/3.5.0) (2023-06-30)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.4.1...3.5.0)
 
 **Merged pull requests:**
 
+- Prepare release 3.5.0. [\#1297](https://github.com/openeuropa/oe_theme/pull/1297) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - Update 3.x branch [\#1296](https://github.com/openeuropa/oe_theme/pull/1296) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3269: Theming banner & carousel new fields. [\#1289](https://github.com/openeuropa/oe_theme/pull/1289) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3269: Update epic branch. [\#1288](https://github.com/openeuropa/oe_theme/pull/1288) ([22Alexandra](https://github.com/22Alexandra))
