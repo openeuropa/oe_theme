@@ -82,10 +82,10 @@ class CallForTendersStatusExtraField extends ExtraFieldDisplayFormattedBase impl
 
     $status = $entity->getStatus();
     // Set cache tags based on date.
-    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING) {
+    if ($status === CallEntityWrapperInterface::STATUS_UPCOMING && $entity->getOpeningDate()) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getOpeningDate()->getPhpDateTime()));
     }
-    if ($status === CallEntityWrapperInterface::STATUS_OPEN) {
+    if ($status === CallEntityWrapperInterface::STATUS_OPEN && $entity->getDeadlineDate()) {
       $cacheable->addCacheTags($this->cacheTagGenerator->generateTags($entity->getDeadlineDate()->getPhpDateTime()));
     }
     $build = [

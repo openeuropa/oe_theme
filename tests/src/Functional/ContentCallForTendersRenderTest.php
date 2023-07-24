@@ -69,7 +69,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Call for tenders node',
-      'meta' => ['Call for tenders'],
+      'meta' => [
+        'Call for tenders',
+        'Ongoing',
+      ],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
@@ -97,7 +100,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
-        'body' => 'N/A',
+        'body' => 'Ongoing',
       ], [
         'label' => 'Publication date',
         'body' => '12 February 2020',
@@ -117,13 +120,17 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $page_header_expected_values = [
       'title' => 'Test Call for tenders node',
       'description' => 'Call for tenders introduction',
-      'meta' => ['Call for tenders'],
+      'meta' => [
+        'Call for tenders',
+        'Ongoing',
+      ],
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     // Assert "Upcoming" status.
+    $node->set('oe_call_tenders_opening_date', ['value' => $static_time->format('Y-m-d')]);
     $opening_date = (clone $static_time)->modify('+ 10 days');
-    $node->set('oe_call_tenders_opening_date', ['value' => $opening_date->format('Y-m-d')])->save();
+    $node->set('oe_publication_date', ['value' => $opening_date->format('Y-m-d')])->save();
     $this->drupalGet($node->toUrl());
 
     $page_header_expected_values['meta'] = [
@@ -138,10 +145,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Upcoming',
       ], [
         'label' => 'Publication date',
-        'body' => '12 February 2020',
-      ], [
-        'label' => 'Opening date',
         'body' => '27 February 2020',
+      ], [
+        'label' => 'Opening of tenders',
+        'body' => '17 February 2020',
       ], [
         'label' => 'Deadline date',
         'body' => '18 March 2020, 01:00 (AEDT)',
@@ -158,20 +165,20 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
 
     $page_header_expected_values['meta'] = [
       'Call for tenders',
-      'Open',
+      'Ongoing',
     ];
     $page_header_assert->assertPattern($page_header_expected_values, $page_header->getOuterHtml());
 
     $details_expected_values['items'] = [
       [
         'label' => 'Status',
-        'body' => 'Open',
+        'body' => 'Ongoing',
       ], [
         'label' => 'Publication date',
-        'body' => '12 February 2020',
-      ], [
-        'label' => 'Opening date',
         'body' => '27 February 2020',
+      ], [
+        'label' => 'Opening of tenders',
+        'body' => '17 February 2020',
       ], [
         'label' => 'Deadline date',
         'body' => '18 March 2020, 01:00 (AEDT)',
@@ -198,10 +205,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Closed',
       ], [
         'label' => 'Publication date',
-        'body' => '12 February 2020',
-      ], [
-        'label' => 'Opening date',
         'body' => '27 February 2020',
+      ], [
+        'label' => 'Opening of tenders',
+        'body' => '17 February 2020',
       ], [
         'label' => 'Deadline date',
         'body' => '18 March 2020, 01:00 (AEDT)',
@@ -223,10 +230,10 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
         'body' => 'Call for tenders reference',
       ], [
         'label' => 'Publication date',
-        'body' => '12 February 2020',
-      ], [
-        'label' => 'Opening date',
         'body' => '27 February 2020',
+      ], [
+        'label' => 'Opening of tenders',
+        'body' => '17 February 2020',
       ], [
         'label' => 'Deadline date',
         'body' => '18 March 2020, 01:00 (AEDT)',
