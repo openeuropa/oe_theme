@@ -182,7 +182,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Name of the image media.
    */
   protected function assertFeaturedMediaField(NodeElement $rendered_element, string $name): void {
-    $figures = $rendered_element->findAll('css', 'figure.ecl-media-container');
+    $figures = $rendered_element->findAll('css', 'figure.ecl-media-container__figure');
     $this->assertCount(1, $figures);
     $figure = reset($figures);
 

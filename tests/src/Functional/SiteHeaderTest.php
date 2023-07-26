@@ -162,9 +162,8 @@ class SiteHeaderTest extends BrowserTestBase {
       $this->assertEquals('Change language, current language is English', $language_switcher_button->getAttribute('aria-label'));
       $this->assertEquals('language-list-overlay', $language_switcher_button->getAttribute('aria-controls'));
       $icon = $language_switcher_button->find('css', "span.ecl-site-header__language-icon svg.ecl-icon.ecl-icon--s.ecl-site-header__icon[focusable='false'][aria-hidden='true']");
-      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#language" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
-      $this->assertEquals('en', $language_switcher_button->find('css', 'span.ecl-site-header__language-icon span.ecl-site-header__language-code')
-        ->getText());
+      $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/' . $component . '/images/icons/sprites/icons.svg#global" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
+      $this->assertEquals('English', $language_switcher_button->getText());
 
       // Assert the language switcher container.
       $language_container = $assert->elementExists('css', 'div.ecl-site-header__language-container', $language_switcher);

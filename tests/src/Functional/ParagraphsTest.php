@@ -10,7 +10,7 @@ use Drupal\Tests\BrowserTestBase;
 /**
  * Tests paragraphs forms.
  *
- * @group batch3
+ * @group batch1
  */
 class ParagraphsTest extends BrowserTestBase {
 
@@ -151,16 +151,16 @@ class ParagraphsTest extends BrowserTestBase {
 
     // Assert the english translation.
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container img.ecl-media-container__media', 'src', 'example_1_en.jpeg');
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure img.ecl-media-container__media', 'src', 'example_1_en.jpeg');
     // Assert the bulgarian translation.
     $this->drupalGet('/bg/node/' . $node->id(), ['external' => FALSE]);
-    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container img.ecl-media-container__media', 'src', 'example_1_bg.jpeg');
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure img.ecl-media-container__media', 'src', 'example_1_bg.jpeg');
 
     // Unpublish the media and assert it is not rendered anymore.
     $media->set('status', 0);
     $media->save();
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementNotExists('css', 'figure.ecl-media-container');
+    $this->assertSession()->elementNotExists('css', 'figure.ecl-media-container__figure');
 
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
@@ -179,7 +179,7 @@ class ParagraphsTest extends BrowserTestBase {
         'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
       ],
     ])->toString();
-    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container div.ecl-media-container__media iframe', 'src', $partial_iframe_url);
+    $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe', 'src', $partial_iframe_url);
   }
 
 }

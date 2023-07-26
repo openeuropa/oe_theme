@@ -7,12 +7,6 @@
  */
 #}
 
-{% set extra_classes = [] %}
-
-{% if full_width %}
-  {% set extra_classes = ['ecl-media-container--fullwidth'] %}
-{% endif %}
-
 {% if not paragraph.field_oe_title.isEmpty() %}
   <h2 class="ecl-u-type-heading-2">{{ content.field_oe_title }}</h2>
 {% endif %}
@@ -21,6 +15,6 @@
   {% include '@ecl-twig/media-container' with {
     'embedded_media': iframe|default(''),
     'ratio': ratio,
-    'extra_classes': extra_classes|join(' '),
+    'full_width': full_width,
   } %}
 {% endif %}

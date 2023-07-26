@@ -906,7 +906,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
     $this->assertStringNotContainsString('ecl-u-type-heading-2', $html);
 
@@ -914,14 +914,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $paragraph->set('field_oe_iframe_media_full_width', TRUE)->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth div.ecl-media-container__media iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container__figure.ecl-media-container--full-width div.ecl-media-container__media iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
 
     // Assert ratio.
     $media->set('oe_media_iframe_ratio', '1_1')->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $iframe = $crawler->filter('figure.ecl-media-container.ecl-media-container--fullwidth div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container__figure.ecl-media-container--full-width div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
 
     // Assert title and full width.
@@ -931,7 +931,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
     $title = $crawler->filter('h2.ecl-u-type-heading-2', $html);
     $this->assertStringContainsString('Iframe paragraph title', $title->text());
-    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
 
     // Translate the media to Bulgarian.
@@ -949,7 +949,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
     $title = $crawler->filter('h2.ecl-u-type-heading-2', $html);
     $this->assertStringContainsString('Iframe paragraph title bg', $title->text());
-    $iframe = $crawler->filter('figure.ecl-media-container div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
+    $iframe = $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media.ecl-media-container__media--ratio-1-1 iframe');
     $this->assertStringContainsString('http://example.com/iframe_bg', $iframe->attr('src'));
   }
 
@@ -1183,15 +1183,15 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container img.ecl-media-container__media'));
-    $image_element = $crawler->filter('figure.ecl-media-container img.ecl-media-container__media');
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media'));
+    $image_element = $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media');
     $this->assertStringContainsString('example_1_en.jpeg', $image_element->attr('src'));
 
     // Assert bulgarian rendering.
     $html = $this->renderParagraph($paragraph, 'bg');
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container img.ecl-media-container__media'));
-    $image_element = $crawler->filter('figure.ecl-media-container img.ecl-media-container__media');
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media'));
+    $image_element = $crawler->filter('figure.ecl-media-container__figure img.ecl-media-container__media');
     $this->assertStringContainsString('example_1_bg.jpeg', $image_element->attr('src'));
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -1204,7 +1204,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $this->assertCount(0, $crawler->filter('figure.ecl-media-container'));
+    $this->assertCount(0, $crawler->filter('figure.ecl-media-container__figure'));
 
     // Create a remote video and add it to the paragraph.
     $media = $media_storage->create([
@@ -1220,7 +1220,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
     // Assert remote video is rendered properly.
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media'));
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $existing_classes = $media_container->attr('class');
     $existing_classes = explode(' ', $existing_classes);
@@ -1247,7 +1247,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Assert AV Portal video is rendered properly.
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media'));
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $this->assertEquals('<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>', $media_container->html());
 
@@ -1263,7 +1263,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media'));
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $this->assertEquals('<iframe src="http://example.com"></iframe>', $media_container->html());
 
@@ -1279,7 +1279,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
-    $this->assertCount(1, $crawler->filter('figure.ecl-media-container div.ecl-media-container__media'));
+    $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media'));
     $media_container = $crawler->filter('div.ecl-media-container__media');
     $this->assertEquals('<iframe src="http://example.com"></iframe>', $media_container->html());
     $existing_classes = $media_container->attr('class');

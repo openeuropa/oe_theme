@@ -153,7 +153,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     foreach ($node->getTranslationLanguages() as $node_langcode => $node_language) {
       $node = \Drupal::service('entity.repository')->getTranslationFromContext($node, $node_langcode);
       $this->drupalGet($node->toUrl());
-      $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container ecl-featured-item__media_container"] img[class="ecl-media-container__media"][src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
+      $this->assertSession()->elementExists('css', 'figure[class="ecl-media-container__figure"] picture[class="ecl-picture ecl-media-container__picture"] img[class="ecl-media-container__media"][src*="' . $file_urls[$node_langcode] . '"][alt="default ' . $node_langcode . ' alt"]');
     }
 
     // Unpublish the media and assert it is not rendered anymore.
@@ -161,7 +161,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $media->save();
 
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementNotExists('css', 'figure[class="ecl-media-container ecl-featured-item__media_container"] img[class="ecl-media-container__media"][src*="' . $file_urls['en'] . '"][alt="default en alt"]');
+    $this->assertSession()->elementNotExists('css', 'figure[class="ecl-media-container__figure"] picture[class="ecl-picture ecl-media-container__picture"] img[class="ecl-media-container__media"][src*="' . $file_urls['en'] . '"][alt="default en alt"]');
   }
 
   /**
