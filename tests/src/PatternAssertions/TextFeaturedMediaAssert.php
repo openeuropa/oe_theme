@@ -53,6 +53,9 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       'highlighted' => [
         [$this, 'assertHighlighted'],
       ],
+      'expandable' => [
+        [$this, 'assertExpandable'],
+      ],
     ];
   }
 
@@ -119,6 +122,35 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       return;
     }
     $this->assertElementExists('article.ecl-featured-item.ecl-featured-item--extended', $crawler);
+  }
+
+  /**
+   * Asserts the optional expandable block info.
+   *
+   * @param array $expected_block
+   *   Array with keys: 'id' (optional), 'label_expanded', 'label_collapsed'
+   *   and 'content'.
+   * @param \Symfony\Component\DomCrawler\Crawler $crawler
+   *   The DomCrawler where to check the element.
+   */
+  protected function assertExpandable(array $expected_block, Crawler $crawler): void {
+    if (!$expected_block) {
+      $this->assertElementNotExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
+      return;
+    }
+    // Assert the expandable selector.
+    $this->assertElementExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
+    // Assert the button with its toggle labels and icon.
+    $this->assertElementExists('button.ecl-button.ecl-button--secondary.ecl-expandable__toggle', $crawler);
+    $svg = $crawler->filter('span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after use');
+    self::assertStringContainsString('icons.svg#corner-arrow', $svg->attr('xlink:href'));
+    $this->assertElementExists('button[data-ecl-label-expanded="' . $expected_block['label_expanded'] . '"][data-ecl-label-collapsed="' . $expected_block['label_collapsed'] . '"]', $crawler);
+    // Assert the content id and its text.
+    if (isset($expected_block['id'])) {
+      $this->assertElementExists('div#' . $expected_block['id'] . '-content.ecl-expandable__content', $crawler);
+    }
+    $content = $crawler->filter('div.ecl-expandable__content');
+    self::assertEquals($expected_block['content'], $content->text());
   }
 
   /**
