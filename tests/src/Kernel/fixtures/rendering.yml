@@ -2734,6 +2734,7 @@
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
@@ -2755,6 +2756,9 @@
         label: "Call to action"
         path: "https://european-union.europa.eu/index_en"
       highlighted: true
+      expandable:
+          content:
+            '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--extended': 1
@@ -2767,12 +2771,16 @@
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 1
+      'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
     equals:
       'div.ecl-featured-item__title': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
       'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'div.ecl-expandable__content': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2787,6 +2795,10 @@
         label: "Call to action"
         path: "http://example.com"
       highlighted: true
+      expandable:
+        label_expanded: "Expand"
+        label_collapsed: "Collapse"
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--extended': 1
@@ -2798,11 +2810,15 @@
       'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 1
+      'button[data-ecl-label-expanded="Expand"][data-ecl-label-collapsed="Collapse"]': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
+      'span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'div.ecl-expandable__content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2823,6 +2839,7 @@
       'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
+      'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
@@ -2850,6 +2867,7 @@
       'iframe': 0
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link.ecl-link--cta[href="http://example.com"]': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
@@ -2873,6 +2891,7 @@
       'figcaption.ecl-media-container__caption': 0
       'h2.ecl-u-type-heading-2': 1
       'a.ecl-link': 0
+      'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
 - array:
@@ -2918,6 +2937,7 @@
   assertions:
     count:
       'iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 0
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2936,6 +2956,7 @@
     count:
       'div.ecl-media-container__media--ratio-1-1 iframe[src="//ec.europa.eu/avservices/play.cfm?ref=I-181645"]': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
+      'div.ecl-expandable.ecl-media-container__expandable': 0
 - array:
     '#type': pattern
     '#id': icons_with_text
