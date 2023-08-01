@@ -1180,6 +1180,7 @@ function oe_theme_preprocess_pattern_date_block__preview(array &$variables): voi
  */
 function oe_theme_preprocess_pattern_text_featured_media__preview(array &$variables): void {
   $variables['image'] = ImageValueObject::fromArray($variables['image']);
+  $variables['expandable']['id'] = 'text-featured-media-expandable' . rand();
 }
 
 /**

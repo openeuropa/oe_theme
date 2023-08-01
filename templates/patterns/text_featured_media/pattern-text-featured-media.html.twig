@@ -52,6 +52,27 @@
     {% endif %}
 {% endif %}
 
+{% if expandable is defined and expandable.content is not empty %}
+  {% set _media_container = _media_container|merge({
+    'expandable': {
+      'id': expandable.id|default(random(100)),
+      'button': {
+        label: expandable.label_collapsed,
+        variant: 'secondary',
+        icon: {
+          name: 'corner-arrow',
+          transform: 'rotate-180',
+          size: 'm',
+          path: ecl_icon_path,
+        }
+      },
+      label_expanded: expandable.label_expanded|default('Expanded'|t),
+      label_collapsed: expandable.label_collapsed|default('Collapsed'|t),
+      content: expandable.content,
+    }
+  }) %}
+{% endif %}
+
 {% if title %}
   <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
 {% endif %}
