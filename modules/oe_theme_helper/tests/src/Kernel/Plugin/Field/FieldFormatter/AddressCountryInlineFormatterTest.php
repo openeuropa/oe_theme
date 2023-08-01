@@ -62,6 +62,10 @@ class AddressCountryInlineFormatterTest extends FormatterTestBase {
       'Multiple items' => [
         'address' => [
           [
+            'country_code' => 'BE',
+            'locality' => 'Bruges',
+          ],
+          [
             'country_code' => 'MX',
           ],
           [
@@ -77,7 +81,7 @@ class AddressCountryInlineFormatterTest extends FormatterTestBase {
             'address_line2' => 'or \'Wetstraat\' (Dutch), meaning "Law Street"',
           ],
         ],
-        'expected' => 'Mexico, Bangladesh, Belgium',
+        'expected' => 'Belgium, Mexico, Bangladesh',
       ],
     ];
   }
