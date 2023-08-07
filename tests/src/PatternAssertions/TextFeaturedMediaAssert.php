@@ -143,14 +143,14 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
     // Assert the button with its toggle labels and icon.
     $this->assertElementExists('button.ecl-button.ecl-button--secondary.ecl-expandable__toggle', $crawler);
     $svg = $crawler->filter('span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon.ecl-button__icon--after use');
-    self::assertStringContainsString('icons.svg#corner-arrow', $svg->attr('xlink:href'));
+    $this->assertStringContainsString('icons.svg#corner-arrow', $svg->attr('xlink:href'));
     $this->assertElementExists('button[data-ecl-label-expanded="' . $expected_block['label_expanded'] . '"][data-ecl-label-collapsed="' . $expected_block['label_collapsed'] . '"]', $crawler);
     // Assert the content id and its text.
     if (isset($expected_block['id'])) {
       $this->assertElementExists('div#' . $expected_block['id'] . '-content.ecl-expandable__content', $crawler);
     }
     $content = $crawler->filter('div.ecl-expandable__content');
-    self::assertEquals($expected_block['content'], $content->text());
+    $this->assertEquals($expected_block['content'], $content->text());
   }
 
   /**
