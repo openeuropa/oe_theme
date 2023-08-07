@@ -1,11 +1,20 @@
 # Changelog
 
+## [3.5.2](https://github.com/openeuropa/oe_theme/tree/3.5.2) (2023-08-07)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.1...3.5.2)
+
+**Merged pull requests:**
+
+- EWPP-3489: Update to ECL 3.9.1. [\#1305](https://github.com/openeuropa/oe_theme/pull/1305) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.5.1](https://github.com/openeuropa/oe_theme/tree/3.5.1) (2023-07-19)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.0...3.5.1)
 
 **Merged pull requests:**
 
+- Release-3.5.1: Update changelog. [\#1303](https://github.com/openeuropa/oe_theme/pull/1303) ([nagyad](https://github.com/nagyad))
 - EWPP-3486: Support empty button link for Listing item blocks. [\#1302](https://github.com/openeuropa/oe_theme/pull/1302) ([sergepavle](https://github.com/sergepavle))
 - EWPP-3481: Temporarily override list with illustration css rules. [\#1301](https://github.com/openeuropa/oe_theme/pull/1301) ([imanoleguskiza](https://github.com/imanoleguskiza))
 
