@@ -142,7 +142,7 @@ class ContactParagraphTest extends ParagraphsTestBase {
     $this->assertEquals('general@example.com', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(4) div a')->html()));
     $this->assertEquals('Address of General contact, 1001 Brussels, Belgium', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(6) div span')->html()));
     $this->assertEquals('Facebook', trim($crawler->filter('dl.ecl-description-list.ecl-description-list--horizontal:nth-child(2) dd.ecl-description-list__definition:nth-child(8) div div div a span')->html()));
-    $this->assertStringContainsString('example_1.jpeg', $crawler->filter('div.ecl-col-m-5 figure.ecl-media-container img')->attr('src'));
+    $this->assertStringContainsString('example_1.jpeg', $crawler->filter('div.ecl-col-m-5 figure.ecl-media-container__figure img')->attr('src'));
     // Assert rendering of the second contact.
     $this->assertEquals('Press contact', trim($crawler->filter('div.ecl-row.ecl-u-mv-xl:nth-child(2) h3.ecl-u-type-heading-3.ecl-u-mt-none div')->html()));
     $this->assertEquals('<p>Press contact body text</p>', trim($crawler->filter('div.ecl-col-12:nth-child(2) div.ecl-u-mb-l div.ecl')->html()));

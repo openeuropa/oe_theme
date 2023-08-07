@@ -213,7 +213,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $media->save();
     $node->set('oe_news_featured_media', [$media])->save();
     $this->drupalGet($node->toUrl());
-    $media_container = $this->assertSession()->elementExists('css', 'article.ecl-u-type-paragraph.ecl-u-mb-l figure.ecl-media-container');
+    $media_container = $this->assertSession()->elementExists('css', 'article.ecl-u-type-paragraph.ecl-u-mb-l figure.ecl-media-container__figure');
     $video = $this->assertSession()->elementExists('css', 'div.ecl-media-container__media iframe', $media_container);
     $partial_video_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [

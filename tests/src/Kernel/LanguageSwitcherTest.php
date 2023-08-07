@@ -138,66 +138,65 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *
    * @param string $langcode
    *   The language code.
-   * @param string $lang_prefix
-   *   The language prefix.
+   * @param string $langname
+   *   The language name.
    *
    * @dataProvider renderingDataProvider
    */
-  public function testLanguageSwitcherRendering(string $langcode, string $lang_prefix): void {
+  public function testLanguageSwitcherRendering(string $langcode, string $langname): void {
     // Set the site default language.
     $this->config('system.site')->set('default_langcode', $langcode)->save();
+    if ($langcode === 'pt-pt') {
+      $langcode = 'pt';
+    }
 
     // Build the language block.
     $crawler = $this->renderLanguageBlock();
 
-    /** @var \Drupal\Core\Language\LanguageInterface[] $languages */
-    $languages = $this->container->get('language_manager')->getNativeLanguages();
-    $language_name = $languages[$langcode]->getName();
-
     // Make sure that language switcher link is properly rendered.
     $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
-    $this->assertStringContainsString($language_name, $actual);
+    $this->assertStringContainsString($langname, $actual);
 
-    $actual = $crawler->filter('a[data-ecl-language-selector] .ecl-site-header__language-code')->text();
-    $this->assertEquals($lang_prefix, $actual);
+    $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
+    $this->assertEquals($langname, $actual);
 
     // Make sure that the actual language link is set as active.
-    $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$lang_prefix}] span.ecl-site-header__language-link-label")->text();
-    $this->assertEquals($language_name, trim($actual));
+    $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
+    $this->assertEquals($langname, trim($actual));
   }
 
   /**
    * Data provider for the rendering test.
    *
    * @return array
-   *   An array of langcodes and prefixes.
+   *   An array of language codes and native language names.
    */
   public function renderingDataProvider(): array {
     return [
-      ['bg', 'bg'],
-      ['cs', 'cs'],
-      ['da', 'da'],
-      ['de', 'de'],
-      ['et', 'et'],
-      ['el', 'el'],
-      ['en', 'en'],
-      ['es', 'es'],
-      ['fr', 'fr'],
-      ['ga', 'ga'],
-      ['hr', 'hr'],
-      ['it', 'it'],
-      ['lv', 'lv'],
-      ['lt', 'lt'],
-      ['hu', 'hu'],
-      ['mt', 'mt'],
-      ['nl', 'nl'],
-      ['pl', 'pl'],
-      ['pt-pt', 'pt'],
-      ['ro', 'ro'],
-      ['sk', 'sk'],
-      ['sl', 'sl'],
-      ['fi', 'fi'],
-      ['sv', 'sv'],
+      ['bg', 'български'],
+      ['cs', 'čeština'],
+      ['da', 'dansk'],
+      ['de', 'Deutsch'],
+      ['et', 'eesti'],
+      ['el', 'ελληνικά'],
+      ['en', 'English'],
+      ['es', 'español'],
+      ['fr', 'français'],
+      ['ga', 'Gaeilge'],
+      ['hr', 'hrvatski'],
+      ['it', 'italiano'],
+      ['lv', 'latviešu'],
+      ['lt', 'lietuvių'],
+      ['hu', 'magyar'],
+      ['mt', 'Malti'],
+      ['nl', 'Nederlands'],
+      ['pl', 'polski'],
+      ['pt-pt', 'português'],
+      ['ro', 'română'],
+      ['sk', 'slovenčina'],
+      ['sl', 'slovenščina'],
+      ['fi', 'suomi'],
+      ['sv', 'svenska'],
     ];
   }
 

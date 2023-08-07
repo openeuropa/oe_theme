@@ -29,15 +29,15 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       ],
       'image' => [
         [$this, 'assertImage'],
-        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container img.ecl-media-container__media',
+        'article.ecl-featured-item figure.ecl-media-container__figure picture.ecl-picture.ecl-media-container__picture img.ecl-media-container__media',
       ],
       'video' => [
         [$this, 'assertElementHtml'],
-        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container div.ecl-media-container__media',
+        'article.ecl-featured-item figure.ecl-media-container__figure .ecl-media-container__media',
       ],
       'caption' => [
         [$this, 'assertElementText'],
-        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container figcaption.ecl-media-container__caption',
+        'article.ecl-featured-item figure.ecl-media-container__figure figcaption.ecl-media-container__caption',
       ],
       'text' => [
         [$this, 'assertElementText'],
@@ -45,7 +45,7 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
       ],
       'video_ratio' => [
         [$this, 'assertVideoRatio'],
-        'article.ecl-featured-item figure.ecl-media-container.ecl-featured-item__media_container div.ecl-media-container__media',
+        'article.ecl-featured-item figure.ecl-media-container__figure div.ecl-media-container__media',
       ],
       'link' => [
         [$this, 'assertLink'],

@@ -54,7 +54,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     // Assert that empty values don't exist.
     $this->assertEmpty($crawler->filter('.ecl'));
     $this->assertEmpty($crawler->filter('.ecl-description-list'));
-    $this->assertEmpty($crawler->filter('figure.ecl-media-container'));
+    $this->assertEmpty($crawler->filter('figure.ecl-media-container__figure'));
     $this->assertEmpty($crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l'));
     $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6'));
     $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5'));
@@ -245,7 +245,7 @@ class ContactRenderTest extends ContentRenderTestBase {
    */
   protected function assertFeaturedMediaField(string $html, string $name): void {
     $crawler = new Crawler($html);
-    $figure = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5 figure.ecl-media-container');
+    $figure = $crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5 figure.ecl-media-container__figure');
     $this->assertCount(1, $figure);
 
     // Assert image tag.
