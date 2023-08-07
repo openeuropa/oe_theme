@@ -13,11 +13,6 @@
   // to the ECL template. The caption/description content should be wrapped in
   // a div, so that its width will match the iframe width.
   .ecl-media-container__caption {
-    display: flex;
-
-    > div {
-      flex-grow: 1;
-      width: 0;
-    }
+    display: block;
   }
 }
