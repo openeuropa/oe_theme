@@ -629,3 +629,9 @@ msgstr "Accesați submeniul"
 
 msgid "Collapse"
 msgstr "Restrângeți"
+
+msgid "Ongoing"
+msgstr "În curs"
+
+msgid "Opening of tenders"
+msgstr "Deschiderea ofertelor"

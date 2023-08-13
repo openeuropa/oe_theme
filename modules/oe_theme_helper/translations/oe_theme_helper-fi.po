@@ -629,3 +629,9 @@ msgstr "Avaa alivalinnat"
 
 msgid "Collapse"
 msgstr "Supista"
+
+msgid "Ongoing"
+msgstr "Meneillään"
+
+msgid "Opening of tenders"
+msgstr "Tarjousten avaaminen"

@@ -79,6 +79,9 @@ msgstr "Телефонен номер"
 msgid "Opening date"
 msgstr "Начална дата"
 
+msgid "Opening of tenders"
+msgstr "Отваряне на офертите"
+
 msgid "Deadline date"
 msgstr "Краен срок"
 
@@ -629,3 +632,6 @@ msgstr "Достъп до поделементите"
 
 msgid "Collapse"
 msgstr "Свиване"
+
+msgid "Ongoing"
+msgstr "Текущо"

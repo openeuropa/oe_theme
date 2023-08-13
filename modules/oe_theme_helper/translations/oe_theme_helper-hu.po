@@ -629,3 +629,9 @@ msgstr "Hozzáférés az alelemekhez"
 
 msgid "Collapse"
 msgstr "Elrejtés"
+
+msgid "Ongoing"
+msgstr "Folyamatban"
+
+msgid "Opening of tenders"
+msgstr "Az ajánlatok felbontása"

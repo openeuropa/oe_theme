@@ -629,3 +629,9 @@ msgstr "Aċċessa s-sottoelement tat-tfal"
 
 msgid "Collapse"
 msgstr "Ikkollassa"
+
+msgid "Ongoing"
+msgstr "Għaddejja"
+
+msgid "Opening of tenders"
+msgstr "Ftuħ ta’ l-offerti"

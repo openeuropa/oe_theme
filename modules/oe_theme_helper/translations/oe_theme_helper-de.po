@@ -629,3 +629,9 @@ msgstr "Zu den Unterkategorien"
 
 msgid "Collapse"
 msgstr "Einklappen"
+
+msgid "Ongoing"
+msgstr "Laufend"
+
+msgid "Opening of tenders"
+msgstr "Öffnung der Angebote"

@@ -629,3 +629,9 @@ msgstr "Piekļūt pakārtotajiem elementiem"
 
 msgid "Collapse"
 msgstr "Sakļaut"
+
+msgid "Ongoing"
+msgstr "Izsludināts"
+
+msgid "Opening of tenders"
+msgstr "Piedāvājumu atvēršana"

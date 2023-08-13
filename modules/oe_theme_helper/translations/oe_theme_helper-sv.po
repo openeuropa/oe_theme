@@ -629,3 +629,9 @@ msgstr "Gå till undersidorna"
 
 msgid "Collapse"
 msgstr "Dölj"
+
+msgid "Ongoing"
+msgstr "Pågående"
+
+msgid "Opening of tenders"
+msgstr "Öppnande av anbuden"

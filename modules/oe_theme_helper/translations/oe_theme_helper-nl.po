@@ -629,3 +629,9 @@ msgstr "Onderliggende elementen tonen"
 
 msgid "Collapse"
 msgstr "Inklappen"
+
+msgid "Ongoing"
+msgstr "Lopend"
+
+msgid "Opening of tenders"
+msgstr "Opening van de inschrijvingen"

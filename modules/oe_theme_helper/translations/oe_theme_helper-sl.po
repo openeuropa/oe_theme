@@ -629,3 +629,9 @@ msgstr "Dostop do podelementov"
 
 msgid "Collapse"
 msgstr "Skrči"
+
+msgid "Ongoing"
+msgstr "V teku"
+
+msgid "Opening of tenders"
+msgstr "Odpiranje ponudb"
