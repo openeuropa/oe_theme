@@ -66,7 +66,12 @@ class AddressInlineCountryFormatter extends AddressDefaultFormatter {
     foreach ($items as $delta => $item) {
       $country_code = $item->getCountryCode();
       $country_list = $this->countryRepository->getList($langcode);
-      $countries[$delta] = $country_list[$country_code] ?? $country_code;
+      $current_country = $country_list[$country_code] ?? $country_code;
+      // If the list of countries already contains the current one, skip it.
+      if (in_array($current_country, $countries)) {
+        continue;
+      }
+      $countries[$delta] = $current_country;
     }
 
     if (empty($countries)) {
