@@ -14,8 +14,9 @@ use Drupal\filter\Plugin\FilterBase;
  * @Filter(
  *   id = "filter_ecl_table",
  *   title = @Translation("ECL table support"),
- *   description = @Translation("Add classes and attributes to the table to align it on mobile devices."),
- *   type = Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
+ *   description = @Translation("Add classes and attributes to the table to
+ *   align it on mobile devices."), type =
+ *   Drupal\filter\Plugin\FilterInterface::TYPE_TRANSFORM_IRREVERSIBLE,
  * )
  */
 class FilterEclTable extends FilterBase {
@@ -37,9 +38,23 @@ class FilterEclTable extends FilterBase {
     $dom = Html::load($text);
     $xpath = new \DOMXPath($dom);
 
+    // Prepare div element for wrapping table.
+    $div_wrapper = $dom->createElement('div');
+    $div_wrapper->setAttribute('class', 'ecl-table-responsive');
+
+    /** @var \DOMElement $table */
     foreach ($xpath->query('//table') as $table) {
       // Put ECL related classes for table tag.
       $this->elementAddClass($table, 'ecl-table');
+      // Wrap table with div element and 'ecl-table-responsive' class.
+      $clonned_wrapper = $div_wrapper->cloneNode();
+      $table->parentNode->replaceChild($clonned_wrapper, $table);
+      $clonned_wrapper->appendChild($table);
+      // Add classes related to "Simple" table mode.
+      if ($table->getAttribute('data-simple') === 'true') {
+        $this->elementAddClass($table, 'ecl-table--simple');
+        $table->removeAttribute('data-simple');
+      }
       // Add classes related to "Zebra striping".
       if ($table->getAttribute('data-striped') === 'true') {
         $this->elementAddClass($table, 'ecl-table--zebra');

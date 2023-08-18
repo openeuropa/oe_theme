@@ -4,8 +4,6 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme_helper\Plugin\CKEditorPlugin;
 
-use Drupal\ckeditor\CKEditorPluginBase;
-use Drupal\ckeditor\CKEditorPluginContextualInterface;
 use Drupal\editor\Entity\Editor;
 
 /**
@@ -16,7 +14,7 @@ use Drupal\editor\Entity\Editor;
  *   label = @Translation("Zebra striping")
  * )
  */
-class TableZebraStriping extends CKEditorPluginBase implements CKEditorPluginContextualInterface {
+class TableZebraStriping extends EclTablePluginBase {
 
   /**
    * {@inheritdoc}
@@ -39,34 +37,6 @@ class TableZebraStriping extends CKEditorPluginBase implements CKEditorPluginCon
    */
   public function getButtons() {
     return [];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isEnabled(Editor $editor) {
-    if (!$editor->hasAssociatedFilterFormat()) {
-      return FALSE;
-    }
-
-    // "Zebra striping" option should be available only when the ECL table
-    // filter is enabled and the table button is present in the WYSIWYG toolbar.
-    $enabled = FALSE;
-    $format = $editor->getFilterFormat();
-    if ($format->filters('filter_ecl_table')->status) {
-      $settings = $editor->getSettings();
-      foreach ($settings['toolbar']['rows'] as $row) {
-        foreach ($row as $group) {
-          foreach ($group['items'] as $button) {
-            if ($button === 'Table') {
-              $enabled = TRUE;
-            }
-          }
-        }
-      }
-    }
-
-    return $enabled;
   }
 
 }
