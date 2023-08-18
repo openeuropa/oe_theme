@@ -15,6 +15,6 @@
   {% include '@ecl-twig/media-container' with {
     'embedded_media': iframe|default(''),
     'ratio': ratio,
-    'full_width': full_width,
+    'full_width': full_width|default(false),
   } %}
 {% endif %}

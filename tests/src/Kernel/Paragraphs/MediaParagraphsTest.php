@@ -906,6 +906,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
+    // Assert full width class is not present.
+    $this->assertCount(0, $crawler->filter('figure.ecl-media-container__figure.ecl-media-container--full-width'));
     $iframe = $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media iframe');
     $this->assertStringContainsString('http://example.com/iframe', $iframe->attr('src'));
     $this->assertStringNotContainsString('ecl-u-type-heading-2', $html);
