@@ -107,10 +107,10 @@ abstract class NodeViewRoutesBase extends PageHeaderMetadataPluginBase implement
     $summary = $node->get($field_name)->first();
 
     return [
-      // We strip the tags because the component expects only one paragraph of
-      // text and the field is using a text format which adds paragraph tags.
+      // We strip the tags because the ECL component expects only one paragraph
+      // of text and the field is using a text format which adds paragraph tags.
       '#type' => 'inline_template',
-      '#template' => '{{ summary|render|striptags("<strong><a><em><svg><use>")|raw }}',
+      '#template' => '{{ summary|render|striptags("<strong><a><em><svg><use><span>")|raw }}',
       '#context' => [
         'summary' => [
           '#type' => 'processed_text',
