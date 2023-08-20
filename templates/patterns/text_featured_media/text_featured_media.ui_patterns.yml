@@ -30,7 +30,7 @@ text_featured_media:
       label: "Image"
       description: "Featured image. Either this or the video need to be provided. If both are provided the image will take preference."
       preview:
-        src: "https://placeimg.com/1000/500/arch"
+        src: "https://picsum.photos/1000/500"
         alt: "Alternative text for featured item image"
     video:
       type: "text"
@@ -71,6 +71,7 @@ text_featured_media:
       description: "Optional expandable text block with extra information about the media item. The block cannot be rendered without actual text and the id must be unique on the page."
       preview:
         id: ""
+        hidden: true
         label_expanded: "Expanded"
         label_collapsed: "Collapsed"
         content:

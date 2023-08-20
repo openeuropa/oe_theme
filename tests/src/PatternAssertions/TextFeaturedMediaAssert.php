@@ -128,13 +128,24 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    * Asserts the optional expandable block info.
    *
    * @param array $expected_block
-   *   Array with keys: 'id' (optional), 'label_expanded', 'label_collapsed'
-   *   and 'content'.
+   *   Array with keys: 'id' (optional), 'label_expanded', 'label_collapsed',
+   *   (boolean) 'hidden' and 'content'.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
   protected function assertExpandable(array $expected_block, Crawler $crawler): void {
     if (!$expected_block) {
+      $this->assertElementNotExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
+      return;
+    }
+    if (isset($expected_block['hidden']) && $expected_block['hidden'] === TRUE) {
+      if (isset($expected_block['id'])) {
+        $this->assertElementExists('div#' . $expected_block['id'], $crawler);
+      }
+      // Assert the hidden content element.
+      $content = $crawler->filter('div.text-featured-media-hidden-content');
+      $this->assertEquals($expected_block['content'], $content->text());
+      // Assert the expandable selector is not present.
       $this->assertElementNotExists('div.ecl-expandable.ecl-media-container__expandable', $crawler);
       return;
     }
