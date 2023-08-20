@@ -2796,6 +2796,7 @@
         path: "http://example.com"
       highlighted: true
       expandable:
+        hidden: false
         label_expanded: "Expand"
         label_collapsed: "Collapse"
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -2827,6 +2828,10 @@
       text_title: "Title"
       caption: "Some caption text for the image"
       text: "Some more text"
+      expandable:
+        id: 'text-featured-media-1'
+        hidden: true
+        content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   assertions:
     count:
       'article.ecl-featured-item.ecl-featured-item--extended': 0
@@ -2840,10 +2845,12 @@
       'figcaption.ecl-media-container__caption': 0
       'a.ecl-link': 0
       'div.ecl-expandable.ecl-media-container__expandable': 0
+      'div#text-featured-media-1.text-featured-media-hidden-content': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
       'div.ecl-featured-item__title': "Title"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
+      'div#text-featured-media-1.text-featured-media-hidden-content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 - array:
     '#type': pattern
     '#id': text_featured_media
