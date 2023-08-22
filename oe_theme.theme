@@ -2336,3 +2336,12 @@ function oe_theme_preprocess_paragraph__oe_av_media(array &$variables): void {
     $variables['image'] = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
   }
 }
+
+/**
+ * Implements hook_preprocess_captcha().
+ */
+function oe_theme_preprocess_captcha(&$variables) {
+  if (!empty($variables['attributes'])) {
+    $variables['attributes']['class'][] = 'ecl-u-mv-m';
+  }
+}
