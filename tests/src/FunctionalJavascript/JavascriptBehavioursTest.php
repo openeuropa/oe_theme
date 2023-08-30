@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
-use Drupal\Tests\oe_theme\Traits\FunctionalJavascriptTrait;
 use PHPUnit\Framework\Assert;
 
 /**
@@ -14,8 +13,6 @@ use PHPUnit\Framework\Assert;
  * @group batch3
  */
 class JavascriptBehavioursTest extends WebDriverTestBase {
-
-  use FunctionalJavascriptTrait;
 
   /**
    * {@inheritdoc}
@@ -53,17 +50,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->container->get('theme_installer')->install(['oe_theme']);
     $this->config('system.theme')->set('default', 'oe_theme')->save();
     $this->container->set('theme.registry', NULL);
-  }
-
-  /**
-   * {@inheritdoc}
-   *
-   * @todo Should be removed after Drupal 10.0.
-   */
-  protected function drupalGet($path, array $options = [], array $headers = []) {
-    $out = parent::drupalGet($path, $options, $headers);
-    $this->failOnJavascriptErrors();
-    return $out;
   }
 
   /**
