@@ -1934,16 +1934,17 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_flags(array &$varia
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $highlight = '';
     $icon = $sub_paragraph->get('field_oe_flag')->value;
     $icon .= $ratio === 'square' ? '-square' : '';
     if ($sub_paragraph->hasField('field_oe_subtitle') && !$sub_paragraph->get('field_oe_subtitle')->isEmpty()) {
-      $highlight = $sub_paragraph->get('field_oe_subtitle')->value;
+      $highlight = $sub_paragraph->get('field_oe_subtitle')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_subtitle'));
     }
     $variables['items'][] = [
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $icon,
-      'value' => $highlight ?? '',
+      'value' => $highlight,
     ];
   }
 }
@@ -1965,15 +1966,16 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_icons(array &$varia
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    $highlight = '';
     if ($sub_paragraph->hasField('field_oe_subtitle') && !$sub_paragraph->get('field_oe_subtitle')->isEmpty()) {
-      $highlight = $sub_paragraph->get('field_oe_subtitle')->value;
+      $highlight = $sub_paragraph->get('field_oe_subtitle')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_subtitle'));
     }
     $variables['items'][] = [
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'icon' => $sub_paragraph->get('field_oe_icon')->value,
       'media_size' => $size ?? 'm',
-      'value' => $highlight ?? '',
+      'value' => $highlight,
     ];
   }
 }
@@ -2020,15 +2022,16 @@ function oe_theme_preprocess_paragraph__oe_illustration_list_images(array &$vari
         $image = ImageValueObject::fromStyledImageItem($thumbnail, 'oe_theme_medium_no_crop');
       }
     }
+    $highlight = '';
     if ($sub_paragraph->hasField('field_oe_subtitle') && !$sub_paragraph->get('field_oe_subtitle')->isEmpty()) {
-      $highlight = $sub_paragraph->get('field_oe_subtitle')->value;
+      $highlight = $sub_paragraph->get('field_oe_subtitle')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_subtitle'));
     }
     $variables['items'][] = [
       'title' => $sub_paragraph->get('field_oe_title')->value,
       'description' => $sub_paragraph->get('field_oe_text_long')->isEmpty() ? '' : $builder->viewField($sub_paragraph->get('field_oe_text_long')),
       'image' => $image ?? '',
       'media_size' => $size ?? 'm',
-      'value' => $highlight ?? '',
+      'value' => $highlight,
     ];
   }
 

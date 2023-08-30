@@ -110,6 +110,12 @@ class ListWithIllustrationAssert extends BasePatternAssert {
       else {
         self::assertElementNotExists('.ecl-list-illustration__title', $item_element);
       }
+      if (isset($expected_item['value'])) {
+        self::assertElementText($expected_item['value'], '.ecl-list-illustration__value', $item_element);
+      }
+      else {
+        self::assertElementNotExists('.ecl-list-illustration__value', $item_element);
+      }
       if (isset($expected_item['description'])) {
         self::assertElementText($expected_item['description'], '.ecl-list-illustration__description', $item_element);
       }
