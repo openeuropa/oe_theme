@@ -18,6 +18,13 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 class InPageNavigationBlockTest extends WebDriverTestBase {
 
   /**
+   * Disabled until FRONT-4076 is fixed.
+   *
+   * {@inheritdoc}
+   */
+  protected $failOnJavascriptConsoleErrors = FALSE;
+
+  /**
    * {@inheritdoc}
    */
   protected static $modules = [

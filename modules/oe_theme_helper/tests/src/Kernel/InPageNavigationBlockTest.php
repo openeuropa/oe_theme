@@ -17,6 +17,13 @@ use Drupal\Tests\oe_theme\PatternAssertions\InPageNavigationAssert;
 class InPageNavigationBlockTest extends AbstractKernelTestBase {
 
   /**
+   * Disabled until FRONT-4076 is fixed.
+   *
+   * {@inheritdoc}
+   */
+  protected $failOnJavascriptConsoleErrors = FALSE;
+
+  /**
    * Tests the block markup.
    */
   public function testBlockMarkup(): void {

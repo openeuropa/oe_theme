@@ -70,6 +70,8 @@ class TwigExtensionTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertions.
    */
   public function smartTrimFilterDataProvider(): array {
+    $drupal_version = (float) substr(\Drupal::VERSION, 0, 4);
+
     return [
       'Trim a string' => [
         'variables' => [
@@ -121,7 +123,10 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         ],
         'assertions' => [
           'contains' => [
-            "&lt;script&gt;\n&lt;!--//--&gt;&lt;![CDATA[// &gt;&lt;!--\ndocum...\n//--&gt;&lt;!]]&gt;\n&lt;/script&gt;",
+            // https://www.drupal.org/project/drupal/issues/3259255
+            $drupal_version < 10.1 ?
+            "&lt;script&gt;\n&lt;!--//--&gt;&lt;![CDATA[// &gt;&lt;!--\ndocum...\n//--&gt;&lt;!]]&gt;\n&lt;/script&gt;" :
+            "&lt;script&gt;\n//&lt;![CDATA[\ndocum...\n//]]&gt;\n&lt;/script&gt;",
           ],
         ],
       ],
