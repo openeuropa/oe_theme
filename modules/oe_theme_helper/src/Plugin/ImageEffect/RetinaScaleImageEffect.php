@@ -40,7 +40,6 @@ class RetinaScaleImageEffect extends ScaleImageEffect {
     }
 
     if (!$image->scale($target_width, $target_height, $upscale)) {
-      var_dump(sprintf('Image scale failed using the %s toolkit on %s (%s)', $image->getToolkitId(), $image->getSource(), $image->getMimeType()));
       $this->logger->error('Image scale failed using the %toolkit toolkit on %path (%mimetype, %dimensions)', [
         '%toolkit' => $image->getToolkitId(),
         '%path' => $image->getSource(),
