@@ -629,3 +629,9 @@ msgstr "Accéder aux sous-éléments"
 
 msgid "Collapse"
 msgstr "Réduire"
+
+msgid "Ongoing"
+msgstr "En cours"
+
+msgid "Opening of tenders"
+msgstr "Ouverture des offres"

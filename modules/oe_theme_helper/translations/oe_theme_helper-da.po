@@ -629,3 +629,9 @@ msgstr "Gå til fanens underemner"
 
 msgid "Collapse"
 msgstr "Skjul"
+
+msgid "Ongoing"
+msgstr "Igangværende"
+
+msgid "Opening of tenders"
+msgstr "Åbning af bud"

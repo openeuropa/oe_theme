@@ -629,3 +629,9 @@ msgstr "Prieiga prie poskyrių"
 
 msgid "Collapse"
 msgstr "Suskleisti"
+
+msgid "Ongoing"
+msgstr "Vykstantis"
+
+msgid "Opening of tenders"
+msgstr "Vokų su pasiūlymais atplėšimas"

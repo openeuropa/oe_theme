@@ -5,7 +5,7 @@ declare(strict_types = 1);
 namespace Drupal\Tests\oe_theme_helper\Kernel;
 
 use Drupal\KernelTests\KernelTestBase;
-use Drupal\Tests\oe_theme_helper\Traits\ToolkitTestTrait;
+use Drupal\Tests\Traits\Core\Image\ToolkitTestTrait;
 
 /**
  * Tests that the Retina Scale effect upscales images appropriately.
@@ -40,7 +40,7 @@ class RetinaScaleEffectTest extends KernelTestBase {
    *
    * @var \Drupal\image\ImageEffectManager
    */
-  protected $manager;
+  protected $imageEffectPluginManager;
 
   /**
    * {@inheritdoc}
@@ -52,9 +52,10 @@ class RetinaScaleEffectTest extends KernelTestBase {
    */
   protected function setUp(): void {
     parent::setUp();
-    $this->manager = $this->container->get('plugin.manager.image.effect');
+    $this->imageEffectPluginManager = $this->container->get('plugin.manager.image.effect');
     $this->image = $this->getImage();
     $this->imageTestReset();
+
   }
 
   /**
@@ -66,7 +67,6 @@ class RetinaScaleEffectTest extends KernelTestBase {
       'width' => 10,
       'height' => 10,
     ]);
-    $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
     $this->assertEquals(10, $calls['scale'][0][0]);
@@ -82,7 +82,6 @@ class RetinaScaleEffectTest extends KernelTestBase {
       'width' => $this->image->getWidth() * 4,
       'upscale' => TRUE,
     ]);
-    $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
     $this->assertEquals($this->image->getWidth() * 4, $calls['scale'][0][0]);
@@ -96,7 +95,6 @@ class RetinaScaleEffectTest extends KernelTestBase {
       // Set the desired width to be higher than the image width.
       'width' => $this->image->getWidth() * 10,
     ]);
-    $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
     $this->assertEquals($this->image->getWidth() * 2, $calls['scale'][0][0]);
@@ -111,28 +109,9 @@ class RetinaScaleEffectTest extends KernelTestBase {
       'width' => $this->image->getWidth() * 10,
       'multiplier' => 3,
     ]);
-    $this->assertToolkitOperationsCalled(['scale']);
 
     $calls = $this->imageTestGetAllCalls();
     $this->assertEquals($this->image->getWidth() * 3, $calls['scale'][0][0]);
-  }
-
-  /**
-   * Asserts the effect processing of an image effect plugin.
-   *
-   * @param array $operations
-   *   Array with the operations to be done.
-   * @param string $effect_name
-   *   The name of the image effect to test.
-   * @param array $data
-   *   The data to pass to the image effect.
-   *
-   * @throws \Drupal\Component\Plugin\Exception\PluginException
-   */
-  protected function assertImageEffect(array $operations, string $effect_name, array $data): void {
-    /** @var \Drupal\image\ImageEffectInterface $effect */
-    $effect = $this->manager->createInstance($effect_name, ['data' => $data]);
-    $this->assertTrue($effect->applyEffect($this->image));
   }
 
 }

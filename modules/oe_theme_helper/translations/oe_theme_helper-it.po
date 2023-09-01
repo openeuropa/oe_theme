@@ -629,3 +629,9 @@ msgstr "Accedi agli elementi figlio"
 
 msgid "Collapse"
 msgstr "Comprimi"
+
+msgid "Ongoing"
+msgstr "In corso"
+
+msgid "Opening of tenders"
+msgstr "Apertura delle offerte"

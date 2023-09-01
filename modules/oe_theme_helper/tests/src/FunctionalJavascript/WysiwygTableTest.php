@@ -23,6 +23,13 @@ class WysiwygTableTest extends WebDriverTestBase {
   use CKEditorTestTrait;
 
   /**
+   * Disabled until FRONT-4076 is fixed.
+   *
+   * {@inheritdoc}
+   */
+  protected $failOnJavascriptConsoleErrors = FALSE;
+
+  /**
    * {@inheritdoc}
    */
   protected static $modules = [

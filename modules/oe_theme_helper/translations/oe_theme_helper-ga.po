@@ -629,3 +629,9 @@ msgstr "Fo-ábhair an phríomhábhair"
 
 msgid "Collapse"
 msgstr "Leacaigh"
+
+msgid "Ongoing"
+msgstr "Ar siúl faoi láthair"
+
+msgid "Opening of tenders"
+msgstr "Oscailt tairiscintí"

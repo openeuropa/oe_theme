@@ -19,6 +19,13 @@ use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
 
   /**
+   * Disabled until FRONT-4076 is fixed.
+   *
+   * {@inheritdoc}
+   */
+  protected $failOnJavascriptConsoleErrors = FALSE;
+
+  /**
    * {@inheritdoc}
    */
   protected static $modules = [

@@ -629,3 +629,9 @@ msgstr "Rozbalit podkapitoly"
 
 msgid "Collapse"
 msgstr "Sbalit"
+
+msgid "Ongoing"
+msgstr "probíhá"
+
+msgid "Opening of tenders"
+msgstr "Otevírání nabídek"

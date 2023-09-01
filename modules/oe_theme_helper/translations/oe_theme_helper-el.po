@@ -629,3 +629,9 @@ msgstr "Πρόσβαση στις υποκατηγορίες του θέματο
 
 msgid "Collapse"
 msgstr "Σύμπτυξη"
+
+msgid "Ongoing"
+msgstr "Σε εξέλιξη"
+
+msgid "Opening of tenders"
+msgstr "Αποσφράγιση των προσφορών"

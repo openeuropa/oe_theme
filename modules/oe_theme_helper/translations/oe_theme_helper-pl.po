@@ -629,3 +629,9 @@ msgstr "Rozwiń podpunkty"
 
 msgid "Collapse"
 msgstr "Zwiń"
+
+msgid "Ongoing"
+msgstr "Otwarty"
+
+msgid "Opening of tenders"
+msgstr "Otwarcie ofert"

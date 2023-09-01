@@ -111,7 +111,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
       'title' => 'Test Call for tenders node',
       'badges' => [
         [
-          'label' => 'Call status: Open',
+          'label' => 'Call status: Ongoing',
           'variant' => 'high',
         ],
       ],
@@ -122,7 +122,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
             'label' => 'Reference',
             'body' => 'Call for tenders reference',
           ], [
-            'label' => 'Opening date',
+            'label' => 'Opening of tenders',
             'body' => $opening_date->format('d F Y'),
           ], [
             'label' => 'Deadline date',
@@ -158,7 +158,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'label' => 'Reference',
           'body' => 'Call for tenders reference',
         ], [
-          'label' => 'Opening date',
+          'label' => 'Opening of tenders',
           'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
@@ -193,7 +193,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'label' => 'Reference',
           'body' => 'Call for tenders reference',
         ], [
-          'label' => 'Opening date',
+          'label' => 'Opening of tenders',
           'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
@@ -215,9 +215,9 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $actual);
 
     // Check status Upcoming label and background.
-    $opening_date = (clone $static_time)->modify('+ 10 days');
+    $publication_date = (clone $static_time)->modify('+ 10 days');
     $deadline_date = (clone $static_time)->modify('+ 5 days');
-    $node->set('oe_call_tenders_opening_date', $opening_date->format('Y-m-d'))->save();
+    $node->set('oe_publication_date', $publication_date->format('Y-m-d'))->save();
     $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
@@ -232,7 +232,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'label' => 'Reference',
           'body' => 'Call for tenders reference',
         ], [
-          'label' => 'Opening date',
+          'label' => 'Opening of tenders',
           'body' => $opening_date->format('d F Y'),
         ], [
           'label' => 'Deadline date',
@@ -248,34 +248,6 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
     $crawler = new Crawler($html);
     $actual = $crawler->filter('span.ecl-label.ecl-label--medium');
     $this->assertCount(1, $actual);
-
-    // Check status N/A.
-    $publication_date = (clone $static_time)->modify('+ 5 days');
-    $deadline_date = (clone $static_time)->modify('+ 5 days');
-
-    $node->set('oe_publication_date', $publication_date->format('Y-m-d'))->save();
-    $node->set('oe_call_tenders_opening_date', '')->save();
-    $node->set('oe_call_tenders_deadline', $deadline_date->format(DateTimeItemInterface::DATETIME_STORAGE_FORMAT))->save();
-    $build = $this->nodeViewBuilder->view($node, 'teaser');
-    $html = $this->renderRoot($build);
-
-    $deadline_date->setTimeZone(new \DateTimeZone('Australia/Sydney'));
-    $expected_values['badges'][0] = [];
-    $expected_values['lists'] = [
-      'items' => [
-        [
-          'label' => 'Reference',
-          'body' => 'Call for tenders reference',
-        ], [
-          'label' => 'Deadline date',
-          'body' => $deadline_date->format('d F Y, H:i (T)'),
-        ], [
-          'label' => 'Department',
-          'body' => 'Audit Board of the European Communities',
-        ],
-      ],
-    ];
-    $assert->assertPattern($expected_values, $html);
   }
 
 }

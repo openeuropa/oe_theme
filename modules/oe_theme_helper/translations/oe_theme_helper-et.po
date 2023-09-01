@@ -629,3 +629,9 @@ msgstr "Juurdepääs alamelementidele"
 
 msgid "Collapse"
 msgstr "Ahenda"
+
+msgid "Ongoing"
+msgstr "Käimasolev"
+
+msgid "Opening of tenders"
+msgstr "Pakkumiste avamine"

@@ -629,3 +629,9 @@ msgstr "Acceder a subelementos"
 
 msgid "Collapse"
 msgstr "Contraer"
+
+msgid "Ongoing"
+msgstr "En curso"
+
+msgid "Opening of tenders"
+msgstr "Apertura de plicas"

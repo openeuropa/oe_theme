@@ -179,7 +179,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($details_expected_values, $details_html);
 
     // Assert Body field.
-    $body = $this->assertSession()->elementExists('css', 'article[role=article] .ecl');
+    $body = $this->assertSession()->elementExists('css', 'article .ecl');
     $this->assertEquals('News body', $body->getText());
 
     // Assert news contacts.
