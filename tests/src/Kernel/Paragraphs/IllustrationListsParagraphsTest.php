@@ -77,7 +77,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
       'type' => 'oe_illustration_item_flag',
       'field_oe_subtitle' => 'Highlighted Term 2',
       'field_oe_title' => 'Term 2',
-      'field_oe_text_long' => '',
       'field_oe_flag' => 'belgium',
     ]);
     $paragraph->save();
@@ -86,7 +85,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
       'field_oe_subtitle' => 'Highlighted Term 3',
-      'field_oe_title' => '',
       'field_oe_text_long' => 'Description 3',
       'field_oe_flag' => 'france',
     ]);
@@ -95,8 +93,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_title' => '',
-      'field_oe_text_long' => '',
       'field_oe_flag' => 'finland',
     ]);
     $paragraph->save();
@@ -162,9 +158,11 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
         ], [
           'title' => 'Term 2',
           'icon' => 'belgium-square',
+          'value' => 'Highlighted Term 2',
         ], [
           'description' => 'Description 3',
           'icon' => 'france-square',
+          'value' => 'Highlighted Term 3',
         ], [
           'icon' => 'finland-square',
         ],
@@ -226,7 +224,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_icon',
-      'field_oe_subtitle' => 'Highlighted Term 4',
+      'field_oe_text_long' => 'Description 4',
       'field_oe_icon' => 'package',
     ]);
     $paragraph->save();
@@ -272,7 +270,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'media_size' => 'l',
         ], [
           'icon' => 'package',
-          'value' => 'Highlighted Term 4',
+          'description' => 'Description 4',
           'media_size' => 'l',
         ],
       ],
@@ -351,7 +349,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_image',
-      'field_oe_subtitle' => 'Highlighted Term 1',
       'field_oe_title' => 'Term 2',
       'field_oe_media' => [$media_av_portal_photo],
     ]);
@@ -412,7 +409,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
             'src' => 'files/styles/oe_theme_medium_no_crop/public/media_avportal_thumbnails/' . $av_portal_photo_file->getFilename(),
             'alt' => 'Euro with miniature figurines',
           ],
-          'value' => 'Highlighted Term 2',
         ], [
           'description' => 'Description 3',
           'image' => [
@@ -424,7 +420,6 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
             'src' => 'styles/oe_theme_medium_no_crop/public/example_1.jpeg',
             'alt' => 'Alt',
           ],
-          'value' => 'Highlighted Illustration list with images',
         ],
       ],
       'centered' => FALSE,
