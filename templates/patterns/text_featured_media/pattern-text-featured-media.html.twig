@@ -52,6 +52,38 @@
     {% endif %}
 {% endif %}
 
+{% if expandable is defined and expandable.content is not empty %}
+  {% if expandable.hidden == true %}
+    {% set aria_describedby_id = expandable.id|default('text-featured-media-' ~ random(100)) %}
+    {% set extra_attributes = [
+      {
+        'name': 'aria-describedby',
+        'value': aria_describedby_id,
+      }
+    ] %}
+    <div id="{{aria_describedby_id}}" hidden class="text-featured-media-hidden-content">{{ expandable.content }}</div>
+  {% else %}
+    {% set _media_container = _media_container|merge({
+      'expandable': {
+        'id': expandable.id|default('text-featured-media-' ~ random(10)),
+        'button': {
+          label: expandable.label_collapsed,
+          variant: 'secondary',
+          icon: {
+            name: 'corner-arrow',
+            transform: 'rotate-180',
+            size: 'm',
+            path: ecl_icon_path,
+          }
+        },
+        label_expanded: expandable.label_expanded|default('Expanded'|t),
+        label_collapsed: expandable.label_collapsed|default('Collapsed'|t),
+        content: expandable.content,
+      }
+    }) %}
+  {% endif %}
+{% endif %}
+
 {% if title %}
   <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
 {% endif %}
@@ -63,4 +95,5 @@
   link: call_to_action_link,
   media_container: _media_container|default([]),
   position: _position,
+  extra_attributes: extra_attributes|default([]),
 } %}
