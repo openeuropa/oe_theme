@@ -650,3 +650,6 @@ msgstr "Přehrát pohyblivý pruh s aktualitami"
 
 msgid "Site navigation"
 msgstr "Navigace stránek"
+
+msgid "You are here:"
+msgstr "Nacházíte se zde:"

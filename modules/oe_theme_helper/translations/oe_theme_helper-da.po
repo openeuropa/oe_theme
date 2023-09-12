@@ -650,3 +650,6 @@ msgstr "Afspil nyhedsbåndet"
 
 msgid "Site navigation"
 msgstr "Navigation"
+
+msgid "You are here:"
+msgstr "Du er her:"

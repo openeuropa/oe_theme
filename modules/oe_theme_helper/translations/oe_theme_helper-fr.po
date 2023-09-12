@@ -650,3 +650,6 @@ msgstr "Lancer le fil d’information"
 
 msgid "Site navigation"
 msgstr "Navigation sur le site"
+
+msgid "You are here:"
+msgstr "Vous êtes ici:"

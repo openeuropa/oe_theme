@@ -650,3 +650,6 @@ msgstr "Ħaddem l-għażla tal-aħbarijiet"
 
 msgid "Site navigation"
 msgstr "Navigazzjoni tas-sit"
+
+msgid "You are here:"
+msgstr "Tinsab hawn:"

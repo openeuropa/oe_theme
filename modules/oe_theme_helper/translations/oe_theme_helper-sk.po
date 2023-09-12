@@ -650,3 +650,6 @@ msgstr "Prehrať pohyblivý riadok s aktualitami"
 
 msgid "Site navigation"
 msgstr "Navigačné menu lokality"
+
+msgid "You are here:"
+msgstr "Nachádzate sa tu:"

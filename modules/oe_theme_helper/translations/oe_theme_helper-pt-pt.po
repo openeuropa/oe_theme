@@ -650,3 +650,6 @@ msgstr "Fazer desfilar barra de notícias"
 
 msgid "Site navigation"
 msgstr "Navegação no sítio"
+
+msgid "You are here:"
+msgstr "Está aqui:"

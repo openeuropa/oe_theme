@@ -650,3 +650,6 @@ msgstr "Porniți caruselul de știri"
 
 msgid "Site navigation"
 msgstr "Meniu de navigare pe site"
+
+msgid "You are here:"
+msgstr "Sunteți aici:"

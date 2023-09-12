@@ -650,3 +650,6 @@ msgstr "Paleisti naujienų juostą"
 
 msgid "Site navigation"
 msgstr "Naršymas svetainėje"
+
+msgid "You are here:"
+msgstr "Esate čia:"

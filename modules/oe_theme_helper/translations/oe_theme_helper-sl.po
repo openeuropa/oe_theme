@@ -650,3 +650,6 @@ msgstr "Predvajaj tekoči napis z novicami"
 
 msgid "Site navigation"
 msgstr "Navigacija po spletišču"
+
+msgid "You are here:"
+msgstr "Ste tukaj:"

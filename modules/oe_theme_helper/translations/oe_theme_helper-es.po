@@ -650,3 +650,6 @@ msgstr "Activar banda de noticias"
 
 msgid "Site navigation"
 msgstr "Navegación del sitio"
+
+msgid "You are here:"
+msgstr "Usted está aquí:"

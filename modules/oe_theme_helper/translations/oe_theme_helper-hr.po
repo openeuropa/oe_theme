@@ -650,3 +650,6 @@ msgstr "Pokreni traku s vijestima"
 
 msgid "Site navigation"
 msgstr "Navigacija portalom"
+
+msgid "You are here:"
+msgstr "Nalazite se ovdje:"

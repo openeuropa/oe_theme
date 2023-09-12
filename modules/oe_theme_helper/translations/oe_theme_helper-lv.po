@@ -650,3 +650,6 @@ msgstr "Spēlēt ziņu lenti"
 
 msgid "Site navigation"
 msgstr "Navigācija lapā"
+
+msgid "You are here:"
+msgstr "Jūs esat šeit:"

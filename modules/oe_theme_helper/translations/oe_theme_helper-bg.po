@@ -650,3 +650,6 @@ msgstr "Пускане на лентата с новини"
 
 msgid "Site navigation"
 msgstr "Навигация на сайта"
+
+msgid "You are here:"
+msgstr "Вие сте тук:"

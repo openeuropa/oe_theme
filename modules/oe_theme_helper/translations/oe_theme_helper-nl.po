@@ -650,3 +650,6 @@ msgstr "Nieuwsticker afspelen"
 
 msgid "Site navigation"
 msgstr "Sitemenu"
+
+msgid "You are here:"
+msgstr "U bent hier:"

@@ -650,3 +650,6 @@ msgstr "Attiva la sequenza delle notizie"
 
 msgid "Site navigation"
 msgstr "Navigazione nel sito"
+
+msgid "You are here:"
+msgstr "Ti trovi qui:"

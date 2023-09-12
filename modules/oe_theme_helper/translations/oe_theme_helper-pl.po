@@ -650,3 +650,6 @@ msgstr "Uruchom przewijanie paska informacyjnego"
 
 msgid "Site navigation"
 msgstr "Nawigacja na stronie"
+
+msgid "You are here:"
+msgstr "Jesteś tutaj:"

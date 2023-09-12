@@ -650,3 +650,6 @@ msgstr "Käivita uudisteriba"
 
 msgid "Site navigation"
 msgstr "Saidi navigatsioon"
+
+msgid "You are here:"
+msgstr "Oled siin:"

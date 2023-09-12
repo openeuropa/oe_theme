@@ -650,3 +650,6 @@ msgstr "Cuir an ticear nuachta ar siúl"
 
 msgid "Site navigation"
 msgstr "Loingseoireacht an tsuímh"
+
+msgid "You are here:"
+msgstr "Anseo atá tú:"

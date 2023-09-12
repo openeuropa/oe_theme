@@ -650,3 +650,6 @@ msgstr "Hírszalag elindítása"
 
 msgid "Site navigation"
 msgstr "Honlap-navigáció"
+
+msgid "You are here:"
+msgstr "Ön itt van:"

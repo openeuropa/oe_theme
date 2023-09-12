@@ -650,3 +650,6 @@ msgstr "News-Ticker einschalten"
 
 msgid "Site navigation"
 msgstr "Navigationsmenü"
+
+msgid "You are here:"
+msgstr "Sie sind hier:"
