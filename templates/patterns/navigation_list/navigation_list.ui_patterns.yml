@@ -55,5 +55,5 @@ navigation_list:
       label: "Image"
       description: "Item image"
       preview:
-        src: "https://placeimg.com/1000/500/arch"
+        src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for image"
