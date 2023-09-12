@@ -635,3 +635,15 @@ msgstr "Prebiehajúce"
 
 msgid "Opening of tenders"
 msgstr "Otváranie ponúk"
+
+msgid "Next news item"
+msgstr "Ďalšia aktuálna správa"
+
+msgid "Previous news item"
+msgstr "Predošlá správa"
+
+msgid "Pause news ticker"
+msgstr "Zastaviť pohyblivý riadok s aktualitami"
+
+msgid "Play news ticker"
+msgstr "Prehrať pohyblivý riadok s aktualitami"

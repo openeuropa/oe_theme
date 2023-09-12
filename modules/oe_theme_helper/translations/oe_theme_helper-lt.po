@@ -635,3 +635,15 @@ msgstr "Vykstantis"
 
 msgid "Opening of tenders"
 msgstr "Vokų su pasiūlymais atplėšimas"
+
+msgid "Next news item"
+msgstr "Kitas naujienų punktas"
+
+msgid "Previous news item"
+msgstr "Ankstesnis naujienų punktas"
+
+msgid "Pause news ticker"
+msgstr "Stabdyti naujienų juostą"
+
+msgid "Play news ticker"
+msgstr "Paleisti naujienų juostą"

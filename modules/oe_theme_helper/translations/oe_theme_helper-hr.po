@@ -635,3 +635,15 @@ msgstr "Tekući"
 
 msgid "Opening of tenders"
 msgstr "Otvaranje ponuda"
+
+msgid "Next news item"
+msgstr "Sljedeća vijest"
+
+msgid "Previous news item"
+msgstr "Prethodna vijest"
+
+msgid "Pause news ticker"
+msgstr "Pauziraj traku s vijestima"
+
+msgid "Play news ticker"
+msgstr "Pokreni traku s vijestima"

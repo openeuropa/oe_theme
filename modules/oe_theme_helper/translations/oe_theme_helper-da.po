@@ -635,3 +635,15 @@ msgstr "Igangværende"
 
 msgid "Opening of tenders"
 msgstr "Åbning af bud"
+
+msgid "Next news item"
+msgstr "Næste nyhed"
+
+msgid "Previous news item"
+msgstr "Forrige nyhed"
+
+msgid "Pause news ticker"
+msgstr "Sæt nyhedsbåndet på pausei"
+
+msgid "Play news ticker"
+msgstr "Afspil nyhedsbåndet"

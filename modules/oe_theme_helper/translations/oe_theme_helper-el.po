@@ -635,3 +635,15 @@ msgstr "Σε εξέλιξη"
 
 msgid "Opening of tenders"
 msgstr "Αποσφράγιση των προσφορών"
+
+msgid "Next news item"
+msgstr "Επόμενη είδηση"
+
+msgid "Previous news item"
+msgstr "Προηγούμενη είδηση"
+
+msgid "Pause news ticker"
+msgstr "Διακοπή κυλιόμενων ειδήσεων"
+
+msgid "Play news ticker"
+msgstr "Εκκίνηση κυλιόμενων ειδήσεων"

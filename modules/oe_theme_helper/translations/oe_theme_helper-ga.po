@@ -635,3 +635,15 @@ msgstr "Ar siúl faoi láthair"
 
 msgid "Opening of tenders"
 msgstr "Oscailt tairiscintí"
+
+msgid "Next news item"
+msgstr "An chéad mhír nuachta eile"
+
+msgid "Previous news item"
+msgstr "An mhír nuachta roimhe seo"
+
+msgid "Pause news ticker"
+msgstr "Cuir an ticear nuachta ar sos"
+
+msgid "Play news ticker"
+msgstr "Cuir an ticear nuachta ar siúl"
