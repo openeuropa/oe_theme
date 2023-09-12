@@ -32,7 +32,7 @@ list_with_illustration:
         - title: "Business, Economy, Euro"
           description: "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
           image:
-            src: "https://placeimg.com/1000/500/arch"
+            src: "https://loremflickr.com/1000/500/arch"
             alt: "Alternative text for featured item image"
           icon: "italy"
           value: "3.2 millions"
@@ -40,7 +40,7 @@ list_with_illustration:
         - title: "About the European Union"
           description: "The EU and its institutions, how to visit and work at the EU."
           image:
-            src: "https://placeimg.com/1000/500/arch"
+            src: "https://loremflickr.com/1000/500/arch"
             alt: "Alternative text for featured item image"
           icon: "budget"
           value: "3.2 millions"

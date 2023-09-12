@@ -40,7 +40,7 @@ banner_hero:
       label: "Image"
       description: "Banner image."
       preview:
-        src: "https://placeimg.com/1000/500/arch"
+        src: "https://loremflickr.com/1000/500/arch"
     alignment:
       type: "text"
       label: "Alignment"
