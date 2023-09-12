@@ -41,11 +41,11 @@
 {# Print the result #}
 
 <nav
-
+  aria-labelledby="nav-label"
   class="{{ _css_class }}"{{ _extra_attributes|raw }}
   data-ecl-contextual-navigation
 >
-  <div class="ecl-contextual-navigation__label">{{ _label }}</div>
+  <div id="nav-label" class="ecl-contextual-navigation__label">{{ _label }}</div>
   <ul
     class="ecl-contextual-navigation__list"
     data-ecl-contextual-navigation-list
