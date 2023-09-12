@@ -635,3 +635,15 @@ msgstr "Meneillään"
 
 msgid "Opening of tenders"
 msgstr "Tarjousten avaaminen"
+
+msgid "Next news item"
+msgstr "Seuraava uutinen"
+
+msgid "Previous news item"
+msgstr "Edellinen uutinen"
+
+msgid "Pause news ticker"
+msgstr "Pysäytä uutisnauha"
+
+msgid "Play news ticker"
+msgstr "Käynnistä uutisnauha"

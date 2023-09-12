@@ -635,3 +635,15 @@ msgstr "Otwarty"
 
 msgid "Opening of tenders"
 msgstr "Otwarcie ofert"
+
+msgid "Next news item"
+msgstr "Następna wiadomość"
+
+msgid "Previous news item"
+msgstr "Poprzednia wiadomość"
+
+msgid "Pause news ticker"
+msgstr "Wstrzymaj przewijanie paska informacyjnego"
+
+msgid "Play news ticker"
+msgstr "Uruchom przewijanie paska informacyjnego"

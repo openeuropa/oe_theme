@@ -635,3 +635,15 @@ msgstr "În curs"
 
 msgid "Opening of tenders"
 msgstr "Deschiderea ofertelor"
+
+msgid "Next news item"
+msgstr "Știrea următoare"
+
+msgid "Previous news item"
+msgstr "Știrea anterioară"
+
+msgid "Pause news ticker"
+msgstr "Opriți caruselul de știri"
+
+msgid "Play news ticker"
+msgstr "Porniți caruselul de știri"

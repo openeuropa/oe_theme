@@ -635,3 +635,15 @@ msgstr "Izsludināts"
 
 msgid "Opening of tenders"
 msgstr "Piedāvājumu atvēršana"
+
+msgid "Next news item"
+msgstr "Uz nākamo ziņu"
+
+msgid "Previous news item"
+msgstr "Uz iepriekšējo ziņu"
+
+msgid "Pause news ticker"
+msgstr "Pauzēt ziņu lenti"
+
+msgid "Play news ticker"
+msgstr "Spēlēt ziņu lenti"

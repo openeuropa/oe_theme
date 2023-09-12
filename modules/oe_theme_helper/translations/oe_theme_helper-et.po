@@ -635,3 +635,15 @@ msgstr "Käimasolev"
 
 msgid "Opening of tenders"
 msgstr "Pakkumiste avamine"
+
+msgid "Next news item"
+msgstr "Järgmine uudiskirje"
+
+msgid "Previous news item"
+msgstr "Eelmine uudiskirje"
+
+msgid "Pause news ticker"
+msgstr "Peata uudisteriba"
+
+msgid "Play news ticker"
+msgstr "Käivita uudisteriba"

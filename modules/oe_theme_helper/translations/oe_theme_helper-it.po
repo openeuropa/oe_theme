@@ -635,3 +635,15 @@ msgstr "In corso"
 
 msgid "Opening of tenders"
 msgstr "Apertura delle offerte"
+
+msgid "Next news item"
+msgstr "Notizia successiva"
+
+msgid "Previous news item"
+msgstr "Notizia precedente"
+
+msgid "Pause news ticker"
+msgstr "Ferma la sequenza delle notizie"
+
+msgid "Play news ticker"
+msgstr "Attiva la sequenza delle notizie"
