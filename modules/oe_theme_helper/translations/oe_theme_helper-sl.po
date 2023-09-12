@@ -647,3 +647,6 @@ msgstr "Prekini tekoči napis z novicami"
 
 msgid "Play news ticker"
 msgstr "Predvajaj tekoči napis z novicami"
+
+msgid "Site navigation"
+msgstr "Navigacija po spletišču"

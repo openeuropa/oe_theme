@@ -51,13 +51,21 @@
 {% endfor %}
 
 {% if _items %}
+  {# Add extra attributes. #}
+  {% set extra_attributes = [
+    {
+      'name': 'aria-label',
+      'value': "Site navigation"|t,
+    }
+  ] %}
   {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
     close: 'Close'|t,
     back: 'Back'|t,
     site_name: site_name,
     items: _items,
-    icon_path: ecl_icon_path
+    icon_path: ecl_icon_path,
+    extra_attributes: extra_attributes|default([]),
   } only %}
 {% endif %}
 

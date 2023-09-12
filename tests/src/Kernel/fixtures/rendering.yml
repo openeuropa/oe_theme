@@ -3098,6 +3098,7 @@
           label: "Link"
   assertions:
     count:
+      "nav.ecl-menu.ecl-menu--group1[data-ecl-menu][data-ecl-menu-max-lines=\"2\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
       "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
     contains:
@@ -3146,6 +3147,7 @@
               label: 'Child 1.8'
   assertions:
     count:
+      "nav.ecl-menu.ecl-menu--group1[data-ecl-menu][data-ecl-menu-max-lines=\"2\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
     contains:
       '.ecl-menu__open': "Custom Menu"

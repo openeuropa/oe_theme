@@ -647,3 +647,6 @@ msgstr "Pauzēt ziņu lenti"
 
 msgid "Play news ticker"
 msgstr "Spēlēt ziņu lenti"
+
+msgid "Site navigation"
+msgstr "Navigācija lapā"

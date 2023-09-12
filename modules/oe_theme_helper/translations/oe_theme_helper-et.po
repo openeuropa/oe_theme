@@ -647,3 +647,6 @@ msgstr "Peata uudisteriba"
 
 msgid "Play news ticker"
 msgstr "Käivita uudisteriba"
+
+msgid "Site navigation"
+msgstr "Saidi navigatsioon"

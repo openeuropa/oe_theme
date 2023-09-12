@@ -647,3 +647,6 @@ msgstr "Cuir an ticear nuachta ar sos"
 
 msgid "Play news ticker"
 msgstr "Cuir an ticear nuachta ar siúl"
+
+msgid "Site navigation"
+msgstr "Loingseoireacht an tsuímh"

@@ -647,3 +647,6 @@ msgstr "Nieuwsticker pauzeren"
 
 msgid "Play news ticker"
 msgstr "Nieuwsticker afspelen"
+
+msgid "Site navigation"
+msgstr "Sitemenu"

@@ -647,3 +647,6 @@ msgstr "Pôr em pausa barra de notícias"
 
 msgid "Play news ticker"
 msgstr "Fazer desfilar barra de notícias"
+
+msgid "Site navigation"
+msgstr "Navegação no sítio"

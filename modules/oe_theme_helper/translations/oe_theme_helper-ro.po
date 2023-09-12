@@ -647,3 +647,6 @@ msgstr "Opriți caruselul de știri"
 
 msgid "Play news ticker"
 msgstr "Porniți caruselul de știri"
+
+msgid "Site navigation"
+msgstr "Meniu de navigare pe site"

@@ -647,3 +647,6 @@ msgstr "Hírszalag megállítása"
 
 msgid "Play news ticker"
 msgstr "Hírszalag elindítása"
+
+msgid "Site navigation"
+msgstr "Honlap-navigáció"

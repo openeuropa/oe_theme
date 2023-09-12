@@ -647,3 +647,6 @@ msgstr "Ferma la sequenza delle notizie"
 
 msgid "Play news ticker"
 msgstr "Attiva la sequenza delle notizie"
+
+msgid "Site navigation"
+msgstr "Navigazione nel sito"

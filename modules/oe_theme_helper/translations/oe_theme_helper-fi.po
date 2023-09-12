@@ -647,3 +647,6 @@ msgstr "Pysäytä uutisnauha"
 
 msgid "Play news ticker"
 msgstr "Käynnistä uutisnauha"
+
+msgid "Site navigation"
+msgstr "Sivustovalikko"
