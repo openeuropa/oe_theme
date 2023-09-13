@@ -98,7 +98,7 @@ list_item:
       label: "Primary image"
       description: "Attributes of the image to render"
       preview:
-        src: "https://placeimg.com/1200/900/arch"
+        src: "https://loremflickr.com/1200/900/arch"
         alt: "Alternative text for image"
         size: "large"
     icon:

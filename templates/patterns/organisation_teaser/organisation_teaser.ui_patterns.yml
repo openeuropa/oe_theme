@@ -7,7 +7,7 @@ organisation_teaser:
       label: "Logo"
       description: "Logo (optional)."
       preview :
-        src : "https://placeimg.com/100/100"
+        src : "https://loremflickr.com/100/100"
         alt: "Alternative text for logo"
     name:
       type: "text"

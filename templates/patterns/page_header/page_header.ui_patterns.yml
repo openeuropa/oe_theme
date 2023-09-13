@@ -12,7 +12,7 @@ page_header:
       label: "Thumbnail"
       description: "Thumbnail displayed alongside the description."
       preview:
-        src: "https://placeimg.com/1000/500/arch"
+        src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for thumbnail"
     introduction:
       type: "text"

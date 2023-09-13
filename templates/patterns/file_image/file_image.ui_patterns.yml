@@ -6,7 +6,7 @@ file_image:
       type: "Url"
       label: "Source"
       description: "Source of the image (A Drupal Url object)"
-      preview: "https://placeimg.com/1200/300/arch"
+      preview: "https://loremflickr.com/1200/300/arch"
     alt:
       type: "text"
       label: "Alt"
