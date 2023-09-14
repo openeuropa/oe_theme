@@ -647,3 +647,9 @@ msgstr "Pauziraj traku s vijestima"
 
 msgid "Play news ticker"
 msgstr "Pokreni traku s vijestima"
+
+msgid "Site navigation"
+msgstr "Navigacija portalom"
+
+msgid "You are here:"
+msgstr "Nalazite se ovdje:"

@@ -647,3 +647,9 @@ msgstr "Waqqaf l-għażla tal-aħbarijiet"
 
 msgid "Play news ticker"
 msgstr "Ħaddem l-għażla tal-aħbarijiet"
+
+msgid "Site navigation"
+msgstr "Navigazzjoni tas-sit"
+
+msgid "You are here:"
+msgstr "Tinsab hawn:"

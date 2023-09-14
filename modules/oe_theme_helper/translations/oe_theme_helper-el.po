@@ -647,3 +647,9 @@ msgstr "Διακοπή κυλιόμενων ειδήσεων"
 
 msgid "Play news ticker"
 msgstr "Εκκίνηση κυλιόμενων ειδήσεων"
+
+msgid "Site navigation"
+msgstr "Πλοήγηση στον ιστότοπο"
+
+msgid "You are here:"
+msgstr "Είστε εδώ:"

@@ -647,3 +647,9 @@ msgstr "Zastaviť pohyblivý riadok s aktualitami"
 
 msgid "Play news ticker"
 msgstr "Prehrať pohyblivý riadok s aktualitami"
+
+msgid "Site navigation"
+msgstr "Navigačné menu lokality"
+
+msgid "You are here:"
+msgstr "Nachádzate sa tu:"

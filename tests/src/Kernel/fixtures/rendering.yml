@@ -2082,6 +2082,7 @@
       more_label: "More label"
   assertions:
     count:
+      "nav.ecl-contextual-navigation[aria-labelledby=\"nav-label\"][data-ecl-contextual-navigation]": 1
       'li.ecl-contextual-navigation__item': 6
       'li.ecl-contextual-navigation__item--collapsed': 1
       'li.ecl-contextual-navigation__item--more': 1
@@ -2095,7 +2096,7 @@
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-4.com"]': "Item four"
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] span.ecl-link__label': "Item five"
       'li.ecl-contextual-navigation__item a.ecl-contextual-navigation__link[href="http://link-5.com"] svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'div.ecl-contextual-navigation__label': "Navigation title"
+      'div#nav-label.ecl-contextual-navigation__label': "Navigation title"
       'button.ecl-contextual-navigation__more .ecl-button__label': "More label"
 - array:
     '#type': pattern
@@ -3098,6 +3099,7 @@
           label: "Link"
   assertions:
     count:
+      "nav.ecl-menu.ecl-menu--group1[data-ecl-menu][data-ecl-menu-max-lines=\"2\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
       "li.ecl-menu__item:nth-child(2) button[aria-label=\"Access item's children\"]": 1
     contains:
@@ -3146,6 +3148,7 @@
               label: 'Child 1.8'
   assertions:
     count:
+      "nav.ecl-menu.ecl-menu--group1[data-ecl-menu][data-ecl-menu-max-lines=\"2\"][data-ecl-auto-init=\"Menu\"][aria-expanded=\"false\"][role=\"navigation\"][aria-label=\"Site navigation\"]": 1
       "li.ecl-menu__item:nth-child(1) button[aria-label=\"Access item's children\"]": 1
     contains:
       '.ecl-menu__open': "Custom Menu"

@@ -647,3 +647,9 @@ msgstr "Detener banda de noticias"
 
 msgid "Play news ticker"
 msgstr "Activar banda de noticias"
+
+msgid "Site navigation"
+msgstr "Navegación del sitio"
+
+msgid "You are here:"
+msgstr "Usted está aquí:"

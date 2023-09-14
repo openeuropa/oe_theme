@@ -647,3 +647,9 @@ msgstr "Pausa nyhetsrullningen"
 
 msgid "Play news ticker"
 msgstr "Starta nyhetsrullningen"
+
+msgid "Site navigation"
+msgstr "Navigeringsmeny"
+
+msgid "You are here:"
+msgstr "Du är här:"
