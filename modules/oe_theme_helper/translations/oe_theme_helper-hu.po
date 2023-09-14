@@ -635,3 +635,15 @@ msgstr "Folyamatban"
 
 msgid "Opening of tenders"
 msgstr "Az ajánlatok felbontása"
+
+msgid "Next news item"
+msgstr "Következő hír"
+
+msgid "Previous news item"
+msgstr "Előző hír"
+
+msgid "Pause news ticker"
+msgstr "Hírszalag megállítása"
+
+msgid "Play news ticker"
+msgstr "Hírszalag elindítása"

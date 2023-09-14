@@ -3518,6 +3518,10 @@
       svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
+      button.ecl-news-ticker__prev span.ecl-u-sr-only: 'Previous news item'
+      button.ecl-news-ticker__next span.ecl-u-sr-only: 'Next news item'
+      button.ecl-news-ticker__pause span.ecl-u-sr-only: 'Pause news ticker'
+      button.ecl-news-ticker__play span.ecl-u-sr-only: 'Play news ticker'
 - array:
     '#type': 'pattern'
     '#id': 'news_ticker'

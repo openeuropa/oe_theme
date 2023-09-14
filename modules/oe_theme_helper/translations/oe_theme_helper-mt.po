@@ -635,3 +635,15 @@ msgstr "Għaddejja"
 
 msgid "Opening of tenders"
 msgstr "Ftuħ ta’ l-offerti"
+
+msgid "Next news item"
+msgstr "L-aħbar li jmiss"
+
+msgid "Previous news item"
+msgstr "L-aħbar preċedenti"
+
+msgid "Pause news ticker"
+msgstr "Waqqaf l-għażla tal-aħbarijiet"
+
+msgid "Play news ticker"
+msgstr "Ħaddem l-għażla tal-aħbarijiet"

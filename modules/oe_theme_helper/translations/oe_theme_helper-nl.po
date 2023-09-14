@@ -635,3 +635,15 @@ msgstr "Lopend"
 
 msgid "Opening of tenders"
 msgstr "Opening van de inschrijvingen"
+
+msgid "Next news item"
+msgstr "Volgende nieuwsbericht"
+
+msgid "Previous news item"
+msgstr "Vorig nieuwsbericht"
+
+msgid "Pause news ticker"
+msgstr "Nieuwsticker pauzeren"
+
+msgid "Play news ticker"
+msgstr "Nieuwsticker afspelen"
