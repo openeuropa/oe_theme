@@ -1,11 +1,34 @@
 # Changelog
 
+## [3.6.0](https://github.com/openeuropa/oe_theme/tree/3.6.0) (2023-09-14)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.2...3.6.0)
+
+**Merged pull requests:**
+
+- EWPP-3602: Update ECL version to 3.10.0. [\#1320](https://github.com/openeuropa/oe_theme/pull/1320) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3592: Accessibility fix for news-ticker buttons. [\#1319](https://github.com/openeuropa/oe_theme/pull/1319) ([nagyad](https://github.com/nagyad))
+- EWPP-3594: Add accessibility attributes for navigation menu, contextual navigation and breadcrumb. [\#1318](https://github.com/openeuropa/oe_theme/pull/1318) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3450: Remove top margin of textfield form elements. [\#1316](https://github.com/openeuropa/oe_theme/pull/1316) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3498: Avoid using the same highlighted field valu for illustration lists. [\#1312](https://github.com/openeuropa/oe_theme/pull/1312) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3386: Add margin bottom class. [\#1311](https://github.com/openeuropa/oe_theme/pull/1311) ([nagyad](https://github.com/nagyad))
+- EWPP-3479: Add optional expandable block to Text with featured media pattern. [\#1307](https://github.com/openeuropa/oe_theme/pull/1307) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3443: Do not show duplicates in AddressInlineCountryFormatter. [\#1306](https://github.com/openeuropa/oe_theme/pull/1306) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3349: Update CFT rendering tests. [\#1304](https://github.com/openeuropa/oe_theme/pull/1304) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3373: Add top padding to main content block. [\#1299](https://github.com/openeuropa/oe_theme/pull/1299) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3207: Add 'simple table' option for WYSIWYG table dialog. [\#1298](https://github.com/openeuropa/oe_theme/pull/1298) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3409: Style image media of Illustration list with images paragraph. [\#1294](https://github.com/openeuropa/oe_theme/pull/1294) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3116: Allow span to be added by other text filters like spamspan. [\#1293](https://github.com/openeuropa/oe_theme/pull/1293) ([nagyad](https://github.com/nagyad))
+- EWPP-3314: Use full width parameter of ECL media container for Iframe. [\#1292](https://github.com/openeuropa/oe_theme/pull/1292) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3417: Map Norwegian Bokmål and Chinese, Simplified language codes to internal ones. [\#1290](https://github.com/openeuropa/oe_theme/pull/1290) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.5.2](https://github.com/openeuropa/oe_theme/tree/3.5.2) (2023-08-07)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.1...3.5.2)
 
 **Merged pull requests:**
 
+- Prepare release 3.5.2. [\#1308](https://github.com/openeuropa/oe_theme/pull/1308) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3489: Update to ECL 3.9.1. [\#1305](https://github.com/openeuropa/oe_theme/pull/1305) ([22Alexandra](https://github.com/22Alexandra))
 
 ## [3.5.1](https://github.com/openeuropa/oe_theme/tree/3.5.1) (2023-07-19)
