@@ -809,6 +809,15 @@ function oe_theme_preprocess_html(array &$variables): void {
   if ('language_selection_page' === \Drupal::request()->attributes->get('_route')) {
     $variables['attributes']['class'][] = 'page-splash';
   }
+  // Load specific ECL component library rtl styling for oe_theme and its
+  // subthemes for pages with html attribute of rtl.
+  if ($variables['html_attributes']['dir']->value() === 'rtl') {
+    $active_theme = \Drupal::theme()->getActiveTheme();
+    if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
+      $component_library = theme_get_setting('component_library') ?? 'ec';
+      $variables['#attached']['library'][] = 'oe_theme/style_' . $component_library . '_rtl';
+    }
+  }
 }
 
 /**
