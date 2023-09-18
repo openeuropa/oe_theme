@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\Tests\oe_theme\Functional;
 
+use Drupal\language\Entity\ConfigurableLanguage;
 use Drupal\Tests\BrowserTestBase;
 
 /**
@@ -20,6 +21,7 @@ class ConfigurationTest extends BrowserTestBase {
     'config',
     'system',
     'oe_theme_helper',
+    'language',
   ];
 
   /**
@@ -38,10 +40,16 @@ class ConfigurationTest extends BrowserTestBase {
       'oe_theme',
       'oe_theme_subtheme_test',
     ]);
+
+    ConfigurableLanguage::createFromLangcode('ar')->save();
+    // Rebuild container to make sure that the language path processor is
+    // picked up.
+    // @see \Drupal\language\LanguageServiceProvider::register()
+    $this->rebuildContainer();
   }
 
   /**
-   * Test that the the default libraries are loaded correctly.
+   * Test that the default libraries are loaded correctly.
    */
   public function testDefaultLibraryLoading(): void {
     foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
@@ -60,6 +68,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
+
+      // Assert that rtl styling is not loaded.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
@@ -112,6 +123,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
+      // Assert that we don't load rtl styling.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/optional/ecl-rtl.css');
+
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
 
@@ -122,6 +136,12 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertLinkNotContainsHref('/oe_theme/css/style-ec.css');
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/ec/scripts/ecl-ec.js');
+
+      // Assert that rtl styling is loaded for Arabic.
+      $this->drupalGet('<front>', [
+        'language' => \Drupal::languageManager()->getLanguage('ar'),
+      ]);
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-rtl.css');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
@@ -143,6 +163,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
 
+      // Assert that we don't load rtl styling.
+      $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');
+
       // Assert that the favicon provided by the theme is being used.
       $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
 
@@ -154,6 +177,11 @@ class ConfigurationTest extends BrowserTestBase {
 
       $this->assertScriptNotContainsSrc('/oe_theme/dist/eu/scripts/ecl-eu.js');
 
+      // Assert that rtl styling is loaded for Arabic.
+      $this->drupalGet('<front>', [
+        'language' => \Drupal::languageManager()->getLanguage('ar'),
+      ]);
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-rtl.css');
     }
   }
 
