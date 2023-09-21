@@ -39,8 +39,7 @@
 {% if image or video %}
     {% if image %}
       {% set _media_container = {
-        'image': image.src,
-        'alt': image.alt,
+        'embedded_media': image,
         'description': caption,
       } %}
     {% elseif video %}

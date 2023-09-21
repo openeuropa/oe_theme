@@ -10,11 +10,8 @@ use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityRepositoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\file\FileInterface;
-use Drupal\image\Plugin\Field\FieldType\ImageItem;
 use Drupal\media\MediaInterface;
 use Drupal\oe_content_event\EventNodeWrapper;
-use Drupal\oe_theme\ValueObject\ImageValueObject;
 use Drupal\oe_time_caching\Cache\TimeBasedCacheTagGeneratorInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -224,14 +221,9 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
       return;
     }
 
-    $thumbnail = !$media->get('thumbnail')->isEmpty() ? $media->get('thumbnail')->first() : NULL;
-    if (!$thumbnail instanceof ImageItem || !$thumbnail->entity instanceof FileInterface) {
-      $cache->applyTo($build);
-      return;
-    }
-
-    $cache->addCacheableDependency($thumbnail->entity);
-    $build['#fields']['image'] = ImageValueObject::fromImageItem($thumbnail);
+    /** @var \Drupal\Core\Entity\EntityViewBuilderInterface $media_builder */
+    $media_builder = $this->entityTypeManager->getViewBuilder('media');
+    $build['#fields']['image'] = $media_builder->view($media, 'oe_theme_main_content');
 
     // Only display a caption if we have an image to be captioned by and there
     // is a caption set.
