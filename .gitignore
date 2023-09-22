@@ -1,6 +1,7 @@
 vendor
 node_modules
 build
+!/modules/oe_theme_helper/js/build
 npm-debug.log
 grumphp.yml
 composer.lock
