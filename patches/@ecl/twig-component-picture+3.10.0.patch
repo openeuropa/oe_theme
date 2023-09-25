@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl/twig-component-picture/picture.html.twig
++++ b/node_modules/@ecl/twig-component-picture/picture.html.twig
+@@ -81,7 +81,7 @@
+     {% if _picture.img.src is not empty %}
+       src="{{ _picture.img.src }}"
+     {% endif %}
+-    {% if _picture.img.alt is not empty %}
++    {% if _picture.img.alt is defined %}
+       alt="{{ _picture.img.alt }}"
+     {% endif %}
+   />
