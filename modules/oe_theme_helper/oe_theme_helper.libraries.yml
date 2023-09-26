@@ -6,3 +6,9 @@ internal.oe_theme_helper.ckeditor5.table_zebra_striping:
     js/build/tableZebraStriping.js: { preprocess: false, minified: true }
   dependencies:
     - core/ckeditor5
+
+internal.oe_theme_helper.ckeditor5.table_simple:
+  js:
+    js/build/tableSimple.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/ckeditor5

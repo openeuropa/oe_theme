@@ -14,3 +14,20 @@ oe_theme_helper_table_zebra_striping:
       plugins:
         - ckeditor5_table
       filter: filter_ecl_table
+
+oe_theme_helper_table_simple:
+  ckeditor5:
+    plugins:
+      - tableSimple.TableSimple
+    config:
+      table:
+        contentToolbar: [toggleTableSimple]
+  drupal:
+    label: Table simple
+    library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_simple
+    elements:
+      - <table data-simple>
+    conditions:
+      plugins:
+        - ckeditor5_table
+      filter: filter_ecl_table
