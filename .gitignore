@@ -9,6 +9,7 @@ yarn.lock
 behat.yml
 runner.yml
 .idea
+.DS_Store
 package-lock.json
 phpunit.xml
 .stylelintrc.json

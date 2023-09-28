@@ -1,6 +1,6 @@
 import { Plugin } from 'ckeditor5/src/core';
-import { icons } from 'ckeditor5/src/core';
 import { ButtonView } from 'ckeditor5/src/ui';
+import tableSimpleIcon from './../../../icons/table-simple.svg';
 
 export default class TableSimpleUi extends Plugin {
 
@@ -19,7 +19,7 @@ export default class TableSimpleUi extends Plugin {
       const view = new ButtonView(locale);
 
       view.set({
-        icon: icons.check,
+        icon: tableSimpleIcon,
         tooltip: true,
         isToggleable: true
       });

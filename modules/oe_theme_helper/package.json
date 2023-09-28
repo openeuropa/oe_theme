@@ -6,13 +6,15 @@
   "license": "GPL-2.0-or-later",
   "scripts": {
     "watch": "webpack --mode development --watch",
-    "build": "webpack"
+    "build": "webpack",
+    "clean-up-svg-icons": "svgo --config=./svgo.config.js -i ./js/icons"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-dev-utils": "^30.0.0",
     "@ckeditor/ckeditor5-table": "^39.0.2",
     "ckeditor5": "~39.0.1",
     "raw-loader": "^4.0.2",
+    "svgo": "^3.0.2",
     "terser-webpack-plugin": "^5.2.0",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.4.0"

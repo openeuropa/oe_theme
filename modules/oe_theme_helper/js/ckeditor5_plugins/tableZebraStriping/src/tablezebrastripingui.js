@@ -1,6 +1,6 @@
 import { Plugin } from 'ckeditor5/src/core';
-import { icons } from 'ckeditor5/src/core';
 import { ButtonView } from 'ckeditor5/src/ui';
+import tableZebraStripedIcon from './../../../icons/table-zebra-striped.svg';
 
 export default class TableZebraStripingUi extends Plugin {
 
@@ -19,7 +19,7 @@ export default class TableZebraStripingUi extends Plugin {
       const view = new ButtonView(locale);
 
       view.set({
-        icon: icons.cancel,
+        icon: tableZebraStripedIcon,
         tooltip: true,
         isToggleable: true
       });
