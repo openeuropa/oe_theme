@@ -31,3 +31,20 @@ oe_theme_helper_table_simple:
       plugins:
         - ckeditor5_table
       filter: filter_ecl_table
+
+oe_theme_helper_table_sort:
+  ckeditor5:
+    plugins:
+      - tableSort.TableSort
+    config:
+      table:
+        contentToolbar: [toggleTableColumnSort]
+  drupal:
+    label: Table sort
+    library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_sort
+    elements:
+      - <table data-sortable>
+    conditions:
+      plugins:
+        - ckeditor5_table
+      filter: filter_ecl_table

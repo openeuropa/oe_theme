@@ -12,3 +12,12 @@ internal.oe_theme_helper.ckeditor5.table_simple:
     js/build/tableSimple.js: { preprocess: false, minified: true }
   dependencies:
     - core/ckeditor5
+
+internal.oe_theme_helper.ckeditor5.table_sort:
+  css:
+    theme:
+      css/table-sort.css: { }
+  js:
+    js/build/tableSort.js: { preprocess: false, minified: true }
+  dependencies:
+    - core/ckeditor5
