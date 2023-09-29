@@ -130,9 +130,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
 
     // Test the dedicated button behaviour.
     $this->click('.ck-widget.table');
-    $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
-    $button = $this->getBalloonButton('Toggle simple mode off');
-    $this->assertTrue($button->hasClass('ck-on'));
+    $button = $this->assertBalloonButtonOn('Table toolbar', 'Toggle simple mode off');
     $button->click();
     $assert_session->elementNotExists('css', '.ck-widget.table.table-simple', $editor);
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
@@ -141,8 +139,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       $this->getEditorDataAsHtmlString()
     );
 
-    $button = $this->getBalloonButton('Toggle simple mode on');
-    $this->assertTrue($button->hasClass('ck-off'));
+    $button = $this->assertBalloonButtonOff('Table toolbar', 'Toggle simple mode on');
     $button->click();
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $assert_session->elementsCount('css', '.ck-widget.table.table-simple', 1, $editor);
@@ -178,9 +175,7 @@ class Ckeditor5TableTest extends WebDriverTestBase {
 
     // Test the dedicated button behaviour.
     $this->click('.ck-widget.table');
-    $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
-    $button = $this->getBalloonButton('Toggle zebra striping off');
-    $this->assertTrue($button->hasClass('ck-on'));
+    $button = $this->assertBalloonButtonOn('Table toolbar', 'Toggle zebra striping off');
     $button->click();
     $assert_session->elementNotExists('css', '.ck-widget.table.table-zebra-striped', $editor);
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
@@ -189,13 +184,150 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       $this->getEditorDataAsHtmlString()
     );
 
-    $button = $this->getBalloonButton('Toggle zebra striping on');
-    $this->assertTrue($button->hasClass('ck-off'));
+    $button = $this->assertBalloonButtonOff('Table toolbar', 'Toggle zebra striping on');
     $button->click();
     $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
     $assert_session->elementsCount('css', '.ck-widget.table.table-zebra-striped', 1, $editor);
     $this->assertEquals(
       '<table data-striped="true"><tbody><tr><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td></tr></tbody></table>',
+      $this->getEditorDataAsHtmlString()
+    );
+  }
+
+  /**
+   * Tests the "table sort" plugin.
+   */
+  public function testTableSortPlugin(): void {
+    $node = $this->drupalCreateNode([
+      'type' => 'page',
+      'status' => 1,
+      'title' => 'Test page',
+      'body' => [
+        // A table with the 3 columns and 2 rows. The first row is set as header
+        // and cell 1 and 3 are set as sortable.
+        // In the body of the table, one cell is set (incorrectly) as sortable.
+        'value' => '<table><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+        'format' => 'test_format',
+      ],
+    ]);
+
+    $this->drupalLogin($this->user);
+    $this->drupalGet($node->toUrl('edit-form'));
+    $this->waitForEditor();
+    $editor = $this->getEditor();
+    $assert_session = $this->assertSession();
+    // Check that the HTML has been upcasted correctly.
+    $assert_session->elementsCount('css', '.ck-widget.table', 1, $editor);
+    $header_cells = $editor->findAll('css', '.ck-widget.table th');
+    $this->assertCount(3, $header_cells);
+    $this->assertTrue($header_cells[0]->hasClass('cell-sortable'));
+    $this->assertFalse($header_cells[1]->hasClass('cell-sortable'));
+    $this->assertTrue($header_cells[2]->hasClass('cell-sortable'));
+    $assert_session->elementNotExists('css', '.ck-widget.table td.cell-sortable', $editor);
+    // The td with the sortable attribute is ignored, but the attribute won't
+    // be removed in this test scenario as there is no html filtering enabled.
+    $this->assertEquals($node->get('body')->value, $this->getEditorDataAsHtmlString());
+
+    // Check that the button gets the correct state on the header cells.
+    $header_cells[0]->click();
+    $this->assertBalloonButtonOn('Table toolbar', 'Toggle column sort off');
+    $header_cells[1]->click();
+    $this->assertBalloonButtonOff('Table toolbar', 'Toggle column sort on');
+    // The button is disabled on anything that is not a header cell.
+    $editor->find('css', 'td')->click();
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+
+    // Enable sorting on the second header cell.
+    $header_cells[1]->click();
+    $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
+    $this->getBalloonButton('Toggle column sort on')->click();
+    $this->assertTrue($header_cells[1]->hasClass('cell-sortable'));
+    $this->assertEquals(
+      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      $this->getEditorDataAsHtmlString()
+    );
+
+    // Test turning off the sorting.
+    $this->getBalloonButton('Toggle column sort off')->click();
+    $this->assertFalse($header_cells[1]->hasClass('cell-sortable'));
+    $this->assertEquals(
+      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      $this->getEditorDataAsHtmlString()
+    );
+
+    // The button works on selections of multiple header cells.
+    $header_cells[0]->click();
+    // We use the keyboard to select the adjacent cell: shift + right arrow key.
+    $header_cells[0]->keyDown(39, 'shift');
+    $header_cells[0]->keyUp(39, 'shift');
+    // The button is active only when all the selected header cells have the
+    // sortable property set.
+    $button = $this->assertBalloonButtonOff('Table toolbar', 'Toggle column sort on');
+    // Clicking the button will toggle on/off the sorting on all selected cells.
+    $button->click();
+    $this->assertTrue($header_cells[0]->hasClass('cell-sortable'));
+    $this->assertTrue($header_cells[1]->hasClass('cell-sortable'));
+    // The third cell was already set to sortable.
+    $this->assertTrue($header_cells[2]->hasClass('cell-sortable'));
+    $this->assertEquals(
+      '<table><thead><tr><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      $this->getEditorDataAsHtmlString()
+    );
+    // Click again the button to disable the sorting.
+    $this->assertBalloonButtonOn('Table toolbar', 'Toggle column sort off')->click();
+    $this->assertBalloonButtonOff('Table toolbar', 'Toggle column sort on');
+    $this->assertFalse($header_cells[0]->hasClass('cell-sortable'));
+    $this->assertFalse($header_cells[1]->hasClass('cell-sortable'));
+    // The third cell retained the sorting.
+    $this->assertTrue($header_cells[2]->hasClass('cell-sortable'));
+    $this->assertEquals(
+      '<table><thead><tr><th>&nbsp;</th><th>&nbsp;</th><th data-sortable="true">&nbsp;</th></tr></thead><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
+      $this->getEditorDataAsHtmlString()
+    );
+
+    // Test that the button is disabled when an element of the selection is not
+    // a header cell. We start selecting a header cell with sortable set.
+    $header_cells[2]->click();
+    // Pressing the "down" arrow, select the below td cell.
+    $header_cells[2]->keyDown(40, 'shift');
+    $header_cells[2]->keyUp(40, 'shift');
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+
+    // Test with a non-sortable header cell.
+    $header_cells[1]->click();
+    // Pressing the "down" arrow, select the below td cell.
+    $header_cells[1]->keyDown(40, 'shift');
+    $header_cells[1]->keyUp(40, 'shift');
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+
+    // Test with a mix of sortable and not sortable header cells.
+    $header_cells[1]->click();
+    $header_cells[1]->keyDown(39, 'shift');
+    $header_cells[1]->keyUp(39, 'shift');
+    $header_cells[1]->keyDown(40, 'shift');
+    $header_cells[1]->keyUp(40, 'shift');
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+
+    // Test with a selection of multiple non-header cells.
+    $cell = $editor->find('css', 'td:first-child');
+    $cell->click();
+    $cell->keyDown(39, 'shift');
+    $cell->keyUp(39, 'shift');
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+
+    // Test that removing the table row deletes all sortable attributes from
+    // the table headers.
+    // Select a cell in the header.
+    $header_cells[0]->click();
+    $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
+    $this->getBalloonButton('Row')->click();
+    $this->getBalloonButton('Header row')->click();
+    $assert_session->elementsCount('css', '.cell-sortable', 0, $editor);
+    // The table cell with the incorrect data-sortable attribute retains it,
+    // as for CKEditor that is a generic attribute, since the upcast didn't
+    // apply to it.
+    $this->assertEquals(
+      '<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
   }
@@ -208,6 +340,65 @@ class Ckeditor5TableTest extends WebDriverTestBase {
    */
   protected function getEditor(): NodeElement {
     return $this->assertSession()->elementExists('css', '.ck-editor .ck-content');
+  }
+
+  /**
+   * Asserts that a balloon button is on.
+   *
+   * @param string $balloon_label
+   *   The name of the balloon that contains the button.
+   * @param string $button_label
+   *   The button label.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The button.
+   */
+  protected function assertBalloonButtonOn(string $balloon_label, string $button_label): NodeElement {
+    $this->assertVisibleBalloon(sprintf('[aria-label="%s"]', $balloon_label));
+    $button = $this->getBalloonButton($button_label);
+    $this->assertTrue($button->hasClass('ck-on'));
+    $this->assertFalse($button->hasClass('ck-disabled'));
+
+    return $button;
+  }
+
+  /**
+   * Asserts that a balloon button is off.
+   *
+   * @param string $balloon_label
+   *   The name of the balloon that contains the button.
+   * @param string $button_label
+   *   The button label.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The button.
+   */
+  protected function assertBalloonButtonOff(string $balloon_label, string $button_label): NodeElement {
+    $this->assertVisibleBalloon(sprintf('[aria-label="%s"]', $balloon_label));
+    $button = $this->getBalloonButton($button_label);
+    $this->assertTrue($button->hasClass('ck-off'));
+    $this->assertFalse($button->hasClass('ck-disabled'));
+
+    return $button;
+  }
+
+  /**
+   * Asserts that a balloon button is disabled.
+   *
+   * @param string $balloon_label
+   *   The name of the balloon that contains the button.
+   * @param string $button_label
+   *   The button label.
+   *
+   * @return \Behat\Mink\Element\NodeElement
+   *   The button.
+   */
+  protected function assertBalloonButtonDisabled(string $balloon_label, string $button_label): NodeElement {
+    $this->assertVisibleBalloon(sprintf('[aria-label="%s"]', $balloon_label));
+    $button = $this->getBalloonButton($button_label);
+    $this->assertTrue($button->hasClass('ck-disabled'));
+
+    return $button;
   }
 
 }
