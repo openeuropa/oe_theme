@@ -8,7 +8,8 @@ export default class TableSortEditing extends Plugin {
    */
   init() {
     const editor = this.editor;
-    const schema = editor.model.schema;
+    const model = editor.model;
+    const schema = model.schema;
     const conversion = editor.conversion;
 
     schema.extend( 'tableCell', {
@@ -47,6 +48,33 @@ export default class TableSortEditing extends Plugin {
       });
 
     editor.commands.add('toggleTableColumnSort', new ToggleTableColumnSortCommand(editor));
+
+    const document = model.document;
+    // Remove sortable attributes when all table heading rows are removed.
+    document.registerPostFixer(writer => {
+      const changes = document.differ.getChanges();
+
+      for (const entry of changes) {
+        const {type, attributeKey, attributeNewValue} = entry;
+
+        if (type !== 'attribute' || attributeKey !== 'headingRows' || !!attributeNewValue) {
+          continue;
+        }
+
+        const parent = entry.range.start.nodeAfter;
+        if (!parent || !parent.is('element', 'table')) {
+          continue;
+        }
+
+        for (const node of model.createRangeOn(parent).getItems()) {
+          if (node.is('element', 'tableCell')) {
+            writer.removeAttribute('sortable', node);
+          }
+        }
+      }
+
+      return false;
+    });
   }
 
 }

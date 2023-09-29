@@ -43,7 +43,7 @@ oe_theme_helper_table_sort:
     label: Table sort
     library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_sort
     elements:
-      - <table data-sortable>
+      - <th data-sortable>
     conditions:
       plugins:
         - ckeditor5_table
