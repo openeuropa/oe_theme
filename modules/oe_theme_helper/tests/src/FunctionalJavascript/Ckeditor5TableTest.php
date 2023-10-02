@@ -330,6 +330,34 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       '<table><tbody><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td data-sortable="true">&nbsp;</td></tr></tbody></table>',
       $this->getEditorDataAsHtmlString()
     );
+
+    // Test that button is disabled for any header row after the first.
+    $editor->find('css', 'tr:nth-of-type(2) td:first-of-type')->click();
+    $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
+    $this->getBalloonButton('Row')->click();
+    $this->getBalloonButton('Header row')->click();
+    $assert_session->elementsCount('css', 'thead tr', 2, $editor);
+    $editor->find('css', 'thead tr:nth-of-type(2) th:first-of-type')->click();
+    $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
+    $editor->find('css', 'thead tr:nth-of-type(1) th:first-of-type')->click();
+    $this->assertBalloonButtonOff('Table toolbar', 'Toggle column sort on');
+  }
+
+  /**
+   * Tests that the table plugins declare the needed tags and attributes.
+   */
+  public function testFilterHtmlSupport(): void {
+    $admin = $this->drupalCreateUser([
+      'administer filters',
+    ]);
+    $this->drupalLogin($admin);
+    $this->drupalGet('/admin/config/content/formats/manage/test_format');
+    $assert_session = $this->assertSession();
+    $assert_session->fieldExists('Limit allowed HTML tags and correct faulty HTML')->check();
+    $assert_session->assertWaitOnAjaxRequest();
+    $tags = $assert_session->fieldExists('Allowed HTML tags')->getValue();
+    $this->assertStringContainsString('<table data-striped data-simple>', $tags);
+    $this->assertStringContainsString('<th rowspan colspan data-sortable>', $tags);
   }
 
   /**
