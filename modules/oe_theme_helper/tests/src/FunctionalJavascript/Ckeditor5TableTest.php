@@ -331,11 +331,14 @@ class Ckeditor5TableTest extends WebDriverTestBase {
       $this->getEditorDataAsHtmlString()
     );
 
+    // Close the toolbar by focusing a field outside the editor.
+    $assert_session->fieldExists('Title')->click();
     // Test that button is disabled for any header row after the first.
     $editor->find('css', 'tr:nth-of-type(2) td:first-of-type')->click();
     $this->assertVisibleBalloon('[aria-label="Table toolbar"]');
     $this->getBalloonButton('Row')->click();
     $this->getBalloonButton('Header row')->click();
+    $assert_session->fieldExists('Title')->click();
     $assert_session->elementsCount('css', 'thead tr', 2, $editor);
     $editor->find('css', 'thead tr:nth-of-type(2) th:first-of-type')->click();
     $this->assertBalloonButtonDisabled('Table toolbar', 'Toggle column sort on');
