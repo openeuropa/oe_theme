@@ -23,6 +23,7 @@ docker-compose.*.yml
 # Ignore all files in the images folder other than listed below.
 
 /images/*
+!/images/favicons
 !/images/required.svg
 !/images/user_icon.svg
 /.gitattributes
