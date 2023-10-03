@@ -113,7 +113,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/js/ecl_auto_init.js');
 
       // Assert that the favicon provided by the theme is being used.
-      $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
+      $this->assertSession()->responseContains("/$active_theme/images/favicons/eu/favicon.ico");
+      $this->assertSession()->responseContains("$active_theme/images/favicons/eu/favicon.png");
+      $this->assertSession()->responseContains("/$active_theme/images/favicons/eu/favicon.svg");
 
       // Assert that we do not load the EC component library.
       $this->assertLinkNotContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
@@ -144,7 +146,9 @@ class ConfigurationTest extends BrowserTestBase {
       $this->assertScriptContainsSrc('/oe_theme/dist/js/moment.min.js');
 
       // Assert that the favicon provided by the theme is being used.
-      $this->assertSession()->responseContains('/' . $active_theme . '/favicon.ico');
+      $this->assertSession()->responseContains("/$active_theme/images/favicons/ec/favicon.ico");
+      $this->assertSession()->responseContains("$active_theme/images/favicons/ec/favicon.png");
+      $this->assertSession()->responseContains("/$active_theme/images/favicons/ec/favicon.svg");
 
       // Assert that we do not load the EU component library by default.
       $this->assertLinkNotContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');

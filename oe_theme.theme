@@ -2345,3 +2345,29 @@ function oe_theme_preprocess_captcha(&$variables) {
     $variables['attributes']['class'][] = 'ecl-u-mv-m';
   }
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function oe_theme_page_attachments_alter(array &$attachments) {
+  // Use different favicon based on theme component library.
+  $active_theme = \Drupal::theme()->getActiveTheme();
+  if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
+    $component_library = theme_get_setting('component_library') ?? 'ec';
+    $attachments['#attached']['html_head_link'][0][0]['href'] = base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.ico";
+    // Add the svg and png favicons.
+    $attachments['#attached']['html_head_link'][] = [
+      [
+        'rel' => 'icon',
+        'href' => base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.svg",
+        'type' => 'image/svg+xml',
+      ],
+    ];
+    $attachments['#attached']['html_head_link'][] = [
+      [
+        'rel' => 'apple-touch-icon',
+        'href' => base_path() . $active_theme->getPath() . "/images/favicons/$component_library/favicon.png",
+      ],
+    ];
+  }
+}
