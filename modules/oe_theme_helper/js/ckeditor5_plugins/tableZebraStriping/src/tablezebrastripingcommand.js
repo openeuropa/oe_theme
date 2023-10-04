@@ -11,12 +11,7 @@ export default class ToggleTableZebraStripingCommand extends Command {
     const tableElement = getSelectionAffectedTable(editor.model.document.selection);
 
     this.isEnabled = !!tableElement;
-    if (!this.isEnabled) {
-      this.value = false;
-    }
-    else {
-      this.value = tableElement.hasAttribute('zebraStriping');
-    }
+    this.value = this.isEnabled && tableElement.hasAttribute('zebraStriping');
   }
 
   /**
