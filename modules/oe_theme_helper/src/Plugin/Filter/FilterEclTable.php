@@ -81,10 +81,9 @@ class FilterEclTable extends FilterBase {
       if ($ths->count() === 0) {
         continue;
       }
-      else {
-        foreach ($xpath->query('.//thead/tr[1]/th', $table) as $th) {
-          $this->elementAddClass($th, 'ecl-table__header');
-        }
+
+      foreach ($xpath->query('.//thead/tr[1]/th', $table) as $th) {
+        $this->elementAddClass($th, 'ecl-table__header');
       }
 
       // Do not process tables that use th cells anywhere but in the first
