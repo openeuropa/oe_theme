@@ -1,6 +1,6 @@
 import { Plugin } from 'ckeditor5/src/core';
 import { ButtonView } from 'ckeditor5/src/ui';
-import tableSortIcon from '../../../icons/table-sort.svg';
+import tableColumnSortIcon from '../../../icons/table-column-sort.svg';
 
 export default class TableSortUi extends Plugin {
 
@@ -22,7 +22,7 @@ export default class TableSortUi extends Plugin {
       const view = new ButtonView(locale);
 
       view.set({
-        icon: tableSortIcon,
+        icon: tableColumnSortIcon,
         tooltip: true,
         isToggleable: true
       });
