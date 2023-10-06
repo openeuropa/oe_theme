@@ -2371,3 +2371,20 @@ function oe_theme_preprocess_captcha(&$variables) {
     $variables['attributes']['class'][] = 'ecl-u-mv-m';
   }
 }
+
+/**
+ * Implements hook_preprocess_select().
+ */
+function oe_theme_preprocess_select(&$variables) {
+  $attributes = (array) $variables['attributes'];
+  if (isset($attributes['class'])) {
+    $variables['classes'] = implode(' ', $attributes['class']);
+    unset($attributes['class']);
+  }
+  foreach ($attributes as $name => $value) {
+    $variables['extra_attributes'][] = [
+      'name' => $name,
+      'value' => $value,
+    ];
+  }
+}
