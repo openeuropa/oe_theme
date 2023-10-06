@@ -1351,6 +1351,18 @@ function oe_theme_preprocess_table(array &$variables): void {
   /** @var \Drupal\Core\Render\RendererInterface $renderer */
   $renderer = \Drupal::service('renderer');
 
+  // Pass existing table classes and attributes to the ECL template.
+  if (isset($variables['attributes']['class'])) {
+    $variables['extra_classes'] = implode(' ', $variables['attributes']['class']);
+    unset($variables['attributes']['class']);
+  }
+  foreach ($variables['attributes'] as $name => $value) {
+    $variables['extra_attributes'][] = [
+      'name' => $name,
+      'value' => $value,
+    ];
+  }
+
   // Assign data to table headers as ECL expects it.
   $ecl_table_header_data = [];
   $variables['header'] = $variables['header'] ?? [];
@@ -1387,6 +1399,11 @@ function oe_theme_preprocess_table(array &$variables): void {
   // Assign data to table rows as ECL expects it.
   foreach ($variables['rows'] as &$row) {
     $index = 0;
+    /** @var \Drupal\Core\Template\Attribute $row['attributes'] */
+    if (!empty($row['attributes']) && $row['attributes']->hasClass('draggable')) {
+      // Pass "draggable" as extra class for the row.
+      $row['extra_classes'] = 'draggable';
+    }
     foreach ($row['cells'] as &$cell) {
       $cell['label'] = $cell['content'];
       if (isset($ecl_table_header_data[$index])) {
