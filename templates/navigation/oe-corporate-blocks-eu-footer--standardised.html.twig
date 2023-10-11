@@ -15,16 +15,32 @@
 
 {% block content %}
   {# Populate the top row with the site identity and the custom links. #}
+  {% set _top_row_links = [] %}
+  {% if accessibility_link is not empty %}
+    {% set _top_row_links = {
+      links: {
+        link: {
+          label: 'Accessibility'|t,
+          path: accessibility_link,
+          external: accessibility_link|is_external_url,
+          icon_path: ecl_icon_path,
+        }
+      }
+    } %}
+  {% endif %}
+
   {% set _top_row = [
     [
       {
         'title': {
-        'link': {
-          'label': site_specific_footer.site_identity,
-          'path': url('<front>'),
-        }
-      },
+          'link': {
+            'label': site_specific_footer.site_identity,
+            'path': url('<front>'),
+          }
+        },
         'description': site_owner ? 'This site is managed by: @name'|t({'@name': site_owner}),
+        'links': _top_row_links,
+        'section_class_name': 'ecl-site-footer__section--site-info',
       }
     ],
     _top_left_column,

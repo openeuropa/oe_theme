@@ -48,6 +48,7 @@
         "openeuropa/oe_content": "3.x-dev",
         "openeuropa/oe_corporate_blocks": "^4.14",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha8",
+        "openeuropa/oe_corporate_site_info": "^1.0",
         "openeuropa/oe_media": "^1.23.1",
         "openeuropa/oe_multilingual": "^1.13",
         "openeuropa/oe_paragraphs": "^1.20",
@@ -102,6 +103,9 @@
             },
             "drupal/entity_reference_revisions": {
                 "https://www.drupal.org/project/entity_reference_revisions/issues/2937835": "https://www.drupal.org/files/issues/2021-03-26/entity_reference_revisions-field_formatter_label-2937835-36.patch"
+            },
+            "openeuropa/oe_corporate_site_info": {
+                "latest-master": "https://github.com/openeuropa/oe_corporate_site_info/compare/1.0.0-alpha7...1.x.diff"
             }
         },
         "drupal-scaffold": {

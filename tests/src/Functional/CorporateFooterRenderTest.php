@@ -37,6 +37,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     'block',
     'oe_theme_helper',
     'oe_corporate_blocks',
+    'oe_corporate_site_info',
   ];
 
   /**
@@ -72,6 +73,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCorporateFooterRendering(): void {
+    $user = $this->createUser([], '', TRUE);
     // First test European Commission footer core block rendering.
     $data = $this->getFixtureContent('ec_footer.yml');
     $this->overrideCorporateBlocksFooter('ec', $data);
@@ -127,6 +129,13 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->configFactory->getEditable('oe_theme.settings')->set('branding', 'standardised')->save();
     $data = $this->getFixtureContent('ec_footer.yml');
     $this->overrideCorporateBlocksFooter('ec', $data);
+    // Set an accessibility link.
+    $this->drupalLogin($user);
+    $this->drupalGet('/admin/config/system/site-information');
+    $this->getSession()->getPage()->fillField('Accessibility statement', '<front>');
+    $this->getSession()->getPage()->fillField('content_owners[0][target]', 'Audit Board of the European Communities');
+    $this->getSession()->getPage()->pressButton('Save configuration');
+    $this->drupalLogout();
 
     $this->drupalGet('<front>');
     $assert = $this->assertSession();
@@ -142,6 +151,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by: ACP–EU Joint Assembly', $actual->getText());
+    $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
+    $this->assertEquals('Accessibility', $actual->getText());
+    $this->assertEquals('/build/', $actual->getAttribute('href'));
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
     // Assert presence of ecl logo in the standardised footer.
@@ -195,6 +207,8 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
+    // Accessibility link should not be displayed on core.
+    $this->assertCount(0, $section->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-site-footer__link'));
 
     // Assert presence of ecl logo in the core footer.
     $this->assertEclLogoPresence($section, 'European Union');
@@ -277,6 +291,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
     $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
+    $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
+    $this->assertEquals('Accessibility', $actual->getText());
+    $this->assertEquals('/build/', $actual->getAttribute('href'));
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
