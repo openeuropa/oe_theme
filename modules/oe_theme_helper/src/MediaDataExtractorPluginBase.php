@@ -51,7 +51,7 @@ abstract class MediaDataExtractorPluginBase extends PluginBase implements MediaD
     /** @var \Drupal\oe_theme\ValueObject\ImageValueObject $thumbnail */
     return ImageValueObject::fromArray([
       'src' => \Drupal::service('file_url_generator')->generateString($uri),
-      'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
+      'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
       'name' => $media->getName(),
     ]);
   }
