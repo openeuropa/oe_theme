@@ -1,0 +1,12 @@
+patch-package
+--- a/node_modules/@ecl/twig-component-gallery/gallery-item.html.twig
++++ b/node_modules/@ecl/twig-component-gallery/gallery-item.html.twig
+@@ -51,7 +51,7 @@
+       },
+     }})
+   %}
+-  {% if _item.image.alt is not empty %}
++  {% if _item.image.alt is defined %}
+     {% set _item = _item|merge({
+       picture: _item.picture|merge({
+         img: _item.picture.img|merge({
