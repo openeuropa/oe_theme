@@ -502,6 +502,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
       $image_element->attr('src')
     );
+    $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
     $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
@@ -518,6 +519,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_uri),
       $image_element->attr('src')
     );
+    $this->assertStringContainsString('Alt bg', $image_element->attr('alt'));
 
     // Variant - image / Size - Large / Alignment - Left / Full width - No.
     $paragraph->get('field_oe_banner_alignment')->setValue('left');
@@ -1004,6 +1006,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'name' => 'First image en',
       'oe_media_image' => [
         'target_id' => $en_file_1->id(),
+        'alt' => 'First image alt en',
       ],
     ]);
     $first_media->save();
@@ -1011,6 +1014,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'name' => 'First image bg',
       'oe_media_image' => [
         'target_id' => $bg_file_1->id(),
+        'alt' => 'First image alt bg',
       ],
     ]);
     $first_media_bg->save();
@@ -1076,6 +1080,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Item 1',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
+          'image_alt' => 'First image alt en',
           'variant' => 'text-highlight',
         ],
         [
@@ -1089,6 +1094,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
         [
           'title' => 'Item 3',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
+          'image_alt' => 'First image alt en',
           'variant' => 'text-highlight',
         ],
         [
@@ -1111,12 +1117,14 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(4, $carousel_size);
     $expected_values['items'][0]['title'] = 'BG Item 1';
     $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
+    $expected_values['items'][0]['image_alt'] = 'First image alt bg';
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
     $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
     $expected_values['items'][2]['title'] = 'BG Item 3';
     $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
+    $expected_values['items'][2]['image_alt'] = 'First image alt bg';
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
