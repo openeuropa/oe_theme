@@ -1662,7 +1662,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
 
   $values = [
     'src' => $style->buildUrl($uri),
-    'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? $media->label(),
+    'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
     'name' => $media->getName(),
   ];
   $variables['image'] = ImageValueObject::fromArray($values);
@@ -2222,6 +2222,7 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       'url' => $link ?? '',
       'url_text' => $link_text ?? '',
       'image' => $image_url,
+      'image_alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
       'centered' => FALSE,
       // The paragraph has a required image field, so we need to set a default
       // image variant in order to render the image.

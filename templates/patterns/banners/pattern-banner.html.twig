@@ -21,6 +21,16 @@
   } -%}
 {% endif %}
 
+{% set _picture = [] %}
+{% if image.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: image.src|default(''),
+      alt: image.alt|default(''),
+    }
+  } %}
+{% endif %}
+
 {% set _variant = variant|replace({'_': '-'}) %}
 
 <div{{ container_attributes }}>
@@ -29,7 +39,7 @@
     title: title,
     description: description,
     link: _link,
-    image: image.src,
+    picture: _picture,
     size: size,
     centered: centered,
     full_width: full_width,
