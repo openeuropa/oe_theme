@@ -41,6 +41,7 @@ banner:
       description: "The image of the banner is required for the variants which include an image."
       preview:
         src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+        alt: "alternative text"
     size:
       type: "text"
       label: "Size"
