@@ -24,11 +24,11 @@
 {# Internal logic - Process properties #}
 
 {% if _variant == 'primary' %}
-  {% set _list_class = ' ecl-u-pb-m ecl-u-type-bold' %}
+  {% set _list_class = ' ecl-u-pb-m ecl-u-pt-m ecl-u-type-bold' %}
   {% set _list_item_class = ' ecl-u-pa-m' %}
 {% endif %}
 {% if _variant == 'secondary' %}
-  {% set _list_class = ' ecl-u-pb-s ecl-u-type-s' %}
+  {% set _list_class = ' ecl-u-pb-s ecl-u-pt-s ecl-u-type-s' %}
   {% set _list_item_class = ' ecl-u-pa-s' %}
 {% endif %}
 {% if extra_classes is not empty %}

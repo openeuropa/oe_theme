@@ -224,7 +224,7 @@ class ConfigurationTest extends BrowserTestBase {
       $assert_session->elementNotExists('css', 'header.ecl-site-header .ecl-site-header__banner .ecl-container');
 
       // Assert main content block classes.
-      $assert_session->elementExists('css', 'main.ecl-u-pb-xl.ecl-u-pt-m');
+      $assert_session->elementExists('css', 'main.ecl-u-pb-xl');
 
       // Visit theme administration page.
       $this->drupalGet('/admin/appearance/settings/' . $active_theme);
