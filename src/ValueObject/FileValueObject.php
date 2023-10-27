@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Drupal\oe_theme\ValueObject;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\file\FileInterface;
 use Drupal\file_link\Plugin\Field\FieldType\FileLinkItem;
 use Symfony\Component\Mime\MimeTypes;
@@ -156,7 +157,7 @@ class FileValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getUrl(): string {
-    return $this->url;
+    return UrlHelper::filterBadProtocol($this->url);
   }
 
   /**

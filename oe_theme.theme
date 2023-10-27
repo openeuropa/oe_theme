@@ -10,6 +10,7 @@ declare(strict_types = 1);
 use Drupal\block\BlockInterface;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Cache\CacheableDependencyInterface;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\ContentEntityInterface;
@@ -101,7 +102,7 @@ function oe_theme_preprocess_breadcrumb(array &$variables): void {
   unset($variables['links']);
   $variables['links'] = array_map(function ($item) use ($variables) {
     return [
-      'path' => $item['url'],
+      'path' => _oe_theme_sanitize_url($item['url']),
       'label' => $item['text'],
       'negative' => $variables['ecl_branding'] === 'core' && $variables['ecl_component_library'] === 'ec',
     ];
@@ -127,7 +128,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
   $variables['links'] = array_map(function ($item) {
     return [
       'label' => $item['title'],
-      'href' => $item['url'],
+      'href' => _oe_theme_sanitize_url($item['url']),
       'is_current' => $item['in_active_trail'],
       'external' => \Drupal::service('oe_theme_helper.external_links')->isExternalLink($item['url']),
     ];
@@ -137,7 +138,7 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
     $variables['links'][$name]['children'] = array_map(function ($item) {
       return [
         'label' => $item['title'],
-        'href' => $item['url'],
+        'href' => _oe_theme_sanitize_url($item['url']),
         'is_current' => $item['in_active_trail'],
         'external' => \Drupal::service('oe_theme_helper.external_links')->isExternalLink($item['url']),
       ];
@@ -220,7 +221,7 @@ function oe_theme_preprocess_paragraph__oe_links_block(array &$variables): void 
     $url = $variables['content']['field_oe_links'][$index]['#url'];
     $variables['links'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'url' => $url,
+      'url' => _oe_theme_sanitize_url($url),
       'is_external' => $external_links_service->isExternalLink($url),
     ];
   }
@@ -262,7 +263,7 @@ function oe_theme_preprocess_paragraph__oe_contextual_navigation(array &$variabl
     $url = $variables['content']['field_oe_links'][$index]['#url'];
     $variables['items'][] = [
       'label' => $variables['content']['field_oe_links'][$index]['#title'],
-      'href' => $url,
+      'href' => _oe_theme_sanitize_url($url),
       'is_external' => $external_links_service->isExternalLink($url),
     ];
   }
@@ -1520,7 +1521,7 @@ function oe_theme_preprocess_paragraph__oe_facts_figures(array &$variables): voi
   }
   if (!$paragraph->get('field_oe_link')->isEmpty()) {
     $url = $paragraph->get('field_oe_link')->first()->getUrl();
-    $variables['view_all']['path'] = $paragraph->get('field_oe_link')->first()->getUrl();
+    $variables['view_all']['path'] = $url;
     $variables['view_all']['label'] = $paragraph->get('field_oe_link')->first()->get('title')->getValue();
     $variables['external_link'] = \Drupal::service('oe_theme_helper.external_links')->isExternalLink($url);
   }
@@ -2418,4 +2419,17 @@ function oe_theme_page_attachments_alter(array &$attachments) {
       ],
     ];
   }
+}
+
+/**
+ * Sanitize URL if needed.
+ *
+ * @param mixed $url
+ *   URL which should be sanitized.
+ *
+ * @return mixed
+ *   Returns Url object or sanitized URL string.
+ */
+function _oe_theme_sanitize_url($url): mixed {
+  return $url instanceof Url ? $url : UrlHelper::filterBadProtocol($url);
 }
