@@ -44,7 +44,7 @@ style_eu_rtl:
 
 external_svg:
   js:
-    dist/js/svg4everybody.min.js: { minified: true }
+    dist/js/svg4everybody.js: { }
     js/external_svg.js: {}
 
 ecl_datepicker:

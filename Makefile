@@ -25,10 +25,13 @@ build-ecl:
 ## copy-ecl-dist	: build ECL.
 .PHONY: copy-dist
 copy-dist:
-	[ ! -d dist/ec ] || rm -rf dist/ec
-	[ ! -d dist/eu ] || rm -rf dist/eu
+	[ ! -d dist ] || rm -rf dist
+	mkdir dist
+	mkdir dist/js
 	cp -r ./ecl-build/dist/packages/ec dist/ec
 	cp -r ./ecl-build/dist/packages/eu dist/eu
+	cp ./ecl-build/node_modules/moment/min/moment.min.js ./dist/js
+	cp ./ecl-build/node_modules/svg4everybody/dist/svg4everybody.js ./dist/js
 
 ## copy-twig	: copy ECL twigs in the destination directory.
 .PHONY: copy-twig
