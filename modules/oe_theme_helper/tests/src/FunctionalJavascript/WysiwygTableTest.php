@@ -177,7 +177,7 @@ JS;
     $this->click('#cke_edit-oe-teaser-0-value .cke_button__source');
     $page->find('css', 'textarea.cke_source')->setValue('test');
     $page->fillField('Content owner (value 1)', 'Audit Board of the European Communities (http://publications.europa.eu/resource/authority/corporate-body/ABEC)');
-    $page->fillField('Subject (value 1)', 'financing (http://data.europa.eu/uxp/1000)');
+    $page->fillField('Subject tags (value 1)', 'financing (http://data.europa.eu/uxp/1000)');
     $page->pressButton('Save');
     $web_assert->elementExists('css', 'article .ecl table.ecl-table.ecl-table--simple.ecl-table--zebra');
     // Assert absence of classes in table related to "Zebra striping" and
