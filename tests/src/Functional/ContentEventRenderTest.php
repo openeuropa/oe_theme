@@ -1079,7 +1079,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
     // Assert that the 'Status description' field is not rendered for the
     // 'As planned' messages.
-    $this->assertSession()->elementTextNotContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
+    $this->assertSession()->elementNotExists('css', 'div.ecl-message__content div.ecl-message__description');
 
     // Set current time after the event ends.
     $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
