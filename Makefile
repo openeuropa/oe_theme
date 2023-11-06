@@ -10,11 +10,29 @@ default: build-ecl copy-dist copy-twig
 .env:
 	cp .env.dist .env
 
+## build-site	: build site.
+.PHONY: build-site
+build-site:
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web rm -rf build
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web rm -rf vendor
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web rm -f composer.lock
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web composer install
+
+## install-site	: install site.
+.PHONY: install-site
+install-site:
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web ./vendor/bin/run drupal:site-setup
+	@$(DOCKER_COMPOSE) $(DOCKER_CMD) web ./vendor/bin/run drupal:site-install
+
+## site	: Build and install site.
+.PHONY: site
+site: build-site install-site
+
 ## build-ecl	: build ECL.
 .PHONY: build-ecl
 build-ecl:
 	[ ! -d ecl-build ] || rm -rf ecl-build
-	git clone https://github.com/ec-europa/europa-component-library.git -b $(ECL_BUILD_REF) --depth 1 ecl-build
+	git clone -b $(ECL_BUILD_REF) https://github.com/ec-europa/europa-component-library.git --depth 1 ecl-build
 	@$(DOCKER_COMPOSE) $(DOCKER_CMD) node yarn --cwd ./ecl-build install
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
