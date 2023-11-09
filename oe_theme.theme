@@ -28,6 +28,7 @@ use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalSourceInterface;
 use Drupal\media_avportal\Plugin\media\Source\MediaAvPortalVideoSource;
 use Drupal\node\NodeInterface;
 use Drupal\oe_content_person\Entity\PersonJobInterface;
+use Drupal\oe_corporate_site_info\SiteInformation;
 use Drupal\oe_media_iframe\Plugin\media\Source\Iframe;
 use Drupal\oe_theme\DocumentMediaValueExtractor;
 use Drupal\oe_theme\ValueObject\DateValueObject;
@@ -1784,6 +1785,7 @@ function oe_theme_preprocess_oe_corporate_blocks_ec_footer(array &$variables) {
     $variables['path'] = 'https://commission.europa.eu/index_' . EuropeanUnionLanguages::getInternalLanguageCode($variables['current_language_id']);
   }
   _oe_theme_preprocess_site_specific_footer_links($variables);
+  _oe_theme_preprocess_accessibility_link($variables);
 }
 
 /**
@@ -1804,6 +1806,7 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
   $variables['mobile_logo_path'] = str_replace('standard', 'condensed', $variables['desktop_logo_path']);
 
   _oe_theme_preprocess_site_specific_footer_links($variables);
+  _oe_theme_preprocess_accessibility_link($variables);
 }
 
 /**
@@ -1866,6 +1869,44 @@ function _oe_theme_preprocess_site_specific_footer_links(array &$variables): voi
       }
     }
   }
+}
+
+/**
+ * Get the Accessibility statement link.
+ */
+function _oe_theme_preprocess_accessibility_link(array &$variables) {
+  if (!\Drupal::service('module_handler')->moduleExists('oe_corporate_site_info')) {
+    return;
+  }
+  $cacheability = CacheableMetadata::createFromRenderArray($variables);
+  $configuration = \Drupal::configFactory()->get(SiteInformation::CONFIG_NAME);
+  $cacheability->addCacheableDependency($configuration);
+  /** @var \Drupal\oe_corporate_site_info\SiteInformationInterface $site_information */
+  $site_information = \Drupal::service('oe_corporate_site_info.site_information');
+  if (!$site_information->hasAccessibilityLink()) {
+    $cacheability->applyTo($variables);
+    return;
+  }
+  $uri = $site_information->getAccessibilityLink();
+  $uri_parts = parse_url($uri);
+  if ($uri_parts['scheme'] === 'entity') {
+    [$entity_type_id, $entity_id] = explode('/', $uri_parts['path'], 2);
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type_id)->load($entity_id);
+    if ($entity instanceof NodeInterface) {
+      $cacheability->addCacheableDependency($entity);
+      $access = $entity->access('view', \Drupal::currentUser(), TRUE);
+      $cacheability->addCacheableDependency($access);
+      if (!$access->isAllowed()) {
+        $cacheability->applyTo($variables);
+        // Do not show the button if access to the node is forbidden.
+        return;
+      }
+    }
+  }
+  $url = Url::fromUri($uri)->toString();
+
+  $variables['accessibility_link'] = $url;
+  $cacheability->applyTo($variables);
 }
 
 /**

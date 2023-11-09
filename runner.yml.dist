@@ -20,6 +20,7 @@ drupal:
     - "./vendor/bin/drush en oe_multilingual -y"
     - "./vendor/bin/drush en oe_search -y"
     - "./vendor/bin/drush en oe_corporate_blocks -y"
+    - "./vendor/bin/drush en oe_corporate_site_info -y"
     - "./vendor/bin/drush en oe_theme_content_page -y"
     - "./vendor/bin/drush en oe_theme_content_news -y"
     - "./vendor/bin/drush en oe_theme_content_policy -y"
