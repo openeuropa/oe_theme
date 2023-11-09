@@ -61,7 +61,7 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
     $this->assertCount(1, $actual);
 
     // Assert list contains ECL classes.
-    $actual = $crawler->filter('ul.ecl-navigation');
+    $actual = $crawler->filter('ul.ecl-navigation.ecl-u-pb-m.ecl-u-pt-m');
     $this->assertCount(1, $actual);
 
     // Assert active link contains ECL classes.
