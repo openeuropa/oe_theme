@@ -13,8 +13,12 @@
   {% if image %}
     <div class="ecl-u-mb-l">
       {% include '@ecl-twig/media-container' with {
-        'image': image.src,
-        'alt': image.alt,
+        'picture': {
+          'img': {
+            'src': image.src,
+            'alt': image.alt,
+          },
+        },
         'extra_classes': 'ecl-u-bg-white ecl-u-shadow-none'
       } %}
     </div>

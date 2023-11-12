@@ -5,7 +5,11 @@
  */
 #}
 {% include '@ecl-twig/media-container' with {
-  'image': src,
-  'alt': alt,
+  'picture': {
+    'img': {
+      'src': src,
+      'alt': alt,
+    },
+  },
   'description': caption,
 } %}
