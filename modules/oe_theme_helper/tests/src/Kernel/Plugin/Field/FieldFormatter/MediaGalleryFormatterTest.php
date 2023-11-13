@@ -229,7 +229,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $expected_thumbnail_name = 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg';
 
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
+    $this->assertEquals('', $image_node->attr('alt'));
     $this->assertStringEndsWith('/oembed_thumbnails/' . $expected_thumbnail_name, $image_node->attr('src'));
     $caption = $items->eq(1)->filter('.ecl-gallery__description');
     $this->assertStringContainsString($video_media->label(), $caption->html());
@@ -333,7 +333,7 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
       );
     }
     $image_node = $items->eq(1)->filter('img');
-    $this->assertEquals("Energy, let's save it!", $image_node->attr('alt'));
+    $this->assertEquals('', $image_node->attr('alt'));
     $this->assertStringContainsString(
       '/files/styles/medium/public/oembed_thumbnails/' . $expected_thumbnail_name . '?itok=',
       $image_node->attr('src')

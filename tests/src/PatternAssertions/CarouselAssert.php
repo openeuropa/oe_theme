@@ -81,6 +81,12 @@ class CarouselAssert extends BasePatternAssert {
       else {
         $image_element = $item->filter('picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
         $this->assertStringContainsString($expected_item['image'], $image_element->attr('src'));
+        if (isset($expected_item['image_alt'])) {
+          $this->assertStringContainsString($expected_item['image_alt'], $image_element->attr('alt'));
+        }
+        else {
+          $this->assertEquals('', $image_element->attr('alt'));
+        }
       }
     }
   }

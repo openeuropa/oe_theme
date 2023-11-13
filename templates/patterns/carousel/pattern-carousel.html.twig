@@ -16,11 +16,20 @@
       'icon': get_link_icon(item.url)
     } -%}
   {% endif %}
+  {% set _picture = [] %}
+  {% if item.image is not empty %}
+    {% set _picture = {
+      img: {
+        src: item.image|default(''),
+        alt: item.image_alt|default(''),
+      }
+    } %}
+  {% endif %}
   {% set _items = _items|merge([{
     title: item.title,
     description: item.description,
     link: _link,
-    image: item.image|default(''),
+    picture: _picture,
     variant: item.variant|default('primary'),
     centered: item.centered is defined and item.centered == false ? false : true,
     credit: item.credit|default('')

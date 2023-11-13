@@ -12,6 +12,7 @@ carousel:
           url: "https://example.com"
           url_text: "CTA"
           image: "https://loremflickr.com/640/480/tech"
+          image_alt: "alternative text"
           variant: "text-box"
           centered: false
           credit: "© Copyright first item"
