@@ -44,8 +44,9 @@ pipeline:
     group: prepare
     image: registry.fpfis.eu/fpfis/node:16
     commands:
-      - npm install --unsafe-perm
-      - NODE_ENV=production npm run build
+      - make ecl
+#      - npm install --unsafe-perm
+#      - NODE_ENV=production npm run build
 
   composer-install:
     group: post-prepare
