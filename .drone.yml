@@ -51,7 +51,7 @@ pipeline:
   # and uncomment the line below. Also comment the "npm-build" step above for faster builds.
   ecl-build-dev:
     group: prepare
-    image: registry.fpfis.eu/fpfis/node:16
+    image: registry.fpfis.eu/fpfis/node:18
     commands:
       - make ecl
 
