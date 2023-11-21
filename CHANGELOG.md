@@ -1,11 +1,29 @@
 # Changelog
 
-## [3.6.0](https://github.com/openeuropa/oe_theme/tree/3.6.0) (2023-09-14)
+## [3.7.0](https://github.com/openeuropa/oe_theme/tree/3.7.0) (2023-11-21)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.6.0...3.7.0)
+
+**Merged pull requests:**
+
+- EWPP-3737: Update to ECL 3.11.1. [\#1334](https://github.com/openeuropa/oe_theme/pull/1334) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3723: Update to ECL 3.11.0. [\#1332](https://github.com/openeuropa/oe_theme/pull/1332) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3699: Add top padding to local tasks instead of main tag. [\#1330](https://github.com/openeuropa/oe_theme/pull/1330) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3694: Improve sanitizing of URLs in theme for output. [\#1329](https://github.com/openeuropa/oe_theme/pull/1329) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3647: Add Accessibility link to standardised footer blocks. [\#1328](https://github.com/openeuropa/oe_theme/pull/1328) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3644: Preprocess select form element to get existing attributes. [\#1327](https://github.com/openeuropa/oe_theme/pull/1327) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3652: Add favicon in ico, svg and png formats based on component library. [\#1326](https://github.com/openeuropa/oe_theme/pull/1326) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3626: Patch ECL media container and picture to render image alt even if empty. [\#1325](https://github.com/openeuropa/oe_theme/pull/1325) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3603: Load ECL rtl styling based on html dir and theme library. [\#1322](https://github.com/openeuropa/oe_theme/pull/1322) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3587: Pass core classes and attributes to ECL Table template. [\#1317](https://github.com/openeuropa/oe_theme/pull/1317) ([22Alexandra](https://github.com/22Alexandra))
+
+## [3.6.0](https://github.com/openeuropa/oe_theme/tree/3.6.0) (2023-09-18)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.5.2...3.6.0)
 
 **Merged pull requests:**
 
+- Prepare release 3.6.0. [\#1321](https://github.com/openeuropa/oe_theme/pull/1321) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3602: Update ECL version to 3.10.0. [\#1320](https://github.com/openeuropa/oe_theme/pull/1320) ([sergepavle](https://github.com/sergepavle))
 - EWPP-3592: Accessibility fix for news-ticker buttons. [\#1319](https://github.com/openeuropa/oe_theme/pull/1319) ([nagyad](https://github.com/nagyad))
 - EWPP-3594: Add accessibility attributes for navigation menu, contextual navigation and breadcrumb. [\#1318](https://github.com/openeuropa/oe_theme/pull/1318) ([22Alexandra](https://github.com/22Alexandra))
