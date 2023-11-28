@@ -16,6 +16,37 @@ navigation_menu:
       label: "Site name"
       description: "Name of the site."
       preview: "Site name"
+    close:
+      type: "text"
+      label: "Close button"
+      description: "Close button label."
+      preview: "Close"
+    back:
+      type: "text"
+      label: "Back button"
+      description: "Back button label."
+      preview: "Back"
+    see_all_label:
+      type: "text"
+      label: "See all button"
+      description: "Label for the \"see all\" link (mobile only)."
+      preview: "See all"
+    button_previous_label:
+      type: "text"
+      label: "Previous items button"
+      description: "Label for the button to display previous items, in case of overflow (for screen readers)"
+      preview: "Previous items"
+    button_next_label:
+      type: "text"
+      label: "Next items button"
+      description: "Label for the button to display next items, in case of overflow (for screen readers)"
+      preview: "Next items"
+    max_lines:
+      type: "numeric"
+      label: "Lines limit for first level items"
+      description: "Number of maximum lines for each first level item label. It defaults to 2, set it to zero to remove this behavior."
+      preview: 1
+      escape: false
     items:
       type: "array"
       label: "Links"
@@ -65,5 +96,19 @@ navigation_menu:
               label: 'HORIZON2020'
               external: true
         - href: "#"
-          label: "Contact"
+          label: "Principles, countries, history"
+        - href: "#"
+          label: "Institutions, law, budget"
           external: true
+        - href: "#"
+          label: "Priorities and actions"
+          external: true
+        - href: "#"
+          label: "Live, work, study"
+          external: true
+        - href: "#"
+          label: "Visit a European Union institution"
+        - href: "#"
+          label: "Jobs & traineeships in EU institutions"
+        - href: "#"
+          label: "Participate, interact, vote"
