@@ -962,7 +962,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test Carousel paragraph rendering.
    */
   public function testCarousel(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Set image media translatable.
     $this->container->get('content_translation.manager')
       ->setEnabled('media', 'image', TRUE);
@@ -1083,7 +1082,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'title' => 'Item 1',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'image_alt' => 'First image alt en',
-          'variant' => 'text-highlight',
+          'variant' => 'text-overlay',
         ],
         [
           'title' => 'Item 2',
@@ -1091,13 +1090,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
-          'variant' => 'text-highlight',
+          'variant' => 'text-overlay',
         ],
         [
           'title' => 'Item 3',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'image_alt' => 'First image alt en',
-          'variant' => 'text-highlight',
+          'variant' => 'text-overlay',
         ],
         [
           'title' => 'Item 4',
@@ -1105,7 +1104,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => '/',
           'url_text' => 'CTA 4',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
-          'variant' => 'text-highlight',
+          'variant' => 'text-overlay',
         ],
       ],
     ];
