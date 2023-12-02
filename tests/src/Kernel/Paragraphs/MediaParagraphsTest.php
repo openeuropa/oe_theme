@@ -426,7 +426,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test 'banner' paragraph rendering.
    */
   public function testBanner(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
     // Make the image field translatable.
@@ -507,9 +506,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
     $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon')->html());
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Render paragraph in Bulgarian.
@@ -565,8 +564,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Variant - image / Size - Medium / Alignment - Centered / Full width - No.
@@ -585,8 +584,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Variant - image / Size - Medium / Alignment - Left / Full width - Yes.
@@ -606,8 +605,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
     // Variant - image-shade / Size - Large / Alignment - Centered /
     // Full width - Yes.
@@ -618,8 +617,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--l.ecl-banner--centered.ecl-banner--full-width'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--centered.ecl-banner--full-width'));
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -627,19 +626,19 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
-    // Variant - image-overlay / Size - Large / Alignment - Left /
+    // Variant - image-shade / Size - Large / Alignment - Left /
     // Full width - Yes.
     $paragraph->get('field_oe_banner_alignment')->setValue('left');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--l.ecl-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--l.ecl-banner--full-width'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--image-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--full-width'));
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -647,10 +646,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
-    // Variant - image-overlay / Size - Medium / Alignment - Centered /
+    // Variant - image-shade / Size - Medium / Alignment - Centered /
     // Full width - No.
     $paragraph->get('field_oe_banner_alignment')->setValue('centered');
     $paragraph->get('field_oe_banner_size')->setValue('medium');
@@ -659,8 +658,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--m.ecl-banner--centered'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--m.ecl-banner--centered'));
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -668,20 +667,20 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
-    // Variant - image-overlay / Size - Medium / Alignment - Left /
+    // Variant - image-shade / Size - Medium / Alignment - Left /
     // Full width - No.
     $paragraph->get('field_oe_banner_alignment')->setValue('left');
     $paragraph->save();
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--m.ecl-banner--centered'));
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--image-overlay.ecl-banner--m'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--image-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--m.ecl-banner--centered'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--m'));
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -689,8 +688,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Variant - default / Size - Large / Alignment - Centered /
@@ -709,8 +708,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Variant - default / Size - Large / Alignment - Left /
@@ -729,8 +728,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
     // Variant - default / Size - Medium / Alignment - Centered /
     // Full width - Yes.
@@ -747,8 +746,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
     // Variant - default / Size - Medium / Alignment - Left /
     // Full width - Yes.
@@ -765,8 +764,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
     // Variant - primary / Size - Large / Alignment - Centered /
     // Full width - Yes.
@@ -784,8 +783,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
 
     // Variant - text-highlight / Size - Large / Alignment - Centered /
     // Full width - Yes.
@@ -804,8 +803,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(1, $crawler->filter('.ecl-banner--full-width'));
 
     // Variant - text-highlight / Size - Medium / Alignment - Left /
@@ -828,8 +827,8 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     );
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
-    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after'));
-    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text()));
+    $this->assertCount(1, $crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon'));
+    $this->assertStringContainsString('Example', trim($crawler->filter('div.ecl-banner__content a.ecl-link.ecl-link--cta.ecl-link--icon span.ecl-link__label')->text()));
     $this->assertCount(0, $crawler->filter('.ecl-banner--full-width'));
 
     // Create a media using AV Portal image and add it to the paragraph.

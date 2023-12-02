@@ -8,12 +8,9 @@ banner:
     text_box:
       label: "Text box"
       description: "Wraps the title, description and CTA inside a white text box with a background image."
-    text_highlight:
-      label: "Text highlight"
-      description: "Highlights the title and description with the CTA below them with a background image."
-    image_overlay:
-      label: "Image overlay"
-      description: "Image overlay contains title, description and CTA with an overlay effect on the background image."
+    text_overlay:
+      label: "Text overlay"
+      description: "Text overlay contains title, description and CTA with an overlay effect on the background image."
   fields:
     title:
       type: "text"

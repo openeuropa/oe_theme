@@ -1594,7 +1594,7 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     'default' => 'plain_background',
     'primary' => 'plain_background',
     'image' => 'text_box',
-    'image_shade' => 'image_overlay',
+    'image_shade' => 'text_overlay',
   ];
   $variant = $paragraph->get('oe_paragraphs_variant')->first()->value;
   if ($variant) {
