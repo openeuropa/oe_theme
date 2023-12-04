@@ -167,7 +167,9 @@ class GalleryItemValueObject extends ValueObjectBase {
     // This makes it so that, for images, the source property is effectively
     // ignored, while it is used for videos.
     $values = [
-      'image' => $this->getThumbnail()->getArray(),
+      'picture' => [
+        'img' => $this->getThumbnail()->getArray(),
+      ],
       'description' => $this->getCaption(),
       'meta' => $this->getMeta(),
       'icon' => 'image',
