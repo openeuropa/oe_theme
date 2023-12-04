@@ -43,7 +43,7 @@ file_teaser:
     translations:
       type: "array"
       label: "Files"
-      description: "List of teaser text/FileValueObject pairs, respectively keyed with 'teaser' and 'file'."
+      description: "List of teaser (teaser is deprecated - to be removed in 4.x) text/FileValueObject pairs, respectively keyed with 'teaser' and 'file'."
       preview:
         - teaser: "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
           file:
@@ -97,14 +97,14 @@ file_teaser:
               external_link: TRUE
     more_info:
       type: "text"
-      label: "More information"
+      label: "More information (deprecated - to be removed in 4.x)"
       description: "Informative text about the available translations."
       preview: "Looking for another language which is not on the list? Find out why."
     length:
       type: numeric
       label: "Max length"
       description: "Used to trim the length of the 'Teaser' fields (optional)."
-      preview: 10
+      preview: 50
       escape: false
     badges:
       type: array

@@ -578,7 +578,7 @@
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file.ecl-file--thumbnail': 1
-      'div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info': 1
+      'div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta': 1
       'div.ecl-file__container div.ecl-file__info': 1
       'div.ecl-file__translation-container': 1
       'ul.ecl-file__translation-list': 1
@@ -589,35 +589,35 @@
       'a.ecl-file__translation-download[href="http://example.com/document_pt.doc"]': 1
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 1
     equals:
-      'div.ecl-file__detail-info div.ecl-file__title': "Example document"
-      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
-      'div.ecl-file__info div.ecl-file__language': "English"
-      'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
-      'a.ecl-file__download .ecl-link__label': "Download"
+      'div.ecl-file__info div.ecl-file__title': "Example document"
+      'div.ecl-file__info div.ecl-file__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies.'
+      'div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
+      'div.ecl-file__footer div.ecl-file__language': "English"
+      'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
+      'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other translations (4)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+#      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi fringilla turpis augue, et interdum ipsum egestas sed. Proin tristique, ante id aliquet malesuada, lorem dolor vulputate magna, a commodo purus ante nec massa."
+#      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-title': "Italian translation"
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-description': "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
-      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-language': "italiano"
+#      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-description': "Proin sagittis nisi hendrerit purus porta, at suscipit est hendrerit. Duis facilisis augue imperdiet, pharetra nisl sed, molestie nulla."
+#      '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-language': "italiano"
       '.ecl-file__translation-item:nth-child(2) div.ecl-file__translation-meta': "(156.25 KB - PPT)"
       '.ecl-file__translation-item:nth-child(2) .ecl-link__label': "Download"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-title': "Hungarian translation"
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-description': "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
-      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
+#      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-description': "Duis eget lacinia arcu. Nullam mattis ornare nibh. Proin tristique, ante id aliquet malesuada. Pellentesque porttitor commodo libero sed fringilla. Curabitur varius sodales elit, id tincidunt erat. Aenean tincidunt luctus molestie."
+#      '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-language': "magyar"
       '.ecl-file__translation-item:nth-child(3) div.ecl-file__translation-meta': "(166.02 KB - PDF)"
       '.ecl-file__translation-item:nth-child(3) .ecl-link__label': "Download"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-title': "Portugies translation"
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-description': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
-      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-language': "português"
+#      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-description': "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce at finibus purus, eu ultricies nisl. Vivamus vitae ex lectus. In hac habitasse platea dictumst. Proin malesuada est eget vulputate malesuada."
+#      '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-language': "português"
       '.ecl-file__translation-item:nth-child(4) div.ecl-file__translation-meta': "(175.78 KB - DOC)"
       '.ecl-file__translation-item:nth-child(4) .ecl-link__label': "Download"
-      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+#      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': "Highlighted"
 - array:
     '#type': pattern
@@ -672,7 +672,7 @@
       'img.ecl-file__image[alt="thumbnail alt"]': 1
       'a.ecl-file__download[href="http://example.com"]': 1
       'div.ecl-file.ecl-file--thumbnail': 1
-      'div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info': 1
+      'div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta': 1
       'div.ecl-file__container div.ecl-file__info': 1
       'div.ecl-file__translation-container': 1
       'ul.ecl-file__translation-list': 1
@@ -684,23 +684,23 @@
       'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
       'span.ecl-description-list__definition-item': 7
       'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
-      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after': 2
+      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
-      'div.ecl-file__detail-info div.ecl-file__title': "Example document"
-      'div.ecl-file__detail-info div.ecl-file__description': 'Lorem...'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
-      'div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
-      'div.ecl-file__info div.ecl-file__language': "English"
-      'div.ecl-file__info div.ecl-file__meta': "(136.72 KB - PDF)"
-      'a.ecl-file__download .ecl-link__label': "Download"
+      'div.ecl-file__info div.ecl-file__title': "Example document"
+      'div.ecl-file__info div.ecl-file__description': 'Lorem...'
+      'div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(1)': 'RESOURCE TYPE'
+      'div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item:nth-child(2)': '2020-31-08'
+      'div.ecl-file__footer div.ecl-file__language': "English"
+      'div.ecl-file__footer div.ecl-file__meta': "(136.72 KB - PDF)"
+      'div.ecl-file__footer a.ecl-file__download .ecl-link__label': "Download"
       'button.ecl-file__translation-toggle .ecl-button__label': "Other languages (1)"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-title': "French translation"
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
-      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
+#      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-description': "Morbi..."
+#      '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-language': "français"
       '.ecl-file__translation-item:nth-child(1) div.ecl-file__translation-meta': "(146.48 KB - XLS)"
       '.ecl-file__translation-item:nth-child(1) .ecl-link__label': "Download"
-      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
+#      'li.ecl-file__translation-item.ecl-file__translation-description': "Looking for another language which is not on the list? Find out why."
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
       'dt.ecl-description-list__term:nth-of-type(3)': 'External links'
