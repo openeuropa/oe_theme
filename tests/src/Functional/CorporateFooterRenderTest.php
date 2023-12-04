@@ -89,7 +89,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCorporateFooterRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $user = $this->createUser([], '', TRUE);
     // First test European Commission footer core block rendering.
     $data = $this->getFixtureContent('ec_footer.yml');

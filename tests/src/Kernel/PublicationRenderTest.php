@@ -12,7 +12,7 @@ use Drupal\Tests\user\Traits\UserCreationTrait;
 /**
  * Tests call for tenders rendering.
  *
- * @group batch2
+ * @group batch3
  */
 class PublicationRenderTest extends ContentRenderTestBase {
 
