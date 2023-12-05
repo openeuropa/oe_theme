@@ -12,7 +12,7 @@ ecl: .env build-ecl copy-dist copy-twig
 .PHONY: build-ecl
 build-ecl:
 	[ ! -d ecl-build ] || rm -rf ecl-build
-	git clone -b $(ECL_BUILD_REF) https://github.com/ec-europa/europa-component-library.git --depth 1 ecl-build
+	git clone -b $(ECL_BUILD_REF) https://github.com/openeuropa/europa-component-library.git --depth 1 ecl-build
 	yarn --cwd ./ecl-build install
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
