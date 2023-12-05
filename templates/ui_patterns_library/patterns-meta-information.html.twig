@@ -12,7 +12,7 @@
   {% set _rows = [] %}
   {% for field in pattern.fields %}
     {% set _rows = _rows|merge([
-      { cells: [
+      { data: [
         { 'label': field.name, 'data-ecl-table-header': 'Field'|t },
         { 'label': field.label, 'data-ecl-table-header': 'Label'|t },
         { 'label': field.type, 'data-ecl-table-header': 'Type'|t },
