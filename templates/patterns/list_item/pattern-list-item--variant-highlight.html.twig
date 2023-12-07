@@ -4,23 +4,36 @@
  * Default implementation for the highlight list item component.
  */
 #}
-{% if url %}
-  {% set title = {
-    label: title,
-    path: url,
-    type: "standalone",
-    external: external_link,
-    icon_path: ecl_icon_path
+{# Prepare the title as a link or simple string. #}
+{%- if url %}
+  {% set _title = {
+    link: {
+      type: 'standalone',
+      label: title,
+      path: url,
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
-{% endif %}
+{% else %}
+  {% set _title = title %}
+{%- endif -%}
+{# Prepare the picture array. #}
 {% if image %}
-  {% set _image = {
-    img: image
+  {% set picture = {
+    position: image_position|default('left'),
+    size: image.size|default('large'),
+    img: {
+      src: image.src,
+      alt: image.alt,
+    },
+    sources: [],
   } %}
 {% endif %}
+
 {% include '@ecl-twig/card' with {
-  title: title,
-  picture: _image,
+  title: _title|default([]),
+  picture: picture|default([]),
   description: detail|smart_trim(length),
   labels: badges,
 } only %}

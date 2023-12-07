@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that our media types render with correct markup.
  *
- * @group batch2
+ * @group batch1
  */
 class MediaRenderTest extends MultilingualAbstractKernelTestBase {
 
