@@ -1,5 +1,5 @@
 banner_page:
-  label: "Page banner (Deprecated in 3.4.0)"
+  label: "Page banner (Deprecated in 3.4.0 - Use Banner pattern with size \"m\" instead.)"
   description: "A page banner is smaller than a Hero banner. The pattern will be deprecated in 3.4.0. Use the Banner pattern instead."
   variants:
     default:
