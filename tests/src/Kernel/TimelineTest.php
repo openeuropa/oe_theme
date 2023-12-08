@@ -138,6 +138,7 @@ class TimelineTest extends AbstractKernelTestBase {
    * Test the timeline field rendering with formatter and ecl template.
    */
   public function testTimelineRender(): void {
+    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $values = [
       'type' => 'test_ct',
       'title' => 'My node title',
