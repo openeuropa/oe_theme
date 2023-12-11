@@ -3,6 +3,7 @@ component_library_ec:
     theme:
       dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
       dist/ec/styles/optional/ecl-ec-default.css: { media: screen }
+      dist/ec/styles/optional/ecl-ec-utilities.css: { media: screen }
       dist/ec/styles/ecl-ec.css: { media: screen }
       dist/ec/styles/ecl-ec-print.css: { media: print }
       css/style-ec.css: { media: screen }
@@ -18,6 +19,7 @@ component_library_eu:
     theme:
       dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
       dist/eu/styles/optional/ecl-eu-default.css: { media: screen }
+      dist/eu/styles/optional/ecl-eu-utilities.css: { media: screen }
       dist/eu/styles/ecl-eu.css: { media: screen }
       dist/eu/styles/ecl-eu-print.css: { media: print }
       css/style-eu.css: { media: screen }
