@@ -1415,13 +1415,14 @@ function oe_theme_preprocess_table(array &$variables): void {
       // Pass "draggable" as extra class for the row.
       $row['extra_classes'] = 'draggable';
     }
-    foreach ($row['cells'] as &$cell) {
+    foreach ($row['cells'] as $index => &$cell) {
       $cell['label'] = $cell['content'];
       if (isset($ecl_table_header_data[$index])) {
         $cell['data-ecl-table-header'] = $ecl_table_header_data[$index];
       }
       $index++;
     }
+    $row['data'] = $row['cells'];
   }
 }
 
