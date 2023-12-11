@@ -15,7 +15,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests call for proposals rendering.
  *
- * @group batch2
+ * @group batch3
  */
 class CallForProposalsRenderTest extends ContentRenderTestBase {
 
