@@ -101,7 +101,6 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    * @dataProvider renderingDataProvider
    */
   public function testRendering(array $structure, array $assertions): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can

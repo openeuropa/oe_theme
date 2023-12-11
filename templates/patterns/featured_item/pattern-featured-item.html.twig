@@ -4,19 +4,21 @@
  * Featured item pattern.
  */
 #}
-
-{#
-  In order to replicate the extended functionality we add a button
-  at the end of the description if the variant is set to "extended".
- #}
+{# Prepare the title as a link or simple string. #}
 {% if link.href is not empty %}
   {% set _title = {
-    'label': title,
-    'path': link.href,
-    'type': "standalone",
-    'external': external_link,
-    'icon_path': ecl_icon_path
+    link: {
+      type: 'standalone',
+      label: title,
+      path: link.href,
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
+  {#
+  In order to replicate the extended functionality we add a button
+  at the end of the description if the variant is set to "extended".
+  #}
   {% if variant == 'extended' %}
     {% set _description %}
       {% if description %}
@@ -57,9 +59,13 @@
   }]) %}
 {% endfor %}
 
-{% if image %}
-  {% set _image = {
-    img: image
+{% set _picture = [] %}
+{% if image.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: image.src|default(''),
+      alt: image.alt|default(''),
+    }
   } %}
 {% endif %}
 
@@ -68,6 +74,6 @@
   'primary_meta': metas,
   'title': _title,
   'secondary_meta': _footer_items,
-  'picture': _image,
+  'picture': _picture,
   'labels': badges,
 } %}
