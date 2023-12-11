@@ -590,6 +590,7 @@ class TwigExtension extends AbstractExtension {
           'label' => $link['label'],
           'path' => $link['href'],
           'icon_position' => 'after',
+          'inverted' => $context['ecl_component_library'] == 'ec',
         ],
       ];
 

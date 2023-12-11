@@ -10,7 +10,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Test language switcher rendering.
  *
- * @group batch2
+ * @group batch3
  */
 class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
 

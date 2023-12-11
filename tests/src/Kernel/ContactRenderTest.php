@@ -12,7 +12,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests contact rendering.
  *
- * @group batch2
+ * @group batch3
  */
 class ContactRenderTest extends ContentRenderTestBase {
 
