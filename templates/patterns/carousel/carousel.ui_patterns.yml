@@ -11,7 +11,7 @@ carousel:
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          image: "https://loremflickr.com/640/480/tech"
+          image: "https://picsum.photos/seed/picsum/600/300"
           image_alt: "alternative text"
           variant: "text-box"
           centered: false
@@ -20,31 +20,34 @@ carousel:
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          image: "https://loremflickr.com/640/480/arch"
-          variant: "text-highlight"
+          image: "https://picsum.photos/seed/picsum/600/300"
+          variant: "text-overlay"
+          centered: false
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
           url: "https://example.com"
           url_text: "CTA"
+          centered: false
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
           url: "https://example.com"
           url_text: "CTA"
-          image: "https://loremflickr.com/640/480/tech"
-          variant: "image-overlay"
+          image: "https://picsum.photos/seed/picsum/600/300"
+          variant: "text-overlay"
           credit: "© Copyright fourth item"
         - title: "Lorem ipsum dolor sit amet"
           description: "Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          variant: "text-highlight"
-          centered: false
+          image: "https://picsum.photos/seed/picsum/600/300"
+          image_alt: "alternative text"
+          variant: "text-box"
+          centered: true
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA"
-          variant: "text-box"
-          centered: false
+          centered: true
     counter_label:
       type: "string"
       label: "Counter label"

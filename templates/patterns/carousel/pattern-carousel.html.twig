@@ -30,7 +30,7 @@
     description: item.description,
     link: _link,
     picture: _picture,
-    variant: item.variant|default('primary'),
+    variant: item.variant|default('plain-background'),
     centered: item.centered is defined and item.centered == false ? false : true,
     credit: item.credit|default('')
   }]) %}
