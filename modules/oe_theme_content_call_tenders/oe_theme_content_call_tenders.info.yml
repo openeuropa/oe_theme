@@ -2,7 +2,7 @@ name: OpenEuropa Theme Call for tenders Content
 type: module
 description: Companion module for the OE Call for tenders content module
 package: OpenEuropa
-core_version_requirement: ^9.4 || ^10
+core_version_requirement: ^10
 dependencies:
   - extra_field:extra_field
   - field_group:field_group
