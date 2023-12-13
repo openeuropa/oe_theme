@@ -207,7 +207,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $media = $this->getStorage('media')->create([
       'bundle' => 'remote_video',
       'oe_media_oembed_video' => [
-        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+        'value' => 'https://www.youtube.com/watch?v=7gngmXxdmyI',
       ],
     ]);
     $media->save();
@@ -217,12 +217,12 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $video = $this->assertSession()->elementExists('css', 'div.ecl-media-container__media iframe', $media_container);
     $partial_video_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
-        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+        'url' => 'https://www.youtube.com/watch?v=7gngmXxdmyI',
       ],
     ])->toString();
     $this->assertStringContainsString($partial_video_url, $video->getAttribute('src'));
     $this->assertStringContainsString('200', $video->getAttribute('width'));
-    $this->assertStringContainsString('150', $video->getAttribute('height'));
+    $this->assertStringContainsString('113', $video->getAttribute('height'));
 
     // Unpublish the media and assert it is not rendered anymore.
     $media->set('status', 0);
