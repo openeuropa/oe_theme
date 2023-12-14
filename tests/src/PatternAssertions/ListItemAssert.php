@@ -192,6 +192,9 @@ class ListItemAssert extends BasePatternAssert {
     $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('alt'));
     self::assertStringContainsString($expected_image['src'], $image_div->attr('src'));
+
+    // Thumbnail should always be clickable by ECL.
+    $this->assertElementAttribute('', $variant_class, 'data-ecl-picture-link', $crawler);
   }
 
   /**

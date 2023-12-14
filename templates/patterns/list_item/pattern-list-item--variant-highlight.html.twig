@@ -6,11 +6,13 @@
 #}
 {% if url %}
   {% set title = {
-    label: title,
-    path: url,
-    type: "standalone",
-    external: external_link,
-    icon_path: ecl_icon_path
+    link: {
+      label: title,
+      path: url,
+      type: "standalone",
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
 {% endif %}
 {% if image %}
