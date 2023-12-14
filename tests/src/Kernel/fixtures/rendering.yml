@@ -2382,6 +2382,7 @@
   assertions:
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
+      'article.ecl-card picture[data-ecl-picture-link]': 1
       'h1.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
@@ -2414,6 +2415,7 @@
   assertions:
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
+      'article.ecl-card picture[data-ecl-picture-link]': 1
       'h1.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
