@@ -14,6 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
  *
  * @group batch2
  */
+#[\AllowDynamicProperties]
 class ContactRenderTest extends ContentRenderTestBase {
 
   /**

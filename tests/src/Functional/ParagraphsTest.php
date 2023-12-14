@@ -166,7 +166,7 @@ class ParagraphsTest extends BrowserTestBase {
     $media = $media_storage->create([
       'bundle' => 'remote_video',
       'oe_media_oembed_video' => [
-        'value' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+        'value' => 'https://www.youtube.com/watch?v=7gngmXxdmyI',
       ],
     ]);
     $media->save();
@@ -176,7 +176,7 @@ class ParagraphsTest extends BrowserTestBase {
     $this->getSession()->reload();
     $partial_iframe_url = Url::fromRoute('media.oembed_iframe', [], [
       'query' => [
-        'url' => 'https://www.youtube.com/watch?v=1-g73ty9v04',
+        'url' => 'https://www.youtube.com/watch?v=7gngmXxdmyI',
       ],
     ])->toString();
     $this->assertSession()->elementAttributeContains('css', 'figure.ecl-media-container__figure div.ecl-media-container__media iframe', 'src', $partial_iframe_url);

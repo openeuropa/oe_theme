@@ -213,18 +213,10 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertEmpty($caption->filter('.ecl-gallery__meta')->html());
 
     // Test the second gallery item.
-    if (version_compare(\Drupal::VERSION, '10.1', '>=')) {
-      $this->assertStringStartsWith(
-        'http://localhost/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
-        $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
-      );
-    }
-    else {
-      $this->assertStringStartsWith(
-        '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
-        $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
-      );
-    }
+    $this->assertStringStartsWith(
+      'http://localhost/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
+      $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
+    );
 
     $expected_thumbnail_name = 'FRPRzhRHyt8zGp5-d-luvJDnIb03oXDJUp5LtL4UeDI.jpg';
 
@@ -320,18 +312,10 @@ class MediaGalleryFormatterTest extends AbstractKernelTestBase {
     $this->assertStringContainsString($image_media->label(), $caption->html());
 
     // Test the second gallery item.
-    if (version_compare(\Drupal::VERSION, '10.1', '>=')) {
-      $this->assertStringStartsWith(
-        'http://localhost/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
-        $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
-      );
-    }
-    else {
-      $this->assertStringStartsWith(
-        '/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
-        $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
-      );
-    }
+    $this->assertStringStartsWith(
+      'http://localhost/media/oembed?url=https%3A//www.youtube.com/watch%3Fv%3D1-g73ty9v04&max_width=0&max_height=0&hash=',
+      $items->eq(1)->filter('.ecl-gallery__item-link')->attr('data-ecl-gallery-item-embed-src')
+    );
     $image_node = $items->eq(1)->filter('img');
     $this->assertEquals('', $image_node->attr('alt'));
     $this->assertStringContainsString(
