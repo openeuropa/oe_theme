@@ -2433,7 +2433,7 @@
       length: 25
   assertions:
     equals:
-      'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
+      'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en" xml:lang="en">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
 - array:
     '#type': pattern
     '#id': featured_item
