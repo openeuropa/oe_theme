@@ -204,7 +204,7 @@ function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
       return $variables;
     }
 
-    // If its an AvPortal video or an iframe video, render it.
+    // If it's an AvPortal video or an iframe video, render it.
     $params['embedded_media'] = $media->{$source_field->getName()}->view($display_options);
 
     // When dealing with iframe videos, also respect its given aspect ratio.
@@ -219,7 +219,7 @@ function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
     return $variables;
   }
 
-  // If it's an image media, render it and assign it to the image variable.
+  // If it's an image media, render it and assign it to the picture variable.
   /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $thumbnail */
   $thumbnail = $media->get('thumbnail')->first();
   /** @var \Drupal\Core\Entity\Plugin\DataType\EntityAdapter $file */
@@ -240,8 +240,12 @@ function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
     $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->get('uri')->getString());
   }
 
-  $params['alt'] = $thumbnail->get('alt')->getString();
-  $params['image'] = $image_url;
+  $params['picture'] = [
+    'img' => [
+      'src' => $image_url,
+      'alt' => $thumbnail->get('alt')->getString(),
+    ],
+  ];
   $variables['params'] = $params;
   $cacheability->applyTo($variables);
 
