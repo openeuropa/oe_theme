@@ -119,8 +119,8 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "9.4.0"
-        PHP_VERSION: "8.0"
+        CORE_VERSION: "10.0"
+        PHP_VERSION: "8.1"
 
   github-release:
     image: registry.fpfis.eu/drone-plugins/github-release
@@ -132,22 +132,27 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "9.4.0"
-        PHP_VERSION: "8.0"
+        CORE_VERSION: "10.0"
+        PHP_VERSION: "8.1"
 
 matrix:
   include:
-    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: behat }
-    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.0, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 9.4.0, TYPE: phpunit, BATCH: batch3 }
-
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: behat }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch3 }
