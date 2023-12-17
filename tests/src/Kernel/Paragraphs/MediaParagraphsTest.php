@@ -173,6 +173,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
 
+    // Remove the alt of the image and assert empty alt is rendered.
+    $media->set('oe_media_image', [
+      'target_id' => $en_file->id(),
+      'alt' => '',
+    ]);
+    $media->save();
+    $expected_values['image']['alt'] = '';
+    $html = $this->renderParagraph($paragraph, 'en');
+    $assert->assertPattern($expected_values, $html);
+
     $expected_values = [
       'title' => 'Heading bg',
       'text_title' => 'Title bg',
@@ -212,6 +222,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // need to reset manually.
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
+    // Set back the image alt.
+    $media->set('oe_media_image', [
+      'target_id' => $en_file->id(),
+      'alt' => 'Alt en',
+    ]);
+    $media->save();
     // Set the paragraph highlighted.
     $paragraph->set('field_oe_highlighted', TRUE);
     // Remove the text and assert the element is no longer rendered.
