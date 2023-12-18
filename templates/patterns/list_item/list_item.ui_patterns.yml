@@ -103,7 +103,7 @@ list_item:
         size: "large"
     icon:
       type: "text"
-      label: "Icon"
+      label: "Icon (deprecated - to be removed in 4.x)"
       description: "An optional icon to be used with the link."
       preview: "list"
     badges:

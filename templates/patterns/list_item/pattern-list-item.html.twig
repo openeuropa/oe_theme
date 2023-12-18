@@ -12,7 +12,7 @@
     - "image_position" (string) (default: ''): Image before of after the item.
     - "length" (int) (default: 0): Max length of detail field.
     - "additional_information" (array): Additional information to be displayed right below the 'Detail' field.
-    - "icon" (string) (default: ''): Icon used for the link item.
+    - "icon" (deprecated) (string) (default: ''): Icon used for the link item.
     - "external_link" (bool) (default: false): Whether the link is external or not.
     - "lists" (array) (default: []): Array of lists compatible with ECL Description list component.
     - "divider" (bool) (default: false): Whether to set a divider below the item.
@@ -80,22 +80,14 @@
 {# Prepare the title as a link or simple string and the description. #}
 {%- if url %}
   {% set _title = {
-    type: 'standalone',
-    label: title,
-    path: url,
-    external: external_link,
-    icon_path: ecl_icon_path
+    link: {
+      type: 'standalone',
+      label: title,
+      path: url,
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
-  {# Icon is not applied until FRONT-3726 is fixed. #}
-  {% if icon %}
-    {% set _title = _title|merge({
-      icon: {
-        'path': ecl_icon_path,
-        'name': icon,
-        'size': 's',
-      }
-    }) %}
-  {% endif %}
 {% else %}
   {% set _title = title %}
 {%- endif -%}

@@ -4,14 +4,31 @@
  * Default implementation for the block list item component.
  */
 #}
+{# Prepare the title as a link or simple string. #}
+{%- if url %}
+  {% set link = {
+    type: 'standalone',
+    label: title,
+    path: url,
+    external: external_link,
+    icon_path: ecl_icon_path
+  } %}
+  {% if icon %}
+    {% set icon = {
+      'name': icon,
+      'size': 's',
+    } %}
+  {% endif %}
+  {% set _title = {
+    link: link|default({}),
+    icon: icon|default({}),
+  } %}
+{% else %}
+  {% set _title = title %}
+{%- endif -%}
+
 {% include '@ecl-twig/card' with {
-  card : {
-    title: {
-      label: title,
-      path: url,
-      type: "standalone"
-    },
-    description: detail|smart_trim(length),
-    labels: badges,
-  }
+  title: _title|default([]),
+  description: detail|smart_trim(length),
+  labels: badges,
 } only %}
