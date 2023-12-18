@@ -10,6 +10,7 @@ use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\ckeditor\Traits\CKEditorTestTrait;
 use Drupal\user\RoleInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Test the table in WYSIWYG.
@@ -43,6 +44,13 @@ class WysiwygTableTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
+
+  /**
+   * A user account to use for the test.
+   *
+   * @var \Drupal\user\UserInterface
+   */
+  protected UserInterface $webUser;
 
   /**
    * {@inheritdoc}
