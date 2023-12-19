@@ -337,8 +337,17 @@ JS;
     $this->clickLink('Cell');
     $this->getSession()->switchToIFrame();
     $iframe = $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)][last()]/iframe");
+    $this->assertNotEmpty($iframe);
     $this->getSession()->switchToIFrame($iframe->getAttribute('id'));
-    $this->clickLink('Cell Properties');
+    $this->assertTrue($this->getSession()->getPage()->waitFor(5000, function () {
+      try {
+        $this->clickLink('Cell Properties');
+        return TRUE;
+      }
+      catch (\Exception) {
+        return FALSE;
+      }
+    }));
     $this->getSession()->switchToIFrame();
     $web_assert->waitForElementVisible('css', '#' . $this->getOpenedDialogElement()->getAttribute('id'));
   }
