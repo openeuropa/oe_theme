@@ -58,13 +58,13 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 0
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-select__icon-shape': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': select
     '#title': Select element
@@ -79,13 +79,13 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 1
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-select__icon-shape': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': select
     '#title': Select element
@@ -101,14 +101,14 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 0
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-select__icon-shape': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': select
     '#title': Select element
@@ -125,14 +125,14 @@
       'select.ecl-select': 1
       'div.ecl-select__icon': 1
       'select[data-ecl-select-multiple]': 1
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-select__icon-shape': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
     equals:
       'div.ecl-form-group label.ecl-form-label': 'Select element'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
       'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-      'div.ecl-select__icon': '<svg class="ecl-icon ecl-icon--s ecl-icon--rotate-180 ecl-select__icon-shape" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use></svg>'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': radios
     '#title': Radios
@@ -2036,7 +2036,7 @@
       'img.ecl-blockquote__image': 0
     equals:
       '.ecl-blockquote__author': "Quote author"
-      '.ecl-blockquote__citation lang="en" xml:lang="en"': "Quote text"
+      '.ecl-blockquote__citation': "Quote text"
 - array:
     '#type': pattern
     '#id': blockquote
@@ -2052,7 +2052,7 @@
       'img.ecl-blockquote__image[alt="Alternative of image"]': 1
     equals:
       '.ecl-blockquote__author': "Quote author"
-      '.ecl-blockquote__citation' lang="en" xml:lang="en": "Quote text"
+      '.ecl-blockquote__citation': "Quote text"
 - array:
     '#type': pattern
     '#id': context_nav
@@ -3607,7 +3607,12 @@
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m.ecl-banner--centered div.ecl-banner__content p.ecl-banner__description .ecl-banner__description-text: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
       div.ecl-carousel__slide section.ecl-banner--text-overlay.ecl-banner--m:not(.ecl-banner--centered) div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Duis vitae pulvinar turpis'
       div.ecl-carousel__slide section.ecl-banner--text-overlay.ecl-banner--m:not(.ecl-banner--centered) div.ecl-banner__content div.ecl-banner__cta a[href="https://example.com"] span.ecl-link__label: 'CTA 4'
-      span.ecl-carousel__max: '6'
+      button.ecl-carousel__navigation-item:nth-child(1): '1'
+      button.ecl-carousel__navigation-item:nth-child(2): '2'
+      button.ecl-carousel__navigation-item:nth-child(3): '3'
+      button.ecl-carousel__navigation-item:nth-child(4): '4'
+      button.ecl-carousel__navigation-item:nth-child(5): '5'
+      button.ecl-carousel__navigation-item:nth-child(6): '6'
 - array:
     '#type': 'pattern'
     '#id': 'carousel'
