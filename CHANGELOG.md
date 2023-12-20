@@ -1,11 +1,24 @@
-# Changelog
+# Change Log
+
+## [3.8.0](https://github.com/openeuropa/oe_theme/tree/3.8.0) (2023-12-20)
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.7.0...3.8.0)
+
+**Closed issues:**
+
+- compatibility with Drupal 10 [\#1236](https://github.com/openeuropa/oe_theme/issues/1236)
+
+**Merged pull requests:**
+
+- EWPP-3831: Update to PHP 8.2 and drop support for D9.4. [\#1353](https://github.com/openeuropa/oe_theme/pull/1353) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3650: Use ECL media container picture parameter instead of image and alt. [\#1336](https://github.com/openeuropa/oe_theme/pull/1336) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3633: Add support for CKEditor 5 [\#1324](https://github.com/openeuropa/oe_theme/pull/1324) ([brummbar](https://github.com/brummbar))
 
 ## [3.7.0](https://github.com/openeuropa/oe_theme/tree/3.7.0) (2023-11-21)
-
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.6.0...3.7.0)
 
 **Merged pull requests:**
 
+- Prepare release 3.7.0. [\#1337](https://github.com/openeuropa/oe_theme/pull/1337) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3737: Update to ECL 3.11.1. [\#1334](https://github.com/openeuropa/oe_theme/pull/1334) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3723: Update to ECL 3.11.0. [\#1332](https://github.com/openeuropa/oe_theme/pull/1332) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3699: Add top padding to local tasks instead of main tag. [\#1330](https://github.com/openeuropa/oe_theme/pull/1330) ([22Alexandra](https://github.com/22Alexandra))
