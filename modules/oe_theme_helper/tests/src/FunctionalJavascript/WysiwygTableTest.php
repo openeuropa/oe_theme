@@ -10,6 +10,7 @@ use Drupal\filter\Entity\FilterFormat;
 use Drupal\FunctionalJavascriptTests\WebDriverTestBase;
 use Drupal\Tests\ckeditor\Traits\CKEditorTestTrait;
 use Drupal\user\RoleInterface;
+use Drupal\user\UserInterface;
 
 /**
  * Test the table in WYSIWYG.
@@ -43,6 +44,13 @@ class WysiwygTableTest extends WebDriverTestBase {
    * {@inheritdoc}
    */
   protected $defaultTheme = 'stark';
+
+  /**
+   * A user account to use for the test.
+   *
+   * @var \Drupal\user\UserInterface
+   */
+  protected UserInterface $webUser;
 
   /**
    * {@inheritdoc}
@@ -323,13 +331,23 @@ JS;
     $this->getSession()->switchToIFrame('edit-body-0-value-instance-id');
     $page->find('css', $right_click_selector)->rightClick();
     $this->getSession()->switchToIFrame();
-    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and @hidden]/iframe");
-    $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)]/iframe")->getAttribute('id'));
+    $iframe = $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)]/iframe");
+    $this->assertNotEmpty($iframe);
+    $this->getSession()->switchToIFrame($iframe->getAttribute('id'));
     $this->clickLink('Cell');
     $this->getSession()->switchToIFrame();
-    $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and @hidden][last()]/iframe");
-    $this->getSession()->switchToIFrame($page->find('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)][last()]/iframe")->getAttribute('id'));
-    $this->clickLink('Cell Properties');
+    $iframe = $web_assert->waitForElementVisible('xpath', "//div[contains(concat(' ', normalize-space(@class), ' '), ' cke_menu_panel ') and not(@hidden)][last()]/iframe");
+    $this->assertNotEmpty($iframe);
+    $this->getSession()->switchToIFrame($iframe->getAttribute('id'));
+    $this->assertTrue($this->getSession()->getPage()->waitFor(5000, function () {
+      try {
+        $this->clickLink('Cell Properties');
+        return TRUE;
+      }
+      catch (\Exception) {
+        return FALSE;
+      }
+    }));
     $this->getSession()->switchToIFrame();
     $web_assert->waitForElementVisible('css', '#' . $this->getOpenedDialogElement()->getAttribute('id'));
   }
