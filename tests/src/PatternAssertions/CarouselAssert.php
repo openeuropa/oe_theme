@@ -39,6 +39,8 @@ class CarouselAssert extends BasePatternAssert {
    *   The expected item values.
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
    */
   protected function assertItems(array $expected_items, Crawler $crawler): void {
     $items = $crawler->filter('div.ecl-carousel__container div.ecl-carousel__slides div.ecl-carousel__slide');
@@ -47,7 +49,7 @@ class CarouselAssert extends BasePatternAssert {
       $item = $items->eq($index);
       // Assert carousel item (banner) variant.
       if (!isset($expected_item['variant'])) {
-        $this->assertElementExists('section.ecl-banner.ecl-banner--primary.ecl-banner--l', $item);
+        $this->assertElementExists('section.ecl-banner.ecl-banner--plain-background', $item);
       }
       else {
         $this->assertElementExists('section.ecl-banner.ecl-banner--' . $expected_item['variant'], $item);
@@ -75,7 +77,8 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertElementText($expected_item['url_text'], 'div.ecl-banner__cta a span.ecl-link__label', $item);
       }
       // Assert image.
-      if (!isset($expected_item['image'])) {
+      if (!isset($expected_item['image']) ||
+        (isset($expected_item['variant']) && $expected_item['variant'] === 'plain-background')) {
         $this->assertElementNotExists('picture.ecl-picture.ecl-banner__picture', $item);
       }
       else {
