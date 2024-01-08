@@ -12,13 +12,19 @@ ecl: .env build-ecl copy-dist copy-twig
 .PHONY: build-ecl
 build-ecl:
 	[ ! -d ecl-build ] || rm -rf ecl-build
-	git clone -b $(ECL_BUILD_REF) https://github.com/openeuropa/europa-component-library.git --depth 1 ecl-build
+	git clone -b $(ECL_BUILD_REF) $(ECL_BUILD_REPO) --depth 1 ecl-build
 	yarn --cwd ./ecl-build install
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
 	yarn --cwd ./ecl-build add moment@2.29.1 -W
 	yarn --cwd ./ecl-build add svg4everybody@2.1.9 -W
 	yarn --cwd ./ecl-build dist:presets
+
+## compile-sass: compile SASS.
+.PHONY: compile-sass
+compile-sass:
+	cp -r sass ./ecl-build/oe_theme_sass
+	yarn --cwd ./ecl-build sass -I node_modules/ --style=expanded oe_theme_sass:oe_theme_css
 
 ## copy-ecl-dist: build ECL.
 .PHONY: copy-dist
@@ -53,6 +59,11 @@ build-site:
 install-site:
 	./vendor/bin/run drupal:site-setup
 	./vendor/bin/run drupal:site-install
+
+## shell-node: login onto node container.
+.PHONY: shell-node
+shell-node:
+	docker-compose exec node bash
 
 # https://stackoverflow.com/a/6273809/1826109
 %:
