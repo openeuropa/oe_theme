@@ -23,8 +23,15 @@ build-ecl:
 ## compile-sass: compile SASS.
 .PHONY: compile-sass
 compile-sass:
+	[ ! -d ./ecl-build/oe_theme_sass ] || rm -rf ./ecl-build/oe_theme_sass
+	[ ! -d ./ecl-build/oe_theme_css ] || rm -rf ./ecl-build/oe_theme_css
 	cp -r sass ./ecl-build/oe_theme_sass
 	yarn --cwd ./ecl-build sass -I node_modules/ --style=expanded oe_theme_sass:oe_theme_css
+	[ ! -d ./css ] || rm -rf ./css
+	mv ./ecl-build/oe_theme_css css
+# SASS duplicates the "oe_theme_css" inside the target directory.
+# @todo fix this.
+	[ ! -d ./css/oe_theme_css ] || rm -rf ./css/oe_theme_css
 
 ## copy-ecl-dist: build ECL.
 .PHONY: copy-dist

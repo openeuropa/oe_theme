@@ -3,11 +3,12 @@
  * Add a featured modifier to ECL description list style.
  */
 @use "sass:map";
-@use '@ecl/vanilla-utility-border/border';
-@use '@ecl/vanilla-utility-background/background';
-@use '@ecl/theme-dev/theme';
+$spacing: null !default;
+
 .ecl-description-list--featured {
-  @extend .ecl-u-border-all, .ecl-u-border-width-2, .ecl-u-border-color-blue-25;
-  @extend .ecl-u-bg-blue-5;
-  padding: map.get(theme.$spacing, 's');
+  @extend .ecl-u-border-all !optional;
+  @extend .ecl-u-border-width-2 !optional;
+  @extend .ecl-u-border-color-blue-25 !optional;
+  @extend .ecl-u-bg-blue-5 !optional;
+  padding: map.get($spacing, 's');
 }
