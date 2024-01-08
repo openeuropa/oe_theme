@@ -17,7 +17,7 @@
         "openeuropa/oe_time_caching": "^1.5"
     },
     "require-dev": {
-        "behat/mink-selenium2-driver": "^1.5",
+        "behat/mink-selenium2-driver": "~1.6.0",
         "composer/installers": "~1.5",
         "drupal/address": "~1.11",
         "drupal/ckeditor": "^1.0",
@@ -42,6 +42,7 @@
         "drush/drush": "~11.1",
         "friends-of-behat/service-container-extension": "^1.0",
         "mikey179/vfsstream": "^1.6.10",
+        "nikic/php-parser": "^4.18",
         "openeuropa/behat-transformation-context": "^0.2",
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/oe_contact_forms": "^1.11",
@@ -56,7 +57,7 @@
         "openeuropa/oe_webtools": "^1.23",
         "openeuropa/rdf_skos": "^1.0.0-alpha10",
         "openeuropa/task-runner-drupal-project-symlink": "^1.0.0-beta6",
-        "phpspec/prophecy-phpunit": "~2.0.0",
+        "phpspec/prophecy-phpunit": "^2",
         "symfony/phpunit-bridge": "^6.0"
     },
     "scripts": {
@@ -111,7 +112,8 @@
             }
         },
         "_readme": [
-            "Explicit requirement of phpspec/prophecy-phpunit due to D9.4 being incompatible with PHPUnit10."
+            "behat/mink-selenium2-driver locked to 1.6.x as version 1.7.0 introduces issues with mouse dragging and keyboard key events.",
+            "Explicit requirement of nikic/php-parser as ^5.0 generates GrumPHP Parser issues."
         ]
     },
     "config": {
