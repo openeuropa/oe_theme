@@ -55,19 +55,27 @@
   {% endif %}
 {% endfor %}
 
-{% include '@ecl-twig/select' with {
+{% include '@ecl-twig/form-group' with {
   id: attributes.id,
   name: attributes.name,
+  input: {
+    input_type: 'select',
+    icon_path: ecl_icon_path,
+    icon_size: 's',
+    id: attributes.id,
+    name: attributes.name,
+    width: width|default('m'),
+    options: _options|default([]),
+    multiple: _multiple|default(false),
+    multiple_placeholder: _multiple_placeholder|default(''),
+    multiple_search_text: _multiple_search_text|default(''),
+    multiple_all_text: _multiple_all_text|default(''),
+    multiple_clear_all_text: _multiple_clear_all_text|default(''),
+    multiple_close_text: _multiple_close_text|default(''),
+  },
   extra_group_classes: 'ecl-u-mt-none',
   invalid: _invalid|default(false),
   disabled: _disabled|default(false),
-  multiple: _multiple|default(false),
-  options: _options|default([]),
-  multiple_placeholder: _multiple_placeholder|default(''),
-  multiple_search_text: _multiple_search_text|default(''),
-  multiple_all_text: _multiple_all_text|default(''),
-  multiple_clear_all_text: _multiple_clear_all_text|default(''),
-  multiple_close_text: _multiple_close_text|default(''),
   extra_classes: classes|default(''),
   extra_attributes: extra_attributes|default([]),
   icon_path: ecl_icon_path,

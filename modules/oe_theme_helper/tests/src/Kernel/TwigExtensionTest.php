@@ -207,7 +207,7 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         ],
         'assertions' => [
           'contains' => [
-            '<blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation">Lorem ipsum dolor sit...</p></blockquote>',
+            '<blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en" xml:lang="en">Lorem ipsum dolor sit...</p></blockquote>',
           ],
         ],
       ],
