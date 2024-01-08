@@ -12,13 +12,22 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl-twig/datepicker' with {
+{% include '@ecl-twig/form-group' with {
   id: attributes.id,
   name: attributes.name,
-  default_value: attributes.value,
-  required: element['#required'],
+  input: {
+    input_type: 'datepicker',
+    icon_path: ecl_icon_path,
+    icon_size: 's',
+    id: attributes.id,
+    name: attributes.name,
+    placeholder: placeholder,
+    default_value: attributes.value
+  },
   invalid: element['#errors'] is not empty,
   disabled: attributes.disabled is defined,
-  icons_path: ecl_icon_path,
-  placeholder: placeholder
+  required: element['#required'],
+  extra_classes: classes|default(''),
+  extra_attributes: extra_attributes|default([]),
+  icon_path: ecl_icon_path,
 } %}{{ children }}
