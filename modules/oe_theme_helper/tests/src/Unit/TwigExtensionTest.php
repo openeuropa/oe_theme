@@ -407,4 +407,62 @@ class TwigExtensionTest extends UnitTestCase {
     $this->assertInstanceOf(MarkupInterface::class, $markup_object);
   }
 
+  /**
+   * Tests converting a language code to the internal language code.
+   *
+   * @param string $language_code
+   *   The language code to filter.
+   * @param string $expected_internal_language_code
+   *   The internal language code that is expected to be returned.
+   *
+   * @covers ::toInternalLanguageId
+   * @dataProvider toInternalLanguageIdProvider
+   */
+  public function testToInternalLanguageId(string $language_code, string $expected_internal_language_code): void {
+    $result = $this->twig->render("{{ '$language_code'|to_internal_language_id }}");
+    $this->assertEquals($expected_internal_language_code, $result);
+  }
+
+  /**
+   * Returns test cases for ::testToInternalLanguageId().
+   *
+   * @return array[]
+   *   An array of test cases, each test case an indexed array with the
+   *   following two values:
+   *   1. The language code to check.
+   *   2. The expected internal language code.
+   *
+   * @see ::testToInternalLanguageId()
+   */
+  public function toInternalLanguageIdProvider(): array {
+    return [
+      ['bg', 'bg'],
+      ['cs', 'cs'],
+      ['da', 'da'],
+      ['de', 'de'],
+      ['et', 'et'],
+      ['el', 'el'],
+      ['en', 'en'],
+      ['es', 'es'],
+      ['fr', 'fr'],
+      ['ga', 'ga'],
+      ['hr', 'hr'],
+      ['it', 'it'],
+      ['lt', 'lt'],
+      ['lv', 'lv'],
+      ['hu', 'hu'],
+      ['mt', 'mt'],
+      ['nl', 'nl'],
+      ['pl', 'pl'],
+      ['pt-pt', 'pt'],
+      ['ro', 'ro'],
+      ['sk', 'sk'],
+      ['sl', 'sl'],
+      ['fi', 'fi'],
+      ['sv', 'sv'],
+      ['nb', 'no'],
+      ['zh-hans', 'zh'],
+    ];
+  }
+
 }
