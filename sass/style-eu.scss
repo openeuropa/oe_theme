@@ -1,8 +1,15 @@
-@use '@ecl/theme-eu';
-@use '@ecl/vanilla-utility-border/border';
-@use '@ecl/vanilla-utility-background/background';
 @use "sass:map";
-@use '@ecl/theme-dev/theme';
+@use '@ecl/theme-eu';
+@use '@ecl/theme-eu/theme';
+@use '@ecl/vanilla-layout-grid/mixins/breakpoints'  with (
+  $theme: theme.$theme
+);
+@use '@ecl/vanilla-utility-background/background' with (
+  $theme: theme.$theme
+);
+@use '@ecl/vanilla-utility-border/border' with (
+  $theme: theme.$theme
+);
 // TODO: The help form component is not available on ECL v3.
 //@use '@ecl/eu-component-form-help-block/eu-component-form-help-block';
 @use '@ecl/theme-dev/maps/color';
@@ -11,7 +18,9 @@
 @use "./components/toolbar";
 @use "./components/wysiwyg";
 @use "./components/global";
-@use "./components/description_list";
+@use "./components/description_list" with (
+  $spacing: map.get(theme.$theme, 'spacing')
+);
 @use "./components/media_iframe";
 @use "./components/expandable";
 @use "./components/contextual_navigation" with (
