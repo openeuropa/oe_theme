@@ -1807,6 +1807,17 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
 
   _oe_theme_preprocess_site_specific_footer_links($variables);
   _oe_theme_preprocess_accessibility_link($variables);
+
+  // Hide the default Accessibility link inside "Legal" section for
+  // standardised ECL branding.
+  if ($variables['ecl_branding'] === 'standardised') {
+    foreach ($variables['corporate_footer']['legal_links'] as $index => $link) {
+      if (str_starts_with($link['href'], 'https://european-union.europa.eu/accessibility-statement')) {
+        unset($variables['corporate_footer']['legal_links'][$index]);
+        break;
+      }
+    }
+  }
 }
 
 /**
