@@ -3,6 +3,7 @@
  * Add a featured modifier to ECL description list style.
  */
 @use "sass:map";
+@use '@ecl/vanilla-utility-border/border' as *;
 $spacing: null !default;
 
 .ecl-description-list--featured {
