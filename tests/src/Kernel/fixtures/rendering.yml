@@ -2037,12 +2037,13 @@
     '#fields':
       body: "Quote text"
       author: "Quote author"
+      language_code: "bg"
   assertions:
     count:
       'img.ecl-blockquote__image': 0
     equals:
       '.ecl-blockquote__author': "Quote author"
-      '.ecl-blockquote__citation': "Quote text"
+      '.ecl-blockquote__citation[lang="bg"]': "Quote text"
 - array:
     '#type': pattern
     '#id': blockquote
@@ -2058,7 +2059,7 @@
       'img.ecl-blockquote__image[alt="Alternative of image"]': 1
     equals:
       '.ecl-blockquote__author': "Quote author"
-      '.ecl-blockquote__citation': "Quote text"
+      '.ecl-blockquote__citation[lang="en"]': "Quote text"
 - array:
     '#type': pattern
     '#id': context_nav
