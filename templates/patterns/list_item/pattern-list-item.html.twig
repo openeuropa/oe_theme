@@ -80,22 +80,14 @@
 {# Prepare the title as a link or simple string and the description. #}
 {%- if url %}
   {% set _title = {
-    type: 'standalone',
-    label: title,
-    path: url,
-    external: external_link,
-    icon_path: ecl_icon_path
+    link: {
+      type: 'standalone',
+      label: title,
+      path: url,
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
-  {# Icon is not applied until FRONT-3726 is fixed. #}
-  {% if icon %}
-    {% set _title = _title|merge({
-      icon: {
-        'path': ecl_icon_path,
-        'name': icon,
-        'size': 's',
-      }
-    }) %}
-  {% endif %}
 {% else %}
   {% set _title = title %}
 {%- endif -%}

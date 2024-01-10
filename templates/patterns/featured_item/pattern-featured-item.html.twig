@@ -11,11 +11,13 @@
  #}
 {% if link.href is not empty %}
   {% set _title = {
-    'label': title,
-    'path': link.href,
-    'type': "standalone",
-    'external': external_link,
-    'icon_path': ecl_icon_path
+    link: {
+      label: title,
+      path: link.href,
+      type: "standalone",
+      external: external_link,
+      icon_path: ecl_icon_path
+    }
   } %}
   {% if variant == 'extended' %}
     {% set _description %}
