@@ -12,20 +12,21 @@ parameters:
     - theme
     - install
 
-  extra_tasks:
-    phpparser:
-      ignore_patterns:
-        - vendor/
-        - node_modules/
-        - build/
-      visitors:
-        declare_strict_types: ~
-      triggered_by:
-        - php
-        - module
-        - inc
-        - theme
-        - install
+#@todo: fails with "Undefined constant PhpParser\ParserFactory::PREFER_PHP7" re-enable this.
+#  extra_tasks:
+#    phpparser:
+#      ignore_patterns:
+#        - vendor/
+#        - node_modules/
+#        - build/
+#      visitors:
+#        declare_strict_types: ~
+#      triggered_by:
+#        - php
+#        - module
+#        - inc
+#        - theme
+#        - install
 grumphp:
   extensions:
     - OpenEuropa\CodeReview\ExtraTasksExtension

@@ -2,7 +2,7 @@ include .env
 
 # ecl: build ECL from dev branch indicated in .env file.
 .PHONY: ecl
-ecl: .env build-ecl copy-dist copy-twig
+ecl: .env build-ecl copy-dist copy-twig compile-sass
 
 # Files to make
 .env:
