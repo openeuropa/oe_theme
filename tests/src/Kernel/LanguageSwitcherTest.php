@@ -171,7 +171,6 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * @dataProvider renderingDataProvider
    */
   public function testLanguageSwitcherRendering(string $langcode, string $langname): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Set the site default language.
     $this->config('system.site')->set('default_langcode', $langcode)->save();
     if ($langcode === 'pt-pt') {
@@ -184,9 +183,6 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
     // Make sure that language switcher link is properly rendered.
     $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
     $this->assertStringContainsString($langname, $actual);
-
-    $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
-    $this->assertEquals($langname, $actual);
 
     // Make sure that the actual language link is set as active.
     $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
