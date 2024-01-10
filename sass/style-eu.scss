@@ -25,4 +25,5 @@
 @use "./components/expandable";
 @use "./components/contextual_navigation" with (
   $outline-width: 2px,
+  $border_right: 1px solid var(--ecl-color-dark-60),
 );

@@ -1,8 +1,8 @@
 @use "sass:map";
-@use '@ecl/theme-dev/theme';
 @use '@ecl/vanilla-layout-grid/mixins/breakpoints';
 
 $outline-width: 3px !default;
+$border_right: 1px solid var(--ecl-color-neutral-60) !default;
 
 .ecl-contextual-navigation {
   display: flex;
@@ -11,8 +11,8 @@ $outline-width: 3px !default;
 }
 
 .ecl-contextual-navigation__label {
-  color: map.get(theme.$color, 'black-100');
-  font: map.get(theme.$font, 'm');
+  color: var(--ecl-color-dark-100);
+  font: var(--ecl-font-m);
 }
 
 .ecl-contextual-navigation__list {
@@ -20,15 +20,15 @@ $outline-width: 3px !default;
   flex-wrap: wrap;
   list-style: none;
   margin-bottom: 0;
-  margin-top: map.get(theme.$spacing, 's');
+  margin-top: var(--ecl-spacing-s);
   padding-left: 0;
 }
 
 .ecl-contextual-navigation__item {
-  border-right: 1px solid map.get(theme.$color, 'grey-50');
+  border-right: $border_right;
   display: block;
-  margin-right: map.get(theme.$spacing, 's');
-  padding-right: map.get(theme.$spacing, 's');
+  margin-right: var(--ecl-spacing-s);
+  padding-right: var(--ecl-spacing-s);
 }
 
 .ecl-contextual-navigation__item:last-child {
@@ -52,7 +52,7 @@ $outline-width: 3px !default;
   button.ecl-button--ghost:focus {
     padding: 0;
     border: 0;
-    outline: $outline-width solid map.get(theme.$color, 'secondary');
+    outline: var(--ecl-color-secondary);
   }
 }
 
@@ -63,17 +63,15 @@ $outline-width: 3px !default;
 }
 
 .ecl-contextual-navigation__more {
-  font-weight: map.get(theme.$font-weight, 'regular');
-  line-height: 1;
-  padding: 0;
-
   &:hover {
-    color: map.get(theme.$color, 'black-100');
+    color: var(--ecl-color-dark-100);
+    text-decoration: none;
   }
 
   &:focus {
-    color: map.get(theme.$color, 'black-100');
+    color: var(--ecl-color-dark-100);
     outline-offset: 2px;
+    text-decoration: none;
   }
 }
 
@@ -83,7 +81,7 @@ $outline-width: 3px !default;
   }
 
   .ecl-contextual-navigation__label {
-    margin-right: map.get(theme.$spacing, '4xl');
+    margin-right: var(--ecl-spacing-4xl);
   }
 
   .ecl-contextual-navigation__list {
