@@ -305,7 +305,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
       'items' => [
         [
           'label' => 'Funding programme',
-          'body' => 'Anti Fraud Information System (AFIS)',
+          'body' => 'Anti Fraud Information System (AFIS) (2014/2020)',
         ],
       ],
     ];
