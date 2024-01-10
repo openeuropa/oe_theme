@@ -70,26 +70,21 @@
           {% set _item_classes = _item_classes|replace({
             'ecl-contextual-navigation__item--collapsed': '',
           }) %}
-          {% set _item_classes = _item_classes ~ ' ' ~ 'ecl-contextual-navigation__item--more' %}
+          {% set _item_classes = _item_classes ~ 'ecl-contextual-navigation__item--more' %}
           <li class="{{ _item_classes }}">
-            {% include '@ecl-twig/button' with _item_more|merge({
-              'type': 'button',
-              'icon': {
-                'path': ecl_icon_path,
-                'name': 'corner-arrow',
-                'size': 'xs',
-                'transform': 'rotate-90',
-              },
-              'icon_position': icon_position|default('after'),
-              'variant': 'ghost',
-              'extra_attributes': [
-                {
-                  'name': 'data-ecl-contextual-navigation-more',
-                  'value': 'true',
-                },
-              ],
-              'extra_classes': 'ecl-contextual-navigation__more',
-            }) only %}
+            <button class="ecl-contextual-navigation__more" type="button" data-ecl-contextual-navigation-more="true">
+              <span class="ecl-button__container">
+                <span class="ecl-button__label" data-ecl-label="true">{{ _item_more.label }}</span>
+                {% include '@ecl-twig/icon' with {
+                  'icon': {
+                    'path': ecl_icon_path,
+                    'name': 'corner-arrow',
+                    'size': 'xs',
+                    'transform': 'rotate-90',
+                  }
+                } %}
+              </span>
+            </button>
           </li>
         {% endif %}
       {% endfor %}
