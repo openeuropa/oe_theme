@@ -1,7 +1,7 @@
 component_library_ec:
   css:
     theme:
-      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
+      dist/ec/styles/optional/ecl-reset.css: { media: screen }
       dist/ec/styles/optional/ecl-ec-default.css: { media: screen }
       dist/ec/styles/optional/ecl-ec-utilities.css: { media: screen }
       dist/ec/styles/ecl-ec.css: { media: screen }
@@ -17,7 +17,7 @@ component_library_ec:
 component_library_eu:
   css:
     theme:
-      dist/preset-reset/styles/optional/ecl-reset.css: { media: screen }
+      dist/eu/styles/optional/ecl-reset.css: { media: screen }
       dist/eu/styles/optional/ecl-eu-default.css: { media: screen }
       dist/eu/styles/optional/ecl-eu-utilities.css: { media: screen }
       dist/eu/styles/ecl-eu.css: { media: screen }
@@ -46,7 +46,7 @@ style_eu_rtl:
 
 external_svg:
   js:
-    dist/js/svg4everybody.min.js: { minified: true }
+    dist/js/svg4everybody.js: { }
     js/external_svg.js: {}
 
 ecl_datepicker:
