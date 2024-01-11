@@ -1,8 +1,8 @@
 include .env
 
 # ecl: build ECL from dev branch indicated in .env file.
-.PHONY: ecl
-ecl: .env build-ecl copy-dist copy-twig compile-sass
+.PHONY: ecl-dev
+ecl-dev: .env build-ecl copy-dist copy-twig compile-sass
 
 # Files to make
 .env:
@@ -66,11 +66,6 @@ build-site:
 install-site:
 	./vendor/bin/run drupal:site-setup
 	./vendor/bin/run drupal:site-install
-
-## shell-node: login onto node container.
-.PHONY: shell-node
-shell-node:
-	docker-compose exec node bash
 
 # https://stackoverflow.com/a/6273809/1826109
 %:

@@ -40,20 +40,16 @@ services:
       - NODE_MAX_SESSION=5
 
 pipeline:
-#  ecl-build:
-#    group: prepare
-#    image: registry.fpfis.eu/fpfis/node:16
-#    commands:
-#      - npm install --unsafe-perm
-#      - NODE_ENV=production npm run build
-
-  # To build the theme using a development version of ECL set its development branch in .env.dist
-  # and uncomment the line below. Also comment the "npm-build" step above for faster builds.
-  ecl-build-dev:
+  ecl-build:
     group: prepare
     image: registry.fpfis.eu/fpfis/node:18
     commands:
-      - make ecl
+      # To build the theme using a development version of ECL set its development branch in .env.dist
+      # and make sure that ECL_BUILD is set to "dev".
+      - 'make .env && . .env'
+      - '[ "$ECL_BUILD" == "dev" ] && make ecl-dev'
+      - '[ "$ECL_BUILD" != "dev" ] && npm install --unsafe-perm'
+      - '[ "$ECL_BUILD" != "dev" ] && NODE_ENV=production npm run build'
 
   composer-install:
     group: post-prepare
