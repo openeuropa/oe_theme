@@ -35,6 +35,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_iframe_media',
     'oe_paragraphs_banner',
     'oe_theme_paragraphs_banner',
+    'oe_theme_paragraphs_carousel',
     'views',
     'entity_browser',
     'media_avportal',
@@ -975,6 +976,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Test Carousel paragraph rendering.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCarousel(): void {
     // Set image media translatable.
@@ -1078,6 +1082,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Create a Carousel paragraph with Bulgarian translation.
     $paragraph = Paragraph::create([
       'type' => 'oe_carousel',
+      'oe_paragraphs_variant' => 'oe_banner_text_highlight',
       'field_oe_carousel_items' => $items,
       'field_oe_carousel_size' => 'large',
     ]);
@@ -1146,6 +1151,24 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $assert->assertPattern($expected_values, $html);
+
+    // Update paragraph variant to image-overlay.
+    $paragraph->set('oe_paragraphs_variant', 'oe_banner_image_shade')
+      ->save();
+    $html = $this->renderParagraph($paragraph, 'bg');
+    foreach ($expected_values['items'] as &$item) {
+      $item['variant'] = 'image-overlay';
+    }
+    $assert->assertPattern($expected_values, $html);
+
+    // Update paragraph variant to default.
+    $paragraph->set('oe_paragraphs_variant', 'default')
+      ->save();
+    $html = $this->renderParagraph($paragraph, 'bg');
+    foreach ($expected_values['items'] as &$item) {
+      $item['variant'] = 'plain-background';
+    }
     $assert->assertPattern($expected_values, $html);
   }
 

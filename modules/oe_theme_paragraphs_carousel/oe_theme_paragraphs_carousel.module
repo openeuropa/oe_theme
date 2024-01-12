@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * The OE Theme Paragraphs Carousel module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
+
+/**
+ * Implements hook_field_widget_complete_WIDGET_TYPE_form_alter().
+ */
+function oe_theme_paragraphs_carousel_field_widget_complete_oe_paragraphs_variants_form_alter(&$field_widget_complete_form, FormStateInterface $form_state, $context) {
+  $elements = &$field_widget_complete_form['widget'];
+  $variants_without_image = [
+    'oe_banner_primary',
+    'default',
+  ];
+  foreach (Element::children($elements) as $key) {
+    if (!isset($elements[$key]['#paragraph_type']) || !$elements[$key]['#paragraph_type'] === 'oe_carousel') {
+      continue;
+    }
+    if (!isset($elements[$key]['variant']) || !array_key_exists('oe_banner_primary', $elements[$key]['variant']['#options'])) {
+      continue;
+    }
+    if (!in_array($elements[$key]['variant']['#default_value'], $variants_without_image)) {
+      continue;
+    }
+    if (!isset($elements[$key]['subform']['field_oe_carousel_items']['widget'])) {
+      continue;
+    }
+    // Hide the media field of Carousel item paragraph for variants without
+    // image.
+    $subparagraphs = &$elements[$key]['subform']['field_oe_carousel_items']['widget'];
+    foreach (Element::children($subparagraphs) as $index) {
+      if (!isset($subparagraphs[$index]['#paragraph_type']) || !$subparagraphs[$index]['#paragraph_type'] === 'oe_carousel_item') {
+        continue;
+      }
+      $subparagraphs[$index]['subform']['field_oe_media']['widget'][0]['target_id']['#default_value'] = FALSE;
+      $subparagraphs[$index]['subform']['field_oe_media']['#access'] = FALSE;
+    }
+  }
+}
