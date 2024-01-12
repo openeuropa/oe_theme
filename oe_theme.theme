@@ -83,6 +83,7 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_social_icon_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
   $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
+  $variables['ecl_icon_flag_non_members_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag-non-members.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 

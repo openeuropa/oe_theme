@@ -292,6 +292,7 @@ class TwigExtensionTest extends UnitTestCase {
       'ecl_icon_path' => '/path/to/theme/resources/icons/',
       'ecl_icon_social_media_path' => '/path/to/theme/resources/social-media-icons/',
       'ecl_icon_flag_path' => '/path/to/theme/resources/flag-icons/',
+      'ecl_icon_flag_non_members_path' => '/path/to/theme/resources/non-members-flag-icons/',
     ];
     // We join the resulting array from to_ecl_icon() function so that we have
     // a visual representation of the array being returned by the function.
