@@ -468,7 +468,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
    *   Icon size.
    */
   protected function assertLinkIcon(NodeElement $element, string $title, string $href, bool $is_external = TRUE, string $icon_size = 's'): void {
-    $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $link = $element->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon');
     $this->assertCount(1, $link);
     $this->assertEquals($href, $link[0]->getAttribute('href'));
 
