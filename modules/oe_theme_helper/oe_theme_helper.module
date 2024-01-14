@@ -240,8 +240,8 @@ function template_preprocess_oe_theme_helper_featured_media(array &$variables) {
     $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->get('uri')->getString());
   }
 
-  $params['alt'] = $thumbnail->get('alt')->getString();
-  $params['image'] = $image_url;
+  $params['picture']['img']['alt'] = $thumbnail->get('alt')->getString();
+  $params['picture']['img']['src'] = $image_url;
   $variables['params'] = $params;
   $cacheability->applyTo($variables);
 
