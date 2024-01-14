@@ -32,7 +32,6 @@ class NewsRenderTest extends ContentRenderTestBase {
    * Tests News node type rendered as teaser.
    */
   public function testNewsTeaser(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
