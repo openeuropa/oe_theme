@@ -1,6 +1,23 @@
-# Change Log
+# Changelog
+
+## [3.9.0](https://github.com/openeuropa/oe_theme/tree/3.9.0) (2024-01-15)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.8.0...3.9.0)
+
+**Merged pull requests:**
+
+- EWPP-3846: Remove entity reference revisions patch. [\#1373](https://github.com/openeuropa/oe_theme/pull/1373) ([nagyad](https://github.com/nagyad))
+- EWPP-3889: Update to ECL 3.13.0. [\#1372](https://github.com/openeuropa/oe_theme/pull/1372) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-3866: Update available flag options in paragraphs. [\#1368](https://github.com/openeuropa/oe_theme/pull/1368) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3845: Restore usage of latest triple store image. [\#1363](https://github.com/openeuropa/oe_theme/pull/1363) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3802: Add carousel variants. [\#1361](https://github.com/openeuropa/oe_theme/pull/1361) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3826: Remove spaceless filter from long text fields. [\#1357](https://github.com/openeuropa/oe_theme/pull/1357) ([nagyad](https://github.com/nagyad))
+- EWPP-3810: Update listing templates to use image links. [\#1355](https://github.com/openeuropa/oe_theme/pull/1355) ([nagyad](https://github.com/nagyad))
+- EWPP-3828: Update to ECL 3.12.0. [\#1354](https://github.com/openeuropa/oe_theme/pull/1354) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3808: Hide default Accessibility link for EU standardised footer. [\#1349](https://github.com/openeuropa/oe_theme/pull/1349) ([sergepavle](https://github.com/sergepavle))
 
 ## [3.8.0](https://github.com/openeuropa/oe_theme/tree/3.8.0) (2023-12-20)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.7.0...3.8.0)
 
 **Closed issues:**
@@ -9,11 +26,13 @@
 
 **Merged pull requests:**
 
+- Prepare changelog for release 3.8.0. [\#1360](https://github.com/openeuropa/oe_theme/pull/1360) ([brummbar](https://github.com/brummbar))
 - EWPP-3831: Update to PHP 8.2 and drop support for D9.4. [\#1353](https://github.com/openeuropa/oe_theme/pull/1353) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3650: Use ECL media container picture parameter instead of image and alt. [\#1336](https://github.com/openeuropa/oe_theme/pull/1336) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-3633: Add support for CKEditor 5 [\#1324](https://github.com/openeuropa/oe_theme/pull/1324) ([brummbar](https://github.com/brummbar))
 
 ## [3.7.0](https://github.com/openeuropa/oe_theme/tree/3.7.0) (2023-11-21)
+
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.6.0...3.7.0)
 
 **Merged pull requests:**
