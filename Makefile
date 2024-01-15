@@ -1,8 +1,8 @@
 include .env
 
 # ecl: build ECL from dev branch indicated in .env file.
-.PHONY: ecl
-ecl: .env build-ecl copy-dist copy-twig
+.PHONY: ecl-dev
+ecl-dev: .env build-ecl copy-dist copy-twig compile-sass
 
 # Files to make
 .env:
@@ -12,13 +12,26 @@ ecl: .env build-ecl copy-dist copy-twig
 .PHONY: build-ecl
 build-ecl:
 	[ ! -d ecl-build ] || rm -rf ecl-build
-	git clone -b $(ECL_BUILD_REF) https://github.com/openeuropa/europa-component-library.git --depth 1 ecl-build
+	git clone -b $(ECL_BUILD_REF) $(ECL_BUILD_REPO) --depth 1 ecl-build
 	yarn --cwd ./ecl-build install
 	# Add ECL dependencies that cannot be required by ECL.
 	# @see https://github.com/ec-europa/europa-component-library#warning-momentjs
 	yarn --cwd ./ecl-build add moment@2.29.1 -W
 	yarn --cwd ./ecl-build add svg4everybody@2.1.9 -W
 	yarn --cwd ./ecl-build dist:presets
+
+## compile-sass: compile SASS.
+.PHONY: compile-sass
+compile-sass:
+	[ ! -d ./ecl-build/oe_theme_sass ] || rm -rf ./ecl-build/oe_theme_sass
+	[ ! -d ./ecl-build/oe_theme_css ] || rm -rf ./ecl-build/oe_theme_css
+	cp -r sass ./ecl-build/oe_theme_sass
+	yarn --cwd ./ecl-build sass -I node_modules/ --style=expanded oe_theme_sass:oe_theme_css
+	[ ! -d ./css ] || rm -rf ./css
+	mv ./ecl-build/oe_theme_css css
+# SASS duplicates the "oe_theme_css" inside the target directory.
+# @todo fix this.
+	[ ! -d ./css/oe_theme_css ] || rm -rf ./css/oe_theme_css
 
 ## copy-ecl-dist: build ECL.
 .PHONY: copy-dist
