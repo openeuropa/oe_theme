@@ -27,6 +27,13 @@ banner:
       label: "URL"
       description: "Banner link url."
       preview: "http://example.com"
+    link_extra_attributes:
+      type: "array"
+      label: "Link attributes"
+      description: "Extra attributes for link"
+      preview:
+        - name: "extra-attr"
+          value: "extra value"
     label:
       type: "text"
       label: "Link text"
