@@ -28,6 +28,9 @@ carousel:
           url: "https://example.com"
           url_text: "CTA"
           centered: false
+          link_extra_attributes:
+            - name: "extra-attr"
+              value: "extra value"
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur. Duis vitae pulvinar turpis. Donec maximus pharetra ex a ultricies"
           url: "https://example.com"
