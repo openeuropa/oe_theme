@@ -1,7 +1,8 @@
+{% set _color = ecl_component_library == 'ec' ? 'neutral-40' : 'primary-10' %}
 <h2 class="ecl-u-type-heading-2 ecl-u-mt-3xl">{{ 'Related links'|t }}</h2>
 {% for item in items %}
   {% set bubble_cache = item.content|render %}
-  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15 ecl-u-pt-m ecl-u-pb-m">
+  <div class="ecl-u-border-bottom ecl-u-border-color-{{ _color }} ecl-u-pt-m ecl-u-pb-m">
     {% include '@ecl-twig/link' with {
       link: {
         type: 'standalone',
