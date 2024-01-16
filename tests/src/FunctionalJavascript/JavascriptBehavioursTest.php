@@ -110,9 +110,9 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/multi_select');
     // Assert the default input is present and shows a default placeholder.
-    $select_input = $this->getSession()->getPage()->find('css', 'input.ecl-select__multiple-toggle');
+    $select_input = $this->getSession()->getPage()->find('css', 'button.ecl-select__multiple-toggle');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($select_input->getXpath()));
-    $this->assertEquals('Select', $select_input->getAttribute('placeholder'));
+    $this->assertEquals('Select', $select_input->getText());
 
     // Assert the select dropdown is hidden.
     $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');

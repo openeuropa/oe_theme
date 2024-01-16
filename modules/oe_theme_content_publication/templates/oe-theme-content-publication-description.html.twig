@@ -13,8 +13,12 @@
   {% if image is not empty %}
     <div class="ecl-col-12 ecl-col-m-3">
       {% include '@ecl-twig/media-container' with {
-        'image': image.src,
-        'alt': image.alt,
+        'picture': {
+          'img': {
+            'src': image.src,
+            'alt': image.alt,
+          },
+        },
         'extra_classes': 'ecl-u-bg-white'
       } %}
     </div>

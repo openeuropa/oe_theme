@@ -1104,6 +1104,7 @@
       'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for primary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/150x150"]': 1
+      'article.ecl-content-item picture[data-ecl-picture-link]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--left': 1
       'article.ecl-content-item picture.ecl-content-item__picture--right': 0
     equals:
@@ -1130,6 +1131,7 @@
       'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
       'article.ecl-content-item img.ecl-content-item__image[alt="Alternate text for secondary image"]': 1
       'article.ecl-content-item img.ecl-content-item__image[src="http://via.placeholder.com/120x80"]': 1
+      'article.ecl-content-item picture[data-ecl-picture-link]': 1
       'article.ecl-content-item picture.ecl-content-item__picture--left': 0
       'article.ecl-content-item picture.ecl-content-item__picture--right': 1
     equals:
@@ -1158,6 +1160,7 @@
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
+      article.ecl-card picture[data-ecl-picture-link]: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 0
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 1
@@ -1183,6 +1186,7 @@
       article.ecl-card div.ecl-card__body a.ecl-link--standalone[href="http://example.com"]: 1
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
+      article.ecl-card picture[data-ecl-picture-link]: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 0
@@ -2371,6 +2375,7 @@
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
+      'article.ecl-card picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 1
       'ul.ecl-content-block__label-container li.ecl-content-block__label-item': 2
@@ -2403,6 +2408,7 @@
     count:
       "img.ecl-card__image[src=\"http://via.placeholder.com/120x80\"]": 1
       'div.ecl-content-block__title a.ecl-link--standalone[href="https://example.com"]': 1
+      'article.ecl-card picture[data-ecl-picture-link]': 1
       'a.ecl-button': 0
       'article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container': 0
       'ul.ecl-content-block__primary-meta-container': 1

@@ -356,7 +356,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Legal links title', $actual->getText());
 
     $items = $data['legal_links'];
-
+    // Accessibility link inside legal section shouldn't be visible for EU
+    // standardised footer.
+    array_pop($items);
     foreach ($items as $key => $expected) {
       $index = $key + 1;
       $actual = $subsection->find('css', "ul li:nth-child({$index}) > a");

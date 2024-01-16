@@ -1,0 +1,9 @@
+name: OpenEuropa Theme Paragraphs Carousel
+type: module
+description: Companion module for the OE Paragraphs Carousel module
+package: OpenEuropa
+core_version_requirement: ^10
+dependencies:
+  - oe_paragraphs:oe_paragraphs_banner
+  - oe_paragraphs:oe_paragraphs_carousel
+  - oe_theme:oe_theme_paragraphs_banner

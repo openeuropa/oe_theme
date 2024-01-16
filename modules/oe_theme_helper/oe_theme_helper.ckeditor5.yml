@@ -1,0 +1,50 @@
+oe_theme_helper_table_zebra_striping:
+  ckeditor5:
+    plugins:
+      - tableZebraStriping.TableZebraStriping
+    config:
+      table:
+        contentToolbar: [toggleTableZebraStriping]
+  drupal:
+    label: Table zebra striping
+    library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_zebra_striping
+    elements:
+      - <table data-striped>
+    conditions:
+      filter: filter_ecl_table
+      plugins:
+        - ckeditor5_table
+
+oe_theme_helper_table_simple:
+  ckeditor5:
+    plugins:
+      - tableSimple.TableSimple
+    config:
+      table:
+        contentToolbar: [toggleTableSimple]
+  drupal:
+    label: Table simple
+    library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_simple
+    elements:
+      - <table data-simple>
+    conditions:
+      filter: filter_ecl_table
+      plugins:
+        - ckeditor5_table
+
+oe_theme_helper_table_sort:
+  ckeditor5:
+    plugins:
+      - tableSort.TableSort
+    config:
+      table:
+        contentToolbar: [toggleTableColumnSort]
+  drupal:
+    label: Table sort
+    library: oe_theme_helper/internal.oe_theme_helper.ckeditor5.table_sort
+    elements:
+      - <th data-sortable>
+    conditions:
+      filter: filter_ecl_table
+      plugins:
+        - ckeditor5_table

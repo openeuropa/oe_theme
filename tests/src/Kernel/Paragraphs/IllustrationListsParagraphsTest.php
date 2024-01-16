@@ -93,7 +93,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
 
     $paragraph = Paragraph::create([
       'type' => 'oe_illustration_item_flag',
-      'field_oe_flag' => 'finland',
+      'field_oe_flag' => 'north-macedonia',
     ]);
     $paragraph->save();
     $items[] = $paragraph;
@@ -135,7 +135,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'icon' => 'france',
           'value' => 'Highlighted Term 3',
         ], [
-          'icon' => 'finland',
+          'icon' => 'north-macedonia',
         ],
       ],
       'centered' => FALSE,
@@ -164,7 +164,7 @@ class IllustrationListsParagraphsTest extends ParagraphsTestBase {
           'icon' => 'france-square',
           'value' => 'Highlighted Term 3',
         ], [
-          'icon' => 'finland-square',
+          'icon' => 'north-macedonia-square',
         ],
       ],
     ];

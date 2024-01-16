@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * @file
+ * Install hooks for OpenEuropa Theme Paragraphs Carousel module.
+ */
+
+declare(strict_types = 1);
+
+use Drupal\Core\Entity\Entity\EntityFormDisplay;
+use Drupal\Core\Entity\Entity\EntityFormMode;
+
+/**
+ * Implements hook_install().
+ *
+ * Updates the form modes labels.
+ */
+function oe_theme_paragraphs_carousel_install($is_syncing) {
+  // If we are installing from config, we bail out.
+  if ($is_syncing) {
+    return;
+  }
+  $form_modes_labels = [
+    'paragraph.oe_banner_primary' => 'Plain background',
+    'paragraph.oe_banner_image' => 'Text box',
+    'paragraph.oe_banner_image_shade' => 'Image overlay',
+    'paragraph.oe_banner_text_highlight' => 'Text highlight',
+  ];
+  foreach ($form_modes_labels as $id => $label) {
+    $form_mode = EntityFormMode::load($id);
+    $form_mode->set('label', $label);
+    $form_mode->save();
+  }
+  // Change the field widget for the carousel items field.
+  EntityFormDisplay::load('paragraph.oe_carousel.default')
+    ->setComponent('field_oe_carousel_items', [
+      'type' => 'oe_paragraphs_variants',
+    ])->save();
+}

@@ -256,7 +256,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     $funding_items = $unordered_list_items[0]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(1, $funding_items);
-    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS)', ['Funding programme']);
+    $this->assertListItem($funding_items[0], 'Anti Fraud Information System (AFIS) (2014/2020)', ['Funding programme']);
 
     $proposal_items = $unordered_list_items[1]->findAll('css', '.ecl-unordered-list__item');
     $this->assertCount(3, $proposal_items);

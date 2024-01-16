@@ -35,6 +35,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     'oe_paragraphs_iframe_media',
     'oe_paragraphs_banner',
     'oe_theme_paragraphs_banner',
+    'oe_theme_paragraphs_carousel',
     'views',
     'entity_browser',
     'media_avportal',
@@ -174,6 +175,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $assert->assertPattern($expected_values, $html);
     $assert->assertVariant('left_simple', $html);
 
+    // Remove the alt of the image and assert empty alt is rendered.
+    $media->set('oe_media_image', [
+      'target_id' => $en_file->id(),
+      'alt' => '',
+    ]);
+    $media->save();
+    $expected_values['image']['alt'] = '';
+    $html = $this->renderParagraph($paragraph, 'en');
+    $assert->assertPattern($expected_values, $html);
+
     $expected_values = [
       'title' => 'Heading bg',
       'text_title' => 'Title bg',
@@ -213,6 +224,12 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // need to reset manually.
     $this->container->get('entity_type.manager')->getAccessControlHandler('media')->resetCache();
 
+    // Set back the image alt.
+    $media->set('oe_media_image', [
+      'target_id' => $en_file->id(),
+      'alt' => 'Alt en',
+    ]);
+    $media->save();
     // Set the paragraph highlighted.
     $paragraph->set('field_oe_highlighted', TRUE);
     // Remove the text and assert the element is no longer rendered.
@@ -960,6 +977,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
 
   /**
    * Test Carousel paragraph rendering.
+   *
+   * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testCarousel(): void {
     // Set image media translatable.
@@ -1063,6 +1083,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     // Create a Carousel paragraph with Bulgarian translation.
     $paragraph = Paragraph::create([
       'type' => 'oe_carousel',
+      'oe_paragraphs_variant' => 'oe_banner_text_highlight',
       'field_oe_carousel_items' => $items,
       'field_oe_carousel_size' => 'large',
     ]);
@@ -1131,6 +1152,24 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $assert->assertPattern($expected_values, $html);
+
+    // Update paragraph variant to image-overlay.
+    $paragraph->set('oe_paragraphs_variant', 'oe_banner_image_shade')
+      ->save();
+    $html = $this->renderParagraph($paragraph, 'bg');
+    foreach ($expected_values['items'] as &$item) {
+      $item['variant'] = 'image-overlay';
+    }
+    $assert->assertPattern($expected_values, $html);
+
+    // Update paragraph variant to default.
+    $paragraph->set('oe_paragraphs_variant', 'default')
+      ->save();
+    $html = $this->renderParagraph($paragraph, 'bg');
+    foreach ($expected_values['items'] as &$item) {
+      $item['variant'] = 'plain-background';
+    }
     $assert->assertPattern($expected_values, $html);
   }
 
