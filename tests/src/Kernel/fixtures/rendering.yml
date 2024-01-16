@@ -232,6 +232,7 @@
     count:
       'section.ecl-banner.ecl-banner--text-box.ecl-banner--l.ecl-banner--centered': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[data-name="data value"]': 0
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 1
       '.ecl-banner--full-width': 0
@@ -254,10 +255,14 @@
       centered: false
       full_width: true
       credit: "© Copyright or credit"
+      link_extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
   assertions:
     count:
       'section.ecl-banner.ecl-banner--plain-background.ecl-banner--m.ecl-banner--full-width': 1
       'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[href="http://example.com"]': 1
+      'div.ecl-banner__content div.ecl-banner__cta a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-banner__link-cta[data-name="data value"]': 1
       'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-90.ecl-link__icon': 1
       'picture.ecl-picture.ecl-banner__picture img.ecl-banner__image[src="http://via.placeholder.com/150x150"]': 0
       'div.ecl-banner__credit': 0
