@@ -3502,16 +3502,25 @@
           variant: "text-box"
           centered: false
           credit: "© Copyright first item"
+          link_extra_attributes:
+            - name: 'data-name'
+              value: 'data value'
         - title: "Duis vitae pulvinar turpis"
           description: "Integer quis lorem tellus. Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur"
           url: "https://example.com"
           url_text: "CTA 2"
           image: "https://picsum.photos/seed/picsum/600/300"
           variant: "text-overlay"
+          link_extra_attributes:
+              -   name: 'data-name'
+                  value: 'data value'
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus."
           url: "https://example.com"
           url_text: "CTA 3"
+          link_extra_attributes:
+              -   name: 'data-name'
+                  value: 'data value'
         - title: "Donec maximus pharetra"
           centered: false
         - title: "Lorem ipsum dolor sit amet"
@@ -3525,6 +3534,9 @@
           image: "https://picsum.photos/seed/picsum/600/300"
           variant: "text-overlay"
           centered: false
+          link_extra_attributes:
+            - name: 'data-name'
+              value: 'data value'
   assertions:
     count:
       section.ecl-carousel.ecl-carousel--full-width: 0
@@ -3546,6 +3558,7 @@
       div.ecl-carousel__slide section.ecl-banner--plain-background.ecl-banner--m div.ecl-banner__content div.ecl-banner__title: 2
       div.ecl-carousel__slide section.ecl-banner--plain-background.ecl-banner--m div.ecl-banner__content p.ecl-banner__description: 1
       div.ecl-carousel__slide section.ecl-banner--plain-background.ecl-banner--m div.ecl-banner__content div.ecl-banner__cta: 1
+      div.ecl-carousel__slide div.ecl-banner__content div.ecl-banner__cta a[data-name="data value"]: 4
     equals:
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--centered) div.ecl-banner__content div.ecl-banner__title .ecl-banner__title-text: 'Lorem ipsum dolor sit amet'
       div.ecl-carousel__slide section.ecl-banner--text-box.ecl-banner--m:not(.ecl-banner--centered) div.ecl-banner__content p.ecl-banner__description .ecl-banner__description-text: 'Nullam sollicitudin suscipit diam, ac blandit ipsum tempor consectetur'
