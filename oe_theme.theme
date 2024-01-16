@@ -2176,9 +2176,10 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     'primary' => 'plain_background',
     'image' => 'text_box',
     'image_shade' => 'text_overlay',
+    'text_highlight' => 'text_overlay',
   ];
   // If the paragraph has a value set for the variant field, we retrieve it,
-  // otherwise keep text_highlight as default variant like before.
+  // otherwise keep text_overlay as default variant like before.
   $variant = $paragraph->get('oe_paragraphs_variant')->first()->value ?? 'text_overlay';
   $variant = str_replace('oe_banner_', '', $variant);
   $variant = $deprecated_paragraph_variants_mapping[$variant] ?? $variant;

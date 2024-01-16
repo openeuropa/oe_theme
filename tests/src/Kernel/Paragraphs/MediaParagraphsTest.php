@@ -1159,7 +1159,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       ->save();
     $html = $this->renderParagraph($paragraph, 'bg');
     foreach ($expected_values['items'] as &$item) {
-      $item['variant'] = 'image-overlay';
+      $item['variant'] = 'text-overlay';
     }
     $assert->assertPattern($expected_values, $html);
 
