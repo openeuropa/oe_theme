@@ -12,7 +12,7 @@ services:
       COMPOSERVER: "--2"
       XDEBUG_CONFIG: "client_host=172.17.0.1" # Non-Mac users.
       # XDEBUG_CONFIG: "client_host=host.docker.internal" # Mac users.
-      XDEBUG_MODE: "develop, debug"
+      XDEBUG_MODE: "debug"
       PHP_IDE_CONFIG: "serverName=Docker"
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
       # XDEBUG_SESSION: 1

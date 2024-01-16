@@ -404,6 +404,21 @@ class TwigExtension extends AbstractExtension {
       'spain',
       'sweden',
     ];
+    // Flag icon names for non EU members.
+    $flag_icons_non_members = [
+      'albania',
+      'bosnia-and-herzegovina',
+      'georgia',
+      'iceland',
+      'moldova',
+      'montenegro',
+      'north-macedonia',
+      'norway',
+      'serbia',
+      'switzerland',
+      'turkey',
+      'ukraine',
+    ];
     // Flag icons can have a -square string appended, so check if the icon name
     // starts with a country name.
     $found_icon = array_filter($flag_icons, function ($var) use ($icon) {
@@ -414,6 +429,15 @@ class TwigExtension extends AbstractExtension {
     });
     if ($found_icon) {
       return $context['ecl_icon_flag_path'];
+    }
+    $found_icon = array_filter($flag_icons_non_members, function ($var) use ($icon) {
+      if (strpos($icon, $var) === 0) {
+        return TRUE;
+      };
+      return FALSE;
+    });
+    if ($found_icon) {
+      return $context['ecl_icon_flag_non_members_path'];
     }
 
     // Social media icon names.

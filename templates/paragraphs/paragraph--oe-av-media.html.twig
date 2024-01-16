@@ -8,8 +8,12 @@
 #}
 {% if image %}
   {% set media_container = {
-    'image': image.src,
-    'alt': image.alt,
+    'picture': {
+      'img': {
+        'src': image.src,
+        'alt': image.alt,
+      },
+    },
   } %}
 {% elseif video %}
   {% set media_container = {

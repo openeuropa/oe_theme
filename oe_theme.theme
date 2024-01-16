@@ -83,6 +83,7 @@ function oe_theme_preprocess(&$variables) {
   $variables['ecl_social_icon_path'] = base_path() . \Drupal::service('extension.list.theme')->getPath('oe_theme') . '/dist/ec/images/social-icons/sprites/icons-social.svg';
   $variables['ecl_icon_social_media_path'] = $variables['ecl_images_path'] . '/icons-social-media/sprites/icons-social-media.svg';
   $variables['ecl_icon_flag_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag.svg';
+  $variables['ecl_icon_flag_non_members_path'] = $variables['ecl_images_path'] . '/icons-flag/sprites/icons-flag-non-members.svg';
   $variables['current_language_id'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
 }
 
@@ -1808,6 +1809,17 @@ function oe_theme_preprocess_oe_corporate_blocks_eu_footer(array &$variables) {
 
   _oe_theme_preprocess_site_specific_footer_links($variables);
   _oe_theme_preprocess_accessibility_link($variables);
+
+  // Hide the default Accessibility link inside "Legal" section for
+  // standardised ECL branding.
+  if ($variables['ecl_branding'] === 'standardised') {
+    foreach ($variables['corporate_footer']['legal_links'] as $index => $link) {
+      if (str_starts_with($link['href'], 'https://european-union.europa.eu/accessibility-statement')) {
+        unset($variables['corporate_footer']['legal_links'][$index]);
+        break;
+      }
+    }
+  }
 }
 
 /**
@@ -2158,6 +2170,20 @@ function oe_theme_preprocess_field__entity_reference_revisions__oe_event_speaker
 function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
   $paragraph = $variables['paragraph'];
+  // Map the deprecated variants from oe_paragraphs to Banner pattern variants.
+  $deprecated_paragraph_variants_mapping = [
+    'default' => 'plain_background',
+    'primary' => 'plain_background',
+    'image' => 'text_box',
+    'image_shade' => 'text_overlay',
+    'text_highlight' => 'text_overlay',
+  ];
+  // If the paragraph has a value set for the variant field, we retrieve it,
+  // otherwise keep text_overlay as default variant like before.
+  $variant = $paragraph->get('oe_paragraphs_variant')->first()->value ?? 'text_overlay';
+  $variant = str_replace('oe_banner_', '', $variant);
+  $variant = $deprecated_paragraph_variants_mapping[$variant] ?? $variant;
+  $variant = str_replace('_', '-', $variant);
   $variables['items'] = [];
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
@@ -2166,6 +2192,29 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
     // Get sub-paragraph translation.
     $sub_paragraph = \Drupal::service('entity.repository')
       ->getTranslationFromContext($sub_paragraph, $paragraph->language()->getId());
+    // Add CTA, Title and description if available.
+    $link = '';
+    $link_text = '';
+    if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
+      /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
+      $link_item = $sub_paragraph->get('field_oe_link')->first();
+      $link = Url::fromUri($link_item->get('uri')->getValue())->toString();
+      $link_text = $link_item->get('title')->getValue();
+    }
+    $item = [
+      'title' => $sub_paragraph->get('field_oe_title')->value,
+      'description' => !$sub_paragraph->get('field_oe_text')->isEmpty() ? $sub_paragraph->get('field_oe_text')->value : '',
+      'url' => $link ?? '',
+      'url_text' => $link_text ?? '',
+      'centered' => FALSE,
+      'variant' => $variant,
+    ];
+    if ($variant === 'plain-background') {
+      // If variant the doesn't have an image, skip to the next item.
+      $variables['items'][] = $item;
+      $cacheability->applyTo($variables);
+      continue;
+    }
     /** @var \Drupal\media\Entity\Media $media */
     $media = $sub_paragraph->get('field_oe_media')->entity;
     if (!$media instanceof MediaInterface) {
@@ -2207,28 +2256,9 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       continue;
     }
     $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
-    $image_url = $style->buildUrl($uri);
-
-    $link = '';
-    $link_text = '';
-    if (!$sub_paragraph->get('field_oe_link')->isEmpty()) {
-      /** @var \Drupal\link\Plugin\Field\FieldType\LinkItem $link_item */
-      $link_item = $sub_paragraph->get('field_oe_link')->first();
-      $link = Url::fromUri($link_item->get('uri')->getValue())->toString();
-      $link_text = $link_item->get('title')->getValue();
-    }
-    $variables['items'][] = [
-      'title' => $sub_paragraph->get('field_oe_title')->value,
-      'description' => !$sub_paragraph->get('field_oe_text')->isEmpty() ? $sub_paragraph->get('field_oe_text')->value : '',
-      'url' => $link ?? '',
-      'url_text' => $link_text ?? '',
-      'image' => $image_url,
-      'image_alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
-      'centered' => FALSE,
-      // The paragraph has a required image field, so we need to set a default
-      // image variant in order to render the image.
-      'variant' => 'text-overlay',
-    ];
+    $item['image'] = $style->buildUrl($uri);
+    $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
+    $variables['items'][] = $item;
     $cacheability->applyTo($variables);
   }
   if ($paragraph->hasField('field_oe_carousel_size') && !$paragraph->get('field_oe_carousel_size')->isEmpty()) {

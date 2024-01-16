@@ -47,3 +47,7 @@ services:
   oe_theme_helper.external_links:
     class: Drupal\oe_theme_helper\ExternalLinks
     arguments: ['@config.factory']
+  oe_theme_helper.flag_options_subscriber:
+    class: Drupal\oe_theme_helper\EventSubscriber\FlagOptionsEventSubscriber
+    tags:
+      - { name: event_subscriber }

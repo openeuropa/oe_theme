@@ -30,3 +30,6 @@ legal_links:
   -
     label: 'Legal link 2'
     href: 'https://europa.eu/legal_links2'
+  -
+    label: 'Accessibility'
+    href: 'https://european-union.europa.eu/accessibility-statement_en'
