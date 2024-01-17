@@ -3509,9 +3509,13 @@
           external_link: TRUE
         - content: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
           link: "http://example.com"
+      extra_attributes:
+        - name: 'data-name'
+          value: 'data value'
   assertions:
     count:
       div.ecl-news-ticker: 1
+      div.ecl-news-ticker[data-name="data value"]: 1
       div.ecl-news-ticker__container: 1
       div.ecl-news-ticker__content: 1
       ul#news-ticker-example-content.ecl-news-ticker__slides: 1
