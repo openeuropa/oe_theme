@@ -1,18 +1,16 @@
-@use "sass:map";
-@use '@ecl/theme-dev/theme';
 .main-content {
   .password-strength {
     .is-weak {
-      background-color: map.get(theme.$color, 'red-100');
+      background-color: var(--ecl-color-error);
     }
 
     .is-fair {
-      background-color: map.get(theme.$color, 'orange-100');
+      background-color: var(--ecl-color-warning);
     }
 
     .is-good,
     .is-strong {
-      background-color: map.get(theme.$color, 'green-100')
+      background-color: var(--ecl-color-success);
     }
   }
 

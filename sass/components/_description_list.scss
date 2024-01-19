@@ -2,14 +2,12 @@
  * @file
  * Add a featured modifier to ECL description list style.
  */
-@use "sass:map";
 @use '@ecl/vanilla-utility-border/border' as *;
-$spacing: null !default;
 
 .ecl-description-list--featured {
   @extend .ecl-u-border-all !optional;
   @extend .ecl-u-border-width-2 !optional;
   @extend .ecl-u-border-color-blue-25 !optional;
   @extend .ecl-u-bg-blue-5 !optional;
-  padding: map.get($spacing, 's');
+  padding: var(--ecl-spacing-s);
 }
