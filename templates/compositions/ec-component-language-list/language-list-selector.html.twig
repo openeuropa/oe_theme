@@ -37,15 +37,26 @@
 
 {% set _aria_label = 'Change language, current language is '|t ~ label %}
 
+{% set _label = ecl_component_library == 'eu' ? label|default('') : code|default('') %}
+{% set _overlay_close_icon = ecl_component_library == 'ec' ? 'close' : 'close-filled' %}
+
 {% set _language_selector = {
   href: path|default(''),
-  label: label|default(''),
+  label: _label,
   aria_label: _aria_label|default(''),
   code: code|default(''),
   eu_category: eu_category,
   non_eu_category: non_eu_category,
   overlay: {
-    close_label: 'Close'|t,
+    close: {
+      label: 'Close'|t,
+      icon: {
+        path: icon_path,
+        name: _overlay_close_icon,
+        size: 'm',
+      },
+      hide_label: true,
+    },
     title: 'Select your language'|t,
     items: items,
     non_eu_items: non_eu_languages,
@@ -53,7 +64,7 @@
 } %}
 
 {% include '@ecl-twig/site-header/site-header-language-switcher.html.twig' with {
-  icon_file_path: icon_path|default(''),
+  icon_path: icon_path|default(''),
   language_selector: _language_selector,
 } only %}
 {% endapply %}

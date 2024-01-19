@@ -8,6 +8,7 @@
 #}
 {% if links -%}
   {% include '@oe_theme/compositions/ec-component-language-list/language-list-selector.html.twig' with {
+    ecl_component_library: ecl_component_library,
     label: current_language.label,
     path: current_language.path,
     code: current_language.lang,
