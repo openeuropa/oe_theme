@@ -4,7 +4,6 @@
  * Default implementation for the page header component.
  */
 #}
-{% set variant = ecl_component_library == 'ec' and ecl_branding == 'core' ? 'negative' : '' %}
 
 {% set _breadcrumb_links = {} %}
 {% for breadcrumb_item in breadcrumb %}
@@ -20,7 +19,7 @@
     'links' : _breadcrumb_links,
     'navigation_text' : '',
     'ellipsis_label': '',
-    'icon_file_path' : ecl_icon_path,
+    'icon_path' : ecl_icon_path,
     'extra_attributes': [
       {
         'name': 'aria-label',
@@ -30,15 +29,31 @@
   } %}
 {% endif %}
 
+{% if background_image_url is not empty %}
+  {% set _picture_background = {
+    'img': {
+      'src': background_image_url,
+      'alt': '',
+    }
+  } %}
+{% endif %}
+{% if thumbnail.src is not empty %}
+  {% set _picture_thumbnail = {
+    'img': {
+      'src': thumbnail.src,
+      'alt': thumbnail.alt,
+    }
+  } %}
+{% endif %}
+
 {% include '@ecl-twig/page-header' with {
   'title': title,
-  'thumbnail': thumbnail,
+  'picture_thumbnail': _picture_thumbnail|default([]),
   'description': introduction,
   'breadcrumb': _breadcrumb,
   'meta': metas|filter_empty,
-  'background_image_url': background_image_url,
+  'picture_background': _picture_background|default([]),
   'extra_classes': _extra_classes|join(' '),
   'overlay': overlay|default(''),
   'hide_title': hide_title|default(false),
-  'variant': variant
 } %}

@@ -6,9 +6,9 @@
  * @see ./core/themes/stable/templates/block/block.html.twig
  */
 #}
-<div class="ecl-site-header__search-container">
+<div class="ecl-site-header__search-container" role="search">
   <a
-    class="ecl-button ecl-button--ghost ecl-site-header__search-toggle"
+    class="ecl-button ecl-button--tertiary ecl-site-header__search-toggle"
     href=""
     data-ecl-search-toggle="true"
     aria-controls="{{ content['#id'] }}"
@@ -22,7 +22,10 @@
         extra_attributes: [
           { name: 'aria-hidden', value: true }
         ],
-        extra_classes: 'ecl-site-header__icon',
+      },
+      extra_classes: 'ecl-site-header__icon',
+      extra_accessibility: {
+        role: 'img',
       }
     } only -%}
     {{ 'Search'|t }}
