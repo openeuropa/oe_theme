@@ -11,12 +11,29 @@
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl-twig/radio/radio-button' with {
+{% include '@ecl-twig/form-group' with {
   id: attributes.id,
   name: attributes.name,
-  value: attributes.value,
-  checked: attributes.checked == 'checked',
+  input: {
+    input_type: 'radio',
+    icon_path: ecl_icon_path,
+    icon_size: 's',
+    id: attributes.id,
+    name: attributes.name,
+    items: [
+      {
+        value: attributes.value,
+        checked: attributes.checked == 'checked',
+        id: attributes.id,
+        name: attributes.name,
+        label: title,
+        icon_path: ecl_icon_path,
+        disabled: attributes.disabled is defined,
+      }
+    ]
+  },
+  invalid: invalid,
   disabled: attributes.disabled is defined,
-  label: title,
-  extra_attributes: input_attributes
+  extra_attributes: input_attributes|default([]),
+  icon_path: ecl_icon_path,
 } %}{{ children }}
