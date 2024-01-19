@@ -182,7 +182,8 @@
     contains:
       - 'Checkbox'
     count:
-      'div.ecl-checkbox.ecl-checkbox--disabled': 1
+      'div.ecl-form-group.form-disabled': 1
+      'div.ecl-checkbox--disabled input[disabled]': 1
 - array:
     '#type': checkbox
     '#title': Checkbox
@@ -212,8 +213,9 @@
     contains:
       - 'Radio'
     count:
-      'div.ecl-radio--disabled label.ecl-radio__label': 1
+      'div.ecl-form-group.form-disabled': 1
       'div.ecl-radio--disabled input[disabled]': 1
+
 - array:
     '#type': pattern
     '#id': banner
