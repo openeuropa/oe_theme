@@ -19,14 +19,15 @@
   extra_attributes: input_array.extra_attributes,
   extra_group_classes: 'ecl-form-group--text-input'
 } %}
+
+{% set _button_variant = ecl_component_library == 'ec' ? 'ghost' : 'primary' %}
 {% set button = {
-  variant: 'search',
+  variant: _button_variant,
   icon: {
-    name: 'search',
     path: ecl_icon_path,
-    size: 'fluid'
   },
   label: 'Search'|t,
+  icon_position: 'before',
   extra_classes: 'ecl-search-form__button'
 } %}
 {% set extra_attributes = attributes|to_ecl_attributes|merge([{'name': 'data-ecl-search-form'}]) %}
