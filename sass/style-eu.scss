@@ -12,17 +12,17 @@
 );
 // TODO: The help form component is not available on ECL v3.
 //@use '@ecl/eu-component-form-help-block/eu-component-form-help-block';
-@use '@ecl/theme-dev/maps/color';
-@use "./compositions/content_item";
+//@use "./compositions/content_item";
 @use "./components/form";
 @use "./components/toolbar";
 @use "./components/wysiwyg";
 @use "./components/global";
-@use "./components/description_list" with (
-  $spacing: map.get(theme.$theme, 'spacing')
-);
+@use "./components/description_list";
 @use "./components/media_iframe";
-@use "./components/expandable";
+@use "./components/expandable" with (
+  $background-color: var(--ecl-color-dark-10),
+  $border-color: var(--ecl-color-dark-40),
+);
 @use "./components/contextual_navigation" with (
   $outline-width: 2px,
   $border_right: 1px solid var(--ecl-color-dark-60),

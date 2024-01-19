@@ -1,6 +1,3 @@
-@use "sass:map";
-@use '@ecl/theme-dev/theme';
-
 .ecl-contextual-navigation {
   display: flex;
   flex-direction: row;
@@ -8,9 +5,9 @@
 }
 
 .ecl-contextual-navigation__label {
-  color: map.get(theme.$color, 'black-100');
-  font: map.get(theme.$font-print, 'm');
-  margin-right: map.get(theme.$spacing-print, 'xl');
+  color: var(--ecl-color-dark-100);
+  font: var(--ecl-font-m);
+  margin-right: var(--ecl-spacing-xl);
 }
 
 .ecl-contextual-navigation__list {

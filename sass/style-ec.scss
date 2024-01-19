@@ -1,4 +1,3 @@
-@use "sass:map";
 @use '@ecl/theme-ec';
 @use '@ecl/theme-ec/theme';
 @use '@ecl/vanilla-layout-grid/mixins/breakpoints'  with (
@@ -12,14 +11,14 @@
 );
 // TODO: The help form component is not available on ECL v3.
 //@use '@ecl/ec-component-form-help-block/ec-component-form-help-block';
-@use "./compositions/content_item";
+@use "./compositions/content_item" with (
+  $color: var(--ecl-color-dark-100),
+);
 @use "./components/form";
 @use "./components/toolbar";
 @use "./components/wysiwyg";
 @use "./components/global";
-@use "./components/description_list" with (
-  $spacing: map.get(theme.$theme, 'spacing')
-);
+@use "./components/description_list";
 @use "./components/media_iframe";
 @use "./components/expandable";
 @use "./components/contextual_navigation";
