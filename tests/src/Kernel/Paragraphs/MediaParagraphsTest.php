@@ -84,7 +84,6 @@ class MediaParagraphsTest extends ParagraphsTestBase {
    * Test text with featured media paragraph rendering.
    */
   public function testTextWithMedia(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a paragraph without the media.
     $paragraph = $this->container
       ->get('entity_type.manager')
