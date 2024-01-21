@@ -26,7 +26,6 @@ class PageHeaderRenderingTest extends AbstractKernelTestBase {
    * @dataProvider dataProvider
    */
   public function testRendering(string $branding, array $pattern, array $assertions) {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     \Drupal::configFactory()
       ->getEditable('oe_theme.settings')
       ->set('branding', $branding)->save();
