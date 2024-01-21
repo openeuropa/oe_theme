@@ -30,8 +30,8 @@
           label: "News"
   assertions:
     count:
-      '.ecl-page-header.ecl-page-header--negative': 1
-      "nav.ecl-breadcrumb.ecl-breadcrumb--negative.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
+      '.ecl-page-header': 1
+      "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background': 0
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -86,8 +86,8 @@
       background_image_url: 'https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg'
   assertions:
     count:
-      '.ecl-page-header.ecl-page-header--negative': 1
-      "nav.ecl-breadcrumb.ecl-breadcrumb--negative.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
+      '.ecl-page-header': 1
+      "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
@@ -123,7 +123,7 @@
       hide_title: true
   assertions:
     count:
-      '.ecl-page-header.ecl-page-header--negative': 1
+      '.ecl-page-header': 1
       '.ecl-page-header__background': 0
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__title.ecl-u-sr-only': 1
@@ -169,7 +169,6 @@
   assertions:
     count:
       '.ecl-page-header': 1
-      '.ecl-page-header--negative': 0
       "nav.ecl-breadcrumb.ecl-page-header__breadcrumb[aria-label=\"You are here:\"][data-ecl-breadcrumb=\"true\"]": 1
       '.ecl-breadcrumb__segment': 7
       '.ecl-page-header__background': 0
@@ -330,7 +329,7 @@
       overlay: 'light'
   assertions:
     count:
-      '.ecl-page-header.ecl-page-header--negative': 1
+      '.ecl-page-header': 1
       '.ecl-page-header__background[src="https://inno-ecl.s3.amazonaws.com/media/examples/example-image8.jpg"]': 1
       '.ecl-page-header__meta .ecl-page-header__meta-item': 3
       '.ecl-page-header__info-list': 0
