@@ -682,9 +682,9 @@
       'dl.ecl-description-list': 1
       'dt.ecl-description-list__term': 3
       'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
-      'span.ecl-description-list__definition-item': 7
-      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
-      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
+      'li.ecl-description-list__definition-item': 7
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
@@ -704,15 +704,15 @@
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
       'dt.ecl-description-list__term:nth-of-type(3)': 'External links'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': file_image
@@ -3578,8 +3578,8 @@
           centered: false
   assertions:
     count:
-      div.ecl-carousel.ecl-carousel--full-width: 0
-      div.ecl-carousel: 1
+      section.ecl-carousel.ecl-carousel--full-width: 0
+      section.ecl-carousel: 1
       div.ecl-carousel__container: 1
       div.ecl-carousel__slides: 1
       div.ecl-carousel__slide: 6
@@ -3647,7 +3647,7 @@
       size: 'l'
   assertions:
     count:
-      div.ecl-carousel.ecl-carousel--full-width: 1
+      section.ecl-carousel.ecl-carousel--full-width: 1
       div.ecl-carousel__slide: 3
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--text-box.ecl-banner--centered: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--plain-background: 2
