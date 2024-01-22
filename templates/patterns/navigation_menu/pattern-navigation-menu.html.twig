@@ -72,7 +72,13 @@
       }
     },
     close: {
-      label: close|default('Close'|t),
+      label: close.label|default('Close'|t),
+      icon: {
+        path: ecl_icon_path,
+        name: close.icon_name,
+        size: close.icon_size,
+      },
+      hide_label: close.hide_label|default(false)
     },
     back_label: back|default('Back'|t),
     icon_path: ecl_icon_path,
