@@ -6,7 +6,6 @@
  * @see ./modules/contrib/oe_content_entity/modules/oe_content_entity_contact/templates/oe-contact.html.twig
  */
 #}
-{% set _color = ecl_component_library == 'ec' ? 'neutral-40' : 'primary-10' %}
 {% set image = content.oe_image|field_value|render %}
 <div class="ecl-row ecl-u-mv-xl">
   {% block title %}
@@ -27,7 +26,7 @@
     {% endif %}
     {{ content.group_contact_information }}
     {% if not entity.oe_press_contact_url.isEmpty() or not entity.oe_link.isEmpty() %}
-      <div class="ecl-u-border-top ecl-u-border-color-{{ _color }} ecl-u-mt-s">
+      <div class="ecl-u-border-top {{ ecl_class_border_color() }} ecl-u-mt-s">
         {{ content.oe_press_contact_url }}
         {{ content.oe_link }}
       </div>

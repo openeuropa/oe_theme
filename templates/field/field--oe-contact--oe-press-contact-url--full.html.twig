@@ -6,10 +6,9 @@
  * @see ./core/themes/stable/templates/field/field.html.twig
  */
 #}
-{% set _color = ecl_component_library == 'ec' ? 'neutral-40' : 'primary-10' %}
 {% for item in items %}
   {% set bubble_cache = item.content|render %}
-  <div class="ecl-u-border-bottom ecl-u-border-color-{{ _color }} ecl-u-pt-l ecl-u-pb-l">
+  <div class="ecl-u-border-bottom {{ ecl_class_border_color() }} ecl-u-pt-l ecl-u-pb-l">
     {% include '@ecl-twig/link' with {
       link: {
         type: 'standalone',
