@@ -45,7 +45,6 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
    * Tests that the News page renders correctly.
    */
   public function testNewsRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a News node.
     /** @var \Drupal\node\Entity\Node $node */
     $node = $this->getStorage('node')->create([
@@ -69,7 +68,7 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'Test news node',
@@ -99,9 +98,9 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Sources', $this->assertSession()->elementExists('css', 'h3.ecl-u-type-heading-3')->getText());
-    $internal_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(3)');
+    $internal_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m:nth-child(3)');
     $this->assertLinkIcon($internal_source_link, 'Internal source link', '/build/node', FALSE, 'xs');
-    $external_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(4)');
+    $external_source_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m:nth-child(4)');
     $this->assertLinkIcon($external_source_link, 'External source link', 'https://example.com', TRUE, 'xs');
 
     $node->set('oe_news_location', 'http://publications.europa.eu/resource/authority/place/ARE_AUH');
@@ -248,12 +247,10 @@ class ContentNewsRenderTest extends ContentRenderTestBase {
     ])->save();
     $this->drupalGet($node->toUrl());
     $this->assertEquals('Related links', $this->assertSession()->elementExists('css', 'h2.ecl-u-type-heading-2:nth-child(8)')->getText());
-    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(9) a');
-    $this->assertEquals('/build/node', $first_related_link->getAttribute('href'));
-    $this->assertEquals('Node listing', $first_related_link->getText());
-    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
-    $this->assertEquals('https://example.com', $second_related_link->getAttribute('href'));
-    $this->assertEquals('External link', $second_related_link->getText());
+    $first_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m:nth-child(9) a');
+    $this->assertLinkIcon($first_related_link, 'Node listing', '/build/node', FALSE, 'xs');
+    $second_related_link = $this->assertSession()->elementExists('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m:nth-child(10) a');
+    $this->assertLinkIcon($second_related_link, 'External link', 'https://example.com', TRUE, 'xs');
   }
 
 }
