@@ -9,6 +9,7 @@
 {% if links %}
   {{ pattern('navigation_menu', {
     label: 'Menu'|t,
+    close: close,
     items: links,
     variant: 'vertical',
   }) }}
