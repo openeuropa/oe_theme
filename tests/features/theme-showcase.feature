@@ -4,7 +4,6 @@ Feature: Theme showcase
   As a developer
   I want to make sure that I can setup a demo site with enabled more featured standardised branding.
 
-  @wip
   Scenario: The demo site header features placeholder blocks
     When I am on the homepage
     Then I should see the "logo" element in the "header"
@@ -13,7 +12,6 @@ Feature: Theme showcase
     And I should see the "navigation menu" element in the "header"
     And I should see the "site name" element in the "header"
 
-  @wip
   Scenario: The demo site navigation features placeholder menu links
     When I am on the homepage
     Then I should see the following links in the "navigation" region:
@@ -33,7 +31,7 @@ Feature: Theme showcase
       | Commission at work |
       | Departments        |
 
-  @wip @javascript
+  @javascript
   Scenario: The demo site navigation menu features dropdown menus
     When I am on the homepage
     # We can't check the visibility of the submenus
@@ -51,7 +49,7 @@ Feature: Theme showcase
     Then I should not visibly see the link "Commission at work"
     But I should see the link "Democratic change"
 
-  @wip @javascript
+  @javascript
   Scenario: The dropdown component shows/hides on click event
     When I am on "the ECL dropdown component page"
     Then the "dropdown content" is not visible
@@ -59,7 +57,7 @@ Feature: Theme showcase
     When I press "Dropdown"
     Then the "dropdown content" is visible
 
-  @wip @javascript
+  @javascript
   Scenario: The language switcher dialog can be accessed
     When I am on the homepage
     Then the overlay "language switcher links" is not visible
@@ -107,8 +105,9 @@ Feature: Theme showcase
     When I press "Close"
     Then the "language switcher links" is not visible
 
-  @wip @javascript
+  @javascript
   Scenario: Site visitor can change language using the language switcher
+    Given the theme is configured to use the "European Union" style
     When I am on the homepage
     Then the "language switcher link" element should contain "English"
 
@@ -117,14 +116,12 @@ Feature: Theme showcase
     Then the url should match "/pl"
     And the "language switcher link" element should contain "polski"
 
-  @wip
   Scenario: Site visitors can access the ECL components overview page
     When I am on the homepage
     And I click "Components" in the "navigation" region
     Then I should be on "the ECL components overview page"
     And I should see the heading "Components" in the "page header"
 
-  @wip
   Scenario: Changing the ECL branding will display site header with Core or Standardised style.
     Given I am an anonymous user
     When the theme is configured to use the "Standardised" ECL branding

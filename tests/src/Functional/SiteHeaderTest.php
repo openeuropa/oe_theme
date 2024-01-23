@@ -161,7 +161,6 @@ class SiteHeaderTest extends BrowserTestBase {
       $this->assertEquals('button', $language_switcher_button->getAttribute('role'));
       $this->assertEquals('Change language, current language is English', $language_switcher_button->getAttribute('aria-label'));
       $this->assertEquals('language-list-overlay', $language_switcher_button->getAttribute('aria-controls'));
-      file_put_contents('test.html', $this->getSession()->getPage()->getOuterHtml());
       $icon = $language_switcher_button->find('css', "span.ecl-site-header__language-icon svg.ecl-icon.ecl-icon--s.ecl-site-header__icon[focusable='false'][aria-hidden='false']");
       if ($component === 'ec') {
         $this->assertEquals('<title>en</title><use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#global" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $icon->getHtml());
