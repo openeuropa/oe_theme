@@ -682,9 +682,9 @@
       'dl.ecl-description-list': 1
       'dt.ecl-description-list__term': 3
       'dd.ecl-description-list__definition.ecl-description-list__definition--taxonomy': 3
-      'span.ecl-description-list__definition-item': 7
-      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
-      'span.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
+      'li.ecl-description-list__definition-item': 7
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone': 3
+      'li.ecl-description-list__definition-item a.ecl-link.ecl-link--standalone.ecl-link--icon': 2
       'div.ecl-file__label span.ecl-label.ecl-label--highlight': 0
     equals:
       'div.ecl-file__info div.ecl-file__title': "Example document"
@@ -704,15 +704,15 @@
       'dt.ecl-description-list__term:nth-of-type(1)': 'Keywords'
       'dt.ecl-description-list__term:nth-of-type(2)': 'Country'
       'dt.ecl-description-list__term:nth-of-type(3)': 'External links'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) span.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) span.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(2) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
-      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) span.ecl-description-list__definition-item:nth-of-type(3) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(1)': 'Apple'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(1) li.ecl-description-list__definition-item:nth-of-type(2)': 'Orange'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(1)': 'Belgium'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(2) li.ecl-description-list__definition-item:nth-of-type(2)': 'Hungary'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(1) a[href="https://example.com/1"]': 'First external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a[href="https://example.com/2"] .ecl-link__label': 'Second external link'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(2) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a[href="https://example.com/3"] .ecl-link__label': 'https://example.com/3'
+      'dd.ecl-description-list__definition--taxonomy:nth-of-type(3) li.ecl-description-list__definition-item:nth-of-type(3) a svg.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': file_image
@@ -2723,7 +2723,7 @@
       highlighted: false
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       'div.ecl-featured-item__item': 2
       'div.ecl-featured-item__title': 1
@@ -2732,15 +2732,15 @@
       'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="http://example.com"]': 1
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-featured-item__title': "Title"
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
 - array:
     '#type': pattern
     '#id': text_featured_media
@@ -2760,7 +2760,7 @@
             '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 1
+      'article.ecl-featured-item.ecl-featured-item--highlight': 1
       'h2.ecl-u-type-heading-2': 0
       'div.ecl-featured-item__container': 1
       'div.ecl-featured-item__title': 1
@@ -2769,15 +2769,15 @@
       'iframe': 0
       'figcaption.ecl-media-container__caption': 1
       'a.ecl-link.ecl-link--standalone[href="https://european-union.europa.eu/index_en"]': 1
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': 1
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': 1
       'div.ecl-expandable.ecl-media-container__expandable': 1
       'button[data-ecl-label-expanded="Expanded"][data-ecl-label-collapsed="Collapsed"]': 1
     equals:
-      'div.ecl-featured-item__title': "Title"
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': "Title"
       'figcaption.ecl-media-container__caption': "Some caption text for the image"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
-      'svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--primary.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
       'span.ecl-button__container svg.ecl-icon.ecl-icon--fluid.ecl-icon--rotate-180.ecl-button__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
       'div.ecl-expandable__content': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis;<b>A mene tu?</b></p>"
 - array:
@@ -2801,10 +2801,10 @@
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 1
+      'article.ecl-featured-item.ecl-featured-item--highlight': 1
       'h2.ecl-u-type-heading-2': 1
       'div.ecl-featured-item__container': 1
-      'div.ecl-featured-item__title': 0
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': 0
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'iframe': 0
@@ -2833,10 +2833,10 @@
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container': 1
       'div.ecl-col-md-6': 0
-      'div.ecl-featured-item__title': 1
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 0
       'div.ecl-featured-item__item.ecl': 0
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
@@ -2847,7 +2847,7 @@
       'div#text-featured-media-1.text-featured-media-hidden-content': 1
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-featured-item__title': "Title"
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': "Title"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'div#text-featured-media-1.text-featured-media-hidden-content': "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
 - array:
@@ -2865,9 +2865,9 @@
         path: "http://example.com"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container': 1
-      'div.ecl-featured-item__title': 1
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 1
       'iframe': 0
@@ -2876,7 +2876,7 @@
       'div.ecl-expandable.ecl-media-container__expandable': 0
     equals:
       'h2.ecl-u-type-heading-2': "Heading"
-      'div.ecl-featured-item__title': "Title"
+      'div.ecl-featured-item__title span.ecl-featured-item__title-content': "Title"
       'div.ecl-featured-item__item div.ecl-featured-item__description': "Some more text"
       'a.ecl-link span.ecl-link__label': "Call to action"
 - array:
@@ -2887,7 +2887,7 @@
       caption: "Some caption"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'article.ecl-featured-item': 1
       'div.ecl-featured-item__container': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 0
@@ -2918,7 +2918,7 @@
         path: "http://example.com"
   assertions:
     count:
-      'article.ecl-featured-item.ecl-featured-item--extended': 0
+      'article.ecl-featured-item.ecl-featured-item--highlight': 0
       'div.ecl-featured-item__container.ecl-featured-item__container--right': 1
       '.ecl-featured-item__media_container figure.ecl-media-container__figure': 1
       'img.ecl-media-container__media[src="http://via.placeholder.com/150x150"]': 0
@@ -3578,8 +3578,8 @@
           centered: false
   assertions:
     count:
-      div.ecl-carousel.ecl-carousel--full-width: 0
-      div.ecl-carousel: 1
+      section.ecl-carousel.ecl-carousel--full-width: 0
+      section.ecl-carousel: 1
       div.ecl-carousel__container: 1
       div.ecl-carousel__slides: 1
       div.ecl-carousel__slide: 6
@@ -3647,7 +3647,7 @@
       size: 'l'
   assertions:
     count:
-      div.ecl-carousel.ecl-carousel--full-width: 1
+      section.ecl-carousel.ecl-carousel--full-width: 1
       div.ecl-carousel__slide: 3
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--text-box.ecl-banner--centered: 1
       div.ecl-carousel__slide section.ecl-banner.ecl-banner--l.ecl-banner--plain-background: 2

@@ -1,9 +1,7 @@
-@use "sass:map";
-@use '@ecl/theme-dev/theme';
 // Apply global css.
 
 body {
-  font-family: #{map.get(theme.$font-family, 'default')};
+  font-family: arial, sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -14,7 +12,7 @@ a {
   &:focus {
     text-decoration: underline;
   }
-  color: map.get(theme.$color, 'blue');
+  color: var(--ecl-color-primary-100);
 }
 
 .ecl {
