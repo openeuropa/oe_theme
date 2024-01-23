@@ -98,6 +98,7 @@ class TwigExtension extends AbstractExtension {
       new TwigFunction('get_link_icon', [$this, 'getLinkIcon'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_footer_links', [$this, 'eclFooterLinks'], ['needs_context' => TRUE]),
       new TwigFunction('ecl_class_border_color', [$this, 'eclBorderColor'], ['needs_context' => TRUE]),
+      new TwigFunction('ecl_class_background_color', [$this, 'eclBackgroundColor'], ['needs_context' => TRUE]),
     ];
   }
 
@@ -669,6 +670,19 @@ class TwigExtension extends AbstractExtension {
    */
   public function eclBorderColor(array $context): string {
     return $context['ecl_component_library'] === 'ec' ? 'ecl-u-border-color-neutral-40' : 'ecl-u-border-color-primary-10';
+  }
+
+  /**
+   * Determines the proper background color class for the component library.
+   *
+   * @param array $context
+   *   The twig context.
+   *
+   * @return string
+   *   The background color class.
+   */
+  public function eclBackgroundColor(array $context): string {
+    return $context['ecl_component_library'] === 'ec' ? 'ecl-u-bg-neutral-40' : 'ecl-u-bg-primary-5';
   }
 
   /**

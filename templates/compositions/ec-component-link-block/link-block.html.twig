@@ -24,7 +24,6 @@
 {% set _links = links|default([]) %}
 {% set _css_class = 'ecl-link-block' %}
 {% set _extra_attributes = '' %}
-{% set _color = ecl_component_library == 'ec' ? 'neutral-20' : 'primary-5' %} %}
 
 {# Internal logic - Process properties #}
 
@@ -38,7 +37,7 @@
   {% endfor %}
 {% endif %}
 
-<div class="{{ _css_class }} ecl-u-bg-{{ _color }} ecl-u-ph-m"{{ _extra_attributes|raw }}>
+<div class="{{ _css_class }} {{ ecl_class_background_color() }} ecl-u-ph-m"{{ _extra_attributes|raw }}>
   {% if _title is not empty %}
     <div class="ecl-link-block__title ecl-row ecl-u-pl-m ecl-u-pr-m">
       <h5 class="ecl-u-type-heading-5 ecl-u-mt-xs ecl-u-mb-none">{{ _title }}</h5>
