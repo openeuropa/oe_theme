@@ -77,7 +77,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    * Tests that the Event featured media renders the translated media.
    */
   public function testEventFeaturedMediaTranslation(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Make event node and image media translatable.
     \Drupal::service('content_translation.manager')->setEnabled('node', 'oe_event', TRUE);
     \Drupal::service('content_translation.manager')->setEnabled('media', 'image', TRUE);
@@ -169,7 +168,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    * Tests that the Event page renders correctly.
    */
   public function testEventRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
@@ -201,7 +199,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test event node',
@@ -254,7 +252,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $field_list_assert->assertPattern($field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);
     // The event didn't start yet so no status message should be displayed.
-    $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-u-mb-2xl');
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification.ecl-u-mb-2xl');
 
     // Check case when start and end dates are different in another timezone.
     $end_date = (clone $static_time)->modify('+ 20 days');
@@ -553,7 +551,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $this->assertRegistrationButtonDisabled($registration_content, 'Register here');
-    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-grey-75');
+    $registration_info_content = $this->assertSession()->elementExists('css', 'p.ecl-u-type-paragraph.ecl-u-type-color-dark-100');
     $this->assertEquals('Registration will open in 1 day. You can register from 18 February 2020, 15:00 CET, until 21 February 2020, 15:00 CET.', $registration_info_content->getText());
 
     // Assert "Registration date" field when registration will start today in
@@ -609,7 +607,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertEquals('Livestream', $online_heading->getText());
     $online_description = $this->assertSession()->elementExists('css', 'div > div:nth-of-type(1) > .ecl', $details_content);
     $this->assertEquals('Online event description', $online_description->getText());
-    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
+    $online_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-u-mt-l.ecl-u-mb-l.ecl-u-d-inline-block', $details_content);
     $this->assertEquals('Link to online event', $online_button->find('css', 'span.ecl-link__label')->getText());
     $this->assertEquals('http://www.example.com/online_link', $online_button->getAttribute('href'));
     $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $online_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
@@ -647,12 +645,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     // Assert the correct status information is displayed when the event has
     // finished but the livestream is ongoing.
-    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-message.ecl-message--warning.ecl-u-mb-2xl');
+    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
     // Assert the livestream icon is rendered.
-    $icon = $status_container->find('css', 'svg.ecl-icon.ecl-icon--l.ecl-message__icon use');
+    $icon = $status_container->find('css', 'svg.ecl-icon.ecl-icon--l.ecl-notification__icon use');
     $this->assertStringContainsString('livestreaming', $icon->getAttribute('xlink:href'));
     // Assert the message.
-    $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Assert "Event contact" field.
     $contact_entity_general = $this->createContactEntity('general_contact');
@@ -941,7 +939,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(1, $speakers_items);
 
     // Make sure that adding of additional Event speakers
@@ -950,12 +948,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
     $speakers = $this->assertSession()->elementExists('css', '.ecl-row.field-oe-event-speakers');
-    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
+    $speakers_items = $speakers->findAll('css', '.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-col-12.ecl-col-m-6.ecl-col-l-4');
     $this->assertCount(2, $speakers_items);
     $portrait = $this->assertSession()->elementExists('css', '.ecl-u-flex-shrink-0.ecl-u-mr-s.ecl-u-media-a-m.ecl-u-media-bg-size-contain.ecl-u-media-bg-repeat-none', $speakers_items[0]);
     // Assert default image of speaker.
     $this->assertStringContainsString('oe_theme/images/user_icon.svg', $portrait->getAttribute('style'));
-    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
     // Assert event role of speaker.
     $this->assertEquals('event role 1', $meta->getText());
     // Assert Person link.
@@ -970,7 +968,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $event_speaker->set('oe_event_role', 'event role 2');
     $event_speaker->save();
     $this->drupalGet($node->toUrl());
-    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
+    $meta = $this->assertSession()->elementExists('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mb-s.ecl-u-type-uppercase', $speakers_items[0]);
     $this->assertEquals('event role 2', $meta->getText());
 
     // Assert that changes in person job are applied.
@@ -1003,7 +1001,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Set event and online dates to assert event status message.
     $node->set('oe_event_status_description', 'Event status message.');
@@ -1024,45 +1022,45 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     // By default, message doesn't exist and the 'Status description' field is
     // not rendered for the livestream messages.
-    $this->assertEmpty($status_container->find('css', 'div.ecl-message__content div.ecl-message__title'));
+    $this->assertEmpty($status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title'));
 
     // Event is ongoing, but livestream is not.
     $static_time = new DrupalDateTime('2020-04-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Event is ongoing and livestream also.
     $static_time = new DrupalDateTime('2020-04-18 20:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Event is ongoing but livestream is finished.
     $static_time = new DrupalDateTime('2020-04-20 22:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('The livestream has ended, but the event is ongoing.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('The livestream has ended, but the event is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Update the event status and assert the message updates correctly and the
     // 'Status description' field is displayed.
     $node->set('oe_event_status', 'postponed')->save();
     $this->drupalGet($node->toUrl());
-    $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-message--info.ecl-u-mb-2xl');
-    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-message.ecl-message--warning.ecl-u-mb-2xl');
-    $this->assertStringContainsString('This event has been postponed.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-    $this->assertSession()->elementTextContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification.ecl-notification--info.ecl-u-mb-2xl');
+    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
+    $this->assertStringContainsString('This event has been postponed.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertSession()->elementTextContains('css', 'div.ecl-notification__content div.ecl-notification__description', 'Event status message.');
     $node->set('oe_event_status', 'cancelled')->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has been cancelled.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-    $this->assertSession()->elementTextContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
+    $this->assertStringContainsString('This event has been cancelled.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertSession()->elementTextContains('css', 'div.ecl-notification__content div.ecl-notification__description', 'Event status message.');
     $node->set('oe_event_status', 'rescheduled')->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has been rescheduled.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
-    $this->assertSession()->elementTextContains('css', 'div.ecl-message__content div.ecl-message__description', 'Event status message.');
+    $this->assertStringContainsString('This event has been rescheduled.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertSession()->elementTextContains('css', 'div.ecl-notification__content div.ecl-notification__description', 'Event status message.');
 
     // Empty the online field group.
     $node->set('oe_event_online_dates', [
@@ -1076,19 +1074,19 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $node->set('oe_event_status', 'as_planned')->save();
     $this->drupalGet($node->toUrl());
     // Assert the message updated.
-    $this->assertSession()->elementNotExists('css', 'div.ecl-message.ecl-message--warning.ecl-u-mb-2xl');
-    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-message.ecl-message--info.ecl-u-mb-2xl');
-    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
+    $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--info.ecl-u-mb-2xl');
+    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
     // Assert that the 'Status description' field is not rendered for the
     // 'As planned' messages.
-    $this->assertSession()->elementNotExists('css', 'div.ecl-message__content div.ecl-message__description');
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification__content div.ecl-notification__description');
 
     // Set current time after the event ends.
     $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-message__content div.ecl-message__title')->getText());
+    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
   }
 
   /**
@@ -1105,12 +1103,12 @@ class ContentEventRenderTest extends ContentRenderTestBase {
    */
   protected function assertRegistrationButtonEnabled(NodeElement $parent_element, string $text, string $link, bool $external): void {
     if ($external) {
-      $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after', $parent_element);
+      $rendered_button = $this->assertSession()->elementExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);
       $this->assertEquals($text, $rendered_button->find('css', 'span.ecl-link__label')->getText());
       $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $rendered_button->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
     }
     else {
-      $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon.ecl-link--icon-after', $parent_element);
+      $this->assertSession()->elementNotExists('css', 'span.ecl-u-mt-2xl.ecl-u-d-inline-block a.ecl-link.ecl-link--cta.ecl-link--icon', $parent_element);
       $rendered_button = $this->assertSession()->elementExists('css', 'a.ecl-link.ecl-link--cta', $parent_element);
       $this->assertEquals($text, $rendered_button->getText());
     }
