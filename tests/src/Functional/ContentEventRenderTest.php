@@ -960,7 +960,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $link = $this->assertSession()->elementExists('css', '.ecl-link.ecl-link--standalone.ecl-u-type-bold', $speakers_items[0]);
     $this->assertStringContainsString($person->toUrl()->toString(), $link->getAttribute('href'));
     $this->assertEquals($person->label(), $link->getText());
-    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-grey-100.ecl-u-mt-s', $speakers_items[0]);
+    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mt-s', $speakers_items[0]);
     // Assert person jobs.
     $this->assertEquals('Adviser, Chief Adviser', $person_jobs->getText());
 
@@ -975,7 +975,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $person_job_1->set('oe_role_reference', 'http://publications.europa.eu/resource/authority/role-qualifier/ADVIS_COMMU');
     $person_job_1->save();
     $this->drupalGet($node->toUrl());
-    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-grey-100.ecl-u-mt-s', $speakers_items[0]);
+    $person_jobs = $this->assertSession()->elementExists('css', '.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mt-s', $speakers_items[0]);
     $this->assertEquals('Communication Adviser, Chief Adviser', $person_jobs->getText());
 
     // Assert that changes in person photo are applied.
