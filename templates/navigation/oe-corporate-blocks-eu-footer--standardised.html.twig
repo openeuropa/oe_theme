@@ -24,7 +24,13 @@
           path: accessibility_link,
           external: accessibility_link|is_external_url,
           icon_path: ecl_icon_path,
-        }
+        },
+        extra_attributes: [
+          {
+            name: 'data-is-accessibility-link',
+            value: 'true',
+          }
+        ],
       }
     } %}
   {% endif %}
