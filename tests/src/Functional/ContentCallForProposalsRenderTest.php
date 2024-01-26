@@ -275,7 +275,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $results_field_group = $content_items[0]->find('css', 'div.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-l.ecl-u-mb-l.ecl-u-pt-l.ecl-u-pb-l');
+    $results_field_group = $content_items[0]->find('css', 'div.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-mt-l.ecl-u-mb-l.ecl-u-pt-l.ecl-u-pb-l');
     $results_expected_values = [
       'items' => [
         [
