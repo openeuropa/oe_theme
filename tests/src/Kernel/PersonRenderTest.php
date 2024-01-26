@@ -84,7 +84,6 @@ class PersonRenderTest extends ContentRenderTestBase {
    * Test a person being rendered as a teaser.
    */
   public function testTeaser(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a Person node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
     $values = [

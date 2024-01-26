@@ -135,7 +135,7 @@ abstract class ContentRenderTestBase extends BrowserTestBase {
     $file_footer = $file_wrapper->find('css', '.ecl-file .ecl-file__footer');
     $file_title = $file_row->find('css', '.ecl-file__title');
     $this->assertStringContainsString($name, $file_title->getText());
-    $file_info_language = $file_footer->find('css', ' div.ecl-file__language');
+    $file_info_language = $file_footer->find('css', 'div.ecl-file__language');
     $this->assertStringContainsString($language, $file_info_language->getText());
     $file_info_properties = $file_footer->find('css', 'div.ecl-file__meta');
     $this->assertStringContainsString("($meta)", $file_info_properties->getText());
