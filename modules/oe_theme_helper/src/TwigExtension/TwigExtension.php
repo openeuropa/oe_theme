@@ -640,6 +640,7 @@ class TwigExtension extends AbstractExtension {
           'icon_position' => 'after',
           'inverted' => $context['ecl_component_library'] == 'ec',
         ],
+        'extra_attributes' => $link['extra_attributes'] ?? [],
       ];
 
       if (!empty($link['external']) && $link['external'] === TRUE) {
