@@ -615,6 +615,7 @@ class TwigExtension extends AbstractExtension {
           'path' => $link['href'],
           'icon_position' => 'after',
         ],
+        'extra_attributes' => $link['extra_attributes'] ?? [],
       ];
 
       if (!empty($link['external']) && $link['external'] === TRUE) {
