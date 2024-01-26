@@ -7,7 +7,7 @@
  */
 #}
 {% for item in items %}
-  <div class="ecl-u-border-bottom ecl-u-border-color-grey-15">
+  <div class="ecl-u-border-bottom {{ ecl_class_border_color() }}">
     {{ item.content }}
   </div>
 {% endfor %}
