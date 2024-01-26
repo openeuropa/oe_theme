@@ -13,7 +13,9 @@
       <div id="event-contacts-general">
         <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'General contact'|t }}</h3>
         {% for contact in general %}
-          <div{{ not loop.last ? ' class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom {{ ecl_class_border_color() }}"'}}>
+          <div{% if not loop.last %}
+            class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom {{ ecl_class_border_color() }}"
+          {% endif %}>
             {{ contact }}
           </div>
         {% endfor %}
@@ -23,7 +25,9 @@
       <div id="event-contacts-press">
         <h3 class="ecl-u-type-heading-3 ecl-u-mt-none ecl-u-mb-m ecl-u-mb-m-l">{{ 'Press contact'|t }}</h3>
         {% for contact in press %}
-          <div{{ not loop.last ? ' class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom {{ ecl_class_border_color() }}"'}}>
+          <div{% if not loop.last %}
+            class="ecl-u-mb-xl ecl-u-pb-xl ecl-u-border-bottom {{ ecl_class_border_color() }}"
+            {% endif %}>
             {{ contact }}
           </div>
         {% endfor %}

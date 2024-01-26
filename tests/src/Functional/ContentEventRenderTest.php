@@ -653,11 +653,15 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
 
     // Assert "Event contact" field.
-    $contact_entity_general = $this->createContactEntity('general_contact');
-    $contact_entity_press = $this->createContactEntity('press_contact', 'oe_press');
+    $contact_entity_general1 = $this->createContactEntity('first_general_contact');
+    $contact_entity_general2 = $this->createContactEntity('second_general_contact');
+    $contact_entity_press1 = $this->createContactEntity('first_press_contact', 'oe_press');
+    $contact_entity_press2 = $this->createContactEntity('second_press_contact', 'oe_press');
     $node->set('oe_event_contact', [
-      $contact_entity_general,
-      $contact_entity_press,
+      $contact_entity_general1,
+      $contact_entity_general2,
+      $contact_entity_press1,
+      $contact_entity_press2,
     ])->save();
     $this->drupalGet($node->toUrl());
 
@@ -667,11 +671,19 @@ class ContentEventRenderTest extends ContentRenderTestBase {
 
     $general_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-general', $event_contacts_content);
     $this->assertContactHeader($general_contacts_content, 'General contact');
-    $this->assertContactDefaultRender($this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mv-xl', $general_contacts_content), 'general_contact');
+    $general_contacts_border = $general_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
+    $this->assertCount(1, $general_contacts_border);
+    $general_contacts = $general_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
+    $this->assertContactDefaultRender($general_contacts[0], 'first_general_contact');
+    $this->assertContactDefaultRender($general_contacts[1], 'second_general_contact');
 
     $press_contacts_content = $this->assertSession()->elementExists('css', '#event-contacts-press', $event_contacts_content);
     $this->assertContactHeader($press_contacts_content, 'Press contact');
-    $this->assertContactDefaultRender($this->assertSession()->elementExists('css', '.ecl-row.ecl-u-mv-xl', $press_contacts_content), 'press_contact');
+    $press_contacts_border = $press_contacts_content->findAll('css', '.ecl-u-mb-xl.ecl-u-pb-xl.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
+    $this->assertCount(1, $press_contacts_border);
+    $press_contacts = $press_contacts_content->findAll('css', '.ecl-row.ecl-u-mv-xl');
+    $this->assertContactDefaultRender($press_contacts[0], 'first_press_contact');
+    $this->assertContactDefaultRender($press_contacts[1], 'second_press_contact');
 
     // Assert "Social media links" links.
     $node->set('oe_social_media_links', [
@@ -708,8 +720,10 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $social_links_assert->assertVariant('horizontal', $social_links_html);
 
     // Unpublished Venues and Contacts are not visible for the visitors.
-    $contact_entity_general->setUnpublished()->save();
-    $contact_entity_press->setUnpublished()->save();
+    $contact_entity_general1->setUnpublished()->save();
+    $contact_entity_general2->setUnpublished()->save();
+    $contact_entity_press1->setUnpublished()->save();
+    $contact_entity_press2->setUnpublished()->save();
     $venue_entity->setUnpublished()->save();
     $node->set('oe_event_online_only', FALSE)->save();
 
