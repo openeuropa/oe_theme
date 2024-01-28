@@ -1,9 +1,7 @@
-@use "sass:map";
-@use '@ecl/theme-dev/theme';
 .ecl {
   article,
   .ecl-file {
-    margin-top: map.get(theme.$spacing, 'xs');
-    margin-bottom: map.get(theme.$spacing, 'xs');
+    margin-top: var(--ecl-spacing-xs);
+    margin-bottom: var(--ecl-spacing-xs);
   }
 }

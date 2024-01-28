@@ -9,7 +9,7 @@ tag:
     tag_type:
       type: "text"
       label: "Type"
-      description: "Type of tag (link, removable, display, button (deprecated))"
+      description: "Type of tag (link or removable, display & button (deprecated))"
       preview: "link"
     url:
       type: "text"

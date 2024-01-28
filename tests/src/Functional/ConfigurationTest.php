@@ -59,7 +59,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Assert that we load the EC component library by default.
-      $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-reset.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/ecl-ec-print.css');
       $this->assertLinkContainsHref('/oe_theme/dist/ec/styles/optional/ecl-ec-default.css');
@@ -113,7 +113,7 @@ class ConfigurationTest extends BrowserTestBase {
       $this->drupalGet('<front>');
 
       // Assert that we load the EU component library.
-      $this->assertLinkContainsHref('/oe_theme/dist/preset-reset/styles/optional/ecl-reset.css');
+      $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-reset.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/ecl-eu-print.css');
       $this->assertLinkContainsHref('/oe_theme/dist/eu/styles/optional/ecl-eu-default.css');

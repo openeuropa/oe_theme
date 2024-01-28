@@ -1,5 +1,4 @@
-@use "sass:map";
-@use '@ecl/theme-dev/theme';
+$color: var(--ecl-color-dark-140) !default;
 
 .ecl-content-item-date,
 .ecl-content-item {
@@ -17,13 +16,11 @@
 .ecl-content-item__title,
 .ecl-content-item-date__title {
   a {
-    color: map.get(theme.$color, 'blue-100');
-    font-weight: map.get(theme.$font-weight, 'bold')!important;
-    font: map.get(theme.$font-prolonged, 'xl');
+    color: var(--ecl-color-primary-100);
   }
 }
 
 .ecl-content-item__description,
 .ecl-content-item-date__description {
-  color: map.get(theme.$color, 'grey-140')!important;
+  color: $color;
 }

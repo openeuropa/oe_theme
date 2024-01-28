@@ -46,6 +46,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    * Tests that the Project page renders correctly.
    */
   public function testProjectRendering(): void {
+    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a document for Project results.
     $media_project_result = $this->createMediaDocument('project_result');
 

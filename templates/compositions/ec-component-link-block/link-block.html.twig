@@ -37,7 +37,7 @@
   {% endfor %}
 {% endif %}
 
-<div class="{{ _css_class }} ecl-u-bg-grey-5 ecl-u-ph-m"{{ _extra_attributes|raw }}>
+<div class="{{ _css_class }} {{ ecl_class_background_color() }} ecl-u-ph-m"{{ _extra_attributes|raw }}>
   {% if _title is not empty %}
     <div class="ecl-link-block__title ecl-row ecl-u-pl-m ecl-u-pr-m">
       <h5 class="ecl-u-type-heading-5 ecl-u-mt-xs ecl-u-mb-none">{{ _title }}</h5>
@@ -45,7 +45,7 @@
   {% endif %}
   {% if _links is not empty and _links is iterable %}
     <div class="ecl-row ecl-u-pl-m ecl-u-pr-m">
-      <ul class="ecl-link-block__list ecl-unordered-list--no-bullet ecl-u-ma-none">
+      <ul class="ecl-link-block__list ecl-unordered-list--no-marker ecl-u-ma-none">
         {% for _link in _links %}
           <li class="ecl-link-block__item ecl-u-mt-xs ecl-u-mb-xs">
             {% include '@ecl-twig/link' with {

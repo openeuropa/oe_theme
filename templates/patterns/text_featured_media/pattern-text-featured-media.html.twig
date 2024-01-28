@@ -32,7 +32,7 @@
       path: link.path,
       icon_position: 'after'
     },
-    icon: get_link_icon(link.path)
+    icon: get_link_icon(link.path, 'xs')
   }%}
 {% endif %}
 
@@ -93,7 +93,7 @@
 {% endif %}
 
 {% include '@ecl-twig/featured-item' with {
-  type: highlighted == true ? 'extended' : '',
+  type: highlighted == true ? 'highlight' : '',
   title: text_title|default(''),
   description: text|default(''),
   link: call_to_action_link,

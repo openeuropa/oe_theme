@@ -37,11 +37,11 @@ class ListItemAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title',
+        'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title',
       ],
       'url' => [
         [$this, 'assertElementAttribute'],
-        'article.ecl-content-item div.ecl-content-item__content-block h1.ecl-content-block__title a.ecl-link.ecl-link--standalone',
+        'article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'meta' => [

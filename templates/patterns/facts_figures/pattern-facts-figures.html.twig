@@ -17,21 +17,11 @@
     transform: "rotate-90",
   } %}
 {% endif %}
-{% if ecl_component_library == 'eu' %}
-  {% set icon_size = 'l' %}
-  {% if view_all_icon is not empty %}
-    {% set view_all_icon = view_all_icon|merge({size: 'm'}) %}
-  {% endif %}
-{% else %}
-  {% set icon_size = 'm' %}
-  {% if view_all_icon is not empty %}
-    {% set view_all_icon = view_all_icon|merge({size: 'xs'}) %}
-  {% endif %}
-{% endif %}
+
 {% set _items = [] %}
 {% for _item in items %}
   {% set _items = _items|merge([{
-    icon: _item.icon ? to_ecl_icon(_item.icon, icon_size),
+    icon: _item.icon ? to_ecl_icon(_item.icon),
     value: _item.value,
     title: _item.title,
     description: _item.description,

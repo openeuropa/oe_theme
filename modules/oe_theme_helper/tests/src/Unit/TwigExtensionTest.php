@@ -401,6 +401,86 @@ class TwigExtensionTest extends UnitTestCase {
   }
 
   /**
+   * Tests the ECL border color class is properly.
+   *
+   * @param string $component_library
+   *   The current component library.
+   * @param string $expected_class
+   *   The expected border color class.
+   *
+   * @covers ::eclBorderColor
+   * @dataProvider eclBorderColorProvider
+   */
+  public function testEclBorderColor(string $component_library, string $expected_class) {
+    $context = [
+      'ecl_component_library' => $component_library,
+    ];
+    $result = $this->twig->render("{{ ecl_class_border_color() }}", $context);
+    $this->assertEquals($expected_class, $result);
+  }
+
+  /**
+   * Returns test cases for ::testEclBorderColor().
+   *
+   * @return array[]
+   *   Test cases array.
+   *
+   * @see ::testEclBorderColor()
+   */
+  public function eclBorderColorProvider(): array {
+    return [
+      [
+        'ec',
+        'ecl-u-border-color-neutral-40',
+      ],
+      [
+        'eu',
+        'ecl-u-border-color-primary-10',
+      ],
+    ];
+  }
+
+  /**
+   * Tests the ECL background color class is properly.
+   *
+   * @param string $component_library
+   *   The current component library.
+   * @param string $expected_class
+   *   The expected background color class.
+   *
+   * @covers ::eclBackgroundColor
+   * @dataProvider eclBackgroundColorProvider
+   */
+  public function testEclBackgroundColor(string $component_library, string $expected_class) {
+    $context = [
+      'ecl_component_library' => $component_library,
+    ];
+    $result = $this->twig->render("{{ ecl_class_background_color() }}", $context);
+    $this->assertEquals($expected_class, $result);
+  }
+
+  /**
+   * Returns test cases for ::testEclBackgroundColor().
+   *
+   * @return array[]
+   *   Test cases array.
+   *
+   * @see ::testEclBackgroundColor()
+   */
+  public function eclBackgroundColorProvider(): array {
+    return [
+      [
+        'ec',
+        'ecl-u-bg-neutral-40',
+      ],
+      [
+        'eu',
+        'ecl-u-bg-primary-5',
+      ],
+    ];
+  }
+
+  /**
    * Test that create_markup filter returns MarkupInterface object.
    */
   public function testCreateMarkup() {

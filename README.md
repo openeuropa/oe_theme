@@ -553,6 +553,18 @@ docker-compose exec -u node node npx patch-package @ecl/[component-name]
 
 Patches will be generated in `./patches` and applied when running `npm install`.
 
+#### Working with a development version of ECL
+
+To build the theme using a development version of ECL run `make ecl-dev` instead of the `npm install` procedure described above, this will:
+
+- Checkout a working copy of the ECL repository from the branch you indicate in `.env.dist`.
+- Build ECL using the above codebase.
+- Copy Twig templates and CSS/JS assets where the theme expects them to be.
+- Compile theme's SASS files using the ECL's dev version
+
+If you want to create a release using a dev ECL version, make sure that `ECL_BUILD` is set to `dev` in `.env.dist`.
+You can then control which branch and repo ECL will be built from by setting `ECL_BUILD_REF` and `ECL_BUILD_REPO` in the same file.
+
 ## Contributing
 
 Please read [the full documentation](https://github.com/openeuropa/openeuropa) for details on our code of conduct,

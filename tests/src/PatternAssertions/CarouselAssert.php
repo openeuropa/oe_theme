@@ -49,7 +49,7 @@ class CarouselAssert extends BasePatternAssert {
       $item = $items->eq($index);
       // Assert carousel item (banner) variant.
       if (!isset($expected_item['variant'])) {
-        $this->assertElementExists('section.ecl-banner.ecl-banner--plain-background', $item);
+        $this->assertElementExists('section.ecl-banner.ecl-banner--plain-background.ecl-banner--l', $item);
       }
       else {
         $this->assertElementExists('section.ecl-banner.ecl-banner--' . $expected_item['variant'], $item);
@@ -73,7 +73,7 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertElementNotExists('div.ecl-banner__cta a', $item);
       }
       else {
-        $this->assertElementAttribute($expected_item['url'], 'div.ecl-banner__cta a.ecl-link--icon-after.ecl-banner__link-cta', 'href', $item);
+        $this->assertElementAttribute($expected_item['url'], 'div.ecl-banner__cta a.ecl-link--icon.ecl-banner__link-cta', 'href', $item);
         $this->assertElementText($expected_item['url_text'], 'div.ecl-banner__cta a span.ecl-link__label', $item);
       }
       // Assert image.

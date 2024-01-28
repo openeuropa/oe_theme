@@ -17,19 +17,11 @@
           {% include '@ecl-twig/icon' with {
             icon: {
               path: ecl_icon_path,
-              name: "close",
+              name: "close-filled",
               size: "xs"
             },
-            extra_classes: "ecl-tag__icon-close"
+            extra_classes: "ecl-tag__icon-close-filled"
           } only %}
-            {% include '@ecl-twig/icon' with {
-              icon: {
-                path: ecl_icon_path,
-                name: "close-filled",
-                size: "xs"
-              },
-              extra_classes: "ecl-tag__icon-close-filled"
-            } only %}
         </span>
         </a>
       {% else %}

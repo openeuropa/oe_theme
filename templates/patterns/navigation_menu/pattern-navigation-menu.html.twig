@@ -60,11 +60,28 @@
   ] %}
   {% include '@ecl-twig/menu' with {
     title: label|default('Menu'|t),
-    close: 'Close'|t,
-    back: 'Back'|t,
-    site_name: site_name,
-    items: _items,
+    toggle: {
+      link: {
+        label: label|default('Menu'|t),
+        hide_label: true
+      },
+      icon: {
+        path: ecl_icon_path,
+        name: 'hamburger',
+        size: 'm',
+      }
+    },
+    close: {
+      label: close|default('Close'|t),
+    },
+    back_label: back|default('Back'|t),
     icon_path: ecl_icon_path,
+    items: _items,
+    site_name: site_name,
+    see_all_label: see_all_label|default('See all'|t),
+    button_previous_label: button_previous_label|default('Previous items'|t),
+    button_next_label: button_next_label|default('Next items'|t),
+    max_lines: max_lines|default(2),
     extra_attributes: extra_attributes|default([]),
   } only %}
 {% endif %}

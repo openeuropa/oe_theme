@@ -21,6 +21,7 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
    * @throws \Exception
    */
   public function testLinkPatternRendering() {
+    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'link',

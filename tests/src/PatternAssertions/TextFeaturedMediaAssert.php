@@ -97,13 +97,13 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertLink(array $expected_link, Crawler $crawler): void {
-    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-link--icon-after.ecl-featured-item__link');
+    $link_element = $crawler->filter('a.ecl-link.ecl-link--icon.ecl-featured-item__link');
     self::assertEquals($expected_link['path'], $link_element->attr('href'));
 
     $label_element = $link_element->filter('span.ecl-link__label');
     self::assertEquals($expected_link['label'], $label_element->text());
 
-    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--s.ecl-icon--primary.ecl-link__icon use');
+    $svg = $link_element->filter('svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
     self::assertStringContainsString('icons.svg#' . $expected_link['icon'], $svg->attr('xlink:href'));
   }
 
@@ -117,11 +117,11 @@ class TextFeaturedMediaAssert extends BasePatternAssert {
    */
   protected function assertHighlighted(bool $highlighted, Crawler $crawler) {
     if (!$highlighted) {
-      $this->assertElementNotExists('article.ecl-featured-item.ecl-featured-item--extended', $crawler);
+      $this->assertElementNotExists('article.ecl-featured-item.ecl-featured-item--highlight', $crawler);
       $this->assertElementExists('article.ecl-featured-item', $crawler);
       return;
     }
-    $this->assertElementExists('article.ecl-featured-item.ecl-featured-item--extended', $crawler);
+    $this->assertElementExists('article.ecl-featured-item.ecl-featured-item--highlight', $crawler);
   }
 
   /**

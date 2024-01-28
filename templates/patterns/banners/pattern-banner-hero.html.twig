@@ -36,12 +36,23 @@
   {% set _variant = 'image-shade' %}
 {% endif %}
 
+{% set _picture = [] %}
+{% if image.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: image.src|default(''),
+      alt: image.alt|default(''),
+    }
+  } %}
+{% endif %}
+
 <div{{ container_attributes }}>
-  {% include '@ecl-twig/hero-banner' with {
+  {% include '@ecl-twig/banner' with {
     title: title,
     description: description,
     link: _link,
-    image: image.src,
+    picture: _picture,
+    size: 'l',
     variant: _variant,
     centered: _centered,
     full_width: full_width,

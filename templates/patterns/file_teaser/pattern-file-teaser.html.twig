@@ -12,6 +12,8 @@
   {% if item.file.size %}
     {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
   {% endif %}
+  {# 'lang_full' parameter is deprecated in ECL v4 - to be removed in 4.x of
+    oe_theme too. #}
   {% set _translations = _translations|merge([{
     'title': item.file.title,
     'description': item.teaser|smart_trim(length),
@@ -21,7 +23,10 @@
       'link': {
         'label': button_label|default('Download'|t),
         'path': item.file.url,
-      }
+      },
+      'icon': {
+        'path': ecl_icon_path,
+      },
     },
     'lang_full': item.file.language_code|to_native_language
   }]) %}
@@ -51,7 +56,11 @@
             'external': _definition.external_link|default(false),
             'icon_path': ecl_icon_path,
           } %}
-          {% set _definitions = _definitions|merge([link]) %}
+          {% set _definitions = _definitions|merge([
+            {
+              link: link,
+            }
+          ]) %}
         {% elseif _definition.label is defined and _definition.path is not defined %}
           {% set _definitions = _definitions|merge([_definition.label]) %}
         {% elseif _definition.label is not defined and _definition.path is not defined %}
@@ -78,13 +87,21 @@
 {% if badges %}
   {% set _label = badges|first %}
 {% endif %}
+
+{% set _picture = [] %}
+{% if thumbnail.src is not empty %}
+  {% set _picture = {
+    img: {
+      src: thumbnail.src|default(''),
+      alt: thumbnail.alt|default(''),
+    }
+  } %}
+{% endif %}
+
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(length),
-  'image': {
-    'src': thumbnail.src,
-    'alt': thumbnail.alt,
-  },
+  'picture': _picture|default({}),
   'language': file.language_code|to_language,
   'meta': _meta,
   'download': {
@@ -94,8 +111,6 @@
     },
     'icon': {
       'path': ecl_icon_path,
-      'name': 'download',
-      'size': 'fluid',
     },
   },
   'translation': {

@@ -7,10 +7,13 @@
 
 {% if title_url %}
   {% set title = {
-    label: title,
-    path: title_url,
-    icon_path: ecl_icon_path,
-    external: external_link|default(false)
+    link: {
+      type: 'standalone',
+      label: title,
+      path: title_url,
+      external: external_link|default(false),
+      icon_path: ecl_icon_path
+    }
   } %}
 {% endif %}
 

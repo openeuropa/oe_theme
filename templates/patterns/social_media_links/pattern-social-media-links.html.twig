@@ -8,12 +8,14 @@
 {% set _links = [] %}
 {% for link in links %}
   {% set _link = {
-    path: link.url,
-    label: link.label
+    link: {
+      path: link.url,
+      label: link.label,
+      icon_position: 'before',
+    }
   } %}
   {% if link.service is not empty %}
     {% set _link = _link|merge({
-      icon_position: 'before',
       icon: {
         path: ecl_icon_social_media_path,
         name: link.service ~ '-color',

@@ -4,6 +4,7 @@
  * File download pattern.
  */
 #}
+{% set file_icon_size = ecl_component_library == 'ec' ? '2xl' : 'm' %}
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'language': file.language_code|to_native_language,
@@ -11,7 +12,7 @@
   'icon': {
     'path': ecl_icon_path,
     'name': file.extension|to_file_icon,
-    'size': '2xl',
+    'size': file_icon_size,
   },
   'download': {
     'link': {
@@ -20,8 +21,6 @@
     },
     'icon': {
       'path': ecl_icon_path,
-      'name': 'download',
-      'size': 'fluid',
     },
   }
 } only %}
