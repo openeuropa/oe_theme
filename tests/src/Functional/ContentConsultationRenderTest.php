@@ -49,7 +49,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testConsultationRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create documents.
     $document = $this->createMediaDocument('consultation_document');
     // Create general contacts.
@@ -85,7 +84,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header');
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Consultation node',
