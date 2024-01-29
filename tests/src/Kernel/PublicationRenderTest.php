@@ -22,7 +22,6 @@ class PublicationRenderTest extends ContentRenderTestBase {
    * Test a publication being rendered as a teaser.
    */
   public function testTeaser(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     /** @var \Drupal\node\Entity\Node $node */
     $node = Node::create([
       'type' => 'oe_publication',
