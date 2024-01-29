@@ -72,7 +72,6 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Policy node type is rendered with the correct ECL markup.
    */
   public function testPolicy(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $node = $this->nodeStorage->create([
       'type' => 'oe_policy',
       'title' => 'Test policy node',
@@ -101,7 +100,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $title = $crawler->filter('div.ecl-content-item__content-block h1.ecl-content-block__title');
+    $title = $crawler->filter('div.ecl-content-item__content-block div.ecl-content-block__title');
     $this->assertEquals('Policy short title', $title->text());
   }
 
