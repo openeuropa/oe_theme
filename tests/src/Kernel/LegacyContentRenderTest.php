@@ -19,7 +19,6 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Page node type is rendered with the correct ECL markup.
    */
   public function testPage(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $node = $this->nodeStorage->create([
       'type' => 'oe_news',
       'title' => 'Test page node',
