@@ -43,7 +43,6 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    * Test language switcher rendering.
    */
   public function testLanguageSwitcherRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $node = Node::create([
       'title' => 'Hello, world!',
       'type' => 'oe_demo_translatable_page',
@@ -117,7 +116,7 @@ class ContentLanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
    *   The label of the language.
    */
   protected function assertUnavailableLanguage(Crawler $crawler, string $expected): void {
-    $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-message--warning')->text();
+    $actual = $crawler->filter('div.ecl-lang-select-page div.ecl-container div.ecl-notification--warning')->text();
     $this->assertStringContainsString($expected, trim($actual));
   }
 
