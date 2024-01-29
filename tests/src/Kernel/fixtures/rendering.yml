@@ -3003,11 +3003,17 @@
       items:
         - href: "#"
           label: 'Parent 1'
+          extra_attributes:
+            - name: 'data-name1'
+              value: 'data value1'
           children:
             - href: '#'
               label: 'Child 1.1'
               is_current: true
               external: true
+              extra_attributes:
+                - name: 'data-name2'
+                  value: 'data value2'
             - href: '#'
               label: 'Child 1.2'
             - href: '#'
@@ -3052,6 +3058,8 @@
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 2.2'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
+      'li.ecl-menu__item:nth-child(1) a.ecl-menu__link[data-name1="data-value1"]': "Parent 1"
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon-after[data-name2="data-value2"]': 'Child 1.1'
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"
@@ -3516,15 +3524,15 @@
           image: "https://picsum.photos/seed/picsum/600/300"
           variant: "text-overlay"
           link_extra_attributes:
-              -   name: 'data-name'
-                  value: 'data value'
+            - name: 'data-name'
+              value: 'data value'
         - title: "Donec maximus pharetra ex a ultricies"
           description: "Integer quis lorem tellus."
           url: "https://example.com"
           url_text: "CTA 3"
           link_extra_attributes:
-              -   name: 'data-name'
-                  value: 'data value'
+            - name: 'data-name'
+              value: 'data value'
         - title: "Donec maximus pharetra"
           centered: false
         - title: "Lorem ipsum dolor sit amet"
