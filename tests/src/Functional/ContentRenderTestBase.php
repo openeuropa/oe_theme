@@ -17,6 +17,7 @@ use Drupal\oe_content_sub_entity\Entity\SubEntityInterface;
 use Drupal\oe_content_sub_entity_document_reference\Entity\DocumentReference;
 use Drupal\Tests\BrowserTestBase;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
+use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\user\Entity\Role;
 use Drupal\user\RoleInterface;
 
