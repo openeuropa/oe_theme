@@ -47,9 +47,15 @@ navigation_menu:
           label: "EU law"
           external: true
           is_current: TRUE
+          extra_attributes:
+            - name: "extra-attr1"
+              value: "extra value1"
           children:
             - href: '#'
               label: 'Eu Treaties'
+              extra_attributes:
+                - name: "extra-attr2"
+                  value: "extra value2"
               is_current: TRUE
               external: true
             - href: '#'

@@ -1,0 +1,92 @@
+diff --git a/node_modules/@ecl/twig-component-menu/menu-item.html.twig b/node_modules/@ecl/twig-component-menu/menu-item.html.twig
+index 6891f9e..0944464 100644
+--- a/node_modules/@ecl/twig-component-menu/menu-item.html.twig
++++ b/node_modules/@ecl/twig-component-menu/menu-item.html.twig
+@@ -9,11 +9,17 @@
+     - "label" (string) Label of the menu link
+     - "path": (string) Href of the link
+     - "trigger_aria_label" (string) Aria label for the trigger button,
++    - "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++      - "name" (string) Attribute name, eg. 'data-test'
++      - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+     - "children" (array of object) Array of sub-items
+       - "external": (boolean) External link
+       - "is_current" (boolean) Whether the sub-item is currently selected
+       - "path" (string) Href of the sub-item link
+-      - "label" (string) Label of the sub-item link
++      - "label" (string) Label of the sub-item link,
++      - "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++        - "name" (string) Attribute name, eg. 'data-test'
++        - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+ #}
+ 
+ {% set _id = id|default('') %}
+@@ -30,13 +36,23 @@
+   {% set _menu_list_item_class = _menu_list_item_class ~ ' ecl-menu__item--current' %}
+ {% endif %}
+ 
++{% if _item.extra_attributes is defined and _item.extra_attributes is not empty and _item.extra_attributes is iterable %}
++  {% for attr in _item.extra_attributes %}
++    {% if attr.value is defined %}
++      {% set _menu_item_attributes = _menu_item_attributes ~ ' ' ~ attr.name|e('html_attr') ~ '="' ~ attr.value|e('html_attr') ~ '"' %}
++    {% else %}
++      {% set _menu_item_attributes = _menu_item_attributes ~ ' ' ~ attr.name|e('html_attr') %}
++    {% endif %}
++  {% endfor %}
++{% endif %}
++
+ {% if item.children is defined and item.children is not empty and item.children is iterable %}
+   {% set _menu_list_item_attributes = _menu_list_item_attributes ~ ' data-ecl-has-children aria-haspopup aria-expanded="false"' %}
+   {% set _menu_list_item_class = _menu_list_item_class ~ ' ecl-menu__item--has-children' %}
+ {% endif %}
+ 
+ <li class="{{ _menu_list_item_class }}" {{ _menu_list_item_attributes|raw }} id="{{ _id }}">
+-  <a href="{{ item.path }}" class="{{ _menu_item_class }}" {{ _menu_item_attributes }} id="{{ _id }}-link">
++  <a href="{{ item.path }}" class="{{ _menu_item_class }}" {{ _menu_item_attributes|raw }} id="{{ _id }}-link">
+     {{- item.label -}}
+     {%- if item.external -%}
+       {% include '@ecl/icon/icon.html.twig' with {
+@@ -91,9 +107,20 @@
+           {% if child.external %}
+             {% set _sublink_class = _sublink_class ~ ' ecl-link--icon-after' %}
+           {% endif %}
++        {% set _sub_menu_item_attributes = '' %}
++        {% if child.extra_attributes is defined and child.extra_attributes is not empty and child.extra_attributes is iterable %}
++          {% for attr in child.extra_attributes %}
++            {% if attr.value is defined %}
++              {% set _sub_menu_item_attributes = _sub_menu_item_attributes ~ ' ' ~ attr.name|e('html_attr') ~ '="' ~ attr.value|e('html_attr') ~ '"' %}
++            {% else %}
++              {% set _sub_menu_item_attributes = _sub_menu_item_attributes ~ ' ' ~ attr.name|e('html_attr') %}
++            {% endif %}
++          {% endfor %}
++        {% endif %}
+         <a
+           href="{{ child.path }}"
+           class="{{ _sublink_class }}"
++          {{ _sub_menu_item_attributes }}
+         >
+           {{- child.label -}}
+           {%- if child.external -%}
+diff --git a/node_modules/@ecl/twig-component-menu/menu.html.twig b/node_modules/@ecl/twig-component-menu/menu.html.twig
+index 1a932c1..1a90a74 100644
+--- a/node_modules/@ecl/twig-component-menu/menu.html.twig
++++ b/node_modules/@ecl/twig-component-menu/menu.html.twig
+@@ -14,12 +14,18 @@
+       "path": (string) (default: '')
+       "is_current": (boolean) (optional),
+       "trigger_aria_label" (string),
++      "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++        - "name" (string) Attribute name, eg. 'data-test'
++        - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+       "children": (associative array) (optional): [
+         {
+           "label": (string) (default: '')
+           "path": (string) (default: '')
+           "is_current": (boolean) (optional),
+           "external": (boolean)
++          "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++            - "name" (string) Attribute name, eg. 'data-test'
++            - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+         }
+       ]
+     }
