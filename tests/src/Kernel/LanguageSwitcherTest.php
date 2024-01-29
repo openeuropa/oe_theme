@@ -177,16 +177,26 @@ class LanguageSwitcherTest extends MultilingualAbstractKernelTestBase {
       $langcode = 'pt';
     }
 
-    // Build the language block.
-    $crawler = $this->renderLanguageBlock();
+    foreach (['ec', 'eu'] as $component) {
+      $this->config('oe_theme.settings')->set('component_library', $component)->save();
+      drupal_static_reset('theme_get_setting');
+      // Build the language block.
+      $crawler = $this->renderLanguageBlock();
 
-    // Make sure that language switcher link is properly rendered.
-    $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
-    $this->assertStringContainsString($langname, $actual);
+      // Make sure that language switcher link is properly rendered.
+      $actual = $crawler->filter('a[data-ecl-language-selector]')->text();
+      // Language code is rendered for EC.
+      if ($component === 'ec') {
+        $this->assertStringContainsString($langcode, $actual);
+      }
+      else {
+        $this->assertStringContainsString($langname, $actual);
+      }
 
-    // Make sure that the actual language link is set as active.
-    $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
-    $this->assertEquals($langname, trim($actual));
+      // Make sure that the actual language link is set as active.
+      $actual = $crawler->filter("div#language-list-overlay a.ecl-site-header__language-link.ecl-site-header__language-link--active[lang={$langcode}][hreflang={$langcode}] span.ecl-site-header__language-link-label")->text();
+      $this->assertEquals($langname, trim($actual));
+    }
   }
 
   /**
