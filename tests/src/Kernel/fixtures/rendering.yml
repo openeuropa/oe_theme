@@ -1780,12 +1780,18 @@
     '#fields':
       title: 'Navigation list title'
       title_url: 'http://example.com'
+      title_extra_attributes:
+        - name: "extra-attr"
+          value: "extra value"
       external_link: true
       description: 'Navigation list description'
       links:
         - label: 'Child 1'
           url: 'http://example.com/child1'
           is_external: true
+          extra_attributes:
+            - name: "extra-attr1"
+              value: "extra value1"
         - label: 'Child 2'
           url: 'http://example.com/child2'
         - label: 'Child 3'
@@ -1794,6 +1800,9 @@
         - label: 'Secondary Link 1'
           url: 'http://example.com/secondary1'
           is_external: true
+          extra_attributes:
+            - name: "extra-attr2"
+              value: "extra value2"
         - label: 'Secondary Link 2'
           url: 'http://example.com/secondary2'
       border: true
@@ -1820,6 +1829,9 @@
       'li.ecl-content-block__link-item': 5
       "img.ecl-navigation-list__image[src=\"https://placeimg.com/1000/500/arch\"]": 1
       'img.ecl-navigation-list__image[alt="Alternative text for image"]': 1
+      '.ecl-content-block__link-list:nth-child(1) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[extra-attr1="extra value1"]': 1
+      '.ecl-content-block__link-list:nth-child(2) li.ecl-content-block__link-item:nth-child(1) a.ecl-link[extra-attr2="extra value2"]': 1
+      'div.ecl-content-block__title a.ecl-link[extra-attr="extra value"]': 1
 - array:
     '#type': pattern
     '#id': navigation_list
@@ -3058,8 +3070,8 @@
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(2) a.ecl-menu__sublink': 'Child 2.2'
       'li.ecl-menu__item:nth-child(2) ul.ecl-menu__sublist li.ecl-menu__subitem:nth-child(3) a svg.ecl-icon.ecl-icon--2xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'li.ecl-menu__item:nth-child(3) a.ecl-menu__link': "Link"
-      'li.ecl-menu__item:nth-child(1) a.ecl-menu__link[data-name1="data-value1"]': "Parent 1"
-      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon-after[data-name2="data-value2"]': 'Child 1.1'
+      'li.ecl-menu__item:nth-child(1) a.ecl-menu__link[data-name1="data value1"]': "Parent 1"
+      'li.ecl-menu__item:nth-child(1) ul.ecl-menu__sublist li.ecl-menu__subitem--current a.ecl-menu__sublink.ecl-link--icon[data-name2="data value2"] .ecl-link__label': 'Child 1.1'
 - array:
     '#type': "pattern"
     '#id': "navigation_menu"

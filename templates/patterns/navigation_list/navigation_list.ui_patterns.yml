@@ -17,6 +17,13 @@ navigation_list:
       label: "External link"
       description: "Whether the title URL is external or not."
       preview: true
+    title_extra_attributes:
+      type: "array"
+      label: "Link attributes"
+      description: "Extra attributes for title link"
+      preview:
+        - name: "extra-attr"
+          value: "extra value"
     description:
       type: "text"
       label: "Description"
@@ -30,6 +37,9 @@ navigation_list:
         - label: 'Addressing shared challenges'
           url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training_en'
           is_external: true
+          extra_attributes:
+            -  name: "extra-attr2"
+               value: "extra value2"
         - label: 'Setting objectives and measuring progress'
           url: 'https://commission.europa.eu/education/policy-educational-issues/setting-objectives-and-measuring-progress_en'
         - label: 'International cooperation'
@@ -42,6 +52,9 @@ navigation_list:
       preview:
         - label: 'Integrating migrants and refugees'
           url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training/integrating-migrants-and-refugees_en'
+          extra_attributes:
+            -  name: "extra-attr2"
+               value: "extra value2"
         - label: 'Early school leaving'
           url: 'https://commission.europa.eu/education/policy-educational-issues/shared-challenges-education-and-training/early-school-leaving_en'
           is_external: true
@@ -57,3 +70,4 @@ navigation_list:
       preview:
         src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for image"
+
