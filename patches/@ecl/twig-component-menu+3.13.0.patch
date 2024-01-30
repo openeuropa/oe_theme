@@ -63,7 +63,7 @@ index 6891f9e..0944464 100644
          <a
            href="{{ child.path }}"
            class="{{ _sublink_class }}"
-+          {{ _sub_menu_item_attributes }}
++          {{ _sub_menu_item_attributes|raw }}
          >
            {{- child.label -}}
            {%- if child.external -%}
