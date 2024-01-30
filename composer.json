@@ -46,7 +46,7 @@
         "openeuropa/behat-transformation-context": "^0.2",
         "openeuropa/code-review": "^2.0.0-alpha6",
         "openeuropa/oe_contact_forms": "^1.11",
-        "openeuropa/oe_content": "^3.0.0-beta4",
+        "openeuropa/oe_content": "^3.0.0",
         "openeuropa/oe_corporate_blocks": "^4.14",
         "openeuropa/oe_corporate_countries": "^2.0.0-alpha8",
         "openeuropa/oe_corporate_site_info": "^1.0.0-alpha8",
@@ -101,6 +101,13 @@
             },
             "drupal/address": {
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
+            }
+        },
+        "patches-ignore": {
+            "openeuropa/oe_content": {
+                "drupal/core": {
+                    "Drupal 10.2.x only - see oe_content/README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
+                }
             }
         },
         "drupal-scaffold": {
