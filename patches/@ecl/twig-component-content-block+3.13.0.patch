@@ -1,0 +1,20 @@
+diff --git a/node_modules/@ecl/twig-component-content-block/content-block.html.twig b/node_modules/@ecl/twig-component-content-block/content-block.html.twig
+index 141368d..8fffb43 100644
+--- a/node_modules/@ecl/twig-component-content-block/content-block.html.twig
++++ b/node_modules/@ecl/twig-component-content-block/content-block.html.twig
+@@ -147,6 +147,7 @@
+             link: _link.link|merge({
+               type: 'standalone',
+             }),
++            extra_attributes: _link.extra_attributes|default([]),
+             icon: _link.icon|default({})
+           } only %}
+         {%- else -%}
+@@ -165,6 +166,7 @@
+             link: _link.link|merge({
+               type: 'standalone',
+             }),
++            extra_attributes: _link.extra_attributes|default([]),
+             icon: _link.icon|default({})
+           } only %}
+         {%- else -%}
