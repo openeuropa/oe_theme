@@ -52,7 +52,6 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
    * Tests full page of Call for proposals.
    */
   public function testProposalRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
@@ -76,7 +75,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $assert = new PatternPageHeaderAssert();
     $header_expected_values = [
       'title' => 'Test Call for proposals node',
@@ -276,7 +275,7 @@ class ContentCallForProposalsRenderTest extends ContentRenderTestBase {
     $node->save();
     $this->drupalGet($node->toUrl());
 
-    $results_field_group = $content_items[0]->find('css', 'div.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-l.ecl-u-mb-l.ecl-u-pt-l.ecl-u-pb-l');
+    $results_field_group = $content_items[0]->find('css', 'div.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-mt-l.ecl-u-mb-l.ecl-u-pt-l.ecl-u-pb-l');
     $results_expected_values = [
       'items' => [
         [
