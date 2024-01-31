@@ -70,7 +70,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that ECL auto init is invoked and applied correctly.
    */
   public function testEclAutoInit(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/ajax_dropdown');
 
     // Verify that the first dropdown button is shown, and it's collapsed.
@@ -82,7 +81,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('Child link 0');
 
     // We need to close the dropdown now. Clicking on the container will do.
-    $this->getSession()->getPage()->find('css', '#dropdown-container')->click();
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 0"]')->press();
 
     // Add a new dropdown.
     $this->getSession()->getPage()->pressButton('Add another');
@@ -100,7 +99,16 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Verify that the JS behaviours initialised ECL on the second dropdown.
     $this->getSession()->getPage()->pressButton('Dropdown 1');
     $this->assertSession()->pageTextContains('Child link 1');
+    // First dropdown wasn't closed.
+    $this->assertSession()->pageTextContains('Child link 0');
+    // Close the first dropdown.
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 0"]')->press();
     $this->assertSession()->pageTextNotContains('Child link 0');
+    $this->assertSession()->pageTextContains('Child link 1');
+    // Close the second dropdown.
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 1"]')->press();
+    $this->assertSession()->pageTextNotContains('Child link 0');
+    $this->assertSession()->pageTextNotContains('Child link 1');
   }
 
   /**

@@ -19,10 +19,6 @@
 @use "./components/global";
 @use "./components/description_list";
 @use "./components/media_iframe";
-@use "./components/expandable" with (
-  $background-color: var(--ecl-color-dark-10),
-  $border-color: var(--ecl-color-dark-40),
-);
 @use "./components/contextual_navigation" with (
   $outline-width: 2px,
   $border_right: 1px solid var(--ecl-color-dark-60),
