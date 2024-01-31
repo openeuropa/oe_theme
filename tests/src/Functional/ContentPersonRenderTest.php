@@ -51,7 +51,6 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testPersonRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a Person node with required fields only.
     /** @var \Drupal\node\Entity\Node $node */
     $values = [
@@ -70,7 +69,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'meta' => [],
@@ -186,7 +185,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->assertContentHeader($content_items[1], 'Contact', 'contact');
     $this->assertContactDefaultRender($content_items[1], 'direct_contact');
 
-    $expandable_button = $content_items[1]->find('css', '.ecl-expandable button.ecl-button.ecl-button--secondary.ecl-expandable__toggle');
+    $expandable_button = $content_items[1]->find('css', '.ecl-expandable button.ecl-button.ecl-button--ghost.ecl-expandable__toggle');
     $this->assertEquals('Show contact details', $expandable_button->getAttribute('data-ecl-label-collapsed'));
     $this->assertEquals('Hide contact details', $expandable_button->getAttribute('data-ecl-label-expanded'));
 
@@ -404,7 +403,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $transparency_links_items = $content_items[5]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-grey-15 a');
+    $transparency_links_items = $content_items[5]->findAll('css', 'div.ecl-u-pt-l.ecl-u-pb-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40 a');
     $this->assertCount(2, $transparency_links_items);
     $this->assertEquals('http://example.com/link_1', $transparency_links_items[0]->getAttribute('href'));
     $this->assertEquals('Person link 1', $transparency_links_items[0]->getText());
@@ -514,7 +513,7 @@ class ContentPersonRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(8, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[7], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $publication_teaser_content = $content_items[7]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
     $publication_teaser_assert = new ListItemAssert();
     $publication_teaser_expected_values = [
       'title' => 'publication_reference',
