@@ -107,7 +107,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that ECL multi select is rendered properly.
    */
   public function testEclMultiSelect(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/multi_select');
     // Assert the default input is present and shows a default placeholder.
     $select_input = $this->getSession()->getPage()->find('css', 'button.ecl-select__multiple-toggle');
@@ -142,7 +141,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that ECL datepicker is rendered properly.
    */
   public function testEclDatePicker(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/datepicker');
 
     // Assert we have two hidden datepicker elements on the page.
@@ -181,13 +179,13 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert days are present.
     $headers = $rows['0']->findAll('css', 'th');
     $expected = [
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat',
-      'Sun',
+      'MO',
+      'TU',
+      'WE',
+      'TH',
+      'FR',
+      'SA',
+      'SU',
     ];
 
     foreach ($headers as $key => $column) {
@@ -221,7 +219,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that contextual navigation pattern is rendered properly.
    */
   public function testContextNavPattern(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/ui_patterns/context_nav');
     $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
     $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));

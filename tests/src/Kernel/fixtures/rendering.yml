@@ -45,94 +45,94 @@
       - 'Text'
     count:
       'textarea.form-textarea.ecl-text-area': 1
-#- array:
-#    '#type': select
-#    '#title': Select element
-#    '#options':
-#      1: One
-#      2: Two
-#      3: Three
-#  assert:
-#    count:
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
-#      'select.ecl-select': 1
-#      'div.ecl-select__icon': 1
-#      'select[data-ecl-select-multiple]': 0
-#      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
-#    equals:
-#      'div.ecl-form-group label.ecl-form-label': 'Select element'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-#      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
-#- array:
-#    '#type': select
-#    '#title': Select element
-#    '#multiple': true
-#    '#options':
-#      1: One
-#      2: Two
-#      3: Three
-#  assert:
-#    count:
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
-#      'select.ecl-select': 1
-#      'div.ecl-select__icon': 1
-#      'select[data-ecl-select-multiple]': 1
-#      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
-#    equals:
-#      'div.ecl-form-group label.ecl-form-label': 'Select element'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-#      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
-#- array:
-#    '#type': select
-#    '#title': Select element
-#    '#options':
-#      1: One
-#      'Two':
-#        '2.1': 'Two point one'
-#        '2.2': 'Two point two'
-#      3: Three
-#  assert:
-#    count:
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
-#      'select.ecl-select': 1
-#      'div.ecl-select__icon': 1
-#      'select[data-ecl-select-multiple]': 0
-#      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
-#    equals:
-#      'div.ecl-form-group label.ecl-form-label': 'Select element'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-#      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
-#- array:
-#    '#type': select
-#    '#title': Select element
-#    '#multiple': true
-#    '#options':
-#      1: One
-#      'Two':
-#        '2.1': 'Two point one'
-#        '2.2': 'Two point two'
-#      3: Three
-#  assert:
-#    count:
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
-#      'select.ecl-select': 1
-#      'div.ecl-select__icon': 1
-#      'select[data-ecl-select-multiple]': 1
-#      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
-#    equals:
-#      'div.ecl-form-group label.ecl-form-label': 'Select element'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
-#      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
-#      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': select
+    '#title': Select element
+    '#options':
+      1: One
+      2: Two
+      3: Three
+  assert:
+    count:
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
+      'select.ecl-select': 1
+      'div.ecl-select__icon': 1
+      'select[data-ecl-select-multiple]': 0
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': select
+    '#title': Select element
+    '#multiple': true
+    '#options':
+      1: One
+      2: Two
+      3: Three
+  assert:
+    count:
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
+      'select.ecl-select': 1
+      'div.ecl-select__icon': 1
+      'select[data-ecl-select-multiple]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="2"]': 'Two'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': select
+    '#title': Select element
+    '#options':
+      1: One
+      'Two':
+        '2.1': 'Two point one'
+        '2.2': 'Two point two'
+      3: Three
+  assert:
+    count:
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
+      'select.ecl-select': 1
+      'div.ecl-select__icon': 1
+      'select[data-ecl-select-multiple]': 0
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
+- array:
+    '#type': select
+    '#title': Select element
+    '#multiple': true
+    '#options':
+      1: One
+      'Two':
+        '2.1': 'Two point one'
+        '2.2': 'Two point two'
+      3: Three
+  assert:
+    count:
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m': 1
+      'select.ecl-select': 1
+      'div.ecl-select__icon': 1
+      'select[data-ecl-select-multiple]': 1
+      'svg.ecl-icon.ecl-icon--s.ecl-icon--rotate-180.ecl-button__icon': 1
+    equals:
+      'div.ecl-form-group label.ecl-form-label': 'Select element'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="1"]': 'One'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.1"]': 'Two point one'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select optgroup[label="Two"] option[value="2.2"]': 'Two point two'
+      'div.ecl-form-group div.ecl-select__container.ecl-select__container--m select.ecl-select option[value="3"]': 'Three'
+      'div.ecl-select__icon button.ecl-button--icon-only svg': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#corner-arrow"></use>'
 - array:
     '#type': radios
     '#title': Radios
@@ -215,7 +215,6 @@
     count:
       'div.ecl-form-group.form-disabled': 1
       'div.ecl-radio--disabled input[disabled]': 1
-
 - array:
     '#type': pattern
     '#id': banner
