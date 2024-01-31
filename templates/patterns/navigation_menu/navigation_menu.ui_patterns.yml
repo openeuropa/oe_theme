@@ -17,10 +17,11 @@ navigation_menu:
       description: "Name of the site."
       preview: "Site name"
     close:
-      type: "text"
+      type: "array"
       label: "Close button"
-      description: "Close button label."
-      preview: "Close"
+      preview:
+        label: 'Close'
+      description: "Close button label and whether only an icon should be displayed."
     back:
       type: "text"
       label: "Back button"

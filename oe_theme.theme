@@ -146,6 +146,12 @@ function oe_theme_preprocess_menu__main(array &$variables): void {
       ];
     }, $variables['items'][$name]['below']);
   }
+  $variables['close'] = [
+    'label' => t('Close'),
+    'icon_name' => $variables['ecl_component_library'] === 'ec' ? 'close' : 'close-filled',
+    'icon_size' => $variables['ecl_component_library'] === 'ec' ? 'm' : 's',
+    'hide_label' => $variables['ecl_component_library'] === 'ec',
+  ];
 }
 
 /**
@@ -1944,6 +1950,12 @@ function oe_theme_preprocess_oe_theme_helper_site_navigation(&$variables) {
     // with 'Core' ECL branding.
     unset($variables['site_name']);
   }
+  $variables['close'] = [
+    'label' => t('Close'),
+    'icon_name' => $variables['ecl_component_library'] === 'ec' ? 'close' : 'close-filled',
+    'icon_size' => $variables['ecl_component_library'] === 'ec' ? 'm' : 's',
+    'hide_label' => $variables['ecl_component_library'] === 'ec',
+  ];
 }
 
 /**
