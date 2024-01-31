@@ -38,7 +38,6 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
    * Tests that the Call for tenders page renders correctly.
    */
   public function testTenderRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
@@ -66,7 +65,7 @@ class ContentCallForTendersRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Call for tenders node',

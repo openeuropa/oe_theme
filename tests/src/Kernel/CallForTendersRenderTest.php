@@ -64,7 +64,6 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
    * Test a call for tenders being rendered as a teaser.
    */
   public function testTeaser(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Freeze the time at a specific point.
     $static_time = new DrupalDateTime('2020-02-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
 
