@@ -34,9 +34,9 @@
     {% endif %}
   {% endif %}
   {% if registration_day %}
-    <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75{% if enabled %} ecl-u-d-none{% endif %}" data-registration-upcoming-element="true">{{ registration_day_description }}</p>
-    <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75{% if not enabled %} ecl-u-d-none{% endif %}" data-registration-active-element="true">{{ description }}</p>
+    <p class="ecl-u-type-paragraph ecl-u-type-color-dark-100{% if enabled %} ecl-u-d-none{% endif %}" data-registration-upcoming-element="true">{{ registration_day_description }}</p>
+    <p class="ecl-u-type-paragraph ecl-u-type-color-dark-100{% if not enabled %} ecl-u-d-none{% endif %}" data-registration-active-element="true">{{ description }}</p>
   {% elseif description %}
-    <p class="ecl-u-type-paragraph ecl-u-type-color-grey-75">{{ description }}</p>
+    <p class="ecl-u-type-paragraph ecl-u-type-color-dark-100">{{ description }}</p>
   {% endif %}
 </div>
