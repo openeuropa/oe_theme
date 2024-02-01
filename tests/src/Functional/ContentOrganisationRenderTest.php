@@ -53,7 +53,6 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
    * Tests that the Organisation page renders correctly.
    */
   public function testOrganisationRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.theme')->getPath('oe_theme') . '/tests/fixtures/example_1.jpeg'), 'public://example_1.jpeg');
     $file->setPermanent();
     $file->save();
@@ -91,7 +90,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header');
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'My node title',
@@ -235,7 +234,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     // Assert Leadership and organisation region is rendered.
     $this->assertContentHeader($content_items[2], 'Leadership and organisation', 'leadership-and-organisation');
     // Assert staff search link values.
-    $staff_search_link = $content_items[2]->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $staff_search_link = $content_items[2]->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon');
     $this->assertCount(1, $staff_search_link);
     $this->assertEquals('Search for staff', $staff_search_link[0]->find('css', '.ecl-link__label')->getText());
     $staff_search_link[0]->hasLink('https://example.com');
@@ -269,7 +268,7 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     $content_items = $content->findAll('xpath', '/div');
-    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
     $this->assertCount(1, $person_content);
     $this->assertStringContainsString('node/2', $person_content[0]->find('css', 'a.ecl-link.ecl-link--standalone')->getAttribute('href'));
     // Assert person content.
@@ -288,8 +287,8 @@ class ContentOrganisationRenderTest extends ContentRenderTestBase {
     $person->set('oe_person_jobs', [$person_job_1, $person_job_2]);
     $person->save();
     $this->getSession()->reload();
-    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-grey-15');
-    $this->assertEquals('Adviser, Chief Adviser', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-grey-75.ecl-u-mb-xs')->getText());
+    $person_content = $content_items[2]->findAll('css', 'article.ecl-u-d-flex.ecl-u-pv-m.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
+    $this->assertEquals('Adviser, Chief Adviser', $person_content[0]->find('css', '.ecl-content-item__meta.ecl-u-type-s.ecl-u-type-color-dark-100.ecl-u-mb-xs')->getText());
   }
 
 }

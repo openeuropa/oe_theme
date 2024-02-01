@@ -73,7 +73,6 @@ class OrganisationRenderTest extends ContentRenderTestBase {
    * Test a organisation being rendered as a teaser.
    */
   public function testOrganisationTeaser(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $logo_media = $this->createMediaImage('organisation_logo');
     $first_contact = $this->createContactEntity('first_contact', 'oe_general');
 
