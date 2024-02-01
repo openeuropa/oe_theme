@@ -13,21 +13,22 @@
  */
 #}
 {% include '@ecl-twig/form-group' with {
-  id: attributes.id,
-  name: attributes.name,
   input: {
     input_type: 'datepicker',
     icon_path: ecl_icon_path,
-    icon_size: 's',
     id: attributes.id,
     name: attributes.name,
+    required: element['#required'],
+    disabled: attributes.disabled is defined,
+    invalid: element['#errors'] is not empty,
     placeholder: placeholder,
-    default_value: attributes.value
+    default_value: attributes.value,
+    extra_classes: classes|default(''),
+    extra_attributes: extra_attributes|default([]),
   },
   invalid: element['#errors'] is not empty,
   disabled: attributes.disabled is defined,
   required: element['#required'],
   extra_classes: classes|default(''),
   extra_attributes: extra_attributes|default([]),
-  icon_path: ecl_icon_path,
 } %}{{ children }}

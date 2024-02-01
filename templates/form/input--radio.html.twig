@@ -12,20 +12,22 @@
  */
 #}
 {% include '@ecl-twig/form-group' with {
-  id: attributes.id,
-  name: attributes.name,
   input: {
     input_type: 'radio',
-    icon_path: ecl_icon_path,
-    icon_size: 's',
     id: attributes.id,
     name: attributes.name,
+    invalid: invalid,
+    required: element['#required'],
+    extra_classes: classes|default(''),
+    extra_attributes: input_attributes|default([]),
     items: [
       {
         value: attributes.value,
         checked: attributes.checked == 'checked',
+        invalid: invalid,
         id: attributes.id,
         name: attributes.name,
+        required: element['#required'],
         label: title,
         icon_path: ecl_icon_path,
         disabled: attributes.disabled is defined,
@@ -35,5 +37,4 @@
   invalid: invalid,
   disabled: attributes.disabled is defined,
   extra_attributes: input_attributes|default([]),
-  icon_path: ecl_icon_path,
 } %}{{ children }}
