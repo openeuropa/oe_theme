@@ -49,7 +49,6 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
    * Tests Consultation full view mode rendering.
    */
   public function testConsultationRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create documents.
     $document = $this->createMediaDocument('consultation_document');
     // Create general contacts.
@@ -85,7 +84,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header');
     $page_header_assert = new PatternPageHeaderAssert();
     $page_header_expected_values = [
       'title' => 'Test Consultation node',
@@ -328,7 +327,7 @@ class ContentConsultationRenderTest extends ContentRenderTestBase {
     $content_items = $content->findAll('xpath', '/div');
     $this->assertCount(6, $content_items);
     $this->assertMediaDocumentDefaultRender($content_items[5], 'document_reference', 'English', '2.96 KB - PDF', "sample_document_reference.pdf", 'Download');
-    $publication_teaser = $content_items[5]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-grey-15');
+    $publication_teaser = $content_items[5]->find('css', 'div.ecl-u-border-bottom.ecl-u-border-color-neutral-40');
     $assert = new ListItemAssert();
     $expected_values = [
       'title' => 'Publication node',
