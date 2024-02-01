@@ -116,18 +116,20 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    */
   public function testEclMultiSelect(): void {
     $this->drupalGet('/oe_theme_js_test/multi_select');
+    // Assert select container.
+    $select_container = $this->assertSession()->elementExists('css', 'div.ecl-select__multiple div.ecl-select__container.ecl-select__container--m');
     // Assert the default input is present and shows a default placeholder.
-    $select_input = $this->getSession()->getPage()->find('css', 'button.ecl-select__multiple-toggle');
+    $select_input = $select_container->find('css', 'button.ecl-select__multiple-toggle');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($select_input->getXpath()));
     $this->assertEquals('Select', $select_input->getText());
 
     // Assert the select dropdown is hidden.
-    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
     Assert::assertFalse($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
 
     // Click the input and assert the dropdown is now visible.
     $select_input->click();
-    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
 
     // Assert all options are visible.
@@ -138,7 +140,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
       'Two point two',
       'Three',
     ];
-    $option_elements = $this->getSession()->getPage()->findAll('css', 'div.ecl-checkbox');
+    $option_elements = $select_dropdown->findAll('css', 'div.ecl-checkbox');
     $this->assertEquals(count($options), count($option_elements));
     foreach ($options as $index => $option) {
       $this->assertEquals($option, $option_elements[$index]->getText());
