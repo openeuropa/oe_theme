@@ -107,7 +107,6 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Publication node is rendered with the correct ECL markup.
    */
   public function testPublication(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $file = \Drupal::service('file.repository')->writeData(file_get_contents(\Drupal::service('extension.list.module')->getPath('oe_media') . '/tests/fixtures/sample.pdf'), 'public://test.pdf');
     $file->setPermanent();
     $file->save();
@@ -152,20 +151,24 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $file_wrapper = $crawler->filter('.ecl-file');
     $this->assertCount(1, $file_wrapper);
 
-    // File row.
-    $file_row = $crawler->filter('.ecl-file .ecl-file__container');
-    $this->assertCount(1, $file_row);
+    // File container.
+    $file_container = $file_wrapper->filter('.ecl-file .ecl-file__container');
+    $this->assertCount(1, $file_container);
 
-    $file_title = $file_row->filter('.ecl-file__title');
+    // File footer.
+    $file_footer = $file_wrapper->filter('.ecl-file .ecl-file__footer');
+    $this->assertCount(1, $file_footer);
+
+    $file_title = $file_container->filter('.ecl-file__title');
     $this->assertStringContainsString('test document', $file_title->text());
 
-    $file_info_language = $file_row->filter('.ecl-file__info div.ecl-file__language');
+    $file_info_language = $file_footer->filter('div.ecl-file__language');
     $this->assertStringContainsString('English', $file_info_language->text());
 
-    $file_info_properties = $file_row->filter('.ecl-file__info div.ecl-file__meta');
+    $file_info_properties = $file_footer->filter('div.ecl-file__meta');
     $this->assertStringContainsString('KB - PDF)', $file_info_properties->text());
 
-    $file_download_link = $file_row->filter('.ecl-file__download');
+    $file_download_link = $file_footer->filter('.ecl-file__download');
     $this->assertStringContainsString('/test.pdf', $file_download_link->attr('href'));
     $this->assertStringContainsString('Download', $file_download_link->text());
   }
