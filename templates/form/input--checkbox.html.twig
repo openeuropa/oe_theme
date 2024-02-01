@@ -13,12 +13,8 @@
  */
 #}
 {% include '@ecl-twig/form-group' with {
-  id: attributes.id,
-  name: attributes.name,
   input: {
     input_type: 'checkbox',
-    icon_path: ecl_icon_path,
-    icon_size: 's',
     id: attributes.id,
     name: attributes.name,
     items: [
@@ -36,5 +32,7 @@
   invalid: invalid,
   disabled: attributes.disabled is defined,
   extra_attributes: input_attributes|default([]),
+  required: attributes.required is defined,
+  label_aria_required: attributes.required is defined,
   icon_path: ecl_icon_path,
 } %}{{ children }}

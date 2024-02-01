@@ -15,14 +15,16 @@
 #}
 
 {% include '@ecl-twig/form-group' with {
-  id: input_array.id,
-  name: input_array.name,
   input: {
-    input_type: 'text',
+    input_type: 'search',
     icon_path: ecl_icon_path,
-    icon_size: 's',
     id: input_array.id,
     name: input_array.name,
+    invalid: input_array.invalid,
+    disabled: input_array.disabled,
+    required: element['#required'],
+    extra_classes: input_array.class|safe_join(' '),
+    extra_attributes: input_array.extra_attributes,
   },
   invalid: input_array.invalid,
   disabled: input_array.disabled,
