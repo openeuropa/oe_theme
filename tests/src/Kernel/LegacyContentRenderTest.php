@@ -19,9 +19,8 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
    * Tests that the Page node type is rendered with the correct ECL markup.
    */
   public function testPage(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $node = $this->nodeStorage->create([
-      'type' => 'oe_news',
+      'type' => 'oe_page',
       'title' => 'Test page node',
       'body' => 'Body',
       'oe_subject' => 'http://data.europa.eu/uxp/1000',
@@ -56,7 +55,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     // Related links.
     $related_links_heading = $crawler->filter('.ecl-u-type-heading-2');
     $this->assertStringContainsString('Related links', $related_links_heading->text());
-    $related_links = $crawler->filter('div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-m.ecl-u-pb-m a');
+    $related_links = $crawler->filter('div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-m.ecl-u-pb-m a');
     $this->assertCount(2, $related_links);
 
     // Test short title fallback.
@@ -64,7 +63,7 @@ class LegacyContentRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $title = $crawler->filter('div.ecl-content-item__content-block h1.ecl-content-block__title');
+    $title = $crawler->filter('a.ecl-link.ecl-link--standalone');
     $this->assertEquals('Page short title', $title->text());
   }
 
