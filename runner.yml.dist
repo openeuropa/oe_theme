@@ -51,6 +51,8 @@ drupal:
         - "bower_components"
         - "vendor"
         - "${drupal.root}"
+        - "ecl-build"
+        - "components"
       file_private_path: 'sites/default/files/private'
     databases:
       sparql_default:
