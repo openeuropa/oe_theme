@@ -18,11 +18,11 @@ class FileTeaserAssert extends FileTranslationAssert {
     $assertions = parent::getAssertions($variant);
     $assertions['thumbnail'] = [
       [$this, 'assertImage'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail img.ecl-file__image',
+      'div.ecl-file--thumbnail div.ecl-file__container picture.ecl-file__picture img.ecl-file__image',
     ];
     $assertions['teaser'] = [
       [$this, 'assertElementText'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__description',
+      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__description',
     ];
     $assertions['meta'] = [
       [$this, 'assertMeta'],
@@ -32,7 +32,7 @@ class FileTeaserAssert extends FileTranslationAssert {
     ];
     $assertions['badge'] = [
       [$this, 'assertBadge'],
-      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__label',
+      'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__label',
     ];
     return $assertions;
   }
@@ -47,13 +47,13 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertMeta($expected_metas, Crawler $crawler): void {
     if (is_null($expected_metas)) {
-      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item', $crawler);
+      $this->assertElementNotExists('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item', $crawler);
       return;
     }
     if (!is_array($expected_metas)) {
       $expected_metas = [$expected_metas];
     }
-    $meta_items = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__detail-meta span.ecl-file__detail-meta-item');
+    $meta_items = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info div.ecl-file__detail-meta span.ecl-file__detail-meta-item');
     self::assertCount(count($expected_metas), $meta_items, 'The expected meta item number does not correspond with the found meta item number.');
     foreach ($expected_metas as $index => $expected_meta) {
       self::assertEquals($expected_meta, trim($meta_items->eq($index)->text()), \sprintf('The expected text of the meta number %s does not correspond to the found meta text.', $index));
@@ -89,15 +89,15 @@ class FileTeaserAssert extends FileTranslationAssert {
    */
   protected function assertFile(array $expected_file, Crawler $crawler): void {
     // Assert title.
-    $this->assertElementText($expected_file['title'], 'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__detail div.ecl-file__detail-info div.ecl-file__title', $crawler);
+    $this->assertElementText($expected_file['title'], 'div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__title', $crawler);
 
     // Assert information.
-    $file_info_element = $crawler->filter('div.ecl-file--thumbnail div.ecl-file__container div.ecl-file__info');
-    $this->assertElementText($expected_file['language'], 'div.ecl-file__language', $file_info_element);
-    $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_info_element);
+    $file_footer = $crawler->filter('div.ecl-file.ecl-file--thumbnail div.ecl-file__footer');
+    $this->assertElementText($expected_file['language'], 'div.ecl-file__language', $file_footer);
+    $this->assertElementText($expected_file['meta'], 'div.ecl-file__meta', $file_footer);
 
     // Assert download link.
-    $this->assertElementAttribute($expected_file['url'], 'div.ecl-file--thumbnail div.ecl-file__container a.ecl-file__download', 'href', $crawler);
+    $this->assertElementAttribute($expected_file['url'], 'a.ecl-file__download', 'href', $file_footer);
   }
 
   /**
