@@ -29,7 +29,7 @@ class IconsTextAssert extends BasePatternAssert {
    */
   protected function assertBaseElements(string $html, string $variant): void {
     $crawler = new Crawler($html);
-    $list_item = $crawler->filter('ul.ecl-unordered-list.ecl-unordered-list--no-bullet');
+    $list_item = $crawler->filter('ul.ecl-unordered-list.ecl-unordered-list--no-marker');
     self::assertCount(1, $list_item);
   }
 

@@ -2984,7 +2984,7 @@
           text: "Live streaming available"
   assertions:
     count:
-      'ul.ecl-unordered-list--no-bullet': 1
+      'ul.ecl-unordered-list--no-marker': 1
       'ul li.ecl-unordered-list__item': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
@@ -2997,7 +2997,7 @@
     '#id': icons_with_text
   assertions:
     count:
-      'ul.ecl-unordered-list--no-bullet': 0
+      'ul.ecl-unordered-list--no-marker': 0
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -3015,7 +3015,7 @@
           text: "Live streaming available"
   assertions:
     count:
-      'ul.ecl-unordered-list--no-bullet': 1
+      'ul.ecl-unordered-list--no-marker': 1
       'ul li.ecl-unordered-list__item': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
