@@ -46,7 +46,6 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
    * Tests that the Project page renders correctly.
    */
   public function testProjectRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create a document for Project results.
     $media_project_result = $this->createMediaDocument('project_result');
 
@@ -133,7 +132,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
 
     // Assert page header - metadata.
-    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header--negative');
+    $page_header = $this->assertSession()->elementExists('css', '.ecl-page-header.ecl-page-header');
     $assert = new PatternPageHeaderAssert();
     $expected_values = [
       'title' => 'Test project node',
@@ -382,7 +381,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
         ],
       ],
     ];
-    $field_list_wrapper = $rendered_stakeholder_element->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-grey');
+    $field_list_wrapper = $rendered_stakeholder_element->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-dark');
     $field_list_html = $field_list_wrapper->getHtml();
     $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
     $field_list_assert->assertVariant('horizontal', $field_list_html);
@@ -391,7 +390,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $website_icon->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
 
     // Assert contact link.
-    $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+    $contact_links = $rendered_stakeholder_element->findAll('css', 'div.ecl-u-mt-l.ecl-u-type-bold a.ecl-link.ecl-link--standalone.ecl-link--icon');
     $this->assertCount(1, $contact_links);
     $this->assertStringContainsString("http://example.com/contact_$name", $contact_links[0]->getAttribute('href'));
     // Assert contact link's icon.
@@ -433,7 +432,7 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
 
     if (!empty($link)) {
       if ($external_link) {
-        $link_tag = $rendered_element->find('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after');
+        $link_tag = $rendered_element->find('css', 'a.ecl-link.ecl-link--standalone.ecl-link--icon');
         $this->assertEquals('<use xlink:href="/build/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external" xmlns:xlink="http://www.w3.org/1999/xlink"></use>', $link_tag->find('css', 'svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->getHtml());
       }
       else {

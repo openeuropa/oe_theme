@@ -3,11 +3,11 @@
  * Add a featured modifier to ECL description list style.
  */
 @use '@ecl/vanilla-utility-border/border' as *;
+$background-color: var(--ecl-color-neutral-40) !default;
+$border-color: var(--ecl-color-neutral-40) !default;
 
 .ecl-description-list--featured {
-  @extend .ecl-u-border-all !optional;
-  @extend .ecl-u-border-width-2 !optional;
-  @extend .ecl-u-border-color-blue-25 !optional;
-  @extend .ecl-u-bg-blue-5 !optional;
+  border: 1px solid $border-color;
+  background-color: $background-color;
   padding: var(--ecl-spacing-s);
 }

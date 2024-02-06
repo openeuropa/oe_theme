@@ -17,7 +17,10 @@
 @use "./components/toolbar";
 @use "./components/wysiwyg";
 @use "./components/global";
-@use "./components/description_list";
+@use "./components/description_list" with (
+  $background-color: var(--ecl-color-primary-5),
+  $border-color: var(--ecl-color-primary-10),
+);
 @use "./components/media_iframe";
 @use "./components/expandable" with (
   $background-color: var(--ecl-color-dark-10),
