@@ -1,0 +1,164 @@
+{#
+/**
+ * @file
+ * Highlighted list pattern.
+ */
+#}
+
+{# Prepare the items array. #}
+{% set _items = [] %}
+{% if items is defined and items is not empty %}
+  {% for item in items|slice(0,3) %}
+    {% set _item = [] %}
+    {% set _primary_meta = [] %}
+    {% set _secondary_meta = [] %}
+
+    {# Prepare the title as a link or simple string. #}
+    {% if item.url is defined and item.url is not empty %}
+      {% set _title = {
+        link: {
+          type: 'standalone',
+          label: item.title,
+          path: item.url,
+          external: item.url|is_external_url,
+          icon_path: ecl_icon_path
+        }
+      } %}
+    {% else %}
+      {% set _title = item.title %}
+    {% endif %}
+    {% set _item = _item|merge({
+      title: _title|default([]),
+    }) %}
+
+    {# If it's the first item, we add the image. #}
+    {% if loop.index == 1 and item.picture is not empty %}
+      {# Prepare the picture array. #}
+      {% set _item = _item|merge({
+        picture: {
+          position: 'top',
+          size: 'medium',
+          img: {
+            src: item.picture.src,
+            alt: item.picture.alt,
+          },
+          sources: [],
+        }
+      }) %}
+    {% endif %}
+
+    {# Prepare the Primary meta items. #}
+    {% if item.primary_meta is not empty and item.primary_meta is iterable %}
+      {% for item in item.primary_meta %}
+        {% if item is not empty %}
+          {% set _primary_meta = _primary_meta|merge([item]) %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set _item = _item|merge({
+      primary_meta: _primary_meta
+    }) %}
+
+    {# Prepare the Secondary meta item. #}
+    {% if item.secondary_meta is not empty and item.secondary_meta is defined %}
+      {% set _secondary_meta = _secondary_meta|merge([
+        {
+          'label': item.secondary_meta,
+          'icon': {
+            'name': 'information',
+            'path': ecl_icon_path,
+          }
+        }
+      ]) %}
+    {% endif %}
+    {% set _item = _item|merge({
+      secondary_meta: _secondary_meta
+    }) %}
+
+    {# Enable the divider if it's not the last item. #}
+    {% if not loop.last %}
+      {% set _item = _item|merge({
+        divider: true
+      }) %}
+    {% endif %}
+
+    {# Add the formed _item to the _items array. #}
+    {% set _items = _items|merge([_item]) %}
+  {% endfor %}
+{% endif %}
+
+{# Prepare the title as a link or simple string for the highlighted_item. #}
+{% if highlighted_item.url is defined and highlighted_item.url is not empty %}
+  {% set highlighted_item_title = {
+    link: {
+      type: 'standalone',
+      label: highlighted_item.title,
+      path: highlighted_item.url,
+      external: highlighted_item.url|is_external_url,
+      icon_path: ecl_icon_path
+    }
+  } %}
+{% else %}
+  {% set highlighted_item_title = highlighted_item.title %}
+{% endif %}
+
+{# Prepare the Primary meta items of the highlighted item. #}
+{% set _primary_meta = [] %}
+{% if highlighted_item.primary_meta is not empty and highlighted_item.primary_meta is iterable %}
+  {% for highlighted_item in highlighted_item.primary_meta %}
+    {% if highlighted_item is not empty %}
+      {% set _primary_meta = _primary_meta|merge([highlighted_item]) %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Prepare the Secondary meta item of the highlighted item. #}
+{% set _secondary_meta = [] %}
+{% if highlighted_item.secondary_meta is not empty and highlighted_item.secondary_meta is defined %}
+  {% set _secondary_meta = _secondary_meta|merge([
+    {
+      'label': highlighted_item.secondary_meta,
+      'icon': {
+        'name': 'information',
+        'path': ecl_icon_path,
+      }
+    }
+  ]) %}
+{% endif %}
+
+{# Prepare the see more link. #}
+{% if see_more_url is defined and see_more_url is not empty %}
+  {% set _see_more = {
+    link: {
+      type: 'standalone',
+      label: see_more_label|default(see_more_url),
+      path: see_more_url,
+      external: see_more_url|is_external_url,
+      icon_path: ecl_icon_path
+    }
+  } %}
+{% endif %}
+
+{% include '@oe_theme/compositions/ec-component-highlighted-news-block/highlighted-news-block.html.twig' with {
+  'title': title|default(''),
+  'highlighted': {
+    'title': highlighted_item_title,
+    'picture': {
+      'position': 'top',
+      'size': 'large',
+      'img': {
+        'src': highlighted_item.picture.src,
+        'alt': highlighted_item.picture.alt,
+      },
+      'sources': [],
+    },
+    'description': highlighted_item.description|default(''),
+    'primary_meta': _primary_meta,
+    'secondary_meta': _secondary_meta,
+  },
+  'items': _items,
+  'see_more': _see_more,
+  'detail': detail|default(''),
+  'ecl_component_library': ecl_component_library,
+} only %}
+
