@@ -29,3 +29,7 @@
   $border_right: 1px solid var(--ecl-color-dark-60),
   $font-family: map.get(theme.$theme, 'font-family', 'default'),
 );
+@use "./compositions/highlighted_news" with (
+  $color: var(--ecl-color-primary-20),
+  $margin: var(--ecl-spacing-l),
+);

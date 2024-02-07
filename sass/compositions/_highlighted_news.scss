@@ -1,0 +1,8 @@
+$color: var(--ecl-color-neutral) !default;
+$margin: var(--ecl-spacing-xl) !default;
+
+.highlighted-news-divider {
+  border-bottom: 1px solid $color;
+  margin-bottom: $margin;
+}
+
