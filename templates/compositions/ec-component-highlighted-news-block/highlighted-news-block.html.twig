@@ -1,0 +1,44 @@
+{% apply spaceless %}
+{#
+  @file
+  Theme implementation for the Highlighted News Block
+  Parameters:
+    - "title" (string) (default: ''): The Highlighted News Block title.
+    - "highlighted" (array) (default: []): The main item of the list compatible with the ECL Content Item component.
+    - "items" (array) (default: []): Highlighted News items compatible with the ECL Content Item component.
+    - "see_more" (array) (default: []): Predefined structure compatible with Link component.
+    - "detail" (string) (default: ''): Additional information to be displayed below the 'See more' link.
+    - "ecl_component_library" (string) (default: ''): Current ECL component library (used for internal logic in order to determine the border color).
+#}
+  <div id="highlighted-news-block">
+    {% if title is not empty %}
+      <div class="ecl-row">
+        <div class="ecl-col-12">
+          <h2 class='ecl-u-type-heading-2'>{{ title }}</h2>
+        </div>
+      </div>
+    {% endif %}
+    {% if highlighted is not empty and items is not empty %}
+      <div class="ecl-row highlighted-news-divider">
+        <div class="ecl-col-12 ecl-col-l-8">
+          {% include '@ecl-twig/content-item' with highlighted only %}
+        </div>
+        <div class="ecl-col-12 ecl-col-l-4 ecl-u-align-self-start">
+          {% for item in items %}
+            <div class="ecl-u-mb-m">
+              {% include '@ecl-twig/content-item' with item only %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+    {% if see_more is not empty %}
+      {% include '@ecl-twig/link' with see_more %}
+    {% endif %}
+    {% if detail is not empty %}
+      <div class="ecl ecl-u-mt-s">
+        {{ detail }}
+      </div>
+    {% endif %}
+  </div>
+{% endapply %}
