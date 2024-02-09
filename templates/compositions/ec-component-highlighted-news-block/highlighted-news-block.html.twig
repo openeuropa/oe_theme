@@ -8,7 +8,6 @@
     - "items" (array) (default: []): Highlighted News items compatible with the ECL Content Item component.
     - "see_more" (array) (default: []): Predefined structure compatible with Link component.
     - "detail" (string) (default: ''): Additional information to be displayed below the 'See more' link.
-    - "ecl_component_library" (string) (default: ''): Current ECL component library (used for internal logic in order to determine the border color).
 #}
   <div id="highlighted-news-block">
     {% if title is not empty %}
@@ -19,21 +18,21 @@
       </div>
     {% endif %}
     {% if highlighted is not empty and items is not empty %}
-      <div class="ecl-row highlighted-news-divider">
-        <div class="ecl-col-12 ecl-col-l-8">
-          {% include '@ecl-twig/content-item' with highlighted only %}
+      <div class="ecl-row">
+        <div class="ecl-col-l-8 ecl-u-d-flex ecl-u-flex-column">
+          {{ highlighted }}
         </div>
-        <div class="ecl-col-12 ecl-col-l-4 ecl-u-align-self-start">
+        <div class="ecl-col-l-4 ecl-u-d-flex ecl-u-flex-column">
           {% for item in items %}
-            <div class="ecl-u-mb-m">
-              {% include '@ecl-twig/content-item' with item only %}
-            </div>
+            {{ item }}
           {% endfor %}
         </div>
       </div>
     {% endif %}
     {% if see_more is not empty %}
-      {% include '@ecl-twig/link' with see_more %}
+      <div class="ecl-u-mt-s">
+        {% include '@ecl-twig/link' with see_more %}
+      </div>
     {% endif %}
     {% if detail is not empty %}
       <div class="ecl ecl-u-mt-s">

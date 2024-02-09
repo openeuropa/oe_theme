@@ -12,59 +12,88 @@ highlighted_list:
       label: "Highlighted item"
       description: "The main item of the highlighted list."
       preview:
-        title: "Item 1"
-        url: "#"
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
-        primary_meta:
-          - "Item 1 primary meta"
-          - "DD Month Year"
-        secondary_meta: "3 minutes read"
-        picture:
-          src: "https://loremflickr.com/1200/900/arch"
-          alt: "Alternative text for image"
+        type: pattern
+        id: list_item
+        variant: default
+        fields:
+          title: "Item 1"
+          url: "#"
+          external_link: true
+          detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+          meta:
+            - "Item 1 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "3 minutes read"
+            - label: "5 minutes read"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
     items:
       type: "array"
       label: "Items"
       description: "List of items compatible with the ECL Content item component."
       preview:
-        - title: "Item 2"
-          description: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-          primary_meta:
-            - "Item 2 primary meta"
-            - "DD Month Year"
-          secondary_meta: "5 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
-        - title: "Item 3"
-          url: "https://external.com"
-          description: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
-          primary_meta:
-            - "Item 3 primary meta"
-            - "DD Month Year"
-          secondary_meta: "2 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
-        - title: "Item 4"
-          url: "#"
-          description: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
-          primary_meta:
-            - "Item 4 primary meta"
-            - "DD Month Year"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
-        - title: "Item 5"
-          url: "#"
-          description: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
-          primary_meta:
-            - "Item 5 primary meta"
-            - "DD Month Year"
-          secondary_meta: "3 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 2"
+            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+            meta:
+              - "Item 2 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "5 minutes read"
+                icon: "information"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 3"
+            url: "https://external.com"
+            detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+            meta:
+              - "Item 3 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "2 minutes read"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            image_position: "top"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 4"
+            url: "#"
+            detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+            meta:
+              - "Item 4 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            secondary_meta:
+              - label: "3 minutes read"
+              - label: "5 minutes read"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 5"
+            url: "#"
+            detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+            meta:
+              - "Item 5 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
     see_more_label:
       type: "text"
       label: "See more label"
