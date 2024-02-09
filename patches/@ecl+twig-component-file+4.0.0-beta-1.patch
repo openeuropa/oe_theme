@@ -1,0 +1,81 @@
+diff --git a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
+index c932714..48ec46a 100644
+--- a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
++++ b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
+@@ -17,6 +17,7 @@
+ {% set _lang_full = lang_full|default('') %}
+ {% set _meta = meta|default('') %}
+ {% set _download = download|default({}) %}
++{% set _variant = variant|default('default') %}
+ {% set _id = id|default('') %}
+ {% set _title_id = title_id|default('') %}
+ 
+@@ -37,15 +38,37 @@
+ {% endset %}
+ 
+   <li class="ecl-file__translation-item">
+-    <div class="ecl-file__translation-info">
++    {% if _variant == 'thumbnail' %}
++    <div class="ecl-file__translation-detail">
+       {{- _title -}}
+-    {% if _meta is not empty %}
+-      <div class="ecl-file__translation-meta">
+-        {{- _meta -}}
+-      </div>
++      {% if _description is not empty %}
++        <div
++          class="ecl-file__translation-description"
++          {% if _lang is not empty %}
++            lang="{{ _lang }}"
++          {% endif %}
++        >
++          {{- _description -}}
++        </div>
++      {% endif %}
++    </div>
+     {% endif %}
++    <div class="ecl-file__translation-info">
++      {% if _variant != 'thumbnail' %}
++        {{- _title -}}
++      {% else %}
++        {% if _lang_full is defined and _lang_full is not empty %}
++          <div class="ecl-file__translation-language">
++            {{- _lang_full -}}
++          </div>
++        {% endif %}
++      {% endif %}
++      {% if _meta is not empty %}
++        <div class="ecl-file__translation-meta">
++          {{- _meta -}}
++        </div>
++      {% endif %}
+     </div>
+-
+     {% include '@ecl/link/link.html.twig' with _download|merge({
+       link: _download.link|default(_download.link|default({}))|merge({
+         type: 'standalone',
+diff --git a/node_modules/@ecl/twig-component-file/file-translations.html.twig b/node_modules/@ecl/twig-component-file/file-translations.html.twig
+index 85c46d7..fd5326d 100644
+--- a/node_modules/@ecl/twig-component-file/file-translations.html.twig
++++ b/node_modules/@ecl/twig-component-file/file-translations.html.twig
+@@ -16,6 +16,7 @@
+ {% set _items = items|default([]) %}
+ {% set _toggle = toggle|default({}) %}
+ {% set _id = id|default('') %}
++{% set _variant = variant|default('default') %}
+ 
+ {% if _items is not empty %}
+   <div
+@@ -42,8 +43,12 @@
+       {% include '@ecl/file/file-translation-item.html.twig' with _item|merge({
+           id:  _id ~ '-translation-' ~ key,
+           title_id: _id ~ '-title',
++          variant: _variant,
+       }) only %}
+     {% endfor %}
++      <li class="ecl-file__translation-item ecl-file__translation-description">
++        {{- _description -}}
++      </li>
+     </ul>
+   </div>
+ {% endif %}
