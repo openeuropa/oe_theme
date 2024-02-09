@@ -15,7 +15,7 @@
         ...
       ]
 #}
-  <div class="ecl-lang-select-page ecl-u-bg-grey-5 ecl-u-pv-m">
+  <div class="ecl-lang-select-page {{ ecl_class_background_color() }} ecl-u-pv-m">
     <div class="ecl-container">
       {% include '@ecl-twig/notification' with {
         title: 'English is available via machine translation – please use the link below.'|t,
@@ -71,7 +71,7 @@
       {% block language_list %}
         {% if languages %}
         <div id="{{ expandable_id ~ '-content' }}" class="ecl-expandable__content" hidden>
-          <ul style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)" class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-bullet ecl-u-mt-xs ecl-u-type-m">
+          <ul style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)" class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-marker ecl-u-mt-xs ecl-u-type-m">
             {% for language in languages %}
               <li class="ecl-unordered-list__item ecl-u-ma-2xs">
                 {% set link_classes = language.current ? 'ecl-u-bg-blue-50 ecl-u-type-color-white ecl-u-type-bold' : '' %}
