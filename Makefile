@@ -69,6 +69,10 @@ install-site:
 	./vendor/bin/run drupal:site-setup
 	./vendor/bin/run drupal:site-install
 
+.PHONY: shell-node
+shell-node:
+	docker exec -ti -e COLUMNS=$(shell tput cols) -e LINES=$(shell tput lines) $(shell docker ps --filter name='oe_theme-$(or $(filter-out $@,$(MAKECMDGOALS)), 'node')' --format "{{ .ID }}") bash
+
 # https://stackoverflow.com/a/6273809/1826109
 %:
 	@:
