@@ -101,6 +101,11 @@ list_item:
         src: "https://loremflickr.com/1200/900/arch"
         alt: "Alternative text for image"
         size: "large"
+    image_position:
+      type: "text"
+      label: "Image position"
+      description: "The image position: left (default), right, top."
+      preview: "left"
     icon:
       type: "text"
       label: "Icon (deprecated - to be removed in 4.x)"
@@ -168,3 +173,8 @@ list_item:
       label: "Lists variant"
       description: "An optional parameter for the layout of the lists (vertical or horizontal). It defaults to horizontal."
       preview: "vertical"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
