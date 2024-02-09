@@ -16,6 +16,7 @@
     - "external_link" (bool) (default: false): Whether the link is external or not.
     - "lists" (array) (default: []): Array of lists compatible with ECL Description list component.
     - "divider" (bool) (default: false): Whether to set a divider below the item.
+    - "extra_classes" (string) (default: '')
 #}
 
 {# Prepare the picture array. #}
@@ -163,4 +164,5 @@
   divider: divider|default(false),
   secondary_meta: _secondary_meta|default([]),
   date: _date|default([]),
+  extra_classes: extra_classes|default(''),
 } only %}
