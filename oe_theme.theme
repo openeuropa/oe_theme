@@ -2518,3 +2518,66 @@ function oe_theme_page_attachments_alter(array &$attachments) {
 function _oe_theme_sanitize_url($url): mixed {
   return $url instanceof Url ? $url : UrlHelper::filterBadProtocol($url);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
+  if (!isset($variables['highlighted_item'])) {
+    // If we don't have a highlighted item for the list, we bail out.
+    return;
+  }
+  // Override highlighted item information.
+  if (isset($variables['highlighted_item']['#fields']['secondary_meta'])) {
+    // We display only the first secondary meta.
+    $variables['highlighted_item']['#fields']['secondary_meta'] = [reset($variables['highlighted_item']['#fields']['secondary_meta'])];
+    $variables['highlighted_item']['#fields']['secondary_meta'][0]['icon'] = 'information';
+  }
+  if (isset($variables['highlighted_item']['#fields']['image'])) {
+    $variables['highlighted_item']['#fields']['image']['size'] = 'large';
+    if (!isset($variables['highlighted_item']['#fields']['image_position']) ||
+      $variables['highlighted_item']['#fields']['image_position'] !== 'top') {
+      $variables['highlighted_item']['#fields']['image_position'] = 'top';
+    }
+  }
+  $variables['highlighted_item']['#fields']['divider'] = TRUE;
+  $variables['highlighted_item']['#fields']['extra_classes'] = 'ecl-u-flex-grow-1';
+  if (!isset($variables['items'])) {
+    // If we don't have items, we bail out.
+    return;
+  }
+
+  // We only display the first four items in the list.
+  $variables['items'] = array_slice($variables['items'], 0, 3);
+  foreach ($variables['items'] as $key => &$item) {
+    $item['#fields']['divider'] = TRUE;
+    if ($key === 0) {
+      // We only display the image for the first item.
+      if (isset($item['#fields']['image'])) {
+        // It always has the medium 'size' and position 'top'.
+        $item['#fields']['image']['size'] = 'medium';
+        $item['#fields']['image_position'] = 'top';
+      }
+      if (isset($item['#fields']['detail'])) {
+        $item['#fields']['detail'] = NULL;
+      }
+    }
+    else {
+      // We don't display the image and detail for the rest of the items.
+      $item['#fields']['image'] = NULL;
+      $item['#fields']['detail'] = NULL;
+    }
+    if (!isset($item['#fields']['secondary_meta'])) {
+      continue;
+    }
+    // We display only the first secondary meta.
+    $item['#fields']['secondary_meta'] = [reset($item['#fields']['secondary_meta'])];
+    $item['#fields']['secondary_meta'][0]['icon'] = 'information';
+    if ($key !== 2) {
+      $item['#fields']['extra_classes'] = 'ecl-u-flex-grow-1 ecl-u-mb-m';
+    }
+    else {
+      $item['#fields']['extra_classes'] = 'ecl-u-flex-grow-1';
+    }
+  }
+}
