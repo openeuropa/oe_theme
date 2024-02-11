@@ -3687,55 +3687,84 @@
     '#fields':
       title: "Highlighted News"
       highlighted_item:
-        title: "Item 1"
-        url: "#"
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
-        primary_meta:
-          - "Item 1 primary meta"
-          - "DD Month Year"
-        secondary_meta: "3 minutes read"
-        picture:
-          src: "https://loremflickr.com/1200/900/arch"
-          alt: "Highlighted item image"
+        '#type': "pattern"
+        '#id': "list_item"
+        '#variant': "default"
+        '#fields':
+          title: "Item 1"
+          url: "#"
+          external_link: true
+          detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+          meta:
+            - "Item 1 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "3 minutes read"
+            - label: "5 minutes read"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Highlighted item image"
       items:
-        - title: "Item 2"
-          description: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-          primary_meta:
-            - "Item 2 primary meta"
-            - "DD Month Year"
-          secondary_meta: "5 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Item 2 image"
-        - title: "Item 3"
-          url: "https://external.com"
-          description: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
-          primary_meta:
-            - "Item 3 primary meta"
-            - "DD Month Year"
-          secondary_meta: "2 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
-        - title: "Item 4"
-          url: "#"
-          description: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
-          primary_meta:
-            - "Item 4 primary meta"
-            - "DD Month Year"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
-        - title: "Item 5"
-          url: "#"
-          description: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
-          primary_meta:
-            - "Item 5 primary meta"
-            - "DD Month Year"
-          secondary_meta: "3 minutes read"
-          picture:
-            src: "https://loremflickr.com/1200/900/arch"
-            alt: "Alternative text for image"
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 2"
+            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+            meta:
+              - "Item 2 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "5 minutes read"
+                icon: "information"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Item 2 image"
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 3"
+            url: "https://external.com"
+            detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+            meta:
+              - "Item 3 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "2 minutes read"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            image_position: "top"
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 4"
+            url: "#"
+            detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+            meta:
+              - "Item 4 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            secondary_meta:
+              - label: "3 minutes read"
+              - label: "5 minutes read"
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 5"
+            url: "#"
+            detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+            meta:
+              - "Item 5 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
       see_more_label: "Read more news"
       see_more_url: "https://example.com"
       detail:
@@ -3745,99 +3774,115 @@
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 1
       'div div.ecl-row': 2
-      'div div.ecl-row.highlighted-news-divider': 1
-      'div.highlighted-news-divider div.ecl-col-12.ecl-col-l-8': 1
-      'div.highlighted-news-divider div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start': 1
-      'div.ecl-u-mb-m': 3
-      'div.ecl-u-mb-m article.ecl-content-item--divider': 2
+      'div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column': 1
+      'div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column': 1
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1': 4
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
       'div.ecl-content-block__title': 4
       'div.ecl-content-block__title a': 3
       'picture.ecl-content-item__picture': 2
-      'div.ecl-col-12.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
-      'div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
-      'div#highlighted-news-block div.ecl-col-12.ecl-col-l-8 a': 1
-      'div#highlighted-news-block div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start a': 2
+      'div.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
+      'div.ecl-col-l-4 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
+      'div#highlighted-news-block div.ecl-col-l-8 a': 1
+      'div#highlighted-news-block div.ecl-col-l-4 a': 2
       'ul.ecl-content-block__primary-meta-container': 4
       'div.ecl-content-block__description': 1
-      'ul.ecl-content-block__secondary-meta-container': 3
+      'ul.ecl-content-block__secondary-meta-container': 4
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'div#highlighted-news-block div.ecl-u-mt-s:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
     equals:
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 'Highlighted News'
-      'div.ecl-col-12.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 1 primary meta'
-      'div.ecl-col-12.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
-      'div.ecl-col-12.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Item 1'
-      'div.ecl-col-12.ecl-col-l-8 .ecl-content-block__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus'
-      'div.ecl-col-12.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-col-12.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"] .ecl-link__label': 'Item 3'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(3) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Item 4'
-      'div#highlighted-news-block > a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
-      'div#highlighted-news-block > a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'div.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 1 primary meta'
+      'div.ecl-col-l-8 ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] .ecl-link__label': 'Item 1'
+      'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'div.ecl-col-l-8 .ecl-content-block__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
+      'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-4 article:nth-child(1) .ecl-content-block__title': 'Item 2'
+      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
+      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
+      'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
+      'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-4 article:nth-child(3) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Item 4'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
+      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
 - array:
     '#type': pattern
     '#id': highlighted_list
     '#fields':
       highlighted_item:
-        title: "Item 1"
-        secondary_meta: "3 minutes read"
-        picture:
-          src: "https://loremflickr.com/1200/900/arch"
-          alt: "Highlighted item image"
-      items:
-        - title: "Item 2"
-          description: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-          primary_meta:
-            - "Item 2 primary meta"
-            - "DD Month Year"
-          secondary_meta: "5 minutes read"
-          picture:
+        '#type': "pattern"
+        '#id': "list_item"
+        '#variant': "default"
+        '#fields':
+          title: "Item 1"
+          secondary_meta:
+            - label: "3 minutes read"
+            - label: "5 minutes read"
+          image:
             src: "https://loremflickr.com/1200/900/arch"
-            alt: "Item 2 image"
-        - title: "Item 3"
-          url: "https://external.com"
+            alt: "Highlighted item image"
+      items:
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 2"
+            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+            meta:
+              - "Item 2 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "5 minutes read"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Item 2 image"
+        - '#type': "pattern"
+          '#id': "list_item"
+          '#variant': "default"
+          '#fields':
+            title: "Item 3"
+            url: "https://external.com"
       see_more_url: "https://example.com"
   assertions:
     count:
       'div#highlighted-news-block': 1
       'div#highlighted-news-block h2.ecl-u-type-heading-2': 0
       'div div.ecl-row': 1
-      'div div.ecl-row.highlighted-news-divider': 1
-      'div.highlighted-news-divider div.ecl-col-12.ecl-col-l-8': 1
-      'div.highlighted-news-divider div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start': 1
-      'div.ecl-u-mb-m': 2
-      'div.ecl-u-mb-m article.ecl-content-item--divider': 1
+      'div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column': 1
+      'div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column': 1
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1': 2
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 1
       'div.ecl-content-block__title': 3
       'div.ecl-content-block__title a': 1
       'picture.ecl-content-item__picture': 2
-      'div.ecl-col-12.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
-      'div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
-      'div#highlighted-news-block div.ecl-col-12.ecl-col-l-8 a': 0
-      'div#highlighted-news-block div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start a': 1
+      'div.ecl-col-l-8 picture.ecl-content-item__picture--large img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Highlighted item image"]': 1
+      'div.ecl-col-l-4 picture.ecl-content-item__picture--medium img.ecl-content-item__image[src="https://loremflickr.com/1200/900/arch"][alt="Item 2 image"]': 1
+      'div#highlighted-news-block div.ecl-col-l-8 a': 0
+      'div#highlighted-news-block div.ecl-col-l-4 a': 1
       'ul.ecl-content-block__primary-meta-container': 1
       'div.ecl-content-block__description': 0
       'ul.ecl-content-block__secondary-meta-container': 2
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 0
     equals:
-      'div.ecl-col-12.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
-      'div.ecl-col-12.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-col-12.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"] .ecl-link__label': 'Item 3'
-      'div.ecl-u-align-self-start div.ecl-u-mb-m:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      'div#highlighted-news-block > a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'https://example.com'
-      'div#highlighted-news-block > a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      'div.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) .ecl-content-block__title': 'Item 2'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
+      'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
+      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'https://example.com'
+      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
