@@ -24,19 +24,19 @@ class HighlightedListAssert extends BasePatternAssert {
       ],
       'highlighted_item' => [
         [$this, 'assertHighlightedItem'],
-        'div#highlighted-news-block div.ecl-col-12.ecl-col-l-8',
+        'div#highlighted-news-block div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column',
       ],
       'items' => [
         [$this, 'assertItems'],
-        'div.highlighted-news-divider div.ecl-col-12.ecl-col-l-4.ecl-u-align-self-start',
+        'div.highlighted-news-divider div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column',
       ],
       'see_more_label' => [
         [$this, 'assertElementText'],
-        'div#highlighted-news-block > a.ecl-link.ecl-link--standalone .ecl-link__label',
+        'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone .ecl-link__label',
       ],
       'see_more_url' => [
         [$this, 'assertElementAttribute'],
-        'div#highlighted-news-block > a.ecl-link.ecl-link--standalone',
+        'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone',
         'href',
       ],
       'detail' => [
@@ -73,53 +73,10 @@ class HighlightedListAssert extends BasePatternAssert {
     }
     $this->assertElementExists($selector, $crawler);
     $highlighted_wrapper = $crawler->filter($selector);
-    // Assert title.
-    if (isset($expected_highlighted_item['title'])) {
-      // Assert url, if available.
-      if (isset($expected_highlighted_item['url'])) {
-        $this->assertElementText($expected_highlighted_item['title'], '.ecl-content-block__title a.ecl-link.ecl-link--standalone', $highlighted_wrapper);
-        $this->assertElementAttribute($expected_highlighted_item['url'], '.ecl-content-block__title a.ecl-link.ecl-link--standalone', 'href', $highlighted_wrapper);
-      }
-      else {
-        $this->assertElementNotExists('.ecl-content-block__title a.ecl-link.ecl-link--standalone', $highlighted_wrapper);
-        $this->assertElementText($expected_highlighted_item['title'], '.ecl-content-block__title', $highlighted_wrapper);
-      }
-    }
-    // Assert image.
-    if (isset($expected_highlighted_item['image'])) {
-      $this->assertElementAttribute($expected_highlighted_item['image']['src'], 'picture.ecl-content-item__picture--large img.ecl-content-item__image', 'src', $highlighted_wrapper);
-      $this->assertElementAttribute($expected_highlighted_item['image']['alt'], 'picture.ecl-content-item__picture--large img.ecl-content-item__image', 'alt', $highlighted_wrapper);
-    }
-    else {
-      $this->assertElementNotExists('picture', $highlighted_wrapper);
-    }
-    // Assert primary meta.
-    if (isset($expected_highlighted_item['primary_meta'])) {
-      $actual_items = $highlighted_wrapper->filter('li.ecl-content-block__primary-meta-item');
-      self::assertCount(count($expected_highlighted_item['primary_meta']), $actual_items);
-      foreach ($expected_highlighted_item['primary_meta'] as $index => $expected_item) {
-        self::assertEquals($expected_item, trim($actual_items->eq($index)->text()));
-      }
-    }
-    else {
-      $this->assertElementNotExists('ul.ecl-content-block__primary-meta-container', $highlighted_wrapper);
-    }
-    // Assert secondary meta.
-    if (isset($expected_highlighted_item['secondary_meta'])) {
-      $actual_item = $highlighted_wrapper->filter('li.ecl-content-block__secondary-meta-item');
-      self::assertCount(1, $actual_item);
-      self::assertEquals($expected_highlighted_item['secondary_meta'], trim($actual_item->text()));
-    }
-    else {
-      $this->assertElementNotExists('li.ecl-content-block__secondary-meta-item', $highlighted_wrapper);
-    }
-    // Assert description.
-    if (isset($expected_highlighted_item['description'])) {
-      $this->assertElementText($expected_highlighted_item['description'], '.ecl-content-block__description', $highlighted_wrapper);
-    }
-    else {
-      $this->assertElementNotExists('.ecl-content-block__description', $highlighted_wrapper);
-    }
+    $list_item_assert = new ListItemAssert();
+    $html = $highlighted_wrapper->html();
+    $list_item_assert->assertPattern($expected_highlighted_item, $html);
+    $list_item_assert->assertVariant('default', $html);
   }
 
   /**
@@ -142,53 +99,17 @@ class HighlightedListAssert extends BasePatternAssert {
     $this->assertElementExists($selector, $crawler);
     $items_wrapper = $crawler->filter($selector);
     // Assert the number of items.
-    $items = $items_wrapper->filter('div.ecl-u-mb-m');
+    $items = $items_wrapper->filter('article');
     self::assertCount(count($expected_items), $items, 'The expected number of items does not correspond with the actual number of items in the list.');
     // Assert there is no description element for any of the items.
     $this->assertElementNotExists('.ecl-content-block__description', $items_wrapper);
 
     // Assert each item's info.
+    $list_item_assert = new ListItemAssert();
     foreach ($expected_items as $index => $expected_item) {
-      // Assert title.
-      if (isset($expected_item['title'])) {
-        // Assert url, if available.
-        if (isset($expected_item['url'])) {
-          $this->assertElementText($expected_item['title'], '.ecl-content-block__title a.ecl-link.ecl-link--standalone', $items->eq($index));
-          $this->assertElementAttribute($expected_item['url'], '.ecl-content-block__title a.ecl-link.ecl-link--standalone', 'href', $items->eq($index));
-        }
-        else {
-          $this->assertElementNotExists('.ecl-content-block__title a.ecl-link.ecl-link--standalone', $items->eq($index));
-          $this->assertElementText($expected_item['title'], '.ecl-content-block__title', $items->eq($index));
-        }
-      }
-      // Assert primary meta.
-      if (isset($expected_item['primary_meta'])) {
-        $actual_items = $items->eq($index)->filter('li.ecl-content-block__primary-meta-item');
-        self::assertCount(count($expected_item['primary_meta']), $actual_items);
-        foreach ($expected_item['primary_meta'] as $key => $primary_item) {
-          self::assertEquals($primary_item, trim($actual_items->eq($key)->text()));
-        }
-      }
-      else {
-        $this->assertElementNotExists('ul.ecl-content-block__primary-meta-container', $items->eq($index));
-      }
-      // Assert secondary meta.
-      if (isset($expected_item['secondary_meta'])) {
-        $actual_item = $items->eq($index)->filter('li.ecl-content-block__secondary-meta-item');
-        self::assertCount(1, $actual_item);
-        self::assertEquals($expected_item['secondary_meta'], trim($actual_item->text()));
-      }
-      else {
-        $this->assertElementNotExists('li.ecl-content-block__secondary-meta-item', $items->eq($index));
-      }
-      // Assert image if it's the first item.
-      if (isset($expected_item['image']) && $index === 0) {
-        $this->assertElementAttribute($expected_item['image']['src'], 'picture.ecl-content-item__picture--medium img.ecl-content-item__image', 'src', $highlighted_wrapper);
-        $this->assertElementAttribute($expected_item['image']['alt'], 'picture.ecl-content-item__picture--medium img.ecl-content-item__image', 'alt', $highlighted_wrapper);
-      }
-      else {
-        $this->assertElementNotExists('picture', $items->eq($index));
-      }
+      $html = $expected_item->html();
+      $list_item_assert->assertPattern($expected_item, $html);
+      $list_item_assert->assertVariant('default', $html);
     }
   }
 
