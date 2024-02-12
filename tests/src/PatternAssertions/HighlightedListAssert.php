@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
@@ -28,7 +28,7 @@ class HighlightedListAssert extends BasePatternAssert {
       ],
       'items' => [
         [$this, 'assertItems'],
-        'div.highlighted-news-divider div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column',
+        'div#highlighted-news-block div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column',
       ],
       'see_more_label' => [
         [$this, 'assertElementText'],
@@ -107,7 +107,7 @@ class HighlightedListAssert extends BasePatternAssert {
     // Assert each item's info.
     $list_item_assert = new ListItemAssert();
     foreach ($expected_items as $index => $expected_item) {
-      $html = $expected_item->html();
+      $html = $items->eq($index)->outerHtml();
       $list_item_assert->assertPattern($expected_item, $html);
       $list_item_assert->assertVariant('default', $html);
     }
@@ -123,7 +123,7 @@ class HighlightedListAssert extends BasePatternAssert {
    * @param \Symfony\Component\DomCrawler\Crawler $crawler
    *   The DomCrawler where to check the element.
    */
-  protected function assertDescription($expected, string $selector, Crawler $crawler): void {
+  protected function assertDetail($expected, string $selector, Crawler $crawler): void {
     if (is_null($expected)) {
       $this->assertElementNotExists($selector, $crawler);
       return;

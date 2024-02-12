@@ -9,7 +9,7 @@
     - "see_more" (array) (default: []): Predefined structure compatible with Link component.
     - "detail" (string) (default: ''): Additional information to be displayed below the 'See more' link.
 #}
-  <div id="highlighted-news-block">
+  <div id="{{ 'highlighted-news-block'|clean_unique_id }}">
     {% if title is not empty %}
       <div class="ecl-row">
         <div class="ecl-col-12">
