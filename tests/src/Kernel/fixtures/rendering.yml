@@ -3805,7 +3805,7 @@
       highlighted_item:
         '#type': "pattern"
         '#id': "list_item"
-        '#variant': "default"
+        '#variant': "thumbnail_primary"
         '#fields':
           title: "Item 1"
           secondary_meta:
@@ -3814,10 +3814,21 @@
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Highlighted item image"
+          badges:
+            - label: "Highlighted"
+              variant: "highlight"
+            - label: "Status: Open"
+              variant: "high"
+          lists:
+            -
+              - term: "When"
+                definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - term: "Where"
+                definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       items:
         - '#type': "pattern"
           '#id': "list_item"
-          '#variant': "default"
+          '#variant': "highlight"
           '#fields':
             title: "Item 2"
             detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -3831,10 +3842,22 @@
               alt: "Item 2 image"
         - '#type': "pattern"
           '#id': "list_item"
-          '#variant': "default"
+          '#variant': "thumbnail_primary"
           '#fields':
             title: "Item 3"
             url: "https://external.com"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            badges:
+              - label: "Highlighted"
+                variant: "highlight"
+            lists:
+              -
+                - term: "When"
+                  definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+                - term: "Where"
+                  definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
       see_more_url: "https://example.com"
   assertions:
     count:
@@ -3856,6 +3879,9 @@
       'div.ecl-content-block__description': 0
       'ul.ecl-content-block__secondary-meta-container': 2
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 0
+      'article.ecl-card': 0
+      'ul.ecl-content-block__label-container': 0
+      'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
