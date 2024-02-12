@@ -103,13 +103,6 @@
                 "https://www.drupal.org/project/address/issues/3144823": "https://www.drupal.org/files/issues/2020-11-05/3144823-6.patch"
             }
         },
-        "patches-ignore": {
-            "openeuropa/oe_content": {
-                "drupal/core": {
-                    "Drupal 10.2.x only - see oe_content/README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"
-                }
-            }
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "./build"
