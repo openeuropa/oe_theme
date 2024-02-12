@@ -2542,6 +2542,12 @@ function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
   }
   $variables['highlighted_item']['#fields']['divider'] = TRUE;
   $variables['highlighted_item']['#fields']['extra_classes'] = 'ecl-u-flex-grow-1';
+  // It should always use the default variant.
+  $variables['highlighted_item']['#variant'] = 'default';
+  // Make sure no other list_item pattern info is used.
+  $variables['highlighted_item']['#fields']['date'] = NULL;
+  $variables['highlighted_item']['#fields']['badges'] = NULL;
+  $variables['highlighted_item']['#fields']['lists'] = NULL;
   if (!isset($variables['items'])) {
     // If we don't have items, we bail out.
     return;
@@ -2550,7 +2556,13 @@ function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
   // We only display the first four items in the list.
   $variables['items'] = array_slice($variables['items'], 0, 3);
   foreach ($variables['items'] as $key => &$item) {
+    // It should always use the default variant.
+    $item['#variant'] = 'default';
     $item['#fields']['divider'] = TRUE;
+    // Make sure no other list_item pattern info is used.
+    $item['#fields']['date'] = NULL;
+    $item['#fields']['badges'] = NULL;
+    $item['#fields']['lists'] = NULL;
     if ($key === 0) {
       // We only display the image for the first item.
       if (isset($item['#fields']['image'])) {

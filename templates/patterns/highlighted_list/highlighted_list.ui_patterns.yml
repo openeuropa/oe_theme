@@ -29,6 +29,9 @@ highlighted_list:
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
+          badges:
+            - label: "Highlighted"
+              variant: "highlight"
     items:
       type: "array"
       label: "Items"
@@ -36,7 +39,7 @@ highlighted_list:
       preview:
         - type: pattern
           id: list_item
-          variant: default
+          variant: thumbnail_primary
           fields:
             title: "Item 2"
             detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
@@ -49,6 +52,15 @@ highlighted_list:
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Alternative text for image"
+            badges:
+              - label: "Highlighted"
+                variant: "highlight"
+            lists:
+              -
+                - term: "When"
+                  definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+                - term: "Where"
+                  definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
         - type: pattern
           id: list_item
           variant: default

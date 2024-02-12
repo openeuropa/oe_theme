@@ -182,19 +182,36 @@ class ListItemAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertThumbnailImage(?array $expected_image, string $variant, Crawler $crawler): void {
-    $variant_class = $variant === 'thumbnail_primary' ? 'picture.ecl-content-item__picture--large.ecl-content-item__picture--left' : 'picture.ecl-content-item__picture--large.ecl-content-item__picture--right';
-    $image_div_selector = $variant_class . ' img.ecl-content-item__image';
     if (is_null($expected_image)) {
-      $this->assertElementNotExists($image_div_selector, $crawler);
+      $this->assertElementNotExists('picture', $crawler);
       return;
     }
+
+    $picture_class = isset($expected_image['size']) ? 'picture.ecl-content-item__picture--' . $expected_image['size'] : 'picture.ecl-content-item__picture--large';
+    if (isset($expected_image['image_position'])) {
+      $picture_class = $picture_class . 'ecl-content-item__picture--' . $expected_image['image_position'];
+    }
+    else {
+      switch ($variant) {
+        case 'default':
+        case 'highlight':
+        case 'thumbnail_primary':
+          $picture_class = '.ecl-content-item__picture--left';
+          break;
+
+        case 'thumbnail_secondary':
+          $picture_class = '.ecl-content-item__picture--right';
+          break;
+      }
+    }
+    $image_div_selector = $picture_class . ' img.ecl-content-item__image';
     $this->assertElementExists($image_div_selector, $crawler);
     $image_div = $crawler->filter($image_div_selector);
     self::assertEquals($expected_image['alt'], $image_div->attr('alt'));
     self::assertStringContainsString($expected_image['src'], $image_div->attr('src'));
 
     // Thumbnail should always be clickable by ECL.
-    $this->assertElementAttribute('', $variant_class, 'data-ecl-picture-link', $crawler);
+    $this->assertElementAttribute('', $picture_class, 'data-ecl-picture-link', $crawler);
   }
 
   /**
