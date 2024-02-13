@@ -51,6 +51,7 @@ external_svg:
 
 ecl_datepicker:
   js:
+    dist/js/pikaday.js: {}
     js/ecl_datepicker.js: {}
   dependencies:
     - core/drupal

@@ -6,17 +6,38 @@
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
  * - children: Optional additional rendered elements.
+ * - element: Array that represents the element shown in the form.
  * - disabled: Optional (boolean): is disabled (optional, default: false).
+ * - classes: Optional (string): list of extra classes for the input.
+ * - extra_attributes: Optional (array): list of extra attributes to apply to the input.
  *
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl-twig/radio/radio-button' with {
-  id: attributes.id,
-  name: attributes.name,
-  value: attributes.value,
-  checked: attributes.checked == 'checked',
+{% include '@ecl-twig/form-group' with {
+  input: {
+    input_type: 'radio',
+    id: attributes.id,
+    name: attributes.name,
+    invalid: invalid,
+    required: element['#required'],
+    extra_classes: classes|default(''),
+    extra_attributes: input_attributes|default([]),
+    items: [
+      {
+        value: attributes.value,
+        checked: attributes.checked == 'checked',
+        invalid: invalid,
+        id: attributes.id,
+        name: attributes.name,
+        required: element['#required'],
+        label: title,
+        icon_path: ecl_icon_path,
+        disabled: attributes.disabled is defined,
+      }
+    ]
+  },
+  invalid: invalid,
   disabled: attributes.disabled is defined,
-  label: title,
-  extra_attributes: input_attributes
+  extra_attributes: input_attributes|default([]),
 } %}{{ children }}

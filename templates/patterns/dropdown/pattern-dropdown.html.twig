@@ -13,7 +13,7 @@
 {% endfor %}
 
 {% set content %}
-  <ul class="ecl-unordered-list ecl-unordered-list--no-bullet">
+  <ul class="ecl-unordered-list ecl-unordered-list--no-marker">
     {% for item in _links %}
       <li class="ecl-unordered-list__item">
         {{- item.label -}}
@@ -36,8 +36,5 @@
       'size': 'fluid',
     },
   },
-  'extra_attributes': [{
-    name: 'data-ecl-expandable-dropdown',
-  }],
-  'extra_dropdown_classes': 'ecl-expandable-dropdown__content',
+  'content': content|default([]),
 } %}
