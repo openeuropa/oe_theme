@@ -39,8 +39,14 @@
   margin: 0 0.3em;
 }
 
-// Align "Apply" botton in moderation block.
+// Vertically align elements in moderation block.
 .entity-moderation-form {
+  .ecl-form-group{
+    margin-top: 0;
+  }
+  .ecl-select__icon .ecl-button {
+    margin-bottom: 0;
+  }
   .ecl-button {
     margin-bottom: 1em;
   }
