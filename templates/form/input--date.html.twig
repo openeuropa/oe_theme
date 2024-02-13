@@ -6,19 +6,32 @@
  * Available variables:
  * - attributes: A list of HTML attributes for the input element.
  * - children: Optional additional rendered elements.
+ * - element: Array that represents the element shown in the form.
  * - disabled: Optional (boolean): is disabled (optional, default: false).
  * - invalid: Optional (boolean): has error (optional, default: false).
+ * - classes: Optional (string): list of extra classes for the input.
+ * - extra_attributes: Optional (array): list of extra attributes to apply to the input.
  *
  * @see ./core/themes/stable/templates/form/input.html.twig
  */
 #}
-{% include '@ecl-twig/datepicker' with {
-  id: attributes.id,
-  name: attributes.name,
-  default_value: attributes.value,
-  required: element['#required'],
+{% include '@ecl-twig/form-group' with {
+  input: {
+    input_type: 'datepicker',
+    icon_path: ecl_icon_path,
+    id: attributes.id,
+    name: attributes.name,
+    required: element['#required'],
+    disabled: attributes.disabled is defined,
+    invalid: element['#errors'] is not empty,
+    placeholder: placeholder,
+    default_value: attributes.value,
+    extra_classes: classes|default(''),
+    extra_attributes: extra_attributes|default([]),
+  },
   invalid: element['#errors'] is not empty,
   disabled: attributes.disabled is defined,
-  icons_path: ecl_icon_path,
-  placeholder: placeholder
+  required: element['#required'],
+  extra_classes: classes|default(''),
+  extra_attributes: extra_attributes|default([]),
 } %}{{ children }}

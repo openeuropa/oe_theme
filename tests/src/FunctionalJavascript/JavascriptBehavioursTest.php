@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\FunctionalJavascript;
 
@@ -70,7 +70,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that ECL auto init is invoked and applied correctly.
    */
   public function testEclAutoInit(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/ajax_dropdown');
 
     // Verify that the first dropdown button is shown, and it's collapsed.
@@ -82,7 +81,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     $this->assertSession()->pageTextContains('Child link 0');
 
     // We need to close the dropdown now. Clicking on the container will do.
-    $this->getSession()->getPage()->find('css', '#dropdown-container')->click();
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 0"]')->press();
 
     // Add a new dropdown.
     $this->getSession()->getPage()->pressButton('Add another');
@@ -100,27 +99,37 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Verify that the JS behaviours initialised ECL on the second dropdown.
     $this->getSession()->getPage()->pressButton('Dropdown 1');
     $this->assertSession()->pageTextContains('Child link 1');
+    // First dropdown wasn't closed.
+    $this->assertSession()->pageTextContains('Child link 0');
+    // Close the first dropdown.
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 0"]')->press();
     $this->assertSession()->pageTextNotContains('Child link 0');
+    $this->assertSession()->pageTextContains('Child link 1');
+    // Close the second dropdown.
+    $this->getSession()->getPage()->find('css', 'button[data-ecl-label-expanded="Dropdown 1"]')->press();
+    $this->assertSession()->pageTextNotContains('Child link 0');
+    $this->assertSession()->pageTextNotContains('Child link 1');
   }
 
   /**
    * Tests that ECL multi select is rendered properly.
    */
   public function testEclMultiSelect(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/multi_select');
+    // Assert select container.
+    $select_container = $this->assertSession()->elementExists('css', 'div.ecl-select__multiple div.ecl-select__container.ecl-select__container--m');
     // Assert the default input is present and shows a default placeholder.
-    $select_input = $this->getSession()->getPage()->find('css', 'button.ecl-select__multiple-toggle');
+    $select_input = $select_container->find('css', 'button.ecl-select__multiple-toggle');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($select_input->getXpath()));
     $this->assertEquals('Select', $select_input->getText());
 
     // Assert the select dropdown is hidden.
-    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
     Assert::assertFalse($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
 
     // Click the input and assert the dropdown is now visible.
     $select_input->click();
-    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown');
+    $select_dropdown = $this->getSession()->getPage()->find('css', 'div.ecl-select__multiple-dropdown.ecl-select__container.ecl-select__container--m');
     $this->assertTrue($this->getSession()->getDriver()->isVisible($select_dropdown->getXpath()));
 
     // Assert all options are visible.
@@ -131,7 +140,7 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
       'Two point two',
       'Three',
     ];
-    $option_elements = $this->getSession()->getPage()->findAll('css', 'div.ecl-checkbox');
+    $option_elements = $select_dropdown->findAll('css', 'div.ecl-checkbox');
     $this->assertEquals(count($options), count($option_elements));
     foreach ($options as $index => $option) {
       $this->assertEquals($option, $option_elements[$index]->getText());
@@ -142,7 +151,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that ECL datepicker is rendered properly.
    */
   public function testEclDatePicker(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/datepicker');
 
     // Assert we have two hidden datepicker elements on the page.
@@ -181,13 +189,13 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
     // Assert days are present.
     $headers = $rows['0']->findAll('css', 'th');
     $expected = [
-      'Mon',
-      'Tue',
-      'Wed',
-      'Thu',
-      'Fri',
-      'Sat',
-      'Sun',
+      'MO',
+      'TU',
+      'WE',
+      'TH',
+      'FR',
+      'SA',
+      'SU',
     ];
 
     foreach ($headers as $key => $column) {
@@ -221,7 +229,6 @@ class JavascriptBehavioursTest extends WebDriverTestBase {
    * Tests that contextual navigation pattern is rendered properly.
    */
   public function testContextNavPattern(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->drupalGet('/oe_theme_js_test/ui_patterns/context_nav');
     $this->assertCount(2, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-list]'));
     $this->assertCount(1, $this->getSession()->getPage()->findAll('css', '[data-ecl-contextual-navigation-more]'));

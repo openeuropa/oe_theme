@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
@@ -61,7 +61,7 @@ abstract class AbstractKernelTestBase extends KernelTestBase {
     // node_modules/@ecl/twig-component-description-list/description-list.html.twig
     // instead of templates/field/description-list.html.twig
     $settings = Settings::getAll();
-    $settings['file_scan_ignore_directories'] = ['node_modules'];
+    $settings['file_scan_ignore_directories'] = ['node_modules', 'ecl-build'];
     new Settings($settings);
 
     // Call the install hook of the User module which creates the Anonymous user
