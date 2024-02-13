@@ -33,12 +33,12 @@
     {% endif %}
   </h2>
   {% if description is not empty %}
-    <p class="ecl-u-mb-none ecl-u-mt-m ecl-u-type-color-grey ecl-u-type-paragraph">
+    <p class="ecl-u-mb-none ecl-u-mt-m ecl-u-type-color-dark ecl-u-type-paragraph">
       {{ description }}
     </p>
   {% endif %}
   {% if links is not empty %}
-    <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
+    <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-marker">
       {% for link in links %}
         <li class="ecl-unordered-list__item">
           {% if link.link.path %}
@@ -55,8 +55,8 @@
     </ul>
   {% endif %}
   {% if secondary_links is not empty %}
-    <div class="ecl-u-mt-m ecl-u-border-top ecl-u-border-color-grey-50">
-      <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-bullet">
+    <div class="ecl-u-mt-m ecl-u-border-top ecl-u-border-color-dark-60">
+      <ul class="ecl-u-mt-m ecl-unordered-list ecl-unordered-list--no-marker">
         {% for link in secondary_links %}
           <li class="ecl-unordered-list__item">
             {% if link.link.path %}
