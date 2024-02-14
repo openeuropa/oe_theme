@@ -1,3 +1,4 @@
+@use "sass:map";
 @use '@ecl/theme-ec';
 @use '@ecl/theme-ec/theme';
 @use '@ecl/vanilla-layout-grid/mixins/breakpoints'  with (
@@ -17,7 +18,11 @@
 @use "./components/form";
 @use "./components/toolbar";
 @use "./components/wysiwyg";
-@use "./components/global";
+@use "./components/global" with (
+  $font-family: map.get(theme.$theme, 'font-family', 'default'),
+);
 @use "./components/description_list";
 @use "./components/media_iframe";
-@use "./components/contextual_navigation";
+@use "./components/contextual_navigation" with (
+  $font-family: map.get(theme.$theme, 'font-family', 'default'),
+);
