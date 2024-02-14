@@ -1,0 +1,33 @@
+tabs:
+  label: "Tabs"
+  description: "The tabs component is used to navigation links in separate tabs."
+  fields:
+    items:
+      type: "array"
+      label: "Tabs items"
+      description: "List of tabs items. They need to contain a label, a path and an optional is_current property"
+      preview:
+        - label: "View"
+          path: "http://example.com"
+        - label: "Edit"
+          path: "http://example.com"
+          is_current: true
+        - label: "History"
+          path: "http://example.com"
+        - label: "Delete"
+          path: "http://example.com"
+    more_label:
+      type: "text"
+      label: "More label"
+      description: "Label for the more button (responsive)"
+      preview: "More (%d)"
+    previous_label:
+      type: "text"
+      label: "Previous label"
+      description: "Label for the previous button (mobile only); this is for screen readers"
+      preview: "Previous"
+    next_label:
+      type: "text"
+      label: "Next label"
+      description: "Label for the next button (mobile only); this is for screen readers"
+      preview: "Next"
