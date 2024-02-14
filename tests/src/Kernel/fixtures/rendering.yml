@@ -3922,3 +3922,52 @@
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] svg.ecl-icon--xs.ecl-icon--rotate-180': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
+- array:
+    '#type': 'pattern'
+    '#id': 'tabs'
+    '#fields':
+      items:
+        - label: "View"
+          path: "https://example.com/view"
+        - label: "Edit"
+          path: "https://example.com/edit"
+          is_current: TRUE
+        - label: "Delete"
+          path: "https://example.com/delete"
+  assertions:
+    count:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
+    contains:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(1): 'View'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link--active: 'Edit'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(3): 'Delete'
+      div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'More (%d)'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Previous'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__Next: 'Next'
+- array:
+    '#type': 'pattern'
+    '#id': 'tabs'
+    '#fields':
+      items:
+        - label: "View"
+          path: "https://example.com/view"
+        - label: "Edit"
+          path: "https://example.com/edit"
+          is_current: TRUE
+        - label: "Delete"
+          path: "https://example.com/delete"
+      more_label: "Custom more label"
+      previous_label: "Custom previous label"
+      next_label: "Custom next label"
+  assertions:
+    count:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link: 3
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link.ecl-tabs__link--active: 1
+    contains:
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(1): 'View'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link--active: 'Edit'
+      div.ecl-tabs div.ecl-tabs__container div.ecl-tabs__list div.ecl-tabs__item a.ecl-tabs__link:nth-child(3): 'Delete'
+      div.ecl-tabs div.ecl-tabs__container button.ecl-button span.ecl-button__label: 'Custom more label'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__prev: 'Custom previous label'
+      div.ecl-tabs div.ecl-tabs__controls button.ecl-tabs__next: 'Custom next label'
