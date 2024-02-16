@@ -310,7 +310,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       'title' => NULL,
       'caption' => 'Caption',
       'text' => NULL,
-      'video' => '<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>',
+      'video' => '<iframe id="videoplayerI-163162" src="https://ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>',
       'video_ratio' => '16:9',
     ];
     $assert->assertPattern($expected_values, $html);
@@ -1298,7 +1298,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $crawler = new Crawler($html);
     $this->assertCount(1, $crawler->filter('figure.ecl-media-container__figure div.ecl-media-container__media'));
     $media_container = $crawler->filter('div.ecl-media-container__media');
-    $this->assertEquals('<iframe id="videoplayerI-163162" src="//ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>', $media_container->html());
+    $this->assertEquals('<iframe id="videoplayerI-163162" src="https://ec.europa.eu/avservices/play.cfm?ref=I-163162&amp;lg=EN&amp;sublg=none&amp;autoplay=true&amp;tin=10&amp;tout=59" frameborder="0" allowtransparency allowfullscreen webkitallowfullscreen mozallowfullscreen width="576" height="324" class="media-avportal-content"></iframe>', $media_container->html());
 
     // Create Video iframe with ratio 16:9 and add it to the paragraph.
     $media = $media_storage->create([
