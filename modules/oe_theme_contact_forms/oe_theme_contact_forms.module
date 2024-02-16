@@ -5,7 +5,7 @@
  * Module file used for theming the corporate contact forms.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\contact\Entity\ContactForm;
 use Drupal\contact\MessageInterface;

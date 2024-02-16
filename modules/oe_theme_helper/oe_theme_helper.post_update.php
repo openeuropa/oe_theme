@@ -5,7 +5,7 @@
  * OpenEuropa theme helper post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\block\Entity\Block;
 use Drupal\Component\Utility\Crypt;
