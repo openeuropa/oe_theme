@@ -111,7 +111,7 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.0"
+        CORE_VERSION: "10.2"
         PHP_VERSION: "8.1"
 
   github-release:
@@ -124,21 +124,11 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.0"
+        CORE_VERSION: "10.2"
         PHP_VERSION: "8.1"
 
 matrix:
   include:
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: behat }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.1, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch3 }
-
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: behat }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch1 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch2 }
-    - { PHP_VERSION: 8.2, CORE_VERSION: 10.0, TYPE: phpunit, BATCH: batch3 }
-
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: behat }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.1, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch2 }
@@ -148,3 +138,13 @@ matrix:
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch1 }
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch2 }
     - { PHP_VERSION: 8.2, CORE_VERSION: 10.1, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2, TYPE: behat }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.1, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch3 }
+
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2, TYPE: behat }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch1 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch2 }
+    - { PHP_VERSION: 8.2, CORE_VERSION: 10.2, TYPE: phpunit, BATCH: batch3 }

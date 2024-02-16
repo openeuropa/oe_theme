@@ -5,7 +5,7 @@
  * OpenEuropa theme content entity contact post updates.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Config\FileStorage;

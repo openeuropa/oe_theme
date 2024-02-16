@@ -5,7 +5,7 @@
  * Install, update and uninstall hooks for OpenEuropa Theme helper module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 use Drupal\block\Entity\Block;
 use Drupal\Component\Render\MarkupInterface;

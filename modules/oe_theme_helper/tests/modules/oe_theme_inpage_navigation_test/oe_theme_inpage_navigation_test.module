@@ -5,7 +5,7 @@
  * The oe_theme_inpage_navigation_test module.
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 /**
  * Implements hook_theme().
