@@ -2427,6 +2427,7 @@
       'h1.ecl-content-block__title a': "Example title"
       'div.ecl-content-block__description': "Example..."
 - array:
+    'core_version': '10.2'
     '#type': pattern
     '#id': featured_item
     '#variant': "default"
@@ -2441,6 +2442,22 @@
   assertions:
     equals:
       'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
+- array:
+    'core_version': '10.1'
+    '#type': pattern
+    '#id': featured_item
+    '#variant': "default"
+    '#fields':
+      description:
+        '#type': pattern
+        '#id': blockquote
+        '#fields':
+          body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.'
+          author: 'John Doe'
+      length: 25
+  assertions:
+    equals:
+      'div.ecl-content-block__description': '<figure class="ecl-blockquote"><div class="ecl-blockquote__body"><blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en" xml:lang="en">Lorem ipsum dolor sit...</p></blockquote></div></figure>'
 - array:
     '#type': pattern
     '#id': featured_item
