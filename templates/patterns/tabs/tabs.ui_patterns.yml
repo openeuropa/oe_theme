@@ -31,3 +31,9 @@ tabs:
       label: "Next label"
       description: "Label for the next button (mobile only); this is for screen readers"
       preview: "Next"
+    extra_classes:
+      type: 'text'
+      label: 'Extra classes string'
+      description: 'Extra classes string'
+      preview: ''
+
