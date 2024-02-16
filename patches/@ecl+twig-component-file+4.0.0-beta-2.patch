@@ -1,0 +1,127 @@
+diff --git a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
+index c932714..2b92789 100644
+--- a/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
++++ b/node_modules/@ecl/twig-component-file/file-translation-item.html.twig
+@@ -9,6 +9,7 @@
+   - "id" (string) (default: '')
+   - "title_id" (string) (default: '')
+   - "download" (object) (default to the parent download property) object of type Link
++  - "description (string) (default:'')
+ #}
+ 
+ {# Internal properties #}
+@@ -19,6 +20,8 @@
+ {% set _download = download|default({}) %}
+ {% set _id = id|default('') %}
+ {% set _title_id = title_id|default('') %}
++{% set _description = description|default('') %}
++{% set _variant = variant|default('default') %}
+ 
+ {% set _link_id = _id ~ '-link' %}
+ {% set _label_id = _link_id ~ '-label' %}
+@@ -37,13 +40,36 @@
+ {% endset %}
+ 
+   <li class="ecl-file__translation-item">
+-    <div class="ecl-file__translation-info">
+-      {{- _title -}}
+-    {% if _meta is not empty %}
+-      <div class="ecl-file__translation-meta">
+-        {{- _meta -}}
++    {% if _variant == 'thumbnail' %}
++      <div class="ecl-file__translation-detail">
++        {{- _title -}}
++        {% if _description is not empty %}
++          <div
++            class="ecl-file__translation-description"
++            {% if _lang is not empty %}
++              lang="{{ _lang }}"
++            {% endif %}
++          >
++            {{- _description -}}
++          </div>
++        {% endif %}
+       </div>
+     {% endif %}
++    <div class="ecl-file__translation-info">
++      {% if _variant != 'thumbnail' %}
++        {{- _title -}}
++      {% else %}
++        {% if _lang_full is defined and _lang_full is not empty %}
++          <div class="ecl-file__translation-language">
++            {{- _lang_full -}}
++          </div>
++        {% endif %}
++      {% endif %}
++      {% if _meta is not empty %}
++        <div class="ecl-file__translation-meta">
++          {{- _meta -}}
++        </div>
++      {% endif %}
+     </div>
+ 
+     {% include '@ecl/link/link.html.twig' with _download|merge({
+diff --git a/node_modules/@ecl/twig-component-file/file-translations.html.twig b/node_modules/@ecl/twig-component-file/file-translations.html.twig
+index 85c46d7..d9f4b6a 100644
+--- a/node_modules/@ecl/twig-component-file/file-translations.html.twig
++++ b/node_modules/@ecl/twig-component-file/file-translations.html.twig
+@@ -2,6 +2,7 @@
+ 
+ {#
+   Parameters:
++    - "variant" (string) (default: 'default')
+     - "toggle" (object) (default: {}): object of type Button
+     - "id" (string) (default: '')
+     - "items" (array) (default: []):
+@@ -9,6 +10,7 @@
+       - "meta" (string) (default: '')
+       - "lang" (string) (default: '')
+       - "download" (object) (default to the parent download property) object of type Link
++    - "description (string) (default:'')
+ #}
+ 
+ {# Internal properties #}
+@@ -16,6 +18,8 @@
+ {% set _items = items|default([]) %}
+ {% set _toggle = toggle|default({}) %}
+ {% set _id = id|default('') %}
++{% set _description = description|default('') %}
++{% set _variant = variant|default('default') %}
+ 
+ {% if _items is not empty %}
+   <div
+@@ -38,12 +42,16 @@
+     }) only %}
+ 
+     <ul class="ecl-file__translation-list">
+-    {% for key, _item in _items %}
+-      {% include '@ecl/file/file-translation-item.html.twig' with _item|merge({
+-          id:  _id ~ '-translation-' ~ key,
+-          title_id: _id ~ '-title',
+-      }) only %}
+-    {% endfor %}
++      {% for key, _item in _items %}
++        {% include '@ecl/file/file-translation-item.html.twig' with _item|merge({
++            id:  _id ~ '-translation-' ~ key,
++            title_id: _id ~ '-title',
++            variant: _variant
++        }) only %}
++      {% endfor %}
++      <li class="ecl-file__translation-item ecl-file__translation-description">
++        {{- _description -}}
++      </li>
+     </ul>
+   </div>
+ {% endif %}
+diff --git a/node_modules/@ecl/twig-component-file/file.html.twig b/node_modules/@ecl/twig-component-file/file.html.twig
+index 2f86c34..6715bb5 100644
+--- a/node_modules/@ecl/twig-component-file/file.html.twig
++++ b/node_modules/@ecl/twig-component-file/file.html.twig
+@@ -31,6 +31,7 @@
+       - "meta" (string) (default: '')
+       - "lang" (string) (default: '')
+       - "download" (object) (default to the parent download property) object of type Link
++    - "description (string) (default:'')
+   - "extra_classes" (optional) (string) (default: '')
+   - "extra_attributes" (optional) (array) (default: []) [{
+     - "name" (string) Attribute name, eg. 'data-test'
