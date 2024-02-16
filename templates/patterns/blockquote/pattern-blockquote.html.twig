@@ -12,8 +12,12 @@
     }
   } %}
 {% endif %}
+{% if language_code|render is not empty %}
+  {% set _lang = language_code|render|to_internal_language_id %}
+{% endif %}
 {% include '@ecl-twig/blockquote' with {
   'author': author,
   'citation': body,
-  'picture': _picture|default({}),
+  'lang': _lang|default('en'),
+  'picture': _picture|default([])
 } %}

@@ -19,3 +19,8 @@ blockquote:
       preview:
         src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for featured item image"
+    language_code:
+      type: "string"
+      label: "Language code"
+      description: "The language code for the blockquote - it changes the type of quotes. (defaults to 'en')"
+      preview: "pt-pt"

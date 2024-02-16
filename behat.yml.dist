@@ -56,9 +56,29 @@ default:
       selenium2:
         wd_host: '${selenium.host}:${selenium.port}/wd/hub'
         capabilities:
+          browser: chrome
           nativeEvents: true
           marionette: true
           browserName: chrome
+          version: '*'
+          extra_capabilities:
+            chromeOptions:
+              w3c: false
+              args:
+                - '--no-sandbox'
+                - '--start-maximized'
+                - '--disable-gpu'
+                - '--window-size=1600,1200'
+                - '--disable-dev-shm-usage'
+                - '--disable-setuid-sandbox'
+                - '--disable-web-security'
+                - '--DNS-prefetch-disable'
+                - '--disable-translate'
+                - '--ignore-certificate-errors'
+                - '--test-type'
+                - '--disable-extensions'
+                - '--incognito'
+                - '--disable-infobars'
       base_url: "${drupal.base_url}"
       files_path: "%paths.base%/tests/fixtures/"
     Drupal\DrupalExtension:

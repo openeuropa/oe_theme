@@ -101,6 +101,14 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    * @dataProvider renderingDataProvider
    */
   public function testRendering(array $structure, array $assertions): void {
+    // @todo Remove when support for 10.1.x is dropped.
+    if (!empty($structure['core_version'])) {
+      if (!$this->shouldBeTested($structure['core_version'])) {
+        $this->markTestSkipped();
+      }
+      unset($structure['core_version']);
+    }
+
     // Wrap all the test structure inside a form. This will allow proper
     // processing of form elements and invocation of form alter hooks.
     // Even if the elements being tested are not form related, the form can
@@ -123,6 +131,23 @@ class RenderingTest extends AbstractKernelTestBase implements FormInterface {
    */
   public function renderingDataProvider(): array {
     return $this->getFixtureContent('rendering.yml');
+  }
+
+  /**
+   * Check if the Drupal core version falls within the specified minor range.
+   *
+   * @todo Remove when support for 10.1.x is dropped.
+   *
+   * @param string $core_version
+   *   The minor version required by the test, e.g., '10.1'.
+   *
+   * @return bool
+   *   Returns true if the Drupal version is within the minor version range.
+   */
+  protected function shouldBeTested(string $core_version): bool {
+    $current_version_parts = explode('.', \Drupal::VERSION);
+    $current_minor_version = $current_version_parts[0] . '.' . $current_version_parts[1];
+    return $current_minor_version === $core_version;
   }
 
 }
