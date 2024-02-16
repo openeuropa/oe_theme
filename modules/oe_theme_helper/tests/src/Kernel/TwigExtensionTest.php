@@ -70,8 +70,8 @@ class TwigExtensionTest extends AbstractKernelTestBase {
    *   An array of test data arrays with assertions.
    */
   public function smartTrimFilterDataProvider(): array {
-    $drupal_version = (float) substr(\Drupal::VERSION, 0, 4);
-
+    // @todo Remove when support for 10.1.x is dropped.
+    $lower_version = version_compare(\Drupal::VERSION, '10.2', '<');
     return [
       'Trim a string' => [
         'variables' => [
@@ -123,10 +123,9 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         ],
         'assertions' => [
           'contains' => [
-            // https://www.drupal.org/project/drupal/issues/3259255
-            $drupal_version < 10.1 ?
-            "&lt;script&gt;\n&lt;!--//--&gt;&lt;![CDATA[// &gt;&lt;!--\ndocum...\n//--&gt;&lt;!]]&gt;\n&lt;/script&gt;" :
-            "&lt;script&gt;\n//&lt;![CDATA[\ndocum...\n//]]&gt;\n&lt;/script&gt;",
+            $lower_version
+              ? "&lt;script&gt;\n//&lt;![CDATA[\ndocum...\n//]]&gt;\n&lt;/script&gt;"
+              : "&lt;script&gt;docum...&lt;/script&gt;",
           ],
         ],
       ],
@@ -207,7 +206,9 @@ class TwigExtensionTest extends AbstractKernelTestBase {
         ],
         'assertions' => [
           'contains' => [
-            '<blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en" xml:lang="en">Lorem ipsum dolor sit...</p></blockquote>',
+            $lower_version
+              ? '<blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en" xml:lang="en">Lorem ipsum dolor sit...</p></blockquote>'
+              : '<blockquote class="ecl-blockquote__quote"><p class="ecl-blockquote__citation" lang="en">Lorem ipsum dolor sit...</p></blockquote>',
           ],
         ],
       ],
