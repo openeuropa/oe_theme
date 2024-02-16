@@ -1,0 +1,14 @@
+diff --git a/node_modules/@ecl/twig-component-tabs/tabs.html.twig b/node_modules/@ecl/twig-component-tabs/tabs.html.twig
+index 428181c..f114135 100644
+--- a/node_modules/@ecl/twig-component-tabs/tabs.html.twig
++++ b/node_modules/@ecl/twig-component-tabs/tabs.html.twig
+@@ -80,6 +80,9 @@
+           {% else %}
+             {% set _item_extra_attributes = _item_extra_attributes|merge([{ name: 'aria-selected', value: 'false' }]) %}
+           {% endif %}
++          {% if _item.extra_classes is defined %}
++            {% set _item_extra_classes = _item_extra_classes ~ ' ' ~ _item.extra_classes %}
++          {% endif %}
+           {% if _menu is not empty %}
+             {% set extra_attributes = extra_attributes|merge([{ name: 'data-ecl-has-menu' }]) %}
+           {% endif %}
