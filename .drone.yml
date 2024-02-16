@@ -61,7 +61,7 @@ pipeline:
         composer config --merge --json "extra.patches-ignore.openeuropa/oe_content" '{"drupal/core": {"Drupal 10.2.x only - see README.md for 10.1.x - https://www.drupal.org/project/drupal/issues/2230909": "https://www.drupal.org/files/issues/2023-12-21/2230909-309.patch"}}'
     when:
       matrix:
-        CORE_VERSION: "10.1"
+        CORE_VERSION: "10.1.0"
 
   composer-install:
     group: post-prepare
