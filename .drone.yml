@@ -127,7 +127,7 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.2"
+        CORE_VERSION: "10.2.0"
         PHP_VERSION: "8.1"
 
   github-release:
@@ -140,7 +140,7 @@ pipeline:
       event:
         include: tag
       matrix:
-        CORE_VERSION: "10.2"
+        CORE_VERSION: "10.2.0"
         PHP_VERSION: "8.1"
 
 matrix:
