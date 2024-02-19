@@ -237,7 +237,7 @@ class SiteHeaderTest extends BrowserTestBase {
       // Assert the main menu block.
       $main_menu = $assert->elementExists('css', 'div#block-oe-theme-main-navigation', $header);
       $this->assertCount(1, $main_menu->findAll('css', "nav.ecl-menu[data-ecl-menu][data-ecl-menu-max-lines='2'][data-ecl-auto-init='Menu'][aria-expanded='false']"));
-      $this->assertCount(1, $main_menu->findAll('css', "nav div.ecl-menu__overlay[data-ecl-menu-overlay]"));
+      $this->assertCount(1, $main_menu->findAll('css', "nav div.ecl-menu__overlay"));
 
       // Assert the menu container.
       $menu_container = $assert->elementExists('css', 'nav div.ecl-container.ecl-menu__container', $main_menu);

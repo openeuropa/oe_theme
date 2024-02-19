@@ -1,5 +1,5 @@
 diff --git a/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig b/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig
-index 761c4da..c6f58fd 100644
+index 761c4da..7f8f967 100644
 --- a/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig
 +++ b/node_modules/@ecl/twig-component-site-footer/site-footer.html.twig
 @@ -6,6 +6,8 @@
@@ -16,15 +16,7 @@ index 761c4da..c6f58fd 100644
                label: _label,
                type: 'standalone',
 -              aria_label: _sections.logo.title
-+              aria_label: _sections.logo.aria_label,
++              aria_label: _sections.logo.aria_label
              },
              extra_classes: 'ecl-site-footer__logo-link'
            } only %}
-@@ -149,6 +151,7 @@
-               {% endif %}
-               {% include '@ecl/link/link.html.twig' with _item|merge({
-                 link: _item.link|default({})|merge({ type: 'standalone' }),
-+                icon: _item.icon|default({})|merge({ size: 'xs' }),
-                 extra_classes: 'ecl-site-footer__link',
-               }) only %}
-               {% if _item.content_after is defined and _item.content_after is not empty %}
