@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\PatternAssertions;
 
@@ -42,7 +42,7 @@ class TabsAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    */
   protected function assertItems(array $expected_items, Crawler $crawler): void {
-    $item_elements = $crawler->filter('div.ecl-tabs__item');
+    $item_elements = $crawler->filter('div.ecl-tabs__item:not(.ecl-tabs__item--more)');
     self::assertCount(count($expected_items), $item_elements);
     foreach ($expected_items as $index => $expected_item) {
       $item_element = $item_elements->eq($index);

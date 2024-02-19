@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Kernel;
 
 use Drupal\Core\Url;
-use Symfony\Component\DomCrawler\Crawler;
+use Drupal\Tests\oe_theme\PatternAssertions\TabsAssert;
 
 /**
  * Tests that Drupal local tasks are properly rendered.
@@ -54,36 +54,25 @@ class MenuLocalTasksTest extends AbstractKernelTestBase {
     ];
 
     $html = $this->renderRoot($render);
-    $crawler = new Crawler($html);
-
-    // Assert wrapper contains ECL class.
-    $actual = $crawler->filter('nav.ecl-navigation');
-    $this->assertCount(1, $actual);
-
-    // Assert list contains ECL classes.
-    $actual = $crawler->filter('ul.ecl-navigation.ecl-u-pb-m.ecl-u-pt-m');
-    $this->assertCount(1, $actual);
-
-    // Assert active link contains ECL classes.
-    $actual = $crawler->filter('li.ecl-navigation__item--active')->text();
-    $this->assertEquals('Third link - Active', trim($actual));
-
-    // Assert regular link contains ECL classes and the links are ordered by
-    // weight.
-    $actual = $crawler->filter('li.ecl-navigation__item > a')
-      ->eq(0)
-      ->text();
-    $this->assertEquals('First link - Inactive', trim($actual));
-
-    $actual = $crawler->filter('li.ecl-navigation__item > a')
-      ->eq(1)
-      ->text();
-    $this->assertEquals('Second link', trim($actual));
-
-    $actual = $crawler->filter('li.ecl-navigation__item > a')
-      ->eq(2)
-      ->text();
-    $this->assertEquals('Third link - Active', trim($actual));
+    $expected_items = [
+      'items' => [
+        [
+          'label' => 'First link - Inactive',
+          'path' => 'http://www.inactive.com',
+        ],
+        [
+          'label' => 'Second link',
+          'path' => 'http://www.middlelink.com',
+        ],
+        [
+          'label' => 'Third link - Active',
+          'path' => 'http://www.active.com',
+          'is_current' => TRUE,
+        ],
+      ],
+    ];
+    $assert = new TabsAssert();
+    $assert->assertPattern($expected_items, $html);
   }
 
 }
