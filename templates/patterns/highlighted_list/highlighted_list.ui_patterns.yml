@@ -25,7 +25,9 @@ highlighted_list:
             - "DD Month Year"
           secondary_meta:
             - label: "3 minutes read"
+              icon: "information"
             - label: "5 minutes read"
+              icon: "clock"
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
@@ -48,7 +50,7 @@ highlighted_list:
               - "DD Month Year"
             secondary_meta:
               - label: "5 minutes read"
-                icon: "information"
+                icon: "clock"
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Alternative text for image"
@@ -73,6 +75,7 @@ highlighted_list:
               - "DD Month Year"
             secondary_meta:
               - label: "2 minutes read"
+                icon: "clock"
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Alternative text for image"
@@ -92,7 +95,9 @@ highlighted_list:
               alt: "Alternative text for image"
             secondary_meta:
               - label: "3 minutes read"
-              - label: "5 minutes read"
+                icon: "clock"
+              - label: "Brussels"
+                icon: "location"
         - type: pattern
           id: list_item
           variant: default

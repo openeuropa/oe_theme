@@ -3700,7 +3700,9 @@
             - "DD Month Year"
           secondary_meta:
             - label: "3 minutes read"
+              icon: "information"
             - label: "5 minutes read"
+              icon: "clock"
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Highlighted item image"
@@ -3716,7 +3718,7 @@
               - "DD Month Year"
             secondary_meta:
               - label: "5 minutes read"
-                icon: "information"
+                icon: "clock"
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Item 2 image"
@@ -3732,6 +3734,7 @@
               - "DD Month Year"
             secondary_meta:
               - label: "2 minutes read"
+                icon: "clock"
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Alternative text for image"
@@ -3751,7 +3754,9 @@
               alt: "Alternative text for image"
             secondary_meta:
               - label: "3 minutes read"
-              - label: "5 minutes read"
+                icon: "clock"
+              - label: "Brussels"
+                icon: "location"
         - '#type': "pattern"
           '#id': "list_item"
           '#variant': "default"
@@ -3788,7 +3793,7 @@
       'ul.ecl-content-block__primary-meta-container': 4
       'div.ecl-content-block__description': 1
       'ul.ecl-content-block__secondary-meta-container': 4
-      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 4
+      'ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': 6
       'div#highlighted-news-block div.ecl-u-mt-s:not(.ecl)': 1
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': 1
     equals:
@@ -3798,21 +3803,25 @@
       'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] .ecl-link__label': 'Item 1'
       'div.ecl-col-l-8 .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div.ecl-col-l-8 .ecl-content-block__description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus'
-      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(2) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-4 article:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
       'div.ecl-col-l-4 article:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
-      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
       'div.ecl-col-l-4 article:nth-child(2) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '2 minutes read'
       'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 4 primary meta'
       'div.ecl-col-l-4 article:nth-child(3) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article:nth-child(3) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="#"]': 'Item 4'
-      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
-      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(1) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(1) span.ecl-content-block__secondary-meta-label': '3 minutes read'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use>'
+      'div.ecl-col-l-4 article:nth-child(3) li.ecl-content-block__secondary-meta-item:nth-child(2) span.ecl-content-block__secondary-meta-label': 'Brussels'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] .ecl-link__label': 'Read more news'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="https://example.com"] svg.ecl-icon--2xs': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       'div#highlighted-news-block div.ecl.ecl-u-mt-s': '<div>This <a href="https://example.com">is the detail</a> rich text field which contains a link.</div>'
@@ -3828,7 +3837,7 @@
           title: "Item 1"
           secondary_meta:
             - label: "3 minutes read"
-            - label: "5 minutes read"
+              icon: "clock"
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Highlighted item image"
@@ -3855,6 +3864,7 @@
               - "DD Month Year"
             secondary_meta:
               - label: "5 minutes read"
+                icon: "clock"
             image:
               src: "https://loremflickr.com/1200/900/arch"
               alt: "Item 2 image"
@@ -3902,12 +3912,12 @@
       'div.ecl-content-block__list-container': 0
     equals:
       'div.ecl-col-l-8 .ecl-content-block__title': 'Item 1'
-      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
       'div.ecl-col-l-8 li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '3 minutes read'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1)': 'Item 2 primary meta'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2)': 'DD Month Year'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) .ecl-content-block__title': 'Item 2'
-      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
+      'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item svg.ecl-content-block__secondary-meta-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#clock"></use>'
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'

@@ -2528,11 +2528,6 @@ function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
     return;
   }
   // Override highlighted item information.
-  if (isset($variables['highlighted_item']['#fields']['secondary_meta'])) {
-    // We display only the first secondary meta.
-    $variables['highlighted_item']['#fields']['secondary_meta'] = [reset($variables['highlighted_item']['#fields']['secondary_meta'])];
-    $variables['highlighted_item']['#fields']['secondary_meta'][0]['icon'] = 'information';
-  }
   if (isset($variables['highlighted_item']['#fields']['image'])) {
     $variables['highlighted_item']['#fields']['image']['size'] = 'large';
     if (!isset($variables['highlighted_item']['#fields']['image_position']) ||
@@ -2585,11 +2580,5 @@ function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
     else {
       $item['#fields']['extra_classes'] = 'ecl-u-flex-grow-1';
     }
-    if (!isset($item['#fields']['secondary_meta'])) {
-      continue;
-    }
-    // We display only the first secondary meta.
-    $item['#fields']['secondary_meta'] = [reset($item['#fields']['secondary_meta'])];
-    $item['#fields']['secondary_meta'][0]['icon'] = 'information';
   }
 }
