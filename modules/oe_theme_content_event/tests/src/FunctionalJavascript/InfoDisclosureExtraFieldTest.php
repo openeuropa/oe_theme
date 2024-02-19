@@ -70,7 +70,6 @@ class InfoDisclosureExtraFieldTest extends WebDriverTestBase {
    * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   public function testTimeSensitiveFieldsDisplay(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $static_time = new DrupalDateTime('now', DateTimeItemInterface::STORAGE_TIMEZONE);
     $start_date = (clone $static_time)->modify('+10 days');
     // Create an Event node with required fields only.

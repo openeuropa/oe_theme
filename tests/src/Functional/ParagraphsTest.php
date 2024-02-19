@@ -55,7 +55,6 @@ class ParagraphsTest extends BrowserTestBase {
    * Test Accordion item paragraph form.
    */
   public function testAccordionItemParagraph(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Add an user.
     $user = $this->drupalCreateUser([], '', TRUE);
     $this->drupalLogin($user);
@@ -88,7 +87,6 @@ class ParagraphsTest extends BrowserTestBase {
    * Tests the Media paragraph cache invalidation.
    */
   public function testMediaParagraphCaching(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Set image media translatable.
     $this->container->get('content_translation.manager')->setEnabled('media', 'image', TRUE);
     // Make the image field translatable.

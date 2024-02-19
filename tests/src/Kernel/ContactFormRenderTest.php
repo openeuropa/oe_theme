@@ -44,7 +44,6 @@ class ContactFormRenderTest extends ContactFormTestBase {
    * Tests that corporate contact form is rendered with the correct ECL markup.
    */
   public function testContactForm(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $contact_form = ContactForm::create(['id' => 'oe_contact_form']);
     $contact_form->setThirdPartySetting('oe_contact_forms', 'is_corporate_form', TRUE);
     $contact_form->setThirdPartySetting('oe_contact_forms', 'header', 'this is a test header');

@@ -116,7 +116,6 @@ class FeaturedMediaFormatterTest extends AbstractKernelTestBase {
    * Test the featured media formatter.
    */
   public function testFormatter(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $this->container->get('file_system')->copy($this->root . '/core/misc/druplicon.png', 'public://example.jpg');
     $image = File::create(['uri' => 'public://example.jpg']);
     $image->save();

@@ -20,7 +20,6 @@ class ContentRowTest extends ParagraphsTestBase {
    * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
    */
   public function testRendering(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create multiple paragraphs to be referenced in the content row.
     $items = [];
 
