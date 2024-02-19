@@ -341,6 +341,24 @@ class TwigExtension extends AbstractExtension {
         'name' => 'corner-arrow',
         'transform' => 'rotate-90',
       ],
+      'back' => [
+        'name' => 'arrow-left',
+      ],
+      'gear' => [
+        'name' => 'settings',
+      ],
+      'basket' => [
+        'name' => 'shopping-bag',
+      ],
+      'video' => [
+        'name' => 'play-filled',
+      ],
+      'generic-lang' => [
+        'name' => 'global',
+      ],
+      'language' => [
+        'name' => 'feedback',
+      ],
     ];
 
     // Check whether the icon needs any transformation.
