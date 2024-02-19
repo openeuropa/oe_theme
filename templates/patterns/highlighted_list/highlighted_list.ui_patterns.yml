@@ -120,7 +120,7 @@ highlighted_list:
       type: "Url"
       label: "See more URL"
       description: "See more link URL (A Drupal Url object)"
-      preview: "https://example.com"
+      preview: "#"
     detail:
       type: "text"
       label: "Detail"

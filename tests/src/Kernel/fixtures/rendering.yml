@@ -3921,4 +3921,4 @@
       'div.ecl-col-l-4 article.ecl-u-mb-m:nth-child(1) li.ecl-content-block__secondary-meta-item span.ecl-content-block__secondary-meta-label': '5 minutes read'
       'div.ecl-col-l-4 article:nth-child(2) .ecl-content-block__title a.ecl-link.ecl-link--standalone[href="https://external.com"]': 'Item 3'
       'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] .ecl-link__label': '#'
-      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] svg.ecl-icon--xs.ecl-icon--rotate-180': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#back"></use>'
+      'div#highlighted-news-block > div.ecl-u-mt-s a.ecl-link.ecl-link--standalone.ecl-link--icon[href="#"] svg.ecl-icon--xs.ecl-icon--rotate-180': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
