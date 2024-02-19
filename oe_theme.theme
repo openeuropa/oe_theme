@@ -2544,6 +2544,11 @@ function oe_theme_preprocess_select(&$variables) {
  * Implements hook_page_attachments_alter().
  */
 function oe_theme_page_attachments_alter(array &$attachments) {
+  // If the theme is configured to not use the theme favicon, bail out.
+  if (!theme_get_setting('favicon.use_default')) {
+    return;
+  }
+
   // Use different favicon based on theme component library.
   $active_theme = \Drupal::theme()->getActiveTheme();
   if ($active_theme->getName() === 'oe_theme' || array_key_exists('oe_theme', $active_theme->getBaseThemeExtensions())) {
