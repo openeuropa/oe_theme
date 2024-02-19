@@ -66,14 +66,14 @@ class StatusMessagesTest extends AbstractKernelTestBase {
       $modifier = self::MESSAGE_TYPES[$type]['modifier'];
       $heading = self::MESSAGE_TYPES[$type]['heading'];
 
-      $wrapper = $crawler->filter('div.ecl-message--' . $modifier);
+      $wrapper = $crawler->filter('div.ecl-notification--' . $modifier);
       $this->assertCount(1, $wrapper, sprintf('Wrong number of wrappers found for "%s" messages.', $type));
 
-      $title = $wrapper->filter('div.ecl-message__title');
+      $title = $wrapper->filter('div.ecl-notification__title');
       $this->assertCount(1, $title, sprintf('Wrong number of headings found for "%s" messages.', $type));
       $this->assertEquals($heading, trim($title->first()->text()));
 
-      $description = $wrapper->filter('div.ecl-message__description');
+      $description = $wrapper->filter('div.ecl-notification__description');
       $this->assertCount(1, $description, sprintf('Wrong number of "%s" messages found.', $type));
       $this->assertEquals(implode($messages), trim($description->text()));
     }
@@ -81,7 +81,7 @@ class StatusMessagesTest extends AbstractKernelTestBase {
     // Verify that no message types other than the ones present in the test data
     // are rendered.
     foreach (array_diff_key(self::MESSAGE_TYPES, $data) as $type => $info) {
-      $wrapper = $crawler->filter('div.ecl-message--' . $info['modifier']);
+      $wrapper = $crawler->filter('div.ecl-notification--' . $info['modifier']);
       $this->assertEmpty(
         $wrapper,
         sprintf('No messages of type "%s" were expected, but %d found.', $type, $wrapper->count())
