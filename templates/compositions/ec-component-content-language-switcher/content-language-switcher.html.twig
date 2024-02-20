@@ -74,7 +74,7 @@
           <ul style="grid-auto-flow: column; grid-template-rows: repeat(4, 1fr)" class="ecl-u-d-block ecl-u-d-m-grid ecl-unordered-list ecl-unordered-list--no-marker ecl-u-mt-xs ecl-u-type-m">
             {% for language in languages %}
               <li class="ecl-unordered-list__item ecl-u-ma-2xs">
-                {% set link_classes = language.current ? 'ecl-u-bg-blue-50 ecl-u-type-color-white ecl-u-type-bold' : '' %}
+                {% set link_classes = language.current ? 'ecl-u-bg-primary-40 ecl-u-type-color-white ecl-u-type-bold' : '' %}
                 {% include '@ecl-twig/link' with {
                   link: {
                     label: language.label,

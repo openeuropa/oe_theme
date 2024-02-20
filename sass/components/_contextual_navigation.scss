@@ -2,6 +2,7 @@
 
 $outline-width: 3px !default;
 $border_right: 1px solid var(--ecl-color-neutral-60) !default;
+$font-family: null !default;
 
 .ecl-contextual-navigation {
   display: flex;
@@ -65,7 +66,7 @@ $border_right: 1px solid var(--ecl-color-neutral-60) !default;
   color: var(--ecl-color-primary);
   line-height: 1;
   padding: 0;
-  font-family: arial, sans-serif;
+  font-family: $font-family;
 
   &:hover {
     color: var(--ecl-color-dark-100);

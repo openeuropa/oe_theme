@@ -16,7 +16,9 @@
 @use "./components/form";
 @use "./components/toolbar";
 @use "./components/wysiwyg";
-@use "./components/global";
+@use "./components/global" with (
+  $font-family: map.get(theme.$theme, 'font-family', 'default'),
+);
 @use "./components/description_list" with (
   $background-color: var(--ecl-color-primary-5),
   $border-color: var(--ecl-color-primary-10),
@@ -25,4 +27,5 @@
 @use "./components/contextual_navigation" with (
   $outline-width: 2px,
   $border_right: 1px solid var(--ecl-color-dark-60),
+  $font-family: map.get(theme.$theme, 'font-family', 'default'),
 );
