@@ -9,7 +9,7 @@ use Drupal\views\Entity\View;
 /**
  * Tests that breadcrumbs are cached correctly.
  *
- * @group batch1
+ * @group batch2
  */
 class BreadcrumbTest extends ContentRenderTestBase {
 

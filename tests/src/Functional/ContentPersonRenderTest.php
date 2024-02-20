@@ -23,7 +23,7 @@ use Drupal\user\RoleInterface;
 /**
  * Test Person content type rendering.
  *
- * @group batch3
+ * @group batch2
  */
 class ContentPersonRenderTest extends ContentRenderTestBase {
 

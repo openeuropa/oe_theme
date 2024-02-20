@@ -14,7 +14,7 @@ use Symfony\Component\DomCrawler\Crawler;
 /**
  * Tests that blocks are properly displayed.
  *
- * @group batch3
+ * @group batch2
  */
 class BlockTest extends EntityKernelTestBase {
 

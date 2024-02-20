@@ -10,7 +10,7 @@ use Drupal\Tests\BrowserTestBase;
 /**
  * Tests that theme configuration is correctly applied.
  *
- * @group batch1
+ * @group batch2
  */
 class ConfigurationTest extends BrowserTestBase {
 
