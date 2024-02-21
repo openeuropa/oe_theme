@@ -1,0 +1,129 @@
+highlighted_list:
+  label: "Highlighted list"
+  description: "A list of 4 highlighted content items. The image is only displayed for the first two items and the description for the first item. If more than 4 items are provided, only the first 4 will be displayed."
+  fields:
+    title:
+      type: "text"
+      label: "Title"
+      description: "Highlighted list title"
+      preview: "Highlighted News"
+    highlighted_item:
+      type: "array"
+      label: "Highlighted item"
+      description: "The main item of the highlighted list."
+      preview:
+        type: pattern
+        id: list_item
+        variant: default
+        fields:
+          title: "Item 1"
+          url: "#"
+          external_link: true
+          detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+          meta:
+            - "Item 1 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "3 minutes read"
+              icon: "information"
+            - label: "5 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          badges:
+            - label: "Highlighted"
+              variant: "highlight"
+    items:
+      type: "array"
+      label: "Items"
+      description: "List of items compatible with the ECL Content item component."
+      preview:
+        - type: pattern
+          id: list_item
+          variant: thumbnail_primary
+          fields:
+            title: "Item 2"
+            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
+            meta:
+              - "Item 2 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "5 minutes read"
+                icon: "clock"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            badges:
+              - label: "Highlighted"
+                variant: "highlight"
+            lists:
+              -
+                - term: "When"
+                  definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+                - term: "Where"
+                  definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 3"
+            url: "https://external.com"
+            detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+            meta:
+              - "Item 3 primary meta"
+              - "DD Month Year"
+            secondary_meta:
+              - label: "2 minutes read"
+                icon: "clock"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            image_position: "top"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 4"
+            url: "#"
+            detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+            meta:
+              - "Item 4 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+            secondary_meta:
+              - label: "3 minutes read"
+                icon: "clock"
+              - label: "Brussels"
+                icon: "location"
+        - type: pattern
+          id: list_item
+          variant: default
+          fields:
+            title: "Item 5"
+            url: "#"
+            detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+            meta:
+              - "Item 5 primary meta"
+              - "DD Month Year"
+            image:
+              src: "https://loremflickr.com/1200/900/arch"
+              alt: "Alternative text for image"
+    see_more_label:
+      type: "text"
+      label: "See more label"
+      description: "The label for the See more link."
+      preview: "Read more news"
+    see_more_url:
+      type: "Url"
+      label: "See more URL"
+      description: "See more link URL (A Drupal Url object)"
+      preview: "#"
+    detail:
+      type: "text"
+      label: "Detail"
+      description: "List's additional information displayed below the See more link."
+      preview:
+        '#markup': "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non enim iam stirpis bonum quaeret, sed animalis. Ego vero volo in virtute vim esse quam maximam; <b>A mene tu?</b> Quid, quod res alia tota est? Duo Reges: constructio interrete.</p>"

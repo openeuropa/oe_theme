@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Highlighted list pattern.
+ */
+#}
+
+{# Prepare the see more link. #}
+{% if see_more_url is defined and see_more_url is not empty %}
+  {% set _see_more = {
+    link: {
+      type: 'standalone',
+      label: see_more_label|default(see_more_url),
+      path: see_more_url,
+      external: see_more_url|is_external_url,
+      icon_path: ecl_icon_path
+    },
+    icon: {
+      path: ecl_icon_path,
+      name: 'arrow-left',
+      size: 'xs',
+      transform: 'rotate-180'
+    }
+  } %}
+{% endif %}
+
+{% include '@oe_theme/compositions/ec-component-highlighted-news-block/highlighted-news-block.html.twig' with {
+  'title': title|default(''),
+  'highlighted': highlighted_item,
+  'items': items,
+  'see_more': _see_more,
+  'detail': detail|default(''),
+} only %}
+
