@@ -4,10 +4,24 @@
  * Theme for the status message extra field on event content type.
  */
 #}
-{% if title %}
+
+{# We need to always provide the description for the ECL component. #}
+{% set _title = '' %}
+{% set _description = '' %}
+{% if title is not empty %}
+  {% if description is empty %}
+    {# If we don't have a description, we use the title for it. #}
+    {% set _description = title %}
+  {% else %}
+    {% set _title = title %}
+    {% set _description = description %}
+  {% endif %}
+{% endif %}
+
+{% if _description is not empty %}
   {% include '@ecl-twig/notification' with {
-    'title': title,
-    'description': description|default(''),
+    'title': _title,
+    'description': _description,
     'variant': variant,
     'icon': {
       'path': ecl_icon_path,
@@ -19,8 +33,9 @@
       'icon' : {
         'path': ecl_icon_path,
         'name': 'close',
-        'size': 's',
-      }
+        'size': ecl_component_library == 'ec' ? 'm' : 's',
+      },
+      hide_label: ecl_component_library == 'ec' ? true : false,
     },
     'extra_classes': 'ecl-u-mb-2xl',
   } only %}

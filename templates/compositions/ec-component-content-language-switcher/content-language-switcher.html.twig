@@ -18,7 +18,7 @@
   <div class="ecl-lang-select-page {{ ecl_class_background_color() }} ecl-u-pv-m">
     <div class="ecl-container">
       {% include '@ecl-twig/notification' with {
-        title: 'English is available via machine translation – please use the link below.'|t,
+        description: 'English is available via machine translation – please use the link below.'|t,
         variant: 'warning',
         extra_classes: ecl_component_library == 'ec' ? 'ecl-u-mb-m ecl-u-bg-transparent' : 'ecl-u-mb-m',
         icon: {
@@ -31,8 +31,9 @@
           icon : {
             path: ecl_icon_path,
             name: 'close',
-            size: 's',
-          }
+            'size': ecl_component_library == 'ec' ? 'm' : 's',
+          },
+          hide_label: ecl_component_library == 'ec' ? true : false,
         },
       } only %}
 

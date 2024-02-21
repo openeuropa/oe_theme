@@ -34,8 +34,9 @@
       'icon' : {
         'path': ecl_icon_path,
         'name': 'close',
-        'size': 's',
-      }
+        'size': ecl_component_library == 'ec' ? 'm' : 's',
+      },
+      hide_label: ecl_component_library == 'ec' ? true : false,
     },
   } only %}
 {% endfor %}
