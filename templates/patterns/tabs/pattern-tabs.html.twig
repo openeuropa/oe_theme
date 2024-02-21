@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Tabs.
+ */
+#}
+{% include '@ecl-twig/tabs' with {
+  items: items,
+  more_label: more_label,
+  previous_label: previous_label,
+  next_label: next_label,
+  icon_path: ecl_icon_path,
+  extra_attributes: extra_attributes,
+  extra_classes: extra_classes
+} only %}
