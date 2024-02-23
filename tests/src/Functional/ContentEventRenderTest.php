@@ -650,7 +650,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $icon = $status_container->find('css', 'svg.ecl-icon.ecl-icon--l.ecl-notification__icon use');
     $this->assertStringContainsString('livestreaming', $icon->getAttribute('xlink:href'));
     // Assert the message.
-    $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('This event has ended, but the livestream is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
     // Assert "Event contact" field.
     $contact_entity_general1 = $this->createContactEntity('first_general_contact');
@@ -1015,7 +1015,7 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       'timezone' => 'Europe/Brussels',
     ])->save();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('The livestream has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
     // Set event and online dates to assert event status message.
     $node->set('oe_event_status_description', 'Event status message.');
@@ -1036,28 +1036,28 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->drupalGet($node->toUrl());
     // By default, message doesn't exist and the 'Status description' field is
     // not rendered for the livestream messages.
-    $this->assertEmpty($status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title'));
+    $this->assertEmpty($status_container->find('css', 'div.ecl-notification__content'));
 
     // Event is ongoing, but livestream is not.
     $static_time = new DrupalDateTime('2020-04-17 14:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('This event has started. The livestream will start at 18 April 2020, 23:00 AEST.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
     // Event is ongoing and livestream also.
     $static_time = new DrupalDateTime('2020-04-18 20:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('This event has started. You can also watch it via livestream.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
     // Event is ongoing but livestream is finished.
     $static_time = new DrupalDateTime('2020-04-20 22:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('The livestream has ended, but the event is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('The livestream has ended, but the event is ongoing.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
 
     // Update the event status and assert the message updates correctly and the
     // 'Status description' field is displayed.
@@ -1090,17 +1090,17 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     // Assert the message updated.
     $this->assertSession()->elementNotExists('css', 'div.ecl-notification.ecl-notification--warning.ecl-u-mb-2xl');
     $status_container = $this->assertSession()->elementExists('css', 'div.ecl-notification.ecl-notification--info.ecl-u-mb-2xl');
-    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
     // Assert that the 'Status description' field is not rendered for the
     // 'As planned' messages.
-    $this->assertSession()->elementNotExists('css', 'div.ecl-notification__content div.ecl-notification__description');
+    $this->assertStringContainsString('This event has started.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
+    $this->assertSession()->elementNotExists('css', 'div.ecl-notification__content div.ecl-notification__title');
 
     // Set current time after the event ends.
     $static_time = new DrupalDateTime('2020-05-15 13:00:00', DateTimeItemInterface::STORAGE_TIMEZONE);
     $this->freezeTime($static_time);
     $this->cronRun();
     $this->drupalGet($node->toUrl());
-    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__title')->getText());
+    $this->assertStringContainsString('This event has ended.', $status_container->find('css', 'div.ecl-notification__content div.ecl-notification__description')->getText());
   }
 
   /**
