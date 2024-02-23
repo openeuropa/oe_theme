@@ -18,7 +18,7 @@ class FeaturedItemAssert extends BasePatternAssert {
     return [
       'title' => [
         [$this, 'assertElementText'],
-        'article.ecl-card .ecl-card__body h1.ecl-content-block__title a.ecl-link',
+        'article.ecl-card .ecl-card__body div.ecl-content-block__title a.ecl-link',
       ],
       'link' => [
         [$this, 'assertLink'],

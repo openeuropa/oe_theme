@@ -44,7 +44,6 @@ class ContactRenderTest extends ContentRenderTestBase {
    * Test a contact being rendered using full view.
    */
   public function testFullView(): void {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     // Create Contact entity with required values only.
     $contact = $this->createContact();
     $name = $contact->getName();
@@ -57,7 +56,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $this->assertEmpty($crawler->filter('.ecl'));
     $this->assertEmpty($crawler->filter('.ecl-description-list'));
     $this->assertEmpty($crawler->filter('figure.ecl-media-container__figure'));
-    $this->assertEmpty($crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l'));
+    $this->assertEmpty($crawler->filter('.ecl-u-border-top.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-mt-s.ecl-u-pt-l.ecl-u-pb-l'));
     $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-6'));
     $this->assertEmpty($crawler->filter('.ecl-row.ecl-u-mv-xl .ecl-col-m-5'));
 
@@ -194,7 +193,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l');
+    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-neutral-40.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-l.ecl-u-pb-l');
     $press_link = $links_wrapper->filter('a');
     $this->assertBottomLink($press_link, "http://www.example.com/press_contact_$name", 'Press contacts');
 
@@ -206,7 +205,7 @@ class ContactRenderTest extends ContentRenderTestBase {
     $build = $this->contactViewBuilder->view($contact, 'full');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-grey-15.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-grey-15.ecl-u-pt-l.ecl-u-pb-l');
+    $links_wrapper = $crawler->filter('div.ecl-u-border-top.ecl-u-border-color-neutral-40.ecl-u-mt-s div.ecl-u-border-bottom.ecl-u-border-color-neutral-40.ecl-u-pt-l.ecl-u-pb-l');
     $this->assertCount(2, $links_wrapper);
 
     $link = $links_wrapper->last()->filter('a');

@@ -21,7 +21,6 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
    * @throws \Exception
    */
   public function testLinkPatternRendering() {
-    $this->markTestSkipped('Must be re-enabled before considering migration to ECL 4 as complete.');
     $pattern = [
       '#type' => 'pattern',
       '#id' => 'link',
@@ -55,8 +54,8 @@ class LinkPatternRenderingTest extends AbstractKernelTestBase {
 
     $html = $this->renderRoot($pattern);
     $crawler = new Crawler($html);
-    $this->assertEquals('Link text', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after span.ecl-link__label')->text());
-    $this->assertEquals('https://example.com', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon.ecl-link--icon-after')->attr('href'));
+    $this->assertEquals('Link text', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label')->text());
+    $this->assertEquals('https://example.com', $crawler->filter('a.ecl-link.ecl-link--standalone.ecl-link--icon')->attr('href'));
     $this->assertEquals('<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>', $crawler->filter('svg.ecl-icon.ecl-icon--2xs.ecl-link__icon')->html());
   }
 
