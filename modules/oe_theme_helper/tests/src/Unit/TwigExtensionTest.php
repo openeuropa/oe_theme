@@ -397,6 +397,54 @@ class TwigExtensionTest extends UnitTestCase {
         ],
         '',
       ],
+      [
+        'back',
+        [
+          'name' => 'arrow-left',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
+      [
+        'gear',
+        [
+          'name' => 'settings',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
+      [
+        'basket',
+        [
+          'name' => 'shopping-bag',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
+      [
+        'video',
+        [
+          'name' => 'play-filled',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
+      [
+        'generic-lang',
+        [
+          'name' => 'global',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
+      [
+        'language',
+        [
+          'name' => 'feedback',
+          'path' => '/path/to/theme/resources/icons/',
+        ],
+        NULL,
+      ],
     ];
   }
 
