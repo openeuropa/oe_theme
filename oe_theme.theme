@@ -526,6 +526,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
       'path' => Url::fromRoute($route_name, $route_parameters, $options),
       'label' => t('Previous'),
       'icon_position' => 'before',
+      'hide_label' => $variables['ecl_component_library'] === 'ec',
     ];
     $nav_link['type'] = 'previous';
     $nav_link['aria_label'] = t('Go to previous page');
@@ -615,6 +616,7 @@ function oe_theme_preprocess_pager(array &$variables): void {
       'path' => Url::fromRoute($route_name, $route_parameters, $options),
       'label' => t('Next'),
       'icon_position' => 'after',
+      'hide_label' => $variables['ecl_component_library'] === 'ec',
     ];
     $nav_link['type'] = 'next';
     $nav_link['aria_label'] = t('Go to next page');
