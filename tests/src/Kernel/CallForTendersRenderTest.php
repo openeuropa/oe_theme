@@ -132,6 +132,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
             'body' => 'Audit Board of the European Communities, Arab Common Market',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -168,6 +169,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'body' => 'Audit Board of the European Communities',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -203,6 +205,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'body' => 'Audit Board of the European Communities',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -242,6 +245,7 @@ class CallForTendersRenderTest extends ContentRenderTestBase {
           'body' => 'Audit Board of the European Communities',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 

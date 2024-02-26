@@ -136,6 +136,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Audit Board of the European Communities',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
@@ -151,6 +152,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Audit Board of the European Communities, Arab Common Market',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
@@ -193,6 +195,7 @@ class PersonRenderTest extends ContentRenderTestBase {
           'body' => 'Social media direct_contact',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $this->getRenderedNode($node));
 
@@ -206,7 +209,7 @@ class PersonRenderTest extends ContentRenderTestBase {
 
     $html = $this->getRenderedNode($node);
     $crawler = new Crawler($html);
-    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--vertical.ecl-content-block__list');
     $this->assertCount(3, $contacts_render);
 
     $field_assert = new FieldListAssert();
@@ -336,6 +339,7 @@ class PersonRenderTest extends ContentRenderTestBase {
             'body' => 'SingerDescription job_1DancerDescription job_2',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $html = $this->getRenderedNode($node);

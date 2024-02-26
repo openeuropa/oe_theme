@@ -130,6 +130,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
             'body' => 'Arab Common Market',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -174,6 +175,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Arab Common Market',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -215,6 +217,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Arab Common Market',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -255,6 +258,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Arab Common Market',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -286,6 +290,7 @@ class CallForProposalsRenderTest extends ContentRenderTestBase {
           'body' => 'Arab Common Market',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
   }

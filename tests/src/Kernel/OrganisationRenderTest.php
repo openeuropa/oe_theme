@@ -136,6 +136,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
             'body' => 'Address first_contact, 1001 Brussels, Belgium',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -163,7 +164,7 @@ class OrganisationRenderTest extends ContentRenderTestBase {
     $build = $this->nodeViewBuilder->view($node, 'teaser');
     $html = $this->renderRoot($build);
     $crawler = new Crawler($html);
-    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--horizontal.ecl-content-block__list');
+    $contacts_render = $crawler->filter('article .ecl-content-block.ecl-content-item__content-block .ecl-description-list.ecl-description-list--vertical.ecl-content-block__list');
     $this->assertCount(2, $contacts_render);
 
     $field_assert = new FieldListAssert();
