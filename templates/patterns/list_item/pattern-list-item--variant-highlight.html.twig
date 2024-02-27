@@ -4,6 +4,7 @@
  * Default implementation for the highlight list item component.
  */
 #}
+{% set _length = length|default(0) %}
 {# Prepare the title as a link or simple string. #}
 {%- if url %}
   {% set _title = {
@@ -34,6 +35,6 @@
 {% include '@ecl-twig/card' with {
   title: _title|default([]),
   picture: picture|default([]),
-  description: detail|smart_trim(length),
+  description: detail|smart_trim(_length),
   labels: badges,
 } only %}
