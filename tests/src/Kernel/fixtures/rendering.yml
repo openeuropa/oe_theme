@@ -3520,8 +3520,8 @@
       li.ecl-news-ticker__slide:nth-child(5) a.ecl-link.ecl-news-ticker__slide-text span.ecl-link__label: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium"
       li.ecl-news-ticker__slide:nth-child(6) a.ecl-link.ecl-news-ticker__slide-text: "Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores"
     equals:
-      li.ecl-news-ticker__slide:nth-child(1) a svg.ecl-link__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
-      li.ecl-news-ticker__slide:nth-child(5) a svg.ecl-link__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      li.ecl-news-ticker__slide:nth-child(1) a svg.ecl-link__icon: '<title>External link</title><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
+      li.ecl-news-ticker__slide:nth-child(5) a svg.ecl-link__icon: '<title>External link</title><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#external"></use>'
       svg.ecl-icon.ecl-icon--m.ecl-news-ticker__icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#information"></use>'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--current: '1'
       div.ecl-news-ticker__counter span.ecl-news-ticker__counter--max: '6'
