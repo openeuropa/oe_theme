@@ -38,7 +38,12 @@
   }]) %}
 {% endfor %}
 
+{% if _items|length < 3 %}
+  {% set _column = _items|length %}
+{% endif %}
+
 {% include '@ecl-twig/fact-figures' with {
+  'column': _column|default(null),
   'items': _items,
   "view_all":{
     "link": _link,
