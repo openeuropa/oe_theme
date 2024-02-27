@@ -50,7 +50,7 @@ file_translation:
       preview: "Other languages"
     more_info:
       type: "text"
-      label: "More information (deprecated - to be removed in 4.x)"
+      label: "More information (deprecated - to be removed in 5.x)"
       description: "Informative text about the available translations."
       preview: "Looking for another language which is not on the list? Find out why."
     publication_date:
