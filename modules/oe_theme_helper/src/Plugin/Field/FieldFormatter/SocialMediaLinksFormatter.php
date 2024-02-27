@@ -13,7 +13,7 @@ use Drupal\Core\Form\FormStateInterface;
  * This formatter assumes that link categories will be compatible with
  * media service names used in the "Social media links: horizontal" pattern.
  *
- * @see templates/patterns/social_media_links/social_media_links_horizontal.ui_patterns.yml
+ * @see templates/patterns/social_media_links/social_media_links.ui_patterns.yml
  *
  * @FieldFormatter(
  *   id = "oe_theme_helper_social_media_links_formatter",
@@ -90,7 +90,8 @@ class SocialMediaLinksFormatter extends SocialMediaBaseLinkFormatter {
 
     $pattern = [
       '#type' => 'pattern',
-      '#id' => 'social_media_links_' . $this->getSetting('variant'),
+      '#id' => 'social_media_links',
+      '#variant' => $this->getSetting('variant'),
       '#fields' => [
         'title' => $this->getSetting('title'),
         'links' => [],
