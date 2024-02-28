@@ -3002,20 +3002,20 @@
           text: "Live streaming available"
   assertions:
     count:
-      'ul.ecl-unordered-list--no-marker': 1
-      'ul li.ecl-unordered-list__item': 4
+      'ul.ecl-unordered-list--no-marker.ecl-u-mh-none.ecl-u-ph-none': 1
+      'ul li.ecl-unordered-list__item.ecl-u-mh-none.ecl-u-ph-none': 4
       'ul li.ecl-unordered-list__item svg': 4
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg>Brussels, Belgium'
-      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--xs ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--s ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#calendar"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use></svg>Brussels, Belgium'
+      'ul li.ecl-unordered-list__item:nth-child(4)': '<svg class="ecl-icon ecl-icon--xs ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': pattern
     '#id': icons_with_text
   assertions:
     count:
-      'ul.ecl-unordered-list--no-marker': 0
+      'ul.ecl-unordered-list--no-marker.ecl-u-mh-none.ecl-u-ph-none': 0
 - array:
     '#type': pattern
     '#id': icons_with_text
@@ -3033,13 +3033,13 @@
           text: "Live streaming available"
   assertions:
     count:
-      'ul.ecl-unordered-list--no-marker': 1
-      'ul li.ecl-unordered-list__item': 3
+      'ul.ecl-unordered-list--no-marker.ecl-u-mh-none.ecl-u-ph-none': 1
+      'ul li.ecl-unordered-list__item.ecl-u-mh-none.ecl-u-ph-none': 3
       'ul li.ecl-unordered-list__item svg': 3
     equals:
-      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
-      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>15-16 November 2019, 08:00 AM'
-      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
+      'ul li.ecl-unordered-list__item:nth-child(1)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>Culture | Innovation'
+      'ul li.ecl-unordered-list__item:nth-child(2)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#file"></use></svg>15-16 November 2019, 08:00 AM'
+      'ul li.ecl-unordered-list__item:nth-child(3)': '<svg class="ecl-icon ecl-icon--m ecl-u-mr-s ecl-u-flex-shrink-0" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#livestreaming"></use></svg>Live streaming available'
 - array:
     '#type': "pattern"
     '#id': "tag"
