@@ -21,16 +21,16 @@
 {# Print the result #}
 
 {% if items %}
-<ul class="ecl-unordered-list ecl-unordered-list--no-marker{{ _compact ? ' ecl-u-type-s ecl-u-mt-m'}}">
+<ul class="ecl-unordered-list ecl-unordered-list--no-marker ecl-u-mh-none ecl-u-ph-none{{ _compact ? ' ecl-u-type-s ecl-u-mt-m'}}">
   {% for _item in items|filter(item => item.text) %}
-    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item{{ not _compact and not loop.first ? ' ecl-u-mt-m' }}">
+    <li class="ecl-u-d-flex ecl-u-align-items-center ecl-unordered-list__item ecl-u-mh-none ecl-u-ph-none{{ not _compact and not loop.first ? ' ecl-u-mt-m' }}">
       {% include '@ecl-twig/icon' with {
         icon: {
           size: _item.size|default('m'),
           path: _icon_path,
           name: _item.icon|default('file')
         },
-        extra_classes: 'ecl-u-mr-s'
+        extra_classes: 'ecl-u-mr-s ecl-u-flex-shrink-0'
       } only %}{{- _item.text -}}
     </li>
   {% endfor %}
