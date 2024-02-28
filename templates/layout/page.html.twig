@@ -9,9 +9,8 @@
 {% block site_header %}
   {% set has_menu = page.navigation|render|striptags|trim is not empty %}
 <header
-  class="ecl-site-header"
+  class="ecl-site-header {% if has_menu %}ecl-site-header--has-menu{% endif %}"
   data-ecl-auto-init="SiteHeader"
-  {% if has_menu %}data-ecl-has-menu{% endif %}
 >
   {{ page.site_top_bar }}
   {% block site_header_container %}
