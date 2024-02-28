@@ -115,6 +115,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
             'body' => '21 February 2020, 01:00 (AEDT)',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $assert->assertPattern($expected_values, $html);
@@ -158,6 +159,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
           'body' => '17 February 2020, 12:00 (AEDT)',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 
@@ -184,6 +186,7 @@ class ConsultationRenderTest extends ContentRenderTestBase {
           'body' => '21 February 2020, 12:00 (AEDT)',
         ],
       ],
+      'variant' => 'vertical',
     ];
     $assert->assertPattern($expected_values, $html);
 

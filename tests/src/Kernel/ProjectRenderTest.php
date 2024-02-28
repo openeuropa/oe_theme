@@ -172,6 +172,7 @@ class ProjectRenderTest extends ContentRenderTestBase {
             'body' => 'Belgium',
           ],
         ],
+        'variant' => 'vertical',
       ],
     ];
     $assert->assertPattern($expected_values, $html);

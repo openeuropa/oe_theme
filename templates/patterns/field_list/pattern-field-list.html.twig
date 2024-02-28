@@ -21,7 +21,7 @@
 {% if _items %}
   {% block content %}
   {% include '@ecl-twig/description-list' with {
-    'variant': variant,
+    'variant': variant|default('vertical'),
     'items': _items,
     'extra_classes': extra_classes,
   } %}

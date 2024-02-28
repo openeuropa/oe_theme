@@ -43,13 +43,13 @@ class FieldListAssert extends BasePatternAssert {
     $field_list_container = $crawler->filter('dl.ecl-description-list');
     $existing_classes = $field_list_container->attr('class');
     $existing_classes = explode(' ', $existing_classes);
-    if (in_array('ecl-description-list--default', $existing_classes)) {
-      return 'default';
-    }
     if (in_array('ecl-description-list--featured', $existing_classes)) {
       return 'featured_horizontal';
     }
-    return 'horizontal';
+    if (in_array('ecl-description-list--horizontal', $existing_classes)) {
+      return 'horizontal';
+    }
+    return 'vertical';
   }
 
   /**
@@ -93,10 +93,10 @@ class FieldListAssert extends BasePatternAssert {
         return '.ecl-description-list--horizontal';
 
       case 'featured_horizontal':
-        return '.ecl-description-list--horizontal.ecl-description-list--featured';
+        return '.ecl-description-list.ecl-description-list--horizontal.ecl-description-list--featured';
 
       default:
-        return 'ecl-description-list--default';
+        return '.ecl-description-list--vertical';
     }
   }
 
