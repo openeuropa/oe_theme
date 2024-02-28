@@ -92,7 +92,7 @@ default:
         about dropdown menu: ".ecl-menu__item:nth-child(2) .ecl-menu__mega"
         footer: "footer.ecl-site-footer"
         header: ".ecl-site-header"
-        header with menu: ".ecl-site-header[data-ecl-has-menu]"
+        header with menu: ".ecl-site-header.ecl-site-header--has-menu"
         language dialog: ".ecl-dialog"
         language switcher: ".ecl-site-header__language-container"
         navigation: ".ecl-menu"
