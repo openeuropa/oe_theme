@@ -1,11 +1,21 @@
 # Changelog
 
+## [3.10.0](https://github.com/openeuropa/oe_theme/tree/3.10.0) (2024-02-19)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.9.0...3.10.0)
+
+**Merged pull requests:**
+
+- EWPP-3954: Drop D9 and add D10.2 and php8.2 to matrix. [\#1405](https://github.com/openeuropa/oe_theme/pull/1405) ([nagyad](https://github.com/nagyad))
+- EWPP-3777: Add language code to quote pattern and paragraph. [\#1367](https://github.com/openeuropa/oe_theme/pull/1367) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.9.0](https://github.com/openeuropa/oe_theme/tree/3.9.0) (2024-01-15)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.8.0...3.9.0)
 
 **Merged pull requests:**
 
+- Prepare release 3.9.0 [\#1375](https://github.com/openeuropa/oe_theme/pull/1375) ([imanoleguskiza](https://github.com/imanoleguskiza))
 - EWPP-3846: Remove entity reference revisions patch. [\#1373](https://github.com/openeuropa/oe_theme/pull/1373) ([nagyad](https://github.com/nagyad))
 - EWPP-3889: Update to ECL 3.13.0. [\#1372](https://github.com/openeuropa/oe_theme/pull/1372) ([fmmribeiro](https://github.com/fmmribeiro))
 - EWPP-3866: Update available flag options in paragraphs. [\#1368](https://github.com/openeuropa/oe_theme/pull/1368) ([22Alexandra](https://github.com/22Alexandra))
