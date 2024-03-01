@@ -3219,7 +3219,7 @@
       external_link: true
   assertions:
     count:
-      'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
+      'div.ecl-fact-figures.ecl-fact-figures--col-2 div.ecl-fact-figures__items': 1
       'div.ecl-fact-figures__item:nth-child(1) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__item:nth-child(2) svg.ecl-icon.ecl-icon--l.ecl-fact-figures__icon': 1
       'div.ecl-fact-figures__view-all': 1
@@ -3247,6 +3247,10 @@
           value: '10.0 millions'
           title: 'Nam lacinia nisl eget diam mattis'
           description: 'Sed efficitur bibendum rutrum. Nunc feugiat congue augue ac consectetur.'
+        - icon: 'calendar'
+          value: "00.0 million"
+          title: "Donec suscipit interdum augue, ac dapibus eros finibus a."
+          description: "Cras vestibulum efficitur mi, quis porta tellus rutrum ut. Quisque at pulvinar sem."
   assertions:
     count:
       'div.ecl-fact-figures.ecl-fact-figures--col-3 div.ecl-fact-figures__items': 1
