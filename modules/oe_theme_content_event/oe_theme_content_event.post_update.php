@@ -161,3 +161,16 @@ function oe_theme_content_event_post_update_30004(): void {
     $date_format->save();
   }
 }
+
+/**
+ * Update Event CT full view display.
+ */
+function oe_theme_content_event_post_update_30005(): void {
+  $storage = new FileStorage(\Drupal::service('extension.list.module')->getPath('oe_theme_content_event') . '/config/post_updates/30005_event_full_view');
+  $view_display_values = $storage->read('core.entity_view_display.node.oe_event.full');
+  $view_display = EntityViewDisplay::load($view_display_values['id']);
+  if ($view_display) {
+    $updated_view_display = \Drupal::entityTypeManager()->getStorage($view_display->getEntityTypeId())->updateFromStorageRecord($view_display, $view_display_values);
+    $updated_view_display->save();
+  }
+}
