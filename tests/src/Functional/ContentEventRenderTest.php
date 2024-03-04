@@ -15,7 +15,6 @@ use Drupal\oe_content_person\Entity\PersonJob;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\IconsTextAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\PatternPageHeaderAssert;
-use Drupal\Tests\oe_theme\PatternAssertions\SocialMediaLinksAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TextFeaturedMediaAssert;
 use Drupal\Tests\oe_theme\PatternAssertions\TimelineAssert;
 use Drupal\Tests\Traits\Core\CronRunTrait;
@@ -685,40 +684,6 @@ class ContentEventRenderTest extends ContentRenderTestBase {
     $this->assertContactDefaultRender($press_contacts[0], 'first_press_contact');
     $this->assertContactDefaultRender($press_contacts[1], 'second_press_contact');
 
-    // Assert "Social media links" links.
-    $node->set('oe_social_media_links', [
-      [
-        'uri' => 'http://www.example.com/event_facebook',
-        'title' => 'Event facebook link',
-        'link_type' => 'facebook',
-      ], [
-        'uri' => 'http://www.example.com/event_instagram',
-        'title' => 'Event instagram link',
-        'link_type' => 'instagram',
-      ],
-    ])->save();
-    $this->drupalGet($node->toUrl());
-
-    $social_links_assert = new SocialMediaLinksAssert();
-    $social_links_expected_values = [
-      'title' => 'Social media',
-      'links' => [
-        [
-          'service' => 'facebook',
-          'label' => 'Event facebook link',
-          'url' => 'http://www.example.com/event_facebook',
-        ], [
-          'service' => 'instagram',
-          'label' => 'Event instagram link',
-          'url' => 'http://www.example.com/event_instagram',
-        ],
-      ],
-    ];
-    $social_links_content = $this->assertSession()->elementExists('css', '#event-practical-information .ecl-social-media-follow');
-    $social_links_html = $social_links_content->getOuterHtml();
-    $social_links_assert->assertPattern($social_links_expected_values, $social_links_html);
-    $social_links_assert->assertVariant('horizontal', $social_links_html);
-
     // Unpublished Venues and Contacts are not visible for the visitors.
     $contact_entity_general1->setUnpublished()->save();
     $contact_entity_general2->setUnpublished()->save();
@@ -781,6 +746,25 @@ class ContentEventRenderTest extends ContentRenderTestBase {
       ],
     ];
     $icons_text_assert->assertPattern($icons_text_expected_values, $details_list_content->getOuterHtml());
+
+    // Assert "Social media links" links.
+    $node->set('oe_social_media_links', [
+      [
+        'uri' => 'http://www.example.com/event_facebook',
+        'title' => 'Event facebook link',
+        'link_type' => 'facebook',
+      ], [
+        'uri' => 'http://www.example.com/event_instagram',
+        'title' => 'Event instagram link',
+        'link_type' => 'instagram',
+      ],
+    ])->save();
+    $this->drupalGet($node->toUrl());
+    $field_list_expected_values['items'][9] = [
+      'label' => 'Social media links',
+      'body' => 'Event facebook linkEvent instagram link',
+    ];
+    $field_list_assert->assertPattern($field_list_expected_values, $practical_list_content->getOuterHtml());
 
     // Verify that the event renders correctly when a non-existing event type
     // is set.

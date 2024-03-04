@@ -75,10 +75,10 @@
       label: close.label|default('Close'|t),
       icon: {
         path: ecl_icon_path,
-        name: 'close-filled',
-        size: 'm',
+        name: ecl_component_library == 'ec' ? 'close' : 'close-filled',
+        size: ecl_component_library == 'ec' ? 'm' : 's',
       },
-      hide_label: false
+      hide_label: ecl_component_library == 'ec',
     },
     back_label: back|default('Back'|t),
     icon_path: ecl_icon_path,

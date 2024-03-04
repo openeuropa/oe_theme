@@ -101,11 +101,14 @@ class DescriptionExtraField extends DateAwareExtraFieldBase implements Container
     // If we don't have a title we do not render anything because there is
     // no text and no image.
     if (empty($title)) {
+      // Leave only cacheable metadata.
+      $empty_build = [];
       // Make sure we continue to carry over the cache tags.
       CacheableMetadata::createFromRenderArray($build)
         ->merge(CacheableMetadata::createFromRenderArray($text))
-        ->applyTo($build);
-      return $build;
+        ->applyTo($empty_build);
+      $this->isEmpty = TRUE;
+      return $empty_build;
     }
 
     $build['#fields']['title'] = $title;

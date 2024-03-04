@@ -809,9 +809,9 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-highlight.ecl-banner--l.ecl-banner--centered.ecl-banner--full-width'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--l.ecl-banner--centered.ecl-banner--full-width'));
 
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-highlight.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--centered picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -832,10 +832,10 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $html = $this->renderParagraph($paragraph);
     $crawler = new Crawler($html);
 
-    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--text-highlight.ecl-banner--m.ecl-banner--centered.ecl-banner--full-width'));
-    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-highlight.ecl-banner--m'));
+    $this->assertCount(0, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--m.ecl-banner--centered.ecl-banner--full-width'));
+    $this->assertCount(1, $crawler->filter('section.ecl-banner.ecl-banner--text-overlay.ecl-banner--m'));
 
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-highlight picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
@@ -871,7 +871,7 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $this->assertCount(0, $crawler->filter('div.ecl-banner__content div.ecl-banner__title'));
     // Link classes should not be rendered if the field is empty.
     $this->assertCount(0, $crawler->filter('div.ecl-banner__content a.ecl-link'));
-    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-highlight picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
+    $image_element = $crawler->filter('section.ecl-banner.ecl-banner--text-overlay picture.ecl-picture.ecl-banner__picture img.ecl-banner__image');
     $this->assertCount(1, $image_element);
     $this->assertStringContainsString(
       $this->container->get('file_url_generator')->generateAbsoluteString($av_portal_file_uri),
