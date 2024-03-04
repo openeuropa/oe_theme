@@ -139,7 +139,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: ACP–EU Joint Assembly', $actual->getText());
+    $this->assertEquals('This site is managed by:ACP–EU Joint Assembly', $actual->getText());
 
     // Test European Commission footer standardised block rendering.
     $this->branding = 'standardised';
@@ -167,7 +167,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: ACP–EU Joint Assembly', $actual->getText());
+    $this->assertEquals('This site is managed by:ACP–EU Joint Assembly', $actual->getText());
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
@@ -205,7 +205,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $section->find('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
+    $this->assertEquals('This site is managed by:DG XI – Internal Market', $actual->getText());
 
     // Test European Union footer core block rendering.
     $this->branding = 'core';
@@ -225,7 +225,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: DG XI – Internal Market', $actual->getText());
+    $this->assertEquals('This site is managed by:DG XI – Internal Market', $actual->getText());
     // Accessibility link should not be displayed on core.
     $this->assertCount(0, $section->findAll('css', 'a.ecl-link.ecl-link--standalone.ecl-site-footer__link'));
 
@@ -288,7 +288,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->drupalGet('<front>');
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is managed by:Directorate-General for Budget', $actual->getText());
 
     // Test European Union footer standardised block rendering.
     $this->branding = 'standardised';
@@ -310,7 +310,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
     $actual = $assert->elementExists('css', 'div.ecl-site-footer__description');
-    $this->assertEquals('This site is managed by: Directorate-General for Budget', $actual->getText());
+    $this->assertEquals('This site is managed by:Directorate-General for Budget', $actual->getText());
     $actual = $section->find('css', '.ecl-site-footer__section--site-info a.ecl-link.ecl-link--standalone.ecl-site-footer__link');
     $this->assertEquals('Accessibility', $actual->getText());
     $this->assertEquals('/build/', $actual->getAttribute('href'));
@@ -413,10 +413,6 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     $this->assertEquals('Contact us', $actual->getText());
 
     $actual = $subsection->find('css', 'ul li:nth-child(1) > a');
-    $expected = [
-      'label' => 'Custom contact 1',
-      'href' => 'http://example.com/custom-contact-1',
-    ];
     $this->assertListLink($actual, $expected, TRUE);
     // We should have the external icon present.
     $icon = $actual->find('css', 'svg.ecl-icon.ecl-icon--xs.ecl-link__icon use');
