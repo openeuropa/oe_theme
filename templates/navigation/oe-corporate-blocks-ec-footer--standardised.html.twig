@@ -19,13 +19,13 @@
   {% if loop.index is odd %}
     {% set _top_left_column = _top_left_column|merge([{
       'title': section.label,
-      'title_with_separator': true,
+      'title_with_separator': false,
       'links': ecl_footer_links(section.links),
     }]) %}
   {% else %}
     {% set _top_right_column = _top_right_column|merge([{
       'title': section.label,
-      'title_with_separator': true,
+      'title_with_separator': false,
       'links': ecl_footer_links(section.links),
     }]) %}
   {% endif %}
@@ -51,7 +51,7 @@
   {# Follow section must always be the last on the left. #}
   {% set _top_left_column = _top_left_column|merge([{
     'title': 'Follow us'|t,
-    'title_with_separator': true,
+    'title_with_separator': false,
     'links': ecl_footer_links(site_specific_footer.social_links),
     'links_inline': true,
   }]) %}
