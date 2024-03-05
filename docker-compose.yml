@@ -17,7 +17,7 @@ services:
       # Enable step debugging for all PHP request. See ./README.md#step-debugging for more information.
       # XDEBUG_SESSION: 1
   mysql:
-    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/percona:5.7
+    image: percona/percona-server:5.7
     command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
@@ -25,7 +25,7 @@ services:
   #      - 3306:3306
   # Spawn a Selenium server which also includes a VNC server on localhost:5900 (the password is "secret")
   selenium:
-    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/selenium/standalone-chrome:4.1.3
+    image: selenium/standalone-chrome:4.1.3
     environment:
       - DISPLAY=:99
       - SCREEN_WIDTH=1600
@@ -37,7 +37,7 @@ services:
       - '4444'
     shm_size: 2g
   node:
-    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/node:21
+    image: node:21
     user: "node"
     working_dir: /home/node/app
     environment:
