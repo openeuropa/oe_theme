@@ -1,11 +1,84 @@
 # Changelog
 
+## [4.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta2) (2024-03-05)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta1...4.0.0-beta2)
+
+**Merged pull requests:**
+
+- EWPP-0004: Revert docker images for local development and use node 21 image in drone. [\#1428](https://github.com/openeuropa/oe_theme/pull/1428) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-0004: Update docker images. [\#1427](https://github.com/openeuropa/oe_theme/pull/1427) ([22Alexandra](https://github.com/22Alexandra))
+
+## [4.0.0-beta1](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta1) (2024-03-04)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.10.0...4.0.0-beta1)
+
+**Merged pull requests:**
+
+- EWPP-3676: Update 4.x branch. [\#1425](https://github.com/openeuropa/oe_theme/pull/1425) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4144: Map text\_highlight variant, adapt icons with text pattern template. [\#1421](https://github.com/openeuropa/oe_theme/pull/1421) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4069: Use vertical lists variant for all the teaser displays. [\#1419](https://github.com/openeuropa/oe_theme/pull/1419) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4124: Update to ECL 4.0.0-beta 3 and adapt pager template preprocess. [\#1418](https://github.com/openeuropa/oe_theme/pull/1418) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3561: Fix facts\_figures pattern. [\#1417](https://github.com/openeuropa/oe_theme/pull/1417) ([sergepavle](https://github.com/sergepavle))
+- EWPP-4102: Ensure description is always passed to ECL Notification component. [\#1416](https://github.com/openeuropa/oe_theme/pull/1416) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3987: Require new ECL components. [\#1415](https://github.com/openeuropa/oe_theme/pull/1415) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3987: Fix .drone.yml release related pipelines. [\#1414](https://github.com/openeuropa/oe_theme/pull/1414) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4036: Re-enable all the skipped tests. [\#1411](https://github.com/openeuropa/oe_theme/pull/1411) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4083: Map deprecated ECL icons. [\#1410](https://github.com/openeuropa/oe_theme/pull/1410) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3916: Add tabs pattern [\#1409](https://github.com/openeuropa/oe_theme/pull/1409) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3982: Use monochrome social network icons. [\#1408](https://github.com/openeuropa/oe_theme/pull/1408) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3676: Update ECL 4 branch. [\#1407](https://github.com/openeuropa/oe_theme/pull/1407) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3883: Use new color names in list pages. [\#1404](https://github.com/openeuropa/oe_theme/pull/1404) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-4045: Replace blue ecl color class and fix font-family. [\#1403](https://github.com/openeuropa/oe_theme/pull/1403) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3918: Add top margin to status messages and content region block. [\#1402](https://github.com/openeuropa/oe_theme/pull/1402) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3957: Fix content moderation form appearance. [\#1401](https://github.com/openeuropa/oe_theme/pull/1401) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-3844: Use form group templates. [\#1400](https://github.com/openeuropa/oe_theme/pull/1400) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3676: Fix oe\_content patching [\#1399](https://github.com/openeuropa/oe_theme/pull/1399) ([ademarco](https://github.com/ademarco))
+- EWPP-3987: Restore build to use an actual ECL4 release [\#1398](https://github.com/openeuropa/oe_theme/pull/1398) ([ademarco](https://github.com/ademarco))
+- EWPP-3913: Update ecl outdated classes. [\#1397](https://github.com/openeuropa/oe_theme/pull/1397) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4032: Add Highlighted list pattern and composition. [\#1396](https://github.com/openeuropa/oe_theme/pull/1396) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3884: Fix Icons with text composition. [\#1395](https://github.com/openeuropa/oe_theme/pull/1395) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3880: Fix content type "Project" tests. [\#1394](https://github.com/openeuropa/oe_theme/pull/1394) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-4014: Update FeaturedItemAssert. [\#1393](https://github.com/openeuropa/oe_theme/pull/1393) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3876: Re-enable and adapt Organisation tests. [\#1391](https://github.com/openeuropa/oe_theme/pull/1391) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3873: Update tests for "Consultation" content type. [\#1390](https://github.com/openeuropa/oe_theme/pull/1390) ([fmmribeiro](https://github.com/fmmribeiro))
+- EWPP-3879: Re-enable Policy CT test. [\#1388](https://github.com/openeuropa/oe_theme/pull/1388) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3881: Re-enable Publication CT tests. [\#1387](https://github.com/openeuropa/oe_theme/pull/1387) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3877: Reactivate page content type tests. [\#1386](https://github.com/openeuropa/oe_theme/pull/1386) ([nagyad](https://github.com/nagyad))
+- EWPP-3878: Update Person CT. [\#1384](https://github.com/openeuropa/oe_theme/pull/1384) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3874: Update Event CT. [\#1383](https://github.com/openeuropa/oe_theme/pull/1383) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3872: Update tests for call for tenders. [\#1382](https://github.com/openeuropa/oe_theme/pull/1382) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3871: Update tests for call for proposals. [\#1381](https://github.com/openeuropa/oe_theme/pull/1381) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3882: Update Text with featured media pattern. [\#1380](https://github.com/openeuropa/oe_theme/pull/1380) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3912: Adapt site and page header templates. [\#1379](https://github.com/openeuropa/oe_theme/pull/1379) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3676: Update epic branch ecl v4. [\#1376](https://github.com/openeuropa/oe_theme/pull/1376) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3875: Update News CT rendering tests. [\#1374](https://github.com/openeuropa/oe_theme/pull/1374) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3888: Update Language selection page template. [\#1371](https://github.com/openeuropa/oe_theme/pull/1371) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3765: Update contextual navigation composition. [\#1370](https://github.com/openeuropa/oe_theme/pull/1370) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3771: Fix link block style. [\#1366](https://github.com/openeuropa/oe_theme/pull/1366) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3865: Add SASS compilation [\#1365](https://github.com/openeuropa/oe_theme/pull/1365) ([ademarco](https://github.com/ademarco))
+- EWPP-3775: Fix components page. [\#1359](https://github.com/openeuropa/oe_theme/pull/1359) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3676: Update epic branch. [\#1356](https://github.com/openeuropa/oe_theme/pull/1356) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3774: Fix Social media links pattern. [\#1350](https://github.com/openeuropa/oe_theme/pull/1350) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3772: Update list\_item pattern. [\#1348](https://github.com/openeuropa/oe_theme/pull/1348) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3807: Fix ecl tables. [\#1347](https://github.com/openeuropa/oe_theme/pull/1347) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3770: Include utilities css in library. [\#1346](https://github.com/openeuropa/oe_theme/pull/1346) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3769: Update GalleryItemValueObject and gallery pattern to render the images. [\#1345](https://github.com/openeuropa/oe_theme/pull/1345) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3767: Update File teaser pattern. [\#1344](https://github.com/openeuropa/oe_theme/pull/1344) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3768: Add inverted styles for EC Footer links. [\#1343](https://github.com/openeuropa/oe_theme/pull/1343) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3763: Remove double icon from active search filters. [\#1342](https://github.com/openeuropa/oe_theme/pull/1342) ([imanoleguskiza](https://github.com/imanoleguskiza))
+- EWPP-3766: Set file pattern icon size depending on the component library. [\#1341](https://github.com/openeuropa/oe_theme/pull/1341) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3761: Update banner pattern and paragraph. [\#1340](https://github.com/openeuropa/oe_theme/pull/1340) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3764: Update carousel pattern and paragraph variants. [\#1339](https://github.com/openeuropa/oe_theme/pull/1339) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3762: Update navigation menu pattern. [\#1338](https://github.com/openeuropa/oe_theme/pull/1338) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [3.10.0](https://github.com/openeuropa/oe_theme/tree/3.10.0) (2024-02-19)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/3.9.0...3.10.0)
 
 **Merged pull requests:**
 
+- Release-3.10.0: Update changelog. [\#1412](https://github.com/openeuropa/oe_theme/pull/1412) ([nagyad](https://github.com/nagyad))
 - EWPP-3954: Drop D9 and add D10.2 and php8.2 to matrix. [\#1405](https://github.com/openeuropa/oe_theme/pull/1405) ([nagyad](https://github.com/nagyad))
 - EWPP-3777: Add language code to quote pattern and paragraph. [\#1367](https://github.com/openeuropa/oe_theme/pull/1367) ([22Alexandra](https://github.com/22Alexandra))
 
