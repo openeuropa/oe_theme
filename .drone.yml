@@ -19,7 +19,7 @@ services:
       - COMPOSERVER=--2
       - DOCUMENT_ROOT=/test/oe_theme
   mysql:
-    image: registry.fpfis.eu/fpfis/sql:percona-5.7
+    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/percona:5.7
     command: --innodb-log-file-size=1G --max_allowed_packet=1G --innodb-buffer-pool-size=512M --wait_timeout=3000 --net_write_timeout=3000 --log_error_verbosity=3
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
@@ -31,7 +31,7 @@ services:
       - SPARQL_UPDATE=true
       - DBA_PASSWORD=dba
   selenium:
-    image: registry.fpfis.eu/fpfis/selenium:standalone-chrome-4.1.3-20220405
+    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/selenium/standalone-chrome:4.1.3-20220405
     environment:
       - DISPLAY=:99
       - SCREEN_WIDTH=1600
@@ -42,7 +42,7 @@ services:
 pipeline:
   ecl-build:
     group: prepare
-    image: registry.fpfis.eu/fpfis/node:18
+    image: git.fpfis.tech.ec.europa.eu/fpfis/dependency_proxy/containers/node:18
     commands:
       # To build the theme using a development version of ECL set its development branch in .env.dist
       # and make sure that ECL_BUILD is set to "dev".
