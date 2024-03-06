@@ -506,7 +506,7 @@ class TwigExtension extends AbstractExtension {
    * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim(Environment $env, $input, $limit = 0) {
+  public function smartTrim(Environment $env, $input, int $limit = 0) {
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
     $truncate = new TruncateHTML();
