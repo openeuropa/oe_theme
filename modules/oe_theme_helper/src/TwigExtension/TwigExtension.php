@@ -506,14 +506,7 @@ class TwigExtension extends AbstractExtension {
    * @return mixed
    *   The trimmed output.
    */
-  public function smartTrim(Environment $env, $input, $limit = 0) {
-    if ($limit === NULL) {
-      // phpcs:disable Drupal.Semantics.FunctionTriggerError
-      @trigger_error('Using the smart_trim filter with a null limit value is deprecated in oe_theme:3.x and will be removed in oe_theme:4.x releases.', E_USER_DEPRECATED);
-      // phpcs:enable
-      $limit = 0;
-    }
-
+  public function smartTrim(Environment $env, $input, int $limit = 0) {
     // Bubbles Twig template argument's cacheability & attachment metadata.
     $this->bubbleArgMetadata($input);
     $truncate = new TruncateHTML();

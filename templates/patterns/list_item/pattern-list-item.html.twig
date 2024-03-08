@@ -19,6 +19,8 @@
     - "extra_classes" (string) (default: '')
 #}
 
+{% set _length = length|default(0) %}
+
 {# Prepare the picture array. #}
 {% if image %}
   {% set picture = {
@@ -93,7 +95,7 @@
   {% set _title = title %}
 {%- endif -%}
 {% if detail is not empty %}
-  {% set description = detail|smart_trim(length) %}
+  {% set description = detail|smart_trim(_length) %}
 {% endif %}
 
 {# Prepare the lists array. #}

@@ -107,7 +107,7 @@ class TwigExtensionTest extends AbstractKernelTestBase {
       ],
       'Do not trim a string if length is NULL' => [
         'variables' => [
-          'length' => NULL,
+          'length' => 0,
           'content' => 'This is a very long text that is not going to be trimmed.',
         ],
         'assertions' => [
@@ -168,7 +168,7 @@ class TwigExtensionTest extends AbstractKernelTestBase {
       ],
       'Do not trim a plain_text render array when length is NULL' => [
         'variables' => [
-          'length' => NULL,
+          'length' => 0,
           'content' => [
             '#plain_text' => 'This is a very long text that is not going to be trimmed.',
           ],

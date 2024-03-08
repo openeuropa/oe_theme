@@ -257,19 +257,6 @@
         - "News article>"
         - "6 July 2015&"
         - "Brussels<"
-      language_switcher:
-        current: "French"
-        unavailable: "English"
-        is_primary: true
-        options:
-          - href: "#"
-            hreflang: "es"
-            label: "Spanish"
-            lang: "es"
-          - href: "#"
-            hreflang: "it"
-            label: "Italian"
-            lang: "it"
       hide_title: true
   assertions:
     count:

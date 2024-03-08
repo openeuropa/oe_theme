@@ -27,27 +27,6 @@ page_header:
         - "News article"
         - "6 July 2015"
         - "Brussels"
-    language_switcher:
-      type: "array"
-      label: "Language switcher (Deprecated)"
-      description: "The language selector offers the alternative language versions of the page’s main content. This has been deprecated in ECL V3."
-      preview:
-        current: "French"
-        unavailable: "English"
-        is_primary: true
-        options:
-          - href: "#"
-            hreflang: "it"
-            label: "Italian"
-            lang: "it"
-          - href: "#"
-            hreflang: "es"
-            label: "Spanish"
-            lang: "es"
-          - href: "#"
-            hreflang: "de"
-            label: "German"
-            lang: "de"
     breadcrumb:
       type: "array"
       label: "Breadcrumb"

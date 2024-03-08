@@ -5,6 +5,8 @@
  */
 #}
 
+{% set _length = length|default(0) %}
+
 {# Process value objects into ECL compatible array. #}
 {% set _translations = [] %}
 {% for item in translations %}
@@ -12,11 +14,11 @@
   {% if item.file.size %}
     {% set _translation_meta = '(' ~ item.file.size|format_size ~ ' - ' ~ item.file.extension|upper  ~ ')' %}
   {% endif %}
-  {# 'lang_full' parameter is deprecated in ECL v4 - to be removed in 4.x of
+  {# 'lang_full' parameter is deprecated in ECL v4 - to be removed in 5.x of
     oe_theme too. #}
   {% set _translations = _translations|merge([{
     'title': item.file.title,
-    'description': item.teaser|smart_trim(length),
+    'description': item.teaser|smart_trim(_length),
     'meta': _translation_meta,
     'lang': item.file.language_code|to_internal_language_id,
     'download': {
@@ -100,7 +102,7 @@
 
 {% include '@ecl-twig/file' with {
   'title': file.title,
-  'description': teaser|smart_trim(length),
+  'description': teaser|smart_trim(_length),
   'picture': _picture|default({}),
   'language': file.language_code|to_language,
   'meta': _meta,

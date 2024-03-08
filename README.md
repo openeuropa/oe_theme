@@ -3,7 +3,7 @@
 [![Build Status](https://drone.fpfis.eu/api/badges/openeuropa/oe_theme/status.svg?branch=master)](https://drone.fpfis.eu/openeuropa/oe_theme)
 [![Packagist](https://img.shields.io/packagist/v/openeuropa/oe_theme.svg)](https://packagist.org/packages/openeuropa/oe_theme)
 
-Drupal 8 and 9 theme based on the [Europa Component Library][1] (ECL).
+Drupal 10 theme based on the [Europa Component Library][1] (ECL).
 
 **Table of contents:**
 
@@ -110,6 +110,44 @@ Each component library can use one of the following ECL brandings:
   website (https://ec.europa.eu) uses ECL core branding.
 
 To learn more about EC/EU families and ECL branding visit the [ECL website](https://ec.europa.eu/component-library).
+
+### Upgrade to 4.0.0
+
+#### The following patterns have been removed:
+  - `banner_hero`
+  - `banner_page`
+  - `social_media_links_horizontal`
+  - `social_media_links_vertical`
+
+#### The following variants of the button pattern have been removed:
+  - `form`
+  - `form_primary`
+  - `splash_page`
+
+The `language_switcher` field of the `page_header` pattern has been removed.
+The `additional_information` field of the `list_item` pattern has been removed.
+The `text_highlight` and `image_overlay` variants fo the `banner` pattern have been replaced by a single variant
+`text_overlay`.
+
+#### Two ECL components have been replaced:
+- Message component (`twig-component-message`) replaced by Notification component (`twig-component-notification`)
+- Language list component (`twig-component-language-list`) replaced by Splash page (`twig-component-splash-page`)
+
+#### Colors
+In order to accommodate the color changes in ECL 4.0.0 we have added two twig functions to determine the correct color
+for border and background based on the component library (European Union or European Commission):
+- `ecl_class_border_color`
+- `ecl_class_background_color`
+The grey color used in typography case has been replaced with dark.
+
+#### New patterns
+- Highlighted list pattern (`highlighted_list`) - used for displaying a main highlighted item along with 3
+secondary items placed on the right side of the page. All the items are using the `list_item` pattern's structure
+with `default`.
+- Tabs pattern (`tabs`) - used mainly for navigation links. We are using this to render the Drupal local tasks.
+
+#### Content display changes
+All the teaser templates are using the vertical variant for displaying the lists.
 
 ### Upgrade to 3.0.0
 
