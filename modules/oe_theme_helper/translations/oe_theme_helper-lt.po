@@ -253,8 +253,8 @@ msgstr "Daugiau informacijos apie:"
 msgid "Discover more on @link"
 msgstr "Daugiau informacijos @link"
 
-msgid "This site is managed by: @name"
-msgstr "Šią svetainę tvarko: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Šią svetainę tvarko:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Paskutinį kartą atnaujinta: @date"

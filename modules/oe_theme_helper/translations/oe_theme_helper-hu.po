@@ -253,8 +253,8 @@ msgstr "További információk:"
 msgid "Discover more on @link"
 msgstr "Bővebb tudnivalók: @link"
 
-msgid "This site is managed by: @name"
-msgstr "A webhely üzemeltetője: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "A webhely üzemeltetője:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Legutóbbi frissítés: @date"

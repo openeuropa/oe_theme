@@ -253,8 +253,8 @@ msgstr "Více informací na:"
 msgid "Discover more on @link"
 msgstr "Další informace @link"
 
-msgid "This site is managed by: @name"
-msgstr "Tyto stránky spravuje: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Tyto stránky spravuje:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Poslední aktualizace: @date"

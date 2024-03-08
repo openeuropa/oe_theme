@@ -253,8 +253,8 @@ msgstr "Več informacij:"
 msgid "Discover more on @link"
 msgstr "Več informacij @link"
 
-msgid "This site is managed by: @name"
-msgstr "Spletišče upravlja: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Spletišče upravlja:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Zadnja posodobitev: @date"

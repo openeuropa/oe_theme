@@ -253,8 +253,8 @@ msgstr "Pentru detalii:"
 msgid "Discover more on @link"
 msgstr "Aflați mai multe @link"
 
-msgid "This site is managed by: @name"
-msgstr "Acest site este administrat de: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Acest site este administrat de:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Ultima actualizare: @date"

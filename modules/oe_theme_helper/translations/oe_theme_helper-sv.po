@@ -253,8 +253,8 @@ msgstr "Läs mer på:"
 msgid "Discover more on @link"
 msgstr "Upptäck mer på @link"
 
-msgid "This site is managed by: @name"
-msgstr "Den här webbplatsen sköts av @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Den här webbplatsen sköts av<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Senaste uppdatering: @date"

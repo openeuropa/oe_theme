@@ -253,8 +253,8 @@ msgstr "Περισσότερες πληροφορίες για:"
 msgid "Discover more on @link"
 msgstr "Μάθετε περισσότερα: @link"
 
-msgid "This site is managed by: @name"
-msgstr "Διαχειριστής ιστότοπου: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Διαχειριστής ιστότοπου:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Τελευταία επικαιροποίηση την/στις: @date"
