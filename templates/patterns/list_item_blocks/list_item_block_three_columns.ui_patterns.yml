@@ -55,7 +55,7 @@ list_item_block_three_columns:
     button_icon_name:
       type: "text"
       label: "Icon name"
-      description: "The name of the icon to place next to the link"
+      description: "The name of the icon to place next to the link (default to arrow-left with transform rotate-180)."
       preview: 'list'
     button_icon_position:
       type: "text"

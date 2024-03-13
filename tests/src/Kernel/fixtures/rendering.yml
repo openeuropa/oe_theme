@@ -1439,8 +1439,6 @@
       button_label: "View all"
       button_url: "http://example.com"
       external_link: false
-      button_icon_name: 'list'
-      button_icon_position: 'before'
   assertions:
     count:
       'div.ecl-content-item-block__title': 1
@@ -1460,7 +1458,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "Business, Economy, Euro"
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "EU economy, the euro, and practical information for EU businesses and entrepreneurs."
       'a.ecl-link span.ecl-link__label': "View all"
-      'svg.ecl-icon.ecl-icon--xs.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use>'
+      'svg.ecl-icon.ecl-icon--xs.ecl-icon--rotate-180.ecl-link__icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use>'
 - array:
     '#type': pattern
     '#id': list_item_block_one_column
@@ -1600,8 +1598,7 @@
             detail: "Description for list item 2."
       button_label: "View all"
       button_url: "http://example.com"
-      button_icon_name: "list"
-      button_icon_position: "before"
+      external_link: false
   assertions:
     count:
       'div.ecl-content-item-block__title': 0
@@ -1618,7 +1615,7 @@
       'div.ecl-content-item-block__item:nth-child(1) article.ecl-content-item div.ecl-content-block__description': "Description for list item 1."
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 2"
       'div.ecl-content-item-block__item:nth-child(2) article.ecl-content-item div.ecl-content-block__description': "Description for list item 2."
-      'a.ecl-link': '<svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#list"></use></svg><span class="ecl-link__label">View all</span>'
+      'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-icon--rotate-180 ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use></svg>'
 - array:
     '#type': pattern
     '#id': list_item_block_three_columns
@@ -1705,7 +1702,6 @@
             detail: "Description for list item 5."
       button_label: "View all"
       button_url: "http://example.com"
-      button_icon_name: "language"
       button_icon_position: "after"
   assertions:
     count:
@@ -1729,7 +1725,7 @@
       'div.ecl-content-item-block__item:nth-child(4) article.ecl-content-item div.ecl-content-block__description': "Description for list item 4."
       'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-item__content-block div.ecl-content-block__title': "List item 5"
       'div.ecl-content-item-block__item:nth-child(5) article.ecl-content-item div.ecl-content-block__description': "Description for list item 5."
-      'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#language"></use></svg>'
+      'a.ecl-link': '<span class="ecl-link__label">View all</span><svg class="ecl-icon ecl-icon--xs ecl-icon--rotate-180 ecl-link__icon" focusable="false" aria-hidden="true"><use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#arrow-left"></use></svg>'
 - array:
     '#type': pattern
     '#id': list_item_block_four_columns
