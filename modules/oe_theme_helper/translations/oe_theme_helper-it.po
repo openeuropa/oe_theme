@@ -253,8 +253,8 @@ msgstr "Per saperne di più:"
 msgid "Discover more on @link"
 msgstr "Scopri di più @link"
 
-msgid "This site is managed by: @name"
-msgstr "Il sito è gestito da: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Il sito è gestito da:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Ultimo aggiornamento: @date"

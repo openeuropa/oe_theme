@@ -126,7 +126,7 @@ class SiteHeaderTest extends BrowserTestBase {
           ->getAttribute('srcset'));
         $this->assertEquals('(min-width: 996px)', $picture->find('css', 'source')
           ->getAttribute('media'));
-        $this->assertStringContainsString('oe_theme/dist/ec/images/logo/positive/logo-ec--en.svg', $picture->find('css', 'img.ecl-site-header__logo-image')
+        $this->assertStringContainsString('oe_theme/dist/ec/images/logo/logo-ec--mute.svg', $picture->find('css', 'img.ecl-site-header__logo-image')
           ->getAttribute('src'));
         $this->assertEquals('European Commission logo', $picture->find('css', 'img.ecl-site-header__logo-image')
           ->getAttribute('alt'));

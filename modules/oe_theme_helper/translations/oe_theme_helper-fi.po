@@ -253,8 +253,8 @@ msgstr "Lisätietoa:"
 msgid "Discover more on @link"
 msgstr "Lisää EU-aiheita: @link"
 
-msgid "This site is managed by: @name"
-msgstr "Sivuston ylläpitäjä: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Sivuston ylläpitäjä:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "Päivitetty viimeksi: @date"

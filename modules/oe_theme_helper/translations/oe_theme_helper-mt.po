@@ -253,8 +253,8 @@ msgstr "Aktar informazzjoni:"
 msgid "Discover more on @link"
 msgstr "Skopri aktar @link"
 
-msgid "This site is managed by: @name"
-msgstr "Dan is-sit hu mmaniġġjat minn: @name"
+msgid "This site is managed by:<br />@name"
+msgstr "Dan is-sit hu mmaniġġjat minn:<br />@name"
 
 msgid "Last updated on: @date"
 msgstr "L-aħħar aġġornament: @date"
