@@ -29,3 +29,10 @@ news_ticker:
       type: "text"
       label: "Counter label"
       description: "The counter label defaults to 'of'. For e.g. '1 of 6'."
+    extra_attributes:
+      type: "array"
+      label: "Extra attributes"
+      description: "List of extra attributes used in ECL component"
+      preview:
+        - name: "extra-attr"
+          value: "extra value"
