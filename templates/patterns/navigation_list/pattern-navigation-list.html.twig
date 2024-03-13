@@ -13,7 +13,8 @@
       path: title_url,
       external: external_link|default(false),
       icon_path: ecl_icon_path
-    }
+    },
+    extra_attributes: title_extra_attributes|default([])
   } %}
 {% endif %}
 
@@ -27,7 +28,8 @@
         path : link.url,
         icon_path: ecl_icon_path,
         external: link.is_external|default(false)
-      }
+      },
+      extra_attributes: link.extra_attributes|default([])
     } %}
     {% set _primary_links = _primary_links|merge([_link]) %}
   {% endfor %}
@@ -43,7 +45,8 @@
         path : secondary_link.url,
         icon_path: ecl_icon_path,
         external: secondary_link.is_external|default(false)
-      }
+      },
+      extra_attributes: secondary_link.extra_attributes|default([])
     } %}
     {% set _secondary_links = _secondary_links|merge([_secondary_link]) %}
   {% endfor %}

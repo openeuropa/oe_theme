@@ -1,0 +1,77 @@
+diff --git a/node_modules/@ecl/twig-component-menu/menu-item.html.twig b/node_modules/@ecl/twig-component-menu/menu-item.html.twig
+index 32d1ff9..dbf8814 100644
+--- a/node_modules/@ecl/twig-component-menu/menu-item.html.twig
++++ b/node_modules/@ecl/twig-component-menu/menu-item.html.twig
+@@ -11,11 +11,17 @@
+     - "external" (boolean) External link
+     - "path" (string) Href of the menu link
+     - "trigger_aria_label" (string) Aria label for the trigger button,
++    - "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++      - "name" (string) Attribute name, eg. 'data-test'
++      - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+     - "children" (array of object) Array of sub-items
+       - "external": (boolean) External link
+       - "is_current" (boolean) Whether the sub-item is currently selected
+       - "path" (string) Href of the sub-item link
+       - "label" (string) Label of the sub-item link
++      - "extra_attributes" (optional) (array) (default: []) Extra attributes for link
++        - "name" (string) Attribute name, eg. 'data-test'
++        - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+ #}
+ 
+ {% set _id = id|default('') %}
+@@ -39,6 +45,10 @@
+ 
+ <li class="{{ _menu_list_item_class }}" {{ _menu_list_item_attributes|raw }} id="{{ _id }}">
+   {% set _sublink_class = 'ecl-menu__sublink' ~ (child.is_current is defined ? ' ecl-menu__sublink--current' : '') %}
++  {% set _menu_item_attributes = _item.extra_attributes|default([])|merge([
++    { name: _menu_item_attributes },
++    { name: 'id', value: _id ~ "-link" },
++  ]) %}
+   {% include '@ecl/link/link.html.twig' with {
+     link: {
+       type: 'standalone',
+@@ -48,10 +58,7 @@
+       external: _item.external|default(false),
+     },
+     extra_classes: _menu_item_class,
+-    extra_attributes: [
+-      { name: _menu_item_attributes },
+-      { name: 'id', value: _id ~ "-link" },
+-    ],
++    extra_attributes: _menu_item_attributes,
+   } %}
+ 
+ {%- if item.children is defined and item.children is not empty and item.children is iterable -%}
+@@ -100,6 +107,7 @@
+             external: child.external,
+           },
+           extra_classes: _sublink_class,
++          extra_attributes: child.extra_attributes|default([]),
+         } %}
+       </li>
+     {% endfor %}
+diff --git a/node_modules/@ecl/twig-component-menu/menu.html.twig b/node_modules/@ecl/twig-component-menu/menu.html.twig
+index 11f04bd..c31636e 100644
+--- a/node_modules/@ecl/twig-component-menu/menu.html.twig
++++ b/node_modules/@ecl/twig-component-menu/menu.html.twig
+@@ -16,12 +16,18 @@
+       "is_current": (boolean) (optional),
+       "external": (boolean) (optional),
+       "trigger_aria_label" (string),
++      "extra_attributes" (optional) (array) (default: []) Extra attributes for link,
++        - "name" (string) Attribute name, eg. 'data-test'
++        - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+       "children": (associative array) (optional): [
+         {
+           "label": (string) (default: '')
+           "path": (string) (default: '')
+           "is_current": (boolean) (optional),
+-          "external": (boolean)
++          "external": (boolean),
++          "extra_attributes" (optional) (array) (default: []) Extra attributes for link,
++            - "name" (string) Attribute name, eg. 'data-test'
++            - "value" (optional) (string) Attribute value, eg: 'data-test-1'
+         }
+       ]
+     }
