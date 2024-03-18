@@ -183,7 +183,7 @@ class EventRenderTest extends ContentRenderTestBase {
       ],
     ];
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('date', $html);
+    $assert->assertVariant('date_ongoing', $html);
 
     // Test short title fallback and highlighted label.
     $node->set('oe_content_short_title', 'Event short title');
@@ -278,7 +278,7 @@ class EventRenderTest extends ContentRenderTestBase {
       'Cancelled',
     ];
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('date_cancelled', $html);
+    $assert->assertVariant('date_past', $html);
 
     // Unmark event online only.
     $node->set('oe_event_online_only', FALSE)->save();
@@ -312,7 +312,7 @@ class EventRenderTest extends ContentRenderTestBase {
       ],
     ]);
     $assert->assertPattern($expected_values, $html);
-    $assert->assertVariant('date_cancelled', $html);
+    $assert->assertVariant('date_past', $html);
 
     // Verify that the teaser renders correctly when a non-existing event type
     // is set.

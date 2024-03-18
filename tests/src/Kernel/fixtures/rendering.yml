@@ -1248,8 +1248,8 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
-      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
     equals:
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--highlight': "Highlighted"
       'article.ecl-content-item div.ecl-content-block.ecl-content-item__content-block ul.ecl-content-block__label-container li span.ecl-label.ecl-label--medium': "Status: Open"
@@ -1286,8 +1286,8 @@
   assertions:
     count:
       'article.ecl-content-item div.ecl-content-item__content-block a.ecl-link[href="http://example.com"]': 1
-      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date': 1
-      'article.ecl-content-item time.ecl-date-block.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date': 1
+      'article.ecl-content-item time.ecl-date-block.ecl-date-block--ongoing.ecl-content-item__date abbr.ecl-date-block__month[title="July"]': 1
       'div.ecl-content-block__list-container .ecl-description-list__term': 2
       'div.ecl-content-block__list-container .ecl-description-list__definition': 2
     equals:
@@ -1315,7 +1315,7 @@
         year: '2021'
   assertions:
     count:
-      'time.ecl-date-block.ecl-date-block--cancelled.ecl-content-item__date': 1
+      'time.ecl-date-block.ecl-date-block--past.ecl-content-item__date': 1
 - array:
     '#type': pattern
     '#id': list_item

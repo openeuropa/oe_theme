@@ -9,7 +9,7 @@
 {# Prepare the date array. #}
 {% if date is not empty %}
   {% set _date = {
-    variant: date_variant|default(''),
+    variant: date_variant|default('ongoing'),
     day: date.day,
     month: date.month_name,
     month_full: date.month_fullname,

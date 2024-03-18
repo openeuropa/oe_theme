@@ -94,17 +94,11 @@ class ListItemAssert extends BasePatternAssert {
     $time_element = $crawler->filter($date_variants_selector);
     if ($time_element->count()) {
       switch ($time_element->attr('class')) {
-        case 'ecl-date-block ecl-date-block--ongoing ecl-content-item__date':
-          return 'date_ongoing';
-
-        case 'ecl-date-block ecl-date-block--cancelled ecl-content-item__date':
-          return 'date_cancelled';
-
         case 'ecl-date-block ecl-date-block--past ecl-content-item__date':
           return 'date_past';
 
         default:
-          return 'date';
+          return 'date_ongoing';
       }
     }
     // Check whether it is a card and if so, check if it is a highlight or a
@@ -154,10 +148,6 @@ class ListItemAssert extends BasePatternAssert {
 
       case 'date_past':
         $date_block_selector = $date_block_selector . '.ecl-date-block--past';
-        break;
-
-      case 'date_cancelled':
-        $date_block_selector = $date_block_selector . '.ecl-date-block--cancelled';
         break;
     }
     if (is_null($expected_date)) {
