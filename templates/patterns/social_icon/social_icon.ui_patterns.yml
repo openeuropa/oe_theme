@@ -17,3 +17,8 @@ social_icon:
       label: "URL"
       description: "URL to link the social icon to. Optional. (A Drupal Url object)"
       preview: "http://example.com"
+    size:
+      type: "text"
+      label: "Size"
+      description: "The icon size. Defaults to 'xs'."
+      preview: "l"
