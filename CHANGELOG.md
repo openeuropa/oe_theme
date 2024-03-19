@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta3) (2024-03-19)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta2...4.0.0-beta3)
+
+**Merged pull requests:**
+
+- EWPP-4198: Add icon size to social icon and remove bottom margin of last item in highlighted news block. [\#1433](https://github.com/openeuropa/oe_theme/pull/1433) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4162: Keep only bottom margin for status messages. [\#1432](https://github.com/openeuropa/oe_theme/pull/1432) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4103: Show icon for See more internal link of List item block pattern. [\#1431](https://github.com/openeuropa/oe_theme/pull/1431) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta2) (2024-03-05)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta1...4.0.0-beta2)
