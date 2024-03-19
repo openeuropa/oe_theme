@@ -246,6 +246,38 @@ class ConfigurationTest extends BrowserTestBase {
   }
 
   /**
+   * Test that the correct favicon is used based on theme configuration.
+   */
+  public function testUseEclFavicon(): void {
+    foreach (['oe_theme', 'oe_theme_subtheme_test'] as $active_theme) {
+      $this->config('system.theme')->set('default', $active_theme)->save();
+      $this->container->set('theme.registry', NULL);
+      $assert_session = $this->assertSession();
+      $page = $this->getSession()->getPage();
+      // Assert that the favicon provided by the theme is being used.
+      $this->drupalGet('<front>');
+      $assert_session->responseContains("/$active_theme/images/favicons/ec/favicon.ico");
+      $assert_session->responseContains("$active_theme/images/favicons/ec/favicon.png");
+      $assert_session->responseContains("/$active_theme/images/favicons/ec/favicon.svg");
+
+      // Configure theme to not use default favicon.
+      $this->config("$active_theme.settings")->set('favicon', [
+        'mimetype' => 'image/vnd.microsoft.icon',
+        'path' => 'https://www.w3schools.com/images/favicon.ico',
+        'use_default' => FALSE,
+      ])->save();
+      $this->container->set('theme.registry', NULL);
+
+      // Assert that the favicon provided by the theme is not being used.
+      $this->drupalGet('<front>');
+      $assert_session->responseNotContains("/$active_theme/images/favicons/ec/favicon.ico");
+      $assert_session->responseNotContains("$active_theme/images/favicons/ec/favicon.png");
+      $assert_session->responseNotContains("/$active_theme/images/favicons/ec/favicon.svg");
+      $assert_session->responseContains("https://www.w3schools.com/images/favicon.ico");
+    }
+  }
+
+  /**
    * Assert that current response contians a link tag with given href.
    *
    * @param string $href
