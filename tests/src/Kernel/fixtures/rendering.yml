@@ -2250,7 +2250,21 @@
   assertions:
     count:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://facebook.com"]': 1
-      'svg.ecl-link__icon': 1
+      'svg.ecl-icon--xs.ecl-link__icon.ecl-social-media-follow__icon': 1
+    equals:
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
+- array:
+    '#type': pattern
+    '#id': social_icon
+    '#fields':
+      service: "facebook"
+      label: "Facebook"
+      url: "http://facebook.com"
+      size: "l"
+  assertions:
+    count:
+      'a.ecl-link.ecl-link--standalone.ecl-link--icon[href="http://facebook.com"]': 1
+      'svg.ecl-icon--l.ecl-link__icon.ecl-social-media-follow__icon': 1
     equals:
       'a.ecl-link.ecl-link--standalone.ecl-link--icon span.ecl-link__label': "Facebook"
 - array:
@@ -3859,7 +3873,7 @@
       'div.ecl-row div.ecl-col-l-8.ecl-u-d-flex.ecl-u-flex-column': 1
       'div.ecl-row div.ecl-col-l-4.ecl-u-d-flex.ecl-u-flex-column': 1
       'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1': 3
-      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 2
+      'div.ecl-row article.ecl-content-item--divider.ecl-u-flex-grow-1.ecl-u-mb-m': 1
       'div.ecl-content-block__title': 3
       'div.ecl-content-block__title a': 1
       'picture.ecl-content-item__picture': 2

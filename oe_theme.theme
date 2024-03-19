@@ -2577,7 +2577,7 @@ function oe_theme_preprocess_pattern_highlighted_list(array &$variables): void {
       $item['#fields']['image'] = NULL;
       $item['#fields']['detail'] = NULL;
     }
-    if ($key !== 2) {
+    if ($key < count($variables['items']) - 1) {
       $item['#fields']['extra_classes'] = 'ecl-u-flex-grow-1 ecl-u-mb-m';
     }
     else {
