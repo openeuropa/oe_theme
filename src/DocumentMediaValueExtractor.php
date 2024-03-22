@@ -39,11 +39,15 @@ class DocumentMediaValueExtractor {
       return static::getFromLocalFile($media);
     }
 
+    if ($file_type === 'circabc') {
+      return static::getFromCircaBcReference($media);
+    }
+
     return NULL;
   }
 
   /**
-   * Returns a local FileValueObject from a Document media.
+   * Returns a local FileValueObject from a local Document media.
    *
    * @param \Drupal\media\MediaInterface $media
    *   The document media.
@@ -63,7 +67,7 @@ class DocumentMediaValueExtractor {
   }
 
   /**
-   * Returns a remote FileValueObject from a Document media.
+   * Returns a remote FileValueObject from a remote Document media.
    *
    * @param \Drupal\media\MediaInterface $media
    *   The document media.
@@ -79,6 +83,32 @@ class DocumentMediaValueExtractor {
     $file_link = $media->get('oe_media_remote_file')->first();
 
     return FileValueObject::fromFileLink($file_link)
+      ->setTitle($media->getName())
+      ->setLanguageCode($media->language()->getId());
+  }
+
+  /**
+   * Returns a remote FileValueObject from a CircaBC Document media.
+   *
+   * @param \Drupal\media\MediaInterface $media
+   *   The document media.
+   *
+   * @return \Drupal\oe_theme\ValueObject\FileValueObject|null
+   *   The value object or NULL if could not be determined.
+   */
+  protected static function getFromCircaBcReference(MediaInterface $media): ?FileValueObject {
+    if ($media->get('oe_media_circabc_reference')->isEmpty()) {
+      return NULL;
+    }
+
+    $reference = $media->get('oe_media_circabc_reference')->first();
+
+    return FileValueObject::fromArray([
+      'name' => $reference->filename,
+      'url' => $reference->getFileUrl()->toString(),
+      'mime' => $reference->mime,
+      'size' => $reference->size,
+    ])
       ->setTitle($media->getName())
       ->setLanguageCode($media->language()->getId());
   }
