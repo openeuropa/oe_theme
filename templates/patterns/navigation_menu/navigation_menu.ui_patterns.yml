@@ -2,9 +2,12 @@ navigation_menu:
   label: "Navigation menu"
   description: "Default implementation of the main navigation menu."
   variants:
-    vertical:
-      label: "Vertical"
-      description: "Menu items will be arranged vertically, in 4 columns."
+    default:
+      label: "Default"
+      description: "Default variant uses the ECL menu component."
+    mega_menu:
+      label: "Mega menu"
+      description: "Mega menu variant uses the ECL Mega menu component."
   fields:
     label:
       type: "text"
@@ -89,7 +92,36 @@ navigation_menu:
                 - name: "extra-attr2"
                   value: "extra value2"
               is_current: TRUE
-              external: true
+              see_all: true
+              children:
+                - href: "#"
+                  label: 'Granchild 2.1'
+                  is_current: TRUE
+                - href: "#"
+                  label: 'Granchild 2.2'
+                  external: true
+                - href: "#"
+                  label: 'Granchild 2.3'
+                - href: "#"
+                  label: 'Granchild 2.4'
+                - href: "#"
+                  label: 'Granchild 2.5'
+                  external: true
+              featured:
+                title: "featured column"
+                content:
+                  '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 1</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
+                items:
+                  - href: "#"
+                    label: "Featured link 1"
+                    is_current: TRUE
+                  - href: "#"
+                    label: "Featured link 2"
+                  - href: "#"
+                    label: "Featured link 3"
+                  - href: "#"
+                    label: "Featured link 4"
+                    external: true
             - href: '#'
               label: 'Application of EU law'
             - href: '#'
@@ -113,9 +145,52 @@ navigation_menu:
         - href: "#"
           label: "Live, work, study"
           external: true
+          children:
+            - href: '#'
+              label: 'Child 6.1'
+              see_all: false
+              children:
+                - href: "#"
+                  label: 'Granchild 6.1'
+                  is_current: TRUE
+                - href: "#"
+                  label: 'Granchild 6.2'
+                  external: true
+                - href: "#"
+                  label: 'Granchild 6.3'
+                - href: "#"
+                  label: 'Granchild 6.4'
+                - href: "#"
+                  label: 'Granchild 6.5'
+                  external: true
+              featured:
+                title: "featured column"
+                content:
+                  '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 2</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
+                items:
+                  - href: "#"
+                    label: "Featured link 6.1"
+                    is_current: TRUE
+                  - href: "#"
+                    label: "Featured link 6.2"
+                  - href: "#"
+                    label: "Featured link 6.3"
+                  - href: "#"
+                    label: "Featured link 6.4"
+                    external: true
+            - href: '#'
+              label: 'Child 6.2'
+            - href: '#'
+              label: 'Child 6.3'
+            - href: '#'
+              label: 'Child 6.4'
+            - href: '#'
+              label: 'Child 6.5'
         - href: "#"
           label: "Visit a European Union institution"
         - href: "#"
           label: "Jobs & traineeships in EU institutions"
         - href: "#"
           label: "Participate, interact, vote"
+          container:
+            '#markup': "<article class=\"ecl-navigation-list__item\">\n    <picture class=\"ecl-picture ecl-navigation-list__picture\"><img class=\"ecl-navigation-list__image\" src=\"https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg\" alt=\"Alt text for the image\" /></picture>\n    <div class=\"ecl-content-block ecl-navigation-list__content-block\" data-ecl-auto-init=\"ContentBlock\" data-ecl-content-block>\n      <div class=\"ecl-content-block__title\" data-ecl-title-link><a href=\"/example#qspea\" class=\"ecl-link ecl-link--standalone\">Title 3</a></div>\n      <div class=\"ecl-content-block__description\">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus</div>\n    </div>\n  </article>"
