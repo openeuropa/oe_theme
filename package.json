@@ -42,6 +42,7 @@
     "@ecl/twig-component-link": "4.2.0",
     "@ecl/twig-component-list-illustration": "4.2.0",
     "@ecl/twig-component-media-container": "4.2.0",
+    "@ecl/twig-component-mega-menu": "4.2.0",
     "@ecl/twig-component-menu": "4.2.0",
     "@ecl/twig-component-navigation-list": "4.2.0",
     "@ecl/twig-component-news-ticker": "4.2.0",
