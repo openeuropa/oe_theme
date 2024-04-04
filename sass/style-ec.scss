@@ -26,3 +26,4 @@
 @use "./components/contextual_navigation" with (
   $font-family: map.get(theme.$theme, 'font-family', 'default'),
 );
+@use "./components/navigation_list";
