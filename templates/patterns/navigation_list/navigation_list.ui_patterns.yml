@@ -1,12 +1,14 @@
 navigation_list:
   label: "Navigation list"
   description: "Navigation lists allow to structure groups of links together."
+  variants:
+    default:
+      label: "Default"
+      description: "Default implementation of the ECL Navigation list item component."
+    illustration:
+      label: "Illustration"
+      description: "Displays the image in the top right corner."
   fields:
-    item_variant:
-      type: "text"
-      label: "Variant"
-      description: "The variant of the item can be 'illustration', showing the image in the top right corner. By default the image is shown on top."
-      preview: ""
     title:
       type: "text"
       label: "Title"

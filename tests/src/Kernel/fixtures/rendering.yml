@@ -1873,7 +1873,7 @@
     '#type': pattern
     '#id': navigation_list
     '#fields':
-      item_variant: 'illustration'
+      variant: 'illustration'
       title: 'Navigation list title'
       title_url: 'http://example.com'
       description: 'Navigation list description'
