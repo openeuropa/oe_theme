@@ -95,6 +95,7 @@ function oe_theme_helper_theme($existing, $type, $theme, $path) {
       'variables' => [
         'site_name' => '',
         'menu_items' => [],
+        'variant' => '',
       ],
     ],
     'oe_theme_helper_call_status' => [
