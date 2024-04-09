@@ -64,6 +64,7 @@
         {% set _featured_item = {
           path: featured_item.href,
           label: featured_item.label,
+          extra_attributes: featured_item.extra_attributes,
         } %}
         {% if featured_item.is_current is defined and featured_item.is_current == true%}
           {% set _featured_item = _featured_item|merge({
