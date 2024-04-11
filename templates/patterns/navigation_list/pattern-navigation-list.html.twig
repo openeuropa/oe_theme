@@ -61,7 +61,9 @@
   } %}
 {% endif %}
 
+{% set _variant = (variant == 'illustration') ? 'illustration' : '' %}
 {% include '@ecl-twig/navigation-list/navigation-list-item.html.twig' with {
+  'variant': _variant,
   'title': title|default({}),
   'description': description|default(''),
   'links': _links,

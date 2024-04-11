@@ -1871,6 +1871,27 @@
       div.ecl-navigation-list__image: 0
 - array:
     '#type': pattern
+    '#id': navigation_list
+    '#fields':
+      variant: 'illustration'
+      title: 'Navigation list title'
+      title_url: 'http://example.com'
+      description: 'Navigation list description'
+      border: true
+      image:
+        src: "https://placeimg.com/1000/500/arch"
+        alt: "Alternative text for image"
+  assertions:
+    count:
+      'article.ecl-navigation-list__item.ecl-navigation-list__item--illustration': 1
+      '.ecl-content-block.ecl-navigation-list__content-block': 1
+      "img.ecl-navigation-list__image[src=\"https://placeimg.com/1000/500/arch\"]": 1
+      'img.ecl-navigation-list__image[alt="Alternative text for image"]': 1
+    equals:
+      'div.ecl-content-block__title a.ecl-link--standalone.ecl-link[href="http://example.com"]': 'Navigation list title'
+      'div.ecl-content-block__description': 'Navigation list description'
+- array:
+    '#type': pattern
     '#id': accordion
     '#fields':
       identifier: "id"

@@ -1,6 +1,13 @@
 navigation_list:
   label: "Navigation list"
   description: "Navigation lists allow to structure groups of links together."
+  variants:
+    default:
+      label: "Default"
+      description: "Default implementation of the ECL Navigation list item component."
+    illustration:
+      label: "Illustration"
+      description: "Displays the image in the top right corner."
   fields:
     title:
       type: "text"
@@ -66,7 +73,7 @@ navigation_list:
     image:
       type: "array"
       label: "Image"
-      description: "Item image"
+      description: "Item image - a smaller image or an actual icon should be provided when using the 'illustration' variant."
       preview:
         src: "https://loremflickr.com/1000/500/arch"
         alt: "Alternative text for image"
