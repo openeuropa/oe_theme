@@ -40,6 +40,11 @@ class FileValueObjectTest extends AbstractUnitTestBase {
     $data['language_code'] = 'fr';
     $file = FileValueObject::fromArray($data);
     $this->assertEquals('fr', $file->getLanguageCode());
+
+    // Assert that urls are not escaped when returned by the object.
+    $data['url'] = 'http://example.com/test.pdf?param1=a&param2=b';
+    $file = FileValueObject::fromArray($data);
+    $this->assertEquals('http://example.com/test.pdf?param1=a&param2=b', $file->getUrl());
   }
 
 }
