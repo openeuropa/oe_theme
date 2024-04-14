@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\Tests\oe_theme\Kernel;
 
+use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_contact\Entity\ContactInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -95,6 +96,39 @@ class ContactRenderTest extends ContentRenderTestBase {
       'body' => "http://www.example.com/website_$name",
     ];
     $field_list_assert->assertPattern($expected_values, $this->renderRoot($build));
+
+    // Create a page node with a translation.
+    $node = Node::create([
+      'type' => 'oe_page',
+      'title' => 'Test page node',
+      'body' => 'Body',
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+    ]);
+    $node->save();
+    $node->addTranslation('bg', ['title' => 'Test page node bg']);
+    $node->save();
+
+    // Add the node as Website and assert its title.
+    $contact->addTranslation('bg', ['name' => "$name bg"]);
+    $contact->set('oe_website', ['uri' => 'internal:/node/1'])->save();
+    $build = $this->contactViewBuilder->view($contact, 'full');
+    $expected_values['items'][1] = [
+      'label' => 'Website',
+      'body' => 'Test page node',
+    ];
+    // Assert bulgarian translation.
+    $build = $this->contactViewBuilder->view($contact, 'full', 'bg');
+    $expected_values['items'][1] = [
+      'label' => 'Website',
+      'body' => 'Test page node bg',
+    ];
+    // Reset the array website value to english value.
+    $expected_values['items'][1] = [
+      'label' => 'Website',
+      'body' => 'Test page node',
+    ];
 
     // Add and assert Email field.
     $contact->set('oe_email', "$name@example.com")->save();
