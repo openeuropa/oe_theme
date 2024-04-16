@@ -1,14 +1,28 @@
 # Changelog
 
+## [4.0.0-beta4](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta4) (2024-04-16)
+
+[Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta3...4.0.0-beta4)
+
+**Merged pull requests:**
+
+- EWPP-4139: Add a variant field to navigation\_list pattern. [\#1438](https://github.com/openeuropa/oe_theme/pull/1438) ([22Alexandra](https://github.com/22Alexandra))
+
 ## [4.0.0-beta3](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta3) (2024-03-19)
 
 [Full Changelog](https://github.com/openeuropa/oe_theme/compare/4.0.0-beta2...4.0.0-beta3)
 
 **Merged pull requests:**
 
+- Release-4.0.0-beta3: Prepare changelog. [\#1435](https://github.com/openeuropa/oe_theme/pull/1435) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4198: Add icon size to social icon and remove bottom margin of last item in highlighted news block. [\#1433](https://github.com/openeuropa/oe_theme/pull/1433) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4162: Keep only bottom margin for status messages. [\#1432](https://github.com/openeuropa/oe_theme/pull/1432) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-4103: Show icon for See more internal link of List item block pattern. [\#1431](https://github.com/openeuropa/oe_theme/pull/1431) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4152: Fix ECL 4 styling issues. [\#1426](https://github.com/openeuropa/oe_theme/pull/1426) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-4137: Cleanup deprecated patterns and fields and update README. [\#1420](https://github.com/openeuropa/oe_theme/pull/1420) ([22Alexandra](https://github.com/22Alexandra))
+- EWPP-3816: Add extra attributes for navigation menu pattern. [\#1389](https://github.com/openeuropa/oe_theme/pull/1389) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3814: Add extra attributes support for accessibility and other links in footer. [\#1385](https://github.com/openeuropa/oe_theme/pull/1385) ([sergepavle](https://github.com/sergepavle))
+- EWPP-3815: Add fields for extra\_attributes in banner, carousel and news ticker patterns. [\#1377](https://github.com/openeuropa/oe_theme/pull/1377) ([sergepavle](https://github.com/sergepavle))
 
 ## [4.0.0-beta2](https://github.com/openeuropa/oe_theme/tree/4.0.0-beta2) (2024-03-05)
 
@@ -16,6 +30,7 @@
 
 **Merged pull requests:**
 
+- Release-4.0.0-beta2: Update changelog. [\#1430](https://github.com/openeuropa/oe_theme/pull/1430) ([nagyad](https://github.com/nagyad))
 - EWPP-0004: Revert docker images for local development and use node 21 image in drone. [\#1428](https://github.com/openeuropa/oe_theme/pull/1428) ([22Alexandra](https://github.com/22Alexandra))
 - EWPP-0004: Update docker images. [\#1427](https://github.com/openeuropa/oe_theme/pull/1427) ([22Alexandra](https://github.com/22Alexandra))
 
