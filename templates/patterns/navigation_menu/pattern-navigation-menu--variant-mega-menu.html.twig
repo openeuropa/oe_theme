@@ -18,7 +18,7 @@
       see_all: child.see_all|default(false),
       extra_attributes: child.extra_attributes,
     } %}
-    {% if child.is_current is defined and child.is_current == true%}
+    {% if child.is_current is defined and child.is_current == true %}
       {% set _child = _child|merge({
         is_current: child.is_current,
       }) %}
@@ -153,7 +153,7 @@
     back_label: back|default('Back'|t),
     icon_path: ecl_icon_path,
     items: _items,
-    see_all_label: see_all_label|default(),
+    see_all_label: see_all_label|default('Browse all'|t),
     extra_attributes: extra_attributes|default([]),
   } only %}
 {% endif %}
