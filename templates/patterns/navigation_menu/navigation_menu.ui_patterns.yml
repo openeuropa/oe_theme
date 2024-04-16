@@ -33,7 +33,7 @@ navigation_menu:
     see_all_label:
       type: "text"
       label: "See all button"
-      description: "Label for the \"see all\" link (mobile only)."
+      description: "Label for the \"see all\" link (mobile only for default variant)."
       preview: "See all"
     button_previous_label:
       type: "text"
