@@ -222,3 +222,32 @@ function oe_theme_content_publication_post_update_30001(): void {
     $display->save();
   }
 }
+
+/**
+ * Update Publication thumbnail image style.
+ */
+function oe_theme_content_publication_post_update_00011(): void {
+  $image_style = ImageStyle::load('oe_theme_publication_thumbnail');
+  if (!$image_style) {
+    return;
+  }
+  $effects = $image_style->getEffects();
+  /** @var \Drupal\image\ImageEffectInterface $effect */
+  foreach ($effects as $effect) {
+    if ($effect->getPluginId() == 'image_scale') {
+      $image_style->deleteImageEffect($effect);
+      $configuration = $effect->getConfiguration();
+      $configuration['data']['width'] = 600;
+      $configuration['data']['height'] = 400;
+      $new_configuration = [
+        'id' => 'retina_image_scale',
+        'data' => $configuration['data'],
+        'weight' => $configuration['weight'],
+      ];
+      $new_configuration['data']['multiplier'] = 2;
+      $image_style->addImageEffect($new_configuration);
+      $image_style->save();
+      break;
+    }
+  }
+}
