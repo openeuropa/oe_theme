@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\Tests\oe_theme\Functional;
 
 use Behat\Mink\Element\NodeElement;
+use Drupal\node\Entity\Node;
 use Drupal\oe_content_entity\Entity\CorporateEntityInterface;
 use Drupal\oe_content_entity_organisation\Entity\OrganisationInterface;
 use Drupal\Tests\oe_theme\PatternAssertions\FieldListAssert;
@@ -272,6 +273,33 @@ class ContentProjectRenderTest extends ContentRenderTestBase {
     $this->assertCount(1, $stakeholder_sub_headers);
     $this->assertEquals($stakeholder_sub_headers[0]->getText(), 'Coordinators');
     $this->assertStakeholderOrganisationRendering($project_stakeholders, 'coordinator');
+    // Create a node to be used as website reference.
+    Node::create([
+      'type' => 'oe_page',
+      'title' => 'Test page node',
+      'body' => 'Body',
+      'oe_subject' => 'http://data.europa.eu/uxp/1000',
+      'oe_author' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+      'oe_content_content_owner' => 'http://publications.europa.eu/resource/authority/corporate-body/COMMU',
+    ])->save();
+    $coordinator_organisation->set('oe_website', ['uri' => 'internal:/node/2'])->save();
+    $this->drupalGet($node->toUrl());
+
+    $field_list_assert = new FieldListAssert();
+    $first_field_list_expected_values = [
+      'items' => [
+        [
+          'label' => 'Address',
+          'body' => 'Address coordinator, 1001 Brussels, Belgium',
+        ], [
+          'label' => 'Website',
+          'body' => 'Test page node',
+        ],
+      ],
+    ];
+    $field_list_wrapper = $project_stakeholders->find('css', '.ecl-u-flex-grow-1.ecl-u-type-color-dark');
+    $field_list_html = $field_list_wrapper->getHtml();
+    $field_list_assert->assertPattern($first_field_list_expected_values, $field_list_html);
 
     // Load logo that is unpublished and assert that is not rendered.
     $media = $this->getStorage('media')->loadByProperties(['name' => 'Test image coordinator']);
