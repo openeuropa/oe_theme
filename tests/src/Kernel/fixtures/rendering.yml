@@ -1159,6 +1159,12 @@
           variant: "highlight"
         - label: "Status: Open"
           variant: "high"
+      meta:
+        - "Meta 1"
+        - "Meta 2"
+      secondary_meta:
+        - label: "Brussels"
+          icon: "location"
   assertions:
     count:
       article.ecl-card div.ecl-card__body div.ecl-content-block.ecl-card__content-block: 1
@@ -1166,14 +1172,19 @@
       article.ecl-card img.ecl-card__image[alt="Alternate text for secondary image"]: 1
       article.ecl-card img.ecl-card__image[src="http://via.placeholder.com/300x300"]: 1
       article.ecl-card picture[data-ecl-picture-link]: 1
-      article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 0
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 1
       ul.ecl-content-block__label-container li.ecl-content-block__label-item: 2
+      ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item: 2
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 1
     equals:
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(1) span.ecl-label.ecl-label--highlight: "Highlighted"
       ul.ecl-content-block__label-container li.ecl-content-block__label-item:nth-child(2) span.ecl-label.ecl-label--high: "Status: Open"
+      ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(1): "Meta 1"
+      ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item:nth-child(2): "Meta 2"
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item svg.ecl-icon--s.ecl-content-block__secondary-meta-icon: '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#location"></use>'
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item .ecl-content-block__secondary-meta-label: "Brussels"
 - array:
     '#type': pattern
     '#id': list_item
@@ -1195,6 +1206,8 @@
       article.ecl-card div.ecl-card__body ul.ecl-content-block__primary-meta-container: 0
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: 1
       article.ecl-card div.ecl-card__body ul.ecl-content-block__label-container: 0
+      ul.ecl-content-block__primary-meta-container li.ecl-content-block__primary-meta-item: 0
+      ul.ecl-content-block__secondary-meta-container li.ecl-content-block__secondary-meta-item: 0
     equals:
       article.ecl-card div.ecl-card__body div.ecl-content-block__title .ecl-link: "Item title"
       article.ecl-card div.ecl-card__body div.ecl-content-block__description: "This is a very long description..."
