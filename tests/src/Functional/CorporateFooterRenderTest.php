@@ -257,20 +257,20 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $subsection->find('css', '.ecl-site-footer__title');
+    $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Legal links title', $actual->getText());
 
     $items = $data['legal_links'];
 
     foreach ($items as $key => $expected) {
       $index = $key + 1;
-      $actual = $subsection->find('css', "ul li:nth-child({$index}) > a");
+      $actual = $section->find('css', "ul li:nth-child({$index}) > a");
       $this->assertListLink($actual, $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(2)');
 
     $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Institution links title', $actual->getText());
@@ -350,9 +350,9 @@ class CorporateFooterRenderTest extends BrowserTestBase {
       $this->assertListLink($actual, $expected);
     }
 
-    $subsection = $assert->elementExists('css', '.ecl-site-footer__section:nth-child(3)', $column);
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $subsection->find('css', '.ecl-site-footer__title');
+    $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Legal links title', $actual->getText());
 
     $items = $data['legal_links'];
@@ -361,11 +361,11 @@ class CorporateFooterRenderTest extends BrowserTestBase {
     array_pop($items);
     foreach ($items as $key => $expected) {
       $index = $key + 1;
-      $actual = $subsection->find('css', "ul li:nth-child({$index}) > a");
+      $actual = $section->find('css', "ul li:nth-child({$index}) > a");
       $this->assertListLink($actual, $expected);
     }
 
-    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(1)');
+    $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(2) div.ecl-site-footer__column:nth-child(3) div.ecl-site-footer__section:nth-child(2)');
 
     $actual = $section->find('css', '.ecl-site-footer__title');
     $this->assertEquals('Institution links title', $actual->getText());
