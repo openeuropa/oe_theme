@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Highlighted list pattern - Four columns layout variant.
+ */
+#}
+
+{% set highlighted_item = [] %}
+
+{# Prepare the items array. #}
+{% set _items = [] %}
+{% if items is defined and items is not empty %}
+  {% set _item = [] %}
+  {% for item in items|slice(0,6) %}
+    {% set _item = pattern('list_item', {
+      'title': item.title,
+      'url': item.url,
+      'external_link': item.external_link,
+      'meta': item.meta,
+      'secondary_meta': item.secondary_meta,
+      'image': {
+        'src': (loop.first or loop.index == 4) ? item.image.src : '',
+        'alt': (loop.first or loop.index == 4) ? item.image.alt : '',
+        'size': (loop.first or loop.index == 4) ? 'medium' : '',
+      },
+      'image_position': (loop.first or loop.index == 4) ? 'top' : '',
+      'divider': (loop.index == 2 or loop.index == 5) ? true : false,
+      'extra_classes': (loop.index == 2 or loop.index == 5) ? 'ecl-u-flex-grow-1 ecl-u-mb-m' : 'ecl-u-flex-grow-1',
+    }, 'default') %}
+    {% set _items = _items|merge([_item]) %}
+  {% endfor %}
+{% endif %}
+
+{# Prepare the see more link. #}
+{% if see_more_url is defined and see_more_url is not empty %}
+  {% set _see_more = {
+    link: {
+      type: 'standalone',
+      label: see_more_label|default(see_more_url),
+      path: see_more_url,
+      external: see_more_url|is_external_url,
+      icon_path: ecl_icon_path
+    },
+    icon: {
+      path: ecl_icon_path,
+      name: 'arrow-left',
+      size: 'xs',
+      transform: 'rotate-180'
+    }
+  } %}
+{% endif %}
+
+{% include '@oe_theme/compositions/ec-component-highlighted-news-block/highlighted-news-block.html.twig' with {
+  'columns': 4,
+  'title': title|default(''),
+  'items': _items,
+  'see_more': _see_more,
+  'detail': detail|default(''),
+} only %}
+

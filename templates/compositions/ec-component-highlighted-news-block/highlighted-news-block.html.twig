@@ -31,8 +31,34 @@
         </div>
       </div>
     {% endif %}
+    {% if items is not empty and _columns == 4 %}
+      <div class="ecl-row ecl-u-border-color-neutral ecl-u-border-width-1 ecl-u-border-bottom ecl-u-pb-l">
+        <div class="ecl-col-l-3 ecl-u-d-flex ecl-u-flex-column">
+          {{ items.0 }}
+        </div>
+        {% if items|length > 1 %}
+          <div class="ecl-col-l-3 ecl-u-d-flex ecl-u-flex-column">
+            {% for item in items|slice(1, 2) %}
+              {{ item }}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if items.3 is defined and items.3 is not empty %}
+          <div class="ecl-col-l-3 ecl-u-d-flex ecl-u-flex-column">
+            {{ items.3 }}
+          </div>
+        {% endif %}
+        {% if items|length > 4 %}
+          <div class="ecl-col-l-3 ecl-u-d-flex ecl-u-flex-column">
+            {% for item in items|slice(4, 2) %}
+              {{ item }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
     {% if see_more is not empty %}
-      <div class="ecl-u-mt-s">
+      <div class="ecl-u-mt-m">
         {% include '@ecl-twig/link' with see_more %}
       </div>
     {% endif %}

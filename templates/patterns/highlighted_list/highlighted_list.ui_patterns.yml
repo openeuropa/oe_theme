@@ -42,7 +42,7 @@ highlighted_list:
       label: "Items"
       description: "List of items compatible with the ECL Content item component."
       preview:
-        - title: "Item 2"
+        - title: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem"
           detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
           meta:
             - "Item 2 primary meta"
@@ -62,7 +62,7 @@ highlighted_list:
                 definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
               - term: "Where"
                 definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-        - title: "Item 3"
+        - title: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo"
           url: "https://external.com"
           detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
           meta:
@@ -75,7 +75,7 @@ highlighted_list:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
           image_position: "top"
-        - title: "Item 4"
+        - title: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim"
           url: "#"
           detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
           meta:
@@ -89,7 +89,7 @@ highlighted_list:
               icon: "clock"
             - label: "Brussels"
               icon: "location"
-        - title: "Item 5"
+        - title: "Aenean imperdiet. Etiam ultricies nisi vel augue"
           url: "#"
           detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
           meta:
@@ -98,7 +98,7 @@ highlighted_list:
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
-        - title: "Item 6"
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
           url: "#"
           detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
           meta:
@@ -107,7 +107,9 @@ highlighted_list:
           image:
             src: "https://loremflickr.com/1200/900/arch"
             alt: "Alternative text for image"
-        - title: "Item 7"
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
+        - title: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero"
           detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
     see_more_label:
       type: "text"
