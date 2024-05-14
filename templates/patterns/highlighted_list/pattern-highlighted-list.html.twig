@@ -1,9 +1,53 @@
 {#
 /**
  * @file
- * Highlighted list pattern.
+ * Highlighted list pattern - Default variant.
  */
 #}
+
+{# Prepare the highlighted item array. #}
+{% if highlighted_item is defined and highlighted_item is not empty %}
+  {% set _highlighted_item = pattern('list_item', {
+    'title': highlighted_item.title,
+    'url': highlighted_item.url,
+    'external_link': highlighted_item.external_link,
+    'detail': highlighted_item.detail,
+    'meta': highlighted_item.meta,
+    'secondary_meta': highlighted_item.secondary_meta,
+    'image': {
+      'src': highlighted_item.image.src,
+      'alt': highlighted_item.image.alt,
+      'size': 'large',
+    },
+    'image_position': 'top',
+    'divider': true,
+    'extra_classes': 'ecl-u-flex-grow-1',
+  }, 'default') %}
+{% endif %}
+
+{# Prepare the items array. #}
+{% set _items = [] %}
+{% if items is defined and items is not empty %}
+  {% set _item = [] %}
+  {% for item in items|slice(0,3) %}
+    {% set _item = pattern('list_item', {
+      'title': item.title,
+      'url': item.url,
+      'external_link': item.external_link,
+      'meta': item.meta,
+      'secondary_meta': item.secondary_meta,
+      'image': {
+        'src': loop.first ? item.image.src : '',
+        'alt': loop.first ? item.image.alt : '',
+        'size': loop.first ? 'medium' : '',
+      },
+      'image_position': loop.first ? 'top' : '',
+      'divider': true,
+      'extra_classes': loop.last ? 'ecl-u-flex-grow-1' : 'ecl-u-flex-grow-1 ecl-u-mb-m',
+    }, 'default') %}
+    {% set _items = _items|merge([_item]) %}
+  {% endfor %}
+{% endif %}
 
 {# Prepare the see more link. #}
 {% if see_more_url is defined and see_more_url is not empty %}
@@ -26,8 +70,8 @@
 
 {% include '@oe_theme/compositions/ec-component-highlighted-news-block/highlighted-news-block.html.twig' with {
   'title': title|default(''),
-  'highlighted': highlighted_item,
-  'items': items,
+  'highlighted': _highlighted_item|default([]),
+  'items': _items,
   'see_more': _see_more,
   'detail': detail|default(''),
 } only %}
