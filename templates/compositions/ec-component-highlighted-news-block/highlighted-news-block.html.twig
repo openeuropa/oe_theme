@@ -3,12 +3,14 @@
   @file
   Theme implementation for the Highlighted News Block
   Parameters:
+    - "columns" (int) (default: 2): The number of columns layout. It can be 2 or 4 and it defaults to 2.
     - "title" (string) (default: ''): The Highlighted News Block title.
     - "highlighted" (array) (default: []): The main item of the list compatible with the ECL Content Item component.
     - "items" (array) (default: []): Highlighted News items compatible with the ECL Content Item component.
     - "see_more" (array) (default: []): Predefined structure compatible with Link component.
     - "detail" (string) (default: ''): Additional information to be displayed below the 'See more' link.
 #}
+  {% set _columns = columns|default(2) %}
   <div id="{{ 'highlighted-news-block'|clean_unique_id }}">
     {% if title is not empty %}
       <div class="ecl-row">
@@ -17,7 +19,7 @@
         </div>
       </div>
     {% endif %}
-    {% if highlighted is not empty and items is not empty %}
+    {% if highlighted is not empty and items is not empty and _columns == 2 %}
       <div class="ecl-row">
         <div class="ecl-col-l-8 ecl-u-d-flex ecl-u-flex-column contextual-region">
           {{ highlighted }}
