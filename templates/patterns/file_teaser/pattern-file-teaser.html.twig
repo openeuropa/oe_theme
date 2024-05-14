@@ -100,6 +100,8 @@
   } %}
 {% endif %}
 
+{{ contextual_links }}
+
 {% include '@ecl-twig/file' with {
   'title': file.title,
   'description': teaser|smart_trim(_length),
