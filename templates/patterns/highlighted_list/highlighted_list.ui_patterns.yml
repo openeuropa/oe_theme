@@ -1,6 +1,13 @@
 highlighted_list:
   label: "Highlighted list"
-  description: "A list of 4 highlighted content items. The image is only displayed for the first two items and the description for the first item. If more than 4 items are provided, only the first 4 will be displayed."
+  description: "A list of highlighted content items compatible with the default variant of the list_item pattern structure."
+  variants:
+    default:
+      label: "Two columns layout"
+      description: "Default highlighted list variant may contain up to 4 items: one highlighted and 3 secondary ones of which only the first one with image."
+    four_columns:
+      label: "Four columns layout"
+      description: "The four columns layout variant can contain up to 6 items, two of them with image (each one displayed on a different column)."
   fields:
     title:
       type: "text"
@@ -10,22 +17,37 @@ highlighted_list:
     highlighted_item:
       type: "array"
       label: "Highlighted item"
-      description: "The main item of the highlighted list."
+      description: "The main item of the highlighted list - used only in the default variant."
       preview:
-        type: pattern
-        id: list_item
-        variant: default
-        fields:
-          title: "Item 1"
-          url: "#"
-          external_link: true
-          detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+        title: "Item 1"
+        url: "#"
+        external_link: true
+        detail: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus gravida ipsum ut lorem cursus"
+        meta:
+          - "Item 1 primary meta"
+          - "DD Month Year"
+        secondary_meta:
+          - label: "3 minutes read"
+            icon: "information"
+          - label: "5 minutes read"
+            icon: "clock"
+        image:
+          src: "https://loremflickr.com/1200/900/arch"
+          alt: "Alternative text for image"
+        badges:
+          - label: "Highlighted"
+            variant: "highlight"
+    items:
+      type: "array"
+      label: "Items"
+      description: "List of items compatible with the ECL Content item component."
+      preview:
+        - title: "Item 2"
+          detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
           meta:
-            - "Item 1 primary meta"
+            - "Item 2 primary meta"
             - "DD Month Year"
           secondary_meta:
-            - label: "3 minutes read"
-              icon: "information"
             - label: "5 minutes read"
               icon: "clock"
           image:
@@ -34,83 +56,59 @@ highlighted_list:
           badges:
             - label: "Highlighted"
               variant: "highlight"
-    items:
-      type: "array"
-      label: "Items"
-      description: "List of items compatible with the ECL Content item component."
-      preview:
-        - type: pattern
-          id: list_item
-          variant: thumbnail_primary
-          fields:
-            title: "Item 2"
-            detail: "Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem."
-            meta:
-              - "Item 2 primary meta"
-              - "DD Month Year"
-            secondary_meta:
-              - label: "5 minutes read"
-                icon: "clock"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            badges:
-              - label: "Highlighted"
-                variant: "highlight"
-            lists:
-              -
-                - term: "When"
-                  definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
-                - term: "Where"
-                  definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
-        - type: pattern
-          id: list_item
-          variant: default
-          fields:
-            title: "Item 3"
-            url: "https://external.com"
-            detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
-            meta:
-              - "Item 3 primary meta"
-              - "DD Month Year"
-            secondary_meta:
-              - label: "2 minutes read"
-                icon: "clock"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            image_position: "top"
-        - type: pattern
-          id: list_item
-          variant: default
-          fields:
-            title: "Item 4"
-            url: "#"
-            detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
-            meta:
-              - "Item 4 primary meta"
-              - "DD Month Year"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
-            secondary_meta:
-              - label: "3 minutes read"
-                icon: "clock"
-              - label: "Brussels"
-                icon: "location"
-        - type: pattern
-          id: list_item
-          variant: default
-          fields:
-            title: "Item 5"
-            url: "#"
-            detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
-            meta:
-              - "Item 5 primary meta"
-              - "DD Month Year"
-            image:
-              src: "https://loremflickr.com/1200/900/arch"
-              alt: "Alternative text for image"
+          lists:
+            -
+              - term: "When"
+                definition: "Thursday 15 November, 08:00 AM to Friday 16 November"
+              - term: "Where"
+                definition: "The EGG, Rue Barra 175, 1070 Brussels, Belgium"
+        - title: "Item 3"
+          url: "https://external.com"
+          detail: "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam"
+          meta:
+            - "Item 3 primary meta"
+            - "DD Month Year"
+          secondary_meta:
+            - label: "2 minutes read"
+              icon: "clock"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          image_position: "top"
+        - title: "Item 4"
+          url: "#"
+          detail: "Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam"
+          meta:
+            - "Item 4 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+          secondary_meta:
+            - label: "3 minutes read"
+              icon: "clock"
+            - label: "Brussels"
+              icon: "location"
+        - title: "Item 5"
+          url: "#"
+          detail: "Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorpe"
+          meta:
+            - "Item 5 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+        - title: "Item 6"
+          url: "#"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
+          meta:
+            - "Item 6 primary meta"
+            - "DD Month Year"
+          image:
+            src: "https://loremflickr.com/1200/900/arch"
+            alt: "Alternative text for image"
+        - title: "Item 7"
+          detail: "Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum."
     see_more_label:
       type: "text"
       label: "See more label"
