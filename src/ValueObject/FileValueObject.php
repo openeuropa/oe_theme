@@ -157,7 +157,7 @@ class FileValueObject extends ValueObjectBase {
    *   Property value.
    */
   public function getUrl(): string {
-    return UrlHelper::filterBadProtocol($this->url);
+    return UrlHelper::stripDangerousProtocols($this->url);
   }
 
   /**
