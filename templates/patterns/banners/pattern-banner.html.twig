@@ -31,6 +31,18 @@
     }
   } %}
 {% endif %}
+{% if sources is not empty and sources is iterable %}
+  {% set _sources = [] %}
+  {% for source in sources %}
+    {% set _sources = _sources|merge([{
+      'src': source.src,
+      'media': source.size,
+    }]) %}
+  {% endfor %}
+{% endif %}
+{% set _picture = _picture|merge({
+  'sources': _sources,
+}) %}
 
 {% set _variant = variant|replace({'_': '-'}) %}
 

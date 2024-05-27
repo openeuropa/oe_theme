@@ -26,6 +26,18 @@
       }
     } %}
   {% endif %}
+  {% if item.sources is not empty and item.sources is iterable %}
+    {% set _sources = [] %}
+    {% for source in item.sources %}
+      {% set _sources = _sources|merge([{
+        'src': source.src,
+        'media': source.size,
+      }]) %}
+    {% endfor %}
+  {% endif %}
+  {% set _picture = _picture|merge({
+    'sources': _sources,
+  }) %}
   {% set _items = _items|merge([{
     title: item.title,
     description: item.description,

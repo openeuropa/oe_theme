@@ -13,6 +13,15 @@ carousel:
           url_text: "CTA"
           image: "https://picsum.photos/seed/picsum/600/300"
           image_alt: "alternative text"
+          sources:
+            - src: "https://loremflickr.com/480/480/arch"
+              size: "s"
+            - src: "https://picsum.photos/seed/picsum/768/768"
+              size: "m"
+            - src: "https://picsum.photos/seed/picsum/996/996"
+              size: "l"
+            - src: "https://inno-ecl.s3.amazonaws.com/media/examples/example-image.jpg"
+              size: "xl"
           variant: "text-box"
           centered: false
           credit: "© Copyright first item"
