@@ -519,6 +519,16 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $this->container->get('file_url_generator')->generateAbsoluteString($en_file_uri),
       $image_element->attr('src')
     );
+    // Assert all the media sources for different breakpoints.
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 480px)"]');
+    $this->assertCount(1, $small_media);
+    $this->assertStringContainsString('oe_theme_small_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 768px)"]');
+    $this->assertCount(1, $medium_media);
+    $this->assertStringContainsString('oe_theme_medium_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 996px)"]');
+    $this->assertCount(1, $large_media);
+    $this->assertStringContainsString('oe_theme_large_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
     $this->assertEquals('Banner', trim($crawler->filter('div.ecl-banner__content div.ecl-banner__title')->text()));
     $this->assertEquals('Description', trim($crawler->filter('div.ecl-banner__content p.ecl-banner__description')->text()));
@@ -1102,6 +1112,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'title' => 'Item 1',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'image_alt' => 'First image alt en',
+          'sources' => [
+            'small' => 'oe_theme_small_banner/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_medium_banner/public/example_1_en.jpeg',
+            'large' => 'oe_theme_large_banner/public/example_1_en.jpeg',
+          ],
           'variant' => 'text-overlay',
         ],
         [
@@ -1110,12 +1125,22 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => 'http://www.example.com/',
           'url_text' => 'CTA 2',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
+          'sources' => [
+            'small' => 'oe_theme_small_banner/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_medium_banner/public/example_2_en.jpeg',
+            'large' => 'oe_theme_large_banner/public/example_2_en.jpeg',
+          ],
           'variant' => 'text-overlay',
         ],
         [
           'title' => 'Item 3',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_1_uri),
           'image_alt' => 'First image alt en',
+          'sources' => [
+            'small' => 'oe_theme_small_banner/public/example_1_en.jpeg',
+            'medium' => 'oe_theme_medium_banner/public/example_1_en.jpeg',
+            'large' => 'oe_theme_large_banner/public/example_1_en.jpeg',
+          ],
           'variant' => 'text-overlay',
         ],
         [
@@ -1124,6 +1149,11 @@ class MediaParagraphsTest extends ParagraphsTestBase {
           'url' => '/',
           'url_text' => 'CTA 4',
           'image' => $this->container->get('file_url_generator')->generateAbsoluteString($en_file_2_uri),
+          'sources' => [
+            'small' => 'oe_theme_small_banner/public/example_2_en.jpeg',
+            'medium' => 'oe_theme_medium_banner/public/example_2_en.jpeg',
+            'large' => 'oe_theme_large_banner/public/example_2_en.jpeg',
+          ],
           'variant' => 'text-overlay',
         ],
       ],
@@ -1139,18 +1169,38 @@ class MediaParagraphsTest extends ParagraphsTestBase {
     $expected_values['items'][0]['title'] = 'BG Item 1';
     $expected_values['items'][0]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
     $expected_values['items'][0]['image_alt'] = 'First image alt bg';
+    $expected_values['items'][0]['sources'] = [
+      'small' => 'oe_theme_small_banner/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_medium_banner/public/example_1_bg.jpeg',
+      'large' => 'oe_theme_large_banner/public/example_1_bg.jpeg',
+    ];
     $expected_values['items'][1]['title'] = 'BG Item 2';
     $expected_values['items'][1]['description'] = 'BG Item description 2';
     $expected_values['items'][1]['url_text'] = 'BG CTA 2';
     $expected_values['items'][1]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $expected_values['items'][1]['sources'] = [
+      'small' => 'oe_theme_small_banner/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_medium_banner/public/example_2_bg.jpeg',
+      'large' => 'oe_theme_large_banner/public/example_2_bg.jpeg',
+    ];
     $expected_values['items'][2]['title'] = 'BG Item 3';
     $expected_values['items'][2]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_1_uri);
     $expected_values['items'][2]['image_alt'] = 'First image alt bg';
+    $expected_values['items'][2]['sources'] = [
+      'small' => 'oe_theme_small_banner/public/example_1_bg.jpeg',
+      'medium' => 'oe_theme_medium_banner/public/example_1_bg.jpeg',
+      'large' => 'oe_theme_large_banner/public/example_1_bg.jpeg',
+    ];
     $expected_values['items'][3]['title'] = 'BG Item 4';
     $expected_values['items'][3]['description'] = 'BG Item description 4';
     $expected_values['items'][3]['url'] = 'http://www.example.com/';
     $expected_values['items'][3]['url_text'] = 'BG CTA 4';
     $expected_values['items'][3]['image'] = $this->container->get('file_url_generator')->generateAbsoluteString($bg_file_2_uri);
+    $expected_values['items'][3]['sources'] = [
+      'small' => 'oe_theme_small_banner/public/example_2_bg.jpeg',
+      'medium' => 'oe_theme_medium_banner/public/example_2_bg.jpeg',
+      'large' => 'oe_theme_large_banner/public/example_2_bg.jpeg',
+    ];
     $assert->assertPattern($expected_values, $html);
 
     // Update paragraph variant to image-overlay.

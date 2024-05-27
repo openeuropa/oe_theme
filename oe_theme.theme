@@ -1669,14 +1669,35 @@ function oe_theme_preprocess_paragraph__oe_banner(array &$variables): void {
     $cacheability->applyTo($variables);
     return;
   }
-  $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
+  $full_width = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
+  $large = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_large_banner');
+  $medium = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_medium_banner');
+  $small = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_small_banner');
 
   $values = [
-    'src' => $style->buildUrl($uri),
+    'src' => $full_width->buildUrl($uri),
     'alt' => $source->getMetadata($media, 'thumbnail_alt_value') ?? '',
     'name' => $media->getName(),
   ];
   $variables['image'] = ImageValueObject::fromArray($values);
+  $variables['sources'] = [
+    [
+      'src' => $small->buildUrl($uri),
+      'size' => 's',
+    ],
+    [
+      'src' => $medium->buildUrl($uri),
+      'size' => 'm',
+    ],
+    [
+      'src' => $large->buildUrl($uri),
+      'size' => 'l',
+    ],
+    [
+      'src' => $full_width->buildUrl($uri),
+      'size' => 'xl',
+    ],
+  ];
 
   $cacheability->applyTo($variables);
 }
@@ -2202,6 +2223,12 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
   $variables['items'] = [];
   $cacheability = CacheableMetadata::createFromRenderArray($variables);
 
+  // Load needed images styles.
+  $full_width = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
+  $large = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_large_banner');
+  $medium = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_medium_banner');
+  $small = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_small_banner');
+
   /** @var \Drupal\paragraphs\Entity\Paragraph $sub_paragraph */
   foreach ($paragraph->get('field_oe_carousel_items')->referencedEntities() as $sub_paragraph) {
     // Get sub-paragraph translation.
@@ -2270,9 +2297,26 @@ function oe_theme_preprocess_paragraph__oe_carousel(array &$variables): void {
       $cacheability->applyTo($variables);
       continue;
     }
-    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load('oe_theme_full_width');
-    $item['image'] = $style->buildUrl($uri);
+    $item['image'] = $full_width->buildUrl($uri);
     $item['image_alt'] = $source->getMetadata($media, 'thumbnail_alt_value') ?? '';
+    $item['sources'] = [
+      [
+        'src' => $small->buildUrl($uri),
+        'size' => 's',
+      ],
+      [
+        'src' => $medium->buildUrl($uri),
+        'size' => 'm',
+      ],
+      [
+        'src' => $large->buildUrl($uri),
+        'size' => 'l',
+      ],
+      [
+        'src' => $full_width->buildUrl($uri),
+        'size' => 'xl',
+      ],
+    ];
     $variables['items'][] = $item;
     $cacheability->applyTo($variables);
   }

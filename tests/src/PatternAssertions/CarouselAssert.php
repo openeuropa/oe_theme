@@ -41,6 +41,7 @@ class CarouselAssert extends BasePatternAssert {
    *   The DomCrawler where to check the element.
    *
    * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+   * @SuppressWarnings(PHPMD.NPathComplexity)
    */
   protected function assertItems(array $expected_items, Crawler $crawler): void {
     $items = $crawler->filter('div.ecl-carousel__container div.ecl-carousel__slides div.ecl-carousel__slide');
@@ -90,6 +91,18 @@ class CarouselAssert extends BasePatternAssert {
         else {
           $this->assertEquals('', $image_element->attr('alt'));
         }
+      }
+      if (!isset($expected_item['sources']) ||
+        (isset($expected_item['variant']) && $expected_item['variant'] === 'plain-background')) {
+        $this->assertElementNotExists('picture source', $item);
+      }
+      else {
+        $small_media = $item->filter('picture source[media="(min-width: 480px)"]');
+        $this->assertStringContainsString($expected_item['sources']['small'], $small_media->attr('srcset'));
+        $medium_media = $item->filter('picture source[media="(min-width: 768px)"]');
+        $this->assertStringContainsString($expected_item['sources']['medium'], $medium_media->attr('srcset'));
+        $large_media = $item->filter('picture source[media="(min-width: 996px)"]');
+        $this->assertStringContainsString($expected_item['sources']['large'], $large_media->attr('srcset'));
       }
     }
   }

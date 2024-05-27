@@ -1,0 +1,16 @@
+uuid: 2b24cafd-d767-491e-9cb4-9aed029099f0
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_large_banner
+label: 'Large banner'
+effects:
+  ec4b9e51-ccd6-4686-9bee-218e1056ff7c:
+    uuid: ec4b9e51-ccd6-4686-9bee-218e1056ff7c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 996
+      height: 996
+      anchor: center-center
+

@@ -1,0 +1,16 @@
+uuid: 5c56ab4e-4e78-45a2-9a69-1bf845b7f803
+langcode: en
+status: true
+dependencies: {  }
+name: oe_theme_small_banner
+label: 'Small banner'
+effects:
+  f5071033-a4a5-4b0a-9a5a-53a31db3791b:
+    uuid: f5071033-a4a5-4b0a-9a5a-53a31db3791b
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 480
+      height: 480
+      anchor: center-center
+

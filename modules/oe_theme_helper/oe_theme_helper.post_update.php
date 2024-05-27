@@ -326,3 +326,47 @@ function oe_theme_helper_post_update_20017() {
   $image_style->addImageEffect($effect);
   $image_style->save();
 }
+
+/**
+ * Add banner image styles.
+ */
+function oe_theme_helper_post_update_40001(): void {
+  $image_styles = [
+    'oe_theme_large_banner' => [
+      'label' => 'Large banner',
+      'width' => '996',
+    ],
+    'oe_theme_medium_banner' => [
+      'label' => 'Medium banner',
+      'width' => '768',
+    ],
+    'oe_theme_small_banner' => [
+      'label' => 'Small banner',
+      'width' => '480',
+    ],
+  ];
+  foreach ($image_styles as $style_id => $style_data) {
+    $style = \Drupal::entityTypeManager()->getStorage('image_style')->load($style_id);
+    // If the image style already exists, skip it.
+    if ($style) {
+      continue;
+    }
+    // Create image style.
+    $image_style = ImageStyle::create([
+      'name' => $style_id,
+      'label' => $style_data['label'],
+    ]);
+    // Add scale&crop effect to the image style.
+    $effect = [
+      'id' => 'image_scale_and_crop',
+      'weight' => 1,
+      'data' => [
+        'width' => $style_data['width'],
+        'height' => $style_data['width'],
+        'anchor' => 'center-center',
+      ],
+    ];
+    $image_style->addImageEffect($effect);
+    $image_style->save();
+  }
+}
