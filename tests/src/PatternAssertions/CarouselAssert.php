@@ -97,11 +97,11 @@ class CarouselAssert extends BasePatternAssert {
         $this->assertElementNotExists('picture source', $item);
       }
       else {
-        $small_media = $item->filter('picture source[media="(min-width: 480px)"]');
+        $small_media = $item->filter('picture source[media="(max-width: 480px)"]');
         $this->assertStringContainsString($expected_item['sources']['small'], $small_media->attr('srcset'));
-        $medium_media = $item->filter('picture source[media="(min-width: 768px)"]');
+        $medium_media = $item->filter('picture source[media="(max-width: 768px)"]');
         $this->assertStringContainsString($expected_item['sources']['medium'], $medium_media->attr('srcset'));
-        $large_media = $item->filter('picture source[media="(min-width: 996px)"]');
+        $large_media = $item->filter('picture source[media="(max-width: 996px)"]');
         $this->assertStringContainsString($expected_item['sources']['large'], $large_media->attr('srcset'));
       }
     }

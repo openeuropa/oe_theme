@@ -29,9 +29,19 @@
   {% if item.sources is not empty and item.sources is iterable %}
     {% set _sources = [] %}
     {% for source in item.sources %}
+      {% set media = '' %}
+      {% if source.size == 's' %}
+        {% set media = '(max-width: 480px)' %}
+      {% elseif source.size == 'm' %}
+        {% set media = '(max-width: 768px)' %}
+      {% elseif source.size == 'l' %}
+        {% set media = '(max-width: 996px)' %}
+      {% elseif source.size == 'xl' %}
+        {% set media = '(max-width: 1140px)' %}
+      {% endif %}
       {% set _sources = _sources|merge([{
         'src': source.src,
-        'media': source.size,
+        'media': media,
       }]) %}
     {% endfor %}
   {% endif %}

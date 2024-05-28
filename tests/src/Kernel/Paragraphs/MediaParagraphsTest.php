@@ -520,13 +520,13 @@ class MediaParagraphsTest extends ParagraphsTestBase {
       $image_element->attr('src')
     );
     // Assert all the media sources for different breakpoints.
-    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 480px)"]');
+    $small_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 480px)"]');
     $this->assertCount(1, $small_media);
     $this->assertStringContainsString('oe_theme_small_banner/public/example_1_en.jpeg', $small_media->attr('srcset'));
-    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 768px)"]');
+    $medium_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 768px)"]');
     $this->assertCount(1, $medium_media);
     $this->assertStringContainsString('oe_theme_medium_banner/public/example_1_en.jpeg', $medium_media->attr('srcset'));
-    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(min-width: 996px)"]');
+    $large_media = $crawler->filter('section.ecl-banner.ecl-banner--text-box.ecl-banner--centered picture source[media="(max-width: 996px)"]');
     $this->assertCount(1, $large_media);
     $this->assertStringContainsString('oe_theme_large_banner/public/example_1_en.jpeg', $large_media->attr('srcset'));
     $this->assertStringContainsString('Alt en', $image_element->attr('alt'));
