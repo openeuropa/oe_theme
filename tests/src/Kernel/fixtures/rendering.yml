@@ -3278,10 +3278,10 @@
             alt: "Alternative text for featured item image 2"
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--centered: 0
-      div.ecl-list-illustration.ecl-list-illustration--zebra: 1
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--centered: 0
+      ul.ecl-list-illustration.ecl-list-illustration--zebra: 1
+      li.ecl-list-illustration__item: 2
       div.ecl-list-illustration__value: 0
       img.ecl-list-illustration__image: 2
       img.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
@@ -3291,10 +3291,10 @@
       img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
       img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
@@ -3319,9 +3319,9 @@
           media_size: 'l'
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--zebra: 1
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--zebra: 1
+      li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 2
       div.ecl-list-illustration__value: 1
       img.ecl-list-illustration__image.ecl-list-illustration__image--square.ecl-list-illustration__image--l: 2
@@ -3329,13 +3329,13 @@
       img.ecl-list-illustration__image[src="https://placeimg.com/1000/500/arch"]: 1
       img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
       img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
-      'div.ecl-list-illustration__item svg.ecl-icon': 0
+      'li.ecl-list-illustration__item svg.ecl-icon': 0
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__value': 'Highlighted image'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__value': 'Highlighted image'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
@@ -3352,19 +3352,19 @@
           icon: "budget"
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--centered: 0
-      div.ecl-list-illustration.ecl-list-illustration--zebra: 0
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--centered: 0
+      ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
+      li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
     equals:
-      'div.ecl-list-illustration__item:nth-child(1) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#growth"></use>'
-      'div.ecl-list-illustration__item:nth-child(2) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#budget"></use>'
+      'li.ecl-list-illustration__item:nth-child(1) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#growth"></use>'
+      'li.ecl-list-illustration__item:nth-child(2) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#budget"></use>'
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
@@ -3385,11 +3385,11 @@
             alt: "Alternative text for featured item image 2"
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--centered: 0
-      div.ecl-list-illustration.ecl-list-illustration--zebra: 0
-      div.ecl-list-illustration.ecl-list-illustration--col-2: 1
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--centered: 0
+      ul.ecl-list-illustration.ecl-list-illustration--zebra: 0
+      ul.ecl-list-illustration.ecl-list-illustration--col-2: 1
+      li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 2
       img.ecl-list-illustration__image.ecl-list-illustration__image--square: 0
       img.ecl-list-illustration__image[alt="Alternative text for featured item image 1"]: 1
@@ -3397,10 +3397,10 @@
       img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
       img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
@@ -3423,10 +3423,10 @@
           media_size: 's'
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--centered: 1
-      div.ecl-list-illustration.ecl-list-illustration--col-3: 1
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--centered: 1
+      ul.ecl-list-illustration.ecl-list-illustration--col-3: 1
+      li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 2
       img.ecl-list-illustration__image.ecl-list-illustration__image--square: 2
       img.ecl-list-illustration__image.ecl-list-illustration__image--square.ecl-list-illustration__image--s: 2
@@ -3435,10 +3435,10 @@
       img.ecl-list-illustration__image[alt="Alternative text for featured item image 2"]: 1
       img.ecl-list-illustration__image[src="https://placeimg.com/500/500/arch"]: 1
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
 - array:
     '#type': 'pattern'
     '#id': 'list_with_illustration'
@@ -3454,18 +3454,18 @@
           icon: "budget"
   assertions:
     count:
-      div.ecl-list-illustration: 1
-      div.ecl-list-illustration.ecl-list-illustration--col-2: 1
-      div.ecl-list-illustration__item: 2
+      ul.ecl-list-illustration: 1
+      ul.ecl-list-illustration.ecl-list-illustration--col-2: 1
+      li.ecl-list-illustration__item: 2
       img.ecl-list-illustration__image: 0
     contains:
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
-      'div.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
-      'div.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__title': 'Business, Economy, Euro'
+      'li.ecl-list-illustration__item:nth-child(1) div.ecl-list-illustration__description': 'EU economy, the euro, and practical information for EU businesses and entrepreneurs.'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__title': 'About the European Union'
+      'li.ecl-list-illustration__item:nth-child(2) div.ecl-list-illustration__description': 'The EU and its institutions, how to visit and work at the EU.'
     equals:
-      'div.ecl-list-illustration__item:nth-child(1) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#growth"></use>'
-      'div.ecl-list-illustration__item:nth-child(2) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#budget"></use>'
+      'li.ecl-list-illustration__item:nth-child(1) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#growth"></use>'
+      'li.ecl-list-illustration__item:nth-child(2) svg.ecl-icon': '<use xlink:href="/themes/custom/oe_theme/dist/ec/images/icons/sprites/icons.svg#budget"></use>'
 - array:
     '#type': 'pattern'
     '#id': 'news_ticker'

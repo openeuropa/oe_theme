@@ -162,7 +162,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
+    $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EC Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
@@ -200,7 +200,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
+    $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EC Standardised Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
@@ -305,7 +305,7 @@ class CorporateFooterRenderTest extends BrowserTestBase {
 
     $section = $assert->elementExists('css', 'footer.ecl-site-footer div.ecl-site-footer__row:nth-child(1) div.ecl-site-footer__column:nth-child(1) div.ecl-site-footer__section:nth-child(1)');
 
-    $actual = $section->find('css', 'h2.ecl-site-footer__title a');
+    $actual = $section->find('css', 'div.ecl-site-footer__title a');
     $this->assertEquals('EU Site Name', $actual->getText());
     $this->assertEquals('http://web:8080/build/', $actual->getAttribute('href'));
 
